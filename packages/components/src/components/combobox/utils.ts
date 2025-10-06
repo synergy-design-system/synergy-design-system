@@ -106,8 +106,16 @@ export const getValueFromOption = (option: SynOption) => {
     // If the option has no value, use the text label
     return option.getTextLabel();
   }
-  return value;
+  return String(value);
 };
+
+/**
+ * Get the values for options. If an option has no value, it will use the text label.
+ *
+ * @param options List of syn-options to get the values from
+ * @returns The values of the options
+ */
+export const getValuesFromOptions = (options: SynOption[]) => options.map(getValueFromOption);
 
 /**
  * Check if a value belongs to the value or text label of an option.

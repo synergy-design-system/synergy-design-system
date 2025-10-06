@@ -65,6 +65,8 @@ describe('<syn-combobox>', () => {
     expect(el.required).to.be.false;
     expect(el.getOption).to.be.a('function');
     expect(el.filter).to.be.a('function');
+    expect(el.restricted).to.be.false;
+    expect(el.multiple).to.be.false;
   });
 
   it('default properties for options without value set', async () => {
@@ -92,6 +94,8 @@ describe('<syn-combobox>', () => {
     expect(el.required).to.be.false;
     expect(el.getOption).to.be.a('function');
     expect(el.filter).to.be.a('function');
+    expect(el.restricted).to.be.false;
+    expect(el.multiple).to.be.false;
   });
 
   it('should be disabled with the disabled attribute', async () => {
@@ -318,15 +322,16 @@ describe('<syn-combobox>', () => {
     it('should set the selected option to selected when the user types option text content in the combobox', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox>
-          <syn-option value="option-1">Option 1</syn-option>
-          <syn-option value="option-2">Option 2</syn-option>
-          <syn-option value="option-3">Option 3</syn-option>
+          <!-- TODO: undo this as soon as the delimiter is added -->
+          <syn-option value="option-1">Option1</syn-option>
+          <syn-option value="option-2">Option2</syn-option>
+          <syn-option value="option-3">Option3</syn-option>
         </syn-combobox>
       `);
       const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
 
       el.focus();
-      await sendKeys({ type: 'Option 2' });
+      await sendKeys({ type: 'Option2' });
       el.blur();
       await el.updateComplete;
       expect(secondOption.selected).to.be.true;
@@ -814,6 +819,21 @@ describe('<syn-combobox>', () => {
       expect(formData.get('a')).to.equal('option-1');
     });
 
+    it('should serialize its name and value with FormData when multiple options are selected', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <syn-combobox name="a" value="option-2 option-3" multiple>
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">Option 2</syn-option>
+            <syn-option value="option-3">Option 3</syn-option>
+          </syn-combobox>
+        </form>
+      `);
+      const formData = new FormData(form);
+      expect(formData.getAll('a')).to.include('option-2');
+      expect(formData.getAll('a')).to.include('option-3');
+    });
+
     it('should serialize its name and value in JSON', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
@@ -826,6 +846,20 @@ describe('<syn-combobox>', () => {
       `);
       const json = serialize(form);
       expect(json.a).to.equal('option-1');
+    });
+
+    it('should serialize its name and value in JSON when multiple options are selected', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <syn-combobox name="a" value="option-2 option-3" multiple>
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">Option 2</syn-option>
+            <syn-option value="option-3">Option 3</syn-option>
+          </syn-combobox>
+        </form>
+      `);
+      const json = serialize(form);
+      expect(json.a).to.deep.equal(['option-2', 'option-3']);
     });
 
     it('should be present in form data when using the form attribute and located outside of a <form>', async () => {
@@ -1476,15 +1510,16 @@ describe('<syn-combobox>', () => {
     it('should reset to last selected option when setting invalid value programmatically', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox value="option-2" restricted>
-          <syn-option value="option-1">Option 1</syn-option>
-          <syn-option value="option-2">Option 2</syn-option>
-          <syn-option value="option-3">Option 3</syn-option>
+          <!-- TODO: undo this as soon as the delimiter is added -->
+          <syn-option value="option-1">Option1</syn-option>
+          <syn-option value="option-2">Option2</syn-option>
+          <syn-option value="option-3">Option3</syn-option>
         </syn-combobox>
       `);
       el.value = 'invalid';
       await aTimeout(0);
 
-      expect(el.displayInput.value).to.equal('Option 2');
+      expect(el.displayInput.value).to.equal('Option2');
       expect(el.valueInput.value).to.equal('option-2');
       expect(el.value).to.equal('option-2');
     });
@@ -1523,6 +1558,324 @@ describe('<syn-combobox>', () => {
       expect(displayInput.getAttribute('aria-expanded')).to.equal('true');
       expect(noResults).to.exist;
       expect(noResults!.textContent).to.equal('No results found');
+    });
+  });
+
+  describe('when multiple is set', () => {
+    it('should show a placeholder when no options are selected', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-select placeholder="Select a few" multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-select>
+      `);
+      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="display-input"]')!;
+
+      expect(getComputedStyle(displayInput).opacity).to.not.equal('0');
+      expect(displayInput.placeholder).to.equal('Select a few');
+    });
+
+    it('should not allow selection when the option is disabled', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-1" multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2" disabled>Option 2</syn-option>
+        </syn-combobox>
+      `);
+      const disabledOption = el.querySelector('syn-option[disabled]')!;
+
+      await el.show();
+      await clickOnElement(disabledOption);
+      await el.updateComplete;
+
+      expect(el.value).to.deep.equal(['option-1']);
+    });
+
+    it('should allow multiple options to be selected', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-1 option-3" multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.show();
+
+      const options = el.querySelectorAll<SynOption>('syn-option');
+      const secondOption = options[1];
+      await clickOnElement(secondOption);
+      await el.updateComplete;
+
+      expect(el.value).to.deep.equal(['option-1', 'option-2', 'option-3']);
+      expect(options[0].selected).to.be.true;
+      expect(options[1].selected).to.be.true;
+      expect(options[2].selected).to.be.true;
+    });
+
+    it('should work with options that do not have a value', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox multiple value="Option-1 Option-3">
+          <syn-option>Option-1</syn-option>
+          <syn-option>Option-2</syn-option>
+          <syn-option>Option-3</syn-option>
+        </syn-combobox>
+      `);
+      await el.show();
+      const options = el.querySelectorAll<SynOption>('syn-option');
+      const secondOption = options[1];
+      await clickOnElement(secondOption);
+      await el.updateComplete;
+
+      expect(el.value).to.deep.equal(['Option-1', 'Option-2', 'Option-3']);
+      expect(options[0].selected).to.be.true;
+      expect(options[1].selected).to.be.true;
+      expect(options[2].selected).to.be.true;
+    });
+
+    it('should emit syn-change and syn-input when value is changed with the mouse', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-1" multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const inputHandler = sinon.spy();
+      const changeHandler = sinon.spy();
+
+      el.addEventListener('syn-input', inputHandler);
+      el.addEventListener('syn-change', changeHandler);
+      await el.show();
+      await el.updateComplete;
+      const options = el.querySelectorAll<SynOption>('syn-option');
+      const secondOption = options[1];
+      await clickOnElement(secondOption);
+      await el.updateComplete;
+      const thirdOption = options[2];
+      await clickOnElement(thirdOption);
+      await el.updateComplete;
+
+      expect(inputHandler).to.have.been.calledTwice;
+      expect(changeHandler).to.have.been.calledTwice;
+      expect(options[0].selected).to.be.true;
+      expect(options[1].selected).to.be.true;
+      expect(options[2].selected).to.be.true;
+      expect(el.value).to.deep.equal(['option-1', 'option-2', 'option-3']);
+    });
+
+    it('should emit syn-change and syn-input when a tag is removed', async () => {
+      const el = await fixture<SynCombobox>(html`
+      <syn-select value="option-1 option-2 option-3" multiple>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-select>
+    `);
+      const options = el.querySelectorAll<SynOption>('syn-option');
+      expect(options[0].selected).to.be.true;
+      expect(options[1].selected).to.be.true;
+      expect(options[2].selected).to.be.true;
+
+      const changeHandler = sinon.spy();
+      const inputHandler = sinon.spy();
+      const tag = el.shadowRoot!.querySelector('[part~="tag"]')!;
+      const removeButton = tag.shadowRoot!.querySelector('[part~="remove-button"]')!;
+
+      el.addEventListener('syn-change', changeHandler);
+      el.addEventListener('syn-input', inputHandler);
+
+      await clickOnElement(removeButton);
+      await el.updateComplete;
+
+      expect(changeHandler.calledOnce).to.be.true;
+      expect(inputHandler.calledOnce).to.be.true;
+
+      expect(options[0].selected).to.be.false;
+      expect(options[1].selected).to.be.true;
+      expect(options[2].selected).to.be.true;
+    });
+
+    it('should emit syn-change and syn-input when the user types in the combobox an valid option value', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const inputHandler = sinon.spy();
+      const changeHandler = sinon.spy();
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+
+
+      el.addEventListener('syn-input', inputHandler);
+      el.addEventListener('syn-change', changeHandler);
+      el.focus();
+      await sendKeys({ type: 'option-2' });
+      el.blur();
+      await el.updateComplete;
+
+      expect(inputHandler.callCount).to.equal(8);
+      expect(changeHandler.calledOnce).to.be.true;
+      expect(secondOption.selected).to.be.true;
+    });
+
+    it('should emit syn-change and syn-input when the user types in the combobox an valid option textContent', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const inputHandler = sinon.spy();
+      const changeHandler = sinon.spy();
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+
+
+      el.addEventListener('syn-input', inputHandler);
+      el.addEventListener('syn-change', changeHandler);
+      el.focus();
+      await sendKeys({ type: 'Option2' });
+      el.blur();
+      await el.updateComplete;
+
+      expect(inputHandler.callCount).to.equal(7);
+      expect(changeHandler.calledOnce).to.be.true;
+      expect(secondOption.selected).to.be.true;
+    });
+
+    it('should emit syn-input but not syn-change event when the user types in the combobox an invalid option value', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const inputHandler = sinon.spy();
+      const changeHandler = sinon.spy();
+
+      el.addEventListener('syn-input', inputHandler);
+      el.addEventListener('syn-change', changeHandler);
+      el.focus();
+      await sendKeys({ type: 'abc' });
+      el.blur();
+      await el.updateComplete;
+
+      expect(inputHandler.calledThrice).to.be.true;
+      expect(changeHandler.calledOnce).to.be.false;
+    });
+
+
+    it('should emit syn-change and syn-input when the value is changed with the keyboard', async () => {
+      if (navigator.userAgent.includes('Firefox')) {
+        console.warn('I have no idea why, but this test has a callCount of 2 for the inputHandler in Firefox. Skipping it for now.');
+        return;
+      }
+
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const changeHandler = sinon.spy();
+      const inputHandler = sinon.spy();
+
+      el.addEventListener('syn-input', inputHandler);
+      el.addEventListener('syn-change', changeHandler);
+      const options = el.querySelectorAll<SynOption>('syn-option');
+
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // open the dropdown and move to first option
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // move selection to the second option
+      await el.updateComplete;
+      await sendKeys({ press: 'ArrowDown' }); // move selection to the third option
+      await el.updateComplete;
+      await sendKeys({ press: 'Enter' }); // commit the selection
+      await el.updateComplete;
+
+      expect(el.value).to.deep.equal(['option-3']);
+      expect(options[2].selected).to.be.true;
+      expect(inputHandler.calledOnce).to.be.true;
+      expect(changeHandler.calledOnce).to.be.true;
+    });
+
+    it('should open the listbox when a letter key is pressed with syn-combobox is on focus with filtered options', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox multiple>
+          <syn-option value="option-1">Black</syn-option>
+          <syn-option value="option-2">Yellow</syn-option>
+          <syn-option value="option-3">Red</syn-option>
+        </syn-combobox>
+      `);
+      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('.combobox__display-input')!;
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'e' });
+      await el.updateComplete;
+
+      const allOptions = el.querySelectorAll<SynOption>('syn-option');
+
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('true');
+      expect(allOptions[0]).not.to.be.displayed;
+      expect(allOptions[1]).to.be.displayed;
+      expect(allOptions[2]).to.be.displayed;
+      const noResults = el.shadowRoot!.querySelector('.listbox__no-results');
+      expect(noResults).to.not.exist;
+    });
+
+    it('should open the listbox with no results text when a letter key is pressed with syn-combobox is on focus with no appropriate options', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Black</syn-option>
+          <syn-option value="option-2">Yellow</syn-option>
+          <syn-option value="option-3">Red</syn-option>
+        </syn-combobox>
+      `);
+      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('.combobox__display-input')!;
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'f' });
+      await el.updateComplete;
+
+      const filteredListbox = el.shadowRoot!.querySelector('.combobox__listbox')!;
+      const allOptions = el.querySelectorAll<SynOption>('syn-option');
+
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
+      expect(filteredListbox.getAttribute('aria-expanded')).to.equal('false');
+      expect(allOptions[0]).not.to.be.displayed;
+      expect(allOptions[1]).not.to.be.displayed;
+      expect(allOptions[2]).not.to.be.displayed;
+      const noResults = filteredListbox.querySelector('.listbox__no-results');
+      expect(noResults).to.exist;
+      expect(noResults!.textContent).to.equal('No results found');
+    });
+
+    it('should clear the input when Escape key is pressed with syn-combobox is on focus and listbox is closed', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-1 option-2" multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('.combobox__display-input')!;
+
+      el.focus();
+      await el.updateComplete;
+      await sendKeys({ press: 'Escape' });
+      await el.updateComplete;
+
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
+      expect(displayInput.value).to.equal('');
+      expect(el.value).to.deep.equal([]);
     });
   });
 

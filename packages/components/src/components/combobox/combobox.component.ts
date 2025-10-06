@@ -1,7 +1,10 @@
-import type { CSSResultGroup, PropertyValues } from 'lit';
+/* eslint-disable no-param-reassign */
+/* eslint-disable max-len */
+import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { defaultValue } from '../../internal/default-value.js';
 import { FormControlController } from '../../internal/form.js';
@@ -19,16 +22,18 @@ import SynPopup from '../popup/popup.component.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import SynOption from '../option/option.component.js';
 import type SynOptGroup from '../optgroup/optgroup.js';
+import SynTag from '../tag/tag.component.js';
 import styles from './combobox.styles.js';
 import customStyles from './combobox.custom.styles.js';
 import {
   checkValueBelongsToOption,
   createOptionFromDifferentTypes, filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot,
-  getValueFromOption, normalizeString,
+  getValueFromOption, getValuesFromOptions, normalizeString,
 } from './utils.js';
 import { scrollIntoView } from '../../internal/scroll.js';
 import { type OptionRenderer, defaultOptionRenderer } from './option-renderer.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
+import type { SynRemoveEvent } from '../../events/events.js';
 
 /**
  * @summary Comboboxes allow you to choose items from a menu of predefined options.
@@ -37,6 +42,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  *
  * @dependency syn-icon
  * @dependency syn-popup
+ * @dependency syn-tag
  *
  * @slot - The listbox options. Must be `<syn-option>` elements.
  *    You can use `<syn-optgroup>`'s to group items visually.
@@ -96,6 +102,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   static dependencies = {
     'syn-icon': SynIcon,
     'syn-popup': SynPopup,
+    'syn-tag': SynTag,
   };
 
   private readonly formControlController = new FormControlController(this, {
@@ -108,8 +115,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private closeWatcher: CloseWatcher | null;
 
-  /** The last syn-option, that was selected by click or via keyboard navigation */
-  private lastOption: SynOption | undefined;
+  /** The last syn-options, that were selected by click or via keyboard navigation */
+  private lastOptions: SynOption[] = [];
 
   private isOptionRendererTriggered = false;
 
@@ -127,13 +134,15 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @query('slot:not([name])') private defaultSlot: HTMLSlotElement;
 
+  @query('.combobox__tags') tagContainer: HTMLDivElement;
+
   @state() private hasFocus = false;
 
   @state() private isUserInput = false;
 
   @state() displayLabel = '';
 
-  @state() selectedOption: SynOption | undefined;
+  @state() selectedOptions: SynOption[] = [];
 
   @state() numberFilteredOptions = 0;
 
@@ -145,10 +154,16 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /**
    * The current value of the combobox, submitted as a name/value pair with form data.
    */
-  @property() value = '';
+  @property({
+    converter: {
+      fromAttribute: (value: string) => value.split(' '),
+      toAttribute: (value: string[]) => value.join(' '),
+    },
+  })
+    value: string | string[] = '';
 
   /** The default value of the form control. Primarily used for resetting the form control. */
-  @defaultValue() defaultValue = '';
+  @defaultValue() defaultValue: string | string[] = '';
 
   /** The combobox's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
@@ -202,8 +217,15 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /**
    * When set to `true`, restricts the combobox to only allow selection from the available options.
    * Users will not be able to enter custom values that are not present in the list.
+   * This will always be true, if `multiple` is active.
    */
   @property({ reflect: true, type: Boolean }) restricted = false;
+
+  /**
+   * Allows more than one option to be selected.
+   * If `multiple`is set, the combobox will always be `restricted` to the available options
+   * */
+  @property({ reflect: true, type: Boolean }) multiple = false;
 
   /**
    * A function that customizes the rendered option. The first argument is the option, the second
@@ -238,6 +260,34 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     return option?.value === queryStr;
   };
 
+  /**
+   * The maximum number of selected options to show when `multiple` is true. After the maximum, "+n" will be shown to
+   * indicate the number of additional items that are selected. Set to 0 to remove the limit.
+   */
+  @property({ attribute: 'max-options-visible', type: Number }) maxOptionsVisible = 3;
+
+  /**
+   * A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second
+   * is the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
+   * the specified value.
+   */
+  @property() getTag: (option: SynOption, index: number) => TemplateResult | string | HTMLElement = option => html`
+    <syn-tag
+      part="tag"
+      exportparts="
+            base:tag__base,
+            content:tag__content,
+            remove-button:tag__remove-button,
+            remove-button__base:tag__remove-button__base
+          "
+      size=${this.size}
+      removable
+      @syn-remove=${(event: SynRemoveEvent) => this.handleTagRemove(event, option)}
+    >
+      ${option.getTextLabel()}
+    </syn-tag>
+  `;
+
   /** Gets the validity state object */
   get validity() {
     return this.valueInput.validity;
@@ -269,6 +319,22 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       // are working correctly.
       this.defaultValue = this.value;
     }
+  }
+
+  protected get tags() {
+    return this.selectedOptions.map((option, index) => {
+      if (index < this.maxOptionsVisible || this.maxOptionsVisible <= 0) {
+        const tag = this.getTag(option, index);
+        // Wrap so we can handle the remove
+        return html`<div @syn-remove=${(e: SynRemoveEvent) => this.handleTagRemove(e, option)}>
+          ${typeof tag === 'string' ? unsafeHTML(tag) : tag}
+        </div>`;
+      } if (index === this.maxOptionsVisible) {
+        // Hit tag limit
+        return html`<syn-tag size=${this.size}>+${this.selectedOptions.length - index}</syn-tag>`;
+      }
+      return html``;
+    });
   }
 
   private addOpenListeners() {
@@ -375,11 +441,17 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       // Update the value based on the current selection and close it
       if (currentOption) {
-        const oldValue = this.lastOption ? getValueFromOption(this.lastOption) : undefined;
-        this.updateSelectedOptionsCacheAndValue(currentOption);
+        const oldValue = this.lastOptions ? getValuesFromOptions(this.lastOptions) : undefined;
+
+        if (this.multiple) {
+          this.toggleOptionSelection(currentOption);
+        } else {
+          this.setSelectedOptions(currentOption);
+        }
+
+        this.selectionChanged();
 
         if (this.value !== oldValue) {
-          this.setSelectedOptionToSelected();
           // Emit after updating
           this.updateComplete.then(() => {
             this.emit('syn-input');
@@ -388,7 +460,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         }
       }
 
-      this.hide();
+      if (!this.multiple) {
+        this.hide();
+      }
       this.displayInput.focus({ preventScroll: true });
       return;
     }
@@ -436,9 +510,30 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.displayInput.focus();
   }
 
+  private handleTagRemove(event: SynRemoveEvent, option: SynOption) {
+    event.stopPropagation();
+
+    // this.valueHasChanged = true;
+
+    if (!this.disabled) {
+      this.toggleOptionSelection(option, false);
+      this.selectionChanged();
+
+      // Emit after updating
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.updateComplete.then(() => {
+        this.emit('syn-input');
+        this.emit('syn-change');
+      });
+    }
+  }
+
   private handleComboboxMouseDown(event: MouseEvent) {
-    // Ignore disabled controls
-    if (this.disabled) {
+    const path = event.composedPath();
+    const isIconButton = path.some(el => el instanceof Element && el.tagName.toLowerCase() === 'syn-icon-button');
+
+    // Ignore disabled controls and clicks on tags (remove buttons)
+    if (this.disabled || isIconButton) {
       return;
     }
 
@@ -468,10 +563,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     if (this.value !== '') {
       this.value = '';
       this.displayInput.value = '';
-      this.lastOption = undefined;
-      this.updateSelectedOptionsCacheAndValue(undefined);
+      this.lastOptions = [];
+      this.setSelectedOptions([]);
+      this.selectionChanged();
       this.displayInput.focus({ preventScroll: true });
-      this.setSelectedOptionToSelected();
 
       // Emit after update
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -491,18 +586,23 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   /* eslint-disable @typescript-eslint/no-floating-promises */
+  // eslint-disable-next-line complexity
   private handleOptionClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const option = target.closest('syn-option');
-    const oldValue = this.lastOption ? getValueFromOption(this.lastOption) : undefined;
+    const oldValue = this.lastOptions ? getValuesFromOptions(this.lastOptions) : undefined;
     if (option && !option.disabled) {
-      this.updateSelectedOptionsCacheAndValue(option);
+      if (this.multiple) {
+        this.toggleOptionSelection(option);
+      } else {
+        this.setSelectedOptions(option);
+      }
+      this.selectionChanged();
 
       // Set focus after updating so the value is announced by screen readers
       this.updateComplete.then(() => this.displayInput.focus({ preventScroll: true }));
 
       if (this.value !== oldValue) {
-        this.setSelectedOptionToSelected();
         // Emit after updating
         this.updateComplete.then(() => {
           this.emit('syn-input');
@@ -510,8 +610,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         });
       }
 
-      this.hide();
-      this.displayInput.focus({ preventScroll: true });
+      if (!this.multiple) {
+        this.hide();
+        this.displayInput.focus({ preventScroll: true });
+      }
     }
   }
   /* eslint-enable @typescript-eslint/no-floating-promises */
@@ -542,6 +644,32 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
     this.setCurrentOption(filteredOptions[newIndex]);
     scrollIntoView(this.getCurrentOption()!, this.listbox, 'vertical', 'auto');
+  }
+
+  // Toggles an option's selected state
+  // eslint-disable-next-line class-methods-use-this
+  private toggleOptionSelection(option: SynOption, force?: boolean) {
+    if (force === true || force === false) {
+      option.selected = force;
+    } else {
+      option.selected = !option.selected;
+    }
+  }
+
+  // Sets the selected option(s)
+  private setSelectedOptions(option: SynOption | SynOption[]) {
+    const newSelectedOptions = Array.isArray(option) ? option : [option];
+
+    const slottedOptions = this.getSlottedOptions();
+    slottedOptions.forEach((opt) => {
+      // eslint-disable-next-line no-param-reassign
+      opt.selected = false;
+    });
+    // Set the new selection
+    if (newSelectedOptions.length !== 0) {
+      // eslint-disable-next-line no-return-assign
+      newSelectedOptions.forEach(el => (el.selected = true));
+    }
   }
 
   private getAllFilteredOptions() {
@@ -579,42 +707,32 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * Updates the selected options cache, the current value, and the display value
    */
   // eslint-disable-next-line complexity
-  private updateSelectedOptionsCacheAndValue(option: SynOption | undefined) {
-    this.selectedOption = option;
-
+  private selectionChanged() {
+    const options = this.getSlottedOptions();
+    this.selectedOptions = options.filter(opt => opt.selected);
     let optionValue;
 
-    if (option) {
-      this.lastOption = option;
-      optionValue = String(getValueFromOption(option));
-    } else if (this.restricted && !this.isValidValue() && this.value !== '' && !this.isUserInput) {
-      // if an invalid value was set via property binding for `restricted`comboboxes,
-      // reset to last valid value
-      this.resetToLastValidValue();
-      return;
+    if (this.multiple) {
+      this.value = this.selectedOptions.map(opt => String(getValueFromOption(opt)));
+    } else {
+      if (this.selectedOptions.length !== 0) {
+        // This is only for non multiple
+        optionValue = String(getValueFromOption(this.selectedOptions[0]));
+      } else if (this.restricted && !this.isValidValue() && this.value !== '' && !this.isUserInput) {
+        // if an invalid value was set via property binding for `restricted`comboboxes,
+        // reset to last valid value
+        this.resetToLastValidValue();
+        return;
+      }
+      this.value = optionValue ?? this.displayInput.value;
     }
-
-    // Update the value
-    this.value = optionValue ?? this.displayInput.value;
 
     // Update validity and display label
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.updateComplete.then(() => {
-      this.displayLabel = this.selectedOption?.getTextLabel() ?? this.displayInput.value;
+      this.displayLabel = this.multiple ? '' : this.selectedOptions[0]?.getTextLabel() ?? this.displayInput.value;
       this.formControlController.updateValidity();
     });
-  }
-
-  private setSelectedOptionToSelected() {
-    const slottedOptions = this.getSlottedOptions();
-    slottedOptions.forEach((opt) => {
-      // eslint-disable-next-line no-param-reassign
-      opt.selected = false;
-    });
-
-    if (this.selectedOption) {
-      this.selectedOption.selected = true;
-    }
   }
 
   private handleInvalid(event: Event) {
@@ -624,7 +742,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @watch(['filter', 'getOption'], { waitUntilFirstUpdate: true })
   handlePropertiesChange() {
-    this.createComboboxOptionsFromQuery(this.value);
+    // TODO: oder muss da wieder this.value rein? oder ein check mit multiple?
+    this.createComboboxOptionsFromQuery(this.displayLabel);
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -649,7 +768,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
     if (this.open && !this.disabled) {
-      if (this.numberFilteredOptions === 0 && !this.restricted) {
+      if (this.numberFilteredOptions === 0 && !this.restricted && !this.multiple) {
         // Don't open the listbox if there are no options and it is not restricted
         this.open = false;
         this.emit('syn-error');
@@ -797,17 +916,36 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
   /* eslint-enable no-param-reassign, @typescript-eslint/no-floating-promises */
 
+  // eslint-disable-next-line complexity
   private async handleInput() {
     const inputValue = this.displayInput.value;
-    const cachedLastOption = this.lastOption;
+    const cachedLastOption = this.lastOptions;
     this.isUserInput = true;
 
-    this.value = inputValue;
+    if (this.multiple) {
+      this.value = [...this.value, inputValue];
+    } else {
+      this.value = inputValue;
+    }
+
     await this.updateComplete;
     this.isUserInput = false;
-    this.lastOption = cachedLastOption;
-    this.open = this.restricted || this.numberFilteredOptions > 0;
-    this.selectedOption = undefined;
+    this.lastOptions = cachedLastOption;
+    this.open = this.multiple || this.restricted || this.numberFilteredOptions > 0;
+
+    if (this.multiple) {
+      const inputOption = this.cachedOptions.find(option => checkValueBelongsToOption(inputValue, option));
+      const alreadySelectedOption = this.lastOptions.find((option) => option === inputOption);
+
+      // Remove the new added option from user input from selectedOptions. it should not yet be added to the selectedOptions.
+      // Only remove it, if it was not already an selected option before
+      if (inputOption && !alreadySelectedOption) {
+        this.selectedOptions = this.selectedOptions.filter((option) => option !== inputOption);
+      }
+    } else {
+      this.selectedOptions = [];
+    }
+
     this.formControlController.updateValidity();
     this.emit('syn-input');
   }
@@ -820,14 +958,16 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * otherwise `false`.
    */
   private isValidValue(): boolean {
-    const isValid = this.cachedOptions.some(
-      option => getValueFromOption(option) === this.value,
-    );
-    return isValid;
+    // TODO: does this need to be changed for multiple or is it even still needed?
+    const value = (Array.isArray(this.value) ? this.value : this.value.split(' '));
+    // Check all values are valid
+    const allValid = value.every(val => this.cachedOptions.some(option => getValueFromOption(option) === val));
+    return allValid;
   }
 
-  private getOptionFromValue(): SynOption | undefined {
-    return this.cachedOptions.find(option => checkValueBelongsToOption(this.value, option));
+  private getOptionsFromValue(): SynOption[] {
+    const value = (Array.isArray(this.value) ? this.value : this.value.split(' '));
+    return value.map(val => this.cachedOptions.find(option => checkValueBelongsToOption(val, option))).filter((opt) => opt !== undefined);
   }
 
   /**
@@ -835,11 +975,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    */
   private resetToLastValidValue() {
     let label = '';
-    let value = '';
+    let value: string[] = [];
 
-    if (this.lastOption) {
-      value = String(getValueFromOption(this.lastOption));
-      label = this.lastOption.getTextLabel();
+    if (this.lastOptions.length !== 0) {
+      value = getValuesFromOptions(this.lastOptions);
+
+      if (!this.multiple) {
+        label = this.lastOptions[0].getTextLabel();
+      }
     }
 
     // Wait for the popup close animation to be finished before updating the value.
@@ -862,10 +1005,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     });
   }
 
+  // eslint-disable-next-line complexity
   private handleChange() {
     // Only update the value and emit the event, if the change event occurred by
     // the user typing something in and removing focus of the combobox
-    if (this.selectedOption) {
+    const isSameSelection = this.selectedOptions.length === this.getOptionsFromValue().length;
+    if ((this.multiple && isSameSelection) || (!this.multiple && this.selectedOptions.length > 0)) {
       return;
     }
 
@@ -875,15 +1020,21 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       return;
     }
 
-    // Otherwise, update value from input and emit change
-    this.value = this.displayInput.value;
-    this.lastOption = this.getOptionFromValue();
-    this.selectedOption = this.getOptionFromValue();
+    const options = this.getOptionsFromValue();
+
+    this.setSelectedOptions(options);
+    this.selectionChanged();
+    this.lastOptions = [...options];
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.updateComplete.then(() => {
+      // for some reason the displayInput is not updating the displayed values with the `displayLabel` change and we need to set it directly on the input
+      if (this.multiple) {
+        this.displayInput.value = this.displayLabel;
+        // remove the query so all options are shown again
+        this.createComboboxOptionsFromQuery('');
+      }
       this.formControlController.updateValidity();
     });
-    this.setSelectedOptionToSelected();
     this.emit('syn-change');
   }
 
@@ -914,16 +1065,26 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   /* eslint-enable no-param-reassign */
 
   private updateSelectedOptionFromValue(): void {
-    // check if the value has a corresponding option via value or text content
-    // for empty values use the text content, as then the values of the option are not set
-    const option = this.getOptionFromValue();
+    // check if the value has corresponding options via value or text content
+    // for empty values use the text content, as then the values of the options are not set
+    const options = this.getOptionsFromValue();
 
-    if (!option) {
-      this.displayInput.value = this.value;
+    if (options.length === 0) {
+      this.displayInput.value = Array.isArray(this.value) ? this.value.join(', ') : this.value;
+    } else {
+      this.lastOptions = [...options];
     }
 
-    this.updateSelectedOptionsCacheAndValue(option);
-    this.createComboboxOptionsFromQuery(this.value);
+    this.setSelectedOptions(options);
+    this.selectionChanged();
+
+    let queryString = '';
+    if (this.multiple) {
+      queryString = this.displayInput.value;
+    } else {
+      queryString = Array.isArray(this.value) ? this.value.join(', ') : this.value;
+    }
+    this.createComboboxOptionsFromQuery(queryString);
   }
 
   /* eslint-disable @typescript-eslint/no-floating-promises, complexity */
@@ -963,17 +1124,19 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const hasClearIcon = this.clearable && !this.disabled && this.value.length > 0;
     const isPlaceholderVisible = this.placeholder && this.value.length === 0;
 
+    const tagsVisible = this.multiple && this.selectedOptions.length > 0;
+
     return html`
       <div
         part="form-control"
         class=${classMap({
-          'form-control': true,
-          'form-control--has-help-text': hasHelpText,
-          'form-control--has-label': hasLabel,
-          'form-control--large': this.size === 'large',
-          'form-control--medium': this.size === 'medium',
-          'form-control--small': this.size === 'small',
-        })}
+      'form-control': true,
+      'form-control--has-help-text': hasHelpText,
+      'form-control--has-label': hasLabel,
+      'form-control--large': this.size === 'large',
+      'form-control--medium': this.size === 'medium',
+      'form-control--small': this.size === 'small',
+    })}
       >
         <label
           id="label"
@@ -988,18 +1151,20 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         <div part="form-control-input" class="form-control-input">
           <syn-popup
             class=${classMap({
-              combobox: true,
-              'combobox--bottom': this.placement === 'bottom',
-              'combobox--disabled': this.disabled,
-              'combobox--focused': this.hasFocus,
-              'combobox--large': this.size === 'large',
-              'combobox--medium': this.size === 'medium',
-              'combobox--open': this.open,
-              'combobox--placeholder-visible': isPlaceholderVisible,
-              'combobox--small': this.size === 'small',
-              'combobox--standard': true,
-              'combobox--top': this.placement === 'top',
-            })}
+      combobox: true,
+      'combobox--bottom': this.placement === 'bottom',
+      'combobox--disabled': this.disabled,
+      'combobox--focused': this.hasFocus,
+      'combobox--large': this.size === 'large',
+      'combobox--medium': this.size === 'medium',
+      'combobox--multiple': this.multiple,
+      'combobox--open': this.open,
+      'combobox--placeholder-visible': isPlaceholderVisible,
+      'combobox--small': this.size === 'small',
+      'combobox--standard': true,
+      'combobox--tags-visible': tagsVisible,
+      'combobox--top': this.placement === 'top',
+    })}
             placement=${`${this.placement}-start`}
             strategy=${this.hoist ? 'fixed' : 'absolute'}
             flip
@@ -1017,6 +1182,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               @mousedown=${this.handleComboboxMouseDown}
             >
               <slot part="prefix" name="prefix" class="combobox__prefix"></slot>
+
+              ${this.multiple ? html`<div part="tags" class="combobox__tags">${this.tags}</div>` : ''}
 
               <input
                 part="display-input"
@@ -1050,7 +1217,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                 type="text"
                 ?disabled=${this.disabled}
                 ?required=${this.required}
-                .value=${this.value}
+                .value=${Array.isArray(this.value) ? this.value.join(', ') : this.value}
                 tabindex="-1"
                 aria-hidden="true"
                 @focus=${() => this.focus()}
@@ -1058,7 +1225,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               />
        
               ${hasClearIcon
-                ? html`
+        ? html`
                     <button
                       part="clear-button"
                       class="combobox__clear"
@@ -1073,7 +1240,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                       </slot>
                     </button>
                   `
-                : ''}
+        : ''}
 
                 <slot name="suffix" part="suffix" class="combobox__suffix"></slot>
 
@@ -1095,13 +1262,13 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
             >
               <div class="listbox__options" part="filtered-listbox">
                 ${this.numberFilteredOptions === 0
-                  ? html`<span
+        ? html`<span
                       class="listbox__no-results"
                       aria-hidden="true"
                       part="no-results"
                       >${this.localize.term('noResults')}</span
                     >`
-                  : ''}
+        : ''}
                 <slot @slotchange=${this.handleDefaultSlotChange}></slot>      
               </div>
             </div>

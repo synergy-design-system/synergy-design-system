@@ -29,9 +29,6 @@
   },
   "private": true,
   "pnpm": {
-    "patchedDependencies": {
-      "semantic-release-monorepo@7.0.5": "patches/semantic-release-monorepo@7.0.5.patch"
-    },
     "onlyBuiltDependencies": [
       "@bundled-es-modules/glob",
       "@parcel/watcher",

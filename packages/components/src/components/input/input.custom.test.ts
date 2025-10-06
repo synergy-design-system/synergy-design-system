@@ -431,8 +431,7 @@ describe('<syn-input>', () => {
         it('should set the value property to a valid value if a non numeric value is provided', async () => {
           // Current versions of playwright is flaky with this test
           // Reevaluate when the test runner is updated to a newer version
-          console.log(navigator.userAgent);
-          if (navigator.userAgent.toLowerCase().includes('safari')) {
+          if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
             return;
           }
 

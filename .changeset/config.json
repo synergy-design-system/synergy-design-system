@@ -2,10 +2,24 @@
   "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [],
+  "fixed": [
+    [
+      "@synergy-design-system/components",
+      "@synergy-design-system/angular",
+      "@synergy-design-system/react",
+      "@synergy-design-system/vue"
+    ]
+  ],
   "linked": [],
   "access": "restricted",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": [
+    "@synergy-design-system/demo-angular",
+    "@synergy-design-system/demo-utilities",
+    "@synergy-design-system/e2e-demo-test",
+    "@synergy-design-system/demo-react",
+    "@synergy-design-system/vanilla-demo",
+    "@synergy-design-system/demo-vue"
+  ]
 }

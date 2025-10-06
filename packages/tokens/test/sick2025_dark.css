@@ -90,6 +90,7 @@
   --syn-color-warning-800: #ffe67c;
   --syn-color-warning-900: #fff5c6;
   --syn-color-warning-950: #fffbeb;
+  --syn-details-open-rotation: 0deg;
   --syn-dimension-base: 4px; /** to be deprecated */
   --syn-duration-extra-fast: 50ms;
   --syn-duration-extra-slow: 1000ms;

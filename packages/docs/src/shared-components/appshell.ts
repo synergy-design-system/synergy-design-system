@@ -30,7 +30,6 @@ export const createFooter = () => html`
     }
 
     .copyright {
-      color: var(--syn-typography-color-text);
       font: var(--syn-body-small-bold);
       margin: 0;
     }

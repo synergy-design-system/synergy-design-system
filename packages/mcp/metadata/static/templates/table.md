@@ -1389,7 +1389,6 @@ property should be set to 'separate'. Otherwise the table will have some strange
   }
 
   .product-cell {
-    color: var(--syn-typography-color-text);
     display: flex;
     flex-direction: row;
     font: var(--syn-body-x-small-regular);

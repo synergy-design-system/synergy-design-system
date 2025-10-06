@@ -1,3 +1,17 @@
+# [@synergy-design-system/mcp-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.6.2...mcp/1.7.0) (2025-10-02)
+
+
+### Features
+
+* ✨ CD update for syn-divider, syn-tag, syn-accordion, syn-details ([#1028](https://github.com/synergy-design-system/synergy-design-system/issues/1028)) ([b43a81a](https://github.com/synergy-design-system/synergy-design-system/commit/b43a81ab651da6b41668e481981ccbdcc1f07254))
+
+# [@synergy-design-system/mcp-v1.6.2](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.6.1...mcp/1.6.2) (2025-10-02)
+
+
+### Bug Fixes
+
+* 🐛 Synergy does not work with Typescript 5.9.x ([#1027](https://github.com/synergy-design-system/synergy-design-system/issues/1027)) ([7f6921c](https://github.com/synergy-design-system/synergy-design-system/commit/7f6921cccb536a9a91e7d61b487fef2ad62dc831))
+
 # [@synergy-design-system/mcp-v1.6.1](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.6.0...mcp/1.6.1) (2025-09-30)
 
 

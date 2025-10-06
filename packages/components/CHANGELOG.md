@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.46.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.45.2...components/2.46.0) (2025-10-02)
+
+
+### Features
+
+* ✨ CD update for syn-divider, syn-tag, syn-accordion, syn-details ([#1028](https://github.com/synergy-design-system/synergy-design-system/issues/1028)) ([b43a81a](https://github.com/synergy-design-system/synergy-design-system/commit/b43a81ab651da6b41668e481981ccbdcc1f07254))
+
+# [@synergy-design-system/components-v2.45.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.45.1...components/2.45.2) (2025-10-02)
+
+
+### Bug Fixes
+
+* 🐛 Synergy does not work with Typescript 5.9.x ([#1027](https://github.com/synergy-design-system/synergy-design-system/issues/1027)) ([7f6921c](https://github.com/synergy-design-system/synergy-design-system/commit/7f6921cccb536a9a91e7d61b487fef2ad62dc831))
+
 # [@synergy-design-system/components-v2.45.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.45.0...components/2.45.1) (2025-09-30)
 
 

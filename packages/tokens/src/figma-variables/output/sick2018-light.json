@@ -358,6 +358,12 @@
       }
     }
   },
+  "details": {
+    "open-rotation": {
+      "type": "string",
+      "value": "360deg"
+    }
+  },
   "dimension": {
     "base": {
       "description": "to be deprecated",

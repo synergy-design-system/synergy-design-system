@@ -1,3 +1,10 @@
+# [@synergy-design-system/assets-v1.20.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.19.0...assets/1.20.0) (2025-10-02)
+
+
+### Features
+
+* ✨ CD update for syn-divider, syn-tag, syn-accordion, syn-details ([#1028](https://github.com/synergy-design-system/synergy-design-system/issues/1028)) ([b43a81a](https://github.com/synergy-design-system/synergy-design-system/commit/b43a81ab651da6b41668e481981ccbdcc1f07254))
+
 # [@synergy-design-system/assets-v1.19.0](https://github.com/synergy-design-system/synergy-design-system/compare/assets/1.18.0...assets/1.19.0) (2025-09-12)
 
 

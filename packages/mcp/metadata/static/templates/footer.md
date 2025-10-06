@@ -17,7 +17,6 @@
   }
 
   .copyright {
-    color: var(--syn-typography-color-text);
     font: var(--syn-body-small-bold);
     margin: 0;
   }
@@ -213,7 +212,6 @@
       }
 
       .copyright {
-        color: var(--syn-typography-color-text);
         font: var(--syn-body-small-bold);
         margin: 0;
       }

@@ -512,7 +512,6 @@ export const TableProduct: Story = {
         }
 
         .product-cell {
-          color: var(--syn-typography-color-text);
           display: flex;
           flex-direction: row;
           font: var(--syn-body-x-small-regular);

@@ -926,6 +926,20 @@
       }
     }
   },
+  "progress": {
+    "indicator": {
+      "color": {
+        "type": "color",
+        "value": "{color.primary.700}"
+      }
+    },
+    "track": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.100}"
+      }
+    }
+  },
   "spacing": {
     "2x-large": {
       "type": "sizing",

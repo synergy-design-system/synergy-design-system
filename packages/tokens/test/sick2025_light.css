@@ -209,6 +209,8 @@
   --syn-panel-border-color: #e6e1dc;
   --syn-panel-border-radius: var(--syn-border-radius-medium);
   --syn-panel-border-width: var(--syn-border-width-small);
+  --syn-progress-indicator-color: var(--syn-color-primary-700);
+  --syn-progress-track-color: var(--syn-color-neutral-100);
   --syn-spacing-2x-large: 48px;
   --syn-spacing-2x-small: 4px;
   --syn-spacing-3x-large: 64px;

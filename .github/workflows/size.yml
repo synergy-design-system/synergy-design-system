@@ -11,12 +11,19 @@ jobs:
     env:
       CI_JOB_NUMBER: 1
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        id: pnpm-install
         with:
-          with-build: 'false'
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
 
       - uses: andresz1/size-limit-action@v1.8.0
         name: Size Check

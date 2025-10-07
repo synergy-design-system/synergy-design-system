@@ -11,7 +11,8 @@ jobs:
     env:
       CI_JOB_NUMBER: 1
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:

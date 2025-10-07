@@ -21,5 +21,8 @@
     "@synergy-design-system/demo-react",
     "@synergy-design-system/vanilla-demo",
     "@synergy-design-system/demo-vue"
-  ]
+  ],
+  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
+    "onlyUpdatePeerDependentsWhenOutOfRange": true
+  }
 }

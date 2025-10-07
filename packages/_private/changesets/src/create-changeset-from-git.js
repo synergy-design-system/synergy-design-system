@@ -1,46 +1,41 @@
 import { execSync } from 'child_process';
 import path from 'path';
+import fs from 'fs';
 import { getPackages } from '@manypkg/get-packages';
+import {
+  ALLOWED_BUMP_TYPES,
+  CHANGESET_ROOT,
+  STATUS_NO_FILES_CHANGED,
+  STATUS_NO_PACKAGES_CHANGED,
+  STATUS_PACKAGES_CHANGED,
+} from './constants.js';
+import {
+  createHumanReadableMessageFromBranchName,
+  getChangesetInformationFromBranchName,
+} from './git.js';
 
 /**
- * @var {string} STATUS_NO_FILES_CHANGED Indicates that no files were changed in the git diff
- */
-export const STATUS_NO_FILES_CHANGED = 'NO_FILES_CHANGED';
-
-/**
- * @var {string} STATUS_NO_PACKAGES_CHANGED Indicates that no packages were changed in the git diff
- */
-export const STATUS_NO_PACKAGES_CHANGED = 'NO_PACKAGES_CHANGED';
-
-/**
- * @var {string} STATUS_PACKAGES_CHANGED Indicates that packages were changed in the git diff
- */
-export const STATUS_PACKAGES_CHANGED = 'PACKAGES_CHANGED';
-
-/**
- * @typedef {Object} Changeset
- * @property {typeof STATUS_NO_FILES_CHANGED | typeof STATUS_NO_PACKAGES_CHANGED | typeof STATUS_PACKAGES_CHANGED} reason The reason for the changeset
- * @property {string[]} [changedPackages] Optional list of changed packages
+ * @typedef {import('./types.d.ts').Changeset} Changeset
+ * @typedef {import('./types.d.ts').ChangesetReason} ChangesetReason
+ * @typedef {import('./types.d.ts').BumpType} BumpType
  */
 
 /**
  * Create a changeset record for all changed packages in the repo based on the specified bump type.
- * @param {'patch' | 'minor' | 'major'} bumpType? The bump type to apply to all packages
- * @param {string} packageRoot? The root directory of the monorepo. Defaults to the current working directory.
- * @returns {Promise<Changeset>} A changeset object representing the version bump
+ * @param {import('@manypkg/get-packages').Package[]} packages List of packages to consider.
+ * @param {BumpType} bumpType? The bump type to apply to all packages
+ * @returns {Changeset} A changeset object representing the version bump
  */
-const createChangesetFromGit = async (
+const getChangedPackages = (
+  packages,
   bumpType = 'patch',
-  packageRoot = process.cwd(),
 ) => {
   // Check if the bumpType is valid
-  if (!['patch', 'minor', 'major'].includes(bumpType)) {
-    throw new Error(`Invalid bump type: ${bumpType}. Must be 'patch', 'minor', or 'major'.`);
+  if (!ALLOWED_BUMP_TYPES.includes(bumpType)) {
+    throw new Error(`Invalid bump type: ${bumpType}. Must be one of: ${ALLOWED_BUMP_TYPES.join(', ')}`);
   }
 
   try {
-    const { packages } = await getPackages(packageRoot);
-
     // Get changed files between current branch and origin/main
     const changedFiles = execSync('git diff --name-only origin/main...HEAD', { encoding: 'utf8' })
       .trim()
@@ -71,8 +66,81 @@ const createChangesetFromGit = async (
       reason: STATUS_PACKAGES_CHANGED,
     };
   } catch (/** @type {any} */ e) {
-    throw new Error(`Failed to create changeset: ${e}`);
+    throw new Error(`Failed to get changeset information: ${e}`);
   }
 };
 
-createChangesetFromGit('patch').then(console.log).catch(console.error);
+/**
+ * Create the changeset file content.
+ * @param {string} branchName The name of the git branch
+ * @param {BumpType} bumpType The type of version bump (major, minor, patch, none)
+ * @param {Changeset} changeset The changeset object containing changed packages and reason
+ * @returns {string} The content of the changeset file to be written
+ */
+const createChangesetContent = (
+  branchName,
+  bumpType,
+  changeset,
+) => {
+  const packages = changeset.changedPackages?.map(pkg => `"${pkg}": ${bumpType}`).join('\n');
+  const message = createHumanReadableMessageFromBranchName(branchName);
+  return `
+---
+${packages}
+---
+
+${message}
+  `.trim();
+};
+
+/**
+ * Writes a changeset record for all changed packages in the repo based on the specified bump type.
+ * @param {string} packageRoot? The root directory of the monorepo. Defaults to the current working directory.
+ * @returns {Promise<boolean>} True if the changeset was created successfully, false otherwise.
+ */
+export const createChangesetFileFromGit = async (
+  packageRoot = process.cwd(),
+) => {
+  try {
+    const { packages, rootDir } = await getPackages(packageRoot);
+    const { branchName, bumpType, fileName } = getChangesetInformationFromBranchName();
+    const packageInfo = getChangedPackages(packages, bumpType);
+
+    // If no changes were detected, exit early
+    if (packageInfo.reason !== STATUS_PACKAGES_CHANGED) {
+      console.log(`No changeset needed. Reason: ${packageInfo.reason} for calculated bump type ${bumpType}.`);
+      return false;
+    }
+
+    // If the changeset directory does not exist, create it
+    const changesetDir = path.join(rootDir, CHANGESET_ROOT);
+    if (!fs.existsSync(changesetDir)) {
+      fs.mkdirSync(changesetDir);
+    }
+
+    // If the file already exists, exit early
+    const changesetFilePath = path.join(changesetDir, `${fileName}`);
+
+    if (fs.existsSync(changesetFilePath)) {
+      console.log(`Changeset file already exists at ${changesetFilePath}.`);
+      return false;
+    }
+
+    // Finally, write the changeset file
+    const changesetContent = createChangesetContent(
+      branchName,
+      bumpType,
+      packageInfo,
+    );
+
+    try {
+      fs.writeFileSync(changesetFilePath, changesetContent, { encoding: 'utf8' });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  } catch (/** @type {any} */ e) {
+    console.error(e);
+    return false;
+  }
+};

@@ -3,6 +3,7 @@
   "extends": ["@synergy-design-system/eslint-config-syn/ts"],
   "root": true,
   "rules": {
+    "complexity": ["error", 10],
     "max-len": ["error", { "code": 150 }]
   },
   "parserOptions": {

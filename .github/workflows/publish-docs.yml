@@ -23,15 +23,11 @@ jobs:
           ref: "main"
           path: "synergy-design-system"
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
         with:
-          node-version: 22
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
+          skip-install: 'true'
+          with-build: 'false'
 
       - name: Install dependencies
         working-directory: ./synergy-design-system

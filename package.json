@@ -21,11 +21,10 @@
     "build": "pnpm --recursive --if-present build",
     "clean": "rm -rf node_modules && find . -name dist -type d | xargs rm -rf && find . -name node_modules -type d | xargs rm -rf && pnpm install && pnpm build",
     "lint": "pnpm --recursive --if-present lint",
-    "release": "pnpm --recursive --if-present --workspace-concurrency=1 release",
-    "release.dry": "pnpm --recursive --if-present --workspace-concurrency=1 release.dry",
     "format": "pnpm run /^format..*/",
     "format.prettier": "pnpm exec prettier . -w",
-    "format.eslint": "pnpm --recursive --if-present format.eslint"
+    "format.eslint": "pnpm --recursive --if-present format.eslint",
+    "change.lint": "node packages/_private/changesets/src/shell.js"
   },
   "private": true,
   "pnpm": {

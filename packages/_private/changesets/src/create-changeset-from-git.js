@@ -100,7 +100,7 @@ ${message}
  * @param {string} content The content of the existing changeset file
  * @param {Changeset} packageInfo List of packages to validate the changeset content against
  * @param {BumpType} bumpType The expected bump type for all packages
- * @returns
+ * @returns {{ valid: boolean, reason: string }} Whether the changeset content is valid and a reason message
  */
 const validateChangesetContent = (content, packageInfo, bumpType) => {
   // Parse the front matter section to extract package names and bump types
@@ -138,8 +138,12 @@ const validateChangesetContent = (content, packageInfo, bumpType) => {
     };
   }
 
+  const output = updatedPackagesFromFrontMatter
+    .map(entry => `\t\t${entry.pkg} => ${entry.bump}`)
+    .join('\n');
+
   return {
-    reason: '✔ Changeset content is valid and matches expected packages and bump types.',
+    reason: `✔ Changeset content appears to be valid and matches expected packages and bump types. This PR will upgrade:\n${output}`,
     valid: true,
   };
 };
@@ -159,7 +163,7 @@ export const createChangesetFileFromGit = async (
 
     // If no changes were detected, exit early
     if (packageInfo.reason !== STATUS_PACKAGES_CHANGED) {
-      console.log(`No changeset needed. Reason: ${packageInfo.reason} for calculated bump type ${bumpType}.`);
+      console.log(`✔ No changeset needed. Reason: ${packageInfo.reason} for calculated bump type ${bumpType}.`);
       return false;
     }
 
@@ -176,7 +180,7 @@ export const createChangesetFileFromGit = async (
       const contentOfExistingChangeset = fs.readFileSync(changesetFilePath, { encoding: 'utf8' });
       const validationData = validateChangesetContent(contentOfExistingChangeset, packageInfo, bumpType);
 
-      console.log(`Changeset file already exists at ${changesetFilePath}.\n${validationData.reason}`);
+      console.log(`✔ Changeset file already exists at ${changesetFilePath}.\n${validationData.reason}`);
       return validationData.valid;
     }
 

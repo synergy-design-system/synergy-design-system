@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-/* eslint-disable no-console */
 import { createChangesetFileFromGit } from './create-changeset-from-git.js';
 
 /**

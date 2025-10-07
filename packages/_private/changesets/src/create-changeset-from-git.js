@@ -62,7 +62,9 @@ const getChangedPackages = (
     }
 
     return {
-      changedPackages: changedPackages.map(pkg => pkg.packageJson.name),
+      changedPackages: changedPackages
+        .map(pkg => pkg.packageJson.name)
+        .sort(),
       reason: STATUS_PACKAGES_CHANGED,
     };
   } catch (/** @type {any} */ e) {
@@ -94,6 +96,55 @@ ${message}
 };
 
 /**
+ * Validate the content of an existing changeset file against the current package information.
+ * @param {string} content The content of the existing changeset file
+ * @param {Changeset} packageInfo List of packages to validate the changeset content against
+ * @param {BumpType} bumpType The expected bump type for all packages
+ * @returns
+ */
+const validateChangesetContent = (content, packageInfo, bumpType) => {
+  // Parse the front matter section to extract package names and bump types
+  const frontMatterMatch = content.match(/---\n([\s\S]*?)\n---/);
+
+  // No front matter found!
+  if (!frontMatterMatch) {
+    return {
+      reason: 'No front matter found in changeset content.',
+      valid: false,
+    };
+  }
+
+  const updatedPackagesFromFrontMatter = frontMatterMatch[1]
+    .split('\n')
+    .map(line => {
+      const [pkg, bump] = line
+        .split(':')
+        .map(part => part.trim().replace(/"/g, ''));
+      return { bump, pkg };
+    })
+    .sort((a, b) => a.pkg.localeCompare(b.pkg));
+
+  // Check if all packages from the packageInfo are present in the front matter
+  // Also check if the bump type matches the expected bump type
+  const allPackagesValid = packageInfo.changedPackages?.every(pkgName => {
+    const pkgEntry = updatedPackagesFromFrontMatter.find(entry => entry.pkg === pkgName);
+    return pkgEntry && pkgEntry.bump === bumpType;
+  });
+
+  if (!allPackagesValid) {
+    return {
+      reason: '⚠️ Mismatch between changeset content and expected packages or bump types detected.',
+      valid: false,
+    };
+  }
+
+  return {
+    reason: '✔ Changeset content is valid and matches expected packages and bump types.',
+    valid: true,
+  };
+};
+
+/**
  * Writes a changeset record for all changed packages in the repo based on the specified bump type.
  * @param {string} packageRoot? The root directory of the monorepo. Defaults to the current working directory.
  * @returns {Promise<boolean>} True if the changeset was created successfully, false otherwise.
@@ -122,8 +173,11 @@ export const createChangesetFileFromGit = async (
     const changesetFilePath = path.join(changesetDir, `${fileName}`);
 
     if (fs.existsSync(changesetFilePath)) {
-      console.log(`Changeset file already exists at ${changesetFilePath}.`);
-      return false;
+      const contentOfExistingChangeset = fs.readFileSync(changesetFilePath, { encoding: 'utf8' });
+      const validationData = validateChangesetContent(contentOfExistingChangeset, packageInfo, bumpType);
+
+      console.log(`Changeset file already exists at ${changesetFilePath}.\n${validationData.reason}`);
+      return validationData.valid;
     }
 
     // Finally, write the changeset file

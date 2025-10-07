@@ -40,3 +40,6 @@ CHANGELOG.md
 
 # Changesets are automatically managed
 .changeset
+
+# Github internal stuff
+.github

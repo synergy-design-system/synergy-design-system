@@ -82,14 +82,11 @@ jobs:
       - run: git config --global --add safe.directory $PWD
 
       - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm
-      
+        uses: ./.github/actions/setup-node-pnpm   
       - name: MCP Unittests
         run: pnpm -r --filter 'mcp' test
-
       - name: Create full build of MCP metadata (including storybook)
         run: pnpm -C packages/mcp build:all
-      
       - name: Check for uncommitted changes
         run: git diff --exit-code .
 

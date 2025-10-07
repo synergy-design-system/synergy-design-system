@@ -5,8 +5,10 @@
   },
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@types/node": "^22.17.0",
     "eslint": "^8.57.1",
-    "eslint-config-airbnb": "^19.0.4"
+    "eslint-config-airbnb": "^19.0.4",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "@manypkg/get-packages": "^3.1.0"
@@ -23,7 +25,9 @@
     "directory": "packages/_private/changesets"
   },
   "scripts": {
-    "lint": "eslint \"src/**/*.{js,ts}\" --ext js,ts --report-unused-disable-directives --max-warnings 0"
+    "lint:types": "tsc --noEmit",
+    "lint:js": "eslint src --report-unused-disable-directives --max-warnings 0",
+    "lint": "pnpm run /^lint:.*/"
   },
   "type": "module",
   "version": "0.1.0"

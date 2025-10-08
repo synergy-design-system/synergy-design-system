@@ -58,11 +58,10 @@ jobs:
         id: changeset_status
         continue-on-error: true
         run: |
-          STATUS_OUTPUT=$(pnpm release.status 2>&1)
+          pnpm release.status > changeset-status.txt 2>&1 || true
           echo "output<<EOF" >> $GITHUB_OUTPUT
-          echo "$STATUS_OUTPUT" >> $GITHUB_OUTPUT
+          cat changeset-status.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-
 
       # Post or update a comment on the PR with the results from the validation
       - name: Update PR

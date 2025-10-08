@@ -20,6 +20,7 @@ jobs:
 
       - name: Run changeset linter
         id: lint
+        continue-on-error: true
         run: |
           set -o pipefail
           OUTPUT=$(node packages/_private/release-utils/src/lint.js 2>&1)

@@ -58,7 +58,13 @@ jobs:
         id: changeset_status
         continue-on-error: true
         run: |
+          # Run command and save to file
           pnpm release.status > changeset-status.txt 2>&1 || true
+          
+          # Escape backticks before adding to GITHUB_OUTPUT
+          sed -i 's/`/\\`/g' changeset-status.txt
+          
+          # Set the output
           echo "output<<EOF" >> $GITHUB_OUTPUT
           cat changeset-status.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -70,15 +76,10 @@ jobs:
           script: |
             // Parse outputs from previous step
             const badge = '${{ steps.validate.outputs.badge }}';
-            let result = `${{ steps.validate.outputs.result }}`;
-            let statusOutput = `${{ steps.changeset_status.outputs.output }}`;
+            const result = `${{ steps.validate.outputs.result }}`;
+            const statusOutput = `${{ steps.changeset_status.outputs.output }}`;
             const statusCode = parseInt('${{ steps.validate.outputs.status }}');
             
-            // Escape backticks for Markdown code blocks
-            // Needed ror multiline outputs that may use backticks
-            result = result.replace(/`/g, '\\`');
-            statusOutput = statusOutput.replace(/`/g, '\\`');
-
             // Format the comment body
             const body = `## ${badge} Changeset Validation
             

@@ -1,6 +1,5 @@
 import { removeSection } from '../remove-section.js';
 import {
-  addSectionAfter,
   addSectionsAfter,
   addSectionsBefore,
   replaceSection,
@@ -56,6 +55,7 @@ const transformComponent = (path, originalContent) => {
     ],
   ], originalContent);
 
+  // #1036: Delimiter is not always working for async options and subsequently changed delimiters
   content = addSectionsAfter([
     [
       'handleValueChange() {',
@@ -124,7 +124,7 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
-  // #1036: Delimiter is not always working for async options and post-changed delimiters
+  // #1036: Delimiter is not always working for async options and subsequently changed delimiters
   content = replaceSection([
     'this.value',
     'value',
@@ -158,7 +158,7 @@ const transformComponent = (path, originalContent) => {
   content = addSectionsBefore([
     [
       'private isInitialized = false;',
-      `// Needed to store the original value before any delimiter processing
+      `// #1036: Needed to store the original value before any delimiter processing
   private originalValue: string | number = '';`,
       {
         tabsAfterInsertion: 1,

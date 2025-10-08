@@ -44,7 +44,7 @@ export default class SynOption extends SynergyElement {
   // @ts-expect-error - Controller is currently unused
   private readonly localize = new LocalizeController(this);
 
-  // Needed to store the original value before any delimiter processing
+  // #1036: Needed to store the original value before any delimiter processing
   private originalValue: string | number = '';
   private isInitialized = false;
 

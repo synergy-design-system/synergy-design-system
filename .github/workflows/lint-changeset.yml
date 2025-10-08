@@ -20,6 +20,12 @@ jobs:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
 
+      # We need this to get the main branch, too
+      # Without fetching like this, the main branch is not available for status checks
+      - name: Fetch local and main branch
+        run: git fetch origin main:${{ github.head_ref }} main
+
+      # Setup Node.js and pnpm
       - name: Setup Environment
         uses: ./.github/actions/setup-node-pnpm
         with:

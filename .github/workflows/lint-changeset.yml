@@ -70,10 +70,15 @@ jobs:
           script: |
             // Parse outputs from previous step
             const badge = '${{ steps.validate.outputs.badge }}';
-            const result = `${{ steps.validate.outputs.result }}`;
-            const statusOutput = `${{ steps.changeset_status.outputs.output }}`;
+            let result = `${{ steps.validate.outputs.result }}`;
+            let statusOutput = `${{ steps.changeset_status.outputs.output }}`;
             const statusCode = parseInt('${{ steps.validate.outputs.status }}');
             
+            // Escape backticks for Markdown code blocks
+            // Needed ror multiline outputs that may use backticks
+            result = result.replace(/`/g, '\\`');
+            statusOutput = statusOutput.replace(/`/g, '\\`');
+
             // Format the comment body
             const body = `## ${badge} Changeset Validation
             
@@ -138,5 +143,4 @@ jobs:
 
       # Fail the job if changeset validation failed
       - name: Check changeset status
-        run:
-          pnpm release.status
+        run: pnpm release.status

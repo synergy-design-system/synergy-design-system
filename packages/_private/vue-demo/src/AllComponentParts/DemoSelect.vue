@@ -5,6 +5,7 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
 
 const levels = ref<SelectItem[]>([]);
 const numericItems = mockData('selectItemsMixedId');
+const delimiterItems = mockData('selectItemsWithSpace');
 
 onMounted(async () => {
   const items = await mockAsyncData('selectItems');
@@ -84,4 +85,7 @@ onMounted(async () => {
     <SynVueOption :value="0">Zero (numeric)</SynVueOption>
   </SynVueSelect>
 
+  <SynVueSelect data-testid="select-1036-subsequently-changed-delimiter" label="Subsequently changed delimiter">
+    <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
+  </SynVueSelect>
 </template>

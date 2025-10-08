@@ -93,7 +93,7 @@ ${packages}
 ---
 
 ${message}
-  `.trim();
+`.trimStart();
 };
 
 /**

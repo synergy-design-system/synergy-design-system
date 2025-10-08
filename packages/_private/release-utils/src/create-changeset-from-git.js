@@ -18,6 +18,7 @@ import {
  * @typedef {import('./types.d.ts').Changeset} Changeset
  * @typedef {import('./types.d.ts').ChangesetReason} ChangesetReason
  * @typedef {import('./types.d.ts').BumpType} BumpType
+ * @typedef {import('./types.d.ts').ValidateChangesetResult} ValidateChangesetResult
  */
 
 /**
@@ -126,26 +127,116 @@ const validateChangesetContent = (content, packageInfo, bumpType) => {
 
   // Check if all packages from the packageInfo are present in the front matter
   // Also check if the bump type matches the expected bump type
-  const allPackagesValid = packageInfo.changedPackages?.every(pkgName => {
+  let allPackagesValid = true;
+
+  /**
+   * @type {string[]}
+   */
+  const discrepancies = [];
+
+  packageInfo.changedPackages?.forEach(pkgName => {
     const pkgEntry = updatedPackagesFromFrontMatter.find(entry => entry.pkg === pkgName);
-    return pkgEntry && pkgEntry.bump === bumpType;
+
+    if (!pkgEntry) {
+      allPackagesValid = false;
+      discrepancies.push(`❌ Missing package: ${pkgName}`);
+    } else if (pkgEntry.bump !== bumpType) {
+      allPackagesValid = false;
+      discrepancies.push(`❌ Incorrect bump type for ${pkgName}: expected '${bumpType}', got '${pkgEntry.bump}'`);
+    }
+  });
+
+  // Check for extra packages in the changeset not present in changed packages
+  updatedPackagesFromFrontMatter.forEach(entry => {
+    if (!packageInfo.changedPackages?.includes(entry.pkg)) {
+      allPackagesValid = false;
+      discrepancies.push(`❌ Unexpected package in changeset: ${entry.pkg}`);
+    }
   });
 
   if (!allPackagesValid) {
     return {
-      reason: '⚠️ Mismatch between changeset content and expected packages or bump types detected.',
+      reason: `Mismatch between changeset content and expected packages or bump types detected:\n${discrepancies.join('\n')}`,
       valid: false,
     };
   }
 
   const output = updatedPackagesFromFrontMatter
-    .map(entry => `\t\t${entry.pkg} => ${entry.bump}`)
+    .map(entry => `☑️ ${entry.pkg} => ${entry.bump}`)
     .join('\n');
 
   return {
-    reason: `✔ Changeset content appears to be valid and matches expected packages and bump types. This PR will upgrade:\n${output}`,
+    reason: `Changeset content appears to be valid and matches expected packages and bump types. This PR will upgrade:\n${output}`,
     valid: true,
   };
+};
+
+/**
+ * Writes a changeset record for all changed packages in the repo based on the specified bump type.
+ * @param {string} packageRoot? The root directory of the monorepo. Defaults to the current working directory.
+ * @returns {Promise<ValidateChangesetResult>} True if the changeset was created successfully, false otherwise.
+ */
+export const validateChangeset = async (
+  packageRoot = process.cwd(),
+) => {
+  try {
+    const { packages, rootDir } = await getPackages(packageRoot);
+    const { bumpType, fileName } = getChangesetInformationFromBranchName();
+    const packageInfo = getChangedPackages(packages, bumpType);
+
+    const changesetDir = path.join(rootDir, CHANGESET_ROOT);
+    const changesetFilePath = path.join(changesetDir, `${fileName}`);
+
+    // If the changeset directory does not exist, exit early
+    if (!fs.existsSync(changesetDir)) {
+      return {
+        message: 'Changeset directory does not exist',
+        reason: 'NO_CHANGESET_DIR',
+        valid: false,
+      };
+    }
+
+    // If the changeset file does not exist, exit early
+    if (!fs.existsSync(changesetFilePath)) {
+      return {
+        message: `Changeset file does not exist. Please create it at ${changesetFilePath}`,
+        reason: 'NO_CHANGESET',
+        valid: false,
+      };
+    }
+
+    // Exit early if no packages were changed
+    if (packageInfo.reason !== STATUS_PACKAGES_CHANGED) {
+      return {
+        message: `No changeset needed. Reason: ${packageInfo.reason} for calculated bump type ${bumpType}.`,
+        reason: packageInfo.reason,
+        valid: true,
+      };
+    }
+
+    const contentOfExistingChangeset = fs.readFileSync(changesetFilePath, { encoding: 'utf8' });
+    const validationData = validateChangesetContent(contentOfExistingChangeset, packageInfo, bumpType);
+
+    if (!validationData.valid) {
+      return {
+        message: validationData.reason,
+        reason: 'INVALID_CHANGESET',
+        valid: false,
+      };
+    }
+
+    return {
+      message: validationData.reason,
+      reason: 'VALID_CHANGESET',
+      valid: true,
+    };
+  } catch (/** @type {any} */ e) {
+    return {
+      message: `An unknown error occurred during changeset validation: ${e}`,
+      reason: 'UNKNOWN_ERROR',
+      valid: false,
+    };
+  }
 };
 
 /**
@@ -157,34 +248,28 @@ export const createChangesetFileFromGit = async (
   packageRoot = process.cwd(),
 ) => {
   try {
+    const validationResult = await validateChangeset(packageRoot);
+
+    // If the changeset is already valid, exit early
+    if (validationResult.valid) {
+      console.log('✔ Changeset is already valid. No action needed.');
+      return true;
+    }
+
+    // Exit early if some error occurs that is not a missing changeset
+    if (validationResult.reason !== 'NO_CHANGESET') {
+      console.error(`❌ Changeset is invalid: ${validationResult.message}`);
+      return false;
+    }
+
+    // Finally, create the changeset
     const { packages, rootDir } = await getPackages(packageRoot);
     const { branchName, bumpType, fileName } = getChangesetInformationFromBranchName();
     const packageInfo = getChangedPackages(packages, bumpType);
 
-    // If no changes were detected, exit early
-    if (packageInfo.reason !== STATUS_PACKAGES_CHANGED) {
-      console.log(`✔ No changeset needed. Reason: ${packageInfo.reason} for calculated bump type ${bumpType}.`);
-      return false;
-    }
-
-    // If the changeset directory does not exist, create it
     const changesetDir = path.join(rootDir, CHANGESET_ROOT);
-    if (!fs.existsSync(changesetDir)) {
-      fs.mkdirSync(changesetDir);
-    }
-
-    // If the file already exists, exit early
     const changesetFilePath = path.join(changesetDir, `${fileName}`);
 
-    if (fs.existsSync(changesetFilePath)) {
-      const contentOfExistingChangeset = fs.readFileSync(changesetFilePath, { encoding: 'utf8' });
-      const validationData = validateChangesetContent(contentOfExistingChangeset, packageInfo, bumpType);
-
-      console.log(`✔ Changeset file already exists at ${changesetFilePath}.\n${validationData.reason}`);
-      return validationData.valid;
-    }
-
-    // Finally, write the changeset file
     const changesetContent = createChangesetContent(
       branchName,
       bumpType,

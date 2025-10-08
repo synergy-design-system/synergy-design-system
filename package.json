@@ -24,7 +24,8 @@
     "format": "pnpm run /^format..*/",
     "format.prettier": "pnpm exec prettier . -w",
     "format.eslint": "pnpm --recursive --if-present format.eslint",
-    "release.lint": "node packages/_private/release-utils/src/shell.js"
+    "release.validate": "node packages/_private/release-utils/src/lint.js",
+    "release.create": "node packages/_private/release-utils/src/create.js"
   },
   "private": true,
   "pnpm": {

@@ -9,6 +9,15 @@ export type ChangesetReason = 'NO_FILES_CHANGED' | 'NO_PACKAGES_CHANGED' | 'PACK
 export type BumpType = 'major' | 'minor' | 'patch' | 'none';
 
 /**
+ * The result of validating a changeset
+ */
+export type ValidateChangesetResult = {
+  message?: string;
+  reason: string;
+  valid: boolean;
+};
+
+/**
  * A changeset object
  */
 export interface Changeset {

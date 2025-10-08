@@ -1,7 +1,6 @@
 import { execSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
-import { getPackages } from '@manypkg/get-packages';
 import {
   ALLOWED_BUMP_TYPES,
   CHANGESET_ROOT,
@@ -13,6 +12,7 @@ import {
   createHumanReadableMessageFromBranchName,
   getChangesetInformationFromBranchName,
 } from './git.js';
+import { getAllPackages } from './packages.js';
 
 /**
  * @typedef {import('./types.d.ts').Changeset} Changeset
@@ -180,7 +180,7 @@ export const validateChangeset = async (
   packageRoot = process.cwd(),
 ) => {
   try {
-    const { packages, rootDir } = await getPackages(packageRoot);
+    const { packages, rootDir } = await getAllPackages(packageRoot, true);
     const { bumpType, fileName } = getChangesetInformationFromBranchName();
     const packageInfo = getChangedPackages(packages, bumpType);
 
@@ -263,7 +263,7 @@ export const createChangesetFileFromGit = async (
     }
 
     // Finally, create the changeset
-    const { packages, rootDir } = await getPackages(packageRoot);
+    const { packages, rootDir } = await getAllPackages(packageRoot, true);
     const { branchName, bumpType, fileName } = getChangesetInformationFromBranchName();
     const packageInfo = getChangedPackages(packages, bumpType);
 

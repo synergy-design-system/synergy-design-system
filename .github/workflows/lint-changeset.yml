@@ -46,6 +46,18 @@ jobs:
           echo "$OUTPUT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      # Capture the changeset status but do not fail the job
+      # Output will be appended to the PR comment
+      - name: Check changeset status (capture output, do not fail)
+        id: changeset_status
+        continue-on-error: true
+        run: |
+          STATUS_OUTPUT=$(pnpm release.status 2>&1)
+          echo "output<<EOF" >> $GITHUB_OUTPUT
+          echo "$STATUS_OUTPUT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+
       # Post or update a comment on the PR with the results from the validation
       - name: Update PR
         uses: actions/github-script@v7
@@ -54,6 +66,7 @@ jobs:
             // Parse outputs from previous step
             const badge = '${{ steps.validate.outputs.badge }}';
             const result = `${{ steps.validate.outputs.result }}`;
+            const statusOutput = `${{ steps.changeset_status.outputs.output }}`;
             const statusCode = parseInt('${{ steps.validate.outputs.status }}');
             
             // Format the comment body
@@ -63,13 +76,22 @@ jobs:
             ${result}
             \`\`\`
             
+            ### Changeset Status
+            \`\`\`
+            ${statusOutput}
+            \`\`\`
+
             ${statusCode !== 0 ? `
             ### How to fix this?
             
-            Run the following command locally to ensure your changeset is valid:
+            Run the following command locally to capture any errors:
             
             \`\`\`bash
-            npm run release.validate
+            # Checks for errors in your changeset
+            pnpm release.validate
+
+            # In case there was no changeset found you can create a default one using:
+            pnpm release.create
             \`\`\`
             ` : ''}
             

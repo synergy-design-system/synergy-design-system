@@ -59,7 +59,7 @@ jobs:
         continue-on-error: true
         run: |
           # Run command and save to file
-          pnpm release.status > changeset-status.txt 2>&1 || true
+          pnpm release.status --no-color > changeset-status.txt 2>&1 || true
           
           # Escape backticks before adding to GITHUB_OUTPUT
           sed -i 's/`/\\`/g' changeset-status.txt

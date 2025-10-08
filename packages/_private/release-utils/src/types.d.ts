@@ -12,8 +12,8 @@ export type BumpType = 'major' | 'minor' | 'patch' | 'none';
  * A changeset object
  */
 export interface Changeset {
-  reason: ChangesetReason;
   changedPackages?: string[];
+  reason: ChangesetReason;
 }
 
 /**

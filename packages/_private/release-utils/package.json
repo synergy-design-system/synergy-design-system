@@ -17,7 +17,7 @@
   "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/changesets",
   "keywords": [],
   "license": "MIT",
-  "name": "@synergy-design-system/changesets",
+  "name": "@synergy-design-system/release-utils",
   "private": true,
   "repository": {
     "type": "git",

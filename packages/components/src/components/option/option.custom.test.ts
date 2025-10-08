@@ -36,4 +36,24 @@ describe('<syn-option>', () => {
       expect(el.value).to.equal('true');
     });
   });
+
+  describe('#1036', () => {
+    it('should result in correct sanitized values for subsequently changed delimiter', async () => {
+      const value = 'Option 1';
+      const el = await fixture<SynOption>(html`<syn-option value=${value}>${value}</syn-option>`);
+      el.delimiter = '~';
+      await el.updateComplete;
+
+      expect(el.value).to.equal('Option 1');
+
+      el.delimiter = ' ';
+      await el.updateComplete;
+
+      expect(el.value).to.equal('Option_1');
+
+      el.delimiter = 'tion';
+      await el.updateComplete;
+      expect(el.value).to.equal('Op_ 1');
+    });
+  });
 });

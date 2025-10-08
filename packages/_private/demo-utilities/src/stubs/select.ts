@@ -45,3 +45,12 @@ export const nationalities: string[] = [
   'Swedish',
   'Turkish',
 ];
+
+/**
+ * Shared stub for select items for delimiter tests
+ */
+export const selectItemsWithSpace: SelectItem[] = [
+  { label: 'Option 1', value: 'Option 1' },
+  { label: 'Option 2', value: 'Option 2' },
+  { label: 'Option 3', value: 'Option 3' },
+];

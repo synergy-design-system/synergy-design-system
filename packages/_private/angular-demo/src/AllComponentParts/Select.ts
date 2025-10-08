@@ -93,11 +93,21 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
     >
       <syn-option [value]=0>Zero (numeric)</syn-option>
     </syn-select>
+
+    <syn-select
+      data-testid="select-1036-subsequently-changed-delimiter"
+      label="Subsequently changed delimiter"
+    >
+      @for (item of delimiterItems; track $index; let index = $index) {
+        <syn-option [value]="item.value">{{item.label}}</syn-option>
+      }
+    </syn-select>
   `
 })
 export class Select implements OnInit {
   levels: SelectItem[] = [];
   numericItems = mockData('selectItemsMixedId');
+  delimiterItems = mockData('selectItemsWithSpace');
 
   ngOnInit(): void {
     mockAsyncData('selectItems').then((items) => {

@@ -73,5 +73,10 @@ export const Select = (regressions: RegressionFns = []) => {
     >
       <syn-option .value=${0}>Zero (numeric)</syn-option>
     </syn-select>
+
+    <syn-select
+      data-testid="select-1036-subsequently-changed-delimiter"
+      label="Subsequently changed delimiter"
+    ></syn-select>
   `;
 };

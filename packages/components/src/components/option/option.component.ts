@@ -44,6 +44,8 @@ export default class SynOption extends SynergyElement {
   // @ts-expect-error - Controller is currently unused
   private readonly localize = new LocalizeController(this);
 
+  // Needed to store the original value before any delimiter processing
+  private originalValue: string | number = '';
   private isInitialized = false;
 
   @query('.option__label') defaultSlot: HTMLSlotElement;
@@ -110,24 +112,39 @@ export default class SynOption extends SynergyElement {
     this.setAttribute('aria-selected', this.selected ? 'true' : 'false');
   }
 
+  @watch('delimiter')
+  handleDelimiterChange() {
+    this.sanitizeValueForDelimiter();
+  }
+
   @watch('value')
   handleValueChange() {
-    if (typeof this.value === 'number') {
+    this.originalValue = this.value;
+    this.sanitizeValueForDelimiter();
+  }
+
+  /**
+   * Replaces any occurrences of the delimiter in the option's original value with underscores.
+   */
+  sanitizeValueForDelimiter() {
+    let value = this.originalValue;
+    if (typeof value === 'number') {
       return;
     }
 
     // Ensure the value is a string. This ensures the next line doesn't error and allows framework users to pass numbers
     // instead of requiring them to cast the value to a string.
-    if (typeof this.value !== 'string') {
-      this.value = String(this.value);
+    if (typeof value !== 'string') {
+      value = String(value);
     }
 
     const { delimiter } = this;
 
-    if (this.value.includes(delimiter)) {
+    if (value.includes(delimiter)) {
       console.error(`Option values cannot include "${delimiter}". All occurrences of "${delimiter}" have been replaced with "_".`, this);
-      this.value = delimiterToWhiteSpace(this.value, this.delimiter);
+      value = delimiterToWhiteSpace(value, this.delimiter);
     }
+    this.value = value;
   }
 
   /** Returns a plain text label based on the option's content. */

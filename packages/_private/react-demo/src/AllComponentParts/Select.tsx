@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
 const numericItems = mockData('selectItemsMixedId');
+const delimiterItems = mockData('selectItemsWithSpace');
 
 export const Select = () => {
   const [levels, setLevels] = useState<SelectItem[]>([]);
@@ -104,6 +105,17 @@ export const Select = () => {
         value={0}
       >
         <syn-option value={0}>Zero (numeric)</syn-option>
+      </syn-select>
+
+      <syn-select
+        data-testid="select-1036-subsequently-changed-delimiter"
+        label="Subsequently changed delimiter"
+      >
+        {delimiterItems.map(item => (
+          <syn-option key={item.value} value={item.value}>
+            {item.label}
+          </syn-option>
+        ))}
       </syn-select>
     </>
   );

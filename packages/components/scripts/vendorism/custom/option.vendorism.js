@@ -1,5 +1,7 @@
 import { removeSection } from '../remove-section.js';
 import {
+  addSectionAfter,
+  addSectionsAfter,
   addSectionsBefore,
   replaceSection,
   replaceSections,
@@ -54,6 +56,22 @@ const transformComponent = (path, originalContent) => {
     ],
   ], originalContent);
 
+  content = addSectionsAfter([
+    [
+      'handleValueChange() {',
+      `this.sanitizeValueForDelimiter();
+  }
+
+  /**
+   * Replaces any occurrences of the delimiter in the option's original value with underscores.
+   */
+  sanitizeValueForDelimiter() {
+      `,
+      {
+        tabsBeforeInsertion: 2,
+      },
+    ]], content);
+
   // #805: Allow numeric value property for syn-option
   content = replaceSection([
     "value = '';",
@@ -103,6 +121,59 @@ const transformComponent = (path, originalContent) => {
     [
       "this.value = this.value.replace(/ /g, '_');",
       'this.value = delimiterToWhiteSpace(this.value, this.delimiter);',
+    ],
+  ], content);
+
+  // #1036: Delimiter is not always working for async options and post-changed delimiters
+  content = replaceSection([
+    'this.value',
+    'value',
+  ], content);
+
+  content = addSectionsAfter([
+    [
+      'handleValueChange() {',
+      'this.originalValue = this.value;',
+      {
+        tabsBeforeInsertion: 2,
+      },
+    ],
+    [
+      'sanitizeValueForDelimiter() {',
+      'let value = this.originalValue;',
+      {
+        tabsBeforeInsertion: 2,
+      },
+    ],
+    [
+      `value = delimiterToWhiteSpace(value, this.delimiter);
+    }`,
+      'this.value = value;',
+      {
+        tabsBeforeInsertion: 2,
+      },
+    ],
+  ], content);
+
+  content = addSectionsBefore([
+    [
+      'private isInitialized = false;',
+      `// Needed to store the original value before any delimiter processing
+  private originalValue: string | number = '';`,
+      {
+        tabsAfterInsertion: 1,
+      },
+    ],
+    [
+      "@watch('value')",
+      `@watch('delimiter')
+  handleDelimiterChange() {
+    this.sanitizeValueForDelimiter();
+  }`,
+      {
+        newlinesAfterInsertion: 2,
+        tabsAfterInsertion: 1,
+      },
     ],
   ], content);
 

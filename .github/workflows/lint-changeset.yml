@@ -22,9 +22,10 @@ jobs:
         id: lint
         run: |
           set -o pipefail
-          OUTPUT=$(node packages/_private/release-utils/src/lint.js 2>&1 | tee lint-output.txt)
+          OUTPUT=$(node packages/_private/release-utils/src/lint.js 2>&1)
+          echo "$OUTPUT" > lint-output.txt
           echo "output<<EOF" >> $GITHUB_OUTPUT
-          echo "$OUTPUT" >> $GITHUB_OUTPUT
+          cat lint-output.txt >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Find previous lint comment

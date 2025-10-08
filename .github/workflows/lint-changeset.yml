@@ -25,6 +25,7 @@ jobs:
         with:
           with-build: 'false'
 
+      # Calls the validation script and captures output
       - name: Validate Changeset
         id: validate
         run: |
@@ -45,6 +46,7 @@ jobs:
           echo "$OUTPUT" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
+      # Post or update a comment on the PR with the results from the validation
       - name: Update PR
         uses: actions/github-script@v7
         with:
@@ -106,3 +108,8 @@ jobs:
                 body
               });
             }
+
+      # Fail the job if changeset validation failed
+      - name: Check changeset status
+        run:
+          pnpm release.status

@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.46.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.46.0...components/2.46.1) (2025-10-08)
+
+
+### Bug Fixes
+
+* 🐛 Subsequently changed delimiter not taking into account for option value ([#1040](https://github.com/synergy-design-system/synergy-design-system/issues/1040)) ([fb45b32](https://github.com/synergy-design-system/synergy-design-system/commit/fb45b32c36d39046da754a294bff79d1a0ffeb42))
+
 # [@synergy-design-system/components-v2.46.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.45.2...components/2.46.0) (2025-10-02)
 
 

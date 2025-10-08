@@ -16,6 +16,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
+          # Needed to receive the branch name!
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
 
       - name: Setup Environment

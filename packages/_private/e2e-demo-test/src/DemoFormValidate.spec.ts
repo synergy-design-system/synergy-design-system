@@ -44,30 +44,13 @@ createTestCases(({ name, port }) => {
       // fill-out the form correctly
       await form.fill();
 
-      // Promise-based dialog handling for better reliability
-      const dialogHandled = new Promise<boolean>((resolve) => {
-        page.once('dialog', async (dialog) => {
-          try {
-            await dialog.accept();
-            resolve(true);
-          } catch {
-            resolve(false);
-          }
-        });
-      });
-
       // submit valid form
       await form.submit.click();
 
-      // Wait for dialog to be handled with timeout
-      const submitted = await Promise.race([
-        dialogHandled,
-        new Promise<boolean>((resolve) => {
-          setTimeout(() => resolve(false), 5000); // 5 second timeout
-        }),
-      ]);
-
-      expect(submitted).toBe(true);
+      // Check that the success message is shown
+      await expect(form.formStatus).toHaveAttribute('open');
+      await expect(form.formStatus).toHaveAttribute('variant', 'success');
+      await expect(form.formStatus).toContainText('successfully');
 
       expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
     });

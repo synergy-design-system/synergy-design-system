@@ -7,11 +7,13 @@ import type {
   SynChangeEvent,
 } from '@synergy-design-system/components';
 import {
+  SynAlert,
   SynButton,
   SynCheckbox,
   SynCombobox,
   SynDivider,
   SynFile,
+  SynIcon,
   SynInput,
   SynOptgroup,
   SynOption,
@@ -24,7 +26,13 @@ import {
   SynTextarea,
   SynValidate,
 } from '@synergy-design-system/react';
-import { mockData } from '@synergy-design-system/demo-utilities';
+import {
+  type FormStatus,
+  mockData,
+  statusError,
+  statusSuccess,
+  statusWarning,
+} from '@synergy-design-system/demo-utilities';
 import { DemoFieldset } from './DemoFieldset';
 
 type FormEnabledElements = HTMLElement & {
@@ -38,6 +46,7 @@ const initialFormData = mockData('initialValidateFormData');
 export const DemoFormValidate = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState(initialFormData);
+  const [formStatus, setFormStatus] = useState<FormStatus>(statusWarning);
 
   // This is needed, as shoelace does its event with `syn-` prefix
   // and react wont let us bind arbitrary custom events :(
@@ -82,6 +91,7 @@ export const DemoFormValidate = () => {
       encType="multipart/form-data"
       method="post"
       onReset={() => {
+        setFormStatus(statusWarning);
         setFormData(initialFormData);
       }}
       onSubmit={e => {
@@ -89,17 +99,23 @@ export const DemoFormValidate = () => {
         e.stopPropagation();
 
         const formElement = e.target as HTMLFormElement;
-        const isValid = formElement.reportValidity();
+        const isValid = formElement.checkValidity();
 
-        const content = isValid
-          ? 'Your data was successfully submitted'
-          : 'Your data could not be submitted! Please provide all required information!';
-
-        // eslint-disable-next-line no-alert
-        alert(content);
+        setFormStatus(isValid ? statusSuccess : statusError);
       }}
       ref={formRef}
     >
+
+      {formStatus.type !== 'warning' && (
+        <SynAlert
+          className="form-validation-message"
+          open
+          variant={formStatus.type}
+        >
+          <SynIcon slot="icon" name={formStatus.icon} />
+          {formStatus.message}
+        </SynAlert>
+      )}
 
       {/* PersonalInformation */}
       <DemoFieldset legend="Personal Information">

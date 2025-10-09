@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.7.1](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.7.0...mcp/1.7.1) (2025-10-08)
+
+
+### Bug Fixes
+
+* 🐛 Subsequently changed delimiter not taking into account for option value ([#1040](https://github.com/synergy-design-system/synergy-design-system/issues/1040)) ([fb45b32](https://github.com/synergy-design-system/synergy-design-system/commit/fb45b32c36d39046da754a294bff79d1a0ffeb42))
+
 # [@synergy-design-system/mcp-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.6.2...mcp/1.7.0) (2025-10-02)
 
 

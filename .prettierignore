@@ -37,3 +37,9 @@ packages/tokens/src/**/*.json
 
 # Changelogs are automatically generated
 CHANGELOG.md
+
+# Changesets are automatically managed
+.changeset
+
+# Github internal stuff
+.github

@@ -1,0 +1,44 @@
+name: 'Setup Node.js and pnpm'
+description: 'Setup Node.js, pnpm, and install dependencies'
+inputs:
+  node-version:
+    description: 'Node.js version to use'
+    required: false
+    default: '22'
+  skip-install:
+    description: 'Skip dependency installation'
+    required: false
+    default: 'false'
+  install-command:
+    description: 'Custom install command (e.g., "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i")'
+    required: false
+    default: 'pnpm install'
+  with-build:
+    description: 'Run build after install'
+    required: false
+    default: 'true'
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: pnpm/action-setup@v4
+      name: Install pnpm
+      id: pnpm-install
+      with:
+        run_install: false
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: "pnpm"
+
+    - name: Install dependencies
+      if: inputs.skip-install != 'true'
+      run: ${{ inputs.install-command }}
+      shell: bash
+
+    - name: Build
+      if: inputs.with-build == 'true' && inputs.skip-install != 'true'
+      run: pnpm build
+      shell: bash

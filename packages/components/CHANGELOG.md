@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.47.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.46.1...components/2.47.0) (2025-10-13)
+
+
+### Features
+
+* ✨ CD update for syn-progress-ring ([#1033](https://github.com/synergy-design-system/synergy-design-system/issues/1033)) ([ba51374](https://github.com/synergy-design-system/synergy-design-system/commit/ba51374977ad486c2a8020586718740e60da7f51))
+
 # [@synergy-design-system/components-v2.46.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.46.0...components/2.46.1) (2025-10-08)
 
 

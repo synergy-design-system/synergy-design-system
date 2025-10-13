@@ -41,7 +41,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'Structure'],
+  tags: ['Navigation', 'Structure', 'SICK2018'],
   title: 'Templates/Footer',
 };
 export default meta;

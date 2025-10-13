@@ -294,5 +294,40 @@ test.describe('<SynInput />', () => {
         }); // test for max
       });
     }); // regression#872
+
+    test.describe(`Regression#1023: ${name}`, () => {
+      test('should set the autocorrect attribute to "off" when the property is set to false', async ({ browserName, page }) => {
+        // Chromium does not support autocorrect, so we skip this test there
+        // Also, CI webkit is too old and also has no support, so we skip webkit there as well
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocorrect#browser_compatibility
+        test.skip(browserName !== 'firefox', 'Only supported in Firefox at the moment');
+
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('inputLink');
+
+        // References to needed elements
+        const locator = await AllComponents.getLocator('input1023Autocorrect');
+        const input = await locator.locator('#input');
+
+        await expect(input, 'The autocorrect attribute should be set to "off" per default').toHaveAttribute('autocorrect', 'off');
+
+        // Toggle autocorrect to "true" via attribute
+        await setPropertyForLocator<SynInput>(locator, 'autocorrect', 'on', 'attribute');
+        await expect(input, 'The autocorrect attribute should not be set when the property is set to "on"').toHaveJSProperty('autocorrect', true);
+
+        // Toggle autocorrect to "false" via attribute
+        await setPropertyForLocator<SynInput>(locator, 'autocorrect', 'off', 'attribute');
+        await expect(input, 'The autocorrect attribute should not be set when the property is set to "off"').toHaveAttribute('autocorrect', 'off');
+
+        // Toggle autocorrect to "false"
+        await setPropertyForLocator<SynInput>(locator, 'autocorrect', false, 'property');
+        await expect(input, 'The autocorrect attribute should be set to "off" when the property is set to false').toHaveAttribute('autocorrect', 'off');
+
+        // Toggle autocorrect to "undefined"
+        await setPropertyForLocator<SynInput>(locator, 'autocorrect', undefined, 'property');
+        await expect(input, 'The autocorrect attribute should be set to "off" when the property is set to undefined').toHaveAttribute('autocorrect', 'off');
+      }); // end autocorrect test
+    }); // regression#1023
   }); // End frameworks
 }); // </syn-input>

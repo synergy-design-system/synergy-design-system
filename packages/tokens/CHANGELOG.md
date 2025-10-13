@@ -1,3 +1,31 @@
+# [@synergy-design-system/tokens-v2.28.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.27.0...tokens/2.28.0) (2025-10-13)
+
+
+### Features
+
+* ✨ CD update for syn-progress-ring ([#1033](https://github.com/synergy-design-system/synergy-design-system/issues/1033)) ([ba51374](https://github.com/synergy-design-system/synergy-design-system/commit/ba51374977ad486c2a8020586718740e60da7f51))
+
+# [@synergy-design-system/tokens-v2.27.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.26.1...tokens/2.27.0) (2025-10-02)
+
+
+### Features
+
+* ✨ CD update for syn-divider, syn-tag, syn-accordion, syn-details ([#1028](https://github.com/synergy-design-system/synergy-design-system/issues/1028)) ([b43a81a](https://github.com/synergy-design-system/synergy-design-system/commit/b43a81ab651da6b41668e481981ccbdcc1f07254))
+
+# [@synergy-design-system/tokens-v2.26.1](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.26.0...tokens/2.26.1) (2025-09-30)
+
+
+### Bug Fixes
+
+* 🐛 Synergy element which use syn-popup may break if used in a stacking context ([#1034](https://github.com/synergy-design-system/synergy-design-system/issues/1034)) ([8d23dc7](https://github.com/synergy-design-system/synergy-design-system/commit/8d23dc737e36065a0208bc01a98981541540d0ef))
+
+# [@synergy-design-system/tokens-v2.26.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.25.0...tokens/2.26.0) (2025-09-24)
+
+
+### Features
+
+* ✨ CD update for syn-tooltip ([#1025](https://github.com/synergy-design-system/synergy-design-system/issues/1025)) ([b02ec3d](https://github.com/synergy-design-system/synergy-design-system/commit/b02ec3d7d720a869975dcd19dd29f096b8fd2035))
+
 # [@synergy-design-system/tokens-v2.25.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.24.0...tokens/2.25.0) (2025-09-23)
 
 

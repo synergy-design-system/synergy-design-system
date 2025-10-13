@@ -89,6 +89,13 @@ import { SynInputComponent } from '@synergy-design-system/angular/components/inp
       value="50"
     />
     <!-- /#872 -->
+
+    <!-- #1023: Autocorrect attribute -->
+    <syn-input
+      data-testid="input-1023-autocorrect"
+      label="Issue #1023 - Autocorrect attribute"
+    />
+    <!-- /#1023 -->
   `,
 })
 export class Input {}

@@ -174,7 +174,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure', 'SICK2025'],
+  tags: ['Structure', 'SICK2018'],
   title: 'Templates/Table',
 };
 export default meta;
@@ -512,7 +512,6 @@ export const TableProduct: Story = {
         }
 
         .product-cell {
-          color: var(--syn-typography-color-text);
           display: flex;
           flex-direction: row;
           font: var(--syn-body-x-small-regular);

@@ -15,7 +15,20 @@ const getAllComponentsElement = async () => {
   return allComponents;
 };
 
-const appendOptions805 = async (querySelector: string) => {
+const appendOptionsWithSpace = async (querySelector: string) => {
+  const allComponents = await getAllComponentsElement();
+  const element = allComponents?.shadowRoot?.querySelector(querySelector) as LitElement;
+
+  const items = mockData('selectItemsWithSpace');
+  items.forEach(item => {
+    const option = document.createElement('syn-option');
+    option.value = item.value;
+    option.textContent = item.label;
+    element.appendChild(option);
+  });
+};
+
+const appendOptionsWithMixedIds = async (querySelector: string) => {
   const allComponents = await getAllComponentsElement();
   const element = allComponents?.shadowRoot?.querySelector(querySelector) as LitElement;
 
@@ -28,7 +41,7 @@ const appendOptions805 = async (querySelector: string) => {
   });
 };
 
-const appendOptions813 = async (querySelector: string) => {
+const appendOptionsForLevels = async (querySelector: string) => {
   const allComponents = await getAllComponentsElement();
   // eslint-disable-next-line @typescript-eslint/no-floating-promises
   const element = allComponents?.shadowRoot?.querySelector(querySelector) as LitElement;
@@ -59,9 +72,9 @@ export type Regressions = Map<string, RegressionFns>;
 export const allComponentsRegressions: Regressions = new Map(Object.entries({
   Combobox: [
     // #813
-    () => appendOptions813('syn-combobox[data-testid="combobox-level-813"]'),
+    () => appendOptionsForLevels('syn-combobox[data-testid="combobox-level-813"]'),
     // #626
-    () => appendOptions813('syn-combobox[data-testid="combobox-626-async"]'),
+    () => appendOptionsForLevels('syn-combobox[data-testid="combobox-626-async"]'),
   ],
   Dialog: [
     // Open the dialog when dialog tab is clicked
@@ -78,13 +91,15 @@ export const allComponentsRegressions: Regressions = new Map(Object.entries({
   ],
   Select: [
     // #540
-    () => appendOptions813('syn-select[data-testid="select-540-delimiter"]'),
-    () => appendOptions805('syn-select[data-testid="select-805-single-select"]'),
-    () => appendOptions805('syn-select[data-testid="select-805-multi-select"]'),
+    () => appendOptionsForLevels('syn-select[data-testid="select-540-delimiter"]'),
+    () => appendOptionsWithMixedIds('syn-select[data-testid="select-805-single-select"]'),
+    () => appendOptionsWithMixedIds('syn-select[data-testid="select-805-multi-select"]'),
     // #813
-    () => appendOptions813('syn-select[data-testid="select-level-813"]'),
+    () => appendOptionsForLevels('syn-select[data-testid="select-level-813"]'),
     // #847
-    () => appendOptions813('syn-select[data-testid="select-847-multiple"]'),
+    () => appendOptionsForLevels('syn-select[data-testid="select-847-multiple"]'),
+    // #1036
+    () => appendOptionsWithSpace('syn-select[data-testid="select-1036-subsequently-changed-delimiter"]'),
   ],
   TabGroup: [
     // #814

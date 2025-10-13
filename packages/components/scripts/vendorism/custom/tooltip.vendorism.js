@@ -1,3 +1,5 @@
+import { addSectionAfter } from '../replace-section.js';
+
 const FILES_TO_TRANSFORM = [
   'tooltip.component.ts',
 ];
@@ -10,9 +12,17 @@ const FILES_TO_TRANSFORM = [
  */
 const transformComponent = (path, originalContent) => {
   // Get a 4px spacing between nupsi and anchor
-  const content = originalContent.replace(
+  let content = originalContent.replace(
     '@property({ type: Number }) distance = 8;',
     '@property({ type: Number }) distance = 13;',
+  );
+
+  // #849: Mark hoist as deprecated
+  content = addSectionAfter(
+    content,
+    '* scenarios.',
+    '* @deprecated This property is deprecated and will be removed in the next major version.',
+    { newlinesBeforeInsertion: 1, tabsBeforeInsertion: 2 },
   );
 
   return {

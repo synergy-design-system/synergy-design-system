@@ -8,6 +8,7 @@
 /* eslint-disable */
 import { arrow, autoUpdate, computePosition, flip, offset, platform, shift, size } from '@floating-ui/dom';
 import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
 import { offsetParent } from 'composed-offset-position';
@@ -15,7 +16,10 @@ import { property, query } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './popup.styles.js';
+import customStyles from './popup.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+
+const SUPPORTS_POPOVER = globalThis?.HTMLElement?.prototype.hasOwnProperty('popover');
 
 export interface VirtualElement {
   getBoundingClientRect: () => DOMRect;
@@ -61,7 +65,7 @@ function isVirtualElement(e: unknown): e is VirtualElement {
  *  available when using `auto-size`.
  */
 export default class SynPopup extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
   private anchorEl: Element | VirtualElement | null;
   private cleanup: ReturnType<typeof autoUpdate> | undefined;
@@ -105,6 +109,7 @@ export default class SynPopup extends SynergyElement {
   /**
    * Determines how the popup is positioned. The `absolute` strategy works well in most cases, but if overflow is
    * clipped, using a `fixed` position strategy can often workaround it.
+   * @deprecated The strategy property is deprecated and will be removed in future versions. Modern browsers support the popover element which is used internally instead.
    */
   @property({ reflect: true }) strategy: 'absolute' | 'fixed' = 'absolute';
 
@@ -285,6 +290,10 @@ export default class SynPopup extends SynergyElement {
       return;
     }
 
+    if (SUPPORTS_POPOVER) {
+      this.popup.showPopover?.();
+    }
+
     this.cleanup = autoUpdate(this.anchorEl, this.popup, () => {
       this.reposition();
     });
@@ -292,6 +301,10 @@ export default class SynPopup extends SynergyElement {
 
   private async stop(): Promise<void> {
     return new Promise(resolve => {
+      if (SUPPORTS_POPOVER) {
+        // #1041 In some testing frameworks the disconnectedCallback is called too early so this.popup is not yet available
+        this.popup?.hidePopover?.();
+      }
       if (this.cleanup) {
         this.cleanup();
         this.cleanup = undefined;
@@ -404,14 +417,14 @@ export default class SynPopup extends SynergyElement {
     // More info: https://github.com/shoelace-style/shoelace/issues/1135
     //
     const getOffsetParent =
-      this.strategy === 'absolute'
+      SUPPORTS_POPOVER || this.strategy === 'absolute'
         ? (element: Element) => platform.getOffsetParent(element, offsetParent)
         : platform.getOffsetParent;
 
     computePosition(this.anchorEl, this.popup, {
       placement: this.placement,
       middleware,
-      strategy: this.strategy,
+      strategy: SUPPORTS_POPOVER ? 'absolute' : this.strategy,
       platform: {
         ...platform,
         getOffsetParent
@@ -568,10 +581,11 @@ export default class SynPopup extends SynergyElement {
 
       <div
         part="popup"
+        popover=${ifDefined(SUPPORTS_POPOVER ? 'manual' : undefined)}
         class=${classMap({
           popup: true,
           'popup--active': this.active,
-          'popup--fixed': this.strategy === 'fixed',
+          'popup--fixed': !SUPPORTS_POPOVER && this.strategy === 'fixed',
           'popup--has-arrow': this.arrow
         })}
       >

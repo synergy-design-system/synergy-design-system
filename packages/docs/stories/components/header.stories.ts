@@ -35,7 +35,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Application Shell'],
+  tags: ['Application Shell', 'SICK2018'],
   title: 'Components/syn-header',
 };
 export default meta;

@@ -1,3 +1,52 @@
+# [@synergy-design-system/mcp-v1.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.7.1...mcp/1.8.0) (2025-10-13)
+
+
+### Features
+
+* ✨ CD update for syn-progress-ring ([#1033](https://github.com/synergy-design-system/synergy-design-system/issues/1033)) ([ba51374](https://github.com/synergy-design-system/synergy-design-system/commit/ba51374977ad486c2a8020586718740e60da7f51))
+
+# [@synergy-design-system/mcp-v1.7.1](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.7.0...mcp/1.7.1) (2025-10-08)
+
+
+### Bug Fixes
+
+* 🐛 Subsequently changed delimiter not taking into account for option value ([#1040](https://github.com/synergy-design-system/synergy-design-system/issues/1040)) ([fb45b32](https://github.com/synergy-design-system/synergy-design-system/commit/fb45b32c36d39046da754a294bff79d1a0ffeb42))
+
+# [@synergy-design-system/mcp-v1.7.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.6.2...mcp/1.7.0) (2025-10-02)
+
+
+### Features
+
+* ✨ CD update for syn-divider, syn-tag, syn-accordion, syn-details ([#1028](https://github.com/synergy-design-system/synergy-design-system/issues/1028)) ([b43a81a](https://github.com/synergy-design-system/synergy-design-system/commit/b43a81ab651da6b41668e481981ccbdcc1f07254))
+
+# [@synergy-design-system/mcp-v1.6.2](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.6.1...mcp/1.6.2) (2025-10-02)
+
+
+### Bug Fixes
+
+* 🐛 Synergy does not work with Typescript 5.9.x ([#1027](https://github.com/synergy-design-system/synergy-design-system/issues/1027)) ([7f6921c](https://github.com/synergy-design-system/synergy-design-system/commit/7f6921cccb536a9a91e7d61b487fef2ad62dc831))
+
+# [@synergy-design-system/mcp-v1.6.1](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.6.0...mcp/1.6.1) (2025-09-30)
+
+
+### Bug Fixes
+
+* 🐛 Synergy element which use syn-popup may break if used in a stacking context ([#1034](https://github.com/synergy-design-system/synergy-design-system/issues/1034)) ([8d23dc7](https://github.com/synergy-design-system/synergy-design-system/commit/8d23dc737e36065a0208bc01a98981541540d0ef))
+
+# [@synergy-design-system/mcp-v1.6.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.5.0...mcp/1.6.0) (2025-09-24)
+
+
+### Features
+
+* ✨ CD update for syn-tooltip ([#1025](https://github.com/synergy-design-system/synergy-design-system/issues/1025)) ([b02ec3d](https://github.com/synergy-design-system/synergy-design-system/commit/b02ec3d7d720a869975dcd19dd29f096b8fd2035))
+
+# [@synergy-design-system/mcp-v1.5.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.4.0...mcp/1.5.0) (2025-09-24)
+
+
+### Features
+
+* ✨ CD update for syn-progress-bar ([#1026](https://github.com/synergy-design-system/synergy-design-system/issues/1026)) ([7bb3a49](https://github.com/synergy-design-system/synergy-design-system/commit/7bb3a49dfec36d4b78180e1a6413bd0f68d80724))
+
 # [@synergy-design-system/mcp-v1.4.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.3.1...mcp/1.4.0) (2025-09-23)
 
 

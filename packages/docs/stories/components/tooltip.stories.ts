@@ -13,6 +13,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-tooltip');
 const { overrideArgs } = storybookHelpers('syn-tooltip');
@@ -39,6 +40,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-tooltip',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('12852-79550'),
     docs: {
       description: {
@@ -52,7 +56,7 @@ const meta: Meta = {
     },
     layout: 'centered',
   },
-  tags: ['Feedback'],
+  tags: ['Feedback', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-tooltip',
 };
 export default meta;
@@ -272,36 +276,6 @@ export const SettingAMaximumWidth: Story = {
   `,
 };
 
-export const Hoisting: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('tooltip', 'hoisting'),
-      },
-    },
-  },
-  render: () => html`
-  <div class="tooltip-hoist">
-    <syn-tooltip content="This is a tooltip" open placement="bottom">
-      <syn-button>No Hoist</syn-button>
-    </syn-tooltip>
-
-    <syn-tooltip content="This is a tooltip" hoist open>
-      <syn-button>Hoist</syn-button>
-    </syn-tooltip>
-  </div>
-
-  <style>
-    .tooltip-hoist {
-      position: relative;
-      border: solid 2px var(--syn-panel-border-color);
-      overflow: hidden;
-      padding: var(--syn-spacing-large);
-    }
-  </style>
-  `,
-};
-
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -311,7 +285,6 @@ export const Screenshot: Story = generateScreenshotStory({
   RemovingArrows,
   HTMLInTooltips,
   SettingAMaximumWidth,
-  Hoisting,
 }, {
   heightPx: 550,
   styleHeading: {

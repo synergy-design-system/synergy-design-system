@@ -43,7 +43,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form'],
+  tags: ['Form', 'SICK2018'],
   title: 'Components/syn-combobox',
 };
 export default meta;

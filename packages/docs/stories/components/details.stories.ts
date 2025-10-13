@@ -16,6 +16,7 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-details');
 const { overrideArgs } = storybookHelpers('syn-details');
@@ -36,7 +37,7 @@ const meta: Meta = {
     {
       name: 'default',
       type: 'slot',
-      value: `<h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
+      value: `<h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum.`,
     },
@@ -44,6 +45,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-details',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('16771-27087'),
     docs: {
       description: {
@@ -51,7 +55,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure'],
+  tags: ['Structure', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-details',
 };
 export default meta;
@@ -82,7 +86,7 @@ export const Open: Story = {
   },
   render: () => html`
     <syn-details summary="Toggle Me" open>
-      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
+      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>
@@ -99,13 +103,13 @@ export const Contained: Story = {
   },
   render: () => html`
     <syn-details summary="Toggle Me" contained>
-      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
+      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>
     <br/>
     <syn-details summary="Toggle Me" open contained>
-      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
+      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>
@@ -132,7 +136,7 @@ export const Focus: Story = {
   },
   render: () => html`
     <syn-details summary="Toggle Me" contained>
-      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
+      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>
@@ -149,7 +153,7 @@ const createDisabledStory = (contained: boolean): Story => ({
   },
   render: () => html`
     <syn-details summary="Toggle Me" disabled .contained=${contained}>
-      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
+      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>
@@ -171,14 +175,14 @@ export const Sizes: Story = {
   render: () => html`
     <syn-details size="medium" contained>
       <span slot="summary">Toggle Me</span>
-      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
+      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>
     <br/>
     <syn-details size="large" contained>
       <span slot="summary">Toggle Me</span>
-      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
+      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>
@@ -197,7 +201,7 @@ export const PrefixIcons: Story = {
     <syn-details open>
       <syn-icon name="home" slot="summary"></syn-icon>
       <span slot="summary">Accordion Element</span>
-      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold); color: var(--syn-typography-color-text);">Subheadline</h3>
+      <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
       At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>

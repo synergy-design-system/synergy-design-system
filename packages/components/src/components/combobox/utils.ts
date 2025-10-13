@@ -132,3 +132,24 @@ export const checkValueBelongsToOption = (value: string, option: SynOption | und
   const optionText = option.getTextLabel();
   return value === optionValue || value === optionText;
 };
+
+/**
+ * Valid types of combobox
+ */
+type AllowedValueTypes = string | Array<string>;
+
+/**
+ * Check if a given value is allowed
+ * @param value The value to check for
+ * @returns True if the type is allowed, false otherwise
+ */
+export const isAllowedValue = (value: AllowedValueTypes) => {
+  if (Array.isArray(value)) {
+    return value.length > 0;
+  }
+
+  if (typeof value === 'string') {
+    return value.length > 0;
+  }
+  return !!value;
+};

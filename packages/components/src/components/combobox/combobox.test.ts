@@ -822,7 +822,7 @@ describe('<syn-combobox>', () => {
     it('should serialize its name and value with FormData when multiple options are selected', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <syn-combobox name="a" value="option-2 option-3" multiple>
+          <syn-combobox name="a" value="option-2|option-3" multiple>
             <syn-option value="option-1">Option 1</syn-option>
             <syn-option value="option-2">Option 2</syn-option>
             <syn-option value="option-3">Option 3</syn-option>
@@ -851,7 +851,7 @@ describe('<syn-combobox>', () => {
     it('should serialize its name and value in JSON when multiple options are selected', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <syn-combobox name="a" value="option-2 option-3" multiple>
+          <syn-combobox name="a" value="option-2|option-3" multiple>
             <syn-option value="option-1">Option 1</syn-option>
             <syn-option value="option-2">Option 2</syn-option>
             <syn-option value="option-3">Option 3</syn-option>
@@ -1564,11 +1564,11 @@ describe('<syn-combobox>', () => {
   describe('when multiple is set', () => {
     it('should show a placeholder when no options are selected', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-select placeholder="Select a few" multiple>
+        <syn-combobox placeholder="Select a few" multiple>
           <syn-option value="option-1">Option 1</syn-option>
           <syn-option value="option-2">Option 2</syn-option>
           <syn-option value="option-3">Option 3</syn-option>
-        </syn-select>
+        </syn-combobox>
       `);
       const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="display-input"]')!;
 
@@ -1594,7 +1594,7 @@ describe('<syn-combobox>', () => {
 
     it('should allow multiple options to be selected', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-combobox value="option-1 option-3" multiple>
+        <syn-combobox value="option-1|option-3" multiple>
           <syn-option value="option-1">Option 1</syn-option>
           <syn-option value="option-2">Option 2</syn-option>
           <syn-option value="option-3">Option 3</syn-option>
@@ -1616,7 +1616,7 @@ describe('<syn-combobox>', () => {
 
     it('should work with options that do not have a value', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-combobox multiple value="Option-1 Option-3">
+        <syn-combobox multiple value="Option-1|Option-3">
           <syn-option>Option-1</syn-option>
           <syn-option>Option-2</syn-option>
           <syn-option>Option-3</syn-option>
@@ -1667,11 +1667,11 @@ describe('<syn-combobox>', () => {
 
     it('should emit syn-change and syn-input when a tag is removed', async () => {
       const el = await fixture<SynCombobox>(html`
-      <syn-select value="option-1 option-2 option-3" multiple>
+      <syn-combobox value="option-1|option-2|option-3" multiple>
         <syn-option value="option-1">Option 1</syn-option>
         <syn-option value="option-2">Option 2</syn-option>
         <syn-option value="option-3">Option 3</syn-option>
-      </syn-select>
+      </syn-combobox>
     `);
       const options = el.querySelectorAll<SynOption>('syn-option');
       expect(options[0].selected).to.be.true;
@@ -1860,7 +1860,7 @@ describe('<syn-combobox>', () => {
 
     it('should clear the input when Escape key is pressed with syn-combobox is on focus and listbox is closed', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-combobox value="option-1 option-2" multiple>
+        <syn-combobox value="option-1|option-2" multiple>
           <syn-option value="option-1">Option 1</syn-option>
           <syn-option value="option-2">Option 2</syn-option>
           <syn-option value="option-3">Option 3</syn-option>

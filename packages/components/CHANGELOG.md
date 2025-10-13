@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.47.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.47.0...components/2.47.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* 🐛  Testing syn-popup in angular results in console errors ([#1042](https://github.com/synergy-design-system/synergy-design-system/issues/1042)) ([544e01a](https://github.com/synergy-design-system/synergy-design-system/commit/544e01a1227e4760c76d7a74238a224c7ca31a18))
+
 # [@synergy-design-system/components-v2.47.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.46.1...components/2.47.0) (2025-10-13)
 
 

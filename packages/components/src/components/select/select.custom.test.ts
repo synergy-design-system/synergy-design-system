@@ -4,6 +4,7 @@ import {
 } from '@open-wc/testing';
 import type SynSelect from './select.js';
 import { compareValues } from './utility.js';
+import { clickOnElement } from '../../internal/test.js';
 
 describe('<syn-select>', () => {
   describe('#540: should allow to use a custom delimiter for multiple values', () => {
@@ -201,6 +202,31 @@ describe('<syn-select>', () => {
       });
     }); // #850
   }); // regression tests
+
+  describe('#1036', () => {
+    it('should result in correct sanitized values for subsequently changed delimiter', async () => {
+      const el = await fixture<SynSelect>(html`
+        <syn-select>
+          <syn-option value="Option 1">Option 1</syn-option>
+          <syn-option value="Option 2">Option 2</syn-option>
+        </syn-select>
+      `);
+      const options = el.querySelectorAll('syn-option');
+      const firstOption = options[0];
+      const secondOption = options[1];
+
+      await clickOnElement(el);
+      await clickOnElement(firstOption);
+
+      expect(el.value).to.equal('Option_1');
+
+      el.delimiter = '~';
+
+      await clickOnElement(el);
+      await clickOnElement(secondOption);
+      expect(el.value).to.equal('Option 2');
+    });
+  });
 
   describe('utility functions', () => {
     describe('compareValues', () => {

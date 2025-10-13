@@ -3,7 +3,7 @@ import {
   type SynSelect,
 } from '@synergy-design-system/components';
 import { AllComponentsPage } from '../PageObjects/index.js';
-import { createTestCases } from '../helpers.js';
+import { createTestCases, runActionAndValidateEvents } from '../helpers.js';
 
 test.describe('<SynSelect />', () => {
   createTestCases(({ name, port }) => {
@@ -164,5 +164,44 @@ test.describe('<SynSelect />', () => {
         expect(displayedValue).toEqual('Zero (numeric)');
       });
     }); // regression#885
+
+    test.describe(`Regression#1036: ${name}`, () => {
+      test('should change value correct for subsequently changed delimiter', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('selectLink');
+
+        await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+        const select = await AllComponents.getLocator('select1036Delimiter');
+        const options = await select.locator('syn-option');
+
+        const option1 = options.nth(0);
+        const option2 = options.nth(1);
+
+        await select.click();
+
+        await runActionAndValidateEvents(
+          page,
+          () => option1.click(),
+          [
+            { event: 'syn-after-hide', shouldFire: true },
+          ],
+        );
+
+        const firstValue = await select.evaluate((ele: SynSelect) => ele.value);
+        expect(firstValue).toEqual('Option_1');
+
+        await select.evaluate((ele: SynSelect) => {
+          ele.delimiter = '|';
+        });
+
+        await select.click();
+        await option2.click();
+
+        const secondValue = await select.evaluate((ele: SynSelect) => ele.value);
+        expect(secondValue).toEqual('Option 2');
+      });
+    }); // regression#1036
   }); // End frameworks
 }); // </syn-select>

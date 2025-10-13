@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.8.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.7.1...mcp/1.8.0) (2025-10-13)
+
+
+### Features
+
+* ✨ CD update for syn-progress-ring ([#1033](https://github.com/synergy-design-system/synergy-design-system/issues/1033)) ([ba51374](https://github.com/synergy-design-system/synergy-design-system/commit/ba51374977ad486c2a8020586718740e60da7f51))
+
 # [@synergy-design-system/mcp-v1.7.1](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.7.0...mcp/1.7.1) (2025-10-08)
 
 

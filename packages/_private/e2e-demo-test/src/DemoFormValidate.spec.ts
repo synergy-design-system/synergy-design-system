@@ -47,12 +47,14 @@ createTestCases(({ name, port }) => {
       // submit valid form
       await form.submit.click();
 
+      // This has to come before checking for the message,
+      // as react 19.2 will re-render the form and reset its state before the message is shown
+      expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
+
       // Check that the success message is shown
       await expect(form.formStatus).toHaveAttribute('open');
       await expect(form.formStatus).toHaveAttribute('variant', 'success');
       await expect(form.formStatus).toContainText('successfully');
-
-      expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
     });
   });
 });

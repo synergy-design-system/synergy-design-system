@@ -36,34 +36,30 @@ Browser support is configured in `playwright.config.ts` and can be selected via 
 pnpm install
 ```
 
-### Build Demo Projects
-
-Before running tests, build the relevant demo project:
-
-```bash
-pnpm run prepare.angular
-pnpm run prepare.react
-pnpm run prepare.vanilla
-pnpm run prepare.vue
-```
-
 ### Run All Tests
+
+> Caution: This may be flaky with the latest version of react and chrome and its not guaranteed that this will work.
 
 ```bash
 pnpm test
 ```
 
-- Builds all demo projects and runs all Playwright tests.
-
-### Run Tests for a Specific Browser
+### Run Framework-specific Tests
 
 ```bash
-pnpm test --project=chromium
-pnpm test --project=firefox
-pnpm test --project=webkit
+# Run all tests for a specific framework
+pnpm test.react    # Run React tests
+pnpm test.angular  # Run Angular tests
+pnpm test.vue      # Run Vue tests
+pnpm test.vanilla  # Run Vanilla tests
+
+# Run framework tests for a specific browser
+pnpm test.react --project=chromium   # Run React tests in Chromium
+pnpm test.angular --project=firefox  # Run Angular tests in Firefox
+pnpm test.vue --project=webkit      # Run Vue tests in WebKit
 ```
 
-- Runs tests only for the specified browser.
+- Builds and runs tests for the specified framework and browser.
 
 ### Run Tests with UI
 
@@ -89,13 +85,16 @@ pnpm run lint:js
 
 ## Scripts Reference
 
-| Script               | Description                           |
-| -------------------- | ------------------------------------- |
-| `pnpm test`          | Build all demos and run all E2E tests |
-| `pnpm test.ui`       | Run tests in Playwright UI            |
-| `pnpm run prepare.*` | Build a specific demo project         |
-| `pnpm run lint`      | Run all linting scripts               |
-| `pnpm run lint:js`   | Run JS linting on `src`               |
+| Script              | Description                                       |
+| ------------------- | ------------------------------------------------- |
+| `pnpm test`         | Build and test all frameworks across all browsers |
+| `pnpm test.react`   | Build and test React demo                         |
+| `pnpm test.angular` | Build and test Angular demo                       |
+| `pnpm test.vue`     | Build and test Vue demo                           |
+| `pnpm test.vanilla` | Build and test Vanilla JS demo                    |
+| `pnpm test.ui`      | Run tests in Playwright UI                        |
+| `pnpm run lint`     | Run all linting scripts                           |
+| `pnpm run lint:js`  | Run JS linting on `src`                           |
 
 ## Directory Structure
 
@@ -113,11 +112,11 @@ pnpm run lint:js
 
 ## How Tests Are Run in CI
 
-End-to-end tests are automatically executed in CI/CD using GitHub Actions.  
-Tests are run in parallel using sharding and a browser matrix:
+End-to-end tests are automatically executed in CI/CD using GitHub Actions.
+Tests are run using a framework and browser matrix:
 
-- **Browsers:** Tests run on Chromium, Firefox, and WebKit (Safari).
-- **Sharding:** The test suite is split into multiple shards, each running a subset of tests in parallel for faster feedback.
-- **Matrix:** Each shard is run for each browser, ensuring cross-browser coverage.
+- **Frameworks:** Tests run for React, Angular, Vue, and Vanilla JS.
+- **Browsers:** Each framework's tests run on Chromium, Firefox, and WebKit (Safari).
+- **Matrix:** This creates 12 parallel test runs (4 frameworks × 3 browsers).
 
-This setup ensures fast and reliable test results for every pull request.
+This setup ensures comprehensive testing across all supported frameworks and browsers for every pull request.

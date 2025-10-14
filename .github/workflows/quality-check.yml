@@ -158,7 +158,8 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm --filter='!{@synergy-design-system/docs,@synergy-design-system/mcp}' build
+        # Make sure to exclude unneeded packages to speed up the build.
+        run: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/mcp' build
 
       # We run all tests except the components tests
       # This is done as the components test toolchain will

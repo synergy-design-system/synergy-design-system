@@ -58,9 +58,9 @@ pnpm test
 ### Run Tests for a Specific Browser
 
 ```bash
-PROJECT=chromium pnpm test.ci
-PROJECT=firefox pnpm test.ci
-PROJECT=webkit pnpm test.ci
+pnpm test --project=chromium
+pnpm test --project=firefox
+pnpm test --project=webkit
 ```
 
 - Runs tests only for the specified browser.
@@ -92,7 +92,6 @@ pnpm run lint:js
 | Script               | Description                                      |
 | -------------------- | ------------------------------------------------ |
 | `pnpm test`          | Build all demos and run all E2E tests            |
-| `pnpm test.ci`       | Build all demos and run E2E tests for `$PROJECT` |
 | `pnpm test.ui`       | Run tests in Playwright UI                       |
 | `pnpm run prepare.*` | Build a specific demo project                    |
 | `pnpm run lint`      | Run all linting scripts                          |

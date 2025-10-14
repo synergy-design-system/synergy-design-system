@@ -8,19 +8,20 @@ It ensures that core UI components and forms work as expected across supported f
 ## What is Tested
 
 - **Core Synergy Components:**  
-	Accordion, Alert, Combobox, Input, OptGroup, Select, TabGroup, Validate, and more.
+  Accordion, Alert, Combobox, Input, OptGroup, Select, TabGroup, Validate, and more.
 - **Forms and Validation:**  
-	Demo forms, validation logic, and framework-specific behaviors.
+  Demo forms, validation logic, and framework-specific behaviors.
 - **App Shell and Global Sizing:**  
-	Layout and sizing consistency.
+  Layout and sizing consistency.
 - **Framework Integration:**  
-	Angular, React, Vanilla JS, and Vue demos are built and tested.
+  Angular, React, Vanilla JS, and Vue demos are built and tested.
 
 Test files are located in `src/` and organized by component and feature.
 
 ## Supported Browsers
 
 E2E tests are run using [Playwright](https://playwright.dev/) in the following browsers:
+
 - **Chromium**
 - **Firefox**
 - **WebKit** (Safari)
@@ -51,6 +52,7 @@ pnpm run prepare.vue
 ```bash
 pnpm test
 ```
+
 - Builds all demo projects and runs all Playwright tests.
 
 ### Run Tests for a Specific Browser
@@ -60,6 +62,7 @@ PROJECT=chromium pnpm test.ci
 PROJECT=firefox pnpm test.ci
 PROJECT=webkit pnpm test.ci
 ```
+
 - Runs tests only for the specified browser.
 
 ### Run Tests with UI
@@ -67,6 +70,7 @@ PROJECT=webkit pnpm test.ci
 ```bash
 pnpm run test.ui
 ```
+
 - Opens the Playwright test runner UI.
 
 ### Linting
@@ -74,23 +78,25 @@ pnpm run test.ui
 ```bash
 pnpm run lint
 ```
+
 - Runs all linting scripts.
 
 ```bash
 pnpm run lint:js
 ```
+
 - Runs JavaScript linting on the `src` directory.
 
 ## Scripts Reference
 
-| Script                | Description                                      |
-|-----------------------|--------------------------------------------------|
-| `pnpm test`           | Build all demos and run all E2E tests            |
-| `pnpm test.ci`        | Build all demos and run E2E tests for `$PROJECT` |
-| `pnpm test.ui`        | Run tests in Playwright UI                       |
-| `pnpm run prepare.*`  | Build a specific demo project                    |
-| `pnpm run lint`       | Run all linting scripts                          |
-| `pnpm run lint:js`    | Run JS linting on `src`                          |
+| Script               | Description                                      |
+| -------------------- | ------------------------------------------------ |
+| `pnpm test`          | Build all demos and run all E2E tests            |
+| `pnpm test.ci`       | Build all demos and run E2E tests for `$PROJECT` |
+| `pnpm test.ui`       | Run tests in Playwright UI                       |
+| `pnpm run prepare.*` | Build a specific demo project                    |
+| `pnpm run lint`      | Run all linting scripts                          |
+| `pnpm run lint:js`   | Run JS linting on `src`                          |
 
 ## Directory Structure
 
@@ -116,4 +122,3 @@ Tests are run in parallel using sharding and a browser matrix:
 - **Matrix:** Each shard is run for each browser, ensuring cross-browser coverage.
 
 This setup ensures fast and reliable test results for every pull request.
-

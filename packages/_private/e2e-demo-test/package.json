@@ -8,9 +8,13 @@
     "test": "pnpm run /^prepare..*/ && pnpm exec playwright test",
     "test.ui": "pnpm run test --ui",
     "prepare.angular": "pnpm run -C ../angular-demo _build",
+    "test.angular": "pnpm run prepare.angular && TEST_FRAMEWORK=angular playwright test",
     "prepare.react": "pnpm run -C ../react-demo _build",
+    "test.react": "pnpm prepare.react && TEST_FRAMEWORK=react playwright test",
     "prepare.vanilla": "pnpm run -C ../vanilla-demo _build",
+    "test.vanilla": "pnpm run prepare.vanilla && TEST_FRAMEWORK=vanilla playwright test",
     "prepare.vue": "pnpm run -C ../vue-demo _build",
+    "test.vue": "pnpm run prepare.vue && TEST_FRAMEWORK=vue playwright test",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
   },

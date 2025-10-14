@@ -34,7 +34,19 @@ createTestCases(({ name, port }) => {
       expect(states.every((state) => !state)).toBe(true);
     });
 
-    test('Form submit', async ({ page }) => {
+    test('Form submit', async ({ page, browserName }) => {
+      // I am not sure why, but only in Chromium the react demo project crashes if we do not
+      // listen to console messages. It works in firefox and webkit without this.
+      // PLEASE LEAVE IT HERE, OBSCURE AS IT MAY BE!
+      // See test outputs for https://github.com/synergy-design-system/synergy-design-system/pull/1035
+      if (browserName === 'chromium' && name === 'react') {
+        page.on('console', msg => {
+          if (msg.type() === 'debug') {
+            console.log(`Browser console [${msg.type()}]:`, msg.text());
+          }
+        });
+      }
+
       const form = new DemoFormValidate(page, port);
       await form.loadInitialPage();
 

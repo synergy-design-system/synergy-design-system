@@ -89,13 +89,13 @@ pnpm run lint:js
 
 ## Scripts Reference
 
-| Script               | Description                                      |
-| -------------------- | ------------------------------------------------ |
-| `pnpm test`          | Build all demos and run all E2E tests            |
-| `pnpm test.ui`       | Run tests in Playwright UI                       |
-| `pnpm run prepare.*` | Build a specific demo project                    |
-| `pnpm run lint`      | Run all linting scripts                          |
-| `pnpm run lint:js`   | Run JS linting on `src`                          |
+| Script               | Description                           |
+| -------------------- | ------------------------------------- |
+| `pnpm test`          | Build all demos and run all E2E tests |
+| `pnpm test.ui`       | Run tests in Playwright UI            |
+| `pnpm run prepare.*` | Build a specific demo project         |
+| `pnpm run lint`      | Run all linting scripts               |
+| `pnpm run lint:js`   | Run JS linting on `src`               |
 
 ## Directory Structure
 

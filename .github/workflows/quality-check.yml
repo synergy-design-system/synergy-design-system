@@ -137,8 +137,6 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        shardIndex: [1, 2, 3, 4]
-        shardTotal: [4]
         framework: [react, angular, vue, vanilla]
         browser: [chromium, firefox, webkit]
     steps:

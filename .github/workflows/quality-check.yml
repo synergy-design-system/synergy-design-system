@@ -158,7 +158,7 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm --filter='!@synergy-design-system/docs' build
+        run: pnpm --filter='!{@synergy-design-system/docs,@synergy-design-system/mcp}' build
 
       # We run all tests except the components tests
       # This is done as the components test toolchain will

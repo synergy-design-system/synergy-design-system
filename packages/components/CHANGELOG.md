@@ -1,3 +1,5 @@
+# Changelog
+
 ## 2.47.2
 
 ### Patch Changes

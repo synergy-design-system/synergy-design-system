@@ -1,3 +1,5 @@
+# Changelog
+
 ## 2.28.0
 
 ### Minor Changes

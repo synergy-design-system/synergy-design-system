@@ -10,6 +10,10 @@ export class BaseFormObject extends PageObject {
     return this.page.locator(selectors.formLoc);
   }
 
+  get formStatus() {
+    return this.page.locator(selectors.formStatus);
+  }
+
   get birth() {
     return this.page.locator(selectors.birth);
   }

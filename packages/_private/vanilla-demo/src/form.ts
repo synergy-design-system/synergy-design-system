@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import {
+  type SynAlert,
   type SynChangeEvent,
   type SynCombobox,
   type SynRadioGroup,
@@ -7,7 +8,14 @@ import {
   highlightOptionRenderer,
   serialize,
 } from '@synergy-design-system/components';
-import { currencyNumberFormatter, mockData } from '@synergy-design-system/demo-utilities';
+import {
+  type FormStatus,
+  currencyNumberFormatter,
+  mockData,
+  statusError,
+  statusSuccess,
+  statusWarning,
+} from '@synergy-design-system/demo-utilities';
 
 const initCombobox = () => {
   const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality')!;
@@ -19,6 +27,16 @@ const initCombobox = () => {
   });
 };
 
+const updateStatusMessage = (parent: HTMLElement, status: FormStatus) => {
+  const statusMessage = parent.querySelector<SynAlert>('.form-validation-message')!;
+  statusMessage.variant = status.type;
+  statusMessage.innerHTML = `
+    <syn-icon slot="icon" name="${status.icon}"></syn-icon>
+    ${status.message}
+  `;
+  statusMessage.open = status.type !== 'warning';
+};
+
 const setupForm = (formSelector: string) => {
   const form = document.querySelector<HTMLFormElement>(formSelector)!;
 
@@ -26,8 +44,15 @@ const setupForm = (formSelector: string) => {
     return;
   }
 
+  updateStatusMessage(form, statusWarning);
+
   form.addEventListener('syn-change', () => {
+    updateStatusMessage(form, form.checkValidity() ? statusSuccess : statusError);
     console.log(serialize(form));
+  });
+
+  form.addEventListener('reset', () => {
+    updateStatusMessage(form, statusWarning);
   });
 
   form.addEventListener('submit', (e: SubmitEvent) => {
@@ -37,12 +62,7 @@ const setupForm = (formSelector: string) => {
     const formElm = e.target as HTMLFormElement;
     const isValid = formElm.checkValidity();
 
-    const content = isValid
-      ? 'Your data was successfully submitted'
-      : 'Your data could not be submitted! Please provide all required information!';
-
-    // eslint-disable-next-line no-alert
-    alert(content);
+    updateStatusMessage(form, isValid ? statusSuccess : statusError);
   });
 };
 

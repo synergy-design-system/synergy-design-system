@@ -44,17 +44,6 @@ createTestCases(({ name, port }) => {
       const form = new DemoForm(page, port);
       await form.loadInitialPage();
 
-      // react on submit / confirm dialog
-      let submitted = false;
-      page.on('dialog', dialog => {
-        submitted = true;
-        dialog
-          .accept()
-          .catch(() => {
-            submitted = false;
-          });
-      });
-
       // check initial state
       await form.checkInitialState(expect);
 
@@ -64,7 +53,10 @@ createTestCases(({ name, port }) => {
       // submit valid form
       await form.submit.click();
 
-      expect(submitted).toBe(true);
+      // Check that the success message is shown
+      await expect(form.formStatus).toHaveAttribute('open');
+      await expect(form.formStatus).toHaveAttribute('variant', 'success');
+      await expect(form.formStatus).toContainText('successfully');
 
       // Not part of validation, but happiness should always be tested :)
       expect(await getInputValue(form.happiness)).toBe('9');

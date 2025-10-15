@@ -56,6 +56,15 @@ export type AllowedThemes = '2018' | '2025';
 export type AllowedModes = 'light' | 'dark';
 
 /**
+ * A type representing the status of a form, including an optional icon, a message, and a type.
+ */
+export type FormStatus = {
+  icon?: string;
+  message: string;
+  type: 'success' | 'warning' | 'danger';
+};
+
+/**
  * Represents a theme, including the theme information
  */
 export type Theme = {

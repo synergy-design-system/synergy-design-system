@@ -55,7 +55,7 @@ jobs:
     name: Validate mcp metadata
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -98,7 +98,7 @@ jobs:
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.53.0-noble
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
     steps:
       - uses: actions/checkout@v4
 
@@ -129,16 +129,16 @@ jobs:
           HOME: /root
 
   test_e2e:
-    name: Validate tests (e2e)
+    name: Validate tests (e2e) (${{ matrix.framework }}/${{ matrix.browser }})
     timeout-minutes: 30
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
     strategy:
       fail-fast: true
       matrix:
-        shardIndex: [1, 2, 3, 4]
-        shardTotal: [4]
+        framework: [react, angular, vue, vanilla]
+        browser: [chromium, firefox, webkit]
     steps:
       - uses: actions/checkout@v4
 
@@ -158,16 +158,19 @@ jobs:
         run: pnpm install
 
       - name: Build
-        run: pnpm build
+        # Make sure to exclude unneeded packages to speed up the build.
+        run: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/mcp' build
 
       # We run all tests except the components tests
       # This is done as the components test toolchain will
       # create a new bundle that may cause issues
       - name: Run Playwright tests
-        run: pnpm -r --filter 'e2e-demo-test' test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: pnpm test.${{ matrix.framework }} --project=${{ matrix.browser }}
+        working-directory: packages/_private/e2e-demo-test
         # @see https://github.com/microsoft/playwright/issues/6500
         env:
           HOME: /root
+          TEST_FRAMEWORK: ${{ matrix.framework }}
 
     # Uncomment this for screenshot based tests
     # @todo: Add regviz support

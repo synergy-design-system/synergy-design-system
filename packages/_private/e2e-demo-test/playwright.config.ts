@@ -4,6 +4,23 @@ import { frameworks } from './frameworks.config';
 
 const minutesToMs = (minutes: number) => minutes * 60 * 1000;
 
+// Helper to get current framework from env
+const createFrameworkConfig = () => {
+  const framework = process.env.TEST_FRAMEWORK;
+
+  if (!framework) {
+    return frameworks;
+  }
+
+  const foundFramework = frameworks.find(f => f.name === framework);
+
+  if (!foundFramework) {
+    throw new Error(`Unknown framework: ${framework}. Available frameworks: ${frameworks.map(f => f.name).join(', ')}`);
+  }
+
+  return [foundFramework];
+};
+
 export default defineConfig({
   timeout: minutesToMs(1),
   testDir: './src',
@@ -36,7 +53,7 @@ export default defineConfig({
       },
     },
   ],
-  webServer: frameworks.map(({ customCommand, distDir, port }) => ({
+  webServer: createFrameworkConfig().map(({ customCommand, distDir, port }) => ({
     command: customCommand || `pnpm exec serve -s -p ${port} ${distDir}`,
     timeout: minutesToMs(2),
     url: `http://localhost:${port}`,

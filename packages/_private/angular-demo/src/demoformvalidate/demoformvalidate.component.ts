@@ -1,10 +1,16 @@
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import { serialize } from '@synergy-design-system/components/utilities/form.js';
 import { highlightOptionRenderer } from '@synergy-design-system/components/components/combobox/option-renderer.js';
-import { mockData } from '@synergy-design-system/demo-utilities';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  type FormStatus,
+  mockData,
+  statusError,
+  statusSuccess,
+  statusWarning,
+} from '@synergy-design-system/demo-utilities';
 import { UsedSynergyComponentsModule } from '../modules/used-synergy.module';
 import { DemoFieldSetModule } from '../modules/demofieldset.module';
 
@@ -35,6 +41,8 @@ export class DemoFormValidate {
 
   formData!: FormGroup;
 
+  formStatus: FormStatus = statusWarning;
+
   nationalities = mockData('nationalities');
 
   highlightOptionRenderer = highlightOptionRenderer;
@@ -50,6 +58,7 @@ export class DemoFormValidate {
   }
 
   reset() {
+    this.formStatus = statusWarning;
     this._initFormData();
   }
 
@@ -79,11 +88,7 @@ export class DemoFormValidate {
 
   submit(form: FormGroup) {
     const isValid = form.valid;
-
-    if (isValid) {
-      // eslint-disable-next-line no-alert
-      alert('Your data was successfully submitted');
-    }
+    this.formStatus = isValid ? statusSuccess : statusError;
   }
 
   synChange(_: SynChangeEvent) {

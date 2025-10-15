@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import {
+  SynVueAlert,
   SynVueButton,
   SynVueCheckbox,
   SynVueCombobox,
   SynVueDivider,
   SynVueFile,
+  SynVueIcon,
   SynVueInput,
   SynVueOptgroup,
   SynVueOption,
@@ -18,7 +20,14 @@ import {
   SynVueTextarea,
 } from '@synergy-design-system/vue';
 import { serialize, highlightOptionRenderer } from '@synergy-design-system/components';
-import { currencyNumberFormatter, mockData } from '@synergy-design-system/demo-utilities';
+import {
+  type FormStatus,
+  currencyNumberFormatter,
+  mockData,
+  statusError,
+  statusSuccess,
+  statusWarning,
+} from '@synergy-design-system/demo-utilities';
 import DemoFieldset from './DemoFieldset.vue';
 
 const nationalities = mockData('nationalities');
@@ -29,12 +38,15 @@ const formData = ref({
   ...initialFormData,
 });
 
+const formStatus = ref<FormStatus>(statusWarning);
+
 const formRef = ref<HTMLFormElement>();
 
 // Custom formatter for donations
 const formatter = currencyNumberFormatter;
 
 const reset = () => {
+  formStatus.value = statusWarning;
   formData.value = {
     ...initialFormData,
   };
@@ -47,10 +59,7 @@ const submit = (e: Event) => {
   const formElement = e.target as HTMLFormElement;
   const isValid = formElement.checkValidity();
 
-  if (isValid) {
-    // eslint-disable-next-line no-alert
-    alert('Your data was successfully submitted');
-  }
+  formStatus.value = isValid ? statusSuccess : statusError;
 }
 
 const synChange = () => {
@@ -68,6 +77,16 @@ const synChange = () => {
     @syn-change="synChange"
     ref="formRef"
   >
+    <SynVueAlert
+      v-if="formStatus.type !== 'warning'"
+      class="form-validation-message"
+      :open="true"
+      :variant="formStatus.type"
+    >
+      <SynVueIcon slot="icon" :name="formStatus.icon" />
+      {{ formStatus.message }}
+    </SynVueAlert>
+
     <!-- PersonalInformation -->
     <DemoFieldset legend="Personal Information">
 

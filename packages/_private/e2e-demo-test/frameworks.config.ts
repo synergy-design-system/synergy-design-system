@@ -32,3 +32,23 @@ export const frameworks: Framework[] = [
     port: 5174,
   },
 ];
+
+/**
+ * Get the enabled frameworks based on the TEST_FRAMEWORK env variable.
+ * @returns List of enabled frameworks
+ */
+export const getEnabledFrameworks = () => {
+  const framework = process.env.TEST_FRAMEWORK;
+
+  if (!framework) {
+    return frameworks;
+  }
+
+  const foundFramework = frameworks.find(f => f.name === framework);
+
+  if (!foundFramework) {
+    throw new Error(`Unknown framework: ${framework}. Available frameworks: ${frameworks.map(f => f.name).join(', ')}`);
+  }
+
+  return [foundFramework];
+};

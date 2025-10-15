@@ -1,7 +1,14 @@
 /* eslint-disable no-console */
 import { useEffect, useRef, useState } from 'react';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
-import { currencyNumberFormatter, mockData } from '@synergy-design-system/demo-utilities';
+import {
+  type FormStatus,
+  currencyNumberFormatter,
+  mockData,
+  statusError,
+  statusSuccess,
+  statusWarning,
+} from '@synergy-design-system/demo-utilities';
 import type {
   SynChangeEvent,
   SynCheckbox,
@@ -20,6 +27,7 @@ const initialFormData = mockData('initialFullFormData');
 export const DemoForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState(initialFormData);
+  const [formStatus, setFormStatus] = useState<FormStatus>(statusWarning);
 
   // This is needed, as synergy does its event with `syn-` prefix
   // and react wont let us bind arbitrary custom events :(
@@ -64,6 +72,7 @@ export const DemoForm = () => {
       encType="multipart/form-data"
       method="post"
       onReset={() => {
+        setFormStatus(statusWarning);
         setFormData(initialFormData);
       }}
       onSubmit={e => {
@@ -73,15 +82,20 @@ export const DemoForm = () => {
         const formElement = e.target as HTMLFormElement;
         const isValid = formElement.checkValidity();
 
-        const content = isValid
-          ? 'Your data was successfully submitted'
-          : 'Your data could not be submitted! Please provide all required information!';
-
-        // eslint-disable-next-line no-alert
-        alert(content);
+        setFormStatus(isValid ? statusSuccess : statusError);
       }}
       ref={formRef}
     >
+      {formStatus.type !== 'warning' && (
+        <syn-alert
+          className="form-validation-message"
+          open
+          variant={formStatus.type}
+        >
+          <syn-icon slot="icon" name={formStatus.icon} />
+          {formStatus.message}
+        </syn-alert>
+      )}
 
       {/* PersonalInformation */}
       <DemoFieldset legend="Personal Information">

@@ -13,6 +13,10 @@ inputs:
     description: 'Custom install command (e.g., "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i")'
     required: false
     default: 'pnpm install'
+  build-command:
+    description: 'Custom build command (e.g., "pnpm build")'
+    required: false
+    default: 'pnpm build'
   with-build:
     description: 'Run build after install'
     required: false
@@ -40,5 +44,5 @@ runs:
 
     - name: Build
       if: inputs.with-build == 'true' && inputs.skip-install != 'true'
-      run: pnpm build
+      run: ${{ inputs.build-command }}
       shell: bash

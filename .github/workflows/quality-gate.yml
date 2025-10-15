@@ -138,7 +138,7 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
         with:
           # Make sure to exclude unneeded packages to speed up the build.
-          install-command: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/mcp' build
+          build-command: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/mcp' build
 
       # We run all tests except the components tests
       # This is done as the components test toolchain will

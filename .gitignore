@@ -2,3 +2,4 @@
 playwright-report
 node_modules/
 vendor
+.env

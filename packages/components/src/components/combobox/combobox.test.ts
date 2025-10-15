@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import '../../../dist/synergy.js';
 import {
-  aTimeout, expect, fixture, html, oneEvent, waitUntil,
+  aTimeout, expect, fixture, html, oneEvent, waitUntil, elementUpdated, nextFrame,
 } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
@@ -1878,6 +1878,110 @@ describe('<syn-combobox>', () => {
       expect(el.value).to.deep.equal([]);
     });
   });
+
+  describe('#1036', () => {
+    it('should result in correct sanitized values for subsequently changed delimiter', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox multiple>
+          <syn-option value="Option|1">Option 1</syn-option>
+          <syn-option value="Option|2">Option 2</syn-option>
+        </syn-combobox>
+      `);
+
+      const options = el.querySelectorAll('syn-option');
+      const firstOption = options[0];
+      const secondOption = options[1];
+
+      await clickOnElement(el);
+      await clickOnElement(firstOption);
+
+      expect(el.value).to.deep.equal(['Option_1']);
+
+      el.delimiter = '~';
+
+      await clickOnElement(secondOption);
+
+      expect(el.value).to.deep.equal(['Option|1', 'Option|2']);
+    });
+  });
+
+  describe('#540: should allow to use a custom delimiter for multiple values', () => {
+    it('should allow to define the delimiter that is used to separate the values', async () => {
+      const getActiveItems = (elm: SynCombobox) => Array.from(
+        elm.querySelectorAll('syn-option'),
+      ).filter(option => option.selected);
+
+      const el = await fixture<SynCombobox>(html`
+          <syn-combobox delimiter="_" multiple value="option1_option2">
+            <syn-option value="option1">Option 1</syn-option>
+            <syn-option value="option2">Option 2</syn-option>
+            <syn-option value="option3">Option 3</syn-option>
+          </syn-combobox>
+        `);
+
+      expect(el.value).to.deep.equal(['option1', 'option2']);
+
+      const selectedItems = getActiveItems(el);
+      expect(selectedItems.length).to.equal(2);
+
+      el.delimiter = ',';
+      el.value = 'option2,option3';
+      await el.updateComplete;
+      expect(el.value).to.deep.equal(['option2', 'option3']);
+
+      el.delimiter = '|';
+      el.value = 'option1|option3';
+      await el.updateComplete;
+      expect(el.value).to.deep.equal(['option1', 'option3']);
+    });
+  });
+
+  describe('#813: should work correctly if `value` was set via property binding', () => {
+    it('should show the value of the dynamically added option', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox .value=${'option-1'} ></syn-combobox>
+      `);
+      await nextFrame();
+
+      await expect(el.value).to.equal('option-1');
+      await expect(el.displayLabel).to.equal('option-1');
+
+      // wait a short time until adding options dynamically
+      await aTimeout(10);
+      const option = document.createElement('syn-option');
+      option.value = 'option-1';
+      option.textContent = 'Option 1';
+      el.appendChild(option);
+      await elementUpdated(el);
+
+      await expect(el.value).to.equal('option-1');
+      await expect(el.displayLabel).to.equal('Option 1');
+    });
+
+    it('should reset the value of the select in a form to the initially set value', async () => {
+      const form = await fixture<HTMLFormElement>(html`
+        <form>
+          <syn-combobox .value=${'option-1'}>
+            <syn-option value="option-1">Option 1</syn-option>
+            <syn-option value="option-2">Option 2</syn-option>
+          </syn-combobox>
+          <syn-button type="reset">Reset</syn-button>
+        </form>
+      `);
+
+      const resetButton = form.querySelector('syn-button')!;
+      const combobox = form.querySelector('syn-combobox')!;
+      combobox.value = 'option-2';
+      await combobox.updateComplete;
+
+      await expect(combobox.value).to.equal('option-2');
+
+      setTimeout(() => resetButton.click());
+      await oneEvent(form, 'reset');
+      await combobox.updateComplete;
+      await expect(combobox.value).to.equal('option-1');
+    });
+  }); // #813
 
   runFormControlBaseTests('syn-combobox');
 });

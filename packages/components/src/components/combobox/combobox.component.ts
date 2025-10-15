@@ -86,6 +86,12 @@ import { compareValues } from '../select/utility.js';
  * @csspart popup - The popup's exported `popup` part.
  * Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
+ * @csspart tags - The container that houses option tags when `multiple` is used.
+ * @csspart tag - The individual tags that represent each selected option in `multiple`.
+ * @csspart tag__base - The tag's base part.
+ * @csspart tag__content - The tag's content part.
+ * @csspart tag__remove-button - The tag's remove button.
+ * @csspart tag__remove-button__base - The tag's remove button base part.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -326,6 +332,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   connectedCallback() {
     super.connectedCallback();
 
+    setTimeout(() => {
+      this.handleDefaultSlotChange();
+    });
+
     // Because this is a form control, it shouldn't be opened initially
     this.open = false;
   }
@@ -345,10 +355,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.defaultValue = this.value;
     }
 
-    // This is needed, as the result otherwise is different on the attribute order of "multiple" and "value".
-    if (!this.isInitialized && changedProperties.has('value') && changedProperties.has('multiple')) {
-      if (!Array.isArray(this.value)) {
-        this.value = typeof this.value === 'string' ? this.value.split(this.delimiter) : [this.value].filter(isAllowedValue);
+    // This is needed, as the result otherwise is different on the attribute order of "multiple", "delimiter" and "value".
+    if (!this.isInitialized && changedProperties.has('value') && this.value !== undefined && changedProperties.has('multiple') && this.multiple) {
+      if (!Array.isArray(this.defaultValue)) {
+        this.value = typeof this.defaultValue === 'string' ? this.defaultValue.split(this.delimiter) : [this.defaultValue].filter(isAllowedValue);
       }
     }
   }

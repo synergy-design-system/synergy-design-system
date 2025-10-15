@@ -165,7 +165,6 @@ jobs:
       # This is done as the components test toolchain will
       # create a new bundle that may cause issues
       - name: Run Playwright tests
-        # run: pnpm run test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }} --project=${{ matrix.browser }}
         run: pnpm test.${{ matrix.framework }} --project=${{ matrix.browser }}
         working-directory: packages/_private/e2e-demo-test
         # @see https://github.com/microsoft/playwright/issues/6500

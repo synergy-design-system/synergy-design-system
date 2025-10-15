@@ -302,7 +302,8 @@ export default class SynPopup extends SynergyElement {
   private async stop(): Promise<void> {
     return new Promise(resolve => {
       if (SUPPORTS_POPOVER) {
-        this.popup.hidePopover?.();
+        // #1041 In some testing frameworks the disconnectedCallback is called too early so this.popup is not yet available
+        this.popup?.hidePopover?.();
       }
       if (this.cleanup) {
         this.cleanup();

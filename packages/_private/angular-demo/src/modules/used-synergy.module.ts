@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { SynAlertComponent } from '@synergy-design-system/angular';
 import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
 import { SynCheckboxComponent } from '@synergy-design-system/angular/components/checkbox';
 import { SynComboboxComponent } from '@synergy-design-system/angular/components/combobox';
@@ -19,6 +20,7 @@ import { SynValidateComponent } from '@synergy-design-system/angular/components/
 import { SynergyFormsModule } from '@synergy-design-system/angular/modules/forms';
 
 const components = [
+  SynAlertComponent,
   SynButtonComponent,
   SynCheckboxComponent,
   SynComboboxComponent,

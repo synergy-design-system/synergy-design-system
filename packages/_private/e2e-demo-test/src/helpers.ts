@@ -6,7 +6,7 @@ import type {
   SynSwitch,
   SynTextarea,
 } from '@synergy-design-system/components';
-import { type AvailableFrameworks, frameworks } from '../frameworks.config.js';
+import { type AvailableFrameworks, getEnabledFrameworks } from '../frameworks.config.js';
 
 type FrameworkCallback = (framework: { name: AvailableFrameworks, port: number }) => void;
 
@@ -94,7 +94,7 @@ export const fillInput = async (locator: Locator, value: string, blur = true) =>
 export const fillTextArea = async (locator: Locator, value: string, blur = true) => fillField(locator, value, 'textarea', blur);
 
 export const createTestCases = (callback: FrameworkCallback) => {
-  frameworks.forEach(framework => {
+  getEnabledFrameworks().forEach(framework => {
     const { name, port } = framework;
     callback({
       name,
@@ -104,7 +104,7 @@ export const createTestCases = (callback: FrameworkCallback) => {
 };
 
 export const getFrameworkPort = (frameworkName: AvailableFrameworks) => {
-  const framework = frameworks.find(fw => fw.name === frameworkName);
+  const framework = getEnabledFrameworks().find(fw => fw.name === frameworkName);
   if (!framework) {
     throw new Error(`Framework ${frameworkName} not found`);
   }

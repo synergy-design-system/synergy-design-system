@@ -1,6 +1,7 @@
 <!-- contact-form-validate -->
 <div class="contact-form-validate">
   <form enctype="multipart/form-data" id="form-demo-validate" method="post">
+    <syn-alert class="form-validation-message"></syn-alert>
 
     <!-- PersonalInformation -->
     <fieldset class="syn-fieldset">

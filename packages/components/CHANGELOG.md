@@ -1,3 +1,24 @@
+# [@synergy-design-system/components-v2.47.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.47.1...components/2.47.2) (2025-10-15)
+
+
+### Bug Fixes
+
+* 🐛 Upgrade packages to latest versions - 10/25 ([#1035](https://github.com/synergy-design-system/synergy-design-system/issues/1035)) ([2fb5693](https://github.com/synergy-design-system/synergy-design-system/commit/2fb5693e536df706ea2c99a8ffc6e4d853442bbf))
+
+# [@synergy-design-system/components-v2.47.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.47.0...components/2.47.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* 🐛  Testing syn-popup in angular results in console errors ([#1042](https://github.com/synergy-design-system/synergy-design-system/issues/1042)) ([544e01a](https://github.com/synergy-design-system/synergy-design-system/commit/544e01a1227e4760c76d7a74238a224c7ca31a18))
+
+# [@synergy-design-system/components-v2.47.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.46.1...components/2.47.0) (2025-10-13)
+
+
+### Features
+
+* ✨ CD update for syn-progress-ring ([#1033](https://github.com/synergy-design-system/synergy-design-system/issues/1033)) ([ba51374](https://github.com/synergy-design-system/synergy-design-system/commit/ba51374977ad486c2a8020586718740e60da7f51))
+
 # [@synergy-design-system/components-v2.46.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.46.0...components/2.46.1) (2025-10-08)
 
 

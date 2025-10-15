@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-check
     container:
-      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -97,7 +97,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-check
     container:
-      image: mcr.microsoft.com/playwright:v1.53.0-noble
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
     steps:
       - uses: actions/checkout@v4
 
@@ -120,31 +120,36 @@ jobs:
 
   # E2E Tests
   e2e-test:
-    name: Validate tests (e2e and framework tests)
+    name: Validate tests (e2e) (${{ matrix.framework }}/${{ matrix.browser }})
     timeout-minutes: 30
     runs-on: ubuntu-latest
     needs: build-check
     container:
-      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      image: mcr.microsoft.com/playwright:v1.56.0-noble
     strategy:
       fail-fast: true
       matrix:
-        shardIndex: [1, 2, 3, 4]
-        shardTotal: [4]
+        framework: [react, angular, vue, vanilla]
+        browser: [chromium, firefox, webkit]
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
+        with:
+          # Make sure to exclude unneeded packages to speed up the build.
+          install-command: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/mcp' build
 
-      # We only run e2e tests.
+      # We run all tests except the components tests
       # This is done as the components test toolchain will
       # create a new bundle that may cause issues
       - name: Run tests
-        run: pnpm -r --filter 'e2e-demo-test' test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
+        run: pnpm test.${{ matrix.framework }} --project=${{ matrix.browser }}
+        working-directory: packages/_private/e2e-demo-test
         # @see https://github.com/microsoft/playwright/issues/6500
         env:
           HOME: /root
+          TEST_FRAMEWORK: ${{ matrix.framework }}
 
   # Chromatic deployment
   chromatic-deploy:

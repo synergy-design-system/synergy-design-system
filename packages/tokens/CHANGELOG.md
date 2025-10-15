@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.28.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.27.0...tokens/2.28.0) (2025-10-13)
+
+
+### Features
+
+* ✨ CD update for syn-progress-ring ([#1033](https://github.com/synergy-design-system/synergy-design-system/issues/1033)) ([ba51374](https://github.com/synergy-design-system/synergy-design-system/commit/ba51374977ad486c2a8020586718740e60da7f51))
+
 # [@synergy-design-system/tokens-v2.27.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.26.1...tokens/2.27.0) (2025-10-02)
 
 

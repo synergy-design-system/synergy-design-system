@@ -104,6 +104,7 @@ export default {
   experienceLittle: '#experience-little',
   experienceLoc: '#experience',
   formLoc: 'form',
+  formStatus: 'syn-alert.form-validation-message',
   frontend: 'syn-option[value=frontend]',
   genderLoc: '#radiogroup-gender',
   happinessLoc: '#happiness',

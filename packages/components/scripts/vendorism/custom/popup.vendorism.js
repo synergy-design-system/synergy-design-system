@@ -41,7 +41,8 @@ const transformComponent = (path, originalContent) => {
     [
       'return new Promise(resolve => {',
       `      if (SUPPORTS_POPOVER) {
-        this.popup.hidePopover?.();
+        // #1041 In some testing frameworks the disconnectedCallback is called too early so this.popup is not yet available
+        this.popup?.hidePopover?.();
       }`,
     ],
   ], originalContent);

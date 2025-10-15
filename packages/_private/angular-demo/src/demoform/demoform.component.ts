@@ -1,8 +1,15 @@
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
-import { currencyNumberFormatter, mockData } from '@synergy-design-system/demo-utilities';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  type FormStatus,
+  currencyNumberFormatter,
+  mockData,
+  statusError,
+  statusSuccess,
+  statusWarning,
+} from '@synergy-design-system/demo-utilities';
 
 const initialData = mockData('initialFullFormData');
 
@@ -17,6 +24,8 @@ export class DemoForm {
   @ViewChild('form') form!: ElementRef<HTMLFormElement>;
 
   formData!: FormGroup;
+
+  formStatus: FormStatus = statusWarning;
 
   nationalities = mockData('nationalities');
 
@@ -35,16 +44,13 @@ export class DemoForm {
   }
 
   reset() {
+    this.formStatus = statusWarning;
     this._initFormData();
   }
 
   submit(form: FormGroup) {
     const isValid = form.valid;
-
-    if (isValid) {
-      // eslint-disable-next-line no-alert
-      alert('Your data was successfully submitted');
-    }
+    this.formStatus = isValid ? statusSuccess : statusError;
   }
 
   synChange(_: SynChangeEvent) {

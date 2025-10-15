@@ -534,6 +534,10 @@
         "type": "color",
         "value": "{color.primary.700}"
       },
+      "color-invisible": {
+        "type": "color",
+        "value": "{panel.background.color}"
+      },
       "radius-large": {
         "type": "sizing",
         "value": "{border-radius.medium}"
@@ -544,7 +548,7 @@
       },
       "radius-small": {
         "type": "sizing",
-        "value": "{border-radius.medium}"
+        "value": "{border-radius.small}"
       },
       "width": {
         "type": "sizing",
@@ -578,7 +582,7 @@
       },
       "error": {
         "type": "color",
-        "value": "{color.error.500}"
+        "value": "{color.error.600}"
       },
       "offset": {
         "type": "sizing",
@@ -900,7 +904,7 @@
     "background": {
       "color": {
         "type": "color",
-        "value": "rgba(0, 0, 0, 0.50)"
+        "value": "rgba(0, 10, 55, 0.30)"
       }
     }
   },

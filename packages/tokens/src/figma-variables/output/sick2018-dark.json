@@ -534,6 +534,10 @@
         "type": "color",
         "value": "{color.neutral.950}"
       },
+      "color-invisible": {
+        "type": "color",
+        "value": "{panel.background.color}"
+      },
       "radius-large": {
         "type": "sizing",
         "value": "{border-radius.none}"
@@ -578,7 +582,7 @@
       },
       "error": {
         "type": "color",
-        "value": "{color.error.400}"
+        "value": "{color.error.600}"
       },
       "offset": {
         "type": "sizing",
@@ -628,7 +632,7 @@
       },
       "color-error": {
         "type": "color",
-        "value": "{color.error.700}"
+        "value": "{color.error.600}"
       },
       "font-size": {
         "large": {

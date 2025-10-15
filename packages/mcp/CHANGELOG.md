@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.8.2](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.8.1...mcp/1.8.2) (2025-10-15)
+
+
+### Bug Fixes
+
+* 🐛 Upgrade packages to latest versions - 10/25 ([#1035](https://github.com/synergy-design-system/synergy-design-system/issues/1035)) ([2fb5693](https://github.com/synergy-design-system/synergy-design-system/commit/2fb5693e536df706ea2c99a8ffc6e4d853442bbf))
+
 # [@synergy-design-system/mcp-v1.8.1](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.8.0...mcp/1.8.1) (2025-10-13)
 
 

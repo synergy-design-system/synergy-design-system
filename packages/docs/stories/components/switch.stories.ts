@@ -14,6 +14,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args, argTypes } = storybookDefaults('syn-switch');
 const { overrideArgs } = storybookHelpers('syn-switch');
@@ -24,6 +25,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-switch',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('2239-58411'),
     docs: {
       description: {
@@ -31,7 +35,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form', 'SICK2018'],
+  tags: ['Form', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-switch',
 };
 export default meta;
@@ -146,9 +150,25 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-  <syn-switch size="small">Small</syn-switch><br>
-  <syn-switch size="medium">Medium</syn-switch><br>
-  <syn-switch size="large">Large</syn-switch>`,
+    <div style="gap: var(--syn-spacing-large); display: flex; flex-direction: column; align-items: flex-start;">
+      <syn-switch size="small">Small</syn-switch>
+      <syn-switch size="medium">Medium</syn-switch>
+      <syn-switch size="large">Large</syn-switch>
+    </div>
+  `,
+};
+
+export const HelpText: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('switch', 'help-text'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-switch help-text="What should the user know about the switch?">Label</syn-switch>
+  `,
 };
 
 /* eslint-disable sort-keys */
@@ -157,5 +177,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Checked,
   Disabled,
   Sizes,
+  HelpText,
 });
 /* eslint-enable sort-keys */

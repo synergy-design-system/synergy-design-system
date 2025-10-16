@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.26.0
+ * @synergy-design-system/tokens version 2.28.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -128,9 +128,10 @@
   --syn-input-border-color-focus: var(--syn-color-primary-700);
   --syn-input-border-color-focus-error: var(--syn-color-error-600);
   --syn-input-border-color-hover: var(--syn-color-primary-700);
+  --syn-input-border-color-offset: var(--syn-panel-background-color);
   --syn-input-border-radius-large: var(--syn-border-radius-medium);
   --syn-input-border-radius-medium: var(--syn-border-radius-medium);
-  --syn-input-border-radius-small: var(--syn-border-radius-medium);
+  --syn-input-border-radius-small: var(--syn-border-radius-small);
   --syn-input-border-width: 1px;
   --syn-input-color: var(--syn-color-neutral-950);
   --syn-input-color-disabled: var(--syn-color-neutral-950);
@@ -138,7 +139,7 @@
   --syn-input-color-hover: var(--syn-color-neutral-950);
   --syn-input-disabled-opacity: 0.5;
   --syn-input-focus-ring-color: var(--syn-color-primary-500);
-  --syn-input-focus-ring-error: var(--syn-color-error-500);
+  --syn-input-focus-ring-error: var(--syn-color-error-600);
   --syn-input-focus-ring-offset: 0px;
   --syn-input-font-family: var(--syn-font-sans);
   --syn-input-font-size-large: var(--syn-font-size-large);
@@ -204,7 +205,7 @@
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 25%;
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-overlay-background-color: rgba(0, 0, 0, 0.5);
+  --syn-overlay-background-color: rgba(0, 10, 55, 0.3);
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: #e6e1dc;
   --syn-panel-border-radius: var(--syn-border-radius-medium);
@@ -252,6 +253,8 @@
   --syn-transition-x-slow: 1000ms; /** Shoelace compatibility DO NOT USE */
   --syn-typography-color-text: var(--syn-color-neutral-950);
   --syn-typography-color-text-inverted: var(--syn-color-neutral-0);
+  --syn-typography-color-text-quiet: var(--syn-color-neutral-700);
+  --syn-typography-color-text-quiet-inverted: var(--syn-color-neutral-300);
   --syn-z-index-dialog: 800; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-drawer: 700; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-dropdown: 900; /** Shoelace compatibility DO NOT USE */

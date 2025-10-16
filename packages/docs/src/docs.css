@@ -28,6 +28,10 @@ body {
 }
 
 /* Special treatment for code preview in docs panel */
+.sbdocs-preview {
+  border: 1px solid var(--syn-panel-border-color);
+}
+
 .docs-story {
   background: var(--syn-panel-background-color);
 }

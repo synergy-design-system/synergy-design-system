@@ -29,7 +29,7 @@ body {
 
 /* Special treatment for code preview in docs panel */
 .docs-story {
-  background: var(--syn-color-neutral-0);
+  background: var(--syn-panel-background-color);
 }
 
 /*

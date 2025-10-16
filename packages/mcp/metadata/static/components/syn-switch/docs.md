@@ -68,7 +68,32 @@ The invalid status is used to warn the user that the Switch is invalid.
 Use the size attribute to change a switch’s size.
 
 ```html
-<syn-switch size="small" title="" form="">Small</syn-switch><br />
-<syn-switch size="medium" title="" form="">Medium</syn-switch><br />
-<syn-switch size="large" title="" form="">Large</syn-switch>
+<div
+  style="
+    gap: var(--syn-spacing-large);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  "
+>
+  <syn-switch size="small" title="" form="">Small</syn-switch>
+  <syn-switch size="medium" title="" form="">Medium</syn-switch>
+  <syn-switch size="large" title="" form="">Large</syn-switch>
+</div>
+```
+
+---
+
+## Help Text
+
+Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.
+
+```html
+<syn-switch
+  help-text="What should the user know about the switch?"
+  title=""
+  size="medium"
+  form=""
+  >Label</syn-switch
+>
 ```

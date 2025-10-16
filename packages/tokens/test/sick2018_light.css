@@ -128,7 +128,6 @@
   --syn-input-border-color-focus: var(--syn-color-neutral-950);
   --syn-input-border-color-focus-error: var(--syn-color-error-700);
   --syn-input-border-color-hover: var(--syn-color-neutral-950);
-  --syn-input-border-color-invisible: var(--syn-panel-background-color);
   --syn-input-border-radius-large: var(--syn-border-radius-none);
   --syn-input-border-radius-medium: var(--syn-border-radius-none);
   --syn-input-border-radius-small: var(--syn-border-radius-none);

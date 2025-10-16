@@ -16,6 +16,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-breadcrumb');
 const { overrideArgs } = storybookHelpers('syn-breadcrumb');
@@ -37,6 +38,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-breadcrumb',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('15172-32035'),
     docs: {
       description: {
@@ -44,7 +48,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'SICK2018'],
+  tags: ['Navigation', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-breadcrumb',
 };
 export default meta;

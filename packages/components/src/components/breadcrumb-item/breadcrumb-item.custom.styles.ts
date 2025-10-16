@@ -2,9 +2,9 @@ import { css } from 'lit';
 
 export default css`
   .breadcrumb-item {
-    color: var(--syn-color-neutral-500);
+    color: var(--syn-breadcrumb-color);
     font-size: var(--syn-font-size-x-small);
-    font-weight: var(--syn-font-weight-normal);
+    font-weight: var(--syn-font-weight-semibold);
   }
 
   /**
@@ -13,6 +13,11 @@ export default css`
    */
   .breadcrumb-item__label {
     border-radius: var(--syn-border-radius-none);
+  }
+
+  :host(:not(:last-of-type)) .breadcrumb-item {
+    color: var(--syn-typography-color-text);
+    font-weight: var(--syn-font-weight-normal);
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item__label {

@@ -66,13 +66,18 @@ export const cssVariableFormatter = {
      * @type {string[]} List of variables that should be ignored for the brand 2025 theme
      */
     const BRAND2025_IGNORE_PATTERNS = [
-      'input-border-color-invisible',
+      // Needed for syn-range later on!
+      'input-border-color-offset',
+
+      // Unknown component, skipping for now
+      'typography-color-text-quiet',
+      'typography-color-text-quiet-inverted',
     ].map(v => `${prefix}${v}`);
 
     /**
      * @type {string[]} List of allready ignored variables (to not spam the console)
      */
-    const allreadyIgnoredList = [];
+    const alreadyIgnoredList = [];
 
     /**
      * Converts a design tokens value to a css var
@@ -113,7 +118,7 @@ export const cssVariableFormatter = {
         } else {
           const name = dict[key]?.name;
           if (name && BRAND2025_IGNORE_PATTERNS.includes(name)) {
-            allreadyIgnoredList.push(name);
+            alreadyIgnoredList.push(name);
             delete dict[key];
             return;
           }
@@ -123,10 +128,10 @@ export const cssVariableFormatter = {
     };
     convertOriginalToCssVarRecursive(dictionary);
 
-    if (verbosity !== 'silent' && allreadyIgnoredList.length > 0) {
+    if (verbosity !== 'silent' && alreadyIgnoredList.length > 0) {
       const finalOutputList = Array.from(
         new Set(
-          allreadyIgnoredList
+          alreadyIgnoredList
             .sort((a, b) => a.localeCompare(b)),
         ),
       )

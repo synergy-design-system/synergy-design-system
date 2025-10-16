@@ -534,7 +534,7 @@
         "type": "color",
         "value": "{color.primary.500}"
       },
-      "color-invisible": {
+      "color-offset": {
         "type": "color",
         "value": "{panel.background.color}"
       },
@@ -904,7 +904,7 @@
     "background": {
       "color": {
         "type": "color",
-        "value": "rgba(0, 10, 55, 0.30)"
+        "value": "rgba(0, 10, 55, 0.60)"
       }
     }
   },
@@ -1138,6 +1138,14 @@
       "text-inverted": {
         "type": "color",
         "value": "{color.neutral.50}"
+      },
+      "text-quiet": {
+        "type": "color",
+        "value": "{color.neutral.800}"
+      },
+      "text-quiet-inverted": {
+        "type": "color",
+        "value": "{color.neutral.200}"
       }
     }
   },

@@ -534,7 +534,7 @@
         "type": "color",
         "value": "{color.primary.700}"
       },
-      "color-invisible": {
+      "color-offset": {
         "type": "color",
         "value": "{panel.background.color}"
       },
@@ -1138,6 +1138,14 @@
       "text-inverted": {
         "type": "color",
         "value": "{color.neutral.0}"
+      },
+      "text-quiet": {
+        "type": "color",
+        "value": "{color.neutral.700}"
+      },
+      "text-quiet-inverted": {
+        "type": "color",
+        "value": "{color.neutral.300}"
       }
     }
   },

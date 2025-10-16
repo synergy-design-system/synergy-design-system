@@ -204,7 +204,7 @@
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 25%;
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-overlay-background-color: rgba(0, 10, 55, 0.3);
+  --syn-overlay-background-color: rgba(0, 10, 55, 0.6);
   --syn-panel-background-color: var(--syn-color-neutral-50);
   --syn-panel-border-color: var(--syn-color-neutral-300);
   --syn-panel-border-radius: var(--syn-border-radius-medium);

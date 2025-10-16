@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.26.0
+ * @synergy-design-system/tokens version 2.28.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -19,6 +19,7 @@
   --syn-border-width-none: 0px; /** None */
   --syn-border-width-small: 1px; /** Small */
   --syn-border-width-x-large: 4px; /** X Large */
+  --syn-breadcrumb-color: var(--syn-color-neutral-500);
   --syn-button-font-size-large: var(--syn-font-size-large);
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);
@@ -128,6 +129,7 @@
   --syn-input-border-color-focus: var(--syn-color-neutral-950);
   --syn-input-border-color-focus-error: var(--syn-color-error-700);
   --syn-input-border-color-hover: var(--syn-color-neutral-950);
+  --syn-input-border-color-offset: var(--syn-panel-background-color);
   --syn-input-border-radius-large: var(--syn-border-radius-none);
   --syn-input-border-radius-medium: var(--syn-border-radius-none);
   --syn-input-border-radius-small: var(--syn-border-radius-none);
@@ -138,7 +140,7 @@
   --syn-input-color-hover: var(--syn-color-neutral-950);
   --syn-input-disabled-opacity: 0.5;
   --syn-input-focus-ring-color: var(--syn-color-primary-400);
-  --syn-input-focus-ring-error: var(--syn-color-error-400);
+  --syn-input-focus-ring-error: var(--syn-color-error-600);
   --syn-input-focus-ring-offset: 0px;
   --syn-input-font-family: var(--syn-font-sans);
   --syn-input-font-size-large: var(--syn-font-size-large);
@@ -149,7 +151,7 @@
   --syn-input-height-medium: var(--syn-spacing-2x-large);
   --syn-input-height-small: 36px;
   --syn-input-help-text-color: var(--syn-color-neutral-800);
-  --syn-input-help-text-color-error: var(--syn-color-error-700);
+  --syn-input-help-text-color-error: var(--syn-color-error-600);
   --syn-input-help-text-font-size-large: var(--syn-font-size-medium);
   --syn-input-help-text-font-size-medium: var(--syn-font-size-small);
   --syn-input-help-text-font-size-small: var(--syn-font-size-x-small);
@@ -204,7 +206,7 @@
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 7%;
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-overlay-background-color: rgba(0, 0, 0, 0.5);
+  --syn-overlay-background-color: rgba(49, 55, 58, 0.5);
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: var(--syn-color-neutral-300);
   --syn-panel-border-radius: var(--syn-border-radius-medium);
@@ -252,6 +254,8 @@
   --syn-transition-x-slow: 1000ms; /** Shoelace compatibility DO NOT USE */
   --syn-typography-color-text: var(--syn-color-neutral-950);
   --syn-typography-color-text-inverted: var(--syn-color-neutral-0);
+  --syn-typography-color-text-quiet: var(--syn-color-neutral-800);
+  --syn-typography-color-text-quiet-inverted: var(--syn-color-neutral-200);
   --syn-z-index-dialog: 800; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-drawer: 700; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-dropdown: 900; /** Shoelace compatibility DO NOT USE */

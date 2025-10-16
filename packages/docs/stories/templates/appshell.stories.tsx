@@ -15,6 +15,7 @@ import {
   createMainContent, createSharedStyles, createSideNav,
   createSidebarConnector,
 } from '../../src/shared-components/appshell.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const meta: Meta = {
   parameters: {
@@ -22,6 +23,7 @@ const meta: Meta = {
     chromatic: {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
+      modes: Chromatic_Modes_All,
     },
     design: generateFigmaPluginObject('8462-8334'),
     docs: {

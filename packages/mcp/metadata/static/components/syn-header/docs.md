@@ -31,7 +31,7 @@ Use the logo slot to change the app logo. Usually this is only needed in whitela
       width: 32px;
       height: 32px;
       border-radius: 32px;
-      background: var(--syn-color-primary-500);
+      background: var(--syn-color-neutral-1000);
       display: block;
     "
     slot="logo"

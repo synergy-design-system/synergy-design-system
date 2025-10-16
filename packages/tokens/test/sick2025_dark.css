@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.26.0
+ * @synergy-design-system/tokens version 2.28.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -45,7 +45,7 @@
   --syn-color-error-900: #ffe3e4;
   --syn-color-error-950: #fff1f1;
   --syn-color-neutral-0: #000414;
-  --syn-color-neutral-50: #00061f;
+  --syn-color-neutral-50: #000724;
   --syn-color-neutral-100: #000a37;
   --syn-color-neutral-200: #141e47;
   --syn-color-neutral-300: #262f55;
@@ -56,7 +56,7 @@
   --syn-color-neutral-800: #9298b6;
   --syn-color-neutral-900: #adb2c8;
   --syn-color-neutral-950: #c8ccdb;
-  --syn-color-neutral-1000: #e3e5ed;
+  --syn-color-neutral-1000: #e9ebf1;
   --syn-color-primary-50: #0e275d;
   --syn-color-primary-100: #0d3f9b;
   --syn-color-primary-200: #0845c5;
@@ -130,7 +130,7 @@
   --syn-input-border-color-hover: var(--syn-color-primary-500);
   --syn-input-border-radius-large: var(--syn-border-radius-medium);
   --syn-input-border-radius-medium: var(--syn-border-radius-medium);
-  --syn-input-border-radius-small: var(--syn-border-radius-medium);
+  --syn-input-border-radius-small: var(--syn-border-radius-small);
   --syn-input-border-width: 1px;
   --syn-input-color: var(--syn-color-neutral-1000);
   --syn-input-color-disabled: var(--syn-color-neutral-1000);
@@ -138,7 +138,7 @@
   --syn-input-color-hover: var(--syn-color-neutral-1000);
   --syn-input-disabled-opacity: 0.5;
   --syn-input-focus-ring-color: var(--syn-color-primary-700);
-  --syn-input-focus-ring-error: var(--syn-color-error-400);
+  --syn-input-focus-ring-error: var(--syn-color-error-600);
   --syn-input-focus-ring-offset: 0px;
   --syn-input-font-family: var(--syn-font-sans);
   --syn-input-font-size-large: var(--syn-font-size-large);
@@ -203,8 +203,9 @@
   --syn-link-quiet-color-active: var(--syn-interactive-quiet-color-active);
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 25%;
+  --syn-logo-color: var(--syn-color-primary-300);
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-overlay-background-color: rgba(0, 0, 0, 0.5);
+  --syn-overlay-background-color: rgba(0, 10, 55, 0.6);
   --syn-panel-background-color: var(--syn-color-neutral-50);
   --syn-panel-border-color: var(--syn-color-neutral-300);
   --syn-panel-border-radius: var(--syn-border-radius-medium);

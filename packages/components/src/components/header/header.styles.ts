@@ -6,7 +6,7 @@ export default css`
   }
 
   .header {
-    background: var(--syn-color-neutral-0);
+    background: var(--syn-panel-background-color);
     box-shadow: inset 0 -1px 0 0 var(--syn-color-neutral-400);
   }
 

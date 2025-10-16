@@ -26,9 +26,14 @@ const config = {
 
 const { author, name, version } = getPackageInformation();
 
+/**
+ * @type {import('style-dictionary/types').LogConfig['verbosity']}
+ */
+const verbosity = 'verbose';
+
 const dictionary = new StyleDictionary({
   log: {
-    verbosity: 'verbose',
+    verbosity,
   },
 });
 
@@ -60,6 +65,7 @@ const cssRuns = themes.map(async ({ mode, theme }) => {
             fileHeader: 'syn/header',
             prefix: config.prefix,
             themeInformation,
+            verbosity,
           },
         }],
         prefix: config.prefix,

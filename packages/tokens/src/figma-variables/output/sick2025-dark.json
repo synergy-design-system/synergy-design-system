@@ -893,6 +893,12 @@
       "value": "25%"
     }
   },
+  "logo": {
+    "color": {
+      "type": "color",
+      "value": "{color.primary.300}"
+    }
+  },
   "opacity": {
     "50": {
       "description": "50%",

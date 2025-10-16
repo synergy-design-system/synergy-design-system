@@ -39,7 +39,7 @@ export default css`
    */
   .header__logo ::slotted(a),
   .header__logo ::slotted(a:hover) {
-    color: var(--syn-color-primary-600);
+    color: var(--syn-logo-color);
   }
 
   .header__logo ::slotted(a:is(:focus-visible)) {
@@ -52,7 +52,7 @@ export default css`
    */
   .header__logo syn-icon,
   .header__logo syn-icon::part(svg) {
-    color: var(--syn-color-primary-600);
+    color: var(--syn-logo-color);
     height: 32px;
     width: auto;
   }
@@ -78,7 +78,7 @@ export default css`
   }
 
   .header__meta-navigation ::slotted(*) {
-    color: var(--syn-color-neutral-950);
+    color: var(--syn-interactive-quiet-color);
     display: contents;
     font-size: var(--syn-font-size-x-large);
   }
@@ -97,7 +97,7 @@ export default css`
     align-items: center;
     background: none;
     border: none;
-    color: var(--syn-color-neutral-950);
+    color: var(--syn-interactive-quiet-color);
     cursor: pointer;
     display: flex;
     font-size: var(--syn-font-size-x-large);
@@ -107,11 +107,11 @@ export default css`
   }
 
   .header__burger-menu-toggle:hover {
-    color: var(--syn-color-primary-600);
+    color: var(--syn-interactive-quiet-color-hover);
   }
 
   .header__burger-menu-toggle:active {
-    color: var(--syn-color-primary-700);
+    color: var(--syn-interactive-quiet-color-active);
   }
 
   .header__burger-menu-toggle:focus-visible {

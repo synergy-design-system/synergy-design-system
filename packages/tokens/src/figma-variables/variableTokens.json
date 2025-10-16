@@ -286,8 +286,8 @@
         "VariableID:36102:6168",
         "VariableID:36102:6167",
         "VariableID:36102:6166",
-        "VariableID:36102:6169",
         "VariableID:36102:6171",
+        "VariableID:36102:6169",
         "VariableID:36102:6170",
         "VariableID:36331:6159",
         "VariableID:36331:6160",
@@ -303,8 +303,8 @@
         "VariableID:36102:6183",
         "VariableID:36102:6190",
         "VariableID:36102:6188",
-        "VariableID:36102:6187",
         "VariableID:36331:6163",
+        "VariableID:36102:6187",
         "VariableID:36331:6164",
         "VariableID:36331:6165",
         "VariableID:36102:6189",
@@ -381,8 +381,8 @@
         "VariableID:36102:6252",
         "VariableID:40876:168826",
         "VariableID:36102:6212",
-        "VariableID:36102:6239",
         "VariableID:40239:237186",
+        "VariableID:36102:6239",
         "VariableID:36102:6240",
         "VariableID:36102:6241",
         "VariableID:36102:6243",
@@ -403,8 +403,8 @@
         "VariableID:36102:6221",
         "VariableID:36102:6223",
         "VariableID:36102:6224",
-        "VariableID:36102:6222",
         "VariableID:36102:6225",
+        "VariableID:36102:6222",
         "VariableID:40079:55934",
         "VariableID:40079:55935",
         "VariableID:40159:345830",
@@ -731,7 +731,8 @@
         "VariableID:38925:6161",
         "VariableID:38925:6162",
         "VariableID:40266:6157",
-        "VariableID:41119:194245"
+        "VariableID:41119:194245",
+        "VariableID:41903:177959"
       ]
     },
     "VariableCollectionId:790:67393": {
@@ -20963,6 +20964,38 @@
         },
         "36102:2": {
           "id": "VariableID:36102:6160",
+          "type": "VARIABLE_ALIAS"
+        }
+      },
+      "variableCollectionId": "VariableCollectionId:28:527"
+    },
+    "VariableID:41903:177959": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:41903:177959",
+      "key": "64d2490cad9a003c1cb4f051133abe52e8526c67",
+      "name": "semantic/logo/color",
+      "remote": false,
+      "resolvedType": "COLOR",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "28:3": {
+          "id": "VariableID:36102:6286",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:0": {
+          "id": "VariableID:36102:6284",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:1": {
+          "id": "VariableID:36102:6287",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:2": {
+          "id": "VariableID:36102:6283",
           "type": "VARIABLE_ALIAS"
         }
       },

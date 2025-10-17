@@ -45,7 +45,7 @@
     "figma-export:icons-2025-outline": "pnpm exec figma connect publish -c ./code-connect/figma.config.icons.2025-outline.json --batch-size 100",
     "report-bundle-size": "pnpm exec size-limit --json",
     "build": "node scripts/build.js",
-    "test": "web-test-runner --group default",
+    "test": "web-test-runner --group default --config ./web-test-runner.synergy.config.js",
     "test.watch": "pnpm test --watch",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
@@ -55,12 +55,7 @@
     "lint:html": "html-validate -c ./code-quality/html-validate/.htmlvalidate.js ./demos",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
-    "format.eslint": "pnpm lint:js --fix",
-    "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo",
-    "release.angular": "git add ../angular && git commit -m \"chore(release/angular) via component release [skip actions]\"",
-    "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\"",
-    "release.vue": "git add ../vue && git commit -m \"chore(release/vue) via component release [skip actions]\"",
-    "release.dry": "semantic-release --dry-run --tagFormat 'components/${version}' -e semantic-release-monorepo"
+    "format.eslint": "pnpm lint:js --fix"
   },
   "type": "module",
   "types": "./dist/synergy.d.ts",
@@ -80,9 +75,6 @@
     "@figma/code-connect": "^1.3.6",
     "@open-wc/testing": "^4.0.0",
     "@playwright/test": "^1.56.0",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
     "@size-limit/esbuild": "^11.2.0",
     "@size-limit/file": "^11.2.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
@@ -122,8 +114,6 @@
     "postcss-import": "^16.1.1",
     "prettier": "^3.6.2",
     "remark-parse": "^11.0.0",
-    "semantic-release": "^19.0.5",
-    "semantic-release-monorepo": "7.0.5",
     "sinon": "^21.0.0",
     "size-limit": "^11.2.0",
     "stylelint": "^16.25.0",
@@ -132,64 +122,6 @@
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
     "vendorism": "^5.0.0"
-  },
-  "release": {
-    "branches": [
-      "main",
-      {
-        "name": "beta",
-        "prerelease": true
-      },
-      {
-        "name": "alpha",
-        "prerelease": true
-      }
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
-      ],
-      [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "pnpm build && pnpm release.angular && pnpm release.react && pnpm release.vue"
-        }
-      ],
-      [
-        "@semantic-release/git",
-        {
-          "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": [
-            "CHANGELOG.md",
-            "package.json"
-          ]
-        }
-      ],
-      [
-        "@semantic-release/github",
-        {
-          "successComment": false
-        }
-      ]
-    ],
-    "monorepo": {
-      "dependencies": [
-        "packages/vue",
-        "packages/react",
-        "packages/angular"
-      ]
-    }
   },
   "dependencies": {
     "@floating-ui/dom": "^1.7.4",

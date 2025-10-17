@@ -111,37 +111,6 @@ export const formatFile = async (filePath, parser) => {
 export const getPackageJSONAsObject = () => JSON.parse(fsSync.readFileSync(getPath('../package.json')), 'utf-8');
 
 /**
- * Sync the package.json version field located in outputPackageDir
- * with the one provided from componentsPackageDir
- * @param {string} label The label
- * @returns {job}
- */
-export const runAdjustPackageVersion = (label) => job(label, async (
-  componentsPackageDir,
-  outputPackageDir,
-) => {
-  // Get the version field from the components package.json
-  const componentPackageAsString = await fs.readFile(path.join(componentsPackageDir, 'package.json'), {
-    encoding: 'utf-8',
-  });
-  const { version } = JSON.parse(componentPackageAsString);
-
-  // Get the wrappers package.json
-  const packageJSONPath = path.join(outputPackageDir, 'package.json');
-  const packageAsString = await fs.readFile(packageJSONPath);
-  const packageAsJSON = JSON.parse(packageAsString);
-
-  // Write out the changed package.json file with adjusted version
-  // and format it using prettier
-  await fs.writeFile(
-    packageJSONPath,
-    JSON.stringify({ ...packageAsJSON, version }),
-  );
-
-  await formatFile(packageJSONPath, 'json-stringify');
-});
-
-/**
  * Prepares directories by removing them and creating them anew
  * @param {string} label The label to use
  * @returns {job}

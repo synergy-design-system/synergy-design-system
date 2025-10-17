@@ -84,13 +84,38 @@ If you want to contribute to this project, please [make sure that a similar issu
 
 ## Semantic release process
 
-In our development workflow, we use Semantic Release to automate the release process for each package by filtering relevant commits. This approach ensures that releases are consistent and predictable.
-`@synergy-design-system/vue`, `@synergy-design-system/react` and `@synergy-design-system/angular` always receive the version number of `@synergy-design-system/components` and are published together with it. To make this possible our patched version of `semantic-release-monorepo` takes care of analyzing relevant commits in either (!) of these packages.
+We use [Changesets](https://github.com/changesets/changesets) to automate the release process for each package. Changesets enables us to manage versioning and changelogs in a monorepo, and to publish packages in a consistent and predictable way.
+
+When you make a change that should be released, run:
+
+```bash
+pnpm release.create
+```
+
+This will try to create a changeset for your changes and select the affected packages. It will create a `.md` file in the `.changeset` folder. These files are collected and processed during the release workflow.
+
+When a pull request containing changesets is merged to `main`, our CI will:
+
+- Apply the changesets to bump versions and update changelogs.
+- Commit and push these changes back to the repository.
+- Tag the new release.
+- Publish the updated packages to npm.
+
+Packages like `@synergy-design-system/vue`, `@synergy-design-system/react`, and `@synergy-design-system/angular` are versioned and published together with `@synergy-design-system/components` to ensure compatibility.
+
+**Notes:**
+
+- Use meaningful summaries in your changesets to improve the generated changelog.
+- Breaking changes should be clearly described in the changeset summary.
+- The release workflow is fully automated; manual versioning and changelog edits are not required.
+
+For more details, see the [Changesets documentation](https://github.com/changesets/changesets).
 
 ### Pull requests and commits
 
-When creating pull requests use structured PR titles. The title is generated from the GitHub issue title: the issue templates guarantee that the following structure "`prefix`:`icon` `text`" is used.
-When merging do a squash and merge. The PR title is used as the single commit message, which keeps the Git history clean.
+When creating pull requests, use structured PR titles. The title is generated from the GitHub issue title: the issue templates guarantee that the following structure "`prefix`:`icon` `text`" is used.
+The PR title is used as the single commit message, which keeps the Git history clean.
+
 The `prefix` is processed when the PR is merged and decides about the release version. Depending on the title, merged PRs can also create a new Synergy version.
 
 Title conventions for our PRs:
@@ -115,15 +140,15 @@ docs: 📚 Add installation instructions
 chore: 🔧 Improve build scripts
 ```
 
-If a change is breaking, be aware that the string "BREAKING CHANGE" must be part of the footer (!) of the final commit message when doing the squash and merge. A change is breaking if a dependant project need to adapt (e.g. API has changed).
+If a change is breaking, be sure to describe it in the changeset summary. Changesets will automatically mark the release as major and include the breaking change note in the changelog.
 
-Before merging make sure that all sections are filled out properly and that all DoD checkmarks are checked.
+Before merging, make sure that all sections are filled out properly and that all DoD checkmarks are checked.
 
-When committing changes use meaningful commit messages. Always imagine the perspective of an outsider: ask yourself, would he/she understand?
+When committing changes, use meaningful commit messages. Always imagine the perspective of an outsider: ask yourself, would he/she understand?
 
 #### Special command [skip chromatic]
 
-Orientated at [GitHub's commit commands to skip workflows](https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs), we added a special command to skip Chromatic actions in PRs and commits on main to save screenshots. This should be used with care, as it is only needed in cases where the visual appearance of the components is not affected. For example, when updating the README or the CI configuration.
+Oriented at [GitHub's commit commands to skip workflows](https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs), we added a special command to skip Chromatic actions in PRs and commits on main to save screenshots. This should be used with care, as it is only needed in cases where the visual appearance of the components is not affected. For example, when updating the README or the CI configuration.
 
 > Note: This command is only available for PRs and commits on main. It currently doesn't work for single commits on a PR.
 

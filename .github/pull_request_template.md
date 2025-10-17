@@ -46,4 +46,5 @@ Please provide a summary of the tests affected by this work and any unique strat
 - [ ] I have made sure to follow the projects coding and contribution guides.
 - [ ] I have made sure that the bundle size has changed appropriately.
 - [ ] I have validated that there are no accessibility errors.
+- [ ] I have added a changeset, describing my changes (e.g. via `pnpm release.create`).
 - [ ] I have used design tokens instead of fix css values

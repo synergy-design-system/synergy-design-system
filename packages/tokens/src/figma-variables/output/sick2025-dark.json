@@ -1,4 +1,56 @@
 {
+  "badge": {
+    "error": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.error.600}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      }
+    },
+    "informative": {
+      "color-background": {
+        "type": "color",
+        "value": "#a6e9ff"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      }
+    },
+    "neutral": {
+      "color-background": {
+        "type": "color",
+        "value": "#d5ccc5"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      }
+    },
+    "success": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.success.600}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      }
+    },
+    "warning": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.warning.800}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      }
+    }
+  },
   "border-radius": {
     "circle": {
       "type": "sizing",
@@ -165,6 +217,52 @@
         "value": "#fff1f1"
       }
     },
+    "info": {
+      "50": {
+        "type": "color",
+        "value": "#06334b"
+      },
+      "100": {
+        "type": "color",
+        "value": "#085172"
+      },
+      "200": {
+        "type": "color",
+        "value": "#02628a"
+      },
+      "300": {
+        "type": "color",
+        "value": "#0075a7"
+      },
+      "400": {
+        "type": "color",
+        "value": "#0092ce"
+      },
+      "500": {
+        "type": "color",
+        "value": "#06b6f1"
+      },
+      "600": {
+        "type": "color",
+        "value": "#26c9ff"
+      },
+      "700": {
+        "type": "color",
+        "value": "#78ddff"
+      },
+      "800": {
+        "type": "color",
+        "value": "#a6e9ff"
+      },
+      "900": {
+        "type": "color",
+        "value": "#dff4ff"
+      },
+      "950": {
+        "type": "color",
+        "value": "#effaff"
+      }
+    },
     "neutral": {
       "0": {
         "type": "color",
@@ -172,7 +270,7 @@
       },
       "50": {
         "type": "color",
-        "value": "#00061f"
+        "value": "#000724"
       },
       "100": {
         "type": "color",
@@ -216,7 +314,7 @@
       },
       "1000": {
         "type": "color",
-        "value": "#e3e5ed"
+        "value": "#e9ebf1"
       }
     },
     "primary": {
@@ -534,6 +632,10 @@
         "type": "color",
         "value": "{color.primary.500}"
       },
+      "color-offset": {
+        "type": "color",
+        "value": "{panel.background.color}"
+      },
       "radius-large": {
         "type": "sizing",
         "value": "{border-radius.medium}"
@@ -544,7 +646,7 @@
       },
       "radius-small": {
         "type": "sizing",
-        "value": "{border-radius.medium}"
+        "value": "{border-radius.small}"
       },
       "width": {
         "type": "sizing",
@@ -578,7 +680,7 @@
       },
       "error": {
         "type": "color",
-        "value": "{color.error.400}"
+        "value": "{color.error.600}"
       },
       "offset": {
         "type": "sizing",
@@ -900,7 +1002,7 @@
     "background": {
       "color": {
         "type": "color",
-        "value": "rgba(0, 0, 0, 0.50)"
+        "value": "rgba(0, 10, 55, 0.60)"
       }
     }
   },
@@ -1134,6 +1236,14 @@
       "text-inverted": {
         "type": "color",
         "value": "{color.neutral.50}"
+      },
+      "text-quiet": {
+        "type": "color",
+        "value": "{color.neutral.800}"
+      },
+      "text-quiet-inverted": {
+        "type": "color",
+        "value": "{color.neutral.200}"
       }
     }
   },

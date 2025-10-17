@@ -13,28 +13,28 @@ export default css`
 
   /* Variant modifiers */
   .badge--primary {
-    background-color: var(--syn-color-primary-600);
-    color: var(--syn-typography-color-text-inverted);
+    background-color: var(--syn-badge-informative-color-background);
+    color: var(--syn-badge-informative-color-text);
   }
 
   .badge--success {
-    background-color: var(--syn-color-success-500);
-    color: var(--syn-typography-color-text);
+    background-color: var(--syn-badge-success-color-background);
+    color: var(--syn-badge-success-color-text);
   }
 
   .badge--neutral {
-    background-color: var(--syn-color-neutral-800);
-    color: var(--syn-typography-color-text-inverted);
+    background-color: var(--syn-badge-neutral-color-background);
+    color: var(--syn-badge-neutral-color-text);
   }
 
   .badge--warning {
-    background-color: var(--syn-color-warning-400);
-    color: var(--syn-typography-color-text);
+    background-color: var(--syn-badge-warning-color-background);
+    color: var(--syn-badge-warning-color-text);
   }
 
   .badge--danger {
-    background-color: var(--syn-color-error-600);
-    color: var(--syn-typography-color-text-inverted);
+    background-color: var(--syn-badge-error-color-background);
+    color: var(--syn-badge-error-color-text);
   }
 
   /**

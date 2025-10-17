@@ -1,6 +1,10 @@
 import { css } from 'lit';
 
 export default css`
+  :host {
+    color: var(--syn-interactive-quiet-color);
+  }
+
   .icon-button {
     border-radius: 0;
     color: currentColor;
@@ -26,15 +30,18 @@ export default css`
 
   :host([color="primary"]),
   :host([color="primary"]) .icon-button:focus-visible:not(.icon-button--disabled) {
-    color: var(--syn-color-primary-600);
+    color: var(--syn-interactive-emphasis-color);
   }
 
+  /**
+   * #1021: Add back hover state for primary version
   :host([color="primary"]) .icon-button:hover:not(.icon-button--disabled) {
-    color: var(--syn-color-primary-900);
+    color: var(--syn-interactive-emphasis-color-hover);
   }
+  */
 
   :host([color="primary"]) .icon-button:active:not(.icon-button--disabled) {
-    color: var(--syn-color-primary-950);
+    color: var(--syn-interactive-emphasis-color-active);
   }
 
   :host([color="neutral"]),

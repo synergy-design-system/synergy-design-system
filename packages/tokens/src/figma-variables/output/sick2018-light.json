@@ -1,4 +1,56 @@
 {
+  "badge": {
+    "error": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.error.600}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      }
+    },
+    "informative": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.info.600}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      }
+    },
+    "neutral": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.neutral.800}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      }
+    },
+    "success": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.success.500}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      }
+    },
+    "warning": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.warning.400}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      }
+    }
+  },
   "border-radius": {
     "circle": {
       "type": "sizing",
@@ -163,6 +215,52 @@
       "950": {
         "type": "color",
         "value": "#4e010a"
+      }
+    },
+    "info": {
+      "50": {
+        "type": "color",
+        "value": "#f0f9ff"
+      },
+      "100": {
+        "type": "color",
+        "value": "#e0f1fe"
+      },
+      "200": {
+        "type": "color",
+        "value": "#b9e5fe"
+      },
+      "300": {
+        "type": "color",
+        "value": "#7cd1fd"
+      },
+      "400": {
+        "type": "color",
+        "value": "#36bbfa"
+      },
+      "500": {
+        "type": "color",
+        "value": "#0ca2eb"
+      },
+      "600": {
+        "type": "color",
+        "value": "#007cc1"
+      },
+      "700": {
+        "type": "color",
+        "value": "#0166a3"
+      },
+      "800": {
+        "type": "color",
+        "value": "#065786"
+      },
+      "900": {
+        "type": "color",
+        "value": "#0b486f"
+      },
+      "950": {
+        "type": "color",
+        "value": "#072e4a"
       }
     },
     "neutral": {
@@ -534,6 +632,10 @@
         "type": "color",
         "value": "{color.neutral.950}"
       },
+      "color-offset": {
+        "type": "color",
+        "value": "{panel.background.color}"
+      },
       "radius-large": {
         "type": "sizing",
         "value": "{border-radius.none}"
@@ -578,7 +680,7 @@
       },
       "error": {
         "type": "color",
-        "value": "{color.error.400}"
+        "value": "{color.error.600}"
       },
       "offset": {
         "type": "sizing",
@@ -628,7 +730,7 @@
       },
       "color-error": {
         "type": "color",
-        "value": "{color.error.700}"
+        "value": "{color.error.600}"
       },
       "font-size": {
         "large": {
@@ -900,7 +1002,7 @@
     "background": {
       "color": {
         "type": "color",
-        "value": "rgba(0, 0, 0, 0.50)"
+        "value": "rgba(49, 55, 58, 0.50)"
       }
     }
   },
@@ -1134,6 +1236,14 @@
       "text-inverted": {
         "type": "color",
         "value": "{color.neutral.0}"
+      },
+      "text-quiet": {
+        "type": "color",
+        "value": "{color.neutral.800}"
+      },
+      "text-quiet-inverted": {
+        "type": "color",
+        "value": "{color.neutral.200}"
       }
     }
   },

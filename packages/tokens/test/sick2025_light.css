@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.26.0
+ * @synergy-design-system/tokens version 2.28.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -7,6 +7,16 @@
 :root, .syn-sick2025-light {
   color-scheme: light;
 
+  --syn-badge-error-color-background: var(--syn-color-error-600);
+  --syn-badge-error-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-informative-color-background: #26c9ff;
+  --syn-badge-informative-color-text: var(--syn-typography-color-text);
+  --syn-badge-neutral-color-background: #e6e1dc;
+  --syn-badge-neutral-color-text: var(--syn-typography-color-text);
+  --syn-badge-success-color-background: var(--syn-color-success-800);
+  --syn-badge-success-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-warning-color-background: var(--syn-color-warning-500);
+  --syn-badge-warning-color-text: var(--syn-typography-color-text);
   --syn-border-radius-circle: 9999px;
   --syn-border-radius-large: 8px;
   --syn-border-radius-medium: 8px;
@@ -44,6 +54,17 @@
   --syn-color-error-800: #941013;
   --syn-color-error-900: #6c0c0e;
   --syn-color-error-950: #450709;
+  --syn-color-info-50: #effaff;
+  --syn-color-info-100: #dff4ff;
+  --syn-color-info-200: #a6e9ff;
+  --syn-color-info-300: #78ddff;
+  --syn-color-info-400: #26c9ff;
+  --syn-color-info-500: #06b6f1;
+  --syn-color-info-600: #0092ce;
+  --syn-color-info-700: #0075a7;
+  --syn-color-info-800: #02628a;
+  --syn-color-info-900: #085172;
+  --syn-color-info-950: #06334b;
   --syn-color-neutral-0: #ffffff;
   --syn-color-neutral-50: #f2f2f2;
   --syn-color-neutral-100: #e7e7e7;
@@ -130,7 +151,7 @@
   --syn-input-border-color-hover: var(--syn-color-primary-700);
   --syn-input-border-radius-large: var(--syn-border-radius-medium);
   --syn-input-border-radius-medium: var(--syn-border-radius-medium);
-  --syn-input-border-radius-small: var(--syn-border-radius-medium);
+  --syn-input-border-radius-small: var(--syn-border-radius-small);
   --syn-input-border-width: 1px;
   --syn-input-color: var(--syn-color-neutral-950);
   --syn-input-color-disabled: var(--syn-color-neutral-950);
@@ -138,7 +159,7 @@
   --syn-input-color-hover: var(--syn-color-neutral-950);
   --syn-input-disabled-opacity: 0.5;
   --syn-input-focus-ring-color: var(--syn-color-primary-500);
-  --syn-input-focus-ring-error: var(--syn-color-error-500);
+  --syn-input-focus-ring-error: var(--syn-color-error-600);
   --syn-input-focus-ring-offset: 0px;
   --syn-input-font-family: var(--syn-font-sans);
   --syn-input-font-size-large: var(--syn-font-size-large);
@@ -204,7 +225,7 @@
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 25%;
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-overlay-background-color: rgba(0, 0, 0, 0.5);
+  --syn-overlay-background-color: rgba(0, 10, 55, 0.3);
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: #e6e1dc;
   --syn-panel-border-radius: var(--syn-border-radius-medium);

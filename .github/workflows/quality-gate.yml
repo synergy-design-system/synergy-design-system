@@ -90,6 +90,25 @@ jobs:
       - name: Check for uncommitted changes
         run: git diff --exit-code .
 
+  # Test tokens package independently
+  tokens-test:
+    name: Validate tests (tokens)
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    needs: build-check
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+        with:
+          install-command: 'PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm install'
+          build-command: pnpm --filter 'tokens' build
+
+      - name: Run tests (tokens)
+        run: pnpm test
+        working-directory: packages/tokens
+
   # Component unit tests are run standalone
   component-test:
     name: Validate tests (components) ${{ matrix.browser }}
@@ -109,16 +128,9 @@ jobs:
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:
-          with-build: 'false'
-      
-      # #854: We are only building the components and tokens packages
-      # This is done to speed up the build time
-      - name: Build components and associated packages
-        run: pnpm -r --filter 'tokens' --filter 'components' build --synergy
-
-      - name: Run tests (tokens)
-        run: pnpm test
-        working-directory: packages/tokens
+          # #854: We are only building the components and tokens packages
+          # This is done to speed up the build time
+          build-command: pnpm -r --filter 'tokens' --filter 'components' build --synergy
 
       - name: Run tests (components)
         run: BROWSERS=${{ matrix.browser }} pnpm test
@@ -166,7 +178,7 @@ jobs:
     runs-on: ubuntu-latest
     # check pull request title
     if: ${{ github.event.pull_request.draft == false && !contains(github.event.pull_request.title, '[skip chromatic]')}}
-    needs: [build-check, format-check, lint-check, vendorism-check, mcp-metadata-check, component-test, e2e-test]
+    needs: [build-check, format-check, lint-check, vendorism-check, mcp-metadata-check, component-test, e2e-test, tokens-test]
     steps:
       - name: Checkout
         uses: actions/checkout@v4

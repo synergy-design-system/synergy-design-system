@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.29.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.28.0...tokens/2.29.0) (2025-10-20)
+
+
+### Features
+
+* ✨ CD update for syn-drawer ([#1043](https://github.com/synergy-design-system/synergy-design-system/issues/1043)) ([214b367](https://github.com/synergy-design-system/synergy-design-system/commit/214b367e8e603e264ec2718772087601f463439e))
+
 # [@synergy-design-system/tokens-v2.28.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.27.0...tokens/2.28.0) (2025-10-13)
 
 

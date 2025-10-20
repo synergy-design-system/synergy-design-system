@@ -14,6 +14,7 @@ import {
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio-group');
 const { overrideArgs } = storybookHelpers('syn-radio-group');
@@ -24,6 +25,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-radio-group',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('1345-16160'),
     docs: {
       description: {
@@ -31,7 +35,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form', 'SICK2018'],
+  tags: ['Form', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-radio-group',
 };
 export default meta;
@@ -68,11 +72,12 @@ export const Labels: Story = {
     },
   },
   render: () => html`
-  <syn-radio-group label="This is a label">
-    <syn-radio value="1">Option</syn-radio>
-    <syn-radio value="2">Option</syn-radio>
-    <syn-radio value="3">Option</syn-radio>
-  </syn-radio-group>`,
+    <syn-radio-group label="This is a label">
+      <syn-radio value="1">Option</syn-radio>
+      <syn-radio value="2">Option</syn-radio>
+      <syn-radio value="3">Option</syn-radio>
+    </syn-radio-group>
+  `,
 };
 
 export const HelpText: Story = {
@@ -84,11 +89,12 @@ export const HelpText: Story = {
     },
   },
   render: () => html`
-  <syn-radio-group label="This is a label" help-text="This is the help-text" name="a">
-    <syn-radio value="1">Option</syn-radio>
-    <syn-radio value="2">Option</syn-radio>
-    <syn-radio value="3">Option</syn-radio>
-  </syn-radio-group>`,
+    <syn-radio-group label="This is a label" help-text="Choose the most appropriate option." name="a">
+      <syn-radio value="1">Option</syn-radio>
+      <syn-radio value="2">Option</syn-radio>
+      <syn-radio value="3">Option</syn-radio>
+    </syn-radio-group>
+  `,
 };
 
 export const Focus: Story = {
@@ -133,13 +139,30 @@ export const Disabled: Story = {
   </syn-radio-group>`,
 };
 
-export const Checked: Story = {
+export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-group', 'size'),
+      },
+    },
+  },
   render: () => html`
-  <syn-radio-group label="This is a label" help-text="This is checked" name="a" value="2">
-    <syn-radio value="1">Option</syn-radio>
-    <syn-radio value="2">Option</syn-radio>
-    <syn-radio value="3">Option</syn-radio>
-  </syn-radio-group>`,
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-radio-group label="Small size" size="small">
+        <syn-radio value="1">Option</syn-radio>
+        <syn-radio value="2">Option</syn-radio>
+      </syn-radio-group>
+      <syn-radio-group label="Medium size" size="medium">
+        <syn-radio value="1">Option</syn-radio>
+        <syn-radio value="2">Option</syn-radio>
+      </syn-radio-group>
+      <syn-radio-group label="Large size" size="large">
+        <syn-radio value="1">Option</syn-radio>
+        <syn-radio value="2">Option</syn-radio>
+      </syn-radio-group>
+    </div>
+  `,
 };
 
 export const Invalid: Story = {
@@ -164,30 +187,32 @@ export const Invalid: Story = {
         // userEvent.click works on native elements only
         await userEvent.click(button);
         button.click();
+        (document.activeElement as HTMLElement)?.blur();
       }
     } catch (error) {
       console.error('Error in play function:', error);
     }
   },
   render: () => html`
-  <form class="custom-validity">
-    <syn-radio-group label="Select an option" name="a" help-text="This is required" required>
-      <syn-radio value="1">Option 1</syn-radio>
-      <syn-radio value="2">Option 2</syn-radio>
-      <syn-radio value="3">Option 3</syn-radio>
-    </syn-radio-group>
-    <syn-button type="submit" variant="filled">Submit</syn-button>
-  </form>
-  <style>
-  .custom-validity {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  syn-button {
-    align-self: flex-start;
-  }
-</style>`,
+    <form class="custom-validity">
+      <syn-radio-group label="Select an option" name="a" help-text="This is required" required>
+        <syn-radio value="1">Option 1</syn-radio>
+        <syn-radio value="2">Option 2</syn-radio>
+        <syn-radio value="3">Option 3</syn-radio>
+      </syn-radio-group>
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <style>
+      .custom-validity {
+        display: flex;
+        flex-direction: column;
+        gap: var(--syn-spacing-large);
+      }
+      syn-button {
+        align-self: flex-start;
+      }
+    </style>
+  `,
 };
 
 export const CustomValidity: Story = {
@@ -251,6 +276,15 @@ export const CustomValidity: Story = {
   </form>`,
 };
 
+export const Checked: Story = {
+  render: () => html`
+  <syn-radio-group label="This is a label" help-text="This is checked" name="a" value="2">
+    <syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
+    <syn-radio value="3">Option</syn-radio>
+  </syn-radio-group>`,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
@@ -258,6 +292,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Labels,
   HelpText,
   Disabled,
+  Sizes,
   Checked,
 }, 230);
 /* eslint-enable sort-keys */

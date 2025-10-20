@@ -902,6 +902,10 @@
   },
   "overlay": {
     "background": {
+      "blur": {
+        "type": "sizing",
+        "value": "16px"
+      },
       "color": {
         "type": "color",
         "value": "rgba(0, 10, 55, 0.60)"

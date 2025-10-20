@@ -233,8 +233,8 @@
         "VariableID:36102:6346",
         "VariableID:36102:6347",
         "VariableID:36102:6348",
-        "VariableID:36102:6355",
         "VariableID:36102:6349",
+        "VariableID:36102:6355",
         "VariableID:36102:6350",
         "VariableID:24741:120375",
         "VariableID:24741:120376",
@@ -253,6 +253,7 @@
         "VariableID:24741:120382",
         "VariableID:24741:120383",
         "VariableID:24741:120384",
+        "VariableID:42036:164762",
         "VariableID:24741:120385",
         "VariableID:36102:6368",
         "VariableID:36102:6369",
@@ -286,8 +287,8 @@
         "VariableID:36102:6168",
         "VariableID:36102:6167",
         "VariableID:36102:6166",
-        "VariableID:36102:6169",
         "VariableID:36102:6171",
+        "VariableID:36102:6169",
         "VariableID:36102:6170",
         "VariableID:36331:6159",
         "VariableID:36331:6160",
@@ -303,8 +304,8 @@
         "VariableID:36102:6183",
         "VariableID:36102:6190",
         "VariableID:36102:6188",
-        "VariableID:36102:6187",
         "VariableID:36331:6163",
+        "VariableID:36102:6187",
         "VariableID:36331:6164",
         "VariableID:36331:6165",
         "VariableID:36102:6189",
@@ -337,6 +338,7 @@
         "VariableID:36547:6157",
         "VariableID:38618:347754",
         "VariableID:36102:6165",
+        "VariableID:42030:418629",
         "VariableID:36102:6235",
         "VariableID:36102:6236",
         "VariableID:36102:6237",
@@ -403,8 +405,8 @@
         "VariableID:36102:6221",
         "VariableID:36102:6223",
         "VariableID:36102:6224",
-        "VariableID:36102:6222",
         "VariableID:36102:6225",
+        "VariableID:36102:6222",
         "VariableID:40079:55934",
         "VariableID:40079:55935",
         "VariableID:40159:345830",
@@ -731,7 +733,8 @@
         "VariableID:38925:6161",
         "VariableID:38925:6162",
         "VariableID:40266:6157",
-        "VariableID:41119:194245"
+        "VariableID:41119:194245",
+        "VariableID:41903:177959"
       ]
     },
     "VariableCollectionId:790:67393": {
@@ -20963,6 +20966,90 @@
         },
         "36102:2": {
           "id": "VariableID:36102:6160",
+          "type": "VARIABLE_ALIAS"
+        }
+      },
+      "variableCollectionId": "VariableCollectionId:28:527"
+    },
+    "VariableID:41903:177959": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:41903:177959",
+      "key": "64d2490cad9a003c1cb4f051133abe52e8526c67",
+      "name": "semantic/logo/color",
+      "remote": false,
+      "resolvedType": "COLOR",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "28:3": {
+          "id": "VariableID:36102:6286",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:0": {
+          "id": "VariableID:36102:6284",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:1": {
+          "id": "VariableID:36102:6287",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:2": {
+          "id": "VariableID:36102:6283",
+          "type": "VARIABLE_ALIAS"
+        }
+      },
+      "variableCollectionId": "VariableCollectionId:28:527"
+    },
+    "VariableID:42030:418629": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:42030:418629",
+      "key": "02f6db4ecdbb687bf9509e31ab79fbe2bbe0006b",
+      "name": "semantic/overlay/background/blur",
+      "remote": false,
+      "resolvedType": "FLOAT",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "28:3": 0,
+        "36102:0": 0,
+        "36102:1": 16,
+        "36102:2": 16
+      },
+      "variableCollectionId": "VariableCollectionId:28:527"
+    },
+    "VariableID:42036:164762": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:42036:164762",
+      "key": "d60ac5a142109df9999112890a2d53e36c3cf05b",
+      "name": "component/icon-button/focus-ring/border-radius",
+      "remote": false,
+      "resolvedType": "FLOAT",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "28:3": {
+          "id": "VariableID:91:1539",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:0": {
+          "id": "VariableID:91:1539",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:1": {
+          "id": "VariableID:28:542",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:2": {
+          "id": "VariableID:28:542",
           "type": "VARIABLE_ALIAS"
         }
       },

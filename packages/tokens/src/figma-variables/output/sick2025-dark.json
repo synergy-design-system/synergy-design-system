@@ -494,6 +494,14 @@
       "value": "600"
     }
   },
+  "icon-button": {
+    "focus-ring": {
+      "border-radius": {
+        "type": "sizing",
+        "value": "{border-radius.pill}"
+      }
+    }
+  },
   "input": {
     "background": {
       "color": {
@@ -548,7 +556,7 @@
       },
       "radius-small": {
         "type": "sizing",
-        "value": "{border-radius.small}"
+        "value": "{border-radius.medium}"
       },
       "width": {
         "type": "sizing",

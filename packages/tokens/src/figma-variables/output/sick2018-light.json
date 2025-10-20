@@ -494,6 +494,14 @@
       "value": "600"
     }
   },
+  "icon-button": {
+    "focus-ring": {
+      "border-radius": {
+        "type": "sizing",
+        "value": "{border-radius.none}"
+      }
+    }
+  },
   "input": {
     "background": {
       "color": {

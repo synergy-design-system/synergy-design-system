@@ -20,7 +20,7 @@ export default css`
 
   /* Remove round borders */
   .icon-button:focus-visible {
-    border-radius: var(--syn-border-radius-none);
+    border-radius: var(--syn-icon-button-focus-ring-border-radius);
   }
 
   /* Colors */

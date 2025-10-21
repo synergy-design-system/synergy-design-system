@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.8.2...mcp/1.9.0) (2025-10-20)
+
+
+### Features
+
+* ✨ CD update for syn-drawer ([#1043](https://github.com/synergy-design-system/synergy-design-system/issues/1043)) ([214b367](https://github.com/synergy-design-system/synergy-design-system/commit/214b367e8e603e264ec2718772087601f463439e))
+
 # [@synergy-design-system/mcp-v1.8.2](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.8.1...mcp/1.8.2) (2025-10-15)
 
 

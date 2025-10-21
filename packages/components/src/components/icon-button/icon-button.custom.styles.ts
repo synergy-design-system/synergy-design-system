@@ -33,12 +33,9 @@ export default css`
     color: var(--syn-interactive-emphasis-color);
   }
 
-  /**
-   * #1021: Add back hover state for primary version
   :host([color="primary"]) .icon-button:hover:not(.icon-button--disabled) {
     color: var(--syn-interactive-emphasis-color-hover);
   }
-  */
 
   :host([color="primary"]) .icon-button:active:not(.icon-button--disabled) {
     color: var(--syn-interactive-emphasis-color-active);

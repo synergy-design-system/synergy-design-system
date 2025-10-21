@@ -160,8 +160,8 @@ You have several options to include the SICK Intl font in your project:
 
 ```css
 @font-face {
-  ascent-override: 90%;
-  descent-override: 10%;
+  ascent-override: 85%;
+  descent-override: 15%;
   line-gap-override: 0%;
   font-display: swap;
   font-family: "SICK Intl";
@@ -171,8 +171,8 @@ You have several options to include the SICK Intl font in your project:
 }
 
 @font-face {
-  ascent-override: 90%;
-  descent-override: 10%;
+  ascent-override: 85%;
+  descent-override: 15%;
   line-gap-override: 0%;
   font-display: swap;
   font-family: "SICK Intl";
@@ -189,8 +189,8 @@ For the quickest setup, load the fonts directly from the SICK CDN:
 ```css
 /* Regular */
 @font-face {
-  ascent-override: 90%;
-  descent-override: 10%;
+  ascent-override: 85%;
+  descent-override: 15%;
   line-gap-override: 0%;
   font-display: swap;
   font-family: "SICK Intl";
@@ -205,8 +205,8 @@ For the quickest setup, load the fonts directly from the SICK CDN:
 
 /* Semi Bold */
 @font-face {
-  ascent-override: 90%;
-  descent-override: 10%;
+  ascent-override: 85%;
+  descent-override: 15%;
   line-gap-override: 0%;
   font-display: swap;
   font-family: "SICK Intl";

@@ -83,8 +83,8 @@ The following information may be helpful to get you started including your own c
 
 ```css
 @font-face {
-  ascent-override: 90%;
-  descent-override: 10%;
+  ascent-override: 85%;
+  descent-override: 15%;
   line-gap-override: 0%;
   font-display: swap;
   font-family: "SICK Intl";
@@ -94,8 +94,8 @@ The following information may be helpful to get you started including your own c
 }
 
 @font-face {
-  ascent-override: 90%;
-  descent-override: 10%;
+  ascent-override: 85%;
+  descent-override: 15%;
   line-gap-override: 0%;
   font-display: swap;
   font-family: "SICK Intl";
@@ -229,8 +229,11 @@ For better performance, you may also add the following statement to your HTML:
 ```css
 /* Regular */
 @font-face {
+  ascent-override: 85%;
+  descent-override: 15%;
+  line-gap-override: 0%;
   font-display: swap;
-  font-family: "Open Sans";
+  font-family: "SICK Intl";
   font-style: normal;
   font-weight: 400;
   src:
@@ -242,8 +245,11 @@ For better performance, you may also add the following statement to your HTML:
 
 /* Semi Bold */
 @font-face {
+  ascent-override: 85%;
+  descent-override: 15%;
+  line-gap-override: 0%;
   font-display: swap;
-  font-family: "Open Sans";
+  font-family: "SICK Intl";
   font-style: normal;
   font-weight: 600;
   src:

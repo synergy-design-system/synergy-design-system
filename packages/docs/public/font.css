@@ -41,8 +41,8 @@
 
 /* Regular SICK Intl */
 @font-face {
-  ascent-override: 90%;
-  descent-override: 10%;
+  ascent-override: 85%;
+  descent-override: 15%;
   line-gap-override: 0%;
   font-display: swap;
   font-family: "SICK Intl";
@@ -55,8 +55,8 @@
  
 /* Semi Bold SICK Intl */
 @font-face {
-  ascent-override: 90%;
-  descent-override: 10%;
+  ascent-override: 85%;
+  descent-override: 15%;
   line-gap-override: 0%;
   font-display: swap;
   font-family: "SICK Intl";

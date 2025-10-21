@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    color: var(--syn-interactive-quiet-color);
+    color: var(--syn-interactive-quiet-color, var(--syn-typography-color-text));
   }
 
   .icon-button {
@@ -20,7 +20,7 @@ export default css`
 
   /* Remove round borders */
   .icon-button:focus-visible {
-    border-radius: var(--syn-icon-button-focus-ring-border-radius);
+    border-radius: var(--syn-icon-button-focus-ring-border-radius, var(--syn-border-radius-none));
   }
 
   /* Colors */
@@ -30,15 +30,15 @@ export default css`
 
   :host([color="primary"]),
   :host([color="primary"]) .icon-button:focus-visible:not(.icon-button--disabled) {
-    color: var(--syn-interactive-emphasis-color);
+    color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
   }
 
   :host([color="primary"]) .icon-button:hover:not(.icon-button--disabled) {
-    color: var(--syn-interactive-emphasis-color-hover);
+    color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
   }
 
   :host([color="primary"]) .icon-button:active:not(.icon-button--disabled) {
-    color: var(--syn-interactive-emphasis-color-active);
+    color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
   }
 
   :host([color="neutral"]),

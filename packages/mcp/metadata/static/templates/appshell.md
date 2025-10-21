@@ -218,7 +218,7 @@ The side navigation opens when the user clicks on the burger menu. As the side n
   }
 
   .synergy-demo-content {
-    background: var(--syn-color-neutral-100);
+    background: var(--syn-page-background);
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
@@ -483,7 +483,7 @@ The side navigation opens when the user clicks on the burger menu. As the side n
   }
 
   .synergy-demo-content {
-    background: var(--syn-color-neutral-100);
+    background: var(--syn-page-background);
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
@@ -779,7 +779,7 @@ The navigation opens when the user hovers over it. As the navigation opens, it o
   }
 
   .synergy-demo-content {
-    background: var(--syn-color-neutral-100);
+    background: var(--syn-page-background);
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
@@ -1056,7 +1056,7 @@ The navigation opens when the user touches it. As the side navigation opens, a t
   }
 
   .synergy-demo-content {
-    background: var(--syn-color-neutral-100);
+    background: var(--syn-page-background);
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
@@ -1317,7 +1317,7 @@ General BehaviourThe navigation maintains its compact width until the user click
   }
 
   .synergy-demo-content {
-    background: var(--syn-color-neutral-100);
+    background: var(--syn-page-background);
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
@@ -1578,7 +1578,7 @@ General BehaviourThe navigation maintains its compact width until the user click
   }
 
   .synergy-demo-content {
-    background: var(--syn-color-neutral-100);
+    background: var(--syn-page-background);
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
@@ -1796,7 +1796,7 @@ The top navigation can be combined with a light grey background.This variant is 
   }
 
   .synergy-demo-content {
-    background: var(--syn-color-neutral-100);
+    background: var(--syn-page-background);
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;
@@ -2002,7 +2002,7 @@ Additionally the top navigation can be combined with a white background.
   }
 
   .synergy-demo-content {
-    background: var(--syn-color-neutral-100);
+    background: var(--syn-page-background);
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;

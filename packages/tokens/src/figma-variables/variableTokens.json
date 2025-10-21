@@ -732,9 +732,9 @@
         "VariableID:40125:270434",
         "VariableID:38925:6161",
         "VariableID:38925:6162",
-        "VariableID:40266:6157",
         "VariableID:41119:194245",
-        "VariableID:41903:177959"
+        "VariableID:41903:177959",
+        "VariableID:40266:6157"
       ]
     },
     "VariableCollectionId:790:67393": {
@@ -19255,7 +19255,7 @@
       "hiddenFromPublishing": true,
       "id": "VariableID:40266:6157",
       "key": "8fcb2691371d3d59e674d7146e487609b2913d4c",
-      "name": "_internal/page/background",
+      "name": "semantic/page/background",
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [

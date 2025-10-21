@@ -918,6 +918,12 @@
       }
     }
   },
+  "page": {
+    "background": {
+      "type": "color",
+      "value": "{color.neutral.50}"
+    }
+  },
   "panel": {
     "background": {
       "color": {

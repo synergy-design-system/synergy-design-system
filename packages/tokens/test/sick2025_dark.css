@@ -207,6 +207,7 @@
   --syn-opacity-50: 0.5; /** 50% */
   --syn-overlay-background-blur: 16px;
   --syn-overlay-background-color: rgba(0, 10, 55, 0.6);
+  --syn-page-background: var(--syn-color-neutral-0);
   --syn-panel-background-color: var(--syn-color-neutral-50);
   --syn-panel-border-color: var(--syn-color-neutral-300);
   --syn-panel-border-radius: var(--syn-border-radius-medium);

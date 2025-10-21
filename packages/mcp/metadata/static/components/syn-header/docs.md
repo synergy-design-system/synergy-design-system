@@ -48,7 +48,7 @@ The focus event gives the user feedback that a link in the logo has been focused
 ```html
 <style>
   .custom-header-link-with-logo {
-    color: var(--syn-color-primary-600) !important;
+    color: var(--syn-logo-color) !important;
   }
   .custom-header-link-with-logo syn-icon {
     display: block;

@@ -83,6 +83,9 @@ The following information may be helpful to get you started including your own c
 
 ```css
 @font-face {
+  ascent-override: 90%;
+  descent-override: 10%;
+  line-gap-override: 0%;
   font-display: swap;
   font-family: "SICK Intl";
   font-style: normal;
@@ -91,6 +94,9 @@ The following information may be helpful to get you started including your own c
 }
 
 @font-face {
+  ascent-override: 90%;
+  descent-override: 10%;
+  line-gap-override: 0%;
   font-display: swap;
   font-family: "SICK Intl";
   font-style: normal;

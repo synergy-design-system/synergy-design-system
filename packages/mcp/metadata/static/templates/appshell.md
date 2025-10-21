@@ -1842,9 +1842,9 @@ The top navigation can be combined with a light grey background.This variant is 
 
 ---
 
-## White Background
+## Alternative Background
 
-Additionally the top navigation can be combined with a white background.
+Additionally the top navigation can be combined with an alternative background.
 
 ```html
 <!-- .synergy-demo-application -->
@@ -2047,7 +2047,7 @@ Additionally the top navigation can be combined with a white background.
 
 <style>
   #appshell-white-background .synergy-demo-content {
-    background: var(--syn-color-neutral-0);
+    background: var(--syn-panel-background-color);
   }
 </style>
 ```

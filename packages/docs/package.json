@@ -37,7 +37,7 @@
     "storybook-addon-tag-badges": "^2.0.2",
     "stylelint": "^16.24.0",
     "typescript": "^5.9.3",
-    "vite": "^6.3.6",
+    "vite": "^7.0.0",
     "vite-plugin-cem": "^0.8.4",
     "vite-plugin-replace": "^0.1.1"
   },

@@ -98,7 +98,7 @@ export default css`
     align-items: center;
     background: none;
     border: none;
-    color: var(--syn-interactive-quiet-color);
+    color: var(--syn-interactive-quiet-color, var(--syn-color-neutral-950));
     cursor: pointer;
     display: flex;
     font-size: var(--syn-font-size-x-large);

@@ -109,7 +109,7 @@ export const Focus: Story = {
   render: () => html`
     <style>
     .custom-header-link-with-logo {
-      color: var(--syn-color-primary-600) !important;
+      color: var(--syn-logo-color) !important;
     }
     .custom-header-link-with-logo syn-icon {
       display: block;

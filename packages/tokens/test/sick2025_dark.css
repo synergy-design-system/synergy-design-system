@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.28.0
+ * @synergy-design-system/tokens version 2.29.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -130,7 +130,7 @@
   --syn-input-border-color-hover: var(--syn-color-primary-500);
   --syn-input-border-radius-large: var(--syn-border-radius-medium);
   --syn-input-border-radius-medium: var(--syn-border-radius-medium);
-  --syn-input-border-radius-small: var(--syn-border-radius-small);
+  --syn-input-border-radius-small: var(--syn-border-radius-medium);
   --syn-input-border-width: 1px;
   --syn-input-color: var(--syn-color-neutral-1000);
   --syn-input-color-disabled: var(--syn-color-neutral-1000);
@@ -205,6 +205,7 @@
   --syn-link-underline-outline: 25%;
   --syn-logo-color: var(--syn-color-primary-300);
   --syn-opacity-50: 0.5; /** 50% */
+  --syn-overlay-background-blur: 16px;
   --syn-overlay-background-color: rgba(0, 10, 55, 0.6);
   --syn-panel-background-color: var(--syn-color-neutral-50);
   --syn-panel-border-color: var(--syn-color-neutral-300);

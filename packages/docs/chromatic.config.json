@@ -10,6 +10,7 @@
     "packages/vue/**"
   ],
   "externals": [
+    "packages/docs/public/font.css",
     "packages/tokens/src/figma-tokens/semantic/**",
     "packages/tokens/src/figma-tokens/globals.json",
     "packages/tokens/src/figma-tokens/color/**",

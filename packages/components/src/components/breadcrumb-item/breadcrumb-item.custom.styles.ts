@@ -54,7 +54,7 @@ export default css`
    */
   :host(:last-of-type) .breadcrumb-item--has-prefix .breadcrumb-item__prefix,
   :host(:last-of-type) .breadcrumb-item--has-suffix .breadcrumb-item__suffix {
-    color: var(--syn-color-neutral-500);
+    color: inherit;
   }
 
   .breadcrumb-item__separator {

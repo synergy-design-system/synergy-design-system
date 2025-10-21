@@ -494,6 +494,14 @@
       "value": "600"
     }
   },
+  "header": {
+    "border": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.400}"
+      }
+    }
+  },
   "input": {
     "background": {
       "color": {

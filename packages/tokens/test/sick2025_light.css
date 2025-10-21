@@ -119,6 +119,7 @@
   --syn-font-weight-light: 400; /** Shoelace compatibility DO NOT USE */
   --syn-font-weight-normal: 400;
   --syn-font-weight-semibold: 600;
+  --syn-header-border-color: #d5ccc5;
   --syn-input-background-color: var(--syn-color-neutral-0);
   --syn-input-background-color-disabled: var(--syn-input-background-color);
   --syn-input-background-color-focus: var(--syn-input-background-color);

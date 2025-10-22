@@ -6,8 +6,8 @@ export default css`
   }
 
   .header {
-    background: var(--syn-color-neutral-0);
-    box-shadow: inset 0 -1px 0 0 var(--syn-color-neutral-400);
+    background: var(--syn-panel-background-color);
+    box-shadow: inset 0 -1px 0 0 var(--syn-header-border-color, var(--syn-color-neutral-400));
   }
 
   /**
@@ -39,11 +39,12 @@ export default css`
    */
   .header__logo ::slotted(a),
   .header__logo ::slotted(a:hover) {
-    color: var(--syn-color-primary-600);
+    color: var(--syn-logo-color, var(--syn-color-primary-600));
   }
 
   .header__logo ::slotted(a:is(:focus-visible)) {
     outline: var(--syn-focus-ring);
+    outline-color: var(--syn-logo-color, var(--syn-focus-ring-color));
     outline-offset: var(--syn-focus-ring-offset);
   }
 
@@ -52,7 +53,7 @@ export default css`
    */
   .header__logo syn-icon,
   .header__logo syn-icon::part(svg) {
-    color: var(--syn-color-primary-600);
+    color: var(--syn-logo-color, var(--syn-color-primary-600));
     height: 32px;
     width: auto;
   }
@@ -78,7 +79,7 @@ export default css`
   }
 
   .header__meta-navigation ::slotted(*) {
-    color: var(--syn-color-neutral-950);
+    color: var(--syn-interactive-quiet-color, var(--syn-color-neutral-950));
     display: contents;
     font-size: var(--syn-font-size-x-large);
   }
@@ -97,7 +98,7 @@ export default css`
     align-items: center;
     background: none;
     border: none;
-    color: var(--syn-color-neutral-950);
+    color: var(--syn-interactive-quiet-color, var(--syn-color-neutral-950));
     cursor: pointer;
     display: flex;
     font-size: var(--syn-font-size-x-large);
@@ -107,11 +108,11 @@ export default css`
   }
 
   .header__burger-menu-toggle:hover {
-    color: var(--syn-color-primary-600);
+    color: var(--syn-interactive-quiet-color-hover, var(--syn-color-primary-600));
   }
 
   .header__burger-menu-toggle:active {
-    color: var(--syn-color-primary-700);
+    color: var(--syn-interactive-quiet-color-active, var(--syn-color-primary-700));
   }
 
   .header__burger-menu-toggle:focus-visible {
@@ -122,7 +123,7 @@ export default css`
   /**
    * If the burger menu is provided, use a smaller spacing on the left side
    */
-   .header--has-burger-menu .header__content {
+  .header--has-burger-menu .header__content {
     padding-left: var(--syn-spacing-medium);
-   }
+  }
 `;

@@ -120,6 +120,7 @@
   --syn-font-weight-light: 400; /** Shoelace compatibility DO NOT USE */
   --syn-font-weight-normal: 400;
   --syn-font-weight-semibold: 600;
+  --syn-header-border-color: #d5ccc5;
   --syn-input-background-color: var(--syn-color-neutral-0);
   --syn-input-background-color-disabled: var(--syn-input-background-color);
   --syn-input-background-color-focus: var(--syn-input-background-color);
@@ -204,9 +205,11 @@
   --syn-link-quiet-color-active: var(--syn-interactive-quiet-color-active);
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 25%;
+  --syn-logo-color: var(--syn-color-primary-700);
   --syn-opacity-50: 0.5; /** 50% */
   --syn-overlay-background-blur: 16px;
   --syn-overlay-background-color: rgba(0, 10, 55, 0.3);
+  --syn-page-background: #f8f7f6;
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: #e6e1dc;
   --syn-panel-border-radius: var(--syn-border-radius-medium);

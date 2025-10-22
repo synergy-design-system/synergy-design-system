@@ -1,10 +1,6 @@
 import { css } from 'lit';
 
 export default css`
-  :host {
-    color: var(--syn-interactive-quiet-color, var(--syn-typography-color-text));
-  }
-
   .icon-button {
     border-radius: 0;
     color: currentColor;
@@ -41,9 +37,20 @@ export default css`
     color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
   }
 
-  :host([color="neutral"]),
+  :host([color="neutral"]) {
+    color: var(--syn-interactive-quiet-color, var(--syn-typography-color-text));
+  }
+
+  :host([color="neutral"]) .icon-button:active:not(.icon-button--disabled) {
+    color: var(--syn-interactive-quiet-color-active, var(--syn-color-primary-700));
+  }
+
+  :host([color="neutral"]) .icon-button:hover:not(.icon-button--disabled) {
+    color: var(--syn-interactive-quiet-color-hover, var(--syn-color-primary-600));
+  }
+
   :host([color="neutral"]) .icon-button:focus-visible:not(.icon-button--disabled):not(:hover) {
-    color: var(--syn-color-neutral-950);
+    color: var(--syn-interactive-quiet-color, var(--syn-typography-color-text));
   }
 
   /* Sizes */

@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   .breadcrumb-item {
-    color: var(--syn-breadcrumb-color);
+    color: var(--syn-breadcrumb-color, var(--syn-color-neutral-500));
     font-size: var(--syn-font-size-x-small);
     font-weight: var(--syn-font-weight-semibold);
   }
@@ -16,7 +16,6 @@ export default css`
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item {
-    color: var(--syn-typography-color-text);
     font-weight: var(--syn-font-weight-normal);
   }
 

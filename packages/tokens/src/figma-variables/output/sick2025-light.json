@@ -406,7 +406,7 @@
     },
     "color": {
       "type": "color",
-      "value": "{color.primary.700}"
+      "value": "{color.primary.500}"
     },
     "offset": {
       "type": "sizing",
@@ -504,7 +504,7 @@
     "border": {
       "color": {
         "type": "color",
-        "value": "#d5ccc5"
+        "value": "#e6e1dc"
       }
     }
   },

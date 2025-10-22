@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  background-color: var(--syn-color-neutral-0);
+  background-color: var(--syn-page-background);
   color: var(--syn-typography-color-text);
   font: 16px var(--syn-font-sans);
   -moz-osx-font-smoothing: grayscale;

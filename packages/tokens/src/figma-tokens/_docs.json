@@ -4013,13 +4013,13 @@
           "type": "text"
         }
       },
-      "white-background": {
+      "alternative-background": {
         "title": {
-          "value": "White Background",
+          "value": "Alternative Background",
           "type": "text"
         },
         "description": {
-          "value": "Additionally the top navigation can be combined with a white background.",
+          "value": "Additionally the top navigation can be combined with an alternative background.",
           "type": "text"
         }
       }

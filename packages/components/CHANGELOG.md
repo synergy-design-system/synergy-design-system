@@ -1,3 +1,17 @@
+# [@synergy-design-system/components-v2.49.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.48.0...components/2.49.0) (2025-10-22)
+
+
+### Features
+
+* ✨ CD update for syn-header ([#1047](https://github.com/synergy-design-system/synergy-design-system/issues/1047)) ([6841148](https://github.com/synergy-design-system/synergy-design-system/commit/684114811f939b91a13302cc85300fd1b9b1670e))
+
+# [@synergy-design-system/components-v2.48.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.47.2...components/2.48.0) (2025-10-20)
+
+
+### Features
+
+* ✨ CD update for syn-drawer ([#1043](https://github.com/synergy-design-system/synergy-design-system/issues/1043)) ([214b367](https://github.com/synergy-design-system/synergy-design-system/commit/214b367e8e603e264ec2718772087601f463439e))
+
 # [@synergy-design-system/components-v2.47.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.47.1...components/2.47.2) (2025-10-15)
 
 

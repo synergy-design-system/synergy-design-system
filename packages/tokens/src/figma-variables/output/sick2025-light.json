@@ -494,6 +494,14 @@
       "value": "600"
     }
   },
+  "header": {
+    "border": {
+      "color": {
+        "type": "color",
+        "value": "#d5ccc5"
+      }
+    }
+  },
   "input": {
     "background": {
       "color": {
@@ -893,6 +901,12 @@
       "value": "25%"
     }
   },
+  "logo": {
+    "color": {
+      "type": "color",
+      "value": "{color.primary.700}"
+    }
+  },
   "opacity": {
     "50": {
       "description": "50%",
@@ -902,10 +916,20 @@
   },
   "overlay": {
     "background": {
+      "blur": {
+        "type": "sizing",
+        "value": "16px"
+      },
       "color": {
         "type": "color",
         "value": "rgba(0, 10, 55, 0.30)"
       }
+    }
+  },
+  "page": {
+    "background": {
+      "type": "color",
+      "value": "#f8f7f6"
     }
   },
   "panel": {

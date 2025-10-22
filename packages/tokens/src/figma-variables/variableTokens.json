@@ -233,8 +233,8 @@
         "VariableID:36102:6346",
         "VariableID:36102:6347",
         "VariableID:36102:6348",
-        "VariableID:36102:6349",
         "VariableID:36102:6355",
+        "VariableID:36102:6349",
         "VariableID:36102:6350",
         "VariableID:24741:120375",
         "VariableID:24741:120376",
@@ -341,6 +341,7 @@
         "VariableID:42030:418629",
         "VariableID:36102:6235",
         "VariableID:36102:6236",
+        "VariableID:42207:355596",
         "VariableID:36102:6237",
         "VariableID:41685:306789",
         "VariableID:41678:303854",
@@ -732,9 +733,9 @@
         "VariableID:40125:270434",
         "VariableID:38925:6161",
         "VariableID:38925:6162",
-        "VariableID:40266:6157",
         "VariableID:41119:194245",
-        "VariableID:41903:177959"
+        "VariableID:41903:177959",
+        "VariableID:40266:6157"
       ]
     },
     "VariableCollectionId:790:67393": {
@@ -752,8 +753,8 @@
       "remote": false,
       "variableIds": [
         "VariableID:790:69763",
-        "VariableID:790:69764",
         "VariableID:790:67394",
+        "VariableID:790:69764",
         "VariableID:790:69765",
         "VariableID:790:67396",
         "VariableID:790:69766",
@@ -19255,7 +19256,7 @@
       "hiddenFromPublishing": true,
       "id": "VariableID:40266:6157",
       "key": "8fcb2691371d3d59e674d7146e487609b2913d4c",
-      "name": "_internal/page/background",
+      "name": "semantic/page/background",
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
@@ -21050,6 +21051,38 @@
         },
         "36102:2": {
           "id": "VariableID:28:542",
+          "type": "VARIABLE_ALIAS"
+        }
+      },
+      "variableCollectionId": "VariableCollectionId:28:527"
+    },
+    "VariableID:42207:355596": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:42207:355596",
+      "key": "817b38815dd347956676f1bbb57153d85a745528",
+      "name": "component/header/border/color",
+      "remote": false,
+      "resolvedType": "COLOR",
+      "scopes": [
+        "EFFECT_COLOR"
+      ],
+      "valuesByMode": {
+        "28:3": {
+          "id": "VariableID:36102:6272",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:0": {
+          "id": "VariableID:36102:6272",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:1": {
+          "id": "VariableID:38925:174465",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:2": {
+          "id": "VariableID:36102:6272",
           "type": "VARIABLE_ALIAS"
         }
       },

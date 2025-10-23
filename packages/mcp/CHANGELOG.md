@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.11.0...mcp/1.12.0) (2025-10-23)
+
+
+### Features
+
+* ✨ CD update for syn-icon-button ([#1048](https://github.com/synergy-design-system/synergy-design-system/issues/1048)) ([d740a54](https://github.com/synergy-design-system/synergy-design-system/commit/d740a5495abd1b36bbe1c1c47fc69ca6a6480549))
+
 # [@synergy-design-system/mcp-v1.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.10.0...mcp/1.11.0) (2025-10-23)
 
 

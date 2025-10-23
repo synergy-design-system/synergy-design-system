@@ -75,4 +75,8 @@ export default css`
     color: var(--syn-color-neutral-950);
     font-size: var(--syn-font-size-x-large);
   }
+
+  .drawer__overlay {
+    backdrop-filter: blur(var(--syn-overlay-background-blur));
+  }
 `;

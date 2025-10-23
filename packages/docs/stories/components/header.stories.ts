@@ -16,6 +16,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-header');
 const { overrideArgs } = storybookHelpers('syn-header');
@@ -28,6 +29,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-header',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('10540-8605'),
     docs: {
       description: {
@@ -35,7 +39,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Application Shell', 'SICK2018'],
+  tags: ['Application Shell', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-header',
 };
 export default meta;
@@ -80,7 +84,7 @@ export const Logo: Story = {
   render: () => html`
     <syn-header label="App Name">
       <span
-        style="width: 32px; height: 32px; border-radius: 32px; background: var(--syn-color-primary-500); display: block;"
+        style="width: 32px; height: 32px; border-radius: 32px; background: var(--syn-color-neutral-1000); display: block;"
         slot="logo"
       ></span>
     </syn-header>
@@ -105,7 +109,7 @@ export const Focus: Story = {
   render: () => html`
     <style>
     .custom-header-link-with-logo {
-      color: var(--syn-color-primary-600) !important;
+      color: var(--syn-logo-color) !important;
     }
     .custom-header-link-with-logo syn-icon {
       display: block;

@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.28.0
+ * @synergy-design-system/tokens version 2.33.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -19,9 +19,11 @@
   --syn-border-width-none: 0px; /** None */
   --syn-border-width-small: 1px; /** Small */
   --syn-border-width-x-large: 4px; /** X Large */
+  --syn-breadcrumb-color: var(--syn-color-neutral-500);
   --syn-button-font-size-large: var(--syn-font-size-large);
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);
+  --syn-checkbox-border-radius: var(--syn-border-radius-none);
   --syn-color-accent-50: #481700;
   --syn-color-accent-100: #7c310b;
   --syn-color-accent-200: #983b08;
@@ -119,6 +121,8 @@
   --syn-font-weight-light: 400; /** Shoelace compatibility DO NOT USE */
   --syn-font-weight-normal: 400;
   --syn-font-weight-semibold: 600;
+  --syn-header-border-color: var(--syn-color-neutral-400);
+  --syn-icon-button-focus-ring-border-radius: var(--syn-border-radius-none);
   --syn-input-background-color: var(--syn-color-neutral-0);
   --syn-input-background-color-disabled: var(--syn-input-background-color);
   --syn-input-background-color-focus: var(--syn-input-background-color);
@@ -128,7 +132,6 @@
   --syn-input-border-color-focus: var(--syn-color-neutral-950);
   --syn-input-border-color-focus-error: var(--syn-color-error-700);
   --syn-input-border-color-hover: var(--syn-color-neutral-950);
-  --syn-input-border-color-offset: var(--syn-panel-background-color);
   --syn-input-border-radius-large: var(--syn-border-radius-none);
   --syn-input-border-radius-medium: var(--syn-border-radius-none);
   --syn-input-border-radius-small: var(--syn-border-radius-none);
@@ -204,8 +207,11 @@
   --syn-link-quiet-color-active: var(--syn-interactive-quiet-color-active);
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 7%;
+  --syn-logo-color: var(--syn-color-primary-400);
   --syn-opacity-50: 0.5; /** 50% */
+  --syn-overlay-background-blur: 0px;
   --syn-overlay-background-color: rgba(49, 55, 58, 0.5);
+  --syn-page-background: var(--syn-color-neutral-50);
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: var(--syn-color-neutral-300);
   --syn-panel-border-radius: var(--syn-border-radius-medium);
@@ -253,8 +259,6 @@
   --syn-transition-x-slow: 1000ms; /** Shoelace compatibility DO NOT USE */
   --syn-typography-color-text: var(--syn-color-neutral-950);
   --syn-typography-color-text-inverted: var(--syn-color-neutral-0);
-  --syn-typography-color-text-quiet: var(--syn-color-neutral-800);
-  --syn-typography-color-text-quiet-inverted: var(--syn-color-neutral-200);
   --syn-z-index-dialog: 800; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-drawer: 700; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-dropdown: 900; /** Shoelace compatibility DO NOT USE */

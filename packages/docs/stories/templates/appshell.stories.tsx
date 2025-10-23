@@ -15,6 +15,7 @@ import {
   createMainContent, createSharedStyles, createSideNav,
   createSidebarConnector,
 } from '../../src/shared-components/appshell.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const meta: Meta = {
   parameters: {
@@ -22,6 +23,7 @@ const meta: Meta = {
     chromatic: {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
+      modes: Chromatic_Modes_All,
     },
     design: generateFigmaPluginObject('8462-8334'),
     docs: {
@@ -303,11 +305,11 @@ export const TopNavigation: Story = {
   `,
 };
 
-export const WhiteBackground: Story = {
+export const AlternativeBackground: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('application-shell', 'white-background', 'templates'),
+        story: generateStoryDescription('application-shell', 'alternative-background', 'templates'),
       },
     },
   },
@@ -330,7 +332,7 @@ export const WhiteBackground: Story = {
     ${createSidebarConnector('appshell-white-background')}
     <style>
       #appshell-white-background .synergy-demo-content {
-        background: var(--syn-color-neutral-0);
+        background: var(--syn-panel-background-color);
       }
     </style>
   `,

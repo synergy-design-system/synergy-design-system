@@ -56,6 +56,12 @@
       "value": "4px"
     }
   },
+  "breadcrumb": {
+    "color": {
+      "type": "color",
+      "value": "{typography.color.text}"
+    }
+  },
   "button": {
     "font-size": {
       "large": {
@@ -69,6 +75,14 @@
       "small": {
         "type": "sizing",
         "value": "{font-size.small}"
+      }
+    }
+  },
+  "checkbox": {
+    "border": {
+      "radius": {
+        "type": "sizing",
+        "value": "{border-radius.small}"
       }
     }
   },
@@ -400,7 +414,7 @@
     },
     "color": {
       "type": "color",
-      "value": "{color.primary.500}"
+      "value": "{color.primary.700}"
     },
     "offset": {
       "type": "sizing",
@@ -494,6 +508,22 @@
       "value": "600"
     }
   },
+  "header": {
+    "border": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.300}"
+      }
+    }
+  },
+  "icon-button": {
+    "focus-ring": {
+      "border-radius": {
+        "type": "sizing",
+        "value": "{border-radius.pill}"
+      }
+    }
+  },
   "input": {
     "background": {
       "color": {
@@ -548,7 +578,7 @@
       },
       "radius-small": {
         "type": "sizing",
-        "value": "{border-radius.small}"
+        "value": "{border-radius.medium}"
       },
       "width": {
         "type": "sizing",
@@ -724,19 +754,19 @@
     "readonly-background": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "{color.neutral.200}"
       },
       "color-disabled": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "{color.neutral.200}"
       },
       "color-focus": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "{color.neutral.200}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "{color.neutral.200}"
       }
     },
     "required": {
@@ -893,6 +923,12 @@
       "value": "25%"
     }
   },
+  "logo": {
+    "color": {
+      "type": "color",
+      "value": "{color.primary.300}"
+    }
+  },
   "opacity": {
     "50": {
       "description": "50%",
@@ -902,10 +938,20 @@
   },
   "overlay": {
     "background": {
+      "blur": {
+        "type": "sizing",
+        "value": "16px"
+      },
       "color": {
         "type": "color",
         "value": "rgba(0, 10, 55, 0.60)"
       }
+    }
+  },
+  "page": {
+    "background": {
+      "type": "color",
+      "value": "{color.neutral.0}"
     }
   },
   "panel": {

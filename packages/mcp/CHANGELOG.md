@@ -1,3 +1,38 @@
+# [@synergy-design-system/mcp-v1.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.12.0...mcp/1.13.0) (2025-10-23)
+
+
+### Features
+
+* ✨ CD update for syn-checkbox ([#1050](https://github.com/synergy-design-system/synergy-design-system/issues/1050)) ([1054c71](https://github.com/synergy-design-system/synergy-design-system/commit/1054c71415f36233ba1e242433806aac21d4d19b))
+
+# [@synergy-design-system/mcp-v1.12.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.11.0...mcp/1.12.0) (2025-10-23)
+
+
+### Features
+
+* ✨ CD update for syn-icon-button ([#1048](https://github.com/synergy-design-system/synergy-design-system/issues/1048)) ([d740a54](https://github.com/synergy-design-system/synergy-design-system/commit/d740a5495abd1b36bbe1c1c47fc69ca6a6480549))
+
+# [@synergy-design-system/mcp-v1.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.10.0...mcp/1.11.0) (2025-10-23)
+
+
+### Features
+
+* ✨ CD update for syn-breadcrumb ([#1045](https://github.com/synergy-design-system/synergy-design-system/issues/1045)) ([46383b2](https://github.com/synergy-design-system/synergy-design-system/commit/46383b2557d284328cfb49d476a052986cb47d75))
+
+# [@synergy-design-system/mcp-v1.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.9.0...mcp/1.10.0) (2025-10-22)
+
+
+### Features
+
+* ✨ CD update for syn-header ([#1047](https://github.com/synergy-design-system/synergy-design-system/issues/1047)) ([6841148](https://github.com/synergy-design-system/synergy-design-system/commit/684114811f939b91a13302cc85300fd1b9b1670e))
+
+# [@synergy-design-system/mcp-v1.9.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.8.2...mcp/1.9.0) (2025-10-20)
+
+
+### Features
+
+* ✨ CD update for syn-drawer ([#1043](https://github.com/synergy-design-system/synergy-design-system/issues/1043)) ([214b367](https://github.com/synergy-design-system/synergy-design-system/commit/214b367e8e603e264ec2718772087601f463439e))
+
 # [@synergy-design-system/mcp-v1.8.2](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.8.1...mcp/1.8.2) (2025-10-15)
 
 

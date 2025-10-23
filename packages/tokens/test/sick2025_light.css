@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.28.0
+ * @synergy-design-system/tokens version 2.33.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -11,7 +11,7 @@
   --syn-badge-error-color-text: var(--syn-typography-color-text-inverted);
   --syn-badge-informative-color-background: #26c9ff;
   --syn-badge-informative-color-text: var(--syn-typography-color-text);
-  --syn-badge-neutral-color-background: #e6e1dc;
+  --syn-badge-neutral-color-background: #d5ccc5;
   --syn-badge-neutral-color-text: var(--syn-typography-color-text);
   --syn-badge-success-color-background: var(--syn-color-success-800);
   --syn-badge-success-color-text: var(--syn-typography-color-text-inverted);
@@ -29,9 +29,11 @@
   --syn-border-width-none: 0px; /** None */
   --syn-border-width-small: 1px; /** Small */
   --syn-border-width-x-large: 4px; /** X Large */
+  --syn-breadcrumb-color: var(--syn-typography-color-text);
   --syn-button-font-size-large: var(--syn-font-size-large);
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);
+  --syn-checkbox-border-radius: var(--syn-border-radius-small);
   --syn-color-accent-50: #ffffff;
   --syn-color-accent-100: #ffffff;
   --syn-color-accent-200: #ffffff;
@@ -119,7 +121,7 @@
   --syn-duration-normal: 250ms;
   --syn-duration-slow: 500ms;
   --syn-focus-ring-border-radius: var(--syn-border-radius-small);
-  --syn-focus-ring-color: var(--syn-color-primary-700);
+  --syn-focus-ring-color: var(--syn-color-primary-500);
   --syn-focus-ring-offset: var(--syn-spacing-3x-small);
   --syn-focus-ring-style: solid;
   --syn-focus-ring-width: var(--syn-border-width-medium);
@@ -140,6 +142,8 @@
   --syn-font-weight-light: 400; /** Shoelace compatibility DO NOT USE */
   --syn-font-weight-normal: 400;
   --syn-font-weight-semibold: 600;
+  --syn-header-border-color: #e6e1dc;
+  --syn-icon-button-focus-ring-border-radius: var(--syn-border-radius-pill);
   --syn-input-background-color: var(--syn-color-neutral-0);
   --syn-input-background-color-disabled: var(--syn-input-background-color);
   --syn-input-background-color-focus: var(--syn-input-background-color);
@@ -151,7 +155,7 @@
   --syn-input-border-color-hover: var(--syn-color-primary-700);
   --syn-input-border-radius-large: var(--syn-border-radius-medium);
   --syn-input-border-radius-medium: var(--syn-border-radius-medium);
-  --syn-input-border-radius-small: var(--syn-border-radius-small);
+  --syn-input-border-radius-small: var(--syn-border-radius-medium);
   --syn-input-border-width: 1px;
   --syn-input-color: var(--syn-color-neutral-950);
   --syn-input-color-disabled: var(--syn-color-neutral-950);
@@ -189,10 +193,10 @@
   --syn-input-readonly-color-disabled: var(--syn-color-neutral-800);
   --syn-input-readonly-color-focus: var(--syn-color-neutral-950);
   --syn-input-readonly-color-hover: var(--syn-color-neutral-950);
-  --syn-input-readonly-background-color: #f8f7f6;
-  --syn-input-readonly-background-color-disabled: #f8f7f6;
-  --syn-input-readonly-background-color-focus: #f8f7f6;
-  --syn-input-readonly-background-color-hover: #f8f7f6;
+  --syn-input-readonly-background-color: #f2f0ed;
+  --syn-input-readonly-background-color-disabled: #f2f0ed;
+  --syn-input-readonly-background-color-focus: #f2f0ed;
+  --syn-input-readonly-background-color-hover: #f2f0ed;
   --syn-input-required-content: "*";
   --syn-input-required-content-color: var(--syn-input-label-color);
   --syn-input-required-content-offset: -2px;
@@ -224,8 +228,11 @@
   --syn-link-quiet-color-active: var(--syn-interactive-quiet-color-active);
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 25%;
+  --syn-logo-color: var(--syn-color-primary-700);
   --syn-opacity-50: 0.5; /** 50% */
+  --syn-overlay-background-blur: 16px;
   --syn-overlay-background-color: rgba(0, 10, 55, 0.3);
+  --syn-page-background: #f8f7f6;
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: #e6e1dc;
   --syn-panel-border-radius: var(--syn-border-radius-medium);

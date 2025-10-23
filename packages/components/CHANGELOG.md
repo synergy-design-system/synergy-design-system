@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.51.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.50.0...components/2.51.0) (2025-10-23)
+
+
+### Features
+
+* ✨ CD update for syn-icon-button ([#1048](https://github.com/synergy-design-system/synergy-design-system/issues/1048)) ([d740a54](https://github.com/synergy-design-system/synergy-design-system/commit/d740a5495abd1b36bbe1c1c47fc69ca6a6480549))
+
 # [@synergy-design-system/components-v2.50.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.49.0...components/2.50.0) (2025-10-23)
 
 

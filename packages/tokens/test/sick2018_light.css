@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.31.0
+ * @synergy-design-system/tokens version 2.32.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -122,6 +122,7 @@
   --syn-font-weight-normal: 400;
   --syn-font-weight-semibold: 600;
   --syn-header-border-color: var(--syn-color-neutral-400);
+  --syn-icon-button-focus-ring-border-radius: var(--syn-border-radius-none);
   --syn-input-background-color: var(--syn-color-neutral-0);
   --syn-input-background-color-disabled: var(--syn-input-background-color);
   --syn-input-background-color-focus: var(--syn-input-background-color);

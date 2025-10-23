@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.52.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.51.0...components/2.52.0) (2025-10-23)
+
+
+### Features
+
+* ✨ CD update for syn-checkbox ([#1050](https://github.com/synergy-design-system/synergy-design-system/issues/1050)) ([1054c71](https://github.com/synergy-design-system/synergy-design-system/commit/1054c71415f36233ba1e242433806aac21d4d19b))
+
 # [@synergy-design-system/components-v2.51.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.50.0...components/2.51.0) (2025-10-23)
 
 

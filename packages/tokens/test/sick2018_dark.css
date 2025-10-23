@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.29.0
+ * @synergy-design-system/tokens version 2.30.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -19,6 +19,7 @@
   --syn-border-width-none: 0px; /** None */
   --syn-border-width-small: 1px; /** Small */
   --syn-border-width-x-large: 4px; /** X Large */
+  --syn-breadcrumb-color: var(--syn-color-neutral-500);
   --syn-button-font-size-large: var(--syn-font-size-large);
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);

@@ -56,6 +56,12 @@
       "value": "4px"
     }
   },
+  "breadcrumb": {
+    "color": {
+      "type": "color",
+      "value": "{typography.color.text}"
+    }
+  },
   "button": {
     "font-size": {
       "large": {
@@ -400,7 +406,7 @@
     },
     "color": {
       "type": "color",
-      "value": "{color.primary.700}"
+      "value": "{color.primary.500}"
     },
     "offset": {
       "type": "sizing",
@@ -498,7 +504,7 @@
     "border": {
       "color": {
         "type": "color",
-        "value": "#d5ccc5"
+        "value": "#e6e1dc"
       }
     }
   },
@@ -732,19 +738,19 @@
     "readonly-background": {
       "color": {
         "type": "color",
-        "value": "#f8f7f6"
+        "value": "#f2f0ed"
       },
       "color-disabled": {
         "type": "color",
-        "value": "#f8f7f6"
+        "value": "#f2f0ed"
       },
       "color-focus": {
         "type": "color",
-        "value": "#f8f7f6"
+        "value": "#f2f0ed"
       },
       "color-hover": {
         "type": "color",
-        "value": "#f8f7f6"
+        "value": "#f2f0ed"
       }
     },
     "required": {

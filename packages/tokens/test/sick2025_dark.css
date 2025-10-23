@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.32.0
+ * @synergy-design-system/tokens version 2.33.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -7,6 +7,16 @@
 :root, .syn-sick2025-dark {
   color-scheme: dark;
 
+  --syn-badge-error-color-background: var(--syn-color-error-600);
+  --syn-badge-error-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-informative-color-background: #a6e9ff;
+  --syn-badge-informative-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-neutral-color-background: var(--syn-color-neutral-800);
+  --syn-badge-neutral-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-success-color-background: var(--syn-color-success-600);
+  --syn-badge-success-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-warning-color-background: var(--syn-color-warning-800);
+  --syn-badge-warning-color-text: var(--syn-typography-color-text-inverted);
   --syn-border-radius-circle: 9999px;
   --syn-border-radius-large: 8px;
   --syn-border-radius-medium: 8px;
@@ -46,6 +56,17 @@
   --syn-color-error-800: #ffcfd1;
   --syn-color-error-900: #ffe3e4;
   --syn-color-error-950: #fff1f1;
+  --syn-color-info-50: #06334b;
+  --syn-color-info-100: #085172;
+  --syn-color-info-200: #02628a;
+  --syn-color-info-300: #0075a7;
+  --syn-color-info-400: #0092ce;
+  --syn-color-info-500: #06b6f1;
+  --syn-color-info-600: #26c9ff;
+  --syn-color-info-700: #78ddff;
+  --syn-color-info-800: #a6e9ff;
+  --syn-color-info-900: #dff4ff;
+  --syn-color-info-950: #effaff;
   --syn-color-neutral-0: #000414;
   --syn-color-neutral-50: #000724;
   --syn-color-neutral-100: #000a37;

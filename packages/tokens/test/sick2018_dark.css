@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.31.0
+ * @synergy-design-system/tokens version 2.32.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -23,6 +23,7 @@
   --syn-button-font-size-large: var(--syn-font-size-large);
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);
+  --syn-checkbox-border-radius: var(--syn-border-radius-none);
   --syn-color-accent-50: #481700;
   --syn-color-accent-100: #7c310b;
   --syn-color-accent-200: #983b08;

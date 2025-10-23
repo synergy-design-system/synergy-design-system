@@ -78,6 +78,14 @@
       }
     }
   },
+  "checkbox": {
+    "border": {
+      "radius": {
+        "type": "sizing",
+        "value": "{border-radius.none}"
+      }
+    }
+  },
   "color": {
     "accent": {
       "50": {

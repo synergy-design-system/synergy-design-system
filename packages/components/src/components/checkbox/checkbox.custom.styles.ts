@@ -2,11 +2,19 @@ import { css } from 'lit';
 
 export default css`
   .checkbox__control {
-    border-radius: var(--syn-input-border-radius-small);
+    border-radius: var(--syn-checkbox-border-radius, var(--syn-input-border-radius-small));
   }
 
   :host([data-user-invalid]) .checkbox__control {
+    background: var(--syn-input-border-color-focus-error);
     border-color: var(--syn-input-border-color-focus-error);
+  }
+
+  /**
+   * #943: When invalid, use a transparent background if not checked or indeterminate
+   */
+  :host([data-user-invalid]:not([checked]):not([indeterminate])) .checkbox__control {
+    background: transparent;
   }
 
   /** #429: Use token for opacity */

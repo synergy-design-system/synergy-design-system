@@ -77,5 +77,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "2.28.0"
+  "version": "2.33.0"
 }

@@ -2,9 +2,9 @@ import { css } from 'lit';
 
 export default css`
   .breadcrumb-item {
-    color: var(--syn-color-neutral-500);
+    color: var(--syn-breadcrumb-color, var(--syn-color-neutral-500));
     font-size: var(--syn-font-size-x-small);
-    font-weight: var(--syn-font-weight-normal);
+    font-weight: var(--syn-font-weight-semibold);
   }
 
   /**
@@ -13,6 +13,10 @@ export default css`
    */
   .breadcrumb-item__label {
     border-radius: var(--syn-border-radius-none);
+  }
+
+  :host(:not(:last-of-type)) .breadcrumb-item {
+    font-weight: var(--syn-font-weight-normal);
   }
 
   :host(:not(:last-of-type)) .breadcrumb-item__label {
@@ -49,7 +53,7 @@ export default css`
    */
   :host(:last-of-type) .breadcrumb-item--has-prefix .breadcrumb-item__prefix,
   :host(:last-of-type) .breadcrumb-item--has-suffix .breadcrumb-item__suffix {
-    color: var(--syn-color-neutral-500);
+    color: inherit;
   }
 
   .breadcrumb-item__separator {

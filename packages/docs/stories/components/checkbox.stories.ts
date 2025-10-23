@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/checkbox/checkbox.js';
 import '../../../components/src/components/button/button.js';
+import { type SynCheckbox } from '@synergy-design-system/components';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { userEvent } from 'storybook/test';
@@ -12,6 +13,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { argTypes } = storybookDefaults('syn-checkbox');
 const { overrideArgs } = storybookHelpers('syn-checkbox');
@@ -24,6 +26,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-checkbox',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('1847-5654'),
     docs: {
       description: {
@@ -31,7 +36,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form', 'SICK2018'],
+  tags: ['Form', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-checkbox',
 };
 export default meta;
@@ -63,6 +68,19 @@ export const Checked: Story = {
   render: () => html`<syn-checkbox checked>Checked</syn-checkbox>`,
 };
 
+export const HelpText: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox', 'help-text'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-checkbox help-text="What should the user know about the checkbox?">Label</syn-checkbox>
+  `,
+};
+
 export const Indeterminate: Story = {
   parameters: {
     docs: {
@@ -72,6 +90,26 @@ export const Indeterminate: Story = {
     },
   },
   render: () => html`<syn-checkbox indeterminate>Indeterminate</syn-checkbox>`,
+};
+
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }) => {
+    const synCheckbox = canvasElement.querySelector('syn-checkbox');
+    if (synCheckbox) {
+      synCheckbox.focus();
+    }
+  },
+  render: () => html`<syn-checkbox>Focused</syn-checkbox>`,
 };
 
 export const Disabled: Story = {
@@ -94,11 +132,64 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: 1rem;">
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
       <syn-checkbox size="small">Small</syn-checkbox>
       <syn-checkbox size="medium">Medium</syn-checkbox>
       <syn-checkbox size="large">Large</syn-checkbox>
     </div>
+  `,
+};
+
+export const Invalid: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox', 'invalid'),
+      },
+    },
+  },
+  play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
+    try {
+      const form = canvasElement.querySelector('form');
+      const synCheckbox = form?.querySelector<SynCheckbox>('syn-checkbox');
+      const lastCheckbox = form?.querySelector<SynCheckbox>('syn-checkbox:last-of-type');
+      const button = form?.querySelector('syn-button');
+
+      if (lastCheckbox) {
+        lastCheckbox.setCustomValidity('This checkbox is invalid');
+      }
+
+      if (button && synCheckbox) {
+        await userEvent.click(button);
+        button.click();
+        synCheckbox.blur();
+      }
+    } catch (error) {
+      console.error('Error in play function:', error);
+    }
+  },
+  render: () => html`
+    <form class="custom-validity">
+      <div class="custom-validity">
+        <syn-checkbox required>Invalid</syn-checkbox>
+        <syn-checkbox required indeterminate>Invalid</syn-checkbox>
+        <syn-checkbox required checked>Invalid</syn-checkbox>
+      </div>
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <style>
+    .custom-validity {
+      display: flex;
+      flex-direction: column;
+      gap: var(--syn-spacing-large);
+    }
+    syn-button {
+      align-self: flex-start;
+    }
+    </style>
   `,
 };
 
@@ -129,6 +220,7 @@ export const CustomValidity: Story = {
         // userEvent.click works on native elements only
         await userEvent.click(button);
         button.click();
+        checkbox.blur();
       }
     } catch (error) {
       console.error('Error in play function:', error);
@@ -170,6 +262,7 @@ export const CustomValidity: Story = {
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Checked,
+  HelpText,
   Indeterminate,
   Disabled,
   Sizes,

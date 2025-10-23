@@ -41,12 +41,12 @@ export default css`
     color: var(--syn-interactive-quiet-color, var(--syn-typography-color-text));
   }
 
-  :host([color="neutral"]) .icon-button:active:not(.icon-button--disabled) {
-    color: var(--syn-interactive-quiet-color-active, var(--syn-color-primary-700));
-  }
-
   :host([color="neutral"]) .icon-button:hover:not(.icon-button--disabled) {
     color: var(--syn-interactive-quiet-color-hover, var(--syn-color-primary-600));
+  }
+
+  :host([color="neutral"]) .icon-button:active:not(.icon-button--disabled) {
+    color: var(--syn-interactive-quiet-color-active, var(--syn-color-primary-700));
   }
 
   :host([color="neutral"]) .icon-button:focus-visible:not(.icon-button--disabled):not(:hover) {

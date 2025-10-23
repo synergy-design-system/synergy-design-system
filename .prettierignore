@@ -40,3 +40,9 @@ packages/_private/e2e-demo-test/test-results/*
 
 # Changelogs are automatically generated
 CHANGELOG.md
+
+# Changesets are automatically managed
+.changeset
+
+# Github internal stuff
+.github

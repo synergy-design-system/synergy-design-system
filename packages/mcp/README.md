@@ -344,9 +344,6 @@ pnpm lint:js
 # Run tests with coverage
 pnpm test
 
-# Create a release (dry run)
-pnpm release.dry
-
 # Create a release
 pnpm release
 ```

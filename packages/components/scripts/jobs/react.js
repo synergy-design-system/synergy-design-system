@@ -4,7 +4,6 @@ import {
   createRunFormat,
   createRunPrepare,
   getManifestData,
-  runAdjustPackageVersion,
 } from './shared.js';
 
 const runFormat = createRunFormat('React: Running code formatter...');
@@ -28,7 +27,6 @@ export const runCreateReactWrappers = async ({
   const typesDir = path.join(outDir, './types');
   const componentDir = path.join(reactPackageDir, '/src/components');
 
-  await runAdjustPackageVersion('React: Adjusting react package.json version field...')(componentPackageDir, reactPackageDir);
   await createRunPrepare('React: Cleaning up artifacts...')(outDir, componentDir, distDir, typesDir);
   await jobs.runCreateWrappers(metadata, outDir);
   await jobs.runCreateIntrinsicElements(metadata, typesDir);

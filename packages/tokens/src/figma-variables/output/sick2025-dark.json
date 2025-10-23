@@ -56,6 +56,12 @@
       "value": "4px"
     }
   },
+  "breadcrumb": {
+    "color": {
+      "type": "color",
+      "value": "{typography.color.text}"
+    }
+  },
   "button": {
     "font-size": {
       "large": {
@@ -400,7 +406,7 @@
     },
     "color": {
       "type": "color",
-      "value": "{color.primary.500}"
+      "value": "{color.primary.700}"
     },
     "offset": {
       "type": "sizing",
@@ -498,7 +504,7 @@
     "border": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.400}"
+        "value": "{color.neutral.300}"
       }
     }
   },
@@ -740,19 +746,19 @@
     "readonly-background": {
       "color": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "{color.neutral.200}"
       },
       "color-disabled": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "{color.neutral.200}"
       },
       "color-focus": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "{color.neutral.200}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.neutral.100}"
+        "value": "{color.neutral.200}"
       }
     },
     "required": {

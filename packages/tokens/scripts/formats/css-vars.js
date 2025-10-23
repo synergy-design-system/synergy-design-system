@@ -72,9 +72,6 @@ export const cssVariableFormatter = {
       // Unknown component, skipping for now
       'typography-color-text-quiet',
       'typography-color-text-quiet-inverted',
-
-      // Only for drawer
-      'overlay-background-blur',
     ].map(v => `${prefix}${v}`);
 
     /**

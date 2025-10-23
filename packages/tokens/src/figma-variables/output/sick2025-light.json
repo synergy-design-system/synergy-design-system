@@ -508,6 +508,14 @@
       }
     }
   },
+  "icon-button": {
+    "focus-ring": {
+      "border-radius": {
+        "type": "sizing",
+        "value": "{border-radius.pill}"
+      }
+    }
+  },
   "input": {
     "background": {
       "color": {

@@ -118,7 +118,7 @@ const OLD_BRAND_VARIABLES_REGEX = [
   /^component\/input\/(?!focus-ring)/,
   /^component\/input\/focus-ring\/(?:color|error|offset)/,
   /^component\/button\/font-size/,
-  /^component\/(?:breadcrumb|details|spinner|toggle|table|tooltip|panel|link|progress|header)/,
+  /^component\/(?:breadcrumb|details|spinner|toggle|table|tooltip|panel|link|progress|header|icon-button)/,
   /^primitive\/(?:primary|neutral|error|warning|success|accent|border-radius|border-width|dimension|duration|font-weight|text-decoration|transition|z-index|font|opacity)\//,
   /^primitive\/letter-spacing\/(?:dense|denser|normal|loose|looser)$/,
   /^primitive\/line-height\/[^\d]/,

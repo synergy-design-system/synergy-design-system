@@ -22,6 +22,7 @@
   --syn-button-font-size-large: var(--syn-font-size-large);
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);
+  --syn-checkbox-border-radius: var(--syn-border-radius-none);
   --syn-color-accent-50: #fffbea;
   --syn-color-accent-100: #fff2c5;
   --syn-color-accent-200: #ffe685;

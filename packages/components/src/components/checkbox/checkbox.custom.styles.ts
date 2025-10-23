@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   .checkbox__control {
-    border-radius: var(--syn-input-border-radius-small);
+    border-radius: var(--syn-checkbox-border-radius, var(--syn-input-border-radius-small));
   }
 
   :host([data-user-invalid]) .checkbox__control {

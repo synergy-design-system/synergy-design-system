@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.29.0
+ * @synergy-design-system/tokens version 2.30.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -99,7 +99,7 @@
   --syn-duration-normal: 250ms;
   --syn-duration-slow: 500ms;
   --syn-focus-ring-border-radius: var(--syn-border-radius-small);
-  --syn-focus-ring-color: var(--syn-color-primary-700);
+  --syn-focus-ring-color: var(--syn-color-primary-500);
   --syn-focus-ring-offset: var(--syn-spacing-3x-small);
   --syn-focus-ring-style: solid;
   --syn-focus-ring-width: var(--syn-border-width-medium);
@@ -120,7 +120,7 @@
   --syn-font-weight-light: 400; /** Shoelace compatibility DO NOT USE */
   --syn-font-weight-normal: 400;
   --syn-font-weight-semibold: 600;
-  --syn-header-border-color: #d5ccc5;
+  --syn-header-border-color: #e6e1dc;
   --syn-input-background-color: var(--syn-color-neutral-0);
   --syn-input-background-color-disabled: var(--syn-input-background-color);
   --syn-input-background-color-focus: var(--syn-input-background-color);

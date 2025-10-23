@@ -738,19 +738,19 @@
     "readonly-background": {
       "color": {
         "type": "color",
-        "value": "#f8f7f6"
+        "value": "#f2f0ed"
       },
       "color-disabled": {
         "type": "color",
-        "value": "#f8f7f6"
+        "value": "#f2f0ed"
       },
       "color-focus": {
         "type": "color",
-        "value": "#f8f7f6"
+        "value": "#f2f0ed"
       },
       "color-hover": {
         "type": "color",
-        "value": "#f8f7f6"
+        "value": "#f2f0ed"
       }
     },
     "required": {

@@ -44,8 +44,6 @@ export default css`
 
   .header__logo ::slotted(a:is(:focus-visible)) {
     outline: var(--syn-focus-ring);
-    outline-color: var(--syn-logo-color, var(--syn-focus-ring-color));
-    outline-offset: var(--syn-focus-ring-offset);
   }
 
   /**

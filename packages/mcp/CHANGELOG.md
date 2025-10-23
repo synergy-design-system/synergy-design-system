@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.11.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.10.0...mcp/1.11.0) (2025-10-23)
+
+
+### Features
+
+* ✨ CD update for syn-breadcrumb ([#1045](https://github.com/synergy-design-system/synergy-design-system/issues/1045)) ([46383b2](https://github.com/synergy-design-system/synergy-design-system/commit/46383b2557d284328cfb49d476a052986cb47d75))
+
 # [@synergy-design-system/mcp-v1.10.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.9.0...mcp/1.10.0) (2025-10-22)
 
 

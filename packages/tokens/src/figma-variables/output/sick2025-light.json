@@ -56,6 +56,12 @@
       "value": "4px"
     }
   },
+  "breadcrumb": {
+    "color": {
+      "type": "color",
+      "value": "{typography.color.text}"
+    }
+  },
   "button": {
     "font-size": {
       "large": {

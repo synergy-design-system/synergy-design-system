@@ -13,28 +13,28 @@ export default css`
 
   /* Variant modifiers */
   .badge--primary {
-    background-color: var(--syn-badge-informative-color-background);
-    color: var(--syn-badge-informative-color-text);
+    background-color: var(--syn-badge-informative-color-background, var(--syn-color-primary-600));
+    color: var(--syn-badge-informative-color-text, var(--syn-typography-color-text-inverted));
   }
 
   .badge--success {
-    background-color: var(--syn-badge-success-color-background);
-    color: var(--syn-badge-success-color-text);
+    background-color: var(--syn-badge-success-color-background, var(--syn-color-success-500));
+    color: var(--syn-badge-success-color-text, var(--syn-typography-color-text));
   }
 
   .badge--neutral {
-    background-color: var(--syn-badge-neutral-color-background);
-    color: var(--syn-badge-neutral-color-text);
+    background-color: var(--syn-badge-neutral-color-background, var(--syn-color-neutral-800));
+    color: var(--syn-badge-neutral-color-text, var(--syn-typography-color-text-inverted));
   }
 
   .badge--warning {
-    background-color: var(--syn-badge-warning-color-background);
-    color: var(--syn-badge-warning-color-text);
+    background-color: var(--syn-badge-warning-color-background, var(--syn-color-warning-400));
+    color: var(--syn-badge-warning-color-text, var(--syn-typography-color-text));
   }
 
   .badge--danger {
-    background-color: var(--syn-badge-error-color-background);
-    color: var(--syn-badge-error-color-text);
+    background-color: var(--syn-badge-error-color-background, var(--syn-color-error-600));
+    color: var(--syn-badge-error-color-text, var(--syn-typography-color-text-inverted));
   }
 
   /**

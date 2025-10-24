@@ -18,16 +18,6 @@ Use the checked attribute to activate the switch.
 
 ---
 
-## Disabled
-
-Use the disabled attribute to disable the switch.
-
-```html
-<syn-switch disabled="" title="" size="medium" form="">Disabled</syn-switch>
-```
-
----
-
 ## Focus
 
 The focus event gives the user feedback that the Switch has been focused by the keyboard interaction.
@@ -38,27 +28,12 @@ The focus event gives the user feedback that the Switch has been focused by the 
 
 ---
 
-## Invalid
+## Disabled
 
-The invalid status is used to warn the user that the Switch is invalid.
+Use the disabled attribute to disable the switch.
 
 ```html
-<form class="custom-validity">
-  <syn-switch required="" title="" size="medium" form="">Option</syn-switch>
-  <syn-button type="submit" variant="filled" title="" size="medium"
-    >Submit</syn-button
-  >
-</form>
-<style>
-  .custom-validity {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  syn-button {
-    align-self: flex-start;
-  }
-</style>
+<syn-switch disabled="" title="" size="medium" form="">Disabled</syn-switch>
 ```
 
 ---
@@ -96,4 +71,29 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   form=""
   >Label</syn-switch
 >
+```
+
+---
+
+## Invalid
+
+The invalid status is used to warn the user that the Switch is invalid.
+
+```html
+<form class="custom-validity">
+  <syn-switch required="" title="" size="medium" form="">Option</syn-switch>
+  <syn-button type="submit" variant="filled" title="" size="medium"
+    >Submit</syn-button
+  >
+</form>
+<style>
+  .custom-validity {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  syn-button {
+    align-self: flex-start;
+  }
+</style>
 ```

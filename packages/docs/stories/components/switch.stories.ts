@@ -67,17 +67,6 @@ export const Checked: Story = {
   render: () => html`<syn-switch checked>Checked</syn-switch>`,
 };
 
-export const Disabled: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('switch', 'disabled'),
-      },
-    },
-  },
-  render: () => html`<syn-switch disabled>Disabled</syn-switch>`,
-};
-
 export const Focus: Story = {
   parameters: {
     chromatic: {
@@ -96,6 +85,47 @@ export const Focus: Story = {
     }
   },
   render: () => html`<syn-switch>Focused</syn-switch>`,
+};
+
+export const Disabled: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('switch', 'disabled'),
+      },
+    },
+  },
+  render: () => html`<syn-switch disabled>Disabled</syn-switch>`,
+};
+
+export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('switch', 'sizes'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="gap: var(--syn-spacing-large); display: flex; flex-direction: column; align-items: flex-start;">
+      <syn-switch size="small">Small</syn-switch>
+      <syn-switch size="medium">Medium</syn-switch>
+      <syn-switch size="large">Large</syn-switch>
+    </div>
+  `,
+};
+
+export const HelpText: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('switch', 'help-text'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-switch help-text="What should the user know about the switch?">Label</syn-switch>
+  `,
 };
 
 export const Invalid: Story = {
@@ -141,36 +171,6 @@ export const Invalid: Story = {
   `,
 };
 
-export const Sizes: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('switch', 'sizes'),
-      },
-    },
-  },
-  render: () => html`
-    <div style="gap: var(--syn-spacing-large); display: flex; flex-direction: column; align-items: flex-start;">
-      <syn-switch size="small">Small</syn-switch>
-      <syn-switch size="medium">Medium</syn-switch>
-      <syn-switch size="large">Large</syn-switch>
-    </div>
-  `,
-};
-
-export const HelpText: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('switch', 'help-text'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-switch help-text="What should the user know about the switch?">Label</syn-switch>
-  `,
-};
-
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -178,5 +178,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   Sizes,
   HelpText,
-});
+}, 200);
 /* eslint-enable sort-keys */

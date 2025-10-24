@@ -42,13 +42,13 @@ export default css`
   }
 
   .switch__control {
-    background-color: var(--syn-color-neutral-600);
-    border: solid var(--syn-border-width-medium) var(--syn-color-neutral-600);
+    background-color: var(--syn-color-neutral-700);
+    border: solid var(--syn-border-width-medium) var(--syn-color-neutral-700);
   }
 
-   .switch__control .switch__thumb {
+  .switch__control .switch__thumb {
     border: none;
-   }
+  }
 
   /* Hover */
   .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover {
@@ -62,8 +62,8 @@ export default css`
 
   /* Checked + hover */
   .switch.switch--checked:not(.switch--disabled) .switch__control:hover {
-    background-color: var(--syn-color-primary-900);
-    border-color: var(--syn-color-primary-900);
+    background-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
+    border-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
   }
 
   .switch.switch--checked:not(.switch--disabled) .switch__control:hover .switch__thumb {
@@ -85,8 +85,8 @@ export default css`
 
   /* Checked + focus */
   .switch.switch--checked:not(.switch--disabled) .switch__input:focus-visible ~ .switch__control {
-    background-color: var(--syn-color-primary-900);
-    border-color: var(--syn-color-primary-900);
+    background-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-900));
+    border-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-900));
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }
@@ -101,12 +101,12 @@ export default css`
   }
   
   :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control {
-    background-color: var(--syn-color-error-700);
-    border-color: var(--syn-color-error-700);
+    background-color: var(--syn-input-border-color-focus-error, var(--syn-color-error-700));
+    border-color: var(--syn-input-border-color-focus-error, var(--syn-color-error-700));
   }
 
   :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover {
-    background-color: var(--syn-color-error-900);
-    border-color: var(--syn-color-error-900);
+    background-color: var(--syn-input-border-color-hover, var(--syn-color-error-900));
+    border-color: var(--syn-input-border-color-hover, var(--syn-color-error-900));
   }
   `;

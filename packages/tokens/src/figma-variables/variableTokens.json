@@ -810,11 +810,7 @@
         "VariableID:790:69808",
         "VariableID:6354:12272",
         "VariableID:1915:46004",
-        "VariableID:1915:46005",
         "VariableID:1915:46006",
-        "VariableID:2087:171190",
-        "VariableID:2087:171191",
-        "VariableID:2087:171192",
         "VariableID:4256:10974",
         "VariableID:4256:10975",
         "VariableID:4256:10976",
@@ -1102,27 +1098,6 @@
       },
       "variableCollectionId": "VariableCollectionId:790:67393"
     },
-    "VariableID:1915:46005": {
-      "codeSyntax": {},
-      "deletedButReferenced": true,
-      "description": "",
-      "hiddenFromPublishing": true,
-      "id": "VariableID:1915:46005",
-      "key": "dfd43810dba333d297d7a1af9d59904102115393",
-      "name": "size/medium",
-      "remote": false,
-      "resolvedType": "FLOAT",
-      "scopes": [
-        "ALL_SCOPES"
-      ],
-      "valuesByMode": {
-        "790:0": {
-          "id": "VariableID:28:532",
-          "type": "VARIABLE_ALIAS"
-        }
-      },
-      "variableCollectionId": "VariableCollectionId:790:67393"
-    },
     "VariableID:1915:46006": {
       "codeSyntax": {},
       "deletedButReferenced": true,
@@ -1130,66 +1105,6 @@
       "hiddenFromPublishing": true,
       "id": "VariableID:1915:46006",
       "key": "4f4614543849d93d31fe38782123c1a9baed96dd",
-      "name": "size/large",
-      "remote": false,
-      "resolvedType": "FLOAT",
-      "scopes": [
-        "ALL_SCOPES"
-      ],
-      "valuesByMode": {
-        "790:0": {
-          "id": "VariableID:28:533",
-          "type": "VARIABLE_ALIAS"
-        }
-      },
-      "variableCollectionId": "VariableCollectionId:790:67393"
-    },
-    "VariableID:2087:171190": {
-      "codeSyntax": {},
-      "deletedButReferenced": true,
-      "description": "",
-      "hiddenFromPublishing": true,
-      "id": "VariableID:2087:171190",
-      "key": "19365148e0e78341f0652292ad9febdc7856e51c",
-      "name": "size/small",
-      "remote": false,
-      "resolvedType": "FLOAT",
-      "scopes": [
-        "ALL_SCOPES"
-      ],
-      "valuesByMode": {
-        "790:0": 14
-      },
-      "variableCollectionId": "VariableCollectionId:790:67393"
-    },
-    "VariableID:2087:171191": {
-      "codeSyntax": {},
-      "deletedButReferenced": true,
-      "description": "",
-      "hiddenFromPublishing": true,
-      "id": "VariableID:2087:171191",
-      "key": "a654443320ebd1e5de25b53d2056466d5344d288",
-      "name": "size/medium",
-      "remote": false,
-      "resolvedType": "FLOAT",
-      "scopes": [
-        "ALL_SCOPES"
-      ],
-      "valuesByMode": {
-        "790:0": {
-          "id": "VariableID:28:532",
-          "type": "VARIABLE_ALIAS"
-        }
-      },
-      "variableCollectionId": "VariableCollectionId:790:67393"
-    },
-    "VariableID:2087:171192": {
-      "codeSyntax": {},
-      "deletedButReferenced": true,
-      "description": "",
-      "hiddenFromPublishing": true,
-      "id": "VariableID:2087:171192",
-      "key": "a1703a324c69e2fa6a86272613c7b432a2b098f6",
       "name": "size/large",
       "remote": false,
       "resolvedType": "FLOAT",

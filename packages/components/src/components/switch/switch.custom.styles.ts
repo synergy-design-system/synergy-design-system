@@ -2,14 +2,14 @@ import { css } from 'lit';
 
 export default css`
   :host([size='small']) {
-    --height: calc(var(--syn-font-size-medium) + 2px);
-    --thumb-size: var(--syn-font-size-small);
+    --height: calc(var(--syn-toggle-size-medium) + 2px);
+    --thumb-size: var(--syn-toggle-size-small);
     --width: calc((var(--height) * 2) - 6px);
   }
 
   :host([size='medium']) {
-    --height: var(--syn-font-size-large);
-    --thumb-size: var(--syn-font-size-medium);
+    --height: calc(var(--syn-toggle-size-medium) + 4px);
+    --thumb-size: var(--syn-toggle-size-medium);
     --width: calc((var(--height) * 2) - 6px);
   }
 

@@ -7,6 +7,10 @@ export default css`
     --syn-color-primary-600: var(--syn-input-border-color-focus-error);
     --syn-color-primary-900: var(--syn-color-error-900);
     --syn-color-primary-950: var(--syn-color-error-950);
+    --syn-color-neutral-1000: var(--syn-input-border-color-focus-error);
+    --syn-interactive-emphasis-color: var(--syn-input-border-color-focus-error);
+    --syn-interactive-emphasis-color-hover: var(--syn-input-border-color-focus-error);
+    --syn-interactive-emphasis-color-active: var(--syn-input-border-color-focus-error);
   }
 
   .form-control--has-help-text.form-control--radio-group .form-control__help-text {

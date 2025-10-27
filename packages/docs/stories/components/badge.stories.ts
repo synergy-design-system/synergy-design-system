@@ -18,6 +18,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-badge');
 const { overrideArgs } = storybookHelpers('syn-badge');
@@ -34,6 +35,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-badge',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('14127-697884'),
     docs: {
       description: {
@@ -41,7 +45,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Feedback', 'SICK2018'],
+  tags: ['Feedback', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-badge',
 };
 export default meta;
@@ -74,9 +78,9 @@ export const Variants: Story = {
     <div style="display: flex; gap: var(--syn-spacing-large);">
       <syn-badge variant="primary">primary</syn-badge>
       <syn-badge variant="success">success</syn-badge>
-      <syn-badge variant="neutral">neutral</syn-badge>
       <syn-badge variant="warning">warning</syn-badge>
       <syn-badge variant="danger">danger</syn-badge>
+      <syn-badge variant="neutral">neutral</syn-badge>
     </div>
   `,
 };
@@ -96,12 +100,12 @@ export const WithButtons: Story = {
         <syn-badge pill>30</syn-badge>
       </syn-button>
 
-      <syn-button style="margin-inline-start: 1rem;">
+      <syn-button>
         Warnings
         <syn-badge variant="warning" pill>8</syn-badge>
       </syn-button>
 
-      <syn-button style="margin-inline-start: 1rem;">
+      <syn-button>
         Errors
         <syn-badge variant="danger" pill>6</syn-badge>
       </syn-button>

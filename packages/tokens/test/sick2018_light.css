@@ -7,6 +7,16 @@
 :root, .syn-sick2018-light, .syn-theme-light {
   color-scheme: light;
 
+  --syn-badge-error-color-background: var(--syn-color-error-600);
+  --syn-badge-error-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-informative-color-background: var(--syn-color-info-600);
+  --syn-badge-informative-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-neutral-color-background: var(--syn-color-neutral-800);
+  --syn-badge-neutral-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-success-color-background: var(--syn-color-success-500);
+  --syn-badge-success-color-text: var(--syn-typography-color-text);
+  --syn-badge-warning-color-background: var(--syn-color-warning-400);
+  --syn-badge-warning-color-text: var(--syn-typography-color-text);
   --syn-border-radius-circle: 9999px;
   --syn-border-radius-large: 8px;
   --syn-border-radius-medium: 8px;
@@ -46,6 +56,17 @@
   --syn-color-error-800: #ab091c;
   --syn-color-error-900: #8d0f1e;
   --syn-color-error-950: #4e010a;
+  --syn-color-info-50: #f0f9ff;
+  --syn-color-info-100: #e0f1fe;
+  --syn-color-info-200: #b9e5fe;
+  --syn-color-info-300: #7cd1fd;
+  --syn-color-info-400: #36bbfa;
+  --syn-color-info-500: #0ca2eb;
+  --syn-color-info-600: #007cc1;
+  --syn-color-info-700: #0166a3;
+  --syn-color-info-800: #065786;
+  --syn-color-info-900: #0b486f;
+  --syn-color-info-950: #072e4a;
   --syn-color-neutral-0: #ffffff;
   --syn-color-neutral-50: #f9fafb;
   --syn-color-neutral-100: #f2f3f6;

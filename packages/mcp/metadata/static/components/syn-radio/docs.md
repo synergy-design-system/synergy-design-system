@@ -18,7 +18,7 @@ Radios allow the user to select a single option from a group. \nRadios are desig
 
 ## Initial Value
 
-To set the initial value and checked state, use the value attribute on the containing radio group.
+To set the initial value and checked state, use the value attribute on the radio element.
 
 ```html
 <syn-radio-group value="1" size="medium" form="">

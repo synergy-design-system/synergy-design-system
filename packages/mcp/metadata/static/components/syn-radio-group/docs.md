@@ -74,6 +74,51 @@ Use the label attribute to give the radio-group an accessible label. For labels 
 
 ---
 
+## Checked
+
+To set the initial value and checked state, use the value attribute on the containing radio group.
+
+```html
+<syn-radio-group
+  label="This is a label"
+  help-text="This is checked"
+  name="a"
+  value="2"
+  size="medium"
+  form=""
+>
+  <syn-radio
+    value="1"
+    role="radio"
+    tabindex="-1"
+    aria-disabled="false"
+    aria-checked="false"
+    size="medium"
+    >Option</syn-radio
+  >
+  <syn-radio
+    value="2"
+    role="radio"
+    tabindex="0"
+    aria-disabled="false"
+    aria-checked="true"
+    size="medium"
+    >Option</syn-radio
+  >
+  <syn-radio
+    value="3"
+    role="radio"
+    tabindex="-1"
+    aria-disabled="false"
+    aria-checked="false"
+    size="medium"
+    >Option</syn-radio
+  >
+</syn-radio-group>
+```
+
+---
+
 ## Help Text
 
 Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.
@@ -390,47 +435,4 @@ Use the setCustomValidity() method to set a custom validation message. This will
     >Submit</syn-button
   >
 </form>
-```
-
----
-
-## Checked
-
-```html
-<syn-radio-group
-  label="This is a label"
-  help-text="This is checked"
-  name="a"
-  value="2"
-  size="medium"
-  form=""
->
-  <syn-radio
-    value="1"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="2"
-    role="radio"
-    tabindex="0"
-    aria-disabled="false"
-    aria-checked="true"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="3"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-</syn-radio-group>
 ```

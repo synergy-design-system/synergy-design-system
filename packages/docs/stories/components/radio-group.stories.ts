@@ -80,6 +80,22 @@ export const Labels: Story = {
   `,
 };
 
+export const Checked: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-group', 'checked'),
+      },
+    },
+  },
+  render: () => html`
+  <syn-radio-group label="This is a label" help-text="This is checked" name="a" value="2">
+    <syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
+    <syn-radio value="3">Option</syn-radio>
+  </syn-radio-group>`,
+};
+
 export const HelpText: Story = {
   parameters: {
     docs: {
@@ -276,23 +292,14 @@ export const CustomValidity: Story = {
   </form>`,
 };
 
-export const Checked: Story = {
-  render: () => html`
-  <syn-radio-group label="This is a label" help-text="This is checked" name="a" value="2">
-    <syn-radio value="1">Option</syn-radio>
-    <syn-radio value="2">Option</syn-radio>
-    <syn-radio value="3">Option</syn-radio>
-  </syn-radio-group>`,
-};
-
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Labels,
+  Checked,
   HelpText,
   Disabled,
   Sizes,
-  Checked,
 }, 400);
 /* eslint-enable sort-keys */

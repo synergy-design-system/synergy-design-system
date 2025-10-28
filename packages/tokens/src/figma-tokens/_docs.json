@@ -1896,6 +1896,16 @@
           "value": "The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio is mandatory and nothing has been checked.",
           "type": "text"
         }
+      },
+      "checked": {
+        "title": {
+          "value": "Checked",
+          "type": "text"
+        },
+        "description": {
+          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+          "type": "text"
+        }
       }
     },
     "range": {
@@ -2825,7 +2835,7 @@
           "type": "text"
         },
         "description": {
-          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+          "value": "To set the initial value and checked state, use the value attribute on the radio element.",
           "type": "text"
         }
       }

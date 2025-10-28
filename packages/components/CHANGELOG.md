@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.54.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.53.0...components/2.54.0) (2025-10-28)
+
+
+### Features
+
+* ✨ CD update for syn-radio ([#1051](https://github.com/synergy-design-system/synergy-design-system/issues/1051)) ([b245f1f](https://github.com/synergy-design-system/synergy-design-system/commit/b245f1f90836a68594ecc8fdc026ecb8b3d284a9))
+
 # [@synergy-design-system/components-v2.53.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.52.0...components/2.53.0) (2025-10-27)
 
 

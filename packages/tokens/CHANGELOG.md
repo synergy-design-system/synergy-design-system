@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.36.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.35.0...tokens/2.36.0) (2025-10-29)
+
+
+### Features
+
+* ✨ CD update for syn-switch ([#1046](https://github.com/synergy-design-system/synergy-design-system/issues/1046)) ([088ce44](https://github.com/synergy-design-system/synergy-design-system/commit/088ce44da4e948099f10c66d29ca48dc6da3b5bb))
+
 # [@synergy-design-system/tokens-v2.35.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.34.0...tokens/2.35.0) (2025-10-28)
 
 

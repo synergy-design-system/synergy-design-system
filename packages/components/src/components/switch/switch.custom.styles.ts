@@ -42,18 +42,24 @@ export default css`
   }
 
   .switch__control {
-    background-color: var(--syn-color-neutral-700);
-    border: solid var(--syn-border-width-medium) var(--syn-color-neutral-700);
+    background-color: var(--syn-input-icon-icon-clearable-color);
+    border: solid var(--syn-border-width-medium) var(--syn-input-icon-icon-clearable-color);
   }
 
   .switch__control .switch__thumb {
     border: none;
   }
 
+  /* Checked */
+  .switch--checked .switch__control {
+    background-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
+    border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
+  }
+
   /* Hover */
   .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover {
-    background-color: var(--syn-color-neutral-900);
-    border-color: var(--syn-color-neutral-900);
+    background-color: var(--syn-input-icon-icon-clearable-color-hover);
+    border-color: var(--syn-input-icon-icon-clearable-color-hover);
   }
 
   .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover .switch__thumb {
@@ -72,8 +78,8 @@ export default css`
 
   /* Focus */
   .switch:not(.switch--checked):not(.switch--disabled) .switch__input:focus-visible ~ .switch__control {
-    background-color: var(--syn-color-neutral-600);
-    border-color: var(--syn-color-neutral-600);
+    background-color: var(--syn-input-icon-icon-clearable-color);
+    border-color: var(--syn-input-icon-icon-clearable-color);
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }
@@ -85,8 +91,8 @@ export default css`
 
   /* Checked + focus */
   .switch.switch--checked:not(.switch--disabled) .switch__input:focus-visible ~ .switch__control {
-    background-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-900));
-    border-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-900));
+    background-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
+    border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }

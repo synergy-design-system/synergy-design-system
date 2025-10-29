@@ -11,15 +11,33 @@ export default css`
     opacity: var(--syn-input-disabled-opacity);
   }
 
-  /* Checked + hover */
-  .radio.radio--checked:not(.radio--disabled):hover  .radio__control {
-    background-color: var(--syn-color-primary-950);
-    border-color: var(--syn-color-primary-950);
+  /* Checked */
+  /* stylelint-disable-next-line no-descending-specificity */
+  .radio--checked .radio__control {
+    background-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
+    border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
   }
 
-  /* Hover */
-  .radio:not(.radio--checked):not(.radio--disabled):hover .radio__control {
-    border-color: var(--syn-color-primary-900);
+  /* Checked + hover */
+  .radio.radio--checked:not(.radio--disabled) .radio__control:hover  {
+    background-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-950));
+    border-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-950));
+  }
+
+  /* Checked + active */
+  .radio.radio--checked:not(.radio--disabled) .radio__control:active  {
+    background-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
+    border-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
+  }
+
+  /* Not-Checked + Hover */
+  .radio:not(.radio--checked):not(.radio--disabled) .radio__control:hover {
+    border-color: var(--syn-input-border-color-hover);
+  }
+
+  /* Not-Checked + active */
+  .radio:not(.radio--checked):not(.radio--disabled) .radio__control:active {
+    border-color: var(--syn-color-neutral-1000);
   }
 
   /* Fix#456: Multi line radio fixes */
@@ -43,6 +61,8 @@ export default css`
     top: -2px;
   }
 
+  /* /Fix#456 */
+
   /**
    * #920: The new icons are instances in figma.
    * The width of the system icon is 12px x 12px, so there is no inner padding.
@@ -50,21 +70,6 @@ export default css`
    */
   .radio__checked-icon {
     scale: 0.5;
-  }
-
-  /* /Fix#456 */
-
-  /* Size modifiers */
-  .radio--small {
-    --toggle-size: var(--syn-input-font-size-small);
-  }
-
-  .radio--medium {
-    --toggle-size: var(--syn-font-size-medium);
-  }
-
-  .radio--large {
-    --toggle-size: var(--syn-spacing-large);
   }
 
   .radio--small .radio__label, .radio--large .radio__label  {

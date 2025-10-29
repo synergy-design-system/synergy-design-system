@@ -1,3 +1,17 @@
+# [@synergy-design-system/mcp-v1.15.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.14.0...mcp/1.15.0) (2025-10-28)
+
+
+### Features
+
+* ✨ CD update for syn-radio ([#1051](https://github.com/synergy-design-system/synergy-design-system/issues/1051)) ([b245f1f](https://github.com/synergy-design-system/synergy-design-system/commit/b245f1f90836a68594ecc8fdc026ecb8b3d284a9))
+
+# [@synergy-design-system/mcp-v1.14.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.13.0...mcp/1.14.0) (2025-10-27)
+
+
+### Features
+
+* ✨ CD update for syn-badge ([#1049](https://github.com/synergy-design-system/synergy-design-system/issues/1049)) ([894e541](https://github.com/synergy-design-system/synergy-design-system/commit/894e5416653a66f5ef81acaaee8b74a1adf7f3ab))
+
 # [@synergy-design-system/mcp-v1.13.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.12.0...mcp/1.13.0) (2025-10-23)
 
 

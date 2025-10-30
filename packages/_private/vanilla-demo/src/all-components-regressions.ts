@@ -3,6 +3,7 @@ import type {
   SynButton,
   SynDialog,
   SynInput,
+  SynSelect,
   SynTabGroup,
   SynTabShowEvent,
   SynValidate,
@@ -55,6 +56,13 @@ const appendOptionsForLevels = async (querySelector: string) => {
   });
 };
 
+const addAsyncValueForSelect = async (querySelector: string) => {
+  const allComponents = await getAllComponentsElement();
+  const element = allComponents?.shadowRoot?.querySelector(querySelector) as SynSelect;
+  const value = await mockAsyncData('valueWithSpace');
+  element.value = value;
+};
+
 const revalidateValidate = async () => {
   const allComponents = await getAllComponentsElement();
   const validate = allComponents?.shadowRoot?.querySelector('syn-validate[data-testid="validate-915"]') as SynValidate;
@@ -100,6 +108,10 @@ export const allComponentsRegressions: Regressions = new Map(Object.entries({
     () => appendOptionsForLevels('syn-select[data-testid="select-847-multiple"]'),
     // #1036
     () => appendOptionsWithSpace('syn-select[data-testid="select-1036-subsequently-changed-delimiter"]'),
+    // #1056
+    () => addAsyncValueForSelect('syn-select[data-testid="select-1056-async-delimiter-change-with-async-pre-value"]'),
+    () => appendOptionsWithSpace('syn-select[data-testid="select-1056-async-delimiter-change-with-pre-value"]'),
+    () => appendOptionsWithSpace('syn-select[data-testid="select-1056-async-delimiter-change-with-async-pre-value"]'),
   ],
   TabGroup: [
     // #814

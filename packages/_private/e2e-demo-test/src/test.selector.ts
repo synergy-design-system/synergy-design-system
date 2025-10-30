@@ -67,6 +67,8 @@ const AllComponentSelectors = {
   select885ValueZeroNumber: '#tab-content-Select syn-select[data-testid="select-885-value-zero-number"]',
   select885ValueZeroString: '#tab-content-Select syn-select[data-testid="select-885-value-zero-string"]',
   select1036Delimiter: '#tab-content-Select syn-select[data-testid="select-1036-subsequently-changed-delimiter"]',
+  select1056DelimiterAsyncPreValue: '#tab-content-Select syn-select[data-testid="select-1056-async-delimiter-change-with-async-pre-value"]',
+  select1056DelimiterPreValue: '#tab-content-Select syn-select[data-testid="select-1056-async-delimiter-change-with-pre-value"]',
   selectContent: '#tab-content-Select',
   selectForm: '#tab-content-Select syn-select[data-testid="select-form-813"]',
   selectFormOptions: '#tab-content-Select syn-select[data-testid="select-form-813"] syn-option',

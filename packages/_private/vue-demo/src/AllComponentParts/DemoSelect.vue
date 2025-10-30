@@ -6,10 +6,12 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
 const levels = ref<SelectItem[]>([]);
 const numericItems = mockData('selectItemsMixedId');
 const delimiterItems = mockData('selectItemsWithSpace');
+const asyncValue = ref<string>();
 
 onMounted(async () => {
   const items = await mockAsyncData('selectItems');
   levels.value = items;
+  asyncValue.value = await mockAsyncData('valueWithSpace');
 });
 </script>
 
@@ -86,6 +88,22 @@ onMounted(async () => {
   </SynVueSelect>
 
   <SynVueSelect data-testid="select-1036-subsequently-changed-delimiter" label="Subsequently changed delimiter">
+    <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
+  </SynVueSelect>
+
+  <SynVueSelect
+    data-testid="select-1056-async-delimiter-change-with-pre-value"
+    value="Option 2"
+    label="Async changed delimiter with pre value"
+  >
+    <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
+  </SynVueSelect>
+
+  <SynVueSelect
+    data-testid="select-1056-async-delimiter-change-with-async-pre-value"
+    :value="asyncValue"
+    label="Async changed delimiter with pre value"
+  >
     <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
   </SynVueSelect>
 </template>

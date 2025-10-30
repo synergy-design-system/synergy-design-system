@@ -105,25 +105,17 @@ const transformComponent = (path, originalContent) => {
   ], content);
 
   content = addSectionsBefore([
-    // Define the isInitialized variable
-    [
-      "private typeToSelectString = '';",
-      'private isInitialized: boolean = false;',
-      { tabsAfterInsertion: 1 },
-    ],
     // Add the defaultValue handling if value was initially set via property
     [
       'attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null)',
-       `firstUpdated() {
-    this.isInitialized = true;
-  }
-
-  protected override willUpdate(changedProperties: PropertyValues) {
+       `protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
-    if(!this.isInitialized && !this.defaultValue && this.value) {
-      // If the value was set initially via property binding instead of attribute, we need to set the defaultValue manually
-      // to be able to reset forms and the dynamic loading of options are working correctly.
+    if(changedProperties.has('value') && !this.defaultValue && this.value  && !this.isUserInput) {
+      // Values set by property binding (e.g. Angular, especially with async bindings such as Observables/BehaviorSubjects)
+      // have led to some malfunctions (e.g. form reset not working, dynamic reloading of options, etc.). To fix this,
+      // the defaultValue must be set via property binding. However, this must NOT happen during user input,
+      // as otherwise user interaction will lead to a new defaultValue.
       this.defaultValue = this.value
       this.valueHasChanged = false;
     }
@@ -291,6 +283,52 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
   // End#885
+
+  // #1056: Values set by async property binding (e.g. Angular, especially with async bindings such
+  // as Observables/BehaviorSubjects) have led to some malfunctions (e.g., form reset not working,
+  // dynamic reloading of options, etc.). To fix this, the defaultValue must be set via property
+  // binding. However, this must NOT happen during user input, as otherwise user interaction will
+  // lead to a new defaultValue.
+  content = addSectionsBefore([
+    [
+      `this.formControlController.updateValidity();
+    });
+  }
+
+  protected get tags() {`,
+      'this.isUserInput = false;',
+      { tabsAfterInsertion: 3 },
+    ],
+  ], content);
+
+  content = addSectionsAfter([
+    [
+      'private resizeObserver: ResizeObserver;',
+      'private isUserInput: boolean = false;',
+      {
+        tabsBeforeInsertion: 1,
+      },
+    ],
+    // set isUserInput variable on user selection of option via keyboard enter
+    [
+      `if (this.currentOption && !this.currentOption.disabled) {
+        this.valueHasChanged = true;`,
+      'this.isUserInput = true;',
+      {
+        tabsBeforeInsertion: 4,
+      },
+    ],
+    // set isUserInput variable on user option click
+    [
+      `if (option && !option.disabled) {
+      this.valueHasChanged = true;`,
+      'this.isUserInput = true;',
+      {
+        tabsBeforeInsertion: 3,
+      },
+    ],
+  ], content);
+  // End#1056
 
   return {
     content,

@@ -78,5 +78,16 @@ export const Select = (regressions: RegressionFns = []) => {
       data-testid="select-1036-subsequently-changed-delimiter"
       label="Subsequently changed delimiter"
     ></syn-select>
+
+    <syn-select
+      data-testid="select-1056-async-delimiter-change-with-pre-value"
+      value="Option 2"
+      label="Async changed delimiter with pre value"
+    ></syn-select>
+
+    <syn-select
+      data-testid="select-1056-async-delimiter-change-with-async-pre-value"
+      label="Async changed delimiter with async pre value"
+    ></syn-select>
   `;
 };

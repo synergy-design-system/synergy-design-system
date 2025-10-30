@@ -66,12 +66,11 @@ export const cssVariableFormatter = {
      * @type {string[]} List of variables that should be ignored for the brand 2025 theme
      */
     const BRAND2025_IGNORE_PATTERNS = [
-      // Needed for syn-range later on!
-      'input-border-color-offset',
-
       // Unknown component, skipping for now
       'typography-color-text-quiet',
       'typography-color-text-quiet-inverted',
+      'interactive-background-color-action-hover',
+      'color-primary-1000',
     ].map(v => `${prefix}${v}`);
 
     /**

@@ -375,6 +375,10 @@
       "950": {
         "type": "color",
         "value": "#eff5ff"
+      },
+      "1000": {
+        "type": "color",
+        "value": "#eff5ff"
       }
     },
     "success": {
@@ -902,6 +906,10 @@
   },
   "interactive": {
     "background": {
+      "color-action-hover": {
+        "type": "color",
+        "value": "{color.neutral.1000}"
+      },
       "color-hover": {
         "type": "color",
         "value": "{color.neutral.100}"
@@ -914,11 +922,11 @@
       },
       "color-active": {
         "type": "color",
-        "value": "{color.neutral.1000}"
+        "value": "{color.primary.800}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.primary.900}"
+        "value": "{color.primary.700}"
       }
     },
     "quiet": {

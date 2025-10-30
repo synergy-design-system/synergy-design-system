@@ -141,6 +141,10 @@ export const BreadcrumbResponsive = {
         #breadcrumb-responsive .back-icon {
           display: none;
         }
+        /* Remove the margin of the prefix slot */
+        #breadcrumb-responsive syn-breadcrumb-item:has(> .back-icon)::part(prefix) {
+          display: none;
+        }
       }
 
       /**

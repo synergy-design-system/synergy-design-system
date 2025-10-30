@@ -375,6 +375,10 @@
       "950": {
         "type": "color",
         "value": "#f0f9ff"
+      },
+      "1000": {
+        "type": "color",
+        "value": "#f0f9ff"
       }
     },
     "success": {
@@ -902,6 +906,10 @@
   },
   "interactive": {
     "background": {
+      "color-action-hover": {
+        "type": "color",
+        "value": "{interactive.emphasis.color}"
+      },
       "color-hover": {
         "type": "color",
         "value": "{color.neutral.100}"

@@ -1,7 +1,8 @@
 import type { StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { DecoratorHelpers } from '@storybook/addon-themes';
 import {
-  SICK_2025_DARK, SICK_2025_LIGHT,
+  SICK_2025_DARK, SICK_2025_DARK_CLASS, SICK_2025_LIGHT,
+  SICK_2025_LIGHT_CLASS,
 } from '../../.storybook/modes.js';
 
 /**
@@ -11,7 +12,8 @@ import {
  */
 const waitForSick2025Class = (timeout = 5000): Promise<void> => new Promise((resolve, reject) => {
   // Check if class is already present
-  if (document.body.classList.contains('syn-sick2025-light') || document.body.classList.contains('syn-sick2025-dark')) {
+  if (document.body.classList.contains(SICK_2025_DARK_CLASS as string)
+    || document.body.classList.contains(SICK_2025_LIGHT_CLASS as string)) {
     resolve();
     return;
   }
@@ -20,7 +22,8 @@ const waitForSick2025Class = (timeout = 5000): Promise<void> => new Promise((res
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-        if (document.body.classList.contains('syn-sick2025-light') || document.body.classList.contains('syn-sick2025-dark')) {
+        if (document.body.classList.contains(SICK_2025_LIGHT_CLASS as string)
+          || document.body.classList.contains(SICK_2025_DARK_CLASS as string)) {
           observer.disconnect();
           resolve();
         }

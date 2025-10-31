@@ -19,11 +19,12 @@ import '@synergy-design-system/styles';
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
-import { LIGHT_THEME, DARK_THEME, SICK_2025_DARK, SICK_2025_LIGHT, Chromatic_Modes_Sick_2018 } from './modes.js';
+import { LIGHT_THEME, DARK_THEME, SICK_2025_DARK, SICK_2025_LIGHT, Chromatic_Modes_Sick_2018, SICK_2018_DARK_CLASS, SICK_2018_LIGHT_CLASS, SICK_2025_DARK_CLASS, SICK_2025_LIGHT_CLASS } from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { themeSwitchIcons } from '../src/decorators/ThemeSwitchIcons.js';
 import { themeNotSupportedHint } from '../src/decorators/ThemeNotSupportedHint.js';
+import docsPreviewIframeThemer from '../src/docs-preview-iframe-themer/index.js';
 
 // Filter out all private members and readonly properties from the manifest
 const filteredManifest = (manifest: Package): Package => ({
@@ -63,10 +64,10 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,
   parentSelector: 'body',
   themes: {
-    [DARK_THEME]: 'syn-sick2018-dark',
-    [LIGHT_THEME]: 'syn-sick2018-light',
-    [SICK_2025_DARK]: 'syn-sick2025-dark',
-    [SICK_2025_LIGHT]: 'syn-sick2025-light',
+    [DARK_THEME]: SICK_2018_DARK_CLASS,
+    [LIGHT_THEME]: SICK_2018_LIGHT_CLASS,
+    [SICK_2025_DARK]: SICK_2025_DARK_CLASS,
+    [SICK_2025_LIGHT]: SICK_2025_LIGHT_CLASS,
   },
 });
 
@@ -115,6 +116,7 @@ const preview: Preview = {
         transform: async (source: string, storyContext: StoryContext) => {
           const prettier = await import('prettier/standalone');
           const htmlParser = await import('prettier/parser-html');
+          docsPreviewIframeThemer(storyContext);
           const resultWithCodepen = docsCodepenEnhancer(source, storyContext);
           try {
             return prettier.format(resultWithCodepen, {

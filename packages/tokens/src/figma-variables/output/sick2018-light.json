@@ -998,10 +998,6 @@
   },
   "interactive": {
     "background": {
-      "color-action-hover": {
-        "type": "color",
-        "value": "{interactive.emphasis.color}"
-      },
       "color-hover": {
         "type": "color",
         "value": "{color.neutral.100}"

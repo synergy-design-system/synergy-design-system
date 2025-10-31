@@ -15,7 +15,7 @@
       },
       "color-indicator": {
         "type": "color",
-        "value": "{badge.error.color-background}"
+        "value": "{color.error.600}"
       }
     },
     "informative": {
@@ -33,7 +33,7 @@
       },
       "color-indicator": {
         "type": "color",
-        "value": "{badge.informative.color-background}"
+        "value": "{color.info.800}"
       }
     },
     "neutral": {
@@ -51,7 +51,7 @@
       },
       "color-indicator": {
         "type": "color",
-        "value": "{badge.neutral.color-background}"
+        "value": "{color.neutral.800}"
       }
     },
     "success": {
@@ -69,7 +69,7 @@
       },
       "color-indicator": {
         "type": "color",
-        "value": "{badge.success.color-background}"
+        "value": "{color.success.600}"
       }
     },
     "warning": {
@@ -87,7 +87,7 @@
       },
       "color-indicator": {
         "type": "color",
-        "value": "{badge.warning.color-background}"
+        "value": "{color.warning.800}"
       }
     }
   },
@@ -998,10 +998,6 @@
   },
   "interactive": {
     "background": {
-      "color-action-hover": {
-        "type": "color",
-        "value": "{color.neutral.1000}"
-      },
       "color-hover": {
         "type": "color",
         "value": "{color.neutral.100}"

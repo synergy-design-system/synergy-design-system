@@ -116,6 +116,7 @@ const preview: Preview = {
         transform: async (source: string, storyContext: StoryContext) => {
           const prettier = await import('prettier/standalone');
           const htmlParser = await import('prettier/parser-html');
+          // TODO: this function for theming iframes can be removed as soon as Storybook supports theming docs iframes natively
           docsPreviewIframeThemer(storyContext);
           const resultWithCodepen = docsCodepenEnhancer(source, storyContext);
           try {

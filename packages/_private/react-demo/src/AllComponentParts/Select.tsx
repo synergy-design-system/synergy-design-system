@@ -6,13 +6,20 @@ const delimiterItems = mockData('selectItemsWithSpace');
 
 export const Select = () => {
   const [levels, setLevels] = useState<SelectItem[]>([]);
+  const [asyncValue, setAsyncValue] = useState<string>('');
   useEffect(() => {
     const fetchLevels = async () => {
       const items = await mockAsyncData('selectItems');
       setLevels(items);
     };
+    const fetchAsyncValue = async () => {
+      const value = await mockAsyncData('valueWithSpace');
+      setAsyncValue(value);
+    };
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetchLevels();
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    fetchAsyncValue();
   }, []);
   return (
     <>
@@ -110,6 +117,30 @@ export const Select = () => {
       <syn-select
         data-testid="select-1036-subsequently-changed-delimiter"
         label="Subsequently changed delimiter"
+      >
+        {delimiterItems.map(item => (
+          <syn-option key={item.value} value={item.value}>
+            {item.label}
+          </syn-option>
+        ))}
+      </syn-select>
+
+      <syn-select
+        data-testid="select-1056-async-delimiter-change-with-pre-value"
+        value="Option 2"
+        label="Async changed delimiter with pre value"
+      >
+        {delimiterItems.map(item => (
+          <syn-option key={item.value} value={item.value}>
+            {item.label}
+          </syn-option>
+        ))}
+      </syn-select>
+
+      <syn-select
+        data-testid="select-1056-async-delimiter-change-with-async-pre-value"
+        label="Async changed delimiter with async pre value"
+        value={asyncValue}
       >
         {delimiterItems.map(item => (
           <syn-option key={item.value} value={item.value}>

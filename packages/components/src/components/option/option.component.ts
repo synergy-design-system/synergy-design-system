@@ -77,18 +77,7 @@ export default class SynOption extends SynergyElement {
   private handleDefaultSlotChange() {
     if (this.isInitialized) {
       // When the label changes, tell the controller to update
-      customElements.whenDefined('syn-combobox').then(() => {
-        const controller = this.closest('syn-combobox');
-        if (controller) {
-          controller.handleDefaultSlotChange();
-        }
-      });
-      customElements.whenDefined('syn-select').then(() => {
-        const controller = this.closest('syn-select');
-        if (controller) {
-          controller.handleDefaultSlotChange();
-        }
-      });
+      this.triggerParentDefaultSlotChange();
     } else {
       this.isInitialized = true;
     }
@@ -145,6 +134,8 @@ export default class SynOption extends SynergyElement {
       value = delimiterToWhiteSpace(value, this.delimiter);
     }
     this.value = value;
+    // #1056 We need to trigger the parent component's default slot change, so it can update its value selection
+    this.triggerParentDefaultSlotChange();
   }
 
   /** Returns a plain text label based on the option's content. */
@@ -165,6 +156,21 @@ export default class SynOption extends SynergyElement {
     });
 
     return label.trim();
+  }
+
+  private triggerParentDefaultSlotChange() {
+    customElements.whenDefined('syn-combobox').then(() => {
+      const controller = this.closest('syn-combobox');
+      if (controller) {
+        controller.handleDefaultSlotChange();
+      }
+    });
+    customElements.whenDefined('syn-select').then(() => {
+      const controller = this.closest('syn-select');
+      if (controller) {
+        controller.handleDefaultSlotChange();
+      }
+    });
   }
 
   render() {

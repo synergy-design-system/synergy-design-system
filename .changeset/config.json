@@ -18,15 +18,7 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": [
-    "@synergy-design-system/demo-angular",
-    "@synergy-design-system/demo-utilities",
-    "@synergy-design-system/e2e-demo-test",
-    "@synergy-design-system/release-utils",
-    "@synergy-design-system/demo-react",
-    "@synergy-design-system/vanilla-demo",
-    "@synergy-design-system/demo-vue"
-  ],
+  "privatePackages": false,
   "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
     "onlyUpdatePeerDependentsWhenOutOfRange": true
   }

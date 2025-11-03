@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.56.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.55.0...components/2.56.0) (2025-11-03)
+
+
+### Features
+
+* ✨CD update for syn-alert ([#1064](https://github.com/synergy-design-system/synergy-design-system/issues/1064)) ([f9c0656](https://github.com/synergy-design-system/synergy-design-system/commit/f9c0656a268a71ea676ed0b937d8ca77cca2c924))
+
 # [@synergy-design-system/components-v2.55.0](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.54.0...components/2.55.0) (2025-10-29)
 
 

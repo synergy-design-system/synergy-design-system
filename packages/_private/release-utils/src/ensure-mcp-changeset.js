@@ -12,11 +12,6 @@ export async function ensureMcpChangeset() {
     // Read existing changesets
     const changesets = await getChangesets(process.cwd());
 
-    if (changesets.length === 0) {
-      console.log('No changesets found, skipping MCP check');
-      return;
-    }
-
     // Check if MCP is already included in any changeset
     const mcpIncluded = changesets.some(
       changeset => changeset.releases.some(release => release.name === '@synergy-design-system/mcp'),

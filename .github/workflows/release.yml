@@ -33,7 +33,7 @@ jobs:
       # As the MCP package needs to be updated with the latest changelog metadata,
       # it always needs to be part of the release when other packages are released.
       - name: Create MCP changeset if needed
-        run: node packages/_private/release-utils/src/ensure-mcp-changeset.js
+        run: pnpm --filter mcp build && git add ./packages/mcp/metadata && git diff --cached --quiet ./packages/mcp/metadata || node packages/_private/release-utils/src/ensure-mcp-changeset.js
 
       - name: Creating releases via Changesets
         env:

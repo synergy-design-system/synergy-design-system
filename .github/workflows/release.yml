@@ -29,6 +29,12 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_RELEASE_TOKEN_CS}}
 
+      # This step creates a changeset for MCP if it is missing from changesets
+      # As the MCP package needs to be updated with the latest changelog metadata,
+      # it always needs to be part of the release when other packages are released.
+      - name: Create MCP changeset if needed
+        run: node packages/_private/release-utils/src/ensure-mcp-changeset.js
+
       - name: Creating releases via Changesets
         env:
           # Legacy GH_TOKEN, may be removed if not needed.
@@ -40,6 +46,13 @@ jobs:
 
           # Creates changelogs and bumps versions
           pnpm changeset version
+
+          # Build MCP with updated metadata after version changes
+          echo "Building MCP with updated metadata..."
+          if ! pnpm --filter mcp build; then
+            echo "❌ MCP build failed"
+            exit 1
+          fi
 
           # Save the changes to git
           git config user.name "github-actions[bot]"

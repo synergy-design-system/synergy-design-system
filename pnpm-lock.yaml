@@ -270,10 +270,19 @@ importers:
 
   packages/_private/release-utils:
     dependencies:
+      '@changesets/read':
+        specifier: ^0.6.5
+        version: 0.6.5
+      '@changesets/write':
+        specifier: ^0.4.0
+        version: 0.4.0
       '@manypkg/get-packages':
         specifier: ^3.1.0
         version: 3.1.0
     devDependencies:
+      '@changesets/types':
+        specifier: ^6.1.0
+        version: 6.1.0
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:*
         version: link:../eslint-config-syn

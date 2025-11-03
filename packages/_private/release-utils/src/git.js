@@ -71,8 +71,11 @@ export const createHumanReadableMessageFromBranchName = branchName => {
 
   let description = rest.join(' ');
 
+  // Use the issue id appropriately based on if it's a number or string
   if (Number.isInteger(Number(issueId))) {
     description = `${description} (#${issueId})`;
+  } else {
+    description = `${issueId} ${description}`;
   }
 
   return `${prefix}: ${iconToUse} ${description}`;

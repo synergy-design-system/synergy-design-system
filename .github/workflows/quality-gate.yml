@@ -64,8 +64,6 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
         with:
           install-command: 'PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm install'
-      - name: Check for initial uncommitted changes
-        run: git diff --exit-code
       - name: Vendorism
         run: cd packages/components && pnpm vendor.get && pnpm vendor.set && pnpm build --synergy
       - name: Check for uncommitted changes after vendoring
@@ -192,7 +190,6 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
         with:
           install-command: 'PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm install'
-          with-build: 'true'
 
       # 👇 Adds Chromatic as a step in the workflow
       - name: Publish to Chromatic

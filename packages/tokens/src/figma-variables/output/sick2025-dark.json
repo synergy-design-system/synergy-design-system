@@ -1,4 +1,96 @@
 {
+  "alert": {
+    "error": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.error.50}"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "{color.error.50}"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "{color.error.600}"
+      }
+    },
+    "informative": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.info.50}"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "{color.info.50}"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "{color.info.800}"
+      }
+    },
+    "neutral": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.neutral.300}"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "{color.neutral.300}"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "{color.neutral.800}"
+      }
+    },
+    "success": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.success.50}"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "{color.success.50}"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "{color.success.600}"
+      }
+    },
+    "warning": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.warning.50}"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "{color.warning.50}"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "{color.warning.800}"
+      }
+    }
+  },
   "badge": {
     "error": {
       "color-background": {

@@ -132,13 +132,6 @@ export default css`
     display: block;
   }
 
-
-  /* Hide the scrollbars in closed variant="sticky" */ 
-  :not(.side-nav--open).side-nav--sticky .side-nav__drawer::part(body){
-    overflow: hidden;
-  }
-
-
   .side-nav__toggle-icon > syn-icon {
     font-size: var(--syn-font-size-x-large);
     min-width: var(--syn-font-size-x-large);

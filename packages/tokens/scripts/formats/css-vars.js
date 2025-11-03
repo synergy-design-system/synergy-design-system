@@ -69,8 +69,8 @@ export const cssVariableFormatter = {
       // Unknown component, skipping for now
       'typography-color-text-quiet',
       'typography-color-text-quiet-inverted',
-      'interactive-background-color-action-hover',
       'color-primary-1000',
+      'interactive-background-color-action-hover',
     ].map(v => `${prefix}${v}`);
 
     /**

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import '../../../dist/synergy.js';
 import { expect, fixture, html } from '@open-wc/testing';
+import sinon from 'sinon';
 import { delimiterToWhiteSpace } from './utility.js';
 import type SynOption from './option.js';
 
@@ -54,6 +55,25 @@ describe('<syn-option>', () => {
       el.delimiter = 'tion';
       await el.updateComplete;
       expect(el.value).to.equal('Op_ 1');
+    });
+  });
+
+  describe('#1056', () => {
+    it('should trigger parent default slot change after delimiter change', async () => {
+      const defaultSlotChangeHandler = sinon.spy();
+      const select = await fixture<SynOption>(html`<syn-select>
+        <syn-option value="Option 1">Option 1</syn-option>
+      </syn-select>`);
+
+      const option = select.querySelector('syn-option') as SynOption;
+
+      // @ts-expect-error - accessing private method for testing purposes
+      select.handleDefaultSlotChange = defaultSlotChangeHandler;
+
+      option.delimiter = '|';
+      await select.updateComplete;
+      await option.updateComplete;
+      expect(defaultSlotChangeHandler.callCount).to.equal(1);
     });
   });
 });

@@ -96,11 +96,11 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   });
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
   private readonly localize = new LocalizeController(this);
-  private isInitialized: boolean = false;
   private typeToSelectString = '';
   private typeToSelectTimeout: number;
   private closeWatcher: CloseWatcher | null;
   private resizeObserver: ResizeObserver;
+  private isUserInput: boolean = false;
 
   @query('.select') popup: SynPopup;
   @query('.select__combobox') combobox: HTMLSlotElement;
@@ -366,6 +366,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       // If it is open, update the value based on the current selection and close it
       if (this.currentOption && !this.currentOption.disabled) {
         this.valueHasChanged = true;
+        this.isUserInput = true;
         if (this.multiple) {
           this.toggleOptionSelection(this.currentOption);
         } else {
@@ -529,6 +530,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
     if (option && !option.disabled) {
       this.valueHasChanged = true;
+      this.isUserInput = true;
       if (this.multiple) {
         this.toggleOptionSelection(option);
       } else {
@@ -681,6 +683,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
     // Update validity
     this.updateComplete.then(() => {
+      this.isUserInput = false;
       this.formControlController.updateValidity();
     });
   }
@@ -722,10 +725,6 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
   }
 
-  firstUpdated() {
-    this.isInitialized = true;
-  }
-
   
   protected updated(changedProperties: PropertyValues<this>) {
     super.updated(changedProperties);
@@ -742,9 +741,11 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
-    if(!this.isInitialized && !this.defaultValue && this.value) {
-      // If the value was set initially via property binding instead of attribute, we need to set the defaultValue manually
-      // to be able to reset forms and the dynamic loading of options are working correctly.
+    if(changedProperties.has('value') && !this.defaultValue && this.value  && !this.isUserInput) {
+      // Values set by property binding (e.g. Angular, especially with async bindings such as Observables/BehaviorSubjects)
+      // have led to some malfunctions (e.g. form reset not working, dynamic reloading of options, etc.). To fix this,
+      // the defaultValue must be set via property binding. However, this must NOT happen during user input,
+      // as otherwise user interaction will lead to a new defaultValue.
       this.defaultValue = this.value
       this.valueHasChanged = false;
     }

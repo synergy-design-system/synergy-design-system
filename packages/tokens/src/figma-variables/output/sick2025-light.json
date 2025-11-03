@@ -1,4 +1,96 @@
 {
+  "alert": {
+    "error": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.error.100}"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "{color.error.100}"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "{color.error.600}"
+      }
+    },
+    "informative": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.info.100}"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "{color.info.100}"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "{color.info.400}"
+      }
+    },
+    "neutral": {
+      "color-background": {
+        "type": "color",
+        "value": "#e6e1dc"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "#e6e1dc"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "#d5ccc5"
+      }
+    },
+    "success": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.success.100}"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "{color.success.100}"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "{color.success.800}"
+      }
+    },
+    "warning": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.warning.100}"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "{color.warning.100}"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "{color.warning.500}"
+      }
+    }
+  },
   "badge": {
     "error": {
       "color-background": {
@@ -375,6 +467,10 @@
       "950": {
         "type": "color",
         "value": "#0e275d"
+      },
+      "1000": {
+        "type": "color",
+        "value": "#000a37"
       }
     },
     "success": {
@@ -904,7 +1000,7 @@
     "background": {
       "color-hover": {
         "type": "color",
-        "value": "#f8f7f6"
+        "value": "#f2f0ed"
       }
     },
     "emphasis": {
@@ -914,7 +1010,7 @@
       },
       "color-active": {
         "type": "color",
-        "value": "{color.neutral.950}"
+        "value": "{color.primary.950}"
       },
       "color-hover": {
         "type": "color",

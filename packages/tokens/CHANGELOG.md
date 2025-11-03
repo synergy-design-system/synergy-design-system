@@ -1,3 +1,10 @@
+# [@synergy-design-system/tokens-v2.37.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.36.0...tokens/2.37.0) (2025-11-03)
+
+
+### Features
+
+* ✨CD update for syn-alert ([#1064](https://github.com/synergy-design-system/synergy-design-system/issues/1064)) ([f9c0656](https://github.com/synergy-design-system/synergy-design-system/commit/f9c0656a268a71ea676ed0b937d8ca77cca2c924))
+
 # [@synergy-design-system/tokens-v2.36.0](https://github.com/synergy-design-system/synergy-design-system/compare/tokens/2.35.0...tokens/2.36.0) (2025-10-29)
 
 

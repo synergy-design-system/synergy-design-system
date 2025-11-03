@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.32.0
+ * @synergy-design-system/tokens version 2.36.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -7,6 +7,36 @@
 :root, .syn-sick2025-light {
   color-scheme: light;
 
+  --syn-alert-error-color-background: var(--syn-color-error-100);
+  --syn-alert-error-color-border: var(--syn-color-error-100);
+  --syn-alert-error-color-icon: var(--syn-typography-color-text);
+  --syn-alert-error-color-indicator: var(--syn-color-error-600);
+  --syn-alert-informative-color-background: var(--syn-color-info-100);
+  --syn-alert-informative-color-border: var(--syn-color-info-100);
+  --syn-alert-informative-color-icon: var(--syn-typography-color-text);
+  --syn-alert-informative-color-indicator: var(--syn-color-info-400);
+  --syn-alert-neutral-color-background: #e6e1dc;
+  --syn-alert-neutral-color-border: #e6e1dc;
+  --syn-alert-neutral-color-icon: var(--syn-typography-color-text);
+  --syn-alert-neutral-color-indicator: #d5ccc5;
+  --syn-alert-success-color-background: var(--syn-color-success-100);
+  --syn-alert-success-color-border: var(--syn-color-success-100);
+  --syn-alert-success-color-icon: var(--syn-typography-color-text);
+  --syn-alert-success-color-indicator: var(--syn-color-success-800);
+  --syn-alert-warning-color-background: var(--syn-color-warning-100);
+  --syn-alert-warning-color-border: var(--syn-color-warning-100);
+  --syn-alert-warning-color-icon: var(--syn-typography-color-text);
+  --syn-alert-warning-color-indicator: var(--syn-color-warning-500);
+  --syn-badge-error-color-background: var(--syn-color-error-600);
+  --syn-badge-error-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-informative-color-background: #26c9ff;
+  --syn-badge-informative-color-text: var(--syn-typography-color-text);
+  --syn-badge-neutral-color-background: #d5ccc5;
+  --syn-badge-neutral-color-text: var(--syn-typography-color-text);
+  --syn-badge-success-color-background: var(--syn-color-success-800);
+  --syn-badge-success-color-text: var(--syn-typography-color-text-inverted);
+  --syn-badge-warning-color-background: var(--syn-color-warning-500);
+  --syn-badge-warning-color-text: var(--syn-typography-color-text);
   --syn-border-radius-circle: 9999px;
   --syn-border-radius-large: 8px;
   --syn-border-radius-medium: 8px;
@@ -46,6 +76,17 @@
   --syn-color-error-800: #941013;
   --syn-color-error-900: #6c0c0e;
   --syn-color-error-950: #450709;
+  --syn-color-info-50: #effaff;
+  --syn-color-info-100: #dff4ff;
+  --syn-color-info-200: #a6e9ff;
+  --syn-color-info-300: #78ddff;
+  --syn-color-info-400: #26c9ff;
+  --syn-color-info-500: #06b6f1;
+  --syn-color-info-600: #0092ce;
+  --syn-color-info-700: #0075a7;
+  --syn-color-info-800: #02628a;
+  --syn-color-info-900: #085172;
+  --syn-color-info-950: #06334b;
   --syn-color-neutral-0: #ffffff;
   --syn-color-neutral-50: #f2f2f2;
   --syn-color-neutral-100: #e7e7e7;
@@ -183,9 +224,9 @@
   --syn-input-spacing-medium: var(--syn-spacing-medium);
   --syn-input-spacing-small: var(--syn-spacing-small);
   --syn-input-width: var(--syn-border-width-small);
-  --syn-interactive-background-color-hover: #f8f7f6;
+  --syn-interactive-background-color-hover: #f2f0ed;
   --syn-interactive-emphasis-color: var(--syn-color-primary-700);
-  --syn-interactive-emphasis-color-active: var(--syn-color-neutral-950);
+  --syn-interactive-emphasis-color-active: var(--syn-color-primary-950);
   --syn-interactive-emphasis-color-hover: var(--syn-color-primary-900);
   --syn-interactive-quiet-color: var(--syn-color-neutral-950);
   --syn-interactive-quiet-color-active: var(--syn-color-primary-800);

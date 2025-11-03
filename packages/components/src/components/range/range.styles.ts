@@ -275,10 +275,10 @@ export default css`
   
 
   :host([data-user-invalid]) .active-track {
-    --track-color-active: var(--syn-badge-error-color-background ,var(--syn-input-border-color-focus-error));
+    --track-color-active: var(--syn-range-error-color ,var(--syn-input-border-color-focus-error));
   }
 
   :host([data-user-invalid]) .thumb {
-    background-color: var(--syn-badge-error-color-background ,var(--syn-input-border-color-focus-error));
+    background-color: var(--syn-range-error-color ,var(--syn-input-border-color-focus-error));
   }
 `;

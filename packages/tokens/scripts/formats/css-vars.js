@@ -70,7 +70,6 @@ export const cssVariableFormatter = {
       'typography-color-text-quiet',
       'typography-color-text-quiet-inverted',
       'color-primary-1000',
-      'interactive-background-color-action-hover',
     ].map(v => `${prefix}${v}`);
 
     /**

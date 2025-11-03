@@ -998,10 +998,6 @@
   },
   "interactive": {
     "background": {
-      "color-action-hover": {
-        "type": "color",
-        "value": "{color.primary.1000}"
-      },
       "color-hover": {
         "type": "color",
         "value": "#f2f0ed"
@@ -1185,6 +1181,20 @@
       "color": {
         "type": "color",
         "value": "{color.neutral.100}"
+      }
+    }
+  },
+  "range": {
+    "error": {
+      "color": {
+        "type": "color",
+        "value": "{color.error.600}"
+      }
+    },
+    "tick": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.500}"
       }
     }
   },

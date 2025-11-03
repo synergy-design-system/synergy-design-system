@@ -260,6 +260,8 @@
   --syn-panel-border-width: var(--syn-border-width-small);
   --syn-progress-indicator-color: var(--syn-color-primary-700);
   --syn-progress-track-color: var(--syn-color-neutral-100);
+  --syn-range-error-color: var(--syn-color-error-600);
+  --syn-range-tick-color: var(--syn-color-neutral-500);
   --syn-spacing-2x-large: 48px;
   --syn-spacing-2x-small: 4px;
   --syn-spacing-3x-large: 64px;

@@ -174,6 +174,11 @@ const transformFigmaVariables = () => {
     Object.values(collection.modes).forEach(mode => {
       const { modeId, name: modeName } = mode;
 
+      // Skip exploration modes, as these are only for testing purposes on figma
+      if (modeName.includes('exploration')) {
+        return;
+      }
+
       if (!transformed[modeName]) transformed[modeName] = {};
 
       const variableValue = resolveValue(variable, modeId);

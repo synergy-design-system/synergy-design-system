@@ -59,7 +59,7 @@ Run the following scripts in this order to create a new release (assuming you al
 pnpm install -r
 
 # Build the whole project
-npm build
+pnpm build
 
 # Optional: Make sure the MCP server has latest data
 pnpm -filter mcp build:all

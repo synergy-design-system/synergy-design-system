@@ -343,9 +343,6 @@ pnpm lint:js
 
 # Run tests with coverage
 pnpm test
-
-# Create a release
-pnpm release
 ```
 
 ### Development Workflow

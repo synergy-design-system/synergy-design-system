@@ -1,3 +1,10 @@
+# [@synergy-design-system/components-v2.56.2](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.56.1...components/2.56.2) (2025-11-03)
+
+
+### Bug Fixes
+
+* 🐛 Async delimiter change for pre-selected value in syn-select not displayed ([#1061](https://github.com/synergy-design-system/synergy-design-system/issues/1061)) ([5f6d361](https://github.com/synergy-design-system/synergy-design-system/commit/5f6d36102b669cc34aa44cded47ef49559e74529))
+
 # [@synergy-design-system/components-v2.56.1](https://github.com/synergy-design-system/synergy-design-system/compare/components/2.56.0...components/2.56.1) (2025-11-03)
 
 

@@ -228,6 +228,59 @@ describe('<syn-select>', () => {
     });
   });
 
+  describe('#1056', () => {
+    it('should show correct value if delimiter was changed async', async () => {
+      const el = await fixture<SynSelect>(html`
+        <syn-select value="Option 1">
+          <syn-option value="Option 1">Option 1</syn-option>
+          <syn-option value="Option 2">Option 2</syn-option>
+        </syn-select>
+      `);
+      const options = el.querySelectorAll('syn-option');
+      const firstOption = options[0];
+
+      expect(el.value).to.equal('');
+      expect(el.displayLabel).to.equal('');
+
+      el.delimiter = '~';
+      await el.updateComplete;
+      await firstOption.updateComplete;
+
+      expect(el.value).to.equal('Option 1');
+      expect(el.displayLabel).to.equal('Option 1');
+    });
+
+    it('should show correct value if delimiter was changed async for a value set via property binding', async () => {
+      const el = await fixture<SynSelect>(html`
+        <syn-select>
+          <syn-option value="Option 1">Option 1</syn-option>
+          <syn-option value="Option 2">Option 2</syn-option>
+        </syn-select>
+      `);
+
+      // This simulates a property binding of angular with e.g. an Observable / BehaviorSubject
+      await new Promise(resolve => {
+        setTimeout(() => {
+          el.value = 'Option 1';
+          resolve(true);
+        }, 10);
+      });
+      await el.updateComplete;
+      const options = el.querySelectorAll('syn-option');
+      const firstOption = options[0];
+
+      expect(el.value).to.equal('');
+      expect(el.displayLabel).to.equal('');
+
+      el.delimiter = '~';
+      await el.updateComplete;
+      await firstOption.updateComplete;
+
+      expect(el.value).to.equal('Option 1');
+      expect(el.displayLabel).to.equal('Option 1');
+    });
+  });
+
   describe('utility functions', () => {
     describe('compareValues', () => {
       it('should return true for equal values', () => {

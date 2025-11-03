@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.16.0...mcp/1.17.0) (2025-11-03)
+
+
+### Features
+
+* ✨CD update for syn-alert ([#1064](https://github.com/synergy-design-system/synergy-design-system/issues/1064)) ([f9c0656](https://github.com/synergy-design-system/synergy-design-system/commit/f9c0656a268a71ea676ed0b937d8ca77cca2c924))
+
 # [@synergy-design-system/mcp-v1.16.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.15.0...mcp/1.16.0) (2025-10-29)
 
 

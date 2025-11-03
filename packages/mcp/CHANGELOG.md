@@ -1,3 +1,10 @@
+# [@synergy-design-system/mcp-v1.17.1](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.17.0...mcp/1.17.1) (2025-11-03)
+
+
+### Bug Fixes
+
+* 🐛 Show scrollbars for closed sticky variant of side-nav ([#1062](https://github.com/synergy-design-system/synergy-design-system/issues/1062)) ([926905b](https://github.com/synergy-design-system/synergy-design-system/commit/926905bd15c87948700e5f32382547b2a1c43821))
+
 # [@synergy-design-system/mcp-v1.17.0](https://github.com/synergy-design-system/synergy-design-system/compare/mcp/1.16.0...mcp/1.17.0) (2025-11-03)
 
 

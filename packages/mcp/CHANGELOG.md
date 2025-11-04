@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.19.0
+
+### Minor Changes
+
+- Released on: 2025-11-04
+
+  chore: ✨ Update MCP with latest metadata
+
 ## 1.18.0
 
 ### Minor Changes

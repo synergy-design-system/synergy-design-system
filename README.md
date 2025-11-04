@@ -20,15 +20,18 @@ The code resides on GitHub: https://github.com/synergy-design-system/synergy-des
 ## Packages
 
 This repository is comprised of several sub-packages.
-|package|description|
-|--|--|
-|tokens|design tokens which contain basic design variables for colors, spacings, sizes, fonts etc. They are always in sync with the Figma library, and the base for CSS styles|
-|assets|icons and logos|
-|components|user interface components based on custom elements and lit|
-|docs|storybook documentation showing all components and their properties in an interative environment |
-|angular|angular wrappers for better DX in Angular (auto generated)|
-|react|react wrappers for better DX in React (auto generated)|
-|vue|vue wrappers for better DX in VueJS (auto generated)|
+
+| package    | description                                                                                                                                                            |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| angular    | angular wrappers for better DX in Angular (auto generated)                                                                                                             |
+| assets     | icons and logos                                                                                                                                                        |
+| components | user interface components based on custom elements and lit                                                                                                             |
+| docs       | storybook documentation showing all components and their properties in an interative environment                                                                       |
+| mcp        | Source for the synergy MCP server                                                                                                                                      |
+| react      | react wrappers for better DX in React (auto generated)                                                                                                                 |
+| styles     | CSS Helper classes                                                                                                                                                     |
+| tokens     | design tokens which contain basic design variables for colors, spacings, sizes, fonts etc. They are always in sync with the Figma library, and the base for CSS styles |
+| vue        | vue wrappers for better DX in VueJS (auto generated)                                                                                                                   |
 
 ---
 

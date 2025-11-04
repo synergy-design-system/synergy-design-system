@@ -16,7 +16,7 @@ jobs:
           path: "synergy-design-system"
 
       - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm
+        uses: ./synergy-design-system/.github/actions/setup-node-pnpm
         with:
           skip-install: 'true'
           with-build: 'false'

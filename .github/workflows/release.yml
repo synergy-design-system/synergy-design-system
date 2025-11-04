@@ -55,6 +55,9 @@ jobs:
           # Creates changelogs and bumps versions
           pnpm changeset version
 
+          # Make sure to rebuild our sources as we may get errors otherwise
+          pnpm --filter components build
+
           # Build MCP with updated metadata after version changes
           echo "Building MCP with updated metadata..."
           if ! pnpm --filter mcp build; then

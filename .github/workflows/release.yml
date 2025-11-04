@@ -18,6 +18,13 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      # Needed to allow pushes back to the repository
+      - name: Configure git for GitHub Actions
+        run: |
+          git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
+
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:

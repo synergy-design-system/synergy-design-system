@@ -21,17 +21,15 @@
     "build": "pnpm --recursive --if-present build",
     "clean": "rm -rf node_modules && find . -name dist -type d | xargs rm -rf && find . -name node_modules -type d | xargs rm -rf && pnpm install && pnpm build",
     "lint": "pnpm --recursive --if-present lint",
-    "release": "pnpm --recursive --if-present --workspace-concurrency=1 release",
-    "release.dry": "pnpm --recursive --if-present --workspace-concurrency=1 release.dry",
     "format": "pnpm run /^format..*/",
     "format.prettier": "pnpm exec prettier . -w",
-    "format.eslint": "pnpm --recursive --if-present format.eslint"
+    "format.eslint": "pnpm --recursive --if-present format.eslint",
+    "release.validate": "node packages/_private/release-utils/src/lint.js",
+    "release.create": "node packages/_private/release-utils/src/create.js",
+    "release.status": "pnpm changeset status --since=main"
   },
   "private": true,
   "pnpm": {
-    "patchedDependencies": {
-      "semantic-release-monorepo@7.0.5": "patches/semantic-release-monorepo@7.0.5.patch"
-    },
     "onlyBuiltDependencies": [
       "@bundled-es-modules/glob",
       "@parcel/watcher",
@@ -43,6 +41,8 @@
     ]
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.5.1",
+    "@changesets/cli": "^2.29.7",
     "prettier": "^3.6.2"
   },
   "packageManager": "pnpm@10.12.1+sha512.f0dda8580f0ee9481c5c79a1d927b9164f2c478e90992ad268bbb2465a736984391d6333d2c327913578b2804af33474ca554ba29c04a8b13060a717675ae3ac"

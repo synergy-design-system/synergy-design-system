@@ -1,0 +1,25 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": [
+    "../packages/_private/release-utils/src/changelog.js",
+    {
+      "repo": "synergy-design-system/synergy-design-system"
+    }],
+  "commit": false,
+  "fixed": [
+    [
+      "@synergy-design-system/components",
+      "@synergy-design-system/angular",
+      "@synergy-design-system/react",
+      "@synergy-design-system/vue"
+    ]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "privatePackages": false,
+  "___experimentalUnsafeOptions_WILL_CHANGE_IN_PATCH": {
+    "onlyUpdatePeerDependentsWhenOutOfRange": true
+  }
+}

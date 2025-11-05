@@ -742,6 +742,10 @@
         "type": "color",
         "value": "{color.neutral.950}"
       },
+      "color-active": {
+        "type": "color",
+        "value": "{color.primary.800}"
+      },
       "color-disabled": {
         "type": "color",
         "value": "{color.neutral.950}"
@@ -948,19 +952,19 @@
     "readonly-background": {
       "color": {
         "type": "color",
-        "value": "#f2f0ed"
+        "value": "#d5ccc5"
       },
       "color-disabled": {
         "type": "color",
-        "value": "#f2f0ed"
+        "value": "#d5ccc5"
       },
       "color-focus": {
         "type": "color",
-        "value": "#f2f0ed"
+        "value": "#d5ccc5"
       },
       "color-hover": {
         "type": "color",
-        "value": "#f2f0ed"
+        "value": "#d5ccc5"
       }
     },
     "required": {

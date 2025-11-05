@@ -74,6 +74,8 @@ export const cssVariableFormatter = {
       'typography-color-text-quiet-inverted',
       'color-primary-1000',
       'interactive-background-color-action-hover',
+
+      'input-border-color-active',
     ].map(v => `${prefix}${v}`);
 
     /**

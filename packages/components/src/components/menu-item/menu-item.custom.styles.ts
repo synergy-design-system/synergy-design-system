@@ -33,7 +33,7 @@ export default css`
    */
   .menu-item .menu-item__prefix::slotted(syn-icon),
   .menu-item .menu-item__suffix::slotted(syn-icon) {
-    color: var(--syn-color-neutral-800);
+    color: var(--syn-input-icon-color);
     font-size: var(--syn-font-size-x-large);
   }
 

@@ -85,7 +85,7 @@ const createChangesetContent = (
   bumpType,
   changeset,
 ) => {
-  const packages = changeset.changedPackages?.map(pkg => `"${pkg}": ${bumpType}`).join('\n');
+  const packages = changeset.changedPackages?.map(pkg => `"${pkg}": ${bumpType}`).join('\n') || '';
   const message = createHumanReadableMessageFromBranchName(branchName);
   return `
 ---

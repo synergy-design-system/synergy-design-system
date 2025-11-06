@@ -13,6 +13,7 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-nav-item');
 const { overrideArgs } = storybookHelpers('syn-nav-item');
@@ -29,6 +30,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-nav-item',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('12362-10775'),
     docs: {
       description: {
@@ -36,7 +40,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'SICK2018'],
+  tags: ['Navigation', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-nav-item',
 };
 export default meta;
@@ -92,7 +96,10 @@ export const HorizontalNavigation: Story = {
     },
   },
   render: () => html`
-    <syn-nav-item current horizontal>Horizontal navigation item</syn-nav-item>
+    <div style="display: flex; gap: var(--syn-spacing-large);">
+      <syn-nav-item current horizontal>Horizontal navigation item</syn-nav-item>
+      <syn-nav-item current horizontal>Horizontal navigation item</syn-nav-item>
+    </div>
   `,
 };
 

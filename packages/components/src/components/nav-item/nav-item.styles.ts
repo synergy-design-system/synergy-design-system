@@ -41,7 +41,7 @@ export default css`
     border: none;
     box-shadow: inset 0 -1px 0 0 transparent;
     box-sizing: border-box;
-    color: var(--syn-color-neutral-950);
+    color: var(--syn-typography-color-text);
     cursor: pointer;
     display: inline-flex;
     font: var(--syn-font-sans);
@@ -103,7 +103,7 @@ export default css`
    * Basic set up for the nav item prefix.
    */
   .nav-item:not(.nav-item--disabled)::before {
-    background: var(--syn-color-neutral-600);
+    background: var(--syn-interactive-background-color-hover, var(--syn-color-neutral-50));
     content: '';
     display: block;
     height: 100%;
@@ -120,7 +120,7 @@ export default css`
    * We use opacity to make sure the border-bottom is visible if used in the prio-nav in header
    */
   .nav-item:not(.nav-item--disabled):hover::before {
-    opacity: 0.11;
+    opacity: 1;
   }
 
   /**
@@ -164,6 +164,7 @@ export default css`
    * The chevron indicates the use as a <details /> element OR a link
    */
   .nav-item__chevron {
+    color: var(--syn-interactive-quiet-color);
     font-size: var(--syn-font-size-x-large);
     margin-inline-start: var(--syn-spacing-x-small);
     rotate: 0deg;
@@ -193,7 +194,7 @@ export default css`
   /**
    * Horizontal navigation items should not break words
    */
-    .nav-item--horizontal .nav-item__content-container {
+  .nav-item--horizontal .nav-item__content-container {
     font-weight: var(--syn-font-weight-bold);
     white-space: nowrap;
   }
@@ -258,11 +259,11 @@ export default css`
   }
 
   .current-indicator--visible.current-indicator--disabled {
-    background: var(--syn-color-neutral-500);
+    background: var(--syn-interactive-background-color-hover, var(--syn-color-neutral-500));
   }
 
   .current-indicator--visible {
-    background: var(--syn-color-primary-600);
+    background: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
   }
 
   .nav-item--horizontal .current-indicator {
@@ -295,28 +296,18 @@ export default css`
    * Dividers are optionally displayed in horizontal nav items
    */
   .divider {
-    --color: var(--syn-color-neutral-200);
-
     left: var(--syn-spacing-medium);
     margin: 0;
     position: absolute;
     right: var(--syn-spacing-medium);
     top: 0;
-    transition: border var(--syn-transition-fast) ease-in-out;
   }
 
   /**
-   * Hide the divider for active elements
+   * Make sure the divider blends into the background on hover
    */
-  .nav-item:focus-visible .divider {
-    --color: transparent;
-  }
-
-  /**
-   * Make sure the divider is not visible anymore when hovering
-   */
-  .nav-item:not(.nav-item--disabled):hover .divider {
-    --color: transparent;
+  .nav-item--vertical:hover .divider {
+    --color: var(--syn-interactive-background-color-hover);
   }
 
   /**

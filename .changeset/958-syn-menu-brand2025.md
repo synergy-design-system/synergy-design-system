@@ -4,4 +4,4 @@
 "@synergy-design-system/tokens": minor
 ---
 
-feat: ✨ syn menu brand2025 (#958)
+feat: ✨ Brand updates for `<syn-menu>`, `<syn-menu-item>` and `<syn-menu-label>` (#958)

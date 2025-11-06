@@ -42,6 +42,20 @@ export default css`
     color: var(--syn-color-neutral-0);
   }
 
+  /* Adjust background and text color for focused elements */
+  :host(:focus-visible) .menu-item {
+    background-color: var(--syn-interactive-background-color-focus, var(--syn-color-primary-600));
+    color: var(--syn-interactive-color-focus, var(--syn-color-neutral-0));
+  }
+
+  /* stylelint-disable selector-not-notation, plugin/no-unsupported-browser-features */
+  :host(:hover:not([aria-disabled='true'], :focus-visible)) .menu-item,
+  .menu-item--submenu-expanded {
+    background-color: var(--syn-interactive-background-color-hover, var(--syn-color-neutral-100));
+    color: var(--syn-interactive-color-hover, var(--syn-color-neutral-1000));
+  }
+  /* stylelint-enable selector-not-notation, plugin/no-unsupported-browser-features */
+
   /**
    * Adjust the size of icons
    */

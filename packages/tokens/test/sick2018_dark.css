@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.37.0
+ * @synergy-design-system/tokens version 2.38.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -213,10 +213,10 @@
   --syn-input-readonly-color-disabled: var(--syn-color-neutral-800);
   --syn-input-readonly-color-focus: var(--syn-color-neutral-950);
   --syn-input-readonly-color-hover: var(--syn-color-neutral-950);
-  --syn-input-readonly-background-color: var(--syn-color-neutral-50);
-  --syn-input-readonly-background-color-disabled: var(--syn-color-neutral-50);
-  --syn-input-readonly-background-color-focus: var(--syn-color-neutral-50);
-  --syn-input-readonly-background-color-hover: var(--syn-color-neutral-50);
+  --syn-input-readonly-background-color: var(--syn-color-neutral-200);
+  --syn-input-readonly-background-color-disabled: var(--syn-color-neutral-200);
+  --syn-input-readonly-background-color-focus: var(--syn-color-neutral-200);
+  --syn-input-readonly-background-color-hover: var(--syn-color-neutral-200);
   --syn-input-required-content: "*";
   --syn-input-required-content-color: var(--syn-input-label-color);
   --syn-input-required-content-offset: -2px;

@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.37.0
+ * @synergy-design-system/tokens version 2.38.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -87,10 +87,10 @@
   --syn-color-info-800: #a6e9ff;
   --syn-color-info-900: #dff4ff;
   --syn-color-info-950: #effaff;
-  --syn-color-neutral-0: #000414;
-  --syn-color-neutral-50: #000724;
+  --syn-color-neutral-0: #000206;
+  --syn-color-neutral-50: #00051a;
   --syn-color-neutral-100: #000a37;
-  --syn-color-neutral-200: #141e47;
+  --syn-color-neutral-200: #0e1633;
   --syn-color-neutral-300: #262f55;
   --syn-color-neutral-400: #404769;
   --syn-color-neutral-500: #4d5473;
@@ -170,9 +170,9 @@
   --syn-input-background-color-hover: var(--syn-input-background-color);
   --syn-input-border-color: var(--syn-color-neutral-1000);
   --syn-input-border-color-disabled: var(--syn-color-neutral-1000);
-  --syn-input-border-color-focus: var(--syn-color-primary-500);
+  --syn-input-border-color-focus: var(--syn-color-primary-400);
   --syn-input-border-color-focus-error: var(--syn-color-error-600);
-  --syn-input-border-color-hover: var(--syn-color-primary-500);
+  --syn-input-border-color-hover: var(--syn-color-primary-400);
   --syn-input-border-radius-large: var(--syn-border-radius-medium);
   --syn-input-border-radius-medium: var(--syn-border-radius-medium);
   --syn-input-border-radius-small: var(--syn-border-radius-medium);
@@ -213,10 +213,10 @@
   --syn-input-readonly-color-disabled: var(--syn-color-neutral-800);
   --syn-input-readonly-color-focus: var(--syn-color-neutral-950);
   --syn-input-readonly-color-hover: var(--syn-color-neutral-950);
-  --syn-input-readonly-background-color: var(--syn-color-neutral-200);
-  --syn-input-readonly-background-color-disabled: var(--syn-color-neutral-200);
-  --syn-input-readonly-background-color-focus: var(--syn-color-neutral-200);
-  --syn-input-readonly-background-color-hover: var(--syn-color-neutral-200);
+  --syn-input-readonly-background-color: var(--syn-color-neutral-400);
+  --syn-input-readonly-background-color-disabled: var(--syn-color-neutral-400);
+  --syn-input-readonly-background-color-focus: var(--syn-color-neutral-400);
+  --syn-input-readonly-background-color-hover: var(--syn-color-neutral-400);
   --syn-input-required-content: "*";
   --syn-input-required-content-color: var(--syn-input-label-color);
   --syn-input-required-content-offset: -2px;
@@ -225,12 +225,12 @@
   --syn-input-spacing-small: var(--syn-spacing-small);
   --syn-input-width: var(--syn-border-width-small);
   --syn-interactive-background-color-hover: var(--syn-color-neutral-100);
-  --syn-interactive-emphasis-color: var(--syn-color-primary-500);
-  --syn-interactive-emphasis-color-active: var(--syn-color-primary-800);
-  --syn-interactive-emphasis-color-hover: var(--syn-color-primary-700);
+  --syn-interactive-emphasis-color: var(--syn-color-primary-400);
+  --syn-interactive-emphasis-color-active: var(--syn-color-primary-700);
+  --syn-interactive-emphasis-color-hover: var(--syn-color-primary-600);
   --syn-interactive-quiet-color: var(--syn-color-neutral-1000);
-  --syn-interactive-quiet-color-active: var(--syn-color-primary-600);
-  --syn-interactive-quiet-color-hover: var(--syn-color-primary-500);
+  --syn-interactive-quiet-color-active: var(--syn-color-primary-500);
+  --syn-interactive-quiet-color-hover: var(--syn-color-primary-400);
   --syn-letter-spacing-dense: normal; /** Shoelace compatibility DO NOT USE */
   --syn-letter-spacing-denser: normal; /** Shoelace compatibility DO NOT USE */
   --syn-letter-spacing-loose: normal; /** Shoelace compatibility DO NOT USE */
@@ -274,8 +274,8 @@
   --syn-spacing-x-small: 8px;
   --syn-spinner-opacity: 0.4;
   --syn-table-background-color: var(--syn-panel-background-color);
-  --syn-table-background-color-alternating: var(--syn-color-neutral-100);
-  --syn-table-background-color-header: var(--syn-color-neutral-200);
+  --syn-table-background-color-alternating: var(--syn-color-neutral-200);
+  --syn-table-background-color-header: var(--syn-color-neutral-300);
   --syn-table-border-color: var(--syn-color-neutral-300);
   --syn-table-shadow-end: rgba(0, 0, 0, 0);
   --syn-table-shadow-start: rgba(0, 0, 0, 0.8);

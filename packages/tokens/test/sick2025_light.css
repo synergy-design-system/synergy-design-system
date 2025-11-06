@@ -201,6 +201,7 @@
   --syn-input-icon-color: var(--syn-color-neutral-950);
   --syn-input-icon-color-hover: var(--syn-color-neutral-950);
   --syn-input-icon-icon-clearable-color: var(--syn-color-neutral-500);
+  --syn-input-icon-icon-clearable-color-active: var(--syn-color-neutral-800);
   --syn-input-icon-icon-clearable-color-hover: var(--syn-color-neutral-700);
   --syn-input-label-color: var(--syn-color-neutral-950);
   --syn-input-label-font-size-large: var(--syn-font-size-large);
@@ -209,14 +210,11 @@
   --syn-input-letter-spacing: normal;
   --syn-input-placeholder-color: var(--syn-color-neutral-700);
   --syn-input-placeholder-color-disabled: var(--syn-color-neutral-700);
-  --syn-input-readonly-color: var(--syn-color-neutral-800);
-  --syn-input-readonly-color-disabled: var(--syn-color-neutral-800);
-  --syn-input-readonly-color-focus: var(--syn-color-neutral-950);
   --syn-input-readonly-color-hover: var(--syn-color-neutral-950);
-  --syn-input-readonly-background-color: #d5ccc5;
-  --syn-input-readonly-background-color-disabled: #d5ccc5;
-  --syn-input-readonly-background-color-focus: #d5ccc5;
-  --syn-input-readonly-background-color-hover: #d5ccc5;
+  --syn-input-readonly-background-color: #e6e1dc;
+  --syn-input-readonly-background-color-disabled: #e6e1dc;
+  --syn-input-readonly-background-color-focus: #e6e1dc;
+  --syn-input-readonly-background-color-hover: #e6e1dc;
   --syn-input-required-content: "*";
   --syn-input-required-content-color: var(--syn-input-label-color);
   --syn-input-required-content-offset: -2px;
@@ -250,8 +248,8 @@
   --syn-link-underline-outline: 25%;
   --syn-logo-color: var(--syn-color-primary-700);
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-overlay-background-blur: 16px;
-  --syn-overlay-background-color: rgba(0, 10, 55, 0.3);
+  --syn-overlay-background-blur: 8px;
+  --syn-overlay-background-color: rgba(0, 5, 26, 0.3);
   --syn-page-background: #f8f7f6;
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: #e6e1dc;

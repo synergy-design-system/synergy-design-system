@@ -4,6 +4,6 @@
 "@synergy-design-system/tokens": minor
 ---
 
-feat: ✨ syn dialog brand2025 (#946)
+feat: ✨ Brand updates for `<syn-dialog>` (#946)
 
-Adds compatibility for `<syn-dialog>` for the new `brand2025 theme`.
+Also made sure to have smaller `blur` settings as the token has double the size in Figma.

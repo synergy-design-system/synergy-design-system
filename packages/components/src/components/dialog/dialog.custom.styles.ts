@@ -30,6 +30,12 @@ export default css`
     padding: var(--syn-spacing-large) var(--syn-spacing-small) var(--syn-spacing-large) 0;
   }
 
+  /* Overlay Background */
+  .dialog__overlay {
+    /* #946: Add background blur for sick 2025 */
+    backdrop-filter: blur(var(--syn-overlay-background-blur, 0));
+  }
+
   /**
    * We need this to make sure we are big enough as defined in the layout
    * When omitting this statement, we will get rounding problems via line-height

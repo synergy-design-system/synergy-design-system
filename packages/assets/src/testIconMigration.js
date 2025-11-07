@@ -3,7 +3,7 @@ import { defaultIcons as i2015 } from '../dist/default-icons.js';
 import { outlineIcons as i2025 } from '../dist/sick2025-outline-icons.js';
 
 /**
- * Static mapping between old icon names and new icon names when no direct or similarity can be found
+ * Static mapping between old icon names and new icon names when no direct can be found
  */
 const STATIC_MAP = {
   access_alarm: 'alarm',
@@ -184,7 +184,6 @@ const STATUS = {
   MAPPED_BY_REVERSING: 'MAPPED_BY_REVERSING',
   MAPPED_STATICALLY: 'MAPPED_STATICALLY',
   MAPPED_DIRECTLY: 'MAPPED_DIRECTLY',
-  MAPPED_WITH_SIMILARITY: 'MAPPED_WITH_SIMILARITY',
   MAPPED_WITHOUT_SUFFIX: 'MAPPED_WITHOUT_SUFFIX',
   NOT_FOUND_IN_OLD: 'NOT_FOUND_IN_OLD',
   UNKNOWN: 'UNKNOWN',
@@ -197,48 +196,8 @@ const STATUS = {
  * @property {string | null} newName The new icon name, or null if not found
  */
 
-/**
- * Simple Soundex implementation for US English, lowercase only.
- * @param {string} word
- * @returns {string} Soundex code
- */
-function soundex(word) {
-  if (!word || typeof word !== 'string') return '';
-
-  // Only lowercase letters
-  word = word.toLowerCase().replace(/[^a-z]/g, '');
-
-  if (!word) return '';
-
-  const codes = {
-    a: '', e: '', i: '', o: '', u: '', y: '', h: '', w: '',
-    b: '1', f: '1', p: '1', v: '1',
-    c: '2', g: '2', j: '2', k: '2', q: '2', s: '2', x: '2', z: '2',
-    d: '3', t: '3',
-    l: '4',
-    m: '5', n: '5',
-    r: '6'
-  };
-
-  const firstLetter = word[0];
-  let result = firstLetter;
-  let prevCode = codes[firstLetter];
-
-  for (let i = 1; i < word.length; i++) {
-    const code = codes[word[i]];
-    if (code && code !== prevCode) {
-      result += code;
-    }
-    prevCode = code;
-  }
-
-  result = result.padEnd(4, '0').slice(0, 4);
-  return result;
-}
-
 const keys2015 = Object.keys(i2015);
 const keys2025 = Object.keys(i2025);
-const soundexKeys2025 = keys2025.map(soundex);
 
 /**
  * Map old icon names to new icon names
@@ -287,31 +246,6 @@ const mapIconName = oldName => {
     console.error(STATIC_MAP[oldName]);
   }
 
-  // Before giving up, we try to create a list of icons that would be feasible alternatives
-  // For this, we take the name of the original icon and compute its soundex code
-  // We try to match this against the soundex of all new icons
-  const oldSoundex = soundex(oldName);
-  const possibleMatches = keys2025.filter((_, index) => {
-    return soundexKeys2025[index] === oldSoundex;
-  });
-  
-  // If we have possible matches, return them
-  if (possibleMatches.length > 0) {
-    return {
-      name: oldName,
-      newName: possibleMatches.join(', '),
-      status: STATUS.MAPPED_WITH_SIMILARITY,
-    };
-  }
-
-  if (possibleMatches.length > 0) {
-    return {
-      name: oldName,
-      newName: possibleMatches.join(', '),
-      status: STATUS.MAPPED_WITH_SIMILARITY,
-    };
-  }
-
   return {
     name: oldName,
     newName: null,
@@ -326,10 +260,42 @@ const groupedResults = results
     if (!acc[result.status]) {
       acc[result.status] = [];
     }
-    acc[result.status].push(result);
+    acc[result.status].push({
+      name: result.name,
+      newName: result.newName,
+    });
     return acc;
   }, {});
 
-console.log('-------');
-console.log(JSON.stringify(groupedResults, null, 2));
-console.log('-------');
+// Write output as a js file
+const output = `
+import { getBasePath } from '../../utilities/base-path.js';
+import type { IconLibrary } from './library.js';
+
+const getIconMigrationName = (iconName: string) => {
+  switch (iconName) {
+    ${
+      results
+        .filter(result => result.status !== STATUS.MAPPED_DIRECTLY)
+        .map(result => {
+          return `    case '${result.name}': return '${result.newName}';`;
+        })
+        .join('\n')
+    }
+
+    // Default case: We have a direct mapping
+    default:
+      return iconName;
+  }
+};
+
+export const migrationLibrary: IconLibrary = {
+  name: 'default',
+  resolver: name => {
+    const mappedName = getIconMigrationName(name);
+    return getBasePath(\`assets/icons/\$\{mappedName\}.svg\`);  
+  },
+};
+`;
+
+console.log(output);

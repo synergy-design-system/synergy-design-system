@@ -15,13 +15,14 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-card');
 const { overrideArgs } = storybookHelpers('syn-card');
 const { generateTemplate } = storybookTemplate('syn-card');
 
 const createFooter = ({
-  buttonText = 'More Info',
+  buttonText = 'More info',
   footerText = 'Optional information',
 } = {}) => `
   <footer slot="footer">
@@ -73,7 +74,7 @@ const meta: Meta = {
       type: 'slot',
       value: `
         <h3>Headline</h3>
-        This are some happy employees, but not just any employees. These are SICK employees.
+        These are some happy employees, but not just any employees. These are SICK employees.
       `,
     },
     {
@@ -85,6 +86,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-card',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('15409-74106'),
     docs: {
       description: {
@@ -92,7 +96,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure', 'SICK2018'],
+  tags: ['Structure', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-card',
 };
 export default meta;
@@ -209,7 +213,7 @@ export const Images: Story = {
   render: () => html`
     <syn-card class="card-image">
       <img slot="image" src="https://synergy-design-system.github.io/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
-      This are some happy employees, but not just any employees. These are SICK employees.
+      These are some happy employees, but not just any employees. These are SICK employees.
     </syn-card>
 
     <style>
@@ -231,7 +235,7 @@ export const SharpCard: Story = {
   render: () => html`
     <syn-card class="sharp-card" sharp>
       <img slot="image" src="https://synergy-design-system.github.io/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
-      This are some happy employees, but not just any employees. These are SICK employees.
+      These are some happy employees, but not just any employees. These are SICK employees.
     </syn-card>
 
     <style>

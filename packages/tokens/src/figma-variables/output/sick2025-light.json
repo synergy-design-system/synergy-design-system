@@ -957,6 +957,10 @@
       "color-hover": {
         "type": "color",
         "value": "#e6e1dc"
+      },
+      "opacity": {
+        "type": "color",
+        "value": "rgba(230, 225, 220, 0.70)"
       }
     },
     "required": {

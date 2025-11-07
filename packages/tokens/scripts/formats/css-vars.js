@@ -75,11 +75,15 @@ export const cssVariableFormatter = {
       'color-primary-1000',
       'interactive-background-color-action-hover',
 
+      'progress-track-readonly-color',
+
       'input-border-color-active',
+      'input-icon-icon-clearable-color-active',
+      'input-readonly-background-opacity',
     ].map(v => `${prefix}${v}`);
 
     /**
-     * @type {string[]} List of allready ignored variables (to not spam the console)
+     * @type {string[]} List of already ignored variables (to not spam the console)
      */
     const alreadyIgnoredList = [];
 

@@ -22,7 +22,7 @@ const { overrideArgs } = storybookHelpers('syn-card');
 const { generateTemplate } = storybookTemplate('syn-card');
 
 const createFooter = ({
-  buttonText = 'More Info',
+  buttonText = 'More info',
   footerText = 'Optional information',
 } = {}) => `
   <footer slot="footer">
@@ -74,7 +74,7 @@ const meta: Meta = {
       type: 'slot',
       value: `
         <h3>Headline</h3>
-        This are some happy employees, but not just any employees. These are SICK employees.
+        These are some happy employees, but not just any employees. These are SICK employees.
       `,
     },
     {
@@ -213,7 +213,7 @@ export const Images: Story = {
   render: () => html`
     <syn-card class="card-image">
       <img slot="image" src="https://synergy-design-system.github.io/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
-      This are some happy employees, but not just any employees. These are SICK employees.
+      These are some happy employees, but not just any employees. These are SICK employees.
     </syn-card>
 
     <style>
@@ -235,7 +235,7 @@ export const SharpCard: Story = {
   render: () => html`
     <syn-card class="sharp-card" sharp>
       <img slot="image" src="https://synergy-design-system.github.io/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
-      This are some happy employees, but not just any employees. These are SICK employees.
+      These are some happy employees, but not just any employees. These are SICK employees.
     </syn-card>
 
     <style>

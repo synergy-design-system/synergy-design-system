@@ -108,6 +108,76 @@ const STATIC_MAP = {
   pause_circle_filled: 'pause_circle',
   panorama_wide_angle_select: 'panorama_wide_angle',
   panorama_vertical_select: 'panorama_vertical',
+  panorama_photosphere_select: 'panorama_photosphere', // @todo: Not a good match, but there is no alternative
+  panorama_horizontal_select: 'panorama_horizontal', // @todo: Not a good match, but there is no alternative
+  notifications_none: 'notifications',
+  no_encryption_gmailerrorred: 'no_encryption',
+  nightlight_round: 'nightlight',
+  movie_creation: 'movie',
+  motion_photos_pause: 'motion_photos_paused',
+  money_off_csred: 'money_off',
+  mode: 'edit',
+  markunread: 'markunread_mailbox',
+  maps_home_work: 'home_work',
+  loop: 'repeat', // @todo: Not quite the same, but ymmv
+  local_printshop: 'print',
+  local_play: 'local_activity',
+  local_phone: 'call',
+  local_offer: 'loyalty',
+  local_movies: 'theaters',
+  local_hotel: 'hotel',
+  local_grocery_store: 'shopping_cart',
+  launch: 'open_in_new',
+  laptop: 'laptop_mac',
+  iso: 'MISSING',
+  insert_photo: 'wallpaper',
+  insert_link: 'link',
+  insert_invitation: 'event',
+  insert_emoticon: 'sentiment_satisfied',
+  insert_drive_file: 'note',
+  insert_comment: 'comment',
+  insert_chart_outlined: 'add_chart',
+  import_export: 'height', // @todo: This does not match! But at least its two arrows
+  highlight_off: 'cancel',
+  highlight_alt: 'ink_selection',
+  headset: 'headphones',
+  fire_hydrant_alt: 'fire_hydrant',
+  favorite_border: 'favorite',
+  emoji_emotions: 'sentiment_satisfied',
+  drive_eta: 'directions_car',
+  do_not_disturb_alt: 'do_not_disturb_off',
+  do_not_disturb: 'do_not_disturb_off',
+  do_disturb_on: 'do_not_disturb_on',
+  do_disturb_off: 'do_not_disturb_on',
+  do_disturb_alt: 'do_not_disturb_on',
+  do_disturb: 'do_not_disturb_off',
+  directions_transit_filled: 'directions_subway',
+  directions_transit: 'directions_subway',
+  directions_subway_filled: 'directions_subway',
+  directions_railway_filled: 'directions_railway',
+  directions_car_filled: 'directions_car',
+  directions_bus_filled: 'directions_bus',
+  directions_boat_filled: 'directions_boat',
+  delivery_dining: 'moped',
+  data_saver_off: 'MISSING', // add icon still there, but off not?
+  crop_original: 'wallpaper', // Originally, this is just the picture icon
+  control_point: 'add_circle',
+  color_lens: 'palette',
+  collections: 'collections_bookmark',
+  closed_caption_off: 'closed_caption',
+  ['class']: 'MISSING', // @todo: No idea what this was, thanks for the class keyword JS
+  card_giftcard: 'featured_seasonal_and_gifts',
+  business: 'apartment',
+  browser_not_supported: 'web_asset_off',
+  bookmark_border: 'bookmark',
+  bluetooth_audio: 'bluetooth',
+  battery_std: 'battery_full',
+  audiotrack: 'music_note',
+  assistant_photo: 'flag',
+  assessment: 'analytics',
+  app_settings_alt: 'phonelink_setup',
+  addchart: 'add_chart',
+  add_ic_call: 'add_call',
 };
 
 const STATUS = {
@@ -252,7 +322,6 @@ const mapIconName = oldName => {
 const results = keys2015.map(mapIconName);
 
 const groupedResults = results
-  .filter(status => status.status === STATUS.MAPPED_WITH_SIMILARITY)
   .reduce((acc, result) => {
     if (!acc[result.status]) {
       acc[result.status] = [];
@@ -262,14 +331,5 @@ const groupedResults = results
   }, {});
 
 console.log('-------');
-console.log(JSON.stringify(groupedResults[STATUS.MAPPED_WITH_SIMILARITY], null, 2));
+console.log(JSON.stringify(groupedResults, null, 2));
 console.log('-------');
-
-// console.log('------');
-// console.log(groupedResults[STATUS.MAPPED_STATICALLY].map(e => `${e.name} -> ${e.newName}`).join('\n'));
-// console.log('------');
-
-// console.log('Summary:');
-// Object.entries(groupedResults).forEach(([status, items]) => {
-//   console.log(`- ${status}: ${items.length} icons`);
-// });

@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.40.0
+
+### Minor Changes
+
+- [#1072](https://github.com/synergy-design-system/synergy-design-system/pull/1072) [`81dae1e`](https://github.com/synergy-design-system/synergy-design-system/commit/81dae1e912bcbdefb4346b4a3bbc245f7fac9f12) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-07
+
+  feat: ✨ Brand updates for `<syn-card>` (#942)
+
 ## 2.39.0
 
 ### Minor Changes

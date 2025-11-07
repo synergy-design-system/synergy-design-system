@@ -345,8 +345,8 @@
         "VariableID:41766:340229",
         "VariableID:36102:6235",
         "VariableID:36102:6236",
-        "VariableID:41685:306789",
         "VariableID:36102:6237",
+        "VariableID:41685:306789",
         "VariableID:41678:303854",
         "VariableID:41678:303853",
         "VariableID:41685:342803",
@@ -388,8 +388,8 @@
         "VariableID:42207:355596",
         "VariableID:42036:164762",
         "VariableID:36102:6212",
-        "VariableID:36102:6239",
         "VariableID:40239:237186",
+        "VariableID:36102:6239",
         "VariableID:36102:6240",
         "VariableID:36102:6241",
         "VariableID:36102:6243",
@@ -21456,46 +21456,6 @@
           "b": 0.3333333432674408,
           "g": 0.18431372940540314,
           "r": 0.14901961386203766
-        }
-      },
-      "variableCollectionId": "VariableCollectionId:28:527"
-    },
-    "VariableID:43041:275976": {
-      "codeSyntax": {},
-      "description": "",
-      "hiddenFromPublishing": false,
-      "id": "VariableID:43041:275976",
-      "key": "420118df329375560a03dc9de8bac8e7c9f5ec5a",
-      "name": "component/range/tick/color",
-      "remote": false,
-      "resolvedType": "COLOR",
-      "scopes": [
-        "STROKE_COLOR"
-      ],
-      "valuesByMode": {
-        "28:3": {
-          "id": "VariableID:36102:6272",
-          "type": "VARIABLE_ALIAS"
-        },
-        "36102:0": {
-          "id": "VariableID:36102:6272",
-          "type": "VARIABLE_ALIAS"
-        },
-        "36102:1": {
-          "id": "VariableID:36102:6273",
-          "type": "VARIABLE_ALIAS"
-        },
-        "36102:2": {
-          "id": "VariableID:36102:6274",
-          "type": "VARIABLE_ALIAS"
-        },
-        "42835:0": {
-          "id": "VariableID:36102:6274",
-          "type": "VARIABLE_ALIAS"
-        },
-        "42840:0": {
-          "id": "VariableID:36102:6274",
-          "type": "VARIABLE_ALIAS"
         }
       },
       "variableCollectionId": "VariableCollectionId:28:527"

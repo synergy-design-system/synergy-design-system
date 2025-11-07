@@ -67,3 +67,6 @@ export * from './events/events.js';
 
 // System Iconset switcher
 export { setSystemIconLibrary } from './components/icon/library.system.js';
+
+// Migration iconset switcher
+export { getIconMigrationName, migrationLibrary } from './components/icon/library.migration.js';

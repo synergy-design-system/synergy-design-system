@@ -1,12 +1,16 @@
 import type { StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { DecoratorHelpers } from '@storybook/addon-themes';
-import type { SynIcon } from '@synergy-design-system/components';
-import { setSystemIconLibrary } from '../../../components/src/components/icon/library.system.js';
-import { type IconLibrary, registerIconLibrary } from '../../../components/src/components/icon/library.js';
+import {
+  type SynIcon,
+  getBasePath,
+  getIconMigrationName,
+  registerIconLibrary,
+  setSystemIconLibrary,
+} from '@synergy-design-system/components';
+import { type IconLibrary } from '../../../components/src/components/icon/library.js';
 import {
   DARK_THEME, LIGHT_THEME, SICK_2025_DARK, SICK_2025_LIGHT,
 } from '../../.storybook/modes.js';
-import { getBasePath } from '../../../components/src/utilities/base-path.js';
 
 /**
  * Recursively searches through a DOM context for syn-icon elements of library="system"
@@ -58,27 +62,30 @@ function refreshSystemIcons() {
 export const themeSwitchIcons = (story: StoryFn, context: StoryContext) => {
   const theme = DecoratorHelpers.pluckThemeFromContext(context);
   let themePath = '';
+  let resolver: IconLibrary['resolver'];
 
   switch (theme) {
   case SICK_2025_DARK:
   case SICK_2025_LIGHT:
     setSystemIconLibrary('sick2025');
-    // @todo Always use the sick2018 icons for now as we don´t know
-    // Will be fixed with https://github.com/synergy-design-system/synergy-design-system/issues/1024
-    themePath = 'assets/icons/';
-    // themePath = 'assets/sick2025/outline/';
+    themePath = 'assets/sick2025/outline/';
+    resolver = (name: string) => {
+      console.log(name, getIconMigrationName(name)); // --- IGNORE ---
+      return getBasePath(`assets/sick2025/outline/${getIconMigrationName(name)}.svg`);
+    };
     break;
   case DARK_THEME:
   case LIGHT_THEME:
   default:
     setSystemIconLibrary('sick2018');
     themePath = 'assets/icons/';
+    resolver = (name: string) => getBasePath(`${themePath}${name}.svg`);
     break;
   }
 
   const library: IconLibrary = {
     name: 'default',
-    resolver: name => getBasePath(`${themePath}${name}.svg`),
+    resolver,
   };
   registerIconLibrary('default', library);
 

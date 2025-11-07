@@ -1,4 +1,7 @@
 /* eslint-disable complexity */
+import { writeFileSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defaultIcons as i2015 } from '../dist/default-icons.js';
 import { outlineIcons as i2025 } from '../dist/sick2025-outline-icons.js';
 
@@ -271,25 +274,34 @@ const mapIconName = oldName => {
   };
 };
 
-const results = keys2015.map(mapIconName);
+try {
+  const currentDir = path.dirname(fileURLToPath(import.meta.url));
+  const outputPath = path.resolve(currentDir, '../../components/src/components/icon/library.migration.ts');
 
-// Write output as a js file
-const output = `
+  const results = keys2015.map(mapIconName);
+
+  // Write output as a js file
+  const output = `
+/* eslint-disable complexity */
 import { getBasePath } from '../../utilities/base-path.js';
 import type { IconLibrary } from './library.js';
 
-const getIconMigrationName = (iconName: string) => {
+/**
+ * Get the migrated icon name for a given old icon name.
+ * @param {string} iconName The old icon name
+ * @returns {string} The new icon name
+ */
+export const getIconMigrationName = (iconName: string) => {
   switch (iconName) {
-    ${
-      results
-        .filter(result => result.status !== STATUS.MAPPED_DIRECTLY)
-        .map(result => `    case '${result.name}': return '${result.newName}';`)
-        .join('\n')
-    }
+  ${results
+    .filter(result => result.status !== STATUS.MAPPED_DIRECTLY)
+    .map(result => `  case '${result.name}': return '${result.newName}';`)
+    .join('\n')
+    .trim()
+  }
 
-    // Default case: We have a direct mapping
-    default:
-      return iconName;
+  // Default case: We have a direct mapping
+  default: return iconName;
   }
 };
 
@@ -297,9 +309,14 @@ export const migrationLibrary: IconLibrary = {
   name: 'default',
   resolver: name => {
     const mappedName = getIconMigrationName(name);
-    return getBasePath(\`assets/icons/\${mappedName}.svg\`);  
+    return getBasePath(\`assets/icons/\${mappedName}.svg\`);
   },
 };
 `;
 
-console.log(output);
+  writeFileSync(outputPath, output.trimStart());
+  process.exit(0);
+} catch (e) {
+  console.error('Error writing migration icon library:', e);
+  process.exit(1);
+}

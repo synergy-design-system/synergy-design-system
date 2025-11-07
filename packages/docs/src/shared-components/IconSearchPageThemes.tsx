@@ -1,10 +1,19 @@
 import React, { FC, Fragment, useState } from 'react';
+import { getBasePath, getIconMigrationName, registerIconLibrary } from '@synergy-design-system/components';
 import type { SynInputEvent, SynInput as SynInputType } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/input/input.js';
 import '@synergy-design-system/components/components/tab-group/tab-group.js';
 import '@synergy-design-system/components/components/tab/tab.js';
 import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
+import { defaultIcons as sick2018Icons } from '../../../assets/src/default-icons.js';
 import { IconsSearchPage } from './IconSearchPage.js';
+
+registerIconLibrary('migration', {
+  resolver: name => {
+    const mappedName = getIconMigrationName(name);
+    return getBasePath(`assets/sick2025/outline/${mappedName}.svg`);
+  },
+});
 
 export const THEMES = ['sick2018', 'sick2025-fill', 'sick2025-outline'] as const;
 export type Themes = typeof THEMES[number];
@@ -43,7 +52,7 @@ export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
         </div>
         <syn-tab-group>
           {themes.map(({ id, name }) => (
-            < Fragment key={id}>
+            <Fragment key={id}>
               <syn-tab panel={id} slot="nav">
                 {name}
               </syn-tab>
@@ -52,6 +61,56 @@ export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
               </syn-tab-panel>
             </Fragment>
           ))}
+
+          <syn-tab panel="migration" slot="nav" active>
+            Icon Migration
+          </syn-tab>
+
+          <syn-tab-panel name="migration">
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'wrap',
+                gap: 'var(--syn-spacing-large)',
+              }}
+            >
+              {Object.entries(sick2018Icons).map(([iconName]) => (
+                <div
+                  style={{
+                    border: '1px solid var(--syn-color-neutral-200)',
+                    borderRadius: 'var(--syn-border-radius-medium)',
+                    padding: 'var(--syn-spacing-large)',
+                    textAlign: 'center',
+                    width: '150px',
+                  }}
+                  key={iconName}
+                >
+                  <h2
+                    style={{
+                      textWrap: 'pretty',
+                      wordBreak: 'break-word',
+                      fontSize: 'var(--syn-font-size-small)',
+                      marginBottom: 'var(--syn-spacing-medium)',
+                    }}
+                  >{iconName}</h2>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      fontSize: '30px',
+                      gap: 10,
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <syn-icon name={iconName} library="default" />
+                    <syn-icon name={iconName} library="migration" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </syn-tab-panel>
+
         </syn-tab-group>
       </div>
       <style>

@@ -69,10 +69,7 @@ export const themeSwitchIcons = (story: StoryFn, context: StoryContext) => {
   case SICK_2025_LIGHT:
     setSystemIconLibrary('sick2025');
     themePath = 'assets/sick2025/outline/';
-    resolver = (name: string) => {
-      console.log(name, getIconMigrationName(name)); // --- IGNORE ---
-      return getBasePath(`assets/sick2025/outline/${getIconMigrationName(name)}.svg`);
-    };
+    resolver = (name: string) => getBasePath(`assets/sick2025/outline/${getIconMigrationName(name)}.svg`);
     break;
   case DARK_THEME:
   case LIGHT_THEME:

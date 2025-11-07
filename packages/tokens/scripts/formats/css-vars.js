@@ -76,6 +76,8 @@ export const cssVariableFormatter = {
       'interactive-background-color-action-hover',
 
       'input-border-color-active',
+
+      'input-icon-icon-clearable-color-active',
     ].map(v => `${prefix}${v}`);
 
     /**

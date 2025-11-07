@@ -18,8 +18,8 @@ function halfNumbers(input) {
 
 /**
  * Fix figma css blur variables as they are ment to be half of the figma value.
- * Before: content: *;
- * After: content: "*";
+ * Before: --syn-overlay-background-blur: 16px;
+ * After: --syn-overlay-background-blur: 8px;
  *
  * @type import('style-dictionary/types').ValueTransform
  */

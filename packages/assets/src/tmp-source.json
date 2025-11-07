@@ -1,672 +1,404 @@
 [
   {
     "name": "access_time",
-    "newName": "assist_walker, assistant, assistant_device, assistant_direction, assistant_navigation, assistant_on_hub",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "assist_walker, assistant, assistant_device, assistant_direction, assistant_navigation, assistant_on_hub"},
   {
     "name": "access_time_filled",
-    "newName": "assist_walker, assistant, assistant_device, assistant_direction, assistant_navigation, assistant_on_hub",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "assist_walker, assistant, assistant_device, assistant_direction, assistant_navigation, assistant_on_hub"},
   {
     "name": "add_alarm",
-    "newName": "add_alert",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "add_alert"},
   {
     "name": "add_ic_call",
-    "newName": "add_call, add_column_left, add_column_right, ads_click",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "add_call, add_column_left, add_column_right, ads_click"},
   {
     "name": "addchart",
-    "newName": "ad_group, ad_group_off, add_card, add_chart, add_circle, auto_graph",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "ad_group, ad_group_off, add_card, add_chart, add_circle, auto_graph"},
   {
     "name": "app_settings_alt",
-    "newName": "apk_document, apps_outage, avg_time",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "apk_document, apps_outage, avg_time"},
   {
     "name": "assessment",
-    "newName": "assignment, assignment_add, assignment_ind, assignment_late, assignment_return, assignment_returned, assignment_turned_in",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "assignment, assignment_add, assignment_ind, assignment_late, assignment_return, assignment_returned, assignment_turned_in"},
   {
     "name": "assistant_photo",
-    "newName": "assist_walker, assistant, assistant_device, assistant_direction, assistant_navigation, assistant_on_hub",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "assist_walker, assistant, assistant_device, assistant_direction, assistant_navigation, assistant_on_hub"},
   {
     "name": "audiotrack",
-    "newName": "add_to_drive, auto_transmission",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "add_to_drive, auto_transmission"},
   {
     "name": "battery_std",
-    "newName": "battery_change, battery_charging_20, battery_charging_30, battery_charging_50, battery_charging_60, battery_charging_80, battery_charging_90, battery_charging_full, battery_saver, battery_share, battery_status_good",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "battery_change, battery_charging_20, battery_charging_30, battery_charging_50, battery_charging_60, battery_charging_80, battery_charging_90, battery_charging_full, battery_saver, battery_share, battery_status_good"},
   {
     "name": "bluetooth_audio",
-    "newName": "bluetooth, bluetooth_connected, bluetooth_disabled, bluetooth_drive, bluetooth_searching",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "bluetooth, bluetooth_connected, bluetooth_disabled, bluetooth_drive, bluetooth_searching"},
   {
     "name": "bookmark_border",
-    "newName": "bookmark, bookmark_add, bookmark_added, bookmark_bag, bookmark_check, bookmark_flag, bookmark_heart, bookmark_manager, bookmark_remove, bookmark_star, bookmarks",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "bookmark, bookmark_add, bookmark_added, bookmark_bag, bookmark_check, bookmark_flag, bookmark_heart, bookmark_manager, bookmark_remove, bookmark_star, bookmarks"},
   {
     "name": "browser_not_supported",
-    "newName": "bar_chart, bar_chart_4_bars, bar_chart_off, browser_updated",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "bar_chart, bar_chart_4_bars, bar_chart_off, browser_updated"},
   {
     "name": "business",
-    "newName": "business_center, business_chip, business_messages",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "business_center, business_chip, business_messages"},
   {
     "name": "card_giftcard",
-    "newName": "car_tag, cards, cards_star, crowdsource",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "car_tag, cards, cards_star, crowdsource"},
   {
     "name": "class",
-    "newName": "call_log, close",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "call_log, close"},
   {
     "name": "closed_caption_off",
-    "newName": "closed_caption, closed_caption_add, closed_caption_disabled, collections_bookmark",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "closed_caption, closed_caption_add, closed_caption_disabled, collections_bookmark"},
   {
     "name": "collections",
-    "newName": "closed_caption, closed_caption_add, closed_caption_disabled, collections_bookmark",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "closed_caption, closed_caption_add, closed_caption_disabled, collections_bookmark"},
   {
     "name": "color_lens",
-    "newName": "clear_all",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "clear_all"},
   {
     "name": "control_point",
-    "newName": "center_focus_strong, center_focus_weak, contract, contract_delete, contract_edit, contrast, contrast_circle, contrast_rtl_off, contrast_square, control_camera, control_point_duplicate, controller_gen, counter_0, counter_1, counter_2, counter_3, counter_4, counter_5, counter_6, counter_7, counter_8, counter_9, countertops",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "center_focus_strong, center_focus_weak, contract, contract_delete, contract_edit, contrast, contrast_circle, contrast_rtl_off, contrast_square, control_camera, control_point_duplicate, controller_gen, counter_0, counter_1, counter_2, counter_3, counter_4, counter_5, counter_6, counter_7, counter_8, counter_9, countertops"},
   {
     "name": "crop_original",
-    "newName": "car_repair, corporate_fare, crop_free, crop_portrait, crop_rotate",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "car_repair, corporate_fare, crop_free, crop_portrait, crop_rotate"},
   {
     "name": "data_saver_off",
-    "newName": "data_exploration, data_saver_on",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "data_exploration, data_saver_on"},
   {
     "name": "delivery_dining",
-    "newName": "delivery_truck_bolt, delivery_truck_speed",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "delivery_truck_bolt, delivery_truck_speed"},
   {
     "name": "directions_boat_filled",
-    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync"},
   {
     "name": "directions_bus_filled",
-    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync"},
   {
     "name": "directions_car_filled",
-    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync"},
   {
     "name": "directions_railway_filled",
-    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync"},
   {
     "name": "directions_subway_filled",
-    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync"},
   {
     "name": "directions_transit",
-    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync"},
   {
     "name": "directions_transit_filled",
-    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "directions, directions_alt, directions_alt_off, directions_bike, directions_boat, directions_bus, directions_car, directions_off, directions_railway, directions_railway_2, directions_run, directions_subway, directions_walk, directory_sync"},
   {
     "name": "do_disturb",
-    "newName": "dataset, dataset_linked, detection_and_zone, detector, detector_alarm, detector_battery, detector_co, detector_offline, detector_smoke, detector_status",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "dataset, dataset_linked, detection_and_zone, detector, detector_alarm, detector_battery, detector_co, detector_offline, detector_smoke, detector_status"},
   {
     "name": "do_disturb_alt",
-    "newName": "dataset, dataset_linked, detection_and_zone, detector, detector_alarm, detector_battery, detector_co, detector_offline, detector_smoke, detector_status",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "dataset, dataset_linked, detection_and_zone, detector, detector_alarm, detector_battery, detector_co, detector_offline, detector_smoke, detector_status"},
   {
     "name": "do_disturb_off",
-    "newName": "dataset, dataset_linked, detection_and_zone, detector, detector_alarm, detector_battery, detector_co, detector_offline, detector_smoke, detector_status",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "dataset, dataset_linked, detection_and_zone, detector, detector_alarm, detector_battery, detector_co, detector_offline, detector_smoke, detector_status"},
   {
     "name": "do_disturb_on",
-    "newName": "dataset, dataset_linked, detection_and_zone, detector, detector_alarm, detector_battery, detector_co, detector_offline, detector_smoke, detector_status",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "dataset, dataset_linked, detection_and_zone, detector, detector_alarm, detector_battery, detector_co, detector_offline, detector_smoke, detector_status"},
   {
     "name": "do_not_disturb",
-    "newName": "dentistry, do_not_disturb_off, do_not_disturb_on, do_not_disturb_on_total_silence, do_not_step, do_not_touch, donut_small",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "dentistry, do_not_disturb_off, do_not_disturb_on, do_not_disturb_on_total_silence, do_not_step, do_not_touch, donut_small"},
   {
     "name": "do_not_disturb_alt",
-    "newName": "dentistry, do_not_disturb_off, do_not_disturb_on, do_not_disturb_on_total_silence, do_not_step, do_not_touch, donut_small",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "dentistry, do_not_disturb_off, do_not_disturb_on, do_not_disturb_on_total_silence, do_not_step, do_not_touch, donut_small"},
   {
     "name": "drive_eta",
-    "newName": "draft, draft_orders, drafts, dropdown",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "draft, draft_orders, drafts, dropdown"},
   {
     "name": "emoji_emotions",
-    "newName": "emoji_nature, engineering",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "emoji_nature, engineering"},
   {
     "name": "favorite_border",
-    "newName": "favorite, fiber_dvr",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "favorite, fiber_dvr"},
   {
     "name": "fire_hydrant_alt",
-    "newName": "fire_hydrant, fire_truck",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "fire_hydrant, fire_truck"},
   {
     "name": "headset",
-    "newName": "headset_mic, headset_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "headset_mic, headset_off"},
   {
     "name": "highlight_alt",
-    "newName": "highlight, highlight_keyboard_focus, highlight_mouse_cursor, highlight_text_cursor, highlighter_size_1, highlighter_size_2, highlighter_size_3, highlighter_size_4, highlighter_size_5",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "highlight, highlight_keyboard_focus, highlight_mouse_cursor, highlight_text_cursor, highlighter_size_1, highlighter_size_2, highlighter_size_3, highlighter_size_4, highlighter_size_5"},
   {
     "name": "highlight_off",
-    "newName": "highlight, highlight_keyboard_focus, highlight_mouse_cursor, highlight_text_cursor, highlighter_size_1, highlighter_size_2, highlighter_size_3, highlighter_size_4, highlighter_size_5",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "highlight, highlight_keyboard_focus, highlight_mouse_cursor, highlight_text_cursor, highlighter_size_1, highlighter_size_2, highlighter_size_3, highlighter_size_4, highlighter_size_5"},
   {
     "name": "import_export",
-    "newName": "import_contacts, important_devices, infrared, invert_colors, invert_colors_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "import_contacts, important_devices, infrared, invert_colors, invert_colors_off"},
   {
     "name": "insert_chart_outlined",
-    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text"},
   {
     "name": "insert_comment",
-    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text"},
   {
     "name": "insert_drive_file",
-    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text"},
   {
     "name": "insert_emoticon",
-    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text"},
   {
     "name": "insert_invitation",
-    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text"},
   {
     "name": "insert_link",
-    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text"},
   {
     "name": "insert_photo",
-    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "image_arrow_up, ink_eraser, ink_eraser_off, insert_chart, insert_page_break, insert_text"},
   {
     "name": "iso",
-    "newName": "ios",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "ios"},
   {
     "name": "laptop",
-    "newName": "laptop_car, laptop_chromebook, laptop_mac, laptop_windows, left_panel_close, left_panel_open, live_tv",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "laptop_car, laptop_chromebook, laptop_mac, laptop_windows, left_panel_close, left_panel_open, live_tv"},
   {
     "name": "launch",
-    "newName": "lens, link",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "lens, link"},
   {
     "name": "local_grocery_store",
-    "newName": "local_activity, local_cafe, local_car_wash, local_convenience_store, local_gas_station, local_hospital, local_see, local_shipping, lock_clock",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "local_activity, local_cafe, local_car_wash, local_convenience_store, local_gas_station, local_hospital, local_see, local_shipping, lock_clock"},
   {
     "name": "local_hotel",
-    "newName": "local_atm, local_dining, local_drink, local_taxi",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "local_atm, local_dining, local_drink, local_taxi"},
   {
     "name": "local_movies",
-    "newName": "local_laundry_service, local_mall",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "local_laundry_service, local_mall"},
   {
     "name": "local_offer",
-    "newName": "local_bar, local_fire_department, local_florist, local_library, local_parking, local_pharmacy, local_pizza, local_police, local_post_office",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "local_bar, local_fire_department, local_florist, local_library, local_parking, local_pharmacy, local_pizza, local_police, local_post_office"},
   {
     "name": "local_phone",
-    "newName": "local_bar, local_fire_department, local_florist, local_library, local_parking, local_pharmacy, local_pizza, local_police, local_post_office",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "local_bar, local_fire_department, local_florist, local_library, local_parking, local_pharmacy, local_pizza, local_police, local_post_office"},
   {
     "name": "local_play",
-    "newName": "local_bar, local_fire_department, local_florist, local_library, local_parking, local_pharmacy, local_pizza, local_police, local_post_office",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "local_bar, local_fire_department, local_florist, local_library, local_parking, local_pharmacy, local_pizza, local_police, local_post_office"},
   {
     "name": "local_printshop",
-    "newName": "local_bar, local_fire_department, local_florist, local_library, local_parking, local_pharmacy, local_pizza, local_police, local_post_office",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "local_bar, local_fire_department, local_florist, local_library, local_parking, local_pharmacy, local_pizza, local_police, local_post_office"},
   {
     "name": "loop",
-    "newName": "loupe",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "loupe"},
   {
     "name": "maps_home_work",
-    "newName": "mfg_nest_yale_lock",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "mfg_nest_yale_lock"},
   {
     "name": "markunread",
-    "newName": "margin, mark_email_read, mark_email_unread, mark_unread_chat_alt, markunread_mailbox",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "margin, mark_email_read, mark_email_unread, mark_unread_chat_alt, markunread_mailbox"},
   {
     "name": "mode",
-    "newName": "mood",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "mood"},
   {
     "name": "money_off_csred",
-    "newName": "manufacturing, menu_book, money_bag",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "manufacturing, menu_book, money_bag"},
   {
     "name": "motion_photos_pause",
-    "newName": "motion_blur, motion_photos_auto, motion_photos_off, motion_photos_on, motion_photos_paused, motion_play",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "motion_blur, motion_photos_auto, motion_photos_off, motion_photos_on, motion_photos_paused, motion_play"},
   {
     "name": "movie_creation",
-    "newName": "map_search, move_group",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "map_search, move_group"},
   {
     "name": "nightlight_round",
-    "newName": "nest_hello_doorbell, nest_locator_tag, nightlife, nightlight, nightlight_badge, nightlight_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "nest_hello_doorbell, nest_locator_tag, nightlife, nightlight, nightlight_badge, nightlight_off"},
   {
     "name": "no_encryption_gmailerrorred",
-    "newName": "no_encryption",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "no_encryption"},
   {
     "name": "notifications_none",
-    "newName": "notification_add, notification_important, notification_multiple, notification_settings, notification_sound, notifications, notifications_active, notifications_off, notifications_paused, notifications_unread",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "notification_add, notification_important, notification_multiple, notification_settings, notification_sound, notifications, notifications_active, notifications_off, notifications_paused, notifications_unread"},
   {
     "name": "panorama_horizontal_select",
-    "newName": "panorama, panorama_fish_eye, panorama_horizontal, panorama_photosphere, panorama_vertical, panorama_wide_angle",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "panorama, panorama_fish_eye, panorama_horizontal, panorama_photosphere, panorama_vertical, panorama_wide_angle"},
   {
     "name": "panorama_photosphere_select",
-    "newName": "panorama, panorama_fish_eye, panorama_horizontal, panorama_photosphere, panorama_vertical, panorama_wide_angle",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "panorama, panorama_fish_eye, panorama_horizontal, panorama_photosphere, panorama_vertical, panorama_wide_angle"},
   {
     "name": "panorama_vertical_select",
-    "newName": "panorama, panorama_fish_eye, panorama_horizontal, panorama_photosphere, panorama_vertical, panorama_wide_angle",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "panorama, panorama_fish_eye, panorama_horizontal, panorama_photosphere, panorama_vertical, panorama_wide_angle"},
   {
     "name": "panorama_wide_angle_select",
-    "newName": "panorama, panorama_fish_eye, panorama_horizontal, panorama_photosphere, panorama_vertical, panorama_wide_angle",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "panorama, panorama_fish_eye, panorama_horizontal, panorama_photosphere, panorama_vertical, panorama_wide_angle"},
   {
     "name": "pause_circle_filled",
-    "newName": "pause_circle",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "pause_circle"},
   {
     "name": "payment",
-    "newName": "payments, phone_android, phone_in_talk, phone_in_talk_watchface_indicator, pin_end",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "payments, phone_android, phone_in_talk, phone_in_talk_watchface_indicator, pin_end"},
   {
     "name": "perm_identity",
-    "newName": "perm_data_setting, perm_device_information, perm_media, power_rounded, print, print_add, print_connect, print_disabled, print_error, print_lock",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "perm_data_setting, perm_device_information, perm_media, power_rounded, print, print_add, print_connect, print_disabled, print_error, print_lock"},
   {
     "name": "person_add_alt",
-    "newName": "percent, person, person_2, person_3, person_4, person_add, person_add_disabled, person_alert, person_apron, person_book, person_cancel, person_celebrate, person_check, person_edit, person_off, person_pin, person_pin_circle, person_play, person_raised_hand, person_remove, person_search, person_shield, personal_bag, personal_bag_off, personal_bag_question, personal_injury, personal_places, pregnancy, pregnant_woman, present_to_all",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "percent, person, person_2, person_3, person_4, person_add, person_add_disabled, person_alert, person_apron, person_book, person_cancel, person_celebrate, person_check, person_edit, person_off, person_pin, person_pin_circle, person_play, person_raised_hand, person_remove, person_search, person_shield, personal_bag, personal_bag_off, personal_bag_question, personal_injury, personal_places, pregnancy, pregnant_woman, present_to_all"},
   {
     "name": "person_add_alt_1",
-    "newName": "percent, person, person_2, person_3, person_4, person_add, person_add_disabled, person_alert, person_apron, person_book, person_cancel, person_celebrate, person_check, person_edit, person_off, person_pin, person_pin_circle, person_play, person_raised_hand, person_remove, person_search, person_shield, personal_bag, personal_bag_off, personal_bag_question, personal_injury, personal_places, pregnancy, pregnant_woman, present_to_all",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "percent, person, person_2, person_3, person_4, person_add, person_add_disabled, person_alert, person_apron, person_book, person_cancel, person_celebrate, person_check, person_edit, person_off, person_pin, person_pin_circle, person_play, person_raised_hand, person_remove, person_search, person_shield, personal_bag, personal_bag_off, personal_bag_question, personal_injury, personal_places, pregnancy, pregnant_woman, present_to_all"},
   {
     "name": "person_remove_alt_1",
-    "newName": "percent, person, person_2, person_3, person_4, person_add, person_add_disabled, person_alert, person_apron, person_book, person_cancel, person_celebrate, person_check, person_edit, person_off, person_pin, person_pin_circle, person_play, person_raised_hand, person_remove, person_search, person_shield, personal_bag, personal_bag_off, personal_bag_question, personal_injury, personal_places, pregnancy, pregnant_woman, present_to_all",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "percent, person, person_2, person_3, person_4, person_add, person_add_disabled, person_alert, person_apron, person_book, person_cancel, person_celebrate, person_check, person_edit, person_off, person_pin, person_pin_circle, person_play, person_raised_hand, person_remove, person_search, person_shield, personal_bag, personal_bag_off, personal_bag_question, personal_injury, personal_places, pregnancy, pregnant_woman, present_to_all"},
   {
     "name": "personal_video",
-    "newName": "percent, person, person_2, person_3, person_4, person_add, person_add_disabled, person_alert, person_apron, person_book, person_cancel, person_celebrate, person_check, person_edit, person_off, person_pin, person_pin_circle, person_play, person_raised_hand, person_remove, person_search, person_shield, personal_bag, personal_bag_off, personal_bag_question, personal_injury, personal_places, pregnancy, pregnant_woman, present_to_all",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "percent, person, person_2, person_3, person_4, person_add, person_add_disabled, person_alert, person_apron, person_book, person_cancel, person_celebrate, person_check, person_edit, person_off, person_pin, person_pin_circle, person_play, person_raised_hand, person_remove, person_search, person_shield, personal_bag, personal_bag_off, personal_bag_question, personal_injury, personal_places, pregnancy, pregnant_woman, present_to_all"},
   {
     "name": "phone",
-    "newName": "piano, pin",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "piano, pin"},
   {
     "name": "phonelink",
-    "newName": "phonelink_erase, phonelink_lock, phonelink_off, phonelink_ring, phonelink_ring_off, phonelink_setup",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "phonelink_erase, phonelink_lock, phonelink_off, phonelink_ring, phonelink_ring_off, phonelink_setup"},
   {
     "name": "photo_size_select_actual",
-    "newName": "photo_size_select_large, photo_size_select_small, podcasts",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "photo_size_select_large, photo_size_select_small, podcasts"},
   {
     "name": "pix",
-    "newName": "pace, passkey, pause",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "pace, passkey, pause"},
   {
     "name": "place",
-    "newName": "policy",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "policy"},
   {
     "name": "play_circle_filled",
-    "newName": "plagiarism, play_circle",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "plagiarism, play_circle"},
   {
     "name": "plus_one",
-    "newName": "plug_connect",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "plug_connect"},
   {
     "name": "poll",
-    "newName": "pill, pool",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "pill, pool"},
   {
     "name": "portrait",
-    "newName": "portrait_lighting, portrait_lighting_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "portrait_lighting, portrait_lighting_off"},
   {
     "name": "question_answer",
-    "newName": "question_exchange, question_mark",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "question_exchange, question_mark"},
   {
     "name": "remove_circle",
-    "newName": "remove_selection, remove_shopping_cart",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "remove_selection, remove_shopping_cart"},
   {
     "name": "remove_circle_outline",
-    "newName": "remove_selection, remove_shopping_cart",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "remove_selection, remove_shopping_cart"},
   {
     "name": "remove_red_eye",
-    "newName": "ramp_right, remove_road, room_preferences",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "ramp_right, remove_road, room_preferences"},
   {
     "name": "replay_circle_filled",
-    "newName": "replace_audio, replace_image, replace_video, ripples",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "replace_audio, replace_image, replace_video, ripples"},
   {
     "name": "report_gmailerrorred",
-    "newName": "repartition, report, report_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "repartition, report, report_off"},
   {
     "name": "report_problem",
-    "newName": "repartition, report, report_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "repartition, report, report_off"},
   {
     "name": "restore",
-    "newName": "reset_wrench, restart_alt, restaurant, restaurant_menu, restore_from_trash, restore_page",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "reset_wrench, restart_alt, restaurant, restaurant_menu, restore_from_trash, restore_page"},
   {
     "name": "room",
-    "newName": "rainy, raw_on",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "rainy, raw_on"},
   {
     "name": "save_alt",
-    "newName": "split_scene, splitscreen, splitscreen_add, splitscreen_bottom, splitscreen_landscape, splitscreen_left, splitscreen_portrait, splitscreen_right, splitscreen_top, splitscreen_vertical_add",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "split_scene, splitscreen, splitscreen_add, splitscreen_bottom, splitscreen_landscape, splitscreen_left, splitscreen_portrait, splitscreen_right, splitscreen_top, splitscreen_vertical_add"},
   {
     "name": "sd_storage",
-    "newName": "south_east, south_west, stack_star, stacked_bar_chart, stacked_email, stacked_inbox, stacked_line_chart",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "south_east, south_west, stack_star, stacked_bar_chart, stacked_email, stacked_inbox, stacked_line_chart"},
   {
     "name": "security_update",
-    "newName": "security, security_key, security_update_good, security_update_warning, show_chart",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "security, security_key, security_update_good, security_update_warning, show_chart"},
   {
     "name": "sentiment_satisfied_alt",
-    "newName": "send_and_archive, send_money, send_time_extension, send_to_mobile, sentiment_calm, sentiment_content, sentiment_dissatisfied, sentiment_excited, sentiment_extremely_dissatisfied, sentiment_frustrated, sentiment_neutral, sentiment_sad, sentiment_satisfied, sentiment_stressed, sentiment_very_dissatisfied, sentiment_very_satisfied, sentiment_worried",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "send_and_archive, send_money, send_time_extension, send_to_mobile, sentiment_calm, sentiment_content, sentiment_dissatisfied, sentiment_excited, sentiment_extremely_dissatisfied, sentiment_frustrated, sentiment_neutral, sentiment_sad, sentiment_satisfied, sentiment_stressed, sentiment_very_dissatisfied, sentiment_very_satisfied, sentiment_worried"},
   {
     "name": "settings_input_composite",
-    "newName": "settings, settings_accessibility, settings_account_box, settings_alert, settings_applications, settings_b_roll, settings_backup_restore, settings_bluetooth, settings_brightness, settings_cell, settings_cinematic_blur, settings_ethernet, settings_heart, settings_input_antenna, settings_input_component, settings_input_hdmi, settings_input_svideo, settings_motion_mode, settings_night_sight, settings_overscan, settings_panorama, settings_phone, settings_photo_camera, settings_power, settings_remote, settings_slow_motion, settings_suggest, settings_system_daydream, settings_timelapse, settings_video_camera, settings_voice",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "settings, settings_accessibility, settings_account_box, settings_alert, settings_applications, settings_b_roll, settings_backup_restore, settings_bluetooth, settings_brightness, settings_cell, settings_cinematic_blur, settings_ethernet, settings_heart, settings_input_antenna, settings_input_component, settings_input_hdmi, settings_input_svideo, settings_motion_mode, settings_night_sight, settings_overscan, settings_panorama, settings_phone, settings_photo_camera, settings_power, settings_remote, settings_slow_motion, settings_suggest, settings_system_daydream, settings_timelapse, settings_video_camera, settings_voice"},
   {
     "name": "shop_2",
-    "newName": "save, shop, sip, soap, spa, spo2, subway, sweep, swipe",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "save, shop, sip, soap, spa, spo2, subway, sweep, swipe"},
   {
     "name": "shortcut",
-    "newName": "short_stay, short_text, swords",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "short_stay, short_text, swords"},
   {
     "name": "signal_cellular_no_sim",
-    "newName": "sign_language, signal_cellular_0_bar, signal_cellular_1_bar, signal_cellular_2_bar, signal_cellular_3_bar, signal_cellular_4_bar, signal_cellular_add, signal_cellular_alt, signal_cellular_alt_1_bar, signal_cellular_alt_2_bar, signal_cellular_connected_no_internet_0_bar, signal_cellular_connected_no_internet_4_bar, signal_cellular_nodata, signal_cellular_null, signal_cellular_off, signal_cellular_pause, signal_disconnected, signal_wifi_0_bar, signal_wifi_4_bar, signal_wifi_bad, signal_wifi_off, signal_wifi_statusbar_not_connected, signal_wifi_statusbar_null",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "sign_language, signal_cellular_0_bar, signal_cellular_1_bar, signal_cellular_2_bar, signal_cellular_3_bar, signal_cellular_4_bar, signal_cellular_add, signal_cellular_alt, signal_cellular_alt_1_bar, signal_cellular_alt_2_bar, signal_cellular_connected_no_internet_0_bar, signal_cellular_connected_no_internet_4_bar, signal_cellular_nodata, signal_cellular_null, signal_cellular_off, signal_cellular_pause, signal_disconnected, signal_wifi_0_bar, signal_wifi_4_bar, signal_wifi_bad, signal_wifi_off, signal_wifi_statusbar_not_connected, signal_wifi_statusbar_null"},
   {
     "name": "signal_wifi_4_bar_lock",
-    "newName": "sign_language, signal_cellular_0_bar, signal_cellular_1_bar, signal_cellular_2_bar, signal_cellular_3_bar, signal_cellular_4_bar, signal_cellular_add, signal_cellular_alt, signal_cellular_alt_1_bar, signal_cellular_alt_2_bar, signal_cellular_connected_no_internet_0_bar, signal_cellular_connected_no_internet_4_bar, signal_cellular_nodata, signal_cellular_null, signal_cellular_off, signal_cellular_pause, signal_disconnected, signal_wifi_0_bar, signal_wifi_4_bar, signal_wifi_bad, signal_wifi_off, signal_wifi_statusbar_not_connected, signal_wifi_statusbar_null",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "sign_language, signal_cellular_0_bar, signal_cellular_1_bar, signal_cellular_2_bar, signal_cellular_3_bar, signal_cellular_4_bar, signal_cellular_add, signal_cellular_alt, signal_cellular_alt_1_bar, signal_cellular_alt_2_bar, signal_cellular_connected_no_internet_0_bar, signal_cellular_connected_no_internet_4_bar, signal_cellular_nodata, signal_cellular_null, signal_cellular_off, signal_cellular_pause, signal_disconnected, signal_wifi_0_bar, signal_wifi_4_bar, signal_wifi_bad, signal_wifi_off, signal_wifi_statusbar_not_connected, signal_wifi_statusbar_null"},
   {
     "name": "signal_wifi_connected_no_internet_4",
-    "newName": "sign_language, signal_cellular_0_bar, signal_cellular_1_bar, signal_cellular_2_bar, signal_cellular_3_bar, signal_cellular_4_bar, signal_cellular_add, signal_cellular_alt, signal_cellular_alt_1_bar, signal_cellular_alt_2_bar, signal_cellular_connected_no_internet_0_bar, signal_cellular_connected_no_internet_4_bar, signal_cellular_nodata, signal_cellular_null, signal_cellular_off, signal_cellular_pause, signal_disconnected, signal_wifi_0_bar, signal_wifi_4_bar, signal_wifi_bad, signal_wifi_off, signal_wifi_statusbar_not_connected, signal_wifi_statusbar_null",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "sign_language, signal_cellular_0_bar, signal_cellular_1_bar, signal_cellular_2_bar, signal_cellular_3_bar, signal_cellular_4_bar, signal_cellular_add, signal_cellular_alt, signal_cellular_alt_1_bar, signal_cellular_alt_2_bar, signal_cellular_connected_no_internet_0_bar, signal_cellular_connected_no_internet_4_bar, signal_cellular_nodata, signal_cellular_null, signal_cellular_off, signal_cellular_pause, signal_disconnected, signal_wifi_0_bar, signal_wifi_4_bar, signal_wifi_bad, signal_wifi_off, signal_wifi_statusbar_not_connected, signal_wifi_statusbar_null"},
   {
     "name": "signal_wifi_statusbar_4_bar",
-    "newName": "sign_language, signal_cellular_0_bar, signal_cellular_1_bar, signal_cellular_2_bar, signal_cellular_3_bar, signal_cellular_4_bar, signal_cellular_add, signal_cellular_alt, signal_cellular_alt_1_bar, signal_cellular_alt_2_bar, signal_cellular_connected_no_internet_0_bar, signal_cellular_connected_no_internet_4_bar, signal_cellular_nodata, signal_cellular_null, signal_cellular_off, signal_cellular_pause, signal_disconnected, signal_wifi_0_bar, signal_wifi_4_bar, signal_wifi_bad, signal_wifi_off, signal_wifi_statusbar_not_connected, signal_wifi_statusbar_null",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "sign_language, signal_cellular_0_bar, signal_cellular_1_bar, signal_cellular_2_bar, signal_cellular_3_bar, signal_cellular_4_bar, signal_cellular_add, signal_cellular_alt, signal_cellular_alt_1_bar, signal_cellular_alt_2_bar, signal_cellular_connected_no_internet_0_bar, signal_cellular_connected_no_internet_4_bar, signal_cellular_nodata, signal_cellular_null, signal_cellular_off, signal_cellular_pause, signal_disconnected, signal_wifi_0_bar, signal_wifi_4_bar, signal_wifi_bad, signal_wifi_off, signal_wifi_statusbar_not_connected, signal_wifi_statusbar_null"},
   {
     "name": "signal_wifi_statusbar_connected_no_internet_4",
-    "newName": "sign_language, signal_cellular_0_bar, signal_cellular_1_bar, signal_cellular_2_bar, signal_cellular_3_bar, signal_cellular_4_bar, signal_cellular_add, signal_cellular_alt, signal_cellular_alt_1_bar, signal_cellular_alt_2_bar, signal_cellular_connected_no_internet_0_bar, signal_cellular_connected_no_internet_4_bar, signal_cellular_nodata, signal_cellular_null, signal_cellular_off, signal_cellular_pause, signal_disconnected, signal_wifi_0_bar, signal_wifi_4_bar, signal_wifi_bad, signal_wifi_off, signal_wifi_statusbar_not_connected, signal_wifi_statusbar_null",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "sign_language, signal_cellular_0_bar, signal_cellular_1_bar, signal_cellular_2_bar, signal_cellular_3_bar, signal_cellular_4_bar, signal_cellular_add, signal_cellular_alt, signal_cellular_alt_1_bar, signal_cellular_alt_2_bar, signal_cellular_connected_no_internet_0_bar, signal_cellular_connected_no_internet_4_bar, signal_cellular_nodata, signal_cellular_null, signal_cellular_off, signal_cellular_pause, signal_disconnected, signal_wifi_0_bar, signal_wifi_4_bar, signal_wifi_bad, signal_wifi_off, signal_wifi_statusbar_not_connected, signal_wifi_statusbar_null"},
   {
     "name": "sim_card_alert",
-    "newName": "sensor_door, sensor_occupied, sensor_window, sensors, sensors_krx, sensors_krx_off, sensors_off, sim_card, sim_card_download, sync_arrow_down, sync_arrow_up",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "sensor_door, sensor_occupied, sensor_window, sensors, sensors_krx, sensors_krx_off, sensors_off, sim_card, sim_card_download, sync_arrow_down, sync_arrow_up"},
   {
     "name": "source",
-    "newName": "search",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "search"},
   {
     "name": "star_border",
-    "newName": "scatter_plot, storefront",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "scatter_plot, storefront"},
   {
     "name": "star_border_purple500",
-    "newName": "scatter_plot, storefront",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "scatter_plot, storefront"},
   {
     "name": "star_purple500",
-    "newName": "scatter_plot, storefront",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "scatter_plot, storefront"},
   {
     "name": "store_mall_directory",
-    "newName": "steering_wheel_heat, storm, stream, stream_apps",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "steering_wheel_heat, storm, stream, stream_apps"},
   {
     "name": "system_security_update",
-    "newName": "system_update, system_update_alt",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "system_update, system_update_alt"},
   {
     "name": "system_security_update_good",
-    "newName": "system_update, system_update_alt",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "system_update, system_update_alt"},
   {
     "name": "system_security_update_warning",
-    "newName": "system_update, system_update_alt",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "system_update, system_update_alt"},
   {
     "name": "terrain",
-    "newName": "train, tram",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "train, tram"},
   {
     "name": "textsms",
-    "newName": "tactic, text_compare, text_decrease, text_select_end, text_select_jump_to_beginning, text_select_jump_to_end, text_select_move_back_character, text_select_move_back_word, text_select_move_down, text_select_move_forward_character, text_select_move_forward_word, text_select_move_up, text_select_start, text_snippet, text_to_speech",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "tactic, text_compare, text_decrease, text_select_end, text_select_jump_to_beginning, text_select_jump_to_end, text_select_move_back_character, text_select_move_back_word, text_select_move_down, text_select_move_forward_character, text_select_move_forward_word, text_select_move_up, text_select_start, text_snippet, text_to_speech"},
   {
     "name": "thumb_down_alt",
-    "newName": "thumb_down, thumb_down_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "thumb_down, thumb_down_off"},
   {
     "name": "thumb_down_off_alt",
-    "newName": "thumb_down, thumb_down_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "thumb_down, thumb_down_off"},
   {
     "name": "thumb_up_alt",
-    "newName": "thumb_up, thumb_up_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "thumb_up, thumb_up_off"},
   {
     "name": "thumb_up_off_alt",
-    "newName": "thumb_up, thumb_up_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "thumb_up, thumb_up_off"},
   {
     "name": "try",
-    "newName": "tour",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "tour"},
   {
     "name": "tungsten",
-    "newName": "things_to_do",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "things_to_do"},
   {
     "name": "turned_in",
-    "newName": "tornado, trending_down, trending_flat, trending_up",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "tornado, trending_down, trending_flat, trending_up"},
   {
     "name": "turned_in_not",
-    "newName": "tornado, trending_down, trending_flat, trending_up",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "tornado, trending_down, trending_flat, trending_up"},
   {
     "name": "warning_amber",
-    "newName": "warning, warning_off",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "warning, warning_off"},
   {
     "name": "wb_cloudy",
-    "newName": "wifi_calling, wifi_calling_1, wifi_calling_2, wifi_calling_3, wifi_calling_bar_1, wifi_calling_bar_2, wifi_calling_bar_3",
-    "status": "MAPPED_WITH_SIMILARITY"
-  },
+    "newName": "wifi_calling, wifi_calling_1, wifi_calling_2, wifi_calling_3, wifi_calling_bar_1, wifi_calling_bar_2, wifi_calling_bar_3"},
   {
     "name": "work_off",
-    "newName": "work_update, workspace_premium, workspaces, workspaces_outline",
-    "status": "MAPPED_WITH_SIMILARITY"
-  }
+    "newName": "work_update, workspace_premium, workspaces, workspaces_outline"}
 ]

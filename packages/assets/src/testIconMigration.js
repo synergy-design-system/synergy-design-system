@@ -8,6 +8,9 @@ import { outlineIcons as i2025 } from '../dist/sick2025-outline-icons.js';
 const STATIC_MAP = {
   access_alarm: 'alarm',
   access_alarms: 'alarm',
+  access_time: 'schedule',
+  access_time_filled: 'schedule',
+  add_alarm: 'alarm_add',
   announcement: 'sms_failed', // todo: Find something better! SMS has hardly anything to do with this!
   camera_alt: 'camera', // todo: Find something better! Camera is heavily stylized
   catching_pokemon: 'MISSING',
@@ -41,12 +44,74 @@ const STATIC_MAP = {
   people_outline: 'group',
   query_builder: 'alarm', // Set to alarm because its the same as access_alarm
   queue: 'add_to_queue',
+  save_alt: 'file_download',
+  sd_storage: 'sd_card',
+  security_update: 'install_mobile',
+  sentiment_satisfied_alt: 'sentiment_satisfied',
+  settings_input_composite: 'settings_input_component',
+  shop_2: 'shop_two',
+  shortcut: 'turn_right',
+  signal_cellular_no_sim: 'sd_card_alert',
+  signal_wifi_4_bar_lock: 'MISSING', // @todo: Maybe use signal_wifi_4_bar for this only?
+  signal_wifi_connected_no_internet_4: 'signal_wifi_bad',
+  signal_wifi_statusbar_4_bar: 'signal_wifi_4_bar',
+  signal_wifi_statusbar_connected_no_internet_4: 'signal_wifi_statusbar_not_connected', // No connected now has question mark instead of exclamation
+  sim_card_alert: 'sd_card_alert',
+  source: 'topic', // Same icon, different name
+  star_border: 'grade',
+  star_border_purple500: 'grade',
+  star_purple500: 'grade',
+  store_mall_directory: 'mall',
+  system_security_update: 'install_mobile',
+  system_security_update_good: 'MISSING',
+  system_security_update_warning: 'perm_device_information',
   tag_faces: 'sentiment_satisfied', // @todo: There are also others, search "smil"
+  terrain: 'landscape',
+  textsms: 'sms',
   time_to_leave: 'directions_car', // @todo: Same icon, different name
+  thumb_down_alt: 'thumb_down',
+  thumb_down_off_alt: 'thumb_down_off',
+  thumb_up_alt: 'thumb_up',
+  thumb_up_off_alt: 'thumb_up_off',
+  try: 'reviews',
+  tungsten: 'lightbulb',
+  turned_in: 'bookmark',
+  turned_in_not: 'bookmark_remove',
   watch_later: 'schedule',
+  warning_amber: 'warning',
+  wb_cloudy: 'cloud_queue',
+  work_off: 'enterprise_off',
+  room: 'location_on',
+  restore: 'history',
+  report_problem: 'warning',
+  report_gmailerrorred: 'dangerous',
+  replay_circle_filled: 'replay',
+  remove_red_eye: 'visibility',
+  remove_circle_outline: 'do_not_disturb_on_total_silence', // @todo: This still does not quite fit
+  remove_circle: 'do_not_disturb_on_total_silence', // @todo: This still does not quite fit
+  question_answer: 'forum',
+  portrait: 'account_box',
+  poll: 'ballot',
+  plus_one: 'exposure_plus_1',
+  play_circle_filled: 'play_circle',
+  place: 'location_on',
+  pix: 'MISSING', // @todo: No idea what this was
+  photo_size_select_actual: 'wallpaper',
+  phonelink: 'devices',
+  phone: 'call',
+  personal_video: 'monitor',
+  person_remove_alt_1: 'person_remove',
+  person_add_alt_1: 'person_add',
+  person_add_alt: 'person_add',
+  perm_identity: 'person',
+  payment: 'credit_card',
+  pause_circle_filled: 'pause_circle',
+  panorama_wide_angle_select: 'panorama_wide_angle',
+  panorama_vertical_select: 'panorama_vertical',
 };
 
 const STATUS = {
+  MAPPED_BY_REVERSING: 'MAPPED_BY_REVERSING',
   MAPPED_STATICALLY: 'MAPPED_STATICALLY',
   MAPPED_DIRECTLY: 'MAPPED_DIRECTLY',
   MAPPED_WITH_SIMILARITY: 'MAPPED_WITH_SIMILARITY',
@@ -141,6 +206,17 @@ const mapIconName = oldName => {
     }
   }
 
+  // Check the static map
+  if (typeof STATIC_MAP[oldName] !== 'undefined') {
+    return {
+      name: oldName,
+      newName: STATIC_MAP[oldName],
+      status: STATUS.MAPPED_STATICALLY,
+    }
+  } else {
+    console.error(STATIC_MAP[oldName]);
+  }
+
   // Before giving up, we try to create a list of icons that would be feasible alternatives
   // For this, we take the name of the original icon and compute its soundex code
   // We try to match this against the soundex of all new icons
@@ -164,17 +240,6 @@ const mapIconName = oldName => {
       newName: possibleMatches.join(', '),
       status: STATUS.MAPPED_WITH_SIMILARITY,
     };
-  }
-
-  // Check the static map
-  if (typeof STATIC_MAP[oldName] !== 'undefined') {
-    return {
-      name: oldName,
-      newName: STATIC_MAP[oldName],
-      status: STATUS.MAPPED_STATICALLY,
-    }
-  } else {
-    console.error(STATIC_MAP[oldName]);
   }
 
   return {

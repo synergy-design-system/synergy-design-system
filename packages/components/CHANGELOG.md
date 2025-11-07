@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.58.0
+
+### Minor Changes
+
+- [#1073](https://github.com/synergy-design-system/synergy-design-system/pull/1073) [`0ae632c`](https://github.com/synergy-design-system/synergy-design-system/commit/0ae632c5331f0583ba652add18755df01766cbf5) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-07
+
+  feat: ✨ Brand updates for `<syn-dialog>` (#946)
+
+  Also made sure to have smaller `blur` settings as the token has double the size in Figma.
+
+### Patch Changes
+
+- Updated dependencies [[`0ae632c`](https://github.com/synergy-design-system/synergy-design-system/commit/0ae632c5331f0583ba652add18755df01766cbf5)]:
+  - @synergy-design-system/tokens@2.39.0
+
 ## 2.57.0
 
 ### Minor Changes

@@ -1,9 +1,10 @@
-/* eslint-disable */
+/* eslint-disable complexity */
 import { defaultIcons as i2015 } from '../dist/default-icons.js';
 import { outlineIcons as i2025 } from '../dist/sick2025-outline-icons.js';
 
 /**
  * Static mapping between old icon names and new icon names when no direct can be found
+ * @type {Record<string, string>}
  */
 const STATIC_MAP = {
   access_alarm: 'alarm',
@@ -11,39 +12,153 @@ const STATIC_MAP = {
   access_time: 'schedule',
   access_time_filled: 'schedule',
   add_alarm: 'alarm_add',
+  add_ic_call: 'add_call',
+  addchart: 'add_chart',
   announcement: 'sms_failed', // todo: Find something better! SMS has hardly anything to do with this!
+  app_settings_alt: 'phonelink_setup',
+  assessment: 'analytics',
+  assistant_photo: 'flag',
+  audiotrack: 'music_note',
+
+  battery_std: 'battery_full',
+  bluetooth_audio: 'bluetooth',
+  bookmark_border: 'bookmark',
+  browser_not_supported: 'web_asset_off',
+  business: 'apartment',
+
   camera_alt: 'camera', // todo: Find something better! Camera is heavily stylized
+  card_giftcard: 'featured_seasonal_and_gifts',
   catching_pokemon: 'MISSING',
+  class: 'MISSING', // @todo: No idea what this was, thanks for the class keyword JS
   clear: 'close',
+  closed_caption_off: 'closed_caption',
+  collections: 'collections_bookmark',
+  color_lens: 'palette',
+  control_point: 'add_circle',
   create: 'edit', // @todo: Edit is still a pen, but create is a plus sign?
   crop_din: 'crop_square',
+  crop_original: 'wallpaper', // Originally, this is just the picture icon
+
+  data_saver_off: 'MISSING', // add icon still there, but off not?
+  delivery_dining: 'moped',
+  directions_boat_filled: 'directions_boat',
+  directions_bus_filled: 'directions_bus',
+  directions_car_filled: 'directions_car',
+  directions_railway_filled: 'directions_railway',
+  directions_subway_filled: 'directions_subway',
+  directions_transit: 'directions_subway',
+  directions_transit_filled: 'directions_subway',
   discount: 'MISSING',
+  do_disturb: 'do_not_disturb_off',
+  do_disturb_alt: 'do_not_disturb_on',
+  do_disturb_off: 'do_not_disturb_on',
+  do_disturb_on: 'do_not_disturb_on',
+  do_not_disturb: 'do_not_disturb_off',
+  do_not_disturb_alt: 'do_not_disturb_off',
+  do_not_disturb_off: 'do_not_disturb_on',
+  do_not_disturb_on: 'do_not_disturb_on',
+  drive_eta: 'directions_car',
+
   email: 'mail',
+  emoji_emotions: 'sentiment_satisfied',
+
+  favorite_border: 'favorite',
+  fire_hydrant_alt: 'fire_hydrant',
   fitbit: 'MISSING', // @todo: maybe cardio_load?
   fmd_good: 'location_on',
   free_breakfast: 'local_cafe',
+
   games: 'gamepad',
   get_app: 'file_download', // @todo: Decide: There is also install_mobile or apk_install
   gpp_good: 'beenhere', // @todo: Same icon, but I don´t know what gpp_good means...
   gps_fixed: 'my_location', // @todo: Probably naming problem only, icons look the same
   gps_not_fixed: 'location_searching', // @todo: Probably naming problem only, icons look the same
   gps_off: 'location_disabled', // @todo: Probably naming problem only, icons look the same
+
+  headset: 'headphones',
+  highlight_alt: 'ink_selection',
+  highlight_off: 'cancel',
   https: 'lock', // @todo: Was a lock icon, not available anymore
+
+  import_export: 'height', // @todo: This does not match! But at least its two arrows
+  insert_chart_outlined: 'add_chart',
+  insert_comment: 'comment',
+  insert_drive_file: 'note',
+  insert_emoticon: 'sentiment_satisfied',
+  insert_invitation: 'event',
+  insert_link: 'link',
+  insert_photo: 'wallpaper',
+  iso: 'MISSING',
+
+  laptop: 'laptop_mac',
+  launch: 'open_in_new',
   local_airport: 'flight',
+  local_grocery_store: 'shopping_cart',
+  local_hotel: 'hotel',
+  local_movies: 'theaters',
+  local_offer: 'loyalty',
+  local_phone: 'call',
+  local_play: 'local_activity',
+  local_printshop: 'print',
+  loop: 'repeat', // @todo: Not quite the same, but ymmv
+
+  maps_home_work: 'home_work',
+  markunread: 'markunread_mailbox',
   message: 'chat',
   mic_none: 'mic_off',
   miscellaneous_services: 'settings', // @todo: Two cogwheels are not there anymore. Just use one
+  mode: 'edit',
   mode_edit: 'edit',
   mode_edit_outline: 'edit',
+  money_off_csred: 'money_off',
+  motion_photos_pause: 'motion_photos_paused',
+  movie_creation: 'movie',
+
+  nightlight_round: 'nightlight',
   no_cell: 'MISSING',
+  no_encryption_gmailerrorred: 'no_encryption',
   not_interested: 'hide_source', // @todo: The same icon, but different name
+  notifications_none: 'notifications',
+
   ondemand_video: 'play_circle', // @todo: Very different, no play tv anymore :(
   outlined_flag: 'emoji_flags', // Renamed to emoji_flags for ...reasons?
+
+  panorama_horizontal_select: 'panorama_horizontal', // @todo: Not a good match, but there is no alternative
+  panorama_photosphere_select: 'panorama_photosphere', // @todo: Not a good match, but there is no alternative
+  panorama_vertical_select: 'panorama_vertical',
+  panorama_wide_angle_select: 'panorama_wide_angle',
+  payment: 'credit_card',
   people: 'group',
   people_alt: 'groups',
   people_outline: 'group',
+  perm_identity: 'person',
+  person_add_alt: 'person_add',
+  person_add_alt_1: 'person_add',
+  person_remove_alt_1: 'person_remove',
+  personal_video: 'monitor',
+  phone: 'call',
+  phonelink: 'devices',
+  photo_size_select_actual: 'wallpaper',
+  pix: 'MISSING', // @todo: No idea what this was
+  place: 'location_on',
+  play_circle_filled: 'play_circle',
+  plus_one: 'exposure_plus_1',
+  poll: 'ballot',
+  portrait: 'account_box',
+
   query_builder: 'alarm', // Set to alarm because its the same as access_alarm
+  question_answer: 'forum',
   queue: 'add_to_queue',
+
+  remove_circle: 'do_not_disturb_on_total_silence', // @todo: This still does not quite fit
+  remove_circle_outline: 'do_not_disturb_on_total_silence', // @todo: This still does not quite fit
+  remove_red_eye: 'visibility',
+  replay_circle_filled: 'replay',
+  report_gmailerrorred: 'dangerous',
+  report_problem: 'warning',
+  restore: 'history',
+  room: 'location_on',
+
   save_alt: 'file_download',
   sd_storage: 'sd_card',
   security_update: 'install_mobile',
@@ -65,125 +180,30 @@ const STATIC_MAP = {
   system_security_update: 'install_mobile',
   system_security_update_good: 'MISSING',
   system_security_update_warning: 'perm_device_information',
+
   tag_faces: 'sentiment_satisfied', // @todo: There are also others, search "smil"
   terrain: 'landscape',
   textsms: 'sms',
-  time_to_leave: 'directions_car', // @todo: Same icon, different name
   thumb_down_alt: 'thumb_down',
   thumb_down_off_alt: 'thumb_down_off',
   thumb_up_alt: 'thumb_up',
   thumb_up_off_alt: 'thumb_up_off',
+  time_to_leave: 'directions_car', // @todo: Same icon, different name
   try: 'reviews',
   tungsten: 'lightbulb',
   turned_in: 'bookmark',
   turned_in_not: 'bookmark_remove',
-  watch_later: 'schedule',
+
   warning_amber: 'warning',
+  watch_later: 'schedule',
   wb_cloudy: 'cloud_queue',
   work_off: 'enterprise_off',
-  room: 'location_on',
-  restore: 'history',
-  report_problem: 'warning',
-  report_gmailerrorred: 'dangerous',
-  replay_circle_filled: 'replay',
-  remove_red_eye: 'visibility',
-  remove_circle_outline: 'do_not_disturb_on_total_silence', // @todo: This still does not quite fit
-  remove_circle: 'do_not_disturb_on_total_silence', // @todo: This still does not quite fit
-  question_answer: 'forum',
-  portrait: 'account_box',
-  poll: 'ballot',
-  plus_one: 'exposure_plus_1',
-  play_circle_filled: 'play_circle',
-  place: 'location_on',
-  pix: 'MISSING', // @todo: No idea what this was
-  photo_size_select_actual: 'wallpaper',
-  phonelink: 'devices',
-  phone: 'call',
-  personal_video: 'monitor',
-  person_remove_alt_1: 'person_remove',
-  person_add_alt_1: 'person_add',
-  person_add_alt: 'person_add',
-  perm_identity: 'person',
-  payment: 'credit_card',
-  pause_circle_filled: 'pause_circle',
-  panorama_wide_angle_select: 'panorama_wide_angle',
-  panorama_vertical_select: 'panorama_vertical',
-  panorama_photosphere_select: 'panorama_photosphere', // @todo: Not a good match, but there is no alternative
-  panorama_horizontal_select: 'panorama_horizontal', // @todo: Not a good match, but there is no alternative
-  notifications_none: 'notifications',
-  no_encryption_gmailerrorred: 'no_encryption',
-  nightlight_round: 'nightlight',
-  movie_creation: 'movie',
-  motion_photos_pause: 'motion_photos_paused',
-  money_off_csred: 'money_off',
-  mode: 'edit',
-  markunread: 'markunread_mailbox',
-  maps_home_work: 'home_work',
-  loop: 'repeat', // @todo: Not quite the same, but ymmv
-  local_printshop: 'print',
-  local_play: 'local_activity',
-  local_phone: 'call',
-  local_offer: 'loyalty',
-  local_movies: 'theaters',
-  local_hotel: 'hotel',
-  local_grocery_store: 'shopping_cart',
-  launch: 'open_in_new',
-  laptop: 'laptop_mac',
-  iso: 'MISSING',
-  insert_photo: 'wallpaper',
-  insert_link: 'link',
-  insert_invitation: 'event',
-  insert_emoticon: 'sentiment_satisfied',
-  insert_drive_file: 'note',
-  insert_comment: 'comment',
-  insert_chart_outlined: 'add_chart',
-  import_export: 'height', // @todo: This does not match! But at least its two arrows
-  highlight_off: 'cancel',
-  highlight_alt: 'ink_selection',
-  headset: 'headphones',
-  fire_hydrant_alt: 'fire_hydrant',
-  favorite_border: 'favorite',
-  emoji_emotions: 'sentiment_satisfied',
-  drive_eta: 'directions_car',
-  do_not_disturb_alt: 'do_not_disturb_off',
-  do_not_disturb: 'do_not_disturb_off',
-  do_disturb_on: 'do_not_disturb_on',
-  do_disturb_off: 'do_not_disturb_on',
-  do_disturb_alt: 'do_not_disturb_on',
-  do_disturb: 'do_not_disturb_off',
-  directions_transit_filled: 'directions_subway',
-  directions_transit: 'directions_subway',
-  directions_subway_filled: 'directions_subway',
-  directions_railway_filled: 'directions_railway',
-  directions_car_filled: 'directions_car',
-  directions_bus_filled: 'directions_bus',
-  directions_boat_filled: 'directions_boat',
-  delivery_dining: 'moped',
-  data_saver_off: 'MISSING', // add icon still there, but off not?
-  crop_original: 'wallpaper', // Originally, this is just the picture icon
-  control_point: 'add_circle',
-  color_lens: 'palette',
-  collections: 'collections_bookmark',
-  closed_caption_off: 'closed_caption',
-  ['class']: 'MISSING', // @todo: No idea what this was, thanks for the class keyword JS
-  card_giftcard: 'featured_seasonal_and_gifts',
-  business: 'apartment',
-  browser_not_supported: 'web_asset_off',
-  bookmark_border: 'bookmark',
-  bluetooth_audio: 'bluetooth',
-  battery_std: 'battery_full',
-  audiotrack: 'music_note',
-  assistant_photo: 'flag',
-  assessment: 'analytics',
-  app_settings_alt: 'phonelink_setup',
-  addchart: 'add_chart',
-  add_ic_call: 'add_call',
 };
 
 const STATUS = {
   MAPPED_BY_REVERSING: 'MAPPED_BY_REVERSING',
-  MAPPED_STATICALLY: 'MAPPED_STATICALLY',
   MAPPED_DIRECTLY: 'MAPPED_DIRECTLY',
+  MAPPED_STATICALLY: 'MAPPED_STATICALLY',
   MAPPED_WITHOUT_SUFFIX: 'MAPPED_WITHOUT_SUFFIX',
   NOT_FOUND_IN_OLD: 'NOT_FOUND_IN_OLD',
   UNKNOWN: 'UNKNOWN',
@@ -241,9 +261,7 @@ const mapIconName = oldName => {
       name: oldName,
       newName: STATIC_MAP[oldName],
       status: STATUS.MAPPED_STATICALLY,
-    }
-  } else {
-    console.error(STATIC_MAP[oldName]);
+    };
   }
 
   return {
@@ -255,18 +273,6 @@ const mapIconName = oldName => {
 
 const results = keys2015.map(mapIconName);
 
-const groupedResults = results
-  .reduce((acc, result) => {
-    if (!acc[result.status]) {
-      acc[result.status] = [];
-    }
-    acc[result.status].push({
-      name: result.name,
-      newName: result.newName,
-    });
-    return acc;
-  }, {});
-
 // Write output as a js file
 const output = `
 import { getBasePath } from '../../utilities/base-path.js';
@@ -277,9 +283,7 @@ const getIconMigrationName = (iconName: string) => {
     ${
       results
         .filter(result => result.status !== STATUS.MAPPED_DIRECTLY)
-        .map(result => {
-          return `    case '${result.name}': return '${result.newName}';`;
-        })
+        .map(result => `    case '${result.name}': return '${result.newName}';`)
         .join('\n')
     }
 
@@ -293,7 +297,7 @@ export const migrationLibrary: IconLibrary = {
   name: 'default',
   resolver: name => {
     const mappedName = getIconMigrationName(name);
-    return getBasePath(\`assets/icons/\$\{mappedName\}.svg\`);  
+    return getBasePath(\`assets/icons/\${mappedName}.svg\`);  
   },
 };
 `;

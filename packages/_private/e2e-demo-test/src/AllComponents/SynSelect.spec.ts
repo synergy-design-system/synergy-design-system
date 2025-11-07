@@ -181,6 +181,10 @@ test.describe('<SynSelect />', () => {
 
         await select.click();
 
+        // Wait for the first option to be visible
+        // Firefox is flaky without this statement
+        await expect(option1).toBeVisible();
+
         await runActionAndValidateEvents(
           page,
           () => option1.click(),

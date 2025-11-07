@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.37.0
+ * @synergy-design-system/tokens version 2.39.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -210,14 +210,11 @@
   --syn-input-letter-spacing: normal;
   --syn-input-placeholder-color: var(--syn-color-neutral-700);
   --syn-input-placeholder-color-disabled: var(--syn-color-neutral-700);
-  --syn-input-readonly-color: var(--syn-color-neutral-800);
-  --syn-input-readonly-color-disabled: var(--syn-color-neutral-800);
-  --syn-input-readonly-color-focus: var(--syn-color-neutral-950);
   --syn-input-readonly-color-hover: var(--syn-color-neutral-950);
-  --syn-input-readonly-background-color: #f2f0ed;
-  --syn-input-readonly-background-color-disabled: #f2f0ed;
-  --syn-input-readonly-background-color-focus: #f2f0ed;
-  --syn-input-readonly-background-color-hover: #f2f0ed;
+  --syn-input-readonly-background-color: #e6e1dc;
+  --syn-input-readonly-background-color-disabled: #e6e1dc;
+  --syn-input-readonly-background-color-focus: #e6e1dc;
+  --syn-input-readonly-background-color-hover: #e6e1dc;
   --syn-input-required-content: "*";
   --syn-input-required-content-color: var(--syn-input-label-color);
   --syn-input-required-content-offset: -2px;
@@ -251,8 +248,8 @@
   --syn-link-underline-outline: 25%;
   --syn-logo-color: var(--syn-color-primary-700);
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-overlay-background-blur: 16px;
-  --syn-overlay-background-color: rgba(0, 10, 55, 0.3);
+  --syn-overlay-background-blur: 8px;
+  --syn-overlay-background-color: rgba(0, 5, 26, 0.3);
   --syn-page-background: #f8f7f6;
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: #e6e1dc;

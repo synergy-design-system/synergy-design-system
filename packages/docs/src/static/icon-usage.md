@@ -43,13 +43,13 @@ Note that if you do not call this function, it will default to the 2018 icon lib
 import { setSystemIconLibrary } from "@synergy-design-system/components";
 
 // Switch to the 2025 icon library
-setDefaultIconLibrary("sick2025");
+setSystemIconLibrary("sick2025");
 
 // Switch back to the 2018 icon library
-setDefaultIconLibrary("sick2018");
+setSystemIconLibrary("sick2018");
 
 // Switch to the default icon library (2018 for Synergy 2.0, 2025 for Synergy 3.0)
-setDefaultIconLibrary();
+setSystemIconLibrary();
 ```
 
 #### Angular + Webpack

@@ -3,14 +3,14 @@
 ```html
 <syn-card>
   <h3>Headline</h3>
-  This are some happy employees, but not just any employees. These are SICK
+  These are some happy employees, but not just any employees. These are SICK
   employees.
 
   <span slot="footer"> </span>
   <footer slot="footer">
     <small>Optional information</small>
     <nav>
-      <syn-button variant="filled" size="small" title="">More Info</syn-button>
+      <syn-button variant="filled" size="small" title="">More info</syn-button>
     </nav>
   </footer>
   <span slot="footer"> </span>
@@ -61,14 +61,14 @@ Cards can be used to group related subjects in a container.
 ```html
 <syn-card>
   <h3>Headline</h3>
-  This are some happy employees, but not just any employees. These are SICK
+  These are some happy employees, but not just any employees. These are SICK
   employees.
 
   <span slot="footer"> </span>
   <footer slot="footer">
     <small>Optional information</small>
     <nav>
-      <syn-button variant="filled" size="small" title="">More Info</syn-button>
+      <syn-button variant="filled" size="small" title="">More info</syn-button>
     </nav>
   </footer>
   <span slot="footer"> </span>
@@ -237,7 +237,7 @@ Cards accept an image slot. The image is displayed atop the card and stretches t
     src="https://synergy-design-system.github.io/card-example.jpg"
     alt="Multiple persons having lunch in SICK Academy"
   />
-  This are some happy employees, but not just any employees. These are SICK
+  These are some happy employees, but not just any employees. These are SICK
   employees.
 </syn-card>
 
@@ -261,7 +261,7 @@ Use the sharp variant attribute for the Card to Use a different style.
     src="https://synergy-design-system.github.io/card-example.jpg"
     alt="Multiple persons having lunch in SICK Academy"
   />
-  This are some happy employees, but not just any employees. These are SICK
+  These are some happy employees, but not just any employees. These are SICK
   employees.
 </syn-card>
 

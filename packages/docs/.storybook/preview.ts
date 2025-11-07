@@ -109,7 +109,15 @@ const preview: Preview = {
       stories: { inline: false },
       toc: {
         headingSelector: 'h2, h3',
-        ignoreSelector: '.toc-ignore h2, .toc-ignore h3, .docs-story h2, .docs-story h3',
+        ignoreSelector: [
+          '.toc-ignore h2',
+          '.toc-ignore h3',
+          '.docs-story h2',
+          '.docs-story h3',
+          '.synergy-changelog h3',
+          '.synergy-changelog h4',
+          '.synergy-changelog h5',
+        ].join(', '),
       },
       source: {
         format: 'html',

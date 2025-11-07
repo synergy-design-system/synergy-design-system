@@ -18,20 +18,17 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
+      # Needed to allow pushes back to the repository
+      - name: Configure git for GitHub Actions
+        run: |
+          git config --global url."https://${GITHUB_TOKEN}:x-oauth-basic@github.com/".insteadOf "https://github.com/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
         with:
-          node-version: 22
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm i
-
-      - name: Build
-        run: pnpm build
+          install-command: 'PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm install'
 
       # Make sure pnpm is able to release
       # @see https://github.com/pnpm/pnpm/issues/3141#issuecomment-1305563972
@@ -40,11 +37,58 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_RELEASE_TOKEN_CS}}
 
-      - name: Run Semantic Release for all packages
+      # This step creates a changeset for MCP if it is missing from changesets
+      # As the MCP package needs to be updated with the latest changelog metadata,
+      # it always needs to be part of the release when other packages are released.
+      - name: Create MCP changeset if needed
+        run: pnpm --filter mcp build && git add ./packages/mcp/metadata && git diff --cached --quiet ./packages/mcp/metadata || node packages/_private/release-utils/src/ensure-mcp-changeset.js
+
+      - name: Creating releases via Changesets
         env:
+          # Legacy GH_TOKEN, may be removed if not needed.
           GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
+          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
-        run: pnpm release && pnpm publish --recursive --access=public
+        run: |
+          # Final release process
+
+          # Creates changelogs and bumps versions
+          pnpm changeset version
+
+          # Make sure to rebuild our sources as we may get errors otherwise
+          pnpm --filter components build
+
+          # Build MCP with updated metadata after version changes
+          echo "Building MCP with updated metadata..."
+          if ! pnpm --filter mcp build; then
+            echo "❌ MCP build failed"
+            exit 1
+          fi
+
+          # Save the changes to git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          
+          # Commit changes and store exit code
+          git commit -m "chore: 🚀 version packages [skip ci]"
+          COMMIT_EXIT_CODE=$?
+          
+          # Only proceed if there were changes to commit
+          if [ $COMMIT_EXIT_CODE -eq 0 ]; then
+            git push origin main
+
+            # Create the new tags we need
+            pnpm changeset tag
+
+            # Push tags to remote
+            git push --tags
+
+            # Finally, push to the registry
+            pnpm publish --recursive --access=public
+          else
+            echo "No changes to commit, skipping release process"
+          fi
 
       # This workflow triggers the Storybook deployment
       - name: Releases done

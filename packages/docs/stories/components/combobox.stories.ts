@@ -552,6 +552,7 @@ export const AsyncOptions: Story = {
       });
     </script>
   `,
+  tags: ['skip_mcp'],
 };
 
 export const CustomFilter: Story = {

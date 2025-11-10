@@ -258,10 +258,6 @@ export default css`
     z-index: 1;
   }
 
-  .current-indicator--visible.current-indicator--disabled {
-    background: var(--syn-color-neutral-500);
-  }
-
   .current-indicator--visible {
     background: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
   }

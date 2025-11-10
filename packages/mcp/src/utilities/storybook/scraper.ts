@@ -3,7 +3,45 @@ import { dirname } from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { Browser, chromium } from 'playwright';
 import prettier from 'prettier';
+import storybookOutput from '@synergy-design-system/docs/dist/index.json' with { type: 'json' };
 import { ScrapedStory, ScrapingConfig } from './types.js';
+
+interface StorybookEntry {
+  id: string;
+  tags?: string[];
+  [key: string]: unknown;
+}
+
+/**
+ * Check if a story should be skipped based on its tags
+ * @param storyId The story ID to check (e.g., "components-syn-combobox--async-options")
+ * @returns true if the story should be skipped, false otherwise
+ */
+function shouldSkipStory(storyId: string): boolean {
+  const entries = storybookOutput.entries as Record<string, StorybookEntry>;
+  const storyEntry = entries[storyId];
+  return storyEntry?.tags?.includes('skip_mcp') || false;
+}
+
+/**
+ * Check if a story heading should be skipped by finding the corresponding story ID
+ * @param docsStoryId The docs story ID (e.g., "components-syn-combobox--docs")
+ * @param heading The story heading (e.g., "Async Options")
+ * @returns true if the story should be skipped, false otherwise
+ */
+function shouldSkipStoryByHeading(docsStoryId: string, heading: string): boolean {
+  // Get the component prefix from docs story ID
+  // (e.g., "components-syn-combobox" from "components-syn-combobox--docs")
+  const componentPrefix = docsStoryId.replace('--docs', '');
+
+  // Find matching story by converting heading to potential story ID format
+  // Story names are typically converted from "Async Options" to "async-options"
+  const potentialStorySlug = heading.toLowerCase().replace(/\s+/g, '-');
+  const potentialStoryId = `${componentPrefix}--${potentialStorySlug}`;
+
+  // Check if this potential story ID exists and should be skipped
+  return shouldSkipStory(potentialStoryId);
+}
 
 export class StorybookScraper {
   private config: ScrapingConfig;
@@ -50,7 +88,7 @@ export class StorybookScraper {
 
       // Extract the stories metadata first
       // We get basic info and identify stories that need iframe content
-      const storyMetadata = await page.evaluate(() => Array.from(
+      const rawStoryMetadata = await page.evaluate(() => Array.from(
         document.querySelectorAll('.sb-anchor'),
       )
         .map((story, index) => {
@@ -68,6 +106,15 @@ export class StorybookScraper {
           };
         })
         .filter(x => x.heading));
+
+      // Filter out stories that should be skipped based on their tags
+      const storyMetadata = rawStoryMetadata.filter(story => {
+        const shouldSkip = shouldSkipStoryByHeading(storyId, story.heading);
+        if (shouldSkip) {
+          console.log(`Skipping story "${story.heading}" due to skip_mcp tag`);
+        }
+        return !shouldSkip;
+      });
 
       // Process each story and handle iframe content if needed
       const results = await Promise.all(

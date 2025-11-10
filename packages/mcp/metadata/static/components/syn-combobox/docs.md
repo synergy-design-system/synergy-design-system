@@ -2241,47 +2241,6 @@ The height of the filtered options list can be customized by setting the max-hei
 
 ---
 
-## Async Options
-
-It is possible to add options dynamically to the combobox e.g. if the option values need to be fetched asynchronously from a remote server or API.
-
-```html
-<syn-combobox
-  label="Async options"
-  class="async-combobox"
-  size="medium"
-  placement="bottom"
-  form=""
->
-  <syn-option
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    value=""
-    id="syn-combobox-option-0"
-    >Option 1</syn-option
-  >
-  <syn-option
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    value=""
-    id="syn-combobox-option-1"
-    >Option 2</syn-option
-  >
-  <syn-option
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    value=""
-    id="syn-combobox-option-2"
-    >Option 3</syn-option
-  >
-</syn-combobox>
-```
-
----
-
 ## Custom Filter
 
 A custom filter can be applied by passing a filter function to the filter property. This filter() function will be called for each option. The first argument is an <syn-option> element and the second argument is the query string.

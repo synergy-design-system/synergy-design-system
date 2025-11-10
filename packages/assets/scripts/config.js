@@ -2,6 +2,11 @@
 export const FIGMA_FILE_ID_ICONS = 'bZFqk9urD3NlghGUKrkKCR';
 export const FIGMA_ID_ICONS = '1616-1509';
 
+/**
+ * @todo: Change to FIGMA_FILE_ID_ICONS after 2025 merge is complete
+ */
+export const FIGMA_FILE_ID_SYSTEM_ICONS = 'nv3f3ZfyRyMg8xrjMsfnFQ';
+
 export const FIGMA_ID_LOGOS = '41-4000';
 
 // V2 Figma paths

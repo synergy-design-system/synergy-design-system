@@ -502,7 +502,7 @@ export default class SynTabGroup extends SynergyElement {
                     'tab-group__scroll-button--start': true,
                     'tab-group__scroll-button--start--hidden': this.shouldHideScrollStartButton
                   })}
-                  name="chevron-right"
+                  name="tabs-right"
                   library="system"
                   tabindex="-1"
                   aria-hidden="true"
@@ -532,7 +532,7 @@ export default class SynTabGroup extends SynergyElement {
                     'tab-group__scroll-button--end': true,
                     'tab-group__scroll-button--end--hidden': this.shouldHideScrollEndButton
                   })}
-                  name="chevron-right"
+                  name="tabs-right"
                   library="system"
                   tabindex="-1"
                   aria-hidden="true"

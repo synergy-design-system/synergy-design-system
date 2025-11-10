@@ -185,7 +185,7 @@ export default css`
   .tab-group__scroll-button {
     /* we need to move the scroll buttons to the top, to align the borders with the border of the tab-group--nav  */
     bottom: var(--syn-panel-border-width);
-    color: var(--syn-color-neutral-950);
+    color: var(--syn-interactive-quiet-color, var(--syn-color-neutral-950));
     font-size: var(--syn-font-size-medium);
     width: calc(var(--syn-spacing-x-large) + var( --syn-spacing-2x-small));
   }

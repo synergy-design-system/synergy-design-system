@@ -64,7 +64,7 @@ export default css`
   }
 
   .tab__close-button {
-    color: var(--syn-color-neutral-500);
+    color: var(--syn-input-icon-icon-clearable-color, var(--syn-color-neutral-500));
     font-size: var(--syn-font-size-x-large);
     margin-inline-start: var(--syn-spacing-2x-small);
   }

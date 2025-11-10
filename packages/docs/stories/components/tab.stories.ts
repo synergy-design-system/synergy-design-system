@@ -8,6 +8,7 @@ import {
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-tab');
 const { overrideArgs } = storybookHelpers('syn-tab');
@@ -24,6 +25,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-tab',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('18008-40436'),
     docs: {
       description: {
@@ -31,7 +35,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'SICK2018'],
+  tags: ['Navigation', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-tab',
 };
 export default meta;

@@ -5,8 +5,9 @@ export default css`
   /* Write custom CSS here */
   :host {
     --track-width: var(--syn-border-width-small);
-    --track-color: var(--syn-color-neutral-300);
+    --track-color: var(--syn-panel-border-color);
     --indicator-width: var(--syn-border-width-x-large);
+    --indicator-color: var(--syn-interactive-emphasis-color, --syn-color-primary-600);
   }
 
   /* we need to augment the size of the height of the tab-group__nav to make the focus outline and the hiding white border visible of the tab because of overflow-x value  */
@@ -24,25 +25,14 @@ export default css`
    */
   .tab-group--top .tab-group__indicator {
     border-bottom: solid var(--indicator-width) var(--indicator-color);
-    bottom: 0;
   }
 
   .tab-group--start .tab-group__indicator {
     border-right: solid var(--indicator-width) var(--indicator-color);
-    right: 0;
-  }
-
-  .tab-group--start.tab-group--rtl .tab-group__indicator {
-    left: 0;
   }
 
   .tab-group--end .tab-group__indicator {
     border-inline-start: solid var(--indicator-width) var(--indicator-color);
-    left: 0;
-  }
-
-  .tab-group--end.tab-group--rtl .tab-group__indicator {
-    right: 0;
   }
 
   /**

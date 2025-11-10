@@ -37,8 +37,12 @@ export default css`
     font-size: var(--syn-font-size-x-large);
   }
 
-  :host(:focus-visible)  .menu-item .menu-item__prefix::slotted(syn-icon),
-  :host(:focus-visible)  .menu-item .menu-item__suffix::slotted(syn-icon) {
+  :host(:focus-visible) .menu-item {
+    background-color: var(--syn-focus-ring-color, var(--syn-color-primary-600));
+  }
+
+  :host(:focus-visible) .menu-item .menu-item__prefix::slotted(syn-icon),
+  :host(:focus-visible) .menu-item .menu-item__suffix::slotted(syn-icon) {
     color: var(--syn-color-neutral-0);
   }
 

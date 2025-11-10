@@ -259,7 +259,7 @@ export default css`
   }
 
   .current-indicator--visible.current-indicator--disabled {
-    background: var(--syn-interactive-background-color-hover, var(--syn-color-neutral-500));
+    background: var(--syn-color-neutral-500);
   }
 
   .current-indicator--visible {
@@ -305,8 +305,9 @@ export default css`
 
   /**
    * Make sure the divider blends into the background on hover
+   * for items that are NOT disabled.
    */
-  .nav-item--vertical:hover .divider {
+  .nav-item--vertical:not(.nav-item--disabled):hover .divider {
     --color: var(--syn-interactive-background-color-hover);
   }
 

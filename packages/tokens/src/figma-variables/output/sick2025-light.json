@@ -942,6 +942,12 @@
       }
     },
     "readonly-background": {
+      "border": {
+        "color": {
+          "type": "color",
+          "value": "{color.neutral.950}"
+        }
+      },
       "color": {
         "type": "color",
         "value": "#e6e1dc"
@@ -998,6 +1004,10 @@
   },
   "interactive": {
     "background": {
+      "color-active": {
+        "type": "color",
+        "value": "#ece8e5"
+      },
       "color-hover": {
         "type": "color",
         "value": "#f2f0ed"

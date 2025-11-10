@@ -54,7 +54,7 @@ const createNavItems = () => html`
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item current divider disabled>
+    <syn-nav-item divider>
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>

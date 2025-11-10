@@ -4,4 +4,4 @@
 "@synergy-design-system/tokens": minor
 ---
 
-feat: ✨ Brand updates for `<syn-side-nav>` and `<syn-nav-item>` (#967)
+feat: ✨ Brand updates for `<syn-side-nav>`, `<syn-prio-nav>` and `<syn-nav-item>` (#967, #960)

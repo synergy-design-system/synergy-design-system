@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.21.1
+
+### Patch Changes
+
+- [#1080](https://github.com/synergy-design-system/synergy-design-system/pull/1080) [`aab4c0e`](https://github.com/synergy-design-system/synergy-design-system/commit/aab4c0e23b075e4b3c98d5d14d754c718fd74546) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-10
+
+  fix: 🐛 MCP: Exclude flaky stories from output (#1077)
+
 ## 1.21.0
 
 ### Minor Changes

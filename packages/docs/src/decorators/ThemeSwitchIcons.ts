@@ -1,16 +1,13 @@
 import type { StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { DecoratorHelpers } from '@storybook/addon-themes';
-import {
-  type SynIcon,
-  getBasePath,
-  getIconMigrationName,
-  registerIconLibrary,
-  setSystemIconLibrary,
-} from '@synergy-design-system/components';
-import { type IconLibrary } from '../../../components/src/components/icon/library.js';
+import type { SynIcon } from '@synergy-design-system/components';
+import { setSystemIconLibrary } from '../../../components/src/components/icon/library.system.js';
+import { getIconMigrationName } from '../../../components/src/components/icon/library.migration.js';
+import { type IconLibrary, registerIconLibrary } from '../../../components/src/components/icon/library.js';
 import {
   DARK_THEME, LIGHT_THEME, SICK_2025_DARK, SICK_2025_LIGHT,
 } from '../../.storybook/modes.js';
+import { getBasePath } from '../../../components/src/utilities/base-path.js';
 
 /**
  * Recursively searches through a DOM context for syn-icon elements of library="system"

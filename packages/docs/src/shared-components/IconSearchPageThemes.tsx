@@ -1,17 +1,20 @@
 import React, { FC, Fragment, useState } from 'react';
-import { getBasePath, getIconMigrationName, registerIconLibrary } from '@synergy-design-system/components';
 import type { SynInputEvent, SynInput as SynInputType } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/input/input.js';
 import '@synergy-design-system/components/components/tab-group/tab-group.js';
 import '@synergy-design-system/components/components/tab/tab.js';
 import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
+import { registerIconLibrary } from '../../../components/src/components/icon/library.js';
+import { getIconMigrationName } from '../../../components/src/components/icon/library.migration.js';
 import { defaultIcons as sick2018Icons } from '../../../assets/src/default-icons.js';
+import { outlineIcons as sick2025Outline } from '../../../assets/src/sick2025-outline-icons.js';
 import { IconsSearchPage } from './IconSearchPage.js';
 
 registerIconLibrary('migration', {
   resolver: name => {
     const mappedName = getIconMigrationName(name);
-    return getBasePath(`assets/sick2025/outline/${mappedName}.svg`);
+    const defaultName = mappedName as keyof typeof sick2025Outline;
+    return `data:image/svg+xml,${encodeURIComponent(sick2025Outline[defaultName])}`;
   },
 });
 
@@ -88,10 +91,10 @@ export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
                 >
                   <h2
                     style={{
-                      textWrap: 'pretty',
-                      wordBreak: 'break-word',
                       fontSize: 'var(--syn-font-size-small)',
                       marginBottom: 'var(--syn-spacing-medium)',
+                      textWrap: 'pretty',
+                      wordBreak: 'break-word',
                     }}
                   >{iconName}</h2>
                   <div

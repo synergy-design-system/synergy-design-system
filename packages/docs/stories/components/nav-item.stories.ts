@@ -98,7 +98,7 @@ export const HorizontalNavigation: Story = {
   render: () => html`
     <div style="display: flex; gap: var(--syn-spacing-large);">
       <syn-nav-item current horizontal>Horizontal navigation item</syn-nav-item>
-      <syn-nav-item current horizontal>Horizontal navigation item</syn-nav-item>
+      <syn-nav-item horizontal>Horizontal navigation item</syn-nav-item>
     </div>
   `,
 };

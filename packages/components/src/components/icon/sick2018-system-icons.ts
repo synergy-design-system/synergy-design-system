@@ -1,7 +1,6 @@
 /* eslint-disable */
 export const icons = {
   "add": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='currentColor'><path d=\"M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z\"/></svg>",
-  "caret": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='currentColor'><path d=\"M16.59 8.295 12 12.875l-4.59-4.58L6 9.705l6 6 6-6z\"/></svg>",
   "check": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='currentColor'><path d=\"m8.795 15.875-4.17-4.17-1.42 1.41 5.59 5.59 12-12-1.41-1.41z\"/></svg>",
   "chevron-down": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='currentColor'><path d=\"M16.59 8.295 12 12.875l-4.59-4.58L6 9.705l6 6 6-6z\"/></svg>",
   "chevron-right": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='currentColor'><path d=\"m9.705 6-1.41 1.41 4.58 4.59-4.58 4.59L9.705 18l6-6z\"/></svg>",

@@ -2,7 +2,7 @@
 import { writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defaultIcons as i2015 } from '../dist/default-icons.js';
+import { defaultIcons as i2018 } from '../dist/default-icons.js';
 import { outlineIcons as i2025 } from '../dist/sick2025-outline-icons.js';
 
 /**
@@ -17,32 +17,32 @@ const STATIC_MAP = {
   add_alarm: 'alarm_add',
   add_ic_call: 'add_call',
   addchart: 'add_chart',
-  announcement: 'sms_failed', // todo: Find something better! SMS has hardly anything to do with this!
+  announcement: 'feedback',
   app_settings_alt: 'phonelink_setup',
-  assessment: 'analytics',
+  assessment: 'insert_chart',
   assistant_photo: 'flag',
   audiotrack: 'music_note',
 
   battery_std: 'battery_full',
-  bluetooth_audio: 'bluetooth',
+  bluetooth_audio: 'bluetooth_searching',
   bookmark_border: 'bookmark',
   browser_not_supported: 'web_asset_off',
-  business: 'apartment',
+  business: 'domain',
 
-  camera_alt: 'camera', // todo: Find something better! Camera is heavily stylized
-  card_giftcard: 'featured_seasonal_and_gifts',
+  camera_alt: 'photo_camera',
+  card_giftcard: 'redeem',
   catching_pokemon: 'MISSING',
-  class: 'MISSING', // @todo: No idea what this was, thanks for the class keyword JS
+  class: 'book',
   clear: 'close',
   closed_caption_off: 'closed_caption',
-  collections: 'collections_bookmark',
+  collections: 'filter',
   color_lens: 'palette',
   control_point: 'add_circle',
   create: 'edit', // @todo: Edit is still a pen, but create is a plus sign?
   crop_din: 'crop_square',
-  crop_original: 'wallpaper', // Originally, this is just the picture icon
+  crop_original: 'image',
 
-  data_saver_off: 'MISSING', // add icon still there, but off not?
+  data_saver_off: 'data_usage',
   delivery_dining: 'moped',
   directions_boat_filled: 'directions_boat',
   directions_bus_filled: 'directions_bus',
@@ -51,10 +51,10 @@ const STATIC_MAP = {
   directions_subway_filled: 'directions_subway',
   directions_transit: 'directions_subway',
   directions_transit_filled: 'directions_subway',
-  discount: 'MISSING',
-  do_disturb: 'do_not_disturb_off',
-  do_disturb_alt: 'do_not_disturb_on',
-  do_disturb_off: 'do_not_disturb_on',
+  discount: 'sell',
+  do_disturb: 'block',
+  do_disturb_alt: 'block',
+  do_disturb_off: 'do_not_disturb_off',
   do_disturb_on: 'do_not_disturb_on',
   do_not_disturb: 'do_not_disturb_off',
   do_not_disturb_alt: 'do_not_disturb_off',
@@ -63,7 +63,7 @@ const STATIC_MAP = {
   drive_eta: 'directions_car',
 
   email: 'mail',
-  emoji_emotions: 'sentiment_satisfied',
+  emoji_emotions: 'mood',
 
   favorite_border: 'favorite',
   fire_hydrant_alt: 'fire_hydrant',
@@ -72,26 +72,26 @@ const STATIC_MAP = {
   free_breakfast: 'local_cafe',
 
   games: 'gamepad',
-  get_app: 'file_download', // @todo: Decide: There is also install_mobile or apk_install
-  gpp_good: 'beenhere', // @todo: Same icon, but I don´t know what gpp_good means...
-  gps_fixed: 'my_location', // @todo: Probably naming problem only, icons look the same
-  gps_not_fixed: 'location_searching', // @todo: Probably naming problem only, icons look the same
-  gps_off: 'location_disabled', // @todo: Probably naming problem only, icons look the same
+  get_app: 'file_download',
+  gpp_good: 'verified_user',
+  gps_fixed: 'my_location',
+  gps_not_fixed: 'location_searching',
+  gps_off: 'location_disabled',
 
   headset: 'headphones',
   highlight_alt: 'ink_selection',
   highlight_off: 'cancel',
-  https: 'lock', // @todo: Was a lock icon, not available anymore
+  https: 'lock',
 
-  import_export: 'height', // @todo: This does not match! But at least its two arrows
-  insert_chart_outlined: 'add_chart',
+  import_export: 'swap_vert', // @todo: This does not match! But at least its two arrows
+  insert_chart_outlined: 'insert_chart',
   insert_comment: 'comment',
   insert_drive_file: 'note',
-  insert_emoticon: 'sentiment_satisfied',
+  insert_emoticon: 'mood',
   insert_invitation: 'event',
   insert_link: 'link',
-  insert_photo: 'wallpaper',
-  iso: 'MISSING',
+  insert_photo: 'image',
+  iso: 'exposure',
 
   laptop: 'laptop_mac',
   launch: 'open_in_new',
@@ -99,17 +99,17 @@ const STATIC_MAP = {
   local_grocery_store: 'shopping_cart',
   local_hotel: 'hotel',
   local_movies: 'theaters',
-  local_offer: 'loyalty',
+  local_offer: 'sell',
   local_phone: 'call',
   local_play: 'local_activity',
   local_printshop: 'print',
-  loop: 'repeat', // @todo: Not quite the same, but ymmv
+  loop: 'sync',
 
   maps_home_work: 'home_work',
-  markunread: 'markunread_mailbox',
+  markunread: 'mail',
   message: 'chat',
-  mic_none: 'mic_off',
-  miscellaneous_services: 'settings', // @todo: Two cogwheels are not there anymore. Just use one
+  mic_none: 'mic',
+  miscellaneous_services: 'manufacturing',
   mode: 'edit',
   mode_edit: 'edit',
   mode_edit_outline: 'edit',
@@ -118,21 +118,21 @@ const STATIC_MAP = {
   movie_creation: 'movie',
 
   nightlight_round: 'nightlight',
-  no_cell: 'MISSING',
+  no_cell: 'mobile_off',
   no_encryption_gmailerrorred: 'no_encryption',
-  not_interested: 'hide_source', // @todo: The same icon, but different name
+  not_interested: 'block', // @todo: The same icon, but different name
   notifications_none: 'notifications',
 
-  ondemand_video: 'play_circle', // @todo: Very different, no play tv anymore :(
-  outlined_flag: 'emoji_flags', // Renamed to emoji_flags for ...reasons?
+  ondemand_video: 'live_tv',
+  outlined_flag: 'flag',
 
-  panorama_horizontal_select: 'panorama_horizontal', // @todo: Not a good match, but there is no alternative
-  panorama_photosphere_select: 'panorama_photosphere', // @todo: Not a good match, but there is no alternative
+  panorama_horizontal_select: 'panorama_horizontal',
+  panorama_photosphere_select: 'panorama_photosphere',
   panorama_vertical_select: 'panorama_vertical',
   panorama_wide_angle_select: 'panorama_wide_angle',
   payment: 'credit_card',
   people: 'group',
-  people_alt: 'groups',
+  people_alt: 'group',
   people_outline: 'group',
   perm_identity: 'person',
   person_add_alt: 'person_add',
@@ -141,48 +141,48 @@ const STATIC_MAP = {
   personal_video: 'monitor',
   phone: 'call',
   phonelink: 'devices',
-  photo_size_select_actual: 'wallpaper',
+  photo_size_select_actual: 'panorama',
   pix: 'MISSING', // @todo: No idea what this was
   place: 'location_on',
   play_circle_filled: 'play_circle',
   plus_one: 'exposure_plus_1',
-  poll: 'ballot',
+  poll: 'insert_chart',
   portrait: 'account_box',
 
-  query_builder: 'alarm', // Set to alarm because its the same as access_alarm
+  query_builder: 'schedule',
   question_answer: 'forum',
-  queue: 'add_to_queue',
+  queue: 'library_add',
 
-  remove_circle: 'do_not_disturb_on_total_silence', // @todo: This still does not quite fit
-  remove_circle_outline: 'do_not_disturb_on_total_silence', // @todo: This still does not quite fit
+  remove_circle: 'do_not_disturb_on',
+  remove_circle_outline: 'do_not_disturb_on',
   remove_red_eye: 'visibility',
   replay_circle_filled: 'replay',
-  report_gmailerrorred: 'dangerous',
+  report_gmailerrorred: 'report',
   report_problem: 'warning',
   restore: 'history',
   room: 'location_on',
 
   save_alt: 'file_download',
   sd_storage: 'sd_card',
-  security_update: 'install_mobile',
+  security_update: 'system_update',
   sentiment_satisfied_alt: 'sentiment_satisfied',
   settings_input_composite: 'settings_input_component',
   shop_2: 'shop_two',
   shortcut: 'turn_right',
-  signal_cellular_no_sim: 'sd_card_alert',
-  signal_wifi_4_bar_lock: 'MISSING', // @todo: Maybe use signal_wifi_4_bar for this only?
+  signal_cellular_no_sim: 'no_sim',
+  signal_wifi_4_bar_lock: 'wifi_lock',
   signal_wifi_connected_no_internet_4: 'signal_wifi_bad',
   signal_wifi_statusbar_4_bar: 'signal_wifi_4_bar',
   signal_wifi_statusbar_connected_no_internet_4: 'signal_wifi_statusbar_not_connected', // No connected now has question mark instead of exclamation
   sim_card_alert: 'sd_card_alert',
   source: 'topic', // Same icon, different name
   star_border: 'grade',
-  star_border_purple500: 'grade',
-  star_purple500: 'grade',
-  store_mall_directory: 'mall',
-  system_security_update: 'install_mobile',
-  system_security_update_good: 'MISSING',
-  system_security_update_warning: 'perm_device_information',
+  star_border_purple500: 'star_rate',
+  star_purple500: 'star_rate',
+  store_mall_directory: 'store',
+  system_security_update: 'system_update',
+  system_security_update_good: 'security_update_good',
+  system_security_update_warning: 'security_update_warning',
 
   tag_faces: 'sentiment_satisfied', // @todo: There are also others, search "smil"
   terrain: 'landscape',
@@ -219,7 +219,7 @@ const STATUS = {
  * @property {string | null} newName The new icon name, or null if not found
  */
 
-const keys2015 = Object.keys(i2015);
+const keys2018 = Object.keys(i2018);
 const keys2025 = Object.keys(i2025);
 
 /**
@@ -228,8 +228,8 @@ const keys2025 = Object.keys(i2025);
  * @returns {IconMappingResult} An object with the new icon name and status
  */
 const mapIconName = oldName => {
-  // If the icon name is not in 2015, return original name
-  if (!keys2015.includes(oldName)) {
+  // If the icon name is not in 2018, return original name
+  if (!keys2018.includes(oldName)) {
     return {
       name: oldName,
       newName: null,
@@ -247,8 +247,8 @@ const mapIconName = oldName => {
   }
 
   // Try removing suffixes like _outline or _filled
-  if (oldName.endsWith('_outline')) {
-    const baseName = oldName.replace('_outline', '');
+  if (oldName.endsWith('_outline') || oldName.endsWith('_filled')) {
+    const baseName = oldName.replace('_outline', '').replace('_filled', '');
     if (keys2025.includes(baseName)) {
       return {
         name: oldName,
@@ -278,7 +278,7 @@ try {
   const currentDir = path.dirname(fileURLToPath(import.meta.url));
   const outputPath = path.resolve(currentDir, '../../components/src/components/icon/library.migration.ts');
 
-  const results = keys2015.map(mapIconName);
+  const results = keys2018.map(mapIconName);
 
   // Write output as a js file
   const output = `

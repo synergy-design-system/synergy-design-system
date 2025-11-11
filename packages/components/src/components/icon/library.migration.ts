@@ -5,243 +5,278 @@
  * `@synergy-design-system/assets/scripts/createSynMigrationIconLibrary.js`.
  */
 import { getBasePath } from '../../utilities/base-path.js';
-import type { IconLibrary } from './library.js';
+import { registerIconLibrary } from './library.js';
+import { setSystemIconLibrary } from './library.system.js';
 
 /**
  * Get the migrated icon name for a given old icon name.
  * @param {string} iconName The old icon name
  * @returns {string} The new icon name
  */
-export const getIconMigrationName = (iconName: string) => {
-  switch (iconName) {
-  case 'access_alarm': return 'alarm';
-  case 'access_alarms': return 'alarm';
-  case 'access_time': return 'schedule';
-  case 'access_time_filled': return 'schedule';
-  case 'account_tree_outline': return 'account_tree';
-  case 'add_alarm': return 'alarm_add';
-  case 'add_circle_outline': return 'add_circle';
-  case 'add_ic_call': return 'add_call';
-  case 'addchart': return 'add_chart';
-  case 'announcement': return 'feedback';
-  case 'app_settings_alt': return 'phonelink_setup';
-  case 'arrow_range_outline': return 'arrow_range';
-  case 'assessment': return 'insert_chart';
-  case 'assistant_photo': return 'flag';
-  case 'audiotrack': return 'music_note';
-  case 'battery_std': return 'battery_full';
-  case 'bluetooth_audio': return 'bluetooth_searching';
-  case 'bookmark_border': return 'bookmark';
-  case 'box_outline': return 'box';
-  case 'browser_not_supported': return 'web_asset_off';
-  case 'build_circle_outline': return 'build_circle';
-  case 'business': return 'domain';
-  case 'camera_alt': return 'photo_camera';
-  case 'cancel_outline': return 'cancel';
-  case 'card_giftcard': return 'redeem';
-  case 'catching_pokemon': return 'MISSING';
-  case 'center_focus_strong_outline': return 'center_focus_strong';
-  case 'chat_bubble_outline': return 'chat_bubble';
-  case 'check_circle_outline': return 'check_circle';
-  case 'circle_outline': return 'circle';
-  case 'class': return 'book';
-  case 'clear': return 'close';
-  case 'closed_caption_off': return 'closed_caption';
-  case 'collections': return 'filter';
-  case 'color_lens': return 'palette';
-  case 'control_point': return 'add_circle';
-  case 'conveyor_belt_outline': return 'conveyor_belt';
-  case 'create': return 'edit';
-  case 'crop_din': return 'crop_square';
-  case 'crop_original': return 'image';
-  case 'data_saver_off': return 'data_usage';
-  case 'delete_outline': return 'delete';
-  case 'delivery_dining': return 'moped';
-  case 'directions_boat_filled': return 'directions_boat';
-  case 'directions_bus_filled': return 'directions_bus';
-  case 'directions_car_filled': return 'directions_car';
-  case 'directions_railway_filled': return 'directions_railway';
-  case 'directions_subway_filled': return 'directions_subway';
-  case 'directions_transit': return 'directions_subway';
-  case 'directions_transit_filled': return 'directions_subway';
-  case 'discount': return 'sell';
-  case 'do_disturb': return 'block';
-  case 'do_disturb_alt': return 'block';
-  case 'do_disturb_off': return 'do_not_disturb_off';
-  case 'do_disturb_on': return 'do_not_disturb_on';
-  case 'do_not_disturb': return 'do_not_disturb_off';
-  case 'do_not_disturb_alt': return 'do_not_disturb_off';
-  case 'drive_eta': return 'directions_car';
-  case 'email': return 'mail';
-  case 'emoji_emotions': return 'mood';
-  case 'error_outline': return 'error';
-  case 'favorite_border': return 'favorite';
-  case 'feedback_outline': return 'feedback';
-  case 'filter_alt_outline': return 'filter_alt';
-  case 'fire_hydrant_alt': return 'fire_hydrant';
-  case 'fitbit': return 'MISSING';
-  case 'fmd_good': return 'location_on';
-  case 'free_breakfast': return 'local_cafe';
-  case 'games': return 'gamepad';
-  case 'get_app': return 'file_download';
-  case 'gpp_good': return 'verified_user';
-  case 'gps_fixed': return 'my_location';
-  case 'gps_not_fixed': return 'location_searching';
-  case 'gps_off': return 'location_disabled';
-  case 'headset': return 'headphones';
-  case 'help_outline': return 'help';
-  case 'highlight_alt': return 'ink_selection';
-  case 'highlight_off': return 'cancel';
-  case 'https': return 'lock';
-  case 'import_export': return 'swap_vert';
-  case 'info_outline': return 'info';
-  case 'insert_chart_outlined': return 'insert_chart';
-  case 'insert_comment': return 'comment';
-  case 'insert_drive_file': return 'note';
-  case 'insert_emoticon': return 'mood';
-  case 'insert_invitation': return 'event';
-  case 'insert_link': return 'link';
-  case 'insert_photo': return 'image';
-  case 'iso': return 'exposure';
-  case 'laptop': return 'laptop_mac';
-  case 'launch': return 'open_in_new';
-  case 'local_airport': return 'flight';
-  case 'local_grocery_store': return 'shopping_cart';
-  case 'local_hotel': return 'hotel';
-  case 'local_movies': return 'theaters';
-  case 'local_offer': return 'sell';
-  case 'local_phone': return 'call';
-  case 'local_play': return 'local_activity';
-  case 'local_printshop': return 'print';
-  case 'loop': return 'sync';
-  case 'mail_outline': return 'mail';
-  case 'maps_home_work': return 'home_work';
-  case 'markunread': return 'mail';
-  case 'message': return 'chat';
-  case 'mic_none': return 'mic';
-  case 'miscellaneous_services': return 'manufacturing';
-  case 'mode': return 'edit';
-  case 'mode_edit': return 'edit';
-  case 'mode_edit_outline': return 'edit';
-  case 'money_off_csred': return 'money_off';
-  case 'motion_photos_pause': return 'motion_photos_paused';
-  case 'move_group_outline': return 'move_group';
-  case 'movie_creation': return 'movie';
-  case 'nightlight_round': return 'nightlight';
-  case 'no_cell': return 'mobile_off';
-  case 'no_encryption_gmailerrorred': return 'no_encryption';
-  case 'not_interested': return 'block';
-  case 'notifications_none': return 'notifications';
-  case 'ondemand_video': return 'live_tv';
-  case 'outlined_flag': return 'flag';
-  case 'package_2_outline': return 'package_2';
-  case 'package_outline': return 'package';
-  case 'pallet_outline': return 'pallet';
-  case 'pan_tool_outline': return 'pan_tool';
-  case 'panorama_horizontal_select': return 'panorama_horizontal';
-  case 'panorama_photosphere_select': return 'panorama_photosphere';
-  case 'panorama_vertical_select': return 'panorama_vertical';
-  case 'panorama_wide_angle_select': return 'panorama_wide_angle';
-  case 'pause_circle_filled': return 'pause_circle';
-  case 'pause_circle_outline': return 'pause_circle';
-  case 'payment': return 'credit_card';
-  case 'pending_outline': return 'pending';
-  case 'people': return 'group';
-  case 'people_alt': return 'group';
-  case 'people_outline': return 'group';
-  case 'perm_identity': return 'person';
-  case 'person_add_alt': return 'person_add';
-  case 'person_add_alt_1': return 'person_add';
-  case 'person_outline': return 'person';
-  case 'person_remove_alt_1': return 'person_remove';
-  case 'personal_video': return 'monitor';
-  case 'phone': return 'call';
-  case 'phonelink': return 'devices';
-  case 'photo_size_select_actual': return 'panorama';
-  case 'pie_chart_outline': return 'pie_chart';
-  case 'pix': return 'MISSING';
-  case 'place': return 'location_on';
-  case 'play_circle_filled': return 'play_circle';
-  case 'play_circle_outline': return 'play_circle';
-  case 'plus_one': return 'exposure_plus_1';
-  case 'poll': return 'insert_chart';
-  case 'portrait': return 'account_box';
-  case 'progress_activity_outline': return 'progress_activity';
-  case 'query_builder': return 'schedule';
-  case 'question_answer': return 'forum';
-  case 'queue': return 'library_add';
-  case 'remove_circle': return 'do_not_disturb_on';
-  case 'remove_circle_outline': return 'do_not_disturb_on';
-  case 'remove_red_eye': return 'visibility';
-  case 'replay_circle_filled': return 'replay';
-  case 'report_gmailerrorred': return 'report';
-  case 'report_problem': return 'warning';
-  case 'restore': return 'history';
-  case 'room': return 'location_on';
-  case 'rotate_90_degrees_cw_outline': return 'rotate_90_degrees_cw';
-  case 'save_alt': return 'file_download';
-  case 'sd_storage': return 'sd_card';
-  case 'security_update': return 'system_update';
-  case 'sentiment_satisfied_alt': return 'sentiment_satisfied';
-  case 'settings_input_composite': return 'settings_input_component';
-  case 'settings_outline': return 'settings';
-  case 'shelves_outline': return 'shelves';
-  case 'shop_2': return 'shop_two';
-  case 'shortcut': return 'turn_right';
-  case 'signal_cellular_no_sim': return 'no_sim';
-  case 'signal_wifi_4_bar_lock': return 'wifi_lock';
-  case 'signal_wifi_connected_no_internet_4': return 'signal_wifi_bad';
-  case 'signal_wifi_statusbar_4_bar': return 'signal_wifi_4_bar';
-  case 'signal_wifi_statusbar_connected_no_internet_4': return 'signal_wifi_statusbar_not_connected';
-  case 'sim_card_alert': return 'sd_card_alert';
-  case 'sms_outline': return 'sms';
-  case 'source': return 'topic';
-  case 'square_outline': return 'square';
-  case 'star_border': return 'grade';
-  case 'star_border_purple500': return 'star_rate';
-  case 'star_outline': return 'star';
-  case 'star_purple500': return 'star_rate';
-  case 'stop_circle_outline': return 'stop_circle';
-  case 'store_mall_directory': return 'store';
-  case 'system_security_update': return 'system_update';
-  case 'system_security_update_good': return 'security_update_good';
-  case 'system_security_update_warning': return 'security_update_warning';
-  case 'table_chart_outline': return 'table_chart';
-  case 'tag_faces': return 'sentiment_satisfied';
-  case 'terrain': return 'landscape';
-  case 'textsms': return 'sms';
-  case 'thumb_down_alt': return 'thumb_down';
-  case 'thumb_down_off_alt': return 'thumb_down_off';
-  case 'thumb_up_alt': return 'thumb_up';
-  case 'thumb_up_off_alt': return 'thumb_up_off';
-  case 'time_to_leave': return 'directions_car';
-  case 'timer_outline': return 'timer';
-  case 'try': return 'reviews';
-  case 'tungsten': return 'lightbulb';
-  case 'turned_in': return 'bookmark';
-  case 'turned_in_not': return 'bookmark_remove';
-  case 'visibility_off_outline': return 'visibility_off';
-  case 'visibility_outline': return 'visibility';
-  case 'warning_amber': return 'warning';
-  case 'watch_later': return 'schedule';
-  case 'wb_cloudy': return 'cloud_queue';
-  case 'wb_incandescent_outline': return 'wb_incandescent';
-  case 'window_outline': return 'window';
-  case 'work_off': return 'enterprise_off';
-  case 'work_outline': return 'work';
+export const getIconMigrationName = (iconName: string, enableLogging: boolean = false) => {
+  let newIconName: string;
 
-  // Default case: We have a direct mapping
-  default: return iconName;
+  switch (iconName) {
+  case 'access_alarm': newIconName = 'alarm'; break;
+  case 'access_alarms': newIconName = 'alarm'; break;
+  case 'access_time': newIconName = 'schedule'; break;
+  case 'access_time_filled': newIconName = 'schedule'; break;
+  case 'account_tree_outline': newIconName = 'account_tree'; break;
+  case 'add_alarm': newIconName = 'alarm_add'; break;
+  case 'add_circle_outline': newIconName = 'add_circle'; break;
+  case 'add_ic_call': newIconName = 'add_call'; break;
+  case 'addchart': newIconName = 'add_chart'; break;
+  case 'announcement': newIconName = 'feedback'; break;
+  case 'app_settings_alt': newIconName = 'phonelink_setup'; break;
+  case 'arrow_range_outline': newIconName = 'arrow_range'; break;
+  case 'assessment': newIconName = 'insert_chart'; break;
+  case 'assistant_photo': newIconName = 'flag'; break;
+  case 'audiotrack': newIconName = 'music_note'; break;
+  case 'battery_std': newIconName = 'battery_full'; break;
+  case 'bluetooth_audio': newIconName = 'bluetooth_searching'; break;
+  case 'bookmark_border': newIconName = 'bookmark'; break;
+  case 'box_outline': newIconName = 'box'; break;
+  case 'browser_not_supported': newIconName = 'web_asset_off'; break;
+  case 'build_circle_outline': newIconName = 'build_circle'; break;
+  case 'business': newIconName = 'domain'; break;
+  case 'camera_alt': newIconName = 'photo_camera'; break;
+  case 'cancel_outline': newIconName = 'cancel'; break;
+  case 'card_giftcard': newIconName = 'redeem'; break;
+  case 'catching_pokemon': newIconName = 'MISSING'; break;
+  case 'center_focus_strong_outline': newIconName = 'center_focus_strong'; break;
+  case 'chat_bubble_outline': newIconName = 'chat_bubble'; break;
+  case 'check_circle_outline': newIconName = 'check_circle'; break;
+  case 'circle_outline': newIconName = 'circle'; break;
+  case 'class': newIconName = 'book'; break;
+  case 'clear': newIconName = 'close'; break;
+  case 'closed_caption_off': newIconName = 'closed_caption'; break;
+  case 'collections': newIconName = 'filter'; break;
+  case 'color_lens': newIconName = 'palette'; break;
+  case 'control_point': newIconName = 'add_circle'; break;
+  case 'conveyor_belt_outline': newIconName = 'conveyor_belt'; break;
+  case 'create': newIconName = 'edit'; break;
+  case 'crop_din': newIconName = 'crop_square'; break;
+  case 'crop_original': newIconName = 'image'; break;
+  case 'data_saver_off': newIconName = 'data_usage'; break;
+  case 'delete_outline': newIconName = 'delete'; break;
+  case 'delivery_dining': newIconName = 'moped'; break;
+  case 'directions_boat_filled': newIconName = 'directions_boat'; break;
+  case 'directions_bus_filled': newIconName = 'directions_bus'; break;
+  case 'directions_car_filled': newIconName = 'directions_car'; break;
+  case 'directions_railway_filled': newIconName = 'directions_railway'; break;
+  case 'directions_subway_filled': newIconName = 'directions_subway'; break;
+  case 'directions_transit': newIconName = 'directions_subway'; break;
+  case 'directions_transit_filled': newIconName = 'directions_subway'; break;
+  case 'discount': newIconName = 'sell'; break;
+  case 'do_disturb': newIconName = 'block'; break;
+  case 'do_disturb_alt': newIconName = 'block'; break;
+  case 'do_disturb_off': newIconName = 'do_not_disturb_off'; break;
+  case 'do_disturb_on': newIconName = 'do_not_disturb_on'; break;
+  case 'do_not_disturb': newIconName = 'do_not_disturb_off'; break;
+  case 'do_not_disturb_alt': newIconName = 'do_not_disturb_off'; break;
+  case 'drive_eta': newIconName = 'directions_car'; break;
+  case 'email': newIconName = 'mail'; break;
+  case 'emoji_emotions': newIconName = 'mood'; break;
+  case 'error_outline': newIconName = 'error'; break;
+  case 'favorite_border': newIconName = 'favorite'; break;
+  case 'feedback_outline': newIconName = 'feedback'; break;
+  case 'filter_alt_outline': newIconName = 'filter_alt'; break;
+  case 'fire_hydrant_alt': newIconName = 'fire_hydrant'; break;
+  case 'fitbit': newIconName = 'MISSING'; break;
+  case 'fmd_good': newIconName = 'location_on'; break;
+  case 'free_breakfast': newIconName = 'local_cafe'; break;
+  case 'games': newIconName = 'gamepad'; break;
+  case 'get_app': newIconName = 'file_download'; break;
+  case 'gpp_good': newIconName = 'verified_user'; break;
+  case 'gps_fixed': newIconName = 'my_location'; break;
+  case 'gps_not_fixed': newIconName = 'location_searching'; break;
+  case 'gps_off': newIconName = 'location_disabled'; break;
+  case 'headset': newIconName = 'headphones'; break;
+  case 'help_outline': newIconName = 'help'; break;
+  case 'highlight_alt': newIconName = 'ink_selection'; break;
+  case 'highlight_off': newIconName = 'cancel'; break;
+  case 'https': newIconName = 'lock'; break;
+  case 'import_export': newIconName = 'swap_vert'; break;
+  case 'info_outline': newIconName = 'info'; break;
+  case 'insert_chart_outlined': newIconName = 'insert_chart'; break;
+  case 'insert_comment': newIconName = 'comment'; break;
+  case 'insert_drive_file': newIconName = 'note'; break;
+  case 'insert_emoticon': newIconName = 'mood'; break;
+  case 'insert_invitation': newIconName = 'event'; break;
+  case 'insert_link': newIconName = 'link'; break;
+  case 'insert_photo': newIconName = 'image'; break;
+  case 'iso': newIconName = 'exposure'; break;
+  case 'laptop': newIconName = 'laptop_mac'; break;
+  case 'launch': newIconName = 'open_in_new'; break;
+  case 'local_airport': newIconName = 'flight'; break;
+  case 'local_grocery_store': newIconName = 'shopping_cart'; break;
+  case 'local_hotel': newIconName = 'hotel'; break;
+  case 'local_movies': newIconName = 'theaters'; break;
+  case 'local_offer': newIconName = 'sell'; break;
+  case 'local_phone': newIconName = 'call'; break;
+  case 'local_play': newIconName = 'local_activity'; break;
+  case 'local_printshop': newIconName = 'print'; break;
+  case 'loop': newIconName = 'sync'; break;
+  case 'mail_outline': newIconName = 'mail'; break;
+  case 'maps_home_work': newIconName = 'home_work'; break;
+  case 'markunread': newIconName = 'mail'; break;
+  case 'message': newIconName = 'chat'; break;
+  case 'mic_none': newIconName = 'mic'; break;
+  case 'miscellaneous_services': newIconName = 'manufacturing'; break;
+  case 'mode': newIconName = 'edit'; break;
+  case 'mode_edit': newIconName = 'edit'; break;
+  case 'mode_edit_outline': newIconName = 'edit'; break;
+  case 'money_off_csred': newIconName = 'money_off'; break;
+  case 'motion_photos_pause': newIconName = 'motion_photos_paused'; break;
+  case 'move_group_outline': newIconName = 'move_group'; break;
+  case 'movie_creation': newIconName = 'movie'; break;
+  case 'nightlight_round': newIconName = 'nightlight'; break;
+  case 'no_cell': newIconName = 'mobile_off'; break;
+  case 'no_encryption_gmailerrorred': newIconName = 'no_encryption'; break;
+  case 'not_interested': newIconName = 'block'; break;
+  case 'notifications_none': newIconName = 'notifications'; break;
+  case 'ondemand_video': newIconName = 'live_tv'; break;
+  case 'outlined_flag': newIconName = 'flag'; break;
+  case 'package_2_outline': newIconName = 'package_2'; break;
+  case 'package_outline': newIconName = 'package'; break;
+  case 'pallet_outline': newIconName = 'pallet'; break;
+  case 'pan_tool_outline': newIconName = 'pan_tool'; break;
+  case 'panorama_horizontal_select': newIconName = 'panorama_horizontal'; break;
+  case 'panorama_photosphere_select': newIconName = 'panorama_photosphere'; break;
+  case 'panorama_vertical_select': newIconName = 'panorama_vertical'; break;
+  case 'panorama_wide_angle_select': newIconName = 'panorama_wide_angle'; break;
+  case 'pause_circle_filled': newIconName = 'pause_circle'; break;
+  case 'pause_circle_outline': newIconName = 'pause_circle'; break;
+  case 'payment': newIconName = 'credit_card'; break;
+  case 'pending_outline': newIconName = 'pending'; break;
+  case 'people': newIconName = 'group'; break;
+  case 'people_alt': newIconName = 'group'; break;
+  case 'people_outline': newIconName = 'group'; break;
+  case 'perm_identity': newIconName = 'person'; break;
+  case 'person_add_alt': newIconName = 'person_add'; break;
+  case 'person_add_alt_1': newIconName = 'person_add'; break;
+  case 'person_outline': newIconName = 'person'; break;
+  case 'person_remove_alt_1': newIconName = 'person_remove'; break;
+  case 'personal_video': newIconName = 'monitor'; break;
+  case 'phone': newIconName = 'call'; break;
+  case 'phonelink': newIconName = 'devices'; break;
+  case 'photo_size_select_actual': newIconName = 'panorama'; break;
+  case 'pie_chart_outline': newIconName = 'pie_chart'; break;
+  case 'pix': newIconName = 'MISSING'; break;
+  case 'place': newIconName = 'location_on'; break;
+  case 'play_circle_filled': newIconName = 'play_circle'; break;
+  case 'play_circle_outline': newIconName = 'play_circle'; break;
+  case 'plus_one': newIconName = 'exposure_plus_1'; break;
+  case 'poll': newIconName = 'insert_chart'; break;
+  case 'portrait': newIconName = 'account_box'; break;
+  case 'progress_activity_outline': newIconName = 'progress_activity'; break;
+  case 'query_builder': newIconName = 'schedule'; break;
+  case 'question_answer': newIconName = 'forum'; break;
+  case 'queue': newIconName = 'library_add'; break;
+  case 'remove_circle': newIconName = 'do_not_disturb_on'; break;
+  case 'remove_circle_outline': newIconName = 'do_not_disturb_on'; break;
+  case 'remove_red_eye': newIconName = 'visibility'; break;
+  case 'replay_circle_filled': newIconName = 'replay'; break;
+  case 'report_gmailerrorred': newIconName = 'report'; break;
+  case 'report_problem': newIconName = 'warning'; break;
+  case 'restore': newIconName = 'history'; break;
+  case 'room': newIconName = 'location_on'; break;
+  case 'rotate_90_degrees_cw_outline': newIconName = 'rotate_90_degrees_cw'; break;
+  case 'save_alt': newIconName = 'file_download'; break;
+  case 'sd_storage': newIconName = 'sd_card'; break;
+  case 'security_update': newIconName = 'system_update'; break;
+  case 'sentiment_satisfied_alt': newIconName = 'sentiment_satisfied'; break;
+  case 'settings_input_composite': newIconName = 'settings_input_component'; break;
+  case 'settings_outline': newIconName = 'settings'; break;
+  case 'shelves_outline': newIconName = 'shelves'; break;
+  case 'shop_2': newIconName = 'shop_two'; break;
+  case 'shortcut': newIconName = 'turn_right'; break;
+  case 'signal_cellular_no_sim': newIconName = 'no_sim'; break;
+  case 'signal_wifi_4_bar_lock': newIconName = 'wifi_lock'; break;
+  case 'signal_wifi_connected_no_internet_4': newIconName = 'signal_wifi_bad'; break;
+  case 'signal_wifi_statusbar_4_bar': newIconName = 'signal_wifi_4_bar'; break;
+  case 'signal_wifi_statusbar_connected_no_internet_4': newIconName = 'signal_wifi_statusbar_not_connected'; break;
+  case 'sim_card_alert': newIconName = 'sd_card_alert'; break;
+  case 'sms_outline': newIconName = 'sms'; break;
+  case 'source': newIconName = 'topic'; break;
+  case 'square_outline': newIconName = 'square'; break;
+  case 'star_border': newIconName = 'grade'; break;
+  case 'star_border_purple500': newIconName = 'star_rate'; break;
+  case 'star_outline': newIconName = 'star'; break;
+  case 'star_purple500': newIconName = 'star_rate'; break;
+  case 'stop_circle_outline': newIconName = 'stop_circle'; break;
+  case 'store_mall_directory': newIconName = 'store'; break;
+  case 'system_security_update': newIconName = 'system_update'; break;
+  case 'system_security_update_good': newIconName = 'security_update_good'; break;
+  case 'system_security_update_warning': newIconName = 'security_update_warning'; break;
+  case 'table_chart_outline': newIconName = 'table_chart'; break;
+  case 'tag_faces': newIconName = 'sentiment_satisfied'; break;
+  case 'terrain': newIconName = 'landscape'; break;
+  case 'textsms': newIconName = 'sms'; break;
+  case 'thumb_down_alt': newIconName = 'thumb_down'; break;
+  case 'thumb_down_off_alt': newIconName = 'thumb_down_off'; break;
+  case 'thumb_up_alt': newIconName = 'thumb_up'; break;
+  case 'thumb_up_off_alt': newIconName = 'thumb_up_off'; break;
+  case 'time_to_leave': newIconName = 'directions_car'; break;
+  case 'timer_outline': newIconName = 'timer'; break;
+  case 'try': newIconName = 'reviews'; break;
+  case 'tungsten': newIconName = 'lightbulb'; break;
+  case 'turned_in': newIconName = 'bookmark'; break;
+  case 'turned_in_not': newIconName = 'bookmark_remove'; break;
+  case 'visibility_off_outline': newIconName = 'visibility_off'; break;
+  case 'visibility_outline': newIconName = 'visibility'; break;
+  case 'warning_amber': newIconName = 'warning'; break;
+  case 'watch_later': newIconName = 'schedule'; break;
+  case 'wb_cloudy': newIconName = 'cloud_queue'; break;
+  case 'wb_incandescent_outline': newIconName = 'wb_incandescent'; break;
+  case 'window_outline': newIconName = 'window'; break;
+  case 'work_off': newIconName = 'enterprise_off'; break;
+  case 'work_outline': newIconName = 'work'; break;
+
+    // Default case: We have a direct mapping
+  default: newIconName = iconName; break;
   }
+
+  if (enableLogging && newIconName !== iconName) {
+    console.warn(`[SynIcon] The icon name "${iconName}" has been migrated to "${newIconName}". Please update your code to use the new icon name.`);
+  }
+  return newIconName;
 };
 
+export const getIconMigrationNameForFilled = (iconName: string, enableLogging: boolean = false) => `${getIconMigrationName(iconName, enableLogging)}_fill`;
+
 /**
- * Icon library for migrating old icon names to new icon names.
+ * The icon migration state:
+ * - DISABLED: No migration is performed.
+ * - ENABLED: Migration is performed and logs a warning when an icon is migrated.
+ * - ENABLED_WITHOUT_LOGGING: Migration is performed without logging warnings.
  */
-export const migrationLibrary: IconLibrary = {
-  name: 'default',
-  resolver: name => {
-    const mappedName = getIconMigrationName(name);
-    return getBasePath(`assets/icons/${mappedName}.svg`);
-  },
+type ICON_MIGRATION_STATE = 'DISABLED' | 'ENABLED' | 'ENABLED_WITHOUT_LOGGING';
+
+/**
+ * Set the icon migration state.
+ * If migration is enabled, icons will be migrated from 2018 to the 2025 icon set.
+ * It will log a warning when an icon is migrated, unless the state is set to ENABLED_WITHOUT_LOGGING.
+ * @param state - The icon migration state to set.
+ *
+ *                'DISABLED': No migration.
+ *
+ *                'ENABLED': Migration with logging.
+ *
+ *                'ENABLED_WITHOUT_LOGGING': Migration without logging.
+ */
+export const enableIconMigration = (state: ICON_MIGRATION_STATE = 'DISABLED') => {
+  if (state === 'DISABLED') return;
+
+  registerIconLibrary('default', {
+    resolver: name => {
+      const migratedName = getIconMigrationName(name, state === 'ENABLED');
+      return getBasePath(`assets/icons/${migratedName}.svg`);
+    },
+  });
+};
+
+export const setAllIconMigrations = (state: ICON_MIGRATION_STATE) => {
+  enableIconMigration(state);
+  setSystemIconLibrary('sick2025');
 };

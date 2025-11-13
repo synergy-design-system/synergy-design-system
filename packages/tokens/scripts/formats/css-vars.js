@@ -78,6 +78,7 @@ export const cssVariableFormatter = {
       'readonly-border-color',
       'readonly-indicator-color',
       'readonly-opacity-color',
+      'readonly-background-color',
       'range-color-readonly',
     ].map(v => `${prefix}${v}`);
 

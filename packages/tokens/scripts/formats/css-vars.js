@@ -74,6 +74,15 @@ export const cssVariableFormatter = {
       'input-border-color-active',
       'input-icon-icon-clearable-color-active',
       'input-readonly-background-opacity',
+      'interactive-background-color-active',
+      // Readonly color are needed later
+      'readonly-background-color-disabled',
+      'readonly-background-color-focus',
+      'readonly-background-color-hover',
+      'readonly-border-color',
+      'readonly-indicator-color',
+      'readonly-opacity-color',
+      'range-color-readonly',
     ].map(v => `${prefix}${v}`);
 
     /**

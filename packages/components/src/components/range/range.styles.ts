@@ -10,8 +10,8 @@ export default css`
     --thumb-hit-area-size: 1.4;
     --track-hit-area-size: var(--syn-spacing-medium);
     --track-active-offset: 0px;
-    --track-color-active: var(--syn-interactive-emphasis-color,var(--syn-color-primary-600));
-    --track-color-inactive: var(--syn-progress-track-color, var(--syn-color-neutral-200));
+    --track-color-active: var(--syn-range-track-color-active,var(--syn-color-primary-600));
+    --track-color-inactive: var(--syn-range-color-inactive, var(--syn-color-neutral-200));
     --track-height: var(--syn-spacing-2x-small);
 
     /* This is needed to get the full with of the element, including the border */

@@ -1564,6 +1564,20 @@
         "type": "typography",
         "value": "{font-weight.bold} {font-size.large}/1.4 {font.sans}"
       }
+    },
+    "2x-small": {
+      "regular": {
+        "type": "typography",
+        "value": "{font-weight.normal} {font-size.2x-small}/1.4 {font.sans}"
+      },
+      "semibold": {
+        "type": "typography",
+        "value": "{font-weight.semibold} {font-size.2x-small}/1.4 {font.sans}"
+      },
+      "bold": {
+        "type": "typography",
+        "value": "{font-weight.bold} {font-size.2x-small}/1.4 {font.sans}"
+      }
     }
   },
   "heading": {
@@ -1582,6 +1596,10 @@
     "3x-large": {
       "type": "typography",
       "value": "{font-weight.bold} {font-size.3x-large}/1.2 {font.sans}"
+    },
+    "4x-large": {
+      "type": "typography",
+      "value": "{font-weight.bold} 52/1.2 {font.sans}"
     }
   }
 }

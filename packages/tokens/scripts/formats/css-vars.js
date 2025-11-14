@@ -79,6 +79,12 @@ export const cssVariableFormatter = {
       'readonly-indicator-color',
       'readonly-opacity-color',
       'range-color-readonly',
+
+      // Font Style tokens are needed later
+      'body-2x-small-regular',
+      'body-2x-small-semibold',
+      'body-2x-small-bold',
+      'heading-4x-large',
     ].map(v => `${prefix}${v}`);
 
     /**

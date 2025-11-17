@@ -96,8 +96,8 @@ For this reason, Synergy provides some new utilities that help migrating your ap
 The easiest type of migration. If you have an icon setup as recommended in this documentation (e.g. copying the assets to a default location), you may just use the new `setupIcons` function and call it:
 
 ```javascript
-import { setupIcons } from '@synergy-design-system/components';
-setupIcons('sick2025');
+import { setupIcons } from "@synergy-design-system/components";
+setupIcons("sick2025");
 ```
 
 This will make sure to set the system icons to the new `sick2025` theme and also sets up a new `default` icon library that includes a static map from old icon names to the new ones.
@@ -114,21 +114,21 @@ import {
   registerIconLibrary,
   setSystemIconLibrary,
   migrateIconName,
-} from '@synergy-design-system/components';
+} from "@synergy-design-system/components";
 
 // Manually override the default icon library to use migrateIconName
 const customIconLibrary = {
-  name: 'default',
+  name: "default",
   resolver: name => {
     const mappedName = migrateIconName(name);
     return getBasePath(`assets/icons/${mappedName}.svg`);
   },
-}
+};
 
 // Enable your new library.
 // Do not forget to set the system icon library!
-registerIconLibrary('default', customIconLibrary);
-setSystemIconLibrary('sick2025');
+registerIconLibrary("default", customIconLibrary);
+setSystemIconLibrary("sick2025");
 ```
 
 ### Tokens

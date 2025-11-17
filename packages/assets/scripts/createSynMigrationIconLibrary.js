@@ -38,7 +38,7 @@ const STATIC_MAP = {
   collections: 'filter',
   color_lens: 'palette',
   control_point: 'add_circle',
-  create: 'edit', // @todo: Edit is still a pen, but create is a plus sign?
+  create: 'edit',
   crop_din: 'crop_square',
   crop_original: 'image',
 
@@ -118,7 +118,7 @@ const STATIC_MAP = {
   nightlight_round: 'nightlight',
   no_cell: 'mobile_off',
   no_encryption_gmailerrorred: 'no_encryption',
-  not_interested: 'block', // @todo: The same icon, but different name
+  not_interested: 'block',
   notifications_none: 'notifications',
 
   ondemand_video: 'live_tv',
@@ -182,14 +182,14 @@ const STATIC_MAP = {
   system_security_update_good: 'security_update_good',
   system_security_update_warning: 'security_update_warning',
 
-  tag_faces: 'sentiment_satisfied', // @todo: There are also others, search "smil"
+  tag_faces: 'sentiment_satisfied',
   terrain: 'landscape',
   textsms: 'sms',
   thumb_down_alt: 'thumb_down',
   thumb_down_off_alt: 'thumb_down_off',
   thumb_up_alt: 'thumb_up',
   thumb_up_off_alt: 'thumb_up_off',
-  time_to_leave: 'directions_car', // @todo: Same icon, different name
+  time_to_leave: 'directions_car',
   try: 'reviews',
   tungsten: 'lightbulb',
   turned_in: 'bookmark',

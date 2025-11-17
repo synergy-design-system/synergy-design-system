@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.39.0
+ * @synergy-design-system/tokens version 2.40.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -173,6 +173,7 @@
   --syn-input-border-color-focus: var(--syn-color-neutral-950);
   --syn-input-border-color-focus-error: var(--syn-color-error-700);
   --syn-input-border-color-hover: var(--syn-color-neutral-950);
+  --syn-input-border-color-offset: var(--syn-panel-background-color);
   --syn-input-border-radius-large: var(--syn-border-radius-none);
   --syn-input-border-radius-medium: var(--syn-border-radius-none);
   --syn-input-border-radius-small: var(--syn-border-radius-none);
@@ -210,10 +211,10 @@
   --syn-input-placeholder-color: var(--syn-color-neutral-500);
   --syn-input-placeholder-color-disabled: var(--syn-color-neutral-500);
   --syn-input-readonly-color-hover: var(--syn-color-neutral-950);
-  --syn-input-readonly-background-color: var(--syn-color-neutral-300);
-  --syn-input-readonly-background-color-disabled: var(--syn-color-neutral-300);
-  --syn-input-readonly-background-color-focus: var(--syn-color-neutral-300);
-  --syn-input-readonly-background-color-hover: var(--syn-color-neutral-300);
+  --syn-input-readonly-background-color: var(--syn-readonly-background-color);
+  --syn-input-readonly-background-color-disabled: var(--syn-readonly-background-color);
+  --syn-input-readonly-background-color-focus: var(--syn-readonly-background-color);
+  --syn-input-readonly-background-color-hover: var(--syn-readonly-background-color);
   --syn-input-required-content: "*";
   --syn-input-required-content-color: var(--syn-input-label-color);
   --syn-input-required-content-offset: -2px;
@@ -256,6 +257,11 @@
   --syn-panel-border-width: var(--syn-border-width-small);
   --syn-progress-indicator-color: var(--syn-color-primary-600);
   --syn-progress-track-color: var(--syn-color-neutral-200);
+  --syn-range-color-inactive: var(--syn-color-neutral-200);
+  --syn-range-error-color: var(--syn-color-error-700);
+  --syn-range-tick-color: var(--syn-color-neutral-400);
+  --syn-range-track-color-active: var(--syn-interactive-emphasis-color);
+  --syn-readonly-background-color: var(--syn-color-neutral-300);
   --syn-spacing-2x-large: 48px;
   --syn-spacing-2x-small: 4px;
   --syn-spacing-3x-large: 64px;

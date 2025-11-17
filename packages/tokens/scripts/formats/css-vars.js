@@ -69,7 +69,6 @@ export const cssVariableFormatter = {
       // Unknown component, skipping for now
       'typography-color-text-quiet',
       'typography-color-text-quiet-inverted',
-      'color-primary-1000',
 
       'progress-track-readonly-color',
 

@@ -272,14 +272,14 @@ const mapIconName = oldName => {
   };
 };
 
-try {
-  const currentDir = path.dirname(fileURLToPath(import.meta.url));
-  const outputPath = path.resolve(currentDir, '../../components/src/components/icon/library.migration.ts');
-
-  const results = keys2018.map(mapIconName);
-
-  // Write output as a js file
-  const output = `
+/**
+ * Create the migration icon library file content as a string
+ * @param {{ cases: string }}
+ * @returns {string} The file content as a string
+ */
+const createTemplateAsString = ({
+  cases,
+}) => `
 /* eslint-disable complexity */
 /**
  * Icon library for migrating old icon names to new icon names.
@@ -287,38 +287,99 @@ try {
  * \`@synergy-design-system/assets/scripts/createSynMigrationIconLibrary.js\`.
  */
 import { getBasePath } from '../../utilities/base-path.js';
-import type { IconLibrary } from './library.js';
+import { type IconLibrary, registerIconLibrary } from './library.js';
+import defaultSystemLibrary from './library.system.js';
+import { type AvailableSystemIcons, setSystemIconLibrary } from './library.system.js';
+
+/**
+ * The icon migration state:
+ * - DISABLED: No migration is performed.
+ * - ENABLED: Migration is performed and logs a warning when an icon is migrated.
+ * - ENABLED_WITHOUT_LOGGING: Migration is performed without logging warnings.
+ */
+type IconMigrationState = 'DISABLED' | 'ENABLED' | 'ENABLED_WITHOUT_LOGGING';
 
 /**
  * Get the migrated icon name for a given old icon name.
  * @param {string} iconName The old icon name
+ * @param {boolean} enableLogging? Whether to enable logging for unmapped icons
  * @returns {string} The new icon name
  */
-export const getIconMigrationName = (iconName: string) => {
+export const migrateIconName = (
+  iconName: string,
+  enableLogging: boolean = false,
+) => {
+  let icon: string;
+
   switch (iconName) {
-  ${results
-    .filter(result => result.status !== STATUS.MAPPED_DIRECTLY)
-    .map(result => `  case '${result.name}': return '${result.newName}';`)
-    .join('\n')
-    .trim()
-  }
+  ${cases}
 
   // Default case: We have a direct mapping
-  default: return iconName;
+  default: icon = iconName;
   }
+
+  if (enableLogging && icon !== iconName) {
+    // eslint-disable-next-line no-console
+    console.warn(\`[Icon Migration] Mapped icon name "\${iconName}" to "\${icon}"\`);
+  }
+
+  return icon;
 };
 
 /**
- * Icon library for migrating old icon names to new icon names.
+ * Create an icon library for migrating old icon names to new icon names.
+ * @param {IconMigrationState} withState The icon migration state
+ * @returns {IconLibrary} The migration icon library
  */
-export const migrationLibrary: IconLibrary = {
+export const createMigrationLibrary = (withState: IconMigrationState = 'DISABLED'): IconLibrary => ({
   name: 'default',
   resolver: name => {
-    const mappedName = getIconMigrationName(name);
+    const mappedName = migrateIconName(name, withState === 'ENABLED');
     return getBasePath(\`assets/icons/\${mappedName}.svg\`);
   },
+});
+
+/**
+ * Default icon library for migrating old icon names to new icon names.
+ */
+export const migrationLibrary = createMigrationLibrary('DISABLED');
+
+/**
+ * Setup the system icon library.
+ * @param iconset The system icon set to use
+ * @param enableLogging Enable logging of migrated icons?
+ * @returns The icon library used
+ */
+export const setupIcons = (
+  iconset: AvailableSystemIcons = 'sick2025',
+  enableLogging: boolean = true,
+): IconLibrary => {
+  const iconlibraryToUse = iconset === 'sick2018'
+    ? defaultSystemLibrary
+    : createMigrationLibrary(enableLogging ? 'ENABLED_WITHOUT_LOGGING' : 'ENABLED');
+
+  registerIconLibrary('default', iconlibraryToUse);
+  setSystemIconLibrary(iconset);
+
+  return iconlibraryToUse;
 };
 `;
+
+try {
+  const currentDir = path.dirname(fileURLToPath(import.meta.url));
+  const outputPath = path.resolve(currentDir, '../../components/src/components/icon/library.migration.ts');
+
+  const results = keys2018.map(mapIconName);
+  const cases = results
+    .filter(result => result.status !== STATUS.MAPPED_DIRECTLY)
+    .map(result => `  case '${result.name}': icon = '${result.newName}'; break;`)
+    .join('\n')
+    .trim();
+
+  // Write output as a js file
+  const output = createTemplateAsString({
+    cases,
+  });
 
   writeFileSync(outputPath, output.trimStart());
   process.exit(0);

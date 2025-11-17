@@ -5,245 +5,9 @@
  * `@synergy-design-system/assets/scripts/createSynMigrationIconLibrary.js`.
  */
 import { getBasePath } from '../../utilities/base-path.js';
-import { registerIconLibrary } from './library.js';
-import { setSystemIconLibrary } from './library.system.js';
-
-/**
- * Get the migrated icon name for a given old icon name.
- * @param {string} iconName The old icon name
- * @returns {string} The new icon name
- */
-export const getIconMigrationName = (iconName: string, enableLogging: boolean = false) => {
-  let newIconName: string;
-
-  switch (iconName) {
-  case 'access_alarm': newIconName = 'alarm'; break;
-  case 'access_alarms': newIconName = 'alarm'; break;
-  case 'access_time': newIconName = 'schedule'; break;
-  case 'access_time_filled': newIconName = 'schedule'; break;
-  case 'account_tree_outline': newIconName = 'account_tree'; break;
-  case 'add_alarm': newIconName = 'alarm_add'; break;
-  case 'add_circle_outline': newIconName = 'add_circle'; break;
-  case 'add_ic_call': newIconName = 'add_call'; break;
-  case 'addchart': newIconName = 'add_chart'; break;
-  case 'announcement': newIconName = 'feedback'; break;
-  case 'app_settings_alt': newIconName = 'phonelink_setup'; break;
-  case 'arrow_range_outline': newIconName = 'arrow_range'; break;
-  case 'assessment': newIconName = 'insert_chart'; break;
-  case 'assistant_photo': newIconName = 'flag'; break;
-  case 'audiotrack': newIconName = 'music_note'; break;
-  case 'battery_std': newIconName = 'battery_full'; break;
-  case 'bluetooth_audio': newIconName = 'bluetooth_searching'; break;
-  case 'bookmark_border': newIconName = 'bookmark'; break;
-  case 'box_outline': newIconName = 'box'; break;
-  case 'browser_not_supported': newIconName = 'web_asset_off'; break;
-  case 'build_circle_outline': newIconName = 'build_circle'; break;
-  case 'business': newIconName = 'domain'; break;
-  case 'camera_alt': newIconName = 'photo_camera'; break;
-  case 'cancel_outline': newIconName = 'cancel'; break;
-  case 'card_giftcard': newIconName = 'redeem'; break;
-  case 'catching_pokemon': newIconName = 'MISSING'; break;
-  case 'center_focus_strong_outline': newIconName = 'center_focus_strong'; break;
-  case 'chat_bubble_outline': newIconName = 'chat_bubble'; break;
-  case 'check_circle_outline': newIconName = 'check_circle'; break;
-  case 'circle_outline': newIconName = 'circle'; break;
-  case 'class': newIconName = 'book'; break;
-  case 'clear': newIconName = 'close'; break;
-  case 'closed_caption_off': newIconName = 'closed_caption'; break;
-  case 'collections': newIconName = 'filter'; break;
-  case 'color_lens': newIconName = 'palette'; break;
-  case 'control_point': newIconName = 'add_circle'; break;
-  case 'conveyor_belt_outline': newIconName = 'conveyor_belt'; break;
-  case 'create': newIconName = 'edit'; break;
-  case 'crop_din': newIconName = 'crop_square'; break;
-  case 'crop_original': newIconName = 'image'; break;
-  case 'data_saver_off': newIconName = 'data_usage'; break;
-  case 'delete_outline': newIconName = 'delete'; break;
-  case 'delivery_dining': newIconName = 'moped'; break;
-  case 'directions_boat_filled': newIconName = 'directions_boat'; break;
-  case 'directions_bus_filled': newIconName = 'directions_bus'; break;
-  case 'directions_car_filled': newIconName = 'directions_car'; break;
-  case 'directions_railway_filled': newIconName = 'directions_railway'; break;
-  case 'directions_subway_filled': newIconName = 'directions_subway'; break;
-  case 'directions_transit': newIconName = 'directions_subway'; break;
-  case 'directions_transit_filled': newIconName = 'directions_subway'; break;
-  case 'discount': newIconName = 'sell'; break;
-  case 'do_disturb': newIconName = 'block'; break;
-  case 'do_disturb_alt': newIconName = 'block'; break;
-  case 'do_disturb_off': newIconName = 'do_not_disturb_off'; break;
-  case 'do_disturb_on': newIconName = 'do_not_disturb_on'; break;
-  case 'do_not_disturb': newIconName = 'do_not_disturb_off'; break;
-  case 'do_not_disturb_alt': newIconName = 'do_not_disturb_off'; break;
-  case 'drive_eta': newIconName = 'directions_car'; break;
-  case 'email': newIconName = 'mail'; break;
-  case 'emoji_emotions': newIconName = 'mood'; break;
-  case 'error_outline': newIconName = 'error'; break;
-  case 'favorite_border': newIconName = 'favorite'; break;
-  case 'feedback_outline': newIconName = 'feedback'; break;
-  case 'filter_alt_outline': newIconName = 'filter_alt'; break;
-  case 'fire_hydrant_alt': newIconName = 'fire_hydrant'; break;
-  case 'fitbit': newIconName = 'MISSING'; break;
-  case 'fmd_good': newIconName = 'location_on'; break;
-  case 'free_breakfast': newIconName = 'local_cafe'; break;
-  case 'games': newIconName = 'gamepad'; break;
-  case 'get_app': newIconName = 'file_download'; break;
-  case 'gpp_good': newIconName = 'verified_user'; break;
-  case 'gps_fixed': newIconName = 'my_location'; break;
-  case 'gps_not_fixed': newIconName = 'location_searching'; break;
-  case 'gps_off': newIconName = 'location_disabled'; break;
-  case 'headset': newIconName = 'headphones'; break;
-  case 'help_outline': newIconName = 'help'; break;
-  case 'highlight_alt': newIconName = 'ink_selection'; break;
-  case 'highlight_off': newIconName = 'cancel'; break;
-  case 'https': newIconName = 'lock'; break;
-  case 'import_export': newIconName = 'swap_vert'; break;
-  case 'info_outline': newIconName = 'info'; break;
-  case 'insert_chart_outlined': newIconName = 'insert_chart'; break;
-  case 'insert_comment': newIconName = 'comment'; break;
-  case 'insert_drive_file': newIconName = 'note'; break;
-  case 'insert_emoticon': newIconName = 'mood'; break;
-  case 'insert_invitation': newIconName = 'event'; break;
-  case 'insert_link': newIconName = 'link'; break;
-  case 'insert_photo': newIconName = 'image'; break;
-  case 'iso': newIconName = 'exposure'; break;
-  case 'laptop': newIconName = 'laptop_mac'; break;
-  case 'launch': newIconName = 'open_in_new'; break;
-  case 'local_airport': newIconName = 'flight'; break;
-  case 'local_grocery_store': newIconName = 'shopping_cart'; break;
-  case 'local_hotel': newIconName = 'hotel'; break;
-  case 'local_movies': newIconName = 'theaters'; break;
-  case 'local_offer': newIconName = 'sell'; break;
-  case 'local_phone': newIconName = 'call'; break;
-  case 'local_play': newIconName = 'local_activity'; break;
-  case 'local_printshop': newIconName = 'print'; break;
-  case 'loop': newIconName = 'sync'; break;
-  case 'mail_outline': newIconName = 'mail'; break;
-  case 'maps_home_work': newIconName = 'home_work'; break;
-  case 'markunread': newIconName = 'mail'; break;
-  case 'message': newIconName = 'chat'; break;
-  case 'mic_none': newIconName = 'mic'; break;
-  case 'miscellaneous_services': newIconName = 'manufacturing'; break;
-  case 'mode': newIconName = 'edit'; break;
-  case 'mode_edit': newIconName = 'edit'; break;
-  case 'mode_edit_outline': newIconName = 'edit'; break;
-  case 'money_off_csred': newIconName = 'money_off'; break;
-  case 'motion_photos_pause': newIconName = 'motion_photos_paused'; break;
-  case 'move_group_outline': newIconName = 'move_group'; break;
-  case 'movie_creation': newIconName = 'movie'; break;
-  case 'nightlight_round': newIconName = 'nightlight'; break;
-  case 'no_cell': newIconName = 'mobile_off'; break;
-  case 'no_encryption_gmailerrorred': newIconName = 'no_encryption'; break;
-  case 'not_interested': newIconName = 'block'; break;
-  case 'notifications_none': newIconName = 'notifications'; break;
-  case 'ondemand_video': newIconName = 'live_tv'; break;
-  case 'outlined_flag': newIconName = 'flag'; break;
-  case 'package_2_outline': newIconName = 'package_2'; break;
-  case 'package_outline': newIconName = 'package'; break;
-  case 'pallet_outline': newIconName = 'pallet'; break;
-  case 'pan_tool_outline': newIconName = 'pan_tool'; break;
-  case 'panorama_horizontal_select': newIconName = 'panorama_horizontal'; break;
-  case 'panorama_photosphere_select': newIconName = 'panorama_photosphere'; break;
-  case 'panorama_vertical_select': newIconName = 'panorama_vertical'; break;
-  case 'panorama_wide_angle_select': newIconName = 'panorama_wide_angle'; break;
-  case 'pause_circle_filled': newIconName = 'pause_circle'; break;
-  case 'pause_circle_outline': newIconName = 'pause_circle'; break;
-  case 'payment': newIconName = 'credit_card'; break;
-  case 'pending_outline': newIconName = 'pending'; break;
-  case 'people': newIconName = 'group'; break;
-  case 'people_alt': newIconName = 'group'; break;
-  case 'people_outline': newIconName = 'group'; break;
-  case 'perm_identity': newIconName = 'person'; break;
-  case 'person_add_alt': newIconName = 'person_add'; break;
-  case 'person_add_alt_1': newIconName = 'person_add'; break;
-  case 'person_outline': newIconName = 'person'; break;
-  case 'person_remove_alt_1': newIconName = 'person_remove'; break;
-  case 'personal_video': newIconName = 'monitor'; break;
-  case 'phone': newIconName = 'call'; break;
-  case 'phonelink': newIconName = 'devices'; break;
-  case 'photo_size_select_actual': newIconName = 'panorama'; break;
-  case 'pie_chart_outline': newIconName = 'pie_chart'; break;
-  case 'pix': newIconName = 'MISSING'; break;
-  case 'place': newIconName = 'location_on'; break;
-  case 'play_circle_filled': newIconName = 'play_circle'; break;
-  case 'play_circle_outline': newIconName = 'play_circle'; break;
-  case 'plus_one': newIconName = 'exposure_plus_1'; break;
-  case 'poll': newIconName = 'insert_chart'; break;
-  case 'portrait': newIconName = 'account_box'; break;
-  case 'progress_activity_outline': newIconName = 'progress_activity'; break;
-  case 'query_builder': newIconName = 'schedule'; break;
-  case 'question_answer': newIconName = 'forum'; break;
-  case 'queue': newIconName = 'library_add'; break;
-  case 'remove_circle': newIconName = 'do_not_disturb_on'; break;
-  case 'remove_circle_outline': newIconName = 'do_not_disturb_on'; break;
-  case 'remove_red_eye': newIconName = 'visibility'; break;
-  case 'replay_circle_filled': newIconName = 'replay'; break;
-  case 'report_gmailerrorred': newIconName = 'report'; break;
-  case 'report_problem': newIconName = 'warning'; break;
-  case 'restore': newIconName = 'history'; break;
-  case 'room': newIconName = 'location_on'; break;
-  case 'rotate_90_degrees_cw_outline': newIconName = 'rotate_90_degrees_cw'; break;
-  case 'save_alt': newIconName = 'file_download'; break;
-  case 'sd_storage': newIconName = 'sd_card'; break;
-  case 'security_update': newIconName = 'system_update'; break;
-  case 'sentiment_satisfied_alt': newIconName = 'sentiment_satisfied'; break;
-  case 'settings_input_composite': newIconName = 'settings_input_component'; break;
-  case 'settings_outline': newIconName = 'settings'; break;
-  case 'shelves_outline': newIconName = 'shelves'; break;
-  case 'shop_2': newIconName = 'shop_two'; break;
-  case 'shortcut': newIconName = 'turn_right'; break;
-  case 'signal_cellular_no_sim': newIconName = 'no_sim'; break;
-  case 'signal_wifi_4_bar_lock': newIconName = 'wifi_lock'; break;
-  case 'signal_wifi_connected_no_internet_4': newIconName = 'signal_wifi_bad'; break;
-  case 'signal_wifi_statusbar_4_bar': newIconName = 'signal_wifi_4_bar'; break;
-  case 'signal_wifi_statusbar_connected_no_internet_4': newIconName = 'signal_wifi_statusbar_not_connected'; break;
-  case 'sim_card_alert': newIconName = 'sd_card_alert'; break;
-  case 'sms_outline': newIconName = 'sms'; break;
-  case 'source': newIconName = 'topic'; break;
-  case 'square_outline': newIconName = 'square'; break;
-  case 'star_border': newIconName = 'grade'; break;
-  case 'star_border_purple500': newIconName = 'star_rate'; break;
-  case 'star_outline': newIconName = 'star'; break;
-  case 'star_purple500': newIconName = 'star_rate'; break;
-  case 'stop_circle_outline': newIconName = 'stop_circle'; break;
-  case 'store_mall_directory': newIconName = 'store'; break;
-  case 'system_security_update': newIconName = 'system_update'; break;
-  case 'system_security_update_good': newIconName = 'security_update_good'; break;
-  case 'system_security_update_warning': newIconName = 'security_update_warning'; break;
-  case 'table_chart_outline': newIconName = 'table_chart'; break;
-  case 'tag_faces': newIconName = 'sentiment_satisfied'; break;
-  case 'terrain': newIconName = 'landscape'; break;
-  case 'textsms': newIconName = 'sms'; break;
-  case 'thumb_down_alt': newIconName = 'thumb_down'; break;
-  case 'thumb_down_off_alt': newIconName = 'thumb_down_off'; break;
-  case 'thumb_up_alt': newIconName = 'thumb_up'; break;
-  case 'thumb_up_off_alt': newIconName = 'thumb_up_off'; break;
-  case 'time_to_leave': newIconName = 'directions_car'; break;
-  case 'timer_outline': newIconName = 'timer'; break;
-  case 'try': newIconName = 'reviews'; break;
-  case 'tungsten': newIconName = 'lightbulb'; break;
-  case 'turned_in': newIconName = 'bookmark'; break;
-  case 'turned_in_not': newIconName = 'bookmark_remove'; break;
-  case 'visibility_off_outline': newIconName = 'visibility_off'; break;
-  case 'visibility_outline': newIconName = 'visibility'; break;
-  case 'warning_amber': newIconName = 'warning'; break;
-  case 'watch_later': newIconName = 'schedule'; break;
-  case 'wb_cloudy': newIconName = 'cloud_queue'; break;
-  case 'wb_incandescent_outline': newIconName = 'wb_incandescent'; break;
-  case 'window_outline': newIconName = 'window'; break;
-  case 'work_off': newIconName = 'enterprise_off'; break;
-  case 'work_outline': newIconName = 'work'; break;
-
-    // Default case: We have a direct mapping
-  default: newIconName = iconName; break;
-  }
-
-  if (enableLogging && newIconName !== iconName) {
-    console.warn(`[SynIcon] The icon name "${iconName}" has been migrated to "${newIconName}". Please update your code to use the new icon name.`);
-  }
-  return newIconName;
-};
-
-export const getIconMigrationNameForFilled = (iconName: string, enableLogging: boolean = false) => `${getIconMigrationName(iconName, enableLogging)}_fill`;
+import { type IconLibrary, registerIconLibrary } from './library.js';
+import defaultSystemLibrary from './library.system.js';
+import { type AvailableSystemIcons, setSystemIconLibrary } from './library.system.js';
 
 /**
  * The icon migration state:
@@ -251,32 +15,283 @@ export const getIconMigrationNameForFilled = (iconName: string, enableLogging: b
  * - ENABLED: Migration is performed and logs a warning when an icon is migrated.
  * - ENABLED_WITHOUT_LOGGING: Migration is performed without logging warnings.
  */
-type ICON_MIGRATION_STATE = 'DISABLED' | 'ENABLED' | 'ENABLED_WITHOUT_LOGGING';
+type IconMigrationState = 'DISABLED' | 'ENABLED' | 'ENABLED_WITHOUT_LOGGING';
 
 /**
- * Set the icon migration state.
- * If migration is enabled, icons will be migrated from 2018 to the 2025 icon set.
- * It will log a warning when an icon is migrated, unless the state is set to ENABLED_WITHOUT_LOGGING.
- * @param state - The icon migration state to set.
- *
- *                'DISABLED': No migration.
- *
- *                'ENABLED': Migration with logging.
- *
- *                'ENABLED_WITHOUT_LOGGING': Migration without logging.
+ * Get the migrated icon name for a given old icon name.
+ * @param {string} iconName The old icon name
+ * @param {boolean} enableLogging? Whether to enable logging for unmapped icons
+ * @returns {string} The new icon name
  */
-export const enableIconMigration = (state: ICON_MIGRATION_STATE = 'DISABLED') => {
-  if (state === 'DISABLED') return;
+export const migrateIconName = (
+  iconName: string,
+  enableLogging: boolean = false,
+) => {
+  let icon: string;
 
-  registerIconLibrary('default', {
-    resolver: name => {
-      const migratedName = getIconMigrationName(name, state === 'ENABLED');
-      return getBasePath(`assets/icons/${migratedName}.svg`);
-    },
-  });
+  switch (iconName) {
+  case 'access_alarm': icon = 'alarm'; break;
+  case 'access_alarms': icon = 'alarm'; break;
+  case 'access_time': icon = 'schedule'; break;
+  case 'access_time_filled': icon = 'schedule'; break;
+  case 'account_tree_outline': icon = 'account_tree'; break;
+  case 'add_alarm': icon = 'alarm_add'; break;
+  case 'add_circle_outline': icon = 'add_circle'; break;
+  case 'add_ic_call': icon = 'add_call'; break;
+  case 'addchart': icon = 'add_chart'; break;
+  case 'announcement': icon = 'feedback'; break;
+  case 'app_settings_alt': icon = 'phonelink_setup'; break;
+  case 'arrow_range_outline': icon = 'arrow_range'; break;
+  case 'assessment': icon = 'insert_chart'; break;
+  case 'assistant_photo': icon = 'flag'; break;
+  case 'audiotrack': icon = 'music_note'; break;
+  case 'battery_std': icon = 'battery_full'; break;
+  case 'bluetooth_audio': icon = 'bluetooth_searching'; break;
+  case 'bookmark_border': icon = 'bookmark'; break;
+  case 'box_outline': icon = 'box'; break;
+  case 'browser_not_supported': icon = 'web_asset_off'; break;
+  case 'build_circle_outline': icon = 'build_circle'; break;
+  case 'business': icon = 'domain'; break;
+  case 'camera_alt': icon = 'photo_camera'; break;
+  case 'cancel_outline': icon = 'cancel'; break;
+  case 'card_giftcard': icon = 'redeem'; break;
+  case 'catching_pokemon': icon = 'MISSING'; break;
+  case 'center_focus_strong_outline': icon = 'center_focus_strong'; break;
+  case 'chat_bubble_outline': icon = 'chat_bubble'; break;
+  case 'check_circle_outline': icon = 'check_circle'; break;
+  case 'circle_outline': icon = 'circle'; break;
+  case 'class': icon = 'book'; break;
+  case 'clear': icon = 'close'; break;
+  case 'closed_caption_off': icon = 'closed_caption'; break;
+  case 'collections': icon = 'filter'; break;
+  case 'color_lens': icon = 'palette'; break;
+  case 'control_point': icon = 'add_circle'; break;
+  case 'conveyor_belt_outline': icon = 'conveyor_belt'; break;
+  case 'create': icon = 'edit'; break;
+  case 'crop_din': icon = 'crop_square'; break;
+  case 'crop_original': icon = 'image'; break;
+  case 'data_saver_off': icon = 'data_usage'; break;
+  case 'delete_outline': icon = 'delete'; break;
+  case 'delivery_dining': icon = 'moped'; break;
+  case 'directions_boat_filled': icon = 'directions_boat'; break;
+  case 'directions_bus_filled': icon = 'directions_bus'; break;
+  case 'directions_car_filled': icon = 'directions_car'; break;
+  case 'directions_railway_filled': icon = 'directions_railway'; break;
+  case 'directions_subway_filled': icon = 'directions_subway'; break;
+  case 'directions_transit': icon = 'directions_subway'; break;
+  case 'directions_transit_filled': icon = 'directions_subway'; break;
+  case 'discount': icon = 'sell'; break;
+  case 'do_disturb': icon = 'block'; break;
+  case 'do_disturb_alt': icon = 'block'; break;
+  case 'do_disturb_off': icon = 'block'; break;
+  case 'do_disturb_on': icon = 'do_not_disturb_on'; break;
+  case 'do_not_disturb': icon = 'do_not_disturb_off'; break;
+  case 'do_not_disturb_alt': icon = 'block'; break;
+  case 'drive_eta': icon = 'directions_car'; break;
+  case 'email': icon = 'mail'; break;
+  case 'emoji_emotions': icon = 'mood'; break;
+  case 'error_outline': icon = 'error'; break;
+  case 'favorite_border': icon = 'favorite'; break;
+  case 'feedback_outline': icon = 'feedback'; break;
+  case 'filter_alt_outline': icon = 'filter_alt'; break;
+  case 'fire_hydrant_alt': icon = 'fire_hydrant'; break;
+  case 'fitbit': icon = 'MISSING'; break;
+  case 'fmd_good': icon = 'location_on'; break;
+  case 'free_breakfast': icon = 'local_cafe'; break;
+  case 'games': icon = 'gamepad'; break;
+  case 'get_app': icon = 'file_download'; break;
+  case 'gpp_good': icon = 'verified_user'; break;
+  case 'gps_fixed': icon = 'my_location'; break;
+  case 'gps_not_fixed': icon = 'location_searching'; break;
+  case 'gps_off': icon = 'location_disabled'; break;
+  case 'headset': icon = 'headphones'; break;
+  case 'help_outline': icon = 'help'; break;
+  case 'highlight_alt': icon = 'ink_selection'; break;
+  case 'highlight_off': icon = 'cancel'; break;
+  case 'https': icon = 'lock'; break;
+  case 'import_export': icon = 'swap_vert'; break;
+  case 'info_outline': icon = 'info'; break;
+  case 'insert_chart_outlined': icon = 'insert_chart'; break;
+  case 'insert_comment': icon = 'comment'; break;
+  case 'insert_drive_file': icon = 'note'; break;
+  case 'insert_emoticon': icon = 'mood'; break;
+  case 'insert_invitation': icon = 'event'; break;
+  case 'insert_link': icon = 'link'; break;
+  case 'insert_photo': icon = 'image'; break;
+  case 'iso': icon = 'exposure'; break;
+  case 'laptop': icon = 'laptop_mac'; break;
+  case 'launch': icon = 'open_in_new'; break;
+  case 'local_airport': icon = 'flight'; break;
+  case 'local_grocery_store': icon = 'shopping_cart'; break;
+  case 'local_hotel': icon = 'hotel'; break;
+  case 'local_movies': icon = 'theaters'; break;
+  case 'local_offer': icon = 'sell'; break;
+  case 'local_phone': icon = 'call'; break;
+  case 'local_play': icon = 'local_activity'; break;
+  case 'local_printshop': icon = 'print'; break;
+  case 'loop': icon = 'sync'; break;
+  case 'mail_outline': icon = 'mail'; break;
+  case 'maps_home_work': icon = 'home_work'; break;
+  case 'markunread': icon = 'mail'; break;
+  case 'message': icon = 'chat'; break;
+  case 'mic_none': icon = 'mic'; break;
+  case 'miscellaneous_services': icon = 'manufacturing'; break;
+  case 'mode': icon = 'edit'; break;
+  case 'mode_edit': icon = 'edit'; break;
+  case 'mode_edit_outline': icon = 'edit'; break;
+  case 'money_off_csred': icon = 'money_off'; break;
+  case 'motion_photos_pause': icon = 'motion_photos_paused'; break;
+  case 'move_group_outline': icon = 'move_group'; break;
+  case 'movie_creation': icon = 'movie'; break;
+  case 'nightlight_round': icon = 'nightlight'; break;
+  case 'no_cell': icon = 'mobile_off'; break;
+  case 'no_encryption_gmailerrorred': icon = 'no_encryption'; break;
+  case 'not_interested': icon = 'block'; break;
+  case 'notifications_none': icon = 'notifications'; break;
+  case 'ondemand_video': icon = 'live_tv'; break;
+  case 'outlined_flag': icon = 'flag'; break;
+  case 'package_2_outline': icon = 'package_2'; break;
+  case 'package_outline': icon = 'package'; break;
+  case 'pallet_outline': icon = 'pallet'; break;
+  case 'pan_tool_outline': icon = 'pan_tool'; break;
+  case 'panorama_horizontal_select': icon = 'panorama_horizontal'; break;
+  case 'panorama_photosphere_select': icon = 'panorama_photosphere'; break;
+  case 'panorama_vertical_select': icon = 'panorama_vertical'; break;
+  case 'panorama_wide_angle_select': icon = 'panorama_wide_angle'; break;
+  case 'pause_circle_filled': icon = 'pause_circle'; break;
+  case 'pause_circle_outline': icon = 'pause_circle'; break;
+  case 'payment': icon = 'credit_card'; break;
+  case 'pending_outline': icon = 'pending'; break;
+  case 'people': icon = 'group'; break;
+  case 'people_alt': icon = 'group'; break;
+  case 'people_outline': icon = 'group'; break;
+  case 'perm_identity': icon = 'person'; break;
+  case 'person_add_alt': icon = 'person_add'; break;
+  case 'person_add_alt_1': icon = 'person_add'; break;
+  case 'person_outline': icon = 'person'; break;
+  case 'person_remove_alt_1': icon = 'person_remove'; break;
+  case 'personal_video': icon = 'monitor'; break;
+  case 'phone': icon = 'call'; break;
+  case 'phonelink': icon = 'devices'; break;
+  case 'photo_size_select_actual': icon = 'panorama'; break;
+  case 'pie_chart_outline': icon = 'pie_chart'; break;
+  case 'pix': icon = 'MISSING'; break;
+  case 'place': icon = 'location_on'; break;
+  case 'play_circle_filled': icon = 'play_circle'; break;
+  case 'play_circle_outline': icon = 'play_circle'; break;
+  case 'plus_one': icon = 'exposure_plus_1'; break;
+  case 'poll': icon = 'insert_chart'; break;
+  case 'portrait': icon = 'account_box'; break;
+  case 'progress_activity_outline': icon = 'progress_activity'; break;
+  case 'query_builder': icon = 'schedule'; break;
+  case 'question_answer': icon = 'forum'; break;
+  case 'queue': icon = 'library_add'; break;
+  case 'remove_circle': icon = 'do_not_disturb_on'; break;
+  case 'remove_circle_outline': icon = 'do_not_disturb_on'; break;
+  case 'remove_red_eye': icon = 'visibility'; break;
+  case 'replay_circle_filled': icon = 'replay'; break;
+  case 'report_gmailerrorred': icon = 'report'; break;
+  case 'report_problem': icon = 'warning'; break;
+  case 'restore': icon = 'history'; break;
+  case 'room': icon = 'location_on'; break;
+  case 'rotate_90_degrees_cw_outline': icon = 'rotate_90_degrees_cw'; break;
+  case 'save_alt': icon = 'file_download'; break;
+  case 'sd_storage': icon = 'sd_card'; break;
+  case 'security_update': icon = 'system_update'; break;
+  case 'sentiment_satisfied_alt': icon = 'sentiment_satisfied'; break;
+  case 'settings_input_composite': icon = 'settings_input_component'; break;
+  case 'settings_outline': icon = 'settings'; break;
+  case 'shelves_outline': icon = 'shelves'; break;
+  case 'shop_2': icon = 'shop_two'; break;
+  case 'shortcut': icon = 'turn_right'; break;
+  case 'signal_cellular_no_sim': icon = 'no_sim'; break;
+  case 'signal_wifi_4_bar_lock': icon = 'wifi_lock'; break;
+  case 'signal_wifi_connected_no_internet_4': icon = 'signal_wifi_bad'; break;
+  case 'signal_wifi_statusbar_4_bar': icon = 'signal_wifi_4_bar'; break;
+  case 'signal_wifi_statusbar_connected_no_internet_4': icon = 'signal_wifi_statusbar_not_connected'; break;
+  case 'sim_card_alert': icon = 'sd_card_alert'; break;
+  case 'sms_outline': icon = 'sms'; break;
+  case 'source': icon = 'topic'; break;
+  case 'square_outline': icon = 'square'; break;
+  case 'star_border': icon = 'grade'; break;
+  case 'star_border_purple500': icon = 'star_rate'; break;
+  case 'star_outline': icon = 'star'; break;
+  case 'star_purple500': icon = 'star_rate'; break;
+  case 'stop_circle_outline': icon = 'stop_circle'; break;
+  case 'store_mall_directory': icon = 'store'; break;
+  case 'system_security_update': icon = 'system_update'; break;
+  case 'system_security_update_good': icon = 'security_update_good'; break;
+  case 'system_security_update_warning': icon = 'security_update_warning'; break;
+  case 'table_chart_outline': icon = 'table_chart'; break;
+  case 'tag_faces': icon = 'sentiment_satisfied'; break;
+  case 'terrain': icon = 'landscape'; break;
+  case 'textsms': icon = 'sms'; break;
+  case 'thumb_down_alt': icon = 'thumb_down'; break;
+  case 'thumb_down_off_alt': icon = 'thumb_down_off'; break;
+  case 'thumb_up_alt': icon = 'thumb_up'; break;
+  case 'thumb_up_off_alt': icon = 'thumb_up_off'; break;
+  case 'time_to_leave': icon = 'directions_car'; break;
+  case 'timer_outline': icon = 'timer'; break;
+  case 'try': icon = 'reviews'; break;
+  case 'tungsten': icon = 'lightbulb'; break;
+  case 'turned_in': icon = 'bookmark'; break;
+  case 'turned_in_not': icon = 'bookmark_remove'; break;
+  case 'visibility_off_outline': icon = 'visibility_off'; break;
+  case 'visibility_outline': icon = 'visibility'; break;
+  case 'warning_amber': icon = 'warning'; break;
+  case 'watch_later': icon = 'schedule'; break;
+  case 'wb_cloudy': icon = 'cloud_queue'; break;
+  case 'wb_incandescent_outline': icon = 'wb_incandescent'; break;
+  case 'window_outline': icon = 'window'; break;
+  case 'work_off': icon = 'enterprise_off'; break;
+  case 'work_outline': icon = 'work'; break;
+
+  // Default case: We have a direct mapping
+  default: icon = iconName;
+  }
+
+  if (enableLogging && icon !== iconName) {
+    // eslint-disable-next-line no-console
+    console.warn(`[Icon Migration] Mapped icon name "${iconName}" to "${icon}"`);
+  }
+
+  return icon;
 };
 
-export const setAllIconMigrations = (state: ICON_MIGRATION_STATE) => {
-  enableIconMigration(state);
-  setSystemIconLibrary('sick2025');
+/**
+ * Create an icon library for migrating old icon names to new icon names.
+ * @param {IconMigrationState} withState The icon migration state
+ * @returns {IconLibrary} The migration icon library
+ */
+export const createMigrationLibrary = (withState: IconMigrationState = 'DISABLED'): IconLibrary => ({
+  name: 'default',
+  resolver: name => {
+    const mappedName = migrateIconName(name, withState === 'ENABLED');
+    return getBasePath(`assets/icons/${mappedName}.svg`);
+  },
+});
+
+/**
+ * Default icon library for migrating old icon names to new icon names.
+ */
+export const migrationLibrary = createMigrationLibrary('DISABLED');
+
+/**
+ * Setup the system icon library.
+ * @param iconset The system icon set to use
+ * @param enableLogging Enable logging of migrated icons?
+ * @returns The icon library used
+ */
+export const setupIcons = (
+  iconset: AvailableSystemIcons = 'sick2025',
+  enableLogging: boolean = true,
+): IconLibrary => {
+  const iconlibraryToUse = iconset === 'sick2018'
+    ? defaultSystemLibrary
+    : createMigrationLibrary(enableLogging ? 'ENABLED_WITHOUT_LOGGING' : 'ENABLED');
+
+  registerIconLibrary('default', iconlibraryToUse);
+  setSystemIconLibrary(iconset);
+
+  return iconlibraryToUse;
 };

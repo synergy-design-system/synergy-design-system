@@ -5,14 +5,14 @@ import '@synergy-design-system/components/components/tab-group/tab-group.js';
 import '@synergy-design-system/components/components/tab/tab.js';
 import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
 import { registerIconLibrary } from '../../../components/src/components/icon/library.js';
-import { getIconMigrationName } from '../../../components/src/components/icon/library.migration.js';
+import { migrateIconName } from '../../../components/src/components/icon/library.migration.js';
 import { defaultIcons as sick2018Icons } from '../../../assets/src/default-icons.js';
 import { outlineIcons as sick2025Outline } from '../../../assets/src/sick2025-outline-icons.js';
 import { IconsSearchPage } from './IconSearchPage.js';
 
 registerIconLibrary('migration', {
   resolver: name => {
-    const mappedName = getIconMigrationName(name);
+    const mappedName = migrateIconName(name);
     const defaultName = mappedName as keyof typeof sick2025Outline;
     return `data:image/svg+xml,${encodeURIComponent(sick2025Outline[defaultName])}`;
   },

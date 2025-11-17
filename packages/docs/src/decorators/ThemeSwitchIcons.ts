@@ -2,7 +2,7 @@ import type { StoryContext, StoryFn } from '@storybook/web-components-vite';
 import { DecoratorHelpers } from '@storybook/addon-themes';
 import type { SynIcon } from '@synergy-design-system/components';
 import { setSystemIconLibrary } from '../../../components/src/components/icon/library.system.js';
-import { getIconMigrationName } from '../../../components/src/components/icon/library.migration.js';
+import { migrateIconName } from '../../../components/src/components/icon/library.migration.js';
 import { type IconLibrary, registerIconLibrary } from '../../../components/src/components/icon/library.js';
 import {
   DARK_THEME, LIGHT_THEME, SICK_2025_DARK, SICK_2025_LIGHT,
@@ -58,22 +58,19 @@ function refreshSystemIcons() {
  */
 export const themeSwitchIcons = (story: StoryFn, context: StoryContext) => {
   const theme = DecoratorHelpers.pluckThemeFromContext(context);
-  let themePath = '';
   let resolver: IconLibrary['resolver'];
 
   switch (theme) {
   case SICK_2025_DARK:
   case SICK_2025_LIGHT:
     setSystemIconLibrary('sick2025');
-    themePath = 'assets/sick2025/outline/';
-    resolver = (name: string) => getBasePath(`assets/sick2025/outline/${getIconMigrationName(name)}.svg`);
+    resolver = (name: string) => getBasePath(`assets/sick2025/outline/${migrateIconName(name)}.svg`);
     break;
   case DARK_THEME:
   case LIGHT_THEME:
   default:
     setSystemIconLibrary('sick2018');
-    themePath = 'assets/icons/';
-    resolver = (name: string) => getBasePath(`${themePath}${name}.svg`);
+    resolver = (name: string) => getBasePath(`assets/icons/${name}.svg`);
     break;
   }
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.60.0
+
+### Minor Changes
+
+- [#1063](https://github.com/synergy-design-system/synergy-design-system/pull/1063) [`6e616f5`](https://github.com/synergy-design-system/synergy-design-system/commit/6e616f51007ebde567eeb33190518159becc7c32) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2025-11-17
+
+  feat: ✨ Brand update for syn-range and syn-range-tick (#966)
+
+### Patch Changes
+
+- Updated dependencies [[`6e616f5`](https://github.com/synergy-design-system/synergy-design-system/commit/6e616f51007ebde567eeb33190518159becc7c32)]:
+  - @synergy-design-system/tokens@2.41.0
+
 ## 2.59.0
 
 ### Minor Changes

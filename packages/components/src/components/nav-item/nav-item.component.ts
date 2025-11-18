@@ -449,7 +449,6 @@ export default class SynNavItem extends SynergyElement {
                 'nav-item__chevron': true,
                 'nav-item__chevron-open': this.open,
               })}
-              color="currentColor"
               library="system"
               name="chevron-down"
               part="chevron"

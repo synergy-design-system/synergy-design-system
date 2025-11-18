@@ -4345,5 +4345,431 @@
         "value": "0px 2px 8px 0px rgba(49, 55, 58, 0.06)"
       }
     ]
+  },
+  {
+    "name": "body/2x-small/regular",
+    "comment": "",
+    "visible": true,
+    "originalNode": {
+      "key": "fece07372f9755e333659b7d037ceb5027cdda28",
+      "name": "body/2x-small/regular",
+      "styleType": "TEXT",
+      "remote": false,
+      "description": "",
+      "id": "36102:14959",
+      "type": "TEXT",
+      "scrollBehavior": "SCROLLS",
+      "boundVariables": {
+        "fontWeight": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:24741:120382"
+          }
+        ],
+        "fontFamily": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:24741:120385"
+          }
+        ],
+        "fontSize": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:36102:6355"
+          }
+        ]
+      },
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 0,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 0,
+        "y": 0,
+        "width": 13,
+        "height": 15
+      },
+      "absoluteRenderBounds": {
+        "x": 0,
+        "y": 4.115234375,
+        "width": 12.71337890625,
+        "height": 10.52734375
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "characters": "Ag",
+      "characterStyleOverrides": [],
+      "styleOverrideTable": {},
+      "lineTypes": [
+        "NONE"
+      ],
+      "lineIndentations": [
+        0
+      ],
+      "style": {
+        "fontFamily": "Open Sans",
+        "fontPostScriptName": "OpenSans",
+        "fontStyle": "Regular",
+        "fontWeight": 400,
+        "textAutoResize": "WIDTH_AND_HEIGHT",
+        "fontSize": 11,
+        "textAlignHorizontal": "LEFT",
+        "textAlignVertical": "TOP",
+        "letterSpacing": 0,
+        "lineHeightPx": 15.399999618530273,
+        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercentFontSize": 140,
+        "lineHeightUnit": "FONT_SIZE_%"
+      },
+      "layoutVersion": 4,
+      "effects": [],
+      "interactions": []
+    },
+    "styleType": "TEXT",
+    "style": {
+      "fontFamily": "Open Sans",
+      "fontWeight": 400,
+      "fontSize": 11,
+      "letterSpacing": 0,
+      "lineHeight": "1.399999976158142",
+      "fontStyle": "normal",
+      "fontVariant": "normal",
+      "textTransform": "none",
+      "textDecoration": "none",
+      "textAlign": "left",
+      "verticalAlign": "top"
+    }
+  },
+  {
+    "name": "body/2x-small/semibold",
+    "comment": "",
+    "visible": true,
+    "originalNode": {
+      "key": "7b577673fca58ced347760d32f28530af56bcf7c",
+      "name": "body/2x-small/semibold",
+      "styleType": "TEXT",
+      "remote": false,
+      "description": "",
+      "id": "36102:14960",
+      "type": "TEXT",
+      "scrollBehavior": "SCROLLS",
+      "boundVariables": {
+        "fontWeight": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:24741:120383"
+          }
+        ],
+        "fontFamily": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:24741:120385"
+          }
+        ],
+        "fontSize": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:36102:6355"
+          }
+        ]
+      },
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 0,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 0,
+        "y": 0,
+        "width": 14,
+        "height": 15
+      },
+      "absoluteRenderBounds": {
+        "x": 0,
+        "y": 4.115234375,
+        "width": 13.19140625,
+        "height": 10.52734375
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "characters": "Ag",
+      "characterStyleOverrides": [],
+      "styleOverrideTable": {},
+      "lineTypes": [
+        "NONE"
+      ],
+      "lineIndentations": [
+        0
+      ],
+      "style": {
+        "fontFamily": "Open Sans",
+        "fontPostScriptName": "OpenSans-SemiBold",
+        "fontStyle": "SemiBold",
+        "fontWeight": 600,
+        "textAutoResize": "WIDTH_AND_HEIGHT",
+        "fontSize": 11,
+        "textAlignHorizontal": "LEFT",
+        "textAlignVertical": "TOP",
+        "letterSpacing": 0,
+        "lineHeightPx": 15.399999618530273,
+        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercentFontSize": 140,
+        "lineHeightUnit": "FONT_SIZE_%"
+      },
+      "layoutVersion": 4,
+      "effects": [],
+      "interactions": []
+    },
+    "styleType": "TEXT",
+    "style": {
+      "fontFamily": "Open Sans",
+      "fontWeight": 600,
+      "fontSize": 11,
+      "letterSpacing": 0,
+      "lineHeight": "1.399999976158142",
+      "fontStyle": "normal",
+      "fontVariant": "normal",
+      "textTransform": "none",
+      "textDecoration": "none",
+      "textAlign": "left",
+      "verticalAlign": "top"
+    }
+  },
+  {
+    "name": "body/2x-small/bold",
+    "comment": "",
+    "visible": true,
+    "originalNode": {
+      "key": "28810c8d823f661389f598a3a89ec767d2bbfc0a",
+      "name": "body/2x-small/bold",
+      "styleType": "TEXT",
+      "remote": false,
+      "description": "",
+      "id": "36102:14961",
+      "type": "TEXT",
+      "scrollBehavior": "SCROLLS",
+      "boundVariables": {
+        "fontWeight": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:24741:120384"
+          }
+        ],
+        "fontFamily": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:24741:120385"
+          }
+        ],
+        "fontSize": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:36102:6355"
+          }
+        ]
+      },
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 0,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 0,
+        "y": 0,
+        "width": 14,
+        "height": 15
+      },
+      "absoluteRenderBounds": {
+        "x": 0,
+        "y": 4.115234375,
+        "width": 13.68017578125,
+        "height": 10.52734375
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "characters": "Ag",
+      "characterStyleOverrides": [],
+      "styleOverrideTable": {},
+      "lineTypes": [
+        "NONE"
+      ],
+      "lineIndentations": [
+        0
+      ],
+      "style": {
+        "fontFamily": "Open Sans",
+        "fontPostScriptName": "OpenSans-Bold",
+        "fontStyle": "Bold",
+        "fontWeight": 700,
+        "textAutoResize": "WIDTH_AND_HEIGHT",
+        "fontSize": 11,
+        "textAlignHorizontal": "LEFT",
+        "textAlignVertical": "TOP",
+        "letterSpacing": 0,
+        "lineHeightPx": 15.399999618530273,
+        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercentFontSize": 140,
+        "lineHeightUnit": "FONT_SIZE_%"
+      },
+      "layoutVersion": 4,
+      "effects": [],
+      "interactions": []
+    },
+    "styleType": "TEXT",
+    "style": {
+      "fontFamily": "Open Sans",
+      "fontWeight": 700,
+      "fontSize": 11,
+      "letterSpacing": 0,
+      "lineHeight": "1.399999976158142",
+      "fontStyle": "normal",
+      "fontVariant": "normal",
+      "textTransform": "none",
+      "textDecoration": "none",
+      "textAlign": "left",
+      "verticalAlign": "top"
+    }
+  },
+  {
+    "name": "heading/4x-large",
+    "comment": "",
+    "visible": true,
+    "originalNode": {
+      "key": "670593f846d97d01fceee27284c0a37066ff9ea9",
+      "name": "heading/4x-large",
+      "styleType": "TEXT",
+      "remote": false,
+      "description": "",
+      "id": "36102:14963",
+      "type": "TEXT",
+      "scrollBehavior": "SCROLLS",
+      "boundVariables": {
+        "fontWeight": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:24741:120384"
+          }
+        ],
+        "fontFamily": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:24741:120385"
+          }
+        ]
+      },
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 0,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 0,
+        "y": 0,
+        "width": 66,
+        "height": 62
+      },
+      "absoluteRenderBounds": {
+        "x": 0,
+        "y": 13.7265625,
+        "width": 64.669921875,
+        "height": 49.765625
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "characters": "Ag",
+      "characterStyleOverrides": [],
+      "styleOverrideTable": {},
+      "lineTypes": [
+        "NONE"
+      ],
+      "lineIndentations": [
+        0
+      ],
+      "style": {
+        "fontFamily": "Open Sans",
+        "fontPostScriptName": "OpenSans-Bold",
+        "fontStyle": "Bold",
+        "fontWeight": 700,
+        "textAutoResize": "WIDTH_AND_HEIGHT",
+        "fontSize": 52,
+        "textAlignHorizontal": "LEFT",
+        "textAlignVertical": "TOP",
+        "letterSpacing": 0,
+        "lineHeightPx": 62.400001525878906,
+        "lineHeightPercent": 88.11760711669922,
+        "lineHeightPercentFontSize": 120.00000762939453,
+        "lineHeightUnit": "FONT_SIZE_%"
+      },
+      "layoutVersion": 4,
+      "effects": [],
+      "interactions": []
+    },
+    "styleType": "TEXT",
+    "style": {
+      "fontFamily": "Open Sans",
+      "fontWeight": 700,
+      "fontSize": 52,
+      "letterSpacing": 0,
+      "lineHeight": "1.2000000476837158",
+      "fontStyle": "normal",
+      "fontVariant": "normal",
+      "textTransform": "none",
+      "textDecoration": "none",
+      "textAlign": "left",
+      "verticalAlign": "top"
+    }
   }
 ]

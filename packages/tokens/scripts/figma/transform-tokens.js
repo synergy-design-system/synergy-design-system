@@ -11,7 +11,7 @@ import { sort } from '@tamtamchik/json-deep-sort';
 import { setNestedProperty } from '../helpers.js';
 import {
   createDirectory, figmaVariables, formatColor, getAliasValue,
-  getTypeForFloatVariable, isNewBrandOnlyVariableOrStyle,
+  getTypeForFloatVariable, isDesignOnlyVariableOrStyle,
   renameVariable, resolveAlias,
 } from './helpers.js';
 import { COLOR_PALETTE_PREFIX, OUTPUT_DIR } from '../config.js';
@@ -152,9 +152,8 @@ const transformFigmaVariables = () => {
   Object.values(figmaVariables.variables).forEach(variable => {
     const { name, variableCollectionId } = variable;
 
-    // TODO: currently we do not want to export the new brand variables,
-    //  but just get the old state with figma api fetching. This can be removed when the new brand variables are ready to be exported.
-    if (isNewBrandOnlyVariableOrStyle(name)) {
+    // TODO: currently we do not want to export the design only variables
+    if (isDesignOnlyVariableOrStyle(name)) {
       return;
     }
 
@@ -173,6 +172,11 @@ const transformFigmaVariables = () => {
 
     Object.values(collection.modes).forEach(mode => {
       const { modeId, name: modeName } = mode;
+
+      // Skip exploration modes, as these are only for testing purposes on figma
+      if (modeName.includes('exploration')) {
+        return;
+      }
 
       if (!transformed[modeName]) transformed[modeName] = {};
 

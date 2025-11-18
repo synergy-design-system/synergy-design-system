@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.61.0
+
+### Minor Changes
+
+- [#1076](https://github.com/synergy-design-system/synergy-design-system/pull/1076) [`1392ed2`](https://github.com/synergy-design-system/synergy-design-system/commit/1392ed23aba2b628344356adba0a78e1e8beff84) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-18
+
+  feat: ✨ Brand updates for `<syn-side-nav>`, `<syn-prio-nav>` and `<syn-nav-item>` (#967, #960)
+
+### Patch Changes
+
+- Updated dependencies [[`1392ed2`](https://github.com/synergy-design-system/synergy-design-system/commit/1392ed23aba2b628344356adba0a78e1e8beff84)]:
+  - @synergy-design-system/tokens@2.42.0
+
+## 2.60.0
+
+### Minor Changes
+
+- [#1063](https://github.com/synergy-design-system/synergy-design-system/pull/1063) [`6e616f5`](https://github.com/synergy-design-system/synergy-design-system/commit/6e616f51007ebde567eeb33190518159becc7c32) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2025-11-17
+
+  feat: ✨ Brand update for syn-range and syn-range-tick (#966)
+
+### Patch Changes
+
+- Updated dependencies [[`6e616f5`](https://github.com/synergy-design-system/synergy-design-system/commit/6e616f51007ebde567eeb33190518159becc7c32)]:
+  - @synergy-design-system/tokens@2.41.0
+
 ## 2.59.0
 
 ### Minor Changes

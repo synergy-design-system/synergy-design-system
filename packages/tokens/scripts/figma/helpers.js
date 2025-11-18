@@ -186,6 +186,12 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
   /component\/option/,
 
   /**
+   * Radio-Button component tokens
+   */
+  // Not yet updated in dev
+  /component\/radio-button-group/,
+
+  /**
    * Button component tokens
    */
   // Not yet updated in dev

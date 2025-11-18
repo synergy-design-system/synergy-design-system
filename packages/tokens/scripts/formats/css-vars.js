@@ -71,6 +71,8 @@ export const cssVariableFormatter = {
       'typography-color-text-quiet-inverted',
       'color-primary-1000',
 
+      'progress-track-readonly-color',
+
       'input-border-color-active',
       'input-icon-icon-clearable-color-active',
       'interactive-background-color-active',

@@ -23,7 +23,7 @@ export default css`
   }
 
   :host(:focus-visible) .menu-item {
-    background-color: var(--syn-option-background-color-active, var(--syn-color-primary-1000));
+    background-color: var(--syn-option-background-color-active, var(--syn-color-primary-1000, var(--syn-color-neutral-1000)));
     outline: var(--outline) solid var(--syn-panel-background-color);
     outline-offset: calc(var(--outline) * -1 + 1px);
   }
@@ -49,18 +49,18 @@ export default css`
    */
   .menu-item .menu-item__prefix::slotted(syn-icon),
   .menu-item .menu-item__suffix::slotted(syn-icon) {
-    color: var(--syn-option-color, var(--syn-typography-color-text));
+    color: var(--syn-option-icon-color, var(--syn-option-color, var(--syn-typography-color-text)));
     font-size: var(--syn-font-size-x-large);
   }
 
   :host(:hover) .menu-item .menu-item__prefix::slotted(syn-icon),
   :host(:hover) .menu-item__suffix::slotted(syn-icon) {
-    color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
+    color: var(--syn-option-icon-color-hover, var(--syn-typography-color-text-inverted));
   }
 
   :host(:focus-visible) .menu-item .menu-item__prefix::slotted(syn-icon),
   :host(:focus-visible) .menu-item .menu-item__suffix::slotted(syn-icon) {
-    color: var(--syn-option-color-active, var(--syn-typography-color-text-inverted));
+    color: var(--syn-option-icon-color-active, var(--syn-typography-color-text-inverted));
   }
 
   /* Adjust background and text color for focused elements */

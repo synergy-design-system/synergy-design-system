@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.42.0
+
+### Minor Changes
+
+- [#1076](https://github.com/synergy-design-system/synergy-design-system/pull/1076) [`1392ed2`](https://github.com/synergy-design-system/synergy-design-system/commit/1392ed23aba2b628344356adba0a78e1e8beff84) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-18
+
+  feat: ✨ Brand updates for `<syn-side-nav>`, `<syn-prio-nav>` and `<syn-nav-item>` (#967, #960)
+
 ## 2.41.0
 
 ### Minor Changes

@@ -48,7 +48,7 @@ export default css`
   }
 
   .tab:hover:not(.tab--disabled) {
-    color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-700));
+    color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-700));
   }
 
   .tab.tab--active:not(:hover):not(.tab--disabled) {

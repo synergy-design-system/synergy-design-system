@@ -163,7 +163,6 @@ const transformComponent = (path, originalContent) => {
   // #969: Use the new system icons for tabs
   content = replaceSections([
     ['name="chevron-right"', 'name="tabs-right"'],
-    ['name="chevron-left"', 'name="tabs-left"'],
   ], content);
 
   // #814: remove all occurrences of getAllTabs and getAllPanels

@@ -180,6 +180,12 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
   /component\/input\/focus-ring\/width/,
 
   /**
+   * Radio-Button component tokens
+   */
+  // Not yet updated in dev
+  /component\/radio-button-group/,
+
+  /**
    * Button component tokens
    */
   // Not yet updated in dev

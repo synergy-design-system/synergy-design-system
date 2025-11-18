@@ -13,6 +13,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-prio-nav');
 const { overrideArgs } = storybookHelpers('syn-prio-nav');
@@ -33,6 +34,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-prio-nav',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('12362-10968'),
     docs: {
       description: {
@@ -43,7 +47,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'SICK2018'],
+  tags: ['Navigation', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-prio-nav',
 };
 export default meta;

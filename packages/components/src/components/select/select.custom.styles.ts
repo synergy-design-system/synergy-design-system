@@ -106,10 +106,9 @@ export default css`
     font-size: var(--syn-font-size-2x-large);
   }
 
-
   .select__prefix,
   .select__suffix {
-    color: var(--syn-input-help-text-color);
+    color: var(--syn-input-icon-color, var(--syn-input-help-text-color));
   }
 
   /* Multi Select */
@@ -131,8 +130,7 @@ export default css`
 
   /* Listbox */
   .select__listbox {
-    /* @todo: Should be --syn-border-radius-medium, which should be set to 0 */
-    border-radius: var(--syn-border-radius-none);
+    border-radius: var(--syn-input-border-radius-medium, var(--syn-border-radius-none));
     box-shadow: var(--syn-shadow-medium);
   }
 

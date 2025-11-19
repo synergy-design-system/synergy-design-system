@@ -15,6 +15,7 @@ import {
 } from '../../src/helpers/component.js';
 import '../../src/validate-demo-radio.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-validate');
 const { overrideArgs } = storybookHelpers('syn-validate');
@@ -58,6 +59,9 @@ const meta: Meta = {
     },
   ],
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('24853-35456'),
     docs: {
       description: {
@@ -65,7 +69,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form', 'SICK2018'],
+  tags: ['Form', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-validate',
 };
 export default meta;

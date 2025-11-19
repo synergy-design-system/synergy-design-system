@@ -28,6 +28,15 @@ const transformComponent = (path, originalContent) => {
     ['@property({ reflect: true }) variant:', ';', { preserveEnd: true, preserveStart: true, removePrecedingWhitespace: false }],
   ], originalContent);
 
+  // #969: New system icons.
+  // The caret system icon was renamed to chevron-down
+  content = replaceSections([
+    [
+      'library="system" name="caret"',
+      'library="system" name="chevron-down"',
+    ],
+  ], content);
+
   content = replaceSections([
     ['variant:', "variant: 'filled' | 'outline' | 'text' = 'outline'"],
     ['!this.outline', 'this.variant === \'filled\''],

@@ -33,6 +33,7 @@ export class ValidateDemoRadio extends LitElement {
       box-sizing: content-box;
       width: var(--item-width);
       height: var(--item-width);
+      line-height: var(--item-width);
       overflow: hidden;
       margin: 5px 0;
       padding: 5px;
@@ -68,7 +69,7 @@ export class ValidateDemoRadio extends LitElement {
     }
 
     label:nth-of-type(1) input {
-      color: #ea0823;
+      color: var(--syn-input-focus-ring-error);
     }
 
     label:nth-of-type(2) input {
@@ -76,15 +77,15 @@ export class ValidateDemoRadio extends LitElement {
     }
 
     label:nth-of-type(3) input {
-      color: #007cc1;
+      color: var(--syn-logo-color);
     }
 
     label:nth-of-type(4) input {
-      color: #63B017;
+      color: var(--syn-color-success-600);
     }
 
     label:nth-of-type(5) input {
-      color: #e5ae0d;
+      color: var(--syn-color-warning-500);
     }
     /* stylelint-enable */
   `;

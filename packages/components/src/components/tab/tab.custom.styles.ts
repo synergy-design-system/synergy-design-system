@@ -48,10 +48,10 @@ export default css`
   }
 
   .tab:hover:not(.tab--disabled) {
-    color: var(--syn-color-primary-700);
+    color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-700));
   }
 
-  .tab.tab--active:not(.tab--disabled) {
+  .tab.tab--active:not(:hover):not(.tab--disabled) {
     color: var(--syn-typography-color-text);
   }
 
@@ -64,7 +64,7 @@ export default css`
   }
 
   .tab__close-button {
-    color: var(--syn-color-neutral-500);
+    color: var(--syn-input-icon-icon-clearable-color, var(--syn-color-neutral-500));
     font-size: var(--syn-font-size-x-large);
     margin-inline-start: var(--syn-spacing-2x-small);
   }
@@ -74,7 +74,7 @@ export default css`
   }
 
   .tab__close-button::part(base):hover {
-    color: var(--syn-color-primary-700);
+    color: var(--syn-input-icon-icon-clearable-color-hover, var(--syn-color-primary-700));
   }
 
   .tab--active {

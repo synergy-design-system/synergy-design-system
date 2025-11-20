@@ -10,6 +10,7 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json' with { type: 'json' };
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-tab-panel');
 const { overrideArgs } = storybookHelpers('syn-tab-panel');
@@ -33,6 +34,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-tab-panel',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('18086-44682'),
     docs: {
       description: {
@@ -40,7 +44,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'SICK2018'],
+  tags: ['Navigation', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-tab-panel',
 };
 export default meta;

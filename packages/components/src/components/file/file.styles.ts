@@ -77,22 +77,23 @@ export default css`
    */
   .form-control--user-dragging:not([disabled]) .button::part(base) {
     background: none;
-    border-color: var(--syn-color-primary-900);
-    color: var(--syn-color-primary-900);
+    border-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
+    color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
   }
 
   /* Drop Area */
   .droparea {
-    --highlight-color: var(--syn-color-primary-600);
+    --highlight-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
 
-    border: var(--syn-border-width-small) dashed var(--syn-input-border-color);
+    border: var(--syn-input-border-width) dashed var(--syn-input-border-color);
+    border-radius: var(--syn-input-border-radius-medium);
     font: var(--syn-body-medium-regular);
     padding: var(--syn-spacing-x-large) var(--syn-spacing-large);
     transition: var(--syn-transition-medium) background;
   }
 
   .droparea:focus-visible {
-    border: var(--syn-border-width-small) dashed var(--syn-color-primary-600);
+    border: var(--syn-input-border-width) dashed var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }
@@ -160,20 +161,20 @@ export default css`
 
   :host(:not([disabled])) .form-control--user-dragging .droparea {
     background: var(--syn-color-primary-50);
-    border: var(--syn-border-width-small) solid var(--syn-color-primary-600);
+    border: var(--syn-input-border-width) solid var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
     cursor: pointer;
   }
 
   :host(:not([disabled])) .droparea:not(:focus-visible):hover {
-    --highlight-color: var(--syn-color-primary-900);
+    --highlight-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
 
-    border: var(--syn-border-width-small) dashed var(--syn-color-primary-900);
+    border: var(--syn-input-border-width) dashed var(--syn-input-border-color-hover);
     cursor: pointer;
   }
 
   /* Validation */
   /* stylelint-disable-next-line no-descending-specificity */
   :host([data-user-invalid]:not([disabled])) .droparea {
-    border: var(--syn-border-width-small) dashed var(--syn-input-border-color-focus-error);
+    border: var(--syn-input-border-width) dashed var(--syn-input-focus-ring-error);
   }
 `;

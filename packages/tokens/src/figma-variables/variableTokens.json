@@ -310,8 +310,8 @@
         "VariableID:36102:6183",
         "VariableID:36102:6190",
         "VariableID:36102:6188",
-        "VariableID:36331:6163",
         "VariableID:36102:6187",
+        "VariableID:36331:6163",
         "VariableID:36331:6164",
         "VariableID:36331:6165",
         "VariableID:36102:6189",
@@ -443,8 +443,8 @@
         "VariableID:36102:6246",
         "VariableID:36102:6245",
         "VariableID:36102:6244",
-        "VariableID:36547:6175",
         "VariableID:36102:6226",
+        "VariableID:36547:6175",
         "VariableID:36547:6176",
         "VariableID:36547:6177",
         "VariableID:36102:6227",
@@ -455,6 +455,7 @@
         "VariableID:36102:6232",
         "VariableID:36102:6233",
         "VariableID:36102:6234",
+        "VariableID:44310:178228",
         "VariableID:36102:6337",
         "VariableID:36102:6338",
         "VariableID:36102:6339",
@@ -784,8 +785,8 @@
         "VariableID:790:67394",
         "VariableID:790:69764",
         "VariableID:790:69765",
-        "VariableID:790:67396",
         "VariableID:790:69766",
+        "VariableID:790:67396",
         "VariableID:790:69767",
         "VariableID:790:69768",
         "VariableID:790:69769",
@@ -21967,6 +21968,42 @@
         },
         "36102:2": {
           "id": "VariableID:28:542",
+          "type": "VARIABLE_ALIAS"
+        }
+      },
+      "variableCollectionId": "VariableCollectionId:28:527"
+    },
+    "VariableID:44310:178228": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:44310:178228",
+      "key": "17d41a0d935b2cdfd7e6c97814608fc0db4bc30e",
+      "name": "component/button/outline/color-text",
+      "remote": false,
+      "resolvedType": "COLOR",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "28:3": {
+          "a": 0,
+          "b": 1,
+          "g": 1,
+          "r": 1
+        },
+        "36102:0": {
+          "a": 0,
+          "b": 1,
+          "g": 1,
+          "r": 1
+        },
+        "36102:1": {
+          "id": "VariableID:36102:6279",
+          "type": "VARIABLE_ALIAS"
+        },
+        "36102:2": {
+          "id": "VariableID:36102:6279",
           "type": "VARIABLE_ALIAS"
         }
       },

@@ -100,7 +100,7 @@ export const systemIconsConfig = createFigmaExportConfig({
       svgExportFolder: './src',
     }),
   ],
-  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS,
+  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_SYSTEM_ICONS,
   ids: [FIGMA_CONFIG.FIGMA_ID_ICONS],
   includeTypes: ['INSTANCE'],
   // Circumvent the figmaOutputSvg filter for system icons, we handle it ourself

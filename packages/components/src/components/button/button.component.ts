@@ -311,7 +311,7 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
         <slot part="label" class=${classMap({ 'button__label': true, 'button__icon-only': this.iconOnly })} @slotchange=${this.handleSlotChange}></slot>
         <slot name="suffix" part="suffix" class="button__suffix"></slot>
         ${
-          this.caret ? html` <syn-icon part="caret" class="button__caret" library="system" name="caret"></syn-icon> ` : ''
+          this.caret ? html` <syn-icon part="caret" class="button__caret" library="system" name="chevron-down"></syn-icon> ` : ''
         }
         ${this.loading ? html`<syn-spinner part="spinner"></syn-spinner>` : ''}
       </${tag}>

@@ -195,7 +195,7 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    * Button component tokens
    */
   // Not yet updated in dev
-  /component\/button\/(border|color)/,
+  /component\/button\/(border|color|outline)/,
 ];
 /* eslint-enable max-len */
 

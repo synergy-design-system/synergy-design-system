@@ -15,6 +15,7 @@ import {
 } from '../../src/helpers/component.js';
 import { DisableFocusTrap } from '../../src/shared-components/DisableFocusTrap.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-side-nav');
 const { overrideArgs } = storybookHelpers('syn-side-nav');
@@ -25,6 +26,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-side-nav',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('12362-10883'),
     docs: {
       container: DisableFocusTrap,
@@ -33,7 +37,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Application Shell', 'SICK2018'],
+  tags: ['Application Shell', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-side-nav',
 };
 

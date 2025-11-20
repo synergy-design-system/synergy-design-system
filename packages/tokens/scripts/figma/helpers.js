@@ -111,34 +111,100 @@ export const getAliasValue = (aliasId, modeId) => {
   return newValue;
 };
 
-/* eslint-disable max-len */
-const OLD_BRAND_VARIABLES_REGEX = [
-  // maybe the regexes need to be updated and be more specific, when the figma tokens evolve
-  // figma variables
-  /^component\/input\/(?!focus-ring)/,
-  /^component\/input\/focus-ring\/(?:color|error|offset)/,
-  /^component\/button\/font-size/,
-  /^component\/(?:breadcrumb|badge|details|spinner|toggle|table|tooltip|panel|link|progress|header|checkbox|icon-button|alert)/,
-  /^primitive\/(?:primary|neutral|error|warning|success|info|accent|border-radius|border-width|dimension|duration|font-weight|text-decoration|transition|z-index|font|opacity)\//,
-  /^primitive\/letter-spacing\/(?:dense|denser|normal|loose|looser)$/,
-  /^primitive\/line-height\/[^\d]/,
-  /^primitive\/font-size\/(?:2x-large|2x-small|3x-large|4x-large|large|medium|small|x-large|x-small)$/,
-  /^primitive\/spacing\/(?:2x-large|2x-small|3x-large|3x-small|4x-large|4x-small|5x-large|large|medium|medium-large|small|x-large|x-small)$/,
-  /^semantic\/(?:focus-ring|overlay|typography|interactive|panel|logo|page)/,
+/**
+ * Regex for checking if a variable / style is only available in figma
+ */
+const DESIGN_ONLY_VARIABLES_REGEX = [
+  /**
+   * Figma-only internal stuff
+   */
+  /_internal/,
 
-  // figma styles
-  /^body\/(x-small|small|medium|large)\/(regular|semibold|bold)/,
-  /^heading\/(?:large|x-large|2x-large|3x-large)/,
-  /^shadow\//,
+  /**
+   * Design-only needed shadow tokens, which build together the whole shadow style for dev
+   * like different shadow levels, color, blur, ...
+   */
+  /primitive\/shadow.*\/(1st|2nd|3rd)/,
+
+  /**
+   * Color palettes that are currently not used
+   */
+  // Currently not used color palettes of critical
+  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
+  /primitive\/critical/,
+
+  // Currently not used color palettes of muted
+  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
+  /primitive\/muted/,
+
+  /**
+   * Font Size
+   */
+  // Currently not used font sizes
+  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
+  /primitive\/font-size\/(0x-large|1_5x-large|1x-large|2_5x-large|medium-large)/,
+
+  /**
+   * Letter spacing
+   */
+  // Currently not used letter spacing values
+  // @TODO: Check with design if these values are really needed and add it in dev or remove them in figma
+  /letter-spacing\/(default|negative-05|positive-05|positive-2|positive-5)/,
+
+  /**
+   * Line height
+   */
+  // Currently not used line height
+  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
+  /line-height\/\d+/,
+
+  /**
+   * Spacing
+   */
+  // Currently not used spacing.
+  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
+  /primitive\/spacing\/(1_5x-large|3_5x-large)/,
+
+  /**
+   * Text Transform
+   */
+  // Currently not used text-transform.
+  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
+  /primitive\/text-transform\/(default|uppercase)/,
+
+  /**
+   * --syn-input-focus-ring-width
+   */
+  // Currently not used in dev
+  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
+  /component\/input\/focus-ring\/width/,
+
+  /**
+   * Option component tokens
+   */
+  // Not yet updated in dev
+  /component\/option/,
+
+  /**
+   * Radio-Button component tokens
+   */
+  // Not yet updated in dev
+  /component\/radio-button-group/,
+
+  /**
+   * Button component tokens
+   */
+  // Not yet updated in dev
+  /component\/button\/(border|color)/,
 ];
 /* eslint-enable max-len */
 
 /**
- * Filter out variables and styles that are only used for the new brand.
+ * Filter out variables and styles that are only used in design.
  * @param {string} name The name of the variable / style
- * @returns true if it is only available in the new brand, false otherwise.
+ * @returns true if it is only available in design, false otherwise.
  */
-export const isNewBrandOnlyVariableOrStyle = (name) => !OLD_BRAND_VARIABLES_REGEX
+export const isDesignOnlyVariableOrStyle = (name) => DESIGN_ONLY_VARIABLES_REGEX
   .some(regex => regex.test(name));
 
 /**
@@ -174,7 +240,10 @@ export const getAvailableThemes = () => {
     .map(({ modes }) => Object.values(modes).map(({ modeId, name }) => ({
       id: modeId,
       name,
-    }))).flat();
+    })))
+    .flat()
+    // Skip exploration modes, as these are only for testing purposes on figma
+    .filter(({ name }) => !name.includes('exploration'));
   if (themes.length === 0) {
     console.error(
       chalk.red('No themes found in Figma variables. Please check the variable collections.'),

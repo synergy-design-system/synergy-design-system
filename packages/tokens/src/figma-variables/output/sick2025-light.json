@@ -944,23 +944,19 @@
     "readonly-background": {
       "color": {
         "type": "color",
-        "value": "#e6e1dc"
+        "value": "{readonly.background.color}"
       },
       "color-disabled": {
         "type": "color",
-        "value": "#e6e1dc"
+        "value": "{readonly.background.color}"
       },
       "color-focus": {
         "type": "color",
-        "value": "#e6e1dc"
+        "value": "{readonly.background.color}"
       },
       "color-hover": {
         "type": "color",
-        "value": "#e6e1dc"
-      },
-      "opacity": {
-        "type": "color",
-        "value": "rgba(230, 225, 220, 0.70)"
+        "value": "{readonly.background.color}"
       }
     },
     "required": {
@@ -998,6 +994,10 @@
   },
   "interactive": {
     "background": {
+      "color-active": {
+        "type": "color",
+        "value": "#ece8e5"
+      },
       "color-hover": {
         "type": "color",
         "value": "#f2f0ed"
@@ -1181,6 +1181,60 @@
       "color": {
         "type": "color",
         "value": "{color.neutral.100}"
+      }
+    }
+  },
+  "range": {
+    "color-inactive": {
+      "type": "color",
+      "value": "{color.neutral.100}"
+    },
+    "color-readonly": {
+      "type": "color",
+      "value": "{input.readonly-background.color}"
+    },
+    "error": {
+      "color": {
+        "type": "color",
+        "value": "{color.error.600}"
+      }
+    },
+    "tick": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.500}"
+      }
+    },
+    "track": {
+      "color-active": {
+        "type": "color",
+        "value": "{interactive.emphasis.color}"
+      }
+    }
+  },
+  "readonly": {
+    "background": {
+      "color": {
+        "type": "color",
+        "value": "#e6e1dc"
+      }
+    },
+    "border": {
+      "color": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      }
+    },
+    "indicator": {
+      "color": {
+        "type": "color",
+        "value": "{typography.color.text}"
+      }
+    },
+    "opacity": {
+      "color": {
+        "type": "color",
+        "value": "rgba(230, 225, 220, 0.70)"
       }
     }
   },
@@ -1510,6 +1564,20 @@
         "type": "typography",
         "value": "{font-weight.bold} {font-size.large}/1.4 {font.sans}"
       }
+    },
+    "2x-small": {
+      "regular": {
+        "type": "typography",
+        "value": "{font-weight.normal} {font-size.2x-small}/1.4 {font.sans}"
+      },
+      "semibold": {
+        "type": "typography",
+        "value": "{font-weight.semibold} {font-size.2x-small}/1.4 {font.sans}"
+      },
+      "bold": {
+        "type": "typography",
+        "value": "{font-weight.bold} {font-size.2x-small}/1.4 {font.sans}"
+      }
     }
   },
   "heading": {
@@ -1528,6 +1596,10 @@
     "3x-large": {
       "type": "typography",
       "value": "{font-weight.bold} {font-size.3x-large}/1.2 {font.sans}"
+    },
+    "4x-large": {
+      "type": "typography",
+      "value": "{font-weight.bold} 52/1.2 {font.sans}"
     }
   }
 }

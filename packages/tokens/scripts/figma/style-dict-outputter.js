@@ -2,7 +2,7 @@
  * @typedef { import('@figma-export/types').StyleOutputter } StyleOutputter
  */
 import { writeFileSync } from 'node:fs';
-import { isNewBrandOnlyVariableOrStyle } from './helpers.js';
+import { isDesignOnlyVariableOrStyle } from './helpers.js';
 
 /**
  * This outputter writes the styles to a JSON file in the specified output path.
@@ -14,10 +14,9 @@ import { isNewBrandOnlyVariableOrStyle } from './helpers.js';
 export const styleDictionaryOutputter = ({ output }) => async (styles) => {
   const filteredStyles = styles
     .filter((style) => {
-      // TODO: currently we do not want to export the new brand variables,
-      //  but just get the old state with figma api fetching. This can be removed when the new brand variables are ready to be exported.
-      const isNewBrandOnlyStyle = isNewBrandOnlyVariableOrStyle(style.name);
-      return style.visible && !isNewBrandOnlyStyle;
+      // TODO: currently we do not want to export all new brand variables or some are design only variables
+      const isDesignOnlyStyle = isDesignOnlyVariableOrStyle(style.name);
+      return style.visible && !isDesignOnlyStyle;
     });
 
   writeFileSync(

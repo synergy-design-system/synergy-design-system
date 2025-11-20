@@ -10,8 +10,8 @@ export default css`
     --thumb-hit-area-size: 1.4;
     --track-hit-area-size: var(--syn-spacing-medium);
     --track-active-offset: 0px;
-    --track-color-active: var(--syn-color-primary-600);
-    --track-color-inactive: var(--syn-color-neutral-200);
+    --track-color-active: var(--syn-range-track-color-active,var(--syn-color-primary-600));
+    --track-color-inactive: var(--syn-range-color-inactive, var(--syn-color-neutral-200));
     --track-height: var(--syn-spacing-2x-small);
 
     /* This is needed to get the full with of the element, including the border */
@@ -139,14 +139,14 @@ export default css`
 
   .track {
     background-color: var(--track-color-inactive);
-    border-radius: var(--syn-border-radius-small);
+    border-radius: var(--syn-border-radius-pill);
     height: var(--track-height);
     margin: calc((var(--full-thumb-size) - var(--track-height)) / 2) calc(var(--half-thumb-size) * -1);
   }
 
   .active-track {
     background-color: var(--track-color-active);
-    border-radius: var(--syn-border-radius-small);
+    border-radius: var(--syn-border-radius-pill);
     height: var(--track-height);
     margin: 0 calc(var(--half-thumb-size) * -1);
     position: absolute;
@@ -155,8 +155,8 @@ export default css`
   }
 
   .thumb {
-    background-color: var(--syn-color-primary-600);
-    border: var(--syn-focus-ring-width) solid var(--syn-color-neutral-0);
+    background-color: var(--syn-interactive-emphasis-color,var(--syn-color-primary-600));
+    border: var(--syn-focus-ring-width) solid var(--syn-input-border-color-offset, var(--syn-color-neutral-0));
     border-radius: var(--syn-border-radius-circle);
     cursor: pointer;
     display: block;
@@ -192,7 +192,7 @@ export default css`
   }
 
   .thumb.grabbed {
-    background: var(--syn-color-primary-950);
+    background: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
     /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
     cursor: grabbing;
   }
@@ -202,7 +202,7 @@ export default css`
   }
 
   .thumb:not(.grabbed):focus-visible {
-    background: var(--syn-color-primary-600);
+    background: var(--syn-interactive-emphasis-color-hover,var(--syn-color-primary-900));
     outline: var(--syn-focus-ring);
     outline-offset: 0;
   }
@@ -223,7 +223,7 @@ export default css`
     }
 
     :host(:not([disabled])) .thumb:not(.grabbed):hover  {
-      background: var(--syn-color-primary-900);
+      background: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
     }
     
     :host(:not([disabled])) .thumb:hover::after  {
@@ -275,10 +275,10 @@ export default css`
   
 
   :host([data-user-invalid]) .active-track {
-    --track-color-active: var(--syn-input-border-color-focus-error);
+    --track-color-active: var(--syn-range-error-color ,var(--syn-input-border-color-focus-error));
   }
 
   :host([data-user-invalid]) .thumb {
-    background-color: var(--syn-input-border-color-focus-error);
+    background-color: var(--syn-range-error-color ,var(--syn-input-border-color-focus-error));
   }
 `;

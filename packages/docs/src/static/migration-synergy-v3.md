@@ -102,21 +102,27 @@ setupIcons("sick2025");
 
 This will make sure to set the system icons to the new `sick2025` theme and also sets up a new `default` icon library that includes a static map from old icon names to the new ones.
 
+> Note you will **not** have to call `setSystemIconLibrary` as Synergy will do this internally!
+
 ##### Custom setup: Using `migrateIconName` directly
 
 Synergy now ships with a new basic utility function `migrateIconName`.
 This function is able to map an icons name from the `sick2018` to the new `sick2025` icon set. It does so via a static map, returning the new names for icons.
 
-You may use this directly if, you have created your own default iconset:
+You may use this directly, if you have overwritten the default icon library via the `registerIconLibrary` method:
 
 ```javascript
 import {
   registerIconLibrary,
   setSystemIconLibrary,
+  // Default icon set (outline)
   migrateIconName,
+  // Alternative icon set (filled)
+  migrateIconNameFilled,
 } from "@synergy-design-system/components";
 
 // Manually override the default icon library to use migrateIconName
+// This is the default for the outline icon set.
 const customIconLibrary = {
   name: "default",
   resolver: name => {
@@ -124,6 +130,16 @@ const customIconLibrary = {
     return getBasePath(`assets/icons/${mappedName}.svg`);
   },
 };
+
+// If you want to use filled icons instead, you may also append
+// "_fill" to the svg name to use those icons instead.
+const customIconLibraryFilled = {  
+  name: "default",  
+  resolver: name => {  
+    const mappedName = migrateIconNameFilled(name);  
+    return getBasePath(`assets/icons/${mappedName}.svg`);
+  },  
+};  
 
 // Enable your new library.
 // Do not forget to set the system icon library!

@@ -31,7 +31,7 @@ const STATIC_MAP = {
 
   camera_alt: 'photo_camera',
   card_giftcard: 'redeem',
-  catching_pokemon: 'MISSING',
+  catching_pokemon: 'sports_baseball',
   class: 'book',
   clear: 'close',
   closed_caption_off: 'closed_caption',
@@ -65,7 +65,7 @@ const STATIC_MAP = {
 
   favorite_border: 'favorite',
   fire_hydrant_alt: 'fire_hydrant',
-  fitbit: 'MISSING', // @todo: maybe cardio_load?
+  fitbit: 'blur_on',
   fmd_good: 'location_on',
   free_breakfast: 'local_cafe',
 
@@ -81,7 +81,7 @@ const STATIC_MAP = {
   highlight_off: 'cancel',
   https: 'lock',
 
-  import_export: 'swap_vert', // @todo: This does not match! But at least its two arrows
+  import_export: 'swap_vert',
   insert_chart_outlined: 'insert_chart',
   insert_comment: 'comment',
   insert_drive_file: 'note',
@@ -140,7 +140,7 @@ const STATIC_MAP = {
   phone: 'call',
   phonelink: 'devices',
   photo_size_select_actual: 'panorama',
-  pix: 'MISSING', // @todo: No idea what this was
+  pix: 'wallpaper',
   place: 'location_on',
   play_circle_filled: 'play_circle',
   plus_one: 'exposure_plus_1',
@@ -182,7 +182,7 @@ const STATIC_MAP = {
   system_security_update_good: 'security_update_good',
   system_security_update_warning: 'security_update_warning',
 
-  tag_faces: 'sentiment_satisfied',
+  tag_faces: 'mood',
   terrain: 'landscape',
   textsms: 'sms',
   thumb_down_alt: 'thumb_down',
@@ -191,9 +191,9 @@ const STATIC_MAP = {
   thumb_up_off_alt: 'thumb_up_off',
   time_to_leave: 'directions_car',
   try: 'reviews',
-  tungsten: 'lightbulb',
+  tungsten: 'wb_incandescent',
   turned_in: 'bookmark',
-  turned_in_not: 'bookmark_remove',
+  turned_in_not: 'bookmark',
 
   warning_amber: 'warning',
   watch_later: 'schedule',
@@ -327,6 +327,20 @@ export const migrateIconName = (
 };
 
 /**
+ * Get the migrated icon name for a given old icon name in its filled state.
+ * @param {string} iconName The old icon name
+ * @param {boolean} enableLogging? Whether to enable logging for unmapped icons
+ * @returns {string} The new icon name
+ */
+export const migrateIconNameFilled = (
+  iconName: string,
+  enableLogging: boolean = false,
+) => {
+  const baseIconName = migrateIconName(iconName, enableLogging);
+  return \`\${baseIconName}_fill\`;
+};
+
+/**
  * Create an icon library for migrating old icon names to new icon names.
  * @param {IconMigrationState} withState The icon migration state
  * @returns {IconLibrary} The migration icon library
@@ -356,7 +370,7 @@ export const setupIcons = (
 ): IconLibrary => {
   const iconlibraryToUse = iconset === 'sick2018'
     ? defaultSystemLibrary
-    : createMigrationLibrary(enableLogging ? 'ENABLED_WITHOUT_LOGGING' : 'ENABLED');
+    : createMigrationLibrary(enableLogging ? 'ENABLED' : 'ENABLED_WITHOUT_LOGGING');
 
   registerIconLibrary('default', iconlibraryToUse);
   setSystemIconLibrary(iconset);

@@ -55,7 +55,7 @@ export const migrateIconName = (
   case 'camera_alt': icon = 'photo_camera'; break;
   case 'cancel_outline': icon = 'cancel'; break;
   case 'card_giftcard': icon = 'redeem'; break;
-  case 'catching_pokemon': icon = 'MISSING'; break;
+  case 'catching_pokemon': icon = 'sports_baseball'; break;
   case 'center_focus_strong_outline': icon = 'center_focus_strong'; break;
   case 'chat_bubble_outline': icon = 'chat_bubble'; break;
   case 'check_circle_outline': icon = 'check_circle'; break;
@@ -95,7 +95,7 @@ export const migrateIconName = (
   case 'feedback_outline': icon = 'feedback'; break;
   case 'filter_alt_outline': icon = 'filter_alt'; break;
   case 'fire_hydrant_alt': icon = 'fire_hydrant'; break;
-  case 'fitbit': icon = 'MISSING'; break;
+  case 'fitbit': icon = 'blur_on'; break;
   case 'fmd_good': icon = 'location_on'; break;
   case 'free_breakfast': icon = 'local_cafe'; break;
   case 'games': icon = 'gamepad'; break;
@@ -175,7 +175,7 @@ export const migrateIconName = (
   case 'phonelink': icon = 'devices'; break;
   case 'photo_size_select_actual': icon = 'panorama'; break;
   case 'pie_chart_outline': icon = 'pie_chart'; break;
-  case 'pix': icon = 'MISSING'; break;
+  case 'pix': icon = 'wallpaper'; break;
   case 'place': icon = 'location_on'; break;
   case 'play_circle_filled': icon = 'play_circle'; break;
   case 'play_circle_outline': icon = 'play_circle'; break;
@@ -223,7 +223,7 @@ export const migrateIconName = (
   case 'system_security_update_good': icon = 'security_update_good'; break;
   case 'system_security_update_warning': icon = 'security_update_warning'; break;
   case 'table_chart_outline': icon = 'table_chart'; break;
-  case 'tag_faces': icon = 'sentiment_satisfied'; break;
+  case 'tag_faces': icon = 'mood'; break;
   case 'terrain': icon = 'landscape'; break;
   case 'textsms': icon = 'sms'; break;
   case 'thumb_down_alt': icon = 'thumb_down'; break;
@@ -233,9 +233,9 @@ export const migrateIconName = (
   case 'time_to_leave': icon = 'directions_car'; break;
   case 'timer_outline': icon = 'timer'; break;
   case 'try': icon = 'reviews'; break;
-  case 'tungsten': icon = 'lightbulb'; break;
+  case 'tungsten': icon = 'wb_incandescent'; break;
   case 'turned_in': icon = 'bookmark'; break;
-  case 'turned_in_not': icon = 'bookmark_remove'; break;
+  case 'turned_in_not': icon = 'bookmark'; break;
   case 'visibility_off_outline': icon = 'visibility_off'; break;
   case 'visibility_outline': icon = 'visibility'; break;
   case 'warning_amber': icon = 'warning'; break;
@@ -256,6 +256,20 @@ export const migrateIconName = (
   }
 
   return icon;
+};
+
+/**
+ * Get the migrated icon name for a given old icon name in its filled state.
+ * @param {string} iconName The old icon name
+ * @param {boolean} enableLogging? Whether to enable logging for unmapped icons
+ * @returns {string} The new icon name
+ */
+export const migrateIconNameFilled = (
+  iconName: string,
+  enableLogging: boolean = false,
+) => {
+  const baseIconName = migrateIconName(iconName, enableLogging);
+  return `${baseIconName}_fill`;
 };
 
 /**
@@ -288,7 +302,7 @@ export const setupIcons = (
 ): IconLibrary => {
   const iconlibraryToUse = iconset === 'sick2018'
     ? defaultSystemLibrary
-    : createMigrationLibrary(enableLogging ? 'ENABLED_WITHOUT_LOGGING' : 'ENABLED');
+    : createMigrationLibrary(enableLogging ? 'ENABLED' : 'ENABLED_WITHOUT_LOGGING');
 
   registerIconLibrary('default', iconlibraryToUse);
   setSystemIconLibrary(iconset);

@@ -90,6 +90,7 @@
     "packages/components/src/components/icon/icon.test.ts": true,
     "packages/components/src/components/icon/icon.ts": true,
     "packages/components/src/components/icon/library.default.ts": true,
+    "packages/components/src/components/icon/library.migration.ts": true,
     "packages/components/src/components/icon/library.system.ts": true,
     "packages/components/src/components/icon/library.ts": true,
     "packages/components/src/components/input/input.component.ts": true,

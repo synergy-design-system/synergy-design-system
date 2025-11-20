@@ -3,7 +3,7 @@ import type { IconLibrary } from './library.js';
 import { icons as sick2018Icons } from './sick2018-system-icons.js';
 import { icons as sick2025Icons } from './sick2025-system-icons.js';
 
-type AvailableSystemIcons = 'sick2018' | 'sick2025';
+export type AvailableSystemIcons = 'sick2018' | 'sick2025';
 
 /**
  * The current system icon library.

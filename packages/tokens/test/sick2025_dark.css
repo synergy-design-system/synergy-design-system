@@ -248,6 +248,17 @@
   --syn-link-underline-outline: 25%;
   --syn-logo-color: var(--syn-color-primary-300);
   --syn-opacity-50: 0.5; /** 50% */
+  --syn-option-background-color-active: var(--syn-color-neutral-1000);
+  --syn-option-background-color-hover: var(--syn-color-neutral-1000);
+  --syn-option-check-color: var(--syn-interactive-quiet-color);
+  --syn-option-check-color-active: var(--syn-color-neutral-0);
+  --syn-option-check-color-hover: var(--syn-color-neutral-0);
+  --syn-option-color: var(--syn-typography-color-text);
+  --syn-option-color-active: var(--syn-typography-color-text-inverted);
+  --syn-option-color-hover: var(--syn-typography-color-text-inverted);
+  --syn-option-icon-color: var(--syn-interactive-quiet-color);
+  --syn-option-icon-color-active: var(--syn-color-neutral-0);
+  --syn-option-icon-color-hover: var(--syn-color-neutral-0);
   --syn-overlay-background-blur: 8px;
   --syn-overlay-background-color: rgba(0, 5, 26, 0.6);
   --syn-page-background: var(--syn-color-neutral-0);

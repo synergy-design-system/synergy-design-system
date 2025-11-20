@@ -13,7 +13,7 @@ export default css`
   }
 
   .menu-label {
-    color: var(--syn-typography-color-text);
+    color: var(--syn-input-color);
     font-family: var(--syn-font-sans);
     font-size: var(--syn-font-size-medium);
     font-weight: var(--syn-font-weight-semibold);

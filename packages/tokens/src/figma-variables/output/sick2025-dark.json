@@ -1130,6 +1130,58 @@
       "value": "50%"
     }
   },
+  "option": {
+    "background": {
+      "color-active": {
+        "type": "color",
+        "value": "{color.neutral.1000}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.neutral.1000}"
+      }
+    },
+    "check": {
+      "color": {
+        "type": "color",
+        "value": "{interactive.quiet.color}"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "{color.neutral.0}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.neutral.0}"
+      }
+    },
+    "color": {
+      "type": "color",
+      "value": "{typography.color.text}"
+    },
+    "color-active": {
+      "type": "color",
+      "value": "{typography.color.text-inverted}"
+    },
+    "color-hover": {
+      "type": "color",
+      "value": "{typography.color.text-inverted}"
+    },
+    "icon": {
+      "color": {
+        "type": "color",
+        "value": "{interactive.quiet.color}"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "{color.neutral.0}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.neutral.0}"
+      }
+    }
+  },
   "overlay": {
     "background": {
       "blur": {

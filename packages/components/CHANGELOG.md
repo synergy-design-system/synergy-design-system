@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.62.0
+
+### Minor Changes
+
+- [#1086](https://github.com/synergy-design-system/synergy-design-system/pull/1086) [`515226c`](https://github.com/synergy-design-system/synergy-design-system/commit/515226c44f8bba7b2b4b80cdd0f21f3237f0670d) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-19
+
+  feat: ✨ Brand updates for `<syn validate>` (#973)
+
+### Patch Changes
+
+- Updated dependencies [[`515226c`](https://github.com/synergy-design-system/synergy-design-system/commit/515226c44f8bba7b2b4b80cdd0f21f3237f0670d)]:
+  - @synergy-design-system/tokens@2.43.0
+
 ## 2.61.0
 
 ### Minor Changes

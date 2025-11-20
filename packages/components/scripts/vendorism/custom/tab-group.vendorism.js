@@ -21,16 +21,6 @@ const FILES_TO_TRANSFORM = [
  */
 const transformComponent = (path, originalContent) => {
   let content = replaceSections([
-    // We use a default icon of "chevron-right" and rotate it depending on localization direction
-    [
-      "name=${isRtl ? 'chevron-right' : 'chevron-left'}",
-      'name="chevron-right"',
-    ],
-    [
-      "name=${isRtl ? 'chevron-left' : 'chevron-right'}",
-      'name="chevron-right"',
-    ],
-
     // we don`t want the 'bottom' placement, therefore we remove it
     [
       "['top', 'bottom']",
@@ -65,12 +55,6 @@ const transformComponent = (path, originalContent) => {
   ], originalContent);
 
   content = removeSections([
-    // isRtl check is no longer needed, as it is used nowhere
-    [
-      'render() {',
-      "const isRtl = this.localize.dir() === 'rtl';", { preserveStart: true, removePrecedingWhitespace: false },
-    ],
-
     // remove 'bottom' placement
     [
       "case 'bottom'",
@@ -162,7 +146,8 @@ const transformComponent = (path, originalContent) => {
 
   // #969: Use the new system icons for tabs
   content = replaceSections([
-    ['name="chevron-right"', 'name="tabs-right"'],
+    ["'chevron-right'", "'tabs-right'"],
+    ["'chevron-left'", "'tabs-left'"],
   ], content);
 
   // #814: remove all occurrences of getAllTabs and getAllPanels

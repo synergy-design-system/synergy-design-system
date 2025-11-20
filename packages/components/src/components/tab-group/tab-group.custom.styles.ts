@@ -194,28 +194,8 @@ export default css`
     padding: calc(var(--syn-spacing-small) - var(--syn-spacing-3x-small));
   }
 
-  /* Make sure the direction of the chevrons match the scrolling directions. */
-  .tab-group--has-scroll-controls:not(.tab-group--rtl) .tab-group__scroll-button--start,
-  .tab-group--rtl .tab-group__scroll-button--end {
-    rotate: 180deg;
-  }
-
-  .tab-group--has-scroll-controls:not(.tab-group--contained) .tab-group__scroll-button--start {
-    border-top: solid var(--track-width) var(--track-color);
-  }
-
   .tab-group--has-scroll-controls:not(.tab-group--contained) .tab-group__scroll-button--end {
     border-bottom: solid var(--track-width) var(--track-color);
-  }
-
-  .tab-group--rtl:not(.tab-group--contained) .tab-group__scroll-button--start {
-    border-bottom: solid var(--track-width) var(--track-color);
-    border-top: none;
-  }
-
-  .tab-group--rtl:not(.tab-group--contained) .tab-group__scroll-button--end {
-    border-bottom: none;
-    border-top: solid var(--track-width) var(--track-color);
   }
 
   /**

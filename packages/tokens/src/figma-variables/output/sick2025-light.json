@@ -220,6 +220,12 @@
         "type": "sizing",
         "value": "{font-size.small}"
       }
+    },
+    "outline": {
+      "color-text": {
+        "type": "color",
+        "value": "{color.neutral.1000}"
+      }
     }
   },
   "checkbox": {

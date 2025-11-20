@@ -220,6 +220,12 @@
         "type": "sizing",
         "value": "{font-size.small}"
       }
+    },
+    "outline": {
+      "color-text": {
+        "type": "color",
+        "value": "rgba(255, 255, 255, 0.00)"
+      }
     }
   },
   "checkbox": {

@@ -133,13 +133,13 @@ const customIconLibrary = {
 
 // If you want to use filled icons instead, you may also append
 // "_fill" to the svg name to use those icons instead.
-const customIconLibraryFilled = {  
-  name: "default",  
-  resolver: name => {  
-    const mappedName = migrateIconNameFilled(name);  
+const customIconLibraryFilled = {
+  name: "default",
+  resolver: name => {
+    const mappedName = migrateIconNameFilled(name);
     return getBasePath(`assets/icons/${mappedName}.svg`);
-  },  
-};  
+  },
+};
 
 // Enable your new library.
 // Do not forget to set the system icon library!

@@ -34,16 +34,18 @@ export default css`
     color: var(--syn-option-color, var(--syn-typography-color-text));
   }
 
+  .option--current,
   .option--current.option--hover:not(.option--disabled),
   .option--hover:not(.option--current):not(.option--disabled) {
-    background-color: var(--syn-option-background-color-hover, var(--syn-color-primary-1000, var(--syn-color-neutral-1000)));
-    color: var(--syn-option-color-hover, var(--syn-color-neutral-1000));
+    background-color: var(--syn-option-background-color-hover, var(--syn-color-neutral-1000));
+    color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
   }
 
-  /** #429: Use token for opacity */
   .option--current.option--disabled.option--disabled {
-    background-color: var(--syn-option-background-color-hover, var(--syn-color-primary-1000, var(--syn-color-neutral-1000)));
-    color: var(--syn-option-color-hover, var(--syn-color-neutral-1000));
+    background-color: var(--syn-option-background-color-hover, var(--syn-color-neutral-1000));
+    color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
+
+    /** #429: Use token for opacity */
     opacity: var(--syn-input-disabled-opacity);
   }
 
@@ -60,9 +62,10 @@ export default css`
     padding-inline-end: var(--syn-spacing-small);
   }
 
-  /* Invert the check mark when keyboard navigation is used */
-  .option--current .option__check {
-    color: var(--syn-option-check-color-active, var(--syn-color-neutral-0));
+  /* Invert the check mark when keyboard navigation or hover effect is used */
+  .option--current .option__check,
+  .option--hover:not(.option--current) .option__check {
+    color: var(--syn-option-check-color-hover, var(--syn-color-neutral-0));
   }
 
   /* Use larger spacing between icons and content */

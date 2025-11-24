@@ -194,7 +194,7 @@ export default css`
     padding: calc(var(--syn-spacing-small) - var(--syn-spacing-3x-small));
   }
 
-  .tab-group--has-scroll-controls:not(.tab-group--contained) .tab-group__scroll-button--end {
+  .tab-group--has-scroll-controls:not(.tab-group--contained) .tab-group__scroll-button {
     border-bottom: solid var(--track-width) var(--track-color);
   }
 

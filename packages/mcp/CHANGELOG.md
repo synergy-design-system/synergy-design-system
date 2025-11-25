@@ -1,5 +1,42 @@
 # Changelog
 
+## 1.25.0
+
+### Minor Changes
+
+- [#1079](https://github.com/synergy-design-system/synergy-design-system/pull/1079) [`3f893f9`](https://github.com/synergy-design-system/synergy-design-system/commit/3f893f9d9d04cbfa3ae530bf8e3ecbcfe7be022f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-25
+
+  feat: ✨ create migration iconset (#1078)
+
+  Added new utilities that help with migrating from 2018 to the new 2025 theme:
+
+  `migrationLibrary`:
+
+  A small migration library, aimed to be a drop in replacement for the default system icon library.
+  Please have a look at [Synergies 2025 migration guide](https://synergy-design-system.github.io/?path=/docs/migration-to-synergy-3-0--docs) about how to use this.
+
+  `migrateIconName` and `migrateIconNameFilled`:
+
+  New low level utilities that helps mapping 2018 icons to the new 2025 icon library.
+  This may be used if a custom icon library is in place.
+  You should use `migrateIconName` in most cases as the default for Synergy are outlined icons.
+  In cases where needed, you may also use `migrateIconNameFilled`, which will use the filled variant of Material Icons.
+
+  `setupIcons`:
+
+  High level feature that allows to toggle the default icon library, as well as the system icons via one command. You may use `setupIcons('sick2025');` to switch to the new icon set.
+
+  > Note this only works if you have your icons setup according to the Synergy defaults.
+
+  docs: 📚 Make sure to use correct icons on both 2018 and 2025 stories (#1024)
+
+  Documentation now correctly toggles the icon sets, using the new `migrateIconName` underneath.
+
+### Patch Changes
+
+- Updated dependencies [[`3f893f9`](https://github.com/synergy-design-system/synergy-design-system/commit/3f893f9d9d04cbfa3ae530bf8e3ecbcfe7be022f)]:
+  - @synergy-design-system/assets@1.23.0
+
 ## 1.24.0
 
 ### Minor Changes

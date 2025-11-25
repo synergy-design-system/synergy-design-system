@@ -22,10 +22,11 @@ export const THEMES = ['sick2018', 'sick2025-fill', 'sick2025-outline'] as const
 export type Themes = typeof THEMES[number];
 
 type Props = {
+  debugMigration?: boolean;
   themes: Array<{ id: Themes, name: string }>;
 };
 
-export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
+export const IconSearchPageThemes: FC<Props> = ({ debugMigration, themes }) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleSearchTermChange = (event: SynInputEvent) => {
@@ -65,54 +66,58 @@ export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
             </Fragment>
           ))}
 
-          <syn-tab panel="migration" slot="nav" active>
-            Icon Migration
-          </syn-tab>
+          {debugMigration && (
+            <>
+              <syn-tab panel="migration" slot="nav">
+                Icon Migration
+              </syn-tab>
 
-          <syn-tab-panel name="migration">
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                gap: 'var(--syn-spacing-large)',
-              }}
-            >
-              {Object.entries(sick2018Icons).map(([iconName]) => (
+              <syn-tab-panel name="migration">
                 <div
                   style={{
-                    border: '1px solid var(--syn-color-neutral-200)',
-                    borderRadius: 'var(--syn-border-radius-medium)',
-                    padding: 'var(--syn-spacing-large)',
-                    textAlign: 'center',
-                    width: '150px',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    gap: 'var(--syn-spacing-large)',
                   }}
-                  key={iconName}
                 >
-                  <h2
-                    style={{
-                      fontSize: 'var(--syn-font-size-small)',
-                      marginBottom: 'var(--syn-spacing-medium)',
-                      textWrap: 'pretty',
-                      wordBreak: 'break-word',
-                    }}
-                  >{iconName}</h2>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      fontSize: '30px',
-                      gap: 10,
-                      justifyContent: 'center',
-                    }}
-                  >
-                    <syn-icon name={iconName} library="default" />
-                    <syn-icon name={iconName} library="migration" />
-                  </div>
+                  {Object.entries(sick2018Icons).map(([iconName]) => (
+                    <div
+                      style={{
+                        border: '1px solid var(--syn-color-neutral-200)',
+                        borderRadius: 'var(--syn-border-radius-medium)',
+                        padding: 'var(--syn-spacing-large)',
+                        textAlign: 'center',
+                        width: '150px',
+                      }}
+                      key={iconName}
+                    >
+                      <h2
+                        style={{
+                          fontSize: 'var(--syn-font-size-small)',
+                          marginBottom: 'var(--syn-spacing-medium)',
+                          textWrap: 'pretty',
+                          wordBreak: 'break-word',
+                        }}
+                      >{iconName}</h2>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          fontSize: '30px',
+                          gap: 10,
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <syn-icon name={iconName} library="default" />
+                        <syn-icon name={iconName} library="migration" />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </syn-tab-panel>
+              </syn-tab-panel>
+            </>
+          )}
 
         </syn-tab-group>
       </div>

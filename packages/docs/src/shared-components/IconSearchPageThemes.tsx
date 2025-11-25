@@ -4,16 +4,29 @@ import '@synergy-design-system/components/components/input/input.js';
 import '@synergy-design-system/components/components/tab-group/tab-group.js';
 import '@synergy-design-system/components/components/tab/tab.js';
 import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
+import { registerIconLibrary } from '../../../components/src/components/icon/library.js';
+import { migrateIconName } from '../../../components/src/components/icon/library.migration.js';
+import { defaultIcons as sick2018Icons } from '../../../assets/src/default-icons.js';
+import { outlineIcons as sick2025Outline } from '../../../assets/src/sick2025-outline-icons.js';
 import { IconsSearchPage } from './IconSearchPage.js';
+
+registerIconLibrary('migration', {
+  resolver: name => {
+    const mappedName = migrateIconName(name);
+    const defaultName = mappedName as keyof typeof sick2025Outline;
+    return `data:image/svg+xml,${encodeURIComponent(sick2025Outline[defaultName])}`;
+  },
+});
 
 export const THEMES = ['sick2018', 'sick2025-fill', 'sick2025-outline'] as const;
 export type Themes = typeof THEMES[number];
 
 type Props = {
+  debugMigration?: boolean;
   themes: Array<{ id: Themes, name: string }>;
 };
 
-export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
+export const IconSearchPageThemes: FC<Props> = ({ debugMigration, themes }) => {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   const handleSearchTermChange = (event: SynInputEvent) => {
@@ -43,7 +56,7 @@ export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
         </div>
         <syn-tab-group>
           {themes.map(({ id, name }) => (
-            < Fragment key={id}>
+            <Fragment key={id}>
               <syn-tab panel={id} slot="nav">
                 {name}
               </syn-tab>
@@ -52,6 +65,60 @@ export const IconSearchPageThemes: FC<Props> = ({ themes }) => {
               </syn-tab-panel>
             </Fragment>
           ))}
+
+          {debugMigration && (
+            <>
+              <syn-tab panel="migration" slot="nav">
+                Icon Migration
+              </syn-tab>
+
+              <syn-tab-panel name="migration">
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    gap: 'var(--syn-spacing-large)',
+                  }}
+                >
+                  {Object.entries(sick2018Icons).map(([iconName]) => (
+                    <div
+                      style={{
+                        border: '1px solid var(--syn-color-neutral-200)',
+                        borderRadius: 'var(--syn-border-radius-medium)',
+                        padding: 'var(--syn-spacing-large)',
+                        textAlign: 'center',
+                        width: '150px',
+                      }}
+                      key={iconName}
+                    >
+                      <h2
+                        style={{
+                          fontSize: 'var(--syn-font-size-small)',
+                          marginBottom: 'var(--syn-spacing-medium)',
+                          textWrap: 'pretty',
+                          wordBreak: 'break-word',
+                        }}
+                      >{iconName}</h2>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          fontSize: '30px',
+                          gap: 10,
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <syn-icon name={iconName} library="default" />
+                        <syn-icon name={iconName} library="migration" />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </syn-tab-panel>
+            </>
+          )}
+
         </syn-tab-group>
       </div>
       <style>

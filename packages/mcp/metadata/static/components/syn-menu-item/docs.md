@@ -100,6 +100,26 @@ Use the loading attribute to indicate that a menu item is busy. Like a disable
 
 ---
 
+## Focus
+
+The focus event gives the user feedback that the Menu Item has been focused by the keyboard interaction from the user.
+
+```html
+<syn-menu style="max-width: 240px" role="menu">
+  <syn-menu-item role="menuitem" aria-disabled="false" tabindex="0"
+    >Option 1</syn-menu-item
+  >
+  <syn-menu-item disabled="" role="menuitem" aria-disabled="true" tabindex="-1"
+    >Option 2</syn-menu-item
+  >
+  <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
+    >Option 3</syn-menu-item
+  >
+</syn-menu>
+```
+
+---
+
 ## Checkbox Menu Items
 
 Set the type attribute to checkbox to create a menu item that will toggle on and off when selected. You can use the checked attribute to set the initial state.Checkbox menu items are visually indistinguishable from regular menu items. Their ability to be toggled is primarily inferred from context, much like you’d find in the menu of a native app.

@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import type { SynMenuItem } from '@synergy-design-system/components';
 import { html } from 'lit';
 import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/menu/menu.js';
@@ -127,6 +128,32 @@ export const Loading: Story = {
     <syn-menu style="max-width: 240px;">
       <syn-menu-item>Option 1</syn-menu-item>
       <syn-menu-item loading>Option 2</syn-menu-item>
+      <syn-menu-item>Option 3</syn-menu-item>
+    </syn-menu>
+  `,
+};
+
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('menu-item', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }) => {
+    const item = canvasElement.querySelector('syn-menu-item:nth-child(2)') as unknown as SynMenuItem;
+    if (item) {
+      item.focus();
+    }
+  },
+  render: () => html`
+    <syn-menu style="max-width: 240px;">
+      <syn-menu-item>Option 1</syn-menu-item>
+      <syn-menu-item disabled>Option 2</syn-menu-item>
       <syn-menu-item>Option 3</syn-menu-item>
     </syn-menu>
   `,

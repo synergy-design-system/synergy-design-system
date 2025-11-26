@@ -51,6 +51,13 @@ export default css`
     color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-700));
   }
 
+  /*
+   * #969: Prevent interactive color when close button is hovered
+   */
+  .tab.tab--closable:hover:has(.tab__close-button:hover) {
+    color: var(--syn-typography-color-text);
+  }
+
   .tab.tab--active:not(:hover):not(.tab--disabled) {
     color: var(--syn-typography-color-text);
   }

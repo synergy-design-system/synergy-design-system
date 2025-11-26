@@ -215,11 +215,11 @@ For detailed information about when and how to use the different font styles, re
 You have several options to include the SICK Intl font in your project.
 Each of those has its own advantages.
 
-| Option | Advantages | Disadvantages
-|:-------|:-----------|:--------------
-| Synergy | Local installation, works offline, updates under your control, curated version of Synergy | Needs build configuration, needs custom `@font-face` rule.
-| CDN | Fast delivery when online, automatic update via CDN | Only works for services that have online connection, font updates may break application layouts.
-| Brand&nbsp;Portal | Installation from the official source | File exports (other than the original TTF) from the official source are currently misaligned, leading to issues with vertical alignment, especially for components that support or use icons.
+| Option            | Advantages                                                                                | Disadvantages                                                                                                                                                                                 |
+| :---------------- | :---------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Synergy           | Local installation, works offline, updates under your control, curated version of Synergy | Needs build configuration, needs custom `@font-face` rule.                                                                                                                                    |
+| CDN               | Fast delivery when online, automatic update via CDN                                       | Only works for services that have online connection, font updates may break application layouts.                                                                                              |
+| Brand&nbsp;Portal | Installation from the official source                                                     | File exports (other than the original TTF) from the official source are currently misaligned, leading to issues with vertical alignment, especially for components that support or use icons. |
 
 > If you are not sure, we recommend you to use Option 1 as outlined below.
 

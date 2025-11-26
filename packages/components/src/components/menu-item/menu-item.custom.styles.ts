@@ -144,6 +144,7 @@ export default css`
   .menu-item--loading syn-spinner {
     --track-width: 2px;
 
+    color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-700));
     font-size: var(--syn-font-size-medium);
     left: var(--syn-spacing-medium);
   }

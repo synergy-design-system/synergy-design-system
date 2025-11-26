@@ -72,7 +72,8 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc -b",
-    "build:all": "pnpm clean && pnpm fetch-assets && pnpm fetch-components-thumbnails && pnpm build && pnpm create-licenses",
+    "build:all": "pnpm clean && pnpm fetch-assets && pnpm fetch-components-thumbnails && pnpm build && pnpm create-licenses && pnpm create-migration-iconset",
+    "create-migration-iconset": "node ./scripts/createSynMigrationIconLibrary.js",
     "create-licenses": "node ./scripts/createLicenses.js",
     "clean": "node ./scripts/clean.js",
     "fetch-assets": "dotenvx -q run -- pnpm exec figma-export use-config",
@@ -82,5 +83,5 @@
   },
   "type": "module",
   "types": "./dist/index.d.ts",
-  "version": "1.22.0"
+  "version": "1.23.0"
 }

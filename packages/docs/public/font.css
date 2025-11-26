@@ -40,9 +40,7 @@
   font-family: "SICK Intl";
   font-style: normal;
   font-weight: 400;
-  src: 
-      url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2") format("woff2"),
-      url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.ttf") format("truetype");
+  src: url("/assets/fonts/SickIntl/SICKIntl-Regular.woff2") format("woff2");
 }
  
 /* Semi Bold SICK Intl */
@@ -51,7 +49,14 @@
   font-family: "SICK Intl";
   font-style: normal;
   font-weight: 600;
-  src: 
-      url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.woff2") format("woff2"),
-      url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.ttf") format("truetype");
+  src: url("/assets/fonts/SickIntl/SICKIntl-Semibold.woff2") format("woff2");
+}
+
+/* Bold SICK Intl */
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 800;
+  src: url("/assets/fonts/SickIntl/SICKIntl-Bold.woff2") format("woff2");
 }

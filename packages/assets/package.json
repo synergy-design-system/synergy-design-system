@@ -45,6 +45,7 @@
   },
   "files": [
     "dist",
+    "src/fonts",
     "src/icons",
     "src/logos",
     "src/sick2025",

@@ -1483,6 +1483,16 @@
       }
     },
     "menu-item": {
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Menu Item has been focused by the keyboard interaction from the user.",
+          "type": "text"
+        }
+      },
       "default": {
         "description": {
           "value": "Menu items provide options for the user to pick from in a menu.",

@@ -1,5 +1,18 @@
 # @synergy-design-system/angular
 
+## 2.64.1
+
+### Patch Changes
+
+- [#1098](https://github.com/synergy-design-system/synergy-design-system/pull/1098) [`92973ed`](https://github.com/synergy-design-system/synergy-design-system/commit/92973ed0242ceb836dfe662cbe8e81b7a5364c2e) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-27
+
+  fix: 🐛 angular validator api fix (#1097)
+
+  Validators do not use the internal `_enabled` property anymore.
+
+- Updated dependencies [[`92973ed`](https://github.com/synergy-design-system/synergy-design-system/commit/92973ed0242ceb836dfe662cbe8e81b7a5364c2e)]:
+  - @synergy-design-system/components@2.64.1
+
 ## 2.64.0
 
 ### Patch Changes

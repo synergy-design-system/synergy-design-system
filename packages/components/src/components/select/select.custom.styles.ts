@@ -108,7 +108,7 @@ export default css`
 
   .select__prefix,
   .select__suffix {
-    color: var(--syn-input-icon-color, var(--syn-input-help-text-color));
+    color: var(--syn-input-icon-color);
   }
 
   /* Multi Select */
@@ -130,7 +130,7 @@ export default css`
 
   /* Listbox */
   .select__listbox {
-    border-radius: var(--syn-input-border-radius-medium, var(--syn-border-radius-none));
+    border-radius: var(--syn-input-border-radius-medium);
     box-shadow: var(--syn-shadow-medium);
   }
 

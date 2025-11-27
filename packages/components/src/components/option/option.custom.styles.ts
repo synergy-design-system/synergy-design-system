@@ -41,7 +41,7 @@ export default css`
     color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
   }
 
-  .option--current.option--disabled.option--disabled {
+  .option--current.option--disabled {
     background-color: var(--syn-option-background-color-hover, var(--syn-color-neutral-1000));
     color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
 
@@ -80,13 +80,13 @@ export default css`
   /* Set correct icon size when someone uses syn-icon in the slots */
   .option__prefix::slotted(syn-icon),
   .option__suffix::slotted(syn-icon) {
-    color: var(--syn-option-icon-color, var(--syn-option-color, var(--syn-typography-color-text)));
+    color: var(--syn-option-icon-color, var(--syn-typography-color-text));
     font-size: var(--option-icon-size, var(--syn-spacing-large));
   }
 
   .option--current .option__prefix::slotted(syn-icon),
   .option--current .option__suffix::slotted(syn-icon) {
-    color: var(--syn-option-check-color-active, var(--syn-color-neutral-0));
+    color: var(--syn-option-icon-color-active, var(--syn-color-neutral-0));
   }
 
   /* This is needed for the highlight styling of the options in syn-combobox */

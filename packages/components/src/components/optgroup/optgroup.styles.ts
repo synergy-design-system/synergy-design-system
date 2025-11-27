@@ -14,7 +14,7 @@ export default css`
   .optgroup__label-container {
     align-items: center;
     box-sizing: border-box;
-    color: var(--syn-input-color, var(--syn-color-neutral-950));
+    color: var(--syn-input-color);
     display: flex;
     gap: var(--syn-spacing-small);
     min-height: var(--option-min-height, var(--syn-input-height-medium));
@@ -49,7 +49,7 @@ export default css`
 
   .optgroup__prefix,
   .optgroup__suffix {
-    color: var(--syn-input-icon-color, var(--syn-color-neutral-800));
+    color: var(--syn-option-icon-color, var(--syn-color-neutral-800));
     font-size: var(--syn-spacing-large);
   }
 

@@ -355,14 +355,14 @@ export default css`
 
   .combobox__prefix,
   .combobox__suffix {
-    color: var(--syn-input-icon-color, var(--syn-input-help-text-color));
+    color: var(--syn-input-icon-color);
   }
 
 
 
   /* Listbox */
   .combobox__listbox {
-    border-radius: var(--syn-input-border-radius-medium, var(--syn-border-radius-none));
+    border-radius: var(--syn-input-border-radius-medium);
     box-shadow: var(--syn-shadow-medium);
   }
 

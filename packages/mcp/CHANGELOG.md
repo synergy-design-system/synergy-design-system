@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.28.0
+
+### Minor Changes
+
+- [#1082](https://github.com/synergy-design-system/synergy-design-system/pull/1082) [`e27f95b`](https://github.com/synergy-design-system/synergy-design-system/commit/e27f95ba3e5bd1f494db80ad51d0c1957b8d2204) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-27
+
+  feat: ✨ Brand updates for `<syn-tab-group>`, `<syn-tab-panel>` and `<syn-tab>` (#969)
+
+### Patch Changes
+
+- Updated dependencies [[`e27f95b`](https://github.com/synergy-design-system/synergy-design-system/commit/e27f95ba3e5bd1f494db80ad51d0c1957b8d2204)]:
+  - @synergy-design-system/assets@1.24.0
+
 ## 1.27.0
 
 ### Minor Changes

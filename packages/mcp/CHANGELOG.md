@@ -1,5 +1,21 @@
 # Changelog
 
+## 1.27.0
+
+### Minor Changes
+
+- Released on: 2025-11-27
+
+  chore: ✨ Update MCP with latest metadata
+
+## 1.26.0
+
+### Minor Changes
+
+- [#1074](https://github.com/synergy-design-system/synergy-design-system/pull/1074) [`ac24e63`](https://github.com/synergy-design-system/synergy-design-system/commit/ac24e6379862c7e60b5d5293614f0d804eeb7388) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-27
+
+  feat: ✨ Brand updates for `<syn-menu>`, `<syn-menu-item>` and `<syn-menu-label>` (#958)
+
 ## 1.25.0
 
 ### Minor Changes

@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   :host {
-    border-radius: 0;
+    border-radius: var(--syn-input-border-radius-medium);
   }
 
   /*
@@ -24,6 +24,6 @@ export default css`
 
   ::slotted(syn-divider) {
     /* #369: Slotted syn-dividers should use a lighter color so they do not crash with the border visually */
-    --color: var(--syn-color-neutral-200);
+    --color: var(--syn-panel-border-color);
   }
 `;

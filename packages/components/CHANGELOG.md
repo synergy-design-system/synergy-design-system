@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.64.0
+
+### Minor Changes
+
+- [#1074](https://github.com/synergy-design-system/synergy-design-system/pull/1074) [`ac24e63`](https://github.com/synergy-design-system/synergy-design-system/commit/ac24e6379862c7e60b5d5293614f0d804eeb7388) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-27
+
+  feat: ✨ Brand updates for `<syn-menu>`, `<syn-menu-item>` and `<syn-menu-label>` (#958)
+
+### Patch Changes
+
+- Updated dependencies [[`ac24e63`](https://github.com/synergy-design-system/synergy-design-system/commit/ac24e6379862c7e60b5d5293614f0d804eeb7388)]:
+  - @synergy-design-system/tokens@2.44.0
+
 ## 2.63.0
 
 ### Minor Changes

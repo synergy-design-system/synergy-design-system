@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import type { SynMenuItem } from '@synergy-design-system/components';
 import { html } from 'lit';
 import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/menu/menu.js';
@@ -15,6 +16,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-menu-item');
 const { overrideArgs } = storybookHelpers('syn-menu-item');
@@ -31,6 +33,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-menu-item',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('10461-8626'),
     docs: {
       description: {
@@ -38,7 +43,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'SICK2018'],
+  tags: ['Navigation', 'SICK2018', 'SICK2025'],
   title: 'Components/syn-menu-item',
 };
 export default meta;
@@ -123,6 +128,32 @@ export const Loading: Story = {
     <syn-menu style="max-width: 240px;">
       <syn-menu-item>Option 1</syn-menu-item>
       <syn-menu-item loading>Option 2</syn-menu-item>
+      <syn-menu-item>Option 3</syn-menu-item>
+    </syn-menu>
+  `,
+};
+
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('menu-item', 'focus'),
+      },
+    },
+  },
+  play: ({ canvasElement }) => {
+    const item = canvasElement.querySelector('syn-menu-item:nth-child(2)') as unknown as SynMenuItem;
+    if (item) {
+      item.focus();
+    }
+  },
+  render: () => html`
+    <syn-menu style="max-width: 240px;">
+      <syn-menu-item>Option 1</syn-menu-item>
+      <syn-menu-item disabled>Option 2</syn-menu-item>
       <syn-menu-item>Option 3</syn-menu-item>
     </syn-menu>
   `,

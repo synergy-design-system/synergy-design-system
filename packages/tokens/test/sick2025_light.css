@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.43.0
+ * @synergy-design-system/tokens version 2.44.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -225,8 +225,8 @@
   --syn-input-width: var(--syn-border-width-small);
   --syn-interactive-background-color-hover: #f2f0ed;
   --syn-interactive-emphasis-color: var(--syn-color-primary-700);
-  --syn-interactive-emphasis-color-active: var(--syn-color-primary-950);
-  --syn-interactive-emphasis-color-hover: var(--syn-color-primary-900);
+  --syn-interactive-emphasis-color-active: var(--syn-color-primary-1000);
+  --syn-interactive-emphasis-color-hover: var(--syn-color-primary-1000);
   --syn-interactive-quiet-color: var(--syn-color-neutral-950);
   --syn-interactive-quiet-color-active: var(--syn-color-primary-800);
   --syn-interactive-quiet-color-hover: var(--syn-color-primary-700);

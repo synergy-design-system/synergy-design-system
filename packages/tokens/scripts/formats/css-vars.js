@@ -72,6 +72,8 @@ export const cssVariableFormatter = {
 
       'progress-track-readonly-color',
 
+      'progress-track-readonly-color',
+
       'input-border-color-active',
       'input-icon-icon-clearable-color-active',
       'interactive-background-color-active',

@@ -1286,7 +1286,7 @@
     "opacity": {
       "color": {
         "type": "color",
-        "value": "rgba(115, 127, 133, 0.70)"
+        "value": "rgba(115, 127, 133, 0.40)"
       }
     }
   },
@@ -1651,7 +1651,7 @@
     },
     "4x-large": {
       "type": "typography",
-      "value": "{font-weight.bold} 52/1.2 {font.sans}"
+      "value": "{font-weight.bold} {font-size.4x-large}/1.2 {font.sans}"
     }
   }
 }

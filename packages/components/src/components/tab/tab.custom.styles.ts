@@ -1,8 +1,6 @@
 import { css } from 'lit';
 
 export default css`
-  /* Write custom CSS here */
-
   :host {
     --background-color: none;
     --border-width: var(--syn-border-width-none);
@@ -48,13 +46,12 @@ export default css`
   }
 
   .tab:hover:not(.tab--disabled) {
-    color: var(--syn-color-primary-700);
+    color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-700));
   }
 
-  .tab.tab--active:not(.tab--disabled) {
+  .tab.tab--active:not(:hover):not(.tab--disabled) {
     color: var(--syn-typography-color-text);
   }
-
 
   /**
    * Closable
@@ -64,7 +61,7 @@ export default css`
   }
 
   .tab__close-button {
-    color: var(--syn-color-neutral-500);
+    color: var(--syn-input-icon-icon-clearable-color, var(--syn-color-neutral-500));
     font-size: var(--syn-font-size-x-large);
     margin-inline-start: var(--syn-spacing-2x-small);
   }
@@ -74,7 +71,7 @@ export default css`
   }
 
   .tab__close-button::part(base):hover {
-    color: var(--syn-color-primary-700);
+    color: var(--syn-input-icon-icon-clearable-color-hover, var(--syn-color-primary-700));
   }
 
   .tab--active {
@@ -88,5 +85,10 @@ export default css`
   .tab ::slotted(syn-icon) {
     font-size: var(--syn-font-size-x-large);
     margin-inline-end: var(--syn-spacing-x-small);
+  }
+
+  /* #969: Prevent interactive color when close button is hovered */
+  .tab.tab--closable:hover:has(.tab__close-button:hover) {
+    color: var(--syn-typography-color-text);
   }
 `;

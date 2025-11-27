@@ -1010,11 +1010,11 @@
       },
       "color-active": {
         "type": "color",
-        "value": "{color.primary.950}"
+        "value": "{color.primary.1000}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.primary.900}"
+        "value": "{color.primary.1000}"
       }
     },
     "quiet": {
@@ -1651,7 +1651,7 @@
     },
     "4x-large": {
       "type": "typography",
-      "value": "{font-weight.bold} 52/1.2 {font.sans}"
+      "value": "{font-weight.bold} {font-size.4x-large}/1.2 {font.sans}"
     }
   }
 }

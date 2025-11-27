@@ -4695,6 +4695,12 @@
             "type": "VARIABLE_ALIAS",
             "id": "VariableID:24741:120385"
           }
+        ],
+        "fontSize": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:36102:6361"
+          }
         ]
       },
       "blendMode": "PASS_THROUGH",

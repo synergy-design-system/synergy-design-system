@@ -30,6 +30,7 @@ Component.define('syn-combobox');
  *
  * @dependency syn-icon
  * @dependency syn-popup
+ * @dependency syn-tag
  *
  * @slot - The listbox options. Must be `<syn-option>` elements.
  *    You can use `<syn-optgroup>`'s to group items visually.
@@ -72,6 +73,12 @@ Component.define('syn-combobox');
  * @csspart popup - The popup's exported `popup` part.
  * Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
+ * @csspart tags - The container that houses option tags when `multiple` is used.
+ * @csspart tag - The individual tags that represent each selected option in `multiple`.
+ * @csspart tag__base - The tag's base part.
+ * @csspart tag__content - The tag's content part.
+ * @csspart tag__remove-button - The tag's remove button.
+ * @csspart tag__remove-button__base - The tag's remove button base part.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.

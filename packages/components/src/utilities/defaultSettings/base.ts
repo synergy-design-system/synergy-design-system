@@ -100,6 +100,7 @@ export type ExtractSettingsForElement<C extends SynergyElement> = {
  */
 export type SynDefaultSettings = {
   delimiter: {
+    SynCombobox?: AllowedValueForDefaultSetting<SynCombobox, "delimiter">;
     SynSelect?: AllowedValueForDefaultSetting<SynSelect, "delimiter">;
   };
   numericStrategy: {
@@ -139,6 +140,7 @@ export type SynDefaultSettings = {
  */
 export const defaultSettings: SynDefaultSettings = {
   delimiter: {
+    SynCombobox: "|",
     SynSelect: " ",
   },
   numericStrategy: {
@@ -176,6 +178,7 @@ export const defaultSettings: SynDefaultSettings = {
  */
 export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
   delimiter: {
+    SynCombobox: "|",
     SynSelect: " ",
   },
   numericStrategy: {

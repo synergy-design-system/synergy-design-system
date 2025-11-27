@@ -12,6 +12,7 @@
  *
  * @dependency syn-icon
  * @dependency syn-popup
+ * @dependency syn-tag
  *
  * @slot - The listbox options. Must be `<syn-option>` elements.
  *    You can use `<syn-optgroup>`'s to group items visually.
@@ -54,6 +55,12 @@
  * @csspart popup - The popup's exported `popup` part.
  * Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
+ * @csspart tags - The container that houses option tags when `multiple` is used.
+ * @csspart tag - The individual tags that represent each selected option in `multiple`.
+ * @csspart tag__base - The tag's base part.
+ * @csspart tag__content - The tag's content part.
+ * @csspart tag__remove-button - The tag's remove button.
+ * @csspart tag__remove-button__base - The tag's remove button base part.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -163,8 +170,15 @@ The form must be in the same document or shadow root for this to work.
   /**
 * When set to `true`, restricts the combobox to only allow selection from the available options.
 Users will not be able to enter custom values that are not present in the list.
+This will always be true, if `multiple` is active.
  */
   restricted?: SynCombobox['restricted'];
+
+  /**
+* Allows more than one option to be selected.
+If `multiple`is set, the combobox will always be `restricted` to the available options
+ */
+  multiple?: SynCombobox['multiple'];
 
   /**
 * A function that customizes the rendered option.
@@ -181,6 +195,29 @@ If the query string should be highlighted use the `highlightOptionRenderer` func
 The default filter method is a case- and diacritic-insensitive string comparison.
  */
   filter?: SynCombobox['filter'];
+
+  /**
+* The delimiter to use when setting the value when `multiple` is enabled.
+The default is a space, but you can set it to a comma or other character.
+ */
+  delimiter?: SynCombobox['delimiter'];
+
+  /**
+* The maximum number of selected options to show when `multiple` is true.
+* After the maximum, "+n" will be shown to
+indicate the number of additional items that are selected.
+* Set to 0 to remove the limit.
+ */
+  maxOptionsVisible?: SynCombobox['maxOptionsVisible'];
+
+  /**
+* A function that customizes the tags to be rendered when multiple=true.
+* The first argument is the option, the second
+is the current tag's index.
+* The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
+the specified value.
+ */
+  getTag?: SynCombobox['getTag'];
 
   /**
    * Support for two way data binding

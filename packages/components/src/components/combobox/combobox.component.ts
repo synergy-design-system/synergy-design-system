@@ -129,6 +129,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private isInitialized: boolean = false;
 
+  private resizeObserver: ResizeObserver;
+
   @query('.combobox') popup: SynPopup;
 
   @query('.combobox__inputs') combobox: HTMLSlotElement;
@@ -329,6 +331,23 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     return this.valueInput.validationMessage;
   }
 
+  private enableResizeObserver() {
+    if (this.multiple) {
+      this.resizeObserver = new ResizeObserver(() => {
+        const inputWidth = this.displayInput.getBoundingClientRect().width;
+        const tagsWidth = this.tagContainer.getBoundingClientRect().width;
+
+        // The min-width of the input is 48px, this should stay available for the input
+        // The gap between tags and input is 12px, so we subtract that too
+        // The min-width of the tags is 100px, so we should not go below that
+        const availableTagSpace = Math.max(100, tagsWidth + inputWidth - 60);
+        
+        this.tagContainer.style.setProperty('--syn-select-tag-max-width', `${availableTagSpace}px`);
+      });
+      this.resizeObserver.observe(this.combobox);
+    }
+  }
+
   connectedCallback() {
     super.connectedCallback();
 
@@ -340,9 +359,25 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.open = false;
   }
 
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.resizeObserver?.disconnect();
+  }
+
   firstUpdated() {
     this.isInitialized = true;
     this.formControlController.updateValidity();
+  }
+
+  protected updated(changedProperties: PropertyValues<this>) {
+    super.updated(changedProperties);
+    if (changedProperties.has('multiple')) {
+      if (!this.multiple) {
+        this.resizeObserver?.disconnect();
+      } else {
+        this.enableResizeObserver();
+      }
+    }
   }
 
   protected override willUpdate(changedProperties: PropertyValues) {

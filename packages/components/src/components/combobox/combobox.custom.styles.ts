@@ -4,9 +4,8 @@ import sharedOptionSize from '../option/option-size.styles.js';
 export default css`
 
   .combobox__display-input {
-    flex: 1 1 auto;
-    /* TODO: check for the correct min-width */
-    min-width: 100px;
+    flex: 1;
+    min-width: var(--syn-spacing-2x-large);
     width: unset;
   }
 
@@ -78,6 +77,34 @@ export default css`
 
   .combobox--large .combobox__tags {
     gap: var(--syn-spacing-small);
+  }
+
+  /**
+   * #850: Allow to measure the size of the combobox.
+   * This is needed so we can automatically size and truncate the tags in the <syn-combobox multiple> component.
+   * Scoped to multiple to not break the single select per accident.
+   * Scoped to when placeholder is not visible to not break the placeholder visualization
+   */
+  :host([multiple]) :not(.combobox--placeholder-visible).combobox--tags-visible > .combobox__inputs > .combobox__tags {
+    min-width: 100px;
+    overflow: hidden;
+  }
+
+  :host([multiple]) .combobox__tags > div {
+    display: contents;
+  }
+
+  :host([multiple]) .combobox__tags > div > syn-tag {
+    --syn-tag-position-adjustment: var(--syn-spacing-3x-small);
+
+    max-width: var(--syn-select-tag-max-width);
+  }
+
+  :host([multiple]) .combobox__tags > div > syn-tag::part(content) {
+    display: initial;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   ${sharedOptionSize}

@@ -77,8 +77,8 @@ The following information may be helpful to get you started including your own c
 
 #### SICK 2025
 
-1. Download the `SICK Intl` font from the [SICK Brand Portal](https://brand.sick.com/document/145#/basiselemente/typografie/sick-intl).
-2. Extract the ZIP file to a destination reachable by your project (e.g. a `public` folder).
+1. Install `@synergy-design-system/assets`.
+2. Copy the font from `node_modules/@synergy-design-system/assets/src/fonts/SickIntl` to a destination reachable by your project (e.g. a public folder).
 3. Include the font in your project by adding the following CSS to your project (where `PUBLIC_PATH` is the path to the folder containing the font files).
 
 ```css
@@ -117,7 +117,28 @@ import "@fontsource/open-sans/700-italic.css";
 
 #### SICK 2025
 
-There is no way to install the `SICK Intl` typeface via a npm package as it is not available.
+SICK Intl is available in the `@synergy-design-system/assets` package in the `src/fonts/SickIntl` folder.
+You will have to provide a custom `@font-face` definition for it to work.
+
+```css
+/* Regular */
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/SickIntl/SICKIntl-Regular.woff2") format("woff2");
+}
+
+/* Semi Bold */
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/assets/fonts/SickIntl/SICKIntl-Semibold.woff2") format("woff2");
+}
+```
 
 ### Installing via local npm package (angular)
 
@@ -151,7 +172,30 @@ There is no way to install the `SICK Intl` typeface via a npm package as it is n
 
 #### SICK 2025
 
-There is no way to install the `SICK Intl` typeface via a npm package as it is not available.
+1. Install the `@synergy-design-system/assets` package into your project.
+2. Adjust your `angular.json` file to include the needed fonts (where project_name is the name of your project):
+
+```json
+{
+  "projects": {
+    "project_name": {
+      "architect": {
+        "build": {
+          "options": {
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@synergy-design-system/assets/src/fonts",
+                "output": "/assets/fonts"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
 
 ### Using the SICK CDN
 

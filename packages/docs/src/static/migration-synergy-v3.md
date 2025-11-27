@@ -1,24 +1,190 @@
-# Migration to Synergy 3.0
+# Synergy 3.0 Migration Guide
 
-This document outlines the changes and migration steps required to upgrade from Synergy 2.x to the new Synergy 3.0.
+> ⚠️ **Migration in progress:** Some features may not be fully implemented yet. See the [GitHub migration board](https://github.com/orgs/synergy-design-system/projects/2/views/37) for updates.
 
-> Please note that this migration is still in progress, and some features may not be fully implemented yet. We recommend reviewing the [GitHub repository](https://github.com/orgs/synergy-design-system/projects/2/views/37) for the latest updates.
+---
 
-## Roadmap
+## Migration Checklist: Quick Overview
 
-We are currently working on the migration to Synergy 3.0, which includes significant updates to the brand appearance, fonts and icon library.
-This migration will ensure that your application remains up-to-date with the latest design standards and functionality improvements.
+- [ ] Update Synergy packages to the latest version
+- [ ] Call `setSystemIconLibrary('sick2025')` before rendering components
+- [ ] Copy new icons to `/assets/icons/`
+- [ ] Import new CSS themes (`sick2025_light.css`, `sick2025_dark.css`)
+- [ ] Update theme switching logic to use new class names
+- [ ] Add SICK Intl font (via assets, CDN, or brand portal)
 
-It is currently not advised to use the new version in production, as we are still finalizing the migration process.
-However, you can start preparing your codebase for the upcoming changes.
+---
 
-A roadmap and current status of the migration can be found in our [GitHub repository](https://github.com/orgs/synergy-design-system/projects/2/views/37).
+## Release Highlights: Synergy 3.0
 
-## Breaking Changes
+- **Brand appearance:** Updated colors, roundings, and overall look
+- **Fonts:** New SICK Intl font replaces Open Sans
+- **Icon library:** New outline and filled icons, new naming
+- **CSS tokens/themes:** New theme files and class names
 
-### Icons
+---
 
-#### System Icon Library
+## Migration Steps: Detailed Guide
+
+### 1. Update Synergy packages
+
+Use your package manager to update all `@synergy-design-system/*` packages.
+
+---
+
+### 2. Set the system icon library
+
+Call `setSystemIconLibrary('sick2025')` before rendering any Synergy components.
+
+**Example:**
+
+```js
+import { setSystemIconLibrary } from "@synergy-design-system/components";
+setSystemIconLibrary("sick2025");
+```
+
+---
+
+### 3. Copy new icons to your build output
+
+Use your bundler (e.g., Vite) to copy icons from `@synergy-design-system/assets` to `/assets/icons/`.
+
+**Example (Vite):**
+
+```js
+viteStaticCopy({
+  targets: [
+    {
+      src: "node_modules/@synergy-design-system/assets/src/sick2025/outline/*",
+      dest: "./assets/icons/",
+    },
+    {
+      src: "node_modules/@synergy-design-system/assets/src/sick2025/fill/*",
+      dest: "./assets/icons/",
+    },
+  ],
+});
+```
+
+---
+
+### 4. Import new CSS themes
+
+Replace old theme imports with:
+
+```js
+import "@synergy-design-system/tokens/themes/sick2025_light.css";
+import "@synergy-design-system/tokens/themes/sick2025_dark.css";
+```
+
+---
+
+### 5. Update theme switching logic
+
+Use new class names: `syn-sick2025-light` and `syn-sick2025-dark`.
+
+**Example:**
+
+```js
+// Theme switcher
+const { body } = document;
+if (body.classList.contains("syn-sick2025-dark")) {
+  body.classList.remove("syn-sick2025-dark");
+  body.classList.add("syn-sick2025-light");
+} else {
+  body.classList.remove("syn-sick2025-light");
+  body.classList.add("syn-sick2025-dark");
+}
+```
+
+---
+
+### 6. Add the SICK Intl font
+
+Use one of the following options:
+
+**Synergy assets (recommended):**
+
+```css
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/assets/fonts/SickIntl/SICKIntl-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/assets/fonts/SickIntl/SICKIntl-Semibold.woff2") format("woff2");
+}
+```
+
+**SICK CDN:**
+
+```css
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2")
+    format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.woff2")
+    format("woff2");
+}
+```
+
+**Brand portal:** Download and host the font yourself, then use a local path in `@font-face`.
+
+---
+
+## Migration: Breaking Changes & Details
+
+### Breaking Changes: Icons
+
+- **System icon library:** Synergy now ships two system icon libraries for compatibility. Use `setSystemIconLibrary` to switch to the new set.
+- **New SICK 2025 icons:** Outline and filled icons, new naming. Use `<syn-icon name="home">` and `<syn-icon name="home_fill">`.
+- **Migration utilities:** Use `setupIcons("sick2025")` for easy migration, or `migrateIconName` for custom setups.
+
+### Breaking Changes: Tokens & Themes
+
+- New theme files: `sick2025_light.css`, `sick2025_dark.css`
+- New theme class names: `.syn-sick2025-light`, `.syn-sick2025-dark`
+- Significant visual changes: colors, roundings, font
+
+### Breaking Changes: SICK Intl Fonts
+
+- New font: SICK Intl (Regular 400, Semi Bold 600)
+- Provided directly by Synergy via `@synergy-design-system/assets`, CDN, or brand portal
+
+---
+
+## Migration: Troubleshooting
+
+- **Icons not showing?** Check asset paths and icon names.
+- **Fonts not loading?** Verify font-face URLs and file locations.
+- **Theme not switching?** Check class names and CSS imports.
+
+---
+
+## Migration: References & Further Reading
+
+- [Synergy Docs](https://synergy-design-system.github.io/)
+- [SICK Brand Portal](https://brand.sick.com/document/145#/basiselemente/typografie/sick-intl)
+- [GitHub migration board](https://github.com/orgs/synergy-design-system/projects/2/views/37)
+
+### Reference: Icons
+
+#### Reference: System Icon Library
 
 Some Synergy components depend on a set of icons that must always be available. To make sure those components display correctly, even if the `@synergy-design-system/assets` package is not installed or configured properly, these icons are baked into Synergies core directly.
 
@@ -41,7 +207,7 @@ import { setSystemIconLibrary } from "@synergy-design-system/components";
 setSystemIconLibrary("sick2025");
 ```
 
-#### New SICK 2025 icons
+#### Reference: New SICK 2025 Icons
 
 The new SICK 2025 theme comes with an updated icon library that includes both outline and filled versions of icons. These icons are available in the `@synergy-design-system/assets` package and can be used with the `<syn-icon>` or `<syn-icon-button>` component.
 
@@ -85,7 +251,7 @@ export default defineConfig({
 });
 ```
 
-#### Migrating to the new icon set without changing the icon names
+#### Reference: Migrating Icon Names
 
 Applications that are migrating from Synergy 2 may have used icons that have been renamed in the migration process.
 Those icons will **not** show up after the switch to the new icon library.
@@ -147,7 +313,7 @@ registerIconLibrary("default", customIconLibrary);
 setSystemIconLibrary("sick2025");
 ```
 
-### Tokens
+### Reference: Tokens & Themes
 
 Synergy 3.0 introduces new CSS theme files that implement the updated SICK brand appearance:
 
@@ -195,7 +361,7 @@ To use the new themes in your application:
    };
    ```
 
-### Fonts
+### Reference: SICK Intl Fonts
 
 The SICK 2025 theme introduces a new typeface called **SICK Intl** that replaces the previously used Open Sans font. When migrating to Synergy 3.0 with the SICK 2025 theme, you'll need to ensure this font is properly loaded in your application.
 

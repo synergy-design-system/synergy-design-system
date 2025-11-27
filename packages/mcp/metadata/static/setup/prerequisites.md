@@ -2,23 +2,20 @@
 
 ## Fonts
 
-Depending on the used theme (either SICK 2018 or SICK 2025) the Synergy Design System makes use of a specific typeface:
+Synergy Design System uses these typefaces:
 
 | Theme     | Typeface    |
 | --------- | ----------- |
 | SICK 2018 | `Open Sans` |
 | SICK 2025 | `SICK Intl` |
 
-For the SICK 2025 theme there are some rules, how and when to use the different styles (like regular, semi-bold, bold, ...). For more information about this, have a look at the [SICK Brand Portal](https://brand.sick.com/document/145#/basiselemente/typografie/sick-intl).
+For SICK 2025, see [SICK Brand Portal](https://brand.sick.com/document/145#/basiselemente/typografie/sick-intl) for style usage (regular, semi-bold, etc).
 
-Because there are various ways of loading fonts, depending on used bundler, pre- and postprocessors and usage of a CDN, Synergy does **not provide** this font.
-You need to include it into your own project.
-
-The following information may be helpful to get you started including your own copy of `Open Sans` or `SICK Intl` in your project for quicker bootstrapping:
+Synergy does **not provide** fonts directly. You must include them in your project. Below are quick-start options for both typefaces:
 
 ### Local Installation
 
-#### SICK 2018
+#### SICK 2018 (Open Sans)
 
 1. Download the `Open Sans` font from the [SICK Brand Portal](https://brand.sick.com/document/49#/-/resources-1).
 2. Extract the ZIP file to a destination reachable by your project (e.g. a `public` folder).
@@ -75,7 +72,7 @@ The following information may be helpful to get you started including your own c
 }
 ```
 
-#### SICK 2025
+#### SICK 2025 (SICK Intl)
 
 1. Install `@synergy-design-system/assets`.
 2. Copy the font from `node_modules/@synergy-design-system/assets/src/fonts/SickIntl` to a destination reachable by your project (e.g. a public folder).
@@ -99,9 +96,9 @@ The following information may be helpful to get you started including your own c
 }
 ```
 
-### Installing via local npm package (e.g. for vite or webpack based setups)
+### Using npm packages (Vite/Webpack)
 
-#### SICK 2018
+#### SICK 2018 (Open Sans)
 
 1. Install the `@fontsource/open-sans` package into your project.
 2. Include the font in your project by adding the following import statements to your project:
@@ -115,7 +112,7 @@ import "@fontsource/open-sans/700.css";
 import "@fontsource/open-sans/700-italic.css";
 ```
 
-#### SICK 2025
+#### SICK 2025 (SICK Intl)
 
 SICK Intl is available in the `@synergy-design-system/assets` package in the `src/fonts/SickIntl` folder.
 You will have to provide a custom `@font-face` definition for it to work.
@@ -140,9 +137,9 @@ You will have to provide a custom `@font-face` definition for it to work.
 }
 ```
 
-### Installing via local npm package (angular)
+### Using npm packages (Angular)
 
-#### SICK 2018
+#### SICK 2018 (Open Sans)
 
 1. Install the `@fontsource/open-sans` package into your project.
 2. Adjust your `angular.json` file to include the needed stylesheets (where project_name is the name of your project):
@@ -170,7 +167,7 @@ You will have to provide a custom `@font-face` definition for it to work.
 }
 ```
 
-#### SICK 2025
+#### SICK 2025 (SICK Intl)
 
 1. Install the `@synergy-design-system/assets` package into your project.
 2. Adjust your `angular.json` file to include the needed fonts (where project_name is the name of your project):
@@ -197,11 +194,11 @@ You will have to provide a custom `@font-face` definition for it to work.
 }
 ```
 
-### Using the SICK CDN
+### Using SICK CDN
 
 This is the simplest default font behavior. The typefaces are loaded from the SICK CDN.
 
-#### SICK 2018
+#### SICK 2018 (Open Sans)
 
 ```css
 /* Regular */
@@ -262,7 +259,7 @@ For better performance, you may also add the following statement to your HTML:
 />
 ```
 
-#### SICK 2025
+#### SICK 2025 (SICK Intl)
 
 ```css
 /* Regular */

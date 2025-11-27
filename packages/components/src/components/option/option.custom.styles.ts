@@ -41,12 +41,14 @@ export default css`
     color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
   }
 
+  /** #429: Use token for opacity */
+  .option--disabled {
+    opacity: var(--syn-input-disabled-opacity);
+  }
+
   .option--current.option--disabled {
     background-color: var(--syn-option-background-color-hover, var(--syn-color-neutral-1000));
     color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
-
-    /** #429: Use token for opacity */
-    opacity: var(--syn-input-disabled-opacity);
   }
 
   .option__label {
@@ -84,19 +86,20 @@ export default css`
     font-size: var(--option-icon-size, var(--syn-spacing-large));
   }
 
+  .option--hover .option__prefix::slotted(syn-icon),
+  .option--hover .option__suffix::slotted(syn-icon) {
+    color: var(--syn-option-icon-color-hover, var(--syn-color-neutral-800));
+  }
+
   .option--current .option__prefix::slotted(syn-icon),
   .option--current .option__suffix::slotted(syn-icon) {
-    color: var(--syn-option-icon-color-active, var(--syn-color-neutral-0));
+    color: var(--syn-option-icon-color-hover, var(--syn-color-neutral-800));
   }
 
   /* This is needed for the highlight styling of the options in syn-combobox */
   .option__label::slotted(.syn-highlight-style) {
     background-color: transparent;
-    color: var(--syn-color-neutral-950);
+    color: unset;
     font: var(--syn-body-medium-bold);
-  }
-
-  :host([aria-selected='true']) .option__label::slotted(.syn-highlight-style) {
-    color: var(--syn-color-neutral-0);
   }
 `;

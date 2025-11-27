@@ -306,7 +306,7 @@ export default css`
 
   /* Change combobox border on hover */
   .combobox:not(.combobox--disabled):hover .combobox__inputs {
-    border-color: var(--syn-input-color-hover);
+    border-color: var(--syn-input-border-color-hover);
   }
 
   /* Prefix and Suffix */

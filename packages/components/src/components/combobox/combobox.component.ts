@@ -1045,7 +1045,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   private getOptionsFromValue(): SynOption[] {
-    const value = (Array.isArray(this.value) ? this.value : this.value.split(' '));
+    // #845: if this.value is undefined return empty array
+    const value = (Array.isArray(this.value) ? this.value : this.value == undefined ? [] :this.value.split(' '));
     return value.map(val => this.cachedOptions.find(option => checkValueBelongsToOption(val, option))).filter((opt) => opt !== undefined);
   }
 
@@ -1155,7 +1156,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       const options = this.getOptionsFromValue();
 
       if (options.length === 0) {
-        this.displayInput.value = Array.isArray(this.value) ? this.value.join(', ') : this.value;
+        // #845 if this.value is undefined set it to empty string, as otherwhise "undefined" is shown in the input
+        this.displayInput.value = Array.isArray(this.value) ? this.value.join(', ') : this.value ?? '';
       } else {
         this.lastOptions = [...options];
       }

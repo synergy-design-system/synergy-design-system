@@ -88,9 +88,6 @@ export const cssVariableFormatter = {
       'body-2x-small-semibold',
       'body-2x-small-bold',
       'heading-4x-large',
-
-      // Button tokens are needed later
-      'button-outline-color-text',
     ].map(v => `${prefix}${v}`);
 
     /**

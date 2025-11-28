@@ -62,10 +62,21 @@ export default css`
     vertical-align: -8px;
   }
 
-
   /**
    * Size modifiers
    */
+  .button--small {
+    border-radius: var(--syn-button-border-radius-small, var(--syn-input-border-radius-small));
+  }
+
+  .button--medium {
+    border-radius: var(--syn-button-border-radius-medium, var(--syn-input-border-radius-medium));
+  }
+
+  .button--large {
+    border-radius: var(--syn-button-border-radius-large, var(--syn-input-border-radius-large));
+  }
+
   .button.button--medium.button--has-label .button__label {
     font-size: var(--syn-font-size-medium);
   } 
@@ -77,27 +88,43 @@ export default css`
   /*
    * Standard buttons
    */
+  .button--filled.button--primary {
+    background-color: var(--syn-button-color, var(--syn-color-primary-600));
+    border-color: var(--syn-button-color, var(--syn-color-primary-600));
+    color: var(--syn-button-filled-color-text, var(--syn-color-neutral-0));
+  }
+
   .button--filled.button--primary.button--disabled {
     background-color: var(--syn-color-neutral-600);
     border-color: var(--syn-color-neutral-600);
-    color: var(--syn-color-neutral-0);
+    color: var(--syn-typography-color-text-inverted, var(--syn-color-neutral-0));
   }
 
   .button--filled.button--primary:hover:not(.button--disabled) {
-    background-color: var(--syn-color-primary-900);
-    border-color: var(--syn-color-primary-900);
+    background-color: var(--syn-button-color-hover, var(--syn-color-primary-900));
+    border-color: var(--syn-button-color-hover, var(--syn-color-primary-900));
     color: var(--syn-color-neutral-0);
   }
 
   .button--filled.button--primary:active:not(.button--disabled) {
-    background-color: var(--syn-color-primary-950);
-    border-color: var(--syn-color-primary-950);
+    background-color: var(--syn-button-color-pressed, var(--syn-color-primary-950));
+    border-color: var(--syn-button-color-pressed, var(--syn-color-primary-950));
     color: var(--syn-color-neutral-0);
   }
 
   /*
    * Outline buttons
    */
+  .button--outline {
+    /** #901: Use token for border width */
+    border-width: var(--syn-input-border-width);
+  }
+
+  .button--outline.button--primary {
+    border-color: var(--syn-button-color, var(--syn-color-primary-600));
+    color: var(--syn-button-outline-color-text, var(--syn-color-primary-600));
+  }
+
   .button--outline.button--primary.button--disabled {
     background: none;
     border-color: var(--syn-color-neutral-600);
@@ -107,27 +134,31 @@ export default css`
   .button--outline.button--primary:hover:not(.button--disabled),
   .button--outline.button--primary.button--checked:not(.button--disabled) {
     background: none;
-    border-color: var(--syn-color-primary-900);
-    color: var(--syn-color-primary-900);
+    border-color: var(--syn-button-color-hover, var(--syn-color-primary-900));
+    color: var(--syn-button-color-hover, var(--syn-color-neutral-0));
   }
 
   .button--outline.button--primary:active:not(.button--disabled) {
     background: inherit;
-    border-color:  var(--syn-color-primary-950);
-    color:  var(--syn-color-primary-950);
+    border-color: var(--syn-color-primary-950);
+    color: var(--syn-color-primary-950);
   }
 
   /*
    * Text buttons
    */
+  .button--text {
+    color: var(--syn-button-color, var(--syn-color-primary-600));
+  }
+
   .button--text:hover:not(.button--disabled) {
-    color: var(--syn-color-primary-900);
+    color: var(--syn-button-color-hover, var(--syn-color-primary-900));
   }
 
   .button--text.button--primary:active:not(.button--disabled) {
     background: inherit;
     border-color: transparent;
-    color:  var(--syn-color-primary-950);
+    color: var(--syn-button-color-pressed, var(--syn-color-primary-950));
   }
 
   .button--text.button--primary.button--disabled {
@@ -185,7 +216,7 @@ export default css`
   }
 
   /** #429: Use token for opacity */
-  .button--disabled { 
+  .button--disabled {
     opacity: var(--syn-input-disabled-opacity);
   }
 

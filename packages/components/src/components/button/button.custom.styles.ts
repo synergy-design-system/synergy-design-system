@@ -116,6 +116,11 @@ export default css`
   /*
    * Outline buttons
    */
+  .button--outline {
+    /** #901: Use token for border width */
+    border-width: var(--syn-input-border-width);
+  }
+
   .button--outline.button--primary.button--disabled {
     background: none;
     border-color: var(--syn-color-neutral-600);
@@ -203,7 +208,7 @@ export default css`
   }
 
   /** #429: Use token for opacity */
-  .button--disabled { 
+  .button--disabled {
     opacity: var(--syn-input-disabled-opacity);
   }
 

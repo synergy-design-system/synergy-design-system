@@ -66,6 +66,18 @@ export default css`
   /**
    * Size modifiers
    */
+  .button--small {
+    border-radius: var(--syn-button-border-radius-small, var(--syn-input-border-radius-small));
+  }
+
+  .button--medium {
+    border-radius: var(--syn-button-border-radius-medium, var(--syn-input-border-radius-medium));
+  }
+
+  .button--large {
+    border-radius: var(--syn-button-border-radius-large, var(--syn-input-border-radius-large));
+  }
+
   .button.button--medium.button--has-label .button__label {
     font-size: var(--syn-font-size-medium);
   } 
@@ -77,21 +89,27 @@ export default css`
   /*
    * Standard buttons
    */
+  .button--filled.button--primary {
+    background-color: var(--syn-button-color, var(--syn-color-primary-600));
+    border-color: var(--syn-button-color, var(--syn-color-primary-600));
+    color: var(--syn-color-neutral-0);
+  }
+
   .button--filled.button--primary.button--disabled {
-    background-color: var(--syn-color-neutral-600);
-    border-color: var(--syn-color-neutral-600);
+    background-color: var(--syn-button-color, var(--syn-color-primary-600));
+    border-color: var(--syn-button-color, var(--syn-color-primary-600));
     color: var(--syn-color-neutral-0);
   }
 
   .button--filled.button--primary:hover:not(.button--disabled) {
-    background-color: var(--syn-color-primary-900);
-    border-color: var(--syn-color-primary-900);
+    background-color: var(--syn-button-color-hover, var(--syn-color-primary-900));
+    border-color: var(--syn-button-color-hover, var(--syn-color-primary-900));
     color: var(--syn-color-neutral-0);
   }
 
   .button--filled.button--primary:active:not(.button--disabled) {
-    background-color: var(--syn-color-primary-950);
-    border-color: var(--syn-color-primary-950);
+    background-color: var(--syn-button-color-pressed, var(--syn-color-primary-950));
+    border-color: var(--syn-button-color-pressed, var(--syn-color-primary-950));
     color: var(--syn-color-neutral-0);
   }
 

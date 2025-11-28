@@ -86,7 +86,7 @@ export default css`
    * Scoped to when placeholder is not visible to not break the placeholder visualization
    */
   :host([multiple]) :not(.combobox--placeholder-visible).combobox--tags-visible > .combobox__inputs > .combobox__tags {
-    min-width: 100px;
+    min-width: 85px;
     overflow: hidden;
   }
 

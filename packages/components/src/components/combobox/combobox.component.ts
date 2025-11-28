@@ -333,18 +333,20 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private enableResizeObserver() {
     if (this.multiple) {
-      this.resizeObserver = new ResizeObserver(() => {
-        const inputWidth = this.displayInput.getBoundingClientRect().width;
+      this.resizeObserver = new ResizeObserver((entries) => {
+        const input = entries.at(0)!;
+        const inputWidth = input.contentRect.width;
         const tagsWidth = this.tagContainer.getBoundingClientRect().width;
 
         // The min-width of the input is 48px, this should stay available for the input
-        // The gap between tags and input is 12px, so we subtract that too
-        // The min-width of the tags is 100px, so we should not go below that
-        const availableTagSpace = Math.max(100, tagsWidth + inputWidth - 60);
+        // The min-width of the tags is 85px, so we should not go below that
+        const availableTagSpace = Math.max(85, tagsWidth + inputWidth - 48 );
         
         this.tagContainer.style.setProperty('--syn-select-tag-max-width', `${availableTagSpace}px`);
       });
-      this.resizeObserver.observe(this.combobox);
+      // We use the `displayInput`, as the observer is fired for the initial state if someone is selecting an option
+      // and when the combobox size changes e.g. via window resize
+      this.resizeObserver.observe(this.displayInput);
     }
   }
 

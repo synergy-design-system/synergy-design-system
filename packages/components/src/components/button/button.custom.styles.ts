@@ -62,7 +62,6 @@ export default css`
     vertical-align: -8px;
   }
 
-
   /**
    * Size modifiers
    */
@@ -92,7 +91,8 @@ export default css`
   .button--filled.button--primary {
     background-color: var(--syn-button-color, var(--syn-color-primary-600));
     border-color: var(--syn-button-color, var(--syn-color-primary-600));
-    color: var(--syn-color-neutral-0);
+    color: var(--syn-button-filled-color-text, var(--syn-color-neutral-0));
+    color: red;
   }
 
   .button--filled.button--primary.button--disabled {
@@ -121,6 +121,11 @@ export default css`
     border-width: var(--syn-input-border-width);
   }
 
+  .button--outline.button--primary {
+    border-color: var(--syn-button-color, var(--syn-color-primary-600));
+    color: red;
+  }
+
   .button--outline.button--primary.button--disabled {
     background: none;
     border-color: var(--syn-color-neutral-600);
@@ -130,8 +135,8 @@ export default css`
   .button--outline.button--primary:hover:not(.button--disabled),
   .button--outline.button--primary.button--checked:not(.button--disabled) {
     background: none;
-    border-color: var(--syn-color-primary-900);
-    color: var(--syn-color-primary-900);
+    border-color: var(--syn-button-color-hover, var(--syn-color-primary-900));
+    color: hotpink;
   }
 
   .button--outline.button--primary:active:not(.button--disabled) {
@@ -143,14 +148,18 @@ export default css`
   /*
    * Text buttons
    */
+  .button--text {
+    color: var(--syn-button-color, var(--syn-color-primary-600));
+  }
+
   .button--text:hover:not(.button--disabled) {
-    color: var(--syn-color-primary-900);
+    color: var(--syn-button-color-hover, var(--syn-color-primary-900));
   }
 
   .button--text.button--primary:active:not(.button--disabled) {
     background: inherit;
     border-color: transparent;
-    color:  var(--syn-color-primary-950);
+    color: var(--syn-button-color-pressed, var(--syn-color-primary-950));
   }
 
   .button--text.button--primary.button--disabled {

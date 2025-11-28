@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.30.0
+
+### Minor Changes
+
+- [#1092](https://github.com/synergy-design-system/synergy-design-system/pull/1092) [`b82f1d9`](https://github.com/synergy-design-system/synergy-design-system/commit/b82f1d961aa4c2898f41b7c55eb3b7d43220878c) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2025-11-28
+
+  feat: ✨ Brand update for `syn-file` (#953)
+
+## 1.29.0
+
+### Minor Changes
+
+- [#1105](https://github.com/synergy-design-system/synergy-design-system/pull/1105) [`27adaae`](https://github.com/synergy-design-system/synergy-design-system/commit/27adaaeab60487ca4c92be8fd15b09eb4f09fdc6) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-28
+
+  feat: ✨ add new error icon (#1101)
+
+### Patch Changes
+
+- Updated dependencies [[`27adaae`](https://github.com/synergy-design-system/synergy-design-system/commit/27adaaeab60487ca4c92be8fd15b09eb4f09fdc6)]:
+  - @synergy-design-system/assets@1.25.0
+
 ## 1.28.0
 
 ### Minor Changes

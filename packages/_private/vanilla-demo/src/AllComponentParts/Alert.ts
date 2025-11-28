@@ -33,7 +33,7 @@ export const Alert = () => html`
     </syn-alert>
 
     <syn-alert variant="danger" open>
-      <syn-icon slot="icon" name="error"></syn-icon>
+      <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
       <strong>Your account has been deleted</strong>
       <br />
       We&apos;re very sorry to see you go!

@@ -35,7 +35,7 @@ import { SynVueAlert, SynVueIcon } from '@synergy-design-system/vue';
     </SynVueAlert>
 
     <SynVueAlert variant="danger" open>
-      <SynVueIcon slot="icon" name="error" />
+      <SynVueIcon slot="icon" name="status-error" library="system" />
       <strong>Your account has been deleted</strong>
       <br />
       We&apos;re very sorry to see you go!

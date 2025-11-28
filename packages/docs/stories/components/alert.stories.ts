@@ -107,7 +107,7 @@ export const Variants: Story = {
       </syn-alert>
 
       <syn-alert variant="danger" open>
-        <syn-icon slot="icon" name="error"></syn-icon>
+        <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
         <strong>Your account has been deleted</strong><br />
         We're very sorry to see you go!
       </syn-alert>
@@ -235,7 +235,7 @@ export const ToastNotifications: Story = {
       </syn-alert>
 
       <syn-alert variant="danger" duration="3000" closable>
-        <syn-icon slot="icon" name="error"></syn-icon>
+        <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
         <strong>Your account has been deleted</strong><br />
         We're very sorry to see you go!
       </syn-alert>
@@ -333,7 +333,7 @@ const Toast = {
       </syn-alert>
 
       <syn-alert variant="danger" open closable>
-        <syn-icon slot="icon" name="error"></syn-icon>
+        <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
         Your account has been deleted
       </syn-alert>
     </div>

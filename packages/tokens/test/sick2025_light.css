@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.42.0
+ * @synergy-design-system/tokens version 2.44.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -111,6 +111,7 @@
   --syn-color-primary-800: #0845c5;
   --syn-color-primary-900: #0d3f9b;
   --syn-color-primary-950: #0e275d;
+  --syn-color-primary-1000: #000a37;
   --syn-color-success-50: #f0fdf4;
   --syn-color-success-100: #ddfbe6;
   --syn-color-success-200: #bcf6cf;
@@ -224,8 +225,8 @@
   --syn-input-width: var(--syn-border-width-small);
   --syn-interactive-background-color-hover: #f2f0ed;
   --syn-interactive-emphasis-color: var(--syn-color-primary-700);
-  --syn-interactive-emphasis-color-active: var(--syn-color-primary-950);
-  --syn-interactive-emphasis-color-hover: var(--syn-color-primary-900);
+  --syn-interactive-emphasis-color-active: var(--syn-color-primary-1000);
+  --syn-interactive-emphasis-color-hover: var(--syn-color-primary-1000);
   --syn-interactive-quiet-color: var(--syn-color-neutral-950);
   --syn-interactive-quiet-color-active: var(--syn-color-primary-800);
   --syn-interactive-quiet-color-hover: var(--syn-color-primary-700);
@@ -248,6 +249,17 @@
   --syn-link-underline-outline: 25%;
   --syn-logo-color: var(--syn-color-primary-700);
   --syn-opacity-50: 0.5; /** 50% */
+  --syn-option-background-color-active: var(--syn-color-primary-1000);
+  --syn-option-background-color-hover: var(--syn-color-primary-1000);
+  --syn-option-check-color: var(--syn-interactive-quiet-color);
+  --syn-option-check-color-active: var(--syn-color-neutral-0);
+  --syn-option-check-color-hover: var(--syn-color-neutral-0);
+  --syn-option-color: var(--syn-typography-color-text);
+  --syn-option-color-active: var(--syn-typography-color-text-inverted);
+  --syn-option-color-hover: var(--syn-typography-color-text-inverted);
+  --syn-option-icon-color: var(--syn-interactive-quiet-color);
+  --syn-option-icon-color-active: var(--syn-color-neutral-0);
+  --syn-option-icon-color-hover: var(--syn-color-neutral-0);
   --syn-overlay-background-blur: 8px;
   --syn-overlay-background-color: rgba(0, 5, 26, 0.3);
   --syn-page-background: #f8f7f6;

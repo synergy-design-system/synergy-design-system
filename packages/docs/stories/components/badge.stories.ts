@@ -178,5 +178,5 @@ export const Screenshot: Story = generateScreenshotStory({
   WithButtons,
   WithMenuItems,
   WithEmptyContent,
-});
+}, 250);
 /* eslint-enable sort-keys */

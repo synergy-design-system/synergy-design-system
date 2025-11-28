@@ -20,6 +20,9 @@
     "module": "ES2022",
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom", "DOM.Iterable"],
+    // This is needed to make sure we don't get type conflicts between Angular and TypeScript
+    // @see https://github.com/angular/angular/issues/58007
+    "skipLibCheck": true,
     "paths": {
       // This is only needed because we are in a monorepo. In an outside applications this is not needed
       "@synergy-design-system/angular": ["../../angular/dist"],

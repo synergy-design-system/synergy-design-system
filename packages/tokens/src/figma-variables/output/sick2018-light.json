@@ -220,12 +220,6 @@
         "type": "sizing",
         "value": "{font-size.small}"
       }
-    },
-    "outline": {
-      "color-text": {
-        "type": "color",
-        "value": "rgba(255, 255, 255, 0.00)"
-      }
     }
   },
   "checkbox": {
@@ -1136,6 +1130,58 @@
       "value": "50%"
     }
   },
+  "option": {
+    "background": {
+      "color-active": {
+        "type": "color",
+        "value": "{color.primary.600}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.neutral.100}"
+      }
+    },
+    "check": {
+      "color": {
+        "type": "color",
+        "value": "{color.primary.600}"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "{color.neutral.0}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.primary.600}"
+      }
+    },
+    "color": {
+      "type": "color",
+      "value": "{typography.color.text}"
+    },
+    "color-active": {
+      "type": "color",
+      "value": "{typography.color.text-inverted}"
+    },
+    "color-hover": {
+      "type": "color",
+      "value": "{typography.color.text}"
+    },
+    "icon": {
+      "color": {
+        "type": "color",
+        "value": "{input.icon.color}"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "{color.neutral.0}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{input.icon.color-hover}"
+      }
+    }
+  },
   "overlay": {
     "background": {
       "blur": {
@@ -1605,7 +1651,7 @@
     },
     "4x-large": {
       "type": "typography",
-      "value": "{font-weight.bold} 52/1.2 {font.sans}"
+      "value": "{font-weight.bold} {font-size.4x-large}/1.2 {font.sans}"
     }
   }
 }

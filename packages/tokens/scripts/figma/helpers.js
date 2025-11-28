@@ -180,12 +180,6 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
   /component\/input\/focus-ring\/width/,
 
   /**
-   * Option component tokens
-   */
-  // Not yet updated in dev
-  /component\/option/,
-
-  /**
    * Radio-Button component tokens
    */
   // Not yet updated in dev
@@ -195,7 +189,7 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    * Button component tokens
    */
   // Not yet updated in dev
-  /component\/button\/(border|color)/,
+  /component\/button\/(border|color|filled|outline)/,
 ];
 /* eslint-enable max-len */
 

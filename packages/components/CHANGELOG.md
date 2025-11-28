@@ -1,5 +1,44 @@
 # Changelog
 
+## 2.66.0
+
+### Minor Changes
+
+- [#1105](https://github.com/synergy-design-system/synergy-design-system/pull/1105) [`27adaae`](https://github.com/synergy-design-system/synergy-design-system/commit/27adaaeab60487ca4c92be8fd15b09eb4f09fdc6) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-28
+
+  feat: ✨ add new error icon (#1101)
+
+## 2.65.0
+
+### Minor Changes
+
+- [#1082](https://github.com/synergy-design-system/synergy-design-system/pull/1082) [`e27f95b`](https://github.com/synergy-design-system/synergy-design-system/commit/e27f95ba3e5bd1f494db80ad51d0c1957b8d2204) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-27
+
+  feat: ✨ Brand updates for `<syn-tab-group>`, `<syn-tab-panel>` and `<syn-tab>` (#969)
+
+## 2.64.1
+
+### Patch Changes
+
+- [#1098](https://github.com/synergy-design-system/synergy-design-system/pull/1098) [`92973ed`](https://github.com/synergy-design-system/synergy-design-system/commit/92973ed0242ceb836dfe662cbe8e81b7a5364c2e) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-27
+
+  fix: 🐛 angular validator api fix (#1097)
+
+  Validators do not use the internal `_enabled` property anymore.
+
+## 2.64.0
+
+### Minor Changes
+
+- [#1074](https://github.com/synergy-design-system/synergy-design-system/pull/1074) [`ac24e63`](https://github.com/synergy-design-system/synergy-design-system/commit/ac24e6379862c7e60b5d5293614f0d804eeb7388) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-27
+
+  feat: ✨ Brand updates for `<syn-menu>`, `<syn-menu-item>` and `<syn-menu-label>` (#958)
+
+### Patch Changes
+
+- Updated dependencies [[`ac24e63`](https://github.com/synergy-design-system/synergy-design-system/commit/ac24e6379862c7e60b5d5293614f0d804eeb7388)]:
+  - @synergy-design-system/tokens@2.44.0
+
 ## 2.63.0
 
 ### Minor Changes

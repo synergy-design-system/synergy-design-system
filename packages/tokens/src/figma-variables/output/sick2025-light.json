@@ -220,12 +220,6 @@
         "type": "sizing",
         "value": "{font-size.small}"
       }
-    },
-    "outline": {
-      "color-text": {
-        "type": "color",
-        "value": "{color.neutral.1000}"
-      }
     }
   },
   "checkbox": {
@@ -1016,11 +1010,11 @@
       },
       "color-active": {
         "type": "color",
-        "value": "{color.primary.950}"
+        "value": "{color.primary.1000}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.primary.900}"
+        "value": "{color.primary.1000}"
       }
     },
     "quiet": {
@@ -1134,6 +1128,58 @@
       "description": "50%",
       "type": "opacity",
       "value": "50%"
+    }
+  },
+  "option": {
+    "background": {
+      "color-active": {
+        "type": "color",
+        "value": "{color.primary.1000}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.primary.1000}"
+      }
+    },
+    "check": {
+      "color": {
+        "type": "color",
+        "value": "{interactive.quiet.color}"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "{color.neutral.0}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.neutral.0}"
+      }
+    },
+    "color": {
+      "type": "color",
+      "value": "{typography.color.text}"
+    },
+    "color-active": {
+      "type": "color",
+      "value": "{typography.color.text-inverted}"
+    },
+    "color-hover": {
+      "type": "color",
+      "value": "{typography.color.text-inverted}"
+    },
+    "icon": {
+      "color": {
+        "type": "color",
+        "value": "{interactive.quiet.color}"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "{color.neutral.0}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{color.neutral.0}"
+      }
     }
   },
   "overlay": {
@@ -1605,7 +1651,7 @@
     },
     "4x-large": {
       "type": "typography",
-      "value": "{font-weight.bold} 52/1.2 {font.sans}"
+      "value": "{font-weight.bold} {font-size.4x-large}/1.2 {font.sans}"
     }
   }
 }

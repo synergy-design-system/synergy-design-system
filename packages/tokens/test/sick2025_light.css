@@ -50,9 +50,18 @@
   --syn-border-width-small: 1px; /** Small */
   --syn-border-width-x-large: 4px; /** X Large */
   --syn-breadcrumb-color: var(--syn-typography-color-text);
+  --syn-button-border-radius-large: var(--syn-border-radius-pill);
+  --syn-button-border-radius-medium: var(--syn-border-radius-pill);
+  --syn-button-border-radius-small: var(--syn-border-radius-pill);
+  --syn-button-color: var(--syn-interactive-emphasis-color);
+  --syn-button-color-disabled: var(--syn-color-neutral-500);
+  --syn-button-color-hover: var(--syn-interactive-emphasis-color-hover);
+  --syn-button-color-pressed: var(--syn-interactive-emphasis-color-active);
+  --syn-button-filled-color-text: rgba(255, 255, 255, 0);
   --syn-button-font-size-large: var(--syn-font-size-large);
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);
+  --syn-button-outline-color-text: var(--syn-color-neutral-1000);
   --syn-checkbox-border-radius: var(--syn-border-radius-small);
   --syn-color-accent-50: #ffffff;
   --syn-color-accent-100: #ffffff;

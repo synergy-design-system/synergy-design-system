@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.29.0
+
+### Minor Changes
+
+- [#1105](https://github.com/synergy-design-system/synergy-design-system/pull/1105) [`27adaae`](https://github.com/synergy-design-system/synergy-design-system/commit/27adaaeab60487ca4c92be8fd15b09eb4f09fdc6) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-28
+
+  feat: ✨ add new error icon (#1101)
+
+### Patch Changes
+
+- Updated dependencies [[`27adaae`](https://github.com/synergy-design-system/synergy-design-system/commit/27adaaeab60487ca4c92be8fd15b09eb4f09fdc6)]:
+  - @synergy-design-system/assets@1.25.0
+
 ## 1.28.0
 
 ### Minor Changes

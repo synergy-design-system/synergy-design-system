@@ -71,9 +71,9 @@ Set the variant attribute to change the alert’s variant.
   <syn-alert variant="danger" open="">
     <syn-icon
       slot="icon"
-      name="error"
+      name="status-error"
+      library="system"
       aria-hidden="true"
-      library="default"
     ></syn-icon>
     <strong>Your account has been deleted</strong><br />
     We're very sorry to see you go!
@@ -208,9 +208,9 @@ To display an alert as a toast notification, or “toast”, create the alert an
   <syn-alert variant="danger" duration="3000" closable="">
     <syn-icon
       slot="icon"
-      name="error"
+      name="status-error"
+      library="system"
       aria-hidden="true"
-      library="default"
     ></syn-icon>
     <strong>Your account has been deleted</strong><br />
     We're very sorry to see you go!

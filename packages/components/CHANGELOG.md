@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.67.0
+
+### Minor Changes
+
+- [#1092](https://github.com/synergy-design-system/synergy-design-system/pull/1092) [`b82f1d9`](https://github.com/synergy-design-system/synergy-design-system/commit/b82f1d961aa4c2898f41b7c55eb3b7d43220878c) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2025-11-28
+
+  feat: ✨ Brand update for `syn-file` (#953)
+
+### Patch Changes
+
+- Updated dependencies [[`b82f1d9`](https://github.com/synergy-design-system/synergy-design-system/commit/b82f1d961aa4c2898f41b7c55eb3b7d43220878c)]:
+  - @synergy-design-system/tokens@2.45.0
+
 ## 2.66.0
 
 ### Minor Changes

@@ -1983,5 +1983,44 @@ describe('<syn-combobox>', () => {
     });
   }); // #813
 
+  describe('#850: should clamp syn-tag size to the size of the combobox', () => {
+    it('should set the max-width used for tags to the available size of the tag wrapper', async () => {
+      const el = await fixture<SynCombobox>(html`
+            <syn-combobox multiple style="width: 250px" value="option-1|option-2">
+              <syn-option value="option-1">Option 1</syn-option>
+              <syn-option value="option-2">This is a very long text that should be truncated</syn-option>
+            </syn-combobox>
+          `);
+
+      await el.updateComplete;
+      // A longer timeout may be needed for webkit, chrome and ff don´t take only 10ms
+      await aTimeout(100);
+
+      debugger;
+      const tagWrapper: HTMLDivElement = el.shadowRoot!.querySelector('.combobox__tags')!;
+      const currentWidth = tagWrapper.style.getPropertyValue('--syn-select-tag-max-width');
+
+      expect(currentWidth, 'It should have max tag width of 116 pixels').to.equal('116px');
+    });
+
+    it('should use a minimum width of 85 pixels when the syn-combobox is too small', async () => {
+      const el = await fixture<SynCombobox>(html`
+            <syn-combobox multiple style="width: 50px" value="option-1|option-2">
+              <syn-option value="option-1">Option 1</syn-option>
+              <syn-option value="option-2">This is a very long text that should be truncated</syn-option>
+            </syn-combobox>
+          `);
+
+      await el.updateComplete;
+      // A longer timeout may be needed for webkit, chrome and ff don´t take only 10ms
+      await aTimeout(100);
+
+      const tagWrapper: HTMLDivElement = el.shadowRoot!.querySelector('.combobox__tags')!;
+      const currentWidth = tagWrapper.style.getPropertyValue('--syn-select-tag-max-width');
+
+      expect(currentWidth, 'It should have min-tag width of 85 pixels').to.equal('85px');
+    });
+  }); // #850
+
   runFormControlBaseTests('syn-combobox');
 });

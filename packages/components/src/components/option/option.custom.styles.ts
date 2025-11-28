@@ -35,7 +35,11 @@ export default css`
   }
 
   .option--current,
-  .option--current.option--hover:not(.option--disabled),
+  .option--current.option--hover:not(.option--disabled) {
+    background-color: var(--syn-option-background-color-active, var(--syn-color-neutral-1000));
+    color: var(--syn-option-color-active, var(--syn-typography-color-text-inverted));
+  }
+
   .option--hover:not(.option--current):not(.option--disabled) {
     background-color: var(--syn-option-background-color-hover, var(--syn-color-neutral-1000));
     color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
@@ -64,8 +68,11 @@ export default css`
     padding-inline-end: var(--syn-spacing-small);
   }
 
-  /* Invert the check mark when keyboard navigation or hover effect is used */
-  .option--current .option__check,
+  /* Invert the check mark when keyboard navigation is used */
+  .option--current .option__check {
+    color: var(--syn-option-check-color-active, var(--syn-color-neutral-0));
+  }
+
   .option--hover:not(.option--current) .option__check {
     color: var(--syn-option-check-color-hover, var(--syn-color-neutral-0));
   }
@@ -93,7 +100,7 @@ export default css`
 
   .option--current .option__prefix::slotted(syn-icon),
   .option--current .option__suffix::slotted(syn-icon) {
-    color: var(--syn-option-icon-color-hover, var(--syn-color-neutral-800));
+    color: var(--syn-option-icon-color-active, var(--syn-color-neutral-800));
   }
 
   /* This is needed for the highlight styling of the options in syn-combobox */

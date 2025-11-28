@@ -1,4 +1,8 @@
 /**
+ * @typedef {import('./types.js').OutputVariableChangeList} OutputVariableChangeList
+ */
+
+/**
  * The directory path where Figma variables are stored and processed.
  */
 export const FIGMA_VARIABLES_DIR = './src/figma-variables';
@@ -37,3 +41,21 @@ export const LIGHT_2018_THEME = 'sick2018-light.json';
  * The file name for the 2018 dark theme.
  */
 export const DARK_2018_THEME = 'sick2018-dark.json';
+
+/**
+ * List of static changed to variables for specific themes and modes.
+ * @type {Record<string, OutputVariableChangeList>}
+ */
+export const OUTPUT_VARIABLE_CHANGES = {
+  sick2018_dark: {
+    'syn-button-filled-color-text': 'inherit',
+    'syn-button-outline-color-text': 'inherit',
+  },
+  sick2018_light: {
+    'syn-button-filled-color-text': 'inherit',
+    'syn-button-outline-color-text': 'inherit',
+  },
+  sick2025_light: {
+    'syn-button-filled-color-text': 'inherit',
+  },
+};

@@ -4,4 +4,5 @@
 "@synergy-design-system/mcp": minor
 ---
 
-feat: ✨ syn button brand2025 (#871)
+feat: ✨ Brand updates for `<syn-button>` (#871)
+feat: ✨ CD update for `<syn-dropdown>` (#949)

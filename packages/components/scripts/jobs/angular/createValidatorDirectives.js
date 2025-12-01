@@ -57,10 +57,9 @@ export const SYN_MIN_VALIDATOR: Provider = {
   selector: 'syn-input[type=number][min][formControlName],syn-input[type=number][min][formControl],syn-input[type=number][min][ngModel]',
   standalone: false,
   providers: [SYN_MIN_VALIDATOR],
-  host: {'[attr.min]': '_enabled ? min : null'},
+  host: {'[attr.min]': 'min != null ? min : null' },
 })
 export class SynMinValidator extends MinValidator {}
-
 
 /**
  * @description
@@ -92,7 +91,7 @@ export const SYN_MAX_VALIDATOR: Provider = {
   selector: 'syn-input[type=number][max][formControlName],syn-input[type=number][max][formControl],syn-input[type=number][max][ngModel]',
   standalone: false,
   providers: [SYN_MAX_VALIDATOR],
-  host: {'[attr.max]': '_enabled ? max : null'},
+  host: {'[attr.max]': 'max != null ? max : null' },
 })
 export class SynMaxValidator extends MaxValidator {}
 
@@ -124,7 +123,7 @@ export const SYN_CHECKBOX_REQUIRED_VALIDATOR: Provider = {
   selector: 'syn-checkbox[required][formControlName],syn-checkbox[required][formControl],syn-checkbox[required][ngModel]',
   standalone: false,
   providers: [SYN_CHECKBOX_REQUIRED_VALIDATOR],
-  host: {'[attr.required]': '_enabled ? "" : null'},
+  host: {'[attr.required]': 'required != null ? "" : null' },
 })
 export class SynCheckboxRequiredValidator extends CheckboxRequiredValidator {}
 

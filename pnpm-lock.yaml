@@ -872,6 +872,9 @@ importers:
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../_private/eslint-config-syn
+      '@synergy-design-system/fonts':
+        specifier: workspace:*
+        version: link:../fonts
       '@synergy-design-system/styles':
         specifier: workspace:*
         version: link:../styles

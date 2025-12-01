@@ -96,6 +96,11 @@ export const staticPath = join(currentDirname, '../../metadata/static');
 export const staticMigrationPath = join(currentDirname, '../../metadata/static/migration');
 
 /**
+ * Path to the fonts directory, relative to the MCP directory.
+ */
+export const fontsPath = join(currentDirname, '../../metadata/packages/fonts');
+
+/**
  * List of supported frameworks.
  */
 export type Framework = 'react' | 'vue' | 'angular' | 'vanilla';

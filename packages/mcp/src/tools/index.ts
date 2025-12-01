@@ -3,6 +3,7 @@ export * from './asset-list.js';
 export * from './component-info.js';
 export * from './component-list.js';
 export * from './davinci-migration.js';
+export * from './font-info.js';
 export * from './framework-info.js';
 export * from './migration-info.js';
 export * from './styles-info.js';

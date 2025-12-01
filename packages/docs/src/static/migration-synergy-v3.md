@@ -11,7 +11,7 @@
 - [ ] Copy new icons to `/assets/icons/`
 - [ ] Import new CSS themes (`sick2025_light.css`, `sick2025_dark.css`)
 - [ ] Update theme switching logic to use new class names
-- [ ] Add SICK Intl font (via assets, CDN, or brand portal)
+- [ ] Add SICK Intl font (via `@synergy-design-system/fonts`, CDN, or brand portal)
 
 ---
 
@@ -29,6 +29,7 @@
 ### 1. Update Synergy packages
 
 Use your package manager to update all `@synergy-design-system/*` packages.
+Also make sure to install `@synergy-design-system/fonts` for the new `SICK Intl` font.
 
 ---
 
@@ -103,23 +104,10 @@ if (body.classList.contains("syn-sick2025-dark")) {
 
 Use one of the following options:
 
-**Synergy assets (recommended):**
+**Synergy fonts package (recommended):**
 
-```css
-@font-face {
-  font-display: swap;
-  font-family: "SICK Intl";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/assets/fonts/SickIntl/SICKIntl-Regular.woff2") format("woff2");
-}
-@font-face {
-  font-display: swap;
-  font-family: "SICK Intl";
-  font-style: normal;
-  font-weight: 600;
-  src: url("/assets/fonts/SickIntl/SICKIntl-Semibold.woff2") format("woff2");
-}
+```javascript
+import '@synergy-design-system/fonts';
 ```
 
 **SICK CDN:**
@@ -164,7 +152,7 @@ Use one of the following options:
 ### Breaking Changes: SICK Intl Fonts
 
 - New font: SICK Intl (Regular 400, Semi Bold 600)
-- Provided directly by Synergy via `@synergy-design-system/assets`, CDN, or brand portal
+- Provided directly by Synergy via `@synergy-design-system/fonts`, CDN, or brand portal
 
 ---
 
@@ -365,7 +353,7 @@ To use the new themes in your application:
 
 The SICK 2025 theme introduces a new typeface called **SICK Intl** that replaces the previously used Open Sans font. When migrating to Synergy 3.0 with the SICK 2025 theme, you'll need to ensure this font is properly loaded in your application.
 
-> **Important**: Synergy does **not provide** the SICK Intl font directly. You need to include it in your own project.
+> **Important**: The SICK Intl font is now provided via the dedicated `@synergy-design-system/fonts` package for easy integration.
 
 #### Font Requirements
 
@@ -383,49 +371,29 @@ Each of those has its own advantages.
 
 | Option            | Advantages                                                                                | Disadvantages                                                                                                                                                                                 |
 | :---------------- | :---------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Synergy           | Local installation, works offline, updates under your control, curated version of Synergy | Needs build configuration, needs custom `@font-face` rule.                                                                                                                                    |
+| Fonts Package     | Easy integration, works offline, updates under your control, automatic CSS imports        | Requires npm package installation.                                                                                                                                    |
 | CDN               | Fast delivery when online, automatic update via CDN                                       | Only works for services that have online connection, font updates may break application layouts.                                                                                              |
 | Brand&nbsp;Portal | Installation from the official source                                                     | File exports (other than the original TTF) from the official source are currently misaligned, leading to issues with vertical alignment, especially for components that support or use icons. |
 
 > If you are not sure, we recommend you to use Option 1 as outlined below.
 
-##### Option 1: Using Synergies version of SICK Intl (Recommended!)
+##### Option 1: Using @synergy-design-system/fonts (Recommended!)
 
-Synergy ships the new font via `@synergy-design-system/assets` in the `src/fonts/SickIntl` folder.
+Synergy now provides the SICK Intl font via the dedicated `@synergy-design-system/fonts` package.
 
-> Note that Synergy provides woff2 font formats only!
-> Also, as CSS variables cannot be used in `@font-face` `url` definitions, you will have to adjust the path to match!
+**Installation:**
 
-```css
-/* Regular */
-@font-face {
-  font-display: swap;
-  font-family: "SICK Intl";
-  font-style: normal;
-  font-weight: 400;
-  src: url("/assets/fonts/SickIntl/SICKIntl-Regular.woff2") format("woff2");
-}
-
-/* Semi Bold */
-@font-face {
-  font-display: swap;
-  font-family: "SICK Intl";
-  font-style: normal;
-  font-weight: 600;
-  src: url("/assets/fonts/SickIntl/SICKIntl-Semibold.woff2") format("woff2");
-}
+```bash
+npm install @synergy-design-system/fonts
 ```
 
-Also make sure to prefetch the fonts:
+**Usage:**
 
-```html
-<link
-  rel="preload"
-  href="/assets/fonts/SickIntl/SICKIntl-Regular.woff2"
-  as="font"
-  type="font/woff2"
-/>
+```javascript
+import '@synergy-design-system/fonts';
 ```
+
+This automatically imports all required font-face declarations and makes the SICK Intl font available in your application.
 
 ##### Option 2: Using the SICK CDN
 
@@ -504,4 +472,4 @@ These steps are only needed when switching to the new Synergy 3.0 layout.
 3. Adjust your bundler to copy the new icons to your build output. This is necessary to ensure that the new icons are available in your application.
 4. **Update CSS theme imports** to use the new `sick2025_light.css` and `sick2025_dark.css` files instead of the legacy theme files.
 5. **Update theme class names** in your JavaScript theme switching logic to use `syn-sick2025-light` and `syn-sick2025-dark`.
-6. **Add the SICK Intl font** by either using the one provided via `@synergy-design-system/assets`, using the SICK CDN or downloading it locally. Add the required `@font-face` declarations for Regular (400) and Semi Bold (600) weights to ensure proper typography rendering.
+6. **Add the SICK Intl font** by either using the dedicated `@synergy-design-system/fonts` package (recommended), using the SICK CDN, or downloading it locally. The fonts package automatically provides all required font-face declarations for Regular (400) and Semi Bold (600) weights.

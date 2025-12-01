@@ -1,0 +1,1 @@
+# @synergy-design-system/fonts

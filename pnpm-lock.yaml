@@ -803,6 +803,8 @@ importers:
         specifier: ^0.1.1
         version: 0.1.1(vite@6.3.6(@types/node@24.6.2)(jiti@2.4.2)(less@4.4.0)(sass@1.90.0)(terser@5.43.1)(yaml@2.8.0))
 
+  packages/fonts: {}
+
   packages/mcp:
     dependencies:
       '@modelcontextprotocol/sdk':

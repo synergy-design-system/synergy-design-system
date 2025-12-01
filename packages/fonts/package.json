@@ -1,0 +1,37 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "Fonts for Synergy, the SICK Design System",
+  "devDependencies": {
+  },
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    }
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "NOTICE"
+  ],
+  "homepage": "https://synergy-design-system.github.io",
+  "keywords": [
+    "SDS",
+    "SICK",
+    "Synergy Design System",
+    "SICK Fonts"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/fonts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/fonts"
+  },
+  "scripts": {
+  },
+  "type": "module",
+  "version": "0.1.0"
+}

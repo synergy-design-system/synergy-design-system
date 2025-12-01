@@ -154,11 +154,11 @@ The side navigation opens when the user clicks on the burger menu. As the side n
     <footer class="synergy-footer-demo">
       <nav class="footer-content" aria-label="Footer navigation">
         <ul
-          class="syn-link-list syn-link-list--medium syn-link-list--horizontal"
+          class="syn-link-list syn-link-list--small syn-link-list--horizontal"
         >
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/imprint"
             >
               Imprint
@@ -166,7 +166,7 @@ The side navigation opens when the user clicks on the burger menu. As the side n
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/tac"
             >
               Terms and conditions
@@ -174,7 +174,7 @@ The side navigation opens when the user clicks on the burger menu. As the side n
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/terms-of-use"
             >
               Terms of use
@@ -182,7 +182,7 @@ The side navigation opens when the user clicks on the burger menu. As the side n
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/dataprotection"
             >
               Privacy Policy
@@ -418,11 +418,11 @@ The side navigation opens when the user clicks on the burger menu. As the side n
       <footer class="synergy-footer-demo">
         <nav class="footer-content" aria-label="Footer navigation">
           <ul
-            class="syn-link-list syn-link-list--medium syn-link-list--horizontal"
+            class="syn-link-list syn-link-list--small syn-link-list--horizontal"
           >
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/imprint"
               >
                 Imprint
@@ -430,7 +430,7 @@ The side navigation opens when the user clicks on the burger menu. As the side n
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/tac"
               >
                 Terms and conditions
@@ -438,7 +438,7 @@ The side navigation opens when the user clicks on the burger menu. As the side n
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/terms-of-use"
               >
                 Terms of use
@@ -446,7 +446,7 @@ The side navigation opens when the user clicks on the burger menu. As the side n
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/dataprotection"
               >
                 Privacy Policy
@@ -714,11 +714,11 @@ The navigation opens when the user hovers over it. As the navigation opens, it o
       <footer class="synergy-footer-demo">
         <nav class="footer-content" aria-label="Footer navigation">
           <ul
-            class="syn-link-list syn-link-list--medium syn-link-list--horizontal"
+            class="syn-link-list syn-link-list--small syn-link-list--horizontal"
           >
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/imprint"
               >
                 Imprint
@@ -726,7 +726,7 @@ The navigation opens when the user hovers over it. As the navigation opens, it o
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/tac"
               >
                 Terms and conditions
@@ -734,7 +734,7 @@ The navigation opens when the user hovers over it. As the navigation opens, it o
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/terms-of-use"
               >
                 Terms of use
@@ -742,7 +742,7 @@ The navigation opens when the user hovers over it. As the navigation opens, it o
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/dataprotection"
               >
                 Privacy Policy
@@ -991,11 +991,11 @@ The navigation opens when the user touches it. As the side navigation opens, a t
       <footer class="synergy-footer-demo">
         <nav class="footer-content" aria-label="Footer navigation">
           <ul
-            class="syn-link-list syn-link-list--medium syn-link-list--horizontal"
+            class="syn-link-list syn-link-list--small syn-link-list--horizontal"
           >
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/imprint"
               >
                 Imprint
@@ -1003,7 +1003,7 @@ The navigation opens when the user touches it. As the side navigation opens, a t
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/tac"
               >
                 Terms and conditions
@@ -1011,7 +1011,7 @@ The navigation opens when the user touches it. As the side navigation opens, a t
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/terms-of-use"
               >
                 Terms of use
@@ -1019,7 +1019,7 @@ The navigation opens when the user touches it. As the side navigation opens, a t
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/dataprotection"
               >
                 Privacy Policy
@@ -1252,11 +1252,11 @@ General BehaviourThe navigation maintains its compact width until the user click
       <footer class="synergy-footer-demo">
         <nav class="footer-content" aria-label="Footer navigation">
           <ul
-            class="syn-link-list syn-link-list--medium syn-link-list--horizontal"
+            class="syn-link-list syn-link-list--small syn-link-list--horizontal"
           >
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/imprint"
               >
                 Imprint
@@ -1264,7 +1264,7 @@ General BehaviourThe navigation maintains its compact width until the user click
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/tac"
               >
                 Terms and conditions
@@ -1272,7 +1272,7 @@ General BehaviourThe navigation maintains its compact width until the user click
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/terms-of-use"
               >
                 Terms of use
@@ -1280,7 +1280,7 @@ General BehaviourThe navigation maintains its compact width until the user click
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/dataprotection"
               >
                 Privacy Policy
@@ -1513,11 +1513,11 @@ General BehaviourThe navigation maintains its compact width until the user click
       <footer class="synergy-footer-demo">
         <nav class="footer-content" aria-label="Footer navigation">
           <ul
-            class="syn-link-list syn-link-list--medium syn-link-list--horizontal"
+            class="syn-link-list syn-link-list--small syn-link-list--horizontal"
           >
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/imprint"
               >
                 Imprint
@@ -1525,7 +1525,7 @@ General BehaviourThe navigation maintains its compact width until the user click
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/tac"
               >
                 Terms and conditions
@@ -1533,7 +1533,7 @@ General BehaviourThe navigation maintains its compact width until the user click
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/terms-of-use"
               >
                 Terms of use
@@ -1541,7 +1541,7 @@ General BehaviourThe navigation maintains its compact width until the user click
             </li>
             <li>
               <a
-                class="syn-link syn-link--medium syn-link--quiet"
+                class="syn-link syn-link--small syn-link--quiet"
                 href="https://www.sick.com/dataprotection"
               >
                 Privacy Policy
@@ -1732,11 +1732,11 @@ The top navigation can be combined with a light grey background.This variant is 
     <footer class="synergy-footer-demo">
       <nav class="footer-content" aria-label="Footer navigation">
         <ul
-          class="syn-link-list syn-link-list--medium syn-link-list--horizontal"
+          class="syn-link-list syn-link-list--small syn-link-list--horizontal"
         >
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/imprint"
             >
               Imprint
@@ -1744,7 +1744,7 @@ The top navigation can be combined with a light grey background.This variant is 
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/tac"
             >
               Terms and conditions
@@ -1752,7 +1752,7 @@ The top navigation can be combined with a light grey background.This variant is 
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/terms-of-use"
             >
               Terms of use
@@ -1760,7 +1760,7 @@ The top navigation can be combined with a light grey background.This variant is 
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/dataprotection"
             >
               Privacy Policy
@@ -1938,11 +1938,11 @@ Additionally the top navigation can be combined with an alternative background.
     <footer class="synergy-footer-demo">
       <nav class="footer-content" aria-label="Footer navigation">
         <ul
-          class="syn-link-list syn-link-list--medium syn-link-list--horizontal"
+          class="syn-link-list syn-link-list--small syn-link-list--horizontal"
         >
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/imprint"
             >
               Imprint
@@ -1950,7 +1950,7 @@ Additionally the top navigation can be combined with an alternative background.
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/tac"
             >
               Terms and conditions
@@ -1958,7 +1958,7 @@ Additionally the top navigation can be combined with an alternative background.
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/terms-of-use"
             >
               Terms of use
@@ -1966,7 +1966,7 @@ Additionally the top navigation can be combined with an alternative background.
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/dataprotection"
             >
               Privacy Policy

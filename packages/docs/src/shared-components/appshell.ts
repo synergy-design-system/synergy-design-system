@@ -48,24 +48,24 @@ export const createFooter = () => html`
   </style>
   <footer class="synergy-footer-demo">
     <nav class="footer-content" aria-label="Footer navigation">
-      <ul class="syn-link-list syn-link-list--medium syn-link-list--horizontal">
+      <ul class="syn-link-list syn-link-list--small syn-link-list--horizontal">
         <li>
-          <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.imprint')}">
+          <a class="syn-link syn-link--small syn-link--quiet" href="${getTranslation('footer.linksHref.imprint')}">
             ${getTranslation('footer.linksName.imprint')}
           </a>
         </li>
         <li>
-          <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.termsConditions')}">
+          <a class="syn-link syn-link--small syn-link--quiet" href="${getTranslation('footer.linksHref.termsConditions')}">
             ${getTranslation('footer.linksName.termsConditions')}
           </a>
         </li>
         <li>
-          <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.termsOfUse')}">
+          <a class="syn-link syn-link--small syn-link--quiet" href="${getTranslation('footer.linksHref.termsOfUse')}">
             ${getTranslation('footer.linksName.termsOfUse')}
           </a>
         </li>
         <li>
-          <a class="syn-link syn-link--medium syn-link--quiet" href="${getTranslation('footer.linksHref.privacyPolicy')}">
+          <a class="syn-link syn-link--small syn-link--quiet" href="${getTranslation('footer.linksHref.privacyPolicy')}">
             ${getTranslation('footer.linksName.privacyPolicy')}
           </a>
         </li>

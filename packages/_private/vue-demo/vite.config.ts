@@ -16,10 +16,6 @@ export default defineConfig({
           src: 'node_modules/@synergy-design-system/assets/src/icons/*',
           dest: './assets/icons/',
         },
-        {
-          src: 'node_modules/@synergy-design-system/assets/src/fonts/*',
-          dest: './assets/fonts/',
-        },
       ],
     }),
     vue(),

@@ -87,10 +87,6 @@ export const defaultConfig = {
           dest: './assets/icons/',
           src: 'node_modules/@synergy-design-system/assets/src/icons/*',
         },
-        {
-          dest: './assets/fonts/',
-          src: 'node_modules/@synergy-design-system/assets/src/fonts/*',
-        },
         // Allow loading subpages from the src/pages directory
         {
           dest: './pages/',
@@ -117,10 +113,6 @@ export const withSpriteSheetGenerator = {
     }),
     viteStaticCopy({
       targets: [
-        {
-          dest: './assets/fonts/',
-          src: 'node_modules/@synergy-design-system/assets/src/fonts/*',
-        },
         // Allow loading subpages from the src/pages directory
         {
           dest: './pages/',

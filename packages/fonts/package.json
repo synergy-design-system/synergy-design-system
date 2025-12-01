@@ -7,12 +7,17 @@
   "devDependencies": {
   },
   "exports": {
+    ".": {
+      "import": "./src/SICKIntl/font.css"
+    },
+    "./src/*": {
+      "default": "./src/*"
+    },
     "./package.json": {
       "default": "./package.json"
     }
   },
   "files": [
-    "dist",
     "CHANGELOG.md",
     "NOTICE"
   ],

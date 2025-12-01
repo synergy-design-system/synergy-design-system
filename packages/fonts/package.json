@@ -20,11 +20,11 @@
       "default": "./src/SICKIntl/font.css",
       "import": "./src/SICKIntl/font.css"
     },
-    "./SICKIntl": {
+    "./SICKIntl.css": {
       "import": "./src/SICKIntl/font.css",
       "default": "./src/SICKIntl/font.css"
     },
-    "./SICKIntl-inlined": {
+    "./SICKIntl-inlined.css": {
       "import": "./dist/sickintl-inline.css",
       "default": "./dist/sickintl-inline.css"
     },

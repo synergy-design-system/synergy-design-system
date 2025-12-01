@@ -3,6 +3,6 @@
 "@synergy-design-system/mcp": minor
 ---
 
-feat: ✨ add sick intl to assets (#1085)
+feat: ✨ add sick intl to fonts (#1085)
 
-Add an optimized variant of the `SICK Intl` font as a shared asset to the `@synergy-design-system/assets` package.
+Add an optimized variant of the `SICK Intl` font as a shared asset to the new `@synergy-design-system/fonts` package.

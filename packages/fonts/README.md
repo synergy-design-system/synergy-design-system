@@ -56,7 +56,7 @@ import '@synergy-design-system/fonts';
 
 #### Angular
 
-```jsonc
+```json
 // In angular.json
 "styles": [
   "@synergy-design-system/fonts/src/SICKIntl/font.css",
@@ -66,8 +66,6 @@ import '@synergy-design-system/fonts';
 ### CSS Usage
 
 After importing the fonts, use the `SICK Intl` font family in your CSS:
-
-> Note that `@synergy-design-system/tokens` already takes care of this!
 
 ```css
 body {

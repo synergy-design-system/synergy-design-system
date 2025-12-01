@@ -17,7 +17,7 @@ const config: StorybookConfig = {
   },
 
   env: StorybookEnvPackageVersions({
-    packagePaths: ['../components', '../assets', '../styles', '../tokens'],
+    packagePaths: ['../components', '../assets', '../styles', '../tokens', '../fonts'],
   }),
 
   framework: {

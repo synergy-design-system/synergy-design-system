@@ -2,7 +2,6 @@
 
 This package provides assets like:
 
-- **fonts**: Ready to use web-fonts (e.g. `SICK Intl`)
 - **logos:** a collection of various logos (such as the variants of the SICK brand logo)
 - **icons:** the standard icons based on [Material Icons](https://fonts.google.com/icons)
 - **system-icons:** a small subset of icons, that are internally used by the Synergy components
@@ -18,10 +17,6 @@ npm install --save @synergy-design-system/assets
 ```
 
 ### Usage
-
-#### Fonts
-
-This package provides the font files only. A setup via [`@font-face`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@font-face) is needed to configure the font. Please have a look at [Synergy setup prequisites](https://synergy-design-system.github.io/?path=/docs/prerequisites--docs) to see how this can be done.
 
 #### Images
 

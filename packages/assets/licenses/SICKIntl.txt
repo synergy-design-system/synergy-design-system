@@ -1,3 +1,0 @@
-SICK Intl Version 4.0.0
-
-Copyright (c) 2024 Swiss Typefaces Sarl. All rights reserved.

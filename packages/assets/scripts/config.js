@@ -35,13 +35,9 @@ export const PATH_DEFAULT_ICONS_2018 = 'src/default-icons.ts';
 export const PATH_DEFAULT_ICONS_2025_FILLED = 'src/sick2025-filled-icons.ts';
 export const PATH_DEFAULT_ICONS_2025_OUTLINE = 'src/sick2025-outline-icons.ts';
 
-export const PATH_FONTS = 'src/fonts';
-export const PATH_FONT_SICK_INTL = `${PATH_FONTS}/SickIntl`;
-
 export const PATH_LICENSES = './licenses';
 export const LICENSE_SICK = `${PATH_LICENSES}/SICK.txt`;
 export const LICENSE_ICONS = `${PATH_LICENSES}/Apache2.txt`;
-export const LICENSE_SICK_INTL = `${PATH_LICENSES}/SICKIntl.txt`;
 
 /**
  * @type {LicenseEntry[]} List of licenses used in the project.
@@ -55,11 +51,6 @@ export const LICENSE_MAP = [
     license: LICENSE_SICK,
     name: 'SICK Proprietary Logos',
     paths: [PATH_LOGOS_V2],
-  },
-  {
-    license: LICENSE_SICK_INTL,
-    name: 'SICK Intl',
-    paths: [PATH_FONT_SICK_INTL],
   },
   {
     license: LICENSE_ICONS,

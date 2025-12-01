@@ -1,6 +1,6 @@
+import fs from 'fs/promises';
 import ora from 'ora';
 import postcss from 'postcss';
-import fs from 'fs/promises';
 import headerPlugin from 'postcss-header';
 import postcssImport from 'postcss-import';
 import postcssUrl from 'postcss-url';
@@ -36,9 +36,9 @@ const build = async () => {
       headerPlugin({
         header,
       }),
-    ]).process(css, { 
+    ]).process(css, {
       from: 'src/SICKINtl/font.css',
-      to: 'dist/sickintl-inline.css' 
+      to: 'dist/sickintl-inline.css',
     });
 
     // Ensure dist directory exists

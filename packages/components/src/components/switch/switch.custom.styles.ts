@@ -5,18 +5,24 @@ export default css`
     --height: calc(var(--syn-toggle-size-medium) + 2px);
     --thumb-size: var(--syn-toggle-size-small);
     --width: calc((var(--height) * 2) - 6px);
+
+    font-size: var(--syn-input-font-size-small);
   }
 
   :host([size='medium']) {
     --height: calc(var(--syn-toggle-size-medium) + 4px);
     --thumb-size: var(--syn-toggle-size-medium);
     --width: calc((var(--height) * 2) - 6px);
+
+    font-size: var(--syn-input-font-size-medium);
   }
 
   :host([size='large']) {
     --height: calc(var(--syn-toggle-size-large) + 4px);
     --thumb-size: var(--syn-toggle-size-large);
     --width: calc((var(--height) * 2) - 6px);
+
+    font-size: var(--syn-input-font-size-large);
   }
 
   /** #429: Use token for opacity */

@@ -18,11 +18,11 @@ Import the complete font family with all weights:
 
 ```javascript
 // The default export will load SICKIntl automatically.
-import '@synergy-design-system/fonts';
+import "@synergy-design-system/fonts";
 
 // You may also use a direct import instead.
 // Use this if your bundler does not understand JavaScript module syntax
-import '@synergy-design-system/fonts/src/SICKIntl/font.css';
+import "@synergy-design-system/fonts/src/SICKIntl/font.css";
 ```
 
 This will load both Regular (400) and Semi Bold (600) font weights with proper `@font-face` declarations.
@@ -32,7 +32,7 @@ This will load both Regular (400) and Semi Bold (600) font weights with proper `
 If you prefer CSS imports, you can use:
 
 ```css
-@import '@synergy-design-system/fonts/src/SICKIntl/font.css';
+@import "@synergy-design-system/fonts/src/SICKIntl/font.css";
 ```
 
 ### Inline Base64 Version (Self-Contained)
@@ -40,7 +40,7 @@ If you prefer CSS imports, you can use:
 For applications that need **fully self-contained CSS without external font file dependencies**, use the automatically generated inline version:
 
 ```javascript
-import '@synergy-design-system/fonts/SICKIntl-inlined.css';
+import "@synergy-design-system/fonts/SICKIntl-inlined.css";
 ```
 
 This version includes the font files as base64-encoded data URIs directly in the CSS, eliminating the need for separate font file hosting. **Note:** This increases CSS file size but removes external dependencies.
@@ -51,7 +51,7 @@ This version includes the font files as base64-encoded data URIs directly in the
 
 ```javascript
 // main.tsx
-import '@synergy-design-system/fonts';
+import "@synergy-design-system/fonts";
 ```
 
 #### Angular
@@ -69,16 +69,20 @@ After importing the fonts, use the `SICK Intl` font family in your CSS:
 
 ```css
 body {
-  font-family: 'SICK Intl', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    "SICK Intl",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
 }
 
 .heading {
-  font-family: 'SICK Intl';
+  font-family: "SICK Intl";
   font-weight: 600; /* Semi Bold */
 }
 
 .body-text {
-  font-family: 'SICK Intl';
+  font-family: "SICK Intl";
   font-weight: 400; /* Regular */
 }
 ```
@@ -118,20 +122,20 @@ If you prefer not to bundle fonts with your application, you can load them from 
 ```css
 @font-face {
   font-display: swap;
-  font-family: 'SICK Intl';
+  font-family: "SICK Intl";
   font-style: normal;
   font-weight: 400;
-  src: url('https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2')
-    format('woff2');
+  src: url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2")
+    format("woff2");
 }
 
 @font-face {
   font-display: swap;
-  font-family: 'SICK Intl';
+  font-family: "SICK Intl";
   font-style: normal;
   font-weight: 600;
-  src: url('https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.woff2')
-    format('woff2');
+  src: url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.woff2")
+    format("woff2");
 }
 ```
 

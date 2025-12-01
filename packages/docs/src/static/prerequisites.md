@@ -194,7 +194,7 @@ npm install @synergy-design-system/fonts
 #### Vite/Webpack
 
 ```javascript
-import '@synergy-design-system/fonts';
+import "@synergy-design-system/fonts";
 ```
 
 #### Angular
@@ -203,7 +203,7 @@ Import in your main styles file:
 
 ```css
 /* styles.css */
-@import '@synergy-design-system/fonts';
+@import "@synergy-design-system/fonts";
 ```
 
 Or add to your `angular.json` file:

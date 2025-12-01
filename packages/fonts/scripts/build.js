@@ -26,7 +26,7 @@ const createBanner = async () => {
 const build = async () => {
   try {
     const header = await createBanner();
-    const css = await fs.readFile('src/SICKINtl/font.css', 'utf8');
+    const css = await fs.readFile('src/SICKIntl/font.css', 'utf8');
 
     const result = await postcss([
       postcssImport(),
@@ -37,7 +37,7 @@ const build = async () => {
         header,
       }),
     ]).process(css, {
-      from: 'src/SICKINtl/font.css',
+      from: 'src/SICKIntl/font.css',
       to: 'dist/sickintl-inline.css',
     });
 
@@ -55,7 +55,7 @@ const spinner = ora({
   hideCursor: false,
 });
 
-spinner.start('Building SICKINtl font CSS with inlined fonts...');
+spinner.start('Building SICKIntl font CSS with inlined fonts...');
 
 build()
   .then(() => {

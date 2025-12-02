@@ -44,21 +44,19 @@ export default css`
   .radio__label {
     margin-inline-start: var(--syn-spacing-x-small);
     position: relative;
+    top: -2px;
   }
 
   .radio--small .radio__label {
     font: var(--syn-body-small-regular);
-    top: -3px;
   }
 
   .radio--medium .radio__label {
     font: var(--syn-body-medium-regular);
-    top: -3px;
   }
 
   .radio--large .radio__label {
     font: var(--syn-body-large-regular);
-    top: -2px;
   }
 
   /* /Fix#456 */

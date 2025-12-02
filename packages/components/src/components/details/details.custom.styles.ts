@@ -56,7 +56,7 @@ export default css`
   }
 
   .details--size-medium .details__summary {
-    font: var(--syn-body-medium-regular);
+    font: var(--syn-body-medium-bold);
   }
 
   .details--size-medium .details__summary::slotted(syn-icon) {
@@ -80,7 +80,7 @@ export default css`
   }
 
   .details--size-large .details__summary {
-    font: var(--syn-body-large-regular);
+    font: var(--syn-body-large-bold);
   }
 
   .details--size-large .details__summary-icon {
@@ -92,13 +92,6 @@ export default css`
     flex-shrink: 0;
     font-size: var(--syn-spacing-x-large);
     margin-right: var(--syn-spacing-small);
-  }
-
-  /**
-   * Mark the details as open by adjusting its label
-   */
-  .details--open .details__summary {
-    font-weight: var(--syn-font-weight-bold);
   }
 
   /**

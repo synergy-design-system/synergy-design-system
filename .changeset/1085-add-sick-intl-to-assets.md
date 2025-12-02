@@ -1,5 +1,5 @@
 ---
-"@synergy-design-system/assets": minor
+"@synergy-design-system/fonts": major
 "@synergy-design-system/mcp": minor
 ---
 

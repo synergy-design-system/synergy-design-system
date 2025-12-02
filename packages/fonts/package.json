@@ -17,8 +17,8 @@
   },
   "exports": {
     ".": {
-      "default": "./src/SICKIntl/font.css",
-      "import": "./src/SICKIntl/font.css"
+      "import": "./src/SICKIntl/font.css",
+      "default": "./src/SICKIntl/font.css"
     },
     "./SICKIntl.css": {
       "import": "./src/SICKIntl/font.css",
@@ -29,12 +29,12 @@
       "default": "./dist/sickintl-inline.css"
     },
     "./src/*": {
-      "default": "./src/*",
-      "import": "./src/*"
+      "import": "./src/*",
+      "default": "./src/*"
     },
     "./package.json": {
-      "default": "./package.json",
-      "import": "./package.json"
+      "import": "./package.json",
+      "default": "./package.json"
     }
   },
   "files": [

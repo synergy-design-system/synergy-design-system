@@ -2,6 +2,9 @@
 
 > ⚠️ **Migration in progress:** Some features may not be fully implemented yet. See the [GitHub migration board](https://github.com/orgs/synergy-design-system/projects/2/views/37) for updates.
 
+> It is currently not advised to use the new version in production, as we are still finalizing the migration process.
+> However, you can start preparing your codebase for the upcoming changes.
+
 ---
 
 ## Migration Checklist: Quick Overview

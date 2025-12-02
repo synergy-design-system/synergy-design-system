@@ -54,10 +54,10 @@ importers:
         specifier: workspace:*
         version: link:../../components
       '@synergy-design-system/demo-utilities':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../demo-utilities
       '@synergy-design-system/fonts':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../fonts
       '@synergy-design-system/styles':
         specifier: workspace:*
@@ -195,10 +195,10 @@ importers:
         specifier: workspace:*
         version: link:../../components
       '@synergy-design-system/demo-utilities':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../demo-utilities
       '@synergy-design-system/fonts':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../fonts
       '@synergy-design-system/react':
         specifier: workspace:*
@@ -345,10 +345,10 @@ importers:
         specifier: workspace:*
         version: link:../../components
       '@synergy-design-system/demo-utilities':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../demo-utilities
       '@synergy-design-system/fonts':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../fonts
       '@synergy-design-system/styles':
         specifier: workspace:*
@@ -400,10 +400,10 @@ importers:
         specifier: workspace:*
         version: link:../../components
       '@synergy-design-system/demo-utilities':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../demo-utilities
       '@synergy-design-system/fonts':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../fonts
       '@synergy-design-system/styles':
         specifier: workspace:*

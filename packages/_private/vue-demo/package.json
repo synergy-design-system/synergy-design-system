@@ -17,8 +17,8 @@
   "dependencies": {
     "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/components": "workspace:*",
-    "@synergy-design-system/demo-utilities": "workspace:^",
-    "@synergy-design-system/fonts": "workspace:^",
+    "@synergy-design-system/demo-utilities": "workspace:*",
+    "@synergy-design-system/fonts": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
     "@synergy-design-system/vue": "workspace:*",

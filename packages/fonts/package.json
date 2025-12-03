@@ -17,20 +17,24 @@
   },
   "exports": {
     ".": {
-      "import": "./src/SICKIntl/font.css",
-      "default": "./src/SICKIntl/font.css"
+      "import": "./src/sick-intl/font.css",
+      "default": "./src/sick-intl/font.css"
     },
-    "./SICKIntl.css": {
-      "import": "./src/SICKIntl/font.css",
-      "default": "./src/SICKIntl/font.css"
+    "./sick-intl.css": {
+      "import": "./src/sick-intl/font.css",
+      "default": "./src/sick-intl/font.css"
     },
-    "./SICKIntl-inlined.css": {
-      "import": "./dist/sickintl-inline.css",
-      "default": "./dist/sickintl-inline.css"
+    "./sick-intl-inline.css": {
+      "import": "./dist/sick-intl-inline.css",
+      "default": "./dist/sick-intl-inline.css"
     },
     "./src/*": {
       "import": "./src/*",
       "default": "./src/*"
+    },
+    "./dist/*": {
+      "import": "./dist/*",
+      "default": "./dist/*"
     },
     "./package.json": {
       "import": "./package.json",

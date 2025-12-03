@@ -26,7 +26,7 @@ const createBanner = async () => {
 const build = async () => {
   try {
     const header = await createBanner();
-    const css = await fs.readFile('src/SICKIntl/font.css', 'utf8');
+    const css = await fs.readFile('src/sick-intl/font.css', 'utf8');
 
     const result = await postcss([
       postcssImport(),
@@ -37,7 +37,7 @@ const build = async () => {
         header,
       }),
     ]).process(css, {
-      from: 'src/SICKIntl/font.css',
+      from: 'src/sick-intl/font.css',
       to: 'dist/sickintl-inline.css',
     });
 
@@ -45,7 +45,7 @@ const build = async () => {
     await fs.mkdir('dist', { recursive: true });
 
     // Write the output file
-    await fs.writeFile('dist/sickintl-inline.css', result.css);
+    await fs.writeFile('dist/sick-intl-inline.css', result.css);
   } catch (error) {
     throw new Error(`Error during build: ${error.toString()}`);
   }

@@ -121,7 +121,7 @@ import "@synergy-design-system/fonts";
   font-family: "SICK Intl";
   font-style: normal;
   font-weight: 400;
-  src: url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2")
+  src: url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Regular.woff2")
     format("woff2");
 }
 @font-face {
@@ -129,7 +129,7 @@ import "@synergy-design-system/fonts";
   font-family: "SICK Intl";
   font-style: normal;
   font-weight: 600;
-  src: url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.woff2")
+  src: url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Semibold.woff2")
     format("woff2");
 }
 ```
@@ -410,10 +410,8 @@ For the quickest setup, load the fonts directly from the SICK CDN:
   font-style: normal;
   font-weight: 400;
   src:
-    url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2")
-      format("woff2"),
-    url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.ttf")
-      format("truetype");
+    url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Regular.woff2")
+      format("woff2");
 }
 
 /* Semi Bold */
@@ -423,10 +421,8 @@ For the quickest setup, load the fonts directly from the SICK CDN:
   font-style: normal;
   font-weight: 600;
   src:
-    url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.woff2")
-      format("woff2"),
-    url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.ttf")
-      format("truetype");
+    url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Semibold.woff2")
+      format("woff2");
 }
 ```
 
@@ -435,7 +431,14 @@ For better performance, you can also preload the font:
 ```html
 <link
   rel="preload"
-  href="https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2"
+  href="https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Regular.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Semibold.woff2"
   as="font"
   type="font/woff2"
   crossorigin

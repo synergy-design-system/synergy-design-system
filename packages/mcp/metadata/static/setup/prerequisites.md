@@ -216,7 +216,7 @@ Or add to your `angular.json` file:
         "build": {
           "options": {
             "styles": [
-              "node_modules/@synergy-design-system/fonts/dist/fonts.css"
+              "@synergy-design-system/fonts/src/SICKIntl/font.css"
             ]
           }
         }
@@ -236,10 +236,8 @@ Or add to your `angular.json` file:
   font-style: normal;
   font-weight: 400;
   src:
-    url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2")
-      format("woff2"),
-    url("https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.ttf")
-      format("truetype");
+    url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Regular.woff2")
+      format("woff2");
 }
 
 /* Semi Bold */
@@ -249,10 +247,8 @@ Or add to your `angular.json` file:
   font-style: normal;
   font-weight: 600;
   src:
-    url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.woff2")
-      format("woff2"),
-    url("https://www.sick.com/media/fonts/sickintl-v1/semibold/SICKIntl-Semibold.ttf")
-      format("truetype");
+    url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Semibold.woff2")
+      format("woff2");
 }
 ```
 
@@ -261,7 +257,14 @@ For better performance, add this preload to your HTML:
 ```html
 <link
   rel="preload"
-  href="https://www.sick.com/media/fonts/sickintl-v1/regular/SICKIntl-Regular.woff2"
+  href="https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Regular.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Semibold.woff2"
   as="font"
   type="font/woff2"
   crossorigin
@@ -271,7 +274,7 @@ For better performance, add this preload to your HTML:
 ### Manual Installation
 
 1. Install `@synergy-design-system/fonts`.
-2. Copy the font from `node_modules/@synergy-design-system/fonts/src/SICKIntl` to a destination reachable by your project (e.g. a public folder).
+2. Copy the font from `node_modules/@synergy-design-system/fonts/src/sick-intl` to a destination reachable by your project (e.g. a public folder).
 3. Include the font with custom CSS (where `PUBLIC_PATH` is the path to the folder containing the font files):
 
 ```css
@@ -280,7 +283,7 @@ For better performance, add this preload to your HTML:
   font-family: "SICK Intl";
   font-style: normal;
   font-weight: 400;
-  src: url("/PUBLIC_PATH/SICKIntl/SICKIntl-Regular.woff2") format("woff2");
+  src: url("/PUBLIC_PATH/sick-intl/SICKIntl-Regular.woff2") format("woff2");
 }
 
 @font-face {
@@ -288,7 +291,7 @@ For better performance, add this preload to your HTML:
   font-family: "SICK Intl";
   font-style: normal;
   font-weight: 600;
-  src: url("/PUBLIC_PATH/SICKIntl/SICKIntl-Semibold.woff2") format("woff2");
+  src: url("/PUBLIC_PATH/sick-intl/SICKIntl-Semibold.woff2") format("woff2");
 }
 ```
 
@@ -307,7 +310,7 @@ For better performance, add this preload to your HTML:
             "assets": [
               {
                 "glob": "**/*",
-                "input": "./node_modules/@synergy-design-system/fonts/src/SICKIntl",
+                "input": "./node_modules/@synergy-design-system/fonts/src/sick-intl",
                 "output": "/assets/fonts"
               }
             ]

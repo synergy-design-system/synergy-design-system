@@ -59,7 +59,7 @@ export default css`
   /* Change select border on hover */
   /* stylelint-disable-next-line no-descending-specificity */
   .select:not(.select--disabled):hover .select__combobox {
-    border-color: var(--syn-input-color-hover);
+    border-color: var(--syn-input-border-color-hover);
   }
 
   /* Prefix and Suffix */
@@ -106,10 +106,9 @@ export default css`
     font-size: var(--syn-font-size-2x-large);
   }
 
-
   .select__prefix,
   .select__suffix {
-    color: var(--syn-input-help-text-color);
+    color: var(--syn-input-icon-color);
   }
 
   /* Multi Select */
@@ -131,8 +130,7 @@ export default css`
 
   /* Listbox */
   .select__listbox {
-    /* @todo: Should be --syn-border-radius-medium, which should be set to 0 */
-    border-radius: var(--syn-border-radius-none);
+    border-radius: var(--syn-input-border-radius-medium);
     box-shadow: var(--syn-shadow-medium);
   }
 

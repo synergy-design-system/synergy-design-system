@@ -16,6 +16,7 @@
         ],
         "severity": "warning",
         "ignore": [
+          "css-font-rendering-controls",
           "css-sticky",
           "css-overflow",
           "css-focus-visible",

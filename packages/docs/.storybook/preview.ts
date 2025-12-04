@@ -10,6 +10,7 @@ import componentsManifest from 'virtual:vite-plugin-cem/custom-elements-manifest
 // @ts-expect-error This is a virtual import, which is not recognized by TypeScript
 import stylesManifest from 'virtual:vite-plugin-synergy-styles/custom-elements-manifest';
 
+import '@synergy-design-system/fonts';
 import '@synergy-design-system/tokens/themes/sick2025_dark.css';
 import '@synergy-design-system/tokens/themes/sick2025_light.css';
 import '@synergy-design-system/tokens/themes/sick2018_dark.css';

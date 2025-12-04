@@ -15,6 +15,7 @@ import {
   createMainContent, createSharedStyles, createSideNav,
   createSidebarConnector,
 } from '../../src/shared-components/appshell.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const meta: Meta = {
   parameters: {
@@ -25,6 +26,9 @@ const meta: Meta = {
     },
     design: generateFigmaPluginObject('25171-45729'),
     docs: {
+      chromatic: {
+        modes: Chromatic_Modes_All,
+      },
       description: {
         component: generateStoryDescription('footer', 'default', 'templates'),
       },
@@ -41,7 +45,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'Structure', 'SICK2018'],
+  tags: ['Navigation', 'Structure', 'SICK2018', 'SICK2025'],
   title: 'Templates/Footer',
 };
 export default meta;

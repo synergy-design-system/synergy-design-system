@@ -34,14 +34,14 @@
               }
             ],
             "styles": [
+              "@synergy-design-system/fonts/src/sick-intl/font.css",
               "@synergy-design-system/tokens/themes/sick2025_dark.css",
               "@synergy-design-system/tokens/themes/sick2025_light.css",
               "@synergy-design-system/tokens/themes/sick2018_dark.css",
               "@synergy-design-system/tokens/themes/sick2018_light.css",
               "@synergy-design-system/components/index.css",
               "@synergy-design-system/styles/index.css",
-              "src/app.css",
-              "@synergy-design-system/demo-utilities/styles/font.css"
+              "src/app.css"
             ],
             "scripts": [],
             "browser": "src/main.ts"

@@ -35,10 +35,10 @@
 </style>
 <footer class="synergy-footer-demo">
   <nav class="footer-content" aria-label="Footer navigation">
-    <ul class="syn-link-list syn-link-list--medium syn-link-list--horizontal">
+    <ul class="syn-link-list syn-link-list--small syn-link-list--horizontal">
       <li>
         <a
-          class="syn-link syn-link--medium syn-link--quiet"
+          class="syn-link syn-link--small syn-link--quiet"
           href="https://www.sick.com/imprint"
         >
           Imprint
@@ -46,7 +46,7 @@
       </li>
       <li>
         <a
-          class="syn-link syn-link--medium syn-link--quiet"
+          class="syn-link syn-link--small syn-link--quiet"
           href="https://www.sick.com/tac"
         >
           Terms and conditions
@@ -54,7 +54,7 @@
       </li>
       <li>
         <a
-          class="syn-link syn-link--medium syn-link--quiet"
+          class="syn-link syn-link--small syn-link--quiet"
           href="https://www.sick.com/terms-of-use"
         >
           Terms of use
@@ -62,7 +62,7 @@
       </li>
       <li>
         <a
-          class="syn-link syn-link--medium syn-link--quiet"
+          class="syn-link syn-link--small syn-link--quiet"
           href="https://www.sick.com/dataprotection"
         >
           Privacy Policy
@@ -231,11 +231,11 @@
     <footer class="synergy-footer-demo">
       <nav class="footer-content" aria-label="Footer navigation">
         <ul
-          class="syn-link-list syn-link-list--medium syn-link-list--horizontal"
+          class="syn-link-list syn-link-list--small syn-link-list--horizontal"
         >
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/imprint"
             >
               Imprint
@@ -243,7 +243,7 @@
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/tac"
             >
               Terms and conditions
@@ -251,7 +251,7 @@
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/terms-of-use"
             >
               Terms of use
@@ -259,7 +259,7 @@
           </li>
           <li>
             <a
-              class="syn-link syn-link--medium syn-link--quiet"
+              class="syn-link syn-link--small syn-link--quiet"
               href="https://www.sick.com/dataprotection"
             >
               Privacy Policy

@@ -14,7 +14,7 @@ import {
 } from '@synergy-design-system/demo-utilities';
 
 // Load fonts
-import '@synergy-design-system/demo-utilities/styles/font.css';
+import '@synergy-design-system/fonts';
 
 import '@synergy-design-system/tokens/themes/sick2025_dark.css';
 import '@synergy-design-system/tokens/themes/sick2025_light.css';

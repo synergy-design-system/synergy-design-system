@@ -15,6 +15,7 @@
     "@storybook/web-components-vite": "^9.1.10",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/fonts": "workspace:*",
     "@synergy-design-system/react": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",

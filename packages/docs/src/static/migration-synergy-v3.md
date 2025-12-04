@@ -409,9 +409,8 @@ For the quickest setup, load the fonts directly from the SICK CDN:
   font-family: "SICK Intl";
   font-style: normal;
   font-weight: 400;
-  src:
-    url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Regular.woff2")
-      format("woff2");
+  src: url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Regular.woff2")
+    format("woff2");
 }
 
 /* Semi Bold */
@@ -420,9 +419,8 @@ For the quickest setup, load the fonts directly from the SICK CDN:
   font-family: "SICK Intl";
   font-style: normal;
   font-weight: 600;
-  src:
-    url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Semibold.woff2")
-      format("woff2");
+  src: url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Semibold.woff2")
+    format("woff2");
 }
 ```
 

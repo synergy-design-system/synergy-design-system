@@ -215,9 +215,7 @@ Or add to your `angular.json` file:
       "architect": {
         "build": {
           "options": {
-            "styles": [
-              "@synergy-design-system/fonts/src/sick-intl/font.css"
-            ]
+            "styles": ["@synergy-design-system/fonts/src/sick-intl/font.css"]
           }
         }
       }
@@ -235,9 +233,8 @@ Or add to your `angular.json` file:
   font-family: "SICK Intl";
   font-style: normal;
   font-weight: 400;
-  src:
-    url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Regular.woff2")
-      format("woff2");
+  src: url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Regular.woff2")
+    format("woff2");
 }
 
 /* Semi Bold */
@@ -246,9 +243,8 @@ Or add to your `angular.json` file:
   font-family: "SICK Intl";
   font-style: normal;
   font-weight: 600;
-  src:
-    url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Semibold.woff2")
-      format("woff2");
+  src: url("https://www.sick.com/media/fonts/sickintl-v2/SICKIntl-Semibold.woff2")
+    format("woff2");
 }
 ```
 

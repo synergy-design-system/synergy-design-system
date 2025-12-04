@@ -226,24 +226,27 @@ export default {
     },
 
     // Since these changes from shoelace (https://github.com/shoelace-style/shoelace/pull/2255), where they removed the @property from "value" and changed the "defaultValue" and "value" handling internally
+    // With the changed combobox because of #627, we have also to adjust the custom-elements-manifest here.
     // The custom-elements.json generation needs to be updated, so the framework wrappers are created correctly again and the properties table of storybook documentation is correct.
     {
       name: 'synergy-value-defaultValue-fix',
       packageLinkPhase({ customElementsManifest }){
-        const selectModule = customElementsManifest?.modules?.find(mod =>  mod.path.endsWith('select.js')).declarations[0];
-        const valueMember = selectModule.members.find(declaration => declaration.name === 'value');
-        const defaultValueAttribute = selectModule.attributes.find(attribute => attribute.fieldName === 'defaultValue');
-        
-        // Create an attribute entry for "value" again, as it was before the changes
-        const valueAttribue = Object.assign({}, defaultValueAttribute);
-        valueAttribue.fieldName = valueMember.name;
-        valueAttribue.name = valueMember.name;
-        valueAttribue.description = valueMember.description;
-        selectModule.attributes.push(valueAttribue);
+        ['combobox', 'select'].forEach(component => {
+          const module = customElementsManifest?.modules?.find(mod =>  mod.path.endsWith(`${component}.js`)).declarations[0];
+          const valueMember = module.members.find(declaration => declaration.name === 'value');
+          const defaultValueAttribute = module.attributes.find(attribute => attribute.fieldName === 'defaultValue');
 
-        // Remove the defaultValue from attributes to have the same state as before the shoelace changes
-        const defaultValueIndex = selectModule.attributes.indexOf(defaultValueAttribute);
-        selectModule.attributes.splice(defaultValueIndex, 1);
+          // Create an attribute entry for "value"
+          const valueAttribue = Object.assign({}, defaultValueAttribute);
+          valueAttribue.fieldName = valueMember.name;
+          valueAttribue.name = valueMember.name;
+          valueAttribue.description = valueMember.description;
+          module.attributes.push(valueAttribue);
+
+          // Remove the defaultValue from attributes to have the same state as before the shoelace changes
+          const defaultValueIndex = module.attributes.indexOf(defaultValueAttribute);
+          module.attributes.splice(defaultValueIndex, 1);
+        });
       },
     },
 

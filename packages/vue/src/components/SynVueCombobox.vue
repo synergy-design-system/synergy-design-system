@@ -96,11 +96,6 @@ const props = defineProps<{
   name?: SynCombobox['name'];
 
   /**
-   * The current value of the combobox, submitted as a name/value pair with form data.
-   */
-  value?: SynCombobox['value'];
-
-  /**
    * The combobox's size.
    */
   size?: SynCombobox['size'];
@@ -218,6 +213,15 @@ is the current tag's index.
 the specified value.
  */
   getTag?: SynCombobox['getTag'];
+
+  /**
+* The current value of the combobox, submitted as a name/value pair with form data.
+* When `multiple` is enabled, the
+value attribute will be a  '|'-delimited list of values based on the options selected, and the value property will
+be an array.
+* **For this reason, values must not contain spaces.**
+ */
+  value?: SynCombobox['value'];
 
   /**
    * Support for two way data binding

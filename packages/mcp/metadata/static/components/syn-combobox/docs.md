@@ -3,7 +3,7 @@
 The combobox suggests items based on the user input.
 
 ```html
-<syn-combobox size="medium" placement="bottom" form="">
+<syn-combobox max-options-visible="3" size="medium" placement="bottom" form="">
   <syn-option
     role="option"
     aria-selected="false"
@@ -230,7 +230,7 @@ Add the clearable attribute to add a clear button when the combobox has content.
   <syn-option
     value="Green"
     role="option"
-    aria-selected="false"
+    aria-selected="true"
     aria-disabled="false"
     id="syn-combobox-option-3"
     >Green</syn-option
@@ -435,6 +435,140 @@ Use the disabled attribute to disable a combobox.
     aria-disabled="false"
     id="syn-combobox-option-12"
     >Yellow</syn-option
+  >
+</syn-combobox>
+```
+
+---
+
+## Multiple
+
+To allow multiple options to be selected, use the multiple attribute. It’s a good practice to use clearable when this option is enabled. To set multiple values at once, set value to a space-delimited list of values. Use the max-options-visible attribute to define the maximum number of selected options that will be visible. After the maximum, "+n" will be shown to indicate the number of additional items that are selected.
+
+```html
+<syn-combobox
+  value="option-1|option-2|option-3"
+  multiple=""
+  clearable=""
+  max-options-visible="2"
+  size="medium"
+  placement="bottom"
+  form=""
+>
+  <syn-option
+    value="option-1"
+    role="option"
+    aria-selected="true"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Option 1</syn-option
+  >
+  <syn-option
+    value="option-2"
+    role="option"
+    aria-selected="true"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Option 2</syn-option
+  >
+  <syn-option
+    value="option-3"
+    role="option"
+    aria-selected="true"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Option 3</syn-option
+  >
+  <syn-option
+    value="option-4"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Option 4</syn-option
+  >
+  <syn-option
+    value="option-5"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Option 5</syn-option
+  >
+  <syn-option
+    value="option-6"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Option 6</syn-option
+  >
+</syn-combobox>
+```
+
+---
+
+## Setting Initial Value
+
+Use the value attribute to set the initial selection.When using multiple, the value attribute uses space-delimited values to select more than one option. Because of this, <syn-option> values cannot contain spaces. If you’re accessing the value property through Javascript, it will be an array.
+
+```html
+<syn-combobox
+  value="option-1|option-2|option-3"
+  multiple=""
+  clearable=""
+  max-options-visible="2"
+  size="medium"
+  placement="bottom"
+  form=""
+>
+  <syn-option
+    value="option-1"
+    role="option"
+    aria-selected="true"
+    aria-disabled="false"
+    id="syn-combobox-option-0"
+    >Option 1</syn-option
+  >
+  <syn-option
+    value="option-2"
+    role="option"
+    aria-selected="true"
+    aria-disabled="false"
+    id="syn-combobox-option-1"
+    >Option 2</syn-option
+  >
+  <syn-option
+    value="option-3"
+    role="option"
+    aria-selected="true"
+    aria-disabled="false"
+    id="syn-combobox-option-2"
+    >Option 3</syn-option
+  >
+  <syn-option
+    value="option-4"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-3"
+    >Option 4</syn-option
+  >
+  <syn-option
+    value="option-5"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-4"
+    >Option 5</syn-option
+  >
+  <syn-option
+    value="option-6"
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    id="syn-combobox-option-5"
+    >Option 6</syn-option
   >
 </syn-combobox>
 ```

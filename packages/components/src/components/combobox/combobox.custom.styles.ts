@@ -107,5 +107,16 @@ export default css`
     white-space: nowrap;
   }
 
+  /* 
+  This class is needed to be able to hide the options as long as the popup close animation is running.
+  As otherwise the listbox would flicker because the options are shown again when the value is reset to empty string.
+  */
+  .options__hide {
+    /* We need to set the slot to something different than display: contents to be able to hide it. Also it should not take any space so we remove the height */
+    display: block;
+    height: 0;
+    opacity: 0;
+  }
+
   ${sharedOptionSize}
 `;

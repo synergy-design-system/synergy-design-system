@@ -75,7 +75,7 @@ export class Combobox implements OnInit {
   cb632Value: string = '';
 
   setcb632Value(e: SynChangeEvent) {
-    this.cb632Value = (e.target as SynCombobox).value;
+    this.cb632Value = (e.target as SynCombobox).value as string;
   };
 
   ngOnInit(): void {

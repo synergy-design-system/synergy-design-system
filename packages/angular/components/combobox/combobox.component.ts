@@ -176,17 +176,6 @@ export class SynComboboxComponent {
   }
 
   /**
-   * The current value of the combobox, submitted as a name/value pair with form data.
-   */
-  @Input()
-  set value(v: SynCombobox['value']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
-  }
-  get value(): SynCombobox['value'] {
-    return this.nativeElement.value;
-  }
-
-  /**
    * The combobox's size.
    */
   @Input()
@@ -427,6 +416,21 @@ the specified value.
   }
   get getTag(): SynCombobox['getTag'] {
     return this.nativeElement.getTag;
+  }
+
+  /**
+* The current value of the combobox, submitted as a name/value pair with form data.
+* When `multiple` is enabled, the
+value attribute will be a  '|'-delimited list of values based on the options selected, and the value property will
+be an array.
+* **For this reason, values must not contain spaces.**
+ */
+  @Input()
+  set value(v: SynCombobox['value']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
+  }
+  get value(): SynCombobox['value'] {
+    return this.nativeElement.value;
   }
 
   /**

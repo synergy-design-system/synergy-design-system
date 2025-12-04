@@ -18,7 +18,9 @@ npm install --save @synergy-design-system/assets
 
 ### Usage
 
-All assets are provided as svg's.
+#### Images
+
+All images are provided as svg's.
 
 The recommended way of using the icons is using the [<syn-icon> Synergy component](https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs). Here you will also get more information about how setting up the assets package on bundlers like vite.
 
@@ -26,7 +28,7 @@ The recommended way of using the icons is using the [<syn-icon> Synergy componen
 <syn-icon name="warning"></syn-icon>
 ```
 
-But the assets could also be used like following:
+Images could also be used directly:
 
 ```html
 <img src="assets/icons/warning.svg" />

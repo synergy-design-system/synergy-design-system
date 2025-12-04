@@ -13,7 +13,7 @@ export default defineConfig({
         {
           src: 'node_modules/@synergy-design-system/assets/src/icons/*',
           dest: './assets/icons/',
-        },
+        }
       ]
     }),
     react(),

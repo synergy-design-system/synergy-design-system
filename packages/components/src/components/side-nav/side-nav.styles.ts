@@ -32,9 +32,6 @@ export default css`
     position: absolute;
   }
 
-
-
-
   /****
    *
    * variant="default"
@@ -50,9 +47,6 @@ export default css`
   .side-nav--fix .side-nav__drawer::part(overlay){
     display: block;
   }
-
-
-
 
   /****
    *
@@ -88,9 +82,6 @@ export default css`
     overflow: hidden;
   }
 
-
-
-
   /****
    *
    * variant="sticky"
@@ -114,7 +105,6 @@ export default css`
     --size: var(--side-nav-rail-width);
   }
 
-
   /*
    * For touch devices the content should not shrink in a flex container
    */ 
@@ -132,13 +122,6 @@ export default css`
     display: block;
   }
 
-
-  /* Hide the scrollbars in closed variant="sticky" */ 
-  :not(.side-nav--open).side-nav--sticky .side-nav__drawer::part(body){
-    overflow: hidden;
-  }
-
-
   .side-nav__toggle-icon > syn-icon {
     font-size: var(--syn-font-size-x-large);
     min-width: var(--syn-font-size-x-large);
@@ -151,7 +134,6 @@ export default css`
    ****/
   .side-nav__footer-divider{
     --spacing: 0;
-    --color: var(--syn-color-neutral-300);
   }
 
   :not(.side-nav--open).side-nav--rail ::slotted(syn-nav-item){

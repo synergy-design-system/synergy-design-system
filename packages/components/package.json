@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "2.47.1",
+  "version": "2.68.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -45,7 +45,7 @@
     "figma-export:icons-2025-outline": "pnpm exec figma connect publish -c ./code-connect/figma.config.icons.2025-outline.json --batch-size 100",
     "report-bundle-size": "pnpm exec size-limit --json",
     "build": "node scripts/build.js",
-    "test": "web-test-runner --group default",
+    "test": "web-test-runner --group default --config ./web-test-runner.synergy.config.js",
     "test.watch": "pnpm test --watch",
     "vendor": "node scripts/vendorism.js",
     "vendor.get": "node scripts/vendorism.js -g",
@@ -55,12 +55,7 @@
     "lint:html": "html-validate -c ./code-quality/html-validate/.htmlvalidate.js ./demos",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
-    "format.eslint": "pnpm lint:js --fix",
-    "release": "semantic-release  --tagFormat 'components/${version}' -e semantic-release-monorepo",
-    "release.angular": "git add ../angular && git commit -m \"chore(release/angular) via component release [skip actions]\"",
-    "release.react": "git add ../react && git commit -m \"chore(release/react) via component release [skip actions]\"",
-    "release.vue": "git add ../vue && git commit -m \"chore(release/vue) via component release [skip actions]\"",
-    "release.dry": "semantic-release --dry-run --tagFormat 'components/${version}' -e semantic-release-monorepo"
+    "format.eslint": "pnpm lint:js --fix"
   },
   "type": "module",
   "types": "./dist/synergy.d.ts",
@@ -76,13 +71,10 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@custom-elements-manifest/analyzer": "^0.10.4",
-    "@figma/code-connect": "^1.3.4",
+    "@custom-elements-manifest/analyzer": "^0.10.10",
+    "@figma/code-connect": "^1.3.6",
     "@open-wc/testing": "^4.0.0",
-    "@playwright/test": "^1.53.0",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
+    "@playwright/test": "^1.56.0",
     "@size-limit/esbuild": "^11.2.0",
     "@size-limit/file": "^11.2.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
@@ -96,109 +88,50 @@
     "@web/test-runner": "^0.20.2",
     "@web/test-runner-commands": "^0.9.0",
     "@web/test-runner-playwright": "^0.11.1",
-    "chalk": "^5.4.1",
+    "chalk": "^5.6.2",
     "change-case": "^5.4.4",
     "command-line-args": "^6.0.1",
     "comment-parser": "^1.4.1",
     "custom-element-vs-code-integration": "^1.5.0",
-    "del": "^8.0.0",
-    "esbuild": "^0.25.5",
+    "del": "^8.0.1",
+    "esbuild": "^0.25.10",
     "esbuild-plugin-replace": "^1.4.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
-    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-jest": "^28.14.0",
     "eslint-plugin-lit": "^1.15.0",
     "eslint-plugin-lit-a11y": "^4.1.4",
     "eslint-plugin-playwright": "^1.8.3",
     "eslint-plugin-wc": "^2.2.1",
     "globby": "^14.1.0",
-    "html-validate": "^9.7.0",
+    "html-validate": "^9.7.1",
     "jsdom": "^26.1.0",
     "ora": "^8.2.0",
     "postcss": "^8.5.6",
     "postcss-header": "^3.0.3",
     "postcss-import": "^16.1.1",
-    "prettier": "^3.5.3",
+    "prettier": "^3.6.2",
     "remark-parse": "^11.0.0",
-    "semantic-release": "^19.0.5",
-    "semantic-release-monorepo": "7.0.5",
     "sinon": "^21.0.0",
     "size-limit": "^11.2.0",
-    "stylelint": "^16.20.0",
+    "stylelint": "^16.25.0",
     "typescript": "~5.8.3",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
     "user-agent-data-types": "^0.4.2",
     "vendorism": "^5.0.0"
   },
-  "release": {
-    "branches": [
-      "main",
-      {
-        "name": "beta",
-        "prerelease": true
-      },
-      {
-        "name": "alpha",
-        "prerelease": true
-      }
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
-      ],
-      [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "pnpm build && pnpm release.angular && pnpm release.react && pnpm release.vue"
-        }
-      ],
-      [
-        "@semantic-release/git",
-        {
-          "message": "chore(release/components): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": [
-            "CHANGELOG.md",
-            "package.json"
-          ]
-        }
-      ],
-      [
-        "@semantic-release/github",
-        {
-          "successComment": false
-        }
-      ]
-    ],
-    "monorepo": {
-      "dependencies": [
-        "packages/vue",
-        "packages/react",
-        "packages/angular"
-      ]
-    }
-  },
   "dependencies": {
     "@floating-ui/dom": "^1.7.4",
     "@shoelace-style/animations": "^1.2.0",
     "@shoelace-style/localize": "^3.2.1",
     "composed-offset-position": "^0.0.6",
-    "lit": "^3.3.0"
+    "lit": "^3.3.1"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:^"
-  }
+  },
+  "customElements": "dist/custom-elements.json"
 }

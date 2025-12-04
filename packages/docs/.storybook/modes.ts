@@ -28,3 +28,8 @@ export const Chromatic_Modes_All = {
   ...Chromatic_Modes_Sick_2018,
   ...Chromatic_Modes_Sick_2025,
 };
+
+export const SICK_2018_LIGHT_CLASS = 'syn-sick2018-light';
+export const SICK_2018_DARK_CLASS = 'syn-sick2018-dark';
+export const SICK_2025_LIGHT_CLASS = 'syn-sick2025-light';
+export const SICK_2025_DARK_CLASS = 'syn-sick2025-dark';

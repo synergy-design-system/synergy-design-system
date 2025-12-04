@@ -7,6 +7,7 @@ import {
   addFallbackFonts,
   addMissingQuotesForStrings,
   convertLetterSpacingValue,
+  fixFigmaBackgroundBlur,
 } from './transforms/index.js';
 import { addMissingTokens } from './add-missing-tokens.js';
 import { OUTPUT_DIR } from './config.js';
@@ -17,6 +18,7 @@ await register(StyleDictionary);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addMissingQuotesForStrings);
 StyleDictionary.registerTransform(convertLetterSpacingValue);
+StyleDictionary.registerTransform(fixFigmaBackgroundBlur);
 StyleDictionary.registerFormat(cssVariableFormatter);
 
 const config = {
@@ -26,9 +28,14 @@ const config = {
 
 const { author, name, version } = getPackageInformation();
 
+/**
+ * @type {import('style-dictionary/types').LogConfig['verbosity']}
+ */
+const verbosity = 'verbose';
+
 const dictionary = new StyleDictionary({
   log: {
-    verbosity: 'verbose',
+    verbosity,
   },
 });
 
@@ -60,6 +67,7 @@ const cssRuns = themes.map(async ({ mode, theme }) => {
             fileHeader: 'syn/header',
             prefix: config.prefix,
             themeInformation,
+            verbosity,
           },
         }],
         prefix: config.prefix,
@@ -81,6 +89,7 @@ const cssRuns = themes.map(async ({ mode, theme }) => {
           'syn/add-fallback-fonts',
           'syn/add-missing-quotes-for-strings',
           'syn/convert-letter-spacing-to-normal',
+          'syn/fix-figma-background-blur',
         ],
       },
     },

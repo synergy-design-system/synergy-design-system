@@ -31,7 +31,7 @@ Use the logo slot to change the app logo. Usually this is only needed in whitela
       width: 32px;
       height: 32px;
       border-radius: 32px;
-      background: var(--syn-color-primary-500);
+      background: var(--syn-color-neutral-1000);
       display: block;
     "
     slot="logo"
@@ -48,7 +48,7 @@ The focus event gives the user feedback that a link in the logo has been focused
 ```html
 <style>
   .custom-header-link-with-logo {
-    color: var(--syn-color-primary-600) !important;
+    color: var(--syn-logo-color) !important;
   }
   .custom-header-link-with-logo syn-icon {
     display: block;

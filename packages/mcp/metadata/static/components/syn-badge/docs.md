@@ -16,9 +16,9 @@ Set the variant attribute to change the badge’s variant.
 <div style="display: flex; gap: var(--syn-spacing-large)">
   <syn-badge variant="primary">primary</syn-badge>
   <syn-badge variant="success">success</syn-badge>
-  <syn-badge variant="neutral">neutral</syn-badge>
   <syn-badge variant="warning">warning</syn-badge>
   <syn-badge variant="danger">danger</syn-badge>
+  <syn-badge variant="neutral">neutral</syn-badge>
 </div>
 ```
 
@@ -35,22 +35,12 @@ One of the most common use cases for badges is attaching them to buttons. DEV: T
     <syn-badge pill="" variant="primary">30</syn-badge>
   </syn-button>
 
-  <syn-button
-    style="margin-inline-start: 1rem"
-    title=""
-    variant="outline"
-    size="medium"
-  >
+  <syn-button title="" variant="outline" size="medium">
     Warnings
     <syn-badge variant="warning" pill="">8</syn-badge>
   </syn-button>
 
-  <syn-button
-    style="margin-inline-start: 1rem"
-    title=""
-    variant="outline"
-    size="medium"
-  >
+  <syn-button title="" variant="outline" size="medium">
     Errors
     <syn-badge variant="danger" pill="">6</syn-badge>
   </syn-button>

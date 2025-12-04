@@ -7,6 +7,17 @@
   #form
   ngNativeValidate
 >
+  @if (formStatus.type !== 'warning') {
+    <syn-alert
+      class="form-validation-message"
+      [open]="true"
+      [variant]="formStatus.type"
+    >
+      <syn-icon slot="icon" [name]="formStatus.icon" />
+      {{ formStatus.message }}
+    </syn-alert>
+  }
+
   <!-- PersonalInformation -->
   <demo-fieldset legend="Personal Information">
 

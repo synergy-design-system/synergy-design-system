@@ -10,6 +10,7 @@ import componentsManifest from 'virtual:vite-plugin-cem/custom-elements-manifest
 // @ts-expect-error This is a virtual import, which is not recognized by TypeScript
 import stylesManifest from 'virtual:vite-plugin-synergy-styles/custom-elements-manifest';
 
+import '@synergy-design-system/fonts';
 import '@synergy-design-system/tokens/themes/sick2025_dark.css';
 import '@synergy-design-system/tokens/themes/sick2025_light.css';
 import '@synergy-design-system/tokens/themes/sick2018_dark.css';
@@ -19,11 +20,12 @@ import '@synergy-design-system/styles';
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
-import { LIGHT_THEME, DARK_THEME, SICK_2025_DARK, SICK_2025_LIGHT, Chromatic_Modes_Sick_2018 } from './modes.js';
+import { LIGHT_THEME, DARK_THEME, SICK_2025_DARK, SICK_2025_LIGHT, Chromatic_Modes_Sick_2018, SICK_2018_DARK_CLASS, SICK_2018_LIGHT_CLASS, SICK_2025_DARK_CLASS, SICK_2025_LIGHT_CLASS } from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { themeSwitchIcons } from '../src/decorators/ThemeSwitchIcons.js';
 import { themeNotSupportedHint } from '../src/decorators/ThemeNotSupportedHint.js';
+import docsPreviewIframeThemer from '../src/docs-preview-iframe-themer/index.js';
 
 // Filter out all private members and readonly properties from the manifest
 const filteredManifest = (manifest: Package): Package => ({
@@ -63,10 +65,10 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
   defaultTheme: LIGHT_THEME,
   parentSelector: 'body',
   themes: {
-    [DARK_THEME]: 'syn-sick2018-dark',
-    [LIGHT_THEME]: 'syn-sick2018-light',
-    [SICK_2025_DARK]: 'syn-sick2025-dark',
-    [SICK_2025_LIGHT]: 'syn-sick2025-light',
+    [DARK_THEME]: SICK_2018_DARK_CLASS,
+    [LIGHT_THEME]: SICK_2018_LIGHT_CLASS,
+    [SICK_2025_DARK]: SICK_2025_DARK_CLASS,
+    [SICK_2025_LIGHT]: SICK_2025_LIGHT_CLASS,
   },
 });
 
@@ -81,8 +83,11 @@ const preview: Preview = {
   parameters: {
     backgrounds: {
       options: {
+        'page': { name: 'page', value: 'var(--syn-page-background)' },
+        'panel': { name: 'panel', value: 'var(--syn-panel-background-color)' },
         'neutral-0': { name: 'neutral-0', value: 'var(--syn-color-neutral-0)' },
         'neutral-50': { name: 'neutral-50', value: 'var(--syn-color-neutral-50)' },
+        'neutral-100': { name: 'neutral-100', value: 'var(--syn-color-neutral-100)' },
         'primary-50': { name: 'primary-50', value: 'var(--syn-color-primary-50)' },
       },
     },
@@ -105,13 +110,23 @@ const preview: Preview = {
       stories: { inline: false },
       toc: {
         headingSelector: 'h2, h3',
-        ignoreSelector: '.toc-ignore h2, .toc-ignore h3, .docs-story h2, .docs-story h3',
+        ignoreSelector: [
+          '.toc-ignore h2',
+          '.toc-ignore h3',
+          '.docs-story h2',
+          '.docs-story h3',
+          '.synergy-changelog h3',
+          '.synergy-changelog h4',
+          '.synergy-changelog h5',
+        ].join(', '),
       },
       source: {
         format: 'html',
         transform: async (source: string, storyContext: StoryContext) => {
           const prettier = await import('prettier/standalone');
           const htmlParser = await import('prettier/parser-html');
+          // TODO: this function for theming iframes can be removed as soon as Storybook supports theming docs iframes natively
+          docsPreviewIframeThemer(storyContext);
           const resultWithCodepen = docsCodepenEnhancer(source, storyContext);
           try {
             return prettier.format(resultWithCodepen, {

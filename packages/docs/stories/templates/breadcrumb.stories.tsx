@@ -18,6 +18,7 @@ import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const createSharedStyles = () => html`
   <style>
@@ -52,6 +53,7 @@ const meta: Meta = {
     chromatic: {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
+      modes: Chromatic_Modes_All,
     },
     design: generateFigmaPluginObject('23524-12912'),
     docs: {
@@ -68,7 +70,7 @@ const meta: Meta = {
       ),
     },
   },
-  tags: ['Navigation', 'SICK2018'],
+  tags: ['Navigation', 'SICK2018', 'SICK2025'],
   title: 'Templates/Breadcrumb',
 };
 export default meta;
@@ -137,6 +139,10 @@ export const BreadcrumbResponsive = {
       @container (min-width: 480px) {
         /* Hide the back icon for the medium and large size */
         #breadcrumb-responsive .back-icon {
+          display: none;
+        }
+        /* Remove the margin of the prefix slot */
+        #breadcrumb-responsive syn-breadcrumb-item:has(> .back-icon)::part(prefix) {
           display: none;
         }
       }

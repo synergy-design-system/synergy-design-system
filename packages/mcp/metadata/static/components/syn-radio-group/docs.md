@@ -74,6 +74,51 @@ Use the label attribute to give the radio-group an accessible label. For labels 
 
 ---
 
+## Checked
+
+To set the initial value and checked state, use the value attribute on the containing radio group.
+
+```html
+<syn-radio-group
+  label="This is a label"
+  help-text="This is checked"
+  name="a"
+  value="2"
+  size="medium"
+  form=""
+>
+  <syn-radio
+    value="1"
+    role="radio"
+    tabindex="-1"
+    aria-disabled="false"
+    aria-checked="false"
+    size="medium"
+    >Option</syn-radio
+  >
+  <syn-radio
+    value="2"
+    role="radio"
+    tabindex="0"
+    aria-disabled="false"
+    aria-checked="true"
+    size="medium"
+    >Option</syn-radio
+  >
+  <syn-radio
+    value="3"
+    role="radio"
+    tabindex="-1"
+    aria-disabled="false"
+    aria-checked="false"
+    size="medium"
+    >Option</syn-radio
+  >
+</syn-radio-group>
+```
+
+---
+
 ## Help Text
 
 Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.
@@ -81,7 +126,7 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
 ```html
 <syn-radio-group
   label="This is a label"
-  help-text="This is the help-text"
+  help-text="Choose the most appropriate option."
   name="a"
   value=""
   size="medium"
@@ -210,45 +255,75 @@ Radios and radio buttons can be disabled by adding the disabled attribute to the
 
 ---
 
-## Checked
+## Sizes
+
+The size of Radios and Radio Buttons will be determined by the Radio Group’s size attribute.
 
 ```html
-<syn-radio-group
-  label="This is a label"
-  help-text="This is checked"
-  name="a"
-  value="2"
-  size="medium"
-  form=""
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-radio
-    value="1"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="2"
-    role="radio"
-    tabindex="0"
-    aria-disabled="false"
-    aria-checked="true"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="3"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-</syn-radio-group>
+  <syn-radio-group label="Small size" size="small" value="" form="">
+    <syn-radio
+      value="1"
+      role="radio"
+      tabindex="0"
+      aria-disabled="false"
+      aria-checked="false"
+      size="small"
+      >Option</syn-radio
+    >
+    <syn-radio
+      value="2"
+      role="radio"
+      tabindex="-1"
+      aria-disabled="false"
+      aria-checked="false"
+      size="small"
+      >Option</syn-radio
+    >
+  </syn-radio-group>
+  <syn-radio-group label="Medium size" size="medium" value="" form="">
+    <syn-radio
+      value="1"
+      role="radio"
+      tabindex="0"
+      aria-disabled="false"
+      aria-checked="false"
+      size="medium"
+      >Option</syn-radio
+    >
+    <syn-radio
+      value="2"
+      role="radio"
+      tabindex="-1"
+      aria-disabled="false"
+      aria-checked="false"
+      size="medium"
+      >Option</syn-radio
+    >
+  </syn-radio-group>
+  <syn-radio-group label="Large size" size="large" value="" form="">
+    <syn-radio
+      value="1"
+      role="radio"
+      tabindex="0"
+      aria-disabled="false"
+      aria-checked="false"
+      size="large"
+      >Option</syn-radio
+    >
+    <syn-radio
+      value="2"
+      role="radio"
+      tabindex="-1"
+      aria-disabled="false"
+      aria-checked="false"
+      size="large"
+      >Option</syn-radio
+    >
+  </syn-radio-group>
+</div>
 ```
 
 ---
@@ -304,7 +379,7 @@ The invalid status is used to warn the user that the Radio Group is invalid. For
   .custom-validity {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--syn-spacing-large);
   }
   syn-button {
     align-self: flex-start;

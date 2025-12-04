@@ -5,7 +5,6 @@ import {
   createRunFormat,
   createRunPrepare,
   getManifestData,
-  runAdjustPackageVersion,
 } from './shared.js';
 
 const runFormat = createRunFormat('Angular: Running code formatter...');
@@ -32,7 +31,6 @@ export const runCreateAngularWrappers = async ({
   const distDir = path.join(angularPackageDir, './dist');
   const indexFile = path.join(outDir, 'index.ts');
 
-  await runAdjustPackageVersion('Angular: Adjusting angular package.json version field...')(componentPackageDir, angularPackageDir);
   await createRunPrepare('Angular: Cleaning up artifacts...')(distDir, modulesDir, componentsDir, directivesDir);
   // Remove old index file
   await deleteAsync(indexFile, { force: true });

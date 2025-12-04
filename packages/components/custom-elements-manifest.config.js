@@ -30,6 +30,11 @@ function replace(string, terms) {
 }
 
 export default {
+  // @see https://github.com/synergy-design-system/synergy-design-system/pull/1035#discussion_r2429463349
+  // We already added the key to package.json, but our test script will also run cem and will update the key
+  // Unfortunately, there is no way to toggle this to "false" via cli, you can just enable it.
+  packagejson: false,
+
   globs: ['src/components/**/*.component.ts'],
   exclude: ['**/*.styles.ts', '**/*.test.ts'],
   plugins: [

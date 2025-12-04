@@ -31,10 +31,10 @@ import { SynergyValidatorsModule } from '@synergy-design-system/angular/directiv
   standalone: false,
   host: {
     // Overwrite the input event, because we only emit syn-input event
-    '(syn-input)': '$any(this)._handleInput($event.target.value)',
+    '(syn-input)': '$any(this)._handleInput($any($event.target).value)',
     '(blur)': 'onTouched()',
     '(compositionstart)': '$any(this)._compositionStart()',
-    '(compositionend)': '$any(this)._compositionEnd($event.target.value)',
+    '(compositionend)': '$any(this)._compositionEnd($any($event.target).value)',
   },
 })
 export class SynDefaultValueAccessor extends DefaultValueAccessor {}
@@ -52,7 +52,7 @@ export class SynDefaultValueAccessor extends DefaultValueAccessor {}
   standalone: false,
   // Overwrite the change event, because we only emit syn-change event
   host: {
-    '(syn-change)': 'onChange($event.target.checked)',
+    '(syn-change)': 'onChange($any($event.target).checked)',
     '(blur)': 'onTouched()',
   },
 })
@@ -70,7 +70,7 @@ export class SynCheckedValueAccessor extends CheckboxControlValueAccessor {}
   standalone: false,
   // Overwrite the change event, because we only emit syn-change event
   host: {
-    '(syn-change)': 'onChange($event.target.files)',
+    '(syn-change)': 'onChange($any($event.target).files)',
   },
 })
 export class SynFileValueAccessor extends DefaultValueAccessor {}

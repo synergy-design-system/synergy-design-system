@@ -54,3 +54,5 @@ export const selectItemsWithSpace: SelectItem[] = [
   { label: 'Option 2', value: 'Option 2' },
   { label: 'Option 3', value: 'Option 3' },
 ];
+
+export const valueWithSpace = 'Option 2';

@@ -8,6 +8,7 @@
   "cssVariables.lookupFiles": ["packages/tokens/dist/themes/light.css"],
   "eslint.workingDirectories": [
     "packages/_private/eslint-config-syn",
+    "packages/_private/release-utils",
     "packages/_private/react-demo",
     "packages/_private/vanilla-demo",
     "packages/_private/stylelint-config-syn",
@@ -16,6 +17,7 @@
     "packages/assets",
     "packages/components",
     "packages/docs",
+    "packages/fonts",
     "packages/mcp",
     "packages/angular",
     "packages/react",
@@ -89,6 +91,7 @@
     "packages/components/src/components/icon/icon.test.ts": true,
     "packages/components/src/components/icon/icon.ts": true,
     "packages/components/src/components/icon/library.default.ts": true,
+    "packages/components/src/components/icon/library.migration.ts": true,
     "packages/components/src/components/icon/library.system.ts": true,
     "packages/components/src/components/icon/library.ts": true,
     "packages/components/src/components/input/input.component.ts": true,

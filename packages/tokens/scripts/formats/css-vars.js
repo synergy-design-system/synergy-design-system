@@ -18,9 +18,10 @@ export const cssVariableFormatter = {
     const {
       prefix,
       themeInformation,
+      verbosity,
     } = options;
 
-    const { cssSelectors, mode } = themeInformation;
+    const { cssSelectors, mode, theme } = themeInformation;
     const header = await fileHeader({ file });
 
     /**
@@ -54,12 +55,48 @@ export const cssVariableFormatter = {
       return typeof token?.original?.value === 'string' && token.original?.value.includes('{');
     };
 
-    const BACKWARTS_COMPATIBLE_VARIABLES = [
+    const BACKWARDS_COMPATIBLE_VARIABLES = [
       {
         name: 'syn-tooltip-line-height',
         value: 'var(--syn-line-height-normal)',
       },
     ];
+
+    /**
+     * @type {string[]} List of variables that should be ignored for the brand 2025 theme
+     */
+    const BRAND2025_IGNORE_PATTERNS = [
+      // Unknown component, skipping for now
+      'typography-color-text-quiet',
+      'typography-color-text-quiet-inverted',
+
+      'progress-track-readonly-color',
+
+      'progress-track-readonly-color',
+
+      'input-border-color-active',
+      'input-icon-icon-clearable-color-active',
+      'interactive-background-color-active',
+      // Readonly color are needed later
+      'readonly-border-color',
+      'readonly-indicator-color',
+      'readonly-opacity-color',
+      'range-color-readonly',
+
+      // Font Style tokens are needed later
+      'body-2x-small-regular',
+      'body-2x-small-semibold',
+      'body-2x-small-bold',
+      'heading-4x-large',
+
+      // Button tokens are needed later
+      'button-outline-color-text',
+    ].map(v => `${prefix}${v}`);
+
+    /**
+     * @type {string[]} List of already ignored variables (to not spam the console)
+     */
+    const alreadyIgnoredList = [];
 
     /**
      * Converts a design tokens value to a css var
@@ -68,7 +105,7 @@ export const cssVariableFormatter = {
      */
     const convertOriginalToCssVar = (token) => {
       // To be backwards compatible and do not need a major version, we need to convert some tokens to their old value
-      const compatibilityVariable = BACKWARTS_COMPATIBLE_VARIABLES.find(v => v.name === token.name);
+      const compatibilityVariable = BACKWARDS_COMPATIBLE_VARIABLES.find(v => v.name === token.name);
       if (compatibilityVariable) {
         token.value = compatibilityVariable.value;
         return token;
@@ -98,11 +135,34 @@ export const cssVariableFormatter = {
         ) {
           convertOriginalToCssVarRecursive(dict[key]);
         } else {
+          const name = dict[key]?.name;
+          if (name && BRAND2025_IGNORE_PATTERNS.includes(name)) {
+            alreadyIgnoredList.push(name);
+            delete dict[key];
+            return;
+          }
           dict[key] = convertOriginalToCssVar(dict[key]);
         }
       });
     };
     convertOriginalToCssVarRecursive(dictionary);
+
+    if (verbosity !== 'silent' && alreadyIgnoredList.length > 0) {
+      const finalOutputList = Array.from(
+        new Set(
+          alreadyIgnoredList
+            .sort((a, b) => a.localeCompare(b)),
+        ),
+      )
+        .map(name => `    -❔ ${name}`)
+        .join('\n');
+      console.warn(`
+⚠️  Some variables where ignored for ${theme}.
+⚠️  If you want them to appear, please remove them from BRAND2025_IGNORE_PATTERNS!
+⚠️  Ignored variables:
+${finalOutputList}
+`.trimStart());
+    }
 
     return `
 ${header}${cssSelectors.join(', ')} {

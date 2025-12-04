@@ -177,6 +177,71 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
+  // #1056: Trigger parent default slot change on delimiter change
+  content = addSectionsAfter([
+    [
+      'this.value = value;',
+      `// #1056 We need to trigger the parent component's default slot change, so it can update its value selection
+    this.triggerParentDefaultSlotChange();`,
+      {
+        tabsBeforeInsertion: 2,
+      },
+    ],
+  ], content);
+  content = addSectionsBefore([
+    [
+      'render() {',
+      `private triggerParentDefaultSlotChange() {
+    customElements.whenDefined('syn-combobox').then(() => {
+      const controller = this.closest('syn-combobox');
+      if (controller) {
+        controller.handleDefaultSlotChange();
+      }
+    });
+    customElements.whenDefined('syn-select').then(() => {
+      const controller = this.closest('syn-select');
+      if (controller) {
+        controller.handleDefaultSlotChange();
+      }
+    });
+  }`,
+      {
+        newlinesAfterInsertion: 2,
+        tabsAfterInsertion: 1,
+      },
+    ],
+  ], content);
+
+  content = replaceSection([
+    `private handleDefaultSlotChange() {
+    if (this.isInitialized) {
+      // When the label changes, tell the controller to update
+      customElements.whenDefined('syn-combobox').then(() => {
+        const controller = this.closest('syn-combobox');
+        if (controller) {
+          controller.handleDefaultSlotChange();
+        }
+      });
+      customElements.whenDefined('syn-select').then(() => {
+        const controller = this.closest('syn-select');
+        if (controller) {
+          controller.handleDefaultSlotChange();
+        }
+      });
+    } else {
+      this.isInitialized = true;
+    }
+  }`,
+    `private handleDefaultSlotChange() {
+    if (this.isInitialized) {
+      // When the label changes, tell the controller to update
+      this.triggerParentDefaultSlotChange();
+    } else {
+      this.isInitialized = true;
+    }
+  }`,
+  ], content);
+
   return {
     content,
     path,

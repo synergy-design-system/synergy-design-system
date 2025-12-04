@@ -17,7 +17,7 @@ html {
 }
 
 body {
-  background-color: var(--syn-color-neutral-0);
+  background-color: var(--syn-page-background);
   color: var(--syn-typography-color-text);
   font: 16px var(--syn-font-sans);
   -moz-osx-font-smoothing: grayscale;
@@ -28,8 +28,12 @@ body {
 }
 
 /* Special treatment for code preview in docs panel */
+.sbdocs-preview {
+  border: 1px solid var(--syn-panel-border-color);
+}
+
 .docs-story {
-  background: var(--syn-color-neutral-0);
+  background: var(--syn-panel-background-color);
 }
 
 /*
@@ -80,6 +84,23 @@ body {
 
 .sbdocs h6 {
   font-size: 0.875rem;
+}
+
+/* Special overrides for the changelog */
+.synergy-changelog h1 {
+  margin: 0 0 1.5rem !important;
+}
+
+.synergy-changelog h2 {
+  margin: 0 0 1rem;
+}
+
+.synergy-changelog h3 {
+  margin: 0 0 0.75rem;
+}
+
+.synergy-changelog ul p {
+  margin: 0 0 0.25rem !important;
 }
 
 /* Remove the copyright class, so there is no unneeded css in the footer template, which others don't need */

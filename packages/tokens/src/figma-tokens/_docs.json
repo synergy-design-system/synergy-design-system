@@ -581,7 +581,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+          "value": "Add descriptive help text to a checkbox with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       }
@@ -1483,6 +1483,16 @@
       }
     },
     "menu-item": {
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that the Menu Item has been focused by the keyboard interaction from the user.",
+          "type": "text"
+        }
+      },
       "default": {
         "description": {
           "value": "Menu items provide options for the user to pick from in a menu.",
@@ -1894,6 +1904,16 @@
         },
         "description": {
           "value": "The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio is mandatory and nothing has been checked.",
+          "type": "text"
+        }
+      },
+      "checked": {
+        "title": {
+          "value": "Checked",
+          "type": "text"
+        },
+        "description": {
+          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
           "type": "text"
         }
       }
@@ -2825,7 +2845,7 @@
           "type": "text"
         },
         "description": {
-          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+          "value": "To set the initial value and checked state, use the value attribute on the radio element.",
           "type": "text"
         }
       }
@@ -4013,13 +4033,13 @@
           "type": "text"
         }
       },
-      "white-background": {
+      "alternative-background": {
         "title": {
-          "value": "White Background",
+          "value": "Alternative Background",
           "type": "text"
         },
         "description": {
-          "value": "Additionally the top navigation can be combined with a white background.",
+          "value": "Additionally the top navigation can be combined with an alternative background.",
           "type": "text"
         }
       }

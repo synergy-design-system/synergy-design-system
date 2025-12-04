@@ -29,11 +29,26 @@ packages/components/tsconfig*.*
 packages/assets/src
 
 # Docs
-docs/dist
-docs/storybook-static
+packages/docs/dist
+packages/docs/storybook-static
+
+# Dont check material metadata, its too heavy
+packages/docs/src/materialSymbolsMetadata.json
+
+# MCP does not need to be checked for formatting issues
+packages/mcp/metadata
 
 # Do not format tokens!
 packages/tokens/src/**/*.json
 
+# E2E test results
+packages/_private/e2e-demo-test/test-results/*
+
 # Changelogs are automatically generated
 CHANGELOG.md
+
+# Changesets are automatically managed
+.changeset
+
+# Github internal stuff
+.github

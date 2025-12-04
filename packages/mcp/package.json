@@ -7,37 +7,33 @@
     "syn-mcp": "./dist/bin/start.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.13.2",
+    "@modelcontextprotocol/sdk": "^1.19.1",
     "@synergy-design-system/assets": "workspace:*",
-    "globby": "^14.1.0",
-    "serve-handler": "^6.1.6",
-    "zod": "^3.25.67"
+    "globby": "^15.0.0",
+    "zod": "^3.25.76"
   },
   "description": "MCP Server for the Synergy Design System",
   "devDependencies": {
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/exec": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/docs": "workspace:*",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/fonts": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:^",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.15.32",
+    "@types/node": "^22.18.8",
     "@types/serve-handler": "^6.1.4",
     "change-case": "^5.4.4",
     "custom-elements-manifest": "^2.1.0",
     "eslint": "^8.57.1",
-    "jest": "^30.0.5",
+    "jest": "^30.2.0",
     "ora": "^8.2.0",
-    "playwright": "1.52.0",
+    "playwright": "^1.56.0",
     "prettier": "^3.6.2",
     "rimraf": "^6.0.1",
-    "semantic-release": "^19.0.5",
-    "semantic-release-monorepo": "7.0.5",
+    "serve-handler": "^6.1.6",
     "ts-jest": "^29.4.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.3"
   },
   "exports": {
     ".": {
@@ -65,57 +61,6 @@
   ],
   "license": "MIT",
   "name": "@synergy-design-system/mcp",
-  "release": {
-    "branches": [
-      "main",
-      {
-        "name": "beta",
-        "prerelease": true
-      },
-      {
-        "name": "alpha",
-        "prerelease": true
-      }
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "CHANGELOG.md"
-        }
-      ],
-      [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
-      ],
-      [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "pnpm build && git add ./metadata && git diff --cached --quiet ./metadata || git commit -m 'chore(release/mcp) Automatic data update [skip actions]'"
-        }
-      ],
-      [
-        "@semantic-release/git",
-        {
-          "message": "chore(release/mcp): ${nextRelease.version} [skip actions]\n\n${nextRelease.notes}",
-          "assets": [
-            "CHANGELOG.md",
-            "package.json"
-          ]
-        }
-      ],
-      [
-        "@semantic-release/github",
-        {
-          "successComment": false
-        }
-      ]
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/synergy-design-system/synergy-design-system.git",
@@ -130,10 +75,8 @@
     "build:hash": "node ./dist/bin/create-checksum.js",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
-    "release": "semantic-release  --tagFormat 'mcp/${version}' -e semantic-release-monorepo",
-    "release.dry": "semantic-release --dry-run --tagFormat 'mcp/${version}' -e semantic-release-monorepo",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "type": "module",
-  "version": "1.8.0"
+  "version": "1.32.0"
 }

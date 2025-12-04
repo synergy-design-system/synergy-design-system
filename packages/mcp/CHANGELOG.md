@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.31.0
+
+### Minor Changes
+
+- [#1116](https://github.com/synergy-design-system/synergy-design-system/pull/1116) [`7c97c2e`](https://github.com/synergy-design-system/synergy-design-system/commit/7c97c2eed665902484eb07d7dc23534bf2064f08) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-03
+
+  feat: ✨ `<syn-details>` summary is now always shown in bold. (#1114)
+
 ## 1.30.0
 
 ### Minor Changes

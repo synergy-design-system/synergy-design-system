@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.44.0
+ * @synergy-design-system/tokens version 2.45.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -274,6 +274,7 @@
   --syn-range-tick-color: var(--syn-color-neutral-500);
   --syn-range-track-color-active: var(--syn-interactive-emphasis-color);
   --syn-readonly-background-color: #e6e1dc;
+  --syn-spacing-1-5x-large: 40px;
   --syn-spacing-2x-large: 48px;
   --syn-spacing-2x-small: 4px;
   --syn-spacing-3x-large: 64px;
@@ -288,6 +289,12 @@
   --syn-spacing-x-large: 32px;
   --syn-spacing-x-small: 8px;
   --syn-spinner-opacity: 0.16;
+  --syn-switch-height-large: 28px;
+  --syn-switch-height-medium: var(--syn-spacing-large);
+  --syn-switch-height-small: var(--syn-spacing-medium-large);
+  --syn-switch-width-large: var(--syn-spacing-2x-large);
+  --syn-switch-width-medium: var(--syn-spacing-1-5x-large);
+  --syn-switch-width-small: var(--syn-spacing-x-large);
   --syn-table-background-color: var(--syn-panel-background-color);
   --syn-table-background-color-alternating: #f8f7f6;
   --syn-table-background-color-header: #f2f0ed;
@@ -297,8 +304,8 @@
   --syn-text-decoration-default: none;
   --syn-text-decoration-underline: underline;
   --syn-toggle-size-large: var(--syn-spacing-large);
-  --syn-toggle-size-medium: var(--syn-spacing-medium);
-  --syn-toggle-size-small: 14px;
+  --syn-toggle-size-medium: var(--syn-spacing-medium-large);
+  --syn-toggle-size-small: var(--syn-spacing-medium);
   --syn-tooltip-arrow-size: 9px;
   --syn-tooltip-background-color: var(--syn-color-neutral-950);
   --syn-tooltip-border-radius: var(--syn-border-radius-small);

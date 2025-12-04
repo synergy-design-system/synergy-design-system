@@ -42,23 +42,20 @@ export default css`
 
   /* Fix#456: Multi line radio fixes */
   .radio__label {
+    line-height: var(--syn-line-height-dense) !important;
     margin-inline-start: var(--syn-spacing-x-small);
-    position: relative;
   }
 
   .radio--small .radio__label {
     font: var(--syn-body-small-regular);
-    top: -3px;
   }
 
   .radio--medium .radio__label {
     font: var(--syn-body-medium-regular);
-    top: -3px;
   }
 
   .radio--large .radio__label {
     font: var(--syn-body-large-regular);
-    top: -2px;
   }
 
   /* /Fix#456 */

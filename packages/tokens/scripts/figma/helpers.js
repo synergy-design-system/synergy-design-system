@@ -162,8 +162,7 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    * Spacing
    */
   // Currently not used spacing.
-  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
-  /primitive\/spacing\/(1_5x-large|3_5x-large)/,
+  /primitive\/spacing\/3_5x-large/,
 
   /**
    * Text Transform

@@ -42,9 +42,8 @@ export default css`
 
   /* Fix#456: Multi line radio fixes */
   .radio__label {
+    line-height: var(--syn-line-height-dense) !important;
     margin-inline-start: var(--syn-spacing-x-small);
-    position: relative;
-    top: -2px;
   }
 
   .radio--small .radio__label {

@@ -42,9 +42,7 @@ export default css`
   }
 
   .checkbox__label {
-    line-height: var(--syn-line-height-normal);
+    line-height: var(--syn-line-height-dense);
     margin-inline-start: var(--syn-spacing-x-small);
-    position: relative;
-    top: -2px;
   }
 `;

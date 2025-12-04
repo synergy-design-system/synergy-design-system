@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.33.0
+
+### Minor Changes
+
+- [#1095](https://github.com/synergy-design-system/synergy-design-system/pull/1095) [`f9f544f`](https://github.com/synergy-design-system/synergy-design-system/commit/f9f544feb2adb3edef95bd1b50a303440e0c8385) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-04
+
+  feat: ✨ Brand updates for `<syn-select>`, `<syn-option>` and `<syn-optgroup>` (#988)
+  feat: ✨ Brand updates for `<syn-combobox>` (#944)
+
 ## 1.32.0
 
 ### Minor Changes

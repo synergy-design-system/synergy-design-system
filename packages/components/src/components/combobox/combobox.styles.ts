@@ -306,7 +306,7 @@ export default css`
 
   /* Change combobox border on hover */
   .combobox:not(.combobox--disabled):hover .combobox__inputs {
-    border-color: var(--syn-input-color-hover);
+    border-color: var(--syn-input-border-color-hover);
   }
 
   /* Prefix and Suffix */
@@ -353,18 +353,16 @@ export default css`
     font-size: var(--syn-font-size-2x-large);
   }
 
-
   .combobox__prefix,
   .combobox__suffix {
-    color: var(--syn-input-help-text-color);
+    color: var(--syn-input-icon-color);
   }
 
 
 
   /* Listbox */
   .combobox__listbox {
-    /* @todo: Should be --syn-border-radius-medium, which should be set to 0 */
-    border-radius: var(--syn-border-radius-none);
+    border-radius: var(--syn-input-border-radius-medium);
     box-shadow: var(--syn-shadow-medium);
   }
 

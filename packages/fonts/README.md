@@ -101,7 +101,7 @@ src/
 └── sick-intl/
     ├── font.css                # Default font face definitions
     ├── SICKIntl-Regular.woff2  # Regular font
-    └── SICKIntl-SemiBold.woff2 # Semibild font
+    └── SICKIntl-SemiBold.woff2 # Semibold font
 ```
 
 ## Browser Support
@@ -153,6 +153,5 @@ This package uses PostCSS to generate multiple font distribution formats:
 
 - Standard CSS with external font files
 - Base64 inline CSS for self-contained usage
-- Individual weight-specific CSS files
 
 The inline version is automatically generated during build and includes the font files as data URIs.

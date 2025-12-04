@@ -216,7 +216,7 @@ Or add to your `angular.json` file:
         "build": {
           "options": {
             "styles": [
-              "@synergy-design-system/fonts/src/SICKIntl/font.css"
+              "@synergy-design-system/fonts/src/sick-intl/font.css"
             ]
           }
         }

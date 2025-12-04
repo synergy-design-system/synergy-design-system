@@ -34,7 +34,7 @@
               }
             ],
             "styles": [
-              "@synergy-design-system/fonts/src/SICKIntl/font.css",
+              "@synergy-design-system/fonts/src/sick-intl/font.css",
               "@synergy-design-system/tokens/themes/sick2025_dark.css",
               "@synergy-design-system/tokens/themes/sick2025_light.css",
               "@synergy-design-system/tokens/themes/sick2018_dark.css",

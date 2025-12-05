@@ -391,10 +391,15 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
-    if (!this.isInitialized && !this.defaultValue && this.value) {
+    // Check for defaultValue if it is not undefined, null, empty string or empty array
+    const isDefaultValueEmpty = this.defaultValue == null
+      || this.defaultValue === ''
+      || (Array.isArray(this.defaultValue) && this.defaultValue.length === 0);
+
+    if (changedProperties.has('value') && isDefaultValueEmpty && this.value && !this.isUserInput) {
       // If the value was set initially via property binding instead of attribute, we need to set the defaultValue manually
       // to be able to reset forms and the dynamic loading of options are working correctly.
-      this.defaultValue = this.value;
+      this.defaultValue = Array.isArray(this.value) ? this.value.join(this.delimiter) : this.value;
       this.valueHasChanged = false;
     }
 
@@ -824,6 +829,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     if (this.multiple) {
       this.value = this.selectedOptions.map(opt => String(getValueFromOption(opt)));
       if (this.value.length === 0) {
+        this.valueHasChanged = cachedValueHasChanged;
         this.resetToLastValidValue();
         return;
       }
@@ -1057,6 +1063,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const cachedLastOption = this.lastOptions;
     this.isUserInput = true;
 
+    // Do the reset of the selected options before the value setting, as otherwise we are getting endless default slot triggering in safari
+    if (!this.multiple) {
+      this.selectedOptions = [];
+    }
+
     if (this.multiple) {
       const validValues = getValuesFromOptions(this.selectedOptions);
       this.value = [...validValues, inputValue];
@@ -1068,10 +1079,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.isUserInput = false;
     this.lastOptions = cachedLastOption;
     this.open = this.multiple || this.restricted || this.numberFilteredOptions > 0;
-
-    if (!this.multiple) {
-      this.selectedOptions = [];
-    }
 
     this.formControlController.updateValidity();
     this.emit('syn-input');
@@ -1086,7 +1093,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    */
   private isValidValue(value: string): boolean {
     const isValid = this.cachedOptions.some(
-      option => checkValueBelongsToOption(value, option)
+      option => checkValueBelongsToOption(value, option),
     );
     return isValid;
   }
@@ -1128,6 +1135,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     this.hideOptions = true;
 
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     waitForAnimations.then(() => {
       // restore options after the animation
       this.hideOptions = false;
@@ -1140,6 +1148,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.valueHasChanged = cachedValueHasChanged;
   }
 
+  // eslint-disable-next-line complexity
   private handleChange() {
     // Only update the value and emit the event, if the change event occurred by
     // the user typing something in and removing focus of the combobox
@@ -1204,6 +1213,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
   /* eslint-enable no-param-reassign */
 
+  // eslint-disable-next-line complexity
   private updateSelectedOptionFromValue(): void {
     if (!this.isUserInput) {
       // check if the value has corresponding options via value or text content
@@ -1230,16 +1240,47 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.createComboboxOptionsFromQuery(queryString);
   }
 
+  /**
+   * Checks if the options in the combobox have changed since the last cache update.
+   * This method is used to determine whether the component needs to re-process its internal state accordingly.
+   *
+   * The function performs two main checks:
+   * 1. **Length comparison**: Compares the number of currently slotted options with
+   *    the cached options count to detect if options were added or removed.
+   * 2. **Value consistency**: Verifies that all values in `this.value` still correspond
+   *    to existing selected options, which is important when options are modified
+   *    (e.g., due to delimiter changes or dynamic option updates).
+   *
+   * @private
+   * @returns {boolean} `true` if options have changed and require re-processing,
+   *                   `false` if options are unchanged and cache is still valid.
+   */
+  private checkOptionsChanged() {
+    const slottedOptions = this.getSlottedOptions();
+    const optionsLength = slottedOptions.length;
+    const cachedOptionsLength = this.cachedOptions.length;
+    if (cachedOptionsLength !== optionsLength) {
+      return true;
+    }
+
+    if (this.selectedOptions.length === 0) {
+      return false;
+    }
+
+    // if the options value were updated (e.g. because of changed delimiter), the selectedOptions value does not match with this.value
+    // check that all values in this.value are still in selectedOptions. If there are any differences, return true
+    // eslint-disable-next-line no-nested-ternary, eqeqeq
+    const value = (Array.isArray(this.value) ? this.value : this.value == undefined ? [] : this.value.split(this.delimiter));
+    const allValuesMatch = value.every(val => this.selectedOptions.some(option => checkValueBelongsToOption(val, option)));
+    return !allValuesMatch;
+  }
+
   /* eslint-disable @typescript-eslint/no-floating-promises, complexity */
   /* @internal - used by options to update labels */
   public handleDefaultSlotChange() {
     // We need to check if the slotChange is triggered by our own changes we do to the already
-    // slotted options or because new options were slotted into the combobox
-    const slottedOptions = this.getSlottedOptions();
-    const optionsLength = slottedOptions.length;
-    const cachedOptionsLength = this.cachedOptions.length;
-
-    if (!this.isOptionRendererTriggered || cachedOptionsLength !== optionsLength) {
+    // slotted options or because new options were slotted into the combobox or the options values changed
+    if (!this.isOptionRendererTriggered || this.checkOptionsChanged()) {
       // Rerun this handler when <syn-option> is registered
       if (!customElements.get('syn-option')) {
         customElements.whenDefined('syn-option').then(() => this.handleDefaultSlotChange());
@@ -1407,7 +1448,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               @mouseup=${this.handleOptionClick}
             >
               <div class="listbox__options" part="filtered-listbox">
-                ${ this.hideOptions || this.numberFilteredOptions === 0
+                ${this.hideOptions || this.numberFilteredOptions === 0
         ? html`<span
                       class="listbox__no-results"
                       aria-hidden="true"
@@ -1415,7 +1456,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                       >${this.localize.term('noResults')}</span
                     >`
         : ''}
-                <slot class=${classMap({ 'options__hide': this.hideOptions })} @slotchange=${this.handleDefaultSlotChange}></slot>      
+                <slot class=${classMap({ options__hide: this.hideOptions })} @slotchange=${this.handleDefaultSlotChange}></slot>      
               </div>
             </div>
           </syn-popup>

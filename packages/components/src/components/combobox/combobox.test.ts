@@ -1469,15 +1469,6 @@ describe('<syn-combobox>', () => {
       el.blur();
       await el.updateComplete;
 
-      // Unfortunately we need to wait for the popup animation to be finished,
-      // before the value is reset, as this was needed to not have a flickering listbox
-      const { popup } = el.popup;
-      await new Promise<void>((resolve) => {
-        popup.getAnimations()[0].onfinish = () => {
-          resolve();
-        };
-      });
-
       expect(el.value).to.equal('');
     });
 
@@ -1494,15 +1485,6 @@ describe('<syn-combobox>', () => {
       await sendKeys({ type: 'abc' });
       el.blur();
       await el.updateComplete;
-
-      // Unfortunately we need to wait for the popup animation to be finished,
-      // before the value is reset, as this was needed to not have a flickering listbox
-      const { popup } = el.popup;
-      await new Promise<void>((resolve) => {
-        popup.getAnimations()[0].onfinish = () => {
-          resolve();
-        };
-      });
 
       expect(el.value).to.equal('option-2');
     });
@@ -1879,32 +1861,6 @@ describe('<syn-combobox>', () => {
     });
   });
 
-  describe('#1036', () => {
-    it('should result in correct sanitized values for subsequently changed delimiter', async () => {
-      const el = await fixture<SynCombobox>(html`
-        <syn-combobox multiple>
-          <syn-option value="Option|1">Option 1</syn-option>
-          <syn-option value="Option|2">Option 2</syn-option>
-        </syn-combobox>
-      `);
-
-      const options = el.querySelectorAll('syn-option');
-      const firstOption = options[0];
-      const secondOption = options[1];
-
-      await clickOnElement(el);
-      await clickOnElement(firstOption);
-
-      expect(el.value).to.deep.equal(['Option_1']);
-
-      el.delimiter = '~';
-
-      await clickOnElement(secondOption);
-
-      expect(el.value).to.deep.equal(['Option|1', 'Option|2']);
-    });
-  });
-
   describe('#540: should allow to use a custom delimiter for multiple values', () => {
     it('should allow to define the delimiter that is used to separate the values', async () => {
       const getActiveItems = (elm: SynCombobox) => Array.from(
@@ -1996,7 +1952,6 @@ describe('<syn-combobox>', () => {
       // A longer timeout may be needed for webkit, chrome and ff don´t take only 10ms
       await aTimeout(100);
 
-      debugger;
       const tagWrapper: HTMLDivElement = el.shadowRoot!.querySelector('.combobox__tags')!;
       const currentWidth = tagWrapper.style.getPropertyValue('--syn-select-tag-max-width');
 
@@ -2021,6 +1976,72 @@ describe('<syn-combobox>', () => {
       expect(currentWidth, 'It should have min-tag width of 85 pixels').to.equal('85px');
     });
   }); // #850
+
+  describe('#1056', () => {
+    it('should show correct value if delimiter was changed async', async () => {
+      const el = await fixture<SynCombobox>(html`
+          <syn-combobox value="Option|1" multiple>
+            <syn-option value="Option|1">Option|1</syn-option>
+            <syn-option value="Option|2">Option|2</syn-option>
+          </syn-combobox>
+        `);
+      await el.updateComplete;
+
+      const tags = el.shadowRoot!.querySelectorAll('syn-tag');
+      expect(tags.length).to.equal(0);
+
+      expect(el.value).to.deep.equal([]);
+      expect(el.displayLabel).to.equal('');
+
+      el.delimiter = '+';
+      await el.updateComplete;
+
+      const tagsAfterChange = el.shadowRoot!.querySelectorAll('syn-tag');
+
+      expect(el.value).to.deep.equal(['Option|1']);
+      expect(el.displayLabel).to.equal('');
+      expect(tagsAfterChange.length).to.equal(1);
+
+      const tagsContent = tagsAfterChange[0].textContent.trim();
+      expect(tagsContent).to.equal('Option|1');
+    });
+
+    it('should show correct value if delimiter was changed async for a value set via property binding', async () => {
+      const el = await fixture<SynCombobox>(html`
+           <syn-combobox multiple>
+            <syn-option value="Option|1">Option|1</syn-option>
+            <syn-option value="Option|2">Option|2</syn-option>
+          </syn-combobox>
+        `);
+
+      // This simulates a property binding of angular with e.g. an Observable / BehaviorSubject
+      await new Promise(resolve => {
+        setTimeout(() => {
+          el.value = 'Option|1';
+          resolve(true);
+        }, 10);
+      });
+      await el.updateComplete;
+
+      const tags = el.shadowRoot!.querySelectorAll('syn-tag');
+
+      expect(tags.length).to.equal(0);
+      expect(el.value).to.deep.equal([]);
+      expect(el.displayLabel).to.equal('');
+
+      el.delimiter = '+';
+
+      await el.updateComplete;
+      const tagsAfterChange = el.shadowRoot!.querySelectorAll('syn-tag');
+
+      expect(el.value).to.deep.equal(['Option|1']);
+      expect(el.displayLabel).to.equal('');
+      expect(tagsAfterChange.length).to.equal(1);
+
+      const tagsContent = tagsAfterChange[0].textContent.trim();
+      expect(tagsContent).to.equal('Option|1');
+    });
+  }); // #1056
 
   runFormControlBaseTests('syn-combobox');
 });

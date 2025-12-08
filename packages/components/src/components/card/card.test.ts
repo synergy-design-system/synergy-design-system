@@ -13,14 +13,28 @@ import type SynCard from './card.js';
 describe('<syn-card>', () => {
   let el: SynCard;
 
-  describe('when nested is provided', () => {
-    it('should not add the className "card--sharp" when nested is set to "false"', async () => {
+  describe('when shadow is provided', () => {
+    it('should not add the className "card--shadow" when shadow is set to "false"', async () => {
+      el = await fixture<SynCard>(html`<syn-card>Content</syn-card>`);
+      const card = el.shadowRoot?.querySelector('.card');
+      expect(card).to.not.have.class('card--shadow');
+    });
+
+    it('should add the className "card--shadow" when shadow is set to "true"', async () => {
+      el = await fixture<SynCard>(html`<syn-card shadow>Content</syn-card>`);
+      const card = el.shadowRoot?.querySelector('.card');
+      expect(card).to.have.class('card--shadow');
+    });
+  });
+
+  describe('when sharp is provided', () => {
+    it('should not add the className "card--sharp" when sharp is set to "false"', async () => {
       el = await fixture<SynCard>(html`<syn-card>Content</syn-card>`);
       const card = el.shadowRoot?.querySelector('.card');
       expect(card).to.not.have.class('card--sharp');
     });
 
-    it('should add the className "card--sharp" when nested is set to "true"', async () => {
+    it('should add the className "card--sharp" when sharp is set to "true"', async () => {
       el = await fixture<SynCard>(html`<syn-card sharp>Content</syn-card>`);
       const card = el.shadowRoot?.querySelector('.card');
       expect(card).to.have.class('card--sharp');

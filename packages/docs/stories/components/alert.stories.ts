@@ -158,6 +158,27 @@ export const WithoutIcons: Story = {
   `,
 };
 
+export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('alert', 'size'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      ${['small', 'medium', 'large'].map(size => html`
+        <syn-alert variant="primary" size=${size} open>
+          <syn-icon slot="icon" name="info"></syn-icon>
+          <strong>This is size ${size}</strong><br />
+          Nothing fancy here, just a simple alert.
+        </syn-alert>     
+      `)}
+    </div>
+  `,
+};
+
 export const Duration: Story = {
   parameters: {
     docs: {
@@ -346,6 +367,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Variants,
   Closable,
   WithoutIcons,
+  Sizes,
   Toast,
 }, 550);
 /* eslint-enable sort-keys */

@@ -22,6 +22,7 @@
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
+    "@synergy-design-system/components": "workspace:*",
     "eslint": "^8.57.1",
     "rimraf": "^6.0.1",
     "stylelint": "^16.24.0",

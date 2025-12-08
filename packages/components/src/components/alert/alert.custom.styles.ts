@@ -8,14 +8,19 @@ export default css`
     --variant-color-icon: var(--syn-alert-informative-color-icon, var(--syn-color-primary-600));
     --variant-color-indicator: var(--syn-alert-informative-color-indicator, var(--syn-color-primary-600));
 
+    /* Defines special settings for sizes */
+    --size-font-size: var(--syn-font-size-medium);
+    --size-icon-size: var(--syn-font-size-x-large);
+    --size-min-height: 56px;
+
     background-color: var(--variant-color-background);
     border: var(--syn-panel-border-width) solid var(--variant-color-border);
     border-left: 0;
     border-radius: var(--syn-border-radius-none);
     color: var(--syn-typography-color-text);
-    font-size: var(--syn-font-size-medium);
+    font-size: var(--size-font-size);
     line-height: var(--syn-line-height-normal);
-    min-height: 56px;
+    min-height: var(--size-min-height);
   }
 
   /**
@@ -43,7 +48,7 @@ export default css`
   .alert__icon,
   .alert__close-button {
     align-items: flex-start;
-    font-size: var(--syn-font-size-x-large);
+    font-size: var(--size-icon-size);
   }
 
   .alert__message {
@@ -98,5 +103,23 @@ export default css`
     --variant-color-background: var(--syn-alert-error-color-background, var(--syn-panel-background-color));
     --variant-color-icon: var(--syn-alert-error-color-icon, var(--syn-color-error-600));
     --variant-color-indicator: var(--syn-alert-error-color-indicator, var(--syn-color-error-600));
+  }
+
+  /* #1119: Alert Sizes */
+  .alert--small {
+    --size-font-size: var(--syn-font-size-small);
+    --size-icon-size: var(--syn-font-size-large);
+    --size-min-height: 52px;
+  }
+
+  /* Adjust close button size for small alerts */
+  .alert--small .alert__close-button {
+    font-size: var(--syn-font-size-medium);
+  }
+
+  .alert--large {
+    --size-font-size: var(--syn-font-size-large);
+    --size-icon-size: var(--syn-font-size-2x-large);
+    --size-min-height: 64px;
   }
 `;

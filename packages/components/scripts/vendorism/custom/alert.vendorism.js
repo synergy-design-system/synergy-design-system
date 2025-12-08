@@ -31,7 +31,7 @@ const transformStyles = (path, originalContent) => {
 };
 
 const transformComponent = (path, originalContent) => {
-  const content = replaceSections([
+  let content = replaceSections([
     // Begin remove countdown
     [
       "@property({ type: String, reflect: true }) countdown?: 'rtl' | 'ltr';",
@@ -43,6 +43,24 @@ const transformComponent = (path, originalContent) => {
     ],
     // End remove countdown.
   ], originalContent);
+
+  // #1119: Add size property support
+  content = addSectionsAfter([
+    [
+      '@property({ type: Number }) duration = Infinity;',
+      `
+  /** The alert's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+      `,
+    ],
+    [
+      "'alert--open': this.open,",
+      `          'alert--small': this.size === 'small',
+          'alert--medium': this.size === 'medium',
+          'alert--large': this.size === 'large',
+      `.trimEnd(),
+    ],
+  ], content);
 
   return {
     content,

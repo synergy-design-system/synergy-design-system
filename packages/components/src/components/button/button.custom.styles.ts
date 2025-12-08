@@ -135,7 +135,7 @@ export default css`
   .button--outline.button--primary.button--checked:not(.button--disabled) {
     background: none;
     border-color: var(--syn-button-color-hover, var(--syn-color-primary-900));
-    color: var(--syn-button-color-hover, var(--syn-color-neutral-0));
+    color: var(--syn-button-color-hover, var(--syn-color-primary-900));
   }
 
   .button--outline.button--primary:active:not(.button--disabled) {
@@ -153,6 +153,10 @@ export default css`
 
   .button--text:hover:not(.button--disabled) {
     color: var(--syn-button-color-hover, var(--syn-color-primary-900));
+  }
+
+  .button--text:focus-visible:not(.button--disabled) {
+    color: var(--syn-button-color, var(--syn-color-primary-500));
   }
 
   .button--text.button--primary:active:not(.button--disabled) {

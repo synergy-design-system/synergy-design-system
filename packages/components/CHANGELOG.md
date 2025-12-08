@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.69.0
+
+### Minor Changes
+
+- [#1095](https://github.com/synergy-design-system/synergy-design-system/pull/1095) [`f9f544f`](https://github.com/synergy-design-system/synergy-design-system/commit/f9f544feb2adb3edef95bd1b50a303440e0c8385) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-04
+
+  feat: ✨ Brand updates for `<syn-select>`, `<syn-option>` and `<syn-optgroup>` (#988)
+  feat: ✨ Brand updates for `<syn-combobox>` (#944)
+
+## 2.68.0
+
+### Minor Changes
+
+- [#1116](https://github.com/synergy-design-system/synergy-design-system/pull/1116) [`7c97c2e`](https://github.com/synergy-design-system/synergy-design-system/commit/7c97c2eed665902484eb07d7dc23534bf2064f08) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-03
+
+  feat: ✨ `<syn-details>` summary is now always shown in bold. (#1114)
+
 ## 2.67.0
 
 ### Minor Changes

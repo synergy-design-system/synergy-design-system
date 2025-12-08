@@ -1,0 +1,72 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "Fonts for Synergy, the SICK Design System",
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/stylelint-config-syn": "workspace:^",
+    "eslint": "^8.57.1",
+    "ora": "^8.2.0",
+    "postcss": "^8.5.6",
+    "postcss-header": "^3.0.3",
+    "postcss-import": "^16.1.1",
+    "postcss-url": "^10.1.3",
+    "stylelint": "^16.24.0"
+  },
+  "exports": {
+    ".": {
+      "import": "./src/sick-intl/font.css",
+      "default": "./src/sick-intl/font.css"
+    },
+    "./sick-intl.css": {
+      "import": "./src/sick-intl/font.css",
+      "default": "./src/sick-intl/font.css"
+    },
+    "./sick-intl-inline.css": {
+      "import": "./dist/sick-intl-inline.css",
+      "default": "./dist/sick-intl-inline.css"
+    },
+    "./src/*": {
+      "import": "./src/*",
+      "default": "./src/*"
+    },
+    "./dist/*": {
+      "import": "./dist/*",
+      "default": "./dist/*"
+    },
+    "./package.json": {
+      "import": "./package.json",
+      "default": "./package.json"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "CHANGELOG.md",
+    "NOTICE"
+  ],
+  "homepage": "https://synergy-design-system.github.io",
+  "keywords": [
+    "SDS",
+    "SICK",
+    "Synergy Design System",
+    "SICK Fonts"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/fonts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/fonts"
+  },
+  "scripts": {
+    "build": "node scripts/build.js",
+    "lint:css": "stylelint \"src/**/*.css\"",
+    "lint:js": "eslint .",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

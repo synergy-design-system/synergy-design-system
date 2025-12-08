@@ -1,5 +1,33 @@
 # Changelog
 
+## 1.33.0
+
+### Minor Changes
+
+- [#1095](https://github.com/synergy-design-system/synergy-design-system/pull/1095) [`f9f544f`](https://github.com/synergy-design-system/synergy-design-system/commit/f9f544feb2adb3edef95bd1b50a303440e0c8385) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-04
+
+  feat: ✨ Brand updates for `<syn-select>`, `<syn-option>` and `<syn-optgroup>` (#988)
+  feat: ✨ Brand updates for `<syn-combobox>` (#944)
+
+## 1.32.0
+
+### Minor Changes
+
+- [#1099](https://github.com/synergy-design-system/synergy-design-system/pull/1099) [`fc1e550`](https://github.com/synergy-design-system/synergy-design-system/commit/fc1e550fb4aa28eabf0bef6b089993a1dd939ff2) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-04
+
+  feat: ✨ add sick intl to fonts (#1085)
+
+  Add an optimized variant of the `SICK Intl` font as a shared asset to the new `@synergy-design-system/fonts` package.
+  It also adds the fonts package to the Synergy MCP server.
+
+## 1.31.0
+
+### Minor Changes
+
+- [#1116](https://github.com/synergy-design-system/synergy-design-system/pull/1116) [`7c97c2e`](https://github.com/synergy-design-system/synergy-design-system/commit/7c97c2eed665902484eb07d7dc23534bf2064f08) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-03
+
+  feat: ✨ `<syn-details>` summary is now always shown in bold. (#1114)
+
 ## 1.30.0
 
 ### Minor Changes

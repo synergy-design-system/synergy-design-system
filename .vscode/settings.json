@@ -17,6 +17,7 @@
     "packages/assets",
     "packages/components",
     "packages/docs",
+    "packages/fonts",
     "packages/mcp",
     "packages/angular",
     "packages/react",

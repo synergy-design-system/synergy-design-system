@@ -1,6 +1,7 @@
 import ora from 'ora';
 import { buildAssets } from './assets.js';
 import { buildComponents } from './components.js';
+import { buildFonts } from './fonts.js';
 import { buildFrameworkFiles } from './frameworks.js';
 import { buildStaticFiles } from './static.js';
 import { buildTokens } from './tokens.js';
@@ -16,6 +17,7 @@ const build = async () => {
   await buildAssets();
   await buildComponents();
   await buildFrameworkFiles();
+  await buildFonts();
   await buildTokens();
   await buildStyles();
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.35.0
+
+### Minor Changes
+
+- [#1126](https://github.com/synergy-design-system/synergy-design-system/pull/1126) [`ab15da3`](https://github.com/synergy-design-system/synergy-design-system/commit/ab15da3bf8956f1d523ca3115a466205474e071f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ remove background blur from drawer (#1120)
+
+  After gathering community feedback, we chose to remove the background blur introduced in version `2.48.0` from `<syn-drawer>`.
+  This was done because users might loose context when for example using the `<syn-side-nav>`.
+  The blur effect is still used in `<syn-dialog>`. It may be removed entirely via setting `--syn-overlay-background-blur: 0;` if needed.
+
 ## 1.34.0
 
 ### Minor Changes

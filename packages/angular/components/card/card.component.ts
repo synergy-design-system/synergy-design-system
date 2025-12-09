@@ -53,6 +53,20 @@ export class SynCardComponent {
   }
 
   /**
+   * Draws the card with a shadow.
+   * Can be used when the card has to stand out visually, for example in dashboards.
+   */
+  @Input()
+  set shadow(v: '' | SynCard['shadow']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.shadow = v === '' || v),
+    );
+  }
+  get shadow(): SynCard['shadow'] {
+    return this.nativeElement.shadow;
+  }
+
+  /**
    * Draws the card with sharp edges.
    * Can be used e.g.
    * when nesting multiple syn-cards to create hierarchy.

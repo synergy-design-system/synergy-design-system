@@ -1,5 +1,34 @@
 # @synergy-design-system/vue
 
+## 2.72.0
+
+### Minor Changes
+
+- [#1128](https://github.com/synergy-design-system/synergy-design-system/pull/1128) [`7de2441`](https://github.com/synergy-design-system/synergy-design-system/commit/7de244110cf55bb3788e26f65704194bfc861412) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ Add a new `shadow` propertry to `<syn-card>` (#1107)
+
+  Using `<syn-card shadow></syn-card>` will draw the card with a shadow. This can be used when the card has to stand out visually, for example in dashboards.
+
+### Patch Changes
+
+- Updated dependencies [[`7de2441`](https://github.com/synergy-design-system/synergy-design-system/commit/7de244110cf55bb3788e26f65704194bfc861412)]:
+  - @synergy-design-system/components@2.72.0
+
+## 2.71.0
+
+### Patch Changes
+
+- Updated dependencies [[`ab15da3`](https://github.com/synergy-design-system/synergy-design-system/commit/ab15da3bf8956f1d523ca3115a466205474e071f)]:
+  - @synergy-design-system/components@2.71.0
+
+## 2.70.0
+
+### Patch Changes
+
+- Updated dependencies [[`d414abe`](https://github.com/synergy-design-system/synergy-design-system/commit/d414abe26eaee05928a8f1914748de1866837804)]:
+  - @synergy-design-system/components@2.70.0
+
 ## 2.69.0
 
 ### Patch Changes

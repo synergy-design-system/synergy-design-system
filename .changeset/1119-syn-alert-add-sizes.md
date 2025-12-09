@@ -3,7 +3,6 @@
 "@synergy-design-system/components": minor
 "@synergy-design-system/mcp": minor
 "@synergy-design-system/vue": minor
-"@synergy-design-system/tokens": minor
 ---
 
 feat: ✨ syn alert add sizes (#1119)

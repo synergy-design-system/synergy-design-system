@@ -472,6 +472,16 @@
           "value": "Use the sharp variant attribute for the Card to Use a different style.",
           "type": "text"
         }
+      },
+      "shadow": {
+        "title": {
+          "value": "Card with shadow",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the shadow attribute to add a shadow.",
+          "type": "text"
+        }
       }
     },
     "carousel-item": {

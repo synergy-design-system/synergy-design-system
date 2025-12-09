@@ -48,14 +48,44 @@ export const DARK_2018_THEME = 'sick2018-dark.json';
  */
 export const OUTPUT_VARIABLE_CHANGES = {
   sick2018_dark: {
+    // filled button
     'syn-button-filled-color-text': 'inherit',
+    'syn-button-filled-color-text-active': 'inherit',
+    'syn-button-filled-color-text-hover': 'inherit',
+
+    // outlined button
+    'syn-button-outline-color': 'inherit',
+    'syn-button-outline-color-active': 'inherit',
+    'syn-button-outline-color-hover': 'inherit',
     'syn-button-outline-color-text': 'inherit',
+    'syn-button-outline-color-text-active': 'inherit',
+    'syn-button-outline-color-text-hover': 'inherit',
   },
   sick2018_light: {
+    // filled button
     'syn-button-filled-color-text': 'inherit',
+    'syn-button-filled-color-text-active': 'inherit',
+    'syn-button-filled-color-text-hover': 'inherit',
+
+    // outlined button
+    'syn-button-outline-color': 'inherit',
+    'syn-button-outline-color-active': 'inherit',
+    'syn-button-outline-color-hover': 'inherit',
     'syn-button-outline-color-text': 'inherit',
+    'syn-button-outline-color-text-active': 'inherit',
+    'syn-button-outline-color-text-hover': 'inherit',
+  },
+  sick2025_dark: {
+    // outlined button
+    'syn-button-outline-color': 'inherit',
   },
   sick2025_light: {
+    // filled button
     'syn-button-filled-color-text': 'inherit',
+    'syn-button-filled-color-text-active': 'inherit',
+    'syn-button-filled-color-text-hover': 'inherit',
+
+    // outlined button
+    'syn-button-outline-color': 'inherit',
   },
 };

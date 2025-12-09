@@ -184,6 +184,9 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    */
   // Not yet updated in dev
   /component\/radio-button-group/,
+
+  // Switch component tokens
+  /component\/switch/,
 ];
 /* eslint-enable max-len */
 

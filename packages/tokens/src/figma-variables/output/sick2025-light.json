@@ -225,6 +225,10 @@
       "type": "color",
       "value": "{interactive.emphasis.color}"
     },
+    "color-active": {
+      "type": "color",
+      "value": "{interactive.emphasis.color-active}"
+    },
     "color-disabled": {
       "type": "color",
       "value": "{color.neutral.500}"
@@ -233,12 +237,16 @@
       "type": "color",
       "value": "{interactive.emphasis.color-hover}"
     },
-    "color-pressed": {
-      "type": "color",
-      "value": "{interactive.emphasis.color-active}"
-    },
     "filled": {
       "color-text": {
+        "type": "color",
+        "value": "rgba(255, 255, 255, 0.00)"
+      },
+      "color-text-active": {
+        "type": "color",
+        "value": "rgba(255, 255, 255, 0.00)"
+      },
+      "color-text-hover": {
         "type": "color",
         "value": "rgba(255, 255, 255, 0.00)"
       }
@@ -258,9 +266,29 @@
       }
     },
     "outline": {
+      "color": {
+        "type": "color",
+        "value": "rgba(255, 255, 255, 0.00)"
+      },
+      "color-active": {
+        "type": "color",
+        "value": "{interactive.emphasis.color-active}"
+      },
+      "color-hover": {
+        "type": "color",
+        "value": "{interactive.emphasis.color-hover}"
+      },
       "color-text": {
         "type": "color",
-        "value": "{color.neutral.1000}"
+        "value": "{typography.color.text}"
+      },
+      "color-text-active": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      },
+      "color-text-hover": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
       }
     }
   },
@@ -1056,7 +1084,7 @@
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.primary.1000}"
+        "value": "{color.primary.950}"
       }
     },
     "quiet": {
@@ -1176,11 +1204,11 @@
     "background": {
       "color-active": {
         "type": "color",
-        "value": "{color.primary.1000}"
+        "value": "{interactive.emphasis.color-active}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.primary.1000}"
+        "value": "{interactive.emphasis.color-hover}"
       }
     },
     "check": {
@@ -1442,11 +1470,11 @@
       },
       "medium": {
         "type": "sizing",
-        "value": "{spacing.medium}"
+        "value": "{spacing.medium-large}"
       },
       "small": {
         "type": "sizing",
-        "value": "14px"
+        "value": "{spacing.medium}"
       }
     }
   },

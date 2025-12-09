@@ -1014,7 +1014,7 @@
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.primary.1000}"
+        "value": "{color.primary.950}"
       }
     },
     "quiet": {
@@ -1134,11 +1134,11 @@
     "background": {
       "color-active": {
         "type": "color",
-        "value": "{color.primary.1000}"
+        "value": "{interactive.emphasis.color-active}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.primary.1000}"
+        "value": "{interactive.emphasis.color-hover}"
       }
     },
     "check": {

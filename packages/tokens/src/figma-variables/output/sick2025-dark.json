@@ -1134,11 +1134,11 @@
     "background": {
       "color-active": {
         "type": "color",
-        "value": "{color.neutral.1000}"
+        "value": "{interactive.emphasis.color-active}"
       },
       "color-hover": {
         "type": "color",
-        "value": "{color.neutral.1000}"
+        "value": "{interactive.emphasis.color-hover}"
       }
     },
     "check": {

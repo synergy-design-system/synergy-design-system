@@ -249,8 +249,8 @@
   --syn-link-underline-outline: 25%;
   --syn-logo-color: var(--syn-color-primary-300);
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-option-background-color-active: var(--syn-color-neutral-1000);
-  --syn-option-background-color-hover: var(--syn-color-neutral-1000);
+  --syn-option-background-color-active: var(--syn-interactive-emphasis-color-active);
+  --syn-option-background-color-hover: var(--syn-interactive-emphasis-color-hover);
   --syn-option-check-color: var(--syn-interactive-quiet-color);
   --syn-option-check-color-active: var(--syn-color-neutral-0);
   --syn-option-check-color-hover: var(--syn-color-neutral-0);

@@ -1,6 +1,15 @@
 import { css } from 'lit';
 
 export default css`
+  .checkbox {
+    /* #1083: This adds spacing around multi-line labels */
+    padding: var(--syn-spacing-2x-small) 0;
+  }
+
+  .checkbox--small {
+    padding: var(--syn-spacing-3x-small) 0;
+  }
+
   .checkbox__control {
     border-radius: var(--syn-checkbox-border-radius, var(--syn-input-border-radius-small));
   }

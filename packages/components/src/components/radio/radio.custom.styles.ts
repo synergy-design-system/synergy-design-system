@@ -6,6 +6,17 @@ export default css`
     outline-offset: var(--syn-focus-ring-width);
   }
 
+  .radio {
+    align-items: flex-start;
+
+    /* #1083: This adds spacing around multi-line labels */
+    padding: var(--syn-spacing-2x-small) 0;
+  }
+
+  .radio--small {
+    padding: var(--syn-spacing-3x-small) 0;
+  }
+
   /** #429: Use token for opacity */
   .radio--disabled { 
     opacity: var(--syn-input-disabled-opacity);

@@ -226,7 +226,7 @@
   --syn-interactive-background-color-hover: #f2f0ed;
   --syn-interactive-emphasis-color: var(--syn-color-primary-700);
   --syn-interactive-emphasis-color-active: var(--syn-color-primary-1000);
-  --syn-interactive-emphasis-color-hover: var(--syn-color-primary-1000);
+  --syn-interactive-emphasis-color-hover: var(--syn-color-primary-950);
   --syn-interactive-quiet-color: var(--syn-color-neutral-950);
   --syn-interactive-quiet-color-active: var(--syn-color-primary-800);
   --syn-interactive-quiet-color-hover: var(--syn-color-primary-700);
@@ -249,8 +249,8 @@
   --syn-link-underline-outline: 25%;
   --syn-logo-color: var(--syn-color-primary-700);
   --syn-opacity-50: 0.5; /** 50% */
-  --syn-option-background-color-active: var(--syn-color-primary-1000);
-  --syn-option-background-color-hover: var(--syn-color-primary-1000);
+  --syn-option-background-color-active: var(--syn-interactive-emphasis-color-active);
+  --syn-option-background-color-hover: var(--syn-interactive-emphasis-color-hover);
   --syn-option-check-color: var(--syn-interactive-quiet-color);
   --syn-option-check-color-active: var(--syn-color-neutral-0);
   --syn-option-check-color-hover: var(--syn-color-neutral-0);

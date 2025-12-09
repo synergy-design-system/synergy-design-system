@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.34.0
+
+### Minor Changes
+
+- [#1125](https://github.com/synergy-design-system/synergy-design-system/pull/1125) [`d414abe`](https://github.com/synergy-design-system/synergy-design-system/commit/d414abe26eaee05928a8f1914748de1866837804) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ adjust badge font size (#1108)
+
+  The font size of `<syn-badge>` was perceived as too large. Therefore, it was changed from medium to small.
+
 ## 1.33.0
 
 ### Minor Changes

@@ -1,5 +1,19 @@
 # @synergy-design-system/angular
 
+## 2.71.0
+
+### Patch Changes
+
+- Updated dependencies [[`ab15da3`](https://github.com/synergy-design-system/synergy-design-system/commit/ab15da3bf8956f1d523ca3115a466205474e071f)]:
+  - @synergy-design-system/components@2.71.0
+
+## 2.70.0
+
+### Patch Changes
+
+- Updated dependencies [[`d414abe`](https://github.com/synergy-design-system/synergy-design-system/commit/d414abe26eaee05928a8f1914748de1866837804)]:
+  - @synergy-design-system/components@2.70.0
+
 ## 2.69.0
 
 ### Patch Changes

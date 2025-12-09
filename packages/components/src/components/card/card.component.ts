@@ -43,6 +43,9 @@ export default class SynCard extends SynergyElement {
 
   private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');
 
+  /** Draws the card with a shadow. Can be used when the card has to stand out visually, for example in dashboards. */
+  @property({ type: Boolean, reflect: true }) shadow = false;
+
   /** Draws the card with sharp edges. Can be used e.g. when nesting multiple syn-cards to create hierarchy. */
   @property({ type: Boolean, reflect: true }) sharp = false;
 
@@ -52,6 +55,7 @@ export default class SynCard extends SynergyElement {
         part="base"
         class=${classMap({
           card: true,
+          'card--shadow': this.shadow,
           'card--sharp': this.sharp,
           'card--has-footer': this.hasSlotController.test('footer'),
           'card--has-image': this.hasSlotController.test('image'),

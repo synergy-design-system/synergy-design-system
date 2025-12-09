@@ -42,6 +42,12 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
+   * Draws the card with a shadow.
+   * Can be used when the card has to stand out visually, for example in dashboards.
+   */
+  shadow?: SynCard['shadow'];
+
+  /**
    * Draws the card with sharp edges.
    * Can be used e.g.
    * when nesting multiple syn-cards to create hierarchy.

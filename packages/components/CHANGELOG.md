@@ -1,5 +1,37 @@
 # Changelog
 
+## 2.72.0
+
+### Minor Changes
+
+- [#1128](https://github.com/synergy-design-system/synergy-design-system/pull/1128) [`7de2441`](https://github.com/synergy-design-system/synergy-design-system/commit/7de244110cf55bb3788e26f65704194bfc861412) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ Add a new `shadow` propertry to `<syn-card>` (#1107)
+
+  Using `<syn-card shadow></syn-card>` will draw the card with a shadow. This can be used when the card has to stand out visually, for example in dashboards.
+
+## 2.71.0
+
+### Minor Changes
+
+- [#1126](https://github.com/synergy-design-system/synergy-design-system/pull/1126) [`ab15da3`](https://github.com/synergy-design-system/synergy-design-system/commit/ab15da3bf8956f1d523ca3115a466205474e071f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ remove background blur from drawer (#1120)
+
+  After gathering community feedback, we chose to remove the background blur introduced in version `2.48.0` from `<syn-drawer>`.
+  This was done because users might loose context when for example using the `<syn-side-nav>`.
+  The blur effect is still used in `<syn-dialog>`. It may be removed entirely via setting `--syn-overlay-background-blur: 0;` if needed.
+
+## 2.70.0
+
+### Minor Changes
+
+- [#1125](https://github.com/synergy-design-system/synergy-design-system/pull/1125) [`d414abe`](https://github.com/synergy-design-system/synergy-design-system/commit/d414abe26eaee05928a8f1914748de1866837804) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ adjust badge font size (#1108)
+
+  The font size of `<syn-badge>` was perceived as too large. Therefore, it was changed from medium to small.
+
 ## 2.69.0
 
 ### Minor Changes

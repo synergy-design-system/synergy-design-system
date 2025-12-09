@@ -39,6 +39,23 @@ const transformComponent = (path, originalContent) => {
     "          'card--sharp': this.sharp,",
   );
 
+  // #1107: Add shadow property to card
+  content = addSectionAfter(
+    content,
+    `private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');`,
+    `
+  /** Draws the card with a shadow. Can be used when the card has to stand out visually, for example in dashboards. */
+  @property({ type: Boolean, reflect: true }) shadow = false; 
+    `,
+  );
+
+  // Add the new className for shadows
+  content = addSectionAfter(
+    content,
+    'card: true,',
+    "          'card--shadow': this.shadow,",
+  );
+
   return {
     content,
     path,
@@ -59,17 +76,38 @@ const transformTests = (path, originalContent) => {
     content,
     'let el: SynCard;',
     `
-  describe('when nested is provided', () => {
-    it('should not add the className "card--sharp" when nested is set to "false"', async () => {
+  describe('when sharp is provided', () => {
+    it('should not add the className "card--sharp" when sharp is set to "false"', async () => {
       el = await fixture<SynCard>(html\`<syn-card>Content</syn-card>\`);
       const card = el.shadowRoot?.querySelector('.card');
       expect(card).to.not.have.class('card--sharp');
     });
 
-    it('should add the className "card--sharp" when nested is set to "true"', async () => {
+    it('should add the className "card--sharp" when sharp is set to "true"', async () => {
       el = await fixture<SynCard>(html\`<syn-card sharp>Content</syn-card>\`);
       const card = el.shadowRoot?.querySelector('.card');
       expect(card).to.have.class('card--sharp');
+    });
+  });
+    `,
+  );
+
+  // #1107: Add the new test for shadow cards
+  content = addSectionAfter(
+    content,
+    'let el: SynCard;',
+    `
+  describe('when shadow is provided', () => {
+    it('should not add the className "card--shadow" when shadow is set to "false"', async () => {
+      el = await fixture<SynCard>(html\`<syn-card>Content</syn-card>\`);
+      const card = el.shadowRoot?.querySelector('.card');
+      expect(card).to.not.have.class('card--shadow');
+    });
+
+    it('should add the className "card--shadow" when shadow is set to "true"', async () => {
+      el = await fixture<SynCard>(html\`<syn-card shadow>Content</syn-card>\`);
+      const card = el.shadowRoot?.querySelector('.card');
+      expect(card).to.have.class('card--shadow');
     });
   });
     `,

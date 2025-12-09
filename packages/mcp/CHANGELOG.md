@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.36.0
+
+### Minor Changes
+
+- [#1128](https://github.com/synergy-design-system/synergy-design-system/pull/1128) [`7de2441`](https://github.com/synergy-design-system/synergy-design-system/commit/7de244110cf55bb3788e26f65704194bfc861412) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ Add a new `shadow` propertry to `<syn-card>` (#1107)
+
+  Using `<syn-card shadow></syn-card>` will draw the card with a shadow. This can be used when the card has to stand out visually, for example in dashboards.
+
 ## 1.35.0
 
 ### Minor Changes

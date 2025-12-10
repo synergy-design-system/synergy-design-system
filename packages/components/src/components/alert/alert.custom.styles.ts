@@ -52,6 +52,7 @@ export default css`
   }
 
   .alert__message {
+    justify-content: center;
     padding: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-medium) var(--syn-spacing-medium);
   }
 
@@ -68,7 +69,6 @@ export default css`
    * Close Icon
    */
   .alert__close-button {
-    align-self: start;
     color: var(--syn-typography-color-text);
     margin-block: calc(var(--syn-spacing-x-small) - var(--syn-panel-border-width));
     margin-inline-end: var(--syn-spacing-x-small);

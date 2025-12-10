@@ -10,6 +10,7 @@ export default css`
     outline-offset: var(--syn-focus-ring-width);
   }
 
+  /** #429: Use token for opacity */
   .button--disabled {
     opacity: var(--syn-input-disabled-opacity);
   }
@@ -213,11 +214,6 @@ export default css`
   .button.button--large.button--has-prefix .button__prefix, 
   .button.button--large.button--has-suffix .button__suffix {
     font-size: var(--syn-font-size-2x-large);
-  }
-
-  /** #429: Use token for opacity */
-  .button--disabled {
-    opacity: var(--syn-input-disabled-opacity);
   }
 
   /*

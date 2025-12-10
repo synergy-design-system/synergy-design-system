@@ -3499,6 +3499,16 @@
           "type": "text"
         }
       },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "In development use the size attribute of the form element e.g. syn-input to set the size of the inline syn-validate automatically.",
+          "type": "text"
+        }
+      },
       "live": {
         "title": {
           "value": "Live",

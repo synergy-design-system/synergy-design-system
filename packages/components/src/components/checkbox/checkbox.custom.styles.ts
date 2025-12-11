@@ -12,6 +12,9 @@ export default css`
 
   .checkbox__control {
     border-radius: var(--syn-checkbox-border-radius, var(--syn-input-border-radius-small));
+
+    /* #1083: This adds spacing around multi-line labels */
+    margin: 0.1em 0;
   }
 
   :host([data-user-invalid]) .checkbox__control {
@@ -51,7 +54,8 @@ export default css`
   }
 
   .checkbox__label {
-    line-height: var(--syn-line-height-dense);
+    align-self: center;
+    line-height: var(--syn-line-height-normal);
     margin-inline-start: var(--syn-spacing-x-small);
   }
 `;

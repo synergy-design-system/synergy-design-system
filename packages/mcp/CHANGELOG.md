@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.37.0
+
+### Minor Changes
+
+- [#1122](https://github.com/synergy-design-system/synergy-design-system/pull/1122) [`740816b`](https://github.com/synergy-design-system/synergy-design-system/commit/740816b1a86768e7f2fed5516241bdb3a9df4ef7) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-11
+
+  feat: ✨ adjust sizes of form elements (#1083)
+  - `<syn-checkbox>` Bigger checkbox in small and medium
+  - `<syn-radio>` Bigger radio control in small and medium
+  - `<syn-switch>` Larger label and bigger switch control in all sizes
+
 ## 1.36.0
 
 ### Minor Changes

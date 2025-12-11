@@ -39,7 +39,7 @@ try {
         await expect(checkboxResult, 'NgModel value of syn-checkbox should have changed on syn-input event').toHaveText('true');
 
         await range.dragTo(range, {
-          targetPosition: { x: 0, y: 18 },
+          targetPosition: { x: 0, y: 30 },
         });
         await expect(rangeResult, 'NgModel value of syn-range should have changed on syn-change event').toHaveText('0');
       });

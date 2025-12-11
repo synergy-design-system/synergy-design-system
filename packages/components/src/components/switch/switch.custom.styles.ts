@@ -2,21 +2,27 @@ import { css } from 'lit';
 
 export default css`
   :host([size='small']) {
-    --height: calc(var(--syn-toggle-size-medium) + 2px);
-    --thumb-size: var(--syn-toggle-size-small);
-    --width: calc((var(--height) * 2) - 6px);
+   --height: var(--syn-switch-height-small, calc(var(--syn-toggle-size-medium) + 2px));
+   --thumb-size: var(--syn-toggle-size-small);
+   --width: var(--syn-switch-width-small, calc((var(--height) * 2) - 6px));
+
+    font-size: var(--syn-input-font-size-small);
   }
 
   :host([size='medium']) {
-    --height: calc(var(--syn-toggle-size-medium) + 4px);
+    --height: var(--syn-switch-height-medium, calc(var(--syn-toggle-size-medium) + 4px));
     --thumb-size: var(--syn-toggle-size-medium);
-    --width: calc((var(--height) * 2) - 6px);
+    --width: var(--syn-switch-width-medium, calc((var(--height) * 2) - 6px));
+
+    font-size: var(--syn-input-font-size-medium);
   }
 
   :host([size='large']) {
-    --height: calc(var(--syn-toggle-size-large) + 4px);
+    --height: var(--syn-switch-height-large, calc(var(--syn-toggle-size-large) + 4px));
     --thumb-size: var(--syn-toggle-size-large);
-    --width: calc((var(--height) * 2) - 6px);
+    --width: var(--syn-switch-width-large, calc((var(--height) * 2) - 6px));
+
+    font-size: var(--syn-input-font-size-large);
   }
 
   /** #429: Use token for opacity */

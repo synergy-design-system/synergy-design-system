@@ -1,8 +1,20 @@
 import { css } from 'lit';
 
 export default css`
+  .checkbox {
+    /* #1083: This adds spacing around multi-line labels */
+    padding: var(--syn-spacing-2x-small) 0;
+  }
+
+  .checkbox--small {
+    padding: var(--syn-spacing-3x-small) 0;
+  }
+
   .checkbox__control {
     border-radius: var(--syn-checkbox-border-radius, var(--syn-input-border-radius-small));
+
+    /* #1083: This adds spacing around multi-line labels */
+    margin: 0.1em 0;
   }
 
   :host([data-user-invalid]) .checkbox__control {
@@ -42,20 +54,8 @@ export default css`
   }
 
   .checkbox__label {
+    align-self: center;
     line-height: var(--syn-line-height-normal);
     margin-inline-start: var(--syn-spacing-x-small);
-    position: relative;
-  }
-
-  .checkbox--small .checkbox__label {
-    top: -3px;
-  }
-
-  .checkbox--medium .checkbox__label {
-    top: -3px;
-  }
-
-  .checkbox--large .checkbox__label {
-    top: -2px;
   }
 `;

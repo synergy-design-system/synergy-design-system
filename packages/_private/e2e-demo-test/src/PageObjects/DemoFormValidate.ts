@@ -54,12 +54,12 @@ export class DemoFormValidate extends BaseFormObject {
     await this.page.waitForTimeout(timeout);
 
     await this.newsSyn.click({
-      position: { x: 20, y: 20 },
+      position: { x: 10, y: 10 },
     });
     await this.page.waitForTimeout(timeout);
 
     await this.newsBeta.click({
-      position: { x: 20, y: 20 },
+      position: { x: 10, y: 10 },
     });
     await this.page.waitForTimeout(timeout);
 

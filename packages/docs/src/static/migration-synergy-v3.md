@@ -1,11 +1,11 @@
-# Migration Guide
+# Migration to SICK 2025
 
-> ⚠️ **Migration in progress:** Some features may not be fully implemented yet. See the [GitHub migration board](https://github.com/orgs/synergy-design-system/projects/2/views/37) for updates.
+> ⚠️ **Update in progress:** Some features may not be fully implemented yet. See the [GitHub SICK 2025 theme update board](https://github.com/orgs/synergy-design-system/projects/2/views/37) for updates.
 >
-> It is currently not advised to use the new version in production, as we are still finalizing the migration process.
+> It is currently not advised to use the new version in production, as we are still finalizing the update process.
 > However, you can start preparing your codebase for the upcoming changes.
 
-This guide details all steps that are needed to upgrade from SICK 2018 to the new SICK 2025 theme.
+This guide details all steps that are needed to migrate from the SICK 2018 to the new SICK 2025 theme.
 This guide assumes you are using Synergy version 2.
 Synergy version 3 will apply most manual steps outlined in this guide automatically.
 

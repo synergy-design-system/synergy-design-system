@@ -13,11 +13,14 @@ export default css`
     --size-icon-size: var(--syn-font-size-x-large);
     --size-min-height: 54px;
     --size-message-padding: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-medium) var(--syn-spacing-medium);
+    --size-icon-padding-block: var(--syn-spacing-medium);
+    --size-icon-padding-inline: var(--syn-spacing-medium);
 
     background-color: var(--variant-color-background);
     border: var(--syn-panel-border-width) solid var(--variant-color-border);
     border-left: 0;
     border-radius: var(--syn-border-radius-none);
+    box-sizing: content-box;
     color: var(--syn-typography-color-text);
     font-size: var(--size-font-size);
     line-height: var(--syn-line-height-normal);
@@ -62,8 +65,8 @@ export default css`
    */
   .alert__icon {
     color: var(--variant-color-icon);
-    padding-block: var(--syn-spacing-medium);
-    padding-inline-start: var(--syn-spacing-medium);
+    padding-block-start: var(--size-icon-padding-block);
+    padding-inline-start: var(--size-icon-padding-inline);
   }
 
   /**
@@ -112,6 +115,8 @@ export default css`
     --size-icon-size: var(--syn-font-size-large);
     --size-min-height: 44px;
     --size-message-padding: var(--syn-spacing-small) var(--syn-spacing-large) var(--syn-spacing-small) var(--syn-spacing-small);
+    --size-icon-padding-block: var(--syn-spacing-small);
+    --size-icon-padding-inline: var(--syn-spacing-small);
   }
 
   /* Adjust close button size for small alerts */
@@ -124,5 +129,7 @@ export default css`
     --size-icon-size: var(--syn-font-size-2x-large);
     --size-min-height: 68px;
     --size-message-padding: var(--syn-spacing-medium-large) var(--syn-spacing-large) var(--syn-spacing-medium-large) var(--syn-spacing-medium-large);
+    --size-icon-padding-block: var(--syn-spacing-medium-large);
+    --size-icon-padding-inline: var(--syn-spacing-medium-large);
   }
 `;

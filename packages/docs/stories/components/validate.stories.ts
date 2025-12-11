@@ -135,6 +135,9 @@ export const HideIcon: Story = {
 
 export const Sizes: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('validate', 'size'),
@@ -297,7 +300,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   InlineVariant,
   HideIcon,
-  Sizes,
   Live,
   CustomValidationMessage,
   CustomFormField,

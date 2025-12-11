@@ -64,11 +64,11 @@
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);
   --syn-button-outline-color: inherit;
-  --syn-button-outline-color-active: inherit;
-  --syn-button-outline-color-hover: inherit;
+  --syn-button-outline-color-active: none;
+  --syn-button-outline-color-hover: none;
   --syn-button-outline-color-text: inherit;
-  --syn-button-outline-color-text-active: inherit;
-  --syn-button-outline-color-text-hover: inherit;
+  --syn-button-outline-color-text-active: var(--syn-color-primary-950);
+  --syn-button-outline-color-text-hover: var(--syn-color-primary-900);
   --syn-checkbox-border-radius: var(--syn-border-radius-none);
   --syn-color-accent-50: #481700;
   --syn-color-accent-100: #7c310b;

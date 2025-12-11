@@ -3,7 +3,7 @@
 Buttons represent actions that are available to the user.
 
 ```html
-<syn-button title="" variant="outline" size="medium"> Button </syn-button>
+<syn-button title="" variant="outline" size="medium"> Default </syn-button>
 ```
 
 ---
@@ -27,7 +27,14 @@ Use the variant attribute to set the button’s variant. Variants can be Filled,
 Use the size attribute to change a button’s size.
 
 ```html
-<div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)">
+<div
+  style="
+    align-items: anchor-center;
+    display: flex;
+    flex-direction: row;
+    gap: var(--syn-spacing-large);
+  "
+>
   <syn-button size="small" title="" variant="outline">Small</syn-button>
   <syn-button size="medium" title="" variant="outline">Medium</syn-button>
   <syn-button size="large" title="" variant="outline">Large</syn-button>
@@ -95,19 +102,13 @@ It’s often helpful to have a button that works like a link. This is possible b
 As expected, buttons can be given a custom width by setting the width attribute. This is useful for making buttons span the full width of their container on smaller screens.
 
 ```html
-<div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)">
-  <syn-button
-    size="small"
-    style="width: 100%; margin-bottom: 1rem"
-    title=""
-    variant="outline"
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
+>
+  <syn-button size="small" style="width: 100%" title="" variant="outline"
     >Small</syn-button
   >
-  <syn-button
-    size="medium"
-    style="width: 100%; margin-bottom: 1rem"
-    title=""
-    variant="outline"
+  <syn-button size="medium" style="width: 100%" title="" variant="outline"
     >Medium</syn-button
   >
   <syn-button size="large" style="width: 100%" title="" variant="outline"
@@ -242,122 +243,129 @@ Insert just a single icon to use the same button style.
 Use the prefix and suffix slots to add icons.
 
 ```html
-<syn-button size="small" title="" variant="outline">
-  <syn-icon
-    slot="prefix"
-    name="settings"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  Settings
-</syn-button>
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
+>
+  <div
+    style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)"
+  >
+    <syn-button size="small" title="" variant="outline">
+      <syn-icon
+        slot="prefix"
+        name="settings"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Settings
+    </syn-button>
 
-<syn-button size="small" title="" variant="outline">
-  <syn-icon
-    slot="suffix"
-    name="refresh"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  Refresh
-</syn-button>
+    <syn-button size="small" title="" variant="outline">
+      <syn-icon
+        slot="suffix"
+        name="refresh"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Refresh
+    </syn-button>
 
-<syn-button size="small" title="" variant="outline">
-  <syn-icon
-    slot="prefix"
-    name="link"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  <syn-icon
-    slot="suffix"
-    name="launch"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  Open
-</syn-button>
+    <syn-button size="small" title="" variant="outline">
+      <syn-icon
+        slot="prefix"
+        name="link"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      <syn-icon
+        slot="suffix"
+        name="launch"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Open
+    </syn-button>
+  </div>
 
-<br /><br />
+  <div
+    style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)"
+  >
+    <syn-button title="" variant="outline" size="medium">
+      <syn-icon
+        slot="prefix"
+        name="settings"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Settings
+    </syn-button>
 
-<syn-button title="" variant="outline" size="medium">
-  <syn-icon
-    slot="prefix"
-    name="settings"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  Settings
-</syn-button>
+    <syn-button title="" variant="outline" size="medium">
+      <syn-icon
+        slot="suffix"
+        name="refresh"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Refresh
+    </syn-button>
 
-<syn-button title="" variant="outline" size="medium">
-  <syn-icon
-    slot="suffix"
-    name="refresh"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  Refresh
-</syn-button>
+    <syn-button title="" variant="outline" size="medium">
+      <syn-icon
+        slot="prefix"
+        name="link"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      <syn-icon
+        slot="suffix"
+        name="launch"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Open
+    </syn-button>
+  </div>
 
-<syn-button title="" variant="outline" size="medium">
-  <syn-icon
-    slot="prefix"
-    name="link"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  <syn-icon
-    slot="suffix"
-    name="launch"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  Open
-</syn-button>
+  <div
+    style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)"
+  >
+    <syn-button size="large" title="" variant="outline">
+      <syn-icon
+        slot="prefix"
+        name="settings"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Settings
+    </syn-button>
 
-<br /><br />
+    <syn-button size="large" title="" variant="outline">
+      <syn-icon
+        slot="suffix"
+        name="refresh"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Refresh
+    </syn-button>
 
-<syn-button size="large" title="" variant="outline">
-  <syn-icon
-    slot="prefix"
-    name="settings"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  Settings
-</syn-button>
-
-<syn-button size="large" title="" variant="outline">
-  <syn-icon
-    slot="suffix"
-    name="refresh"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  Refresh
-</syn-button>
-
-<syn-button size="large" title="" variant="outline">
-  <syn-icon
-    slot="prefix"
-    name="link"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  <syn-icon
-    slot="suffix"
-    name="launch"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  Open
-</syn-button>
-<style>
-  syn-button {
-    margin: 0.2rem;
-  }
-</style>
+    <syn-button size="large" title="" variant="outline">
+      <syn-icon
+        slot="prefix"
+        name="link"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      <syn-icon
+        slot="suffix"
+        name="launch"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Open
+    </syn-button>
+  </div>
+</div>
 ```
 
 ---
@@ -367,7 +375,14 @@ Use the prefix and suffix slots to add icons.
 Use the caret attribute to add a dropdown indicator when a button will trigger a dropdown, menu, or popover.
 
 ```html
-<div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)">
+<div
+  style="
+    align-items: anchor-center;
+    display: flex;
+    flex-direction: row;
+    gap: var(--syn-spacing-large);
+  "
+>
   <syn-button size="small" caret="" title="" variant="outline"
     >Small</syn-button
   >

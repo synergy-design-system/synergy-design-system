@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { SynergyComponentsModule } from '@synergy-design-system/angular';
-import { setGlobalSize } from '../shared';
-
-type AvailableSizes = 'small' | 'medium' | 'large';
+import {
+  type AllowedSizes,
+  setGlobalSize,
+} from '@synergy-design-system/demo-utilities';
 
 @Component({
   imports: [SynergyComponentsModule],
@@ -11,9 +12,9 @@ type AvailableSizes = 'small' | 'medium' | 'large';
   templateUrl: './sizeswitch.component.html',
 })
 export class SizeSwitchComponent {
-  currentSize: AvailableSizes = 'medium';
+  currentSize: AllowedSizes = 'medium';
 
-  switchSize(size: AvailableSizes) {
+  switchSize(size: AllowedSizes) {
     setGlobalSize(size);
     this.currentSize = size;
   }

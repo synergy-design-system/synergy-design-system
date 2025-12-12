@@ -114,6 +114,9 @@ importers:
 
   packages/_private/demo-utilities:
     devDependencies:
+      '@synergy-design-system/components':
+        specifier: workspace:*
+        version: link:../../components
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../eslint-config-syn

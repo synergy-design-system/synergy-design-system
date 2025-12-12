@@ -142,6 +142,16 @@
           "value": "The toast stack is a fixed position singleton element created and managed internally by the alert component. It will be added and removed from the DOM as needed when toasts are shown. When more than one toast is visible, they will stack vertically in the toast stack.\n\nBy default, the toast stack is positioned at the top-right of the viewport. You can change its position by targeting .syn-toast-stack in your stylesheet. To make toasts appear at the top-left of the viewport, for example, use the following styles.",
           "type": "text"
         }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change an alert’s size.",
+          "type": "text"
+        }
       }
     },
     "animated-image": {
@@ -3486,6 +3496,16 @@
         },
         "description": {
           "value": "Use hide-icon to hide the icon in inline style. This is especially useful when showing more than one error at a time.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "In development use the size attribute of the form element e.g. syn-input to set the size of the inline syn-validate automatically.",
           "type": "text"
         }
       },

@@ -1,4 +1,9 @@
-import { expect, fixture, html } from '@open-wc/testing';
+import {
+  aTimeout,
+  expect,
+  fixture,
+  html,
+} from '@open-wc/testing';
 import sinon from 'sinon';
 import '../../../dist/synergy.js';
 import * as utils from '../../../dist/components/validate/utility.js';
@@ -50,6 +55,39 @@ describe('<syn-validate>', () => {
           const el = document.createElement('syn-input');
           await expect(utils.getEventNameForElement(el, 'change')).to.deep.equal('syn-change');
           await expect(utils.getEventNameForElement(el, '  focus  ')).to.deep.equal('syn-focus');
+        });
+      });
+
+      describe('isSynergyElement', () => {
+        it('should return true for synergy elements', async () => {
+          const el = document.createElement('syn-input');
+          await expect(utils.isSynergyElement(el)).to.equal(true);
+        });
+
+        it('should return false for native DOM elements', async () => {
+          const el = document.createElement('input');
+          await expect(utils.isSynergyElement(el)).to.equal(false);
+        });
+      });
+
+      describe('alertSizeForInput', () => {
+        it('should return undefined when the input is not a synergy element', async () => {
+          const el = document.createElement('input');
+          await expect(utils.alertSizeForInput(el)).to.equal(undefined);
+        });
+
+        it('should return undefined when the synergy element does not have a size set', async () => {
+          const el = document.createElement('syn-input');
+
+          // @ts-expect-error size is not set
+          el.size = undefined;
+          await expect(utils.alertSizeForInput(el)).to.equal(undefined);
+        });
+
+        it('should return the elements size attribute value when the synergy element has a size set', async () => {
+          const el = document.createElement('syn-input');
+          el.size = 'small';
+          await expect(utils.alertSizeForInput(el)).to.equal('small');
         });
       });
     });
@@ -296,6 +334,17 @@ describe('<syn-validate>', () => {
 
       expect(reportValiditySpy).to.not.have.been.called;
     });
+
+    it('should use the default size attribute for the rendered syn-alert when using variant="inline"', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate variant="inline" eager>
+          <input label="Email" value="test" name="email" type="email">
+        </syn-validate>
+      `);
+
+      const alert = el.shadowRoot!.querySelector('syn-alert')!;
+      expect(alert).to.have.attribute('size', 'medium');
+    });
   });
 
   describe('when using synergy form elements', () => {
@@ -463,6 +512,36 @@ describe('<syn-validate>', () => {
       await el.updateComplete;
 
       expect(input.hasAttribute('data-user-invalid')).to.be.false;
+    });
+
+    it('should use the size of the rendered synergy form element for the rendered syn-alert when using variant="inline"', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate variant="inline" eager>
+          <syn-input label="Email" value="test" name="email" type="email" size="small"></syn-input>
+        </syn-validate>
+      `);
+
+      const alert = el.shadowRoot!.querySelector('syn-alert')!;
+      expect(alert).to.have.attribute('size', 'small');
+    });
+
+    it('should update the size of the rendered rendered syn-alert when using variant="inline" and changing the size of the rendered synergy form element', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate variant="inline" eager>
+          <syn-input label="Email" value="test" name="email" type="email" size="large"></syn-input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('syn-input')!;
+      const alert = el.shadowRoot!.querySelector('syn-alert')!;
+      expect(alert).to.have.attribute('size', 'large');
+
+      input.setAttribute('size', 'small');
+
+      // We have to wait for the mutation observer to kick in
+      await aTimeout(100);
+
+      expect(alert).to.have.attribute('size', 'small');
     });
   });
 

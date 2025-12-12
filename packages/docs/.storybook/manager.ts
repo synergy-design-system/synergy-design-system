@@ -35,10 +35,7 @@ addons.setConfig({
         tooltip: 'This component is available for theme SICK 2025',
       },
       display: {
-        sidebar: [{
-            type: 'component',
-            skipInherited: true,
-        }],
+        sidebar: false,
         toolbar: true,
         mdx: true,
       },

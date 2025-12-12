@@ -1,4 +1,8 @@
 /**
+ * @typedef {import('./types.js').OutputVariableChangeList} OutputVariableChangeList
+ */
+
+/**
  * The directory path where Figma variables are stored and processed.
  */
 export const FIGMA_VARIABLES_DIR = './src/figma-variables';
@@ -37,3 +41,51 @@ export const LIGHT_2018_THEME = 'sick2018-light.json';
  * The file name for the 2018 dark theme.
  */
 export const DARK_2018_THEME = 'sick2018-dark.json';
+
+/**
+ * List of static changed to variables for specific themes and modes.
+ * @type {Record<string, OutputVariableChangeList>}
+ */
+export const OUTPUT_VARIABLE_CHANGES = {
+  sick2018_dark: {
+    // filled button
+    'syn-button-filled-color-text': 'inherit',
+    'syn-button-filled-color-text-active': 'inherit',
+    'syn-button-filled-color-text-hover': 'inherit',
+
+    // outlined button
+    'syn-button-outline-color': 'inherit',
+    'syn-button-outline-color-active': 'none',
+    'syn-button-outline-color-hover': 'none',
+    'syn-button-outline-color-text': 'inherit',
+    'syn-button-outline-color-text-active': 'var(--syn-color-primary-950)',
+    'syn-button-outline-color-text-hover': 'var(--syn-color-primary-900)',
+  },
+  sick2018_light: {
+    // filled button
+    'syn-button-filled-color-text': 'inherit',
+    'syn-button-filled-color-text-active': 'inherit',
+    'syn-button-filled-color-text-hover': 'inherit',
+
+    // outlined button
+    'syn-button-outline-color': 'inherit',
+    'syn-button-outline-color-active': 'none',
+    'syn-button-outline-color-hover': 'none',
+    'syn-button-outline-color-text': 'inherit',
+    'syn-button-outline-color-text-active': 'var(--syn-color-primary-950)',
+    'syn-button-outline-color-text-hover': 'var(--syn-color-primary-900)',
+  },
+  sick2025_dark: {
+    // outlined button
+    'syn-button-outline-color': 'inherit',
+  },
+  sick2025_light: {
+    // filled button
+    'syn-button-filled-color-text': 'inherit',
+    'syn-button-filled-color-text-active': 'inherit',
+    'syn-button-filled-color-text-hover': 'inherit',
+
+    // outlined button
+    'syn-button-outline-color': 'inherit',
+  },
+};

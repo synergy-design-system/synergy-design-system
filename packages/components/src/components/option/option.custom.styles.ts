@@ -15,19 +15,19 @@ export default css`
   .option {
     /*
      * #988: Brand2025 defines a small gap between options
-     * and rounded corners. We achieve that using an outline
+     * and rounded corners. We achieve that using an border
      * that simulates the gap using the menu background color.
      */
-    --outline: calc(var(--syn-focus-ring-border-radius) * 1.5);
+    border: solid white;
 
-    border-radius: calc(var(--outline) * 1.5);
+    /* Border Radius needs to be increased to cover the outline */
+    border-radius: calc(var(--syn-focus-ring-border-radius) + var(--option-inset-border-vertical));
+    border-width: var(--option-inset-border-horizontal) var(--option-inset-border-vertical);
     font-size: var(--option-font-size, var(--syn-font-size-medium));
 
     /* Height is dependent on line-height of .option__label, which does not fit completely to layout */
     min-height: var(--option-min-height, var(--syn-input-height-medium));
-    outline: var(--outline) solid var(--syn-panel-background-color);
-    outline-offset: calc(var(--outline) * -1 + 1px);
-    padding: var(--option-padding, var(--syn-spacing-small) var(--syn-spacing-medium));    
+    padding: 0 calc(var(--option-padding) - var(--option-inset-border-vertical));
   }
 
   .option:not(.option--current) {

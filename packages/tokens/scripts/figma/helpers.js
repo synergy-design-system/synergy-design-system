@@ -126,13 +126,6 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    */
   /primitive\/shadow.*\/(1st|2nd|3rd)/,
 
-  /**
-   * Color palettes that are currently not used
-   */
-  // Currently not used color palettes of critical
-  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
-  /primitive\/critical/,
-
   // Currently not used color palettes of muted
   // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
   /primitive\/muted/,
@@ -183,9 +176,6 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    */
   // Not yet updated in dev
   /component\/radio-button-group/,
-
-  // Switch component tokens
-  /component\/switch/,
 ];
 /* eslint-enable max-len */
 

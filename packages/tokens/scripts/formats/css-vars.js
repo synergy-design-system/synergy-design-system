@@ -88,6 +88,10 @@ export const cssVariableFormatter = {
       'body-2x-small-semibold',
       'body-2x-small-bold',
       'heading-4x-large',
+
+      // Internal color tests
+      'background-color-1',
+      'background-color-2',
     ].map(v => `${prefix}${v}`);
 
     /**

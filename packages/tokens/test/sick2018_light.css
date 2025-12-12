@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.45.0
+ * @synergy-design-system/tokens version 2.46.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -9,33 +9,33 @@
 
   --syn-alert-error-color-background: var(--syn-panel-background-color);
   --syn-alert-error-color-border: var(--syn-panel-border-color);
-  --syn-alert-error-color-icon: var(--syn-color-error-600);
-  --syn-alert-error-color-indicator: var(--syn-color-error-600);
+  --syn-alert-error-color-icon: var(--syn-namur-error-color);
+  --syn-alert-error-color-indicator: var(--syn-namur-error-color);
   --syn-alert-informative-color-background: var(--syn-panel-background-color);
   --syn-alert-informative-color-border: var(--syn-panel-border-color);
-  --syn-alert-informative-color-icon: var(--syn-color-info-600);
-  --syn-alert-informative-color-indicator: var(--syn-color-info-600);
+  --syn-alert-informative-color-icon: var(--syn-namur-info-color);
+  --syn-alert-informative-color-indicator: var(--syn-namur-info-color);
   --syn-alert-neutral-color-background: var(--syn-panel-background-color);
   --syn-alert-neutral-color-border: var(--syn-panel-border-color);
-  --syn-alert-neutral-color-icon: var(--syn-color-neutral-800);
-  --syn-alert-neutral-color-indicator: var(--syn-color-neutral-800);
+  --syn-alert-neutral-color-icon: var(--syn-namur-neutral-color);
+  --syn-alert-neutral-color-indicator: var(--syn-namur-neutral-color);
   --syn-alert-success-color-background: var(--syn-panel-background-color);
   --syn-alert-success-color-border: var(--syn-panel-border-color);
-  --syn-alert-success-color-icon: var(--syn-color-success-500);
-  --syn-alert-success-color-indicator: var(--syn-color-success-500);
+  --syn-alert-success-color-icon: var(--syn-namur-success-color);
+  --syn-alert-success-color-indicator: var(--syn-namur-success-color);
   --syn-alert-warning-color-background: var(--syn-panel-background-color);
   --syn-alert-warning-color-border: var(--syn-panel-border-color);
-  --syn-alert-warning-color-icon: var(--syn-color-warning-400);
-  --syn-alert-warning-color-indicator: var(--syn-color-warning-400);
-  --syn-badge-error-color-background: var(--syn-color-error-600);
-  --syn-badge-error-color-text: var(--syn-typography-color-text-inverted);
-  --syn-badge-informative-color-background: var(--syn-color-info-600);
-  --syn-badge-informative-color-text: var(--syn-typography-color-text-inverted);
-  --syn-badge-neutral-color-background: var(--syn-color-neutral-800);
-  --syn-badge-neutral-color-text: var(--syn-typography-color-text-inverted);
-  --syn-badge-success-color-background: var(--syn-color-success-500);
+  --syn-alert-warning-color-icon: var(--syn-namur-warning-color);
+  --syn-alert-warning-color-indicator: var(--syn-namur-warning-color);
+  --syn-badge-error-color-background: var(--syn-namur-error-color);
+  --syn-badge-error-color-text: var(--syn-typography-color-text);
+  --syn-badge-informative-color-background: var(--syn-namur-info-color);
+  --syn-badge-informative-color-text: var(--syn-typography-color-text);
+  --syn-badge-neutral-color-background: var(--syn-namur-neutral-color);
+  --syn-badge-neutral-color-text: var(--syn-typography-color-text);
+  --syn-badge-success-color-background: var(--syn-namur-success-color);
   --syn-badge-success-color-text: var(--syn-typography-color-text);
-  --syn-badge-warning-color-background: var(--syn-color-warning-400);
+  --syn-badge-warning-color-background: var(--syn-namur-warning-color);
   --syn-badge-warning-color-text: var(--syn-typography-color-text);
   --syn-border-radius-circle: 9999px;
   --syn-border-radius-large: 8px;
@@ -81,6 +81,17 @@
   --syn-color-accent-800: #983b08;
   --syn-color-accent-900: #7c310b;
   --syn-color-accent-950: #481700;
+  --syn-color-critical-50: #fffbea;
+  --syn-color-critical-100: #fff2c5;
+  --syn-color-critical-200: #ffe685;
+  --syn-color-critical-300: #ffd246;
+  --syn-color-critical-400: #ffbd1b;
+  --syn-color-critical-500: #f39200;
+  --syn-color-critical-600: #e27200;
+  --syn-color-critical-700: #bb4d02;
+  --syn-color-critical-800: #983b08;
+  --syn-color-critical-900: #7c310b;
+  --syn-color-critical-950: #481700;
   --syn-color-error-50: #fff0f2;
   --syn-color-error-100: #ffdee2;
   --syn-color-error-200: #ffc3c9;
@@ -264,6 +275,20 @@
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 7%;
   --syn-logo-color: var(--syn-color-primary-600);
+  --syn-namur-color-border: var(--syn-color-neutral-950);
+  --syn-namur-critical-color: var(--syn-color-critical-600);
+  --syn-namur-critical-color-background: var(--syn-color-critical-100);
+  --syn-namur-error-color: var(--syn-color-error-500);
+  --syn-namur-error-color-background: var(--syn-color-error-100);
+  --syn-namur-icon-color: var(--syn-color-neutral-950);
+  --syn-namur-info-color: var(--syn-color-info-500);
+  --syn-namur-info-color-background: var(--syn-color-info-100);
+  --syn-namur-neutral-color: var(--syn-color-neutral-400);
+  --syn-namur-neutral-color-background: var(--syn-color-neutral-200);
+  --syn-namur-success-color: var(--syn-color-success-500);
+  --syn-namur-success-color-background: var(--syn-color-success-100);
+  --syn-namur-warning-color: var(--syn-color-warning-400);
+  --syn-namur-warning-color-background: var(--syn-color-warning-100);
   --syn-opacity-50: 0.5; /** 50% */
   --syn-option-background-color-active: var(--syn-color-primary-600);
   --syn-option-background-color-hover: var(--syn-color-neutral-100);

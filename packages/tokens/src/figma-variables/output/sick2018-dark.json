@@ -11,11 +11,11 @@
       },
       "color-icon": {
         "type": "color",
-        "value": "{color.error.600}"
+        "value": "{namur.error.color}"
       },
       "color-indicator": {
         "type": "color",
-        "value": "{color.error.600}"
+        "value": "{namur.error.color}"
       }
     },
     "informative": {
@@ -29,11 +29,11 @@
       },
       "color-icon": {
         "type": "color",
-        "value": "{color.info.600}"
+        "value": "{namur.info.color}"
       },
       "color-indicator": {
         "type": "color",
-        "value": "{color.info.600}"
+        "value": "{namur.info.color}"
       }
     },
     "neutral": {
@@ -47,11 +47,11 @@
       },
       "color-icon": {
         "type": "color",
-        "value": "{color.neutral.800}"
+        "value": "{namur.neutral.color}"
       },
       "color-indicator": {
         "type": "color",
-        "value": "{color.neutral.800}"
+        "value": "{namur.neutral.color}"
       }
     },
     "success": {
@@ -65,11 +65,11 @@
       },
       "color-icon": {
         "type": "color",
-        "value": "{color.success.500}"
+        "value": "{namur.success.color}"
       },
       "color-indicator": {
         "type": "color",
-        "value": "{color.success.500}"
+        "value": "{namur.success.color}"
       }
     },
     "warning": {
@@ -83,19 +83,29 @@
       },
       "color-icon": {
         "type": "color",
-        "value": "{color.warning.400}"
+        "value": "{namur.warning.color}"
       },
       "color-indicator": {
         "type": "color",
-        "value": "{color.warning.400}"
+        "value": "{namur.warning.color}"
       }
+    }
+  },
+  "background": {
+    "color-1": {
+      "type": "color",
+      "value": "{color.neutral.50}"
+    },
+    "color-2": {
+      "type": "color",
+      "value": "{color.accent.100}"
     }
   },
   "badge": {
     "error": {
       "color-background": {
         "type": "color",
-        "value": "{color.error.600}"
+        "value": "{namur.error.color}"
       },
       "color-text": {
         "type": "color",
@@ -105,7 +115,7 @@
     "informative": {
       "color-background": {
         "type": "color",
-        "value": "{color.info.600}"
+        "value": "{namur.info.color}"
       },
       "color-text": {
         "type": "color",
@@ -115,7 +125,7 @@
     "neutral": {
       "color-background": {
         "type": "color",
-        "value": "{color.neutral.800}"
+        "value": "{namur.neutral.color}"
       },
       "color-text": {
         "type": "color",
@@ -125,21 +135,21 @@
     "success": {
       "color-background": {
         "type": "color",
-        "value": "{color.success.500}"
+        "value": "{namur.success.color}"
       },
       "color-text": {
         "type": "color",
-        "value": "{typography.color.text}"
+        "value": "{typography.color.text-inverted}"
       }
     },
     "warning": {
       "color-background": {
         "type": "color",
-        "value": "{color.warning.400}"
+        "value": "{namur.warning.color}"
       },
       "color-text": {
         "type": "color",
-        "value": "{typography.color.text}"
+        "value": "{typography.color.text-inverted}"
       }
     }
   },
@@ -302,6 +312,52 @@
   },
   "color": {
     "accent": {
+      "50": {
+        "type": "color",
+        "value": "#481700"
+      },
+      "100": {
+        "type": "color",
+        "value": "#7c310b"
+      },
+      "200": {
+        "type": "color",
+        "value": "#983b08"
+      },
+      "300": {
+        "type": "color",
+        "value": "#bb4d02"
+      },
+      "400": {
+        "type": "color",
+        "value": "#e27200"
+      },
+      "500": {
+        "type": "color",
+        "value": "#f39200"
+      },
+      "600": {
+        "type": "color",
+        "value": "#ffbd1b"
+      },
+      "700": {
+        "type": "color",
+        "value": "#ffd246"
+      },
+      "800": {
+        "type": "color",
+        "value": "#ffe685"
+      },
+      "900": {
+        "type": "color",
+        "value": "#fff2c5"
+      },
+      "950": {
+        "type": "color",
+        "value": "#fffbea"
+      }
+    },
+    "critical": {
       "50": {
         "type": "color",
         "value": "#481700"
@@ -1066,7 +1122,7 @@
     "background": {
       "color-active": {
         "type": "color",
-        "value": "{color.neutral.200}"
+        "value": "{color.neutral.300}"
       },
       "color-hover": {
         "type": "color",
@@ -1191,6 +1247,78 @@
     "color": {
       "type": "color",
       "value": "{color.primary.400}"
+    }
+  },
+  "namur": {
+    "color-border": {
+      "type": "color",
+      "value": "{color.neutral.50}"
+    },
+    "critical": {
+      "color": {
+        "type": "color",
+        "value": "{color.critical.600}"
+      },
+      "color-background": {
+        "type": "color",
+        "value": "{color.critical.100}"
+      }
+    },
+    "error": {
+      "color": {
+        "type": "color",
+        "value": "{color.error.500}"
+      },
+      "color-background": {
+        "type": "color",
+        "value": "{color.error.100}"
+      }
+    },
+    "icon": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.50}"
+      }
+    },
+    "info": {
+      "color": {
+        "type": "color",
+        "value": "{color.info.500}"
+      },
+      "color-background": {
+        "type": "color",
+        "value": "{color.info.50}"
+      }
+    },
+    "neutral": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.600}"
+      },
+      "color-background": {
+        "type": "color",
+        "value": "{color.neutral.800}"
+      }
+    },
+    "success": {
+      "color": {
+        "type": "color",
+        "value": "{color.success.500}"
+      },
+      "color-background": {
+        "type": "color",
+        "value": "{color.success.100}"
+      }
+    },
+    "warning": {
+      "color": {
+        "type": "color",
+        "value": "{color.warning.600}"
+      },
+      "color-background": {
+        "type": "color",
+        "value": "{color.warning.100}"
+      }
     }
   },
   "opacity": {

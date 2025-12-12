@@ -290,6 +290,7 @@
   --syn-range-tick-color: var(--syn-color-neutral-600);
   --syn-range-track-color-active: var(--syn-interactive-emphasis-color);
   --syn-readonly-background-color: var(--syn-color-neutral-300);
+  --syn-spacing-1-5x-large: 40px;
   --syn-spacing-2x-large: 48px;
   --syn-spacing-2x-small: 4px;
   --syn-spacing-3x-large: 64px;
@@ -304,6 +305,12 @@
   --syn-spacing-x-large: 32px;
   --syn-spacing-x-small: 8px;
   --syn-spinner-opacity: 0.4;
+  --syn-switch-height-large: 28px;
+  --syn-switch-height-medium: var(--syn-spacing-large);
+  --syn-switch-height-small: var(--syn-spacing-medium-large);
+  --syn-switch-width-large: var(--syn-spacing-2x-large);
+  --syn-switch-width-medium: var(--syn-spacing-1-5x-large);
+  --syn-switch-width-small: var(--syn-spacing-x-large);
   --syn-table-background-color: var(--syn-panel-background-color);
   --syn-table-background-color-alternating: var(--syn-color-neutral-200);
   --syn-table-background-color-header: var(--syn-color-neutral-300);

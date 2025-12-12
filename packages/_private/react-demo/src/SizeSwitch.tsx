@@ -4,14 +4,15 @@ import {
   SynIconButton,
   SynTooltip,
 } from '@synergy-design-system/react';
-import { setGlobalSize } from './shared';
-
-type AvailableSizes = 'small' | 'medium' | 'large';
+import {
+  type AllowedSizes,
+  setGlobalSize,
+} from '@synergy-design-system/demo-utilities';
 
 export const SizeSwitch = () => {
-  const [size, setSize] = useState<AvailableSizes>('medium');
+  const [size, setSize] = useState<AllowedSizes>('medium');
 
-  const handleSizeChange = (newSize: AvailableSizes) => {
+  const handleSizeChange = (newSize: AllowedSizes) => {
     setSize(newSize);
     setGlobalSize(newSize);
   };

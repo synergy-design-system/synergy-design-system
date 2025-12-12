@@ -6,6 +6,10 @@ export default css`
     outline-offset: var(--syn-focus-ring-width);
   }
 
+  .radio {
+    align-items: flex-start;
+  }
+
   /** #429: Use token for opacity */
   .radio--disabled { 
     opacity: var(--syn-input-disabled-opacity);
@@ -42,23 +46,21 @@ export default css`
 
   /* Fix#456: Multi line radio fixes */
   .radio__label {
+    align-self: center;
     margin-inline-start: var(--syn-spacing-x-small);
-    position: relative;
+    margin-top: -1px;
   }
 
   .radio--small .radio__label {
     font: var(--syn-body-small-regular);
-    top: -3px;
   }
 
   .radio--medium .radio__label {
     font: var(--syn-body-medium-regular);
-    top: -3px;
   }
 
   .radio--large .radio__label {
     font: var(--syn-body-large-regular);
-    top: -2px;
   }
 
   /* /Fix#456 */

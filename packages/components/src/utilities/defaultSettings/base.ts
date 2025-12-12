@@ -107,6 +107,7 @@ export type SynDefaultSettings = {
   };
   size: {
     SynAccordion?: AllowedValueForDefaultSetting<SynAccordion, "size">;
+    SynAlert?: AllowedValueForDefaultSetting<SynAlert, "size">;
     SynButton?: AllowedValueForDefaultSetting<SynButton, "size">;
     SynCheckbox?: AllowedValueForDefaultSetting<SynCheckbox, "size">;
     SynCombobox?: AllowedValueForDefaultSetting<SynCombobox, "size">;
@@ -146,6 +147,7 @@ export const defaultSettings: SynDefaultSettings = {
   },
   size: {
     SynAccordion: "medium",
+    SynAlert: "medium",
     SynButton: "medium",
     SynCheckbox: "medium",
     SynCombobox: "medium",
@@ -183,6 +185,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
   },
   size: {
     SynAccordion: "medium",
+    SynAlert: "medium",
     SynButton: "medium",
     SynCheckbox: "medium",
     SynCombobox: "medium",

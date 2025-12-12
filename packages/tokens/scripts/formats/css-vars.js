@@ -114,6 +114,7 @@ export const cssVariableFormatter = {
           .replace('{', '')
           .replace('}', '')
           .replaceAll('.', '-')
+          .replaceAll('_', '-')
           })`;
       }
       return token;

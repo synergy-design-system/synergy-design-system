@@ -1361,6 +1361,10 @@
     }
   },
   "spacing": {
+    "1_5x-large": {
+      "type": "sizing",
+      "value": "40px"
+    },
     "2x-large": {
       "type": "sizing",
       "value": "48px"
@@ -1418,6 +1422,36 @@
     "opacity": {
       "type": "opacity",
       "value": "40%"
+    }
+  },
+  "switch": {
+    "height": {
+      "large": {
+        "type": "sizing",
+        "value": "28px"
+      },
+      "medium": {
+        "type": "sizing",
+        "value": "{spacing.large}"
+      },
+      "small": {
+        "type": "sizing",
+        "value": "{spacing.medium-large}"
+      }
+    },
+    "width": {
+      "large": {
+        "type": "sizing",
+        "value": "{spacing.2x-large}"
+      },
+      "medium": {
+        "type": "sizing",
+        "value": "{spacing.1_5x-large}"
+      },
+      "small": {
+        "type": "sizing",
+        "value": "{spacing.x-large}"
+      }
     }
   },
   "table": {

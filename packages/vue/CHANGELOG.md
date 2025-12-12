@@ -1,5 +1,31 @@
 # @synergy-design-system/vue
 
+## 2.74.0
+
+### Minor Changes
+
+- [#1129](https://github.com/synergy-design-system/synergy-design-system/pull/1129) [`102e650`](https://github.com/synergy-design-system/synergy-design-system/commit/102e6503af3a72d0d2529ed216ce6053a07b9607) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-12
+
+  feat: ✨ syn alert add sizes (#1119)
+
+  We have added a new property `size` to `<syn-alert>` that can be set to `small`, `medium` (the default) and `large`.
+  The property can also be used with Synergy `defaultSettings`.
+
+  We also adjusted `<syn-validate>` to draw the `size` attribute of its `slotted` `HTMLInputElement`. If a `size` property is found on the rendered input, it will be forwarded to the rendered `<syn-alert>` if you use `variant="inline"`.
+
+### Patch Changes
+
+- Updated dependencies [[`102e650`](https://github.com/synergy-design-system/synergy-design-system/commit/102e6503af3a72d0d2529ed216ce6053a07b9607)]:
+  - @synergy-design-system/components@2.74.0
+
+## 2.73.0
+
+### Patch Changes
+
+- Updated dependencies [[`740816b`](https://github.com/synergy-design-system/synergy-design-system/commit/740816b1a86768e7f2fed5516241bdb3a9df4ef7)]:
+  - @synergy-design-system/components@2.73.0
+  - @synergy-design-system/tokens@2.46.0
+
 ## 2.72.0
 
 ### Minor Changes

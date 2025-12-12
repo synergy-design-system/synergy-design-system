@@ -94,6 +94,9 @@ export default class SynAlert extends SynergyElement {
    */
   @property({ type: Number }) duration = Infinity;
 
+  /** The alert's size. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
   /**
    * Enables a countdown that indicates the remaining time the alert will be displayed.
    * Typically used to indicate the remaining time before a whole app refresh.
@@ -253,6 +256,9 @@ export default class SynAlert extends SynergyElement {
         class=${classMap({
           alert: true,
           'alert--open': this.open,
+          'alert--small': this.size === 'small',
+          'alert--medium': this.size === 'medium',
+          'alert--large': this.size === 'large',
           'alert--closable': this.closable,
           'alert--has-icon': this.hasSlotController.test('icon'),
           'alert--primary': this.variant === 'primary',

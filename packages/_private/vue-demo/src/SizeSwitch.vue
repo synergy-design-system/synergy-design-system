@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { setGlobalSize } from './shared';
 import {
   SynVueButtonGroup,
   SynVueIconButton,
   SynVueTooltip,
 } from '@synergy-design-system/vue';
+import {
+  type AllowedSizes,
+  setGlobalSize,
+} from '@synergy-design-system/demo-utilities';
 
-type AvailableSizes = 'small' | 'medium' | 'large';
+const size = ref<AllowedSizes>('medium');
 
-const size = ref<AvailableSizes>('medium');
-
-const handleSizeChange = (newSize: AvailableSizes) => {
+const handleSizeChange = (newSize: AllowedSizes) => {
   size.value = newSize;
   setGlobalSize(newSize);
 };

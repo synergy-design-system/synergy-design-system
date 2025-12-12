@@ -132,6 +132,17 @@ the alert will not close on its own.
   }
 
   /**
+   * The alert's size.
+   */
+  @Input()
+  set size(v: SynAlert['size']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
+  }
+  get size(): SynAlert['size'] {
+    return this.nativeElement.size;
+  }
+
+  /**
    * Emitted when the alert opens.
    */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();

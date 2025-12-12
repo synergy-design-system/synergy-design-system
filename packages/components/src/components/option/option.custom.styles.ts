@@ -18,7 +18,7 @@ export default css`
      * and rounded corners. We achieve that using an border
      * that simulates the gap using the menu background color.
      */
-    border: solid white;
+    border: solid var(--syn-panel-background-color);
 
     /* Border Radius needs to be increased to cover the outline */
     border-radius: calc(var(--syn-focus-ring-border-radius) + var(--option-inset-border-vertical));

@@ -76,7 +76,6 @@ export const cssVariableFormatter = {
 
       'input-border-color-active',
       'input-icon-icon-clearable-color-active',
-      'interactive-background-color-active',
       // Readonly color are needed later
       'readonly-border-color',
       'readonly-indicator-color',

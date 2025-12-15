@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.45.0
+ * @synergy-design-system/tokens version 2.46.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -223,6 +223,7 @@
   --syn-input-spacing-medium: var(--syn-spacing-medium);
   --syn-input-spacing-small: var(--syn-spacing-small);
   --syn-input-width: var(--syn-border-width-small);
+  --syn-interactive-background-color-active: #ece8e5;
   --syn-interactive-background-color-hover: #f2f0ed;
   --syn-interactive-emphasis-color: var(--syn-color-primary-700);
   --syn-interactive-emphasis-color-active: var(--syn-color-primary-1000);

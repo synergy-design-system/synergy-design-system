@@ -20,8 +20,13 @@ export default css`
      */
     border: solid var(--syn-panel-background-color);
 
-    /* Border Radius needs to be increased to cover the outline */
-    border-radius: calc(var(--syn-focus-ring-border-radius) + var(--option-inset-border-vertical));
+    /**
+     * Border Radius needs to be increased to cover the outline
+     * Note this also needs to take the following into account:
+     * - 2018 does not have a focus ring, so the border radius is as small as the border, essentially negating it to "0"
+     * - 2025 needs to adapt with another pixel to make it match the rounding of the focus ring
+     */
+    border-radius: calc(calc(var(--syn-focus-ring-border-radius) * 2) + var(--option-inset-border-vertical) - 1px);
     border-width: var(--option-inset-border-horizontal) var(--option-inset-border-vertical);
     font-size: var(--option-font-size, var(--syn-font-size-medium));
 

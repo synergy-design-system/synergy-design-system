@@ -161,7 +161,7 @@ export default css`
 
     color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-700));
     font-size: var(--syn-font-size-medium);
-    left: var(--syn-spacing-medium);
+    left: calc(var(--menuitem-padding) - var(--menuitem-inset-border-vertical));
   }
 
   /**

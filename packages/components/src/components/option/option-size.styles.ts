@@ -9,7 +9,7 @@ export default css`
    * Also note that we have to adjust the padding to take the border size into account.
    */
   :host([size="small"]) {
-    --option-inset-border-horizontal: 0;
+    --option-inset-border-horizontal: var(--syn-spacing-2x-small);
     --option-inset-border-vertical: calc(var(--syn-spacing-2x-small) - 1px);
     --option-min-height: var(--syn-input-height-small);
     --option-padding: var(--syn-input-spacing-small);

@@ -203,6 +203,7 @@
   --syn-input-icon-color: var(--syn-color-neutral-1000);
   --syn-input-icon-color-hover: var(--syn-color-neutral-1000);
   --syn-input-icon-icon-clearable-color: var(--syn-color-neutral-600);
+  --syn-input-icon-icon-clearable-color-active: var(--syn-color-neutral-900);
   --syn-input-icon-icon-clearable-color-hover: var(--syn-color-neutral-800);
   --syn-input-label-color: var(--syn-color-neutral-1000);
   --syn-input-label-font-size-large: var(--syn-font-size-large);

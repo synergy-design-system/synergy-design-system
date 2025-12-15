@@ -61,6 +61,23 @@ export default css`
     background-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
     border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
   }
+  
+  /*
+   * #443: Add active styles
+   * The checked and unchecked states have different active colors
+   * Note the fallback is defined to match the hover color.
+   * This is done to make sure no active state is shown at all if no active color is defined.
+   * Still better than showing one for the unchecked state but not for the checked state.
+   */
+  .switch:not(.switch--checked):not(.switch--disabled):active .switch__control {
+    background: var(--syn-input-icon-icon-clearable-color-active);
+    border-color: var(--syn-input-icon-icon-clearable-color-active);
+  }
+
+  .switch.switch--checked:not(.switch--disabled):active .switch__control {
+    background: var(--syn-interactive-emphasis-color-active);
+    border-color: var(--syn-interactive-emphasis-color-active);
+  }
 
   /* Hover */
   .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover {

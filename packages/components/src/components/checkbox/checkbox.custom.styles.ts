@@ -55,11 +55,18 @@ export default css`
 
   /*
    * #443: Add active styles
-   * Make sure to only apply active styles when not disabled and checked
+   * The checked and unchecked states have different active colors
+   * Note the fallback is defined to match the hover color.
+   * This is done to make sure no active state is shown at all if no active color is defined.
+   * Still better than showing one for the unchecked state but not for the checked state.
    */
+  .checkbox:not(.checkbox--checked):not(.checkbox--disabled):active .checkbox__control {
+    border-color: var(--syn-input-border-color-active);
+  }
+
   .checkbox.checkbox--checked:not(.checkbox--disabled):active .checkbox__control {
-    background: var(--syn-interactive-emphasis-color-active, var(--syn-input-background-color-hover));
-    border-color: var(--syn-interactive-emphasis-color-active, var(--syn-input-background-color-hover));
+    background: var(--syn-interactive-emphasis-color-active);
+    border-color: var(--syn-interactive-emphasis-color-active);
   }
 
   .checkbox__label {

@@ -74,7 +74,6 @@ export const cssVariableFormatter = {
 
       'progress-track-readonly-color',
 
-      'input-border-color-active',
       // Readonly color are needed later
       'readonly-border-color',
       'readonly-indicator-color',

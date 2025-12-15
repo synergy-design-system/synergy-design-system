@@ -170,6 +170,7 @@
   --syn-input-background-color-focus: var(--syn-input-background-color);
   --syn-input-background-color-hover: var(--syn-input-background-color);
   --syn-input-border-color: var(--syn-color-neutral-950);
+  --syn-input-border-color-active: var(--syn-color-primary-800);
   --syn-input-border-color-disabled: var(--syn-color-neutral-950);
   --syn-input-border-color-focus: var(--syn-color-primary-700);
   --syn-input-border-color-focus-error: var(--syn-color-error-600);

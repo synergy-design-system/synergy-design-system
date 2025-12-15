@@ -54,7 +54,6 @@ export const OUTPUT_VARIABLE_CHANGES = {
     'syn-button-filled-color-text-hover': 'inherit',
 
     // outlined button
-    'syn-button-outline-color': 'inherit',
     'syn-button-outline-color-active': 'none',
     'syn-button-outline-color-hover': 'none',
     'syn-button-outline-color-text': 'inherit',
@@ -68,7 +67,6 @@ export const OUTPUT_VARIABLE_CHANGES = {
     'syn-button-filled-color-text-hover': 'inherit',
 
     // outlined button
-    'syn-button-outline-color': 'inherit',
     'syn-button-outline-color-active': 'none',
     'syn-button-outline-color-hover': 'none',
     'syn-button-outline-color-text': 'inherit',
@@ -76,16 +74,11 @@ export const OUTPUT_VARIABLE_CHANGES = {
     'syn-button-outline-color-text-hover': 'var(--syn-color-primary-900)',
   },
   sick2025_dark: {
-    // outlined button
-    'syn-button-outline-color': 'inherit',
   },
   sick2025_light: {
     // filled button
     'syn-button-filled-color-text': 'inherit',
     'syn-button-filled-color-text-active': 'inherit',
     'syn-button-filled-color-text-hover': 'inherit',
-
-    // outlined button
-    'syn-button-outline-color': 'inherit',
   },
 };

@@ -92,6 +92,10 @@ export const cssVariableFormatter = {
       // Internal color tests
       'background-color-1',
       'background-color-2',
+
+      // Button tokens that should be ignored
+      'button-color-disabled',
+      'button-outline-color',
     ].map(v => `${prefix}${v}`);
 
     /**

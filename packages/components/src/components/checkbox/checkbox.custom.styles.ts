@@ -22,15 +22,6 @@ export default css`
     border-color: var(--syn-input-border-color-focus-error);
   }
 
-  /*
-   * #443: Add active styles
-   * Make sure to only apply active styles when not disabled and checked
-   */
-  .checkbox.checkbox--checked:not(.checkbox--disabled):active .checkbox__control {
-    background: var(--syn-interactive-emphasis-color-active, var(--syn-input-background-color-hover)) !important;
-    border-color: var(--syn-interactive-emphasis-color-active, var(--syn-input-background-color-hover)) !important;
-  }
-
   /**
    * #943: When invalid, use a transparent background if not checked or indeterminate
    */
@@ -60,6 +51,15 @@ export default css`
   .checkbox.checkbox--indeterminate:not(.checkbox--disabled):hover .checkbox__control {
     background-color: var(--syn-color-primary-900);
     border-color: var(--syn-color-primary-900);
+  }
+
+  /*
+   * #443: Add active styles
+   * Make sure to only apply active styles when not disabled and checked
+   */
+  .checkbox.checkbox--checked:not(.checkbox--disabled):active .checkbox__control {
+    background: var(--syn-interactive-emphasis-color-active, var(--syn-input-background-color-hover));
+    border-color: var(--syn-interactive-emphasis-color-active, var(--syn-input-background-color-hover));
   }
 
   .checkbox__label {

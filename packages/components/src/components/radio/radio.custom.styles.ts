@@ -29,7 +29,7 @@ export default css`
   }
 
   /* Checked + active */
-  .radio.radio--checked:not(.radio--disabled) .radio__control:active  {
+  .radio.radio--checked:not(.radio--disabled):active .radio__control  {
     background-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
     border-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
   }

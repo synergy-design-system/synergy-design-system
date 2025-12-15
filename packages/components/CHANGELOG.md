@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.74.1
+
+### Patch Changes
+
+- [#1133](https://github.com/synergy-design-system/synergy-design-system/pull/1133) [`82ea066`](https://github.com/synergy-design-system/synergy-design-system/commit/82ea066fa18e35831d94f22c7ac620135bc8c334) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-15
+
+  fix: 🐛 syn menu submenu rounding (#1131)
+
+  Fixes an issue with `<syn-menu-item>` when rendering submenus.
+  Submenus did not take the changed `border-radius` of `<syn-menu>` into account, leading to squared borders in the `SICK 2025` themes.
+
 ## 2.74.0
 
 ### Minor Changes

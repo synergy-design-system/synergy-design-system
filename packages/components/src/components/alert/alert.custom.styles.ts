@@ -52,6 +52,7 @@ export default css`
   .alert__icon,
   .alert__close-button {
     align-items: flex-start;
+    align-self: auto; /* #1135: Fix alignment for the close icon */
     font-size: var(--size-icon-size);
   }
 

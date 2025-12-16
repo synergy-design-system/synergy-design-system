@@ -180,4 +180,13 @@ export default css`
   syn-popup::part(popup) {
     border-radius: var(--syn-input-border-radius-medium);
   }
+
+  /**
+   * #1009: Adjust the position for submenus when they are opened to the left, too.
+   * This works because the data-current-placement attribute is set on the popup accordingly.
+   * We do not use the actual placement attribute, because it does not update when the placement changes
+   */
+  syn-popup[data-current-placement^="left"]::part(popup) {
+    margin-left: calc(-1 * var(--submenu-offset));
+  }
 `;

@@ -24,7 +24,6 @@ import { LIGHT_THEME, DARK_THEME, SICK_2025_DARK, SICK_2025_LIGHT, Chromatic_Mod
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { themeSwitchIcons } from '../src/decorators/ThemeSwitchIcons.js';
-import { themeNotSupportedHint } from '../src/decorators/ThemeNotSupportedHint.js';
 import docsPreviewIframeThemer from '../src/docs-preview-iframe-themer/index.js';
 
 // Filter out all private members and readonly properties from the manifest
@@ -73,7 +72,7 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
 });
 
 const preview: Preview = {
-  decorators: [stopAnimation, themeByClassName, themeSwitchIcons, themeNotSupportedHint],
+  decorators: [stopAnimation, themeByClassName, themeSwitchIcons],
   initialGlobals: {
     background: {
       value: 'neutral-50',

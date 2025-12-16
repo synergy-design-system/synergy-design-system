@@ -39,7 +39,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form', 'Navigation', 'Icons', 'SICK2018', 'SICK2025'],
+  tags: ['Form', 'Navigation', 'Icons'],
   title: 'Components/syn-icon-button',
 };
 export default meta;

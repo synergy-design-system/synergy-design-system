@@ -152,18 +152,12 @@ export default css`
     color: var(--syn-button-text-color-text-hover, var(--syn-color-primary-900));
   }
 
-  .button--text:active:not(.button--disabled) {
-    color: var(--syn-button-text-color-text-active, var(--syn-color-primary-600));
-  }
-
   .button--text:focus-visible:not(.button--disabled) {
     color: var(--syn-button-color, var(--syn-color-primary-500));
   }
 
   .button--text.button--primary:active:not(.button--disabled) {
-    background: inherit;
-    border-color: transparent;
-    color: var(--syn-button-color-active, var(--syn-color-primary-950));
+    color: var(--syn-button-text-color-text-active, var(--syn-color-primary-950));
   }
 
   .button--text.button--primary.button--disabled {

@@ -1,5 +1,12 @@
 # @synergy-design-system/react
 
+## 2.74.4
+
+### Patch Changes
+
+- Updated dependencies [[`53bd655`](https://github.com/synergy-design-system/synergy-design-system/commit/53bd655f465b76c2aa7d57449750b99e8fcfb500)]:
+  - @synergy-design-system/components@2.74.4
+
 ## 2.74.3
 
 ### Patch Changes

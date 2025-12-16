@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.74.4
+
+### Patch Changes
+
+- [#1134](https://github.com/synergy-design-system/synergy-design-system/pull/1134) [`53bd655`](https://github.com/synergy-design-system/synergy-design-system/commit/53bd655f465b76c2aa7d57449750b99e8fcfb500) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  fix: 🐛 Adjust `<syn-option>` and `<syn-menu-item>` interactive background (#1127)
+
+  Minor adjustments for `<syn-option>` and `<syn-menu-item>` hover and focus states to better mimic the effects as detailed in Figma for the SICK 2025 themes.
+  Both components now use a combination of `background` and `border-radius` to show the `<syn-option>` with an inset highlight color, allowing to better match the wanted spacings.
+
 ## 2.74.3
 
 ### Patch Changes

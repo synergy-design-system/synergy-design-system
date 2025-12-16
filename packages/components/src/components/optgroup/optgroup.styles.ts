@@ -13,6 +13,8 @@ export default css`
 
   .optgroup__label-container {
     align-items: center;
+    border: solid transparent;
+    border-width: 0 var(--option-inset-border-vertical);
     box-sizing: border-box;
     color: var(--syn-input-color);
     display: flex;
@@ -26,7 +28,7 @@ export default css`
   .optgroup--has-prefix .optgroup__label-container,
   .optgroup--has-label .optgroup__label-container,
   .optgroup--has-suffix .optgroup__label-container {
-    padding: var(--option-padding, var(--syn-spacing-small) var(--syn-spacing-medium));
+    padding: 0 calc(var(--option-padding) - var(--option-inset-border-vertical));
   }
 
   /**

@@ -10,7 +10,7 @@ export default css`
    */
   :host([size="small"]) {
     --option-inset-border-horizontal: var(--syn-spacing-2x-small);
-    --option-inset-border-vertical: calc(var(--syn-spacing-2x-small) - 1px);
+    --option-inset-border-vertical: calc(var(--syn-spacing-x-small) - 1px);
     --option-min-height: var(--syn-input-height-small);
     --option-padding: var(--syn-input-spacing-small);
     --option-font-size: var(--syn-input-font-size-small);

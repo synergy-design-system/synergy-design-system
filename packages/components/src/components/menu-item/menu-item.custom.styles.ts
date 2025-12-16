@@ -175,4 +175,9 @@ export default css`
   :host(:not([type="checkmark"]):not([loading])) .menu-item__label {
     min-height: var(--syn-font-size-x-large);
   }
+
+  /* #1131: Make sure that slotted menus do show the correct border radius */
+  syn-popup::part(popup) {
+    border-radius: var(--syn-input-border-radius-medium);
+  }
 `;

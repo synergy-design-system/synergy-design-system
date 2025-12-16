@@ -11,7 +11,11 @@ import { property, query, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './button-group.styles.js';
+import type SynButton from '../button/button.component.js';
+import type SynRadioButton from '../radio-button/radio-button.component.js';
 import type { CSSResultGroup } from 'lit';
+import { watch } from '../../internal/watch.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Button groups can be used to group related buttons into sections.
@@ -23,6 +27,7 @@ import type { CSSResultGroup } from 'lit';
  *
  * @csspart base - The component's base wrapper.
  */
+@enableDefaultSettings('SynButton')
 export default class SynButtonGroup extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
@@ -35,6 +40,18 @@ export default class SynButtonGroup extends SynergyElement {
    * devices when interacting with the control and is strongly recommended.
    */
   @property() label = '';
+
+  /** The button-groups size. This affects all buttons within the group. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
+  /** The button-group's theme variant. This affects all buttons within the group. */
+  @property({ reflect: true }) variant: 'filled' | 'outline' = 'outline';
+
+  // Make sure we update the buttons when the size or variant changes
+  @watch(['size', 'variant'], { waitUntilFirstUpdate: true })
+  handleSizeChange() {
+    this.handleSlotChange();
+  }
 
   private handleFocus(event: Event) {
     const button = findButton(event.target as HTMLElement);
@@ -61,9 +78,15 @@ export default class SynButtonGroup extends SynergyElement {
 
     slottedElements.forEach(el => {
       const index = slottedElements.indexOf(el);
-      const button = findButton(el);
+      const button = findButton(el) as SynButton | SynRadioButton;
 
       if (button) {
+        button.size = this.size;
+
+        if (button.tagName.toLowerCase() === 'syn-button') {
+          (button as SynButton).variant = this.variant;
+        }
+
         button.toggleAttribute('data-syn-button-group__button', true);
         button.toggleAttribute('data-syn-button-group__button--first', index === 0);
         button.toggleAttribute('data-syn-button-group__button--inner', index > 0 && index < slottedElements.length - 1);

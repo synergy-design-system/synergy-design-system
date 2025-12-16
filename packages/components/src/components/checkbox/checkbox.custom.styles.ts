@@ -49,8 +49,8 @@ export default css`
    */
   .checkbox.checkbox--checked:not(.checkbox--disabled):hover .checkbox__control,
   .checkbox.checkbox--indeterminate:not(.checkbox--disabled):hover .checkbox__control {
-    background-color: var(--syn-color-primary-900);
-    border-color: var(--syn-color-primary-900);
+    background-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
+    border-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
   }
 
   /*
@@ -64,9 +64,11 @@ export default css`
     border-color: var(--syn-input-border-color-active);
   }
 
-  .checkbox.checkbox--checked:not(.checkbox--disabled):active .checkbox__control {
-    background: var(--syn-interactive-emphasis-color-active);
-    border-color: var(--syn-interactive-emphasis-color-active);
+  /* Checked/indeterminate */
+  .checkbox.checkbox--checked:not(.checkbox--disabled):active .checkbox__control,
+  .checkbox.checkbox--indeterminate:not(.checkbox--disabled):active .checkbox__control {
+    background: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-900));
+    border-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-900));
   }
 
   .checkbox__label {

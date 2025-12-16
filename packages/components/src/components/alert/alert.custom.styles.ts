@@ -73,7 +73,7 @@ export default css`
    * Close Icon
    */
   .alert__close-button {
-    align-self: auto; /* #1135: Fix alignment for the close icon */
+    align-self: start; /* #1135: Fix alignment for the close icon */
     color: var(--syn-typography-color-text);
     margin-block: calc(var(--syn-spacing-x-small) - var(--syn-panel-border-width));
     margin-inline-end: var(--syn-spacing-x-small);

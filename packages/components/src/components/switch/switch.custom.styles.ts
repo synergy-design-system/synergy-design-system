@@ -63,22 +63,22 @@ export default css`
   }
   
   /* Hover */
-  .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover {
+  .switch:not(.switch--checked):not(.switch--disabled):hover .switch__control {
     background-color: var(--syn-input-icon-icon-clearable-color-hover);
     border-color: var(--syn-input-icon-icon-clearable-color-hover);
   }
 
-  .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover .switch__thumb {
+  .switch:not(.switch--checked):not(.switch--disabled):hover .switch__control:hover .switch__thumb {
     background-color: var(--syn-color-neutral-0);
   }
 
   /* Checked + hover */
-  .switch.switch--checked:not(.switch--disabled) .switch__control:hover {
+  .switch.switch--checked:not(.switch--disabled):hover .switch__control {
     background-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
     border-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
   }
 
-  .switch.switch--checked:not(.switch--disabled) .switch__control:hover .switch__thumb {
+  .switch.switch--checked:not(.switch--disabled):hover .switch__control:hover .switch__thumb {
     background-color: var(--syn-color-neutral-0);
   }
 
@@ -134,7 +134,7 @@ export default css`
     border-color: var(--syn-input-border-color-focus-error, var(--syn-color-error-700));
   }
 
-  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control:hover {
+  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled):hover .switch__control {
     background-color: var(--syn-input-border-color-hover, var(--syn-color-error-900));
     border-color: var(--syn-input-border-color-hover, var(--syn-color-error-900));
   }

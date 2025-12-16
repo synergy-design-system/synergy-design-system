@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.74.2
+
+### Patch Changes
+
+- [#1136](https://github.com/synergy-design-system/synergy-design-system/pull/1136) [`212b5bd`](https://github.com/synergy-design-system/synergy-design-system/commit/212b5bd29087b10d1fe0e6bbb94c97090b7b4f74) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  fix: 🐛 `<syn-alert>` close icon should be aligned to top (#1135)
+
+  Fixes an issue that was introduces in version `2.74.0`.
+  The close icons is now always aligned to the top of the `<syn-alert>` again.
+
 ## 2.74.1
 
 ### Patch Changes

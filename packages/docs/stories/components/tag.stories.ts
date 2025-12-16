@@ -36,7 +36,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Feedback', 'SICK2018', 'SICK2025'],
+  tags: ['Feedback'],
   title: 'Components/syn-tag',
 };
 export default meta;

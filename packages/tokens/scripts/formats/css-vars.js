@@ -86,8 +86,47 @@ export const cssVariableFormatter = {
       'body-2x-small-bold',
       'heading-4x-large',
 
-      // Button tokens are needed later
-      'button-outline-color-text',
+      // Internal color tests
+      'background-color-1',
+      'background-color-2',
+
+      // Button tokens that should be ignored
+      'button-color-disabled',
+      'button-outline-color',
+
+      // #871: These tokens can safely be removed
+      // as they are typography only and our typo tokens
+      // dont use them internally, but only in Figma
+      'typography-heading-2x-large-font-size',
+      'typography-heading-2x-large-font-weight',
+      'typography-heading-2x-large-letter-spacing',
+      'typography-heading-2x-large-line-height',
+      'typography-heading-3x-large-font-size',
+      'typography-heading-3x-large-font-weight',
+      'typography-heading-3x-large-letter-spacing',
+      'typography-heading-3x-large-line-height',
+      'typography-heading-4x-large-font-size',
+      'typography-heading-4x-large-font-weight',
+      'typography-heading-4x-large-letter-spacing',
+      'typography-heading-4x-large-line-height',
+      'typography-heading-large-font-size',
+      'typography-heading-large-font-weight',
+      'typography-heading-large-letter-spacing',
+      'typography-heading-large-line-height',
+      'typography-heading-medium-font-size',
+      'typography-heading-medium-font-weight',
+      'typography-heading-medium-letter-spacing',
+      'typography-heading-medium-line-height',
+      'typography-heading-x-large-font-size',
+      'typography-heading-x-large-font-weight',
+      'typography-heading-x-large-letter-spacing',
+      'typography-heading-x-large-line-height',
+      'font-size-0x-large',
+      'font-size-1-5x-large',
+      'font-size-1x-large',
+      'font-size-2-5x-large',
+      'font-size-medium-large',
+      'heading-medium',
     ].map(v => `${prefix}${v}`);
 
     /**

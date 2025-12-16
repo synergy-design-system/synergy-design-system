@@ -2485,7 +2485,7 @@
         "fontWeight": [
           {
             "type": "VARIABLE_ALIAS",
-            "id": "VariableID:24741:120384"
+            "id": "VariableID:45862:5925"
           }
         ],
         "fontFamily": [
@@ -2497,7 +2497,7 @@
         "fontSize": [
           {
             "type": "VARIABLE_ALIAS",
-            "id": "VariableID:24741:120378"
+            "id": "VariableID:45862:5924"
           }
         ]
       },
@@ -2593,7 +2593,7 @@
         "fontWeight": [
           {
             "type": "VARIABLE_ALIAS",
-            "id": "VariableID:24741:120384"
+            "id": "VariableID:45862:5930"
           }
         ],
         "fontFamily": [
@@ -2605,7 +2605,7 @@
         "fontSize": [
           {
             "type": "VARIABLE_ALIAS",
-            "id": "VariableID:24741:120379"
+            "id": "VariableID:45862:5929"
           }
         ]
       },
@@ -2701,7 +2701,7 @@
         "fontWeight": [
           {
             "type": "VARIABLE_ALIAS",
-            "id": "VariableID:24741:120384"
+            "id": "VariableID:45862:5934"
           }
         ],
         "fontFamily": [
@@ -2713,7 +2713,7 @@
         "fontSize": [
           {
             "type": "VARIABLE_ALIAS",
-            "id": "VariableID:24741:120380"
+            "id": "VariableID:45862:5933"
           }
         ]
       },
@@ -2809,7 +2809,7 @@
         "fontWeight": [
           {
             "type": "VARIABLE_ALIAS",
-            "id": "VariableID:24741:120384"
+            "id": "VariableID:45862:5938"
           }
         ],
         "fontFamily": [
@@ -2821,7 +2821,7 @@
         "fontSize": [
           {
             "type": "VARIABLE_ALIAS",
-            "id": "VariableID:24741:120381"
+            "id": "VariableID:45862:5937"
           }
         ]
       },
@@ -4671,6 +4671,114 @@
     }
   },
   {
+    "name": "heading/medium",
+    "comment": "",
+    "visible": true,
+    "originalNode": {
+      "key": "d0c2cbca9848761928cf0f520a28d88afbfb32ba",
+      "name": "heading/medium",
+      "styleType": "TEXT",
+      "remote": false,
+      "description": "",
+      "id": "36102:14962",
+      "type": "TEXT",
+      "scrollBehavior": "SCROLLS",
+      "boundVariables": {
+        "fontWeight": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:45856:44281"
+          }
+        ],
+        "fontFamily": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:24741:120385"
+          }
+        ],
+        "fontSize": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:45856:44278"
+          }
+        ]
+      },
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0,
+            "g": 0,
+            "b": 0,
+            "a": 1
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 0,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 0,
+        "y": 0,
+        "width": 21,
+        "height": 22
+      },
+      "absoluteRenderBounds": {
+        "x": 0,
+        "y": 5.53125,
+        "width": 19.8984375,
+        "height": 15.3125
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "characters": "Ag",
+      "characterStyleOverrides": [],
+      "styleOverrideTable": {},
+      "lineTypes": [
+        "NONE"
+      ],
+      "lineIndentations": [
+        0
+      ],
+      "style": {
+        "fontFamily": "Open Sans",
+        "fontPostScriptName": "OpenSans-Bold",
+        "fontStyle": "Bold",
+        "fontWeight": 700,
+        "textAutoResize": "WIDTH_AND_HEIGHT",
+        "fontSize": 16,
+        "textAlignHorizontal": "LEFT",
+        "textAlignVertical": "TOP",
+        "letterSpacing": 0,
+        "lineHeightPx": 22.399999618530273,
+        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercentFontSize": 140,
+        "lineHeightUnit": "FONT_SIZE_%"
+      },
+      "layoutVersion": 4,
+      "effects": [],
+      "interactions": []
+    },
+    "styleType": "TEXT",
+    "style": {
+      "fontFamily": "Open Sans",
+      "fontWeight": 700,
+      "fontSize": 16,
+      "letterSpacing": 0,
+      "lineHeight": "1.399999976158142",
+      "fontStyle": "normal",
+      "fontVariant": "normal",
+      "textTransform": "none",
+      "textDecoration": "none",
+      "textAlign": "left",
+      "verticalAlign": "top"
+    }
+  },
+  {
     "name": "heading/4x-large",
     "comment": "",
     "visible": true,
@@ -4687,7 +4795,7 @@
         "fontWeight": [
           {
             "type": "VARIABLE_ALIAS",
-            "id": "VariableID:24741:120384"
+            "id": "VariableID:45862:5942"
           }
         ],
         "fontFamily": [
@@ -4699,7 +4807,7 @@
         "fontSize": [
           {
             "type": "VARIABLE_ALIAS",
-            "id": "VariableID:36102:6361"
+            "id": "VariableID:45862:5941"
           }
         ]
       },

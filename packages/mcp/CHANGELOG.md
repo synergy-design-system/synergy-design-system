@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.39.0
+
+### Minor Changes
+
+- [#1109](https://github.com/synergy-design-system/synergy-design-system/pull/1109) [`6b4b7e2`](https://github.com/synergy-design-system/synergy-design-system/commit/6b4b7e2940b5c87e44d5da6030354ec0e21f2f38) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  feat: ✨ Brand updates for `<syn-button>` (#871)
+  feat: ✨ Brand updates for `<syn-dropdown>` (#949)
+
 ## 1.38.5
 
 ### Patch Changes

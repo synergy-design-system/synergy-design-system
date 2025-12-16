@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.75.0
+
+### Minor Changes
+
+- [#1109](https://github.com/synergy-design-system/synergy-design-system/pull/1109) [`6b4b7e2`](https://github.com/synergy-design-system/synergy-design-system/commit/6b4b7e2940b5c87e44d5da6030354ec0e21f2f38) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  feat: ✨ Brand updates for `<syn-button>` (#871)
+  feat: ✨ Brand updates for `<syn-dropdown>` (#949)
+
+### Patch Changes
+
+- Updated dependencies [[`6b4b7e2`](https://github.com/synergy-design-system/synergy-design-system/commit/6b4b7e2940b5c87e44d5da6030354ec0e21f2f38)]:
+  - @synergy-design-system/tokens@2.47.0
+
 ## 2.74.4
 
 ### Patch Changes
@@ -29,7 +43,7 @@
 
   fix: 🐛 `<syn-alert>` close icon should be aligned to top (#1135)
 
-  Fixes an issue that was introduces in version `2.74.0`.
+  Fixes an issue that was introduced in version `2.74.0`.
   The close icons is now always aligned to the top of the `<syn-alert>` again.
 
 ## 2.74.1

@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.46.0
+ * @synergy-design-system/tokens version 2.47.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -50,9 +50,26 @@
   --syn-border-width-small: 1px; /** Small */
   --syn-border-width-x-large: 4px; /** X Large */
   --syn-breadcrumb-color: var(--syn-color-neutral-500);
+  --syn-button-border-radius-large: var(--syn-input-border-radius-large);
+  --syn-button-border-radius-medium: var(--syn-input-border-radius-medium);
+  --syn-button-border-radius-small: var(--syn-input-border-radius-small);
+  --syn-button-color: var(--syn-interactive-emphasis-color);
+  --syn-button-color-active: var(--syn-interactive-emphasis-color-active);
+  --syn-button-color-hover: var(--syn-interactive-emphasis-color-hover);
+  --syn-button-filled-color-text: inherit;
+  --syn-button-filled-color-text-active: inherit;
+  --syn-button-filled-color-text-hover: inherit;
   --syn-button-font-size-large: var(--syn-font-size-large);
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);
+  --syn-button-outline-color-active: none;
+  --syn-button-outline-color-hover: none;
+  --syn-button-outline-color-text: inherit;
+  --syn-button-outline-color-text-active: var(--syn-color-primary-950);
+  --syn-button-outline-color-text-hover: var(--syn-color-primary-900);
+  --syn-button-text-color-text: var(--syn-button-color);
+  --syn-button-text-color-text-active: var(--syn-button-color-active);
+  --syn-button-text-color-text-hover: var(--syn-button-color-hover);
   --syn-checkbox-border-radius: var(--syn-border-radius-none);
   --syn-color-accent-50: #fffbea;
   --syn-color-accent-100: #fff2c5;
@@ -65,6 +82,17 @@
   --syn-color-accent-800: #983b08;
   --syn-color-accent-900: #7c310b;
   --syn-color-accent-950: #481700;
+  --syn-color-critical-50: #fffbea;
+  --syn-color-critical-100: #fff2c5;
+  --syn-color-critical-200: #ffe685;
+  --syn-color-critical-300: #ffd246;
+  --syn-color-critical-400: #ffbd1b;
+  --syn-color-critical-500: #f39200;
+  --syn-color-critical-600: #e27200;
+  --syn-color-critical-700: #bb4d02;
+  --syn-color-critical-800: #983b08;
+  --syn-color-critical-900: #7c310b;
+  --syn-color-critical-950: #481700;
   --syn-color-error-50: #fff0f2;
   --syn-color-error-100: #ffdee2;
   --syn-color-error-200: #ffc3c9;
@@ -225,7 +253,7 @@
   --syn-input-spacing-medium: var(--syn-spacing-medium);
   --syn-input-spacing-small: var(--syn-spacing-small);
   --syn-input-width: var(--syn-border-width-small);
-  --syn-interactive-background-color-active: var(--syn-color-neutral-200);
+  --syn-interactive-background-color-active: var(--syn-color-neutral-300);
   --syn-interactive-background-color-hover: var(--syn-color-neutral-100);
   --syn-interactive-emphasis-color: var(--syn-color-primary-600);
   --syn-interactive-emphasis-color-active: var(--syn-color-primary-950);
@@ -251,6 +279,20 @@
   --syn-link-quiet-color-hover: var(--syn-interactive-quiet-color-hover);
   --syn-link-underline-outline: 7%;
   --syn-logo-color: var(--syn-color-primary-600);
+  --syn-namur-color-border: var(--syn-color-neutral-950);
+  --syn-namur-critical-color: var(--syn-color-critical-600);
+  --syn-namur-critical-color-background: var(--syn-color-critical-100);
+  --syn-namur-error-color: var(--syn-color-error-500);
+  --syn-namur-error-color-background: var(--syn-color-error-100);
+  --syn-namur-icon-color: var(--syn-color-neutral-950);
+  --syn-namur-info-color: var(--syn-color-info-500);
+  --syn-namur-info-color-background: var(--syn-color-info-100);
+  --syn-namur-neutral-color: var(--syn-color-neutral-400);
+  --syn-namur-neutral-color-background: var(--syn-color-neutral-200);
+  --syn-namur-success-color: var(--syn-color-success-500);
+  --syn-namur-success-color-background: var(--syn-color-success-100);
+  --syn-namur-warning-color: var(--syn-color-warning-400);
+  --syn-namur-warning-color-background: var(--syn-color-warning-100);
   --syn-opacity-50: 0.5; /** 50% */
   --syn-option-background-color-active: var(--syn-color-primary-600);
   --syn-option-background-color-hover: var(--syn-color-neutral-100);

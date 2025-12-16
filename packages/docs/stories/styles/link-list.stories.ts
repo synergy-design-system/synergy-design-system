@@ -54,7 +54,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'Structure', 'Styles', 'SICK2018', 'SICK2025'],
+  tags: ['Navigation', 'Structure', 'Styles'],
   title: 'Styles/syn-link-list',
 };
 export default meta;

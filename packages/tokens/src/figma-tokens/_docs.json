@@ -413,13 +413,65 @@
       }
     },
     "button-group": {
-      "description": {
-        "value": "Button groups can be used to group related buttons into sections.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Button groups can be used to group related buttons into sections.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Button Group",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Button Group",
-        "type": "text"
+      "size": {
+        "description": {
+          "value": "All button sizes are supported, but avoid mixing sizes within the same button group.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Button Sizes",
+          "type": "text"
+        }
+      },
+      "variant": {
+        "description": {
+          "value": "Theme buttons are supported through the button’s variant attribute.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Theme Buttons",
+          "type": "text"
+        }
+      },
+      "split-buttons": {
+        "description": {
+          "value": "Create a split button using a button and a dropdown. Use a visually hidden label to ensure the dropdown is accessible to users with assistive devices.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Split Buttons",
+          "type": "text"
+        }
+      },
+      "tooltips": {
+        "description": {
+          "value": "Buttons can be wrapped in tooltips to provide more detail when the user interacts with them.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tooltips in Button Groups",
+          "type": "text"
+        }
+      },
+      "toolbar": {
+        "description": {
+          "value": "Create interactive toolbars with button groups.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Toolbar Example",
+          "type": "text"
+        }
       }
     },
     "card": {

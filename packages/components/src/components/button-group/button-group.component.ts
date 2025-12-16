@@ -11,9 +11,10 @@ import { property, query, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './button-group.styles.js';
+import customStyles from './button-group.custom.styles.js';
+import type { CSSResultGroup } from 'lit';
 import type SynButton from '../button/button.component.js';
 import type SynRadioButton from '../radio-button/radio-button.component.js';
-import type { CSSResultGroup } from 'lit';
 import { watch } from '../../internal/watch.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
@@ -27,9 +28,9 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  *
  * @csspart base - The component's base wrapper.
  */
-@enableDefaultSettings('SynButton')
+@enableDefaultSettings('SynButtonGroup')
 export default class SynButtonGroup extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
   @query('slot') defaultSlot: HTMLSlotElement;
 

@@ -5,4 +5,4 @@
 ---
 
 feat: ✨ Brand updates for `<syn-button>` (#871)
-feat: ✨ CD update for `<syn-dropdown>` (#949)
+feat: ✨ Brand updates for `<syn-dropdown>` (#949)

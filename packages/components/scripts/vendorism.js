@@ -12,6 +12,7 @@ import {
   vendorBreadcrumb,
   vendorBreadcrumbItem,
   vendorButton,
+  vendorButtonGroup,
   vendorCard,
   vendorCheckbox,
   vendorCombobox,
@@ -51,6 +52,7 @@ import {
 export const components = [
   'input',
   'button',
+  'button-group',
   'textarea',
   'icon',
   'checkbox',
@@ -346,6 +348,7 @@ const config = {
       vendorBreadcrumb,
       vendorBreadcrumbItem,
       vendorButton,
+      vendorButtonGroup,
       vendorCard,
       vendorCheckbox,
       vendorDetails,

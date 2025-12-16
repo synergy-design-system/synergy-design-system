@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.74.3
+
+### Patch Changes
+
+- [#1139](https://github.com/synergy-design-system/synergy-design-system/pull/1139) [`6cc7376`](https://github.com/synergy-design-system/synergy-design-system/commit/6cc737681f2b137702f3e95b0a666ae6f28b5039) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  fix: 🐛 Incorrect offset of submenu items when submenu opens to the left (#1009)
+
+  Fixes an issue that leads to incorrect offsets when a nested `<syn-menu>` is opened to the left instead of to the right.
+
 ## 2.74.2
 
 ### Patch Changes

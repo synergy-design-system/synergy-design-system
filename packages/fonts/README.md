@@ -155,3 +155,10 @@ This package uses PostCSS to generate multiple font distribution formats:
 - Base64 inline CSS for self-contained usage
 
 The inline version is automatically generated during build and includes the font files as data URIs.
+
+### Steps for updating SICK Intl
+
+When updating SICK Intl to the latest version, please make sure to:
+
+- Use the [Font Squirrel Webfont Generator](https://www.fontsquirrel.com/tools/webfont-generator)
+- Use the export settings in the `export-configs` folder of this package.

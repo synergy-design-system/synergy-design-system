@@ -37,7 +37,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Typography', 'Styles', 'SICK2018', 'SICK2025'],
+  tags: ['Typography', 'Styles'],
   title: 'Styles/syn-weight',
 };
 export default meta;

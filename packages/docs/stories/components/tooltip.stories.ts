@@ -56,7 +56,7 @@ const meta: Meta = {
     },
     layout: 'centered',
   },
-  tags: ['Feedback', 'SICK2018', 'SICK2025'],
+  tags: ['Feedback'],
   title: 'Components/syn-tooltip',
 };
 export default meta;

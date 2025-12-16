@@ -69,7 +69,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form', 'SICK2018', 'SICK2025'],
+  tags: ['Form'],
   title: 'Components/syn-validate',
 };
 export default meta;

@@ -37,7 +37,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Application Shell', 'SICK2018', 'SICK2025'],
+  tags: ['Application Shell'],
   title: 'Components/syn-side-nav',
 };
 

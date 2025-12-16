@@ -49,6 +49,7 @@ const meta: Meta = {
       },
     },
   },
+  tags: ['Structure'],
   title: 'Components/syn-popup',
 };
 export default meta;

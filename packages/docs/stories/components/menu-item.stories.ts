@@ -43,7 +43,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'SICK2018', 'SICK2025'],
+  tags: ['Navigation'],
   title: 'Components/syn-menu-item',
 };
 export default meta;

@@ -15,16 +15,20 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-button');
 const { overrideArgs } = storybookHelpers('syn-button');
 const { generateTemplate } = storybookTemplate('syn-button');
 
 const meta: Meta = {
-  args: overrideArgs({ name: 'default', type: 'slot', value: 'Button' }, defaultArgs),
+  args: overrideArgs({ name: 'default', type: 'slot', value: 'Default' }, defaultArgs),
   argTypes,
   component: 'syn-button',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('1055-22957'),
     docs: {
       description: {
@@ -32,7 +36,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form', 'Navigation', 'SICK2018'],
+  tags: ['Form', 'Navigation'],
   title: 'Components/syn-button',
 };
 export default meta;
@@ -62,14 +66,12 @@ export const Variants: Story = {
     },
   },
   render: () => html`
-  <syn-button variant="filled">Filled</syn-button>
-  <syn-button variant="outline">Outline</syn-button>
-  <syn-button variant="text">Text</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+    <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
+      <syn-button variant="filled">Filled</syn-button>
+      <syn-button variant="outline">Outline</syn-button>
+      <syn-button variant="text">Text</syn-button>
+    </div>
+  `,
 };
 
 export const Sizes: Story = {
@@ -81,14 +83,12 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-  <syn-button size="small">Small</syn-button>
-  <syn-button size="medium">Medium</syn-button>
-  <syn-button size="large">Large</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+    <div style="align-items: anchor-center; display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
+      <syn-button size="small">Small</syn-button>
+      <syn-button size="medium">Medium</syn-button>
+      <syn-button size="large">Large</syn-button>
+    </div>
+  `,
 };
 
 export const Focus: Story = {
@@ -121,15 +121,13 @@ export const LinkButtons: Story = {
     },
   },
   render: () => html`
-  <syn-button href="https://example.com/">Link</syn-button>
-  <syn-button href="https://example.com/" target="_blank">New Window</syn-button>
-  <syn-button href="/assets/images/wordmark.svg" download="synergy.svg">Download</syn-button>
-  <syn-button href="https://example.com/" disabled>Disabled</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+    <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
+      <syn-button href="https://example.com/">Link</syn-button>
+      <syn-button href="https://example.com/" target="_blank">New Window</syn-button>
+      <syn-button href="/assets/images/wordmark.svg" download="synergy.svg">Download</syn-button>
+      <syn-button href="https://example.com/" disabled>Disabled</syn-button>
+    </div>
+  `,
 };
 
 export const SettingACustomWidth: Story = {
@@ -141,9 +139,12 @@ export const SettingACustomWidth: Story = {
     },
   },
   render: () => html`
-  <syn-button size="small" style="width: 100%; margin-bottom: 1rem;">Small</syn-button>
-  <syn-button size="medium" style="width: 100%; margin-bottom: 1rem;">Medium</syn-button>
-  <syn-button size="large" style="width: 100%;">Large</syn-button>`,
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-button size="small" style="width: 100%;">Small</syn-button>
+      <syn-button size="medium" style="width: 100%;">Medium</syn-button>
+      <syn-button size="large" style="width: 100%;">Large</syn-button>
+    </div>
+  `,
 };
 
 export const IconOnly: Story = {
@@ -155,44 +156,41 @@ export const IconOnly: Story = {
     },
   },
   render: () => html`
-    <syn-button size="small" variant="filled">
-      <syn-icon name="settings" label="Settings"></syn-icon>
-    </syn-button>
-    <syn-button size="small">
-      <syn-icon name="settings" label="Settings"></syn-icon>
-    </syn-button>
-    <syn-button size="small" variant="text">
-      <syn-icon name="settings" label="Settings"></syn-icon>
-    </syn-button>
+    <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large); margin-bottom: var(--syn-spacing-small);">
+      <syn-button size="small" variant="filled">
+        <syn-icon name="settings" label="Settings"></syn-icon>
+      </syn-button>
+      <syn-button size="small">
+        <syn-icon name="settings" label="Settings"></syn-icon>
+      </syn-button>
+      <syn-button size="small" variant="text">
+        <syn-icon name="settings" label="Settings"></syn-icon>
+      </syn-button>
+    </div>
 
-    <br> 
+    <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large); margin-bottom: var(--syn-spacing-small);">
+      <syn-button size="medium" variant="filled">
+        <syn-icon name="settings" label="Settings"></syn-icon>
+      </syn-button>
+      <syn-button size="medium">
+        <syn-icon name="settings" label="Settings"></syn-icon>
+      </syn-button>
+      <syn-button size="medium" variant="text">
+        <syn-icon name="settings" label="Settings"></syn-icon>
+      </syn-button>
+    </div>
 
-    <syn-button size="medium" variant="filled">
-      <syn-icon name="settings" label="Settings"></syn-icon>
-    </syn-button>
-    <syn-button size="medium">
-      <syn-icon name="settings" label="Settings"></syn-icon>
-    </syn-button>
-    <syn-button size="medium" variant="text">
-      <syn-icon name="settings" label="Settings"></syn-icon>
-    </syn-button>
-
-    <br> 
-
-    <syn-button size="large" variant="filled">
-      <syn-icon name="settings" label="Settings"></syn-icon>
-    </syn-button>
-    <syn-button size="large">
-      <syn-icon name="settings" label="Settings"></syn-icon>
-    </syn-button>
-    <syn-button size="large" variant="text">
-      <syn-icon name="settings" label="Settings"></syn-icon>
-    </syn-button>
-  <style>
-    syn-button {
-      margin: 10px 10px 0 0;
-    }
-  </style>
+    <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large); margin-bottom: var(--syn-spacing-small);">
+      <syn-button size="large" variant="filled">
+        <syn-icon name="settings" label="Settings"></syn-icon>
+      </syn-button>
+      <syn-button size="large">
+        <syn-icon name="settings" label="Settings"></syn-icon>
+      </syn-button>
+      <syn-button size="large" variant="text">
+        <syn-icon name="settings" label="Settings"></syn-icon>
+      </syn-button>
+    </div>
   `,
 };
 
@@ -205,62 +203,62 @@ export const PrefixAndSuffixIcons: Story = {
     },
   },
   render: () => html`
-  <syn-button size="small">
-    <syn-icon slot="prefix" name="settings"></syn-icon>
-    Settings
-  </syn-button>
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
+        <syn-button size="small">
+          <syn-icon slot="prefix" name="settings"></syn-icon>
+          Settings
+        </syn-button>
 
-  <syn-button size="small">
-    <syn-icon slot="suffix" name="refresh"></syn-icon>
-    Refresh
-  </syn-button>
+        <syn-button size="small">
+          <syn-icon slot="suffix" name="refresh"></syn-icon>
+          Refresh
+        </syn-button>
 
-  <syn-button size="small">
-    <syn-icon slot="prefix" name="link"></syn-icon>
-    <syn-icon slot="suffix" name="launch"></syn-icon>
-    Open
-  </syn-button>
+        <syn-button size="small">
+          <syn-icon slot="prefix" name="link"></syn-icon>
+          <syn-icon slot="suffix" name="launch"></syn-icon>
+          Open
+        </syn-button>
+      </div>
 
-  <br/><br/>
+      <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
+        <syn-button>
+          <syn-icon slot="prefix" name="settings"></syn-icon>
+          Settings
+        </syn-button>
 
-  <syn-button>
-    <syn-icon slot="prefix" name="settings"></syn-icon>
-    Settings
-  </syn-button>
+        <syn-button>
+          <syn-icon slot="suffix" name="refresh"></syn-icon>
+          Refresh
+        </syn-button>
 
-  <syn-button>
-    <syn-icon slot="suffix" name="refresh"></syn-icon>
-    Refresh
-  </syn-button>
+        <syn-button>
+          <syn-icon slot="prefix" name="link"></syn-icon>
+          <syn-icon slot="suffix" name="launch"></syn-icon>
+          Open
+        </syn-button>
+      </div>
 
-  <syn-button>
-    <syn-icon slot="prefix" name="link"></syn-icon>
-    <syn-icon slot="suffix" name="launch"></syn-icon>
-    Open
-  </syn-button>
+      <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
+        <syn-button size="large">
+          <syn-icon slot="prefix" name="settings"></syn-icon>
+          Settings
+        </syn-button>
 
-  <br/><br/>
+        <syn-button size="large">
+          <syn-icon slot="suffix" name="refresh"></syn-icon>
+          Refresh
+        </syn-button>
 
-  <syn-button size="large">
-    <syn-icon slot="prefix" name="settings"></syn-icon>
-    Settings
-  </syn-button>
-
-  <syn-button size="large">
-    <syn-icon slot="suffix" name="refresh"></syn-icon>
-    Refresh
-  </syn-button>
-
-  <syn-button size="large">
-    <syn-icon slot="prefix" name="link"></syn-icon>
-    <syn-icon slot="suffix" name="launch"></syn-icon>
-    Open
-  </syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+        <syn-button size="large">
+          <syn-icon slot="prefix" name="link"></syn-icon>
+          <syn-icon slot="suffix" name="launch"></syn-icon>
+          Open
+        </syn-button>
+      </div>
+    </div>
+  `,
 };
 
 export const Caret: Story = {
@@ -272,14 +270,12 @@ export const Caret: Story = {
     },
   },
   render: () => html`
-  <syn-button size="small" caret>Small</syn-button>
-  <syn-button size="medium" caret>Medium</syn-button>
-  <syn-button size="large" caret>Large</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+    <div style="align-items: anchor-center; display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
+      <syn-button size="small" caret>Small</syn-button>
+      <syn-button size="medium" caret>Medium</syn-button>
+      <syn-button size="large" caret>Large</syn-button>
+    </div>
+  `,
 };
 
 export const Loading: Story = {
@@ -291,14 +287,12 @@ export const Loading: Story = {
     },
   },
   render: () => html`
-  <syn-button variant="filled" loading>Filled</syn-button>
-  <syn-button variant="outline" loading>Outline</syn-button>
-  <syn-button variant="text" loading>Text</syn-button>
-  <style>
-    syn-button {
-      margin: 0.2rem;
-    }
-  </style>`,
+    <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
+      <syn-button variant="filled" loading>Filled</syn-button>
+      <syn-button variant="outline" loading>Outline</syn-button>
+      <syn-button variant="text" loading>Text</syn-button>
+    </div>
+  `,
 };
 
 export const Disabled: Story = {
@@ -310,9 +304,26 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-  <syn-button variant="filled" disabled>Filled</syn-button>
-  <syn-button variant="outline" disabled>Outline</syn-button>
-  <syn-button variant="text" disabled>Text</syn-button>`,
+    <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large);">
+      <syn-button variant="filled" disabled>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Button
+        <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+      </syn-button>
+
+      <syn-button variant="outline" disabled>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Button
+        <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+      </syn-button>
+
+      <syn-button variant="text" disabled>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        Button
+        <syn-icon name="wallpaper" slot="suffix"></syn-icon>
+      </syn-button>
+    </div>
+  `,
 };
 
 /* eslint-disable sort-keys */

@@ -29,7 +29,7 @@
 
   fix: 🐛 `<syn-alert>` close icon should be aligned to top (#1135)
 
-  Fixes an issue that was introduces in version `2.74.0`.
+  Fixes an issue that was introduced in version `2.74.0`.
   The close icons is now always aligned to the top of the `<syn-alert>` again.
 
 ## 2.74.1

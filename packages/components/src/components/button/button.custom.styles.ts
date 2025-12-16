@@ -145,11 +145,15 @@ export default css`
    * Text buttons
    */
   .button--text {
-    color: var(--syn-button-color, var(--syn-color-primary-600));
+    color: var(--syn-button-text-color-text, var(--syn-color-primary-600));
   }
 
   .button--text:hover:not(.button--disabled) {
-    color: var(--syn-button-color-hover, var(--syn-color-primary-900));
+    color: var(--syn-button-text-color-text-hover, var(--syn-color-primary-900));
+  }
+
+  .button--text:active:not(.button--disabled) {
+    color: var(--syn-button-text-color-text-active, var(--syn-color-primary-600));
   }
 
   .button--text:focus-visible:not(.button--disabled) {

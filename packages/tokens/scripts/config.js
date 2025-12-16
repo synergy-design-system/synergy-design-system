@@ -59,6 +59,11 @@ export const OUTPUT_VARIABLE_CHANGES = {
     'syn-button-outline-color-text': 'inherit',
     'syn-button-outline-color-text-active': 'var(--syn-color-primary-950)',
     'syn-button-outline-color-text-hover': 'var(--syn-color-primary-900)',
+
+    // Text button
+    'syn-button-text-color-text': 'var(--syn-button-color)',
+    'syn-button-text-color-text-active': 'var(--syn-button-color-active)',
+    'syn-button-text-color-text-hover': 'var(--syn-button-color-hover)',
   },
   sick2018_light: {
     // filled button
@@ -72,6 +77,11 @@ export const OUTPUT_VARIABLE_CHANGES = {
     'syn-button-outline-color-text': 'inherit',
     'syn-button-outline-color-text-active': 'var(--syn-color-primary-950)',
     'syn-button-outline-color-text-hover': 'var(--syn-color-primary-900)',
+
+    // Text button
+    'syn-button-text-color-text': 'var(--syn-button-color)',
+    'syn-button-text-color-text-active': 'var(--syn-button-color-active)',
+    'syn-button-text-color-text-hover': 'var(--syn-button-color-hover)',
   },
   sick2025_dark: {
   },
@@ -80,5 +90,10 @@ export const OUTPUT_VARIABLE_CHANGES = {
     'syn-button-filled-color-text': 'inherit',
     'syn-button-filled-color-text-active': 'inherit',
     'syn-button-filled-color-text-hover': 'inherit',
+
+    // Text button
+    'syn-button-text-color-text': 'var(--syn-button-color)',
+    'syn-button-text-color-text-active': 'var(--syn-button-color-active)',
+    'syn-button-text-color-text-hover': 'var(--syn-button-color-hover)',
   },
 };

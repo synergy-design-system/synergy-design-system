@@ -67,6 +67,9 @@
   --syn-button-outline-color-text: var(--syn-typography-color-text);
   --syn-button-outline-color-text-active: var(--syn-typography-color-text-inverted);
   --syn-button-outline-color-text-hover: var(--syn-typography-color-text-inverted);
+  --syn-button-text-color-text: var(--syn-button-color);
+  --syn-button-text-color-text-active: var(--syn-button-color-active);
+  --syn-button-text-color-text-hover: var(--syn-button-color-hover);
   --syn-checkbox-border-radius: var(--syn-border-radius-small);
   --syn-color-accent-50: #e9f8ed;
   --syn-color-accent-100: #d2f0dc;
@@ -387,9 +390,9 @@
   --syn-body-large-regular: 400 20px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --syn-body-large-semibold: 600 20px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --syn-body-large-bold: 600 20px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  --syn-heading-large: 600 20px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  --syn-heading-x-large: 600 24px/1.2 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  --syn-heading-2x-large: 600 32px/1.2 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-  --syn-heading-3x-large: 600 40px/1.2 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --syn-heading-large: 400 22px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --syn-heading-x-large: 400 28px/1.2 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --syn-heading-2x-large: 400 34px/1.2 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --syn-heading-3x-large: 400 40px/1.2 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --syn-focus-ring: var(--syn-focus-ring-style) var(--syn-focus-ring-width) var(--syn-focus-ring-color);
 }

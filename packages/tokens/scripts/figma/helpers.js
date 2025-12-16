@@ -131,13 +131,6 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
   /primitive\/muted/,
 
   /**
-   * Font Size
-   */
-  // Currently not used font sizes
-  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
-  /primitive\/font-size\/(0x-large|1_5x-large|1x-large|2_5x-large|medium-large)/,
-
-  /**
    * Letter spacing
    */
   // Currently not used letter spacing values

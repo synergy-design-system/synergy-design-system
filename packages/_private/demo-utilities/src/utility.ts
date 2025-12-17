@@ -100,6 +100,7 @@ export const setGlobalSize = (size: AllowedSizes) => {
       SynAccordion,
       SynAlert: size,
       SynButton: size,
+      SynButtonGroup: size,
       SynCheckbox: size,
       SynCombobox: size,
       SynDetails,

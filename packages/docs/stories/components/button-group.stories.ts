@@ -14,6 +14,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-button-group');
 const { overrideArgs } = storybookHelpers('syn-button-group');
@@ -35,6 +36,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-button-group',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('45597-333058'),
     docs: {
       description: {

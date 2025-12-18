@@ -6,6 +6,12 @@ export const ButtonGroup = () => (
       gap: 'var(--syn-spacing-medium)',
     }}
   >
+    <syn-button-group label="Button Group - Default">
+      <syn-button>Left</syn-button>
+      <syn-button>Center (This Group will size adjust!)</syn-button>
+      <syn-button>Right</syn-button>
+    </syn-button-group>
+
     {
       (['small', 'medium', 'large'] as const).map(size => (
         (['outline', 'filled'] as const).map(variant => (

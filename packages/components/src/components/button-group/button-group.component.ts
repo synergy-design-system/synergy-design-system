@@ -15,7 +15,6 @@ import customStyles from './button-group.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type SynButton from '../button/button.component.js';
 import type SynRadioButton from '../radio-button/radio-button.component.js';
-import { watch } from '../../internal/watch.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -32,6 +31,8 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 export default class SynButtonGroup extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
+  private mutationObserver: MutationObserver;
+
   @query('slot') defaultSlot: HTMLSlotElement;
 
   @state() disableRole = false;
@@ -47,12 +48,6 @@ export default class SynButtonGroup extends SynergyElement {
 
   /** The button-group's theme variant. This affects all buttons within the group. */
   @property({ reflect: true }) variant: 'filled' | 'outline' = 'outline';
-
-  // Make sure we update the buttons when the size or variant changes
-  @watch(['size', 'variant'], { waitUntilFirstUpdate: true })
-  handleSizeChange() {
-    this.handleSlotChange();
-  }
 
   private handleFocus(event: Event) {
     const button = findButton(event.target as HTMLElement);
@@ -98,6 +93,62 @@ export default class SynButtonGroup extends SynergyElement {
         );
       }
     });
+  }
+
+  firstUpdated() {
+    const startObserving = () => {
+      this.mutationObserver.observe(this, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['size', 'variant'],
+      });
+    };
+
+    this.mutationObserver = new MutationObserver((entries) => {
+      // Temporarily disconnect to prevent infinite loop
+      this.mutationObserver.disconnect();
+
+      // Check if the button-group itself changed or its children
+      const buttonGroupChanged = entries.some(entry => entry.target === this);
+      const childrenChanged = entries.some(entry => entry.target !== this);
+
+      if (childrenChanged) {
+        // Handle child button changes (existing logic)
+        entries
+          .filter(entry => entry.target !== this)
+          .forEach(entry => {
+            const target = entry.target as HTMLElement;
+            const button = findButton(target) as SynButton | SynRadioButton;
+
+            if (button) {
+              // Unset the size property to allow button-group to control it
+              button.size = undefined as any;
+
+              // Also unset variant for syn-buttons
+              if (button.tagName.toLowerCase() === 'syn-button') {
+                (button as SynButton).variant = undefined as any;
+              }
+            }
+          });
+      }
+
+      // Handle both cases: button-group changes and child changes
+      if (buttonGroupChanged || childrenChanged) {
+        this.handleSlotChange();
+      }
+      
+      // Reconnect observer after changes are done
+      this.updateComplete.then(() => {
+        startObserving();
+      });
+    });
+
+    startObserving();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.mutationObserver?.disconnect();
   }
 
   render() {

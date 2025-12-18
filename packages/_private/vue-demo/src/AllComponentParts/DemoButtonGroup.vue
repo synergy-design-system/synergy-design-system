@@ -25,6 +25,12 @@ const combinations = computed(() => {
       gap: var(--syn-spacing-medium);
     "
   >
+    <SynVueButtonGroup label="Button Group - Default">
+      <SynVueButton>Left</SynVueButton>
+      <SynVueButton>Center (This Group will size adjust!)</SynVueButton>
+      <SynVueButton>Right</SynVueButton>
+    </SynVueButtonGroup>
+
     <SynVueButtonGroup
       v-for="combination in combinations"
       :key="combination.key"

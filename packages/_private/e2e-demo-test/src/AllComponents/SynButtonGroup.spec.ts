@@ -12,8 +12,8 @@ test.describe('<SynButtonGroup />', () => {
       await AllComponents.activateItem('buttonGroupLink');
       await expect(AllComponents.getLocator('buttonGroupContent')).toBeVisible();
 
-      // Get all button groups within the button group content area
-      const buttonGroups = AllComponents.getLocator('buttonGroupContent').locator('syn-button-group');
+      // Get all button groups within the button group content area, skipping the first one
+      const buttonGroups = AllComponents.getLocator('buttonGroupContent').locator('syn-button-group').nth(1).locator('xpath=following-sibling::syn-button-group | .');
 
       // Should have 6 button groups (3 sizes × 2 variants)
       await expect(buttonGroups).toHaveCount(6);

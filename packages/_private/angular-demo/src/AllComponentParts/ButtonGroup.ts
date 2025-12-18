@@ -11,6 +11,12 @@ import { SynButtonGroupComponent } from '@synergy-design-system/angular/componen
   ],
   template: `
     <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium)">
+      <syn-button-group label="Button Group - Default">
+        <syn-button>Left</syn-button>
+        <syn-button>Center (This Group will size adjust!)</syn-button>
+        <syn-button>Right</syn-button>
+      </syn-button-group>
+
       @for (size of sizes; track size) {
         @for (variant of variants; track variant) {
           <syn-button-group

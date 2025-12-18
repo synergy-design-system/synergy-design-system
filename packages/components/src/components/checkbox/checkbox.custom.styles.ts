@@ -17,6 +17,13 @@ export default css`
     margin: 0.1em 0;
   }
 
+  /* Checked/indeterminate */
+  .checkbox--checked .checkbox__control,
+  .checkbox--indeterminate .checkbox__control {
+    background-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));  
+    border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));  
+  }
+
   :host([data-user-invalid]) .checkbox__control {
     background: var(--syn-input-border-color-focus-error);
     border-color: var(--syn-input-border-color-focus-error);

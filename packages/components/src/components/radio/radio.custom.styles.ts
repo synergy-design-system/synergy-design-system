@@ -22,26 +22,32 @@ export default css`
     border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
   }
 
+  /* Reset original hover */
+  .radio:not(.radio--checked):not(.radio--disabled) .radio__control:hover {
+    background: inherit;
+    border-color: inherit;
+  }
+
   /* Checked + hover */
-  .radio.radio--checked:not(.radio--disabled) .radio__control:hover  {
+  .radio.radio--checked:not(.radio--disabled):hover .radio__control  {
     background-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-950));
     border-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-950));
   }
 
   /* Checked + active */
-  .radio.radio--checked:not(.radio--disabled) .radio__control:active  {
+  .radio.radio--checked:not(.radio--disabled):active .radio__control  {
     background-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
     border-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
   }
 
   /* Not-Checked + Hover */
-  .radio:not(.radio--checked):not(.radio--disabled) .radio__control:hover {
+  .radio:not(.radio--checked):not(.radio--disabled):hover .radio__control {
     border-color: var(--syn-input-border-color-hover);
   }
 
   /* Not-Checked + active */
-  .radio:not(.radio--checked):not(.radio--disabled) .radio__control:active {
-    border-color: var(--syn-color-neutral-1000);
+  .radio:not(.radio--checked):not(.radio--disabled):active .radio__control {
+    border-color: var(--syn-input-border-color-active, var(--syn-color-neutral-1000));
   }
 
   /* Fix#456: Multi line radio fixes */

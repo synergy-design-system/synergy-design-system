@@ -124,6 +124,14 @@ export default css`
   }
 
   /**
+   * #443: Add support for active state
+   */
+  .nav-item:not(.nav-item--disabled):active::before {
+    background: var(--syn-interactive-background-color-active, var(--syn-color-neutral-50));
+    opacity: 1;
+  }
+
+  /**
    * When using horizontal, the background should extend the element
    * on the left and right so the animation for the indicator can be seen
    */

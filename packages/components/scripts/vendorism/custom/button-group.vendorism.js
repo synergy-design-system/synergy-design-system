@@ -1,4 +1,4 @@
-import { addSectionsAfter, replaceSections } from '../replace-section.js';
+import { addSectionsAfter, addSectionsBefore, replaceSections } from '../replace-section.js';
 
 const FILES_TO_TRANSFORM = [
   'button-group.component.ts',
@@ -18,7 +18,6 @@ const transformComponent = (path, originalContent) => {
       `
 import type SynButton from '../button/button.component.js';
 import type SynRadioButton from '../radio-button/radio-button.component.js';
-import { watch } from '../../internal/watch.js';
       `.trim(),
     ],
 
@@ -32,14 +31,73 @@ import { watch } from '../../internal/watch.js';
   /** The button-group's theme variant. This affects all buttons within the group. */
   @property({ reflect: true }) variant: 'filled' | 'outline' = 'outline';
 
-  // Make sure we update the buttons when the size or variant changes
-  @watch(['size', 'variant'], { waitUntilFirstUpdate: true })
-  handleSizeChange() {
-    this.handleSlotChange();
-  }
+  private mutationObserver: MutationObserver;
       `.trimEnd(),
     ],
   ], originalContent);
+
+  // Add support for mutation observer that syncs button attributes
+  content = addSectionsBefore([
+    [
+      '  render() {',
+      `  firstUpdated() {
+    const startObserving = () => {
+      this.mutationObserver.observe(this, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['size', 'variant'],
+      });
+    };
+
+    this.mutationObserver = new MutationObserver((entries) => {
+      // Temporarily disconnect to prevent infinite loop
+      this.mutationObserver.disconnect();
+
+      // Check if the button-group itself changed or its children
+      const buttonGroupChanged = entries.some(entry => entry.target === this);
+      const childrenChanged = entries.some(entry => entry.target !== this);
+
+      if (childrenChanged) {
+        // Handle child button changes (existing logic)
+        entries
+          .filter(entry => entry.target !== this)
+          .forEach(entry => {
+            const target = entry.target as HTMLElement;
+            const button = findButton(target) as SynButton | SynRadioButton;
+
+            if (button) {
+              // Unset the size property to allow button-group to control it
+              button.size = undefined as any;
+
+              // Also unset variant for syn-buttons
+              if (button.tagName.toLowerCase() === 'syn-button') {
+                (button as SynButton).variant = undefined as any;
+              }
+            }
+          });
+      }
+
+      // Handle both cases: button-group changes and child changes
+      if (buttonGroupChanged || childrenChanged) {
+        this.handleSlotChange();
+      }
+      
+      // Reconnect observer after changes are done
+      this.updateComplete.then(() => {
+        startObserving();
+      });
+    });
+
+    startObserving();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.mutationObserver?.disconnect();
+  }
+`,
+    ],
+  ], content);
 
   // Update the slotchange event handler
   content = replaceSections([

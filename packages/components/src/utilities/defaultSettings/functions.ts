@@ -10,6 +10,7 @@ import {
   type SynDefaultSettings,
   defaultSettings,
 } from './base.js';
+import { sortComponentsForUpdate } from './sort.js';
 import type { SynDefaultChangedAttribute, SynDefaultSettingsChangedEvent } from '../../events/events.js';
 
 /**
@@ -36,7 +37,15 @@ const globalEventNotificationMap = new Set<GlobalSettingsEnabledElement>();
  */
 function defaultSettingsHandler(e: SynDefaultSettingsChangedEvent) {
   const { detail } = e;
-  Object.entries(detail).forEach(([componentName, changes]) => {
+
+  const sortedDetail = sortComponentsForUpdate(
+    Object.keys(detail) as ComponentNamesWithDefaultValues[],
+  ).map(componentName => ({
+    changes: detail[componentName],
+    componentName,
+  }));
+
+  sortedDetail.forEach(({ componentName, changes }) => {
     globalEventNotificationMap.forEach(element => {
       if (
         element.__originalDecoratedClassName !== 'undefined'
@@ -227,30 +236,41 @@ export const setGlobalDefaultSettings = (
           attribute: key,
           newValue: newValue as unknown,
           oldValue:
-            defaultSettings[key as keyof SynDefaultSettings][
-              component as keyof SynDefaultSettings[keyof SynDefaultSettings]
-            ],
+          defaultSettings[key as keyof SynDefaultSettings][
+            component as keyof SynDefaultSettings[keyof SynDefaultSettings]
+          ],
         });
-
-        // Set the new value
-        (
-          defaultSettings[key as keyof SynDefaultSettings] as Record<string, unknown>
-        )[component] = newValue;
       });
     }
   });
 
-  // Make sure to update the cache when we change a default settings
-  Object
-    .entries(detail)
-    .forEach(([component, changes]) => {
-      const cachedItem = elementPropertyCache.get(component as ComponentNamesWithDefaultValues);
+  // Sort components by dependencies and priority before processing
+  // This has to be done to ensure that components depending on other components
+  // get updated after the components they depend on.
+  const componentsToUpdate = Object.keys(detail) as ComponentNamesWithDefaultValues[];
+  const sortedComponents = sortComponentsForUpdate(componentsToUpdate);
+
+  // Second pass: update defaultSettings and cache in sorted order
+  sortedComponents.forEach((component) => {
+    const changes = detail[component];
+
+    if (changes) {
+      // Update defaultSettings for this component
+      changes.forEach(change => {
+        (
+          defaultSettings[change.attribute as keyof SynDefaultSettings] as Record<string, unknown>
+        )[component] = change.newValue;
+      });
+
+      // Update cache for this component
+      const cachedItem = elementPropertyCache.get(component);
       if (typeof cachedItem !== 'undefined') {
         changes.forEach(change => {
           cachedItem[change.attribute] = change.newValue;
         });
       }
-    });
+    }
+  });
 
   // Fire the change event
   if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS) {

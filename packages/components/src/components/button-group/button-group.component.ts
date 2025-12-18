@@ -31,8 +31,6 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 export default class SynButtonGroup extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
 
-  private mutationObserver: MutationObserver;
-
   @query('slot') defaultSlot: HTMLSlotElement;
 
   @state() disableRole = false;
@@ -48,6 +46,8 @@ export default class SynButtonGroup extends SynergyElement {
 
   /** The button-group's theme variant. This affects all buttons within the group. */
   @property({ reflect: true }) variant: 'filled' | 'outline' = 'outline';
+
+  private mutationObserver: MutationObserver;
 
   private handleFocus(event: Event) {
     const button = findButton(event.target as HTMLElement);

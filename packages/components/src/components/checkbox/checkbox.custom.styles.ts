@@ -17,6 +17,13 @@ export default css`
     margin: 0.1em 0;
   }
 
+  /* Checked/indeterminate */
+  .checkbox--checked .checkbox__control,
+  .checkbox--indeterminate .checkbox__control {
+    background-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));  
+    border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));  
+  }
+
   :host([data-user-invalid]) .checkbox__control {
     background: var(--syn-input-border-color-focus-error);
     border-color: var(--syn-input-border-color-focus-error);
@@ -49,8 +56,26 @@ export default css`
    */
   .checkbox.checkbox--checked:not(.checkbox--disabled):hover .checkbox__control,
   .checkbox.checkbox--indeterminate:not(.checkbox--disabled):hover .checkbox__control {
-    background-color: var(--syn-color-primary-900);
-    border-color: var(--syn-color-primary-900);
+    background-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
+    border-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
+  }
+
+  /*
+   * #443: Add active styles
+   * The checked and unchecked states have different active colors
+   * Note the fallback is defined to match the hover color.
+   * This is done to make sure no active state is shown at all if no active color is defined.
+   * Still better than showing one for the unchecked state but not for the checked state.
+   */
+  .checkbox:not(.checkbox--checked):not(.checkbox--disabled):active .checkbox__control {
+    border-color: var(--syn-input-border-color-active);
+  }
+
+  /* Checked/indeterminate */
+  .checkbox.checkbox--checked:not(.checkbox--disabled):active .checkbox__control,
+  .checkbox.checkbox--indeterminate:not(.checkbox--disabled):active .checkbox__control {
+    background: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-900));
+    border-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-900));
   }
 
   .checkbox__label {

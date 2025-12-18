@@ -1,5 +1,28 @@
 # @synergy-design-system/angular
 
+## 2.77.0
+
+### Minor Changes
+
+- [#1132](https://github.com/synergy-design-system/synergy-design-system/pull/1132) [`13f6b25`](https://github.com/synergy-design-system/synergy-design-system/commit/13f6b259af388a0fbafc7c963443d08e61c4e99f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-18
+
+  feat: ✨ support angular 21 (#1094)
+
+  Enables the possibility to use `angular@21`.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/components@2.77.0
+
+## 2.76.0
+
+### Patch Changes
+
+- Updated dependencies [[`dc56e6f`](https://github.com/synergy-design-system/synergy-design-system/commit/dc56e6f0ebc08e44b23bdbdaa6fffa03abc26e9e)]:
+  - @synergy-design-system/components@2.76.0
+  - @synergy-design-system/tokens@2.48.0
+
 ## 2.75.0
 
 ### Patch Changes

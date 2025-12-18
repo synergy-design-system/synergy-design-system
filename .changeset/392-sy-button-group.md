@@ -9,3 +9,5 @@
 feat: ✨ `<syn-button-group>` (#392)
 
 We added a new component `<syn-button-group>` that you can use to group a list of buttons.
+
+It will automatically apply its `size` and `variant` properties to all nested buttons.

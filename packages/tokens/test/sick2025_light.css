@@ -198,6 +198,7 @@
   --syn-input-background-color-focus: var(--syn-input-background-color);
   --syn-input-background-color-hover: var(--syn-input-background-color);
   --syn-input-border-color: var(--syn-color-neutral-950);
+  --syn-input-border-color-active: var(--syn-color-primary-800);
   --syn-input-border-color-disabled: var(--syn-color-neutral-950);
   --syn-input-border-color-focus: var(--syn-color-primary-700);
   --syn-input-border-color-focus-error: var(--syn-color-error-600);
@@ -231,6 +232,7 @@
   --syn-input-icon-color: var(--syn-color-neutral-950);
   --syn-input-icon-color-hover: var(--syn-color-neutral-950);
   --syn-input-icon-icon-clearable-color: var(--syn-color-neutral-500);
+  --syn-input-icon-icon-clearable-color-active: var(--syn-color-neutral-800);
   --syn-input-icon-icon-clearable-color-hover: var(--syn-color-neutral-700);
   --syn-input-label-color: var(--syn-color-neutral-950);
   --syn-input-label-font-size-large: var(--syn-font-size-large);
@@ -251,6 +253,7 @@
   --syn-input-spacing-medium: var(--syn-spacing-medium);
   --syn-input-spacing-small: var(--syn-spacing-small);
   --syn-input-width: var(--syn-border-width-small);
+  --syn-interactive-background-color-active: #e6e1dc;
   --syn-interactive-background-color-hover: #f2f0ed;
   --syn-interactive-emphasis-color: var(--syn-color-primary-700);
   --syn-interactive-emphasis-color-active: var(--syn-color-primary-1000);

@@ -1,5 +1,29 @@
 # Changelog
 
+## 1.41.0
+
+### Minor Changes
+
+- [#1132](https://github.com/synergy-design-system/synergy-design-system/pull/1132) [`13f6b25`](https://github.com/synergy-design-system/synergy-design-system/commit/13f6b259af388a0fbafc7c963443d08e61c4e99f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-18
+
+  feat: ✨ support angular 21 (#1094)
+
+  Enables the possibility to use `angular@21`.
+
+## 1.40.0
+
+### Minor Changes
+
+- [#1138](https://github.com/synergy-design-system/synergy-design-system/pull/1138) [`dc56e6f`](https://github.com/synergy-design-system/synergy-design-system/commit/dc56e6f0ebc08e44b23bdbdaa6fffa03abc26e9e) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-18
+
+  feat: ✨ form element active states (#433)
+
+  This release adds adjustments for `:active` states for various form elements.
+  - `<syn-checkbox>` now has new active states, dependent on if it is checked and unchecked.
+  - `<syn-nav-item>` now has a new active state
+  - `<syn-radio>` will show its active indicator when pressing the associated label, too.
+  - `<syn-switch>` now has new active states, dependent on if it is checked and unchecked.
+
 ## 1.39.0
 
 ### Minor Changes

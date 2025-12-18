@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.77.0
+
+## 2.76.0
+
+### Minor Changes
+
+- [#1138](https://github.com/synergy-design-system/synergy-design-system/pull/1138) [`dc56e6f`](https://github.com/synergy-design-system/synergy-design-system/commit/dc56e6f0ebc08e44b23bdbdaa6fffa03abc26e9e) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-18
+
+  feat: ✨ form element active states (#433)
+
+  This release adds adjustments for `:active` states for various form elements.
+  - `<syn-checkbox>` now has new active states, dependent on if it is checked and unchecked.
+  - `<syn-nav-item>` now has a new active state
+  - `<syn-radio>` will show its active indicator when pressing the associated label, too.
+  - `<syn-switch>` now has new active states, dependent on if it is checked and unchecked.
+
+### Patch Changes
+
+- Updated dependencies [[`dc56e6f`](https://github.com/synergy-design-system/synergy-design-system/commit/dc56e6f0ebc08e44b23bdbdaa6fffa03abc26e9e)]:
+  - @synergy-design-system/tokens@2.48.0
+
 ## 2.75.0
 
 ### Minor Changes

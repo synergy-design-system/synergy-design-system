@@ -35,6 +35,18 @@ const props = defineProps<{
 devices when interacting with the control and is strongly recommended.
  */
   label?: SynButtonGroup['label'];
+
+  /**
+   * The button-groups size.
+   * This affects all buttons within the group.
+   */
+  size?: SynButtonGroup['size'];
+
+  /**
+   * The button-group's theme variant.
+   * This affects all buttons within the group.
+   */
+  variant?: SynButtonGroup['variant'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

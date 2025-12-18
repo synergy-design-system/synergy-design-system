@@ -17,6 +17,10 @@ const AllComponentSelectors = {
   alertContent: '#tab-content-Alert',
   alertLink: '#tab-Alert',
 
+  // ButtonGroup
+  buttonGroupContent: '#tab-content-ButtonGroup',
+  buttonGroupLink: '#tab-ButtonGroup',
+
   // Combobox
   combobox626: '#tab-content-Combobox syn-combobox[data-testid="combobox-626"]',
   combobox626Async: '#tab-content-Combobox syn-combobox[data-testid="combobox-626-async"]',

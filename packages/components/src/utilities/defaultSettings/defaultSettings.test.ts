@@ -3,12 +3,14 @@ import sinon from 'sinon';
 import { expect, fixture, html } from '@open-wc/testing';
 import { INITIAL_DEFAULT_SETTINGS } from './base.js';
 import {
+  type ComponentNamesWithDefaultValues,
   type SynButton,
   enableExperimentalSettingEmitEvents,
   resetGlobalDefaultSettings,
   setDefaultSettingsForElement,
   setGlobalDefaultSettings,
 } from '../../../dist/synergy.js';
+import { sortComponentsForUpdate } from './sort.js';
 
 describe('GlobalSettings', () => {
   // Make sure to reset the defaults for each test
@@ -260,6 +262,66 @@ describe('GlobalSettings', () => {
 
       const buttonAfterReset = await fixture<SynButton>(html`<syn-button>Button</syn-button>`);
       expect(buttonAfterReset.size).to.equal('medium');
+    });
+  });
+
+  describe('dependency sorting', () => {
+    it('should sort components in dependency order', () => {
+      const components = ['SynButtonGroup', 'SynButton', 'SynRadioGroup', 'SynRadio'];
+      const sorted = sortComponentsForUpdate(components as ComponentNamesWithDefaultValues[]);
+
+      // Verify dependencies come before their dependents
+      expect(sorted.indexOf('SynButton')).to.be.lessThan(sorted.indexOf('SynButtonGroup'));
+      expect(sorted.indexOf('SynRadio')).to.be.lessThan(sorted.indexOf('SynRadioGroup'));
+    });
+
+    it('should ensure button-group overrides button sizes when both change globally', async () => {
+      enableExperimentalSettingEmitEvents(true); // Start simple without events
+
+      const container = await fixture<HTMLDivElement>(html`
+        <div>
+          <syn-button-group>
+            <syn-button>Button 1</syn-button>
+            <syn-button>Button 2</syn-button>
+          </syn-button-group>
+        </div>
+      `);
+
+      const buttonGroup = container.querySelector('syn-button-group')!;
+      const buttons = Array.from(container.querySelectorAll('syn-button'));
+
+      // Wait for initial setup
+      await Promise.all([
+        buttonGroup.updateComplete,
+        ...buttons.map(btn => btn.updateComplete),
+      ]);
+
+      // Set initial button group size
+      buttonGroup.size = 'large';
+      await buttonGroup.updateComplete;
+
+      // Verify buttons inherit from button group
+      expect(buttons[0].size).to.equal('large');
+      expect(buttons[1].size).to.equal('large');
+
+      // Now change both components globally
+      setGlobalDefaultSettings({
+        size: {
+          SynButton: 'small', // Without sorting, buttons would get this
+          SynButtonGroup: 'medium', // With sorting, this should win
+        },
+      });
+
+      // Wait for updates to process
+      await Promise.all([
+        buttonGroup.updateComplete,
+        ...buttons.map(btn => btn.updateComplete),
+      ]);
+
+      // Button group should have won due to dependency sorting
+      expect(buttonGroup.size).to.equal('medium');
+      expect(buttons[0].size).to.equal('medium');
+      expect(buttons[1].size).to.equal('medium');
     });
   });
 });

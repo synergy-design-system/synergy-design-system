@@ -1,10 +1,10 @@
 export type SynDefaultChangedAttribute = {
   /* The attribute */
   attribute: string;
-  /* Original values before the change */
-  oldValue: unknown;
   /* New values after the change */
   newValue: unknown;
+  /* Original values before the change */
+  oldValue: unknown;
 };
 
 /**

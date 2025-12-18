@@ -2,6 +2,7 @@ export * from './alert.vendorism.js';
 export * from './badge.vendorism.js';
 export * from './breadcrumb.vendorism.js';
 export * from './breadcrumb-item.vendorism.js';
+export * from './button-group.vendorism.js';
 export * from './button.vendorism.js';
 export * from './card.vendorism.js';
 export * from './checkbox.vendorism.js';

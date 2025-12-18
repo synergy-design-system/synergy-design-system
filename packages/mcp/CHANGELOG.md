@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.39.0
+
+### Minor Changes
+
+- [#1109](https://github.com/synergy-design-system/synergy-design-system/pull/1109) [`6b4b7e2`](https://github.com/synergy-design-system/synergy-design-system/commit/6b4b7e2940b5c87e44d5da6030354ec0e21f2f38) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  feat: ✨ Brand updates for `<syn-button>` (#871)
+  feat: ✨ Brand updates for `<syn-dropdown>` (#949)
+
+## 1.38.5
+
+### Patch Changes
+
+- [#1134](https://github.com/synergy-design-system/synergy-design-system/pull/1134) [`53bd655`](https://github.com/synergy-design-system/synergy-design-system/commit/53bd655f465b76c2aa7d57449750b99e8fcfb500) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  fix: 🐛 Adjust `<syn-option>` and `<syn-menu-item>` interactive background (#1127)
+
+  Minor adjustments for `<syn-option>` and `<syn-menu-item>` hover and focus states to better mimic the effects as detailed in Figma for the SICK 2025 themes.
+  Both components now use a combination of `background` and `border-radius` to show the `<syn-option>` with an inset highlight color, allowing to better match the wanted spacings.
+
 ## 1.38.4
 
 ### Patch Changes

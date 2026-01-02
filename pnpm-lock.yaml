@@ -962,11 +962,11 @@ importers:
         specifier: ^8.57.1
         version: 8.57.1
       globby:
-        specifier: ^14.1.0
-        version: 14.1.0
+        specifier: ^16.1.0
+        version: 16.1.0
       ora:
-        specifier: ^8.2.0
-        version: 8.2.0
+        specifier: ^9.0.0
+        version: 9.0.0
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
@@ -980,11 +980,11 @@ importers:
         specifier: ^16.1.1
         version: 16.1.1(postcss@8.5.6)
       prettier:
-        specifier: ^3.6.2
-        version: 3.6.2
+        specifier: ^3.7.4
+        version: 3.7.4
       stylelint:
-        specifier: ^16.24.0
-        version: 16.24.0(typescript@5.9.3)
+        specifier: ^16.26.1
+        version: 16.26.1(typescript@5.9.3)
 
   packages/tokens:
     devDependencies:

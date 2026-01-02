@@ -6,7 +6,7 @@
   "devDependencies": {
     "@changesets/types": "^6.1.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
-    "@types/node": "^22.19.3",
+    "@types/node": "^24.0.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
     "typescript": "^5.9.3"

@@ -21,7 +21,7 @@
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:^",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.18.8",
+    "@types/node": "^24.0.0",
     "@types/serve-handler": "^6.1.4",
     "change-case": "^5.4.4",
     "custom-elements-manifest": "^2.1.0",

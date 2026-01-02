@@ -16,7 +16,7 @@
     "@figma-export/types": "^6.2.4",
     "@figma/rest-api-spec": "^0.35.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
-    "@types/node": "^22.19.3",
+    "@types/node": "^24.0.0",
     "eslint": "^8.57.1",
     "rimraf": "^6.1.2",
     "svgo": "^3.3.2",

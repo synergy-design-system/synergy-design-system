@@ -4,7 +4,7 @@ inputs:
   node-version:
     description: 'Node.js version to use'
     required: false
-    default: '22'
+    default: 'lts/Krypton'
   skip-install:
     description: 'Skip dependency installation'
     required: false
@@ -32,7 +32,7 @@ runs:
         run_install: false
 
     - name: Install Node.js
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
         cache: "pnpm"

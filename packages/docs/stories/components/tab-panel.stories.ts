@@ -6,10 +6,13 @@ import '../../../components/src/components/tab/tab.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
-  generateScreenshotStory, storybookDefaults, storybookHelpers, storybookTemplate,
+  generateScreenshotStory,
+  generateStoryDescription,
+  storybookDefaults,
+  storybookHelpers,
+  storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import docsTokens from '../../../tokens/src/figma-tokens/_docs.json' with { type: 'json' };
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-tab-panel');
@@ -40,7 +43,7 @@ const meta: Meta = {
     design: generateFigmaPluginObject('18086-44682'),
     docs: {
       description: {
-        component: docsTokens.components['tab-panel'].description.value,
+        component: generateStoryDescription('tab-panel', 'default'),
       },
     },
   },
@@ -55,7 +58,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: docsTokens.components['tab-panel'].description.value,
+        story: generateStoryDescription('tab-panel', 'default'),
       },
     },
   },

@@ -49,6 +49,7 @@ export default css`
 
   .visually-hidden {
     border: 0;
+    /* stylelint-disable-next-line property-no-deprecated */
     clip: rect(0, 0, 0, 0);
     height: 1px;
     margin: -1px;

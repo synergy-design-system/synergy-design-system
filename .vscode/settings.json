@@ -231,8 +231,6 @@
     "packages/components/src/utilities/form.ts": true,
     "packages/components/src/utilities/icon-library.ts": true,
     "packages/components/src/utilities/localize.ts": true,
-    "packages/components/tsconfig.json": true,
-    "packages/components/tsconfig.prod.json": true,
     "packages/components/web-test-runner.config.js": true,
     "packages/react/src/**": true,
     "packages/tokens/test/dark.css": true,

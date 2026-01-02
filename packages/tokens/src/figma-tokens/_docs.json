@@ -2521,13 +2521,15 @@
       }
     },
     "tab-panel": {
-      "description": {
-        "value": "Tab panels are used inside tab groups to display tabbed content.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Tab Panel",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Tab panels are used inside tab groups to display tabbed content.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tab Panel",
+          "type": "text"
+        }
       }
     },
     "tab": {

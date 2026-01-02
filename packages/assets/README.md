@@ -75,8 +75,12 @@ This will:
 
 - Clean up the `src` directory
 - download all icons from figma
-- download all thumbnails for docs
 - Recreate all default icons
 - Create the migration iconsets for Synergy 2018 to 2025 via `pnpm create-migration-iconset`
 - Recreate the license files in the different folders
 - Create [code connect files](https://www.figma.com/code-connect-docs/html) for all icons. Please be aware you have to call `pnpm figma-export:icons` in the components package to publish the icons!
+
+### Updating thumbnails
+
+Updating thumbnails is quite intense and may lead to 429 rate limit request issues with the Figma API.
+Therefore, this is not done automatically. You may use `pnpm build:with-thumbnails` for a full build including the thumbnails or `pnpm fetch-components-thumbnails` directly. 

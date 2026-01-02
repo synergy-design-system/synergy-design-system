@@ -499,38 +499,38 @@ importers:
   packages/assets:
     devDependencies:
       '@dotenvx/dotenvx':
-        specifier: ^1.51.0
-        version: 1.51.0
+        specifier: ^1.51.4
+        version: 1.51.4
       '@figma-export/cli':
-        specifier: ^6.2.3
-        version: 6.2.3
+        specifier: ^6.3.0
+        version: 6.3.0
       '@figma-export/core':
-        specifier: ^6.2.3
-        version: 6.2.3
+        specifier: ^6.3.0
+        version: 6.3.0
       '@figma-export/output-components-as-svg':
-        specifier: ^6.2.3
-        version: 6.2.3
+        specifier: ^6.2.4
+        version: 6.2.4
       '@figma-export/transform-svg-with-svgo':
-        specifier: ^6.2.3
-        version: 6.2.3
+        specifier: ^6.2.4
+        version: 6.2.4
       '@figma-export/types':
-        specifier: ^6.2.3
-        version: 6.2.3
+        specifier: ^6.2.4
+        version: 6.2.4
       '@figma/rest-api-spec':
-        specifier: ^0.31.0
-        version: 0.31.0
+        specifier: ^0.35.0
+        version: 0.35.0
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:*
         version: link:../_private/eslint-config-syn
       '@types/node':
-        specifier: ^22.18.8
-        version: 22.18.8
+        specifier: ^22.19.3
+        version: 22.19.3
       eslint:
         specifier: ^8.57.1
         version: 8.57.1
       rimraf:
-        specifier: ^6.0.1
-        version: 6.0.1
+        specifier: ^6.1.2
+        version: 6.1.2
       svgo:
         specifier: ^3.3.2
         version: 3.3.2
@@ -2140,6 +2140,10 @@ packages:
     resolution: {integrity: sha512-CbMGzyOYSyFF7d4uaeYwO9gpSBzLTnMmSmTVpCZjvpJFV69qYbjYPpzNnCz1mb2wIvEhjWjRwQWuBzTO0jITww==}
     hasBin: true
 
+  '@dotenvx/dotenvx@1.51.4':
+    resolution: {integrity: sha512-AoziS8lRQ3ew/lY5J4JSlzYSN9Fo0oiyMBY37L3Bwq4mOQJT5GSrdZYLFPt6pH1LApDI3ZJceNyx+rHRACZSeQ==}
+    hasBin: true
+
   '@dual-bundle/import-meta-resolve@4.1.0':
     resolution: {integrity: sha512-+nxncfwHM5SgAtrVzgpzJOI1ol0PkumhVo469KCf9lUi21IGcY90G98VuHm9VRrUypmAzawAHO9bs6hqeADaVg==}
 
@@ -2148,6 +2152,12 @@ packages:
 
   '@ecies/ciphers@0.2.3':
     resolution: {integrity: sha512-tapn6XhOueMwht3E2UzY0ZZjYokdaw9XtL9kEyjhQ/Fb9vL9xTFbOaI+fV0AWvTpYu4BNloC6getKW6NtSg4mA==}
+    engines: {bun: '>=1', deno: '>=2', node: '>=16'}
+    peerDependencies:
+      '@noble/ciphers': ^1.0.0
+
+  '@ecies/ciphers@0.2.5':
+    resolution: {integrity: sha512-GalEZH4JgOMHYYcYmVqnFirFsjZHeoGMDt9IxEnM9F7GRUUyUksJ7Ou53L83WHJq3RWKD3AcBpo0iQh0oMpf8A==}
     engines: {bun: '>=1', deno: '>=2', node: '>=16'}
     peerDependencies:
       '@noble/ciphers': ^1.0.0
@@ -2830,20 +2840,29 @@ packages:
     engines: {node: '>= 18.18'}
     hasBin: true
 
-  '@figma-export/core@6.2.3':
-    resolution: {integrity: sha512-uq9ApWQPBElVfhwn288xKUGzj79AV6GgaOaJXKFPKQpSs2VOqJNGWBV6DfTGovmTUmp/mzPA7eYp3thTH08SYg==}
+  '@figma-export/cli@6.3.0':
+    resolution: {integrity: sha512-OgGknwKgdlH8F0uIIMhZzXP6G0XOryxLuEkoTCH8rb8joFU08BnUlslQkU8PRf3m3AuFSvW8/iUeQnDFXupIrQ==}
+    engines: {node: '>= 18.18'}
+    hasBin: true
+
+  '@figma-export/core@6.3.0':
+    resolution: {integrity: sha512-zcwUp5kX99w/Cs0wE4mlb6h8h7fvMj0O9LKrKaOXPShEY7GxHoZ+NnzN0QCxa8tvKQ5jZ+umWr0ZjQbrMSkpLQ==}
     engines: {node: '>= 18.18'}
 
-  '@figma-export/output-components-as-svg@6.2.3':
-    resolution: {integrity: sha512-IRdcBMgz1KBGhKl7jogIiA7jrYxbsQ/nRFAwkqNrwuWXFWMra9KzmOquLoxDt5g2/aQ4azCLnlAj2ooVpYjeVA==}
+  '@figma-export/output-components-as-svg@6.2.4':
+    resolution: {integrity: sha512-bCfMPYDmQKwQcN8m16Q8JUzIJYc8eQFrDCck+ktJXGV5XCPTahefgHgQDfjJI23CahXEFfLNYN/tiKEw16qfQg==}
     engines: {node: '>= 18.18'}
 
-  '@figma-export/transform-svg-with-svgo@6.2.3':
-    resolution: {integrity: sha512-/y+8+zdllCCU2g+5jyQgQsyDOFfYZRcMbUCxqWHGaWzAs+xASegc5DZZ2EMefpSrsiQwOQv5yw+HoSIpR7ZoxA==}
+  '@figma-export/transform-svg-with-svgo@6.2.4':
+    resolution: {integrity: sha512-+dk1KNTFRicFawviwq9Z+t6A9KwlihvLprewpJGPf6FjcOB19+DbFiU7aIy1F64CDhsYJbdUaS2/AaQh61fcTg==}
     engines: {node: '>= 18.18'}
 
   '@figma-export/types@6.2.3':
     resolution: {integrity: sha512-C1tE0qTYVFwVqYcCBn/PX4vn3yc0/e+ZPTkt/chZ5QDinHdn3BKVamF6qzvDXCOlSM8++VYIDUPU0K2qU2UDCQ==}
+    engines: {node: '>= 18.18'}
+
+  '@figma-export/types@6.2.4':
+    resolution: {integrity: sha512-mIe/TZDuKNP08tqWlaNm3Zi6VHu709acQR5ohTj1q1si0wXsCJTA2AoiZOTTE4uhbA39cQelIdoi4phDvNJGpw==}
     engines: {node: '>= 18.18'}
 
   '@figma/code-connect@1.3.6':
@@ -2856,6 +2875,12 @@ packages:
 
   '@figma/rest-api-spec@0.33.0':
     resolution: {integrity: sha512-T/hxrxvnAejDHVzHr5av7eM09vCniyeyLy77QUMmnavUIZe+jA/Ex5mpFhMS6DHVAy/zuBUDJDZRMZ4t8OBwFg==}
+
+  '@figma/rest-api-spec@0.34.0':
+    resolution: {integrity: sha512-eyKqo1S1e2dzpfF6WGNgMT1XPciUwH6MeZDi3qfrSAp4kqNauHwuGHOMTnZFTydF93FYpdg0T6Hp9lsJu8bDcg==}
+
+  '@figma/rest-api-spec@0.35.0':
+    resolution: {integrity: sha512-0v/KJmCWzKBp/wmsqjOas7tLauD1s0nrJJ70vzOCqEEgNrZvugi6/Myssfy+BsfpU5bcC66KrgApqoRRnsbJ4Q==}
 
   '@figspec/components@2.0.5':
     resolution: {integrity: sha512-nJ2Ms3Ua8r3f18fWVC6GEAN1qchJ0KheZIV+lPaDjZa4KJW9FXi2Ora2tuPkp8SMFl6uaqibYk7/VwTq+zNQ7A==}
@@ -3533,6 +3558,10 @@ packages:
 
   '@noble/curves@1.9.2':
     resolution: {integrity: sha512-HxngEd2XUcg9xi20JkwlLCtYwfoFw4JGkuZpT+WlsPD4gB/cxkvTD8fSsoAnphGZhFdZYKeQIPCuFlWPm1uE0g==}
+    engines: {node: ^14.21.3 || >=16}
+
+  '@noble/curves@1.9.7':
+    resolution: {integrity: sha512-gbKGcRUYIjA3/zCCNaWDciTMFI0dCkvou3TL8Zmy5Nc7sJ47a0jtOeZoTaMxkuqRo9cRhjOdZJXegxYE5FN/xw==}
     engines: {node: ^14.21.3 || >=16}
 
   '@noble/hashes@1.8.0':
@@ -6440,6 +6469,10 @@ packages:
     resolution: {integrity: sha512-r6kEJXDKecVOCj2nLMuXK/FCPeurW33+3JRpfXVbjLja3XUYFfD9I/JBreH6sUyzcm3G/YQboBjMla6poKeSdA==}
     engines: {bun: '>=1', deno: '>=2', node: '>=16'}
 
+  eciesjs@0.4.16:
+    resolution: {integrity: sha512-dS5cbA9rA2VR4Ybuvhg6jvdmp46ubLn3E+px8cG/35aEDNclrqoCjg6mt0HYZ/M+OoESS3jSkCrqk1kWAEhWAw==}
+    engines: {bun: '>=1', deno: '>=2', node: '>=16'}
+
   ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
 
@@ -7772,8 +7805,8 @@ packages:
     resolution: {integrity: sha512-5KoIu2Ngpyek75jXodFvnafB6DJgr3u8uuK0LEZJjrU19DrMD3EVERaR8sjz8CCGgpZvxPl9SuE1GMVPFHx1mw==}
     engines: {node: '>= 0.4'}
 
-  is-network-error@1.1.0:
-    resolution: {integrity: sha512-tUdRRAnhT+OtCZR/LxZelH/C7QtjtFrTu5tXCA8pl55eTUElUHT+GPYV8MBMBvea/j+NxQqVt3LbWMRir7Gx9g==}
+  is-network-error@1.3.0:
+    resolution: {integrity: sha512-6oIwpsgRfnDiyEDLMay/GqCl3HoAtH5+RUKW29gYkL0QA+ipzpDLA16yQs7/RHCSu+BwgbJaOUqa4A99qNVQVw==}
     engines: {node: '>=16'}
 
   is-number-object@1.1.1:
@@ -9157,9 +9190,9 @@ packages:
     resolution: {integrity: sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==}
     engines: {node: '>=10'}
 
-  p-limit@6.2.0:
-    resolution: {integrity: sha512-kuUqqHNUqoIWp/c467RI4X6mmyuojY5jGutNU0wVTmEOOfcuwLqyMVoAi9MKi2Ak+5i9+nhmrK4ufZE8069kHA==}
-    engines: {node: '>=18'}
+  p-limit@7.2.0:
+    resolution: {integrity: sha512-ATHLtwoTNDloHRFFxFJdHnG6n2WUeFjaR8XQMFdKIv0xkXjrER8/iG9iu265jOM95zXHAfv9oTkqhrfbIzosrQ==}
+    engines: {node: '>=20'}
 
   p-locate@4.1.0:
     resolution: {integrity: sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A==}
@@ -9184,6 +9217,10 @@ packages:
   p-retry@6.2.1:
     resolution: {integrity: sha512-hEt02O4hUct5wtwg4H4KcWgDdm+l1bOaEy/hWzd8xtXB9BqxTWBBhb+2ImAtH4Cv4rPjV76xN3Zumqk3k3AhhQ==}
     engines: {node: '>=16.17'}
+
+  p-retry@7.1.1:
+    resolution: {integrity: sha512-J5ApzjyRkkf601HpEeykoiCvzHQjWxPAHhyjFcEUP2SWq0+35NKh8TLhpLw+Dkq5TZBFvUM6UigdE9hIVYTl5w==}
+    engines: {node: '>=20'}
 
   p-timeout@3.2.0:
     resolution: {integrity: sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg==}
@@ -10915,8 +10952,8 @@ packages:
     resolution: {integrity: sha512-raqeBD6NQK4SkWhQzeYKd1KmIG6dllBOTt55Rmkt4HtI9mwdWtJljnrXjAFUBLTSN67HWrOIZ3EPF4kjUw80Bg==}
     engines: {node: '>=14.0'}
 
-  undici@6.21.3:
-    resolution: {integrity: sha512-gBLkYIlEnSp8pFbT64yFgGE6UIB9tAkhukC23PmMDCe5Nd+cRqKxSjw5y54MK2AZMgZfJWMaNE4nYUHgi1XEOw==}
+  undici@6.22.0:
+    resolution: {integrity: sha512-hU/10obOIu62MGYjdskASR3CUAiYaFTtC9Pa6vHyf//mAipSvSQg6od2CnJswq7fvzNS3zJhxoRkgNVaHurWKw==}
     engines: {node: '>=18.17'}
 
   undici@7.16.0:
@@ -11597,8 +11634,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  yocto-queue@1.2.1:
-    resolution: {integrity: sha512-AyeEbWOu/TAXdxlV9wmGcR0+yh2j3vYPGOECcIj2S7MkrLyC7ne+oye2BKTItt0ii2PHk4cDy+95+LshzbXnGg==}
+  yocto-queue@1.2.2:
+    resolution: {integrity: sha512-4LCcse/U2MHZ63HAJVE+v71o7yOdIe4cZ70Wpf8D/IyjDKYQLV5GD46B+hSTjJsvV5PztjvHoU580EftxjDZFQ==}
     engines: {node: '>=12.20'}
 
   yoctocolors-cjs@2.1.3:
@@ -13152,11 +13189,27 @@ snapshots:
       picomatch: 4.0.3
       which: 4.0.0
 
+  '@dotenvx/dotenvx@1.51.4':
+    dependencies:
+      commander: 11.1.0
+      dotenv: 17.2.3
+      eciesjs: 0.4.16
+      execa: 5.1.1
+      fdir: 6.5.0(picomatch@4.0.3)
+      ignore: 5.3.2
+      object-treeify: 1.1.33
+      picomatch: 4.0.3
+      which: 4.0.0
+
   '@dual-bundle/import-meta-resolve@4.1.0': {}
 
   '@dual-bundle/import-meta-resolve@4.2.1': {}
 
   '@ecies/ciphers@0.2.3(@noble/ciphers@1.3.0)':
+    dependencies:
+      '@noble/ciphers': 1.3.0
+
+  '@ecies/ciphers@0.2.5(@noble/ciphers@1.3.0)':
     dependencies:
       '@noble/ciphers': 1.3.0
 
@@ -13540,31 +13593,42 @@ snapshots:
 
   '@figma-export/cli@6.2.3':
     dependencies:
-      '@figma-export/core': 6.2.3
+      '@figma-export/core': 6.3.0
       '@figma-export/types': 6.2.3
       ora: 8.2.0
       sade: 1.8.1
 
-  '@figma-export/core@6.2.3':
+  '@figma-export/cli@6.3.0':
     dependencies:
-      '@figma-export/types': 6.2.3
-      '@figma/rest-api-spec': 0.33.0
-      p-limit: 6.2.0
-      p-retry: 6.2.1
-      undici: 6.21.3
+      '@figma-export/core': 6.3.0
+      '@figma-export/types': 6.2.4
+      ora: 8.2.0
+      sade: 1.8.1
 
-  '@figma-export/output-components-as-svg@6.2.3':
+  '@figma-export/core@6.3.0':
     dependencies:
-      '@figma-export/types': 6.2.3
+      '@figma-export/types': 6.2.4
+      '@figma/rest-api-spec': 0.34.0
+      p-limit: 7.2.0
+      p-retry: 7.1.1
+      undici: 6.22.0
 
-  '@figma-export/transform-svg-with-svgo@6.2.3':
+  '@figma-export/output-components-as-svg@6.2.4':
     dependencies:
-      '@figma-export/types': 6.2.3
+      '@figma-export/types': 6.2.4
+
+  '@figma-export/transform-svg-with-svgo@6.2.4':
+    dependencies:
+      '@figma-export/types': 6.2.4
       svgo: 3.3.2
 
   '@figma-export/types@6.2.3':
     dependencies:
       '@figma/rest-api-spec': 0.33.0
+
+  '@figma-export/types@6.2.4':
+    dependencies:
+      '@figma/rest-api-spec': 0.34.0
 
   '@figma/code-connect@1.3.6':
     dependencies:
@@ -13599,6 +13663,10 @@ snapshots:
   '@figma/rest-api-spec@0.31.0': {}
 
   '@figma/rest-api-spec@0.33.0': {}
+
+  '@figma/rest-api-spec@0.34.0': {}
+
+  '@figma/rest-api-spec@0.35.0': {}
 
   '@figspec/components@2.0.5': {}
 
@@ -14419,6 +14487,10 @@ snapshots:
   '@noble/ciphers@1.3.0': {}
 
   '@noble/curves@1.9.2':
+    dependencies:
+      '@noble/hashes': 1.8.0
+
+  '@noble/curves@1.9.7':
     dependencies:
       '@noble/hashes': 1.8.0
 
@@ -17703,6 +17775,13 @@ snapshots:
       '@noble/curves': 1.9.2
       '@noble/hashes': 1.8.0
 
+  eciesjs@0.4.16:
+    dependencies:
+      '@ecies/ciphers': 0.2.5(@noble/ciphers@1.3.0)
+      '@noble/ciphers': 1.3.0
+      '@noble/curves': 1.9.7
+      '@noble/hashes': 1.8.0
+
   ee-first@1.1.1: {}
 
   electron-to-chromium@1.5.169: {}
@@ -19597,7 +19676,7 @@ snapshots:
 
   is-negative-zero@2.0.3: {}
 
-  is-network-error@1.1.0: {}
+  is-network-error@1.3.0: {}
 
   is-number-object@1.1.1:
     dependencies:
@@ -21654,9 +21733,9 @@ snapshots:
     dependencies:
       yocto-queue: 0.1.0
 
-  p-limit@6.2.0:
+  p-limit@7.2.0:
     dependencies:
-      yocto-queue: 1.2.1
+      yocto-queue: 1.2.2
 
   p-locate@4.1.0:
     dependencies:
@@ -21675,8 +21754,12 @@ snapshots:
   p-retry@6.2.1:
     dependencies:
       '@types/retry': 0.12.2
-      is-network-error: 1.1.0
+      is-network-error: 1.3.0
       retry: 0.13.1
+
+  p-retry@7.1.1:
+    dependencies:
+      is-network-error: 1.3.0
 
   p-timeout@3.2.0:
     dependencies:
@@ -23594,7 +23677,7 @@ snapshots:
 
   tinyglobby@0.2.14:
     dependencies:
-      fdir: 6.4.6(picomatch@4.0.3)
+      fdir: 6.5.0(picomatch@4.0.3)
       picomatch: 4.0.3
 
   tinyglobby@0.2.15:
@@ -23833,7 +23916,7 @@ snapshots:
     dependencies:
       '@fastify/busboy': 2.1.1
 
-  undici@6.21.3: {}
+  undici@6.22.0: {}
 
   undici@7.16.0: {}
 
@@ -24661,7 +24744,7 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  yocto-queue@1.2.1: {}
+  yocto-queue@1.2.2: {}
 
   yoctocolors-cjs@2.1.3: {}
 

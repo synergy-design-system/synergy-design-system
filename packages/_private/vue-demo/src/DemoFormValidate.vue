@@ -23,7 +23,6 @@ import {
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import {
   type FormStatus,
-  currencyNumberFormatter,
   mockData,
   statusError,
   statusSuccess,

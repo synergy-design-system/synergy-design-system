@@ -83,4 +83,4 @@ This will:
 ### Updating thumbnails
 
 Updating thumbnails is quite intense and may lead to 429 rate limit request issues with the Figma API.
-Therefore, this is not done automatically. You may use `pnpm build:with-thumbnails` for a full build including the thumbnails or `pnpm fetch-components-thumbnails` directly. 
+Therefore, this is not done automatically. You may use `pnpm build:with-thumbnails` for a full build including the thumbnails or `pnpm fetch-components-thumbnails` directly.

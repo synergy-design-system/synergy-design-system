@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.47.0
+ * @synergy-design-system/tokens version 2.48.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -56,9 +56,9 @@
   --syn-button-color: var(--syn-interactive-emphasis-color);
   --syn-button-color-active: var(--syn-interactive-emphasis-color-active);
   --syn-button-color-hover: var(--syn-interactive-emphasis-color-hover);
-  --syn-button-filled-color-text: inherit;
-  --syn-button-filled-color-text-active: inherit;
-  --syn-button-filled-color-text-hover: inherit;
+  --syn-button-filled-color-text: var(--syn-color-neutral-0);
+  --syn-button-filled-color-text-active: var(--syn-color-neutral-0);
+  --syn-button-filled-color-text-hover: var(--syn-color-neutral-0);
   --syn-button-font-size-large: var(--syn-font-size-large);
   --syn-button-font-size-medium: var(--syn-font-size-medium);
   --syn-button-font-size-small: var(--syn-font-size-small);

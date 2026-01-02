@@ -85,7 +85,7 @@ export const getPath = (wantedPath) => path.join(
  * @param {string} dirPath The path to use
  */
 export const formatFolder = async (dirPath) => await execPromise(
-  `pnpm exec prettier --single-quote --bracket-same-line -w ${dirPath} --ignore-unknown`,
+  `pnpm exec prettier --single-quote --bracket-same-line --ignore-unknown -w ${dirPath}`,
   { stdio: 'inherit' },
 );
 

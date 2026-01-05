@@ -339,11 +339,8 @@ importers:
         specifier: workspace:*
         version: link:../eslint-config-syn
       eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
-      eslint-plugin-import:
-        specifier: ^2.32.0
-        version: 2.32.0(eslint-import-resolver-typescript@4.4.4)(eslint@8.57.1)
+        specifier: ^9.39.2
+        version: 9.39.2(jiti@2.6.1)
       lit:
         specifier: ^3.3.2
         version: 3.3.2

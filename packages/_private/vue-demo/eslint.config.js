@@ -6,12 +6,14 @@ import vueParser from 'vue-eslint-parser';
 import globals from 'globals';
 
 export default [
+  {
+    ignores: ['node_modules/', 'dist/', 'dist/**/*'],
+  },
   // Base ESLint recommended rules for all files
   js.configs.recommended,
-
   // TypeScript files
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
+    files: ['**/*.ts'],
     languageOptions: {
       parser: tsParser,
       parserOptions: {
@@ -35,7 +37,7 @@ export default [
   
   // Vue files
   {
-    files: ['**/*.vue'],
+    files: ['src/**/*.vue'],
     languageOptions: {
       parser: vueParser,
       parserOptions: {

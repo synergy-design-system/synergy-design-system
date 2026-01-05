@@ -53,7 +53,6 @@ StyleDictionary.registerFileHeader({
 
 const themes = getAvailableThemes();
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
 const cssRuns = themes.map(async ({ mode, theme }) => {
   console.log(`Processing theme: ${theme}, mode: ${mode}`);
   const themeInformation = getInformationForTheme(theme, mode);

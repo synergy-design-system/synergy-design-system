@@ -4,22 +4,21 @@ import tseslint from 'typescript-eslint';
 
 import jsConfig from './js.js';
 
-/**
- * TypeScript config (equivalent to the old ts.js)
- * Extends the JavaScript config with TypeScript-specific rules
- * Note: We skip airbnb-typescript to avoid plugin conflicts,
- * but the base airbnb-base rules from jsConfig still apply
- */
-export default defineConfig([
+export const createCustomConfig = ({
+  parser = tseslint.parser,
+  project,
+  projectService = !project,
+}) => defineConfig([
   ...jsConfig,
   ...tseslint.configs.recommendedTypeChecked,
   {
     // files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
     languageOptions: {
-      parser: tseslint.parser,
+      parser,
       parserOptions: {
-        // Don't set project here - let consuming packages override this
-        projectService: true, // Use TypeScript's project service for automatic tsconfig detection
+        ...(project
+          ? { project }
+          : { projectService }),
       },
     },
     plugins: {
@@ -64,3 +63,11 @@ export default defineConfig([
     ...tseslint.configs.disableTypeChecked,
   },
 ]);
+
+/**
+ * TypeScript config (equivalent to the old ts.js)
+ * Extends the JavaScript config with TypeScript-specific rules
+ * Note: We skip airbnb-typescript to avoid plugin conflicts,
+ * but the base airbnb-base rules from jsConfig still apply
+ */
+export default createCustomConfig({});

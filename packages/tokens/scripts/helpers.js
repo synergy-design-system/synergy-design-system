@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import {
   existsSync, mkdirSync, readFileSync, readdirSync,
 } from 'node:fs';

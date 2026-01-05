@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { dirname } from 'node:path';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { Browser, chromium } from 'playwright';
@@ -125,10 +124,11 @@ export class StorybookScraper {
           if (!exampleSource && storyMeta.hasIframe) {
             try {
               const storySection = page.locator('.sb-anchor').nth(storyMeta.index);
-              const frame = await storySection.frameLocator('iframe');
+              const frame = storySection.frameLocator('iframe');
 
               const frameContent = await frame.locator('#root-inner').innerHTML();
               exampleSource = frameContent || '';
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (error) {
               // If iframe content extraction fails, continue with empty content
               console.log(`Failed to extract iframe content for story "${storyMeta.heading}"`);

@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import * as availableIconsets from '@synergy-design-system/assets';
@@ -77,6 +76,7 @@ export const assetInfoTool = (server: McpServer) => {
       filter,
       iconset,
       limit,
+    // eslint-disable-next-line complexity
     }) => {
       // Get the iconset that should be used by key/value of iconsetListAliases
       const setToUse: keyof typeof availableIconsets = iconset
@@ -85,6 +85,7 @@ export const assetInfoTool = (server: McpServer) => {
           .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'sick2018Icons'
         : 'sick2018Icons';
 
+      // eslint-disable-next-line no-constant-binary-expression, valid-typeof
       const foundIconSet = typeof availableIconsets[setToUse] !== undefined
         ? availableIconsets[setToUse]
         : availableIconsets.sick2018Icons;

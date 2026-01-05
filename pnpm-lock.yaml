@@ -906,8 +906,8 @@ importers:
         specifier: ^2.1.0
         version: 2.1.0
       eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
+        specifier: ^9.39.2
+        version: 9.39.2(jiti@2.6.1)
       jest:
         specifier: ^30.2.0
         version: 30.2.0(@types/node@24.10.4)(esbuild-register@3.6.0(esbuild@0.27.2))

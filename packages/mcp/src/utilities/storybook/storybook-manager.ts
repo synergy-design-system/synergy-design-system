@@ -1,10 +1,9 @@
-/* eslint-disable no-console */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { type Server, createServer } from 'http';
 import { promisify } from 'node:util';
 import { exec } from 'node:child_process';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import handler from 'serve-handler';
 import { StorybookServer } from './types.js';
 

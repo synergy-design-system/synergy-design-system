@@ -33,7 +33,7 @@ import {
   statusSuccess,
   statusWarning,
 } from '@synergy-design-system/demo-utilities';
-import { DemoFieldset } from './DemoFieldset';
+import { DemoFieldset } from './DemoFieldset.js';
 
 type FormEnabledElements = HTMLElement & {
   checked?: boolean;

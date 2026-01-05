@@ -10,10 +10,10 @@ import {
   useState,
 } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-import { RouterLink } from './RouterLink';
-import { SidenavSwitch } from './SidenavSwitch';
-import { SizeSwitch } from './SizeSwitch';
-import { ThemeSwitch } from './ThemeSwitch';
+import { RouterLink } from './RouterLink.js';
+import { SidenavSwitch } from './SidenavSwitch.js';
+import { SizeSwitch } from './SizeSwitch.js';
+import { ThemeSwitch } from './ThemeSwitch.js';
 
 export const Layout: FC = () => {
   const location = useLocation();

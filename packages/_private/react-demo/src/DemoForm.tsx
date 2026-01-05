@@ -14,7 +14,7 @@ import type {
   SynCheckbox,
   SynFile,
 } from '@synergy-design-system/components';
-import { DemoFieldset } from './DemoFieldset';
+import { DemoFieldset } from './DemoFieldset.js';
 
 type FormEnabledElements = HTMLElement & {
   checked?: boolean;

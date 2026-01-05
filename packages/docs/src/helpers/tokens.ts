@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { kebabCase } from 'change-case';
 import * as tokens from '@synergy-design-system/tokens';
 
@@ -72,7 +71,6 @@ const getMultiplierValue = (multiplier: number, baseValue: number, isSmall: bool
  * @param size The size string to check
  * @returns Special case value or null if not a special case
  */
-// eslint-disable-next-line complexity
 const getSpecialCaseValue = (size: string): number | null => {
   switch (size) {
   case 'circle':

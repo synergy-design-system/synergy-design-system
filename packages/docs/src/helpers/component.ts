@@ -21,7 +21,6 @@ export interface ConstantDefinition {
  *
  * @param {string} customElementTag - Custom element tag for which the defaults are to be fetched.
  */
-// eslint-disable-next-line max-len
 export const storybookDefaults = (customElementTag: string) => {
   const output = getStorybookHelpers(customElementTag);
   const { argTypes, args } = output;
@@ -85,7 +84,6 @@ export const storybookHelpers = (customElementTag: string) => ({
       usedAttribute = `${attribute}-attr`;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { argTypes } = storybookDefaults(customElementTag);
 
     // Add an explicit index signature to help TypeScript with key access

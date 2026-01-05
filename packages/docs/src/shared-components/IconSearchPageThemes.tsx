@@ -41,13 +41,15 @@ export const IconSearchPageThemes: FC<Props> = ({ debugMigration, themes }) => {
           flexDirection: 'column',
         }}
       >
-        <div style={{
-          backgroundColor: 'var(--syn-color-neutral-0)',
-          paddingTop: 'var(--syn-spacing-x-large)',
-          position: 'sticky',
-          top: 0,
-          zIndex: 10,
-        }}>
+        <div
+          style={{
+            backgroundColor: 'var(--syn-color-neutral-0)',
+            paddingTop: 'var(--syn-spacing-x-large)',
+            position: 'sticky',
+            top: 0,
+            zIndex: 10,
+          }}
+        >
           <syn-input
             label="Search icons"
             onsyn-input={handleSearchTermChange}

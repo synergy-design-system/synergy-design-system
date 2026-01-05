@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { kebabCase } from 'change-case';
 import * as tokens from '@synergy-design-system/tokens';
 

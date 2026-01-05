@@ -165,15 +165,12 @@ export const generateStoryDescription = <T extends Component>(
   attribute: Attribute<T>,
   path: 'components' | 'templates' = 'components',
 ) => {
-  // eslint-disable-next-line max-len
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
   const objectToUse: Record<string, any> = (docsTokens[path] as any)[component] ?? {};
 
-  // eslint-disable-next-line max-len
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   const description: string = objectToUse[attribute]?.description?.value ?? 'No Description';
 
-  // eslint-disable-next-line max-len
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
   const hint: string = objectToUse[attribute]?.note?.value ?? '';
 

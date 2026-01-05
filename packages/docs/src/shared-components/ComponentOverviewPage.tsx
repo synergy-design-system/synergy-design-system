@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 // @ts-expect-error virtual is valid
 import componentsManifest from 'virtual:vite-plugin-cem/custom-elements-manifest';
 // @ts-expect-error virtual is valid

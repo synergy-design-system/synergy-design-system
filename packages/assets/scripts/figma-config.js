@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /**
  * @typedef {import('@figma-export/types').ComponentsCommandOptions} ComponentsCommandOptions
  * @typedef {import('@figma-export/types').ComponentNode} ComponentNode

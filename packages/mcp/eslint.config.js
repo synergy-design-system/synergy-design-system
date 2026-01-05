@@ -1,12 +1,12 @@
-import { defineConfig } from 'eslint/config';
 import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
 
-export default defineConfig([
+export default [
   // Global ignores - must come first
   {
     ignores: ['metadata/'],
   },
   ...tsConfig,
+  // Build and utility scripts need relaxed rules
   {
     files: [
       'src/build/**/*.ts',
@@ -17,11 +17,4 @@ export default defineConfig([
       'no-console': 'off',
     },
   },
-  {
-    rules: {
-      complexity: ['error', {
-        max: 10,
-      }],
-    },
-  },
-]);
+];

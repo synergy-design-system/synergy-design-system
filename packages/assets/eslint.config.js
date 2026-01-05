@@ -1,18 +1,13 @@
-import { defineConfig } from 'eslint/config';
 import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
+import scriptsPreset from '@synergy-design-system/eslint-config-syn/presets/scripts';
 
-export default defineConfig([
+export default [
   // Global ignores - must come first
   {
     ignores: ['dist/', 'dist/**/*'],
   },
-  // Then apply configs
+  // Base TypeScript configuration
   ...tsConfig,
-  {
-    files: ['scripts/**/*.js'],
-    rules: {
-      'import/no-extraneous-dependencies': 'off',
-      'no-console': 'off',
-    },
-  },
-]);
+  // Build scripts configuration
+  scriptsPreset,
+];

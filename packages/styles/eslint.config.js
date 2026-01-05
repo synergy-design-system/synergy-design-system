@@ -1,13 +1,8 @@
-import { defineConfig } from 'eslint/config';
 import synergy from '@synergy-design-system/eslint-config-syn/ts';
+import scriptsPreset from '@synergy-design-system/eslint-config-syn/presets/scripts';
 
-export default defineConfig([
+export default [
   ...synergy,
-  {
-    files: ['build/**/*.js'],
-    rules: {
-      'import/no-extraneous-dependencies': 'off',
-      'no-console': 'off',
-    },
-  },
-]);
+  // Build scripts configuration
+  scriptsPreset,
+];

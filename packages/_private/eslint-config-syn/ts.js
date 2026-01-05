@@ -1,14 +1,22 @@
-import { defineConfig } from 'eslint/config';
 import stylistic from '@stylistic/eslint-plugin';
 import tseslint from 'typescript-eslint';
 
 import jsConfig from './js.js';
 
+/**
+ * Factory function to create TypeScript ESLint configuration
+ * @param {Object} options - Configuration options
+ * @param {*} options.parser - Parser to use (default: tseslint.parser)
+ * @param {string|string[]} options.project - Path to tsconfig for type-aware linting
+ * @param {boolean} options.projectService - Use TypeScript's project service
+ *   (default: true if no project specified)
+ * @returns {Array} ESLint flat config array
+ */
 export const createCustomConfig = ({
   parser = tseslint.parser,
   project,
   projectService = !project,
-}) => defineConfig([
+}) => [
   ...jsConfig,
   ...tseslint.configs.recommendedTypeChecked,
   {
@@ -62,10 +70,10 @@ export const createCustomConfig = ({
     files: ['**/*.js', '**/*.mjs', '**/*.cjs'],
     ...tseslint.configs.disableTypeChecked,
   },
-]);
+];
 
 /**
- * TypeScript config (equivalent to the old ts.js)
+ * Default TypeScript config for Synergy Design System
  * Extends the JavaScript config with TypeScript-specific rules
  * Note: We skip airbnb-typescript to avoid plugin conflicts,
  * but the base airbnb-base rules from jsConfig still apply

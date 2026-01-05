@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 /**
  * @typedef {import('@figma/rest-api-spec').ComponentNode} ComponentNode
  * @typedef {import('@figma/rest-api-spec').GetImagesResponse} GetImagesResponse

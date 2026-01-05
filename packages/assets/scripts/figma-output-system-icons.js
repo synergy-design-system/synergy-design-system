@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /**
  * @typedef {import('@figma-export/types').ComponentOutputter} ComponentOutputter
  * @typedef {import('@figma-export/types').ComponentNode} ComponentNode

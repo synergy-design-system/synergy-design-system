@@ -1,7 +1,6 @@
-import { defineConfig } from 'eslint/config';
 import synergyConfig from '@synergy-design-system/eslint-config-syn/ts';
 
-export default defineConfig([
+export default [
   ...synergyConfig,
   {
     languageOptions: {
@@ -11,11 +10,10 @@ export default defineConfig([
       },
     },
   },
+  // Release utilities need console access for CLI output
   {
     rules: {
-      complexity: ['error', 10],
-      'max-len': ['error', { code: 150 }],
       'no-console': 'off',
     },
   },
-]);
+];

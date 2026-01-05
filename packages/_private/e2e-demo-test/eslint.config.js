@@ -1,25 +1,12 @@
 import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
-import playwrightPlugin from 'eslint-plugin-playwright';
+import testsPreset from '@synergy-design-system/eslint-config-syn/presets/tests';
 
 export default [
   // Base TypeScript config from synergy
   ...tsConfig,
 
-  // Add Playwright rules for test files
-  {
-    files: ['**/*.spec.ts', '**/*.test.ts', '**/*.spec.js', '**/*.test.js'],
-    plugins: {
-      playwright: playwrightPlugin,
-    },
-    rules: {
-      // Use playwright-test config instead of jest-playwright
-      ...playwrightPlugin.configs['playwright-test'].rules,
-      'playwright/expect-expect': 'off', // We have custom expect usage
-      'playwright/no-skipped-test': ['warn', {
-        allowConditional: true,
-      }],
-    },
-  },
+  // Playwright test configuration with all test-specific rules
+  testsPreset,
 
   // Override for JavaScript files - disable type-checked rules
   {
@@ -34,12 +21,12 @@ export default [
     },
   },
 
-  // Custom rules for all files
+  // E2E test-specific overrides
   {
     rules: {
-      '@typescript-eslint/await-thenable': 'off',
+      // Allow relative package imports in test demo
       'import/no-relative-packages': 'off',
-      // Used everywhere in locators
+      // Allow parameter reassignment in test utilities and page objects
       'no-param-reassign': 'off',
     },
   },

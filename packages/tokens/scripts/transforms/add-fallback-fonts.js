@@ -13,7 +13,6 @@ export const addFallbackFonts = {
    */
   transform: (token) => {
     if (token.name.includes('sans') && !token.name.includes('sans-fallback')) {
-      // eslint-disable-next-line max-len
       token.value += ", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'";
     } else if (token.name.includes('mono')) {
       token.value += ', SFMono-Regular, Consolas, \'Liberation Mono\', Menlo, monospace';

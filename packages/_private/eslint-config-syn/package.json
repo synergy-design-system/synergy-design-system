@@ -20,7 +20,10 @@
   "exports": {
     ".": "./eslint.config.js",
     "./js": "./js.js",
-    "./ts": "./ts.js"
+    "./ts": "./ts.js",
+    "./presets/scripts": "./presets/scripts.js",
+    "./presets/tests": "./presets/tests.js",
+    "./presets/complexity": "./presets/complexity.js"
   },
   "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_internal/eslint-config-syn",
   "keywords": [
@@ -34,7 +37,13 @@
   "license": "MIT",
   "name": "@synergy-design-system/eslint-config-syn",
   "peerDependencies": {
-    "eslint": "^9.17.0"
+    "eslint": "^9.17.0",
+    "eslint-plugin-playwright": "^2.1.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-playwright": {
+      "optional": true
+    }
   },
   "private": true,
   "repository": {
@@ -44,6 +53,7 @@
   },
   "scripts": {
     "lint:js": "eslint .",
+    "lint": "pnpm run /^lint:.*/",
     "format.eslint": "eslint . --fix"
   },
   "type": "module",

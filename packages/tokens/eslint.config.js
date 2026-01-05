@@ -1,26 +1,17 @@
-import { defineConfig } from 'eslint/config';
 import { createCustomConfig } from '@synergy-design-system/eslint-config-syn/ts';
+import scriptsPreset from '@synergy-design-system/eslint-config-syn/presets/scripts';
 
-export default defineConfig([
+export default [
   ...createCustomConfig({
     project: './tsconfig.lint.json',
   }),
+  // Scripts need additional permissions for build tooling
+  scriptsPreset,
   {
     files: ['scripts/**/*.js'],
     rules: {
-      'import/no-extraneous-dependencies': 'off',
-      'no-console': 'off',
+      // Allow parameter reassignment in scripts for utility functions
       'no-param-reassign': 'off',
     },
   },
-  {
-    rules: {
-      complexity: ['error', { max: 10 }],
-      'max-len': ['error', {
-        code: 150,
-        ignoreComments: true,
-        ignoreTemplateLiterals: true,
-      }],
-    },
-  },
-]);
+];

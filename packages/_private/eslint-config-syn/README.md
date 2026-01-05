@@ -22,31 +22,27 @@ pnpm add -D @synergy-design-system/eslint-config-syn
 ### Basic JavaScript
 
 ```javascript
-import synergyConfig from '@synergy-design-system/eslint-config-syn';
+import synergyConfig from "@synergy-design-system/eslint-config-syn";
 
-export default [
-  ...synergyConfig,
-];
+export default [...synergyConfig];
 ```
 
 ### TypeScript
 
 ```javascript
-import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
+import tsConfig from "@synergy-design-system/eslint-config-syn/ts";
 
-export default [
-  ...tsConfig,
-];
+export default [...tsConfig];
 ```
 
 ### TypeScript with Custom Project
 
 ```javascript
-import { createCustomConfig } from '@synergy-design-system/eslint-config-syn/ts';
+import { createCustomConfig } from "@synergy-design-system/eslint-config-syn/ts";
 
 export default [
   ...createCustomConfig({
-    project: './tsconfig.lint.json',
+    project: "./tsconfig.lint.json",
   }),
 ];
 ```
@@ -58,16 +54,14 @@ export default [
 For build scripts and utility files:
 
 ```javascript
-import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
-import scriptsPreset from '@synergy-design-system/eslint-config-syn/presets/scripts';
+import tsConfig from "@synergy-design-system/eslint-config-syn/ts";
+import scriptsPreset from "@synergy-design-system/eslint-config-syn/presets/scripts";
 
-export default [
-  ...tsConfig,
-  scriptsPreset,
-];
+export default [...tsConfig, scriptsPreset];
 ```
 
 Enables:
+
 - `import/no-extraneous-dependencies: off` - Import devDependencies
 - `no-console: off` - Console logging in scripts
 
@@ -76,18 +70,16 @@ Enables:
 For Playwright test files:
 
 ```javascript
-import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
-import testsPreset from '@synergy-design-system/eslint-config-syn/presets/tests';
+import tsConfig from "@synergy-design-system/eslint-config-syn/ts";
+import testsPreset from "@synergy-design-system/eslint-config-syn/presets/tests";
 
-export default [
-  ...tsConfig,
-  testsPreset,
-];
+export default [...tsConfig, testsPreset];
 ```
 
 **Note**: Requires `eslint-plugin-playwright` as a peer dependency.
 
 Provides:
+
 - Playwright plugin configuration
 - Relaxed TypeScript rules for tests
 - Test-specific rule overrides
@@ -97,8 +89,8 @@ Provides:
 For projects needing custom complexity rules:
 
 ```javascript
-import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
-import complexityPreset from '@synergy-design-system/eslint-config-syn/presets/complexity';
+import tsConfig from "@synergy-design-system/eslint-config-syn/ts";
+import complexityPreset from "@synergy-design-system/eslint-config-syn/presets/complexity";
 
 export default [
   ...tsConfig,
@@ -106,7 +98,7 @@ export default [
     ...complexityPreset,
     rules: {
       ...complexityPreset.rules,
-      complexity: ['error', { max: 15 }], // Override if needed
+      complexity: ["error", { max: 15 }], // Override if needed
     },
   },
 ];
@@ -148,6 +140,7 @@ All formatting rules use `@stylistic` plugin to avoid conflicts with Prettier-li
 Factory function for TypeScript configuration with custom options.
 
 **Options:**
+
 - `parser` - Custom parser (default: `tseslint.parser`)
 - `project` - Path to tsconfig for type-aware linting
 - `projectService` - Use TypeScript's project service (default: `true` if no project)
@@ -188,11 +181,11 @@ pnpm eslint . --fix
 Ensure you're using `createCustomConfig` with a `project` option pointing to your tsconfig:
 
 ```javascript
-import { createCustomConfig } from '@synergy-design-system/eslint-config-syn/ts';
+import { createCustomConfig } from "@synergy-design-system/eslint-config-syn/ts";
 
 export default [
   ...createCustomConfig({
-    project: './tsconfig.json',
+    project: "./tsconfig.json",
   }),
 ];
 ```

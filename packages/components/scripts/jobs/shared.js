@@ -84,10 +84,18 @@ export const getPath = (wantedPath) => path.join(
  * Format a folder using prettier
  * @param {string} dirPath The path to use
  */
-export const formatFolder = async (dirPath) => await execPromise(
-  `pnpm exec prettier -c ../../prettier.config.js --single-quote --bracket-same-line -w ${dirPath}`,
-  { stdio: 'inherit' },
-);
+export const formatFolder = async (dirPath) => {
+  try {
+    await execPromise(
+      `pnpm exec prettier -c ../../prettier.config.js --single-quote --bracket-same-line -w ${dirPath}`,
+    );
+  } catch (error) {
+    // Log the error but don't fail the build if formatting fails
+    console.warn(`Warning: Failed to format ${dirPath}:`, error.message);
+    // Rethrow error, we want to fail the build on formatting errors
+    throw error;
+  }
+};
 
 /**
  * Format a file using prettier

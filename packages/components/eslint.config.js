@@ -1,4 +1,5 @@
 import { createCustomConfig } from '@synergy-design-system/eslint-config-syn/ts';
+import scriptsPreset from '@synergy-design-system/eslint-config-syn/presets/scripts';
 import testsPreset from '@synergy-design-system/eslint-config-syn/presets/tests';
 import wc from 'eslint-plugin-wc';
 import lit from 'eslint-plugin-lit';
@@ -24,6 +25,8 @@ export default [
   },
   // Playwright test configuration (includes all test-specific rules)
   testsPreset,
+  // Build scripts configuration
+  scriptsPreset,
   // Disable unused directive reporting for this package
   {
     linterOptions: {

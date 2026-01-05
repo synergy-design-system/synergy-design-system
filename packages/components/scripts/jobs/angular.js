@@ -17,7 +17,6 @@ const runFormat = createRunFormat('Angular: Running code formatter...');
  */
 export const runCreateAngularWrappers = async ({
   componentDistDir,
-  componentPackageDir,
   angularPackageDir,
 }) => {
   const metadata = await getManifestData(componentDistDir);

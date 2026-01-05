@@ -41,7 +41,7 @@
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "del": "^8.0.1",
-    "eslint": "^8.57.1",
+    "eslint": "^9.39.2",
     "globby": "^16.1.0",
     "ora": "^9.0.0",
     "postcss": "^8.5.6",

@@ -47,7 +47,7 @@ createTestCases(({ name, port }) => {
       // submit valid form
       await form.submit.click();
 
-      await expect(await form.form.evaluate(
+      expect(await form.form.evaluate(
         (f) => (f as HTMLFormElement).checkValidity(),
       )).toBe(true);
 

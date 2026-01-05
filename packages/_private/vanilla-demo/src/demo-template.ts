@@ -8,10 +8,10 @@ import type { RegressionFns, Regressions } from './all-components-regressions.js
  */
 class DemoTemplate extends LitElement {
   @property({ attribute: false })
-    demos: Array<[string, (args: RegressionFns) => TemplateResult<1>]> = [];
+  demos: Array<[string, (args: RegressionFns) => TemplateResult<1>]> = [];
 
   @property({ attribute: false })
-    regressions!: Regressions;
+  regressions!: Regressions;
 
   render() {
     const activeDemo = this.demos[0]?.[0] || '';

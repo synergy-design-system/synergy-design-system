@@ -44,7 +44,6 @@ const appendOptionsWithMixedIds = async (querySelector: string) => {
 
 const appendOptionsForLevels = async (querySelector: string) => {
   const allComponents = await getAllComponentsElement();
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   const element = allComponents?.shadowRoot?.querySelector(querySelector) as LitElement;
 
   const items = await mockAsyncData('selectItems');

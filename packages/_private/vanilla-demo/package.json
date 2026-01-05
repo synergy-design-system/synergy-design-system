@@ -18,7 +18,7 @@
     "@synergy-design-system/assets": "workspace:^",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
-    "eslint": "^8.57.1",
+    "eslint": "^9.39.2",
     "html-validate": "^10.5.0",
     "stylelint": "^16.26.1",
     "typescript": "^5.9.3",

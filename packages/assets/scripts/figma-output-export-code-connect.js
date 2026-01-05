@@ -82,7 +82,7 @@ export const outputComponentsToCodeConnect = ({
       .join('\n');
 
     const contents = `
-/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable @stylistic/quotes */
 /* eslint-disable quote-props */
 /* eslint-disable @typescript-eslint/comma-dangle */
 /* eslint-disable sort-keys */

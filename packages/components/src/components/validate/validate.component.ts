@@ -334,6 +334,7 @@ export default class SynValidate extends SynergyElement {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   async firstUpdated(changedProperties: PropertyValues) {
     super.firstUpdated(changedProperties);
     this.updateEvents();

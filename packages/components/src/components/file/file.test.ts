@@ -77,6 +77,7 @@ const fakeFileUpload = async (el: SynFile, files?: FileList | File | File[]) => 
 
 describe('<syn-file>', () => {
   const createTests = (description: string, droparea: boolean, triggerSlot?: TemplateResult) => {
+    // eslint-disable-next-line playwright/valid-title
     describe(description, () => {
       // Don't run this tests for the trigger slot case
       if (!triggerSlot) {

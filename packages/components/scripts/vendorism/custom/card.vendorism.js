@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/quotes */
 import { addSectionAfter } from "../replace-section.js";
 
 const FILES_TO_TRANSFORM = [

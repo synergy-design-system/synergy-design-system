@@ -289,7 +289,7 @@ export default class SynSideNav extends SynergyElement {
 
         // The originalTrigger needs to be removed, otherwise when closing the drawer,
         // the first focused nav-item is focused again...
-        // eslint-disable-next-line @typescript-eslint/dot-notation
+        // eslint-disable-next-line dot-notation
         this.drawer['originalTrigger'] = null;
       }
     });
@@ -365,6 +365,7 @@ export default class SynSideNav extends SynergyElement {
       if (this.rail) {
         // Add deprecation console warning for stakeholder, which do not use linting
         // to get their attention
+        // eslint-disable-next-line no-console
         console.warn('<syn-side-nav/>: The `rail` attribute is deprecated. Please use the `variant` attribute with `rail` instead. It will be removed in synergy version 3.0');
       }
 

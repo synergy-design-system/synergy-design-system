@@ -201,7 +201,7 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
   ];
 
   const outFile = `
-    /* eslint-disable @typescript-eslint/quotes */
+    /* eslint-disable @stylistic/quotes */
     ${createHeader()}
 
     // Global imports

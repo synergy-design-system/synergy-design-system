@@ -265,6 +265,10 @@ describe('<syn-nav-item>', () => {
 
     const base = el.shadowRoot!.querySelector('.nav-item') as HTMLElement;
 
+    // Disabled because of false positives.
+    // eslint-plugin-playwright thinks .property comes from playwright,
+    // however it is the actual mocha call
+    // eslint-disable-next-line playwright/no-standalone-expect
     expect(el).property('current').to.be.false;
     expect(base).to.have.class('nav-item--current');
   });

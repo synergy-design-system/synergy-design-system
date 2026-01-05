@@ -279,6 +279,7 @@ export const createChangesetFileFromGit = async (
     try {
       fs.writeFileSync(changesetFilePath, changesetContent, { encoding: 'utf8' });
       return true;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       return false;
     }

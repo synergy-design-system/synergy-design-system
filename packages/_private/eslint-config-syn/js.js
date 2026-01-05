@@ -69,4 +69,9 @@ export default defineConfig([
       browsers: ['defaults and supports es6-module'],
     },
   },
+  {
+    rules: {
+      indent: 'off', // Use @stylistic version
+    },
+  },
 ]);

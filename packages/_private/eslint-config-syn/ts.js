@@ -14,7 +14,7 @@ export default defineConfig([
   ...jsConfig,
   ...tseslint.configs.recommendedTypeChecked,
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
+    // files: ['**/*.ts', '**/*.tsx', '**/*.mts', '**/*.cts'],
     languageOptions: {
       parser: tseslint.parser,
       parserOptions: {
@@ -52,13 +52,10 @@ export default defineConfig([
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-use-before-define': ['error'],
       'import/no-unresolved': 'off', // TypeScript handles import resolution better
-      indent: 'off', // Use @stylistic version
       'no-shadow': 'off',
       'no-undef': 'off', // TypeScript handles this
       'no-unused-vars': 'off',
       'no-use-before-define': 'off',
-
-      // Formatting rules with @stylistic (replaces Prettier)
     },
   },
   // Disable type-checked rules for plain JS files (like this config file itself)

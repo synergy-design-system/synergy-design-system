@@ -34,7 +34,7 @@
   "license": "MIT",
   "name": "@synergy-design-system/eslint-config-syn",
   "peerDependencies": {
-    "eslint": "^9.0.0"
+    "eslint": "^9.17.0"
   },
   "private": true,
   "repository": {

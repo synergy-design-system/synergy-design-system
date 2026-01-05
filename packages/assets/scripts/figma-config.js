@@ -49,6 +49,7 @@ export const createFigmaExportConfig = ({
   path = 'icons',
   svgComponentBasename = ({ basename = '' }) => `${basename.replace('name=', '')}.svg`,
   svgComponentFilter = () => true,
+// eslint-disable-next-line complexity
 }) => ({
   fileId,
   filterComponent,

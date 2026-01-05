@@ -535,8 +535,8 @@ importers:
         specifier: ^24.0.0
         version: 24.10.4
       eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
+        specifier: ^9.39.2
+        version: 9.39.2(jiti@2.6.1)
       rimraf:
         specifier: ^6.1.2
         version: 6.1.2

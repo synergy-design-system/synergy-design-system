@@ -18,7 +18,6 @@ const writeToFileSystem = async (filePath, content) => {
     await writeFile(filePath, content);
     return true;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(`Error writing file ${filePath}:`, error);
     return false;
   }
@@ -57,10 +56,10 @@ export const outputComponentsToBundle = ({
     );
 
     const contents = `
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable quote-props */
-/* eslint-disable @typescript-eslint/comma-dangle */
+/* eslint-disable @stylistic/comma-dangle */
 /* eslint-disable sort-keys */
+/* eslint-disable @stylistic/quotes */
+/* eslint-disable quote-props */
 export const ${exportName || pageName} = ${contentString};
 `.trimStart();
 
@@ -79,7 +78,6 @@ export const ${exportName || pageName} = ${contentString};
     await Promise.allSettled(creation);
     return true;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Error writing files:', error);
     return false;
   }

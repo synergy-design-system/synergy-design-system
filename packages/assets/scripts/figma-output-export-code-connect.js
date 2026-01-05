@@ -47,7 +47,6 @@ const writeToFileSystem = async (filePath, content) => {
     await writeFile(filePath, content);
     return true;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(`Error writing file ${filePath}:`, error);
     return false;
   }
@@ -112,7 +111,6 @@ ${connectedCode}`.trimStart();
     await Promise.allSettled(creation);
     return true;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Error writing files:', error);
     return false;
   }

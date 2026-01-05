@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable quote-props */
-/* eslint-disable @typescript-eslint/comma-dangle */
+/* eslint-disable @stylistic/comma-dangle */
 /* eslint-disable sort-keys */
+/* eslint-disable @stylistic/quotes */
+/* eslint-disable quote-props */
 export const defaultIcons = {
   "123": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='currentColor'><path d=\"M7.25 15h-1.5v-4.5h-1.5V9h3zm6.5-1.5h-3v-1h2c.55 0 1-.45 1-1V10c0-.55-.45-1-1-1h-3.5v1.5h3v1h-2c-.55 0-1 .45-1 1V15h4.5zm6 .5v-4c0-.55-.45-1-1-1h-3.5v1.5h3v1h-2v1h2v1h-3V15h3.5c.55 0 1-.45 1-1\"/></svg>",
   "360": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='currentColor'><path d=\"M12 5.5c-5.52 0-10 2.24-10 5 0 2.24 2.94 4.13 7 4.77v3.23l4-4-4-4v2.73c-3.15-.56-5-1.9-5-2.73 0-1.06 3.04-3 8-3s8 1.94 8 3c0 .73-1.46 1.89-4 2.53v2.05c3.53-.77 6-2.53 6-4.58 0-2.76-4.48-5-10-5\"/></svg>",

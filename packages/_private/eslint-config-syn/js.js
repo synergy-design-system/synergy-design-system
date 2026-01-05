@@ -71,7 +71,16 @@ export default defineConfig([
   },
   {
     rules: {
-      indent: 'off', // Use @stylistic version
+      'comma-dangle': 'off', // Use @stylistic version
+      indent: 'off', // Use @stylistic version,
+      quotes: 'off', // Use @stylistic version
     },
   },
+  // Allow self referencing of eslint.config
+  {
+    files: ['eslint.config.js'],
+    rules: {
+      'import/no-extraneous-dependencies': 'off',
+    },
+  }
 ]);

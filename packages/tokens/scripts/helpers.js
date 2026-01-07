@@ -139,7 +139,11 @@ export const getInformationForTheme = (theme, mode) => {
 
   // Create the list of selectors that should be changed
   // depending on the theme and mode.
-  const changeOutputValues = OUTPUT_VARIABLE_CHANGES[`${usedTheme}`] || {};
+  // Make sure to merge the global changes with the specific ones.
+  const changeOutputValues = {
+    ...OUTPUT_VARIABLE_CHANGES.global,
+    ...(OUTPUT_VARIABLE_CHANGES[`${usedTheme}`] || {}),
+  };
 
   return {
     changeOutputValues,

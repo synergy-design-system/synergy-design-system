@@ -1,4 +1,8 @@
-import { deprecatedForV2, willDeprecateInRelease } from './deprecation.js';
+import {
+  deprecatedForV2,
+  deprecatedForV3,
+  willDeprecateInRelease,
+} from './deprecation.js';
 
 // Shared settings for form associated elements
 const formAssociated = {
@@ -357,8 +361,8 @@ const SynSelect = {
 const SynSideNav = {
   attributes: {
     rail: {
+      allowed: deprecatedForV3('Please use the `variant` attribute with `rail` instead'),
       boolean: true,
-      deprecated: willDeprecateInRelease('3.0', 'Please use the `variant` attribute with `rail` instead'),
     },
   },
   flow: true,

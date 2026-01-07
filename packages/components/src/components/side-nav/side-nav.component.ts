@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 import { classMap } from 'lit/directives/class-map.js';
-import type { CSSResultGroup, PropertyValues } from 'lit';
+import type { CSSResultGroup } from 'lit';
 import { html } from 'lit/static-html.js';
 import { property, query, state } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -128,19 +128,6 @@ export default class SynSideNav extends SynergyElement {
    *
    */
   @property({ reflect: true, type: Boolean }) open = false;
-
-  /**
-   * Use the rail attribute to only show the prefix of navigation items in closed state.
-   * This will open on hover on the rail navigation.
-   * On touch devices the navigation opens on click and shows an overlay.
-   *
-   * Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
-   * If this is not the case you should use a burger navigation.
-   *
-   * @deprecated Use the `variant` attribute with `rail` instead.
-   * Will be removed in synergy version 3.0
-   */
-  @property({ reflect: true, type: Boolean }) rail = false;
 
   /**
    * The variant that should be used to show the side navigation.
@@ -353,27 +340,6 @@ export default class SynSideNav extends SynergyElement {
     if (this.drawer) {
       unlockBodyScrolling(this.drawer);
       this.drawer.modal.deactivate();
-    }
-  }
-
-  // eslint-disable-next-line complexity
-  protected override willUpdate(changedProperties: PropertyValues) {
-    super.willUpdate(changedProperties);
-
-    // TODO: this can be removed in synergy version 3.0
-    if (changedProperties.has('rail')) {
-      if (this.rail) {
-        // Add deprecation console warning for stakeholder, which do not use linting
-        // to get their attention
-        console.warn('<syn-side-nav/>: The `rail` attribute is deprecated. Please use the `variant` attribute with `rail` instead. It will be removed in synergy version 3.0');
-      }
-
-      // The `variant` should be adapted to the `rail` attribute,
-      // if it was explicitly set or unset by the user.
-      // This is needed to be backwards compatible with the `rail` attribute
-      if (!changedProperties.has('variant') || this.rail) {
-        this.variant = this.rail ? 'rail' : 'default';
-      }
     }
   }
 

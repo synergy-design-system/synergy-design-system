@@ -1,4 +1,6 @@
-import { addSectionAfter } from '../replace-section.js';
+import {
+  removeSections,
+} from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
   'tooltip.component.ts',
@@ -17,13 +19,22 @@ const transformComponent = (path, originalContent) => {
     '@property({ type: Number }) distance = 13;',
   );
 
-  // #849: Mark hoist as deprecated
-  content = addSectionAfter(
-    content,
-    '* scenarios.',
-    '* @deprecated This property is deprecated and will be removed in the next major version.',
-    { newlinesBeforeInsertion: 1, tabsBeforeInsertion: 2 },
-  );
+  // #1149: Remove deprecated 'hoist' property
+  content = removeSections([
+    [
+      `/**
+   * Enable this option to prevent the tooltip from being clipped when`,
+      'hoist = false;',
+    ],
+    [
+      'strategy=${this.hoist',
+      "'absolute'}",
+    ],
+    [
+      "'hoist'",
+      ', ',
+    ],
+  ], content);
 
   return {
     content,

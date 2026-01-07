@@ -345,8 +345,8 @@ const SynRange = {
 const SynSelect = {
   attributes: {
     hoist: {
+      allowed: deprecatedForV3('Synergy is now using the popover api internally which supports hoisting by default.'),
       boolean: true,
-      deprecated: willDeprecateInRelease('3.0', 'Synergy is now using the popover api internally which supports hoisting by default.'),
     },
   },
   flow: true,

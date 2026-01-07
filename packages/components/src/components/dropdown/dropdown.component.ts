@@ -109,13 +109,6 @@ export default class SynDropdown extends SynergyElement {
   @property({ type: Number }) skidding = 0;
 
   /**
-   * Enable this option to prevent the panel from being clipped when the component is placed inside a container with
-   * `overflow: auto|scroll`. Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
-    * @deprecated This property is deprecated and will be removed in the next major version.
-   */
-  @property({ type: Boolean }) hoist = false;
-
-  /**
    * Syncs the popup width or height to that of the trigger element.
    */
   @property({ reflect: true }) sync: 'width' | 'height' | 'both' | undefined = undefined;
@@ -438,7 +431,6 @@ export default class SynDropdown extends SynergyElement {
         placement=${this.placement}
         distance=${this.distance}
         skidding=${this.skidding}
-        strategy=${this.hoist ? 'fixed' : 'absolute'}
         flip
         shift
         auto-size="vertical"

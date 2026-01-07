@@ -5,7 +5,7 @@ import {
   type SynIconButton,
   type SynSelect,
   type SynSideNav,
-  enableExperimentalSettingEmitEvents,
+  enableSettingEmitEvents,
   registerIconLibrary,
 } from '@synergy-design-system/components';
 import {
@@ -111,7 +111,7 @@ const initSizeSwitch = async () => {
 };
 
 const bootstrap = async () => {
-  enableExperimentalSettingEmitEvents();
+  enableSettingEmitEvents();
 
   registerIconLibrary('default', {
     resolver: name => `/synergy-icon-sprites.svg#${name}`,

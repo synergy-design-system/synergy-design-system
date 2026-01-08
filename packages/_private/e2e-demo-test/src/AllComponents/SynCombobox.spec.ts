@@ -1,7 +1,6 @@
 import { expect, test } from '@playwright/test';
 import {
   type SynCombobox,
-  type SynSelect,
 } from '@synergy-design-system/components';
 import { AllComponentsPage } from '../PageObjects/index.js';
 import { createTestCases, fillField, runActionAndValidateEvents } from '../helpers.js';
@@ -167,7 +166,7 @@ test.describe('<SynCombobox />', () => {
         await reset.click();
 
         const [resetValue, resetDisplayedValue] = await combobox.evaluate(
-          (ele: SynSelect) => [ele.value, ele.displayLabel],
+          (ele: SynCombobox) => [ele.value, ele.displayLabel],
         );
         expect(resetValue).toEqual('option-1');
         expect(resetDisplayedValue).toEqual('Option 1');
@@ -256,5 +255,145 @@ test.describe('<SynCombobox />', () => {
         expect(displayedValueReset).toEqual('Advanced');
       });
     }); // regression#626
+
+    test.describe(`Regression#847: ${name}`, () => {
+      test('should show the text content of the options, when value was set initially via normal binding and options added dynamically with multiple', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox847Multiple');
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+        const value = await combobox.evaluate((ele: SynCombobox) => ele.value);
+
+        expect(value).toEqual(['1', '2']);
+        expect(displayedValue).toEqual('');
+        const tags = combobox.locator('syn-tag');
+        await expect(tags).toHaveCount(2);
+      });
+    }); // regression#847
+
+    test.describe(`Regression#1036: ${name}`, () => {
+      test('should change value correct for subsequently changed delimiter', async ({ browserName, page }) => {
+        // Unfortunately this test is flaky in firefox CI runs
+        // Works fine locally, but to keep the CI healthy we skip it there
+        test.skip(browserName === 'firefox', 'Flaky in firefox');
+
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox1036Delimiter');
+        const options = await combobox.locator('syn-option');
+
+        const option1 = options.nth(0);
+        const option2 = options.nth(1);
+
+        await combobox.click();
+        await expect(combobox).toHaveAttribute('open');
+        await expect(option1).toBeVisible();
+
+        await runActionAndValidateEvents(
+          page,
+          () => option1.click(),
+          [
+            { event: 'syn-after-hide', shouldFire: true },
+          ],
+        );
+
+        const firstValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        expect(firstValue).toEqual('Option_1');
+
+        await combobox.evaluate((ele: SynCombobox) => {
+          ele.value = '';
+          ele.delimiter = '+';
+        });
+
+        await combobox.click();
+        await option2.click();
+
+        const secondValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        expect(secondValue).toEqual('Option|2');
+      });
+    }); // regression#1036
+
+    test.describe(`Regression#1056: ${name}`, () => {
+      test('should update pre selected value correct for async changed delimiter', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox1056DelimiterPreValue');
+
+        const firstValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        expect(firstValue).toEqual('');
+
+        await combobox.evaluate((ele: SynCombobox) => {
+          ele.delimiter = '+';
+        });
+
+        const secondValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        expect(secondValue).toEqual('Option|2');
+      });
+
+      test('should update async pre selected value correct for async changed delimiter', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox1056DelimiterAsyncPreValue');
+
+        const firstValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        expect(firstValue).toEqual('');
+
+        await combobox.evaluate((ele: SynCombobox) => {
+          ele.delimiter = '+';
+        });
+
+        const secondValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        expect(secondValue).toEqual('Option|2');
+      });
+    }); // regression#1056
+
+    test.describe(`Feature#627: ${name}`, () => {
+      test('should select the given options when the delimiter is set', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox627');
+
+        const initialValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        const initialDelimiter = await combobox.evaluate((ele: SynCombobox) => ele.delimiter);
+
+        // Note when providing a delimiter, the value is a string,
+        // so we need to check if the value is a string, too
+        expect(initialValue).toEqual(['1', '2']);
+        expect(initialDelimiter).toEqual('+');
+
+        // Check that a change in the delimiter is reflected in the value
+        await combobox.evaluate(async (ele: SynCombobox) => {
+          ele.delimiter = ' ';
+          ele.value = '2 3';
+          await ele.updateComplete;
+        });
+
+        const newValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+
+        // Note when providing a delimiter, the value is a string,
+        // so we need to check if the value is a string, too
+        expect(newValue).toEqual(['2', '3']);
+      }); // end delimiter check
+    }); // feature#627
   }); // End frameworks
 }); // </syn-combobox>

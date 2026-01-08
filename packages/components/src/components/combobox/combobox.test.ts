@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import '../../../dist/synergy.js';
 import {
-  aTimeout, expect, fixture, html, oneEvent, waitUntil, elementUpdated, nextFrame,
+  aTimeout, elementUpdated, expect, fixture, html, nextFrame, oneEvent, waitUntil,
 } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
@@ -322,16 +322,15 @@ describe('<syn-combobox>', () => {
     it('should set the selected option to selected when the user types option text content in the combobox', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox>
-          <!-- TODO: undo this as soon as the delimiter is added -->
-          <syn-option value="option-1">Option1</syn-option>
-          <syn-option value="option-2">Option2</syn-option>
-          <syn-option value="option-3">Option3</syn-option>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
         </syn-combobox>
       `);
       const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
 
       el.focus();
-      await sendKeys({ type: 'Option2' });
+      await sendKeys({ type: 'Option 2' });
       el.blur();
       await el.updateComplete;
       expect(secondOption.selected).to.be.true;
@@ -562,6 +561,7 @@ describe('<syn-combobox>', () => {
         </syn-combobox>
       `);
       const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('.combobox__display-input')!;
+      await nextFrame();
 
       el.focus();
       await el.updateComplete;
@@ -1163,8 +1163,7 @@ describe('<syn-combobox>', () => {
     expect(thirdOption).to.be.displayed;
 
     secondOption.textContent = 'updated';
-    await el.updateComplete;
-    await aTimeout(0);
+    await nextFrame();
 
     expect(firstOption).to.be.displayed;
     expect(secondOption).not.to.be.displayed;
@@ -1215,7 +1214,7 @@ describe('<syn-combobox>', () => {
     el.appendChild(visibleOption);
     el.appendChild(notVisibleOption);
 
-    await el.updateComplete;
+    await nextFrame();
 
     const newVisibleOptions = el.querySelectorAll('syn-option:not([hidden])');
     expect(newVisibleOptions.length).to.equal(4);
@@ -1294,7 +1293,7 @@ describe('<syn-combobox>', () => {
         </syn-combobox>
       `);
       el.value = 'option-3';
-      await aTimeout(0);
+      await nextFrame();
 
       expect(el.displayInput.value).to.equal('Option 3');
       expect(el.valueInput.value).to.equal('option-3');
@@ -1309,7 +1308,7 @@ describe('<syn-combobox>', () => {
           <syn-option value="option-3">Option 3</syn-option>
         </syn-combobox>
       `);
-      await aTimeout(0);
+      await nextFrame();
 
       expect(el.displayInput.value).to.equal('option-4');
       expect(el.valueInput.value).to.equal('option-4');
@@ -1319,7 +1318,7 @@ describe('<syn-combobox>', () => {
       option.textContent = 'Option 4';
       option.value = 'option-4';
       el.appendChild(option);
-      await aTimeout(0);
+      await nextFrame();
 
       expect(el.displayInput.value).to.equal('Option 4');
       expect(el.valueInput.value).to.equal('option-4');
@@ -1336,17 +1335,17 @@ describe('<syn-combobox>', () => {
           <syn-option value="option-3">Option 3</syn-option>
         </syn-combobox>
       `);
+      await nextFrame();
 
       const getOptionHandler = sinon.spy((option: SynOption) => {
-        // eslint-disable-next-line no-param-reassign
-        option.textContent = `HtmlElement - ${option.getTextLabel()}`;
-        return option;
+        const newOption = option.cloneNode(true) as SynOption;
+        newOption.textContent = `HtmlElement - ${option.getTextLabel()}`;
+        return newOption;
       });
 
       el.getOption = getOptionHandler;
 
       await el.show();
-      await el.updateComplete;
 
       const options = el.querySelectorAll('syn-option');
 
@@ -1365,6 +1364,8 @@ describe('<syn-combobox>', () => {
         </syn-combobox>
       `);
 
+      await nextFrame();
+
       const getOptionHandler = sinon.spy((option: SynOption) => `<syn-option>String - ${option.getTextLabel()}</syn-option>`);
 
       el.getOption = getOptionHandler;
@@ -1377,7 +1378,7 @@ describe('<syn-combobox>', () => {
       options.forEach((option, index) => {
         expect(option.getTextLabel()).to.equal(`String - Option ${index + 1}`);
       });
-      expect(getOptionHandler).to.have.been.calledThrice;
+      expect(getOptionHandler.callCount).to.equal(3);
     });
 
     it('should use the TemplateResult getOption renderer if the getOption property is used', async () => {
@@ -1391,6 +1392,7 @@ describe('<syn-combobox>', () => {
 
       const getOptionHandler = sinon.spy((option: SynOption) => html`<syn-option>Template - ${option.getTextLabel()}</syn-option>`);
 
+      await nextFrame();
       el.getOption = getOptionHandler;
 
       await el.show();
@@ -1413,6 +1415,7 @@ describe('<syn-combobox>', () => {
         </syn-combobox>
       `);
 
+      await nextFrame();
       const getOptionHandler = sinon.spy((option: SynOption) => `<div>Invalid - ${option.getTextLabel()}</div>`);
 
       el.getOption = getOptionHandler;
@@ -1435,7 +1438,7 @@ describe('<syn-combobox>', () => {
       </syn-combobox>
     `);
 
-    await el.updateComplete;
+    await nextFrame();
 
     await expect(el.value).to.equal('option-1');
     await expect(el.displayLabel).to.equal('option-1');
@@ -1448,7 +1451,7 @@ describe('<syn-combobox>', () => {
     el.appendChild(option);
     await el.updateComplete;
     // we need to wait a short time until everything is set correctly
-    await aTimeout(0);
+    await nextFrame();
 
     await expect(el.value).to.equal('option-1');
     await expect(el.displayLabel).to.equal('Option 1');
@@ -1492,16 +1495,15 @@ describe('<syn-combobox>', () => {
     it('should reset to last selected option when setting invalid value programmatically', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox value="option-2" restricted>
-          <!-- TODO: undo this as soon as the delimiter is added -->
-          <syn-option value="option-1">Option1</syn-option>
-          <syn-option value="option-2">Option2</syn-option>
-          <syn-option value="option-3">Option3</syn-option>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
         </syn-combobox>
       `);
       el.value = 'invalid';
-      await aTimeout(0);
+      await nextFrame();
 
-      expect(el.displayInput.value).to.equal('Option2');
+      expect(el.displayInput.value).to.equal('Option 2');
       expect(el.valueInput.value).to.equal('option-2');
       expect(el.value).to.equal('option-2');
     });
@@ -1515,7 +1517,7 @@ describe('<syn-combobox>', () => {
         </syn-combobox>
       `);
       el.value = 'invalid';
-      await aTimeout(0);
+      await nextFrame();
 
       expect(el.displayInput.value).to.equal('');
       expect(el.valueInput.value).to.equal('');
@@ -1691,7 +1693,6 @@ describe('<syn-combobox>', () => {
       const changeHandler = sinon.spy();
       const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
 
-
       el.addEventListener('syn-input', inputHandler);
       el.addEventListener('syn-change', changeHandler);
       el.focus();
@@ -1715,7 +1716,6 @@ describe('<syn-combobox>', () => {
       const inputHandler = sinon.spy();
       const changeHandler = sinon.spy();
       const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
-
 
       el.addEventListener('syn-input', inputHandler);
       el.addEventListener('syn-change', changeHandler);
@@ -1750,7 +1750,6 @@ describe('<syn-combobox>', () => {
       expect(inputHandler.calledThrice).to.be.true;
       expect(changeHandler.calledOnce).to.be.false;
     });
-
 
     it('should emit syn-change and syn-input when the value is changed with the keyboard', async () => {
       if (navigator.userAgent.includes('Firefox')) {
@@ -1850,6 +1849,8 @@ describe('<syn-combobox>', () => {
       `);
       const displayInput = el.shadowRoot!.querySelector<HTMLInputElement>('.combobox__display-input')!;
 
+      await nextFrame();
+
       el.focus();
       await el.updateComplete;
       await sendKeys({ press: 'Escape' });
@@ -1908,7 +1909,7 @@ describe('<syn-combobox>', () => {
       option.value = 'option-1';
       option.textContent = 'Option 1';
       el.appendChild(option);
-      await elementUpdated(el);
+      await nextFrame();
 
       await expect(el.value).to.equal('option-1');
       await expect(el.displayLabel).to.equal('Option 1');

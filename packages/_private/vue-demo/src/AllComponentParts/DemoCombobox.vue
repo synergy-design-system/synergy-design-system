@@ -2,15 +2,20 @@
 import { SynVueButton, SynVueCombobox, SynVueOption } from '@synergy-design-system/vue';
 import type { SynCombobox } from '@synergy-design-system/components';
 import { onMounted, ref } from 'vue';
-import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-utilities';
+import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
 const levels = ref<SelectItem[]>([]);
 
 const cb632Value = ref<string>('');
+const asyncValue = ref<string>('');
+const delimiterItems = mockData('comboboxItemsWithPipe');
 
 onMounted(async () => {
+
   const items = await mockAsyncData('selectItems');
   levels.value = items;
+  const value = await mockAsyncData('valueWithPipe');
+  asyncValue.value = value;
 });
 </script>
 
@@ -24,7 +29,7 @@ onMounted(async () => {
   <SynVueCombobox :value="'2'" data-testid="combobox-level-813">
     <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
   </SynVueCombobox>
-  
+
   <form>
     <SynVueCombobox value="option-1" data-testid="combobox-form-813">
       <SynVueOption value="option-1">Option 1</SynVueOption>
@@ -34,33 +39,44 @@ onMounted(async () => {
     <SynVueButton type="reset">reset</SynVueButton>
   </form>
 
-  <SynVueCombobox
-    data-testid="combobox-632"
-    label="Keyboard Interaction test #632"
-    :value="cb632Value"
-    @syn-change="(e) => cb632Value = ((e.target as SynCombobox).value)"
-  >
+  <SynVueCombobox data-testid="combobox-632" label="Keyboard Interaction test #632" :value="cb632Value"
+    @syn-change="(e) => cb632Value = ((e.target as SynCombobox).value)">
     <SynVueOption value="option-1">Lorem</SynVueOption>
     <SynVueOption value="option-2">ipsum</SynVueOption>
     <SynVueOption value="option-3">dolor</SynVueOption>
   </SynVueCombobox>
 
-  <SynVueCombobox
-    data-testid="combobox-626"
-    label="'Restricted' feature #626"
-    restricted
-  >
+  <SynVueCombobox data-testid="combobox-626" label="'Restricted' feature #626" restricted>
     <SynVueOption value="option-1">Lorem</SynVueOption>
     <SynVueOption value="option-2">ipsum</SynVueOption>
     <SynVueOption value="option-3">dolor</SynVueOption>
   </SynVueCombobox>
 
-  <SynVueCombobox
-    data-testid="combobox-626-async"
-    label="'Restricted' feature #626 async"
-    restricted
-    value="3"
-  >
+  <SynVueCombobox data-testid="combobox-626-async" label="'Restricted' feature #626 async" restricted value="3">
+    <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueCombobox data-testid="combobox-847-multiple" help-text="Normal value binding and async options"
+    label="Multiple with async options" multiple value="1|2">
+    <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueCombobox data-testid="combobox-1036-subsequently-changed-delimiter" label="Subsequently changed delimiter">
+    <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueCombobox data-testid="combobox-1056-async-delimiter-change-with-pre-value" value="Option|2"
+    label="Async changed delimiter with pre value" restricted>
+    <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueCombobox data-testid="combobox-1056-async-delimiter-change-with-async-pre-value" :value="asyncValue"
+    label="Async changed delimiter with async pre value" restricted>
+    <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueCombobox data-testid="combobox-627-delimiter" delimiter="+" help-text="This combobox uses a custom delimiter"
+    label="Multiple with custom delimiter" multiple value="1+2">
     <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
   </SynVueCombobox>
 </template>

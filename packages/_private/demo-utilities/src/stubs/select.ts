@@ -1,6 +1,6 @@
 import type {
   SelectItem,
-  SelectItemMixedId,
+  SelectItemMixedValue,
 } from '../types.js';
 
 /**
@@ -12,13 +12,13 @@ export const selectItems: SelectItem[] = [
   { label: 'Advanced', value: '3' },
 ];
 
-export const selectItemsMixedId: SelectItemMixedId[] = [
-  { disabled: false, id: 1, label: 'Option 1' },
-  { disabled: false, id: 2, label: 'Option 2' },
-  { disabled: true, id: 'three', label: 'Option 3' },
-  { disabled: false, id: 'four', label: 'Option 4' },
-  { disabled: false, id: 'five', label: 'Option 5' },
-  { disabled: false, id: '6', label: 'Option 6' },
+export const selectItemsMixedValue: SelectItemMixedValue[] = [
+  { disabled: false, label: 'Option 1', value: 1 },
+  { disabled: false, label: 'Option 2', value: 2 },
+  { disabled: true, label: 'Option 3', value: 'three' },
+  { disabled: false, label: 'Option 4', value: 'four' },
+  { disabled: false, label: 'Option 5', value: 'five' },
+  { disabled: false, label: 'Option 6', value: '6' },
 ];
 
 /**
@@ -55,4 +55,15 @@ export const selectItemsWithSpace: SelectItem[] = [
   { label: 'Option 3', value: 'Option 3' },
 ];
 
+/**
+ * Shared stub for combobox items for delimiter tests
+ */
+export const comboboxItemsWithPipe: SelectItem[] = [
+  { label: 'This is option 1', value: 'Option|1' },
+  { label: 'This is option 2', value: 'Option|2' },
+  { label: 'This is option 3', value: 'Option|3' },
+];
+
 export const valueWithSpace = 'Option 2';
+
+export const valueWithPipe = 'Option|2';

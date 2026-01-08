@@ -11,12 +11,10 @@ const runFormat = createRunFormat('React: Running code formatter...');
 /**
  * Run all steps to create new react components
  * @param {String} settings.componentDistDir The absolute path to the component dist
- * @param {String} settings.componentPackageDir The absolute path to the component root
  * @param {String} settings.reactPackageDir The absolute path to the react package root
  */
 export const runCreateReactWrappers = async ({
   componentDistDir,
-  componentPackageDir,
   reactPackageDir,
 }) => {
   const metadata = await getManifestData(componentDistDir);

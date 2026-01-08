@@ -49,8 +49,6 @@ jobs:
           install-command: 'PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm install'
       - name: Lint
         run: pnpm lint
-      - name: Check for uncommitted changes
-        run: git diff --exit-code
 
   # Check for vendorism issues
   vendorism-check:

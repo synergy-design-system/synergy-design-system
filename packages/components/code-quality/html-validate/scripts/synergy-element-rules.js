@@ -277,6 +277,20 @@ const SynOption = {
 /**
  * @type {import('html-validate').MetaElement}
  */
+const SynPopup = {
+  attributes: {
+    strategy: {
+      allowed: deprecatedForV3('Synergy is now using the popover api internally which supports hoisting by default.'),
+    },
+  },
+  flow: true,
+  focusable: true,
+  sectioning: true,
+};
+
+/**
+ * @type {import('html-validate').MetaElement}
+ */
 const SynPrioNav = {
   flow: true,
   focusable: true,
@@ -480,6 +494,7 @@ export const rules = {
   SynNavItem,
   SynOptgroup,
   SynOption,
+  SynPopup,
   SynPrioNav,
   SynProgressBar,
   SynProgressRing,

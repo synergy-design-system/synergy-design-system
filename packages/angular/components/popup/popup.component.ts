@@ -109,22 +109,6 @@ panel inside of the viewport.
   }
 
   /**
-* Determines how the popup is positioned.
-* The `absolute` strategy works well in most cases, but if overflow is
-clipped, using a `fixed` position strategy can often workaround it.
-
-@deprecated The strategy property is deprecated and will be removed in future versions.
-* Modern browsers support the popover element which is used internally instead.
- */
-  @Input()
-  set strategy(v: SynPopup['strategy']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.strategy = v));
-  }
-  get strategy(): SynPopup['strategy'] {
-    return this.nativeElement.strategy;
-  }
-
-  /**
    * The distance in pixels from which to offset the panel away from its anchor.
    */
   @Input()

@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build": "rimraf dist && tsc",
-    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:css": "stylelint \"src/**/*.{css}\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
   },

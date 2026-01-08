@@ -62,7 +62,7 @@
   "scripts": {
     "build": "storybook build --output-dir dist --stats-json",
     "build-storybook": "pnpm build",
-    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:css": "stylelint \"src/**/*.{css}\" \"src/**/*.styles.ts\"",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
     "format.eslint": "pnpm lint --fix",

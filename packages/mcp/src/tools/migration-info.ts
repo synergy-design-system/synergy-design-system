@@ -6,7 +6,7 @@ import {
 } from '../utilities/index.js';
 
 /**
- * Simple tool to list all available migration in the Synergy Design System.
+ * Simple tool to list all available migrations for the components in the Synergy Design System.
  * @param server - The MCP server instance to register the tool on.
  */
 export const migrationInfoTool = (server: McpServer) => {

@@ -96,7 +96,11 @@ This is now reversed for Synergy version 3: If you need the old behavior back, j
 **Example (before)**:
 
 ```html
-<syn-input type="number" numeric-strategy="modern" label="Should use modern"></syn-input>
+<syn-input
+  type="number"
+  numeric-strategy="modern"
+  label="Should use modern"
+></syn-input>
 <syn-input type="number" label="Uses classic as default"></syn-input>
 ```
 
@@ -104,7 +108,11 @@ This is now reversed for Synergy version 3: If you need the old behavior back, j
 
 ```html
 <syn-input type="number" label="Should use modern"></syn-input>
-<syn-input type="number" numeric-strategy="classic" label="Uses classic as default"></syn-input>
+<syn-input
+  type="number"
+  numeric-strategy="classic"
+  label="Uses classic as default"
+></syn-input>
 ```
 
 ---
@@ -131,6 +139,7 @@ As all major browsers now support the use of the [popover API](https://developer
 
 ```html
 <syn-popup strategy="absolute"></syn-popup>
+
 <syn-popup strategy="fixed"></syn-popup>
 ```
 
@@ -138,6 +147,7 @@ As all major browsers now support the use of the [popover API](https://developer
 
 ```html
 <syn-popup></syn-popup>
+
 <syn-popup></syn-popup>
 ```
 
@@ -258,14 +268,14 @@ It will continue to work in Synergy version 3, but calls the new function `enabl
 **Example (before)**:
 
 ```javascript
-import { enableExperimentalSettingEmitEvents } from '@synergy-design-system/components';
+import { enableExperimentalSettingEmitEvents } from "@synergy-design-system/components";
 enableExperimentalSettingEmitEvents(true);
 ```
 
 **Example (after)**:
 
 ```javascript
-import { enableSettingEmitEvents } from '@synergy-design-system/components';
+import { enableSettingEmitEvents } from "@synergy-design-system/components";
 enableSettingEmitEvents(true);
 ```
 

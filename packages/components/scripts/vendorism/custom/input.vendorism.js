@@ -213,7 +213,7 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
     type: Number,
   }) maxFractionDigits: number;
 
-  #numericStrategy: NumericStrategy = nativeNumericStrategy;
+  #numericStrategy: NumericStrategy = modernNumericStrategy;
 
   /**
    * Defines the strategy for handling numbers in the numeric input.
@@ -551,10 +551,23 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
  * @returns
  */
 const transformTests = (path, originalContent) => {
-  const content = removeSections([
+  let content = removeSections([
     ['expect(el.filled)', ';'],
     ['expect(el.pill)', ';'],
   ], originalContent);
+
+  // #1149: Remove original shoelace tests for input type number
+  // as they are doubled by custom tests and not compatible anymore
+  content = removeSections([
+    [
+      "describe('when type=\"number\"', () => {",
+      "  describe('when using spellcheck'",
+      {
+        additionalNewlines: 2,
+        preserveEnd: true,
+      },
+    ],
+  ], content);
 
   return {
     content,

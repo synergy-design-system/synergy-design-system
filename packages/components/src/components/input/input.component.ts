@@ -264,7 +264,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
     type: Number,
   }) maxFractionDigits: number;
 
-  #numericStrategy: NumericStrategy = nativeNumericStrategy;
+  #numericStrategy: NumericStrategy = modernNumericStrategy;
 
   /**
    * Defines the strategy for handling numbers in the numeric input.

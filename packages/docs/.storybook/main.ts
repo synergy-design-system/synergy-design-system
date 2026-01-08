@@ -1,5 +1,5 @@
 import type { StorybookConfig } from "@storybook/web-components-vite";
-import StorybookEnvPackageVersions from '../src/storybook-env-package-versions/index';
+import StorybookEnvPackageVersions from '../src/storybook-env-package-versions/index.ts';
 
 const config: StorybookConfig = {
   addons: [

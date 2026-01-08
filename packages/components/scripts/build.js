@@ -9,8 +9,10 @@ const { version } = getPackageJSONAsObject();
 const packageVersion = JSON.stringify(version.toString());
 
 // The directory we want our output to be stored
-const componentDir = getPath('../');
 const outDir = getPath('../dist');
+
+// Root component directory
+const componentDir = getPath('../');
 
 const angularPackageDir = getPath('../../angular');
 const reactPackageDir = getPath('../../react');
@@ -32,17 +34,14 @@ if (args.includes('--synergy')) {
 await Promise.all([
   jobs.runCreateReactWrappers({
     componentDistDir: outDir,
-    componentPackageDir: componentDir,
     reactPackageDir,
   }),
   jobs.runCreateAngularWrappers({
     angularPackageDir,
     componentDistDir: outDir,
-    componentPackageDir: componentDir,
   }),
   jobs.runCreateVueWrappers({
     componentDistDir: outDir,
-    componentPackageDir: componentDir,
     vuePackageDir,
   }),
 ]);

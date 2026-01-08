@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';
 import { join, relative } from 'node:path';
@@ -59,7 +60,6 @@ export async function createFolderChecksum(
 
     // Read and concatenate all file contents (equivalent to xargs -0 cat)
     // Note: Sequential reading to maintain order consistency with shell script
-    // eslint-disable-next-line no-await-in-loop
     for (const filePath of sortedFiles) {
       // eslint-disable-next-line no-await-in-loop
       const content = await readFile(filePath);
@@ -106,6 +106,7 @@ export async function verifyFolderChecksum(
     });
 
     return storedChecksum === currentChecksum;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (error) {
     // If we can't read the checksum file, consider it invalid
     return false;

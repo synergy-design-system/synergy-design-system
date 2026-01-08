@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /**
  * @typedef {import('./config.js').LicenseEntry} LicenseEntry
  */

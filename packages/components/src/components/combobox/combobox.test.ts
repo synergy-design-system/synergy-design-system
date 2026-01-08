@@ -1420,7 +1420,7 @@ describe('<syn-combobox>', () => {
     await expect(el.displayLabel).to.equal('Option 1');
   });
 
-  describe('#626: when using `restricted` feature ', () => {
+  describe('#626: when using `restricted` feature', () => {
     it('should reset the input to empty string for invalid user input', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox restricted>

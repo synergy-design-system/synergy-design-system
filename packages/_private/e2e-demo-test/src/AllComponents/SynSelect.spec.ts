@@ -178,7 +178,7 @@ test.describe('<SynSelect />', () => {
         await expect(AllComponents.getLocator('selectContent')).toBeVisible();
 
         const select = await AllComponents.getLocator('select1036Delimiter');
-        const options = await select.locator('syn-option');
+        const options = select.locator('syn-option');
 
         const option1 = options.nth(0);
         const option2 = options.nth(1);

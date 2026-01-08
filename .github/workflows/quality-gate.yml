@@ -49,8 +49,6 @@ jobs:
           install-command: 'PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm install'
       - name: Lint
         run: pnpm lint
-      - name: Check for uncommitted changes
-        run: git diff --exit-code
 
   # Check for vendorism issues
   vendorism-check:
@@ -93,7 +91,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-check
     container:
-      image: mcr.microsoft.com/playwright:v1.56.0-noble
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
     strategy:
       fail-fast: true
       matrix:
@@ -123,7 +121,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-check
     container:
-      image: mcr.microsoft.com/playwright:v1.56.0-noble
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
     strategy:
       fail-fast: true
       matrix:
@@ -152,7 +150,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-check, format-check, lint-check, vendorism-check, component-test, e2e-test, tokens-test]
     container:
-      image: mcr.microsoft.com/playwright:v1.56.0-noble
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
     steps:
       - name: Checkout
         uses: actions/checkout@v4

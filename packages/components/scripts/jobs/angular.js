@@ -12,12 +12,10 @@ const runFormat = createRunFormat('Angular: Running code formatter...');
 /**
  * Run all steps to create new react components
  * @param {String} settings.componentDistDir The absolute path to the component dist
- * @param {String} settings.componentPackageDir The absolute path to the component root
  * @param {String} settings.angularPackageDir The absolute path to the angular package root
  */
 export const runCreateAngularWrappers = async ({
   componentDistDir,
-  componentPackageDir,
   angularPackageDir,
 }) => {
   const metadata = await getManifestData(componentDistDir);
@@ -40,10 +38,14 @@ export const runCreateAngularWrappers = async ({
   await jobs.runCreateFormsModule(modulesDir);
   await jobs.runCreateValidatorDirectives(directivesDir);
   await jobs.runCreateExports(outDir);
+
   // Run format for all subfolders
-  await runFormat(componentsDir);
-  await runFormat(modulesDir);
-  await runFormat(directivesDir);
+  await runFormat([
+    componentsDir,
+    modulesDir,
+    directivesDir,
+  ]);
+
   await jobs.runAngularBuild();
   await jobs.runAdjustPackageExports('Angular: Adjusting angular package exports...')(distDir);
 };

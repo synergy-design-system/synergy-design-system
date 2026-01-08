@@ -14,7 +14,7 @@ import type {
   SynCheckbox,
   SynFile,
 } from '@synergy-design-system/components';
-import { DemoFieldset } from './DemoFieldset';
+import { DemoFieldset } from './DemoFieldset.js';
 
 type FormEnabledElements = HTMLElement & {
   checked?: boolean;
@@ -32,10 +32,10 @@ export const DemoForm = () => {
   // This is needed, as synergy does its event with `syn-` prefix
   // and react wont let us bind arbitrary custom events :(
   useEffect(() => {
-    const listener = (e: SynChangeEvent) => {
-      const form = formRef.current as HTMLFormElement;
+    const form = formRef.current;
 
-      const normalizedData = serialize(form);
+    const listener = (e: SynChangeEvent) => {
+      const normalizedData = serialize(form as HTMLFormElement);
 
       // Log the normalized data
       console.log(normalizedData);
@@ -61,9 +61,9 @@ export const DemoForm = () => {
       }));
     };
 
-    formRef.current?.addEventListener('syn-change', listener);
+    form?.addEventListener('syn-change', listener);
     return () => {
-      formRef.current?.removeEventListener('syn-change', listener);
+      form?.removeEventListener('syn-change', listener);
     };
   }, []);
 

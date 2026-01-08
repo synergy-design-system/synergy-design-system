@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { fileHeader, formattedVariables } from 'style-dictionary/utils';
 
 /**
@@ -148,7 +146,6 @@ export const cssVariableFormatter = {
       }
 
       if (isValidToken(token)) {
-        // eslint-disable-next-line max-len
         token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
           .replace('{', '')
           .replace('}', '')
@@ -184,7 +181,7 @@ export const cssVariableFormatter = {
     };
     convertOriginalToCssVarRecursive(dictionary);
 
-    if (verbosity !== 'silent' && alreadyIgnoredList.length > 0) {
+    if (verbosity === 'verbose' && alreadyIgnoredList.length > 0) {
       const finalOutputList = Array.from(
         new Set(
           alreadyIgnoredList

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, {
   FC, MouseEvent, useEffect, useState,
 } from 'react';
@@ -136,9 +135,11 @@ export const IconsSearchPage: FC<Props> = ({ mode = 'sick2018', searchTerm = '' 
         {categories.map((category) => (
           <div key={category}>
             <h2 style={{ marginTop: 'var(--syn-spacing-3x-large)' }} id={category}>{category}</h2>
-            <div style={{
-              columnGap: 'var(--syn-spacing-small)', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 150px)', rowGap: 'var(--syn-spacing-x-large)',
-            }}>
+            <div
+              style={{
+                columnGap: 'var(--syn-spacing-small)', display: 'grid', gridTemplateColumns: 'repeat(auto-fill, 150px)', rowGap: 'var(--syn-spacing-x-large)',
+              }}
+            >
               {getIconsForCategoryAndSearchTerm(iconsCache)(category, searchTerm).map((icon) => (
                 <div
                   key={icon}

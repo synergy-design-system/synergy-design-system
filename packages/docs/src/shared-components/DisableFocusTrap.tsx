@@ -29,9 +29,11 @@ export const DisableFocusTrap: FC<DisableFocusTrapProps> = ({ children, ...props
     });
   }, []);
 
-  return <div ref={ref} style={{ display: 'contents' }}>
-    <DocsContainer {...props}>
-      {children}
-    </DocsContainer>
-  </div>;
+  return (
+    <div ref={ref} style={{ display: 'contents' }}>
+      <DocsContainer {...props}>
+        {children}
+      </DocsContainer>
+    </div>
+  );
 };

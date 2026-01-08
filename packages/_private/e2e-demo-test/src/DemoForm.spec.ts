@@ -36,8 +36,8 @@ createTestCases(({ name, port }) => {
       expect(states.every((state) => !state)).toBe(true);
 
       // check not-invalid states of non-required inputs
-      expect(await form.birth.getAttribute('data-user-invalid')).toBeFalsy();
-      expect(await form.passwordRecovery.getAttribute('data-user-invalid')).toBeFalsy();
+      await expect(form.birth).not.toHaveAttribute('data-user-invalid');
+      await expect(form.passwordRecovery).not.toHaveAttribute('data-user-invalid');
     });
 
     test('Form submit', async ({ page }) => {

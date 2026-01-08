@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import ora from 'ora';
 import {
   createFolderChecksum,
@@ -22,9 +21,11 @@ async function run() {
     spinner.info(`Checksum generated: ${checksum}`);
     spinner.succeed(`Written to: ${metaDataPath}/checksum.txt`);
   } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     spinner.fail(`Failed to generate checksum: ${error}`);
     process.exit(1);
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 run();

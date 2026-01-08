@@ -1,4 +1,3 @@
-/* eslint-disable react/require-default-props */
 import type { FC, ReactNode } from 'react';
 
 type Props = {

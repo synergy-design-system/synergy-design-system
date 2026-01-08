@@ -40,7 +40,6 @@ const shouldUseAliasValue = (name) => {
  * @param { number } value The value of the variable
  * @returns {{ value: string, type: string }} The resolved value and type of the variable.
  */
-// eslint-disable-next-line complexity
 const getFloatValueFromName = (name, value) => {
   const stringValue = `${value}`;
   const valueWithUnit = (/** @type string */ unit) => `${stringValue.replace('NaN', '0')}${unit}`;

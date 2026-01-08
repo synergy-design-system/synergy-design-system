@@ -9,7 +9,7 @@
     "_build": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint:html": "html-validate index.html",
-    "lint:js": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "lint:js": "eslint .",
     "lint": "pnpm run /^lint:.*/",
     "format.eslint": "pnpm lint:js --fix",
     "format": "prettier --write src/"
@@ -26,21 +26,23 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.12.0",
-    "@tsconfig/node22": "^22.0.2",
-    "@types/node": "^22.18.8",
-    "@vitejs/plugin-vue": "^5.2.4",
-    "@vue/eslint-config-prettier": "^9.0.0",
-    "@vue/eslint-config-typescript": "^13.0.0",
-    "@vue/tsconfig": "^0.7.0",
-    "eslint": "^8.57.1",
-    "eslint-plugin-vue": "^9.33.0",
-    "html-validate": "^9.7.1",
+    "@eslint/js": "^9.39.2",
+    "@tsconfig/node24": "^24.0.3",
+    "@types/node": "^24.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.51.0",
+    "@typescript-eslint/parser": "^8.51.0",
+    "@vitejs/plugin-vue": "^6.0.3",
+    "@vue/tsconfig": "^0.8.1",
+    "eslint": "^9.39.2",
+    "eslint-plugin-vue": "^10.6.2",
+    "globals": "^17.0.0",
+    "html-validate": "^10.5.0",
     "prettier": "^3.6.2",
-    "typescript": "~5.8.3",
-    "vite": "^6.3.6",
+    "typescript": "~5.9.3",
+    "vite": "^7.3.0",
     "vite-plugin-static-copy": "^3.1.3",
-    "vue-tsc": "^2.2.12"
+    "vue-eslint-parser": "^10.2.0",
+    "vue-tsc": "^3.2.1"
   },
   "type": "module"
 }

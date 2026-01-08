@@ -84,6 +84,59 @@ Use hide-icon to hide the icon in inline style. This is especially useful when s
 
 ---
 
+## Sizes
+
+In development use the size attribute of the form element e.g. syn-input to set the size of the inline syn-validate automatically.
+
+```html
+<form id="components-syn-validate--sizes-validate-demo-form">
+  <div
+    style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
+  >
+    <syn-validate eager="" variant="inline" on="">
+      <syn-input
+        label="Inline Validation"
+        type="email"
+        value="team(at)synergy.com"
+        size="small"
+        title=""
+        form=""
+      ></syn-input>
+    </syn-validate>
+
+    <syn-validate eager="" variant="inline" on="">
+      <syn-input
+        label="Inline Validation"
+        type="email"
+        value="team(at)synergy.com"
+        size="medium"
+        title=""
+        form=""
+      ></syn-input>
+    </syn-validate>
+
+    <syn-validate eager="" variant="inline" on="">
+      <syn-input
+        label="Inline Validation"
+        type="email"
+        value="team(at)synergy.com"
+        size="large"
+        title=""
+        form=""
+      ></syn-input>
+    </syn-validate>
+  </div>
+
+  <p>
+    <syn-button type="submit" title="" variant="outline" size="medium"
+      >Submit</syn-button
+    >
+  </p>
+</form>
+```
+
+---
+
 ## Live
 
 Use the live value for the on attribute to validate on every input change (e. g. typing a character or checking a checkbox.) instead of form submit. This will automatically bind to the input and blur events.👨‍💻 Additional developer Information:Please ensure, that you really need live validation for your use case as this can have implications on accessibility.

@@ -69,7 +69,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form', 'SICK2018', 'SICK2025'],
+  tags: ['Form'],
   title: 'Components/syn-validate',
 };
 export default meta;
@@ -130,6 +130,33 @@ export const HideIcon: Story = {
         value="team(at)synergy.com"
       ></syn-input>
     </syn-validate>
+  `,
+};
+
+export const Sizes: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('validate', 'size'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      ${['small', 'medium', 'large'].map(size => html`
+        <syn-validate eager variant="inline">
+          <syn-input
+            label="Inline Validation"
+            size="${size}"
+            type="email"
+            value="team(at)synergy.com"
+          ></syn-input>       
+        </syn-validate>  
+      `)}
+    </div>
   `,
 };
 

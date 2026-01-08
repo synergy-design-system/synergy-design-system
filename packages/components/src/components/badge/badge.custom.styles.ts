@@ -4,7 +4,7 @@ export default css`
   .badge {
     border: none;
     border-radius: var(--syn-border-radius-pill);
-    font: var(--syn-body-medium-bold);
+    font: var(--syn-body-small-bold);
     height: var(--syn-spacing-large);
     line-height: var(--syn-spacing-large);
     min-width: var(--syn-spacing-large);
@@ -49,6 +49,7 @@ export default css`
 
   .visually-hidden {
     border: 0;
+    /* stylelint-disable-next-line property-no-deprecated */
     clip: rect(0, 0, 0, 0);
     height: 1px;
     margin: -1px;

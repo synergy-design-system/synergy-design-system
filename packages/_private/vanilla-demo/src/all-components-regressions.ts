@@ -57,7 +57,6 @@ const appendSyncOptions = async (selector: string, mockDataKey: 'comboboxItemsWi
  */
 const appendAsyncOptions = async (selector: string, mockDataKey: 'selectItems') => {
   const allComponents = await getAllComponentsElement();
-  // eslint-disable-next-line @typescript-eslint/no-floating-promises
   const element = allComponents?.shadowRoot?.querySelector(selector) as LitElement;
 
   const items = await mockAsyncData(mockDataKey);

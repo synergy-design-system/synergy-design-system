@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /**
  * @typedef {import('@figma-export/types').ComponentsCommandOptions} ComponentsCommandOptions
  * @typedef {import('@figma-export/types').ComponentNode} ComponentNode
@@ -49,6 +48,7 @@ export const createFigmaExportConfig = ({
   path = 'icons',
   svgComponentBasename = ({ basename = '' }) => `${basename.replace('name=', '')}.svg`,
   svgComponentFilter = () => true,
+// eslint-disable-next-line complexity
 }) => ({
   fileId,
   filterComponent,

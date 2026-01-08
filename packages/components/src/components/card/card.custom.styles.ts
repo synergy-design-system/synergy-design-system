@@ -11,6 +11,11 @@ export default css`
     box-shadow: none;
   }
 
+  /** #1107: Add shadow property to card */
+  .card--shadow {
+    box-shadow: var(--syn-shadow-small);
+  }
+
   /**
    * Header adjustments
    */

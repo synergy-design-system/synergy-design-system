@@ -46,7 +46,6 @@ export const renameVariable = (name, type) => {
  * @param { string } name The name of a variable
  * @returns { string } The specific type for the float variable
  */
-// eslint-disable-next-line complexity
 export const getTypeForFloatVariable = (name) => {
   const type = ['letter-spacing', 'line-height', 'opacity', 'weight', 'z-index']
     .find((key) => name.includes(key));
@@ -94,7 +93,6 @@ export const resolveAlias = (id) => {
  * @param { string } modeId Id of the mode
  * @returns {unknown | undefined} The value of the alias variable, or undefined if not found.
  */
-// eslint-disable-next-line complexity
 export const getAliasValue = (aliasId, modeId) => {
   const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === aliasId);
   /** @type {Record<string, unknown> | undefined} */
@@ -126,23 +124,9 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    */
   /primitive\/shadow.*\/(1st|2nd|3rd)/,
 
-  /**
-   * Color palettes that are currently not used
-   */
-  // Currently not used color palettes of critical
-  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
-  /primitive\/critical/,
-
   // Currently not used color palettes of muted
   // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
   /primitive\/muted/,
-
-  /**
-   * Font Size
-   */
-  // Currently not used font sizes
-  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
-  /primitive\/font-size\/(0x-large|1_5x-large|1x-large|2_5x-large|medium-large)/,
 
   /**
    * Letter spacing
@@ -162,8 +146,7 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    * Spacing
    */
   // Currently not used spacing.
-  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
-  /primitive\/spacing\/(1_5x-large|3_5x-large)/,
+  /primitive\/spacing\/3_5x-large/,
 
   /**
    * Text Transform
@@ -184,14 +167,7 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    */
   // Not yet updated in dev
   /component\/radio-button-group/,
-
-  /**
-   * Button component tokens
-   */
-  // Not yet updated in dev
-  /component\/button\/(border|color|filled|outline)/,
 ];
-/* eslint-enable max-len */
 
 /**
  * Filter out variables and styles that are only used in design.

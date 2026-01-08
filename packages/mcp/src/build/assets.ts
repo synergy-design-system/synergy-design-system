@@ -48,7 +48,6 @@ export const buildAssets = async () => {
     const moduleDir = path.join(path.dirname(modulePath), '../');
 
     // Process the files (placeholder for actual logic)
-    // eslint-disable-next-line no-console
     const contents = await globby(filesToCopy, {
       cwd: moduleDir,
       onlyFiles: true,

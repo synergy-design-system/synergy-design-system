@@ -84,7 +84,6 @@ const getAliasOrValueForStyle = (style, key) => {
  * @param { string } modeId Id of the mode
  * @returns {unknown | undefined} The value of the alias variable, or undefined if not found.
  */
-// eslint-disable-next-line complexity
 const getRealValueFromAlias = (aliasId, modeId) => {
   const alias = getAliasValue(aliasId, modeId);
   if (

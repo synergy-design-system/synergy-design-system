@@ -1,5 +1,164 @@
 # Changelog
 
+## 2.77.1
+
+### Patch Changes
+
+- [#1148](https://github.com/synergy-design-system/synergy-design-system/pull/1148) [`73b7011`](https://github.com/synergy-design-system/synergy-design-system/commit/73b70118ae21bc58c83cbfeb9e2e8447873803a6) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-01-08
+
+  fix: 🐛 Minor dependency updates (#258)
+
+- Updated dependencies [[`73b7011`](https://github.com/synergy-design-system/synergy-design-system/commit/73b70118ae21bc58c83cbfeb9e2e8447873803a6)]:
+  - @synergy-design-system/tokens@2.48.2
+
+## 2.77.0
+
+## 2.76.0
+
+### Minor Changes
+
+- [#1138](https://github.com/synergy-design-system/synergy-design-system/pull/1138) [`dc56e6f`](https://github.com/synergy-design-system/synergy-design-system/commit/dc56e6f0ebc08e44b23bdbdaa6fffa03abc26e9e) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-18
+
+  feat: ✨ form element active states (#433)
+
+  This release adds adjustments for `:active` states for various form elements.
+  - `<syn-checkbox>` now has new active states, dependent on if it is checked and unchecked.
+  - `<syn-nav-item>` now has a new active state
+  - `<syn-radio>` will show its active indicator when pressing the associated label, too.
+  - `<syn-switch>` now has new active states, dependent on if it is checked and unchecked.
+
+### Patch Changes
+
+- Updated dependencies [[`dc56e6f`](https://github.com/synergy-design-system/synergy-design-system/commit/dc56e6f0ebc08e44b23bdbdaa6fffa03abc26e9e)]:
+  - @synergy-design-system/tokens@2.48.0
+
+## 2.75.0
+
+### Minor Changes
+
+- [#1109](https://github.com/synergy-design-system/synergy-design-system/pull/1109) [`6b4b7e2`](https://github.com/synergy-design-system/synergy-design-system/commit/6b4b7e2940b5c87e44d5da6030354ec0e21f2f38) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  feat: ✨ Brand updates for `<syn-button>` (#871)
+  feat: ✨ Brand updates for `<syn-dropdown>` (#949)
+
+### Patch Changes
+
+- Updated dependencies [[`6b4b7e2`](https://github.com/synergy-design-system/synergy-design-system/commit/6b4b7e2940b5c87e44d5da6030354ec0e21f2f38)]:
+  - @synergy-design-system/tokens@2.47.0
+
+## 2.74.4
+
+### Patch Changes
+
+- [#1134](https://github.com/synergy-design-system/synergy-design-system/pull/1134) [`53bd655`](https://github.com/synergy-design-system/synergy-design-system/commit/53bd655f465b76c2aa7d57449750b99e8fcfb500) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  fix: 🐛 Adjust `<syn-option>` and `<syn-menu-item>` interactive background (#1127)
+
+  Minor adjustments for `<syn-option>` and `<syn-menu-item>` hover and focus states to better mimic the effects as detailed in Figma for the SICK 2025 themes.
+  Both components now use a combination of `background` and `border-radius` to show the `<syn-option>` with an inset highlight color, allowing to better match the wanted spacings.
+
+## 2.74.3
+
+### Patch Changes
+
+- [#1139](https://github.com/synergy-design-system/synergy-design-system/pull/1139) [`6cc7376`](https://github.com/synergy-design-system/synergy-design-system/commit/6cc737681f2b137702f3e95b0a666ae6f28b5039) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  fix: 🐛 Incorrect offset of submenu items when submenu opens to the left (#1009)
+
+  Fixes an issue that leads to incorrect offsets when a nested `<syn-menu>` is opened to the left instead of to the right.
+
+## 2.74.2
+
+### Patch Changes
+
+- [#1136](https://github.com/synergy-design-system/synergy-design-system/pull/1136) [`212b5bd`](https://github.com/synergy-design-system/synergy-design-system/commit/212b5bd29087b10d1fe0e6bbb94c97090b7b4f74) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  fix: 🐛 `<syn-alert>` close icon should be aligned to top (#1135)
+
+  Fixes an issue that was introduced in version `2.74.0`.
+  The close icons is now always aligned to the top of the `<syn-alert>` again.
+
+## 2.74.1
+
+### Patch Changes
+
+- [#1133](https://github.com/synergy-design-system/synergy-design-system/pull/1133) [`82ea066`](https://github.com/synergy-design-system/synergy-design-system/commit/82ea066fa18e35831d94f22c7ac620135bc8c334) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-15
+
+  fix: 🐛 syn menu submenu rounding (#1131)
+
+  Fixes an issue with `<syn-menu-item>` when rendering submenus.
+  Submenus did not take the changed `border-radius` of `<syn-menu>` into account, leading to squared borders in the `SICK 2025` themes.
+
+## 2.74.0
+
+### Minor Changes
+
+- [#1129](https://github.com/synergy-design-system/synergy-design-system/pull/1129) [`102e650`](https://github.com/synergy-design-system/synergy-design-system/commit/102e6503af3a72d0d2529ed216ce6053a07b9607) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-12
+
+  feat: ✨ syn alert add sizes (#1119)
+
+  We have added a new property `size` to `<syn-alert>` that can be set to `small`, `medium` (the default) and `large`.
+  The property can also be used with Synergy `defaultSettings`.
+
+  We also adjusted `<syn-validate>` to draw the `size` attribute of its `slotted` `HTMLInputElement`. If a `size` property is found on the rendered input, it will be forwarded to the rendered `<syn-alert>` if you use `variant="inline"`.
+
+## 2.73.0
+
+### Minor Changes
+
+- [#1122](https://github.com/synergy-design-system/synergy-design-system/pull/1122) [`740816b`](https://github.com/synergy-design-system/synergy-design-system/commit/740816b1a86768e7f2fed5516241bdb3a9df4ef7) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-11
+
+  feat: ✨ adjust sizes of form elements (#1083)
+  - `<syn-checkbox>` Bigger checkbox in small and medium
+  - `<syn-radio>` Bigger radio control in small and medium
+  - `<syn-switch>` Larger label and bigger switch control in all sizes
+
+### Patch Changes
+
+- Updated dependencies [[`740816b`](https://github.com/synergy-design-system/synergy-design-system/commit/740816b1a86768e7f2fed5516241bdb3a9df4ef7)]:
+  - @synergy-design-system/tokens@2.46.0
+
+## 2.72.0
+
+### Minor Changes
+
+- [#1128](https://github.com/synergy-design-system/synergy-design-system/pull/1128) [`7de2441`](https://github.com/synergy-design-system/synergy-design-system/commit/7de244110cf55bb3788e26f65704194bfc861412) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ Add a new `shadow` propertry to `<syn-card>` (#1107)
+
+  Using `<syn-card shadow></syn-card>` will draw the card with a shadow. This can be used when the card has to stand out visually, for example in dashboards.
+
+## 2.71.0
+
+### Minor Changes
+
+- [#1126](https://github.com/synergy-design-system/synergy-design-system/pull/1126) [`ab15da3`](https://github.com/synergy-design-system/synergy-design-system/commit/ab15da3bf8956f1d523ca3115a466205474e071f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ remove background blur from drawer (#1120)
+
+  After gathering community feedback, we chose to remove the background blur introduced in version `2.48.0` from `<syn-drawer>`.
+  This was done because users might loose context when for example using the `<syn-side-nav>`.
+  The blur effect is still used in `<syn-dialog>`. It may be removed entirely via setting `--syn-overlay-background-blur: 0;` if needed.
+
+## 2.70.0
+
+### Minor Changes
+
+- [#1125](https://github.com/synergy-design-system/synergy-design-system/pull/1125) [`d414abe`](https://github.com/synergy-design-system/synergy-design-system/commit/d414abe26eaee05928a8f1914748de1866837804) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ adjust badge font size (#1108)
+
+  The font size of `<syn-badge>` was perceived as too large. Therefore, it was changed from medium to small.
+
+## 2.69.0
+
+### Minor Changes
+
+- [#1095](https://github.com/synergy-design-system/synergy-design-system/pull/1095) [`f9f544f`](https://github.com/synergy-design-system/synergy-design-system/commit/f9f544feb2adb3edef95bd1b50a303440e0c8385) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-04
+
+  feat: ✨ Brand updates for `<syn-select>`, `<syn-option>` and `<syn-optgroup>` (#988)
+  feat: ✨ Brand updates for `<syn-combobox>` (#944)
+
 ## 2.68.0
 
 ### Minor Changes

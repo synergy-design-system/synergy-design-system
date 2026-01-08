@@ -1,14 +1,18 @@
 import type { CSSResultGroup, PropertyValues } from 'lit';
 import { html } from 'lit';
 import { property, queryAssignedElements, state } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
+import type SynInput from '../input/input.component.js';
 import { watch } from '../../internal/watch.js';
 import SynAlert from '../alert/alert.component.js';
 import {
+  alertSizeForInput,
   getEventNameForElement,
   isBlurEvent,
   isInvalidEvent,
+  isSynergyElement,
   normalizeEventAttribute,
 } from './utility.js';
 import styles from './validate.styles.js';
@@ -43,6 +47,8 @@ export default class SynValidate extends SynergyElement {
 
   observer: MutationObserver;
 
+  sizeObserver: MutationObserver;
+
   @queryAssignedElements() private slottedChildren: HTMLElement[];
 
   @state() validationMessage = '';
@@ -52,6 +58,8 @@ export default class SynValidate extends SynergyElement {
   @state() isInternalTriggeredInvalid = false;
 
   @state() isValid = true;
+
+  @state() alertSize?: SynInput['size'];
 
   /**
    * The variant that should be used to show validation alerts.
@@ -148,6 +156,10 @@ export default class SynValidate extends SynergyElement {
   private getInput() {
     const input = this.slottedChildren[0];
     return input ? input as HTMLInputElement : undefined;
+  }
+
+  private setAlertSize() {
+    this.alertSize = alertSizeForInput(this.getInput());
   }
 
   /**
@@ -289,7 +301,7 @@ export default class SynValidate extends SynergyElement {
     }
 
     const input = e.currentTarget as HTMLInputElement;
-    if (input instanceof SynergyElement) {
+    if (isSynergyElement(input)) {
       // When using a synergy element, we need to wait for it to be ready!
       // This is needed as the validity state of the element may not be set yet.
       await input.updateComplete;
@@ -322,6 +334,7 @@ export default class SynValidate extends SynergyElement {
     }
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   async firstUpdated(changedProperties: PropertyValues) {
     super.firstUpdated(changedProperties);
     this.updateEvents();
@@ -331,7 +344,7 @@ export default class SynValidate extends SynergyElement {
     const input = this.getInput();
 
     if (this.customValidationMessage) {
-      if (input instanceof SynergyElement) {
+      if (isSynergyElement(input)) {
         await input.updateComplete;
       }
       input?.setCustomValidity(this.customValidationMessage);
@@ -348,6 +361,34 @@ export default class SynValidate extends SynergyElement {
   connectedCallback() {
     super.connectedCallback();
 
+    // #1119: Update alert size when the input size changes
+    // Note that we need to create our own observer here,
+    // as the size attribute may be changed on the input element directly,
+    // which would not be captured by the synergy-element observer.
+    this.sizeObserver = new MutationObserver(entries => {
+      const input = this.getInput();
+
+      if (!input) {
+        return;
+      }
+
+      const hasSizeChanged = entries
+        .filter(({ target }) => target === input)
+        .every(
+          entry => entry.attributeName === 'size',
+        );
+
+      if (hasSizeChanged) {
+        this.setAlertSize();
+      }
+    });
+
+    this.sizeObserver.observe(this, {
+      attributeFilter: ['size'],
+      attributes: true,
+      subtree: true,
+    });
+
     // #717: Make sure to remove to rerun validation when
     // disabled or readonly properties change on the input
     this.observer = new MutationObserver(entries => {
@@ -357,10 +398,9 @@ export default class SynValidate extends SynergyElement {
         return;
       }
 
+      // Check if the input is disabled or readonly
       const hasDisabledOrReadonly = entries
-        // Only check for changes on the input element
         .filter(({ target }) => target === input)
-        // Check if the input is disabled or readonly
         .every(entry => {
           const target = entry.target as HTMLInputElement;
           return target.hasAttribute('disabled') || target.hasAttribute('readonly');
@@ -373,7 +413,7 @@ export default class SynValidate extends SynergyElement {
         // When using a synergy element, we need to check the validity after the element is updated,
         // as we cannot rely on the validity state of the element itself.
         // Unfortunately, this depends on used browser :(.
-        const waitForPromise = input instanceof SynergyElement
+        const waitForPromise = isSynergyElement(input)
           ? input.updateComplete
           : Promise.resolve();
 
@@ -396,6 +436,7 @@ export default class SynValidate extends SynergyElement {
     super.disconnectedCallback();
     this.controller.abort();
     this?.observer?.disconnect();
+    this?.sizeObserver?.disconnect();
   }
 
   private renderInlineValidation() {
@@ -408,6 +449,7 @@ export default class SynValidate extends SynergyElement {
         open
         exportparts="base:alert__base,message:alert__message,icon:alert__icon"
         part="alert"
+        size=${ifDefined(this.alertSize)}
         variant="danger"
       >
         ${!this.hideIcon

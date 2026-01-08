@@ -56,6 +56,11 @@ export type AllowedThemes = '2018' | '2025';
 export type AllowedModes = 'light' | 'dark';
 
 /**
+ * A type representing the allowed sizes for components.
+ */
+export type AllowedSizes = 'small' | 'medium' | 'large';
+
+/**
  * A type representing the status of a form, including an optional icon, a message, and a type.
  */
 export type FormStatus = {

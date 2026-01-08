@@ -1,4 +1,5 @@
 {
+  "allowEmptyInput": true,
   "extends": "stylelint-config-standard",
   "overrides": [
     {

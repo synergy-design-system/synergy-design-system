@@ -22,6 +22,9 @@ dist/
 .angular
 angular/dist
 
+# Angular ng-packager
+ng-package.json
+
 # Components should exclude tsconfig as this is handeled by vendorism
 packages/components/tsconfig*.*
 

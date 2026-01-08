@@ -13,8 +13,10 @@ export default css`
 
   .optgroup__label-container {
     align-items: center;
+    border: solid transparent;
+    border-width: 0 var(--option-inset-border-vertical);
     box-sizing: border-box;
-    color: var(--syn-color-neutral-950);
+    color: var(--syn-input-color);
     display: flex;
     gap: var(--syn-spacing-small);
     min-height: var(--option-min-height, var(--syn-input-height-medium));
@@ -26,7 +28,7 @@ export default css`
   .optgroup--has-prefix .optgroup__label-container,
   .optgroup--has-label .optgroup__label-container,
   .optgroup--has-suffix .optgroup__label-container {
-    padding: var(--option-padding, var(--syn-spacing-small) var(--syn-spacing-medium));
+    padding: 0 calc(var(--option-padding) - var(--option-inset-border-vertical));
   }
 
   /**
@@ -49,7 +51,7 @@ export default css`
 
   .optgroup__prefix,
   .optgroup__suffix {
-    color: var(--syn-color-neutral-800);
+    color: var(--syn-option-icon-color, var(--syn-color-neutral-800));
     font-size: var(--syn-spacing-large);
   }
 

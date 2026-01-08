@@ -43,7 +43,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Icons', 'SICK2018', 'SICK2025'],
+  tags: ['Icons'],
   title: 'Components/syn-icon',
 };
 export default meta;

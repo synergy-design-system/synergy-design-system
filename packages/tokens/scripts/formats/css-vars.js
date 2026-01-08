@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 import { fileHeader, formattedVariables } from 'style-dictionary/utils';
 
 /**
@@ -74,9 +72,6 @@ export const cssVariableFormatter = {
 
       'progress-track-readonly-color',
 
-      'input-border-color-active',
-      'input-icon-icon-clearable-color-active',
-      'interactive-background-color-active',
       // Readonly color are needed later
       'readonly-border-color',
       'readonly-indicator-color',
@@ -89,8 +84,47 @@ export const cssVariableFormatter = {
       'body-2x-small-bold',
       'heading-4x-large',
 
-      // Button tokens are needed later
-      'button-outline-color-text',
+      // Internal color tests
+      'background-color-1',
+      'background-color-2',
+
+      // Button tokens that should be ignored
+      'button-color-disabled',
+      'button-outline-color',
+
+      // #871: These tokens can safely be removed
+      // as they are typography only and our typo tokens
+      // dont use them internally, but only in Figma
+      'typography-heading-2x-large-font-size',
+      'typography-heading-2x-large-font-weight',
+      'typography-heading-2x-large-letter-spacing',
+      'typography-heading-2x-large-line-height',
+      'typography-heading-3x-large-font-size',
+      'typography-heading-3x-large-font-weight',
+      'typography-heading-3x-large-letter-spacing',
+      'typography-heading-3x-large-line-height',
+      'typography-heading-4x-large-font-size',
+      'typography-heading-4x-large-font-weight',
+      'typography-heading-4x-large-letter-spacing',
+      'typography-heading-4x-large-line-height',
+      'typography-heading-large-font-size',
+      'typography-heading-large-font-weight',
+      'typography-heading-large-letter-spacing',
+      'typography-heading-large-line-height',
+      'typography-heading-medium-font-size',
+      'typography-heading-medium-font-weight',
+      'typography-heading-medium-letter-spacing',
+      'typography-heading-medium-line-height',
+      'typography-heading-x-large-font-size',
+      'typography-heading-x-large-font-weight',
+      'typography-heading-x-large-letter-spacing',
+      'typography-heading-x-large-line-height',
+      'font-size-0x-large',
+      'font-size-1-5x-large',
+      'font-size-1x-large',
+      'font-size-2-5x-large',
+      'font-size-medium-large',
+      'heading-medium',
     ].map(v => `${prefix}${v}`);
 
     /**
@@ -112,11 +146,11 @@ export const cssVariableFormatter = {
       }
 
       if (isValidToken(token)) {
-        // eslint-disable-next-line max-len
         token.value = `var(--${prefix}${token.original.type === 'color' && !token.original.value.includes('color') ? 'color-' : ''}${token.original.value
           .replace('{', '')
           .replace('}', '')
           .replaceAll('.', '-')
+          .replaceAll('_', '-')
           })`;
       }
       return token;
@@ -147,7 +181,7 @@ export const cssVariableFormatter = {
     };
     convertOriginalToCssVarRecursive(dictionary);
 
-    if (verbosity !== 'silent' && alreadyIgnoredList.length > 0) {
+    if (verbosity === 'verbose' && alreadyIgnoredList.length > 0) {
       const finalOutputList = Array.from(
         new Set(
           alreadyIgnoredList

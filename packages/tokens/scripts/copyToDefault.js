@@ -23,6 +23,7 @@ export const copyToDefaultLocation = (targetDir) => {
     try {
       copyFileSync(sourceFilePath, targetFilePath);
       return true;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       return false;
     }

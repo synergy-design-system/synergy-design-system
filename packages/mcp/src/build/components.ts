@@ -146,6 +146,7 @@ export const buildComponents = async () => {
         });
       });
 
+    // eslint-disable-next-line @typescript-eslint/await-thenable
     await Promise.all(componentMetadata);
     spinner.succeed('Components metadata generated successfully.');
 

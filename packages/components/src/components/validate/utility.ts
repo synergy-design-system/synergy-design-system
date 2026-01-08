@@ -1,4 +1,5 @@
 import SynergyElement from '../../internal/synergy-element.js';
+import type SynInput from '../input/input.component.js';
 
 /**
  * @var WhitelistedSynergyFormEventNames A list of all the event names that should be transformed
@@ -42,6 +43,13 @@ export const isChangeEvent = (eventName: string) => isEventOfType(eventName, 'ch
 export const isInvalidEvent = (eventName: string) => isEventOfType(eventName, 'invalid');
 
 /**
+ * Check if the provided element is a synergy element
+ * @param element The element to check for
+ * @returns True if the element is a synergy element, false otherwise
+ */
+export const isSynergyElement = (element?: HTMLElement) => element instanceof SynergyElement;
+
+/**
  * Get a list of event names from the provided attribute string
  * @param events The events string
  * @returns an array of events
@@ -58,13 +66,29 @@ export const normalizeEventAttribute = (events: string = '') => events
  */
 export const getEventNameForElement = (element: HTMLElement, eventName: string) => {
   const sanitizedEventName = eventName.trim();
-  const isSynergyElement = element instanceof SynergyElement;
+  const elementIsSynergyElement = isSynergyElement(element);
 
-  if (!isSynergyElement) {
+  if (!elementIsSynergyElement) {
     return sanitizedEventName;
   }
 
   return WhitelistedSynergyFormEventNames.includes(sanitizedEventName)
     ? `syn-${sanitizedEventName}`
     : sanitizedEventName;
+};
+
+/**
+ * Check the size that the alert should use based on the provided element
+ * @param element The html element to check for
+ * @returns The size that the alert should use
+ */
+export const alertSizeForInput = (element?: HTMLElement) => {
+  // Don´t set alert size if we are not dealing with a synergy element
+  if (!isSynergyElement(element)) {
+    return undefined;
+  }
+
+  const { size } = element as SynInput;
+  const hasSize = size !== undefined && size !== null;
+  return hasSize ? size : undefined;
 };

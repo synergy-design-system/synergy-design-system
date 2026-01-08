@@ -1,5 +1,58 @@
 # Changelog
 
+## 2.48.2
+
+### Patch Changes
+
+- [#1148](https://github.com/synergy-design-system/synergy-design-system/pull/1148) [`73b7011`](https://github.com/synergy-design-system/synergy-design-system/commit/73b70118ae21bc58c83cbfeb9e2e8447873803a6) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-01-08
+
+  fix: 🐛 Minor dependency updates (#258)
+
+## 2.48.1
+
+### Patch Changes
+
+- [#1147](https://github.com/synergy-design-system/synergy-design-system/pull/1147) [`8e3230c`](https://github.com/synergy-design-system/synergy-design-system/commit/8e3230cc351c62e2e9485c5234675d40ac7ac175) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-01-07
+
+  fix: 🐛 adjust syn button tokens (#1145)
+
+  The original tokens used `inherit` as a fallback value, which did not have any effect but to fall back to the original value.
+  This is now made explicit to allow the use of button variables in code directly.
+
+## 2.48.0
+
+### Minor Changes
+
+- [#1138](https://github.com/synergy-design-system/synergy-design-system/pull/1138) [`dc56e6f`](https://github.com/synergy-design-system/synergy-design-system/commit/dc56e6f0ebc08e44b23bdbdaa6fffa03abc26e9e) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-18
+
+  feat: ✨ form element active states (#433)
+
+  This release adds adjustments for `:active` states for various form elements.
+  - `<syn-checkbox>` now has new active states, dependent on if it is checked and unchecked.
+  - `<syn-nav-item>` now has a new active state
+  - `<syn-radio>` will show its active indicator when pressing the associated label, too.
+  - `<syn-switch>` now has new active states, dependent on if it is checked and unchecked.
+
+## 2.47.0
+
+### Minor Changes
+
+- [#1109](https://github.com/synergy-design-system/synergy-design-system/pull/1109) [`6b4b7e2`](https://github.com/synergy-design-system/synergy-design-system/commit/6b4b7e2940b5c87e44d5da6030354ec0e21f2f38) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-16
+
+  feat: ✨ Brand updates for `<syn-button>` (#871)
+  feat: ✨ Brand updates for `<syn-dropdown>` (#949)
+
+## 2.46.0
+
+### Minor Changes
+
+- [#1122](https://github.com/synergy-design-system/synergy-design-system/pull/1122) [`740816b`](https://github.com/synergy-design-system/synergy-design-system/commit/740816b1a86768e7f2fed5516241bdb3a9df4ef7) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-11
+
+  feat: ✨ adjust sizes of form elements (#1083)
+  - `<syn-checkbox>` Bigger checkbox in small and medium
+  - `<syn-radio>` Bigger radio control in small and medium
+  - `<syn-switch>` Larger label and bigger switch control in all sizes
+
 ## 2.45.0
 
 ### Minor Changes

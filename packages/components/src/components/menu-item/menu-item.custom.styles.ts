@@ -4,28 +4,43 @@ export default css`
   :host {
     /* Custom override for hiding the checkmark in menus it is not needed */
     --display-checkmark: flex;
+
+    /**
+     * Default size settings for menu-item
+     * This prepares the custom sizes that we will add later on
+     * @see https://github.com/synergy-design-system/design/issues/277
+     */
+    --menuitem-inset-border-horizontal: var(--syn-spacing-2x-small);
+    --menuitem-inset-border-vertical: calc(var(--syn-spacing-x-small) - 1px);
+    --menuitem-min-height: var(--syn-input-height-medium);
+    --menuitem-padding: var(--syn-input-spacing-medium);
+    --menuitem-font-size: var(--syn-input-font-size-medium);
+    --menuitem-icon-size: var(--syn-spacing-large);
   }
 
   .menu-item {
+    align-items: center;
+
     /*
-     * #958: Brand2025 defines a small gap between menu items
-     * and rounded corners. We achieve that using an outline
+     * #1127: Brand2025 defines a small gap between options
+     * and rounded corners. We achieve that using an border
      * that simulates the gap using the menu background color.
      */
-    --outline: calc(var(--syn-focus-ring-border-radius) * 1.5);
-    
-    border-radius: calc(var(--outline) * 1.5);
+    border: solid var(--syn-panel-background-color);
+
+    /* Border Radius needs to be increased to cover the outline */
+    border-radius: calc(var(--syn-focus-ring-border-radius) + var(--menuitem-inset-border-vertical));
+    border-width: var(--menuitem-inset-border-horizontal) var(--menuitem-inset-border-vertical);
     color: var(--syn-option-color, var(--syn-typography-color-text));
-    font-size: var(--syn-font-size-medium);
-    outline: var(--outline) solid var(--syn-panel-background-color);
-    outline-offset: calc(var(--outline) * -1 + 1px);
-    padding: var(--syn-spacing-small) var(--syn-spacing-medium);
+    font-size: var(--menuitem-font-size);
+
+    /* Height is dependent on line-height of .option__label, which does not fit completely to layout */
+    min-height: var(--menuitem-min-height, var(--syn-input-height-medium));
+    padding: 0 calc(var(--menuitem-padding) - var(--menuitem-inset-border-vertical));
   }
 
   :host(:focus-visible) .menu-item {
     background-color: var(--syn-option-background-color-active, var(--syn-color-neutral-1000));
-    outline: var(--outline) solid var(--syn-panel-background-color);
-    outline-offset: calc(var(--outline) * -1 + 1px);
   }
 
   /** #429: Use token for opacity */
@@ -146,7 +161,7 @@ export default css`
 
     color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-700));
     font-size: var(--syn-font-size-medium);
-    left: var(--syn-spacing-medium);
+    left: calc(var(--menuitem-padding) - var(--menuitem-inset-border-vertical));
   }
 
   /**
@@ -159,5 +174,19 @@ export default css`
   /* Needed if we do not show the checkmark */
   :host(:not([type="checkmark"]):not([loading])) .menu-item__label {
     min-height: var(--syn-font-size-x-large);
+  }
+
+  /* #1131: Make sure that slotted menus do show the correct border radius */
+  syn-popup::part(popup) {
+    border-radius: var(--syn-input-border-radius-medium);
+  }
+
+  /**
+   * #1009: Adjust the position for submenus when they are opened to the left, too.
+   * This works because the data-current-placement attribute is set on the popup accordingly.
+   * We do not use the actual placement attribute, because it does not update when the placement changes
+   */
+  syn-popup[data-current-placement^="left"]::part(popup) {
+    margin-left: calc(-1 * var(--submenu-offset));
   }
 `;

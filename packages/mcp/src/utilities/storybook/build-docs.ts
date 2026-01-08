@@ -1,6 +1,6 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-misused-promises */
 
-/* eslint-disable no-console */
 import { runDocsScraper } from './docs-scraper.js';
 import { StaticServerManager } from './storybook-manager.js';
 
@@ -47,4 +47,5 @@ process.on('SIGTERM', async () => {
   process.exit(0);
 });
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 main();

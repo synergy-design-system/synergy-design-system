@@ -1,5 +1,130 @@
 # @synergy-design-system/vue
 
+## 2.77.1
+
+### Patch Changes
+
+- [#1148](https://github.com/synergy-design-system/synergy-design-system/pull/1148) [`73b7011`](https://github.com/synergy-design-system/synergy-design-system/commit/73b70118ae21bc58c83cbfeb9e2e8447873803a6) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-01-08
+
+  fix: 🐛 Minor dependency updates (#258)
+
+- Updated dependencies [[`73b7011`](https://github.com/synergy-design-system/synergy-design-system/commit/73b70118ae21bc58c83cbfeb9e2e8447873803a6)]:
+  - @synergy-design-system/components@2.77.1
+  - @synergy-design-system/tokens@2.48.2
+
+## 2.77.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/components@2.77.0
+
+## 2.76.0
+
+### Patch Changes
+
+- Updated dependencies [[`dc56e6f`](https://github.com/synergy-design-system/synergy-design-system/commit/dc56e6f0ebc08e44b23bdbdaa6fffa03abc26e9e)]:
+  - @synergy-design-system/components@2.76.0
+  - @synergy-design-system/tokens@2.48.0
+
+## 2.75.0
+
+### Patch Changes
+
+- Updated dependencies [[`6b4b7e2`](https://github.com/synergy-design-system/synergy-design-system/commit/6b4b7e2940b5c87e44d5da6030354ec0e21f2f38)]:
+  - @synergy-design-system/components@2.75.0
+  - @synergy-design-system/tokens@2.47.0
+
+## 2.74.4
+
+### Patch Changes
+
+- Updated dependencies [[`53bd655`](https://github.com/synergy-design-system/synergy-design-system/commit/53bd655f465b76c2aa7d57449750b99e8fcfb500)]:
+  - @synergy-design-system/components@2.74.4
+
+## 2.74.3
+
+### Patch Changes
+
+- Updated dependencies [[`6cc7376`](https://github.com/synergy-design-system/synergy-design-system/commit/6cc737681f2b137702f3e95b0a666ae6f28b5039)]:
+  - @synergy-design-system/components@2.74.3
+
+## 2.74.2
+
+### Patch Changes
+
+- Updated dependencies [[`212b5bd`](https://github.com/synergy-design-system/synergy-design-system/commit/212b5bd29087b10d1fe0e6bbb94c97090b7b4f74)]:
+  - @synergy-design-system/components@2.74.2
+
+## 2.74.1
+
+### Patch Changes
+
+- Updated dependencies [[`82ea066`](https://github.com/synergy-design-system/synergy-design-system/commit/82ea066fa18e35831d94f22c7ac620135bc8c334)]:
+  - @synergy-design-system/components@2.74.1
+
+## 2.74.0
+
+### Minor Changes
+
+- [#1129](https://github.com/synergy-design-system/synergy-design-system/pull/1129) [`102e650`](https://github.com/synergy-design-system/synergy-design-system/commit/102e6503af3a72d0d2529ed216ce6053a07b9607) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-12
+
+  feat: ✨ syn alert add sizes (#1119)
+
+  We have added a new property `size` to `<syn-alert>` that can be set to `small`, `medium` (the default) and `large`.
+  The property can also be used with Synergy `defaultSettings`.
+
+  We also adjusted `<syn-validate>` to draw the `size` attribute of its `slotted` `HTMLInputElement`. If a `size` property is found on the rendered input, it will be forwarded to the rendered `<syn-alert>` if you use `variant="inline"`.
+
+### Patch Changes
+
+- Updated dependencies [[`102e650`](https://github.com/synergy-design-system/synergy-design-system/commit/102e6503af3a72d0d2529ed216ce6053a07b9607)]:
+  - @synergy-design-system/components@2.74.0
+
+## 2.73.0
+
+### Patch Changes
+
+- Updated dependencies [[`740816b`](https://github.com/synergy-design-system/synergy-design-system/commit/740816b1a86768e7f2fed5516241bdb3a9df4ef7)]:
+  - @synergy-design-system/components@2.73.0
+  - @synergy-design-system/tokens@2.46.0
+
+## 2.72.0
+
+### Minor Changes
+
+- [#1128](https://github.com/synergy-design-system/synergy-design-system/pull/1128) [`7de2441`](https://github.com/synergy-design-system/synergy-design-system/commit/7de244110cf55bb3788e26f65704194bfc861412) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ Add a new `shadow` propertry to `<syn-card>` (#1107)
+
+  Using `<syn-card shadow></syn-card>` will draw the card with a shadow. This can be used when the card has to stand out visually, for example in dashboards.
+
+### Patch Changes
+
+- Updated dependencies [[`7de2441`](https://github.com/synergy-design-system/synergy-design-system/commit/7de244110cf55bb3788e26f65704194bfc861412)]:
+  - @synergy-design-system/components@2.72.0
+
+## 2.71.0
+
+### Patch Changes
+
+- Updated dependencies [[`ab15da3`](https://github.com/synergy-design-system/synergy-design-system/commit/ab15da3bf8956f1d523ca3115a466205474e071f)]:
+  - @synergy-design-system/components@2.71.0
+
+## 2.70.0
+
+### Patch Changes
+
+- Updated dependencies [[`d414abe`](https://github.com/synergy-design-system/synergy-design-system/commit/d414abe26eaee05928a8f1914748de1866837804)]:
+  - @synergy-design-system/components@2.70.0
+
+## 2.69.0
+
+### Patch Changes
+
+- Updated dependencies [[`f9f544f`](https://github.com/synergy-design-system/synergy-design-system/commit/f9f544feb2adb3edef95bd1b50a303440e0c8385)]:
+  - @synergy-design-system/components@2.69.0
+
 ## 2.68.0
 
 ### Patch Changes

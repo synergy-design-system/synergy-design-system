@@ -6,6 +6,7 @@ import { createJS, createSCSS } from './outputs/index.js';
 import {
   addFallbackFonts,
   addMissingQuotesForStrings,
+  changeOutputValues,
   convertLetterSpacingValue,
   fixFigmaBackgroundBlur,
 } from './transforms/index.js';
@@ -17,6 +18,7 @@ import { copyToDefaultLocation } from './copyToDefault.js';
 await register(StyleDictionary);
 StyleDictionary.registerTransform(addFallbackFonts);
 StyleDictionary.registerTransform(addMissingQuotesForStrings);
+StyleDictionary.registerTransform(changeOutputValues);
 StyleDictionary.registerTransform(convertLetterSpacingValue);
 StyleDictionary.registerTransform(fixFigmaBackgroundBlur);
 StyleDictionary.registerFormat(cssVariableFormatter);
@@ -31,7 +33,7 @@ const { author, name, version } = getPackageInformation();
 /**
  * @type {import('style-dictionary/types').LogConfig['verbosity']}
  */
-const verbosity = 'verbose';
+const verbosity = process.env.CI ? 'default' : 'verbose';
 
 const dictionary = new StyleDictionary({
   log: {
@@ -51,7 +53,6 @@ StyleDictionary.registerFileHeader({
 
 const themes = getAvailableThemes();
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
 const cssRuns = themes.map(async ({ mode, theme }) => {
   console.log(`Processing theme: ${theme}, mode: ${mode}`);
   const themeInformation = getInformationForTheme(theme, mode);
@@ -70,6 +71,9 @@ const cssRuns = themes.map(async ({ mode, theme }) => {
             verbosity,
           },
         }],
+        options: {
+          changeOutputValues: themeInformation.changeOutputValues,
+        },
         prefix: config.prefix,
         transformGroup: 'tokens-studio',
         transforms: [
@@ -88,6 +92,7 @@ const cssRuns = themes.map(async ({ mode, theme }) => {
 
           'syn/add-fallback-fonts',
           'syn/add-missing-quotes-for-strings',
+          'syn/change-output-values',
           'syn/convert-letter-spacing-to-normal',
           'syn/fix-figma-background-blur',
         ],

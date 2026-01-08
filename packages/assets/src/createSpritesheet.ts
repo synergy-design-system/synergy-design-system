@@ -14,11 +14,11 @@ export type AllowedIconsets = 'sick2018' | 'sick2025';
  */
 export function createSpriteSheet(
   icons: Icon2018Keys[],
-  iconset?: 'sick2018'
+  iconset?: 'sick2018',
 ): string;
 export function createSpriteSheet(
   icons: Icon2025Keys[],
-  iconset: 'sick2025'
+  iconset: 'sick2025',
 ): string;
 export function createSpriteSheet(
   icons: (Icon2018Keys | Icon2025Keys)[],

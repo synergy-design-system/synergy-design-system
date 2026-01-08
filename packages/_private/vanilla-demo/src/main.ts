@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-console */
 import {
   type SynChangeEvent,
   type SynIconButton,
@@ -23,13 +21,13 @@ import '@synergy-design-system/tokens/themes/sick2018_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';
+import {
+  type AllowedSizes,
+  setGlobalSize,
+} from '@synergy-design-system/demo-utilities';
 
 import { createLayout } from './layout.js';
 import { initRouting } from './routing.js';
-import {
-  type AvailableSizes,
-  setGlobalSize,
-} from './utils.js';
 
 const initLayoutSwitch = async () => {
   await customElements.whenDefined('syn-button-group');
@@ -48,6 +46,7 @@ const initLayoutSwitch = async () => {
       }
 
       buttons.forEach(btn => {
+        // eslint-disable-next-line no-param-reassign
         btn.color = btn.dataset.type === type ? 'primary' : 'currentColor';
       });
     });
@@ -102,9 +101,10 @@ const initSizeSwitch = async () => {
       const clickedButton = target.closest('syn-icon-button') as SynIconButton;
       const size = clickedButton.dataset.size!;
 
-      setGlobalSize(size as AvailableSizes);
+      setGlobalSize(size as AllowedSizes);
 
       buttons.forEach(btn => {
+        // eslint-disable-next-line no-param-reassign
         btn.color = btn.dataset.size === size ? 'primary' : 'currentColor';
       });
     });

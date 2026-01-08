@@ -1,15 +1,17 @@
-# Synergy 3.0 Migration Guide
+# Migration to SICK 2025
 
-> ⚠️ **Migration in progress:** Some features may not be fully implemented yet. See the [GitHub migration board](https://github.com/orgs/synergy-design-system/projects/2/views/37) for updates.
-
-> It is currently not advised to use the new version in production, as we are still finalizing the migration process.
-> However, you can start preparing your codebase for the upcoming changes.
+This guide details all steps that are needed to migrate from the SICK 2018 to the new SICK 2025 theme.
+This guide assumes you are using Synergy version 2.
+Synergy version 3 will apply most manual steps outlined in this guide automatically.
 
 ---
 
 ## Migration Checklist: Quick Overview
 
-- [ ] Update Synergy packages to the latest version
+- [ ] Update `@synergy-design-system/components` to the latest stable 2.x version (e.g. `"^2.0.0"`)
+- [ ] Update `@synergy-design-system/tokens` to the latest stable 2.x version (e.g. `"^2.0.0"`)
+- [ ] Update `@synergy-design-system/assets` to the latest stable 1.x version (e.g. `"^1.0.0"`)
+- [ ] Update `@synergy-design-system/styles` to the latest stable 1.x version (e.g. `"^1.0.0"`)
 - [ ] Call `setSystemIconLibrary('sick2025')` before rendering components
 - [ ] Copy new icons to `/assets/icons/`
 - [ ] Import new CSS themes (`sick2025_light.css`, `sick2025_dark.css`)
@@ -18,7 +20,7 @@
 
 ---
 
-## Release Highlights: Synergy 3.0
+## Release Highlights: SICK 2025
 
 - **Brand appearance:** Updated colors, roundings, and overall look
 - **Fonts:** New SICK Intl font replaces Open Sans
@@ -306,7 +308,7 @@ setSystemIconLibrary("sick2025");
 
 ### Reference: Tokens & Themes
 
-Synergy 3.0 introduces new CSS theme files that implement the updated SICK brand appearance:
+The Synergy tokens package introduces new CSS theme files that implement the updated SICK brand appearance:
 
 - **`sick2025_light.css`**: The new light theme featuring the SICK 2025 brand identity
 - **`sick2025_dark.css`**: The new dark theme featuring the SICK 2025 brand identity
@@ -325,7 +327,7 @@ To use the new themes in your application:
 1. **Replace theme imports** in your HTML or CSS:
 
    ```javascript
-   // New Synergy 3.0 themes
+   // New Synergy SICK 2025 themes
    import "@synergy-design-system/tokens/themes/sick2025_light.css";
    import "@synergy-design-system/tokens/themes/sick2025_dark.css";
    ```
@@ -354,7 +356,7 @@ To use the new themes in your application:
 
 ### Reference: SICK Intl Fonts
 
-The SICK 2025 theme introduces a new typeface called **SICK Intl** that replaces the previously used Open Sans font. When migrating to Synergy 3.0 with the SICK 2025 theme, you'll need to ensure this font is properly loaded in your application.
+The SICK 2025 theme introduces a new typeface called **SICK Intl** that replaces the previously used Open Sans font. When migrating to the SICK 2025 theme, you'll need to ensure this font is properly loaded in your application.
 
 > **Important**: The SICK Intl font is now provided via the dedicated `@synergy-design-system/fonts` package for easy integration.
 
@@ -469,7 +471,7 @@ For better performance, you can also preload the font:
 
 ## Migration Steps
 
-These steps are only needed when switching to the new Synergy 3.0 layout.
+These steps are only needed when switching to the new SICK 2025 theme.
 
 1. Always make sure to use the latest versions of the Synergy packages. You can check for updates using your package manager.
 2. Call `setSystemIconLibrary` with `sick2025` to enable the new system icons.

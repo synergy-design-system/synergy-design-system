@@ -36,6 +36,8 @@ export const getPrimaryColorPalette = (useFullTokenName = false) => getColorAsPa
 
 export const getAccentColorPalette = (useFullTokenName = false) => getColorAsPalette('accent', useFullTokenName);
 
+export const getCriticalColorPalette = (useFullTokenName = false) => getColorAsPalette('critical', useFullTokenName);
+
 /**
  * Get the full neutral palette
  */

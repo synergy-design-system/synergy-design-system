@@ -1,5 +1,5 @@
 import type { StorybookConfig } from "@storybook/web-components-vite";
-import StorybookEnvPackageVersions from '../src/storybook-env-package-versions/index';
+import StorybookEnvPackageVersions from '../src/storybook-env-package-versions/index.ts';
 
 const config: StorybookConfig = {
   addons: [
@@ -9,7 +9,6 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     { name: "@storybook/addon-designs", options: { renderTarget: "tab" }, },
     "@storybook/addon-docs",
-    'storybook-addon-tag-badges',
   ],
 
   core: {

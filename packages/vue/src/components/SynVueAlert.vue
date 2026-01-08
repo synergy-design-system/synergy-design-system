@@ -74,6 +74,11 @@ the alert before it closes (e.g.
 the alert will not close on its own.
  */
   duration?: SynAlert['duration'];
+
+  /**
+   * The alert's size.
+   */
+  size?: SynAlert['size'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

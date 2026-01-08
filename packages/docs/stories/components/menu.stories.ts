@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
+import type { SynMenuItem } from '@synergy-design-system/components';
 import { html } from 'lit';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
@@ -51,7 +52,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Navigation', 'SICK2018', 'SICK2025'],
+  tags: ['Navigation'],
   title: 'Components/syn-menu',
 };
 export default meta;
@@ -103,11 +104,22 @@ export const InDropdowns: Story = {
 
 export const Submenus: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('menu', 'submenu'),
       },
     },
+  },
+  play: async ({ canvasElement, userEvent }) => {
+    const lastItem = canvasElement.querySelector('syn-menu-item:last-of-type') as SynMenuItem;
+
+    if (lastItem) {
+      await userEvent.hover(lastItem);
+      await lastItem.updateComplete;
+    }
   },
   render: () => html`
     <syn-menu style="max-width: 200px;">
@@ -191,6 +203,5 @@ export const Submenus: Story = {
 export const Screenshot: Story = generateScreenshotStory({
   InDropdowns,
   Default,
-  Submenus,
 }, 400);
 /* eslint-enable sort-keys */

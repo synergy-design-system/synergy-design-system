@@ -96,7 +96,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Structure', 'SICK2018', 'SICK2025'],
+  tags: ['Structure'],
   title: 'Components/syn-card',
 };
 export default meta;
@@ -246,6 +246,40 @@ export const SharpCard: Story = {
   `,
 };
 
+export const CardWithShadow: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('card', 'shadow'),
+      },
+    },
+  },
+  render: () => html`
+    <div class="shadow-card-wrapper">
+      <syn-card shadow>
+        <img slot="image" src="https://synergy-design-system.github.io/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
+        These are some happy employees, but not just any employees. These are SICK employees.
+      </syn-card>
+      <syn-card shadow sharp>
+        <img slot="image" src="https://synergy-design-system.github.io/card-example.jpg" alt="Multiple persons having lunch in SICK Academy" />
+        These are some happy employees, but not just any employees. These are SICK employees.
+      </syn-card>
+    </div>
+
+    <style>
+      .shadow-card-wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: var(--syn-spacing-large);
+      }
+
+      .shadow-card-wrapper syn-card {
+        max-width: 400px;
+      }
+    </style>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -254,5 +288,6 @@ export const Screenshot: Story = generateScreenshotStory({
   CardWithFooter,
   Images,
   SharpCard,
+  CardWithShadow,
 }, 600);
 /* eslint-enable sort-keys */

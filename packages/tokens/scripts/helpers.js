@@ -1,8 +1,8 @@
-/* eslint-disable no-console */
 import {
   existsSync, mkdirSync, readFileSync, readdirSync,
 } from 'node:fs';
 import { dirname } from 'node:path';
+import { OUTPUT_VARIABLE_CHANGES } from './config.js';
 
 /**
  * Create a folder at provided path
@@ -112,6 +112,7 @@ export const getDefaultTheme = () => {
  * @param {string} theme The theme to get information for
  * @param {string} mode The mode of the theme. Usually dark or light
  * @returns {{
+ *  changeOutputValues: Record<string, string>,
  *  cssFileName: string,
  *  cssSelectors: string[],
  *  theme: string,
@@ -136,7 +137,16 @@ export const getInformationForTheme = (theme, mode) => {
     cssSelectors.push(`.syn-theme-${mode}`);
   }
 
+  // Create the list of selectors that should be changed
+  // depending on the theme and mode.
+  // Make sure to merge the global changes with the specific ones.
+  const changeOutputValues = {
+    ...OUTPUT_VARIABLE_CHANGES.global,
+    ...(OUTPUT_VARIABLE_CHANGES[`${usedTheme}`] || {}),
+  };
+
   return {
+    changeOutputValues,
     cssFileName,
     cssSelectors,
     mode,

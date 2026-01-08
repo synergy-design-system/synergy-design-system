@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/quotes */
 import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [

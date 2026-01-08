@@ -78,5 +78,5 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "type": "module",
-  "version": "1.41.1"
+  "version": "1.41.2"
 }

@@ -11,6 +11,7 @@ export default [
   },
   ...createCustomConfig({
     project: './tsconfig.lint.json',
+    tsconfigRootDir: import.meta.dirname,
   }),
   // Web Components and Lit-specific rules
   wc.configs['flat/recommended'],

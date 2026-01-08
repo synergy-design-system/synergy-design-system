@@ -7,7 +7,7 @@
     "syn-mcp": "./dist/bin/start.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.25.1",
+    "@modelcontextprotocol/sdk": "^1.25.2",
     "@synergy-design-system/assets": "workspace:*",
     "globby": "^16.1.0",
     "zod": "^3.25.76"

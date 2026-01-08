@@ -43,6 +43,7 @@ import { createCustomConfig } from "@synergy-design-system/eslint-config-syn/ts"
 export default [
   ...createCustomConfig({
     project: "./tsconfig.lint.json",
+    tsconfigRootDir: import.meta.dirname,
   }),
 ];
 ```
@@ -143,6 +144,7 @@ Factory function for TypeScript configuration with custom options.
 
 - `parser` - Custom parser (default: `tseslint.parser`)
 - `project` - Path to tsconfig for type-aware linting
+- `tsconfigRootDir` - Root directory for resolving relative tsconfig paths (required in monorepos)
 - `projectService` - Use TypeScript's project service (default: `true` if no project)
 
 **Returns:** ESLint flat config array
@@ -186,9 +188,33 @@ import { createCustomConfig } from "@synergy-design-system/eslint-config-syn/ts"
 export default [
   ...createCustomConfig({
     project: "./tsconfig.json",
+    tsconfigRootDir: import.meta.dirname,
   }),
 ];
 ```
+
+### Multiple TSConfig Candidates Error
+
+In monorepos with multiple packages, you may see an error like:
+
+```
+Parsing error: No tsconfigRootDir was set, and multiple candidate TSConfigRootDirs are present
+```
+
+This happens when ESLint can't determine which package's tsconfig to use. Fix by explicitly setting `tsconfigRootDir`:
+
+```javascript
+import { createCustomConfig } from "@synergy-design-system/eslint-config-syn/ts";
+
+export default [
+  ...createCustomConfig({
+    project: "./tsconfig.lint.json",
+    tsconfigRootDir: import.meta.dirname, // Resolves to the current directory
+  }),
+];
+```
+
+The `import.meta.dirname` provides the directory of the current config file, allowing ESLint to correctly resolve relative tsconfig paths.
 
 ### Playwright Plugin Not Found
 

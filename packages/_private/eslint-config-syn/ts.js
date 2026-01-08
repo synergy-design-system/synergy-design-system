@@ -8,6 +8,7 @@ import jsConfig from './js.js';
  * @param {Object} options - Configuration options
  * @param {*} options.parser - Parser to use (default: tseslint.parser)
  * @param {string|string[]} options.project - Path to tsconfig for type-aware linting
+ * @param {string} options.tsconfigRootDir - Root directory for resolving relative tsconfig paths
  * @param {boolean} options.projectService - Use TypeScript's project service
  *   (default: true if no project specified)
  * @returns {Array} ESLint flat config array
@@ -15,6 +16,7 @@ import jsConfig from './js.js';
 export const createCustomConfig = ({
   parser = tseslint.parser,
   project,
+  tsconfigRootDir,
   projectService = !project,
 }) => [
   ...jsConfig,
@@ -25,7 +27,7 @@ export const createCustomConfig = ({
       parser,
       parserOptions: {
         ...(project
-          ? { project }
+          ? { project, ...(tsconfigRootDir && { tsconfigRootDir }) }
           : { projectService }),
       },
     },

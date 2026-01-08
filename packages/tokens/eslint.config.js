@@ -4,6 +4,7 @@ import scriptsPreset from '@synergy-design-system/eslint-config-syn/presets/scri
 export default [
   ...createCustomConfig({
     project: './tsconfig.lint.json',
+    tsconfigRootDir: import.meta.dirname,
   }),
   // Scripts need additional permissions for build tooling
   scriptsPreset,

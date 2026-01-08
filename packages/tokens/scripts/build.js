@@ -33,7 +33,7 @@ const { author, name, version } = getPackageInformation();
 /**
  * @type {import('style-dictionary/types').LogConfig['verbosity']}
  */
-const verbosity = 'verbose';
+const verbosity = process.env.CI ? 'default' : 'verbose';
 
 const dictionary = new StyleDictionary({
   log: {

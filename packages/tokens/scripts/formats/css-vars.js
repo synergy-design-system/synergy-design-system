@@ -181,7 +181,7 @@ export const cssVariableFormatter = {
     };
     convertOriginalToCssVarRecursive(dictionary);
 
-    if (verbosity !== 'silent' && alreadyIgnoredList.length > 0) {
+    if (verbosity === 'verbose' && alreadyIgnoredList.length > 0) {
       const finalOutputList = Array.from(
         new Set(
           alreadyIgnoredList

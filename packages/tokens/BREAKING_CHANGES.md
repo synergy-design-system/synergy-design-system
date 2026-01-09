@@ -73,6 +73,26 @@ With the release of Synergy version 3, new applications should use the SICK 2025
 
 ---
 
+<h3 id="token-studio-v3">Token Studio</h3>
+
+#### ⚠️ Future deprecation of outdated token studio code
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+TokenStudio is a Figma solution that was used initially for syncing design tokens from Figma to Code.
+With Synergy version 3, we are using Figma Variables for this task.
+The original metadata housed in `src/figma-tokens` is no longer used for Synergy and will therefore be removed.
+
+**Migration Steps**:
+
+- If you still need them, copy the assets located in `src/figma-tokens` to a local destination
+
+---
+
 <!-- USE THIS AS A TEMPLATE FOR ADDITIONAL MIGRATION STEPS
 
 <h3 id="change-VERSION">`Change`</h3>

@@ -11,7 +11,7 @@ export type AvailableSystemIcons = 'sick2018' | 'sick2025';
  * This can be changed at runtime, but should not be done in production.
  * The system icon library is used by Synergy components to ensure consistent icons across the application.
  */
-let icons = sick2018Icons;
+let icons = sick2025Icons;
 
 /**
  * Set the current system icon library.

@@ -281,6 +281,47 @@ enableSettingEmitEvents(true);
 
 ---
 
+<h3 id="icons-v3">`IconLibraries`</h3>
+
+#### ⚠️ Deprecated icon migration utilities
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+Synergy version 2 exposes a couple of low level utilities for managing the migration from the legacy SICK 2018 icon set to the new SICK 2025 icons.
+With Synergy version 3, the use of SICK 2018 icons is discouraged.
+Because of this, the migration utilities are now flagged as `deprecated` and will be removed in a future Synergy release.
+
+This applies to:
+
+- `migrateIconName`
+- `migrateIconNameFilled`
+- `migrationLibrary`
+
+**Migration Steps**:
+
+Consider switching to the new SICK 2025 synergy icons instead.
+
+**Example (before)**:
+
+```javascript
+
+import { enableExperimentalSettingEmitEvents } from "@synergy-design-system/components";
+enableExperimentalSettingEmitEvents(true);
+```
+
+**Example (after)**:
+
+```javascript
+import { enableSettingEmitEvents } from "@synergy-design-system/components";
+enableSettingEmitEvents(true);
+```
+
+---
+
 <h3 id="angular-v3">`@synergy-design-system/angular`</h3>
 
 #### ⚠️ Removed support for outdated Angular versions

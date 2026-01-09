@@ -136,10 +136,18 @@ const writeTsFiles = async (
   icons,
 ) => {
   const output = join(outputPath, `${iconSet}-system-icons.ts`);
+  const deprecationNotice = iconSet === 'sick2018'
+    ? `
+/**
+ * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration-to-sick-2025--docs for further details.
+ */
+`.trimStart()
+    : '';
 
   try {
     const content = `
 /* eslint-disable */
+${deprecationNotice}
 export const icons = ${JSON.stringify(icons, null, 2)};
 `.trimStart();
     await writeFile(output, content, 'utf-8');

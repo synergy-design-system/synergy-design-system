@@ -10,10 +10,10 @@ The source of the assets can be found at [Figma](https://www.figma.com/file/bZFq
 
 ### Installation
 
-Please make sure to install the assets package as a dependency:
+Please make sure to install the assets package as a `devDependency`:
 
 ```bash
-npm install --save @synergy-design-system/assets
+npm install --save-dev @synergy-design-system/assets
 ```
 
 ### Usage

@@ -42,6 +42,7 @@ This package is taking care about getting assets (like logos, system icons and d
 The folder structure of the assets corresponds to the structure of the Figma page.
 
 - **src/component-thumbnails** contains thumbnails from figma components used in Storybook
+- **src/sick2025:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons) for SICK 2025 brand revision in both filled and outline variants. Use those icons when using Synergy version 3.
 - **src/icons:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons) for SICK 2018 brand revision. Use those icons when using Synergy V2
 - **src/logos:** contains the variants of the SICK brand logo
 - **src/system-icons:** contains a small subset of icons, that are internally used by the Synergy components. Default for Synergy V2.

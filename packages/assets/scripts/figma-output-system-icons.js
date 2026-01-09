@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /**
  * @typedef {import('@figma-export/types').ComponentOutputter} ComponentOutputter
  * @typedef {import('@figma-export/types').ComponentNode} ComponentNode
@@ -153,7 +152,6 @@ export const icons = ${JSON.stringify(icons, null, 2)};
     await writeFile(output, content, 'utf-8');
     return true;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(`Error reading file ${output}:`, error);
     return false;
   }
@@ -178,7 +176,6 @@ const writeSvgFiles = async (
   try {
     await mkdir(output, { recursive: true });
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(`Error creating directory ${output}:`, error);
     return false;
   }
@@ -191,7 +188,6 @@ const writeSvgFiles = async (
         await writeFile(filename, svg, 'utf-8');
         return true;
       } catch (error) {
-        // eslint-disable-next-line no-console
         console.error(`Error writing file ${filename}:`, error);
         return false;
       }

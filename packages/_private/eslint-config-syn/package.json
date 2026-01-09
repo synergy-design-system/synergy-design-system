@@ -4,20 +4,27 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^7.18.0",
-    "@typescript-eslint/parser": "^7.18.0",
+    "@eslint/eslintrc": "^3.2.0",
+    "@eslint/js": "^9.17.0",
+    "@stylistic/eslint-plugin": "^5.6.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-plugin-compat": "^6.0.2",
-    "eslint-plugin-import": "^2.32.0"
+    "eslint-plugin-import": "^2.31.0",
+    "globals": "^17.0.0",
+    "typescript-eslint": "^8.51.0"
   },
   "description": "ESLint core rules used in the Synergy Design System",
   "devDependencies": {
-    "eslint": "^8.57.1"
+    "eslint": "^9.17.0"
   },
   "exports": {
-    ".": "./js.js",
-    "./ts": "./ts.js"
+    ".": "./eslint.config.js",
+    "./js": "./js.js",
+    "./ts": "./ts.js",
+    "./presets/scripts": "./presets/scripts.js",
+    "./presets/tests": "./presets/tests.js",
+    "./presets/complexity": "./presets/complexity.js"
   },
   "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_internal/eslint-config-syn",
   "keywords": [
@@ -31,7 +38,13 @@
   "license": "MIT",
   "name": "@synergy-design-system/eslint-config-syn",
   "peerDependencies": {
-    "eslint": ">8.0.0"
+    "eslint": "^9.17.0",
+    "eslint-plugin-playwright": "^2.1.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint-plugin-playwright": {
+      "optional": true
+    }
   },
   "private": true,
   "repository": {
@@ -41,7 +54,9 @@
   },
   "scripts": {
     "lint:js": "eslint .",
+    "lint": "pnpm run /^lint:.*/",
     "format.eslint": "eslint . --fix"
   },
+  "type": "module",
   "version": "0.1.0"
 }

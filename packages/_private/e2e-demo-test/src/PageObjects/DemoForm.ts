@@ -89,7 +89,6 @@ export class DemoForm extends BaseFormObject {
     await this.topics.click();
     await this.angular.click();
     await this.topics.evaluate((role: SynSelect) => {
-      // eslint-disable-next-line no-param-reassign
       role.open = false;
       role.blur();
     });

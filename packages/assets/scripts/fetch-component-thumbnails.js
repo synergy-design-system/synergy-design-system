@@ -1,4 +1,3 @@
-/* eslint-disable complexity */
 /**
  * @typedef {import('@figma/rest-api-spec').ComponentNode} ComponentNode
  * @typedef {import('@figma/rest-api-spec').GetImagesResponse} GetImagesResponse
@@ -84,7 +83,6 @@ async function fetchComponentThumbnails() {
   }
 
   // Write each image to the target directory
-  // eslint-disable-next-line @typescript-eslint/no-misused-promises
   const calls = imageURLs.map(async (url, i) => {
     const imagePath = path.join(targetDir, `${elementNames[i]}.svg`);
     const res = await fetch(url);
@@ -117,12 +115,10 @@ async function fetchComponentThumbnails() {
 fetchComponentThumbnails()
   .then((r) => {
     const success = r.filter((res) => res.status === 'fulfilled' && res.value.success);
-    // eslint-disable-next-line no-console
     console.log(`Component thumbnails fetched and saved successfully (${success.length} out of ${r.length} written).`);
     exit(0);
   })
   .catch(error => {
-    // eslint-disable-next-line no-console
     console.error('Error fetching component thumbnails:', error);
     exit(1);
   });

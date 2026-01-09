@@ -45,7 +45,6 @@ export const changeOutputValues = {
 
     if (nextValue !== null) {
       if (config.log?.verbosity === 'verbose') {
-        // eslint-disable-next-line max-len
         const message = `⚠️ Changing value of ${token.name} from ${token.value} to ${nextValue}. Have a look at the OUTPUT_VARIABLE_CHANGES map in config.js for more information.`;
         console.log(chalk.yellow(message));
       }

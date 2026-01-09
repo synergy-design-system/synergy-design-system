@@ -19,7 +19,7 @@ const getComponentPart = <ElementType extends Element>(el: SynHeader, part: stri
   .querySelector<ElementType>(`[part~="${part}"]`);
 
 describe('<syn-header>', () => {
-  describe('defaults ', () => {
+  describe('defaults', () => {
     it('passes accessibility test', async () => {
       const el = await fixture<SynHeader>(html`<syn-header></syn-header>`);
       await expect(el).to.be.accessible();
@@ -243,7 +243,7 @@ describe('<syn-header>', () => {
     });
   });
 
-  describe('automatic interaction with syn-side-nav ', () => {
+  describe('automatic interaction with syn-side-nav', () => {
     it('should automatically connect with a syn-side-nav if available', async () => {
       const el = await fixture<HTMLDivElement>(html`
         <div>

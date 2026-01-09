@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import path from 'path';
 import url from 'url';
 import ora from 'ora';

@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { DecoratorHelpers } from '@storybook/addon-themes';
 import { StoryContext } from '@storybook/web-components-vite';
 import {

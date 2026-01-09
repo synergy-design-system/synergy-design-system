@@ -82,7 +82,6 @@ test.describe('<SynCombobox />', () => {
 
         const combobox = await AllComponents.getLocator('combobox797');
         await combobox.evaluate((ele: SynCombobox) => {
-          // eslint-disable-next-line no-param-reassign
           ele.value = 'option-3';
         });
         // Check that the displayed value is the text content of the option
@@ -100,7 +99,6 @@ test.describe('<SynCombobox />', () => {
 
         const combobox = await AllComponents.getLocator('combobox797');
         await combobox.evaluate((ele: SynCombobox) => {
-          // eslint-disable-next-line no-param-reassign
           ele.value = 'option-4';
         });
         // Check that the displayed value is the text content of the option
@@ -149,7 +147,6 @@ test.describe('<SynCombobox />', () => {
         const combobox = await AllComponents.getLocator('combobox813Form');
 
         await combobox.evaluate((ele: SynCombobox) => {
-          // eslint-disable-next-line no-param-reassign
           ele.value = '';
         });
 

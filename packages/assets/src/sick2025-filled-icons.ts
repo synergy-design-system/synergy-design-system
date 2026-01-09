@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable quote-props */
-/* eslint-disable @typescript-eslint/comma-dangle */
+/* eslint-disable @stylistic/comma-dangle */
 /* eslint-disable sort-keys */
+/* eslint-disable @stylistic/quotes */
+/* eslint-disable quote-props */
 export const filledIcons = {
   "10k_fill": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='currentColor'><path d=\"M6.385 14.846h1.192V9.154H5.192v1.192h1.193zm2.423 0H13V9.154H8.808zM10 13.654v-3.308h1.808v3.308zm4.23 1.192h1.193V12.54l2.02 2.307h1.48l-2.442-2.865 2.442-2.827h-1.461l-2.039 2.288V9.154h-1.192zM3.5 20.5v-17h17v17z\"/></svg>",
   "10mp_fill": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill='currentColor'><path d=\"M8.654 11.346h1.192V5.654H7.154v1.192h1.5zm3.404 0h4.192V5.654h-4.192zm1.192-1.192V6.846h1.808v3.308zm-7.096 8.192h1.192v-4.5h1.308v3h1.192v-3h1.308v4.5h1.192v-5.692H6.154zm7.5 0h1.192v-1.5h3v-4.192h-4.192zm1.192-2.692v-1.808h1.808v1.808zM3.5 20.5v-17h17v17z\"/></svg>",

@@ -276,7 +276,7 @@ export default class SynSideNav extends SynergyElement {
 
         // The originalTrigger needs to be removed, otherwise when closing the drawer,
         // the first focused nav-item is focused again...
-        // eslint-disable-next-line @typescript-eslint/dot-notation
+        // eslint-disable-next-line dot-notation
         this.drawer['originalTrigger'] = null;
       }
     });

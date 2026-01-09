@@ -265,7 +265,7 @@ test.describe('<SynInput />', () => {
           await AllComponents.activateItem('inputLink');
 
           const input = await AllComponents.getLocator('input872SpinButtons');
-          const decrementButton = await input.locator('[part="decrement-number-stepper"]');
+          const decrementButton = input.locator('[part="decrement-number-stepper"]');
 
           await expect(input, 'Initial value should be "50"').toHaveJSProperty('value', '50');
           await expect(decrementButton, 'decrement-button should be enabled as value is not below min').toBeEnabled();
@@ -282,7 +282,7 @@ test.describe('<SynInput />', () => {
           await AllComponents.activateItem('inputLink');
 
           const input = await AllComponents.getLocator('input872SpinButtons');
-          const incrementButton = await input.locator('[part="increment-number-stepper"]');
+          const incrementButton = input.locator('[part="increment-number-stepper"]');
 
           await expect(input, 'Initial value should be "50"').toHaveJSProperty('value', '50');
           await expect(incrementButton, 'increment-button should be enabled as value is not above max').toBeEnabled();
@@ -308,7 +308,7 @@ test.describe('<SynInput />', () => {
 
         // References to needed elements
         const locator = await AllComponents.getLocator('input1023Autocorrect');
-        const input = await locator.locator('#input');
+        const input = locator.locator('#input');
 
         await expect(input, 'The autocorrect attribute should be set to "off" per default').toHaveAttribute('autocorrect', 'off');
 

@@ -22,7 +22,6 @@ export const RouterLink: FC<RouterLinkProps> = ({
 
   return (
     <SynNavItem
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
       href={usedHref}
       onClick={clickHandler}

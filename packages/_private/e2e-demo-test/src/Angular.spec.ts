@@ -92,6 +92,7 @@ try {
     });
     // END #808
   }); // Angular
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 } catch (e) {
   // Framework not enabled, skip all tests
 }

@@ -13,7 +13,7 @@ import '@synergy-design-system/styles';
 import { enableSettingEmitEvents } from '@synergy-design-system/components';
 
 import './app.css';
-import { App } from './App';
+import { App } from './App.js';
 
 enableSettingEmitEvents(true);
 

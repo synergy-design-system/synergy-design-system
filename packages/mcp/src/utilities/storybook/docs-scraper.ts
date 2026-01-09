@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { StorybookScraper } from './scraper.js';
 import {
   componentScrapingConfig,

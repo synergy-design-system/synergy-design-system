@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 /* eslint-disable no-restricted-syntax */
 /**
  * @typedef {import('@figma-export/types').ComponentOutputter} ComponentOutputter

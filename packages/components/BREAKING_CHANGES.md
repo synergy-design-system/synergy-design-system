@@ -308,7 +308,6 @@ Consider switching to the new SICK 2025 synergy icons instead.
 **Example (before)**:
 
 ```javascript
-
 import { enableExperimentalSettingEmitEvents } from "@synergy-design-system/components";
 enableExperimentalSettingEmitEvents(true);
 ```

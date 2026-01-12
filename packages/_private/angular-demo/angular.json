@@ -29,7 +29,7 @@
               "src/public",
               {
                 "glob": "**/*",
-                "input": "./node_modules/@synergy-design-system/assets/src/icons",
+                "input": "./node_modules/@synergy-design-system/assets/src/sick2018/icons",
                 "output": "/assets/icons"
               }
             ],

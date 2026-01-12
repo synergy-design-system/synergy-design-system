@@ -160,17 +160,14 @@ export const icons = ${JSON.stringify(icons, null, 2)};
 /**
  * Write svg files for the icons.
  * @param {string} outputPath The path to output the TypeScript files.
- * @param {string} iconSet The name of the icon set.
  * @param {Record<string, string>} icons The icons to write to the files.
  * @return {Promise<boolean>} A promise that resolves to true if the files were written successfully, false otherwise.
  */
 const writeSvgFiles = async (
   outputPath,
-  iconSet,
   icons,
 ) => {
-  const pathParts = iconSet === 'sick2018' ? 'system-icons' : `system-icons-${iconSet}`;
-  const output = join(outputPath, pathParts);
+  const output = outputPath;
 
   // Create the directory if it does not exist
   try {
@@ -202,13 +199,13 @@ const writeSvgFiles = async (
  * @param {Object} options - Configuration options for the outputter.
  * @param {string} [options.componentExportFolder='./'] - Path to the output folder for ts assets.
  * @param {function(ComponentNode): boolean} [options.componentFilter] - Function to filter components.
- * @param {string} [options.svgExportFolder='./'] - Path to the output folder for svg assets.
+ * @param {function(string): string} [options.svgExportFolder=(place) => './'] - Function to get the path to the output folder for svg assets.
  * @returns {ComponentOutputter}
  */
 export const outputSystemIcons = ({
   componentExportFolder = './',
   componentFilter = () => true,
-  svgExportFolder = './',
+  svgExportFolder = () => './',
 }) => async (pages) => {
   const allIcons = pages
     // Filter out pages that do not have components
@@ -238,7 +235,7 @@ export const outputSystemIcons = ({
   // Create the svg files in the file system
   const createdSVGFileResults = Object
     .entries(allIcons)
-    .map(async ([place, icons]) => writeSvgFiles(svgExportFolder, place, icons));
+    .map(async ([place, icons]) => writeSvgFiles(svgExportFolder(place), icons));
 
   const resultsTsFiles = await Promise.all(createdTsFileResults);
   const resultsSVGFiles = await Promise.all(createdSVGFileResults);

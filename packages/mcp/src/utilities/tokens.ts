@@ -29,15 +29,3 @@ export const getTokensMetaData = async (type: 'css' | 'javascript' = 'css') => {
     item => finalList.includes(item),
   );
 };
-
-export const getTokensMigrationMetaData = async () => {
-  const fileList = [
-    'CHANGELOG.md',
-    'BREAKING_CHANGES.md',
-  ];
-
-  return getStructuredMetaData(
-    tokensPath,
-    item => fileList.includes(item),
-  );
-};

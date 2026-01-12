@@ -13,7 +13,7 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: 'node_modules/@synergy-design-system/assets/src/icons/*',
+          src: 'node_modules/@synergy-design-system/assets/src/sick2018/icons/*',
           dest: './assets/icons/',
         },
       ],

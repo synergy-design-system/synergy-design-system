@@ -19,35 +19,62 @@ npm install --save-dev @synergy-design-system/assets
 
 ### Usage
 
-#### Images
+#### Icons
 
-All images are provided as svg's.
+All icons are provided as SVG files. The assets package is organized with brand-specific namespaces to ensure clear separation between different icon sets.
 
-The recommended way of using the icons is using the [<syn-icon> Synergy component](https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs). Here you will also get more information about how setting up the assets package on bundlers like vite.
+The recommended way of using the icons is with the [<syn-icon> Synergy component](https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs). Here you will also get more information about setting up the assets package on bundlers like vite.
 
 ```html
 <syn-icon name="warning"></syn-icon>
 ```
 
-Images could also be used directly:
+#### Direct Icon Access
+
+Icons can also be accessed directly from their respective brand namespaces:
 
 ```html
-<img src="assets/icons/warning.svg" />
+<!-- SICK 2025 brand icons (default for Synergy v3+) -->
+<img src="@synergy-design-system/assets/sick2025/icons/outline/warning.svg" />
+<img src="@synergy-design-system/assets/sick2025/icons/fill/warning.svg" />
+
+<!-- SICK 2018 brand icons (for Synergy v2) -->
+<img src="@synergy-design-system/assets/sick2018/icons/warning.svg" />
+
+<!-- System icons -->
+<img src="@synergy-design-system/assets/sick2025/system-icons/warning.svg" />
+<img src="@synergy-design-system/assets/sick2018/system-icons/warning.svg" />
+```
+
+#### Programmatic Access
+
+You can also import icon sets programmatically:
+
+```javascript
+import { sick2025Icons, sick2018Icons } from "@synergy-design-system/assets";
+// or import the default icon set (currently sick2025Icons)
+import { defaultIcons } from "@synergy-design-system/assets";
+
+// Access specific icons
+const warningIcon = sick2025Icons.warning;
 ```
 
 ---
 
 ## Development
 
-This package is taking care about getting assets (like logos, system icons and default icons) from Figma.
-The folder structure of the assets corresponds to the structure of the Figma page.
+This package provides assets from Figma organized in a clear brand-based hierarchy.
+The folder structure corresponds to the brand revisions and their respective usage.
 
-- **src/component-thumbnails** contains thumbnails from figma components used in Storybook
-- **src/sick2025:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons) for SICK 2025 brand revision in both filled and outline variants. Use those icons when using Synergy version 3.
-- **src/icons:** contains the standard icons based on [Material Icons](https://fonts.google.com/icons) for SICK 2018 brand revision. Use those icons when using Synergy V2
-- **src/logos:** contains the variants of the SICK brand logo
-- **src/system-icons:** contains a small subset of icons, that are internally used by the Synergy components. Default for Synergy V2.
-- **src/system-icons-sick2025:** contains a small subset of icons, that are internally used by the Synergy components. Used from Synergy V3 onward.
+- **src/component-thumbnails:** Contains thumbnails from Figma components used in Storybook
+- **src/sick2025:** Contains the SICK 2025 brand revision assets
+  - **icons/outline:** Outline variant icons based on [Material Icons](https://fonts.google.com/icons)
+  - **icons/fill:** Filled variant icons based on [Material Icons](https://fonts.google.com/icons)
+  - **system-icons:** Internal icons used by Synergy components (v3+)
+- **src/sick2018:** Contains the SICK 2018 brand revision assets (legacy)
+  - **icons:** Standard icons based on [Material Icons](https://fonts.google.com/icons) (v2)
+  - **system-icons:** Internal icons used by Synergy components (v2)
+- **src/logos:** Contains variants of the SICK brand logo for all brand revisions
 
 > **Note:** All assets from figma, which should not appear in this package (e.g. documentation), will start with an underscore (e.g. \_my-doc-for-an-asset). This assets are getting filtered and ignored by this package.
 
@@ -76,8 +103,8 @@ pnpm build:all
 This will:
 
 - Clean up the `src` directory
-- download all icons from figma
-- Recreate all default icons
+- Download all assets from Figma into brand-specific namespaces
+- Build TypeScript exports for programmatic access
 - Create the migration iconsets for Synergy 2018 to 2025 via `pnpm create-migration-iconset`
 - Recreate the license files in the different folders
 - Create [code connect files](https://www.figma.com/code-connect-docs/html) for all icons. Please be aware you have to call `pnpm figma-export:icons` in the components package to publish the icons!

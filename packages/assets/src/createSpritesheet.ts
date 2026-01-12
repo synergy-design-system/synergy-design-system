@@ -1,5 +1,7 @@
-import { defaultIcons as sick2018Icons } from './default-icons.js';
-import { defaultIcons as sick2025Icons } from './default-icons-2025.js';
+import {
+  sick2018Icons,
+  sick2025Icons,
+} from './index.js';
 
 export type Icon2018Keys = keyof typeof sick2018Icons;
 export type Icon2025Keys = keyof typeof sick2025Icons;

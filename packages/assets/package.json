@@ -28,29 +28,39 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./icons/*": "./src/icons/*",
-    "./logos/*": "./src/logos/*",
-    "./sick2025/*": "./src/sick2025/*",
-    "./default-icons.js": {
-      "types": "./dist/default-icons.d.ts",
-      "import": "./dist/default-icons.js"
-    },
-    "./default-icons-2025.js": {
-      "types": "./dist/default-icons-2025.d.ts",
-      "import": "./dist/default-icons-2025.js"
-    },
     "./createSpritesheet.js": {
       "types": "./dist/createSpritesheet.d.ts",
       "import": "./dist/createSpritesheet.js"
+    },
+    "./default-icons.js": {
+      "types": "./dist/sick2025/js/outline.d.ts",
+      "import": "./dist/sick2025/js/outline.js"
+    },
+    "./default-icons-2018.js": {
+      "types": "./dist/sick2018/js/index.d.ts",
+      "import": "./dist/sick2018/js/index.js"
+    },
+    "./default-icons-2025.js": {
+      "types": "./dist/sick2025/js/outline.d.ts",
+      "import": "./dist/sick2025/js/outline.js"
+    },
+    "./logos/*": "./src/logos/*",
+    "./sick2018/*": "./src/sick2018/*",
+    "./sick2025/*": "./src/sick2025/*",
+    "./sick2018.js": {
+      "types": "./dist/sick2018/js/index.d.ts",
+      "import": "./dist/sick2018/js/index.js"
+    },
+    "./sick2025.js": {
+      "types": "./dist/sick2025/js/outline.d.ts",
+      "import": "./dist/sick2025/js/outline.js"
     }
   },
   "files": [
     "dist",
-    "src/icons",
     "src/logos",
+    "src/sick2018",
     "src/sick2025",
-    "src/system-icons",
-    "src/system-icons-sick2025",
     "CHANGELOG.md",
     "NOTICE"
   ],

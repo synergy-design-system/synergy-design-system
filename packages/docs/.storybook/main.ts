@@ -24,10 +24,20 @@ const config: StorybookConfig = {
     options: {},
   },
 
-  staticDirs: ['../public', {
-    from: '../../assets/src',
-    to: '/assets'
-  }],
+  staticDirs: [
+    '../public',
+    // 2018 icons are available at /assets/sick2018/wallpaper.svg
+    {
+      from: '../../assets/src/sick2018/icons',
+      to: '/assets/sick2018',
+    },
+    // 2025 icons are available at /assets/sick2025/wallpaper.svg
+    // Only outline is recognized!
+    {
+      from: '../../assets/src/sick2025/icons/outline',
+      to: '/assets/sick2025',
+    },
+  ],
 
   stories: [
     "../stories/Welcome.mdx",

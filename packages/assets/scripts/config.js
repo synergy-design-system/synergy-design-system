@@ -20,17 +20,20 @@ export const FIGMA_FILE_ID_LIBRARY = '3cQ9BFSSaoVfhizV0AJ9GP';
 export const FIGMA_ID_COMPONENT_OVERVIEW = '1234:20961';
 
 // Paths
-export const PATH_ICONS_V2 = 'src/icons';
+export const PATH_ICONS_2018_BASE = 'src/sick2018';
+export const PATH_ICONS_V2 = `${PATH_ICONS_2018_BASE}/icons`;
 export const PATH_LOGOS_V2 = 'src/logos';
-export const PATH_SYSTEM_ICONS_V2 = 'src/system-icons';
+export const PATH_SYSTEM_ICONS_V2 = `${PATH_ICONS_2018_BASE}/system-icons`;
+
 export const PATH_COMPONENT_OVERVIEW = 'src/component-thumbnails';
 
-export const PATH_ICONS_V3 = 'src/sick2025';
-export const PATH_SYSTEM_ICONS_V3 = 'src/system-icons-sick2025';
+export const PATH_ICONS_2025_BASE = 'src/sick2025';
+export const PATH_ICONS_V3 = `${PATH_ICONS_2025_BASE}/icons`;
+export const PATH_SYSTEM_ICONS_V3 = `${PATH_ICONS_2025_BASE}/system-icons`;
 
-export const PATH_DEFAULT_ICONS_2018 = 'src/default-icons.ts';
-export const PATH_DEFAULT_ICONS_2025_FILLED = 'src/sick2025-filled-icons.ts';
-export const PATH_DEFAULT_ICONS_2025_OUTLINE = 'src/sick2025-outline-icons.ts';
+export const PATH_DEFAULT_ICONS_2018 = `${PATH_ICONS_2018_BASE}/js/index.ts`;
+export const PATH_DEFAULT_ICONS_2025_FILLED = `${PATH_ICONS_2025_BASE}/js/filled.ts`;
+export const PATH_DEFAULT_ICONS_2025_OUTLINE = `${PATH_ICONS_2025_BASE}/js/outline.ts`;
 
 export const PATH_LICENSES = './licenses';
 export const LICENSE_SICK = `${PATH_LICENSES}/SICK.txt`;
@@ -53,10 +56,8 @@ export const LICENSE_MAP = [
     license: LICENSE_ICONS,
     name: 'Material Icons License',
     paths: [
-      PATH_ICONS_V2,
-      PATH_SYSTEM_ICONS_V2,
-      PATH_ICONS_V3,
-      PATH_SYSTEM_ICONS_V3,
+      PATH_ICONS_2018_BASE,
+      PATH_ICONS_2025_BASE,
     ],
   },
 ];
@@ -66,10 +67,10 @@ export const LICENSE_MAP = [
  * They are not static and can change based on the configuration or the files being processed.
  */
 export const DYNAMIC_OUTPUT_PATHS = [
-  PATH_ICONS_V2,
+  PATH_ICONS_2018_BASE,
   PATH_LOGOS_V2,
   PATH_SYSTEM_ICONS_V2,
-  PATH_ICONS_V3,
+  PATH_ICONS_2025_BASE,
   PATH_SYSTEM_ICONS_V3,
   PATH_DEFAULT_ICONS_2018,
   PATH_DEFAULT_ICONS_2025_FILLED,

@@ -7,7 +7,7 @@ export type AvailableSystemIcons = 'sick2018' | 'sick2025';
 
 /**
  * The current system icon library.
- * Defaults to 2018 for Synergy V2, will point to 2025 for Synergy V3.
+ * Defaults to 2018 for Synergy V2 and 2025 for Synergy V3.
  * This can be changed at runtime, but should not be done in production.
  * The system icon library is used by Synergy components to ensure consistent icons across the application.
  */
@@ -19,13 +19,12 @@ let icons = sick2025Icons;
  */
 export const setSystemIconLibrary = (library?: AvailableSystemIcons) => {
   switch (library) {
-    case 'sick2025':
-      icons = sick2025Icons;
-      break;
     case 'sick2018':
-    default:
       icons = sick2018Icons;
       break;
+    case 'sick2025':
+    default:
+      icons = sick2025Icons;
   }
 };
 

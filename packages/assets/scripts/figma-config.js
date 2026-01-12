@@ -61,7 +61,7 @@ export const createFigmaExportConfig = ({
       componentFilter: svgComponentFilter,
       getBasename: svgComponentBasename,
       getDirname: () => path,
-      output: './src',
+      output: '.',
     }),
     ...additionalOutputters,
   ],
@@ -98,7 +98,12 @@ export const systemIconsConfig = createFigmaExportConfig({
     outputSystemIcons({
       componentExportFolder: '../components/src/components/icon',
       componentFilter: c => c.figmaExport?.pathToComponent.some(ptc => ptc.name.toLowerCase().includes('system-icons')),
-      svgExportFolder: './src',
+      svgExportFolder: place => {
+        if (place === 'sick2018') {
+          return FIGMA_CONFIG.PATH_SYSTEM_ICONS_V2;
+        }
+        return FIGMA_CONFIG.PATH_SYSTEM_ICONS_V3;
+      },
     }),
   ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_SYSTEM_ICONS,
@@ -119,13 +124,13 @@ export const v2AllIconsConfig = createFigmaExportConfig({
     outputComponentsToBundle({
       exportName: 'defaultIcons',
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: './src/default-icons.ts',
+      output: `./${FIGMA_CONFIG.PATH_DEFAULT_ICONS_2018}`,
     }),
   ],
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
   ids: [FIGMA_CONFIG.FIGMA_ID_ALL_ICONS_V2],
   onlyFromPages: ['Assets'],
-  path: 'icons',
+  path: FIGMA_CONFIG.PATH_ICONS_V2,
 });
 
 // v3 outline icons configuration
@@ -134,7 +139,7 @@ export const v3OutlineIconsConfig = createFigmaExportConfig({
     outputComponentsToBundle({
       exportName: 'outlineIcons',
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: './src/sick2025-outline-icons.ts',
+      output: `./${FIGMA_CONFIG.PATH_DEFAULT_ICONS_2025_OUTLINE}`,
     }),
     outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
@@ -145,7 +150,7 @@ export const v3OutlineIconsConfig = createFigmaExportConfig({
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_OUTLINE_ICONS_V3],
   onlyFromPages: ['Icons'],
-  path: 'sick2025/outline',
+  path: `${FIGMA_CONFIG.PATH_ICONS_V3}/outline`,
 });
 
 // v3 filled icons configuration
@@ -154,7 +159,7 @@ export const v3FilledIconsConfig = createFigmaExportConfig({
     outputComponentsToBundle({
       exportName: 'filledIcons',
       getBasename: ({ basename = '' }) => basename.replace('name=', ''),
-      output: './src/sick2025-filled-icons.ts',
+      output: `./${FIGMA_CONFIG.PATH_DEFAULT_ICONS_2025_FILLED}`,
     }),
     outputComponentsToCodeConnect({
       fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
@@ -165,7 +170,7 @@ export const v3FilledIconsConfig = createFigmaExportConfig({
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V3,
   ids: [FIGMA_CONFIG.FIGMA_ID_FILLED_ICONS_V3],
   onlyFromPages: ['Icons'],
-  path: 'sick2025/fill',
+  path: `${FIGMA_CONFIG.PATH_ICONS_V3}/fill`,
 });
 
 // logo configuration
@@ -174,7 +179,7 @@ export const logosConfig = createFigmaExportConfig({
   ids: [FIGMA_CONFIG.FIGMA_ID_LOGOS],
   onlyFromPages: ['Assets'],
   optimizeSVG: false,
-  path: 'logos',
+  path: 'src/logos',
   svgComponentBasename: ({ basename = '' }) => {
     // Split the base name into parts by variant.
     // Variants look like this in figma:

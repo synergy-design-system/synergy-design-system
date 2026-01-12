@@ -1,8 +1,8 @@
 import { writeFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { defaultIcons as i2018 } from '../dist/default-icons.js';
-import { outlineIcons as i2025 } from '../dist/sick2025-outline-icons.js';
+import { defaultIcons as i2018 } from '../dist/sick2018/js/index.js';
+import { outlineIcons as i2025 } from '../dist/sick2025/js/outline.js';
 
 /**
  * Static mapping between old icon names and new icon names when no direct can be found

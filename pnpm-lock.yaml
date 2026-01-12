@@ -491,7 +491,7 @@ importers:
   packages/angular:
     dependencies:
       '@synergy-design-system/tokens':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../tokens
     devDependencies:
       '@angular/core':
@@ -951,10 +951,10 @@ importers:
         specifier: ^1.0.8
         version: 1.0.8(@types/react@19.2.7)
       '@synergy-design-system/components':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../components
       '@synergy-design-system/tokens':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../tokens
     devDependencies:
       '@types/react':
@@ -1064,10 +1064,10 @@ importers:
   packages/vue:
     dependencies:
       '@synergy-design-system/components':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../components
       '@synergy-design-system/tokens':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../tokens
     devDependencies:
       '@vitejs/plugin-vue':

@@ -181,6 +181,31 @@ describe('<syn-combobox>', () => {
       expect(inputHandler).to.have.been.calledThrice;
     });
 
+    it('should emit syn-change event once when the user types in the combobox the same value again', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const changeHandler = sinon.spy();
+
+      el.addEventListener('syn-change', changeHandler);
+      el.focus();
+      await sendKeys({ type: 'abc' });
+      el.blur();
+      await el.updateComplete;
+
+      el.focus();
+      await sendKeys({ press: 'Backspace' });
+      await sendKeys({ type: 'c' });
+      await el.updateComplete;
+      el.blur();
+
+      expect(changeHandler).to.have.been.calledOnce;
+    });
+
     it('should emit syn-change and syn-input when the value is changed with the mouse', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox>
@@ -204,6 +229,29 @@ describe('<syn-combobox>', () => {
 
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
+      expect(el.value).to.equal('option-2');
+    });
+
+    it('should emit syn-change only once when the same option is clicked twice with mouse', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.show();
+
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+      const changeHandler = sinon.spy();
+
+      el.addEventListener('syn-change', changeHandler);
+
+      await clickOnElement(secondOption);
+      await clickOnElement(secondOption);
+
+      expect(changeHandler.callCount).to.equal(1);
       expect(el.value).to.equal('option-2');
     });
 
@@ -235,6 +283,35 @@ describe('<syn-combobox>', () => {
       expect(changeHandler).to.have.been.calledOnce;
       expect(inputHandler).to.have.been.calledOnce;
       expect(el.value).to.equal('option-3');
+    });
+
+    it('should emit syn-change only once if the same option is selected twice with the keyboard', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const changeHandler = sinon.spy();
+
+      el.addEventListener('syn-change', changeHandler);
+
+      const selectOption1 = async () => {
+        el.focus();
+        await el.updateComplete;
+        await sendKeys({ press: 'ArrowDown' }); // open the dropdown and move to first option
+        await el.updateComplete;
+        await sendKeys({ press: 'Enter' }); // commit the selection
+        await el.updateComplete;
+        el.blur();
+      };
+      // select option 1 twice
+      await selectOption1();
+      await selectOption1();
+
+      expect(changeHandler.callCount).to.equal(1);
+      expect(el.value).to.equal('option-1');
     });
 
     it('should not emit syn-change or syn-input when a disabled option is selected with the keyboard', async () => {

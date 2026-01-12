@@ -583,7 +583,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       // Update the value based on the current selection and close it
       if (currentOption) {
         this.valueHasChanged = true;
-        const oldValue = this.lastOptions ? getValuesFromOptions(this.lastOptions) : undefined;
+        const oldValue = this.lastOptions ? getValuesFromOptions(this.lastOptions) : [];
 
         if (this.multiple) {
           this.toggleOptionSelection(currentOption);
@@ -593,7 +593,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
         this.selectionChanged();
 
-        if (this.value !== oldValue) {
+        const value = Array.isArray(this.value) ? this.value : [this.value];
+        if (!compareValues(oldValue, value)) {
           // Emit after updating
           this.updateComplete.then(() => {
             this.emit('syn-input');
@@ -730,11 +731,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   /* eslint-disable @typescript-eslint/no-floating-promises */
-  // eslint-disable-next-line complexity
   private handleOptionClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const option = target.closest('syn-option');
-    const oldValue = this.lastOptions ? getValuesFromOptions(this.lastOptions) : undefined;
+    const oldValue = this.lastOptions ? getValuesFromOptions(this.lastOptions) : [];
     if (option && !option.disabled) {
       this.valueHasChanged = true;
       if (this.multiple) {
@@ -747,7 +747,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       // Set focus after updating so the value is announced by screen readers
       this.updateComplete.then(() => this.displayInput.focus({ preventScroll: true }));
 
-      if (this.value !== oldValue) {
+      const value = Array.isArray(this.value) ? this.value : [this.value];
+      if (!compareValues(oldValue, value)) {
         // Emit after updating
         this.updateComplete.then(() => {
           this.emit('syn-input');

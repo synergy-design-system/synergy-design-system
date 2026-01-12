@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "@lit/react": "^1.0.8",
-    "@synergy-design-system/components": "workspace:^"
+    "@synergy-design-system/components": "workspace:*"
   },
   "description": "React wrappers for the Synergy Design System",
   "exports": {
@@ -49,6 +49,6 @@
     "react": "^19.2.3"
   },
   "peerDependencies": {
-    "@synergy-design-system/tokens": "workspace:^"
+    "@synergy-design-system/tokens": "workspace:*"
   }
 }

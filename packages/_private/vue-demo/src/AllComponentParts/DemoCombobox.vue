@@ -12,10 +12,10 @@ const delimiterItems = mockData('comboboxItemsWithPipe');
 
 onMounted(async () => {
 
-  const items = await mockAsyncData('selectItems');
-  levels.value = items;
   const value = await mockAsyncData('valueWithPipe');
   asyncValue.value = value;
+  const items = await mockAsyncData('selectItems', 10);
+  levels.value = items;
 });
 </script>
 

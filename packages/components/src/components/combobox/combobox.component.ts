@@ -126,6 +126,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private isInitialized: boolean = false;
 
+  /** Flag to prevent infinite loop when updating options programmatically */
+  private isOptionRendererTriggered: boolean = false;
+
   private resizeObserver: ResizeObserver;
 
   private mutationObserver: MutationObserver;
@@ -295,7 +298,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * The delimiter to use when setting the value when `multiple` is enabled.
    * The default is a space, but you can set it to a comma or other character.
    * @example <syn-combobox delimiter="|" value="option-1|option-2"></syn-combobox>
-   * // TODO: is the default of space correct? maybe we should rather use some random mark, which is unlikely to be used in values?
    */
   @property() delimiter = '|';
 
@@ -360,30 +362,24 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     super.connectedCallback();
 
     this.mutationObserver = new MutationObserver((entries) => {
-      const isOtherTarget = entries.some(entry => entry.target !== this);
-      if (!isOtherTarget) {
-        return;
-      }
-
-      // TODO: what happens with options that do not have a value?
-      // Check for any value change in entry and the new value is not a nullish value
-      const hasValueChanged = entries.some(entry => entry.attributeName === 'value' && entry.oldValue !== (entry.target as HTMLElement).getAttribute('value') && !!(entry.target as HTMLElement).getAttribute('value'));
-
-      // check for changed textContent of options, so the filtered list is updated on change
-      const hasChangedTextContent = entries.some(entry => {
-        if(entry.type === 'childList' && entry.addedNodes?.length > 0 && entry.removedNodes?.length > 0 || entry.type === 'characterData') {
-          return true;
-        } else {
+      // Only process attribute mutations on SynOption instances for the 'value' attribute. This is needed for changing of "delimiter"
+      const hasRelevantValueChange = entries.some(entry => {
+        // Check if the target is a SynOption instance
+        if (!(entry.target instanceof SynOption)) {
           return false;
         }
 
+        // Check if it's an attribute mutation for the 'value' attribute
+        if (entry.type !== 'attributes' || entry.attributeName !== 'value') {
+          return false;
+        }
+
+        // Check if the value actually changed and is not nullish
+        const currentValue = (entry.target as HTMLElement).getAttribute('value');
+        return entry.oldValue !== currentValue && !!currentValue;
       });
 
-      const slottedOptions = this.getSlottedOptions();
-      const optionsLength = slottedOptions.length;
-      const cachedOptionsLength = this.cachedOptions.length;
-
-      if (hasValueChanged || cachedOptionsLength !== optionsLength || hasChangedTextContent) {
+      if (hasRelevantValueChange) {
         this.handleSlotContentChange();
       }
     });
@@ -392,8 +388,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       attributeFilter: ['value'],
       attributeOldValue: true,
       attributes: true,
-      characterData: true,
-      characterDataOldValue: true,
       childList: true,
       subtree: true,
     });
@@ -1045,6 +1039,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private createComboboxOptionsFromQuery(queryString: string) {
     this.numberFilteredOptions = 0;
 
+    // Prevent slot change events during option updates
+    this.isOptionRendererTriggered = true;
+
     // This is needed for angular. For some reason the handleSlotContentChange is not triggered
     // initially and therefore the cachedOptions are not set.
     if (this.cachedOptions.length === 0) {
@@ -1083,6 +1080,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     // Hide the divider of the first visible optgroup, as it can unfortunately not be hidden via css
     visibleOptgroups[0]?.style.setProperty('--display-divider', 'none');
+
+    // Reset flag after updates are complete
+    setTimeout(() => {
+      this.isOptionRendererTriggered = false;
+    });
   }
   /* eslint-enable no-param-reassign, @typescript-eslint/no-floating-promises */
 
@@ -1270,22 +1272,23 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
 
   /**
-   * Synchronizes the internal component state with changes to slotted content.
+   * Synchronizes the internal component state with changes to slotted options.
    *
    * This method is automatically triggered by:
-   * - MutationObserver when option values, text content, or DOM structure changes
-   * - Initial component setup during connectedCallback
-   * - Custom element registration completion for syn-option
+   * - MutationObserver when option 'value' attributes change
+   * - Initial component setup during connectedCallback (after timeout)
+   * - Default slot changes (via handleDefaultSlotChange)
+   * - Custom element registration completion for syn-option (deferred execution)
    *
    * The synchronization process:
-   * 1. Ensures syn-option custom elements are registered before processing
+   * 1. Waits for syn-option custom elements to be registered before processing
    * 2. Updates delimiter settings on all slotted options
-   * 3. Refreshes the internal cache of options and optgroups for performance
+   * 3. Refreshes the internal cache of options and optgroups
    * 4. Synchronizes selected options based on current component value
-   * 5. Auto-opens listbox if new options are added while component has focus
+   * 5. Auto-opens listbox if component has focus, has value, and is currently closed
    *
-   * This maintains consistency between the slotted DOM content and the component's
-   * internal state, ensuring proper filtering, selection, and accessibility features.
+   * This ensures the component's internal state stays consistent with the slotted
+   * DOM content after options are added, removed, or their values change.
    *
    */
   private handleSlotContentChange() {
@@ -1295,9 +1298,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       return;
     }
 
-    // TODO: Should this be done in the mutationserver only id a new option was added instead of here?
     this.handleDelimiterChange();
-
     this.cacheSlottedOptionsAndOptgroups();
 
     this.updateSelectedOptionFromValue();
@@ -1306,6 +1307,15 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     if (this.hasFocus && this.value.length > 0 && !this.open) {
       this.show();
     }
+  }
+
+  public handleDefaultSlotChange() {
+    // Ignore slot changes triggered by our own option updates
+    if (this.isOptionRendererTriggered) {
+      return;
+    }
+
+    this.handleSlotContentChange();
   }
 
   /* eslint-disable @typescript-eslint/unbound-method */
@@ -1462,7 +1472,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                       >${this.localize.term('noResults')}</span
                     >`
         : ''}
-                <slot class=${classMap({ options__hide: this.hideOptions })}></slot>      
+                <slot class=${classMap({ options__hide: this.hideOptions })} @slotchange=${this.handleDefaultSlotChange}></slot>      
               </div>
             </div>
           </syn-popup>

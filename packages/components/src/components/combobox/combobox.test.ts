@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-floating-promises */
 import '../../../dist/synergy.js';
 import {
-  aTimeout, elementUpdated, expect, fixture, html, nextFrame, oneEvent, waitUntil,
+  aTimeout, expect, fixture, html, nextFrame, oneEvent, waitUntil,
 } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
@@ -1984,6 +1984,34 @@ describe('<syn-combobox>', () => {
           <syn-combobox value="Option|1" multiple>
             <syn-option value="Option|1">Option|1</syn-option>
             <syn-option value="Option|2">Option|2</syn-option>
+          </syn-combobox>
+        `);
+      await el.updateComplete;
+
+      const tags = el.shadowRoot!.querySelectorAll('syn-tag');
+      expect(tags.length).to.equal(0);
+
+      expect(el.value).to.deep.equal([]);
+      expect(el.displayLabel).to.equal('');
+
+      el.delimiter = '+';
+      await el.updateComplete;
+
+      const tagsAfterChange = el.shadowRoot!.querySelectorAll('syn-tag');
+
+      expect(el.value).to.deep.equal(['Option|1']);
+      expect(el.displayLabel).to.equal('');
+      expect(tagsAfterChange.length).to.equal(1);
+
+      const tagsContent = tagsAfterChange[0].textContent.trim();
+      expect(tagsContent).to.equal('Option|1');
+    });
+
+    it('should show correct value for textContent only option if delimiter was changed async', async () => {
+      const el = await fixture<SynCombobox>(html`
+          <syn-combobox value="Option|1" multiple>
+            <syn-option>Option|1</syn-option>
+            <syn-option>Option|2</syn-option>
           </syn-combobox>
         `);
       await el.updateComplete;

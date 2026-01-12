@@ -6,6 +6,7 @@
 import transformSvgWithSvgo from '@figma-export/transform-svg-with-svgo';
 import * as FIGMA_CONFIG from './config.js';
 import { outputComponentsToBundle } from './figma-output-bundle-icons.js';
+import { figmaOutputThumbnails } from './figma-output-thumbnails.js';
 import { figmaOutputSvg } from './figma-output-svg.js';
 import { outputSystemIcons } from './figma-output-system-icons.js';
 import { outputComponentsToCodeConnect } from './figma-output-export-code-connect.js';
@@ -190,6 +191,39 @@ export const logosConfig = createFigmaExportConfig({
 });
 
 /**
+ * Configuration for exporting component thumbnails from the Figma library.
+ * @type {ComponentsCommandOptions} Configuration for exporting component thumbnails.
+ */
+export const thumbnailsConfig = {
+  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_LIBRARY,
+  ids: ['1234:20960'],
+  onlyFromPages: ['Component overview'],
+  outputters: [
+    figmaOutputThumbnails({
+      extractIndividualComponents: true,
+      getBasename: () => 'overview.svg',
+      getDirname: () => '.',
+      output: FIGMA_CONFIG.PATH_COMPONENT_OVERVIEW,
+    }),
+  ],
+  transformers: [
+    transformSvgWithSvgo({
+      multipass: true,
+      plugins: [
+        {
+          name: 'preset-default',
+          params: {
+            overrides: {
+              removeViewBox: false,
+            },
+          },
+        },
+      ],
+    }),
+  ],
+};
+
+/**
  * V2 consists of all icons and system icons.
  */
 export const CONFIG_FOR_V2 = [
@@ -210,6 +244,7 @@ export const CONFIG_FOR_V3 = [
 export const CONFIG_FOR_ALL = [
   systemIconsConfig,
   logosConfig,
+  thumbnailsConfig,
   ...CONFIG_FOR_V2,
   ...CONFIG_FOR_V3,
 ];

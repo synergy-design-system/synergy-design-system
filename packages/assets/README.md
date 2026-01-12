@@ -5,6 +5,7 @@ This package provides assets like:
 - **logos:** a collection of various logos (such as the variants of the SICK brand logo)
 - **icons:** the standard icons based on [Material Icons](https://fonts.google.com/icons)
 - **system-icons:** a small subset of icons, that are internally used by the Synergy components
+- **component-thumbnails:** preview icons of components, used in the Synergy documentation page
 
 The source of the assets can be found at [Figma](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=104-233&mode=design&t=GPu4VVd9yffLLAaS-0)
 
@@ -80,8 +81,3 @@ This will:
 - Create the migration iconsets for Synergy 2018 to 2025 via `pnpm create-migration-iconset`
 - Recreate the license files in the different folders
 - Create [code connect files](https://www.figma.com/code-connect-docs/html) for all icons. Please be aware you have to call `pnpm figma-export:icons` in the components package to publish the icons!
-
-### Updating thumbnails
-
-Updating thumbnails is quite intense and may lead to 429 rate limit request issues with the Figma API.
-Therefore, this is not done automatically. You may use `pnpm build:with-thumbnails` for a full build including the thumbnails or `pnpm fetch-components-thumbnails` directly.

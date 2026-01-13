@@ -1428,6 +1428,11 @@
   },
   "page": {
     "background": {
+      "description": "Will be DEPRECATED",
+      "type": "color",
+      "value": "{color.neutral.100}"
+    },
+    "background-color": {
       "type": "color",
       "value": "{color.neutral.100}"
     }
@@ -1672,6 +1677,16 @@
         "type": "sizing",
         "value": "{spacing.medium}"
       }
+    }
+  },
+  "toggle-button": {
+    "border-radius": {
+      "type": "sizing",
+      "value": "{border-radius.none}"
+    },
+    "color": {
+      "type": "color",
+      "value": "{panel.border.color}"
     }
   },
   "tooltip": {

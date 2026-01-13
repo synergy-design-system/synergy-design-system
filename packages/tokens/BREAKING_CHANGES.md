@@ -93,6 +93,40 @@ The original metadata housed in `src/figma-tokens` is no longer used for Synergy
 
 ---
 
+<h3 id="token-syn-page-background-v3">`--syn-page-background`</h3>
+
+#### ⚠️ Future deprecation
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+The token `--syn-page-background` does not match the semantics of our other tokens. Therefore, we renamed it to `--syn-page-background-color`. The token still works, but will be removed in a future major release.
+
+**Migration Steps**:
+
+Just exchange all occurrences of `--syn-page-background` with `--syn-page-background-color`.
+
+**Example (before)**:
+
+```css
+body {
+  background-color: var(--syn-page-background);
+}
+```
+
+**Example (after)**:
+
+```css
+body {
+  background-color: var(--syn-page-background-color);
+}
+```
+
+---
+
 <!-- USE THIS AS A TEMPLATE FOR ADDITIONAL MIGRATION STEPS
 
 <h3 id="change-VERSION">`Change`</h3>

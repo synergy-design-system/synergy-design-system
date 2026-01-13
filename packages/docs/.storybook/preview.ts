@@ -83,7 +83,7 @@ const preview: Preview = {
   parameters: {
     backgrounds: {
       options: {
-        'page': { name: 'page', value: 'var(--syn-page-background)' },
+        'page': { name: 'page', value: 'var(--syn-page-background-color)' },
         'panel': { name: 'panel', value: 'var(--syn-panel-background-color)' },
         'neutral-0': { name: 'neutral-0', value: 'var(--syn-color-neutral-0)' },
         'neutral-50': { name: 'neutral-50', value: 'var(--syn-color-neutral-50)' },

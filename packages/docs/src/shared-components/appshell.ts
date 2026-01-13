@@ -100,7 +100,7 @@ export const createSharedStyles = () => html`
     }
 
     .synergy-demo-content {
-      background: var(--syn-page-background);
+      background: var(--syn-page-background-color);
       display: flex;
       flex: 1 0 auto;
       flex-direction: column;

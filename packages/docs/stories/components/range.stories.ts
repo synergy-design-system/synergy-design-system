@@ -268,7 +268,7 @@ export const PrefixSuffixText: Story = {
         gap: var(--syn-spacing-medium);
 
         syn-input {
-          min-width: 0;
+          max-width: 6.5rem;
         }
       }
     </style>

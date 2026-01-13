@@ -2,25 +2,25 @@ import { css } from 'lit';
 
 export default css`
   :host([size='small']) {
-   --height: var(--syn-switch-height-small, calc(var(--syn-toggle-size-medium) + 2px));
+   --height: var(--syn-switch-height-small);
    --thumb-size: var(--syn-toggle-size-small);
-   --width: var(--syn-switch-width-small, calc((var(--height) * 2) - 6px));
+   --width: var(--syn-switch-width-small);
 
     font-size: var(--syn-input-font-size-small);
   }
 
   :host([size='medium']) {
-    --height: var(--syn-switch-height-medium, calc(var(--syn-toggle-size-medium) + 4px));
+    --height: var(--syn-switch-height-medium);
     --thumb-size: var(--syn-toggle-size-medium);
-    --width: var(--syn-switch-width-medium, calc((var(--height) * 2) - 6px));
+    --width: var(--syn-switch-width-medium);
 
     font-size: var(--syn-input-font-size-medium);
   }
 
   :host([size='large']) {
-    --height: var(--syn-switch-height-large, calc(var(--syn-toggle-size-large) + 4px));
+    --height: var(--syn-switch-height-large);
     --thumb-size: var(--syn-toggle-size-large);
-    --width: var(--syn-switch-width-large, calc((var(--height) * 2) - 6px));
+    --width: var(--syn-switch-width-large);
 
     font-size: var(--syn-input-font-size-large);
   }
@@ -58,8 +58,8 @@ export default css`
 
   /* Checked */
   .switch--checked .switch__control {
-    background-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
-    border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
+    background-color: var(--syn-interactive-emphasis-color);
+    border-color: var(--syn-interactive-emphasis-color);
   }
   
   /* Hover */
@@ -74,8 +74,8 @@ export default css`
 
   /* Checked + hover */
   .switch.switch--checked:not(.switch--disabled):hover .switch__control {
-    background-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
-    border-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
+    background-color: var(--syn-interactive-emphasis-color-hover);
+    border-color: var(--syn-interactive-emphasis-color-hover);
   }
 
   .switch.switch--checked:not(.switch--disabled):hover .switch__control:hover .switch__thumb {
@@ -114,8 +114,8 @@ export default css`
 
   /* Checked + focus */
   .switch.switch--checked:not(.switch--disabled) .switch__input:focus-visible ~ .switch__control {
-    background-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
-    border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
+    background-color: var(--syn-interactive-emphasis-color);
+    border-color: var(--syn-interactive-emphasis-color);
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
   }
@@ -130,12 +130,12 @@ export default css`
   }
   
   :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control {
-    background-color: var(--syn-input-border-color-focus-error, var(--syn-color-error-700));
-    border-color: var(--syn-input-border-color-focus-error, var(--syn-color-error-700));
+    background-color: var(--syn-input-border-color-focus-error);
+    border-color: var(--syn-input-border-color-focus-error);
   }
 
   :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled):hover .switch__control {
-    background-color: var(--syn-input-border-color-hover, var(--syn-color-error-900));
-    border-color: var(--syn-input-border-color-hover, var(--syn-color-error-900));
+    background-color: var(--syn-input-border-color-hover);
+    border-color: var(--syn-input-border-color-hover);
   }
   `;

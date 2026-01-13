@@ -281,6 +281,68 @@ enableSettingEmitEvents(true);
 
 ---
 
+<h3 id="syn-var-fallbacks-v3">Variable fallbacks</h3>
+
+#### ⚠️ Removed all fallback variables in components
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+During the migration process of Synergy version 2 to version 3, we added a compatibility layer in the components that made it possible for users with misaligned versions of the components and tokens package to still use the updated styles. This was achieved using fallbacks like this:
+
+```css
+/* Original code of Synergy version 2 */
+.alert--success {
+  --variant-color-border: var(
+    --syn-alert-success-color-border,
+    var(--syn-panel-border-color)
+  );
+}
+```
+
+This helped introduce Synergies new semantic layer without breaking the software. However, this also lead to increased bundle sizes.
+
+As the component and token packages are now version aligned, there is no more need for this deprecation layer in the components like this:
+
+```css
+/* Updated code of Synergy version 3 */
+.alert--success {
+  --variant-color-border: var(--syn-alert-success-color-border);
+}
+```
+
+**Migration Steps**:
+
+- Make sure you have matching versions of `@synergy-design-system/components` and `@synergy-design-system/tokens`.
+- The components package now declares a `peerDependency` on the same version of `@synergy-design-system/tokens`. You may also remove the installation of `@synergy-design-system/tokens` that was manually needed before.
+
+**Example (before)**:
+
+```json
+{
+  "dependencies": {
+    "@synergy-design-system/components": "^2.55.0",
+    "@synergy-design-system/tokens": "2.11.0"
+  }
+}
+```
+
+**Example (after)**:
+
+```json
+{
+  "dependencies": {
+    "@synergy-design-system/components": "^3.0.0",
+    "@synergy-design-system/tokens": "3.0.0"
+  }
+}
+```
+
+---
+
 <h3 id="icons-v3">`IconLibraries`</h3>
 
 #### ⚠️ Deprecated icon migration utilities

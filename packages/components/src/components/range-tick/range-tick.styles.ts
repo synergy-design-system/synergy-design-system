@@ -15,7 +15,7 @@ export default css`
   }
 
   .tick-line {
-    background: var(--syn-range-tick-color, var(--syn-color-neutral-400));
+    background: var(--syn-range-tick-color);
     height: var(--tick-height);
   }
 

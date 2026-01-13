@@ -36,18 +36,18 @@ export default css`
   }
 
   .option:not(.option--current) {
-    color: var(--syn-option-color, var(--syn-typography-color-text));
+    color: var(--syn-option-color);
   }
 
   .option--current,
   .option--current.option--hover:not(.option--disabled) {
-    background-color: var(--syn-option-background-color-active, var(--syn-color-neutral-1000));
-    color: var(--syn-option-color-active, var(--syn-typography-color-text-inverted));
+    background-color: var(--syn-option-background-color-active);
+    color: var(--syn-option-color-active);
   }
 
   .option--hover:not(.option--current):not(.option--disabled) {
-    background-color: var(--syn-option-background-color-hover, var(--syn-color-neutral-1000));
-    color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
+    background-color: var(--syn-option-background-color-hover);
+    color: var(--syn-option-color-hover);
   }
 
   /** #429: Use token for opacity */
@@ -56,8 +56,8 @@ export default css`
   }
 
   .option--current.option--disabled {
-    background-color: var(--syn-option-background-color-hover, var(--syn-color-neutral-1000));
-    color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
+    background-color: var(--syn-option-background-color-hover);
+    color: var(--syn-option-color-hover);
   }
 
   .option__label {
@@ -65,7 +65,7 @@ export default css`
   }
 
   .option__check {
-    color: var(--syn-option-check-color, var(--syn-color-primary-600));
+    color: var(--syn-option-check-color);
     font-size: var(--option-icon-size, var(--syn-spacing-large));
   }
 
@@ -75,11 +75,11 @@ export default css`
 
   /* Invert the check mark when keyboard navigation is used */
   .option--current .option__check {
-    color: var(--syn-option-check-color-active, var(--syn-color-neutral-0));
+    color: var(--syn-option-check-color-active);
   }
 
   .option--hover:not(.option--current) .option__check {
-    color: var(--syn-option-check-color-hover, var(--syn-color-neutral-0));
+    color: var(--syn-option-check-color-hover);
   }
 
   /* Use larger spacing between icons and content */
@@ -94,18 +94,18 @@ export default css`
   /* Set correct icon size when someone uses syn-icon in the slots */
   .option__prefix::slotted(syn-icon),
   .option__suffix::slotted(syn-icon) {
-    color: var(--syn-option-icon-color, var(--syn-typography-color-text));
+    color: var(--syn-option-icon-color);
     font-size: var(--option-icon-size, var(--syn-spacing-large));
   }
 
   .option--hover .option__prefix::slotted(syn-icon),
   .option--hover .option__suffix::slotted(syn-icon) {
-    color: var(--syn-option-icon-color-hover, var(--syn-color-neutral-800));
+    color: var(--syn-option-icon-color-hover);
   }
 
   .option--current .option__prefix::slotted(syn-icon),
   .option--current .option__suffix::slotted(syn-icon) {
-    color: var(--syn-option-icon-color-active, var(--syn-color-neutral-800));
+    color: var(--syn-option-icon-color-active);
   }
 
   /* This is needed for the highlight styling of the options in syn-combobox */

@@ -35,29 +35,32 @@ If you encounter such errors, make sure to provide a fixed `max-width`.
  -- The right container will be much larger with numeric-strategy="modern" applied
 -->
 <div class="container">
-  <div class="left">
-    Content (auto grow)
-  </div>
+  <div class="left">Content (auto grow)</div>
   <div class="right">
-    <syn-input type="number" min="5" max="10" numeric-strategy="modern"></syn-input>
+    <syn-input
+      type="number"
+      min="5"
+      max="10"
+      numeric-strategy="modern"
+    ></syn-input>
   </div>
 </div>
 
 <style>
-.container {
-  display: flex;
-  flex-direction: row;
-  flex: 1 0 auto;
-}
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex: 1 0 auto;
+  }
 
-.left {
-  flex: 1;
-  width: 100%;
-}
+  .left {
+    flex: 1;
+    width: 100%;
+  }
 
-.right {
-  flex-grow: 0;
-}
+  .right {
+    flex-grow: 0;
+  }
 </style>
 ```
 
@@ -67,11 +70,14 @@ If you do not need the `modern` behavior, use `numeric-strategy="native"` instea
 
 ```html
 <div class="container">
-  <div class="left">
-    Content (auto grow)
-  </div>
+  <div class="left">Content (auto grow)</div>
   <div class="right">
-    <syn-input type="number" min="5" max="10" numeric-strategy="native"></syn-input>
+    <syn-input
+      type="number"
+      min="5"
+      max="10"
+      numeric-strategy="native"
+    ></syn-input>
   </div>
 </div>
 ```
@@ -82,18 +88,21 @@ Set the width of the element directly
 
 ```html
 <div class="container">
-  <div class="left">
-    Content (auto grow)
-  </div>
+  <div class="left">Content (auto grow)</div>
   <div class="right">
-    <syn-input type="number" min="5" max="10" numeric-strategy="modern"></syn-input>
+    <syn-input
+      type="number"
+      min="5"
+      max="10"
+      numeric-strategy="modern"
+    ></syn-input>
   </div>
 </div>
 
 <style>
-.right syn-input {
-  width: 130px;
-}
+  .right syn-input {
+    width: 130px;
+  }
 </style>
 ```
 

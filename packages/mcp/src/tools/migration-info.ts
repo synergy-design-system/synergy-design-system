@@ -17,6 +17,7 @@ export const migrationInfoTool = (server: McpServer) => {
         synergyPackage: z.enum([
           'assets',
           'components',
+          'styles',
           'tokens',
         ]).default('components').optional().describe('The package to get migration information about.'),
       },

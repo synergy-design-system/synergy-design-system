@@ -33,7 +33,7 @@ export default css`
   /* Overlay Background */
   .dialog__overlay {
     /* #946: Add background blur for sick 2025 */
-    backdrop-filter: blur(var(--syn-overlay-background-blur, 0));
+    backdrop-filter: blur(var(--syn-overlay-background-blur));
   }
 
   /**

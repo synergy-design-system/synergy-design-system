@@ -3,13 +3,14 @@ import {
   componentBasePath,
   componentMigrationPath,
   staticMigrationPath,
+  stylesPath,
   tokensPath,
 } from './config.js';
 import {
   getStructuredMetaData,
 } from './metadata.js';
 
-type AvailablePackages = 'assets' | 'components' | 'tokens';
+type AvailablePackages = 'assets' | 'components' | 'tokens' | 'styles';
 
 const getAssetsMigrationMetaData = async () => {
   const fileList = [
@@ -19,6 +20,18 @@ const getAssetsMigrationMetaData = async () => {
 
   return getStructuredMetaData(
     assetsPath,
+    item => fileList.includes(item),
+  );
+};
+
+const getStylesMigrationMetaData = async () => {
+  const fileList = [
+    'CHANGELOG.md',
+    'BREAKING_CHANGES.md',
+  ];
+
+  return getStructuredMetaData(
+    stylesPath,
     item => fileList.includes(item),
   );
 };
@@ -51,6 +64,7 @@ export const getMigrationMetaData = async (requestedPackage: AvailablePackages =
   switch (requestedPackage) {
   case 'assets': return getAssetsMigrationMetaData();
   case 'tokens': return getTokensMigrationMetaData();
+  case 'styles': return getStylesMigrationMetaData();
   case 'components':
   default: return getComponentsMigrationMetaData();
   }

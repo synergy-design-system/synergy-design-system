@@ -21,7 +21,7 @@ export default css`
   .checkbox--checked .checkbox__control,
   .checkbox--indeterminate .checkbox__control {
     background-color: var(--syn-interactive-emphasis-color);
-    border-color: var(--syn-interactive-emphasis-color));
+    border-color: var(--syn-interactive-emphasis-color);
   }
 
   :host([data-user-invalid]) .checkbox__control {

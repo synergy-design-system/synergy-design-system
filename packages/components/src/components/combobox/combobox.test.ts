@@ -1726,6 +1726,54 @@ describe('<syn-combobox>', () => {
       expect(el.value).to.deep.equal(['option-1', 'option-2', 'option-3']);
     });
 
+    it('should deselect an option if it is clicked again', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const inputHandler = sinon.spy();
+      const changeHandler = sinon.spy();
+
+      el.addEventListener('syn-input', inputHandler);
+      el.addEventListener('syn-change', changeHandler);
+      await el.show();
+      await el.updateComplete;
+      const options = el.querySelectorAll<SynOption>('syn-option');
+      const secondOption = options[1];
+      await clickOnElement(secondOption);
+      await el.updateComplete;
+
+      expect(inputHandler.callCount).to.equal(1);
+      expect(changeHandler.callCount).to.equal(1);
+      expect(options[0].selected).to.be.false;
+      expect(options[1].selected).to.be.true;
+      expect(options[2].selected).to.be.false;
+      expect(el.value).to.deep.equal(['option-2']);
+
+      await clickOnElement(secondOption);
+      await el.updateComplete;
+
+      expect(inputHandler.callCount).to.equal(2);
+      expect(changeHandler.callCount).to.equal(2);
+      expect(options[0].selected).to.be.false;
+      expect(options[1].selected).to.be.false;
+      expect(options[2].selected).to.be.false;
+      expect(el.value).to.deep.equal([]);
+
+      await clickOnElement(secondOption);
+      await el.updateComplete;
+
+      expect(inputHandler.callCount).to.equal(3);
+      expect(changeHandler.callCount).to.equal(3);
+      expect(options[0].selected).to.be.false;
+      expect(options[1].selected).to.be.true;
+      expect(options[2].selected).to.be.false;
+      expect(el.value).to.deep.equal(['option-2']);
+    });
+
     it('should emit syn-change and syn-input when a tag is removed', async () => {
       const el = await fixture<SynCombobox>(html`
       <syn-combobox value="option-1|option-2|option-3" multiple>

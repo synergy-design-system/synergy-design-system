@@ -594,6 +594,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         this.selectionChanged();
 
         const value = Array.isArray(this.value) ? this.value : [this.value];
+
+        // Reset the lastOptions if all options were removed in multiple mode
+        if(this.multiple && value.length === 0) {
+          this.lastOptions = [];
+        }
+
         if (!compareValues(oldValue, value)) {
           // Emit after updating
           this.updateComplete.then(() => {
@@ -748,6 +754,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.updateComplete.then(() => this.displayInput.focus({ preventScroll: true }));
 
       const value = Array.isArray(this.value) ? this.value : [this.value];
+
+      // Reset the lastOptions if all options were removed in multiple mode
+      if(this.multiple && value.length === 0) {
+        this.lastOptions = [];
+      }
+
       if (!compareValues(oldValue, value)) {
         // Emit after updating
         this.updateComplete.then(() => {
@@ -859,7 +871,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     if (this.multiple) {
       this.value = this.selectedOptions.map(opt => String(getValueFromOption(opt)));
-      if (this.value.length === 0) {
+      if (this.value.length === 0 && this.selectedOptions.length !== 0) {
         this.valueHasChanged = cachedValueHasChanged;
         this.resetToLastValidValue();
         return;

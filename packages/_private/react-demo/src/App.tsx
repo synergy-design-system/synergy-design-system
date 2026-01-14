@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Layout } from './Layout';
-import { DemoForm } from './DemoForm';
-import { DemoFormValidate } from './DemoFormValidate';
-import { Home } from './Home';
-import { DemosTemplate } from './DemosTemplate';
-import * as AllComponents from './AllComponentParts';
-import * as FrameworkSpecifics from './FrameworkSpecificParts';
+import { Layout } from './Layout.js';
+import { DemoForm } from './DemoForm.js';
+import { DemoFormValidate } from './DemoFormValidate.js';
+import { Home } from './Home.js';
+import { DemosTemplate } from './DemosTemplate.js';
+import * as AllComponents from './AllComponentParts/index.js';
+import * as FrameworkSpecifics from './FrameworkSpecificParts/index.js';
 
 const allComponentsDemo = Object.entries(AllComponents);
 const frameworkSpecificDemo = Object.entries(FrameworkSpecifics);

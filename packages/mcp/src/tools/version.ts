@@ -14,6 +14,7 @@ export const versionTool = (server: McpServer) => {
       inputSchema: {},
       title: 'Synergy MCP Version Information',
     },
+    // eslint-disable-next-line @typescript-eslint/require-await
     async () => {
       const packageJson = getPackageInfo();
       const versionInfo = {

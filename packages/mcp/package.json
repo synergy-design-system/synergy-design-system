@@ -7,9 +7,9 @@
     "syn-mcp": "./dist/bin/start.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.19.1",
+    "@modelcontextprotocol/sdk": "^1.25.2",
     "@synergy-design-system/assets": "workspace:*",
-    "globby": "^15.0.0",
+    "globby": "^16.1.0",
     "zod": "^3.25.76"
   },
   "description": "MCP Server for the Synergy Design System",
@@ -21,18 +21,18 @@
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:^",
     "@types/jest": "^30.0.0",
-    "@types/node": "^22.18.8",
+    "@types/node": "^24.0.0",
     "@types/serve-handler": "^6.1.4",
     "change-case": "^5.4.4",
     "custom-elements-manifest": "^2.1.0",
-    "eslint": "^8.57.1",
+    "eslint": "^9.39.2",
     "jest": "^30.2.0",
-    "ora": "^8.2.0",
-    "playwright": "^1.56.0",
-    "prettier": "^3.6.2",
-    "rimraf": "^6.0.1",
+    "ora": "^9.0.0",
+    "playwright": "^1.57.0",
+    "prettier": "^3.7.4",
+    "rimraf": "^6.1.2",
     "serve-handler": "^6.1.6",
-    "ts-jest": "^29.4.0",
+    "ts-jest": "^29.4.6",
     "typescript": "^5.9.3"
   },
   "exports": {
@@ -78,5 +78,5 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "type": "module",
-  "version": "1.41.0"
+  "version": "1.41.2"
 }

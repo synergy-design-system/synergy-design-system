@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html } from 'lit';
 import type { StoryFn } from '@storybook/web-components-vite';
 import isChromatic from 'chromatic/isChromatic';
@@ -9,7 +8,7 @@ import isChromatic from 'chromatic/isChromatic';
  * @param rest Optional parameters
  * @returns TemplateResult
  */
-export const stopAnimation = (Story: StoryFn, ...rest: unknown[]) => {
+export const stopAnimation = (Story: StoryFn, ...rest: Parameters<StoryFn>) => {
   // Disable animations when running chromatic.
   // Can be tested by appending a get parameter chromatic=true / false
   if (isChromatic()) {

@@ -1,5 +1,27 @@
 # Changelog
 
+## 1.41.2
+
+### Patch Changes
+
+- [#1148](https://github.com/synergy-design-system/synergy-design-system/pull/1148) [`73b7011`](https://github.com/synergy-design-system/synergy-design-system/commit/73b70118ae21bc58c83cbfeb9e2e8447873803a6) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-01-08
+
+  fix: 🐛 Minor dependency updates (#258)
+
+- Updated dependencies [[`73b7011`](https://github.com/synergy-design-system/synergy-design-system/commit/73b70118ae21bc58c83cbfeb9e2e8447873803a6)]:
+  - @synergy-design-system/assets@1.25.1
+
+## 1.41.1
+
+### Patch Changes
+
+- [#1147](https://github.com/synergy-design-system/synergy-design-system/pull/1147) [`8e3230c`](https://github.com/synergy-design-system/synergy-design-system/commit/8e3230cc351c62e2e9485c5234675d40ac7ac175) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-01-07
+
+  fix: 🐛 adjust syn button tokens (#1145)
+
+  The original tokens used `inherit` as a fallback value, which did not have any effect but to fall back to the original value.
+  This is now made explicit to allow the use of button variables in code directly.
+
 ## 1.41.0
 
 ### Minor Changes

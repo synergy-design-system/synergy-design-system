@@ -9,7 +9,7 @@
     "_build": "tsc && vite build",
     "createsprites": "syn-create-spritesheet --icons=contact_emergency,contact_mail,home,weekend,density_small,density_medium,density_large,bug_report > public/synergy-icon-sprites.svg",
     "preview": "vite preview",
-    "lint:css": "stylelint \"src/**/*.{css,js,ts}\"",
+    "lint:css": "stylelint \"src/**/*.{css}\" \"src/**/*.styles.ts\"",
     "lint:html": "html-validate index.html src/**/*.txt",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
@@ -18,12 +18,12 @@
     "@synergy-design-system/assets": "workspace:^",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
-    "eslint": "^8.57.1",
-    "html-validate": "^9.7.1",
-    "stylelint": "^16.24.0",
+    "eslint": "^9.39.2",
+    "html-validate": "^10.5.0",
+    "stylelint": "^16.26.1",
     "typescript": "^5.9.3",
-    "vite": "^6.3.6",
-    "vite-plugin-static-copy": "^3.1.3"
+    "vite": "^7.3.0",
+    "vite-plugin-static-copy": "^3.1.4"
   },
   "dependencies": {
     "@synergy-design-system/components": "workspace:*",
@@ -32,6 +32,6 @@
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
     "history": "^5.3.0",
-    "lit": "^3.3.1"
+    "lit": "^3.3.2"
   }
 }

@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.9.1
+
+### Patch Changes
+
+- [#1148](https://github.com/synergy-design-system/synergy-design-system/pull/1148) [`73b7011`](https://github.com/synergy-design-system/synergy-design-system/commit/73b70118ae21bc58c83cbfeb9e2e8447873803a6) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-01-08
+
+  fix: 🐛 Minor dependency updates (#258)
+
+- Updated dependencies [[`73b7011`](https://github.com/synergy-design-system/synergy-design-system/commit/73b70118ae21bc58c83cbfeb9e2e8447873803a6)]:
+  - @synergy-design-system/tokens@2.48.2
+
 ## 1.9.0
 
 ### Minor Changes

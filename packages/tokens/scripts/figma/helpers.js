@@ -46,7 +46,6 @@ export const renameVariable = (name, type) => {
  * @param { string } name The name of a variable
  * @returns { string } The specific type for the float variable
  */
-// eslint-disable-next-line complexity
 export const getTypeForFloatVariable = (name) => {
   const type = ['letter-spacing', 'line-height', 'opacity', 'weight', 'z-index']
     .find((key) => name.includes(key));
@@ -94,7 +93,6 @@ export const resolveAlias = (id) => {
  * @param { string } modeId Id of the mode
  * @returns {unknown | undefined} The value of the alias variable, or undefined if not found.
  */
-// eslint-disable-next-line complexity
 export const getAliasValue = (aliasId, modeId) => {
   const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === aliasId);
   /** @type {Record<string, unknown> | undefined} */
@@ -170,7 +168,6 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
   // Not yet updated in dev
   /component\/radio-button-group/,
 ];
-/* eslint-enable max-len */
 
 /**
  * Filter out variables and styles that are only used in design.

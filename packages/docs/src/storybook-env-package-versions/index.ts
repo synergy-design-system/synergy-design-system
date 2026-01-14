@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import type { StorybookConfig } from '@storybook/web-components-vite';

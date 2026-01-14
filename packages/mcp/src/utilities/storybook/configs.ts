@@ -50,7 +50,7 @@ ${story.example}
   },
   generateOutputPath: (component: string) => `${staticComponentPath}/${component}/docs.md`,
   generateStoryId: (component: string) => componentStories[component],
-  getItems: async () => Object.keys(componentStories),
+  getItems: async () => Promise.resolve(Object.keys(componentStories)),
   outputPath: staticComponentPath,
 };
 
@@ -75,7 +75,7 @@ ${story.example}
   },
   generateOutputPath: (style: string) => `${staticStylesPath}/${style}.md`,
   generateStoryId: (component: string) => styleStories[component],
-  getItems: async () => Object.keys(styleStories),
+  getItems: async () => Promise.resolve(Object.keys(styleStories)),
   outputPath: staticStylesPath,
 };
 
@@ -100,6 +100,6 @@ ${story.example}
   },
   generateOutputPath: (template: string) => `${templatesPath}/${template}.md`,
   generateStoryId: (component: string) => templateStories[component],
-  getItems: async () => Object.keys(templateStories),
+  getItems: async () => Promise.resolve(Object.keys(templateStories)),
   outputPath: staticStylesPath,
 };

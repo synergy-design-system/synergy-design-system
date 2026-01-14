@@ -49,7 +49,7 @@ You may either load all of them in one bundle (recommended) or just include the 
 | Utility | Required? | Path                      | Description                                                                                                                                                                                                                                                   |
 | :------ | :-------: | :------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | fouc    |           | `dist/styles/fouc.css`    | Defaults for handling [Flash of Undefined Components (FOUC)](https://www.abeautifulsite.net/posts/flash-of-undefined-custom-elements/). Scoped to only target Synergy Components to make sure it does not overlap with other custom elements already defined. |
-| utility |    ✔     | `dist/styles/utility.css` | Utilities that have to be in the light DOM to make Synergy work. For example, these include scroll locking for fullscreen components. **This is required, your application layout may break if not available**!                                               |
+| utility |     ✔     | `dist/styles/utility.css` | Utilities that have to be in the light DOM to make Synergy work. For example, these include scroll locking for fullscreen components. **This is required, your application layout may break if not available**!                                               |
 
 ##### 2.1. Loading all css utilities (recommended)
 

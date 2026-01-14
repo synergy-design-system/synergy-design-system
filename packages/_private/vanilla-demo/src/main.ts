@@ -1,5 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-console */
 import {
   type SynChangeEvent,
   type SynIconButton,
@@ -48,6 +46,7 @@ const initLayoutSwitch = async () => {
       }
 
       buttons.forEach(btn => {
+        // eslint-disable-next-line no-param-reassign
         btn.color = btn.dataset.type === type ? 'primary' : 'currentColor';
       });
     });
@@ -105,6 +104,7 @@ const initSizeSwitch = async () => {
       setGlobalSize(size as AllowedSizes);
 
       buttons.forEach(btn => {
+        // eslint-disable-next-line no-param-reassign
         btn.color = btn.dataset.size === size ? 'primary' : 'currentColor';
       });
     });

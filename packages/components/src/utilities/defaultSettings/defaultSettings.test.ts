@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-floating-promises */
 import sinon from 'sinon';
 import { expect, fixture, html } from '@open-wc/testing';
 import { INITIAL_DEFAULT_SETTINGS } from './base.js';

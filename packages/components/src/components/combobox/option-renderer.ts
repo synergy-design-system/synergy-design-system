@@ -10,7 +10,7 @@ import type SynOption from '../option/option.component.js';
  */
 export type OptionRenderer = (
   option: SynOption,
-  query?: string
+  query?: string,
 ) => TemplateResult | string | HTMLElement;
 
 /**
@@ -38,7 +38,7 @@ export const highlightOptionRenderer: OptionRenderer = (option: SynOption, query
   const exchangedText = optionLabel.replace(new RegExp(query, 'i'), mark.outerHTML);
   const previousContent = clonedOption.innerHTML.slice(0, indexLabel);
   const followingContent = clonedOption.innerHTML.slice(indexLabel + optionLabel.length);
-  // eslint-disable-next-line no-param-reassign
+
   clonedOption.innerHTML = previousContent.concat(exchangedText, followingContent);
   return clonedOption;
 };

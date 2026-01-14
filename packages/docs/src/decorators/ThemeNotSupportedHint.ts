@@ -40,6 +40,7 @@ const waitForSick2025Class = (timeout = 5000): Promise<void> => new Promise((res
   // Set timeout to reject promise if class is not found within timeout period
   setTimeout(() => {
     observer.disconnect();
+    // eslint-disable-next-line @typescript-eslint/prefer-promise-reject-errors
     reject();
   }, timeout);
 });

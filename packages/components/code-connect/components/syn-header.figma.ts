@@ -3,7 +3,7 @@ import type SynHeader from '../../src/components/header/header.js';
 import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=10540-8581', {
+figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=42864-478896', {
   example: ({
     burgerMenu,
     labelSlot,

@@ -12,9 +12,33 @@ Buttons represent actions that are available to the user.
 
 ---
 
-## Sizes
+## Variants
 
-All button sizes are supported, but avoid mixing sizes within the same button group.
+Use the variant attribute to set the button’s variant. Variants can be Filled, Outline. There is no Text variant.
+
+```html
+<div
+  style="display: flex; gap: var(--syn-spacing-large); flex-direction: column"
+>
+  <syn-button-group variant="outline" label="Variant (outline)" size="medium">
+    <syn-button title="" variant="outline" size="medium">Left</syn-button>
+    <syn-button title="" variant="outline" size="medium">Center</syn-button>
+    <syn-button title="" variant="outline" size="medium">Right</syn-button>
+  </syn-button-group>
+
+  <syn-button-group variant="filled" label="Variant (filled)" size="medium">
+    <syn-button title="" variant="filled" size="medium">Left</syn-button>
+    <syn-button title="" variant="filled" size="medium">Center</syn-button>
+    <syn-button title="" variant="filled" size="medium">Right</syn-button>
+  </syn-button-group>
+</div>
+```
+
+---
+
+## Button Sizes
+
+All button sizes are supported. The size of the button-group will be used to determine the size of the buttons.
 
 ```html
 <div
@@ -42,26 +66,31 @@ All button sizes are supported, but avoid mixing sizes within the same button gr
 
 ---
 
-## Theme Buttons
+## Dropdowns In Button Groups
 
-Theme buttons are supported through the button’s variant attribute.
+ Dropdowns can be placed inside button groups as long as the trigger is an <syn-button> element. 
 
 ```html
-<div
-  style="display: flex; gap: var(--syn-spacing-large); flex-direction: column"
->
-  <syn-button-group variant="filled" label="Variant (filled)" size="medium">
-    <syn-button title="" variant="filled" size="medium">Left</syn-button>
-    <syn-button title="" variant="filled" size="medium">Center</syn-button>
-    <syn-button title="" variant="filled" size="medium">Right</syn-button>
-  </syn-button-group>
-
-  <syn-button-group variant="outline" label="Variant (outline)" size="medium">
-    <syn-button title="" variant="outline" size="medium">Left</syn-button>
-    <syn-button title="" variant="outline" size="medium">Center</syn-button>
-    <syn-button title="" variant="outline" size="medium">Right</syn-button>
-  </syn-button-group>
-</div>
+<syn-button-group label="Example Button Group" size="medium" variant="outline">
+  <syn-button title="" variant="outline" size="medium">Button</syn-button>
+  <syn-button title="" variant="outline" size="medium">Button</syn-button>
+  <syn-dropdown placement="bottom-end">
+    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
+      >Dropdown</syn-button
+    >
+    <syn-menu role="menu">
+      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="0"
+        >Save</syn-menu-item
+      >
+      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
+        >Save as…</syn-menu-item
+      >
+      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
+        >Save all</syn-menu-item
+      >
+    </syn-menu>
+  </syn-dropdown>
+</syn-button-group>
 ```
 
 ---
@@ -72,7 +101,7 @@ Create a split button using a button and a dropdown. Use a visually hidden label
 
 ```html
 <syn-button-group label="Example Button Group" size="medium" variant="outline">
-  <syn-button variant="outline" title="" size="medium">Save</syn-button>
+  <syn-button title="" variant="outline" size="medium">Save</syn-button>
   <syn-dropdown placement="bottom-end">
     <syn-button
       slot="trigger"
@@ -104,11 +133,15 @@ Buttons can be wrapped in tooltips to provide more detail when the user interact
 
 ```html
 <syn-button-group label="Example Button Group" size="medium" variant="outline">
-  <syn-button title="" variant="outline" size="medium">Left</syn-button>
+  <syn-tooltip content="I am on the left">
+    <syn-button title="" variant="outline" size="medium">Left</syn-button>
+  </syn-tooltip>
   <syn-tooltip content="I am in the center">
     <syn-button title="" variant="outline" size="medium">Center</syn-button>
   </syn-tooltip>
-  <syn-button title="" variant="outline" size="medium">Right</syn-button>
+  <syn-tooltip content="I am on the right">
+    <syn-button title="" variant="outline" size="medium">Right</syn-button>
+  </syn-tooltip>
 </syn-button-group>
 ```
 

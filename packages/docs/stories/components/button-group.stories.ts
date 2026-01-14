@@ -66,7 +66,28 @@ export const Default = {
   render: args => generateTemplate({ args }),
 } as Story;
 
-export const Sizes: Story = {
+export const Variants: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('button-group', 'variant'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; gap: var(--syn-spacing-large); flex-direction: column;">
+      ${['outline', 'filled'].map(variant => html`
+        <syn-button-group variant="${variant}" label="Variant (${variant})">
+          <syn-button>Left</syn-button>
+          <syn-button>Center</syn-button>
+          <syn-button>Right</syn-button>
+        </syn-button-group>
+      `)}
+    </div>
+  `,
+};
+
+export const ButtonSizes: Story = {
   parameters: {
     docs: {
       description: {
@@ -87,24 +108,27 @@ export const Sizes: Story = {
   `,
 };
 
-export const ThemeButtons: Story = {
+export const DropdownsInButtonGroups: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('button-group', 'variant'),
+        story: generateStoryDescription('button-group', 'dropdowns-in-button-groups'),
       },
     },
   },
   render: () => html`
-    <div style="display: flex; gap: var(--syn-spacing-large); flex-direction: column;">
-      ${['filled', 'outline'].map(variant => html`
-        <syn-button-group variant="${variant}" label="Variant (${variant})">
-          <syn-button>Left</syn-button>
-          <syn-button>Center</syn-button>
-          <syn-button>Right</syn-button>
-        </syn-button-group>
-      `)}
-    </div>
+    <syn-button-group label="Example Button Group">
+      <syn-button>Button</syn-button>
+      <syn-button>Button</syn-button>
+      <syn-dropdown placement="bottom-end">
+        <syn-button slot="trigger" caret>Dropdown</syn-button>
+        <syn-menu>
+          <syn-menu-item>Save</syn-menu-item>
+          <syn-menu-item>Save as&hellip;</syn-menu-item>
+          <syn-menu-item>Save all</syn-menu-item>
+        </syn-menu>
+      </syn-dropdown>
+    </syn-button-group>
   `,
 };
 
@@ -118,7 +142,7 @@ export const SplitButtons: Story = {
   },
   render: () => html`
     <syn-button-group label="Example Button Group">
-      <syn-button variant="primary">Save</syn-button>
+      <syn-button>Save</syn-button>
       <syn-dropdown placement="bottom-end">
         <syn-button slot="trigger" variant="primary" caret></syn-button>
         <syn-menu>
@@ -141,11 +165,15 @@ export const TooltipsInButtonGroups: Story = {
   },
   render: () => html`
     <syn-button-group label="Example Button Group">
-      <syn-button>Left</syn-button>
+      <syn-tooltip content="I am on the left">
+        <syn-button>Left</syn-button>
+      </syn-tooltip>
       <syn-tooltip content="I am in the center">
         <syn-button>Center</syn-button>
       </syn-tooltip>
-      <syn-button>Right</syn-button>
+      <syn-tooltip content="I am on the right">
+        <syn-button>Right</syn-button>
+      </syn-tooltip>
     </syn-button-group>
   `,
 };
@@ -205,8 +233,9 @@ export const ToolbarExample: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
-  Sizes,
-  ThemeButtons,
+  Variants,
+  ButtonSizes,
+  DropdownsInButtonGroups,
   SplitButtons,
   TooltipsInButtonGroups,
   ToolbarExample,

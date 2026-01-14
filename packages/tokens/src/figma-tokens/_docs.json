@@ -425,7 +425,7 @@
       },
       "size": {
         "description": {
-          "value": "All button sizes are supported, but avoid mixing sizes within the same button group.",
+          "value": "All button sizes are supported. The size of the button-group will be used to determine the size of the buttons.",
           "type": "text"
         },
         "title": {
@@ -435,11 +435,21 @@
       },
       "variant": {
         "description": {
-          "value": "Theme buttons are supported through the button’s variant attribute.",
+          "value": "Use the variant attribute to set the button’s variant. Variants can be Filled, Outline. There is no Text variant.",
           "type": "text"
         },
         "title": {
-          "value": "Theme Buttons",
+          "value": "Variants",
+          "type": "text"
+        }
+      },
+      "dropdowns-in-button-groups": {
+        "description": {
+          "value": " Dropdowns can be placed inside button groups as long as the trigger is an <syn-button> element. ",
+          "type": "text"
+        },
+        "title": {
+          "value": " Dropdowns in Button Groups ",
           "type": "text"
         }
       },

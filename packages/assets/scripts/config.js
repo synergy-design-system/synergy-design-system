@@ -22,13 +22,14 @@ export const FIGMA_ID_COMPONENT_OVERVIEW = '1234:20961';
 // Paths
 export const PATH_ICONS_2018_BASE = 'src/sick2018';
 export const PATH_ICONS_V2 = `${PATH_ICONS_2018_BASE}/icons`;
-export const PATH_LOGOS_V2 = 'src/logos';
+export const PATH_LOGOS_V2 = `${PATH_ICONS_2018_BASE}/logos`;
 export const PATH_SYSTEM_ICONS_V2 = `${PATH_ICONS_2018_BASE}/system-icons`;
 
 export const PATH_COMPONENT_OVERVIEW = 'src/component-thumbnails';
 
 export const PATH_ICONS_2025_BASE = 'src/sick2025';
 export const PATH_ICONS_V3 = `${PATH_ICONS_2025_BASE}/icons`;
+export const PATH_LOGOS_V3 = `${PATH_ICONS_2025_BASE}/logos`;
 export const PATH_SYSTEM_ICONS_V3 = `${PATH_ICONS_2025_BASE}/system-icons`;
 
 export const PATH_DEFAULT_ICONS_2018 = `${PATH_ICONS_2018_BASE}/js/index.ts`;
@@ -53,6 +54,11 @@ export const LICENSE_MAP = [
     paths: [PATH_LOGOS_V2],
   },
   {
+    license: LICENSE_SICK,
+    name: 'SICK Proprietary Logos',
+    paths: [PATH_LOGOS_V3],
+  },
+  {
     license: LICENSE_ICONS,
     name: 'Material Icons License',
     paths: [
@@ -72,6 +78,7 @@ export const DYNAMIC_OUTPUT_PATHS = [
   PATH_SYSTEM_ICONS_V2,
   PATH_ICONS_2025_BASE,
   PATH_SYSTEM_ICONS_V3,
+  PATH_LOGOS_V3,
   PATH_DEFAULT_ICONS_2018,
   PATH_DEFAULT_ICONS_2025_FILLED,
   PATH_DEFAULT_ICONS_2025_OUTLINE,

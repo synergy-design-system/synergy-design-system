@@ -44,7 +44,6 @@
       "types": "./dist/sick2025/js/outline.d.ts",
       "import": "./dist/sick2025/js/outline.js"
     },
-    "./logos/*": "./src/logos/*",
     "./sick2018/*": "./src/sick2018/*",
     "./sick2025/*": "./src/sick2025/*",
     "./sick2018.js": {
@@ -58,7 +57,6 @@
   },
   "files": [
     "dist",
-    "src/logos",
     "src/sick2018",
     "src/sick2025",
     "CHANGELOG.md",

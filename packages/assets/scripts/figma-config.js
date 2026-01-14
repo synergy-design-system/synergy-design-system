@@ -173,13 +173,13 @@ export const v3FilledIconsConfig = createFigmaExportConfig({
   path: `${FIGMA_CONFIG.PATH_ICONS_V3}/fill`,
 });
 
-// logo configuration
-export const logosConfig = createFigmaExportConfig({
+// logo configuration (v2 only)
+export const v2LogosConfig = createFigmaExportConfig({
   fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
   ids: [FIGMA_CONFIG.FIGMA_ID_LOGOS],
   onlyFromPages: ['Assets'],
   optimizeSVG: false,
-  path: 'src/logos',
+  path: FIGMA_CONFIG.PATH_LOGOS_V2,
   svgComponentBasename: ({ basename = '' }) => {
     // Split the base name into parts by variant.
     // Variants look like this in figma:
@@ -192,6 +192,36 @@ export const logosConfig = createFigmaExportConfig({
     }
 
     return createFileNameForLogo(variant, color, theme);
+  },
+  svgComponentFilter: ({ name }) => {
+    const [, , theme] = getLogoVariantPartsFromOptionString(name);
+    return theme === 'sick2018';
+  },
+});
+
+// logo configuration (v2 only)
+export const v3LogosConfig = createFigmaExportConfig({
+  fileId: FIGMA_CONFIG.FIGMA_FILE_ID_ICONS_V2,
+  ids: [FIGMA_CONFIG.FIGMA_ID_LOGOS],
+  onlyFromPages: ['Assets'],
+  optimizeSVG: false,
+  path: FIGMA_CONFIG.PATH_LOGOS_V3,
+  svgComponentBasename: ({ basename = '' }) => {
+    // Split the base name into parts by variant.
+    // Variants look like this in figma:
+    // variant=logo, color=black, theme=sick2018
+    const [variant, color, theme] = getLogoVariantPartsFromOptionString(basename);
+
+    // Make sure we export stuff that does not fit our pattern as the original filename
+    if (!variant || !color || !theme) {
+      return `${basename.replace('name=', '')}.svg`;
+    }
+
+    return createFileNameForLogo(variant, color, theme);
+  },
+  svgComponentFilter: ({ name }) => {
+    const [, , theme] = getLogoVariantPartsFromOptionString(name);
+    return theme === 'sick2025';
   },
 });
 
@@ -248,7 +278,8 @@ export const CONFIG_FOR_V3 = [
  */
 export const CONFIG_FOR_ALL = [
   systemIconsConfig,
-  logosConfig,
+  v2LogosConfig,
+  v3LogosConfig,
   thumbnailsConfig,
   ...CONFIG_FOR_V2,
   ...CONFIG_FOR_V3,

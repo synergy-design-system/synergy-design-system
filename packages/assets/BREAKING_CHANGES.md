@@ -27,6 +27,8 @@ Because of those problems, the filesystem structure was restructured like shown 
 
 | Content                       | Location (2.x)                | Location (3.x)             |
 | ----------------------------- | ----------------------------- | -------------------------- |
+| Logos 2018 (svg)              | src/logos                     | src/sick2018/logos         |
+| Logos 2025 (svg)              | src/logos                     | src/sick2025/logos         |
 | SICK 2018 System Icons (svg)  | src/system-icons              | src/sick2018/system-icons  |
 | SICK 2018 Icons (svg)         | src/icons                     | src/sick2018/icons         |
 | SICK 2018 Default Icons (js)  | src/default-icons.ts          | src/sick2018/js/index.js   |
@@ -48,6 +50,11 @@ export default defineConfig({
   plugins: [
     viteStaticCopy({
       targets: [
+        // Old path for SICK logos (all)
+        {
+          src: 'node_modules/@synergy-design-system/assets/src/logos/*',
+          dest: './assets/logos',
+        },
         // Old path for 2018 icons
         {
           src: 'node_modules/@synergy-design-system/assets/src/icons/*',
@@ -71,6 +78,16 @@ export default defineConfig({
   plugins: [
     viteStaticCopy({
       targets: [
+        // New path for SICK logos (2018)
+        {
+          src: "node_modules/@synergy-design-system/assets/src/sick2018/logos*",
+          dest: "./assets/logos",
+        },
+        // New path for SICK logos (2018)
+        {
+          src: "node_modules/@synergy-design-system/assets/src/sick2025/logos*",
+          dest: "./assets/logos",
+        },
         // New path for 2018 icons
         {
           src: "node_modules/@synergy-design-system/assets/src/sick2018/icons/*",

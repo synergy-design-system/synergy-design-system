@@ -4,8 +4,8 @@
 "@synergy-design-system/components": major
 "@synergy-design-system/mcp": major
 "@synergy-design-system/styles": major
-"@synergy-design-system/tokens": major
 "@synergy-design-system/vue": major
+"@synergy-design-system/react": major
 ---
 
 major: 💥 release 3.0 (#1149)

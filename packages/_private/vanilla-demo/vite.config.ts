@@ -90,7 +90,7 @@ export const defaultConfig = {
         // Copy all static assets to the dist folder
         {
           dest: './assets/icons/',
-          src: 'node_modules/@synergy-design-system/assets/src/sick2018/icons/*',
+          src: './node_modules/@synergy-design-system/assets/src/sick2025/icons/outline/*',
         },
         // Allow loading subpages from the src/pages directory
         {

@@ -1,21 +1,22 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
+/* eslint-disable import/no-extraneous-dependencies */
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  server: {
-    port: 5175,
-  },
   plugins: [
     viteStaticCopy({
       targets: [
         {
-          src: 'node_modules/@synergy-design-system/assets/src/sick2018/icons/*',
           dest: './assets/icons/',
-        }
-      ]
+          src: './node_modules/@synergy-design-system/assets/src/sick2025/icons/outline/*',
+        },
+      ],
     }),
     react(),
   ],
-})
+  server: {
+    port: 5175,
+  },
+});

@@ -114,7 +114,7 @@ const bootstrap = async () => {
   enableSettingEmitEvents();
 
   registerIconLibrary('default', {
-    resolver: name => `/synergy-icon-sprites.svg#${name}`,
+    resolver: name => `/synergy-icon-sprites-2025.svg#${name}`,
     spriteSheet: true,
   });
 

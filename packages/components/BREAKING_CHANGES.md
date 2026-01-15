@@ -11,6 +11,8 @@ As all our wrappers are based on this package, the changes also hold true for al
 
 ## Version 3.0
 
+> ⚠️ **Important**: When upgrading to Synergy v3.0, update all `@synergy-design-system/*` packages to their respective v3.x versions (or v2.x for `@synergy-design-system/assets`) to ensure compatibility.
+
 <h3 id="syn-combobox-v3">`<syn-combobox>`</h3>
 
 #### ⚠️ Removed deprecated attribute `hoist`
@@ -335,8 +337,7 @@ As the component and token packages are now version aligned, there is no more ne
 ```json
 {
   "dependencies": {
-    "@synergy-design-system/components": "^3.0.0",
-    "@synergy-design-system/tokens": "3.0.0"
+    "@synergy-design-system/components": "^3.0.0"
   }
 }
 ```
@@ -359,26 +360,44 @@ Because of this, the migration utilities are now flagged as `deprecated` and wil
 
 This applies to:
 
+- `createMigrationLibrary`
 - `migrateIconName`
 - `migrateIconNameFilled`
 - `migrationLibrary`
+- `setupIcons`
 
 **Migration Steps**:
 
-Consider switching to the new SICK 2025 synergy icons instead.
+Consider switching to the new SICK 2025 icons directly.
+Update your icon names in markup to use the new naming convention instead of relying on the automatic migration layer.
+
+> 📖 For a complete mapping of old to new icon names, see the [SICK 2025 icon migration guide](https://synergy-design-system.github.io/?path=/docs/migration-to-sick-2025--docs).
 
 **Example (before)**:
 
 ```javascript
-import { enableExperimentalSettingEmitEvents } from "@synergy-design-system/components";
-enableExperimentalSettingEmitEvents(true);
+// Using the migration helper to automatically map old icon names
+import { setupIcons } from "@synergy-design-system/components";
+setupIcons("sick2025"); // Enables automatic name migration
+```
+
+```html
+<!-- Old SICK 2018 icon names still work due to migration layer -->
+<syn-icon name="access_alarm"></syn-icon>
+<syn-icon name="app_settings_alt"></syn-icon>
 ```
 
 **Example (after)**:
 
 ```javascript
-import { enableSettingEmitEvents } from "@synergy-design-system/components";
-enableSettingEmitEvents(true);
+// No setupIcons() call needed when using SICK 2025 icons with correct names
+// Only keep setupIcons('sick2018') if you still need the old SICK 2018 iconset
+```
+
+```html
+<!-- Use new SICK 2025 icon names directly -->
+<syn-icon name="alarm"></syn-icon>
+<syn-icon name="phonelink_setup"></syn-icon>
 ```
 
 ---

@@ -366,6 +366,7 @@ export const migrationLibrary = createMigrationLibrary('DISABLED');
  * @param iconset The system icon set to use
  * @param enableLogging Enable logging of migrated icons?
  * @returns The icon library used
+ * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration-to-sick-2025--docs for further details.
  */
 export const setupIcons = (
   iconset: AvailableSystemIcons = 'sick2025',

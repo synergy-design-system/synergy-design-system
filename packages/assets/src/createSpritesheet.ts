@@ -24,9 +24,9 @@ export function createSpriteSheet(
 ): string;
 export function createSpriteSheet(
   icons: (Icon2018Keys | Icon2025Keys)[],
-  iconset: AllowedIconsets = 'sick2018',
+  iconset: AllowedIconsets = 'sick2025',
 ) {
-  const setToUse = iconset === 'sick2025' ? sick2025Icons : sick2018Icons;
+  const setToUse = iconset === 'sick2018' ? sick2018Icons : sick2025Icons;
   const foundIcons = Object
     .entries(setToUse)
     .filter(([key]) => icons.includes(key as AllowedIconkeys));

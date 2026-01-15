@@ -11,10 +11,16 @@ The source of the assets can be found at [Figma](https://www.figma.com/file/bZFq
 
 ### Installation
 
-Please make sure to install the assets package as a `devDependency`:
+Please make sure to install the assets package as `devDependency` or `dependency`:
 
 ```bash
+# If you are only interested in the filesystem based icons,
+# install as a devDependency
 npm install --save-dev @synergy-design-system/assets
+
+# If you are using javascript imports in your code directly,
+# install as a dependency
+npm install --save @synergy-design-system/assets
 ```
 
 ### Usage
@@ -68,8 +74,8 @@ The folder structure corresponds to the brand revisions and their respective usa
 
 - **src/component-thumbnails:** Contains thumbnails from Figma components used in Storybook
 - **src/sick2025:** Contains the SICK 2025 brand revision assets
-  - **icons/outline:** Outline variant icons based on [Material Icons](https://fonts.google.com/icons)
-  - **icons/fill:** Filled variant icons based on [Material Icons](https://fonts.google.com/icons)
+  - **icons/outline:** Outline variant icons based on [Material Icons](https://fonts.google.com/icons). These are the preferred icons for applications.
+  - **icons/fill:** Filled variant icons based on [Material Icons](https://fonts.google.com/icons). Should be used where alternatives are needed only.
   - **system-icons:** Internal icons used by Synergy components (v3+)
 - **src/sick2018:** Contains the SICK 2018 brand revision assets (legacy)
   - **icons:** Standard icons based on [Material Icons](https://fonts.google.com/icons) (v2)

@@ -121,6 +121,112 @@ describe('<syn-input>', () => {
           await el.updateComplete;
           expect(el.value).to.equal('0');
         });
+
+        it('should emit syn-change and syn-input when the user clicks the increment and decrement buttons', async () => {
+          const el = await fixture<SynInput>(html` <syn-input type="number" numeric-strategy="native"></syn-input> `);
+          const decrementButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part~="decrement-number-stepper"]')!;
+          const incrementButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part~="increment-number-stepper"]')!;
+          const inputHandler = sinon.spy();
+          const changeHandler = sinon.spy();
+    
+          el.addEventListener('syn-input', inputHandler);
+          el.addEventListener('syn-change', changeHandler);
+    
+          decrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+          document.dispatchEvent(new PointerEvent('pointerup'));
+          expect(inputHandler).to.have.been.calledOnce;
+          expect(changeHandler).to.have.been.calledOnce;
+          
+          inputHandler.resetHistory();
+          changeHandler.resetHistory();
+    
+          incrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+          document.dispatchEvent(new PointerEvent('pointerup'));
+          expect(inputHandler).to.have.been.calledOnce;
+          expect(changeHandler).to.have.been.calledOnce;
+        });
+
+        it('should spin the syn-input event when the user presses the increment button a longer time', async () => {
+          const el = await fixture<SynInput>(html` <syn-input type="number" numeric-strategy="native"></syn-input> `);
+          const incrementButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part~="increment-number-stepper"]')!;
+          const inputHandler = sinon.spy();
+          const changeHandler = sinon.spy();
+          el.addEventListener('syn-input', inputHandler);
+          el.addEventListener('syn-change', changeHandler);
+    
+          incrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+          await aTimeout(1000);
+          expect(changeHandler).to.have.not.been.called;
+          expect(inputHandler.callCount).to.be.greaterThan(1);
+    
+          document.dispatchEvent(new PointerEvent('pointerup'));
+    
+          // only emit change event after pointer up
+          expect(changeHandler).to.have.been.calledOnce;
+        });
+
+        it('should spin the syn-input event when the user presses the decrement button a longer time', async () => {
+          const el = await fixture<SynInput>(html` <syn-input type="number" numeric-strategy="native"></syn-input> `);
+          const decrementButton = el.shadowRoot!.querySelector<HTMLButtonElement>('[part~="decrement-number-stepper"]')!;
+          const inputHandler = sinon.spy();
+          const changeHandler = sinon.spy();
+          el.addEventListener('syn-input', inputHandler);
+          el.addEventListener('syn-change', changeHandler);
+    
+          decrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+          await aTimeout(1000);
+          expect(changeHandler).to.have.not.been.called;
+          expect(inputHandler.callCount).to.be.greaterThan(1);
+    
+          document.dispatchEvent(new PointerEvent('pointerup'));
+    
+          // only emit change event after pointer up
+          expect(changeHandler).to.have.been.calledOnce;
+        });
+
+        it('should decrement if decrement button is clicked after syn-input was removed and added to DOM again ', async () => {
+          const el = await fixture<SynInput>(html`
+            <div>
+              <syn-input type="number" value="3" numeric-strategy="native"></syn-input>
+            </div>
+          `);
+          const input = el.querySelector('syn-input')!;
+          const decrementButton = input.shadowRoot!.querySelector<HTMLButtonElement>('[part~="decrement-number-stepper"]')!;
+          
+          decrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+          document.dispatchEvent(new PointerEvent('pointerup'));
+          await input.updateComplete;
+          expect(input.value).to.equal('2');
+
+          input.remove();
+          el.appendChild(input);
+          decrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+          document.dispatchEvent(new PointerEvent('pointerup'));
+          await input.updateComplete;
+          expect(input.value).to.equal('1');
+        });
+
+        it('should increment if increment button is clicked after syn-input was removed and added to DOM again ', async () => {
+          const el = await fixture<SynInput>(html`
+            <div>
+              <syn-input type="number" value="3" numeric-strategy="native"></syn-input>
+            </div>
+          `);
+          const input = el.querySelector('syn-input')!;
+          const incrementButton = input.shadowRoot!.querySelector<HTMLButtonElement>('[part~="increment-number-stepper"]')!;
+          
+          incrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+          document.dispatchEvent(new PointerEvent('pointerup'));
+          await input.updateComplete;
+          expect(input.value).to.equal('4');
+
+          input.remove();
+          el.appendChild(input);
+          incrementButton.dispatchEvent(new PointerEvent('pointerdown'));
+          document.dispatchEvent(new PointerEvent('pointerup'));
+          await input.updateComplete;
+          expect(input.value).to.equal('5');
+        });
       });
     }); // /custom decrement and increment buttons
 

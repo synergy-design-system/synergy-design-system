@@ -35,6 +35,7 @@ export const PATH_SYSTEM_ICONS_2025 = `${PATH_ICONS_2025_BASE}/system-icons`;
 export const PATH_DEFAULT_ICONS_2018 = `${PATH_ICONS_2018_BASE}/js/index.ts`;
 export const PATH_DEFAULT_ICONS_2025_FILLED = `${PATH_ICONS_2025_BASE}/js/filled.ts`;
 export const PATH_DEFAULT_ICONS_2025_OUTLINE = `${PATH_ICONS_2025_BASE}/js/outline.ts`;
+export const PATH_DEFAULT_ICONS_2025_EXPORTS = `${PATH_ICONS_2025_BASE}/js/index.ts`;
 
 export const PATH_LICENSES = './licenses';
 export const LICENSE_SICK = `${PATH_LICENSES}/SICK.txt`;
@@ -73,14 +74,7 @@ export const LICENSE_MAP = [
  * They are not static and can change based on the configuration or the files being processed.
  */
 export const DYNAMIC_OUTPUT_PATHS = [
-  PATH_ICONS_2018_BASE,
-  PATH_LOGOS_2018,
-  PATH_SYSTEM_ICONS_2018,
-  PATH_ICONS_2025_BASE,
-  PATH_SYSTEM_ICONS_2025,
-  PATH_LOGOS_2025,
-  PATH_DEFAULT_ICONS_2018,
-  PATH_DEFAULT_ICONS_2025_FILLED,
-  PATH_DEFAULT_ICONS_2025_OUTLINE,
   PATH_COMPONENT_OVERVIEW,
+  PATH_ICONS_2018_BASE,
+  PATH_ICONS_2025_BASE,
 ];

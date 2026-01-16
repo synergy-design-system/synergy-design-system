@@ -5,11 +5,13 @@
  */
 import transformSvgWithSvgo from '@figma-export/transform-svg-with-svgo';
 import * as FIGMA_CONFIG from './config.js';
-import { outputComponentsToBundle } from './figma-output-bundle-icons.js';
-import { figmaOutputThumbnails } from './figma-output-thumbnails.js';
-import { figmaOutputSvg } from './figma-output-svg.js';
-import { outputSystemIcons } from './figma-output-system-icons.js';
-import { outputComponentsToCodeConnect } from './figma-output-export-code-connect.js';
+import {
+  figmaOutputSvg,
+  figmaOutputThumbnails,
+  outputComponentsToBundle,
+  outputComponentsToCodeConnect,
+  outputSystemIcons,
+} from './output/index.js';
 import {
   createFileNameForLogo,
   getLogoVariantPartsFromOptionString,

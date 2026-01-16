@@ -81,9 +81,10 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc -b",
-    "build:all": "pnpm clean && pnpm fetch-assets && pnpm build && pnpm create-licenses && pnpm create-migration-iconset",
+    "build:all": "pnpm clean && pnpm fetch-assets && pnpm create-default-icon-exports && pnpm build && pnpm create-licenses && pnpm create-migration-iconset",
     "create-migration-iconset": "node ./scripts/createSynMigrationIconLibrary.js",
     "create-licenses": "node ./scripts/createLicenses.js",
+    "create-default-icon-exports": "node ./scripts/createDefaultIconExports.js",
     "clean": "node ./scripts/clean.js",
     "fetch-assets": "dotenvx -q run -- pnpm exec figma-export use-config",
     "lint": "eslint .",

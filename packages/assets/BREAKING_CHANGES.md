@@ -25,18 +25,26 @@ The old flat separation on the top level of the `src` folder was poorly structur
 
 Because of those problems, the filesystem structure was restructured like shown below:
 
-| Content                       | Location (1.x)                | Location (2.x)             |
-| ----------------------------- | ----------------------------- | -------------------------- |
-| Logos 2018 (svg)              | src/logos                     | src/sick2018/logos         |
-| Logos 2025 (svg)              | src/logos                     | src/sick2025/logos         |
-| SICK 2018 System Icons (svg)  | src/system-icons              | src/sick2018/system-icons  |
-| SICK 2018 Icons (svg)         | src/icons                     | src/sick2018/icons         |
-| SICK 2018 Default Icons (js)  | src/default-icons.ts          | src/sick2018/js/index.js   |
-| SICK 2025 System Icons (svg)  | src/system-icons-sick2025     | src/sick2025/system-icons  |
-| SICK 2025 icons fill (svg)    | src/sick2025/fill             | src/sick2025/icons/fill    |
-| SICK 2025 icons fill (js)     | src/sick2025-filled-icons.ts  | src/sick2025/js/filled.js  |
-| SICK 2025 icons outline (svg) | src/sick2025/outline          | src/sick2025/icons/outline |
-| SICK 2025 icons outline (js)  | src/sick2025-outline-icons.ts | src/sick2025/js/outline.js |
+**SICK 2018 Assets:**
+
+| Content            | Location (1.x)       | Location (2.x)            |
+| ------------------ | -------------------- | ------------------------- |
+| Logos (svg)        | src/logos            | src/sick2018/logos        |
+| System Icons (svg) | src/system-icons     | src/sick2018/system-icons |
+| Icons (svg)        | src/icons            | src/sick2018/icons        |
+| Default Icons (js) | src/default-icons.ts | src/sick2018/js/index.js  |
+
+**SICK 2025 Assets:**
+
+| Content             | Location (1.x)                | Location (2.x)             |
+| ------------------- | ----------------------------- | -------------------------- |
+| Logos (svg)         | src/logos                     | src/sick2025/logos         |
+| System Icons (svg)  | src/system-icons-sick2025     | src/sick2025/system-icons  |
+| Icons fill (svg)    | src/sick2025/fill             | src/sick2025/icons/fill    |
+| Icons fill (js)     | src/sick2025-filled-icons.ts  | src/sick2025/js/filled.js  |
+| Icons outline (svg) | src/sick2025/outline          | src/sick2025/icons/outline |
+| Icons outline (js)  | src/sick2025-outline-icons.ts | src/sick2025/js/outline.js |
+| Icons all (js)      | src/default-icons-2025.ts     | src/sick2025/js/index.js   |
 
 **Migration Steps**:
 
@@ -84,7 +92,7 @@ export default defineConfig({
           src: "node_modules/@synergy-design-system/assets/src/sick2018/logos/*",
           dest: "./assets/logos",
         },
-        // New path for SICK logos (2018)
+        // New path for SICK logos (2025)
         {
           src: "node_modules/@synergy-design-system/assets/src/sick2025/logos/*",
           dest: "./assets/logos",

@@ -1,11 +1,8 @@
 import { defaultIcons as sick2018Icons } from './sick2018/js/index.js';
-import { filledIcons as sick2025FilledIcons } from './sick2025/js/filled.js';
-import { outlineIcons as sick2025OutlineIcons } from './sick2025/js/outline.js';
-
-const sick2025Icons = {
-  ...sick2025FilledIcons,
-  ...sick2025OutlineIcons,
-};
+import sick2025Icons, {
+  sick2025FilledIcons,
+  sick2025OutlineIcons,
+} from './sick2025/js/index.js';
 
 export { createSpriteSheet } from './createSpritesheet.js';
 export {

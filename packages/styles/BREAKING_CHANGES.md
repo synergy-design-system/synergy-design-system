@@ -10,7 +10,7 @@ This guide holds the required information for migrating from one major version o
 
 ## Version 2.0
 
-<h3 id="syn-var-fallbacks-v3">Variable fallbacks</h3>
+<h3 id="syn-var-fallbacks-v2">Variable fallbacks</h3>
 
 #### ⚠️ Removed all fallback variables in styles
 
@@ -20,22 +20,22 @@ This guide holds the required information for migrating from one major version o
 
 **Reason**:
 
-During the migration process of Synergy version 2 to version 3, we added a compatibility layer in the styles that made it possible for users with misaligned versions of the styles and tokens package to still use the updated styles. This was achieved using fallbacks like this:
+During the migration process of Synergy version 2 to version 3, we added a compatibility layer in the styles package that made it possible for users with misaligned versions of the styles and tokens package to still use the updated styles. This was achieved using fallbacks like this:
 
 ```css
-/* Original code of Synergy version 1 */
+/* Original code of @synergy-design-system/styles@1.x */
 .syn-table-cell--border-start {
   border-inline-start: var(--syn-border-width-small) solid
     var(--syn-table-border-color, var(--syn-color-neutral-300));
 }
 ```
 
-This helped introduce Synergies new semantic layer without breaking the software. However, this also lead to increased bundle sizes.
+This helped introduce Synergies new semantic layer without breaking the versioning. However, this also lead to increased bundle sizes.
 
-As the component and token packages are now version aligned, there is no more need for this deprecation layer in the components like this:
+As the styles and token packages both get new major versions, there is no more need for this deprecation layer in the styles:
 
 ```css
-/* Original code of Synergy version 1 */
+/* Original code of @synergy-design-system/styles@2.x */
 .syn-table-cell--border-start {
   border-inline-start: var(--syn-border-width-small) solid
     var(--syn-table-border-color);
@@ -45,14 +45,14 @@ As the component and token packages are now version aligned, there is no more ne
 **Migration Steps**:
 
 - Make sure to use the latest versions of `@synergy-design-system/styles` and `@synergy-design-system/tokens`.
-- The tokens package now declares a `peerDependency` on version 3 of `@synergy-design-system/tokens`. You may also remove the installation of `@synergy-design-system/tokens` that was manually needed before.
+- The styles package now declares a `peerDependency` on version 3 of `@synergy-design-system/tokens`. You may also remove the installation of `@synergy-design-system/tokens` that was manually needed before as this should be automatically fetched now.
 
 **Example (before)**:
 
 ```json
 {
   "dependencies": {
-    "@synergy-design-system/tokens": "^1.0.0",
+    "@synergy-design-system/styles": "^1.0.0",
     "@synergy-design-system/tokens": "2.11.0"
   }
 }
@@ -63,8 +63,7 @@ As the component and token packages are now version aligned, there is no more ne
 ```json
 {
   "dependencies": {
-    "@synergy-design-system/components": "^2.0.0",
-    "@synergy-design-system/tokens": "3.0.0"
+    "@synergy-design-system/styles": "^2.0.0"
   }
 }
 ```

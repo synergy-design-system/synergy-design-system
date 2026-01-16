@@ -254,8 +254,7 @@ import type { SynClampDetails } from '../../events/syn-clamp.js';`,
   }
 
   /**
-   * @default nativeNumericStrategy
-   * @todo: This must be changed to "modern" in Synergy@3
+   * @default modernNumericStrategy
    */
   get numericStrategy(): 'native' | 'modern' | Partial<NumericStrategy> {
     return this.#numericStrategy;

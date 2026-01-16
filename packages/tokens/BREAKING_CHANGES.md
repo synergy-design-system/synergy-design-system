@@ -23,6 +23,8 @@ This guide holds the required information for migrating from one major version o
 With the migration from Synergy version 2 to Synergy version 3, we are adjusting the default export.
 The `light.css` and `dark.css` theme imports now point to `SICK 2025` instead of `SICK 2018`.
 
+This also means that the classes `.syn-theme-light` and `.syn-theme-dark` are now also set for the `SICK 2025` theme instead on the `SICK 2018` theme which was the old default.
+
 **Migration Steps**:
 
 > These steps are only needed if you want to stay on `SICK 2018` **and** have imported `light.css` or `dark.css`!
@@ -39,6 +41,14 @@ The `light.css` and `dark.css` theme imports now point to `SICK 2025` instead of
 @import "@synergy-design-system/tokens/dist/themes/dark.css";
 ```
 
+```html
+<!-- Points to syn-sick2018-light in version 2.x  -->
+<div class="syn-theme-light">...</div>
+
+<!-- Points to syn-sick2018-dark in version 2.x  -->
+<div class="syn-theme-dark">...</div>
+```
+
 **Example (after)**:
 
 ```css
@@ -47,6 +57,14 @@ The `light.css` and `dark.css` theme imports now point to `SICK 2025` instead of
 
 /* Adjust to this path to still load the SICK 2018 theme in version 3.x */
 @import "@synergy-design-system/tokens/dist/themes/sick2018_dark.css";
+```
+
+```html
+<!-- Points to syn-sick2025-light in version 3.x  -->
+<div class="syn-theme-light">...</div>
+
+<!-- Points to syn-sick2025-dark in version 3.x  -->
+<div class="syn-theme-dark">...</div>
 ```
 
 ---

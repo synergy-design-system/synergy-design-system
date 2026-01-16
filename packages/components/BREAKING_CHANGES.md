@@ -90,6 +90,9 @@ When we [added the `numeric-strategy` field](https://github.com/synergy-design-s
 To keep Synergy version 2 API stable, we chose to leave the default at `native` and make the `modern` version an opt in for interested projects.
 This is now reversed for Synergy version 3: If you need the old behavior back, just set `numeric-strategy` to `native`.
 
+> Be aware that the `modern` version may also adjust the width of a rendered `<syn-input>`
+> For more information about this behavior, please have a look at [the known issues](https://synergy-design-system.github.io/?path=/docs/limitations-components--docs#syn-input-number-width).
+
 **Migration Steps**:
 
 - Remove `numeric-strategy="modern"` from your custom code as it is no longer needed.
@@ -103,7 +106,7 @@ This is now reversed for Synergy version 3: If you need the old behavior back, j
   numeric-strategy="modern"
   label="Should use modern"
 ></syn-input>
-<syn-input type="number" label="Uses classic as default"></syn-input>
+<syn-input type="number" label="Uses native as default"></syn-input>
 ```
 
 **Example (after)**:
@@ -112,8 +115,8 @@ This is now reversed for Synergy version 3: If you need the old behavior back, j
 <syn-input type="number" label="Should use modern"></syn-input>
 <syn-input
   type="number"
-  numeric-strategy="classic"
-  label="Uses classic as default"
+  numeric-strategy="native"
+  label="Uses native as default"
 ></syn-input>
 ```
 

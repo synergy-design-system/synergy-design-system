@@ -27,7 +27,9 @@ import type { SynErrorEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/combobox/combobox.js';
 
 /**
- * @summary Comboboxes allow you to choose items from a menu of predefined options.
+ * @summary A combobox component that combines the functionality of a text input with a dropdown listbox,
+ * allowing users to either select from predefined options or enter custom values (when not restricted).
+ *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
  * @status stable
  *
@@ -63,7 +65,7 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The combobox's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
- * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
+ * @csspart combobox - The container that wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
  * @csspart display-input - The element that displays the selected option's label,
@@ -404,7 +406,7 @@ indicate the number of additional items that are selected.
   }
 
   /**
-* A function that customizes the tags to be rendered when multiple=true.
+* A function that customizes the tags to be rendered when `multiple` is true.
 * The first argument is the option, the second
 is the current tag's index.
 * The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at

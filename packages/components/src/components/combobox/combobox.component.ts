@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable max-len */
 import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
@@ -131,7 +132,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private isInitialized: boolean = false;
 
-  /** 
+  /**
    * Flag to prevent infinite loops when the option renderer programmatically updates options.
    * Set to true during option rendering to ignore slot change events triggered by our own updates.
    */
@@ -436,6 +437,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
   }
 
+  // eslint-disable-next-line complexity
   protected override willUpdate(changedProperties: PropertyValues) {
     super.willUpdate(changedProperties);
 
@@ -940,6 +942,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   handlePropertiesChange() {
     this.createComboboxOptionsFromQuery(this.displayInput.value);
     if (this.open) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.updateComplete.then(() => {
         this.open = this.multiple || this.restricted || this.numberFilteredOptions > 0;
       });
@@ -1204,6 +1207,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     // Use defaultValue only if the value has not been changed by the user
     const value = this.valueHasChanged ? this.value : this.defaultValue;
     // #845: if value is undefined return empty array
+    // eslint-disable-next-line no-nested-ternary, eqeqeq
     const convertedValue = (Array.isArray(value) ? value : value == undefined ? [] : value.split(this.delimiter));
     return convertedValue.map(val => this.cachedOptions.find(option => checkValueBelongsToOption(val, option))).filter((opt) => opt !== undefined);
   }
@@ -1362,6 +1366,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * DOM content after options are added, removed, or their values change.
    *
    */
+  /* eslint-disable @typescript-eslint/no-floating-promises */
   private handleSlotContentChange() {
     // Rerun this handler when <syn-option> is registered
     if (!customElements.get('syn-option')) {
@@ -1379,6 +1384,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.show();
     }
   }
+  /* eslint-enable @typescript-eslint/no-floating-promises */
 
   public handleDefaultSlotChange() {
     // Ignore slot changes triggered by our own option updates

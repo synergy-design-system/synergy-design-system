@@ -55,18 +55,6 @@ export default css`
     cursor: not-allowed !important;
   }
 
-  .combobox--tags-visible.combobox--small .combobox__tags {
-    margin-inline-end: var(--syn-spacing-x-small);
-  }
-
-  .combobox--tags-visible.combobox--medium .combobox__tags {
-    margin-inline-end: var(--syn-input-spacing-small);
-  }
-
-  .combobox--tags-visible.combobox--large .combobox__tags {
-    margin-inline-end: var(--syn-input-spacing-medium);
-  }
-
   .combobox--small .combobox__tags {
     gap: var(--syn-spacing-2x-small);
   }
@@ -77,6 +65,18 @@ export default css`
 
   .combobox--large .combobox__tags {
     gap: var(--syn-spacing-small);
+  }
+
+  .combobox--tags-visible.combobox--small .combobox__tags {
+    margin-inline-end: var(--syn-spacing-x-small);
+  }
+
+  .combobox--tags-visible.combobox--medium .combobox__tags {
+    margin-inline-end: var(--syn-input-spacing-small);
+  }
+
+  .combobox--tags-visible.combobox--large .combobox__tags {
+    margin-inline-end: var(--syn-input-spacing-medium);
   }
 
   /**

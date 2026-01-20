@@ -645,6 +645,8 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
       await sendKeys({ press: 'Escape' });
       await el.updateComplete;
+      // Firefox in CI is flaky. Waiting for another frame to ensure the value is cleared.
+      await nextFrame();
 
       expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
       expect(displayInput.value).to.equal('');
@@ -2003,6 +2005,9 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
       await sendKeys({ press: 'Escape' });
       await el.updateComplete;
+
+      // Firefox in CI is flaky. Waiting for another frame to ensure the value is cleared.
+      await nextFrame();
 
       expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
       expect(displayInput.value).to.equal('');

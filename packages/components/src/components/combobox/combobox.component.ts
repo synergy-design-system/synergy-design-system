@@ -838,6 +838,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         selectedOpt => selectedOpt.id === opt.id,
       );
     });
+    // This is needed so the highlight option renderer is working correctly for `restricted` and `multiple` comboboxes
+    this.cachedOptions.forEach((opt) => {
+      opt.selected = newSelectedOptions.some(
+        selectedOpt => selectedOpt.id === opt.id,
+      );
+    });
   }
 
   private getAllFilteredOptions() {
@@ -1012,6 +1018,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.popup.active = false;
 
     this.emit('syn-after-hide');
+
+    // sometimes in `multiple` mode the input is not cleared when closing, so we need to reset it here
+    if(this.multiple && this.displayInput.value !== '') {
+      this.displayInput.value = '';
+      this.createComboboxOptionsFromQuery('');
+    }
   }
 
   /**

@@ -11,6 +11,7 @@ import { clickOnElement } from '../../internal/test.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import type SynOption from '../option/option.js';
 import type SynCombobox from './combobox.js';
+import { highlightOptionRenderer } from './option-renderer.js';
 
 describe('<syn-combobox>', () => {
   describe('accessibility', () => {
@@ -1506,6 +1507,28 @@ describe('<syn-combobox>', () => {
         expect(option.getTextLabel()).to.equal(`Option ${index + 1}`);
       });
       expect(getOptionHandler).to.have.been.calledThrice;
+    });
+
+    it('should show selected state of options correctly with highlightOptionRenderer', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox multiple label="TEST">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      el.getOption = highlightOptionRenderer;
+      await aTimeout(0);
+
+      el.focus();
+      await sendKeys({ type: 'Opt' });
+      await el.updateComplete;
+      const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
+      await clickOnElement(secondOption);
+
+      const newOptions = el.querySelectorAll('syn-option');
+      expect(newOptions[1].selected).to.be.true;
     });
   });
 

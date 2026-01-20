@@ -230,7 +230,7 @@ Add the clearable attribute to add a clear button when the combobox has content.
   <syn-option
     value="Green"
     role="option"
-    aria-selected="true"
+    aria-selected="false"
     aria-disabled="false"
     id="syn-combobox-option-3"
     >Green</syn-option
@@ -458,7 +458,7 @@ To allow multiple options to be selected, use the multiple attribute. It’s a g
   <syn-option
     value="option-1"
     role="option"
-    aria-selected="true"
+    aria-selected="false"
     aria-disabled="false"
     id="syn-combobox-option-0"
     >Option 1</syn-option
@@ -466,7 +466,7 @@ To allow multiple options to be selected, use the multiple attribute. It’s a g
   <syn-option
     value="option-2"
     role="option"
-    aria-selected="true"
+    aria-selected="false"
     aria-disabled="false"
     id="syn-combobox-option-1"
     >Option 2</syn-option
@@ -474,7 +474,7 @@ To allow multiple options to be selected, use the multiple attribute. It’s a g
   <syn-option
     value="option-3"
     role="option"
-    aria-selected="true"
+    aria-selected="false"
     aria-disabled="false"
     id="syn-combobox-option-2"
     >Option 3</syn-option
@@ -525,7 +525,7 @@ Use the value attribute to set the initial selection.When using multiple, the va
   <syn-option
     value="option-1"
     role="option"
-    aria-selected="true"
+    aria-selected="false"
     aria-disabled="false"
     id="syn-combobox-option-0"
     >Option 1</syn-option
@@ -533,7 +533,7 @@ Use the value attribute to set the initial selection.When using multiple, the va
   <syn-option
     value="option-2"
     role="option"
-    aria-selected="true"
+    aria-selected="false"
     aria-disabled="false"
     id="syn-combobox-option-1"
     >Option 2</syn-option
@@ -541,7 +541,7 @@ Use the value attribute to set the initial selection.When using multiple, the va
   <syn-option
     value="option-3"
     role="option"
-    aria-selected="true"
+    aria-selected="false"
     aria-disabled="false"
     id="syn-combobox-option-2"
     >Option 3</syn-option

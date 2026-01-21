@@ -1528,6 +1528,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               role="listbox"
               aria-expanded=${this.open ? 'true' : 'false'}
               aria-labelledby="label"
+              aria-multiselectable=${this.multiple ? 'true' : 'false'}
               part="listbox"
               class="combobox__listbox"
               tabindex="-1"

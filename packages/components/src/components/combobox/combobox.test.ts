@@ -1964,7 +1964,7 @@ describe('<syn-combobox>', () => {
 
     it('should open the listbox with no results text when a letter key is pressed with syn-combobox is on focus with no appropriate options', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-combobox>
+        <syn-combobox multiple>
           <syn-option value="option-1">Black</syn-option>
           <syn-option value="option-2">Yellow</syn-option>
           <syn-option value="option-3">Red</syn-option>
@@ -1979,8 +1979,8 @@ describe('<syn-combobox>', () => {
       const filteredListbox = el.shadowRoot!.querySelector('.combobox__listbox')!;
       const allOptions = el.querySelectorAll<SynOption>('syn-option');
 
-      expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
-      expect(filteredListbox.getAttribute('aria-expanded')).to.equal('false');
+      expect(displayInput.getAttribute('aria-expanded')).to.equal('true');
+      expect(filteredListbox.getAttribute('aria-expanded')).to.equal('true');
       expect(allOptions[0]).not.to.be.displayed;
       expect(allOptions[1]).not.to.be.displayed;
       expect(allOptions[2]).not.to.be.displayed;

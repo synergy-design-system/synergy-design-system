@@ -305,7 +305,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   /**
    * The delimiter to use when setting the value when `multiple` is enabled.
-   * The default is a space, but you can set it to a comma or other character.
+   * The default is a pipe '|', but you can set it to a comma or other character(s).
    * @example <syn-combobox delimiter="+" value="option-1+option-2"></syn-combobox>
    */
   @property() delimiter = '|';
@@ -462,6 +462,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         // Set it back to false since this isn't an interaction.
         this.valueHasChanged = cachedValueHasChanged;
       }
+    }
+
+    // Clear input when switching to multiple mode to ensure options are filtered correctly
+    if (changedProperties.has('multiple') && this.multiple && this.displayInput) {
+      this.displayInput.value = '';
     }
   }
 
@@ -833,6 +838,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   // Sets the selected option(s)
   private setSelectedOptions(option: SynOption | SynOption[]) {
     const newSelectedOptions = Array.isArray(option) ? option : [option];
+    // In single-select mode, if multiple options are provided, keep only the first one to select
+    if (!this.multiple && newSelectedOptions.length > 1) {
+      newSelectedOptions.splice(1);
+    }
 
     const slottedOptions = this.getSlottedOptions();
     slottedOptions.forEach((opt) => {
@@ -969,7 +978,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     });
   }
 
-  @watch(['defaultValue', 'value', 'delimiter'], { waitUntilFirstUpdate: true })
+  @watch(['defaultValue', 'value', 'delimiter', 'multiple'], { waitUntilFirstUpdate: true })
   handleValueChange() {
     if (!this.valueHasChanged) {
       const cachedValueHasChanged = this.valueHasChanged;

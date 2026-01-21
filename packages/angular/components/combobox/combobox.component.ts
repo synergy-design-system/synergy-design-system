@@ -379,7 +379,7 @@ The default filter method is a case- and diacritic-insensitive string comparison
 
   /**
 * The delimiter to use when setting the value when `multiple` is enabled.
-The default is a space, but you can set it to a comma or other character.
+The default is a pipe '|', but you can set it to a comma or other character(s).
  */
   @Input()
   set delimiter(v: SynCombobox['delimiter']) {

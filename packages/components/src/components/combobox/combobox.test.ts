@@ -2013,6 +2013,44 @@ describe('<syn-combobox>', () => {
       expect(displayInput.value).to.equal('');
       expect(el.value).to.deep.equal([]);
     });
+
+    it('should emit syn-change and syn-input when the last tag is removed and the same option is added again', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-1" multiple>
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+      const options = el.querySelectorAll<SynOption>('syn-option');
+      expect(options[0].selected).to.be.true;
+
+      const changeHandler = sinon.spy();
+      const inputHandler = sinon.spy();
+      const tag = el.shadowRoot!.querySelector('[part~="tag"]')!;
+      const removeButton = tag.shadowRoot!.querySelector('[part~="remove-button"]')!;
+
+      el.addEventListener('syn-change', changeHandler);
+      el.addEventListener('syn-input', inputHandler);
+
+      await clickOnElement(removeButton);
+      await el.updateComplete;
+
+      expect(changeHandler.calledOnce).to.be.true;
+      expect(inputHandler.calledOnce).to.be.true;
+
+      expect(el.value).to.deep.equal([]);
+      expect(options[0].selected).to.be.false;
+
+      const firstOption = options[0];
+      await el.show();
+
+      await clickOnElement(firstOption);
+      await el.updateComplete;
+      expect(changeHandler.calledTwice).to.be.true;
+      expect(inputHandler.calledTwice).to.be.true;
+      expect(options[0].selected).to.be.true;
+    });
   });
 
   describe('#540: should allow to use a custom delimiter for multiple values', () => {

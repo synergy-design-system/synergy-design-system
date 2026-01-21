@@ -463,11 +463,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         this.valueHasChanged = cachedValueHasChanged;
       }
     }
-
-    // Clear input when switching to multiple mode to ensure options are filtered correctly
-    if (changedProperties.has('multiple') && this.multiple && this.displayInput) {
-      this.displayInput.value = '';
-    }
   }
 
   attributeChangedCallback(name: string, oldVal: string | null, newVal: string | null) {
@@ -616,11 +611,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
         const value = Array.isArray(this.value) ? this.value : [this.value];
 
-        // Reset the lastOptions if all options were removed in multiple mode
-        if (this.multiple && value.length === 0) {
-          this.lastOptions = [];
-        }
-
         if (!compareValues(oldValue, value)) {
           // Emit after updating
           this.updateComplete.then(() => {
@@ -659,8 +649,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         this.displayInput.setSelectionRange(0, 0);
       } else if (event.key === 'End') {
         this.displayInput.setSelectionRange(
-          this.displayInput.value.length,
-          this.displayInput.value.length,
+          this.displayLabel.length,
+          this.displayLabel.length,
         );
       }
     }
@@ -734,7 +724,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     if (this.value !== '') {
       this.value = '';
-      this.displayInput.value = '';
+      this.displayLabel = '';
       this.lastOptions = [];
       this.setSelectedOptions([]);
       this.selectionChanged();
@@ -775,11 +765,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.updateComplete.then(() => this.displayInput.focus({ preventScroll: true }));
 
       const value = Array.isArray(this.value) ? this.value : [this.value];
-
-      // Reset the lastOptions if all options were removed in multiple mode
-      if (this.multiple && value.length === 0) {
-        this.lastOptions = [];
-      }
 
       if (!compareValues(oldValue, value)) {
         // Emit after updating
@@ -906,6 +891,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private selectionChanged() {
     const options = this.getSlottedOptions();
     this.selectedOptions = options.filter(opt => opt.selected);
+
+    // This is needed if there are no valid options and therefore just the typed in value should be displayed
+    if (this.selectedOptions.length === 0) {
+      this.displayLabel = Array.isArray(this.value) ? this.value.join(', ') : this.value;
+    }
+
     let optionValue;
 
     // Keep a reference to the previous `valueHasChanged`. Changes made here don't count has changing the value.
@@ -922,22 +913,25 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       if (this.selectedOptions.length !== 0) {
         // This is only for non multiple
         optionValue = getValueFromOption(this.selectedOptions[0]);
-      } else if (this.restricted && !this.isValidValue(this.displayInput.value) && this.displayInput.value !== '' && !this.isUserInput) {
+      } else if (this.restricted && !this.isValidValue(this.displayLabel) && this.displayLabel !== '' && !this.isUserInput) {
         // if an invalid value was set via property binding for `restricted`comboboxes,
         // reset to last valid value
         this.resetToLastValidValue();
         this.valueHasChanged = cachedValueHasChanged;
         return;
       }
-      this.value = optionValue ?? this.displayInput.value;
+      this.value = optionValue ?? this.displayLabel;
     }
 
     this.valueHasChanged = cachedValueHasChanged;
 
+    // Store the new last selected options
+    this.lastOptions = [...this.selectedOptions];
+
     // Update validity and display label
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.updateComplete.then(() => {
-      this.displayLabel = this.multiple ? '' : this.selectedOptions[0]?.getTextLabel() ?? this.displayInput.value;
+      this.displayLabel = this.multiple ? '' : this.selectedOptions[0]?.getTextLabel() ?? this.displayLabel;
       this.formControlController.updateValidity();
     });
   }
@@ -949,13 +943,18 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @watch(['filter', 'getOption'], { waitUntilFirstUpdate: true })
   handlePropertiesChange() {
-    this.createComboboxOptionsFromQuery(this.displayInput.value);
+    this.createComboboxOptionsFromQuery(this.displayLabel);
     if (this.open) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.updateComplete.then(() => {
         this.open = this.multiple || this.restricted || this.numberFilteredOptions > 0;
       });
     }
+  }
+
+  @watch('displayLabel', { waitUntilFirstUpdate: true })
+  handleDisplayInputValueChange() {
+    this.createComboboxOptionsFromQuery(this.displayLabel);
   }
 
   @watch('disabled', { waitUntilFirstUpdate: true })
@@ -978,7 +977,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     });
   }
 
-  @watch(['defaultValue', 'value', 'delimiter', 'multiple'], { waitUntilFirstUpdate: true })
+  @watch(['defaultValue', 'value', 'delimiter', 'multiple', 'restricted'], { waitUntilFirstUpdate: true })
   handleValueChange() {
     if (!this.valueHasChanged) {
       const cachedValueHasChanged = this.valueHasChanged;
@@ -1030,12 +1029,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.popup.active = false;
 
     this.emit('syn-after-hide');
-
-    // sometimes in `multiple` mode the input is not cleared when closing, so we need to reset it here
-    if(this.multiple && this.displayInput.value !== '') {
-      this.displayInput.value = '';
-      this.createComboboxOptionsFromQuery('');
-    }
   }
 
   /**
@@ -1172,6 +1165,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   // eslint-disable-next-line complexity
   private async handleInput() {
     const inputValue = this.displayInput.value;
+    this.displayLabel = inputValue;
     const cachedLastOption = this.lastOptions;
     this.isUserInput = true;
 
@@ -1258,7 +1252,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     // Keep a reference to the previous `valueHasChanged`. Changes made here don't count has changing the value.
     const cachedValueHasChanged = this.valueHasChanged;
     this.value = value;
-    this.displayInput.value = label;
+    this.displayLabel = label;
     this.formControlController.updateValidity();
     this.valueHasChanged = cachedValueHasChanged;
   }
@@ -1276,8 +1270,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       return;
     }
 
+    const oldValue = this.lastOptions ? getValuesFromOptions(this.lastOptions) : [];
+
     // If the value is not valid, we need to reset the value to the last valid value
-    if ((this.restricted || this.multiple) && !this.isValidValue(this.displayInput.value) && this.displayInput.value !== '') {
+    if ((this.restricted || this.multiple) && !this.isValidValue(this.displayLabel) && this.displayLabel !== '') {
       this.resetToLastValidValue();
       return;
     }
@@ -1288,15 +1284,13 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.lastOptions = [...options];
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.updateComplete.then(() => {
-      // for some reason the displayInput is not updating the displayed values with the `displayLabel` change and we need to set it directly on the input
-      if (this.multiple) {
-        this.displayInput.value = this.displayLabel;
-        // remove the query so all options are shown again
-        this.createComboboxOptionsFromQuery('');
-      }
       this.formControlController.updateValidity();
     });
-    this.emit('syn-change');
+
+    const value = Array.isArray(this.value) ? this.value : [this.value];
+    if (!compareValues(oldValue, value)) {
+      this.emit('syn-change');
+    }
   }
 
   private getSlottedOptions() {
@@ -1328,19 +1322,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
   /* eslint-enable no-param-reassign */
 
-  // eslint-disable-next-line complexity
   private updateSelectedOptionFromValue(): void {
     if (!this.isUserInput) {
       // check if the value has corresponding options via value or text content
       // for empty values use the text content, as then the values of the options are not set
       const options = this.getOptionsFromValue();
-
-      if (options.length === 0) {
-        // #845 if this.value is undefined set it to empty string, as otherwhise "undefined" is shown in the input
-        this.displayInput.value = Array.isArray(this.value) ? this.value.join(', ') : this.value ?? '';
-      } else {
-        this.lastOptions = [...options];
-      }
 
       this.setSelectedOptions(options);
       this.selectionChanged();
@@ -1348,7 +1334,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     let queryString = '';
     if (this.multiple) {
-      queryString = this.displayInput.value;
+      queryString = this.displayLabel;
     } else {
       queryString = Array.isArray(this.value) ? this.value.join(', ') : this.value;
     }

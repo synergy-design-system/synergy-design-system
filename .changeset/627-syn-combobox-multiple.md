@@ -14,5 +14,5 @@ Adds multiple selection functionality to the `syn-combobox` component, enabling 
 - `multiple`: Enables multiple selection mode
 - `delimiter`: Customizable value separator (default: `|`)
 - `max-options-visible`: Controls visible tag limit with overflow handling
-- `get-tag`: Custom tag rendering function
+- `getTag`: Custom tag rendering function
 

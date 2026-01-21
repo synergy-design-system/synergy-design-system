@@ -1,6 +1,5 @@
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
-/* eslint-disable max-len */
+/* eslint-disable no-underscore-dangle */
 import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
@@ -183,8 +182,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   /**
    * The current value of the combobox, submitted as a name/value pair with form data. When `multiple` is enabled, the
-   * value attribute will be a  '|'-delimited list of values based on the options selected, and the value property will
-   * be an array. **For this reason, values must not contain spaces.**
+   * value attribute will be a list of values  separated by the delimiter, based on the options selected, and the value property will
+   * be an array. **For this reason, values must not contain the delimiter character.**
    */
   @state()
   set value(val: string | string[]) {
@@ -266,7 +265,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   /**
    * Allows more than one option to be selected.
-   * If `multiple`is set, the combobox will always be `restricted` to the available options
+   * If `multiple` is set, the combobox will always be `restricted` to the available options
    * */
   @property({ reflect: true, type: Boolean }) multiple = false;
 

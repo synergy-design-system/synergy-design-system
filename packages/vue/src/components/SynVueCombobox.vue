@@ -173,7 +173,7 @@ This will always be true, if `multiple` is active.
 
   /**
 * Allows more than one option to be selected.
-If `multiple`is set, the combobox will always be `restricted` to the available options
+If `multiple` is set, the combobox will always be `restricted` to the available options
  */
   multiple?: SynCombobox['multiple'];
 
@@ -219,9 +219,9 @@ the specified value.
   /**
 * The current value of the combobox, submitted as a name/value pair with form data.
 * When `multiple` is enabled, the
-value attribute will be a  '|'-delimited list of values based on the options selected, and the value property will
+value attribute will be a list of values  separated by the delimiter, based on the options selected, and the value property will
 be an array.
-* **For this reason, values must not contain spaces.**
+* **For this reason, values must not contain the delimiter character.**
  */
   value?: SynCombobox['value'];
 

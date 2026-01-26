@@ -59,7 +59,7 @@ export const Default = {
     },
     docs: {
       description: {
-        story: generateStoryDescription('button', 'default'),
+        story: generateStoryDescription('button-group', 'default'),
       },
     },
   },
@@ -182,7 +182,7 @@ export const ToolbarExample: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('button-group', 'tooltips'),
+        story: generateStoryDescription('button-group', 'toolbar'),
       },
     },
   },

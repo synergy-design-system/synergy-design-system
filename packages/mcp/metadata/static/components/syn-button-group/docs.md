@@ -1,6 +1,6 @@
 ## Default
 
-Buttons represent actions that are available to the user.
+Button groups can be used to group related buttons into sections.
 
 ```html
 <syn-button-group size="medium" variant="outline">
@@ -149,7 +149,7 @@ Buttons can be wrapped in tooltips to provide more detail when the user interact
 
 ## Toolbar Example
 
-Buttons can be wrapped in tooltips to provide more detail when the user interacts with them.
+Create interactive toolbars with button groups.
 
 ```html
 <div class="button-group-toolbar">

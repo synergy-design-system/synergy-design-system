@@ -35,23 +35,6 @@ The recommended way of using the icons is with the [<syn-icon> Synergy component
 <syn-icon name="warning"></syn-icon>
 ```
 
-#### Direct Icon Access
-
-Icons can also be accessed directly from their respective brand namespaces:
-
-```html
-<!-- SICK 2025 brand icons (default for Synergy v3+) -->
-<img src="@synergy-design-system/assets/sick2025/icons/outline/warning.svg" />
-<img src="@synergy-design-system/assets/sick2025/icons/fill/warning.svg" />
-
-<!-- SICK 2018 brand icons (for Synergy v2) -->
-<img src="@synergy-design-system/assets/sick2018/icons/warning.svg" />
-
-<!-- System icons -->
-<img src="@synergy-design-system/assets/sick2025/system-icons/warning.svg" />
-<img src="@synergy-design-system/assets/sick2018/system-icons/warning.svg" />
-```
-
 #### Programmatic Access
 
 You can also import icon sets programmatically:
@@ -76,13 +59,14 @@ The folder structure corresponds to the brand revisions and their respective usa
 - **src/sick2025:** Contains the SICK 2025 brand revision assets
   - **icons/outline:** Outline variant icons based on [Material Icons](https://fonts.google.com/icons). These are the preferred icons for applications.
   - **icons/fill:** Filled variant icons based on [Material Icons](https://fonts.google.com/icons). Should be used where alternatives are needed only.
-  - **system-icons:** Internal icons used by Synergy components (v3+)
   - **js:** Javascript export of the sick2025 icons
+  - **logos:** Contains variants of the SICK brand logo for the SICK 2025 brand revision
+  - **system-icons:** Internal icons used by Synergy components (v3+)
 - **src/sick2018:** Contains the SICK 2018 brand revision assets (legacy)
   - **icons:** Standard icons based on [Material Icons](https://fonts.google.com/icons) (v2)
-  - **system-icons:** Internal icons used by Synergy components (v2)
   - **js:** Javascript export of the sick2018 icons
-- **src/logos:** Contains variants of the SICK brand logo for all brand revisions
+  - **logos:** Contains variants of the SICK brand logo for the SICK 2018 brand revision
+  - **system-icons:** Internal icons used by Synergy components (v2)
 
 > **Note:** All assets from figma, which should not appear in this package (e.g. documentation), will start with an underscore (e.g. \_my-doc-for-an-asset). This assets are getting filtered and ignored by this package.
 

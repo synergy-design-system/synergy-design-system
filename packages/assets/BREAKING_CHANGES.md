@@ -245,7 +245,7 @@ Make sure to adapt your imports for the main export to use `sick2018.js` when yo
 import sick2018Icons from "@synergy-design-system/assets";
 
 // Load SICK 2025 icons (explicit in v1)
-import sick2025Icons from "@synergy-design-system/assets/sick2025.js";
+import sick2025Icons from "@synergy-design-system/assets/default-icons-2025.js";
 
 // Default icon import loads SICK 2018 icons in v2
 import defaultIcons from "@synergy-design-system/assets";

@@ -417,7 +417,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   disconnectedCallback() {
     super.disconnectedCallback();
+
     this.resizeObserver?.disconnect();
+    this.mutationObserver?.disconnect();
+    this.removeOpenListeners();
   }
 
   firstUpdated() {

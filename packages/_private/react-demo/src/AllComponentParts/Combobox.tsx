@@ -8,19 +8,22 @@ export const Combobox = () => {
   const [levels, setLevels] = useState<SelectItem[]>([]);
   const [cb632Value, setcb632Value] = useState<string>('');
   const [asyncValue, setAsyncValue] = useState<string>('');
+
+  const fetchLevels = async () => {
+    const items = await mockAsyncData('selectItems');
+    setLevels(items);
+  };
+  const fetchAsyncValue = async () => {
+    const value = await mockAsyncData('valueWithPipe');
+    setAsyncValue(value);
+  };
+
   useEffect(() => {
-    const fetchLevels = async () => {
-      const items = await mockAsyncData('selectItems');
-      setLevels(items);
-    };
-    const fetchAsyncValue = async () => {
-      const value = await mockAsyncData('valueWithPipe');
-      setAsyncValue(value);
+    const bootstrap = async () => {
+      await Promise.all([fetchLevels(), fetchAsyncValue()]);
     };
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    fetchLevels();
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    fetchAsyncValue();
+    bootstrap();
   }, []);
   return (
     <>

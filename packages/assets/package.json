@@ -45,7 +45,9 @@
       "import": "./dist/sick2025/js/outline.js"
     },
     "./sick2018/*": "./src/sick2018/*",
+    "./src/sick2018/*": "./src/sick2018/*",
     "./sick2025/*": "./src/sick2025/*",
+    "./src/sick2025/*": "./src/sick2025/*",
     "./sick2018.js": {
       "types": "./dist/sick2018/js/index.d.ts",
       "import": "./dist/sick2018/js/index.js"

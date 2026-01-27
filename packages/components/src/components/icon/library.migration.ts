@@ -6,7 +6,7 @@
  */
 import { getBasePath } from '../../utilities/base-path.js';
 import { type IconLibrary, registerIconLibrary } from './library.js';
-import defaultSystemLibrary from './library.system.js';
+import defaultLibrary from './library.default.js';
 import { type AvailableSystemIcons, setSystemIconLibrary } from './library.system.js';
 
 /**
@@ -306,7 +306,7 @@ export const setupIcons = (
   enableLogging: boolean = true,
 ): IconLibrary => {
   const iconlibraryToUse = iconset === 'sick2018'
-    ? defaultSystemLibrary
+    ? defaultLibrary
     : createMigrationLibrary(enableLogging ? 'ENABLED' : 'ENABLED_WITHOUT_LOGGING');
 
   registerIconLibrary('default', iconlibraryToUse);

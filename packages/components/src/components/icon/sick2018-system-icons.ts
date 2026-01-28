@@ -1,6 +1,6 @@
 /* eslint-disable */
 /**
- * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration-to-sick-2025--docs for further details.
+ * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration--docs for further details.
  */
 
 export const icons = {

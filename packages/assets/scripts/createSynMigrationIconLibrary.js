@@ -303,7 +303,7 @@ type IconMigrationState = 'DISABLED' | 'ENABLED' | 'ENABLED_WITHOUT_LOGGING';
  * @param {string} iconName The old icon name
  * @param {boolean} enableLogging? Whether to enable logging for unmapped icons
  * @returns {string} The new icon name
- * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration-to-sick-2025--docs for further details.
+ * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration--docs for further details.
  */
 export const migrateIconName = (
   iconName: string,
@@ -331,7 +331,7 @@ export const migrateIconName = (
  * @param {string} iconName The old icon name
  * @param {boolean} enableLogging? Whether to enable logging for unmapped icons
  * @returns {string} The new icon name
- * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration-to-sick-2025--docs for further details.
+ * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration--docs for further details.
  */
 export const migrateIconNameFilled = (
   iconName: string,
@@ -345,7 +345,7 @@ export const migrateIconNameFilled = (
  * Create an icon library for migrating old icon names to new icon names.
  * @param {IconMigrationState} withState The icon migration state
  * @returns {IconLibrary} The migration icon library
- * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration-to-sick-2025--docs for further details.
+ * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration--docs for further details.
  */
 export const createMigrationLibrary = (withState: IconMigrationState = 'DISABLED'): IconLibrary => ({
   name: 'default',
@@ -357,7 +357,7 @@ export const createMigrationLibrary = (withState: IconMigrationState = 'DISABLED
 
 /**
  * Default icon library for migrating old icon names to new icon names.
- * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration-to-sick-2025--docs for further details.
+ * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration--docs for further details.
  */
 export const migrationLibrary = createMigrationLibrary('DISABLED');
 
@@ -366,7 +366,7 @@ export const migrationLibrary = createMigrationLibrary('DISABLED');
  * @param iconset The system icon set to use
  * @param enableLogging Enable logging of migrated icons?
  * @returns The icon library used
- * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration-to-sick-2025--docs for further details.
+ * @deprecated Consider moving to synergy 2025 icons directly. See https://synergy-design-system.github.io/?path=/docs/migration--docs for further details.
  */
 export const setupIcons = (
   iconset: AvailableSystemIcons = 'sick2025',

@@ -374,7 +374,7 @@ This applies to:
 Consider switching to the new SICK 2025 icons directly.
 Update your icon names in markup to use the new naming convention instead of relying on the automatic migration layer.
 
-> 📖 For a complete mapping of old to new icon names, see the [SICK 2025 icon migration guide](https://synergy-design-system.github.io/?path=/docs/migration-to-sick-2025--docs).
+> 📖 For a complete mapping of old to new icon names, see the [SICK 2025 icon migration guide](https://synergy-design-system.github.io/?path=/docs/migration--docs).
 
 **Example (before)**:
 

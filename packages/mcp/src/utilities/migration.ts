@@ -12,41 +12,27 @@ import {
 
 type AvailablePackages = 'assets' | 'components' | 'tokens' | 'styles';
 
-const getAssetsMigrationMetaData = async () => {
-  const fileList = [
+/**
+ * Low level utility to get migration metadata for a specific package.
+ * @param path The path to retreive the information from
+ * @param fileList A list of filenames that should be included
+ */
+const getBaseMigrationMetaData = async (
+  path: string,
+  fileList: string[] = [
     'CHANGELOG.md',
     'BREAKING_CHANGES.md',
-  ];
+  ],
+) => getStructuredMetaData(
+  path,
+  item => fileList.includes(item),
+);
 
-  return getStructuredMetaData(
-    assetsPath,
-    item => fileList.includes(item),
-  );
-};
+const getAssetsMigrationMetaData = async () => getBaseMigrationMetaData(assetsPath);
 
-const getStylesMigrationMetaData = async () => {
-  const fileList = [
-    'CHANGELOG.md',
-    'BREAKING_CHANGES.md',
-  ];
+const getStylesMigrationMetaData = async () => getBaseMigrationMetaData(stylesPath);
 
-  return getStructuredMetaData(
-    stylesPath,
-    item => fileList.includes(item),
-  );
-};
-
-const getTokensMigrationMetaData = async () => {
-  const fileList = [
-    'CHANGELOG.md',
-    'BREAKING_CHANGES.md',
-  ];
-
-  return getStructuredMetaData(
-    tokensPath,
-    item => fileList.includes(item),
-  );
-};
+const getTokensMigrationMetaData = async () => getBaseMigrationMetaData(tokensPath);
 
 const getComponentsMigrationMetaData = async () => {
   const data = await getStructuredMetaData(componentMigrationPath);

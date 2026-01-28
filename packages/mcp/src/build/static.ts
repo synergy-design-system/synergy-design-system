@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs';
-import { copyFile } from 'node:fs/promises';
+import { copyFile, readdir } from 'node:fs/promises';
 import { basename, join } from 'node:path';
 import ora from 'ora';
 import {
@@ -7,6 +7,7 @@ import {
   createPath,
   getAbsolutePath,
   setupPath,
+  staticMigrationPath,
 } from '../utilities/index.js';
 
 /**
@@ -26,11 +27,6 @@ const staticFilesToCopy = [
   // Copy the migration guide
   [
     getAbsolutePath('../../../../packages/components/BREAKING_CHANGES.md'),
-    componentMigrationPath,
-  ],
-  // Copy the v3 migration guide
-  [
-    getAbsolutePath('../../../../packages/docs/src/static/migration-synergy-v3.md'),
     componentMigrationPath,
   ],
 ];
@@ -59,6 +55,24 @@ export const buildStaticFiles = async () => {
       });
 
     await Promise.all(staticFiles);
+
+    // Copy all migration guides from the docs package into the static
+    // migration metadata directory so they can be consumed by the MCP server.
+    const migrationSourceDir = getAbsolutePath('../../../../packages/docs/src/static/migration');
+
+    if (existsSync(migrationSourceDir)) {
+      await createPath(staticMigrationPath);
+
+      const migrationFiles = await readdir(migrationSourceDir);
+      const migrationCopies = migrationFiles.map((file) => {
+        const source = join(migrationSourceDir, file);
+        const target = join(staticMigrationPath, file);
+        return copyFile(source, target);
+      });
+
+      await Promise.all(migrationCopies);
+    }
+
     spinner.succeed('Static metadata generated successfully.');
 
     spinner.succeed('Generation of metadata generated successfully.');

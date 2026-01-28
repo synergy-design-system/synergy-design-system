@@ -13,3 +13,6 @@ This release enhances the MCP server with improved migration guidance and update
 **Migration Steps:**
 - Update any calls to the migration endpoint to specify the target package
 - Review asset integrations as the default iconset has changed to SICK 2025
+
+**New tool `migration-list`
+- Provides a new tool that gives information about available migrations for packages (e.g. for components how to migrate from v2 sick2018 to v3 sick2025)

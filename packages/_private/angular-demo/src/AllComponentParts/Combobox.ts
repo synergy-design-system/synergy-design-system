@@ -73,7 +73,7 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
       help-text="Normal value binding and async options"
       label="Multiple with async options"
       multiple
-      value="1|2"
+      value="1 2"
     >
       @for (level of levels; track $index; let index = $index) {
         <syn-option [value]="level.value">{{level.label}}</syn-option>
@@ -91,7 +91,7 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
 
     <syn-combobox
       data-testid="combobox-1056-async-delimiter-change-with-pre-value"
-      value="Option|2"
+      value="Option 2"
       label="Async changed delimiter with pre value"
       restricted
     >
@@ -127,7 +127,7 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
 })
 export class Combobox implements OnInit {
   levels: SelectItem[] = [];
-  delimiterItems = mockData('comboboxItemsWithPipe');
+  delimiterItems = mockData('selectItemsWithSpace');
   cb632Value: string = '';
   // @ts-ignore
   asyncValue: string;
@@ -141,7 +141,7 @@ export class Combobox implements OnInit {
     mockAsyncData('selectItems').then((items) => {
       this.levels = items;
     });
-    mockAsyncData('valueWithPipe').then((value) => {
+    mockAsyncData('valueWithSpace').then((value) => {
       this.asyncValue = value;
     });
   }

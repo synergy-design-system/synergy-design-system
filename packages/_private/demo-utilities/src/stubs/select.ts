@@ -50,20 +50,9 @@ export const nationalities: string[] = [
  * Shared stub for select items for delimiter tests
  */
 export const selectItemsWithSpace: SelectItem[] = [
-  { label: 'Option 1', value: 'Option 1' },
-  { label: 'Option 2', value: 'Option 2' },
-  { label: 'Option 3', value: 'Option 3' },
-];
-
-/**
- * Shared stub for combobox items for delimiter tests
- */
-export const comboboxItemsWithPipe: SelectItem[] = [
-  { label: 'This is option 1', value: 'Option|1' },
-  { label: 'This is option 2', value: 'Option|2' },
-  { label: 'This is option 3', value: 'Option|3' },
+  { label: 'First option', value: 'Option 1' },
+  { label: 'Second option', value: 'Option 2' },
+  { label: 'Third option', value: 'Option 3' },
 ];
 
 export const valueWithSpace = 'Option 2';
-
-export const valueWithPipe = 'Option|2';

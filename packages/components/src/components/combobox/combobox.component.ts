@@ -304,10 +304,10 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   /**
    * The delimiter to use when setting the value when `multiple` is enabled.
-   * The default is a pipe '|', but you can set it to a comma or other character(s).
-   * @example <syn-combobox delimiter="+" value="option-1+option-2"></syn-combobox>
+   * The default is a space ' ', but you can set it to a comma or other character(s).
+   * @example <syn-combobox delimiter="~" value="option-1~option-2"></syn-combobox>
    */
-  @property() delimiter = '|';
+  @property() delimiter = ' ';
 
   /**
    * The maximum number of selected options to show when `multiple` is true. After the maximum, "+n" will be shown to
@@ -1213,7 +1213,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const value = this.valueHasChanged ? this.value : this.defaultValue;
     // #845: if value is undefined return empty array
     // eslint-disable-next-line no-nested-ternary, eqeqeq
-    const convertedValue = (Array.isArray(value) ? value : value == undefined ? [] : value.split(this.delimiter));
+    const convertedValue = (Array.isArray(value) ? value : value == undefined ? [] : this.multiple ? value.split(this.delimiter) : [value]);
     return convertedValue.map(val => this.cachedOptions.find(option => checkValueBelongsToOption(val, option))).filter((opt) => opt !== undefined);
   }
 

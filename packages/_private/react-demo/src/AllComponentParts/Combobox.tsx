@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import type { SynCombobox } from '@synergy-design-system/components';
 import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
-const delimiterItems = mockData('comboboxItemsWithPipe');
+const delimiterItems = mockData('selectItemsWithSpace');
 
 export const Combobox = () => {
   const [levels, setLevels] = useState<SelectItem[]>([]);
@@ -14,7 +14,7 @@ export const Combobox = () => {
     setLevels(items);
   };
   const fetchAsyncValue = async () => {
-    const value = await mockAsyncData('valueWithPipe');
+    const value = await mockAsyncData('valueWithSpace');
     setAsyncValue(value);
   };
 
@@ -89,7 +89,7 @@ export const Combobox = () => {
         help-text="Normal value binding and async options"
         label="Multiple with async options"
         multiple
-        value="1|2"
+        value="1 2"
       >
         {levels.map(level => (
           <syn-option key={level.value} value={level.value}>
@@ -111,7 +111,7 @@ export const Combobox = () => {
 
       <syn-combobox
         data-testid="combobox-1056-async-delimiter-change-with-pre-value"
-        value="Option|2"
+        value="Option 2"
         label="Async changed delimiter with pre value"
         restricted
       >

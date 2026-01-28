@@ -8,11 +8,11 @@ const levels = ref<SelectItem[]>([]);
 
 const cb632Value = ref<string>('');
 const asyncValue = ref<string>('');
-const delimiterItems = mockData('comboboxItemsWithPipe');
+const delimiterItems = mockData('selectItemsWithSpace');
 
 onMounted(async () => {
 
-  const value = await mockAsyncData('valueWithPipe');
+  const value = await mockAsyncData('valueWithSpace');
   asyncValue.value = value;
   const items = await mockAsyncData('selectItems', 10);
   levels.value = items;
@@ -57,7 +57,7 @@ onMounted(async () => {
   </SynVueCombobox>
 
   <SynVueCombobox data-testid="combobox-847-multiple" help-text="Normal value binding and async options"
-    label="Multiple with async options" multiple value="1|2">
+    label="Multiple with async options" multiple value="1 2">
     <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
   </SynVueCombobox>
 
@@ -65,7 +65,7 @@ onMounted(async () => {
     <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
   </SynVueCombobox>
 
-  <SynVueCombobox data-testid="combobox-1056-async-delimiter-change-with-pre-value" value="Option|2"
+  <SynVueCombobox data-testid="combobox-1056-async-delimiter-change-with-pre-value" value="Option 2"
     label="Async changed delimiter with pre value" restricted>
     <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
   </SynVueCombobox>

@@ -902,7 +902,7 @@ describe('<syn-combobox>', () => {
     it('should serialize its name and value with FormData when multiple options are selected', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <syn-combobox name="a" value="option-2|option-3" multiple>
+          <syn-combobox name="a" value="option-2 option-3" multiple>
             <syn-option value="option-1">Option 1</syn-option>
             <syn-option value="option-2">Option 2</syn-option>
             <syn-option value="option-3">Option 3</syn-option>
@@ -931,7 +931,7 @@ describe('<syn-combobox>', () => {
     it('should serialize its name and value in JSON when multiple options are selected', async () => {
       const form = await fixture<HTMLFormElement>(html`
         <form>
-          <syn-combobox name="a" value="option-2|option-3" multiple>
+          <syn-combobox name="a" value="option-2 option-3" multiple>
             <syn-option value="option-1">Option 1</syn-option>
             <syn-option value="option-2">Option 2</syn-option>
             <syn-option value="option-3">Option 3</syn-option>
@@ -1680,7 +1680,7 @@ describe('<syn-combobox>', () => {
 
     it('should allow multiple options to be selected', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-combobox value="option-1|option-3" multiple>
+        <syn-combobox value="option-1 option-3" multiple>
           <syn-option value="option-1">Option 1</syn-option>
           <syn-option value="option-2">Option 2</syn-option>
           <syn-option value="option-3">Option 3</syn-option>
@@ -1702,7 +1702,7 @@ describe('<syn-combobox>', () => {
 
     it('should work with options that do not have a value', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-combobox multiple value="Option-1|Option-3">
+        <syn-combobox multiple value="Option-1 Option-3">
           <syn-option>Option-1</syn-option>
           <syn-option>Option-2</syn-option>
           <syn-option>Option-3</syn-option>
@@ -1801,7 +1801,7 @@ describe('<syn-combobox>', () => {
 
     it('should emit syn-change and syn-input when a tag is removed', async () => {
       const el = await fixture<SynCombobox>(html`
-      <syn-combobox value="option-1|option-2|option-3" multiple>
+      <syn-combobox value="option-1 option-2 option-3" multiple>
         <syn-option value="option-1">Option 1</syn-option>
         <syn-option value="option-2">Option 2</syn-option>
         <syn-option value="option-3">Option 3</syn-option>
@@ -1991,7 +1991,7 @@ describe('<syn-combobox>', () => {
 
     it('should clear the input when Escape key is pressed with syn-combobox is on focus and listbox is closed', async () => {
       const el = await fixture<SynCombobox>(html`
-        <syn-combobox value="option-1|option-2" multiple>
+        <syn-combobox value="option-1 option-2" multiple>
           <syn-option value="option-1">Option 1</syn-option>
           <syn-option value="option-2">Option 2</syn-option>
           <syn-option value="option-3">Option 3</syn-option>
@@ -2134,7 +2134,7 @@ describe('<syn-combobox>', () => {
   describe('#850: should clamp syn-tag size to the size of the combobox', () => {
     it('should set the max-width used for tags to the available size of the tag wrapper', async () => {
       const el = await fixture<SynCombobox>(html`
-            <syn-combobox multiple style="width: 250px" value="option-1|option-2">
+            <syn-combobox multiple style="width: 250px" value="option-1 option-2">
               <syn-option value="option-1">Option 1</syn-option>
               <syn-option value="option-2">This is a very long text that should be truncated</syn-option>
             </syn-combobox>
@@ -2152,7 +2152,7 @@ describe('<syn-combobox>', () => {
 
     it('should use a minimum width of 85 pixels when the syn-combobox is too small', async () => {
       const el = await fixture<SynCombobox>(html`
-            <syn-combobox multiple style="width: 50px" value="option-1|option-2">
+            <syn-combobox multiple style="width: 50px" value="option-1 option-2">
               <syn-option value="option-1">Option 1</syn-option>
               <syn-option value="option-2">This is a very long text that should be truncated</syn-option>
             </syn-combobox>
@@ -2172,9 +2172,9 @@ describe('<syn-combobox>', () => {
   describe('#1056', () => {
     it('should show correct value if delimiter was changed async', async () => {
       const el = await fixture<SynCombobox>(html`
-          <syn-combobox value="Option|1" multiple>
-            <syn-option value="Option|1">Option|1</syn-option>
-            <syn-option value="Option|2">Option|2</syn-option>
+          <syn-combobox value="Option 1" multiple>
+            <syn-option value="Option 1">Option 1</syn-option>
+            <syn-option value="Option 2">Option 2</syn-option>
           </syn-combobox>
         `);
       await el.updateComplete;
@@ -2190,19 +2190,19 @@ describe('<syn-combobox>', () => {
 
       const tagsAfterChange = el.shadowRoot!.querySelectorAll('syn-tag');
 
-      expect(el.value).to.deep.equal(['Option|1']);
+      expect(el.value).to.deep.equal(['Option 1']);
       expect(el.displayLabel).to.equal('');
       expect(tagsAfterChange.length).to.equal(1);
 
       const tagsContent = tagsAfterChange[0].textContent.trim();
-      expect(tagsContent).to.equal('Option|1');
+      expect(tagsContent).to.equal('Option 1');
     });
 
     it('should show correct value for textContent only option if delimiter was changed async', async () => {
       const el = await fixture<SynCombobox>(html`
-          <syn-combobox value="Option|1" multiple>
-            <syn-option>Option|1</syn-option>
-            <syn-option>Option|2</syn-option>
+          <syn-combobox value="Option 1" multiple>
+            <syn-option>Option 1</syn-option>
+            <syn-option>Option 2</syn-option>
           </syn-combobox>
         `);
       await el.updateComplete;
@@ -2218,26 +2218,26 @@ describe('<syn-combobox>', () => {
 
       const tagsAfterChange = el.shadowRoot!.querySelectorAll('syn-tag');
 
-      expect(el.value).to.deep.equal(['Option|1']);
+      expect(el.value).to.deep.equal(['Option 1']);
       expect(el.displayLabel).to.equal('');
       expect(tagsAfterChange.length).to.equal(1);
 
       const tagsContent = tagsAfterChange[0].textContent.trim();
-      expect(tagsContent).to.equal('Option|1');
+      expect(tagsContent).to.equal('Option 1');
     });
 
     it('should show correct value if delimiter was changed async for a value set via property binding', async () => {
       const el = await fixture<SynCombobox>(html`
            <syn-combobox multiple>
-            <syn-option value="Option|1">Option|1</syn-option>
-            <syn-option value="Option|2">Option|2</syn-option>
+            <syn-option value="Option 1">Option 1</syn-option>
+            <syn-option value="Option 2">Option 2</syn-option>
           </syn-combobox>
         `);
 
       // This simulates a property binding of angular with e.g. an Observable / BehaviorSubject
       await new Promise(resolve => {
         setTimeout(() => {
-          el.value = 'Option|1';
+          el.value = 'Option 1';
           resolve(true);
         }, 10);
       });
@@ -2254,12 +2254,12 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
       const tagsAfterChange = el.shadowRoot!.querySelectorAll('syn-tag');
 
-      expect(el.value).to.deep.equal(['Option|1']);
+      expect(el.value).to.deep.equal(['Option 1']);
       expect(el.displayLabel).to.equal('');
       expect(tagsAfterChange.length).to.equal(1);
 
       const tagsContent = tagsAfterChange[0].textContent.trim();
-      expect(tagsContent).to.equal('Option|1');
+      expect(tagsContent).to.equal('Option 1');
     });
   }); // #1056
 

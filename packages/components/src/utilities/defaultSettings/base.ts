@@ -141,7 +141,7 @@ export type SynDefaultSettings = {
  */
 export const defaultSettings: SynDefaultSettings = {
   delimiter: {
-    SynCombobox: "|",
+    SynCombobox: " ",
     SynSelect: " ",
   },
   numericStrategy: {
@@ -180,7 +180,7 @@ export const defaultSettings: SynDefaultSettings = {
  */
 export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
   delimiter: {
-    SynCombobox: "|",
+    SynCombobox: " ",
     SynSelect: " ",
   },
   numericStrategy: {

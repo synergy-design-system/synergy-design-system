@@ -57,7 +57,7 @@ export const Combobox = (regressions: RegressionFns = []) => {
       help-text="Normal value binding and async options"
       label="Multiple with async options"
       multiple
-      value="1|2"
+      value="1 2"
     ></syn-combobox>
 
     <syn-combobox
@@ -67,7 +67,7 @@ export const Combobox = (regressions: RegressionFns = []) => {
 
     <syn-combobox
       data-testid="combobox-1056-async-delimiter-change-with-pre-value"
-      value="Option|2"
+      value="Option 2"
       label="Async changed delimiter with pre value"
       restricted
     ></syn-combobox>

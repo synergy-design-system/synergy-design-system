@@ -217,7 +217,7 @@ export const Multiple: Story = {
     },
   },
   render: () => html`
-    <syn-combobox value="option-1|option-2|option-3" multiple clearable max-options-visible="2">
+    <syn-combobox value="option-1 option-2 option-3" multiple clearable max-options-visible="2">
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
@@ -237,7 +237,7 @@ export const SettingInitialValue: Story = {
     },
   },
   render: () => html`
-    <syn-combobox value="option-1|option-2|option-3" multiple clearable max-options-visible="2">
+    <syn-combobox value="option-1 option-2 option-3" multiple clearable max-options-visible="2">
       <syn-option value="option-1">Option 1</syn-option>
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>

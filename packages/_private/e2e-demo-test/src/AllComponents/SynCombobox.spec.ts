@@ -315,7 +315,7 @@ test.describe('<SynCombobox />', () => {
         await option2.click();
 
         const secondValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
-        expect(secondValue).toEqual('Option|2');
+        expect(secondValue).toEqual('Option 2');
       });
     }); // regression#1036
 
@@ -337,7 +337,7 @@ test.describe('<SynCombobox />', () => {
         });
 
         const secondValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
-        expect(secondValue).toEqual('Option|2');
+        expect(secondValue).toEqual('Option 2');
       });
 
       test('should update async pre selected value correct for async changed delimiter', async ({ page }) => {
@@ -357,7 +357,7 @@ test.describe('<SynCombobox />', () => {
         });
 
         const secondValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
-        expect(secondValue).toEqual('Option|2');
+        expect(secondValue).toEqual('Option 2');
       });
     }); // regression#1056
 

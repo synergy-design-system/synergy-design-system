@@ -32,14 +32,16 @@ const getAllComponentsElement = async () => {
  * @param selector - CSS selector to find the target element within the demo template's shadow DOM
  * @param mockDataKey - Key to identify which mock dataset to use for creating options
  */
-const appendSyncOptions = async (selector: string, mockDataKey: 'comboboxItemsWithPipe' | 'selectItemsWithSpace' | 'selectItemsMixedValue') => {
+const appendSyncOptions = async (selector: string, mockDataKey: 'selectItemsWithSpace' | 'selectItemsMixedValue') => {
   const allComponents = await getAllComponentsElement();
   const element = allComponents?.shadowRoot?.querySelector(selector) as LitElement;
+
+  // eslint-disable-next-line no-promise-executor-return
+  await new Promise((resolve) => setTimeout(resolve, 0));
 
   const items = mockData(mockDataKey);
   items.forEach(item => {
     const option = document.createElement('syn-option');
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     option.value = item.value;
     option.textContent = item.label;
     element.appendChild(option);
@@ -76,7 +78,7 @@ const appendAsyncOptions = async (selector: string, mockDataKey: 'selectItems') 
  * @param selector - CSS selector to find the target element within the template's shadow DOM
  * @param mockValueKey - Key to identify which async mock value to use (default: 'valueWithSpace')
  */
-const addAsyncValueForSelect = async (selector: string, mockValueKey: 'valueWithSpace' | 'valueWithPipe' = 'valueWithSpace') => {
+const addAsyncValueForSelect = async (selector: string, mockValueKey: 'valueWithSpace' = 'valueWithSpace') => {
   const allComponents = await getAllComponentsElement();
   const element = allComponents?.shadowRoot?.querySelector(selector) as SynSelect;
   const value = await mockAsyncData(mockValueKey);
@@ -113,11 +115,11 @@ export const allComponentsRegressions: Regressions = new Map(Object.entries({
     // #847
     () => appendAsyncOptions('syn-combobox[data-testid="combobox-847-multiple"]', 'selectItems'),
     // #1036
-    () => appendSyncOptions('syn-combobox[data-testid="combobox-1036-subsequently-changed-delimiter"]', 'comboboxItemsWithPipe'),
+    () => appendSyncOptions('syn-combobox[data-testid="combobox-1036-subsequently-changed-delimiter"]', 'selectItemsWithSpace'),
     // #1056
-    () => addAsyncValueForSelect('syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"]', 'valueWithPipe'),
-    () => appendSyncOptions('syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-pre-value"]', 'comboboxItemsWithPipe'),
-    () => appendSyncOptions('syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"]', 'comboboxItemsWithPipe'),
+    () => addAsyncValueForSelect('syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"]', 'valueWithSpace'),
+    () => appendSyncOptions('syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-pre-value"]', 'selectItemsWithSpace'),
+    () => appendSyncOptions('syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"]', 'selectItemsWithSpace'),
     // #627
     () => appendAsyncOptions('syn-combobox[data-testid="combobox-627-delimiter"]', 'selectItems'),
   ],

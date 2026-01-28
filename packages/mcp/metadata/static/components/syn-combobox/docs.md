@@ -447,7 +447,7 @@ To allow multiple options to be selected, use the multiple attribute. It’s a g
 
 ```html
 <syn-combobox
-  value="option-1|option-2|option-3"
+  value="option-1 option-2 option-3"
   multiple=""
   clearable=""
   max-options-visible="2"
@@ -514,7 +514,7 @@ Use the value attribute to set the initial selection.When using multiple, the va
 
 ```html
 <syn-combobox
-  value="option-1|option-2|option-3"
+  value="option-1 option-2 option-3"
   multiple=""
   clearable=""
   max-options-visible="2"

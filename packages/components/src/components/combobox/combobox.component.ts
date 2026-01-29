@@ -503,7 +503,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     // https://github.com/synergy-design-system/synergy/issues/1763
     //
     document.addEventListener('focusin', this.handleDocumentFocusIn);
-    document.addEventListener('keydown', this.handleDocumentKeyDown);
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
 
     // If the component is rendered in a shadow root,
@@ -527,7 +526,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   private removeOpenListeners() {
     document.removeEventListener('focusin', this.handleDocumentFocusIn);
-    document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
 
     if (this.getRootNode() !== document) {
@@ -1010,7 +1008,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
 
     this.updateSelectedOptionFromValue();
-    this.setCurrentOption(null);
   }
 
   @watch('open', { waitUntilFirstUpdate: true })

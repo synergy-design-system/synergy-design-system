@@ -1989,7 +1989,7 @@ describe('<syn-combobox>', () => {
       expect(noResults!.textContent).to.equal('No results found');
     });
 
-    it('should clear the input when Escape key is pressed with syn-combobox is on focus and listbox is closed', async () => {
+    it('should clear the input field but preserve selected values when Escape key is pressed with syn-combobox is on focus and listbox is closed', async () => {
       const el = await fixture<SynCombobox>(html`
         <syn-combobox value="option-1 option-2" multiple>
           <syn-option value="option-1">Option 1</syn-option>
@@ -2003,7 +2003,11 @@ describe('<syn-combobox>', () => {
 
       el.focus();
       await el.updateComplete;
-      await sendKeys({ press: 'Escape' });
+
+      await sendKeys({ type: 'abc' });
+      await sendKeys({ press: 'Escape' }); // close listbox
+      await sendKeys({ press: 'Escape' }); // clear input field
+
       await el.updateComplete;
 
       // Firefox in CI is flaky. Waiting for another frame to ensure the value is cleared.
@@ -2011,7 +2015,7 @@ describe('<syn-combobox>', () => {
 
       expect(displayInput.getAttribute('aria-expanded')).to.equal('false');
       expect(displayInput.value).to.equal('');
-      expect(el.value).to.deep.equal([]);
+      expect(el.value).to.deep.equal(['option-1', 'option-2']);
     });
 
     it('should emit syn-change and syn-input when the last tag is removed and the same option is added again', async () => {

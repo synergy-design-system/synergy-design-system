@@ -574,7 +574,13 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         this.hide();
         this.displayInput.focus({ preventScroll: true });
       } else if (!this.open) {
-        this.clearCombobox();
+        if (this.multiple) {
+          // In multiple mode, only clear the input field but preserve selected options
+          this.clearInputField();
+        } else {
+          // In single mode, clear everything as before
+          this.clearCombobox();
+        }
       }
     }
 
@@ -719,6 +725,20 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   private handleClearClick(event: MouseEvent) {
     event.stopPropagation();
     this.clearCombobox();
+  }
+
+  private clearInputField() {
+    if (this.displayLabel !== '') {
+      const cachedValueHasChanged = this.valueHasChanged;
+      // remove the text from the input field only by reset value to selected options
+      this.value = getValuesFromOptions(this.selectedOptions);
+      this.valueHasChanged = cachedValueHasChanged;
+      this.displayInput.focus({ preventScroll: true });
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.updateComplete.then(() => {
+        this.emit('syn-input');
+      });
+    }
   }
 
   private clearCombobox() {

@@ -123,11 +123,51 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
         <syn-option [value]="level.value">{{level.label}}</syn-option>
       }
     </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-805-single"
+      help-text="Please tell us your skill level."
+      label="Mixed integer and string values (Single Combobox)"
+      [value]=1
+    >
+      @for (item of numericItems; track $index; let index = $index) {
+        <syn-option [value]="item.value"> {{item.label}}</syn-option>
+      }
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-805-multi"
+      help-text="Please tell us your skill level."
+      label="Mixed integer and string values (multi Combobox)"
+      multiple
+      [value]="[1, 'three']"
+    >
+      @for (item of numericItems; track $index; let index = $index) {
+        <syn-option [value]="item.value"> {{item.label}}</syn-option>
+      }
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-885-value-zero-string"
+      label="Combobox should allow to select value of string(zero)"
+      value="0"
+    >
+      <syn-option value="0">Zero (string)</syn-option>
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-885-value-zero-number"
+      label="Combobox should allow to select value of number(zero)"
+      [value]=0
+    >
+      <syn-option [value]=0>Zero (numeric)</syn-option>
+    </syn-combobox>
   `,
 })
 export class Combobox implements OnInit {
   levels: SelectItem[] = [];
   delimiterItems = mockData('selectItemsWithSpace');
+  numericItems = mockData('selectItemsMixedValue');
   cb632Value: string = '';
   // @ts-ignore
   asyncValue: string;

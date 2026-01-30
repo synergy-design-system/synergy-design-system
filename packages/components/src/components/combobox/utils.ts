@@ -106,7 +106,7 @@ export const getValueFromOption = (option: SynOption) => {
     // If the option has no value, use the text label
     return option.getTextLabel();
   }
-  return String(value);
+  return value;
 };
 
 /**
@@ -123,33 +123,12 @@ export const getValuesFromOptions = (options: SynOption[]) => options.map(getVal
  * @param option The option to check against
  * @returns True if the value belongs to the option, false otherwise
  */
-export const checkValueBelongsToOption = (value: string, option: SynOption | undefined) => {
-  if (!option || !value) {
+export const checkValueBelongsToOption = (value: string | number, option: SynOption | undefined) => {
+  if (!option || value === undefined || value === null || value === '') {
     return false;
   }
 
   const optionValue = option.value;
   const optionText = option.getTextLabel();
-  return value === optionValue || value === optionText;
-};
-
-/**
- * Valid types of combobox
- */
-type AllowedValueTypes = string | Array<string>;
-
-/**
- * Check if a given value is allowed
- * @param value The value to check for
- * @returns True if the type is allowed, false otherwise
- */
-export const isAllowedValue = (value: AllowedValueTypes) => {
-  if (Array.isArray(value)) {
-    return value.length > 0;
-  }
-
-  if (typeof value === 'string') {
-    return value.length > 0;
-  }
-  return !!value;
+  return String(value) === String(optionValue) || String(value) === optionText;
 };

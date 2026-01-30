@@ -3,6 +3,7 @@ import type { SynCombobox } from '@synergy-design-system/components';
 import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
 const delimiterItems = mockData('selectItemsWithSpace');
+const numericItems = mockData('selectItemsMixedValue');
 
 export const Combobox = () => {
   const [levels, setLevels] = useState<SelectItem[]>([]);
@@ -149,6 +150,50 @@ export const Combobox = () => {
           </syn-option>
         ))}
       </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-805-single"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (Single Combobox)"
+        value={1}
+      >
+        {numericItems.map(item => (
+          <syn-option key={item.value} value={item.value} disabled={item.disabled}>
+            {item.label}
+          </syn-option>
+        ))}
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-805-multi"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (multi Combobox)"
+        multiple
+        value={[1, 'three']}
+      >
+        {numericItems.map(item => (
+          <syn-option key={item.value} value={item.value} disabled={item.disabled}>
+            {item.label}
+          </syn-option>
+        ))}
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-885-value-zero-string"
+        label="Combobox should allow to select value of string(zero)"
+        value="0"
+      >
+        <syn-option value="0">Zero (string)</syn-option>
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-885-value-zero-number"
+        label="Combobox should allow to select value of number(zero)"
+        value={0}
+      >
+        <syn-option value={0}>Zero (numeric)</syn-option>
+      </syn-combobox>
+
     </>
   );
 };

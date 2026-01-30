@@ -2267,5 +2267,104 @@ describe('<syn-combobox>', () => {
     });
   }); // #1056
 
+  describe('#805: should allow setting numeric values', () => {
+    describe('when set initially', () => {
+      [1, 'string-option', 3.14, 0].forEach((value) => {
+        [{ isRestricted: true, mode: 'restricted' }, { isRestricted: false, mode: 'normal' }].forEach(({ isRestricted, mode }) => {
+          it(`should handle mixed numeric and string types in ${mode} mode (value ${value})`, async () => {
+            const el = await fixture<SynCombobox>(html`
+              <syn-combobox .value="${value}" ?restricted="${isRestricted}">
+                <syn-option .value="${1}">Number One</syn-option>
+                <syn-option value="string-option">String Option</syn-option>
+                <syn-option .value="${3.14}">Pi Number</syn-option>
+                <syn-option .value="${0}">Zero</syn-option>
+              </syn-combobox>
+            `);
+            await el.updateComplete;
+            await expect(el.value).to.equal(value);
+          });
+        });
+      });
+
+      it('should handle mixed numeric and string types when using multiple', async () => {
+        const el = await fixture<SynCombobox>(html`
+          <syn-combobox .value="${[1, 'string-option', 3.14, 0]}" multiple>
+                <syn-option .value="${1}">Number One</syn-option>
+                <syn-option value="string-option">String Option</syn-option>
+                <syn-option .value="${3.14}">Pi Number</syn-option>
+                <syn-option .value="${0}">Zero</syn-option>
+          </syn-combobox>
+        `);
+
+        await el.updateComplete;
+        await expect(el.value).to.eql([1, 'string-option', 3.14, 0]);
+      });
+    });
+
+    describe('when set programmatically', () => {
+      [{ isRestricted: true, mode: 'restricted' }, { isRestricted: false, mode: 'normal' }].forEach(({ isRestricted, mode }) => {
+        it(`should handle mixed numeric and string types in ${mode} mode`, async () => {
+          const el = await fixture<SynCombobox>(html`
+              <syn-combobox ?restricted="${isRestricted}">
+                <syn-option .value="${1}">Number One</syn-option>
+                <syn-option value="string-option">String Option</syn-option>
+                <syn-option .value="${3.14}">Pi Number</syn-option>
+                <syn-option .value="${0}">Zero</syn-option>
+              </syn-combobox>
+            `);
+          el.value = 0;
+          await nextFrame();
+
+          expect(el.value).to.equal(0);
+          expect(el.displayInput.value).to.equal('Zero');
+          expect(el.querySelectorAll('syn-option')[3].selected).to.be.true;
+
+          el.value = 3.14;
+          await nextFrame();
+
+          expect(el.value).to.equal(3.14);
+          expect(el.displayInput.value).to.equal('Pi Number');
+          expect(el.querySelectorAll('syn-option')[2].selected).to.be.true;
+
+          el.value = 'string-option';
+          await nextFrame();
+
+          expect(el.value).to.equal('string-option');
+          expect(el.displayInput.value).to.equal('String Option');
+          expect(el.querySelectorAll('syn-option')[1].selected).to.be.true;
+
+          el.value = 1;
+          await nextFrame();
+
+          expect(el.value).to.equal(1);
+          expect(el.displayInput.value).to.equal('Number One');
+          expect(el.querySelectorAll('syn-option')[0].selected).to.be.true;
+        });
+      });
+
+      it('should handle mixed numeric and string types in multiple mode', async () => {
+        const el = await fixture<SynCombobox>(html`
+          <syn-combobox multiple>
+            <syn-option .value="${1}">Number One</syn-option>
+            <syn-option value="string-option">String Option</syn-option>
+            <syn-option .value="${3.14}">Pi Number</syn-option>
+            <syn-option .value="${0}">Zero</syn-option>
+          </syn-combobox>
+        `);
+
+        el.value = [1, 'string-option', 0, 3.14];
+        await nextFrame();
+
+        expect(el.value).to.deep.equal([1, 'string-option', 3.14, 0]);
+
+        const options = el.querySelectorAll('syn-option');
+        expect(options[0].selected).to.be.true;
+        expect(options[1].selected).to.be.true;
+        expect(options[2].selected).to.be.true;
+        expect(options[3].selected).to.be.true;
+      });
+    });
+  }); // #805
+
   runFormControlBaseTests('syn-combobox');
 });

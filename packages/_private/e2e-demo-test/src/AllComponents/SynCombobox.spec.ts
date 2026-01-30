@@ -392,5 +392,69 @@ test.describe('<SynCombobox />', () => {
         expect(newValue).toEqual(['2', '3']);
       }); // end delimiter check
     }); // feature#627
+
+    test.describe(`Feature#805: ${name}`, () => {
+      test.describe('single combobox', () => {
+        test('should have an initial value of numeric 1', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('comboboxLink');
+          await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+          const combobox = await AllComponents.getLocator('combobox805MixedSingle');
+
+          const initialValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+          expect(initialValue).toEqual(1);
+        }); // end initial value check
+      }); // end single select
+
+      test.describe('multi combobox', () => {
+        test('should have an initial value of numeric 1', async ({ page }) => {
+          const AllComponents = new AllComponentsPage(page, port);
+          await AllComponents.loadInitialPage();
+          await AllComponents.activateItem('comboboxLink');
+          await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+          const combobox = await AllComponents.getLocator('combobox805MixedMulti');
+
+          const initialValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+          expect(initialValue).toEqual([1, 'three']);
+        }); // end initial value check
+      }); // end single select
+    }); // feature#805
+
+    test.describe(`Regression#885: ${name}`, () => {
+      test('should allow to select zero as string', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox885ValueZeroString');
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+        const value = await combobox.evaluate((ele: SynCombobox) => ele.value);
+
+        expect(value).toEqual('0');
+        expect(displayedValue).toEqual('Zero (string)');
+      });
+
+      test('should allow to select zero as number', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox885ValueZeroNumber');
+        // Check that the displayed value is the text content of the option
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+        const value = await combobox.evaluate((ele: SynCombobox) => ele.value);
+
+        expect(value).toEqual(0);
+        expect(displayedValue).toEqual('Zero (numeric)');
+      });
+    }); // regression#885
   }); // End frameworks
 }); // </syn-combobox>

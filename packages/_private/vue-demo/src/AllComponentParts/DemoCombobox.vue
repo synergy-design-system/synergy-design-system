@@ -5,7 +5,7 @@ import { onMounted, ref } from 'vue';
 import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
 const levels = ref<SelectItem[]>([]);
-
+const numericItems = mockData('selectItemsMixedValue');
 const cb632Value = ref<string>('');
 const asyncValue = ref<string>('');
 const delimiterItems = mockData('selectItemsWithSpace');
@@ -78,5 +78,31 @@ onMounted(async () => {
   <SynVueCombobox data-testid="combobox-627-delimiter" delimiter="+" help-text="This combobox uses a custom delimiter"
     label="Multiple with custom delimiter" multiple value="1+2">
     <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueCombobox data-testid="combobox-805-single" help-text="Please tell us your skill level."
+    label="Mixed integer and string values (Single combobox)" :value=1>
+    <SynVueOption v-for="item in numericItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueCombobox data-testid="combobox-805-multi" help-text="Please tell us your skill level."
+    label="Mixed integer and string values (multi combobox)" multiple :value="[1, 'three']">
+    <SynVueOption v-for="item in numericItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
+  </SynVueCombobox>
+
+   <SynVueCombobox
+    data-testid="combobox-885-value-zero-string"
+    label="Combobox should allow to select value of string(zero)"
+    value="0"
+  >
+    <SynVueOption value="0">Zero (string)</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueCombobox
+    data-testid="combobox-885-value-zero-number"
+    label="Combobox should allow to select value of number(zero)"
+    :value="0"
+  >
+    <SynVueOption :value="0">Zero (numeric)</SynVueOption>
   </SynVueCombobox>
 </template>

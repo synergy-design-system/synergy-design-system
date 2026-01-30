@@ -86,5 +86,36 @@ export const Combobox = (regressions: RegressionFns = []) => {
       multiple
       value="1+2"
     ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-805-single"
+      help-text="Please tell us your skill level."
+      label="Mixed integer and string values (Single Combobox)"
+      .value=${Number(1)}
+    ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-805-multi"
+      help-text="Please tell us your skill level."
+      label="Mixed integer and string values (multi Combobox)"
+      multiple
+      .value=${[1, 'three']}
+    ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-885-value-zero-string"
+      label="Combobox should allow to select value of string(zero)"
+      value="0"
+    >
+      <syn-option value="0">Zero (string)</syn-option>
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-885-value-zero-number"
+      label="Combobox should allow to select value of number(zero)"
+      .value=${0}
+    >
+      <syn-option .value=${0}>Zero (numeric)</syn-option>
+    </syn-combobox>
   `;
 };

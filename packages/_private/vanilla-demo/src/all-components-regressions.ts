@@ -122,6 +122,9 @@ export const allComponentsRegressions: Regressions = new Map(Object.entries({
     () => appendSyncOptions('syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"]', 'selectItemsWithSpace'),
     // #627
     () => appendAsyncOptions('syn-combobox[data-testid="combobox-627-delimiter"]', 'selectItems'),
+    // #805
+    () => appendSyncOptions('syn-combobox[data-testid="combobox-805-single"]', 'selectItemsMixedValue'),
+    () => appendSyncOptions('syn-combobox[data-testid="combobox-805-multi"]', 'selectItemsMixedValue'),
   ],
   Dialog: [
     // Open the dialog when dialog tab is clicked
@@ -139,9 +142,9 @@ export const allComponentsRegressions: Regressions = new Map(Object.entries({
   Select: [
     // #540
     () => appendAsyncOptions('syn-select[data-testid="select-540-delimiter"]', 'selectItems'),
+    // #805
     () => appendSyncOptions('syn-select[data-testid="select-805-single-select"]', 'selectItemsMixedValue'),
     () => appendSyncOptions('syn-select[data-testid="select-805-multi-select"]', 'selectItemsMixedValue'),
-
     // #813
     () => appendAsyncOptions('syn-select[data-testid="select-level-813"]', 'selectItems'),
     // #847

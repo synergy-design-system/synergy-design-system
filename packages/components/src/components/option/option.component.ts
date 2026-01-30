@@ -18,6 +18,7 @@ import styles from './option.styles.js';
 import customStyles from './option.custom.styles.js';
 import { delimiterToWhiteSpace } from './utility.js';
 import type { CSSResultGroup } from 'lit';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary Options define the selectable items within various form controls such as [select](/components/select).
@@ -37,6 +38,7 @@ import type { CSSResultGroup } from 'lit';
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  */
+@enableDefaultSettings('SynOption')
 export default class SynOption extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles, customStyles];
   static dependencies = { 'syn-icon': SynIcon };

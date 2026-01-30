@@ -19,6 +19,7 @@ import type SynDetails from "../../components/details/details.js";
 import type SynFile from "../../components/file/file.js";
 import type SynIconButton from "../../components/icon-button/icon-button.js";
 import type SynInput from "../../components/input/input.js";
+import type SynOption from "../../components/option/option.js";
 import type SynRadioButton from "../../components/radio-button/radio-button.js";
 import type SynRadioGroup from "../../components/radio-group/radio-group.js";
 import type SynRadio from "../../components/radio/radio.js";
@@ -75,6 +76,7 @@ export type ComponentNamesWithDefaultValues =
   | "SynFile"
   | "SynIconButton"
   | "SynInput"
+  | "SynOption"
   | "SynRadio"
   | "SynRadioButton"
   | "SynRadioGroup"
@@ -101,6 +103,7 @@ export type ExtractSettingsForElement<C extends SynergyElement> = {
 export type SynDefaultSettings = {
   delimiter: {
     SynCombobox?: AllowedValueForDefaultSetting<SynCombobox, "delimiter">;
+    SynOption?: AllowedValueForDefaultSetting<SynOption, "delimiter">;
     SynSelect?: AllowedValueForDefaultSetting<SynSelect, "delimiter">;
   };
   numericStrategy: {
@@ -142,6 +145,7 @@ export type SynDefaultSettings = {
 export const defaultSettings: SynDefaultSettings = {
   delimiter: {
     SynCombobox: " ",
+    SynOption: " ",
     SynSelect: " ",
   },
   numericStrategy: {
@@ -181,6 +185,7 @@ export const defaultSettings: SynDefaultSettings = {
 export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
   delimiter: {
     SynCombobox: " ",
+    SynOption: " ",
     SynSelect: " ",
   },
   numericStrategy: {

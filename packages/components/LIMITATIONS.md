@@ -4,6 +4,58 @@ This file lists known issues and limitations of Synergy Web Components and usefu
 
 ---
 
+## Console errors when using spaces in `<syn-option>` values
+
+### Meta Information
+
+- Framework version: ALL
+- Synergy version: ALL
+- Issues: [#1087](https://github.com/synergy-design-system/synergy-design-system/issues/1087)
+
+### Description
+When using `<syn-option>` components with values that contain spaces inside `<syn-select>` or `<syn-combobox>` components, you may see console errors like:
+
+> Option values cannot include " ". All occurrences of " " have been replaced with "_".
+
+### Cause
+When using the `multiple` attribute, Synergy components create a space-separated list of selected values (e.g., `"Option_One Option_Two"`). If option values themselves contain spaces, the component cannot properly distinguish between individual values in this list. To prevent data corruption, spaces in option values are automatically replaced with underscores (`_`).
+
+### Proposed Solution
+#### Problem
+```html
+<syn-select multiple>
+  <syn-option value="Option One">Option One</syn-option>
+  <syn-option value="Option Two">Option Two</syn-option>
+</syn-select>
+```
+
+#### Solution 1: Use space-free values (Recommended)
+Design your option values without spaces and use the display text separately:
+
+```html
+<syn-select multiple>
+  <syn-option value="option-one">Option One</syn-option>
+  <syn-option value="option-two">Option Two</syn-option>
+</syn-select>
+```
+
+#### Solution 2: Change the global delimiter
+If you need to keep spaces in values and don't mind changing how all select and combobox components work globally, you can configure a different delimiter:
+
+```js
+import { setGlobalDefaultSettings } from '@synergy-design-system/components';
+
+setGlobalDefaultSettings({
+  delimiter: {
+    SynOption: ',',
+    SynSelect: ',',
+    SynCombobox: ',',
+  },
+});
+```
+
+**Note:** This affects **all** select and combobox components in your application, which do not explicitly set the `delimiter` attribute.
+
 ## Layout issues with dynamic content in `<syn-button>`
 
 ### Meta Information

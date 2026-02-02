@@ -120,8 +120,7 @@
     "typescript": "~5.9.3",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
-    "user-agent-data-types": "^0.4.2",
-    "vendorism": "^5.0.0"
+    "user-agent-data-types": "^0.4.2"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.7.4",

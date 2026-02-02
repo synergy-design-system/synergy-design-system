@@ -12,7 +12,6 @@ export const runCreateSynergy = async ({
   await jobs.runCem();
   await jobs.createDefaultSettings(outDir, componentDir);
   await jobs.adjustComponentsForDefaultSettings(outDir, componentDir);
-  await jobs.runAddMetadataToComponents();
   await jobs.runTypeScript(outDir, './tsconfig.prod.json');
   await jobs.runEsBuildComponents(outDir, packageVersion);
   await jobs.runCreateStyles({ componentDistDir: outDir, stylesDir: getPath('../src/styles') });

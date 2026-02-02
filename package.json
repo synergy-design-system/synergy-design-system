@@ -38,7 +38,10 @@
       "msgpackr-extract",
       "style-dictionary",
       "unrs-resolver"
-    ]
+    ],
+    "patchedDependencies": {
+      "@changesets/assemble-release-plan": "patches/@changesets__assemble-release-plan.patch"
+    }
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.2",

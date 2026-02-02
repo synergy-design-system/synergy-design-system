@@ -600,6 +600,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
       // Update the value based on the current selection and close it
       if (currentOption) {
+        this.isUserInput = true;
         this.valueHasChanged = true;
         const oldValue = this.lastOptions ? getValuesFromOptions(this.lastOptions) : [];
 
@@ -612,6 +613,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         this.selectionChanged();
 
         const value = Array.isArray(this.value) ? this.value : [this.value];
+
+        // Make reset in forms work correctly via isUserInput flag
+        this.updateComplete.then(() => {
+          this.isUserInput = false;
+        });
 
         if (!compareValues(oldValue, value)) {
           // Emit after updating
@@ -769,6 +775,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const option = target.closest('syn-option');
     const oldValue = this.lastOptions ? getValuesFromOptions(this.lastOptions) : [];
     if (option && !option.disabled) {
+      this.isUserInput = true;
+
       this.valueHasChanged = true;
       if (this.multiple) {
         this.toggleOptionSelection(option);
@@ -778,7 +786,11 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       this.selectionChanged();
 
       // Set focus after updating so the value is announced by screen readers
-      this.updateComplete.then(() => this.displayInput.focus({ preventScroll: true }));
+      // and make the reset in forms work correctly via isUserInput flag
+      this.updateComplete.then(() => {
+        this.displayInput.focus({ preventScroll: true });
+        this.isUserInput = false;
+      });
 
       const value = Array.isArray(this.value) ? this.value : [this.value];
 

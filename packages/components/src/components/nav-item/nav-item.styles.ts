@@ -103,7 +103,7 @@ export default css`
    * Basic set up for the nav item prefix.
    */
   .nav-item:not(.nav-item--disabled)::before {
-    background: var(--syn-interactive-background-color-hover, var(--syn-color-neutral-50));
+    background: var(--syn-interactive-background-color-hover);
     content: '';
     display: block;
     height: 100%;
@@ -127,7 +127,7 @@ export default css`
    * #443: Add support for active state
    */
   .nav-item:not(.nav-item--disabled):active::before {
-    background: var(--syn-interactive-background-color-active, var(--syn-color-neutral-50));
+    background: var(--syn-interactive-background-color-active);
     opacity: 1;
   }
 
@@ -267,7 +267,7 @@ export default css`
   }
 
   .current-indicator--visible {
-    background: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
+    background: var(--syn-interactive-emphasis-color);
   }
 
   .nav-item--horizontal .current-indicator {

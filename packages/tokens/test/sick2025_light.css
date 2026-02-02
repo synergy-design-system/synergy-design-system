@@ -1,10 +1,10 @@
 /**
- * @synergy-design-system/tokens version 2.48.0
+ * @synergy-design-system/tokens version 2.48.2
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
 
-:root, .syn-sick2025-light {
+:root, .syn-sick2025-light, .syn-theme-light {
   color-scheme: light;
 
   --syn-alert-error-color-background: var(--syn-namur-error-color-background);
@@ -307,7 +307,8 @@
   --syn-option-icon-color-hover: var(--syn-color-neutral-0);
   --syn-overlay-background-blur: 8px;
   --syn-overlay-background-color: rgba(0, 5, 26, 0.3);
-  --syn-page-background: #f8f7f6;
+  --syn-page-background: #f8f7f6; /** Will be DEPRECATED */
+  --syn-page-background-color: #f8f7f6;
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: #e6e1dc;
   --syn-panel-border-radius: var(--syn-border-radius-medium);

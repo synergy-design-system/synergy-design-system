@@ -3,10 +3,10 @@ import { css } from 'lit';
 export default css`
   .alert {
     /* Defines the used border and icon color for variants */
-    --variant-color-border: var(--syn-alert-informative-color-border, var(--syn-panel-border-color));
-    --variant-color-background: var(--syn-alert-informative-color-background, var(--syn-panel-background-color));
-    --variant-color-icon: var(--syn-alert-informative-color-icon, var(--syn-color-primary-600));
-    --variant-color-indicator: var(--syn-alert-informative-color-indicator, var(--syn-color-primary-600));
+    --variant-color-border: var(--syn-alert-informative-color-border);
+    --variant-color-background: var(--syn-alert-informative-color-background);
+    --variant-color-icon: var(--syn-alert-informative-color-icon);
+    --variant-color-indicator: var(--syn-alert-informative-color-indicator);
 
     /* Defines special settings for sizes */
     --size-font-size: var(--syn-font-size-medium);
@@ -83,31 +83,31 @@ export default css`
    * Variant colors
    */
   .alert--success {
-    --variant-color-border: var(--syn-alert-success-color-border, var(--syn-panel-border-color));
-    --variant-color-background: var(--syn-alert-success-color-background, var(--syn-panel-background-color));
-    --variant-color-icon: var(--syn-alert-success-color-icon, var(--syn-color-success-500));
-    --variant-color-indicator: var(--syn-alert-success-color-indicator, var(--syn-color-success-500));
+    --variant-color-border: var(--syn-alert-success-color-border);
+    --variant-color-background: var(--syn-alert-success-color-background);
+    --variant-color-icon: var(--syn-alert-success-color-icon);
+    --variant-color-indicator: var(--syn-alert-success-color-indicator);
   }
 
   .alert--neutral {
-    --variant-color-border: var(--syn-alert-neutral-color-border, var(--syn-panel-border-color));
-    --variant-color-background: var(--syn-alert-neutral-color-background, var(--syn-panel-background-color));
-    --variant-color-icon: var(--syn-alert-neutral-color-icon, var(--syn-color-neutral-800));
-    --variant-color-indicator: var(--syn-alert-neutral-color-indicator, var(--syn-color-neutral-800));
+    --variant-color-border: var(--syn-alert-neutral-color-border);
+    --variant-color-background: var(--syn-alert-neutral-color-background);
+    --variant-color-icon: var(--syn-alert-neutral-color-icon);
+    --variant-color-indicator: var(--syn-alert-neutral-color-indicator);
   }
 
   .alert--warning {
-    --variant-color-border: var(--syn-alert-warning-color-border, var(--syn-panel-border-color));
-    --variant-color-background: var(--syn-alert-warning-color-background, var(--syn-panel-background-color));
-    --variant-color-icon: var(--syn-alert-warning-color-icon, var(--syn-color-warning-400));
-    --variant-color-indicator: var(--syn-alert-warning-color-indicator, var(--syn-color-warning-400));
+    --variant-color-border: var(--syn-alert-warning-color-border);
+    --variant-color-background: var(--syn-alert-warning-color-background);
+    --variant-color-icon: var(--syn-alert-warning-color-icon);
+    --variant-color-indicator: var(--syn-alert-warning-color-indicator);
   }
 
   .alert--danger {
-    --variant-color-border: var(--syn-alert-error-color-border, var(--syn-panel-border-color));
-    --variant-color-background: var(--syn-alert-error-color-background, var(--syn-panel-background-color));
-    --variant-color-icon: var(--syn-alert-error-color-icon, var(--syn-color-error-600));
-    --variant-color-indicator: var(--syn-alert-error-color-indicator, var(--syn-color-error-600));
+    --variant-color-border: var(--syn-alert-error-color-border);
+    --variant-color-background: var(--syn-alert-error-color-background);
+    --variant-color-icon: var(--syn-alert-error-color-icon);
+    --variant-color-indicator: var(--syn-alert-error-color-indicator);
   }
 
   /* #1119: Alert Sizes */

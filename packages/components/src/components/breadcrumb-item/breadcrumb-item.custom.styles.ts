@@ -2,7 +2,7 @@ import { css } from 'lit';
 
 export default css`
   .breadcrumb-item {
-    color: var(--syn-breadcrumb-color, var(--syn-color-neutral-500));
+    color: var(--syn-breadcrumb-color);
     font-size: var(--syn-font-size-x-small);
     font-weight: var(--syn-font-weight-semibold);
   }

@@ -5,6 +5,7 @@ html, body {
 }
 
 body {
+  background: var(--syn-page-background-color);
   color: var(--syn-color-neutral-900);
   font-family: var(--syn-font-sans);
   font-size: var(--syn-font-size-medium);
@@ -89,7 +90,7 @@ form .syn-fieldset:last-of-type {
   flex-grow: 1;
   display: flex;
   position: relative;
-  background: var(--syn-color-neutral-0);
+  background: var(--syn-page-background-color);
   overflow: hidden;
 }
 

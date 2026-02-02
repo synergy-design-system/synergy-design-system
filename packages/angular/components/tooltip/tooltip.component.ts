@@ -170,24 +170,6 @@ programmatically.
   }
 
   /**
-* Enable this option to prevent the tooltip from being clipped when the component is placed inside a container with
-`overflow: auto|hidden|scroll`.
-* Hoisting uses a fixed positioning strategy that works in many, but not all,
-scenarios.
-
-@deprecated This property is deprecated and will be removed in the next major version.
- */
-  @Input()
-  set hoist(v: '' | SynTooltip['hoist']) {
-    this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.hoist = v === '' || v),
-    );
-  }
-  get hoist(): SynTooltip['hoist'] {
-    return this.nativeElement.hoist;
-  }
-
-  /**
    * Emitted when the tooltip begins to show.
    */
   @Output() synShowEvent = new EventEmitter<SynShowEvent>();

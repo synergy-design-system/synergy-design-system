@@ -1,6 +1,7 @@
 import { execSync } from 'child_process';
 import path from 'path';
 import fs from 'fs';
+import getChangesets from '@changesets/read';
 import {
   ALLOWED_BUMP_TYPES,
   CHANGESET_ROOT,
@@ -172,9 +173,112 @@ const validateChangesetContent = (content, packageInfo, bumpType) => {
 };
 
 /**
- * Writes a changeset record for all changed packages in the repo based on the specified bump type.
- * @param {string} packageRoot? The root directory of the monorepo. Defaults to the current working directory.
- * @returns {Promise<ValidateChangesetResult>} True if the changeset was created successfully, false otherwise.
+ * Validate a single changeset file content.
+ * @param {string} content The changeset file content
+ * @param {Changeset} packageInfo Expected package information
+ * @param {BumpType} bumpType Expected bump type
+ * @param {string} fileName The changeset file name
+ * @returns {{ valid: boolean, reason: string }} Validation result
+ */
+const validateSingleChangeset = (content, packageInfo, bumpType, fileName) => {
+  const validationData = validateChangesetContent(content, packageInfo, bumpType);
+
+  if (!validationData.valid) {
+    return {
+      reason: validationData.reason,
+      valid: false,
+    };
+  }
+
+  return {
+    reason: `${validationData.reason}\n(Found in ${fileName})`,
+    valid: true,
+  };
+};
+
+/**
+ * Validate multiple changesets combined.
+ * @param {import('@changesets/types').NewChangeset[]} changesets All changesets
+ * @param {Changeset} packageInfo Expected package information
+ * @param {BumpType} bumpType Expected bump type
+ * @returns {{ valid: boolean, reason: string }} Validation result
+ */
+const validateMultipleChangesets = (changesets, packageInfo, bumpType) => {
+  if (changesets.length === 0) {
+    return {
+      reason: 'No changesets found in the repository.',
+      valid: false,
+    };
+  }
+
+  // Collect all package releases from all changesets
+  const packagesInChangesets = new Map();
+  const changesetsByPackage = new Map();
+
+  changesets.forEach(changeset => {
+    changeset.releases.forEach(release => {
+      const existingBumpType = packagesInChangesets.get(release.name);
+
+      // Track which changeset contains this package
+      if (!changesetsByPackage.has(release.name)) {
+        changesetsByPackage.set(release.name, []);
+      }
+      changesetsByPackage.get(release.name).push(changeset.id);
+
+      // Keep the highest bump type if package appears in multiple changesets
+      if (!existingBumpType || ALLOWED_BUMP_TYPES.indexOf(release.type) < ALLOWED_BUMP_TYPES.indexOf(existingBumpType)) {
+        packagesInChangesets.set(release.name, release.type);
+      }
+    });
+  });
+
+  /**
+   * @type {string[]}
+   */
+  const discrepancies = [];
+
+  /**
+   * @type {string[]}
+   */
+  const validPackages = [];
+
+  packageInfo.changedPackages?.forEach(pkgName => {
+    const bumpInChangeset = packagesInChangesets.get(pkgName);
+
+    if (!bumpInChangeset) {
+      discrepancies.push(`❌ Missing package: ${pkgName}`);
+    } else if (bumpInChangeset !== bumpType) {
+      discrepancies.push(`❌ Incorrect bump type for ${pkgName}: expected '${bumpType}', got '${bumpInChangeset}'`);
+    } else {
+      const changesetFiles = changesetsByPackage.get(pkgName) || [];
+      validPackages.push(`☑️ ${pkgName} => ${bumpType} (found in ${changesetFiles.join(', ')})`);
+    }
+  });
+
+  // Check for extra packages in changesets not present in changed packages
+  packagesInChangesets.forEach((bump, pkgName) => {
+    if (!packageInfo.changedPackages?.includes(pkgName)) {
+      discrepancies.push(`❌ Unexpected package in changesets: ${pkgName}`);
+    }
+  });
+
+  if (discrepancies.length > 0) {
+    return {
+      reason: `Mismatch between combined changesets and expected packages or bump types detected:\n${discrepancies.join('\n')}`,
+      valid: false,
+    };
+  }
+
+  return {
+    reason: `Combined changesets are valid and match expected packages and bump types. This PR will upgrade:\n${validPackages.join('\n')}`,
+    valid: true,
+  };
+};
+
+/**
+ * Validates changeset(s) for all changed packages in the repo based on the specified bump type.
+ * @param {string} packageRoot The root directory of the monorepo. Defaults to the current working directory.
+ * @returns {Promise<ValidateChangesetResult>} Validation result
  */
 export const validateChangeset = async (
   packageRoot = process.cwd(),
@@ -185,22 +289,12 @@ export const validateChangeset = async (
     const packageInfo = getChangedPackages(packages, bumpType);
 
     const changesetDir = path.join(rootDir, CHANGESET_ROOT);
-    const changesetFilePath = path.join(changesetDir, `${fileName}`);
 
     // If the changeset directory does not exist, exit early
     if (!fs.existsSync(changesetDir)) {
       return {
         message: 'Changeset directory does not exist',
         reason: 'NO_CHANGESET_DIR',
-        valid: false,
-      };
-    }
-
-    // If the changeset file does not exist, exit early
-    if (!fs.existsSync(changesetFilePath)) {
-      return {
-        message: `Changeset file does not exist. Please create it at ${changesetFilePath}`,
-        reason: 'NO_CHANGESET',
         valid: false,
       };
     }
@@ -214,21 +308,41 @@ export const validateChangeset = async (
       };
     }
 
-    const contentOfExistingChangeset = fs.readFileSync(changesetFilePath, { encoding: 'utf8' });
-    const validationData = validateChangesetContent(contentOfExistingChangeset, packageInfo, bumpType);
+    // Read all changesets once at the beginning
+    const allChangesets = await getChangesets(rootDir);
+    const changesetFilePath = path.join(changesetDir, fileName);
 
-    if (!validationData.valid) {
+    // Try to find and validate the specific changeset file first
+    const specificChangeset = allChangesets.find(cs => cs.id === fileName.replace('.md', ''));
+
+    if (specificChangeset) {
+      // We found the specific changeset, validate it
+      const content = fs.readFileSync(changesetFilePath, { encoding: 'utf8' });
+      const result = validateSingleChangeset(content, packageInfo, bumpType, fileName);
+
       return {
-        message: validationData.reason,
-        reason: 'INVALID_CHANGESET',
-        valid: false,
+        message: result.reason,
+        reason: result.valid ? 'VALID_CHANGESET' : 'INVALID_CHANGESET',
+        valid: result.valid,
       };
     }
 
+    // Fallback: validate all changesets combined
+    const result = validateMultipleChangesets(allChangesets, packageInfo, bumpType);
+
+    let reason;
+    if (result.valid) {
+      reason = 'VALID_CHANGESET';
+    } else if (allChangesets.length === 0) {
+      reason = 'NO_CHANGESET';
+    } else {
+      reason = 'INVALID_CHANGESET';
+    }
+
     return {
-      message: validationData.reason,
-      reason: 'VALID_CHANGESET',
-      valid: true,
+      message: result.reason,
+      reason,
+      valid: result.valid,
     };
   } catch (/** @type {any} */ e) {
     return {

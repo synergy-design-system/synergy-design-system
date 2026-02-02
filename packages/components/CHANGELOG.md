@@ -13,6 +13,14 @@
 
 ## 2.77.0
 
+### Minor Changes
+
+- [#1132](https://github.com/synergy-design-system/synergy-design-system/pull/1132) [`13f6b25`](https://github.com/synergy-design-system/synergy-design-system/commit/13f6b259af388a0fbafc7c963443d08e61c4e99f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-18
+
+  feat: ✨ support angular 21 (#1094)
+
+  Enables the possibility to use `angular@21`.
+
 ## 2.76.0
 
 ### Minor Changes

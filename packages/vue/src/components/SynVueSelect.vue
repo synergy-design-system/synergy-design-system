@@ -129,15 +129,6 @@ use the `show()` and `hide()` methods and this attribute will reflect the select
   open?: SynSelect['open'];
 
   /**
-* Enable this option to prevent the listbox from being clipped when the component is placed inside a container with
-`overflow: auto|scroll`.
-* Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
-
-@deprecated This property is deprecated and will be removed in the next major version.
- */
-  hoist?: SynSelect['hoist'];
-
-  /**
    * The select's label.
    * If you need to display HTML, use the `label` slot instead.
    */

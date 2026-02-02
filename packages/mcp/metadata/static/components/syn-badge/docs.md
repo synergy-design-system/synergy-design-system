@@ -81,13 +81,7 @@ Badges can be used without content to just show an status indicator.
 <div
   style="display: flex; position: relative; gap: var(--syn-spacing-3x-large)"
 >
-  <syn-popup
-    active=""
-    distance="-8"
-    placement="right-start"
-    skidding="-10"
-    strategy="absolute"
-  >
+  <syn-popup active="" distance="-8" placement="right-start" skidding="-10">
     <syn-icon
       name="wallpaper"
       style="font-size: var(--syn-font-size-x-large)"
@@ -98,13 +92,7 @@ Badges can be used without content to just show an status indicator.
     <syn-badge variant="primary"></syn-badge>
   </syn-popup>
 
-  <syn-popup
-    active=""
-    distance="-8"
-    placement="right-start"
-    skidding="-10"
-    strategy="absolute"
-  >
+  <syn-popup active="" distance="-8" placement="right-start" skidding="-10">
     <syn-icon
       name="wallpaper"
       style="font-size: var(--syn-font-size-x-large)"

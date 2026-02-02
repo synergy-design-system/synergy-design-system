@@ -751,7 +751,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return html`
         <syn-tooltip
           exportparts="base:tooltip__base, base__arrow:tooltip__arrow, base__popup:tooltip__popup, body:tooltip__body"
-          hoist
           .disabled=${this.tooltipPlacement === 'none' || this.disabled}
           .placement=${this.tooltipPlacement as 'top' | 'bottom'}
           trigger="focus"

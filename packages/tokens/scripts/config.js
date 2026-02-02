@@ -33,16 +33,6 @@ export const FIGMA_TOKENS_PREFIXES = ['primitive', 'component', 'semantic'];
 export const COLOR_PALETTE_PREFIX = '_color-palette';
 
 /**
- * The file name for the 2018 light theme.
- */
-export const LIGHT_2018_THEME = 'sick2018-light.json';
-
-/**
- * The file name for the 2018 dark theme.
- */
-export const DARK_2018_THEME = 'sick2018-dark.json';
-
-/**
  * List of static changed to variables for specific themes and modes.
  * @type {{ global: OutputVariableChangeList } & Record<string, OutputVariableChangeList>}
  */

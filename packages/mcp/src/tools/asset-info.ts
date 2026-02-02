@@ -8,8 +8,6 @@ import {
 
 const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[]>> = {
   sick2018Icons: [
-    'current',
-    'default',
     'legacy',
     'v2',
     'synergy2018',
@@ -17,7 +15,9 @@ const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[
     'sick2018',
   ],
   sick2025Icons: [
+    'current',
     'synergy2025',
+    'default',
     'new',
     'next',
     'brand2025',
@@ -82,8 +82,8 @@ export const assetInfoTool = (server: McpServer) => {
       const setToUse: keyof typeof availableIconsets = iconset
         ? Object
           .entries(iconsetListAliases)
-          .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'sick2018Icons'
-        : 'sick2018Icons';
+          .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'sick2025Icons'
+        : 'sick2025Icons';
 
       // eslint-disable-next-line no-constant-binary-expression, valid-typeof
       const foundIconSet = typeof availableIconsets[setToUse] !== undefined

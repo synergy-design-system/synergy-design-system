@@ -143,27 +143,6 @@ Without `open`, the side-nav will only show the prefix of nav-item's.
   }
 
   /**
-* Use the rail attribute to only show the prefix of navigation items in closed state.
-This will open on hover on the rail navigation.
-On touch devices the navigation opens on click and shows an overlay.
-
-Note: The Rail is only an option if all Navigation Items on the first level have an Icon.
-If this is not the case you should use a burger navigation.
-
-@deprecated Use the `variant` attribute with `rail` instead.
-Will be removed in synergy version 3.0
- */
-  @Input()
-  set rail(v: '' | SynSideNav['rail']) {
-    this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.rail = v === '' || v),
-    );
-  }
-  get rail(): SynSideNav['rail'] {
-    return this.nativeElement.rail;
-  }
-
-  /**
 * The variant that should be used to show the side navigation.
 
 The following variants are supported:

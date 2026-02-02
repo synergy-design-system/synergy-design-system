@@ -16,7 +16,7 @@ export default css`
 
   /* Remove round borders */
   .icon-button:focus-visible {
-    border-radius: var(--syn-icon-button-focus-ring-border-radius, var(--syn-border-radius-none));
+    border-radius: var(--syn-icon-button-focus-ring-border-radius);
   }
 
   /* Colors */
@@ -26,31 +26,31 @@ export default css`
 
   :host([color="primary"]),
   :host([color="primary"]) .icon-button:focus-visible:not(.icon-button--disabled) {
-    color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
+    color: var(--syn-interactive-emphasis-color);
   }
 
   :host([color="primary"]) .icon-button:hover:not(.icon-button--disabled) {
-    color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
+    color: var(--syn-interactive-emphasis-color-hover);
   }
 
   :host([color="primary"]) .icon-button:active:not(.icon-button--disabled) {
-    color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
+    color: var(--syn-interactive-emphasis-color-active);
   }
 
   :host([color="neutral"]) {
-    color: var(--syn-interactive-quiet-color, var(--syn-typography-color-text));
+    color: var(--syn-interactive-quiet-color);
   }
 
   :host([color="neutral"]) .icon-button:hover:not(.icon-button--disabled) {
-    color: var(--syn-interactive-quiet-color-hover, var(--syn-color-primary-600));
+    color: var(--syn-interactive-quiet-color-hover);
   }
 
   :host([color="neutral"]) .icon-button:active:not(.icon-button--disabled) {
-    color: var(--syn-interactive-quiet-color-active, var(--syn-color-primary-700));
+    color: var(--syn-interactive-quiet-color-active);
   }
 
   :host([color="neutral"]) .icon-button:focus-visible:not(.icon-button--disabled):not(:hover) {
-    color: var(--syn-interactive-quiet-color, var(--syn-typography-color-text));
+    color: var(--syn-interactive-quiet-color);
   }
 
   /* Sizes */

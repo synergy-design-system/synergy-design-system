@@ -46,7 +46,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
 });
 
 // Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=25728-47292', {
+figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=45147-41625', {
   example: ({
     closable,
     defaultSlot,

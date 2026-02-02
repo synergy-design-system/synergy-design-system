@@ -17,6 +17,7 @@
     "@figma/rest-api-spec": "^0.35.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@types/node": "^24.0.0",
+    "cheerio": "^1.1.2",
     "eslint": "^9.39.2",
     "rimraf": "^6.1.2",
     "svgo": "^3.3.2",
@@ -27,29 +28,39 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./icons/*": "./src/icons/*",
-    "./logos/*": "./src/logos/*",
-    "./sick2025/*": "./src/sick2025/*",
-    "./default-icons.js": {
-      "types": "./dist/default-icons.d.ts",
-      "import": "./dist/default-icons.js"
-    },
-    "./default-icons-2025.js": {
-      "types": "./dist/default-icons-2025.d.ts",
-      "import": "./dist/default-icons-2025.js"
-    },
     "./createSpritesheet.js": {
       "types": "./dist/createSpritesheet.d.ts",
       "import": "./dist/createSpritesheet.js"
+    },
+    "./default-icons.js": {
+      "types": "./dist/sick2025/js/outline.d.ts",
+      "import": "./dist/sick2025/js/outline.js"
+    },
+    "./default-icons-2018.js": {
+      "types": "./dist/sick2018/js/index.d.ts",
+      "import": "./dist/sick2018/js/index.js"
+    },
+    "./default-icons-2025.js": {
+      "types": "./dist/sick2025/js/outline.d.ts",
+      "import": "./dist/sick2025/js/outline.js"
+    },
+    "./sick2018/*": "./src/sick2018/*",
+    "./src/sick2018/*": "./src/sick2018/*",
+    "./sick2025/*": "./src/sick2025/*",
+    "./src/sick2025/*": "./src/sick2025/*",
+    "./sick2018.js": {
+      "types": "./dist/sick2018/js/index.d.ts",
+      "import": "./dist/sick2018/js/index.js"
+    },
+    "./sick2025.js": {
+      "types": "./dist/sick2025/js/outline.d.ts",
+      "import": "./dist/sick2025/js/outline.js"
     }
   },
   "files": [
     "dist",
-    "src/icons",
-    "src/logos",
+    "src/sick2018",
     "src/sick2025",
-    "src/system-icons",
-    "src/system-icons-sick2025",
     "CHANGELOG.md",
     "NOTICE"
   ],
@@ -72,13 +83,12 @@
   },
   "scripts": {
     "build": "rimraf dist && tsc -b",
-    "build:all": "pnpm clean && pnpm fetch-assets && pnpm build && pnpm create-licenses && pnpm create-migration-iconset",
-    "build:with-thumbnails": "pnpm clean && pnpm fetch-assets && pnpm fetch-components-thumbnails && pnpm build && pnpm create-licenses && pnpm create-migration-iconset",
+    "build:all": "pnpm clean && pnpm fetch-assets && pnpm create-default-icon-exports && pnpm build && pnpm create-licenses && pnpm create-migration-iconset",
     "create-migration-iconset": "node ./scripts/createSynMigrationIconLibrary.js",
     "create-licenses": "node ./scripts/createLicenses.js",
+    "create-default-icon-exports": "node ./scripts/createDefaultIconExports.js",
     "clean": "node ./scripts/clean.js",
     "fetch-assets": "dotenvx -q run -- pnpm exec figma-export use-config",
-    "fetch-components-thumbnails": "dotenvx -q run -- node scripts/fetch-component-thumbnails.js",
     "lint": "eslint .",
     "format.eslint": "pnpm lint --fix"
   },

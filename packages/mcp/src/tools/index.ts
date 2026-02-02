@@ -6,6 +6,7 @@ export * from './davinci-migration.js';
 export * from './font-info.js';
 export * from './framework-info.js';
 export * from './migration-info.js';
+export * from './migration-list.js';
 export * from './styles-info.js';
 export * from './styles-list.js';
 export * from './template-list.js';

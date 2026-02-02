@@ -73,16 +73,6 @@ panel inside of the viewport.
   placement?: SynPopup['placement'];
 
   /**
-* Determines how the popup is positioned.
-* The `absolute` strategy works well in most cases, but if overflow is
-clipped, using a `fixed` position strategy can often workaround it.
-
-@deprecated The strategy property is deprecated and will be removed in future versions.
-* Modern browsers support the popover element which is used internally instead.
- */
-  strategy?: SynPopup['strategy'];
-
-  /**
    * The distance in pixels from which to offset the panel away from its anchor.
    */
   distance?: SynPopup['distance'];

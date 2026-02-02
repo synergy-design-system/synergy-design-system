@@ -11,7 +11,8 @@
       "@synergy-design-system/components",
       "@synergy-design-system/angular",
       "@synergy-design-system/react",
-      "@synergy-design-system/vue"
+      "@synergy-design-system/vue",
+      "@synergy-design-system/tokens"
     ]
   ],
   "linked": [],

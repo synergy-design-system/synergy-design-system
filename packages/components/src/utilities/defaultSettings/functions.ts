@@ -15,7 +15,7 @@ import type { SynDefaultChangedAttribute, SynDefaultSettingsChangedEvent } from 
 /**
  * Whether to emit events when the default settings change
  */
-let SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS = false;
+let SYNERGY_SETTING_EMIT_EVENTS = false;
 
 /**
  * Internal flag to check if the global event listeners have been set up
@@ -49,11 +49,11 @@ function defaultSettingsHandler(e: SynDefaultSettingsChangedEvent) {
 }
 
 /**
- * Enables or disables the experimental setting to emit events when the default settings change
- * @param enabled Whether to enable or disable the experimental setting
+ * Enables or disables the setting to emit events when the default settings change
+ * @param enabled Whether to enable or disable the setting
  */
-export const enableExperimentalSettingEmitEvents = (enabled = true) => {
-  SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS = enabled;
+export const enableSettingEmitEvents = (enabled = true) => {
+  SYNERGY_SETTING_EMIT_EVENTS = enabled;
 
   if (!enabled) {
     // Make sure to always remove the old element cache
@@ -77,15 +77,25 @@ export const enableExperimentalSettingEmitEvents = (enabled = true) => {
 };
 
 /**
+ * Enables or disables the setting to emit events when the default settings change
+ * @param enabled Whether to enable or disable the setting
+ *
+ * @deprecated This API is now marked stable. Please use enableSettingEmitEvents instead!
+ */
+export const enableExperimentalSettingEmitEvents = (enabled = true) => {
+  enableSettingEmitEvents(enabled);
+};
+
+/**
  * Adds an element to the global event notification map
- * Does not have any effect when SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS is false
+ * Does not have any effect when SYNERGY_SETTING_EMIT_EVENTS is false
  * @param element The element to add
  */
 export const addGlobalEventNotification = (
   element: GlobalSettingsEnabledElement,
 ) => {
   if (
-    SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS
+    SYNERGY_SETTING_EMIT_EVENTS
     && !globalEventNotificationMap.has(element)
   ) {
     globalEventNotificationMap.add(element);
@@ -94,7 +104,7 @@ export const addGlobalEventNotification = (
 
 /**
  * Removes an element from the global event notification map
- * Does not have any effect when SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS is false
+ * Does not have any effect when SYNERGY_SETTING_EMIT_EVENTS is false
  * @param element The element to remove
  */
 export const removeGlobalEventNotification = (
@@ -193,7 +203,7 @@ export const setDefaultSettingsForElement = <C extends SynergyElement>(
   }
 
   // Fire the change event
-  if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS) {
+  if (SYNERGY_SETTING_EMIT_EVENTS) {
     const event = new CustomEvent<typeof detail>('syn-default-settings-changed', {
       bubbles: true,
       detail,
@@ -253,7 +263,7 @@ export const setGlobalDefaultSettings = (
     });
 
   // Fire the change event
-  if (SYNERGY_EXPERIMENTAL_SETTING_EMIT_EVENTS) {
+  if (SYNERGY_SETTING_EMIT_EVENTS) {
     const event = new CustomEvent<typeof detail>('syn-default-settings-changed', {
       bubbles: true,
       detail,

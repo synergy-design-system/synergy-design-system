@@ -1,6 +1,5 @@
-import { Markdown, Meta } from "@storybook/addon-docs/blocks";
-import Migration from '../src/static/migration-synergy-v3.md?raw';
+import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Migration to SICK 2025" tags={['Migration']} />
 
-<Markdown>{Migration}</Markdown>
+export { default } from './migration/index.mdx';

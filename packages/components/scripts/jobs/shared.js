@@ -88,7 +88,7 @@ export const formatFolder = async (dirPath) => {
   try {
     const directories = Array.isArray(dirPath) ? dirPath : [dirPath];
     await execPromise(
-      `pnpm exec prettier -c ../../prettier.config.js --single-quote --bracket-same-line -w ${directories.join(' ')}`,
+      `pnpm exec prettier --config ../../prettier.config.js --single-quote --bracket-same-line -w ${directories.join(' ')}`,
     );
   } catch (error) {
     // Log the error but don't fail the build if formatting fails

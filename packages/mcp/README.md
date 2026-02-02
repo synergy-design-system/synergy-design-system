@@ -238,20 +238,52 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "What's needed to use Synergy with Vue?"
 - "How do I install Synergy for vanilla JavaScript?"
 
-### 13. `migration-info`
+### 13. `migration-list`
 
-**Description:** Get information about migrations available in the Synergy Design System, including breaking changes between major versions.
+**Description:** List available migration documents for a specific Synergy package in a compact, token‑efficient format.
 
-**Parameters:** None
+**Parameters:**
+
+- `synergyPackage` (string, optional): The package to list migration documents for (`assets`, `components`, `styles`, `tokens`). Defaults to `components`.
+
+**Notes:**
+
+- For the `components` package this returns an index of:
+  - High‑level overview docs (e.g. migration overview)
+  - Path‑specific guides (e.g. v2‑2018 → v3‑2018)
+  - Package‑level docs (e.g. `BREAKING_CHANGES.md`, `CHANGELOG.md`)
+- Each entry contains at least the filename and package name. For component paths, additional metadata such as `from`, `to`, `fromTheme`, `toTheme`, and a short `summary` is included where possible.
 
 **Example prompts:**
 
-- "What migrations are available in Synergy?"
-- "How do I migrate from Synergy v1 to v2?"
-- "Show me breaking changes between versions"
-- "What changed in the latest Synergy version?"
+- "List all Synergy component migration guides"
+- "Show me available migration docs for tokens"
+- "What migration paths exist from Synergy 2 to Synergy 3?"
 
-### 14. `version`
+### 14. `migration-info`
+
+**Description:** Get detailed migration documentation for a Synergy package. Use this together with `migration-list` to fetch only the documents you need.
+
+**Parameters:**
+
+- `filename` (string, optional): Specific migration document filename to return. Strongly recommended for the `components` package to avoid fetching all path guides at once.
+- `synergyPackage` (string, optional): The package to get migration information about (`assets`, `components`, `styles`, `tokens`). Defaults to `components`.
+
+**Behavior:**
+
+- For `components`:
+  - With `filename`: returns exactly that migration document (e.g. a specific v2‑to‑v3 path guide).
+  - Without `filename`: returns only the migration overview and high‑level package docs (such as `BREAKING_CHANGES` and `CHANGELOG`), **not** every path‑specific guide.
+- For other packages (`assets`, `styles`, `tokens`):
+  - Returns all migration‑related documents for the selected package (typically `BREAKING_CHANGES` and `CHANGELOG`).
+
+**Example prompts:**
+
+- "List the available Synergy component migrations" (first call `migration-list`)
+- "Show me the migration guide from Synergy 2 (SICK 2018) to Synergy 3 (SICK 2018)"
+- "Give me the breaking changes for the tokens package between major versions"
+
+### 15. `version`
 
 **Description:** Get version and basic information about the Synergy Design System MCP Server.
 
@@ -288,7 +320,10 @@ src/
 │   ├── component-info.ts # Individual component details
 │   ├── component-list.ts # List all components
 │   ├── davinci-migration.ts # Migration guides
+│   ├── font-info.ts      # Font and prerequisites information
 │   ├── framework-info.ts # Framework-specific information
+│   ├── migration-info.ts # Package migration documentation
+│   ├── migration-list.ts # Package migration index (filenames + metadata)
 │   ├── styles-info.ts    # CSS utilities information
 │   ├── styles-list.ts    # List all styles
 │   ├── template-info.ts  # Template details

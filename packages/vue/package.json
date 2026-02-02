@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@synergy-design-system/components": "workspace:^"
+    "@synergy-design-system/components": "workspace:*"
   },
   "description": "Vue3 wrappers for the Synergy Design System",
   "exports": {
@@ -53,6 +53,6 @@
     "vue": "^3.5.26"
   },
   "peerDependencies": {
-    "@synergy-design-system/tokens": "workspace:^"
+    "@synergy-design-system/tokens": "workspace:*"
   }
 }

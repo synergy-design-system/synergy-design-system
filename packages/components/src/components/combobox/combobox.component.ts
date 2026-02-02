@@ -846,6 +846,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     } else {
       option.selected = !option.selected;
     }
+
+    // This is needed so the highlight option renderer is working correctly for `restricted` and `multiple` comboboxes
+    const cachedOption = this.cachedOptions.find(opt => opt.id === option.id);
+    if (cachedOption) {
+      cachedOption.selected = option.selected;
+    }
   }
 
   // Sets the selected option(s)

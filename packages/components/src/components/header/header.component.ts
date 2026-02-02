@@ -83,6 +83,12 @@ export default class SynHeader extends SynergyElement {
   @property({ attribute: 'burger-menu', reflect: true }) burgerMenu: 'hidden' | 'open' | 'closed' = 'hidden';
 
   /**
+   * Makes the header stick to the top of the viewport when scrolling.
+   * Also applies a shadow to the header when scrolling.
+   */
+  @property({ reflect: true, type: Boolean }) sticky = false;
+
+  /**
    * The side nav
    */
   @state() private sideNav: SynSideNav | null;

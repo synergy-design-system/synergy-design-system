@@ -125,4 +125,13 @@ export default css`
   .header--has-burger-menu .header__content {
     padding-left: var(--syn-spacing-medium);
   }
+
+  /**
+   * #529: Sticky header styles
+   */
+  :host([sticky]) {
+    background: red;
+    position: sticky;
+    top: 0;
+  }
 `;

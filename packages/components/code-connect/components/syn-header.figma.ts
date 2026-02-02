@@ -42,5 +42,6 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     navigationSlot: figma.boolean('*navigation', {
       true: figma.instance('↳ <slot nav>'),
     }),
-  } satisfies ValidProperties<SynHeader, ['label', 'logo', 'navigation', 'metaNavigation']>,
+    sticky: figma.boolean('sticky'),
+  } satisfies ValidProperties<SynHeader, ['label', 'logo', 'navigation', 'metaNavigation', 'sticky']>,
 });

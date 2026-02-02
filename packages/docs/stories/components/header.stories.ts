@@ -205,6 +205,19 @@ export const BurgerMenu = {
   `,
 };
 
+export const Sticky = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('header', 'sticky'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-header label="App Name" sticky></syn-header>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,

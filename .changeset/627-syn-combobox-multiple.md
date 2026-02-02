@@ -6,13 +6,13 @@
 "@synergy-design-system/vue": minor
 ---
 
-feat: ✨ syn combobox multiple (#627)
+feat: ✨ syn-combobox multiple (#627)
 
 Adds multiple selection functionality to the `syn-combobox` component, enabling users to select multiple options simultaneously.
 
 **Properties Added:**
 - `multiple`: Enables multiple selection mode
-- `delimiter`: Customizable value separator (default: `|`)
+- `delimiter`: Customizable value separator (default: ` ` (space))
 - `max-options-visible`: Controls visible tag limit with overflow handling
 - `getTag`: Custom tag rendering function
 

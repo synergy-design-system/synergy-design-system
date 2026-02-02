@@ -21,7 +21,7 @@ import '@synergy-design-system/styles';
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
-import { LIGHT_THEME, DARK_THEME, SICK_2025_DARK, SICK_2025_LIGHT, Chromatic_Modes_Sick_2018, SICK_2018_DARK_CLASS, SICK_2018_LIGHT_CLASS, SICK_2025_DARK_CLASS, SICK_2025_LIGHT_CLASS } from './modes.js';
+import { LIGHT_THEME, DARK_THEME, SICK_2025_DARK, SICK_2025_LIGHT, ChromaticModesSick2018, SICK_2018_DARK_CLASS, SICK_2018_LIGHT_CLASS, SICK_2025_DARK_CLASS, SICK_2025_LIGHT_CLASS } from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { themeSwitchIcons } from '../src/decorators/ThemeSwitchIcons.js';
@@ -95,7 +95,7 @@ const preview: Preview = {
       diffThreshold: 0.063, // Original value is set to 0.063
       disableSnapshot: true,
       // @see https://www.chromatic.com/docs/themes/
-      modes: Chromatic_Modes_Sick_2018,
+      modes: ChromaticModesSick2018,
     },
     controls: {
       expanded: true,

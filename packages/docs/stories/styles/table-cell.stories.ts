@@ -11,7 +11,7 @@ import {
 } from '../../src/helpers/component.js';
 import { type RenderArgs, renderStyles } from '../../src/helpers/styles.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-table-cell');
 const { overrideArgs } = storybookHelpers('syn-table-cell');
@@ -28,7 +28,7 @@ const meta: Meta = {
   component: 'syn-table-cell',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('19479-134433'),
     docs: {

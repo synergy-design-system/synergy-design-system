@@ -13,7 +13,7 @@ import {
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args, argTypes } = storybookDefaults('syn-radio');
 const { overrideArgs } = storybookHelpers('syn-radio');
@@ -25,7 +25,7 @@ const meta: Meta = {
   component: 'syn-radio',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('1175-2494'),
     docs: {

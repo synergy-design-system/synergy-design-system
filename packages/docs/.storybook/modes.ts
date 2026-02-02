@@ -6,7 +6,7 @@ export const SICK_2025_DARK = '🌙 SICK 2025 Dark';
 export const LIGHT_THEME = '🌞 SICK 2018 Light';
 export const DARK_THEME = '🌙 SICK 2018 Dark';
 
-export const Chromatic_Modes_Sick_2018 = {
+export const ChromaticModesSick2018 = {
   [LIGHT_THEME]: {
     theme: LIGHT_THEME,
   },
@@ -15,7 +15,7 @@ export const Chromatic_Modes_Sick_2018 = {
   },
 };
 
-export const Chromatic_Modes_Sick_2025 = {
+export const ChromaticModesSick2025 = {
   [SICK_2025_LIGHT]: {
     theme: SICK_2025_LIGHT,
   },
@@ -24,9 +24,9 @@ export const Chromatic_Modes_Sick_2025 = {
   },
 };
 
-export const Chromatic_Modes_All = {
-  ...Chromatic_Modes_Sick_2018,
-  ...Chromatic_Modes_Sick_2025,
+export const ChromaticModesAll = {
+  ...ChromaticModesSick2018,
+  ...ChromaticModesSick2025,
 };
 
 export const SICK_2018_LIGHT_CLASS = 'syn-sick2018-light';

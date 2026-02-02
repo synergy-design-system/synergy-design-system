@@ -20,7 +20,7 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args, argTypes } = storybookDefaults('syn-select');
 const { overrideArgs } = storybookHelpers('syn-select');
@@ -32,7 +32,7 @@ const meta: Meta = {
   component: 'syn-select',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('5069-7562'),
     docs: {

@@ -12,6 +12,7 @@ import { modernNumericStrategy } from "../../components/input/strategies.js";
 import type SynAccordion from "../../components/accordion/accordion.js";
 import type SynAlert from "../../components/alert/alert.js";
 import type SynBadge from "../../components/badge/badge.js";
+import type SynButtonGroup from "../../components/button-group/button-group.js";
 import type SynButton from "../../components/button/button.js";
 import type SynCheckbox from "../../components/checkbox/checkbox.js";
 import type SynCombobox from "../../components/combobox/combobox.js";
@@ -69,6 +70,7 @@ export type ComponentNamesWithDefaultValues =
   | "SynAlert"
   | "SynBadge"
   | "SynButton"
+  | "SynButtonGroup"
   | "SynCheckbox"
   | "SynCombobox"
   | "SynDetails"
@@ -109,6 +111,7 @@ export type SynDefaultSettings = {
     SynAccordion?: AllowedValueForDefaultSetting<SynAccordion, "size">;
     SynAlert?: AllowedValueForDefaultSetting<SynAlert, "size">;
     SynButton?: AllowedValueForDefaultSetting<SynButton, "size">;
+    SynButtonGroup?: AllowedValueForDefaultSetting<SynButtonGroup, "size">;
     SynCheckbox?: AllowedValueForDefaultSetting<SynCheckbox, "size">;
     SynCombobox?: AllowedValueForDefaultSetting<SynCombobox, "size">;
     SynDetails?: AllowedValueForDefaultSetting<SynDetails, "size">;
@@ -128,6 +131,7 @@ export type SynDefaultSettings = {
     SynAlert?: AllowedValueForDefaultSetting<SynAlert, "variant">;
     SynBadge?: AllowedValueForDefaultSetting<SynBadge, "variant">;
     SynButton?: AllowedValueForDefaultSetting<SynButton, "variant">;
+    SynButtonGroup?: AllowedValueForDefaultSetting<SynButtonGroup, "variant">;
     SynSideNav?: AllowedValueForDefaultSetting<SynSideNav, "variant">;
     SynValidate?: AllowedValueForDefaultSetting<SynValidate, "variant">;
   };
@@ -149,6 +153,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynAccordion: "medium",
     SynAlert: "medium",
     SynButton: "medium",
+    SynButtonGroup: "medium",
     SynCheckbox: "medium",
     SynCombobox: "medium",
     SynDetails: "medium",
@@ -168,6 +173,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynAlert: "primary",
     SynBadge: "primary",
     SynButton: "outline",
+    SynButtonGroup: "outline",
     SynSideNav: "default",
     SynValidate: "native",
   },
@@ -187,6 +193,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynAccordion: "medium",
     SynAlert: "medium",
     SynButton: "medium",
+    SynButtonGroup: "medium",
     SynCheckbox: "medium",
     SynCombobox: "medium",
     SynDetails: "medium",
@@ -206,6 +213,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynAlert: "primary",
     SynBadge: "primary",
     SynButton: "outline",
+    SynButtonGroup: "outline",
     SynSideNav: "default",
     SynValidate: "native",
   },

@@ -3,6 +3,7 @@ import DemoAlert from "./DemoAlert.vue";
 import DemoBadge from "./DemoBadge.vue";
 import DemoBreadcrumb from "./DemoBreadcrumb.vue";
 import DemoButton from "./DemoButton.vue";
+import DemoButtonGroup from "./DemoButtonGroup.vue";
 import DemoCard from "./DemoCard.vue";
 import DemoCheckbox from "./DemoCheckbox.vue";
 import DemoCombobox from "./DemoCombobox.vue";
@@ -38,6 +39,7 @@ export {
   DemoBadge,
   DemoBreadcrumb,
   DemoButton,
+  DemoButtonGroup,
   DemoCard,
   DemoCheckbox,
   DemoCombobox,

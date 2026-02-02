@@ -126,6 +126,7 @@ jobs:
     needs: build-check
     container:
       image: mcr.microsoft.com/playwright:v1.57.0-noble
+      options: --memory=4g --memory-swap=4g
     strategy:
       fail-fast: true
       matrix:

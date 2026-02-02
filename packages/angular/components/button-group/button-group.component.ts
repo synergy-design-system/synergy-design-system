@@ -52,4 +52,28 @@ devices when interacting with the control and is strongly recommended.
   get label(): SynButtonGroup['label'] {
     return this.nativeElement.label;
   }
+
+  /**
+   * The button-groups size.
+   * This affects all buttons within the group.
+   */
+  @Input()
+  set size(v: SynButtonGroup['size']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.size = v));
+  }
+  get size(): SynButtonGroup['size'] {
+    return this.nativeElement.size;
+  }
+
+  /**
+   * The button-group's theme variant.
+   * This affects all buttons within the group.
+   */
+  @Input()
+  set variant(v: SynButtonGroup['variant']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));
+  }
+  get variant(): SynButtonGroup['variant'] {
+    return this.nativeElement.variant;
+  }
 }

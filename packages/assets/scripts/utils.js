@@ -22,7 +22,6 @@ export const createFileNameForLogo = (variant, color, theme) => {
     'logo',
     variant,
     color,
-    theme,
   ].join('-');
 
   if (theme === 'sick2018') {

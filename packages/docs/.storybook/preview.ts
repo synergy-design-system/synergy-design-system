@@ -11,10 +11,11 @@ import componentsManifest from 'virtual:vite-plugin-cem/custom-elements-manifest
 import stylesManifest from 'virtual:vite-plugin-synergy-styles/custom-elements-manifest';
 
 import '@synergy-design-system/fonts';
-import '@synergy-design-system/tokens/themes/sick2025_dark.css';
-import '@synergy-design-system/tokens/themes/sick2025_light.css';
+
 import '@synergy-design-system/tokens/themes/sick2018_dark.css';
 import '@synergy-design-system/tokens/themes/sick2018_light.css';
+import '@synergy-design-system/tokens/themes/sick2025_dark.css';
+import '@synergy-design-system/tokens/themes/sick2025_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import '../src/docs.css';
@@ -61,7 +62,7 @@ setStorybookHelpersConfig({
 });
 
 const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
-  defaultTheme: LIGHT_THEME,
+  defaultTheme: SICK_2025_LIGHT,
   parentSelector: 'body',
   themes: {
     [DARK_THEME]: SICK_2018_DARK_CLASS,
@@ -82,7 +83,7 @@ const preview: Preview = {
   parameters: {
     backgrounds: {
       options: {
-        'page': { name: 'page', value: 'var(--syn-page-background)' },
+        'page': { name: 'page', value: 'var(--syn-page-background-color)' },
         'panel': { name: 'panel', value: 'var(--syn-panel-background-color)' },
         'neutral-0': { name: 'neutral-0', value: 'var(--syn-color-neutral-0)' },
         'neutral-50': { name: 'neutral-50', value: 'var(--syn-color-neutral-50)' },

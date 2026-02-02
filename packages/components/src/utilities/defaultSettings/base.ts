@@ -6,7 +6,7 @@
 // ---------------------------------------------------------------------
 
 // Global imports
-import { nativeNumericStrategy } from "../../components/input/strategies.js";
+import { modernNumericStrategy } from "../../components/input/strategies.js";
 
 // Type imports
 import type SynAccordion from "../../components/accordion/accordion.js";
@@ -147,7 +147,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynSelect: " ",
   },
   numericStrategy: {
-    SynInput: nativeNumericStrategy,
+    SynInput: modernNumericStrategy,
   },
   size: {
     SynAccordion: "medium",
@@ -187,7 +187,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynSelect: " ",
   },
   numericStrategy: {
-    SynInput: nativeNumericStrategy,
+    SynInput: modernNumericStrategy,
   },
   size: {
     SynAccordion: "medium",

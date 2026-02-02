@@ -7,7 +7,7 @@ import {
   generateScreenshotStory, storybookDefaults, storybookHelpers, storybookTemplate,
 } from '../../src/helpers/component.js';
 import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
-import { defaultIcons } from '../../../assets/src/default-icons.js';
+import { defaultIcons } from '../../../assets/src/index.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 // We use this type of include to have a valid markdown file

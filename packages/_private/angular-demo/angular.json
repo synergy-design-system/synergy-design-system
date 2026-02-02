@@ -29,12 +29,13 @@
               "src/public",
               {
                 "glob": "**/*",
-                "input": "./node_modules/@synergy-design-system/assets/src/icons",
+                "input": "./node_modules/@synergy-design-system/assets/src/sick2025/icons/outline",
                 "output": "/assets/icons"
               }
             ],
             "styles": [
               "@synergy-design-system/fonts/src/sick-intl/font.css",
+              "@synergy-design-system/demo-utilities/styles/font.css",
               "@synergy-design-system/tokens/themes/sick2025_dark.css",
               "@synergy-design-system/tokens/themes/sick2025_light.css",
               "@synergy-design-system/tokens/themes/sick2018_dark.css",

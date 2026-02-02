@@ -100,7 +100,7 @@ syn-header {
   flex-grow: 1;
   display: flex;
   position: relative;
-  background: var(--syn-color-neutral-0);
+  background: var(--syn-page-background-color);
   overflow: hidden;
 }
 

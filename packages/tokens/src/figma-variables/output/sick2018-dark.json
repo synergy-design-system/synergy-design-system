@@ -94,7 +94,7 @@
   "background": {
     "color-1": {
       "type": "color",
-      "value": "{color.neutral.50}"
+      "value": "{color.neutral.200}"
     },
     "color-2": {
       "type": "color",
@@ -1428,6 +1428,11 @@
   },
   "page": {
     "background": {
+      "description": "Will be DEPRECATED",
+      "type": "color",
+      "value": "{color.neutral.50}"
+    },
+    "background-color": {
       "type": "color",
       "value": "{color.neutral.50}"
     }
@@ -1672,6 +1677,16 @@
         "type": "sizing",
         "value": "{spacing.medium}"
       }
+    }
+  },
+  "toggle-button": {
+    "border-radius": {
+      "type": "sizing",
+      "value": "{border-radius.none}"
+    },
+    "color": {
+      "type": "color",
+      "value": "{panel.border.color}"
     }
   },
   "tooltip": {

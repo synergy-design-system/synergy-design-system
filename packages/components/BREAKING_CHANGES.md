@@ -5,13 +5,430 @@ As all our wrappers are based on this package, the changes also hold true for al
 
 > ⚠️ Migrations **must** always be done from one major version to the next to prevent issues (e.g. with types and property changes)
 > This means when moving from `@synergy-design-system@components` v1.x to v3.x,
-> you will **have to apply** the changes form v1.x to v2.x first!
+> you will **have to apply** the changes from v1.x to v2.x first!
+
+---
+
+## Version 3.0
+
+> ⚠️ **Important**: When upgrading to Synergy v3.0, update all `@synergy-design-system/*` packages to their respective v3.x versions (or v2.x for `@synergy-design-system/assets`) to ensure compatibility.
+
+<h3 id="syn-combobox-v3">`<syn-combobox>`</h3>
+
+#### ⚠️ Removed deprecated attribute `hoist`
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+The `hoist` attribute was marked as deprecated in Synergy version 2.
+As all major browsers now support the use of the [popover API](https://developer.mozilla.org/docs/Web/API/Popover_API), manually setting this is no longer needed.
+
+**Migration Steps**:
+
+- Remove all occurrences of the `hoist` property in your code.
+
+**Example (before)**:
+
+```html
+<syn-combobox hoist></syn-combobox>
+```
+
+**Example (after)**:
+
+```html
+<syn-combobox></syn-combobox>
+```
+
+---
+
+<h3 id="syn-dropdown-v3">`<syn-dropdown>`</h3>
+
+#### ⚠️ Removed deprecated attribute `hoist`
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+The `hoist` attribute was marked as deprecated in Synergy version 2.
+As all major browsers now support the use of the [popover API](https://developer.mozilla.org/docs/Web/API/Popover_API), manually setting this is no longer needed.
+
+**Migration Steps**:
+
+- Remove all occurrences of the `hoist` property in your code.
+
+**Example (before)**:
+
+```html
+<syn-dropdown hoist></syn-dropdown>
+```
+
+**Example (after)**:
+
+```html
+<syn-dropdown></syn-dropdown>
+```
+
+---
+
+<h3 id="syn-input-v3">`<syn-input>`</h3>
+
+#### ⚠️ Changed default for `numeric-strategy` from "native" to "modern"
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+- [#417](https://github.com/synergy-design-system/synergy-design-system/issues/417)
+
+**Reason**:
+
+When we [added the `numeric-strategy` field](https://github.com/synergy-design-system/synergy-design-system/issues/417) we could see that this would be a sane default.
+To keep Synergy version 2 API stable, we chose to leave the default at `native` and make the `modern` version an opt in for interested projects.
+This is now reversed for Synergy version 3: If you need the old behavior back, just set `numeric-strategy` to `native`.
+
+> Be aware that the `modern` version may also adjust the width of a rendered `<syn-input>`
+> For more information about this behavior, please have a look at [the known issues](https://synergy-design-system.github.io/?path=/docs/limitations-components--docs#syn-input-number-width).
+
+**Migration Steps**:
+
+- Remove `numeric-strategy="modern"` from your custom code as it is no longer needed.
+- Optional: Remove `numeric-strategy="modern"` from Synergy Default Settings as this is now the default.
+
+**Example (before)**:
+
+```html
+<syn-input
+  type="number"
+  numeric-strategy="modern"
+  label="Should use modern"
+></syn-input>
+<syn-input type="number" label="Uses native as default"></syn-input>
+```
+
+**Example (after)**:
+
+```html
+<syn-input type="number" label="Should use modern"></syn-input>
+<syn-input
+  type="number"
+  numeric-strategy="native"
+  label="Uses native as default"
+></syn-input>
+```
+
+---
+
+<h3 id="syn-popup-v3">`<syn-popup>`</h3>
+
+#### ⚠️ Removed deprecated attribute `strategy`
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+The `strategy` attribute was marked as deprecated in Synergy version 2.
+As all major browsers now support the use of the [popover API](https://developer.mozilla.org/docs/Web/API/Popover_API), manually setting this is no longer needed.
+
+**Migration Steps**:
+
+- Remove all occurrences of the `strategy` property in your code.
+- ⚠️ If your target audience uses outdated browsers that [do not support the Popover API](https://caniuse.com/?search=popover), think about providing a polyfill for this feature.
+
+**Example (before)**:
+
+```html
+<syn-popup strategy="absolute"></syn-popup>
+
+<syn-popup strategy="fixed"></syn-popup>
+```
+
+**Example (after)**:
+
+```html
+<syn-popup></syn-popup>
+
+<syn-popup></syn-popup>
+```
+
+---
+
+<h3 id="syn-select-v3">`<syn-select>`</h3>
+
+#### ⚠️ Removed deprecated attribute `hoist`
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+The `hoist` attribute was marked as deprecated in Synergy version 2.
+As all major browsers now support the use of the [popover API](https://developer.mozilla.org/docs/Web/API/Popover_API), manually setting this is no longer needed.
+
+**Migration Steps**:
+
+- Remove all occurrences of the `hoist` property in your code.
+
+**Example (before)**:
+
+```html
+<syn-select hoist></syn-select>
+```
+
+**Example (after)**:
+
+```html
+<syn-select></syn-select>
+```
+
+---
+
+<h3 id="syn-side-nav-v3">`<syn-side-nav>`</h3>
+
+#### ⚠️ Removed deprecated attribute `rail`
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+The `rail` attribute was marked as deprecated in Synergy version 2.
+In Synergy version 2.x, it was only left in as a fallback that triggered `variant="rail"` and already warned about the future deprecation.
+
+**Migration Steps**:
+
+- Exchange all occurrences of the `rail` property for `variant="rail"` in your code.
+
+**Example (before)**:
+
+```html
+<syn-side-nav rail></syn-side-nav>
+```
+
+**Example (after)**:
+
+```html
+<syn-side-nav variant="rail"></syn-side-nav>
+```
+
+---
+
+<h3 id="syn-tooltip-v3">`<syn-tooltip>`</h3>
+
+#### ⚠️ Removed deprecated attribute `hoist`
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+The `hoist` attribute was marked as deprecated in Synergy version 2.
+As all major browsers now support the use of the [popover API](https://developer.mozilla.org/docs/Web/API/Popover_API), manually setting this is no longer needed.
+
+**Migration Steps**:
+
+- Remove all occurrences of the `hoist` property in your code.
+
+**Example (before)**:
+
+```html
+<syn-tooltip hoist></syn-tooltip>
+```
+
+**Example (after)**:
+
+```html
+<syn-tooltip></syn-tooltip>
+```
+
+---
+
+<h3 id="defaultSettings-v3">`defaultSettings`</h3>
+
+#### ⚠️ Deprecated `enableExperimentalSettingEmitEvents`
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+This feature is no longer experimental and was therefore flagged as `deprecated`.
+It will continue to work in Synergy version 3, but calls the new function `enableSettingEmitEvents` underneath.
+
+> We aim to remove this wrapper in Synergy version 4.
+
+**Migration Steps**:
+
+- Exchange all occurrences of `enableExperimentalSettingEmitEvents` with `enableSettingEmitEvents`.
+
+**Example (before)**:
+
+```javascript
+import { enableExperimentalSettingEmitEvents } from "@synergy-design-system/components";
+enableExperimentalSettingEmitEvents(true);
+```
+
+**Example (after)**:
+
+```javascript
+import { enableSettingEmitEvents } from "@synergy-design-system/components";
+enableSettingEmitEvents(true);
+```
+
+---
+
+<h3 id="syn-var-fallbacks-v3">Variable fallbacks</h3>
+
+#### ⚠️ Removed all fallback variables in components
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+During the migration process of Synergy version 2 to version 3, we added a compatibility layer in the components that made it possible for users with misaligned versions of the components and tokens package to still use the updated styles. This was achieved using fallbacks like this:
+
+```css
+/* Original code of Synergy version 2 */
+.alert--success {
+  --variant-color-border: var(
+    --syn-alert-success-color-border,
+    var(--syn-panel-border-color)
+  );
+}
+```
+
+This helped introduce Synergies new semantic layer without breaking the software. However, this also lead to increased bundle sizes.
+
+As the component and token packages are now version aligned, there is no more need for this deprecation layer in the components like this:
+
+```css
+/* Updated code of Synergy version 3 */
+.alert--success {
+  --variant-color-border: var(--syn-alert-success-color-border);
+}
+```
+
+**Migration Steps**:
+
+- Make sure you have matching versions of `@synergy-design-system/components` and `@synergy-design-system/tokens`.
+- The components package now declares a `peerDependency` on the same version of `@synergy-design-system/tokens`. You may also remove the installation of `@synergy-design-system/tokens` that was manually needed before.
+
+**Example (before)**:
+
+```json
+{
+  "dependencies": {
+    "@synergy-design-system/components": "^2.55.0",
+    "@synergy-design-system/tokens": "2.11.0"
+  }
+}
+```
+
+**Example (after)**:
+
+```json
+{
+  "dependencies": {
+    "@synergy-design-system/components": "^3.0.0"
+  }
+}
+```
+
+---
+
+<h3 id="icons-v3">`IconLibraries`</h3>
+
+#### ⚠️ Deprecated icon migration utilities
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+Synergy version 2 exposes a couple of low level utilities for managing the migration from the legacy SICK 2018 icon set to the new SICK 2025 icons.
+With Synergy version 3, the use of SICK 2018 icons is discouraged.
+Because of this, the migration utilities are now flagged as `deprecated` and will be removed in a future Synergy release.
+
+This applies to:
+
+- `createMigrationLibrary`
+- `migrateIconName`
+- `migrateIconNameFilled`
+- `migrationLibrary`
+- `setupIcons`
+
+**Migration Steps**:
+
+Consider switching to the new SICK 2025 icons directly.
+Update your icon names in markup to use the new naming convention instead of relying on the automatic migration layer.
+
+> 📖 For a complete mapping of old to new icon names, see the [SICK 2025 icon migration guide](https://synergy-design-system.github.io/?path=/docs/migration--docs).
+
+**Example (before)**:
+
+```javascript
+// Using the migration helper to automatically map old icon names
+import { setupIcons } from "@synergy-design-system/components";
+setupIcons("sick2025"); // Enables automatic name migration
+```
+
+```html
+<!-- Old SICK 2018 icon names still work due to migration layer -->
+<syn-icon name="access_alarm"></syn-icon>
+<syn-icon name="app_settings_alt"></syn-icon>
+```
+
+**Example (after)**:
+
+```javascript
+// No setupIcons() call needed when using SICK 2025 icons with correct names
+// Only keep setupIcons('sick2018') if you still need the old SICK 2018 iconset
+```
+
+```html
+<!-- Use new SICK 2025 icon names directly -->
+<syn-icon name="alarm"></syn-icon>
+<syn-icon name="phonelink_setup"></syn-icon>
+```
+
+---
+
+<h3 id="angular-v3">`@synergy-design-system/angular`</h3>
+
+#### ⚠️ Removed support for outdated Angular versions
+
+**Associated Ticket(s)**:
+
+- [#1149](https://github.com/synergy-design-system/synergy-design-system/issues/1149)
+
+**Reason**:
+
+We have removed support for Angular Version 16 and 17.
+Both angular versions are no longer actively maintained.
+
+**Migration Steps**:
+
+- Follow the [official angular update guide](https://angular.dev/update)
+- If no upgrade is possible, we advise to stay on Synergy version 2.
+- If you still want to upgrade, you may manually override the `peerDependencies` in the `@synergy-design-system/angular` package. Please have a look at your package managers documentation about how this can be achieved.
 
 ---
 
 ## Version 2.0
 
-### `<syn-header>`
+<h3 id="syn-header-v2">`<syn-header>`</h3>
 
 #### ⚠️ Removed default slot in favor of named slot "label".
 
@@ -22,7 +439,7 @@ As all our wrappers are based on this package, the changes also hold true for al
 **Reason**:
 
 The label was originally taken from the default `slot`.
-However, this lead to problems as white space characters are also seen as slot contents, preventing the `label` property from working properly.
+However, this led to problems as white space characters are also seen as slot contents, preventing the `label` property from working properly.
 
 **Migration Steps**:
 
@@ -50,7 +467,7 @@ When using the slot to show the applications name, wrap it with an element that 
 
 **Reason**:
 
-The properties `show-burger-menu` and `burger-menu-visible` where hard to reason about and not aligned with design. They where replaced with an easier to use `burger-menu` property that has one of these different variants: `"hidden"`, `"closed"` or `"open"`.
+The properties `show-burger-menu` and `burger-menu-visible` were hard to reason about and not aligned with design. They were replaced with an easier to use `burger-menu` property that has one of these different variants: `"hidden"`, `"closed"` or `"open"`.
 
 **Migration Steps**:
 
@@ -182,7 +599,9 @@ All occurrences of the used slots `show-burger-menu-icon` and `hide-burger-menu-
 </syn-header>
 ```
 
-### `<syn-prio-nav>`
+---
+
+<h3 id="syn-prio-nav-v2">`<syn-prio-nav>`</h3>
 
 #### ⚠️ Removed attribute `priority-menu-label` in favor of static translation
 
@@ -229,7 +648,7 @@ Remove `priority-menu-label` from all `<syn-prio-nav>` elements on the page. Thi
 
 ---
 
-### `<syn-side-nav>`
+<h3 id="syn-side-nav-v2">`<syn-side-nav>`</h3>
 
 #### ⚠️ Adjusted the open width of the side-nav
 
@@ -271,7 +690,7 @@ If for some reason the old width of 400px are desired, the css property `--side-
 
 ---
 
-### `<syn-card>`
+<h3 id="syn-card-v2">`<syn-card>`</h3>
 
 #### ⚠️ Remove property `nested` in favor of `sharp`
 
@@ -308,7 +727,7 @@ The deprecated property has to be mapped to the new `sharp` property in the foll
 
 ---
 
-### `@synergy-design-system/angular`
+<h3 id="angular-v2">`@synergy-design-system/angular`</h3>
 
 #### ⚠️ Removed custom methods for element member methods.
 
@@ -318,9 +737,9 @@ The deprecated property has to be mapped to the new `sharp` property in the foll
 
 **Reason**:
 
-During generation of the angular wrapper components, custom functions exposed from the web-components where automatically generated. We initially integrated those methods as a helper for better `DX` when using our angular wrappers. However, the inclusion lead to a couple of issues:
+During generation of the angular wrapper components, custom functions exposed from the web-components were automatically generated. We initially integrated those methods as a helper for better `DX` when using our angular wrappers. However, the inclusion lead to a couple of issues:
 
-1. Developers thought they could call those methods savely during render, which may lead to problems as this was never intended to work.
+1. Developers thought they could call those methods safely during render, which may lead to problems as this was never intended to work.
 2. We had do patch the components types to make it work correctly.
 3. We had to rename all method callers to avoid overlaps when defining the components (e.g. if there was a property `size` and a member called `size` it would lead to name clashes, so the `size` method became `callSize`).
 4. Most developers do not even need to call those methods, making them unneeded bloat in the first place.
@@ -387,7 +806,7 @@ export class Home {
 
 ---
 
-### `@synergy-design-system/vue`
+<h3 id="vue-v2">`@synergy-design-system/vue`</h3>
 
 #### ⚠️ Removed custom methods for element member methods.
 
@@ -397,9 +816,9 @@ export class Home {
 
 **Reason**:
 
-During generation of the vue wrapper components, custom functions exposed from the web-components where automatically generated. We initially integrated those methods as a helper for better `DX` when using our vue wrappers. However, the inclusion lead to a couple of issues:
+During generation of the vue wrapper components, custom functions exposed from the web-components were automatically generated. We initially integrated those methods as a helper for better `DX` when using our vue wrappers. However, the inclusion lead to a couple of issues:
 
-1. Developers thought they could call those methods savely during render, which may lead to problems as this was never intended to work.
+1. Developers thought they could call those methods safely during render, which may lead to problems as this was never intended to work.
 2. We had do patch the components types to make it work correctly.
 3. We had to rename all method callers to avoid overlaps when defining the components (e.g. if there was a property `size` and a member called `size` it would lead to name clashes, so the `size` method became `callSize`).
 4. Most developers do not even need to call those methods, making them unneeded bloat in the first place.
@@ -456,7 +875,7 @@ The native element still exposes its types and all of its native functionality. 
 
 <!-- USE THIS AS A TEMPLATE FOR ADDITIONAL MIGRATION STEPS
 
-### `<syn-COMPONENT>`
+<h3 id="COMPONENT-VERSION">`<syn-COMPONENT>`</h3>
 
 #### ⚠️ DESCRIBE THE CHANGE HERE
 

@@ -6,8 +6,10 @@ import {
   type Icon2025Keys,
   createSpriteSheet,
 } from './createSpritesheet.js';
-import { defaultIcons as sick2018Icons } from './default-icons.js';
-import { defaultIcons as sick2025Icons } from './default-icons-2025.js';
+import {
+  sick2018Icons,
+  sick2025Icons,
+} from './index.js';
 
 type Args = {
   icons?: Partial<keyof typeof sick2018Icons>[];
@@ -70,7 +72,7 @@ if (args.length === 0) {
 
 const {
   icons,
-  iconset = 'sick2018',
+  iconset = 'sick2025',
   list,
 } = argumentsObject;
 

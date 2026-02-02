@@ -166,26 +166,6 @@ describe('<syn-header>', () => {
       expect(burgerMenuPart?.querySelector('syn-icon[name="menu"]')).to.be.null;
     });
 
-    // TODO: this should be removed in synergy version 3.0
-    it('should toggle the showBurgerMenu state in case of side-nav mode was changed to rail = true', async () => {
-      const el = await fixture<HTMLDivElement>(html`
-        <div>
-          <syn-header></syn-header>
-          <syn-side-nav></syn-side-nav>
-        </div>
-      `);
-
-      const header = el.querySelector('syn-header')!;
-      const sideNav = el.querySelector('syn-side-nav')!;
-
-      expect(header.burgerMenu).to.equal('closed');
-
-      sideNav.rail = true;
-      await sideNav.updateComplete;
-
-      expect(header.burgerMenu).to.equal('hidden');
-    });
-
     it('should toggle the showBurgerMenu state in case of side-nav mode was changed to variant="rail"', async () => {
       const el = await fixture<HTMLDivElement>(html`
         <div>

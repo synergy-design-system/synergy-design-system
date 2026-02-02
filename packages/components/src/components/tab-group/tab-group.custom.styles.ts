@@ -7,7 +7,7 @@ export default css`
     --track-width: var(--syn-border-width-small);
     --track-color: var(--syn-panel-border-color);
     --indicator-width: var(--syn-border-width-x-large);
-    --indicator-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
+    --indicator-color: var(--syn-interactive-emphasis-color);
   }
 
   /* we need to augment the size of the height of the tab-group__nav to make the focus outline and the hiding white border visible of the tab because of overflow-x value  */
@@ -185,7 +185,7 @@ export default css`
   .tab-group__scroll-button {
     /* we need to move the scroll buttons to the top, to align the borders with the border of the tab-group--nav  */
     bottom: var(--syn-panel-border-width);
-    color: var(--syn-interactive-quiet-color, var(--syn-color-neutral-950));
+    color: var(--syn-interactive-quiet-color);
     font-size: var(--syn-font-size-medium);
     width: calc(var(--syn-spacing-x-large) + var( --syn-spacing-2x-small));
   }

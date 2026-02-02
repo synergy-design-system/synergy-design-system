@@ -207,7 +207,7 @@ Add any element to the start and end of range items using the prefix and suffix 
     gap: var(--syn-spacing-medium);
 
     syn-input {
-      min-width: 0;
+      max-width: 6.5rem;
     }
   }
 </style>

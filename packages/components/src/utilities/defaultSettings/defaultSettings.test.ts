@@ -4,7 +4,7 @@ import { INITIAL_DEFAULT_SETTINGS } from './base.js';
 import {
   type ComponentNamesWithDefaultValues,
   type SynButton,
-  enableExperimentalSettingEmitEvents,
+  enableSettingEmitEvents,
   resetGlobalDefaultSettings,
   setDefaultSettingsForElement,
   setGlobalDefaultSettings,
@@ -14,12 +14,12 @@ import { sortComponentsForUpdate } from './sort.js';
 describe('GlobalSettings', () => {
   // Make sure to reset the defaults for each test
   beforeEach(() => {
-    enableExperimentalSettingEmitEvents(false);
+    enableSettingEmitEvents(false);
     setGlobalDefaultSettings(INITIAL_DEFAULT_SETTINGS);
   });
 
   afterEach(() => {
-    enableExperimentalSettingEmitEvents(false);
+    enableSettingEmitEvents(false);
   });
 
   describe('when rendering a syn-button without global settings', () => {
@@ -59,7 +59,7 @@ describe('GlobalSettings', () => {
       });
     });
 
-    describe('when using the experimental event support', () => {
+    describe('when using the event support', () => {
       it('should not dispatch the global settings event when the setting is disabled', () => {
         const spy = sinon.spy();
         window.addEventListener('syn-default-settings-changed', spy, {
@@ -67,7 +67,7 @@ describe('GlobalSettings', () => {
           once: true,
         });
 
-        enableExperimentalSettingEmitEvents(false);
+        enableSettingEmitEvents(false);
         setDefaultSettingsForElement<SynButton>('SynButton', { size: 'large' });
 
         expect(spy.callCount).to.equal(0);
@@ -80,7 +80,7 @@ describe('GlobalSettings', () => {
           once: true,
         });
 
-        enableExperimentalSettingEmitEvents(true);
+        enableSettingEmitEvents(true);
         setDefaultSettingsForElement<SynButton>('SynButton', { size: 'large' });
 
         expect(spy.callCount).to.equal(1);
@@ -94,7 +94,7 @@ describe('GlobalSettings', () => {
       });
 
       it('should update the props of all buttons that where rendered before the default settings were changed', async () => {
-        enableExperimentalSettingEmitEvents(true);
+        enableSettingEmitEvents(true);
 
         const buttonList = await fixture<HTMLDivElement>(html`
           <div>
@@ -161,7 +161,7 @@ describe('GlobalSettings', () => {
       });
     });
 
-    describe('when using the experimental event support', () => {
+    describe('when using the event support', () => {
       it('should not dispatch the global settings event when the setting is disabled', () => {
         const spy = sinon.spy();
         window.addEventListener('syn-default-settings-changed', spy, {
@@ -169,7 +169,7 @@ describe('GlobalSettings', () => {
           once: true,
         });
 
-        enableExperimentalSettingEmitEvents(false);
+        enableSettingEmitEvents(false);
         setGlobalDefaultSettings({
           size: {
             SynButton: 'large',
@@ -185,7 +185,7 @@ describe('GlobalSettings', () => {
           once: true,
         });
 
-        enableExperimentalSettingEmitEvents(true);
+        enableSettingEmitEvents(true);
         setGlobalDefaultSettings({
           size: {
             SynButton: 'large',
@@ -203,7 +203,7 @@ describe('GlobalSettings', () => {
       });
 
       it('should update the props of all buttons that where rendered before the default settings were changed', async () => {
-        enableExperimentalSettingEmitEvents(true);
+        enableSettingEmitEvents(true);
 
         const buttonList = await fixture<HTMLDivElement>(html`
           <div>

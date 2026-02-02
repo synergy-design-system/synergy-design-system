@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "2.77.1",
+  "version": "3.0.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -131,7 +131,7 @@
     "lit": "^3.3.2"
   },
   "peerDependencies": {
-    "@synergy-design-system/tokens": "workspace:^"
+    "@synergy-design-system/tokens": "workspace:*"
   },
   "customElements": "dist/custom-elements.json"
 }

@@ -5,9 +5,11 @@ import React, {
 // as otherwise it is possible, that the icons could not be loaded, as the "registerIconLibrary" function is used from a wrong source
 import '../../../components/src/components/icon/icon.js';
 import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
-import { defaultIcons as sick2018Icons } from '../../../assets/src/default-icons.js';
-import { outlineIcons as sick2025Outline } from '../../../assets/src/sick2025-outline-icons.js';
-import { filledIcons as sick2025Filled } from '../../../assets/src/sick2025-filled-icons.js';
+import {
+  sick2018Icons,
+  sick2025FilledIcons,
+  sick2025OutlineIcons,
+} from '../../../assets/dist/index.js';
 // The new material symbols metadata can be found here: https://fonts.google.com/metadata/icons?key=material_symbols&incomplete=true
 import materialIconsMetadata from '../materialSymbolsMetadata.json' with { type: 'json' };
 import { THEMES, Themes } from './IconSearchPageThemes.js';
@@ -24,13 +26,13 @@ type MaterialIconsMetadata = {
 
 const getBundledIconsForMode = (mode: Themes) => {
   switch (mode) {
-  case 'sick2025-fill':
-    return sick2025Filled;
-  case 'sick2025-outline':
-    return sick2025Outline;
   case 'sick2018':
-  default:
     return sick2018Icons;
+  case 'sick2025-fill':
+    return sick2025FilledIcons;
+  case 'sick2025-outline':
+  default:
+    return sick2025OutlineIcons;
   }
 };
 
@@ -52,13 +54,13 @@ const mapIconData = (icons: Record<string, string>, mode: Themes) => Object.keys
 
 const getIconsforMode = (mode: Themes): FontIcon[] => {
   switch (mode) {
-  case 'sick2025-fill':
-    return mapIconData(sick2025Filled, mode);
-  case 'sick2025-outline':
-    return mapIconData(sick2025Outline, mode);
   case 'sick2018':
-  default:
     return mapIconData(sick2018Icons, mode);
+  case 'sick2025-fill':
+    return mapIconData(sick2025FilledIcons, mode);
+  case 'sick2025-outline':
+  default:
+    return mapIconData(sick2025OutlineIcons, mode);
   }
 };
 

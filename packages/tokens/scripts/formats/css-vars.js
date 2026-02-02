@@ -125,6 +125,10 @@ export const cssVariableFormatter = {
       'font-size-2-5x-large',
       'font-size-medium-large',
       'heading-medium',
+
+      // toggle buttons are not part of brand 2025
+      'toggle-button-border-radius',
+      'toggle-button-color',
     ].map(v => `${prefix}${v}`);
 
     /**

@@ -1,9 +1,9 @@
-import { enableExperimentalSettingEmitEvents } from '@synergy-design-system/components';
+import { enableSettingEmitEvents } from '@synergy-design-system/components';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app.module';
 
-enableExperimentalSettingEmitEvents();
+enableSettingEmitEvents();
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));

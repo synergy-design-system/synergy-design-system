@@ -19,7 +19,7 @@
   font-family: var(--syn-font-sans);
   font-size: var(--syn-link-font-size);
   text-decoration: underline;
-  text-underline-offset: var(--syn-link-underline-outline, initial);
+  text-underline-offset: var(--syn-link-underline-outline);
 }
 
 .syn-link:has(syn-icon) {

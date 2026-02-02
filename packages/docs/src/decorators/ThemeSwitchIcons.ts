@@ -61,16 +61,16 @@ export const themeSwitchIcons = (story: StoryFn, context: StoryContext) => {
   let resolver: IconLibrary['resolver'];
 
   switch (theme) {
-  case SICK_2025_DARK:
-  case SICK_2025_LIGHT:
-    setSystemIconLibrary('sick2025');
-    resolver = (name: string) => getBasePath(`assets/sick2025/outline/${migrateIconName(name)}.svg`);
-    break;
   case DARK_THEME:
   case LIGHT_THEME:
-  default:
     setSystemIconLibrary('sick2018');
-    resolver = (name: string) => getBasePath(`assets/icons/${name}.svg`);
+    resolver = (name: string) => getBasePath(`assets/sick2018/${name}.svg`);
+    break;
+  case SICK_2025_DARK:
+  case SICK_2025_LIGHT:
+  default:
+    setSystemIconLibrary('sick2025');
+    resolver = (name: string) => getBasePath(`assets/sick2025/${migrateIconName(name)}.svg`);
     break;
   }
 

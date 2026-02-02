@@ -89,22 +89,7 @@ export const getAvailableThemes = () => {
  * Get the default theme that should be used,
  * depending on the package.json major version
  */
-export const getDefaultTheme = () => {
-  const { version } = getPackageInformation();
-  const majorVersion = parseInt(version.split('.')[0], 10);
-
-  let defaultTheme = 'sick2018';
-
-  if (!majorVersion || Number.isNaN(majorVersion)) {
-    console.error('Could not parse version number');
-    return defaultTheme;
-  }
-
-  if (majorVersion >= 3) {
-    defaultTheme = 'sick2025';
-  }
-  return defaultTheme;
-};
+export const getDefaultTheme = () => 'sick2025';
 
 /**
  * Get information for a specific theme

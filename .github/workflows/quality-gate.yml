@@ -92,6 +92,7 @@ jobs:
     needs: build-check
     container:
       image: mcr.microsoft.com/playwright:v1.57.0-noble
+      options: --memory=4g --memory-swap=4g
     strategy:
       fail-fast: true
       matrix:
@@ -106,6 +107,9 @@ jobs:
           # #854: We are only building the components and tokens packages
           # This is done to speed up the build time
           build-command: pnpm -r --filter 'tokens' --filter 'components' build --synergy
+        env:
+          # Increase memory limit for pnpm to avoid OOM issues
+          NODE_OPTIONS: --max-old-space-size=4096
 
       - name: Run tests (components)
         run: BROWSERS=${{ matrix.browser }} pnpm test

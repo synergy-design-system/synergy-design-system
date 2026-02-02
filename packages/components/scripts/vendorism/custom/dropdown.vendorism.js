@@ -1,7 +1,9 @@
 import {
-  addSectionAfter,
   addSectionBefore,
 } from '../replace-section.js';
+import {
+  removeSections,
+} from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
   'dropdown.component.ts',
@@ -15,13 +17,18 @@ const FILES_TO_TRANSFORM = [
  * @returns
  */
 const transformComponent = (path, originalContent) => {
-  // #849: Mark hoist as deprecated
-  let content = addSectionAfter(
-    originalContent,
-    'Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.',
-    '* @deprecated This property is deprecated and will be removed in the next major version.',
-    { newlinesBeforeInsertion: 1, tabsBeforeInsertion: 2 },
-  );
+  // #1149: Remove deprecated 'hoist' property
+  const content = removeSections([
+    [
+      `/**
+   * Enable this option t`,
+      'hoist = false;',
+    ],
+    [
+      'strategy=${this.hoist',
+      "'absolute'}",
+    ],
+  ], originalContent);
 
   return {
     content,

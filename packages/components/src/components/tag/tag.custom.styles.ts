@@ -68,7 +68,7 @@ export default css`
 
   /* Hover */
   .tag.tag--removable:hover {
-    background-color: var(--syn-interactive-background-color-hover, var(--syn-color-neutral-100));
+    background-color: var(--syn-interactive-background-color-hover);
   }
   
   .tag .tag__remove:hover {

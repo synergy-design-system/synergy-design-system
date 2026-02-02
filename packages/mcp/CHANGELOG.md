@@ -1,5 +1,31 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- [#1160](https://github.com/synergy-design-system/synergy-design-system/pull/1160) [`669cbcb`](https://github.com/synergy-design-system/synergy-design-system/commit/669cbcb9cccce72134beac99ac12a2591f3e3c74) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-02
+
+  feat: 💥 Enhanced migration support and SICK 2025 defaults
+
+  This release enhances the MCP server with improved migration guidance and updates default iconset to SICK 2025.
+
+  **Key Changes:**
+  - **Breaking:** Migration endpoint now requires package specification - the migration endpoint has been updated to accept a package parameter (e.g., components, styles, assets, tokens) to provide package-specific breaking changes documentation
+  - **Breaking:** Default iconset changed to SICK 2025 - asset info endpoint now returns SICK 2025 iconset information by default instead of SICK 2018
+
+  **Migration Steps:**
+  - Update any calls to the migration endpoint to specify the target package
+  - Review asset integrations as the default iconset has changed to SICK 2025
+
+  \*\*New tool `migration-list`
+  - Provides a new tool that gives information about available migrations for packages (e.g. for components how to migrate from v2 sick2018 to v3 sick2025)
+
+### Patch Changes
+
+- Updated dependencies [[`669cbcb`](https://github.com/synergy-design-system/synergy-design-system/commit/669cbcb9cccce72134beac99ac12a2591f3e3c74)]:
+  - @synergy-design-system/assets@2.0.0
+
 ## 1.41.2
 
 ### Patch Changes

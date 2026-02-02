@@ -15,6 +15,8 @@ Please make sure to install the tokens package as a dependency:
 npm install --save @synergy-design-system/tokens
 ```
 
+> For best compliance, please make sure to install the same version that is also used in your `@synergy-design-system/components` package!
+
 ---
 
 ## Provided tokens

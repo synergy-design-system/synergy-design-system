@@ -416,63 +416,6 @@ describe('<syn-input>', () => {
     });
   });
 
-  describe('when type="number"', () => {
-    it('should be valid when the value is within the boundary of a step', async () => {
-      const el = await fixture<SynInput>(html` <syn-input type="number" step=".5" value="1.5"></syn-input> `);
-      expect(el.checkValidity()).to.be.true;
-    });
-
-    it('should be invalid when the value is not within the boundary of a step', async () => {
-      const el = await fixture<SynInput>(html` <syn-input type="number" step=".5" value="1.25"></syn-input> `);
-      expect(el.checkValidity()).to.be.false;
-    });
-
-    it('should update validity when step changes', async () => {
-      const el = await fixture<SynInput>(html` <syn-input type="number" step=".5" value="1.5"></syn-input> `);
-      expect(el.checkValidity()).to.be.true;
-
-      el.step = 1;
-      await el.updateComplete;
-      expect(el.checkValidity()).to.be.false;
-    });
-
-    it('should increment by step when stepUp() is called', async () => {
-      const el = await fixture<SynInput>(html` <syn-input type="number" step="2" value="2"></syn-input> `);
-
-      el.stepUp();
-      await el.updateComplete;
-      expect(el.value).to.equal('4');
-    });
-
-    it('should decrement by step when stepDown() is called', async () => {
-      const el = await fixture<SynInput>(html` <syn-input type="number" step="2" value="2"></syn-input> `);
-
-      el.stepDown();
-      await el.updateComplete;
-      expect(el.value).to.equal('0');
-    });
-
-    it('should not emit syn-input or syn-change when stepUp() is called programmatically', async () => {
-      const el = await fixture<SynInput>(html` <syn-input type="number" step="2" value="2"></syn-input> `);
-
-      el.addEventListener('syn-change', () => expect.fail('syn-change should not be emitted'));
-      el.addEventListener('syn-input', () => expect.fail('syn-input should not be emitted'));
-      el.stepUp();
-
-      await el.updateComplete;
-    });
-
-    it('should not emit syn-input and syn-change when stepDown() is called programmatically', async () => {
-      const el = await fixture<SynInput>(html` <syn-input type="number" step="2" value="2"></syn-input> `);
-
-      el.addEventListener('syn-change', () => expect.fail('syn-change should not be emitted'));
-      el.addEventListener('syn-input', () => expect.fail('syn-input should not be emitted'));
-      el.stepDown();
-
-      await el.updateComplete;
-    });
-  });
-
   describe('when using spellcheck', () => {
     it('should enable spellcheck when no attribute is present', async () => {
       const el = await fixture<SynInput>(html` <syn-input></syn-input> `);

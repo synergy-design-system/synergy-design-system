@@ -413,13 +413,75 @@
       }
     },
     "button-group": {
-      "description": {
-        "value": "Button groups can be used to group related buttons into sections.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Button groups can be used to group related buttons into sections.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Button Group",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Button Group",
-        "type": "text"
+      "size": {
+        "description": {
+          "value": "All button sizes are supported. The size of the button-group will be used to determine the size of the buttons.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Button Sizes",
+          "type": "text"
+        }
+      },
+      "variant": {
+        "description": {
+          "value": "Use the variant attribute to set the button’s variant. Variants can be Filled, Outline. There is no Text variant.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Variants",
+          "type": "text"
+        }
+      },
+      "dropdowns-in-button-groups": {
+        "description": {
+          "value": " Dropdowns can be placed inside button groups as long as the trigger is an <syn-button> element. ",
+          "type": "text"
+        },
+        "title": {
+          "value": " Dropdowns in Button Groups ",
+          "type": "text"
+        }
+      },
+      "split-buttons": {
+        "description": {
+          "value": "Create a split button using a button and a dropdown. Use a visually hidden label to ensure the dropdown is accessible to users with assistive devices.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Split Buttons",
+          "type": "text"
+        }
+      },
+      "tooltips": {
+        "description": {
+          "value": "Buttons can be wrapped in tooltips to provide more detail when the user interacts with them.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tooltips in Button Groups",
+          "type": "text"
+        }
+      },
+      "toolbar": {
+        "description": {
+          "value": "Create interactive toolbars with button groups.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Toolbar Example",
+          "type": "text"
+        }
       }
     },
     "card": {

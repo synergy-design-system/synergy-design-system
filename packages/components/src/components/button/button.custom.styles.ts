@@ -228,4 +228,18 @@ export default css`
   .button--caret.button--large .button__caret{
     font-size: var(--syn-font-size-2x-large);
   }
+
+  /* #392: Button Groups */
+  :host([data-syn-button-group__button--inner]) .button--filled.button {
+    border-left-color: var(--syn-panel-background-color);
+    border-right-color: var(--syn-panel-background-color);
+  }
+
+  :host([data-syn-button-group__button--first]:not([data-syn-button-group__button--last])) .button--filled.button {
+    border-right-color: var(--syn-panel-background-color);
+  }
+
+  :host([data-syn-button-group__button--last]:not([data-syn-button-group__button--first])) .button--filled.button {
+    border-left-color: var(--syn-panel-background-color);
+  }
 `;

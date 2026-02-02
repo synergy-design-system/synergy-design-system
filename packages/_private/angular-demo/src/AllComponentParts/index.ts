@@ -3,6 +3,7 @@ export * from './Alert';
 export * from './Badge';
 export * from './Breadcrumb';
 export * from './Button';
+export * from './ButtonGroup';
 export * from './Card';
 export * from './Checkbox';
 export * from './Combobox';

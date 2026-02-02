@@ -3,6 +3,7 @@ export * from './Alert.js';
 export * from './Badge.js';
 export * from './Breadcrumb.js';
 export * from './Button.js';
+export * from './ButtonGroup.js';
 export * from './Card.js';
 export * from './Checkbox.js';
 export * from './Combobox.js';

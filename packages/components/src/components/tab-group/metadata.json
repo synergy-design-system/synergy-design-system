@@ -1,8 +1,0 @@
-{
-  "@cssproperty": [
-    {
-      "description": "The width of the active tab indicator.",
-      "name": "--indicator-width"
-    }
-  ]
-}

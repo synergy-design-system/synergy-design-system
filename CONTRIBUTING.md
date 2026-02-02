@@ -52,9 +52,6 @@ The single source of truth for the Synergy icons is Figma. All icons are fetched
 
 We regularly check for updates of our dependencies. This ensures that Synergy should have less security issues and that it stays easily maintainable. We also use GitHubs dependabot which creates automatic PRs as soon dependencies have been updated.
 
-The most important dependency [Shoelace](https://shoelace.style/) is not managed via `pnpm` but via [vendorism](https://github.com/mariohamann/vendorism).
-We keep track of Shoelace and regularly integrate the latest versions from Shoelace using the `vendorism` scripts in `packages/components`. Read the components' [README](https://github.com/synergy-design-system/synergy-design-system/blob/main/packages/components/README.md#local-setup) for further information.
-
 ## Coding conventions
 
 We are enforcing common code conventions via `eslint` and `stylelint`. Please make sure your code meets those conventions by linting your files or your PR may not be approved. You may use your editors eslint integration or run `pnpm lint` in the package that you are working on. Linting of all packages is also possible by issuing `pnpm lint` in the root of this repository.

@@ -47,10 +47,6 @@
     "build": "node scripts/build.js",
     "test": "web-test-runner --group default --config ./web-test-runner.synergy.config.js",
     "test.watch": "pnpm test --watch",
-    "vendor": "node scripts/vendorism.js",
-    "vendor.get": "node scripts/vendorism.js -g",
-    "vendor.set": "node scripts/vendorism.js -s",
-    "vendor.eject": "node scripts/vendorism.js -e",
     "lint:css": "stylelint \"src/**/*.{css}\" \"src/**/*.styles.ts\"",
     "lint:html": "html-validate -c ./code-quality/html-validate/.htmlvalidate.js ./demos",
     "lint:js": "eslint src",
@@ -120,8 +116,7 @@
     "typescript": "~5.9.3",
     "unified": "^11.0.5",
     "unist-util-visit": "^5.0.0",
-    "user-agent-data-types": "^0.4.2",
-    "vendorism": "^5.0.0"
+    "user-agent-data-types": "^0.4.2"
   },
   "dependencies": {
     "@floating-ui/dom": "^1.7.4",

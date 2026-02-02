@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable complexity */
-/* eslint-disable import/no-relative-packages */
+/* eslint-disable no-console */
 import '../../../components/src/components/radio-group/radio-group.js';
 import '../../../components/src/components/radio/radio.js';
 import '../../../components/src/components/button/button.js';
@@ -126,8 +123,6 @@ export const Focus: Story = {
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const elm = canvasElement.querySelector<SynRadioGroup>('syn-radio-group');
-    // eslint-disable-next-line max-len
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     elm?.focus();
   },
   render: () => html`
@@ -242,6 +237,7 @@ export const CustomValidity: Story = {
       },
     },
   },
+  // eslint-disable-next-line complexity
   play: async ({ canvasElement }) => {
     try {
       const radioGroup = canvasElement.querySelector('syn-radio-group');

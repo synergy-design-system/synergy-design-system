@@ -16,7 +16,6 @@ import formControlCustomStyles from '../../styles/form-control.custom.styles.js'
 import SynergyElement from '../../internal/synergy-element.js';
 import SynButtonGroup from '../button-group/button-group.component.js';
 import styles from './radio-group.styles.js';
-import customStyles from './radio-group.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynRadio from '../radio/radio.js';
@@ -49,7 +48,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynRadioGroup')
 export default class SynRadioGroup extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles];
   static dependencies = { 'syn-button-group': SynButtonGroup };
 
   protected readonly formControlController = new FormControlController(this);
@@ -390,7 +389,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
           ${this.hasButtonGroup
             ? html`
-                <syn-button-group part="button-group" exportparts="base:button-group__base" role="presentation">
+                <syn-button-group size=${this.size} part="button-group" exportparts="base:button-group__base" role="presentation">
                   ${defaultSlot}
                 </syn-button-group>
               `

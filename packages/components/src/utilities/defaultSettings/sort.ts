@@ -10,11 +10,11 @@ const COMPONENT_UPDATE_ORDER: Partial<Record<ComponentNamesWithDefaultValues, {
 }>> = {
   // Container components that depend on base components update last
   SynButtonGroup: {
-    dependsOn: ['SynButton'],
+    dependsOn: ['SynButton', 'SynRadioButton'],
     priority: 10,
   },
   SynRadioGroup: {
-    dependsOn: ['SynRadio'],
+    dependsOn: ['SynRadio', 'SynRadioButton'],
     priority: 10,
   },
 } as const;

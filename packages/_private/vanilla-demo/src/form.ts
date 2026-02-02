@@ -25,6 +25,16 @@ const initCombobox = () => {
     option.innerText = nationality;
     nationalitiesEl.appendChild(option);
   });
+
+  // Initialize testingFrameworks combobox if it exists
+  const testingFrameworksEl = document.querySelector<SynCombobox>('#testing-frameworks')!;
+  testingFrameworksEl.getOption = highlightOptionRenderer;
+  mockData('testingFrameworks').forEach((framework) => {
+    const option = document.createElement('syn-option');
+    option.value = framework.value;
+    option.innerText = framework.label;
+    testingFrameworksEl.appendChild(option);
+  });
 };
 
 const updateStatusMessage = (parent: HTMLElement, status: FormStatus) => {

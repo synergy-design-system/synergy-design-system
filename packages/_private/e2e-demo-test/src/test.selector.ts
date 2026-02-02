@@ -136,6 +136,7 @@ export default {
   sizeToggleMedium: '.meta-navigation syn-icon-button[data-size=medium]',
   sizeToggleSmall: '.meta-navigation syn-icon-button[data-size=small]',
   submit: '.syn-submit-buttons > syn-button:nth-child(2)',
+  testingFrameworks: '#testing-frameworks',
   themeSwitch: '.meta-navigation syn-select',
   topicLoc: '#topics',
 };

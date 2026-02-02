@@ -56,3 +56,16 @@ export const selectItemsWithSpace: SelectItem[] = [
 ];
 
 export const valueWithSpace = 'Option 2';
+
+/**
+ * Shared stub for select items testing frameworks
+ */
+export const testingFrameworks: SelectItem[] = [
+  { label: 'Jest', value: 'jest' },
+  { label: 'Mocha', value: 'mocha' },
+  { label: 'Jasmine', value: 'jasmine' },
+  { label: 'Cypress', value: 'cypress' },
+  { label: 'Puppeteer', value: 'puppeteer' },
+  { label: 'Playwright', value: 'playwright' },
+  { label: 'Selenium', value: 'selenium' },
+];

@@ -37,6 +37,7 @@ export type DemoFormData = {
   password: string;
   phone: string;
   role: string;
+  testing: string[];
   topics: string[];
 };
 

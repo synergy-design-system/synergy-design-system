@@ -98,7 +98,9 @@
       required
       [getOption]="highlightOptionRenderer"
     >
-      <syn-option *ngFor="let nationality of nationalities">{{nationality}}</syn-option>
+      @for (nationality of nationalities; track nationality) {
+        <syn-option>{{nationality}}</syn-option>
+      }
     </syn-combobox>
 
   </demo-fieldset>
@@ -155,6 +157,21 @@
         <syn-option value="Python">Python</syn-option>
       </syn-optgroup>
     </syn-select>
+
+    <syn-combobox
+      formControlName="testing"
+      id="testing-frameworks"
+      label="Which testing frameworks do you use?"
+      multiple
+      name="testing"
+      placeholder="Select testing frameworks"
+      [getOption]="highlightOptionRenderer"
+      required
+    >
+      @for (framework of testingFrameworks; track framework.value) {
+        <syn-option [value]="framework.value">{{framework.label}}</syn-option>
+      }
+    </syn-combobox>
   </demo-fieldset>
   <!-- /Topics -->
 

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.2.0
+
+### Minor Changes
+
+- [#1169](https://github.com/synergy-design-system/synergy-design-system/pull/1169) [`aefb7a8`](https://github.com/synergy-design-system/synergy-design-system/commit/aefb7a8c4c9860f6222d7054a6f044b2ed0c49a6) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-02
+
+  chore: 🔧 remove vendorism from components package (#1168)
+
+  The custom vendoring process is not needed anymore. Because of this, it was removed and all comments and builds now only rely on `pnpm build`
+
 ## 2.1.0
 
 ### Minor Changes

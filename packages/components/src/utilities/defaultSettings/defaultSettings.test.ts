@@ -275,7 +275,7 @@ describe('GlobalSettings', () => {
     });
 
     it('should ensure button-group overrides button sizes when both change globally', async () => {
-      enableExperimentalSettingEmitEvents(true); // Start simple without events
+      enableSettingEmitEvents(true); // Start simple without events
 
       const container = await fixture<HTMLDivElement>(html`
         <div>

@@ -1,6 +1,8 @@
+import { writeFile } from 'fs/promises';
 import { existsSync, readFileSync } from 'fs';
 import { join } from 'path';
-import { getPath } from '../jobs/shared.js';
+import { globby } from 'globby';
+import { getPath, job, optimizePathForWindows } from '../shared.js';
 
 /**
  * @typedef MetadataObject
@@ -15,12 +17,10 @@ import { getPath } from '../jobs/shared.js';
  *   "@csspart"?: Array<MetadataObject>
  *   "@cssproperty"?: Array<MetadataObject>
  * }} Metadata
- * 
  */
 
 /** @type {['@animation','@event','@slot','@dependency','@csspart','@cssproperty']} */
 const SUPPORTED_JSDOC_TAGS = ['@animation','@event', '@slot', '@dependency', '@csspart', '@cssproperty'];
-
 
 /**
  * Adds JSDoc annotations for a specific JSDoc tag to a component's class comment.
@@ -56,19 +56,34 @@ const addJsDocAnnotations = (content, jsDocTag, items) => {
 
   const jsDocContent = match[1];
 
-  const hasExistingEntries = jsDocContent.includes(jsDocTag);
+  // Check which items already exist in the JSDoc
+  const escapedJsDocTag = jsDocTag.replace('@', '\\@');
+  // Updated regex to properly capture names with hyphens and other characters
+  const existingRegex = new RegExp(`\\*\\s*${escapedJsDocTag}\\s+([^\\s]+)`, 'g');
 
-  const annotationLines = items.map((item) => (
+  // Use matchAll to get all matches and extract the names functionally
+  const existingEntries = new Set(
+    Array.from(jsDocContent.matchAll(existingRegex))
+      .map(m => m[1].trim()),
+  );
+
+  // Filter out items that already exist
+  const newItems = items.filter(item => !existingEntries.has(item.name));
+
+  // If no new items to add, return original content
+  if (newItems.length === 0) {
+    return content;
+  }
+
+  const hasExistingEntries = jsDocContent.includes(jsDocTag);
+  const annotationLines = newItems.map((item) => (
     item.description
       ? ` * ${jsDocTag} ${item.name} - ${item.description}`
       : ` * ${jsDocTag} ${item.name}`));
 
   if (hasExistingEntries) {
     // Find the last entry of this JSDoc tag and add new entries after it
-    // This ensures all entries of the same type are grouped together
-    // We escape the @ symbol to use it in regex and find the last occurrence
-    const escapedMetadataType = jsDocTag.replace('@', '\\@');
-    const lastEntryRegex = new RegExp(`.*${escapedMetadataType}[^\\n]*$`, 'gm');
+    const lastEntryRegex = new RegExp(`.*${escapedJsDocTag}[^\\n]*$`, 'gm');
     const lastEntryMatch = jsDocContent.match(lastEntryRegex);
     if (lastEntryMatch) {
       const lastEntryLine = lastEntryMatch[lastEntryMatch.length - 1];
@@ -99,7 +114,7 @@ const addJsDocAnnotations = (content, jsDocTag, items) => {
  * @param {string} originalContent - The original source code content of the component
  * @param {Metadata} metadata - Object containing metadata organized by JSDoc tag types
  *
- * @returns
+ * @returns {{content: string, path: string}} Object containing the processed content and path
  *
  * @example
  * const metadata = {
@@ -146,9 +161,9 @@ const addMetadataContent = (path, originalContent, metadata) => {
  * @returns {{content: string, path: string}} Object containing the processed content
  *   and original file path. If no processing was needed, returns the original content unchanged.
  */
-export const addMetadataToComponents = (path, content) => {
+const addMetadataToComponents = (path, content) => {
   const output = { content, path };
-  const file = path.split('/')[3];
+  const file = path.split('/').at(-1);
 
   if (!path.includes('src/components/') || !file.includes('.component.ts')) {
     return output;
@@ -174,3 +189,53 @@ export const addMetadataToComponents = (path, content) => {
 
   return output;
 };
+
+/**
+ * Build job that processes all component files and adds metadata annotations
+ * from corresponding metadata.json files to their JSDoc comments.
+ *
+ * This job:
+ * 1. Scans for all *.component.ts files in the src/components directory
+ * 2. For each component, looks for a metadata.json file in the same directory
+ * 3. If found, enriches the component's JSDoc with metadata annotations
+ * 4. Writes the updated content back to the component file
+ */
+export const runAddMetadataToComponents = job(
+  'Adding metadata annotations to component files',
+  async () => {
+    const componentsDir = getPath('../src/components');
+    const optimizedPath = optimizePathForWindows(componentsDir);
+
+    // Find all component files
+    const componentFiles = await globby(`${optimizedPath}/**/*.component.ts`);
+
+    // Process all component files and collect results
+    const processedFiles = componentFiles.map(async filePath => {
+      try {
+        const content = readFileSync(filePath, 'utf-8');
+        const relativePath = filePath.replace(getPath('..'), '');
+
+        const result = addMetadataToComponents(relativePath, content);
+
+        // Only write if content changed
+        if (result.content !== content) {
+          await writeFile(filePath, result.content, 'utf-8');
+          return { filePath, processed: true };
+        }
+
+        return { filePath, processed: false };
+      } catch (error) {
+        throw new Error(`Failed to process ${filePath}: ${error.message}`);
+      }
+    });
+
+    const results = await Promise.all(processedFiles);
+    const processedCount = results.filter(result => result.processed).length;
+
+    if (processedCount > 0) {
+      console.log(`✓ Updated ${processedCount} component file(s) with metadata annotations`);
+    } else {
+      console.log('✓ No component files needed metadata updates');
+    }
+  },
+);

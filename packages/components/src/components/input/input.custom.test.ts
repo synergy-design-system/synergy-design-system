@@ -12,17 +12,6 @@ import { formatNumber } from './formatter.js';
 import type SynInput from './input.js';
 
 describe('<syn-input>', () => {
-  describe('when provided no parameters', () => {
-    it('vendored values are set correctly', async () => {
-      const el = await fixture<SynInput>(html` <syn-input></syn-input> `);
-      // @ts-expect-error This property is no longer there
-      expect(el.pill).to.equal(undefined);
-
-      // @ts-expect-error This property is no longer there
-      expect(el.filled).to.equal(undefined);
-    });
-  });
-
   describe('when type="number"', () => {
     describe('custom decrement and increment buttons', () => {
       it('should focus the input when clicking on the decrement button', async () => {

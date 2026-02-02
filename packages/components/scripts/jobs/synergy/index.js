@@ -1,3 +1,4 @@
+export * from './add-metadata-to-components.js';
 export * from './adjustComponentsForDefaultSettings.js';
 export * from './cem.js';
 export * from './createDefaultSettings.js';

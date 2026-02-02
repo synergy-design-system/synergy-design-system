@@ -11,7 +11,6 @@ import { globby } from 'globby';
 import chalk from 'chalk';
 import ora from 'ora';
 import { pascalCase } from 'change-case';
-import { optimizePathForWindows } from 'vendorism/src/scripts/helpers.js';
 
 // eslint-disable-next-line import/no-relative-packages
 import prettierConfig from '../../../../prettier.config.js';
@@ -29,6 +28,13 @@ let ALL_COMPONENTS;
  * @see getExportsListFromFileSystem
  */
 let EXPORTED_COMPONENTS;
+
+/**
+ * Optimizes a path for windows by replacing all backslashes with forward slashes
+ * @param {string} p The original path
+ * @returns {string} Windows compatible path
+ */
+export const optimizePathForWindows = p => p.replace(/\\/g, '/');
 
 /**
  * Sort function, used to sort components by name

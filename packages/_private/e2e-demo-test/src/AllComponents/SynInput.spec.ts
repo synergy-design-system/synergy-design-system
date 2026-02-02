@@ -27,7 +27,7 @@ test.describe('<SynInput />', () => {
         const inputNative = await AllComponents.getLocator('input417NumericNative');
         const inputModern = await AllComponents.getLocator('input417NumericModern');
 
-        await expect(inputNoValue, 'uses the native number strategy per default').toHaveJSProperty('numericStrategy', nativeNumericStrategy);
+        await expect(inputNoValue, 'uses the modern number strategy per default').toHaveJSProperty('numericStrategy', modernNumericStrategy);
         await expect(inputNative, 'uses the native number strategy when the attribute is set to "native"').toHaveJSProperty('numericStrategy', nativeNumericStrategy);
         await expect(inputModern, 'uses the modern number strategy when the attribute is set to "modern"').toHaveJSProperty('numericStrategy', modernNumericStrategy);
       }); // end check for initial values

@@ -3,6 +3,7 @@ export * from './decorator.js';
 
 // We only export the outbound interface of the decorator
 export {
+  enableSettingEmitEvents,
   enableExperimentalSettingEmitEvents,
   setDefaultSettingsForElement,
   setGlobalDefaultSettings,

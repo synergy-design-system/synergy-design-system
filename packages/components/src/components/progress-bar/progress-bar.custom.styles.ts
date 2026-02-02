@@ -4,8 +4,8 @@ export default css`
   :host {
     --height: var(--syn-font-size-medium);
     --speed: 2.5s;
-    --indicator-color: var(--syn-progress-indicator-color, var(--syn-color-primary-600));
-    --track-color: var(--syn-progress-track-color, var(--syn-color-neutral-200));
+    --indicator-color: var(--syn-progress-indicator-color);
+    --track-color: var(--syn-progress-track-color);
   }
 
   .progress-bar {

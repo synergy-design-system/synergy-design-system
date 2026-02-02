@@ -11,7 +11,7 @@ export default css`
   }
 
   .checkbox__control {
-    border-radius: var(--syn-checkbox-border-radius, var(--syn-input-border-radius-small));
+    border-radius: var(--syn-checkbox-border-radius);
 
     /* #1083: This adds spacing around multi-line labels */
     margin: 0.1em 0;
@@ -20,8 +20,8 @@ export default css`
   /* Checked/indeterminate */
   .checkbox--checked .checkbox__control,
   .checkbox--indeterminate .checkbox__control {
-    background-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));  
-    border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));  
+    background-color: var(--syn-interactive-emphasis-color);
+    border-color: var(--syn-interactive-emphasis-color);
   }
 
   :host([data-user-invalid]) .checkbox__control {
@@ -56,8 +56,8 @@ export default css`
    */
   .checkbox.checkbox--checked:not(.checkbox--disabled):hover .checkbox__control,
   .checkbox.checkbox--indeterminate:not(.checkbox--disabled):hover .checkbox__control {
-    background-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
-    border-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-900));
+    background-color: var(--syn-interactive-emphasis-color-hover);
+    border-color: var(--syn-interactive-emphasis-color-hover);
   }
 
   /*
@@ -74,8 +74,8 @@ export default css`
   /* Checked/indeterminate */
   .checkbox.checkbox--checked:not(.checkbox--disabled):active .checkbox__control,
   .checkbox.checkbox--indeterminate:not(.checkbox--disabled):active .checkbox__control {
-    background: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-900));
-    border-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-900));
+    background: var(--syn-interactive-emphasis-color-active);
+    border-color: var(--syn-interactive-emphasis-color-active);
   }
 
   .checkbox__label {

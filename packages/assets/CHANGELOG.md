@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.0.0
+
+### Major Changes
+
+- [#1160](https://github.com/synergy-design-system/synergy-design-system/pull/1160) [`669cbcb`](https://github.com/synergy-design-system/synergy-design-system/commit/669cbcb9cccce72134beac99ac12a2591f3e3c74) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-02
+
+  feat: 💥 New default iconset SICK 2025
+
+  This release introduces SICK 2025 as the new default iconset and restructures the filesystem layout for better organization and maintainability.
+
+  **Key Changes:**
+  - **Breaking:** Filesystem structure reorganized - icons, logos, and system-icons are now organized under `src/sick2018/` and `src/sick2025/` directories
+  - **Breaking:** Default iconset changed to SICK 2025 - `createSpriteSheet` and CLI commands now use SICK 2025 icons by default
+  - **Breaking:** Export mappings updated - the main package export now serves SICK 2025 icons; use `@synergy-design-system/assets/sick2018.js` for SICK 2018 icons
+  - **Deprecation Notice:** SICK 2018 icons will be removed in a future major release (expected 2027+)
+
+  For detailed migration instructions, please refer to the [breaking changes documentation](https://synergy-design-system.github.io/?path=/docs/packages-assets-breaking-changes--docs).
+
 ## 1.25.1
 
 ### Patch Changes

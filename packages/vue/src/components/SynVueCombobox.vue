@@ -125,15 +125,6 @@ and `hide()` methods and this attribute will reflect the combobox's open state.
   open?: SynCombobox['open'];
 
   /**
-* Enable this option to prevent the listbox from being clipped,
-when the component is placed inside a container with `overflow: auto|scroll`.
-Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.
-
-@deprecated This property is deprecated and will be removed in the next major version.
- */
-  hoist?: SynCombobox['hoist'];
-
-  /**
    * The combobox's label.
    * If you need to display HTML, use the `label` slot instead.
    */

@@ -2,7 +2,12 @@
 import fs from 'node:fs';
 import { defineConfig } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
-import { AllowedIconsets, createSpriteSheet, Icon2018Keys, Icon2025Keys } from '@synergy-design-system/assets';
+import {
+  AllowedIconsets,
+  Icon2018Keys,
+  Icon2025Keys,
+  createSpriteSheet,
+} from '@synergy-design-system/assets';
 
 type IconKeys = Icon2018Keys | Icon2025Keys;
 
@@ -85,7 +90,7 @@ export const defaultConfig = {
         // Copy all static assets to the dist folder
         {
           dest: './assets/icons/',
-          src: 'node_modules/@synergy-design-system/assets/src/icons/*',
+          src: './node_modules/@synergy-design-system/assets/src/sick2025/icons/outline/*',
         },
         // Allow loading subpages from the src/pages directory
         {

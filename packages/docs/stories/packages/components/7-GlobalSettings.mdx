@@ -65,12 +65,9 @@ import { resetGlobalDefaultSettings } from '@synergy-design-system/components';
 resetGlobalDefaultSettings();
 ```
 
-## Live update via events (experimental)
+## Live update via events
 
-> ⚠️ This feature is considered experimental and therefore hidden behind a feature flag.
-> You may enable it by importing the `enableExperimentalSettingEmitEvents` function from `@synergy-design-system/components`.
-
-When experimental event support is enabled and either `setGlobalDefaultSettings` or `setDefaultSettingsForElement` are called, a `syn-default-settings-changed` event is dispatched to notify all components that the settings have changed.
+When event support is enabled and either `setGlobalDefaultSettings` or `setDefaultSettingsForElement` are called, a `syn-default-settings-changed` event is dispatched to notify all components that the settings have changed.
 This feature may for example be used to implement a layout switcher (e.g. to switch between various sizes in an application).
 Please have a [look at our demo projects](https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private) for further information.
 
@@ -78,18 +75,18 @@ If the component was initially rendered with the default setting of the correspo
 **However**, if it was rendered with a custom value, it will not be updated!
 
 If the element was rendered before the event support was enabled, it will also not be updated!
-You will have to make sure to call `enableExperimentalSettingEmitEvents` before the initial render to ensure that all components are listening for the event.
+You will have to make sure to call `enableSettingEmitEvents` before the initial render to ensure that all components are listening for the event.
 
 You may also listen to the event to react to changes in the default settings.
 
 ```typescript
 import {
-  enableExperimentalSettingEmitEvents,
+  enableSettingEmitEvents,
   type SynDefaultSettingsChangedEvent
 } from '@synergy-design-system/components';
 
 // Don´t forget to enable the feature
-enableExperimentalSettingEmitEvents(true);
+enableSettingEmitEvents(true);
 
 window.addEventListener('syn-default-settings-changed', (event: SynDefaultSettingsChangedEvent) => {
   console.log('Default settings changed', event.detail);
@@ -110,6 +107,9 @@ The following settings are supported by all synergy components:
     ))
   }
 </ul>
+
+> ⚠️ This feature was considered experimental in Synergy 2.x and hidden behind a function named `enableExperimentalSettingEmitEvents`.
+> As of Synergy 3.x, this API is now marked stable and the function is deprecated. Please use `enableSettingEmitEvents` instead.
 
 ## System Defaults
 

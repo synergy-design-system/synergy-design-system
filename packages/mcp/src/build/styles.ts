@@ -15,6 +15,7 @@ import {
 const filesToCopy = [
   'README.md',
   'CHANGELOG.md',
+  'BREAKING_CHANGES.md',
   'dist/*.css',
 ];
 

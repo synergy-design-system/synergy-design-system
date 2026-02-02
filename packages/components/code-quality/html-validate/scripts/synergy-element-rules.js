@@ -1,4 +1,7 @@
-import { deprecatedForV2, willDeprecateInRelease } from './deprecation.js';
+import {
+  deprecatedForV2,
+  deprecatedForV3,
+} from './deprecation.js';
 
 // Shared settings for form associated elements
 const formAssociated = {
@@ -105,8 +108,8 @@ const SynCheckbox = {
 const SynCombobox = {
   attributes: {
     hoist: {
+      allowed: deprecatedForV3('Synergy is now using the popover api internally which supports hoisting by default.'),
       boolean: true,
-      deprecated: willDeprecateInRelease('3.0', 'Synergy is now using the popover api internally which supports hoisting by default.'),
     },
   },
   flow: true,
@@ -154,8 +157,8 @@ const SynDrawer = {
 const SynDropdown = {
   attributes: {
     hoist: {
+      allowed: deprecatedForV3('Synergy is now using the popover api internally which supports hoisting by default.'),
       boolean: true,
-      deprecated: willDeprecateInRelease('3.0', 'Synergy is now using the popover api internally which supports hoisting by default.'),
     },
   },
   flow: true,
@@ -274,6 +277,20 @@ const SynOption = {
 /**
  * @type {import('html-validate').MetaElement}
  */
+const SynPopup = {
+  attributes: {
+    strategy: {
+      allowed: deprecatedForV3('Synergy is now using the popover api internally which supports hoisting by default.'),
+    },
+  },
+  flow: true,
+  focusable: true,
+  sectioning: true,
+};
+
+/**
+ * @type {import('html-validate').MetaElement}
+ */
 const SynPrioNav = {
   flow: true,
   focusable: true,
@@ -341,8 +358,8 @@ const SynRange = {
 const SynSelect = {
   attributes: {
     hoist: {
+      allowed: deprecatedForV3('Synergy is now using the popover api internally which supports hoisting by default.'),
       boolean: true,
-      deprecated: willDeprecateInRelease('3.0', 'Synergy is now using the popover api internally which supports hoisting by default.'),
     },
   },
   flow: true,
@@ -357,8 +374,8 @@ const SynSelect = {
 const SynSideNav = {
   attributes: {
     rail: {
+      allowed: deprecatedForV3('Please use the `variant` attribute with `rail` instead'),
       boolean: true,
-      deprecated: willDeprecateInRelease('3.0', 'Please use the `variant` attribute with `rail` instead'),
     },
   },
   flow: true,
@@ -430,8 +447,8 @@ const SynTextarea = {
 const SynTooltip = {
   attributes: {
     hoist: {
+      allowed: deprecatedForV3('Synergy is now using the popover api internally which supports hoisting by default.'),
       boolean: true,
-      deprecated: willDeprecateInRelease('3.0', 'Synergy is now using the popover api internally which supports hoisting by default.'),
     },
   },
   flow: true,
@@ -477,6 +494,7 @@ export const rules = {
   SynNavItem,
   SynOptgroup,
   SynOption,
+  SynPopup,
   SynPrioNav,
   SynProgressBar,
   SynProgressRing,

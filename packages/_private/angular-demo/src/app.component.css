@@ -23,7 +23,7 @@ syn-header {
 .main {
   flex-grow: 1;
   display: flex;
-  background: var(--syn-color-neutral-0);
+  background: var(--syn-page-background-color);
   position: relative;
   overflow: hidden;
 }

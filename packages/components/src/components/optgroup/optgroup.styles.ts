@@ -51,7 +51,7 @@ export default css`
 
   .optgroup__prefix,
   .optgroup__suffix {
-    color: var(--syn-option-icon-color, var(--syn-color-neutral-800));
+    color: var(--syn-option-icon-color);
     font-size: var(--syn-spacing-large);
   }
 

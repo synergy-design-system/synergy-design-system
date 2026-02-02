@@ -9,7 +9,7 @@ import type { ValidProperties } from '../core/types';
  */
 
 // Image helper
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=15375-72281', {
+figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=45372-244800', {
   example: () => html`
     <img
       slot="image"
@@ -38,7 +38,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
 });
 
 // Footer helper
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=15025-22461&t=IhTCPgq8BxxTKH32-4', {
+figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=15025-22461', {
   example: ({
     defaultSlot,
     label,
@@ -54,7 +54,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   links: [],
   props: {
     defaultSlot: figma.children('syn-button'),
-    label: figma.children('slot/opt-info'),
+    label: figma.children('_helper/syn-card/opt-info'),
   },
 });
 
@@ -130,7 +130,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
 });
 
 // Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=15409-80280', {
+figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=44847-125816', {
   example: ({
     defaultSlot,
     footerSlot,

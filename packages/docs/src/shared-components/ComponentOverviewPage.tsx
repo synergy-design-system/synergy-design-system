@@ -7,7 +7,7 @@ import React from 'react';
 
 import { kebabCase, pascalCase } from 'change-case';
 
-const images = import.meta.glob('../../../assets/src/component-thumbnails/*', { eager: true });
+const images = import.meta.glob('../../../assets/src/component-thumbnails/*.png', { eager: true });
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 const componentNames = (componentsManifest.modules as Module[]).map((module) => module.declarations![0].name);
@@ -31,7 +31,7 @@ function getUrl(name: string): string {
 }
 
 const imageMap = Object.entries(images).reduce((acc, [filePath, module]) => {
-  const fileName = filePath.substring(filePath.lastIndexOf('/') + 1, filePath.lastIndexOf('.svg'));
+  const fileName = filePath.substring(filePath.lastIndexOf('/') + 1, filePath.lastIndexOf('.png'));
   acc[fileName] = ((module as { default?: string }).default || module) as string;
   return acc;
 }, {} as Record<string, string>);

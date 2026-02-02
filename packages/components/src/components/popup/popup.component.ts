@@ -106,13 +106,6 @@ export default class SynPopup extends SynergyElement {
     | 'left-start'
     | 'left-end' = 'top';
 
-  /**
-   * Determines how the popup is positioned. The `absolute` strategy works well in most cases, but if overflow is
-   * clipped, using a `fixed` position strategy can often workaround it.
-   * @deprecated The strategy property is deprecated and will be removed in future versions. Modern browsers support the popover element which is used internally instead.
-   */
-  @property({ reflect: true }) strategy: 'absolute' | 'fixed' = 'absolute';
-
   /** The distance in pixels from which to offset the panel away from its anchor. */
   @property({ type: Number }) distance = 0;
 
@@ -417,14 +410,14 @@ export default class SynPopup extends SynergyElement {
     // More info: https://github.com/shoelace-style/shoelace/issues/1135
     //
     const getOffsetParent =
-      SUPPORTS_POPOVER || this.strategy === 'absolute'
+      SUPPORTS_POPOVER
         ? (element: Element) => platform.getOffsetParent(element, offsetParent)
         : platform.getOffsetParent;
 
     computePosition(this.anchorEl, this.popup, {
       placement: this.placement,
       middleware,
-      strategy: SUPPORTS_POPOVER ? 'absolute' : this.strategy,
+      strategy: SUPPORTS_POPOVER ? 'absolute' : 'fixed',
       platform: {
         ...platform,
         getOffsetParent
@@ -585,7 +578,7 @@ export default class SynPopup extends SynergyElement {
         class=${classMap({
           popup: true,
           'popup--active': this.active,
-          'popup--fixed': !SUPPORTS_POPOVER && this.strategy === 'fixed',
+          'popup--fixed': !SUPPORTS_POPOVER,
           'popup--has-arrow': this.arrow
         })}
       >

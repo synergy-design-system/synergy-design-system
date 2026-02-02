@@ -58,7 +58,6 @@ describe('<syn-combobox>', () => {
     expect(el.disabled).to.be.false;
     expect(el.clearable).to.be.false;
     expect(el.open).to.be.false;
-    expect(el.hoist).to.be.false;
     expect(el.label).to.equal('');
     expect(el.placement).to.equal('bottom');
     expect(el.helpText).to.equal('');
@@ -87,7 +86,6 @@ describe('<syn-combobox>', () => {
     expect(el.disabled).to.be.false;
     expect(el.clearable).to.be.false;
     expect(el.open).to.be.false;
-    expect(el.hoist).to.be.false;
     expect(el.label).to.equal('');
     expect(el.placement).to.equal('bottom');
     expect(el.helpText).to.equal('');

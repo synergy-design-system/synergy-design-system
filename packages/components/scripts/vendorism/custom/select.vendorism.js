@@ -75,14 +75,6 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
 
-  // #849: Mark hoist as deprecated
-  content = addSectionAfter(
-    content,
-    'Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios.',
-    '* @deprecated This property is deprecated and will be removed in the next major version.',
-    { newlinesBeforeInsertion: 1, tabsBeforeInsertion: 2 },
-  );
-
   content = addSectionsAfter([
     [
       "import type SynOption from '../option/option.component.js';",
@@ -90,6 +82,19 @@ const transformComponent = (path, originalContent) => {
     ],
   ], content);
   // End#805
+
+  // #1149: Remove deprecated 'hoist' property
+  content = removeSections([
+    [
+      `/**
+   * Enable this option to prevent the listbox from being clipped`,
+      'hoist = false;',
+    ],
+    [
+      'strategy=${this.hoist',
+      "'absolute'}",
+    ],
+  ], content);
 
   content = replaceSections([
     [

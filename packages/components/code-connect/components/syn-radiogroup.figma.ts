@@ -3,7 +3,7 @@ import type SynRadioGroup from '../../src/components/radio-group/radio-group.js'
 import type { ValidProperties } from '../core/types';
 
 // Synergy Web Component Connection
-figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=1345-17304', {
+figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=42588-299431', {
   example: ({
     defaultSlot,
     helpText,

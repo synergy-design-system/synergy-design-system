@@ -179,8 +179,8 @@ export const createDefaultSettings = job(`Synergy: Creating default settings hel
   const typeImports = await createTypeImports(componentsHavingDefaults);
 
   const globalImports = [
-    // #417: Add the nativeNumericStrategy to the default settings
-    ['{ nativeNumericStrategy }', '../../components/input/strategies.js'],
+    // #417: Add the modernNumericStrategy to the default settings
+    ['{ modernNumericStrategy }', '../../components/input/strategies.js'],
   ].map(([importPath, importFrom]) => `import ${importPath} from '${importFrom}';`);
 
   // Create the needed types

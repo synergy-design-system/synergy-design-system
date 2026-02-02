@@ -1,8 +1,10 @@
 import { addSectionsBefore, replaceSections } from '../replace-section.js';
+import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
   'menu-item.test.ts',
   'menu-item.component.ts',
+  'submenu-controller.ts',
 ];
 
 const transformTests = (path, originalContent) => {
@@ -78,6 +80,24 @@ const transformComponent = (path, originalContent) => {
   };
 };
 
+const transformSubmenuController = (path, originalContent) => {
+  // #1149: Remove deprecated stragegy property from syn-popup
+  const content = removeSections([
+    [
+      'strategy="fixed"',
+      '\n',
+      {
+        additionalNewlines: 1,
+      },
+    ],
+  ], originalContent);
+
+  return {
+    content,
+    path,
+  };
+};
+
 export const vendorMenuItem = (path, content) => {
   const output = { content, path };
 
@@ -86,6 +106,10 @@ export const vendorMenuItem = (path, content) => {
 
   if (!isValidFile) {
     return output;
+  }
+
+  if (path.endsWith('submenu-controller.ts')) {
+    return transformSubmenuController(path, content);
   }
 
   if (path.endsWith('menu-item.test.ts')) {

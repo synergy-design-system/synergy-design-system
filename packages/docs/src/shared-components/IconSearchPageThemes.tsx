@@ -6,19 +6,21 @@ import '@synergy-design-system/components/components/tab/tab.js';
 import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
 import { registerIconLibrary } from '../../../components/src/components/icon/library.js';
 import { migrateIconName } from '../../../components/src/components/icon/library.migration.js';
-import { defaultIcons as sick2018Icons } from '../../../assets/src/default-icons.js';
-import { outlineIcons as sick2025Outline } from '../../../assets/src/sick2025-outline-icons.js';
+import {
+  sick2018Icons,
+  sick2025OutlineIcons,
+} from '../../../assets/dist/index.js';
 import { IconsSearchPage } from './IconSearchPage.js';
 
 registerIconLibrary('migration', {
   resolver: name => {
     const mappedName = migrateIconName(name);
-    const defaultName = mappedName as keyof typeof sick2025Outline;
-    return `data:image/svg+xml,${encodeURIComponent(sick2025Outline[defaultName])}`;
+    const defaultName = mappedName as keyof typeof sick2025OutlineIcons;
+    return `data:image/svg+xml,${encodeURIComponent(sick2025OutlineIcons[defaultName])}`;
   },
 });
 
-export const THEMES = ['sick2018', 'sick2025-fill', 'sick2025-outline'] as const;
+export const THEMES = ['sick2025-fill', 'sick2025-outline', 'sick2018'] as const;
 export type Themes = typeof THEMES[number];
 
 type Props = {
@@ -54,7 +56,7 @@ export const IconSearchPageThemes: FC<Props> = ({ debugMigration, themes }) => {
             label="Search icons"
             onsyn-input={handleSearchTermChange}
             style={{ marginBottom: 'var(--syn-spacing-x-large)' }}
-          ></syn-input>
+          />
         </div>
         <syn-tab-group>
           {themes.map(({ id, name }) => (
@@ -111,7 +113,7 @@ export const IconSearchPageThemes: FC<Props> = ({ debugMigration, themes }) => {
                           justifyContent: 'center',
                         }}
                       >
-                        <syn-icon name={iconName} library="default" />
+                        <syn-icon name={iconName} library="sick2018" />
                         <syn-icon name={iconName} library="migration" />
                       </div>
                     </div>

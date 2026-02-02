@@ -31,7 +31,7 @@ export default css`
     /* Border Radius needs to be increased to cover the outline */
     border-radius: calc(var(--syn-focus-ring-border-radius) + var(--menuitem-inset-border-vertical));
     border-width: var(--menuitem-inset-border-horizontal) var(--menuitem-inset-border-vertical);
-    color: var(--syn-option-color, var(--syn-typography-color-text));
+    color: var(--syn-option-color);
     font-size: var(--menuitem-font-size);
 
     /* Height is dependent on line-height of .option__label, which does not fit completely to layout */
@@ -40,7 +40,7 @@ export default css`
   }
 
   :host(:focus-visible) .menu-item {
-    background-color: var(--syn-option-background-color-active, var(--syn-color-neutral-1000));
+    background-color: var(--syn-option-background-color-active);
   }
 
   /** #429: Use token for opacity */
@@ -64,26 +64,26 @@ export default css`
    */
   .menu-item .menu-item__prefix::slotted(syn-icon),
   .menu-item .menu-item__suffix::slotted(syn-icon) {
-    color: var(--syn-option-icon-color, var(--syn-typography-color-text));
+    color: var(--syn-option-icon-color);
     font-size: var(--syn-font-size-x-large);
   }
 
   :host(:hover) .menu-item .menu-item__prefix::slotted(syn-icon),
   :host(:hover) .menu-item__suffix::slotted(syn-icon) {
-    color: var(--syn-option-icon-color-hover, var(--syn-typography-color-text-inverted));
+    color: var(--syn-option-icon-color-hover);
   }
 
   :host(:focus-visible) .menu-item .menu-item__prefix::slotted(syn-icon),
   :host(:focus-visible) .menu-item .menu-item__suffix::slotted(syn-icon) {
-    color: var(--syn-option-icon-color-active, var(--syn-typography-color-text-inverted));
+    color: var(--syn-option-icon-color-active);
   }
 
   /* Adjust background and text color for focused elements */
   /* stylelint-disable selector-not-notation, plugin/no-unsupported-browser-features */
   :host(:hover:not([aria-disabled='true'], :focus-visible)) .menu-item,
   .menu-item--submenu-expanded {
-    background-color: var(--syn-option-background-color-hover, var(--syn-color-neutral-1000));
-    color: var(--syn-option-color-hover, var(--syn-typography-color-text-inverted));
+    background-color: var(--syn-option-background-color-hover);
+    color: var(--syn-option-color-hover);
   }
   /* stylelint-enable selector-not-notation, plugin/no-unsupported-browser-features */
 
@@ -106,7 +106,7 @@ export default css`
   }
 
   .menu-item .menu-item__check {
-    color: var(--syn-option-check-color, var(--syn-color-primary-600));
+    color: var(--syn-option-check-color);
     margin-inline-end: var(--syn-spacing-small);
   }
 
@@ -121,11 +121,11 @@ export default css`
    * Make sure the checkbox is also visible when the item is active
    */
   :host(:focus-visible) .menu-item--checked .menu-item__check {
-    color: var(--syn-option-check-color-active, var(--syn-color-neutral-0));
+    color: var(--syn-option-check-color-active);
   }
 
   :host(:hover) .menu-item--checked .menu-item__check {
-    color: var(--syn-option-check-color-hover, var(--syn-color-neutral-0));
+    color: var(--syn-option-check-color-hover);
   }
 
   /**
@@ -159,7 +159,7 @@ export default css`
   .menu-item--loading syn-spinner {
     --track-width: 2px;
 
-    color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-700));
+    color: var(--syn-interactive-emphasis-color);
     font-size: var(--syn-font-size-medium);
     left: calc(var(--menuitem-padding) - var(--menuitem-inset-border-vertical));
   }

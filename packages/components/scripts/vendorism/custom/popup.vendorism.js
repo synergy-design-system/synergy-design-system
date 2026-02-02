@@ -1,8 +1,8 @@
 import {
-  addSectionAfter,
   addSectionsAfter,
   replaceSections,
 } from '../replace-section.js';
+import { removeSections } from '../remove-section.js';
 
 const FILES_TO_TRANSFORM = [
   'popup.component.ts',
@@ -51,12 +51,12 @@ const transformComponent = (path, originalContent) => {
     // 5. Adjust getOffsetParent to always return absolute if popover is supported
     [
       "this.strategy === 'absolute'",
-      "SUPPORTS_POPOVER || this.strategy === 'absolute'",
+      'SUPPORTS_POPOVER',
     ],
     // 6. Make sure to take popover support into account for strategy
     [
       'strategy: this.strategy,',
-      "strategy: SUPPORTS_POPOVER ? 'absolute' : this.strategy,",
+      "strategy: SUPPORTS_POPOVER ? 'absolute' : 'fixed',",
     ],
     // 7. Use ifDefined for the popup's style attribute
     [
@@ -67,19 +67,18 @@ const transformComponent = (path, originalContent) => {
     // 8. Take the popover support into account for the popup-fixed class
     [
       "'popup--fixed': this.strategy === 'fixed'",
-      "'popup--fixed': !SUPPORTS_POPOVER && this.strategy === 'fixed'",
+      "'popup--fixed': !SUPPORTS_POPOVER",
     ],
   ], content);
 
-  // Mark the strategy as deprecated
-  content = addSectionAfter(
-    content,
-    'strategy can often workaround it.',
-    ' * @deprecated The strategy property is deprecated and will be removed in future versions. Modern browsers support the popover element which is used internally instead.',
-    {
-      tabsBeforeInsertion: 1,
-    }
-  );
+  // #1149: Remove strategy property
+  content = removeSections([
+    [
+      `/**
+   * Determines how the popup is positioned.`,
+      "'absolute' | 'fixed' = 'absolute';",
+    ],
+  ], content);
 
   return {
     content,

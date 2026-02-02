@@ -18,8 +18,8 @@ export default css`
   /* Checked */
   /* stylelint-disable-next-line no-descending-specificity */
   .radio--checked .radio__control {
-    background-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
-    border-color: var(--syn-interactive-emphasis-color, var(--syn-color-primary-600));
+    background-color: var(--syn-interactive-emphasis-color);
+    border-color: var(--syn-interactive-emphasis-color);
   }
 
   /* Reset original hover */
@@ -30,14 +30,14 @@ export default css`
 
   /* Checked + hover */
   .radio.radio--checked:not(.radio--disabled):hover .radio__control  {
-    background-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-950));
-    border-color: var(--syn-interactive-emphasis-color-hover, var(--syn-color-primary-950));
+    background-color: var(--syn-interactive-emphasis-color-hover);
+    border-color: var(--syn-interactive-emphasis-color-hover);
   }
 
   /* Checked + active */
   .radio.radio--checked:not(.radio--disabled):active .radio__control  {
-    background-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
-    border-color: var(--syn-interactive-emphasis-color-active, var(--syn-color-primary-950));
+    background-color: var(--syn-interactive-emphasis-color-active);
+    border-color: var(--syn-interactive-emphasis-color-active);
   }
 
   /* Not-Checked + Hover */
@@ -47,7 +47,7 @@ export default css`
 
   /* Not-Checked + active */
   .radio:not(.radio--checked):not(.radio--disabled):active .radio__control {
-    border-color: var(--syn-input-border-color-active, var(--syn-color-neutral-1000));
+    border-color: var(--syn-input-border-color-active);
   }
 
   /* Fix#456: Multi line radio fixes */

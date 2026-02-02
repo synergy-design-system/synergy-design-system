@@ -1,7 +1,8 @@
 // Load fonts
 import '@synergy-design-system/fonts';
+import '@synergy-design-system/demo-utilities/styles/font.css';
 
-import { enableExperimentalSettingEmitEvents } from '@synergy-design-system/components';
+import { enableSettingEmitEvents } from '@synergy-design-system/components';
 import '@synergy-design-system/tokens/themes/sick2025_dark.css';
 import '@synergy-design-system/tokens/themes/sick2025_light.css';
 import '@synergy-design-system/tokens/themes/sick2018_dark.css';
@@ -41,7 +42,7 @@ const router = createRouter({
   routes,
 });
 
-enableExperimentalSettingEmitEvents();
+enableSettingEmitEvents();
 
 createApp(App)
   .use(router)

@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1141](https://github.com/synergy-design-system/synergy-design-system/pull/1141) [`96dff2e`](https://github.com/synergy-design-system/synergy-design-system/commit/96dff2ebb47cee901f72773664ee864db5653219) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-02
+
+  feat: ✨ `<syn-button-group>` (#392)
+
+  We added a new component `<syn-button-group>` that you can use to group a list of buttons.
+
+  It will automatically apply its `size` and `variant` properties to all nested buttons.
+
+### Patch Changes
+
+- Updated dependencies [[`96dff2e`](https://github.com/synergy-design-system/synergy-design-system/commit/96dff2ebb47cee901f72773664ee864db5653219)]:
+  - @synergy-design-system/tokens@3.1.0
+
 ## 3.0.0
 
 ### Major Changes

@@ -110,6 +110,20 @@ The following values can be used:
   }
 
   /**
+* Makes the header stick to the top of the viewport when scrolling.
+Also applies a shadow to the header when scrolling.
+ */
+  @Input()
+  set sticky(v: '' | SynHeader['sticky']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.sticky = v === '' || v),
+    );
+  }
+  get sticky(): SynHeader['sticky'] {
+    return this.nativeElement.sticky;
+  }
+
+  /**
    * Emitted when the burger menu is toggled to closed
    */
   @Output() synBurgerMenuClosedEvent =

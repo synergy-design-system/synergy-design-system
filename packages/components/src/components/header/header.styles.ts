@@ -130,7 +130,7 @@ export default css`
    * #529: Sticky header styles
    */
   :host([sticky]) {
-    background: red;
+    box-shadow: var(--syn-shadow-large);
     position: sticky;
     top: 0;
   }

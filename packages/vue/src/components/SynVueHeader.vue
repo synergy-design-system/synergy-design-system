@@ -68,6 +68,12 @@ The following values can be used:
 - closed: The burger menu is visible and shows the open icon
  */
   burgerMenu?: SynHeader['burgerMenu'];
+
+  /**
+* Makes the header stick to the top of the viewport when scrolling.
+Also applies a shadow to the header when scrolling.
+ */
+  sticky?: SynHeader['sticky'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

@@ -298,6 +298,15 @@ const synChange = () => {
         Please subscribe me to the synergy newsletter
       </SynVueCheckbox>
       <SynVueCheckbox
+        readonly
+        id="checkbox-newsletter-ui"
+        name="newsletterUI"
+        v-model="formData.newsletterUI"
+      >
+        Please subscribe me to the synergy UI newsletter
+      </SynVueCheckbox>
+
+      <SynVueCheckbox
         id="checkbox-newsletter-angular"
         name="newsletterAngular"
         v-model="formData.newsletterAngular"

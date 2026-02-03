@@ -208,6 +208,14 @@
         Please subscribe me to the synergy newsletter
       </syn-checkbox>
       <syn-checkbox
+        checked
+        id="checkbox-newsletter-ui"
+        name="newsletterUI"
+        readonly
+      >
+        Please subscribe me to the synergy UI newsletter
+      </syn-checkbox>
+      <syn-checkbox
         id="checkbox-newsletter-angular"
         name="checkbox-newsletter-angular"
       >

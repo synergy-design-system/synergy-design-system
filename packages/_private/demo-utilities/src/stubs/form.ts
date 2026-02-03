@@ -18,6 +18,7 @@ export const initialFullFormData: DemoFormData = {
   newsletterBeta: false,
   newsletterReact: false,
   newsletterStandard: false,
+  newsletterUI: true,
   newsletterVanilla: false,
   newsletterVue: false,
   password: 'invalid',
@@ -38,6 +39,7 @@ export const initialValidateFormData: Partial<DemoFormData> = {
   nationality: '',
   newsletterBeta: false,
   newsletterStandard: false,
+  newsletterUI: true,
   password: 'invalid',
   role: '',
 };

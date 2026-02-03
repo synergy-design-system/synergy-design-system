@@ -5,7 +5,6 @@ import { html } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
-import buttonStyles from '../button/button.styles.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './radio-button.styles.js';
@@ -34,7 +33,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynRadioButton')
 export default class SynRadioButton extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, buttonStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
 

@@ -56,4 +56,24 @@ export default css`
     white-space: nowrap;
     width: 1px;
   }
+
+  /**
+   * #1140:
+   * Apply custom styling when we are using syn-radio-button.
+   * This is needed because syn-radio-button is displayed with space between the items
+   * and should not adhere to the default styling needed for regular button groups.
+   */
+  .form-control--has-button-group .form-control-input {
+    background: var(--syn-input-background-color);
+    border: 1px solid var(--syn-radio-button-group-border-color);
+    border-radius: var(--syn-input-border-radius-medium);
+    max-width: fit-content;
+    padding: var(--syn-spacing-3x-small);
+  }
+
+  .form-control--has-button-group syn-button-group::part(base) {
+    border: 1px solid var(--component-radio-button-group-border-color, #737F85);
+    border-radius: var(--syn-input-border-radius-large);
+    padding: var(--syn-spacing-3x-small);
+  }
 `;

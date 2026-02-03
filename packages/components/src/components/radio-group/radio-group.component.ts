@@ -354,6 +354,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--radio-group': true,
+          'form-control--has-button-group': this.hasButtonGroup,
           'form-control--has-label': hasLabel,
           'form-control--has-help-text': hasHelpText
         })}

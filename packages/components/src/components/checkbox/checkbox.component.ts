@@ -6,7 +6,7 @@ import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import { property, query, state } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
@@ -59,8 +59,6 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
 
-  @state() private hasFocus = false;
-
   @property({ reflect: true }) title = ''; // make reactive to pass through
 
   /** The name of the checkbox, submitted as a name/value pair with form data. */
@@ -74,6 +72,9 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
 
   /** Disables the checkbox. */
   @property({ type: Boolean, reflect: true }) disabled = false;
+
+  /** Sets the checkbox to a readonly state. */
+  @property({ type: Boolean, reflect: true }) readonly = false;
 
   /** Draws the checkbox in a checked state. */
   @property({ type: Boolean, reflect: true }) checked = false;
@@ -115,13 +116,17 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
   }
 
   private handleClick() {
+    if (this.readonly) {
+      this.focus();
+      return;
+    }
+
     this.checked = !this.checked;
     this.indeterminate = false;
     this.emit('syn-change');
   }
 
   private handleBlur() {
-    this.hasFocus = false;
     this.emit('syn-blur');
   }
 
@@ -135,7 +140,6 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
   }
 
   private handleFocus() {
-    this.hasFocus = true;
     this.emit('syn-focus');
   }
 
@@ -216,7 +220,7 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
             checkbox: true,
             'checkbox--checked': this.checked,
             'checkbox--disabled': this.disabled,
-            'checkbox--focused': this.hasFocus,
+            'checkbox--readonly': this.readonly,
             'checkbox--indeterminate': this.indeterminate,
             'checkbox--small': this.size === 'small',
             'checkbox--medium': this.size === 'medium',
@@ -232,6 +236,7 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
             .indeterminate=${live(this.indeterminate)}
             .checked=${live(this.checked)}
             .disabled=${this.disabled}
+            .readOnly=${this.readonly}
             .required=${this.required}
             aria-checked=${this.checked ? 'true' : 'false'}
             aria-describedby="help-text"

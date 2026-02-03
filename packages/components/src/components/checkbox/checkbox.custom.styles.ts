@@ -83,4 +83,34 @@ export default css`
     line-height: var(--syn-line-height-normal);
     margin-inline-start: var(--syn-spacing-x-small);
   }
+
+  /**
+   * #1171: Readonly state
+   */
+  .checkbox.checkbox--readonly {
+    cursor: default;
+  }
+
+  .checkbox.checkbox--readonly .checkbox__input:focus ~ .checkbox__control {
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
+  }
+
+  .checkbox.checkbox--readonly .checkbox__label {
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-user-select: auto;
+    user-select: auto;
+  }
+
+  .checkbox.checkbox--readonly .checkbox__control {
+    background: var(--syn-input-readonly-background-color);
+    border-color: var(--syn-input-readonly-background-color);
+    cursor: default;
+    color: var(--syn-readonly-indicator-color);
+  }
+
+  .checkbox.checkbox--readonly:hover .checkbox__control {
+    background: var(--syn-input-readonly-background-color-hover) !important;
+    border-color: var(--syn-input-readonly-background-color-hover) !important;
+  }
 `;

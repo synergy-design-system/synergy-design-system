@@ -72,12 +72,6 @@ export const cssVariableFormatter = {
 
       'progress-track-readonly-color',
 
-      // Readonly color are needed later
-      'readonly-border-color',
-      'readonly-indicator-color',
-      'readonly-opacity-color',
-      'range-color-readonly',
-
       // Font Style tokens are needed later
       'body-2x-small-regular',
       'body-2x-small-semibold',

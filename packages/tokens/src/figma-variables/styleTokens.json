@@ -113,9 +113,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.07999999821186066
           },
           "blendMode": "NORMAL",
@@ -152,9 +152,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.07999999821186066
           },
           "blendMode": "NORMAL",
@@ -191,9 +191,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.07999999821186066
           },
           "blendMode": "NORMAL",
@@ -227,7 +227,10 @@
           }
         }
       ],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "EFFECT",
     "effects": [
@@ -235,11 +238,11 @@
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.08,
-          "rgba": "rgba(49, 55, 58, 0.08)"
+          "rgba": "rgba(13, 13, 13, 0.08)"
         },
         "inset": false,
         "offset": {
@@ -248,17 +251,17 @@
         },
         "blurRadius": 2,
         "spreadRadius": 0,
-        "value": "0px 1px 2px 0px rgba(49, 55, 58, 0.08)"
+        "value": "0px 1px 2px 0px rgba(13, 13, 13, 0.08)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.08,
-          "rgba": "rgba(49, 55, 58, 0.08)"
+          "rgba": "rgba(13, 13, 13, 0.08)"
         },
         "inset": false,
         "offset": {
@@ -267,17 +270,17 @@
         },
         "blurRadius": 4,
         "spreadRadius": 0,
-        "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.08)"
+        "value": "0px 1px 4px 0px rgba(13, 13, 13, 0.08)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.08,
-          "rgba": "rgba(49, 55, 58, 0.08)"
+          "rgba": "rgba(13, 13, 13, 0.08)"
         },
         "inset": false,
         "offset": {
@@ -286,7 +289,7 @@
         },
         "blurRadius": 8,
         "spreadRadius": 0,
-        "value": "0px 2px 8px 0px rgba(49, 55, 58, 0.08)"
+        "value": "0px 2px 8px 0px rgba(13, 13, 13, 0.08)"
       }
     ]
   },
@@ -404,9 +407,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.1599999964237213
           },
           "blendMode": "NORMAL",
@@ -443,9 +446,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -482,9 +485,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -518,7 +521,10 @@
           }
         }
       ],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "EFFECT",
     "effects": [
@@ -526,11 +532,11 @@
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -539,17 +545,17 @@
         },
         "blurRadius": 3,
         "spreadRadius": 0,
-        "value": "0px 0px 3px 0px rgba(49, 55, 58, 0.12)"
+        "value": "0px 0px 3px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -558,17 +564,17 @@
         },
         "blurRadius": 6,
         "spreadRadius": 0,
-        "value": "0px 2px 6px 0px rgba(49, 55, 58, 0.12)"
+        "value": "0px 2px 6px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.16,
-          "rgba": "rgba(49, 55, 58, 0.16)"
+          "rgba": "rgba(13, 13, 13, 0.16)"
         },
         "inset": false,
         "offset": {
@@ -577,7 +583,7 @@
         },
         "blurRadius": 8,
         "spreadRadius": 0,
-        "value": "0px 3px 8px 0px rgba(49, 55, 58, 0.16)"
+        "value": "0px 3px 8px 0px rgba(13, 13, 13, 0.16)"
       }
     ]
   },
@@ -695,9 +701,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.1599999964237213
           },
           "blendMode": "NORMAL",
@@ -734,9 +740,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -773,9 +779,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -809,7 +815,10 @@
           }
         }
       ],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "EFFECT",
     "effects": [
@@ -817,11 +826,11 @@
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -830,17 +839,17 @@
         },
         "blurRadius": 4,
         "spreadRadius": 0,
-        "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.12)"
+        "value": "0px 1px 4px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -849,17 +858,17 @@
         },
         "blurRadius": 24,
         "spreadRadius": 0,
-        "value": "0px 8px 24px 0px rgba(49, 55, 58, 0.12)"
+        "value": "0px 8px 24px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.16,
-          "rgba": "rgba(49, 55, 58, 0.16)"
+          "rgba": "rgba(13, 13, 13, 0.16)"
         },
         "inset": false,
         "offset": {
@@ -868,7 +877,7 @@
         },
         "blurRadius": 48,
         "spreadRadius": 0,
-        "value": "0px 16px 48px 0px rgba(49, 55, 58, 0.16)"
+        "value": "0px 16px 48px 0px rgba(13, 13, 13, 0.16)"
       }
     ]
   },
@@ -986,9 +995,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.1599999964237213
           },
           "blendMode": "NORMAL",
@@ -1025,9 +1034,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -1064,9 +1073,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -1100,7 +1109,10 @@
           }
         }
       ],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "EFFECT",
     "effects": [
@@ -1108,11 +1120,11 @@
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -1121,17 +1133,17 @@
         },
         "blurRadius": 4,
         "spreadRadius": 0,
-        "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.12)"
+        "value": "0px 1px 4px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -1140,17 +1152,17 @@
         },
         "blurRadius": 8,
         "spreadRadius": 0,
-        "value": "0px 3px 8px 0px rgba(49, 55, 58, 0.12)"
+        "value": "0px 3px 8px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.16,
-          "rgba": "rgba(49, 55, 58, 0.16)"
+          "rgba": "rgba(13, 13, 13, 0.16)"
         },
         "inset": false,
         "offset": {
@@ -1159,7 +1171,7 @@
         },
         "blurRadius": 12,
         "spreadRadius": 0,
-        "value": "0px 4px 12px 0px rgba(49, 55, 58, 0.16)"
+        "value": "0px 4px 12px 0px rgba(13, 13, 13, 0.16)"
       }
     ]
   },
@@ -1277,9 +1289,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.1599999964237213
           },
           "blendMode": "NORMAL",
@@ -1316,9 +1328,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -1355,9 +1367,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -1391,7 +1403,10 @@
           }
         }
       ],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "EFFECT",
     "effects": [
@@ -1399,11 +1414,11 @@
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -1412,17 +1427,17 @@
         },
         "blurRadius": 4,
         "spreadRadius": 0,
-        "value": "0px -1px 4px 0px rgba(49, 55, 58, 0.12)"
+        "value": "0px -1px 4px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -1431,17 +1446,17 @@
         },
         "blurRadius": 8,
         "spreadRadius": 0,
-        "value": "0px -3px 8px 0px rgba(49, 55, 58, 0.12)"
+        "value": "0px -3px 8px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.16,
-          "rgba": "rgba(49, 55, 58, 0.16)"
+          "rgba": "rgba(13, 13, 13, 0.16)"
         },
         "inset": false,
         "offset": {
@@ -1450,7 +1465,7 @@
         },
         "blurRadius": 12,
         "spreadRadius": 0,
-        "value": "0px -4px 12px 0px rgba(49, 55, 58, 0.16)"
+        "value": "0px -4px 12px 0px rgba(13, 13, 13, 0.16)"
       }
     ]
   },
@@ -1568,9 +1583,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.1599999964237213
           },
           "blendMode": "NORMAL",
@@ -1607,9 +1622,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -1646,9 +1661,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -1682,7 +1697,10 @@
           }
         }
       ],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "EFFECT",
     "effects": [
@@ -1690,11 +1708,11 @@
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -1703,17 +1721,17 @@
         },
         "blurRadius": 4,
         "spreadRadius": 0,
-        "value": "-1px 0px 4px 0px rgba(49, 55, 58, 0.12)"
+        "value": "-1px 0px 4px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -1722,17 +1740,17 @@
         },
         "blurRadius": 8,
         "spreadRadius": 0,
-        "value": "-3px 0px 8px 0px rgba(49, 55, 58, 0.12)"
+        "value": "-3px 0px 8px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.16,
-          "rgba": "rgba(49, 55, 58, 0.16)"
+          "rgba": "rgba(13, 13, 13, 0.16)"
         },
         "inset": false,
         "offset": {
@@ -1741,7 +1759,7 @@
         },
         "blurRadius": 12,
         "spreadRadius": 0,
-        "value": "-4px 0px 12px 0px rgba(49, 55, 58, 0.16)"
+        "value": "-4px 0px 12px 0px rgba(13, 13, 13, 0.16)"
       }
     ]
   },
@@ -1859,9 +1877,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.1599999964237213
           },
           "blendMode": "NORMAL",
@@ -1898,9 +1916,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -1937,9 +1955,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.11999999731779099
           },
           "blendMode": "NORMAL",
@@ -1973,7 +1991,10 @@
           }
         }
       ],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "EFFECT",
     "effects": [
@@ -1981,11 +2002,11 @@
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -1994,17 +2015,17 @@
         },
         "blurRadius": 4,
         "spreadRadius": 0,
-        "value": "1px 0px 4px 0px rgba(49, 55, 58, 0.12)"
+        "value": "1px 0px 4px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.12,
-          "rgba": "rgba(49, 55, 58, 0.12)"
+          "rgba": "rgba(13, 13, 13, 0.12)"
         },
         "inset": false,
         "offset": {
@@ -2013,17 +2034,17 @@
         },
         "blurRadius": 8,
         "spreadRadius": 0,
-        "value": "3px 0px 8px 0px rgba(49, 55, 58, 0.12)"
+        "value": "3px 0px 8px 0px rgba(13, 13, 13, 0.12)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.16,
-          "rgba": "rgba(49, 55, 58, 0.16)"
+          "rgba": "rgba(13, 13, 13, 0.16)"
         },
         "inset": false,
         "offset": {
@@ -2032,7 +2053,7 @@
         },
         "blurRadius": 12,
         "spreadRadius": 0,
-        "value": "4px 0px 12px 0px rgba(49, 55, 58, 0.16)"
+        "value": "4px 0px 12px 0px rgba(13, 13, 13, 0.16)"
       }
     ]
   },
@@ -2088,14 +2109,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 15,
+        "width": 16,
         "height": 17
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 4.3984375,
-        "width": 13.869140625,
-        "height": 11.484375
+        "x": 0.12000000476837158,
+        "y": 4.299999713897705,
+        "width": 14.26846981048584,
+        "height": 10.956001281738281
       },
       "constraints": {
         "vertical": "TOP",
@@ -2111,8 +2132,8 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans",
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Regular",
         "fontStyle": "Regular",
         "fontWeight": 400,
         "textAutoResize": "WIDTH_AND_HEIGHT",
@@ -2121,17 +2142,20 @@
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 16.799999237060547,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
+      "fontFamily": "SICK Intl",
       "fontWeight": 400,
       "fontSize": 12,
       "letterSpacing": 0,
@@ -2196,14 +2220,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 17,
+        "width": 18,
         "height": 20
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 4.96484375,
-        "width": 16.1806640625,
-        "height": 13.3984375
+        "x": 0.14000001549720764,
+        "y": 4.84999942779541,
+        "width": 16.646547317504883,
+        "height": 12.782000541687012
       },
       "constraints": {
         "vertical": "TOP",
@@ -2219,8 +2243,8 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans",
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Regular",
         "fontStyle": "Regular",
         "fontWeight": 400,
         "textAutoResize": "WIDTH_AND_HEIGHT",
@@ -2229,17 +2253,20 @@
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 19.600000381469727,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
+      "fontFamily": "SICK Intl",
       "fontWeight": 400,
       "fontSize": 14,
       "letterSpacing": 0,
@@ -2304,14 +2331,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 19,
+        "width": 21,
         "height": 22
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 5.53125,
-        "width": 18.4921875,
-        "height": 15.3125
+        "x": 0.1600000113248825,
+        "y": 5.399999618530273,
+        "width": 19.024625778198242,
+        "height": 14.607999801635742
       },
       "constraints": {
         "vertical": "TOP",
@@ -2327,8 +2354,8 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans",
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Regular",
         "fontStyle": "Regular",
         "fontWeight": 400,
         "textAutoResize": "WIDTH_AND_HEIGHT",
@@ -2337,17 +2364,20 @@
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 22.399999618530273,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
+      "fontFamily": "SICK Intl",
       "fontWeight": 400,
       "fontSize": 16,
       "letterSpacing": 0,
@@ -2412,14 +2442,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 24,
+        "width": 26,
         "height": 28
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 7.6640625,
-        "width": 23.115234375,
-        "height": 19.140625
+        "x": 0.20000001788139343,
+        "y": 6.499999523162842,
+        "width": 23.780780792236328,
+        "height": 18.260000228881836
       },
       "constraints": {
         "vertical": "TOP",
@@ -2435,8 +2465,8 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans",
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Regular",
         "fontStyle": "Regular",
         "fontWeight": 400,
         "textAutoResize": "WIDTH_AND_HEIGHT",
@@ -2445,17 +2475,20 @@
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 28,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
+      "fontFamily": "SICK Intl",
       "fontWeight": 400,
       "fontSize": 20,
       "letterSpacing": 0,
@@ -2520,14 +2553,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 26,
-        "height": 28
+        "width": 29,
+        "height": 31
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 7.6640625,
-        "width": 24.873046875,
-        "height": 19.140625
+        "x": 0.2200000137090683,
+        "y": 7.049999237060547,
+        "width": 26.15886116027832,
+        "height": 20.086000442504883
       },
       "constraints": {
         "vertical": "TOP",
@@ -2543,29 +2576,32 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Regular",
+        "fontStyle": "Regular",
+        "fontWeight": 400,
         "textAutoResize": "WIDTH_AND_HEIGHT",
-        "fontSize": 20,
+        "fontSize": 22,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
-        "lineHeightPx": 28,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPx": 30.799999237060547,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
-      "fontSize": 20,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 400,
+      "fontSize": 22,
       "letterSpacing": 0,
       "lineHeight": "1.399999976158142",
       "fontStyle": "normal",
@@ -2628,14 +2664,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 31,
-        "height": 29
+        "width": 36,
+        "height": 34
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 6.796875,
-        "width": 29.84765625,
-        "height": 22.96875
+        "x": 0.2800000309944153,
+        "y": 6.6999993324279785,
+        "width": 33.293094635009766,
+        "height": 25.564001083374023
       },
       "constraints": {
         "vertical": "TOP",
@@ -2651,29 +2687,32 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Regular",
+        "fontStyle": "Regular",
+        "fontWeight": 400,
         "textAutoResize": "WIDTH_AND_HEIGHT",
-        "fontSize": 24,
+        "fontSize": 28,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
-        "lineHeightPx": 28.80000114440918,
-        "lineHeightPercent": 88.11760711669922,
+        "lineHeightPx": 33.60000228881836,
+        "lineHeightPercent": 92.52120208740234,
         "lineHeightPercentFontSize": 120.00000762939453,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
-      "fontSize": 24,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 400,
+      "fontSize": 28,
       "letterSpacing": 0,
       "lineHeight": "1.2000000476837158",
       "fontStyle": "normal",
@@ -2736,14 +2775,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 41,
-        "height": 38
+        "width": 44,
+        "height": 41
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 8.0625,
-        "width": 39.796875,
-        "height": 30.625
+        "x": 0.3400000333786011,
+        "y": 8.34999942779541,
+        "width": 40.427330017089844,
+        "height": 31.042003631591797
       },
       "constraints": {
         "vertical": "TOP",
@@ -2759,29 +2798,32 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Regular",
+        "fontStyle": "Regular",
+        "fontWeight": 400,
         "textAutoResize": "WIDTH_AND_HEIGHT",
-        "fontSize": 32,
+        "fontSize": 34,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
-        "lineHeightPx": 38.400001525878906,
-        "lineHeightPercent": 88.11760711669922,
+        "lineHeightPx": 40.80000305175781,
+        "lineHeightPercent": 92.52120208740234,
         "lineHeightPercentFontSize": 120.00000762939453,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
-      "fontSize": 32,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 400,
+      "fontSize": 34,
       "letterSpacing": 0,
       "lineHeight": "1.2000000476837158",
       "fontStyle": "normal",
@@ -2844,14 +2886,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 51,
+        "width": 52,
         "height": 48
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 11.328125,
-        "width": 49.74609375,
-        "height": 38.28125
+        "x": 0.40000003576278687,
+        "y": 9.999999046325684,
+        "width": 47.561561584472656,
+        "height": 36.52000045776367
       },
       "constraints": {
         "vertical": "TOP",
@@ -2867,28 +2909,31 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Regular",
+        "fontStyle": "Regular",
+        "fontWeight": 400,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 40,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 48,
-        "lineHeightPercent": 88.11760711669922,
+        "lineHeightPercent": 92.52120208740234,
         "lineHeightPercentFontSize": 120.00000762939453,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 400,
       "fontSize": 40,
       "letterSpacing": 0,
       "lineHeight": "1.2000000476837158",
@@ -2952,14 +2997,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 15,
+        "width": 17,
         "height": 17
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 4.3984375,
-        "width": 14.390625,
-        "height": 11.484375
+        "x": 0.04800000041723251,
+        "y": 4.299999713897705,
+        "width": 15.20775032043457,
+        "height": 10.956001281738281
       },
       "constraints": {
         "vertical": "TOP",
@@ -2975,9 +3020,9 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-SemiBold",
-        "fontStyle": "SemiBold",
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
         "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 12,
@@ -2985,17 +3030,20 @@
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 16.799999237060547,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
+      "fontFamily": "SICK Intl",
       "fontWeight": 600,
       "fontSize": 12,
       "letterSpacing": 0,
@@ -3060,14 +3108,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 16,
+        "width": 17,
         "height": 17
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 4.3984375,
-        "width": 14.923828125,
-        "height": 11.484375
+        "x": 0.04800000041723251,
+        "y": 4.299999713897705,
+        "width": 15.20775032043457,
+        "height": 10.956001281738281
       },
       "constraints": {
         "vertical": "TOP",
@@ -3083,28 +3131,31 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
+        "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 12,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 16.799999237060547,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 600,
       "fontSize": 12,
       "letterSpacing": 0,
       "lineHeight": "1.399999976158142",
@@ -3168,14 +3219,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 18,
+        "width": 19,
         "height": 20
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 4.96484375,
-        "width": 16.7890625,
-        "height": 13.3984375
+        "x": 0.0560000017285347,
+        "y": 4.84999942779541,
+        "width": 17.74237632751465,
+        "height": 12.782000541687012
       },
       "constraints": {
         "vertical": "TOP",
@@ -3191,9 +3242,9 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-SemiBold",
-        "fontStyle": "SemiBold",
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
         "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 14,
@@ -3201,17 +3252,20 @@
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 19.600000381469727,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
+      "fontFamily": "SICK Intl",
       "fontWeight": 600,
       "fontSize": 14,
       "letterSpacing": 0,
@@ -3276,14 +3330,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 18,
+        "width": 19,
         "height": 20
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 4.96484375,
-        "width": 17.4111328125,
-        "height": 13.3984375
+        "x": 0.0560000017285347,
+        "y": 4.84999942779541,
+        "width": 17.74237632751465,
+        "height": 12.782000541687012
       },
       "constraints": {
         "vertical": "TOP",
@@ -3299,28 +3353,31 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
+        "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 14,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 19.600000381469727,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 600,
       "fontSize": 14,
       "letterSpacing": 0,
       "lineHeight": "1.399999976158142",
@@ -3384,14 +3441,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 20,
+        "width": 22,
         "height": 22
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 5.53125,
-        "width": 19.1875,
-        "height": 15.3125
+        "x": 0.06400000303983688,
+        "y": 5.399999618530273,
+        "width": 20.277002334594727,
+        "height": 14.607999801635742
       },
       "constraints": {
         "vertical": "TOP",
@@ -3407,9 +3464,9 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-SemiBold",
-        "fontStyle": "SemiBold",
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
         "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 16,
@@ -3417,17 +3474,20 @@
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 22.399999618530273,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
+      "fontFamily": "SICK Intl",
       "fontWeight": 600,
       "fontSize": 16,
       "letterSpacing": 0,
@@ -3492,14 +3552,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 21,
+        "width": 22,
         "height": 22
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 5.53125,
-        "width": 19.8984375,
-        "height": 15.3125
+        "x": 0.06400000303983688,
+        "y": 5.399999618530273,
+        "width": 20.277002334594727,
+        "height": 14.607999801635742
       },
       "constraints": {
         "vertical": "TOP",
@@ -3515,28 +3575,31 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
+        "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 16,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 22.399999618530273,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 600,
       "fontSize": 16,
       "letterSpacing": 0,
       "lineHeight": "1.399999976158142",
@@ -3600,14 +3663,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 25,
+        "width": 27,
         "height": 28
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 7.6640625,
-        "width": 23.984375,
-        "height": 19.140625
+        "x": 0.08000000566244125,
+        "y": 6.499999523162842,
+        "width": 25.346250534057617,
+        "height": 18.260000228881836
       },
       "constraints": {
         "vertical": "TOP",
@@ -3623,9 +3686,9 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-SemiBold",
-        "fontStyle": "SemiBold",
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
         "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 20,
@@ -3633,17 +3696,20 @@
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 28,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
+      "fontFamily": "SICK Intl",
       "fontWeight": 600,
       "fontSize": 20,
       "letterSpacing": 0,
@@ -3708,14 +3774,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 26,
+        "width": 27,
         "height": 28
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 7.6640625,
-        "width": 24.873046875,
-        "height": 19.140625
+        "x": 0.08000000566244125,
+        "y": 6.499999523162842,
+        "width": 25.346250534057617,
+        "height": 18.260000228881836
       },
       "constraints": {
         "vertical": "TOP",
@@ -3731,28 +3797,31 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
+        "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 20,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 28,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 600,
       "fontSize": 20,
       "letterSpacing": 0,
       "lineHeight": "1.399999976158142",
@@ -3878,9 +3947,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.03999999910593033
           },
           "blendMode": "NORMAL",
@@ -3917,9 +3986,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.03999999910593033
           },
           "blendMode": "NORMAL",
@@ -3956,9 +4025,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.03999999910593033
           },
           "blendMode": "NORMAL",
@@ -3992,7 +4061,10 @@
           }
         }
       ],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "EFFECT",
     "effects": [
@@ -4000,11 +4072,11 @@
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.04,
-          "rgba": "rgba(49, 55, 58, 0.04)"
+          "rgba": "rgba(13, 13, 13, 0.04)"
         },
         "inset": false,
         "offset": {
@@ -4013,17 +4085,17 @@
         },
         "blurRadius": 2,
         "spreadRadius": 0,
-        "value": "0px 1px 2px 0px rgba(49, 55, 58, 0.04)"
+        "value": "0px 1px 2px 0px rgba(13, 13, 13, 0.04)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.04,
-          "rgba": "rgba(49, 55, 58, 0.04)"
+          "rgba": "rgba(13, 13, 13, 0.04)"
         },
         "inset": false,
         "offset": {
@@ -4032,17 +4104,17 @@
         },
         "blurRadius": 4,
         "spreadRadius": 0,
-        "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.04)"
+        "value": "0px 1px 4px 0px rgba(13, 13, 13, 0.04)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.04,
-          "rgba": "rgba(49, 55, 58, 0.04)"
+          "rgba": "rgba(13, 13, 13, 0.04)"
         },
         "inset": false,
         "offset": {
@@ -4051,7 +4123,7 @@
         },
         "blurRadius": 8,
         "spreadRadius": 0,
-        "value": "0px 2px 8px 0px rgba(49, 55, 58, 0.04)"
+        "value": "0px 2px 8px 0px rgba(13, 13, 13, 0.04)"
       }
     ]
   },
@@ -4169,9 +4241,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.05999999865889549
           },
           "blendMode": "NORMAL",
@@ -4208,9 +4280,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.05999999865889549
           },
           "blendMode": "NORMAL",
@@ -4247,9 +4319,9 @@
           "type": "DROP_SHADOW",
           "visible": true,
           "color": {
-            "r": 0.1921568661928177,
-            "g": 0.21568627655506134,
-            "b": 0.22745098173618317,
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
             "a": 0.05999999865889549
           },
           "blendMode": "NORMAL",
@@ -4283,7 +4355,10 @@
           }
         }
       ],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "EFFECT",
     "effects": [
@@ -4291,11 +4366,11 @@
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.06,
-          "rgba": "rgba(49, 55, 58, 0.06)"
+          "rgba": "rgba(13, 13, 13, 0.06)"
         },
         "inset": false,
         "offset": {
@@ -4304,17 +4379,17 @@
         },
         "blurRadius": 2,
         "spreadRadius": 0,
-        "value": "0px 1px 2px 0px rgba(49, 55, 58, 0.06)"
+        "value": "0px 1px 2px 0px rgba(13, 13, 13, 0.06)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.06,
-          "rgba": "rgba(49, 55, 58, 0.06)"
+          "rgba": "rgba(13, 13, 13, 0.06)"
         },
         "inset": false,
         "offset": {
@@ -4323,17 +4398,17 @@
         },
         "blurRadius": 4,
         "spreadRadius": 0,
-        "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.06)"
+        "value": "0px 1px 4px 0px rgba(13, 13, 13, 0.06)"
       },
       {
         "type": "DROP_SHADOW",
         "visible": true,
         "color": {
-          "r": 49,
-          "g": 55,
-          "b": 58,
+          "r": 13,
+          "g": 13,
+          "b": 13,
           "a": 0.06,
-          "rgba": "rgba(49, 55, 58, 0.06)"
+          "rgba": "rgba(13, 13, 13, 0.06)"
         },
         "inset": false,
         "offset": {
@@ -4342,7 +4417,7 @@
         },
         "blurRadius": 8,
         "spreadRadius": 0,
-        "value": "0px 2px 8px 0px rgba(49, 55, 58, 0.06)"
+        "value": "0px 2px 8px 0px rgba(13, 13, 13, 0.06)"
       }
     ]
   },
@@ -4398,14 +4473,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 13,
+        "width": 15,
         "height": 15
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 4.115234375,
-        "width": 12.71337890625,
-        "height": 10.52734375
+        "x": 0.11000000685453415,
+        "y": 3.0249996185302734,
+        "width": 13.07943058013916,
+        "height": 10.043000221252441
       },
       "constraints": {
         "vertical": "TOP",
@@ -4421,8 +4496,8 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans",
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Regular",
         "fontStyle": "Regular",
         "fontWeight": 400,
         "textAutoResize": "WIDTH_AND_HEIGHT",
@@ -4431,17 +4506,20 @@
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 15.399999618530273,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
+      "fontFamily": "SICK Intl",
       "fontWeight": 400,
       "fontSize": 11,
       "letterSpacing": 0,
@@ -4506,14 +4584,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 14,
+        "width": 15,
         "height": 15
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 4.115234375,
-        "width": 13.19140625,
-        "height": 10.52734375
+        "x": 0.04400000348687172,
+        "y": 3.0249996185302734,
+        "width": 13.940438270568848,
+        "height": 10.043000221252441
       },
       "constraints": {
         "vertical": "TOP",
@@ -4529,9 +4607,9 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-SemiBold",
-        "fontStyle": "SemiBold",
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
         "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 11,
@@ -4539,17 +4617,20 @@
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 15.399999618530273,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
+      "fontFamily": "SICK Intl",
       "fontWeight": 600,
       "fontSize": 11,
       "letterSpacing": 0,
@@ -4614,14 +4695,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 14,
+        "width": 15,
         "height": 15
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 4.115234375,
-        "width": 13.68017578125,
-        "height": 10.52734375
+        "x": 0.04400000348687172,
+        "y": 3.0249996185302734,
+        "width": 13.940438270568848,
+        "height": 10.043000221252441
       },
       "constraints": {
         "vertical": "TOP",
@@ -4637,28 +4718,31 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
+        "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 11,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 15.399999618530273,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 600,
       "fontSize": 11,
       "letterSpacing": 0,
       "lineHeight": "1.399999976158142",
@@ -4722,14 +4806,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 21,
-        "height": 22
+        "width": 25,
+        "height": 25
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 5.53125,
-        "width": 19.8984375,
-        "height": 15.3125
+        "x": 0.07200000435113907,
+        "y": 5.949999809265137,
+        "width": 22.81162452697754,
+        "height": 16.434001922607422
       },
       "constraints": {
         "vertical": "TOP",
@@ -4745,29 +4829,32 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Semibold",
+        "fontStyle": "Semibold",
+        "fontWeight": 600,
         "textAutoResize": "WIDTH_AND_HEIGHT",
-        "fontSize": 16,
+        "fontSize": 18,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
-        "lineHeightPx": 22.399999618530273,
-        "lineHeightPercent": 102.80387115478516,
+        "lineHeightPx": 25.19999885559082,
+        "lineHeightPercent": 107.94139862060547,
         "lineHeightPercentFontSize": 140,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
-      "fontSize": 16,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 600,
+      "fontSize": 18,
       "letterSpacing": 0,
       "lineHeight": "1.399999976158142",
       "fontStyle": "normal",
@@ -4830,14 +4917,14 @@
       "absoluteBoundingBox": {
         "x": 0,
         "y": 0,
-        "width": 66,
+        "width": 67,
         "height": 62
       },
       "absoluteRenderBounds": {
-        "x": 0,
-        "y": 13.7265625,
-        "width": 64.669921875,
-        "height": 49.765625
+        "x": 0.5200000405311584,
+        "y": 12.299999237060547,
+        "width": 61.83003234863281,
+        "height": 47.47600173950195
       },
       "constraints": {
         "vertical": "TOP",
@@ -4853,28 +4940,31 @@
         0
       ],
       "style": {
-        "fontFamily": "Open Sans",
-        "fontPostScriptName": "OpenSans-Bold",
-        "fontStyle": "Bold",
-        "fontWeight": 700,
+        "fontFamily": "SICK Intl",
+        "fontPostScriptName": "SICKIntl-Regular",
+        "fontStyle": "Regular",
+        "fontWeight": 400,
         "textAutoResize": "WIDTH_AND_HEIGHT",
         "fontSize": 52,
         "textAlignHorizontal": "LEFT",
         "textAlignVertical": "TOP",
         "letterSpacing": 0,
         "lineHeightPx": 62.400001525878906,
-        "lineHeightPercent": 88.11760711669922,
+        "lineHeightPercent": 92.52120208740234,
         "lineHeightPercentFontSize": 120.00000762939453,
         "lineHeightUnit": "FONT_SIZE_%"
       },
-      "layoutVersion": 4,
+      "layoutVersion": 5,
       "effects": [],
-      "interactions": []
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
     },
     "styleType": "TEXT",
     "style": {
-      "fontFamily": "Open Sans",
-      "fontWeight": 700,
+      "fontFamily": "SICK Intl",
+      "fontWeight": 400,
       "fontSize": 52,
       "letterSpacing": 0,
       "lineHeight": "1.2000000476837158",

@@ -1430,9 +1430,13 @@
     "background": {
       "description": "Will be DEPRECATED",
       "type": "color",
-      "value": "{color.neutral.50}"
+      "value": "{page.background-color}"
     },
     "background-color": {
+      "type": "color",
+      "value": "{color.neutral.0}"
+    },
+    "background-color-muted": {
       "type": "color",
       "value": "{color.neutral.50}"
     }

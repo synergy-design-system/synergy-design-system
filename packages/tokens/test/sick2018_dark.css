@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.48.2
+ * @synergy-design-system/tokens version 3.1.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -307,8 +307,9 @@
   --syn-option-icon-color-hover: var(--syn-typography-color-text);
   --syn-overlay-background-blur: 0px;
   --syn-overlay-background-color: rgba(49, 55, 58, 0.5);
-  --syn-page-background: var(--syn-color-neutral-50); /** Will be DEPRECATED */
-  --syn-page-background-color: var(--syn-color-neutral-50);
+  --syn-page-background: var(--syn-page-background-color); /** Will be DEPRECATED */
+  --syn-page-background-color: var(--syn-color-neutral-0);
+  --syn-page-background-color-muted: var(--syn-color-neutral-50);
   --syn-panel-background-color: var(--syn-color-neutral-0);
   --syn-panel-border-color: var(--syn-color-neutral-300);
   --syn-panel-border-radius: var(--syn-border-radius-medium);
@@ -316,10 +317,14 @@
   --syn-progress-indicator-color: var(--syn-color-primary-600);
   --syn-progress-track-color: var(--syn-color-neutral-200);
   --syn-range-color-inactive: var(--syn-color-neutral-200);
+  --syn-range-color-readonly: var(--syn-input-readonly-background-color);
   --syn-range-error-color: var(--syn-color-error-700);
   --syn-range-tick-color: var(--syn-color-neutral-400);
   --syn-range-track-color-active: var(--syn-interactive-emphasis-color);
   --syn-readonly-background-color: var(--syn-color-neutral-300);
+  --syn-readonly-border-color: var(--syn-typography-color-text);
+  --syn-readonly-indicator-color: var(--syn-typography-color-text);
+  --syn-readonly-opacity-color: rgba(115, 127, 133, 0.4);
   --syn-spacing-1-5x-large: 40px;
   --syn-spacing-2x-large: 48px;
   --syn-spacing-2x-small: 4px;

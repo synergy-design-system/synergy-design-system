@@ -22,6 +22,7 @@ describe('<syn-checkbox>', () => {
     expect(el.disabled).to.be.false;
     expect(el.required).to.be.false;
     expect(el.checked).to.be.false;
+    expect(el.readonly).to.be.false;
     expect(el.indeterminate).to.be.false;
     expect(el.defaultChecked).to.be.false;
     expect(el.helpText).to.equal('');
@@ -51,12 +52,29 @@ describe('<syn-checkbox>', () => {
     expect(checkbox.disabled).to.be.true;
   });
 
+  it('should be readonly with the readonly attribute', async () => {
+    const el = await fixture<SynCheckbox>(html` <syn-checkbox readonly></syn-checkbox> `);
+    const checkbox = el.shadowRoot!.querySelector('input')!;
+
+    expect(checkbox.readOnly).to.be.true;
+  });
+
+  it('should be readonly when readonly property is set', async () => {
+    const el = await fixture<SynCheckbox>(html`<syn-checkbox></syn-checkbox>`);
+    const checkbox = el.shadowRoot!.querySelector('input')!;
+
+    el.readonly = true;
+    await el.updateComplete;
+
+    expect(checkbox.readOnly).to.be.true;
+  });
+
   it('should be valid by default', async () => {
     const el = await fixture<SynCheckbox>(html` <syn-checkbox></syn-checkbox> `);
     expect(el.checkValidity()).to.be.true;
   });
 
-  it('should emit syn-change and syn-input when clicked', async () => {
+  it('should emit syn-change and syn-input when clicked and not readonly', async () => {
     const el = await fixture<SynCheckbox>(html` <syn-checkbox></syn-checkbox> `);
     const changeHandler = sinon.spy();
     const inputHandler = sinon.spy();
@@ -69,6 +87,18 @@ describe('<syn-checkbox>', () => {
     expect(changeHandler).to.have.been.calledOnce;
     expect(inputHandler).to.have.been.calledOnce;
     expect(el.checked).to.be.true;
+  });
+
+  it('should not emit syn-change when clicked and readonly', async () => {
+    const el = await fixture<SynCheckbox>(html` <syn-checkbox readonly></syn-checkbox> `);
+    const changeHandler = sinon.spy();
+
+    el.addEventListener('syn-change', changeHandler);
+    el.click();
+    await el.updateComplete;
+
+    expect(changeHandler).to.have.not.been.called;
+    expect(el.checked).to.be.false;
   });
 
   it('should emit syn-change and syn-input when toggled with spacebar', async () => {

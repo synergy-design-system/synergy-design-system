@@ -8,7 +8,7 @@
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^9.39.2",
-    "ora": "^9.0.0",
+    "ora": "^9.2.0",
     "postcss": "^8.5.6",
     "postcss-header": "^3.0.3",
     "postcss-import": "^16.1.1",

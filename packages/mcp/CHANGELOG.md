@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.3.0
+
+### Minor Changes
+
+- [#1164](https://github.com/synergy-design-system/synergy-design-system/pull/1164) [`c9fb440`](https://github.com/synergy-design-system/synergy-design-system/commit/c9fb4405c0a1eb3499e4753447ac643ae632ff56) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-02-05
+
+  feat: ✨ syn-combobox multiple (#627)
+
+  Adds multiple selection functionality to the `syn-combobox` component, enabling users to select multiple options simultaneously.
+
+  **Properties Added:**
+  - `multiple`: Enables multiple selection mode
+  - `delimiter`: Customizable value separator (default: ` ` (space))
+  - `max-options-visible`: Controls visible tag limit with overflow handling
+  - `getTag`: Custom tag rendering function
+
 ## 2.2.0
 
 ### Minor Changes

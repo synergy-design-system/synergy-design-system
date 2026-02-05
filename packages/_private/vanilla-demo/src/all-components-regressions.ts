@@ -10,17 +10,36 @@ import type {
 } from '@synergy-design-system/components';
 import { mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
+/**
+ * Retrieves the main demo template element and waits for it to be ready.
+ * This function ensures that the demo template component has completed its
+ * update cycle before returning it.
+ *
+ * @returns A promise that resolves to the demo template LitElement
+ */
 const getAllComponentsElement = async () => {
   const allComponents = document.querySelector('demo-template') as LitElement;
   await allComponents.updateComplete;
   return allComponents;
 };
 
-const appendOptionsWithSpace = async (querySelector: string) => {
+/**
+ * Synchronously appends syn-option elements to a target component (syn-combobox or syn-select)
+ * using mock data.
+ * This function creates syn-option elements based on the provided mock data
+ * and appends them to the specified element within the demo template.
+ *
+ * @param selector - CSS selector to find the target element within the demo template's shadow DOM
+ * @param mockDataKey - Key to identify which mock dataset to use for creating options
+ */
+const appendSyncOptions = async (selector: string, mockDataKey: 'selectItemsWithSpace' | 'selectItemsMixedValue') => {
   const allComponents = await getAllComponentsElement();
-  const element = allComponents?.shadowRoot?.querySelector(querySelector) as LitElement;
+  const element = allComponents?.shadowRoot?.querySelector(selector) as LitElement;
 
-  const items = mockData('selectItemsWithSpace');
+  // eslint-disable-next-line no-promise-executor-return
+  await new Promise((resolve) => setTimeout(resolve, 0));
+
+  const items = mockData(mockDataKey);
   items.forEach(item => {
     const option = document.createElement('syn-option');
     option.value = item.value;
@@ -29,24 +48,20 @@ const appendOptionsWithSpace = async (querySelector: string) => {
   });
 };
 
-const appendOptionsWithMixedIds = async (querySelector: string) => {
+/**
+ * Asynchronously appends syn-option elements to a target component (syn-select or syn-combobox)
+ * using async mock data.
+ * This function waits for mock data to load, then creates syn-option elements
+ * and appends them to the specified element within the demo template.
+ *
+ * @param selector - CSS selector to find the target element within the demo template's shadow DOM
+ * @param mockDataKey - Key to identify which async mock dataset to use for creating options
+ */
+const appendAsyncOptions = async (selector: string, mockDataKey: 'selectItems') => {
   const allComponents = await getAllComponentsElement();
-  const element = allComponents?.shadowRoot?.querySelector(querySelector) as LitElement;
+  const element = allComponents?.shadowRoot?.querySelector(selector) as LitElement;
 
-  const items = mockData('selectItemsMixedId');
-  items.forEach(item => {
-    const option = document.createElement('syn-option');
-    option.value = item.id;
-    option.textContent = item.label;
-    element.appendChild(option);
-  });
-};
-
-const appendOptionsForLevels = async (querySelector: string) => {
-  const allComponents = await getAllComponentsElement();
-  const element = allComponents?.shadowRoot?.querySelector(querySelector) as LitElement;
-
-  const items = await mockAsyncData('selectItems');
+  const items = await mockAsyncData(mockDataKey);
   items.forEach(item => {
     const option = document.createElement('syn-option');
     option.value = item.value;
@@ -55,13 +70,28 @@ const appendOptionsForLevels = async (querySelector: string) => {
   });
 };
 
-const addAsyncValueForSelect = async (querySelector: string) => {
+/**
+ * Sets an asynchronously loaded value for an element  especially (syn-select or syn-combobox).
+ * This function retrieves mock data asynchronously and assigns it as the
+ * value of the specified component.
+ *
+ * @param selector - CSS selector to find the target element within the template's shadow DOM
+ * @param mockValueKey - Key to identify which async mock value to use (default: 'valueWithSpace')
+ */
+const addAsyncValueForSelect = async (selector: string, mockValueKey: 'valueWithSpace' = 'valueWithSpace') => {
   const allComponents = await getAllComponentsElement();
-  const element = allComponents?.shadowRoot?.querySelector(querySelector) as SynSelect;
-  const value = await mockAsyncData('valueWithSpace');
+  const element = allComponents?.shadowRoot?.querySelector(selector) as SynSelect;
+  const value = await mockAsyncData(mockValueKey);
   element.value = value;
 };
 
+/**
+ * Sets up custom validation behavior for a syn-validate component.
+ * This function adds an event listener to handle input changes and
+ * triggers custom validation with an error message for testing purposes.
+ *
+ * @returns A promise that resolves when the validation setup is complete
+ */
 const revalidateValidate = async () => {
   const allComponents = await getAllComponentsElement();
   const validate = allComponents?.shadowRoot?.querySelector('syn-validate[data-testid="validate-915"]') as SynValidate;
@@ -79,9 +109,22 @@ export type Regressions = Map<string, RegressionFns>;
 export const allComponentsRegressions: Regressions = new Map(Object.entries({
   Combobox: [
     // #813
-    () => appendOptionsForLevels('syn-combobox[data-testid="combobox-level-813"]'),
+    () => appendAsyncOptions('syn-combobox[data-testid="combobox-level-813"]', 'selectItems'),
     // #626
-    () => appendOptionsForLevels('syn-combobox[data-testid="combobox-626-async"]'),
+    () => appendAsyncOptions('syn-combobox[data-testid="combobox-626-async"]', 'selectItems'),
+    // #847
+    () => appendAsyncOptions('syn-combobox[data-testid="combobox-847-multiple"]', 'selectItems'),
+    // #1036
+    () => appendSyncOptions('syn-combobox[data-testid="combobox-1036-subsequently-changed-delimiter"]', 'selectItemsWithSpace'),
+    // #1056
+    () => addAsyncValueForSelect('syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"]', 'valueWithSpace'),
+    () => appendSyncOptions('syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-pre-value"]', 'selectItemsWithSpace'),
+    () => appendSyncOptions('syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"]', 'selectItemsWithSpace'),
+    // #627
+    () => appendAsyncOptions('syn-combobox[data-testid="combobox-627-delimiter"]', 'selectItems'),
+    // #805
+    () => appendSyncOptions('syn-combobox[data-testid="combobox-805-single"]', 'selectItemsMixedValue'),
+    () => appendSyncOptions('syn-combobox[data-testid="combobox-805-multi"]', 'selectItemsMixedValue'),
   ],
   Dialog: [
     // Open the dialog when dialog tab is clicked
@@ -98,19 +141,20 @@ export const allComponentsRegressions: Regressions = new Map(Object.entries({
   ],
   Select: [
     // #540
-    () => appendOptionsForLevels('syn-select[data-testid="select-540-delimiter"]'),
-    () => appendOptionsWithMixedIds('syn-select[data-testid="select-805-single-select"]'),
-    () => appendOptionsWithMixedIds('syn-select[data-testid="select-805-multi-select"]'),
+    () => appendAsyncOptions('syn-select[data-testid="select-540-delimiter"]', 'selectItems'),
+    // #805
+    () => appendSyncOptions('syn-select[data-testid="select-805-single-select"]', 'selectItemsMixedValue'),
+    () => appendSyncOptions('syn-select[data-testid="select-805-multi-select"]', 'selectItemsMixedValue'),
     // #813
-    () => appendOptionsForLevels('syn-select[data-testid="select-level-813"]'),
+    () => appendAsyncOptions('syn-select[data-testid="select-level-813"]', 'selectItems'),
     // #847
-    () => appendOptionsForLevels('syn-select[data-testid="select-847-multiple"]'),
+    () => appendAsyncOptions('syn-select[data-testid="select-847-multiple"]', 'selectItems'),
     // #1036
-    () => appendOptionsWithSpace('syn-select[data-testid="select-1036-subsequently-changed-delimiter"]'),
+    () => appendSyncOptions('syn-select[data-testid="select-1036-subsequently-changed-delimiter"]', 'selectItemsWithSpace'),
     // #1056
     () => addAsyncValueForSelect('syn-select[data-testid="select-1056-async-delimiter-change-with-async-pre-value"]'),
-    () => appendOptionsWithSpace('syn-select[data-testid="select-1056-async-delimiter-change-with-pre-value"]'),
-    () => appendOptionsWithSpace('syn-select[data-testid="select-1056-async-delimiter-change-with-async-pre-value"]'),
+    () => appendSyncOptions('syn-select[data-testid="select-1056-async-delimiter-change-with-pre-value"]', 'selectItemsWithSpace'),
+    () => appendSyncOptions('syn-select[data-testid="select-1056-async-delimiter-change-with-async-pre-value"]', 'selectItemsWithSpace'),
   ],
   TabGroup: [
     // #814

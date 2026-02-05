@@ -20,6 +20,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     disabled,
     helpText,
     label,
+    multiple,
     open,
     prefixSlot,
     placeholder,
@@ -32,6 +33,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       disabled=${disabled}
       help-text=${helpText}
       label=${label}
+      multiple=${multiple}
       open=${open}
       placeholder=${placeholder}
       size=${size}
@@ -65,6 +67,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     label: figma.boolean('label', {
       true: figma.string('└─ content/label'),
     }),
+    multiple: figma.boolean('multiple'),
     open: figma.boolean('open'),
     placeholder: figma.boolean('placeholder', {
       true: figma.string('*value'),

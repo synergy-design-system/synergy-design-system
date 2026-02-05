@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
-const numericItems = mockData('selectItemsMixedId');
+const numericItems = mockData('selectItemsMixedValue');
 const delimiterItems = mockData('selectItemsWithSpace');
 
 export const Select = () => {
@@ -48,7 +48,7 @@ export const Select = () => {
           value={1}
         >
           {numericItems.map(item => (
-            <syn-option key={item.id} value={item.id} disabled={item.disabled}>
+            <syn-option key={item.value} value={item.value} disabled={item.disabled}>
               {item.label}
             </syn-option>
           ))}
@@ -62,7 +62,7 @@ export const Select = () => {
           value={[1, 'three']}
         >
           {numericItems.map(item => (
-            <syn-option key={item.id} value={item.id} disabled={item.disabled}>
+            <syn-option key={item.value} value={item.value} disabled={item.disabled}>
               {item.label}
             </syn-option>
           ))}

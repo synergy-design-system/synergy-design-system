@@ -123,6 +123,41 @@
 
     <syn-divider></syn-divider>
 
+    <!-- Topics -->
+    <fieldset class="syn-fieldset">
+      <legend class="syn-legend">Topics</legend>
+      <syn-select
+        clearable
+        id="topics"
+        label="I am interested in the following technologies"
+        multiple
+        name="select-topics"
+      >
+        <syn-optgroup label="Frontend">
+          <syn-option value="angular">Angular</syn-option>
+          <syn-option value="react">React.js</syn-option>
+          <syn-option value="vanilla">Vanilla.js</syn-option>
+          <syn-option value="vue">Vue</syn-option>
+        </syn-optgroup>
+        <syn-optgroup label="Backend">
+          <syn-option value="node">Node.js</syn-option>
+          <syn-option value="Python">Python</syn-option>
+        </syn-optgroup>
+      </syn-select>
+
+      <syn-combobox
+        id="testing-frameworks"
+        label="Which testing frameworks do you use?"
+        multiple
+        name="testing"
+        placeholder="Select testing frameworks"
+        required
+      ></syn-combobox>
+    </fieldset>
+    <!-- /Topics -->
+
+    <syn-divider></syn-divider>
+
     <!-- Happiness -->
     <fieldset id="happiness-fields" class="syn-fieldset">
       <legend class="syn-legend">Happiness</legend>

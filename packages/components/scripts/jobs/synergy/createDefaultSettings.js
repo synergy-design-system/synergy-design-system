@@ -22,6 +22,11 @@ const getDefaultAttributes = attributes => attributes.filter(
   attr => attr.default !== undefined && !!attr.default && attr.default !== "''",
 );
 
+const getDefaultMembers = members => members.filter(
+  // only include field type, public members with a default value that is not an empty string
+  member => member.kind === 'field'&& !member.privacy && !member.static && !member.readonly && !!member.default && member.default !== "''",
+);
+
 /**
  * Get an object representing the default settings for each component
  * @param {array} components The components
@@ -29,16 +34,37 @@ const getDefaultAttributes = attributes => attributes.filter(
  * @returns {object} The key value attributes object
  */
 const createSynDefaultSettingsStructure = (components, whiteListedAttributes = []) => components
-  // 1. Get a list of all items that have attributes with default values
-  .filter(({ attributes }) => attributes && getDefaultAttributes(attributes).length > 0)
-  // 2. Create a new array that contains the component name and the attributes with default values
-  .map(({ attributes, name }) => ({
-    attributes: getDefaultAttributes(attributes),
+  // 1. Get a list of all items that have attributes with default values or field members with default values
+  .filter(({ attributes, members }) => (attributes && getDefaultAttributes(attributes).length > 0)
+    || (members && getDefaultMembers(members).length > 0))
+  // 2. Create a new array that contains the component name, the attributes and the members with default values
+  .map(({ attributes, members, name }) => ({
+    attributes: attributes && getDefaultAttributes(attributes),
+    members: members && getDefaultMembers(members),
     name,
   }))
-  // 3. Create an array that includes the component name and default attribute names
+  // 3. Merge missing members to attributes, if they are not already there
+  .map(({ attributes, members, name }) => {
+    const mergedAttributes = attributes ? [...attributes] : [];
+    if (members && members.length > 0) {
+      members.forEach(member => {
+        const alreadyExists = mergedAttributes.find(attr => attr.fieldName === member.name);
+        if (!alreadyExists) {
+          mergedAttributes.push({
+            default: member.default,
+            fieldName: member.name,
+          });
+        }
+      });
+    }
+    return {
+      attributes: mergedAttributes,
+      name,
+    };
+  })
+  // 4. Create an array that includes the component name and default attribute names
   .map(({ attributes, name }) => [name, attributes.map(attr => attr.fieldName)])
-  // 4: Reverse the map, create an object that has the attributes as key and components as values
+  // 5: Reverse the map, create an object that has the attributes as key and components as values
   // Also make sure to only include whitelisted attributes!
   .reduce((acc, [name, attributes]) => {
     attributes.forEach(attr => {
@@ -87,7 +113,11 @@ const createDefaultSettingsExport = (components, whiteListedAttributes = []) => 
     .map(([attr, cList]) => {
       const componentListWithDefaults = cList.map(c => {
         const foundComponent = components.find(({ name }) => name === c);
-        const defaultValue = foundComponent?.attributes.find(({ fieldName }) => fieldName === attr);
+        let defaultValue = foundComponent?.attributes.find(({ fieldName }) => fieldName === attr);
+        // The default value might also be in the members
+        if (!defaultValue) {
+          defaultValue = foundComponent?.members.find(({ name: memberName }) => memberName === attr);
+        }
         return [c, defaultValue?.default];
       });
       return [attr, componentListWithDefaults];

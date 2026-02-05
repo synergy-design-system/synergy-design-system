@@ -208,14 +208,14 @@ export default class SynSideNav extends SynergyElement {
     this.drawer.forceVisibility(this.variant !== 'default');
 
     switch (this.variant) {
-    case 'rail':
+      case 'rail':
       // For hover handling
-      this.addMouseListener();
-      break;
-    case 'sticky':
-    case 'default':
-    default:
-      this.removeMouseListener();
+        this.addMouseListener();
+        break;
+      case 'sticky':
+      case 'default':
+      default:
+        this.removeMouseListener();
     }
   }
 
@@ -316,20 +316,20 @@ export default class SynSideNav extends SynergyElement {
     });
 
     switch (this.variant) {
-    case 'rail':
+      case 'rail':
       // Wait for the drawer`s update to be completed
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      this.drawer.updateComplete.then(() => {
-        this.addMouseListener();
-      });
-      break;
-    case 'sticky': break;
-    case 'default':
-    default:
-      if (this.noFocusTrapping) {
+        this.drawer.updateComplete.then(() => {
+          this.addMouseListener();
+        });
+        break;
+      case 'sticky': break;
+      case 'default':
+      default:
+        if (this.noFocusTrapping) {
         // Disable the focus trapping of the modal
-        this.drawer.modal.activateExternal();
-      }
+          this.drawer.modal.activateExternal();
+        }
     }
   }
 

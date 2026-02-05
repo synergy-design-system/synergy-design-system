@@ -47,12 +47,12 @@ export const DemoForm = () => {
       let finalValue;
 
       switch (element.tagName.toLocaleLowerCase()) {
-      case 'syn-checkbox':
-      case 'syn-switch':
-        finalValue = (element as SynCheckbox).checked;
-        break;
-      case 'syn-file': finalValue = (element as SynFile).files; break;
-      default: finalValue = value;
+        case 'syn-checkbox':
+        case 'syn-switch':
+          finalValue = (element as SynCheckbox).checked;
+          break;
+        case 'syn-file': finalValue = (element as SynFile).files; break;
+        default: finalValue = value;
       }
 
       setFormData((curr) => ({

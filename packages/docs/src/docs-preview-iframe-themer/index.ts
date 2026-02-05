@@ -22,19 +22,19 @@ export default function docsPreviewIframeThemer(storyContext: StoryContext) {
     let themeClass = CLASSES.SICK_2018_LIGHT;
 
     switch (theme) {
-    case SICK_2025_DARK:
-      themeClass = CLASSES.SICK_2025_DARK;
-      break;
-    case SICK_2025_LIGHT:
-      themeClass = CLASSES.SICK_2025_LIGHT;
-      break;
-    case DARK_THEME:
-      themeClass = CLASSES.SICK_2018_DARK;
-      break;
-    case LIGHT_THEME:
-    default:
-      themeClass = CLASSES.SICK_2018_LIGHT;
-      break;
+      case SICK_2025_DARK:
+        themeClass = CLASSES.SICK_2025_DARK;
+        break;
+      case SICK_2025_LIGHT:
+        themeClass = CLASSES.SICK_2025_LIGHT;
+        break;
+      case DARK_THEME:
+        themeClass = CLASSES.SICK_2018_DARK;
+        break;
+      case LIGHT_THEME:
+      default:
+        themeClass = CLASSES.SICK_2018_LIGHT;
+        break;
     }
 
     const iframeStorys = document.querySelectorAll<HTMLIFrameElement>(`#iframe--${storyContext.id}`);

@@ -20,7 +20,7 @@
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
-    "@types/react": "^19.2.11",
+    "@types/react": "^19.2.13",
     "@wc-toolkit/storybook-helpers": "^10.0.0",
     "change-case": "^5.4.4",
     "chromatic": "^15.0.0",

@@ -48,10 +48,10 @@ const getComponentsMigrationMetaData = async () => {
 
 export const getMigrationMetaData = async (requestedPackage: AvailablePackages = 'components') => {
   switch (requestedPackage) {
-  case 'assets': return getAssetsMigrationMetaData();
-  case 'tokens': return getTokensMigrationMetaData();
-  case 'styles': return getStylesMigrationMetaData();
-  case 'components':
-  default: return getComponentsMigrationMetaData();
+    case 'assets': return getAssetsMigrationMetaData();
+    case 'tokens': return getTokensMigrationMetaData();
+    case 'styles': return getStylesMigrationMetaData();
+    case 'components':
+    default: return getComponentsMigrationMetaData();
   }
 };

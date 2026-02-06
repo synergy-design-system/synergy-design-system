@@ -4,19 +4,19 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
-    "@eslint/eslintrc": "^3.2.0",
-    "@eslint/js": "^9.17.0",
-    "@stylistic/eslint-plugin": "^5.6.1",
+    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/js": "^9.39.2",
+    "@stylistic/eslint-plugin": "^5.7.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^18.0.0",
-    "eslint-plugin-compat": "^6.0.2",
-    "eslint-plugin-import": "^2.31.0",
-    "globals": "^17.0.0",
-    "typescript-eslint": "^8.51.0"
+    "eslint-plugin-compat": "^6.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "globals": "^17.3.0",
+    "typescript-eslint": "^8.54.0"
   },
   "description": "ESLint core rules used in the Synergy Design System",
   "devDependencies": {
-    "eslint": "^9.17.0"
+    "eslint": "^9.39.2"
   },
   "exports": {
     ".": "./eslint.config.js",

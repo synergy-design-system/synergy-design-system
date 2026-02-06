@@ -94,20 +94,20 @@ export async function runDocsScraper(
 
   try {
     switch (type) {
-    case 'components':
-      await scraper.scrapeComponents();
-      break;
-    case 'styles':
-      await scraper.scrapeStyles();
-      break;
-    case 'templates':
-      await scraper.scrapeTemplates();
-      break;
-    case 'all':
-      await scraper.scrapeAll();
-      break;
-    default:
-      throw new Error(`Unknown scraping type: ${type as string}`);
+      case 'components':
+        await scraper.scrapeComponents();
+        break;
+      case 'styles':
+        await scraper.scrapeStyles();
+        break;
+      case 'templates':
+        await scraper.scrapeTemplates();
+        break;
+      case 'all':
+        await scraper.scrapeAll();
+        break;
+      default:
+        throw new Error(`Unknown scraping type: ${type as string}`);
     }
   } catch (error) {
     console.error('Scraping failed:', error);

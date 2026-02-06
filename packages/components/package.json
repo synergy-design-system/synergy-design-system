@@ -103,7 +103,7 @@
     "eslint-plugin-wc": "^3.0.2",
     "globby": "^16.1.0",
     "html-validate": "^10.7.0",
-    "ora": "^9.2.0",
+    "ora": "^9.3.0",
     "postcss": "^8.5.6",
     "postcss-header": "^3.0.3",
     "postcss-import": "^16.1.1",

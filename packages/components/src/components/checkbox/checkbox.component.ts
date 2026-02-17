@@ -14,7 +14,6 @@ import formControlCustomStyles from '../../styles/form-control.custom.styles.js'
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './checkbox.styles.js';
-import customStyles from './checkbox.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
@@ -47,7 +46,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynCheckbox')
 export default class SynCheckbox extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles];
   static dependencies = { 'syn-icon': SynIcon };
 
   private readonly formControlController = new FormControlController(this, {

@@ -1,9 +1,8 @@
 <fieldset class="syn-fieldset">
-  <legend
-    class="syn-legend"
-    *ngIf="legend && legend.length > 0"
-  >
-    {{ legend }}
-  </legend>
+  @if (legend && legend.length > 0) {
+    <legend class="syn-legend">
+      {{ legend }}
+    </legend>
+  }
   <ng-content></ng-content>
 </fieldset>

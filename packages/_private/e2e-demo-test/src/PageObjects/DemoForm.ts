@@ -64,6 +64,7 @@ export class DemoForm extends BaseFormObject {
       this.email,
       this.phone,
       this.gender,
+      this.testingFrameworks,
     ];
   }
 
@@ -92,6 +93,9 @@ export class DemoForm extends BaseFormObject {
       role.open = false;
       role.blur();
     });
+
+    await fillField(this.testingFrameworks, 'jest', '.combobox__display-input');
+    await fillField(this.testingFrameworks, 'jasmine', '.combobox__display-input');
 
     // Drag the happiness handle to a 9 of 10 rating
     await this.happiness.dragTo(this.happiness, {
@@ -129,6 +133,7 @@ export class DemoForm extends BaseFormObject {
     expect(await getInputValue(this.additionalInfo)).toBe('');
     expect(await getInputValue(this.happiness)).toBe('5');
     expect(await getInputValue(this.donations)).toBe('2000 4000');
+    expect(await getInputValue(this.testingFrameworks)).toEqual([]);
 
     const allNews = await Promise.all(this.allNews.map((news) => getCheckedValue(news)));
     allNews.forEach(val => expect(val).toBeFalsy());

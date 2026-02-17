@@ -2,6 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --sticky-position: 0;
+
     display: block;
   }
 
@@ -132,6 +134,9 @@ export default css`
   :host([sticky]) {
     box-shadow: var(--syn-shadow-large);
     position: sticky;
-    top: 0;
+    top: var(--sticky-position);
+
+    /* Make sure the header is above all other content, but below any potential modals or overlays */
+    z-index: calc(infinity - 1);
   }
 `;

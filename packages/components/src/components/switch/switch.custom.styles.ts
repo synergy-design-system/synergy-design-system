@@ -30,23 +30,6 @@ export default css`
     opacity: var(--syn-input-disabled-opacity);
   }
 
-  .switch.switch--small {
-    padding: var(--syn-spacing-2x-small) 0;
-  }
-
-  .switch.switch--medium {
-    padding: var(--syn-spacing-2x-small) 0;
-  }
-
-  .switch.switch--large {
-    padding: var(--syn-spacing-3x-small) 0;
-  }
-
-  /* Hint: can be removed, if the padding stylings for sizes from above are removed */
-  .form-control--has-help-text .switch {
-    padding-bottom: 0;
-  }
-
   .switch__control {
     background-color: var(--syn-input-icon-icon-clearable-color);
     border: solid var(--syn-border-width-medium) var(--syn-input-icon-icon-clearable-color);
@@ -61,82 +44,21 @@ export default css`
     background-color: var(--syn-interactive-emphasis-color);
     border-color: var(--syn-interactive-emphasis-color);
   }
-  
-  /* Hover */
-  .switch:not(.switch--checked):not(.switch--disabled):hover .switch__control {
-    background-color: var(--syn-input-icon-icon-clearable-color-hover);
-    border-color: var(--syn-input-icon-icon-clearable-color-hover);
-  }
-
-  .switch:not(.switch--checked):not(.switch--disabled):hover .switch__control:hover .switch__thumb {
-    background-color: var(--syn-color-neutral-0);
-  }
-
-  /* Checked + hover */
-  .switch.switch--checked:not(.switch--disabled):hover .switch__control {
-    background-color: var(--syn-interactive-emphasis-color-hover);
-    border-color: var(--syn-interactive-emphasis-color-hover);
-  }
-
-  .switch.switch--checked:not(.switch--disabled):hover .switch__control:hover .switch__thumb {
-    background-color: var(--syn-color-neutral-0);
-  }
-
-  /*
-   * #443: Add active styles
-   * The checked and unchecked states have different active colors
-   * Note the fallback is defined to match the hover color.
-   * This is done to make sure no active state is shown at all if no active color is defined.
-   * Still better than showing one for the unchecked state but not for the checked state.
-   */
-  .switch:not(.switch--checked):not(.switch--disabled):active .switch__control {
-    background: var(--syn-input-icon-icon-clearable-color-active);
-    border-color: var(--syn-input-icon-icon-clearable-color-active);
-  }
-
-  .switch.switch--checked:not(.switch--disabled):active .switch__control {
-    background: var(--syn-interactive-emphasis-color-active);
-    border-color: var(--syn-interactive-emphasis-color-active);
-  }
-
-  /* Focus */
-  .switch:not(.switch--checked):not(.switch--disabled) .switch__input:focus-visible ~ .switch__control {
-    background-color: var(--syn-input-icon-icon-clearable-color);
-    border-color: var(--syn-input-icon-icon-clearable-color);
-    outline: var(--syn-focus-ring);
-    outline-offset: var(--syn-focus-ring-offset);
-  }
-
-  .switch:not(.switch--checked):not(.switch--disabled) .switch__input:focus-visible ~ .switch__control .switch__thumb {
-    background-color: var(--syn-color-neutral-0);
-    outline: none;
-  }
-
-  /* Checked + focus */
-  .switch.switch--checked:not(.switch--disabled) .switch__input:focus-visible ~ .switch__control {
-    background-color: var(--syn-interactive-emphasis-color);
-    border-color: var(--syn-interactive-emphasis-color);
-    outline: var(--syn-focus-ring);
-    outline-offset: var(--syn-focus-ring-offset);
-  }
-
-  .switch.switch--checked:not(.switch--disabled) .switch__input:focus-visible ~ .switch__control .switch__thumb {
-    background-color: var(--syn-color-neutral-0);
-    outline: none;
-  }
 
   .switch__label {
     margin-inline-start: var(--syn-spacing-x-small);
   }
-  
-  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control {
-    background-color: var(--syn-input-border-color-focus-error);
-    border-color: var(--syn-input-border-color-focus-error);
+
+  .switch.switch--small {
+    padding: var(--syn-spacing-2x-small) 0;
   }
 
-  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled):hover .switch__control {
-    background-color: var(--syn-input-border-color-hover);
-    border-color: var(--syn-input-border-color-hover);
+  .switch.switch--medium {
+    padding: var(--syn-spacing-2x-small) 0;
+  }
+
+  .switch.switch--large {
+    padding: var(--syn-spacing-3x-small) 0;
   }
 
   /**
@@ -155,17 +77,113 @@ export default css`
   .switch.switch--readonly .switch__control {
     background: var(--syn-readonly-background-color);
     border-color: var(--syn-readonly-background-color);
-    color: var(--syn-readonly-indicator-color);
     cursor: default;
   }
 
   .switch.switch--readonly:hover .switch__control {
-    background: var(--syn-readonly-background-color-hover) !important;
-    border-color: var(--syn-readonly-background-color-hover) !important;
+    background: var(--syn-input-readonly-background-color-hover) !important;
+    border-color: var(--syn-input-readonly-background-color-hover) !important;
   }
 
   .switch.switch--readonly .switch__input:focus ~ .switch__control {
     outline: var(--syn-focus-ring);
     outline-offset: var(--syn-focus-ring-offset);
+  }
+
+  .switch.switch--readonly .switch__control .switch__thumb {
+    background: var(--syn-readonly-indicator-color) !important;
+  }
+
+  /* Override base styles to remove outline from thumb for readonly switches */
+  .switch.switch--readonly .switch__input:focus-visible ~ .switch__control .switch__thumb {
+    outline: none !important;
+  }
+
+  .switch.switch--readonly.switch--checked .switch__input:focus-visible ~ .switch__control .switch__thumb {
+    outline: none !important;
+  }
+
+  /* Focus override */
+  .switch.switch--readonly .switch__input:focus-visible ~ .switch__control {
+    background-color: var(--syn-readonly-background-color) !important;
+    border-color: var(--syn-readonly-background-color) !important;
+  }
+
+  /* Hint: can be removed, if the padding stylings for sizes from above are removed */
+  .form-control--has-help-text .switch {
+    padding-bottom: 0;
+  }
+ 
+  /* Hover */
+  .switch:not(.switch--checked):not(.switch--disabled):not(.switch--readonly):hover .switch__control {
+    background-color: var(--syn-input-icon-icon-clearable-color-hover);
+    border-color: var(--syn-input-icon-icon-clearable-color-hover);
+  }
+
+  .switch:not(.switch--checked):not(.switch--disabled):not(.switch--readonly):hover .switch__control:hover .switch__thumb {
+    background-color: var(--syn-color-neutral-0);
+  }
+
+  /* Checked + hover */
+  .switch.switch--checked:not(.switch--disabled):not(.switch--readonly):hover .switch__control {
+    background-color: var(--syn-interactive-emphasis-color-hover);
+    border-color: var(--syn-interactive-emphasis-color-hover);
+  }
+
+  .switch.switch--checked:not(.switch--disabled):not(.switch--readonly):hover .switch__control:hover .switch__thumb {
+    background-color: var(--syn-color-neutral-0);
+  }
+
+  /*
+   * #443: Add active styles
+   * The checked and unchecked states have different active colors
+   * Note the fallback is defined to match the hover color.
+   * This is done to make sure no active state is shown at all if no active color is defined.
+   * Still better than showing one for the unchecked state but not for the checked state.
+   */
+  .switch:not(.switch--checked):not(.switch--disabled):not(.switch--readonly):active .switch__control {
+    background: var(--syn-input-icon-icon-clearable-color-active);
+    border-color: var(--syn-input-icon-icon-clearable-color-active);
+  }
+
+  .switch.switch--checked:not(.switch--disabled):not(.switch--readonly):active .switch__control {
+    background: var(--syn-interactive-emphasis-color-active);
+    border-color: var(--syn-interactive-emphasis-color-active);
+  }
+
+  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control {
+    background-color: var(--syn-input-border-color-focus-error);
+    border-color: var(--syn-input-border-color-focus-error);
+  }
+
+  /* Focus */
+  .switch:not(.switch--checked):not(.switch--disabled):not(.switch--readonly) .switch__input:focus-visible ~ .switch__control {
+    background-color: var(--syn-input-icon-icon-clearable-color);
+    border-color: var(--syn-input-icon-icon-clearable-color);
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
+  }
+
+  .switch:not(.switch--checked):not(.switch--disabled):not(.switch--readonly) .switch__input:focus-visible ~ .switch__control .switch__thumb {
+    background-color: var(--syn-color-neutral-0);
+    outline: none;
+  }
+
+  /* Checked + focus */
+  .switch.switch--checked:not(.switch--disabled):not(.switch--readonly) .switch__input:focus-visible ~ .switch__control {
+    background-color: var(--syn-interactive-emphasis-color);
+    border-color: var(--syn-interactive-emphasis-color);
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
+  }
+
+  .switch.switch--checked:not(.switch--disabled):not(.switch--readonly) .switch__input:focus-visible ~ .switch__control .switch__thumb {
+    background-color: var(--syn-color-neutral-0);
+    outline: none;
+  }
+
+  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled):hover .switch__control {
+    background-color: var(--syn-input-border-color-hover);
+    border-color: var(--syn-input-border-color-hover);
   }
 `;

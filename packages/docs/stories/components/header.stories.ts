@@ -226,6 +226,7 @@ export const Screenshot: Story = generateScreenshotStory({
   MetaNavigation,
   Navigation,
   BurgerMenu,
+  Sticky,
 }, {
   heightPx: 200,
 });

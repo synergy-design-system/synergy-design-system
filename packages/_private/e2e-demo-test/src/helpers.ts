@@ -56,6 +56,29 @@ export const getCheckedValue = async (locator: Locator) => locator
   .evaluate((el: SynCheckbox | SynSwitch) => el.checked);
 
 /**
+ * Click on the interactive control of form components (checkbox, switch, etc.)
+ * This function automatically detects the component type and clicks the correct selector.
+ *
+ * @param locator The form component locator
+ */
+export const clickFormControl = async (locator: Locator) => {
+  const tagName = await locator.evaluate((el) => el.tagName.toLowerCase());
+
+  switch (tagName) {
+  case 'syn-checkbox':
+    await locator.locator('.checkbox').click();
+    break;
+  case 'syn-switch':
+    await locator.locator('.switch').click();
+    break;
+  default:
+    // Fallback to clicking the root element for unknown components
+    await locator.click();
+    break;
+  }
+};
+
+/**
  * Set the locators inner field value.
  * If the element is blurred after the value is set, the syn-change event is triggered.
  * If the element is not blurred, only the syn-input event is triggered.

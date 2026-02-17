@@ -16,6 +16,21 @@ import {
 export class DemoForm extends BaseFormObject {
   protected initialPage: string = PageObject.availablePages.form;
 
+  get readonlyFields(): Array<Locator> {
+    return [
+      this.newsUI,
+      this.newsUX,
+    ];
+  }
+
+  get newsUI(): Locator {
+    return this.page.locator(selectors.newsLocUI);
+  }
+
+  get newsUX(): Locator {
+    return this.page.locator(selectors.newsLocUX);
+  }
+
   get newsNg(): Locator {
     return this.page.locator(selectors.newsLocSynNg);
   }

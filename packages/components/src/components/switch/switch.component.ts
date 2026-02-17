@@ -71,6 +71,9 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
   /** Disables the switch. */
   @property({ type: Boolean, reflect: true }) disabled = false;
 
+  /** Sets the switch to a readonly state. */
+  @property({ type: Boolean, reflect: true }) readonly = false;
+
   /** Draws the switch in a checked state. */
   @property({ type: Boolean, reflect: true }) checked = false;
 
@@ -119,6 +122,11 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
   }
 
   private handleClick() {
+    if (this.readonly) {
+      this.focus();
+      return;
+    }
+
     this.checked = !this.checked;
     this.emit('syn-change');
   }
@@ -212,6 +220,7 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
             switch: true,
             'switch--checked': this.checked,
             'switch--disabled': this.disabled,
+            'switch--readonly': this.readonly,
             'switch--focused': this.hasFocus,
             'switch--small': this.size === 'small',
             'switch--medium': this.size === 'medium',
@@ -226,6 +235,7 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
             value=${ifDefined(this.value)}
             .checked=${live(this.checked)}
             .disabled=${this.disabled}
+            .readOnly=${this.readonly}
             .required=${this.required}
             role="switch"
             aria-checked=${this.checked ? 'true' : 'false'}

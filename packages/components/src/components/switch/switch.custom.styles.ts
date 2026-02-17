@@ -138,4 +138,34 @@ export default css`
     background-color: var(--syn-input-border-color-hover);
     border-color: var(--syn-input-border-color-hover);
   }
-  `;
+
+  /**
+   * #1178: Readonly state
+   */
+  .switch.switch--readonly {
+    cursor: default;
+  }
+
+  .switch.switch--readonly .switch__label {
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-user-select: auto;
+    user-select: auto;
+  }
+
+  .switch.switch--readonly .switch__control {
+    background: var(--syn-readonly-background-color);
+    border-color: var(--syn-readonly-background-color);
+    color: var(--syn-readonly-indicator-color);
+    cursor: default;
+  }
+
+  .switch.switch--readonly:hover .switch__control {
+    background: var(--syn-readonly-background-color-hover) !important;
+    border-color: var(--syn-readonly-background-color-hover) !important;
+  }
+
+  .switch.switch--readonly .switch__input:focus ~ .switch__control {
+    outline: var(--syn-focus-ring);
+    outline-offset: var(--syn-focus-ring-offset);
+  }
+`;

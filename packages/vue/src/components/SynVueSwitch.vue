@@ -72,6 +72,11 @@ const props = defineProps<{
   disabled?: SynSwitch['disabled'];
 
   /**
+   * Sets the switch to a readonly state.
+   */
+  readonly?: SynSwitch['readonly'];
+
+  /**
    * Draws the switch in a checked state.
    */
   checked?: SynSwitch['checked'];

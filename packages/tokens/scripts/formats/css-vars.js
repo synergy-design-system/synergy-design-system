@@ -129,6 +129,10 @@ export const cssVariableFormatter = {
       // toggle buttons are not part of brand 2025
       'toggle-button-border-radius',
       'toggle-button-color',
+
+      // #529: We needed to introduce a new color token for the header,
+      // but dont want it to appear. We can remove it later, but for now we want to keep it in the codebase to not break the header.
+      'color-shadow-sticky-down-color',
     ].map(v => `${prefix}${v}`);
 
     /**

@@ -354,6 +354,14 @@ export const DemoForm = () => {
         >
           I am interested in the Synergy Beta Program
         </syn-switch>
+        <syn-switch
+          checked={formData.newsletterUX}
+          id="checkbox-newsletter-ux"
+          name="newsletterUX"
+          readonly
+        >
+          I am interested in the Synergy UX Program
+        </syn-switch>
       </DemoFieldset>
       {/* /Marketing */}
 

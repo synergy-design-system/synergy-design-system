@@ -245,6 +245,14 @@
       >
         I am interested in the Synergy Beta Program
       </syn-switch>
+      <syn-switch
+        checked
+        id="checkbox-newsletter-ux"
+        name="newsletterUX"
+        readonly
+      >
+        I am interested in the Synergy UX Program
+      </syn-switch>
     </fieldset>
     <!-- /Marketing -->
 

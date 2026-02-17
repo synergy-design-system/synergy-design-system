@@ -19,6 +19,7 @@ export const initialFullFormData: DemoFormData = {
   newsletterReact: false,
   newsletterStandard: false,
   newsletterUI: true,
+  newsletterUX: true,
   newsletterVanilla: false,
   newsletterVue: false,
   password: 'invalid',

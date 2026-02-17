@@ -341,6 +341,14 @@ const synChange = () => {
       >
         I am interested in the Synergy Beta Program
       </SynVueSwitch>
+      <SynVueSwitch
+        id="checkbox-newsletter-ux"
+        name="newsletterUX"
+        readonly
+        v-model="formData.newsletterUX"
+      >
+        I am interested in the Synergy UX Program
+      </SynVueSwitch>
     </DemoFieldset>
     <!-- /Marketing -->
 

@@ -28,6 +28,9 @@ export const highlightOptionRenderer: OptionRenderer = (option: SynOption, query
 
   const clonedOption = option.cloneNode(true) as SynOption;
   const optionLabel = clonedOption.getTextLabel();
+  // copy the "selected" property value, as it is not copied by cloneNode
+  clonedOption.selected = option.selected;
+
   const queryIndex = optionLabel.toLowerCase().indexOf(query.toLowerCase());
   const indexLabel = clonedOption.innerHTML.indexOf(optionLabel);
 

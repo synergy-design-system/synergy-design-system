@@ -32,6 +32,8 @@ import DemoFieldset from './DemoFieldset.vue';
 
 const nationalities = mockData('nationalities');
 
+const testingFrameworks = mockData('testingFrameworks');
+
 const initialFormData = mockData('initialValidateFormData');
 
 const formData = ref({
@@ -210,6 +212,47 @@ const synChange = () => {
       </SynVueValidate>
     </DemoFieldset>
     <!-- /Security -->
+
+    <SynVueDivider />
+
+    <!-- Topics -->
+    <DemoFieldset legend="Topics">
+      <SynVueSelect
+        clearable
+        id="topics"
+        label="I am interested in the following technologies"
+        multiple
+        name="topics"
+        v-model="formData.topics"
+      >
+        <SynVueOptgroup label="Frontend">
+          <SynVueOption value="angular">Angular</SynVueOption>
+          <SynVueOption value="react">React.js</SynVueOption>
+          <SynVueOption value="vanilla">Vanilla.js</SynVueOption>
+          <SynVueOption value="vue">Vue</SynVueOption>
+        </SynVueOptgroup>
+        <SynVueOptgroup label="Backend">
+          <SynVueOption value="node">Node.js</SynVueOption>
+          <SynVueOption value="Python">Python</SynVueOption>
+        </SynVueOptgroup>
+      </SynVueSelect>
+
+      <SynVueCombobox
+        id="testing-frameworks"
+        label="Which testing frameworks do you use?"
+        multiple
+        name="testing"
+        placeholder="Select testing frameworks"
+        v-model="formData.testing"
+        :getOption="highlightOptionRenderer"
+        required
+      >
+        <SynVueOption v-for="framework in testingFrameworks" :key="framework.value" :value="framework.value">
+          {{ framework.label }}
+        </SynVueOption>
+      </SynVueCombobox>
+    </DemoFieldset>
+    <!-- /Topics -->
 
     <SynVueDivider />
 

@@ -108,5 +108,18 @@ describe('option-renderer', () => {
       expect(mark.tagName).to.equal('MARK');
       expect(mark.textContent).to.equal('Opt');
     });
+
+    it('should return an selected option if the option is selected', async () => {
+      const option = await fixture<SynOption>(html`
+        <syn-option>
+          Option 1
+        </syn-option>
+      `);
+
+      option.selected = true;
+      const query = 'opt';
+      const renderedOption = highlightOptionRenderer(option, query) as SynOption;
+      expect(renderedOption.selected).to.be.true;
+    });
   });
 });

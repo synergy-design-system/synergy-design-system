@@ -208,6 +208,46 @@ export const Disabled: Story = {
   `,
 };
 
+export const Multiple: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'multiple'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox value="option-1 option-2 option-3" multiple clearable max-options-visible="2">
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 3</syn-option>
+      <syn-option value="option-4">Option 4</syn-option>
+      <syn-option value="option-5">Option 5</syn-option>
+      <syn-option value="option-6">Option 6</syn-option>
+    </syn-combobox>
+  `,
+};
+
+export const SettingInitialValue: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'initial-values'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-combobox value="option-1 option-2 option-3" multiple clearable max-options-visible="2">
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 3</syn-option>
+      <syn-option value="option-4">Option 4</syn-option>
+      <syn-option value="option-5">Option 5</syn-option>
+      <syn-option value="option-6">Option 6</syn-option>
+    </syn-combobox>
+  `,
+};
+
 export const Restricted: Story = {
   parameters: {
     docs: {
@@ -596,7 +636,10 @@ export const Screenshot: Story = generateScreenshotStory({
   Placeholder,
   Clearable,
   Disabled,
+  Multiple,
+  SettingInitialValue,
   Restricted,
+  NoResultsFound,
   Sizes,
   PrefixSuffixTextAndIcons,
   AsyncOptions,

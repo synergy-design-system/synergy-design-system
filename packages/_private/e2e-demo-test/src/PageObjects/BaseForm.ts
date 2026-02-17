@@ -80,4 +80,8 @@ export class BaseFormObject extends PageObject {
   get happiness() {
     return this.page.locator(selectors.happinessLoc);
   }
+
+  get testingFrameworks() {
+    return this.page.locator(selectors.testingFrameworks);
+  }
 }

@@ -135,6 +135,15 @@
           <syn-option value="Python">Python</syn-option>
         </syn-optgroup>
       </syn-select>
+
+      <syn-combobox
+        id="testing-frameworks"
+        label="Which testing frameworks do you use?"
+        multiple
+        name="testing"
+        placeholder="Select testing frameworks"
+        required
+      ></syn-combobox>
     </fieldset>
     <!-- /Topics -->
 

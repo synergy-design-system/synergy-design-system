@@ -4,7 +4,7 @@ import { SynVueButton, SynVueSelect, SynVueOption } from '@synergy-design-system
 import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
 const levels = ref<SelectItem[]>([]);
-const numericItems = mockData('selectItemsMixedId');
+const numericItems = mockData('selectItemsMixedValue');
 const delimiterItems = mockData('selectItemsWithSpace');
 const asyncValue = ref<string>();
 
@@ -16,7 +16,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <SynVueSelect :value="'2'" data-testid="select-level-813">
+  <SynVueSelect :value="'2'" data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level.">
     <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
   </SynVueSelect>
   
@@ -36,7 +36,7 @@ onMounted(async () => {
       label="Mixed integer and string values (Single Select)"
       :value=1
     >
-      <SynVueOption v-for="item in numericItems" :value="item.id" :key="item.id"> {{ item.label }}</SynVueOption>
+      <SynVueOption v-for="item in numericItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
     </SynVueSelect>
 
     <SynVueSelect
@@ -46,7 +46,7 @@ onMounted(async () => {
       multiple
       :value="[1, 'three']"
     >
-      <SynVueOption v-for="item in numericItems" :value="item.id" :key="item.id"> {{ item.label }}</SynVueOption>
+      <SynVueOption v-for="item in numericItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
     </SynVueSelect>
   </div>
 

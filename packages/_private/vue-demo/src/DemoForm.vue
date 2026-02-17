@@ -32,6 +32,8 @@ import DemoFieldset from './DemoFieldset.vue';
 
 const nationalities = mockData('nationalities');
 
+const testingFrameworks = mockData('testingFrameworks');
+
 const initialFormData = mockData('initialFullFormData');
 
 const formData = ref({
@@ -227,6 +229,21 @@ const synChange = () => {
           <SynVueOption value="Python">Python</SynVueOption>
         </SynVueOptgroup>
       </SynVueSelect>
+
+      <SynVueCombobox
+        id="testing-frameworks"
+        label="Which testing frameworks do you use?"
+        multiple
+        name="testing"
+        placeholder="Select testing frameworks"
+        v-model="formData.testing"
+        :getOption="highlightOptionRenderer"
+        required
+      >
+        <SynVueOption v-for="framework in testingFrameworks" :key="framework.value" :value="framework.value">
+          {{ framework.label }}
+        </SynVueOption>
+      </SynVueCombobox>
     </DemoFieldset>
     <!-- /Topics -->
 

@@ -23,6 +23,7 @@ type FormEnabledElements = HTMLElement & {
 };
 
 const initialFormData = mockData('initialFullFormData');
+const testingFrameworks = mockData('testingFrameworks');
 
 export const DemoForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -240,6 +241,23 @@ export const DemoForm = () => {
             <syn-option value="Python">Python</syn-option>
           </syn-optgroup>
         </syn-select>
+
+        <syn-combobox
+          id="testing-frameworks"
+          label="Which testing frameworks do you use?"
+          multiple
+          name="testing"
+          placeholder="Select testing frameworks"
+          value={formData.testing}
+          getOption={highlightOptionRenderer}
+          required
+        >
+          {testingFrameworks.map((framework) => (
+            <syn-option key={framework.value} value={framework.value}>
+              {framework.label}
+            </syn-option>
+          ))}
+        </syn-combobox>
       </DemoFieldset>
       {/* /Topics */}
 

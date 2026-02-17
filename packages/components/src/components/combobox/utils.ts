@@ -110,17 +110,25 @@ export const getValueFromOption = (option: SynOption) => {
 };
 
 /**
+ * Get the values for options. If an option has no value, it will use the text label.
+ *
+ * @param options List of syn-options to get the values from
+ * @returns The values of the options
+ */
+export const getValuesFromOptions = (options: SynOption[]) => options.map(getValueFromOption);
+
+/**
  * Check if a value belongs to the value or text label of an option.
  * @param value The value to check
  * @param option The option to check against
  * @returns True if the value belongs to the option, false otherwise
  */
-export const checkValueBelongsToOption = (value: string, option: SynOption | undefined) => {
-  if (!option || !value) {
+export const checkValueBelongsToOption = (value: string | number, option: SynOption | undefined) => {
+  if (!option || value === undefined || value === null || value === '') {
     return false;
   }
 
   const optionValue = option.value;
   const optionText = option.getTextLabel();
-  return value === optionValue || value === optionText;
+  return String(value) === String(optionValue) || String(value) === optionText;
 };

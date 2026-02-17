@@ -105,7 +105,9 @@
         required
         [getOption]="highlightOptionRenderer"
       >
-        <syn-option *ngFor="let nationality of nationalities">{{nationality}}</syn-option>
+        @for (nationality of nationalities; track nationality) {
+          <syn-option>{{nationality}}</syn-option>
+        }
       </syn-combobox>
     </syn-validate>
 
@@ -144,6 +146,47 @@
     </syn-validate>
   </demo-fieldset>
   <!-- /Security -->
+
+   <syn-divider />
+
+  <!-- Topics -->
+  <demo-fieldset legend="Topics">
+    <syn-select
+      clearable
+      formControlName="topics"
+      id="topics"
+      label="I am interested in the following technologies"
+      multiple
+      name="topics"
+    >
+      <syn-optgroup label="Frontend">
+        <syn-option value="angular">Angular</syn-option>
+        <syn-option value="react">React.js</syn-option>
+        <syn-option value="vanilla">Vanilla.js</syn-option>
+        <syn-option value="vue">Vue</syn-option>
+      </syn-optgroup>
+      <syn-optgroup label="Backend">
+        <syn-option value="node">Node.js</syn-option>
+        <syn-option value="Python">Python</syn-option>
+      </syn-optgroup>
+    </syn-select>
+
+    <syn-combobox
+      formControlName="testing"
+      id="testing-frameworks"
+      label="Which testing frameworks do you use?"
+      multiple
+      name="testing"
+      placeholder="Select testing frameworks"
+      [getOption]="highlightOptionRenderer"
+      required
+    >
+      @for (framework of testingFrameworks; track framework.value) {
+        <syn-option [value]="framework.value">{{framework.label}}</syn-option>
+      }
+    </syn-combobox>
+  </demo-fieldset>
+  <!-- /Topics -->
 
   <syn-divider />
 

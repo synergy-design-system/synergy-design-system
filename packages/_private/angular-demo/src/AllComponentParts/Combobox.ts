@@ -3,7 +3,7 @@ import type { SynChangeEvent, SynCombobox } from '@synergy-design-system/compone
 import { SynComboboxComponent } from '@synergy-design-system/angular/components/combobox';
 import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
 import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
-import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-utilities';
+import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
 
 @Component({
   selector: 'demo-combobox',
@@ -67,20 +67,122 @@ import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-util
         <syn-option [value]="level.value">{{level.label}}</syn-option>
       }
     </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-847-multiple"
+      help-text="Normal value binding and async options"
+      label="Multiple with async options"
+      multiple
+      value="1 2"
+    >
+      @for (level of levels; track $index; let index = $index) {
+        <syn-option [value]="level.value">{{level.label}}</syn-option>
+      }
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-1036-subsequently-changed-delimiter"
+      label="Subsequently changed delimiter"
+    >
+      @for (item of delimiterItems; track $index; let index = $index) {
+        <syn-option [value]="item.value">{{item.label}}</syn-option>
+      }
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-1056-async-delimiter-change-with-pre-value"
+      value="Option 2"
+      label="Async changed delimiter with pre value"
+      restricted
+    >
+      @for (item of delimiterItems; track $index; let index = $index) {
+        <syn-option [value]="item.value">{{item.label}}</syn-option>
+      }
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"
+      [value]="asyncValue"
+      label="Async changed delimiter with async pre value"
+      restricted
+    >
+      @for (item of delimiterItems; track $index; let index = $index) {
+        <syn-option [value]="item.value">{{item.label}}</syn-option>
+      }
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-627-delimiter"
+      delimiter="+"
+      help-text="This combobox uses a custom delimiter"
+      label="Multiple with custom delimiter"
+      multiple
+      value="1+2"
+    >
+      @for (level of levels; track $index; let index = $index) {
+        <syn-option [value]="level.value">{{level.label}}</syn-option>
+      }
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-805-single"
+      help-text="Please tell us your skill level."
+      label="Mixed integer and string values (Single Combobox)"
+      [value]=1
+    >
+      @for (item of numericItems; track $index; let index = $index) {
+        <syn-option [value]="item.value"> {{item.label}}</syn-option>
+      }
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-805-multi"
+      help-text="Please tell us your skill level."
+      label="Mixed integer and string values (multi Combobox)"
+      multiple
+      [value]="[1, 'three']"
+    >
+      @for (item of numericItems; track $index; let index = $index) {
+        <syn-option [value]="item.value"> {{item.label}}</syn-option>
+      }
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-885-value-zero-string"
+      label="Combobox should allow to select value of string(zero)"
+      value="0"
+    >
+      <syn-option value="0">Zero (string)</syn-option>
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-885-value-zero-number"
+      label="Combobox should allow to select value of number(zero)"
+      [value]=0
+    >
+      <syn-option [value]=0>Zero (numeric)</syn-option>
+    </syn-combobox>
   `,
 })
 export class Combobox implements OnInit {
   levels: SelectItem[] = [];
-
+  delimiterItems = mockData('selectItemsWithSpace');
+  numericItems = mockData('selectItemsMixedValue');
   cb632Value: string = '';
+  // @ts-ignore
+  asyncValue: string;
+
 
   setcb632Value(e: SynChangeEvent) {
-    this.cb632Value = (e.target as SynCombobox).value;
+    this.cb632Value = (e.target as SynCombobox).value as string;
   };
 
   ngOnInit(): void {
     mockAsyncData('selectItems').then((items) => {
       this.levels = items;
+    });
+    mockAsyncData('valueWithSpace').then((value) => {
+      this.asyncValue = value;
     });
   }
 }

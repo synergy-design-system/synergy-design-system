@@ -22,6 +22,7 @@ export class DemoFormValidate extends BaseFormObject {
       this.password,
       this.newsSyn,
       this.newsBeta,
+      this.testingFrameworks,
     ];
   }
 
@@ -53,6 +54,12 @@ export class DemoFormValidate extends BaseFormObject {
     await fillField(this.nationality, 'German', '.combobox__display-input');
     await this.page.waitForTimeout(timeout);
 
+    await fillField(this.testingFrameworks, 'jest', '.combobox__display-input');
+    await this.page.waitForTimeout(timeout);
+
+    await fillField(this.testingFrameworks, 'jasmine', '.combobox__display-input');
+    await this.page.waitForTimeout(timeout);
+
     await this.newsSyn.click({
       position: { x: 10, y: 10 },
     });
@@ -82,6 +89,7 @@ export class DemoFormValidate extends BaseFormObject {
     expect(await getInputValue(this.password)).toBe('invalid');
     expect(await getInputValue(this.passwordRecovery)).toBe('');
     expect(await getInputValue(this.nationality)).toBe('');
+    expect(await getInputValue(this.testingFrameworks)).toEqual([]);
 
     const all = (await Promise.all(this.allRequiredInputs.map((input) => input.getAttribute('data-invalid'))));
     all.forEach((val) => expect(val).toBe(''));

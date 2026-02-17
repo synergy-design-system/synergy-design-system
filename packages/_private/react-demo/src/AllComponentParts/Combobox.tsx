@@ -1,17 +1,30 @@
 import { useEffect, useState } from 'react';
 import type { SynCombobox } from '@synergy-design-system/components';
-import { type SelectItem, mockAsyncData } from '@synergy-design-system/demo-utilities';
+import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
+
+const delimiterItems = mockData('selectItemsWithSpace');
+const numericItems = mockData('selectItemsMixedValue');
 
 export const Combobox = () => {
   const [levels, setLevels] = useState<SelectItem[]>([]);
   const [cb632Value, setcb632Value] = useState<string>('');
+  const [asyncValue, setAsyncValue] = useState<string>('');
+
+  const fetchLevels = async () => {
+    const items = await mockAsyncData('selectItems');
+    setLevels(items);
+  };
+  const fetchAsyncValue = async () => {
+    const value = await mockAsyncData('valueWithSpace');
+    setAsyncValue(value);
+  };
+
   useEffect(() => {
-    const fetchLevels = async () => {
-      const items = await mockAsyncData('selectItems');
-      setLevels(items);
+    const bootstrap = async () => {
+      await Promise.all([fetchLevels(), fetchAsyncValue()]);
     };
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    fetchLevels();
+    bootstrap();
   }, []);
   return (
     <>
@@ -71,6 +84,116 @@ export const Combobox = () => {
           </syn-option>
         ))}
       </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-847-multiple"
+        help-text="Normal value binding and async options"
+        label="Multiple with async options"
+        multiple
+        value="1 2"
+      >
+        {levels.map(level => (
+          <syn-option key={level.value} value={level.value}>
+            {level.label}
+          </syn-option>
+        ))}
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-1036-subsequently-changed-delimiter"
+        label="Subsequently changed delimiter"
+      >
+        {delimiterItems.map(item => (
+          <syn-option key={item.value} value={item.value}>
+            {item.label}
+          </syn-option>
+        ))}
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-1056-async-delimiter-change-with-pre-value"
+        value="Option 2"
+        label="Async changed delimiter with pre value"
+        restricted
+      >
+        {delimiterItems.map(item => (
+          <syn-option key={item.value} value={item.value}>
+            {item.label}
+          </syn-option>
+        ))}
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"
+        value={asyncValue}
+        label="Async changed delimiter with async pre value"
+        restricted
+      >
+        {delimiterItems.map(item => (
+          <syn-option key={item.value} value={item.value}>
+            {item.label}
+          </syn-option>
+        ))}
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-627-delimiter"
+        delimiter="+"
+        help-text="This combobox uses a custom delimiter"
+        label="Multiple with custom delimiter"
+        multiple
+        value="1+2"
+      >
+        {levels.map(level => (
+          <syn-option key={level.value} value={level.value}>
+            {level.label}
+          </syn-option>
+        ))}
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-805-single"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (Single Combobox)"
+        value={1}
+      >
+        {numericItems.map(item => (
+          <syn-option key={item.value} value={item.value} disabled={item.disabled}>
+            {item.label}
+          </syn-option>
+        ))}
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-805-multi"
+        help-text="Please tell us your skill level."
+        label="Mixed integer and string values (multi Combobox)"
+        multiple
+        value={[1, 'three']}
+      >
+        {numericItems.map(item => (
+          <syn-option key={item.value} value={item.value} disabled={item.disabled}>
+            {item.label}
+          </syn-option>
+        ))}
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-885-value-zero-string"
+        label="Combobox should allow to select value of string(zero)"
+        value="0"
+      >
+        <syn-option value="0">Zero (string)</syn-option>
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-885-value-zero-number"
+        label="Combobox should allow to select value of number(zero)"
+        value={0}
+      >
+        <syn-option value={0}>Zero (numeric)</syn-option>
+      </syn-combobox>
+
     </>
   );
 };

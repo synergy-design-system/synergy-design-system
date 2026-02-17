@@ -51,5 +51,71 @@ export const Combobox = (regressions: RegressionFns = []) => {
       restricted
       value="3"
     ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-847-multiple"
+      help-text="Normal value binding and async options"
+      label="Multiple with async options"
+      multiple
+      value="1 2"
+    ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-1036-subsequently-changed-delimiter"
+      label="Subsequently changed delimiter"
+    ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-1056-async-delimiter-change-with-pre-value"
+      value="Option 2"
+      label="Async changed delimiter with pre value"
+      restricted
+    ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"
+      label="Async changed delimiter with async pre value"
+      restricted
+    ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-627-delimiter"
+      delimiter="+"
+      help-text="This combobox uses a custom delimiter"
+      label="Multiple with custom delimiter"
+      multiple
+      value="1+2"
+    ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-805-single"
+      help-text="Please tell us your skill level."
+      label="Mixed integer and string values (Single Combobox)"
+      .value=${Number(1)}
+    ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-805-multi"
+      help-text="Please tell us your skill level."
+      label="Mixed integer and string values (multi Combobox)"
+      multiple
+      .value=${[1, 'three']}
+    ></syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-885-value-zero-string"
+      label="Combobox should allow to select value of string(zero)"
+      value="0"
+    >
+      <syn-option value="0">Zero (string)</syn-option>
+    </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-885-value-zero-number"
+      label="Combobox should allow to select value of number(zero)"
+      .value=${0}
+    >
+      <syn-option .value=${0}>Zero (numeric)</syn-option>
+    </syn-combobox>
   `;
 };

@@ -80,7 +80,7 @@ const { registerIconLibrary } = components;
 
 registerIconLibrary("default", {
 resolver: (name) =>
-\`https://esm.sh/@synergy-design-system/assets@${packageVersions['@synergy-design-system/assets']}/src/icons/\${name}.svg\`
+\`https://esm.sh/@synergy-design-system/assets@${packageVersions['@synergy-design-system/assets']}/src/sick2025/icons/outline/\${name}.svg\`
 });`,
           js_external: '',
           js_module: true,

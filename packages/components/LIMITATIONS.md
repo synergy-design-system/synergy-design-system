@@ -4,6 +4,64 @@ This file lists known issues and limitations of Synergy Web Components and usefu
 
 ---
 
+<h2 id="syn-option-spaces">Console errors when using spaces in `<syn-option>` values</h2>
+
+<h3 id="syn-option-spaces-meta">Meta Information</h3>
+
+- Framework version: ALL
+- Synergy version: ALL
+- Issues: [#1087](https://github.com/synergy-design-system/synergy-design-system/issues/1087)
+
+<h3 id="syn-option-spaces-description">Description</h3>
+
+When using `<syn-option>` components with values that contain spaces inside `<syn-select>` or `<syn-combobox>` components, you may see console errors like:
+
+> Option values cannot include " ". All occurrences of " " have been replaced with "\_".
+
+<h3 id="syn-option-spaces-cause">Cause</h3>
+
+When using the `multiple` attribute, Synergy components create a space-separated list of selected values (e.g., `"Option_One Option_Two"`). If option values themselves contain spaces, the component cannot properly distinguish between individual values in this list. To prevent data corruption, spaces in option values are automatically replaced with underscores (`_`).
+
+<h3 id="syn-option-spaces-solution">Proposed Solution</h3>
+
+<h4 id="syn-option-spaces-problem">Problem</h4>
+
+```html
+<syn-select multiple>
+  <syn-option value="Option One">Option One</syn-option>
+  <syn-option value="Option Two">Option Two</syn-option>
+</syn-select>
+```
+
+<h4 id="syn-option-spaces-solution-1">Solution 1: Use space-free values (Recommended)</h4>
+
+Design your option values without spaces and use the display text separately:
+
+```html
+<syn-select multiple>
+  <syn-option value="option-one">Option One</syn-option>
+  <syn-option value="option-two">Option Two</syn-option>
+</syn-select>
+```
+
+<h4 id="syn-option-spaces-solution-2">Solution 2: Change the global delimiter</h4>
+
+If you need to keep spaces in values and don't mind changing how all select and combobox components work globally, you can configure a different delimiter:
+
+```js
+import { setGlobalDefaultSettings } from "@synergy-design-system/components";
+
+setGlobalDefaultSettings({
+  delimiter: {
+    SynOption: ",",
+    SynSelect: ",",
+    SynCombobox: ",",
+  },
+});
+```
+
+**Note:** This affects **all** select and combobox components in your application, which do not explicitly set the `delimiter` attribute.
+
 <h2 id="syn-input-number-width">`<syn-input type="number">` is too large when no `width` is set</h2>
 
 <h3 id="syn-input-number-width-meta">Meta Information</h3>

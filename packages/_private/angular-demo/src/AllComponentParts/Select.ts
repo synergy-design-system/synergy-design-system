@@ -36,7 +36,7 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
         [value]=1
       >
         @for (item of numericItems; track $index; let index = $index) {
-          <syn-option [value]="item.id"> {{item.label}}</syn-option>
+          <syn-option [value]="item.value"> {{item.label}}</syn-option>
         }
       </syn-select>
 
@@ -48,7 +48,7 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
         [value]="[1, 'three']"
       >
         @for (item of numericItems; track $index; let index = $index) {
-          <syn-option [value]="item.id"> {{item.label}}</syn-option>
+          <syn-option [value]="item.value"> {{item.label}}</syn-option>
         }
       </syn-select>
     </div>
@@ -126,7 +126,7 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
 })
 export class Select implements OnInit {
   levels: SelectItem[] = [];
-  numericItems = mockData('selectItemsMixedId');
+  numericItems = mockData('selectItemsMixedValue');
   delimiterItems = mockData('selectItemsWithSpace');
   // @ts-ignore
   asyncValue: string;

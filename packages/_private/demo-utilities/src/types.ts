@@ -8,11 +8,11 @@ export type SelectItem = {
 };
 
 /**
- * A type representing a single select item with mixed id types.
+ * A type representing a single select item with mixed value types.
  */
-export type SelectItemMixedId = {
+export type SelectItemMixedValue = {
   disabled: boolean,
-  id: string | number,
+  value: string | number,
   label: string,
 };
 
@@ -39,6 +39,7 @@ export type DemoFormData = {
   password: string;
   phone: string;
   role: string;
+  testing: string[];
   topics: string[];
 };
 

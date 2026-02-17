@@ -42,6 +42,7 @@ type FormEnabledElements = HTMLElement & {
 };
 
 const initialFormData = mockData('initialValidateFormData');
+const testingFrameworks = mockData('testingFrameworks');
 
 export const DemoFormValidate = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -244,6 +245,49 @@ export const DemoFormValidate = () => {
         </SynValidate>
       </DemoFieldset>
       {/* /Security */}
+
+      <syn-divider />
+
+      {/* Topics */}
+      <DemoFieldset legend="Topics">
+        <syn-select
+          clearable
+          id="topics"
+          label="I am interested in the following technologies"
+          multiple
+          name="topics"
+          value={formData.topics}
+        >
+          <syn-optgroup label="Frontend">
+            <syn-option value="angular">Angular</syn-option>
+            <syn-option value="react">React.js</syn-option>
+            <syn-option value="vanilla">Vanilla.js</syn-option>
+            <syn-option value="vue">Vue</syn-option>
+          </syn-optgroup>
+          <syn-optgroup label="Backend">
+            <syn-option value="node">Node.js</syn-option>
+            <syn-option value="Python">Python</syn-option>
+          </syn-optgroup>
+        </syn-select>
+
+        <syn-combobox
+          id="testing-frameworks"
+          label="Which testing frameworks do you use?"
+          multiple
+          name="testing"
+          placeholder="Select testing frameworks"
+          value={formData.testing}
+          getOption={highlightOptionRenderer}
+          required
+        >
+          {testingFrameworks.map((framework) => (
+            <syn-option key={framework.value} value={framework.value}>
+              {framework.label}
+            </syn-option>
+          ))}
+        </syn-combobox>
+      </DemoFieldset>
+      {/* /Topics */}
 
       <SynDivider />
 

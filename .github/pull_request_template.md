@@ -42,7 +42,6 @@ Please provide a summary of the tests affected by this work and any unique strat
 - [ ] I have tested my changes manually.
 - [ ] I have added automatic tests for my changes (unit- and visual regression tests).
 - [ ] I have updated the project documentation to reflect my changes (e.g. CHANGELOG, Storybook, ...).
-- [ ] I have added documentation to the DaVinci migration guide (if need be)
 - [ ] I have made sure to follow the projects coding and contribution guides.
 - [ ] I have made sure that the bundle size has changed appropriately.
 - [ ] I have validated that there are no accessibility errors.

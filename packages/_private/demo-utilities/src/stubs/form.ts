@@ -25,6 +25,7 @@ export const initialFullFormData: DemoFormData = {
   password: 'invalid',
   phone: '',
   role: '',
+  testing: [],
   topics: [],
 };
 

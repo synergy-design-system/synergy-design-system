@@ -29,6 +29,8 @@ export class DemoForm {
 
   nationalities = mockData('nationalities');
 
+  testingFrameworks = mockData('testingFrameworks');
+
   highlightOptionRenderer = highlightOptionRenderer;
 
   formatter = currencyNumberFormatter;

@@ -2,7 +2,6 @@ import type { SynChangeEvent } from '@synergy-design-system/components';
 import { serialize } from '@synergy-design-system/components/utilities/form.js';
 import { highlightOptionRenderer } from '@synergy-design-system/components/components/combobox/option-renderer.js';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   type FormStatus,
@@ -32,7 +31,6 @@ const initialData = {
     UsedSynergyComponentsModule,
     DemoFieldSetModule,
     ReactiveFormsModule,
-    CommonModule,
   ],
 })
 export class DemoFormValidate {
@@ -44,6 +42,8 @@ export class DemoFormValidate {
   formStatus: FormStatus = statusWarning;
 
   nationalities = mockData('nationalities');
+
+  testingFrameworks = mockData('testingFrameworks');
 
   highlightOptionRenderer = highlightOptionRenderer;
 

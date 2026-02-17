@@ -27,12 +27,15 @@ import type { SynErrorEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/combobox/combobox.js';
 
 /**
- * @summary Comboboxes allow you to choose items from a menu of predefined options.
+ * @summary A combobox component that combines the functionality of a text input with a dropdown listbox,
+ * allowing users to either select from predefined options or enter custom values (when not restricted).
+ *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
  * @status stable
  *
  * @dependency syn-icon
  * @dependency syn-popup
+ * @dependency syn-tag
  *
  * @slot - The listbox options. Must be `<syn-option>` elements.
  *    You can use `<syn-optgroup>`'s to group items visually.
@@ -62,7 +65,7 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The combobox's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
- * @csspart combobox - The container the wraps the prefix, combobox, clear icon, and expand button.
+ * @csspart combobox - The container that wraps the prefix, combobox, clear icon, and expand button.
  * @csspart prefix - The container that wraps the prefix slot.
  * @csspart suffix - The container that wraps the suffix slot.
  * @csspart display-input - The element that displays the selected option's label,
@@ -75,6 +78,12 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  * @csspart popup - The popup's exported `popup` part.
  * Use this to target the tooltip's popup container.
  * @csspart no-results - The container that wraps the "no results" message.
+ * @csspart tags - The container that houses option tags when `multiple` is used.
+ * @csspart tag - The individual tags that represent each selected option in `multiple`.
+ * @csspart tag__base - The tag's base part.
+ * @csspart tag__content - The tag's content part.
+ * @csspart tag__remove-button - The tag's remove button.
+ * @csspart tag__remove-button__base - The tag's remove button base part.
  *
  * @animation combobox.show - The animation to use when showing the combobox.
  * @animation combobox.hide - The animation to use when hiding the combobox.
@@ -166,17 +175,6 @@ export class SynComboboxComponent {
   }
   get name(): SynCombobox['name'] {
     return this.nativeElement.name;
-  }
-
-  /**
-   * The current value of the combobox, submitted as a name/value pair with form data.
-   */
-  @Input()
-  set value(v: SynCombobox['value']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
-  }
-  get value(): SynCombobox['value'] {
-    return this.nativeElement.value;
   }
 
   /**
@@ -308,6 +306,7 @@ The form must be in the same document or shadow root for this to work.
   /**
 * When set to `true`, restricts the combobox to only allow selection from the available options.
 Users will not be able to enter custom values that are not present in the list.
+This will always be true, if `multiple` is active.
  */
   @Input()
   set restricted(v: '' | SynCombobox['restricted']) {
@@ -317,6 +316,20 @@ Users will not be able to enter custom values that are not present in the list.
   }
   get restricted(): SynCombobox['restricted'] {
     return this.nativeElement.restricted;
+  }
+
+  /**
+* Allows more than one option to be selected.
+If `multiple` is set, the combobox will always be `restricted` to the available options
+ */
+  @Input()
+  set multiple(v: '' | SynCombobox['multiple']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.multiple = v === '' || v),
+    );
+  }
+  get multiple(): SynCombobox['multiple'] {
+    return this.nativeElement.multiple;
   }
 
   /**
@@ -345,6 +358,64 @@ The default filter method is a case- and diacritic-insensitive string comparison
   }
   get filter(): SynCombobox['filter'] {
     return this.nativeElement.filter;
+  }
+
+  /**
+* The delimiter to use when setting the value when `multiple` is enabled.
+The default is a space ' ', but you can set it to a comma or other character(s).
+ */
+  @Input()
+  set delimiter(v: SynCombobox['delimiter']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.delimiter = v));
+  }
+  get delimiter(): SynCombobox['delimiter'] {
+    return this.nativeElement.delimiter;
+  }
+
+  /**
+* The maximum number of selected options to show when `multiple` is true.
+* After the maximum, "+n" will be shown to
+indicate the number of additional items that are selected.
+* Set to 0 to remove the limit.
+ */
+  @Input()
+  set maxOptionsVisible(v: SynCombobox['maxOptionsVisible']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.maxOptionsVisible = v),
+    );
+  }
+  get maxOptionsVisible(): SynCombobox['maxOptionsVisible'] {
+    return this.nativeElement.maxOptionsVisible;
+  }
+
+  /**
+* A function that customizes the tags to be rendered when `multiple` is true.
+* The first argument is the option, the second
+is the current tag's index.
+* The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
+the specified value.
+ */
+  @Input()
+  set getTag(v: SynCombobox['getTag']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.getTag = v));
+  }
+  get getTag(): SynCombobox['getTag'] {
+    return this.nativeElement.getTag;
+  }
+
+  /**
+* The current value of the combobox, submitted as a name/value pair with form data.
+* When `multiple` is enabled, the
+value attribute will be a list of values  separated by the delimiter, based on the options selected, and the value property will
+be an array.
+* **For this reason, values must not contain the delimiter character.**
+ */
+  @Input()
+  set value(v: SynCombobox['value']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.value = v));
+  }
+  get value(): SynCombobox['value'] {
+    return this.nativeElement.value;
   }
 
   /**

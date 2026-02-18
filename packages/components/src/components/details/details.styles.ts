@@ -3,6 +3,18 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    /* Size-dependent custom properties (default to medium values) */
+    --details-header-padding: var(--syn-spacing-medium-large) 0;
+    --details-content-padding: var(--syn-spacing-medium) 0 var(--syn-spacing-large);
+    --details-summary-font: var(--syn-body-medium-bold);
+    --details-content-font-size: var(--syn-font-size-small);
+    --details-icon-size: var(--syn-spacing-large);
+    --details-slotted-icon-size: var(--syn-spacing-large);
+    
+    /* Contained variant custom properties */
+    --details-header-padding-contained: var(--syn-spacing-medium-large) var(--syn-spacing-large);
+    --details-content-padding-contained: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-large);
+
     display: block;
   }
 
@@ -25,7 +37,7 @@ export default css`
     cursor: pointer;
     display: flex;
     gap: var(--syn-spacing-medium);
-    padding: var(--syn-spacing-medium-large) 0;
+    padding: var(--details-header-padding);
     user-select: none;
   }
 
@@ -56,7 +68,7 @@ export default css`
     color: var(--syn-typography-color-text);
     display: flex;
     flex: 1 1 auto;
-    font: var(--syn-body-medium-bold);
+    font: var(--details-summary-font);
   }
 
   .details__summary-icon {
@@ -65,13 +77,13 @@ export default css`
     color: var(--syn-color-neutral-950);
     display: flex;
     flex: 0 0 auto;
-    font-size: var(--syn-spacing-large);
+    font-size: var(--details-icon-size);
+    position: relative;
 
     /**
      * As we are using an alignment of "start"  instead of "center" make sure
      * the arrow starts on the same visual line as the first line of headline text
      */
-    position: relative;
     top: 2px;
     transition: var(--syn-transition-medium) rotate ease;
   }
@@ -95,77 +107,45 @@ export default css`
 
   .details__content {
     display: block;
-    font-size: var(--syn-font-size-small);
+    font-size: var(--details-content-font-size);
     line-height: var(--syn-line-height-normal);
-    padding: var(--syn-spacing-medium) 0 var(--syn-spacing-large);
+    padding: var(--details-content-padding);
   }
 
   /**
-   * Adjustments for small variant
+   * Size variants
    */
+  .details--size-small {
+    --details-header-padding: var(--syn-spacing-small) 0;
+    --details-content-padding: var(--syn-spacing-small) 0 var(--syn-spacing-medium-large);
+    --details-summary-font: var(--syn-body-small-bold);
+    --details-content-font-size: var(--syn-font-size-x-small);
+    --details-icon-size: var(--syn-spacing-medium-large);
+    --details-slotted-icon-size: var(--syn-spacing-medium-large);
+    --details-header-padding-contained: var(--syn-spacing-small) var(--syn-spacing-large);
+    --details-content-padding-contained: var(--syn-spacing-x-small) var(--syn-spacing-large) var(--syn-spacing-medium-large);
+  }
+
   /* stylelint-disable-next-line no-descending-specificity */
   .details--size-small .details__header {
     min-height: var(--syn-spacing-large);
-    padding: var(--syn-spacing-small) 0;
   }
 
-  .details--size-small .details__content {
-    font-size: var(--syn-font-size-x-small);
-    line-height: var(--syn-line-height-normal);
-    padding: var(--syn-spacing-small) 0 var(--syn-spacing-medium-large);
+  .details--size-large {
+    --details-header-padding: var(--syn-spacing-large) 0;
+    --details-content-padding: var(--syn-spacing-medium-large) 0 var(--syn-spacing-large);
+    --details-summary-font: var(--syn-body-large-bold);
+    --details-content-font-size: var(--syn-font-size-medium);
+    --details-icon-size: var(--syn-spacing-x-large);
+    --details-slotted-icon-size: var(--syn-spacing-x-large);
+    --details-header-padding-contained: var(--syn-spacing-large);
+    --details-content-padding-contained: var(--syn-spacing-medium-large) var(--syn-spacing-large) var(--syn-spacing-large);
   }
 
-  .details--size-small .details__summary {
-    font: var(--syn-body-small-bold);
-  }
-
-  .details--size-small .details__summary-icon {
-    font-size: var(--syn-spacing-medium-large);
-  }
-
-  .details--size-small .details__summary::slotted(syn-icon) {
+  .details__summary::slotted(syn-icon) {
     /* Avoid shrinking of the icon, if the text content of the summary is very long and multi line */
     flex-shrink: 0;
-    font-size: var(--syn-spacing-medium-large);
-    margin-right: var(--syn-spacing-small);
-  }
-
-  /**
-   * Adjustments for medium variant
-   */
-  .details--size-medium .details__summary::slotted(syn-icon) {
-    /* Avoid shrinking of the icon, if the text content of the summary is very long and multi line */
-    flex-shrink: 0;
-    font-size: var(--syn-spacing-large);
-    margin-right: var(--syn-spacing-small);
-  }
-
-  /**
-   * Adjustment for large variant
-   */
-  /* stylelint-disable-next-line no-descending-specificity */
-  .details--size-large .details__header {
-    padding: var(--syn-spacing-large) 0;
-  }
-
-  .details--size-large .details__content {
-    font-size: var(--syn-font-size-medium);
-    line-height: var(--syn-line-height-normal);
-    padding: var(--syn-spacing-medium-large) 0 var(--syn-spacing-large);
-  }
-
-  .details--size-large .details__summary {
-    font: var(--syn-body-large-bold);
-  }
-
-  .details--size-large .details__summary-icon {
-    font-size: var(--syn-spacing-x-large);
-  }
-
-  .details--size-large .details__summary::slotted(syn-icon) {
-    /* Avoid shrinking of the icon, if the text content of the summary is very long and multi line */
-    flex-shrink: 0;
-    font-size: var(--syn-spacing-x-large);
+    font-size: var(--details-slotted-icon-size);
     margin-right: var(--syn-spacing-small);
   }
 
@@ -174,7 +154,7 @@ export default css`
    */
   .details:not(.details--disabled) .details__header:hover .details__summary,
   .details:not(.details--disabled) .details__header:hover .details__summary-icon {
-    color: var(--syn-color-primary-700);
+    color: var(--syn-interactive-quiet-color-hover);
   }
 
   /**
@@ -186,31 +166,16 @@ export default css`
     border-width: var(--syn-panel-border-width);
   }
 
+  /* stylelint-disable-next-line no-descending-specificity */
+  .details--contained .details__header {
+    padding: var(--details-header-padding-contained);
+  }
+
+  .details--contained .details__content {
+    padding: var(--details-content-padding-contained);
+  }
+
   .details--contained .details__header:focus-visible {
     border-radius: var(--syn-border-radius-medium);
-  }
-
-  .details--size-small.details--contained .details__header {
-    padding: var(--syn-spacing-small) var(--syn-spacing-large);
-  }
-
-  .details--size-small.details--contained .details__content {
-    padding: var(--syn-spacing-x-small) var(--syn-spacing-large) var(--syn-spacing-medium-large);
-  }
-
-  .details--size-medium.details--contained .details__header {
-    padding: var(--syn-spacing-medium-large) var(--syn-spacing-large);
-  }
-
-  .details--size-medium.details--contained .details__content {
-    padding: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-large);
-  }
-
-  .details--size-large.details--contained .details__header {
-    padding: var(--syn-spacing-large);
-  }
-
-  .details--size-large.details--contained .details__content {
-    padding: var(--syn-spacing-medium-large) var(--syn-spacing-large) var(--syn-spacing-large);
   }
 `;

@@ -27,11 +27,11 @@ const meta: Meta = {
       name: 'default',
       type: 'slot',
       value: `
-        <syn-input
-          label="Invalid input"
-          type="email"
-          value="team(at)synergy.com"
-        ></syn-input>
+<syn-input
+  label="Invalid input"
+  type="email"
+  value="team(at)synergy.com"
+></syn-input>
       `.trim(),
     },
   ], defaultArgs),
@@ -88,6 +88,28 @@ export const Default: Story = {
   render: args => generateTemplate({ args }),
 };
 
+export const TooltipVariant: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('validate', 'tooltip'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-validate
+      class="validation-tooltip"
+      variant="tooltip"
+    >
+      <syn-input
+        label="Invalid input"
+        type="email"
+        value="team(at)synergy.com"
+      ></syn-input>
+    </syn-validate>
+  `,
+};
+
 export const InlineVariant: Story = {
   parameters: {
     docs: {
@@ -102,7 +124,7 @@ export const InlineVariant: Story = {
       variant="inline"
     >
       <syn-input
-        label="Inline Validation"
+        label="Inline validation"
         type="email"
         value="team(at)synergy.com"
       ></syn-input>
@@ -125,7 +147,7 @@ export const HideIcon: Story = {
       variant="inline"
     >
       <syn-input
-        label="Inline Validation"
+        label="Hide icon"
         type="email"
         value="team(at)synergy.com"
       ></syn-input>
@@ -149,7 +171,7 @@ export const Sizes: Story = {
       ${['small', 'medium', 'large'].map(size => html`
         <syn-validate eager variant="inline">
           <syn-input
-            label="Inline Validation"
+            label="Size ${size}"
             size="${size}"
             type="email"
             value="team(at)synergy.com"
@@ -298,6 +320,7 @@ export const CustomValidationDemo = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
+  TooltipVariant,
   InlineVariant,
   HideIcon,
   Live,

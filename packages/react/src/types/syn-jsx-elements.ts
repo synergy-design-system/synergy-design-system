@@ -75,6 +75,7 @@ import type {
   SynTabGroup,
   SynTabPanel,
   SynTag,
+  SynTagGroup,
   SynTextarea,
   SynTooltip,
   SynValidate,
@@ -1427,6 +1428,21 @@ export type SynCustomElement<
   [['syn-remove', SynRemoveEvent]]
 >;
 /**
+ * @summary A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels.
+ * It arranges tags in flexible rows and supports different sizes and layouts.
+ * Tags can be removable, icon‑based, or purely textual.
+ *
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs
+ * @status stable
+ *
+ * @slot - The tag group's main content. Must be `<syn-tag />` elements.
+ * @slot label - The tag group's label. Alternatively, you can use the `label` attribute.
+ *
+ * @csspart base - The component's base wrapper.
+ * @csspart tag-label - The tag group's label.
+ * @csspart tag-container - The container wrapping the slotted tags.
+ */ export type SynTagGroupJSXElement = SynCustomElement<SynTagGroup, []>;
+/**
  * @summary Textareas collect data from the user and allow multiple lines of text.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs
  * @status stable
@@ -2648,6 +2664,21 @@ declare module 'react' {
        * @csspart remove-button - The tag's remove button, an `<syn-icon-button>`.
        * @csspart remove-button__base - The remove button's exported `base` part.
        */ 'syn-tag': SynTagJSXElement;
+      /**
+       * @summary A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels.
+       * It arranges tags in flexible rows and supports different sizes and layouts.
+       * Tags can be removable, icon‑based, or purely textual.
+       *
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs
+       * @status stable
+       *
+       * @slot - The tag group's main content. Must be `<syn-tag />` elements.
+       * @slot label - The tag group's label. Alternatively, you can use the `label` attribute.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart tag-label - The tag group's label.
+       * @csspart tag-container - The container wrapping the slotted tags.
+       */ 'syn-tag-group': SynTagGroupJSXElement;
       /**
        * @summary Textareas collect data from the user and allow multiple lines of text.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs

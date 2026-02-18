@@ -2638,6 +2638,38 @@
         }
       }
     },
+    "tag-group": {
+      "default": {
+        "description": {
+          "value": "A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels. It arranges tags in flexible rows and supports different sizes and layouts. Tags can be removable, icon based, or purely textual.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tag-Group",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a tag group’s size.",
+          "type": "text"
+        }
+      },
+      "label-alignment": {
+        "title": {
+          "value": "Label Alignment",
+          "type": "text"
+        },
+        "description": {
+          "value": "Change the label alignment to horizontal by using the horizontal alignment attribute.",
+          "type": "text"
+        }
+      }
+    },
     "textarea": {
       "default": {
         "title": {
@@ -4186,14 +4218,14 @@
         }
       }
     },
-    "tag": {
+    "tag-group": {
       "default": {
         "title": {
           "value": "Tag",
           "type": "text"
         },
         "description": {
-          "value": "These examples demonstrate the usage of syn-tag in various contexts: In combination with multiple filters and within a standalone tag group.",
+          "value": "These examples demonstrate the usage of the syn-tag-group component in combination with filters. The examples are intended solely for illustrating how syn-tag-group can be used with different label alignments (horizontally and vertically).",
           "type": "text"
         }
       }

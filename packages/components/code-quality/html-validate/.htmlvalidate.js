@@ -1,16 +1,17 @@
-import { defineConfig } from "html-validate";
-import { createElements } from "./scripts/createElements.js";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { defineConfig } from 'html-validate';
+import { createElements } from './scripts/createElements.js';
 
 export default defineConfig({
-  extends: ["html-validate:recommended"],
   elements: [
-    "html5",
+    'html5',
     createElements(),
   ],
+  extends: ['html-validate:recommended'],
   root: true,
   rules: {
-    'wcag/h32': 'off',
     'no-deprecated-attr': 'warn',
-    'no-inline-style': 'off'
+    'no-inline-style': 'off',
+    'wcag/h32': 'off',
   },
 });

@@ -29,6 +29,7 @@ export * from './Spinner.js';
 export * from './Switch.js';
 export * from './TabGroup.js';
 export * from './Tag.js';
+export * from './TagGroup.js';
 export * from './Textarea.js';
 export * from './Tooltip.js';
 export * from './Validate.js';

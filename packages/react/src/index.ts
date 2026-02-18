@@ -46,6 +46,7 @@ export { SynTab } from './components/tab.js';
 export { SynTabGroup } from './components/tab-group.js';
 export { SynTabPanel } from './components/tab-panel.js';
 export { SynTag } from './components/tag.js';
+export { SynTagGroup } from './components/tag-group.js';
 export { SynTextarea } from './components/textarea.js';
 export { SynTooltip } from './components/tooltip.js';
 export { SynValidate } from './components/validate.js';

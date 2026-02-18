@@ -113,6 +113,7 @@ export const setGlobalSize = (size: AllowedSizes) => {
       SynSelect: size,
       SynSwitch: size,
       SynTag: size,
+      SynTagGroup: size,
       SynTextarea: size,
     },
   });

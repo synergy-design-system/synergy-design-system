@@ -345,6 +345,29 @@ describe('<syn-validate>', () => {
       const alert = el.shadowRoot!.querySelector('syn-alert')!;
       expect(alert).to.have.attribute('size', 'medium');
     });
+
+    // #664: Tests for variant="tooltip"
+    describe('when using variant="tooltip"', () => {
+      it('should not show the tooltip when the input is valid', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate variant="tooltip" eager>
+            <input label="Email" value="test@test.de" name="email" type="email">
+          </syn-validate>
+        `);
+
+        expect(el.shadowRoot!.querySelector('syn-tooltip')).to.not.exist;
+      });
+
+      it('should show the tooltip with the validation message when the input is invalid', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate variant="tooltip" eager>
+            <input label="Email" value="test" name="email" type="email">
+          </syn-validate>
+        `);
+
+        expect(el.shadowRoot!.querySelector('syn-tooltip')).to.exist;
+      });
+    }); // /#664
   });
 
   describe('when using synergy form elements', () => {
@@ -450,6 +473,23 @@ describe('<syn-validate>', () => {
       await input.updateComplete;
       await el.updateComplete;
       expect(reportValiditySpy).to.have.been.calledOnce;
+    });
+
+    it('should not call the reportValidity method for `variant="tooltip"` when the input is invalid and an observed event is called', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="input" variant="tooltip">
+          <syn-input label="Email" value="test" type="email"></syn-input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('syn-input')!;
+      const reportValiditySpy = sinon.spy(input, 'reportValidity');
+
+      input.value = 'test';
+      input.dispatchEvent(new Event('syn-input'));
+      await el.updateComplete;
+
+      expect(reportValiditySpy).to.not.have.been.called;
     });
 
     it('should not call the reportValidity method for `variant="inline"` when the input is invalid and an observed event is called', async () => {

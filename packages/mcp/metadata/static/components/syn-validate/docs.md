@@ -25,6 +25,33 @@ Validate offers options for convenient error handling in form elements.
 
 ---
 
+## Tooltip Variant
+
+When the tooltip variant is chosen, validation errors are displayed in a <syn-tooltip> component that has its center at the invalid element. The native tooltip is suppressed.
+
+```html
+<form id="components-syn-validate--tooltip-variant-validate-demo-form">
+  <syn-validate class="validation-tooltip" variant="tooltip" on="">
+    <syn-input
+      label="Invalid input"
+      type="email"
+      value="team(at)synergy.com"
+      title=""
+      size="medium"
+      form=""
+    ></syn-input>
+  </syn-validate>
+
+  <p>
+    <syn-button type="submit" title="" variant="outline" size="medium"
+      >Submit</syn-button
+    >
+  </p>
+</form>
+```
+
+---
+
 ## Inline Variant
 
 Set the variant attribute to inline to show the invalid message below the selected element.👨‍💻 Additional developer Information:Per default, syn-validate uses the browser’s built-in validation. This shows only one error at a time and is optimized for accessbility.When using the inline variant, you have to ensure accessibility on your side and have to have in mind it most likely will lead to layout shifts.
@@ -33,7 +60,7 @@ Set the variant attribute to inline to show the invalid message below the select
 <form id="components-syn-validate--inline-variant-validate-demo-form">
   <syn-validate class="validation-inline" variant="inline" on="">
     <syn-input
-      label="Inline Validation"
+      label="Inline validation"
       type="email"
       value="team(at)synergy.com"
       title=""
@@ -65,7 +92,7 @@ Use hide-icon to hide the icon in inline style. This is especially useful when s
     on=""
   >
     <syn-input
-      label="Inline Validation"
+      label="Hide icon"
       type="email"
       value="team(at)synergy.com"
       title=""
@@ -95,9 +122,9 @@ In development use the size attribute of the form element e.g. syn-input to set 
   >
     <syn-validate eager="" variant="inline" on="">
       <syn-input
-        label="Inline Validation"
         type="email"
         value="team(at)synergy.com"
+        label="Size small"
         size="small"
         title=""
         form=""
@@ -106,9 +133,9 @@ In development use the size attribute of the form element e.g. syn-input to set 
 
     <syn-validate eager="" variant="inline" on="">
       <syn-input
-        label="Inline Validation"
         type="email"
         value="team(at)synergy.com"
+        label="Size medium"
         size="medium"
         title=""
         form=""
@@ -117,9 +144,9 @@ In development use the size attribute of the form element e.g. syn-input to set 
 
     <syn-validate eager="" variant="inline" on="">
       <syn-input
-        label="Inline Validation"
         type="email"
         value="team(at)synergy.com"
+        label="Size large"
         size="large"
         title=""
         form=""

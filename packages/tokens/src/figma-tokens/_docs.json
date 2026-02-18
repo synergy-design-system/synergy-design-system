@@ -3539,6 +3539,16 @@
           "type": "text"
         }
       },
+      "tooltip": {
+        "title": {
+          "value": "Tooltip variant",
+          "type": "text"
+        },
+        "description": {
+          "value": "When the tooltip variant is chosen, validation errors are displayed in a `<syn-tooltip>` component that has its center at the invalid element. The native tooltip is suppressed.",
+          "type": "text"
+        }
+      },
       "inline": {
         "title": {
           "value": "Inline variant",

@@ -2,30 +2,31 @@
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
   :host {
     display: block;
   }
 
   .details {
-    border: solid 1px var(--syn-color-neutral-200);
-    border-radius: var(--syn-border-radius-medium);
-    background-color: var(--syn-color-neutral-0);
+    background-color: transparent;
+    border: 1px solid var(--syn-panel-border-color);
+    border-radius: var(--syn-border-radius-none);
+    border-width: 0 0 var(--syn-border-width-small);
     overflow-anchor: none;
   }
 
+  /** #429: Use token for opacity */
   .details--disabled {
-    opacity: 0.5;
+    opacity: var(--syn-opacity-50);
   }
 
   .details__header {
-    display: flex;
     align-items: center;
     border-radius: inherit;
-    padding: var(--syn-spacing-medium);
-    user-select: none;
-    -webkit-user-select: none;
     cursor: pointer;
+    display: flex;
+    gap: var(--syn-spacing-medium);
+    padding: var(--syn-spacing-medium-large) 0;
+    user-select: none;
   }
 
   .details__header::-webkit-details-marker {
@@ -46,25 +47,41 @@ export default css`
   }
 
   .details--disabled .details__header:focus-visible {
-    outline: none;
     box-shadow: none;
+    outline: none;
   }
 
   .details__summary {
-    flex: 1 1 auto;
-    display: flex;
     align-items: center;
+    color: var(--syn-typography-color-text);
+    display: flex;
+    flex: 1 1 auto;
+    font: var(--syn-body-medium-bold);
   }
 
   .details__summary-icon {
-    flex: 0 0 auto;
-    display: flex;
     align-items: center;
+    align-self: flex-start;
+    color: var(--syn-color-neutral-950);
+    display: flex;
+    flex: 0 0 auto;
+    font-size: var(--syn-spacing-large);
+
+    /**
+     * As we are using an alignment of "start"  instead of "center" make sure
+     * the arrow starts on the same visual line as the first line of headline text
+     */
+    position: relative;
+    top: 2px;
     transition: var(--syn-transition-medium) rotate ease;
   }
 
+  /**
+   * As we are using top/down arrows for the details element,
+   * we have to adjust the rotation of the icon when the details is open.
+   */
   .details--open .details__summary-icon {
-    rotate: 90deg;
+    rotate: var(--syn-details-open-rotation);
   }
 
   .details--open slot[name='expand-icon'],
@@ -78,6 +95,122 @@ export default css`
 
   .details__content {
     display: block;
-    padding: var(--syn-spacing-medium);
+    font-size: var(--syn-font-size-small);
+    line-height: var(--syn-line-height-normal);
+    padding: var(--syn-spacing-medium) 0 var(--syn-spacing-large);
+  }
+
+  /**
+   * Adjustments for small variant
+   */
+  /* stylelint-disable-next-line no-descending-specificity */
+  .details--size-small .details__header {
+    min-height: var(--syn-spacing-large);
+    padding: var(--syn-spacing-small) 0;
+  }
+
+  .details--size-small .details__content {
+    font-size: var(--syn-font-size-x-small);
+    line-height: var(--syn-line-height-normal);
+    padding: var(--syn-spacing-small) 0 var(--syn-spacing-medium-large);
+  }
+
+  .details--size-small .details__summary {
+    font: var(--syn-body-small-bold);
+  }
+
+  .details--size-small .details__summary-icon {
+    font-size: var(--syn-spacing-medium-large);
+  }
+
+  .details--size-small .details__summary::slotted(syn-icon) {
+    /* Avoid shrinking of the icon, if the text content of the summary is very long and multi line */
+    flex-shrink: 0;
+    font-size: var(--syn-spacing-medium-large);
+    margin-right: var(--syn-spacing-small);
+  }
+
+  /**
+   * Adjustments for medium variant
+   */
+  .details--size-medium .details__summary::slotted(syn-icon) {
+    /* Avoid shrinking of the icon, if the text content of the summary is very long and multi line */
+    flex-shrink: 0;
+    font-size: var(--syn-spacing-large);
+    margin-right: var(--syn-spacing-small);
+  }
+
+  /**
+   * Adjustment for large variant
+   */
+  /* stylelint-disable-next-line no-descending-specificity */
+  .details--size-large .details__header {
+    padding: var(--syn-spacing-large) 0;
+  }
+
+  .details--size-large .details__content {
+    font-size: var(--syn-font-size-medium);
+    line-height: var(--syn-line-height-normal);
+    padding: var(--syn-spacing-medium-large) 0 var(--syn-spacing-large);
+  }
+
+  .details--size-large .details__summary {
+    font: var(--syn-body-large-bold);
+  }
+
+  .details--size-large .details__summary-icon {
+    font-size: var(--syn-spacing-x-large);
+  }
+
+  .details--size-large .details__summary::slotted(syn-icon) {
+    /* Avoid shrinking of the icon, if the text content of the summary is very long and multi line */
+    flex-shrink: 0;
+    font-size: var(--syn-spacing-x-large);
+    margin-right: var(--syn-spacing-small);
+  }
+
+  /**
+   * Add a visually visible hover effect to the summary element
+   */
+  .details:not(.details--disabled) .details__header:hover .details__summary,
+  .details:not(.details--disabled) .details__header:hover .details__summary-icon {
+    color: var(--syn-color-primary-700);
+  }
+
+  /**
+   *  Contained style
+   */
+  .details--contained {
+    background-color: var(--syn-panel-background-color);
+    border-radius: var(--syn-border-radius-medium);
+    border-width: var(--syn-panel-border-width);
+  }
+
+  .details--contained .details__header:focus-visible {
+    border-radius: var(--syn-border-radius-medium);
+  }
+
+  .details--size-small.details--contained .details__header {
+    padding: var(--syn-spacing-small) var(--syn-spacing-large);
+  }
+
+  .details--size-small.details--contained .details__content {
+    padding: var(--syn-spacing-x-small) var(--syn-spacing-large) var(--syn-spacing-medium-large);
+  }
+
+  .details--size-medium.details--contained .details__header {
+    padding: var(--syn-spacing-medium-large) var(--syn-spacing-large);
+  }
+
+  .details--size-medium.details--contained .details__content {
+    padding: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-large);
+  }
+
+  .details--size-large.details--contained .details__header {
+    padding: var(--syn-spacing-large);
+  }
+
+  .details--size-large.details--contained .details__content {
+    padding: var(--syn-spacing-medium-large) var(--syn-spacing-large) var(--syn-spacing-large);
   }
 `;

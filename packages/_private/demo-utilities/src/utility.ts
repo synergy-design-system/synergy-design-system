@@ -92,18 +92,15 @@ export const setThemeFromOptionString = (optionString: string) => {
  * @param size The size that should be set
  */
 export const setGlobalSize = (size: AllowedSizes) => {
-  const SynAccordion = size === 'small' ? 'medium' : size;
-  const SynDetails = size === 'small' ? 'medium' : size;
-
   setGlobalDefaultSettings({
     size: {
-      SynAccordion,
+      SynAccordion: size,
       SynAlert: size,
       SynButton: size,
       SynButtonGroup: size,
       SynCheckbox: size,
       SynCombobox: size,
-      SynDetails,
+      SynDetails: size,
       SynFile: size,
       SynIconButton: size,
       SynInput: size,

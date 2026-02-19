@@ -11,7 +11,6 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './details.styles.js';
-import customStyles from './details.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
@@ -47,7 +46,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynDetails')
 export default class SynDetails extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   static dependencies = {
     'syn-icon': SynIcon
@@ -78,7 +77,7 @@ export default class SynDetails extends SynergyElement {
   @property({ type: Boolean, reflect: true }) contained = false;
 
   /** The details's size. */
-  @property({ reflect: true }) size: 'medium' | 'large' = 'medium';
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   firstUpdated() {
     this.body.style.height = this.open ? 'auto' : '0';
@@ -205,6 +204,7 @@ export default class SynDetails extends SynergyElement {
         part="base"
         class=${classMap({
           details: true,
+          'details--size-small': this.size === 'small',
           'details--size-medium': this.size === 'medium',
           'details--size-large': this.size === 'large',
           'details--open': this.open,

@@ -106,12 +106,12 @@ export const TagGroup = {
         
         <div class="filter-group">
           ${filters.map(filter => html`
-            <syn-dropdown stay-open-on-select>
+            <syn-dropdown stay-open-on-select sync="width">
               <syn-button slot="trigger" caret>
                 ${filter.name}
                 <span class="filter-count"> - ${filter.selected.length || 0}</span>
               </syn-button>
-              <syn-menu id="${filter.id}" style="width: 200px;">
+              <syn-menu id="${filter.id}">
                 ${filter.options.map(option => html`
                   <syn-menu-item
                     ?checked="${filter.selected.includes(option)}"
@@ -160,6 +160,28 @@ export const TagGroup = {
           flex-wrap: wrap;
           gap: var(--syn-spacing-large);
           padding: var(--syn-spacing-large);
+        }
+      }
+
+      @media(max-width: 420px) {
+        .filter-form {
+          .filter-group {
+            flex-direction: column;
+            margin-bottom: var(--syn-spacing-2x-large);
+
+            /* Make sure buttons span the whole widtH */
+            syn-dropdown syn-button {
+              width: 100%;
+              display: block;
+              &::part(label) {
+                width: 100%;
+              }
+            }
+          }
+
+          .filter-tags {
+            flex-direction: column;
+          }
         }
       }
       </style>

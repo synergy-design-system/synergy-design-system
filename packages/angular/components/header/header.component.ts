@@ -47,6 +47,8 @@ import '@synergy-design-system/components/components/header/header.js';
  * @csspart meta-navigation - The Item wrapping the optional application menu
  * @csspart navigation - The wrapper that is holding the optional top navigation section
  * @csspart burger-menu-toggle-button - The button that toggles the burger menu
+ *
+ * @cssproperty --sticky-position - The position of the sticky header from the top of the viewport. Defaults to the top of the screen.
  */
 @Component({
   selector: 'syn-header',
@@ -107,6 +109,20 @@ The following values can be used:
   }
   get burgerMenu(): SynHeader['burgerMenu'] {
     return this.nativeElement.burgerMenu;
+  }
+
+  /**
+* Makes the header stick to the top of the viewport when scrolling.
+Also applies a shadow to the header when scrolling.
+ */
+  @Input()
+  set sticky(v: '' | SynHeader['sticky']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.sticky = v === '' || v),
+    );
+  }
+  get sticky(): SynHeader['sticky'] {
+    return this.nativeElement.sticky;
   }
 
   /**

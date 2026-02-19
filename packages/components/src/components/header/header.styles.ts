@@ -2,6 +2,8 @@ import { css } from 'lit';
 
 export default css`
   :host {
+    --sticky-position: 0;
+
     display: block;
   }
 
@@ -124,5 +126,17 @@ export default css`
    */
   .header--has-burger-menu .header__content {
     padding-left: var(--syn-spacing-medium);
+  }
+
+  /**
+   * #529: Sticky header styles
+   */
+  :host([sticky]) {
+    box-shadow: var(--syn-shadow-sticky-down);
+    position: sticky;
+    top: var(--sticky-position);
+
+    /* Make sure the header is above all other content, but below any potential modals or overlays */
+    z-index: calc(infinity - 1);
   }
 `;

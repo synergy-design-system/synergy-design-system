@@ -3200,6 +3200,16 @@
           "value": "Use the Burger Menu as trigger to open and close the Navigation. In the open state, the icon changes to a cancel icon. This will be hidden, if you use a rail navigation.",
           "type": "text"
         }
+      },
+      "sticky": {
+        "title": {
+          "value": "Sticky Header with Shadow",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the sticky attribute to add a shadow when the header is fixed at the top and other content scrolls behind it.",
+          "type": "text"
+        }
       }
     },
     "side-nav": {

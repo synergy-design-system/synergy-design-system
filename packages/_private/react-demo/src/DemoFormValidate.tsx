@@ -67,12 +67,12 @@ export const DemoFormValidate = () => {
       let finalValue;
 
       switch (element.tagName.toLocaleLowerCase()) {
-      case 'syn-checkbox':
-      case 'syn-switch':
-        finalValue = (element as NativeCheckbox).checked;
-        break;
-      case 'syn-file': finalValue = (element as NativeFile).files; break;
-      default: finalValue = value;
+        case 'syn-checkbox':
+        case 'syn-switch':
+          finalValue = (element as NativeCheckbox).checked;
+          break;
+        case 'syn-file': finalValue = (element as NativeFile).files; break;
+        default: finalValue = value;
       }
 
       setFormData((curr) => ({

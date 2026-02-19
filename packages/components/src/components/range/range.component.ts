@@ -578,46 +578,46 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     let value = currentValue;
 
     switch (event.key) {
-    case 'ArrowUp':
-    case 'Up':
-      value = Math.min(currentValue + this.step, this.max);
-      break;
-    case 'ArrowDown':
-    case 'Down':
-      value = Math.max(currentValue - this.step, this.min);
-      break;
-    case 'ArrowLeft':
-    case 'Left':
-      value = this.#rtl
-        ? Math.min(currentValue + this.step, this.max)
-        : Math.max(currentValue - this.step, this.min);
-      break;
-    case 'ArrowRight':
-    case 'Right':
-      value = this.#rtl
-        ? Math.max(currentValue - this.step, this.min)
-        : Math.min(currentValue + this.step, this.max);
-      break;
-    case 'PageUp':
-      value = Math.min(
-        currentValue + ((this.max - this.min) / 5),
-        this.max,
-      );
-      break;
-    case 'PageDown':
-      value = Math.max(
-        (currentValue - (this.max - this.min) / 5),
-        this.min,
-      );
-      break;
-    case 'Home':
-      value = this.min;
-      break;
-    case 'End':
-      value = this.max;
-      break;
-    default:
-      return;
+      case 'ArrowUp':
+      case 'Up':
+        value = Math.min(currentValue + this.step, this.max);
+        break;
+      case 'ArrowDown':
+      case 'Down':
+        value = Math.max(currentValue - this.step, this.min);
+        break;
+      case 'ArrowLeft':
+      case 'Left':
+        value = this.#rtl
+          ? Math.min(currentValue + this.step, this.max)
+          : Math.max(currentValue - this.step, this.min);
+        break;
+      case 'ArrowRight':
+      case 'Right':
+        value = this.#rtl
+          ? Math.max(currentValue - this.step, this.min)
+          : Math.min(currentValue + this.step, this.max);
+        break;
+      case 'PageUp':
+        value = Math.min(
+          currentValue + ((this.max - this.min) / 5),
+          this.max,
+        );
+        break;
+      case 'PageDown':
+        value = Math.max(
+          (currentValue - (this.max - this.min) / 5),
+          this.min,
+        );
+        break;
+      case 'Home':
+        value = this.min;
+        break;
+      case 'End':
+        value = this.max;
+        break;
+      default:
+        return;
     }
 
     if (value !== currentValue) {

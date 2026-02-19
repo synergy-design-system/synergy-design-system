@@ -1,5 +1,23 @@
 # @synergy-design-system/angular
 
+## 3.4.0
+
+### Minor Changes
+
+- [#1188](https://github.com/synergy-design-system/synergy-design-system/pull/1188) [`c60deb9`](https://github.com/synergy-design-system/synergy-design-system/commit/c60deb9da1175404ddaa25b2c19ce9e182205cd2) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-19
+
+  feat: ✨ `<syn-header>` sticky behavior (#529)
+
+  `<syn-header>` now has a new `sticky` boolean property that can be used when a sticky header is needed, e.g. `<syn-header sticky></syn-header>`.
+  This adds `position: sticky`, as well as a small shadow that indicates that the header is stuck.
+  You can configure the `top` position via the new `--sticky-position` css property (defaults to `0` to make it stick to the top).
+
+### Patch Changes
+
+- Updated dependencies [[`c60deb9`](https://github.com/synergy-design-system/synergy-design-system/commit/c60deb9da1175404ddaa25b2c19ce9e182205cd2)]:
+  - @synergy-design-system/components@3.4.0
+  - @synergy-design-system/tokens@3.4.0
+
 ## 3.3.0
 
 ### Patch Changes

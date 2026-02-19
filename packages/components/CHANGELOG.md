@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.3.0
+
+### Minor Changes
+
+- [#1191](https://github.com/synergy-design-system/synergy-design-system/pull/1191) [`30f3b74`](https://github.com/synergy-design-system/synergy-design-system/commit/30f3b74891cf693735a792a901c5b23b016c71b8) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-19
+
+  feat: ✨ Add new size `small` to `<syn-details>` and `<syn-accordion>` (#1154)
+
+  The `<syn-details>` element was the only element with a `size` property that had no `small` variant.
+  This was now added for consistency with other elements that have a `size` property.
+
+  This can be used via `<syn-details size="small"></syn-details>` or `<syn-accordion size="small"></syn-accordion>`.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.3.0
+
 ## 3.2.1
 
 ### Patch Changes

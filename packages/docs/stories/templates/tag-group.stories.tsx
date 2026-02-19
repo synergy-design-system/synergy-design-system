@@ -101,11 +101,6 @@ export default meta;
 export const TagGroup = {
   render: () => {
     return html`
-      <script>
-      // Make filters available globally for the module script
-      window.tagGroupFilters = ${JSON.stringify(filters, null, 2)};
-      </script>
-
       <form class="filter-form">
         <h1>Kapazitive Näherungssensoren</h1>
         
@@ -170,11 +165,11 @@ export const TagGroup = {
       </style>
 
       <script type="module">
-      // Access the filters from the global window object
-      const filters = window.tagGroupFilters;
+      const filters = ${JSON.stringify(filters, null, 2)};
 
       const filterTagsContainer = document.querySelector('.filter-tags');
-           
+      const filterGroup = document.querySelector('.filter-group');
+
       const createFiltersFromSelectedOptions = () => {
         // Always read current state from DOM
         const currentState = filters.map(filter => {
@@ -205,6 +200,7 @@ export const TagGroup = {
 
         if (!hasSelectedFilters) {
           filterTagsContainer.hidden = true;
+          filterTagsContainer.style.display = 'none';
           return;
         }
 
@@ -234,11 +230,9 @@ export const TagGroup = {
         clearFiltersButton.innerHTML = 'Alle Filter löschen <syn-icon name="delete" slot="prefix"></syn-icon>';
 
         filterTagsContainer.appendChild(clearFiltersButton);
-
         filterTagsContainer.hidden = false;
+        filterTagsContainer.style.display = 'flex';
       };
-
-      const filterGroup = document.querySelector('.filter-group');
 
       // Listen for selection changes in any of the dropdown menus
       filterGroup.addEventListener('syn-select', async (e) => {
@@ -253,6 +247,35 @@ export const TagGroup = {
 
         // Recreate filters based on current application state
         createFiltersFromSelectedOptions();
+      });
+
+      filterTagsContainer.addEventListener('click', async (e) => {
+        const { target } = e;
+        if (target.tagName.toLowerCase() !== 'syn-button') {
+          return;
+        }
+        
+        if (window.confirm('Möchten Sie wirklich alle Filter entfernen?')) {
+          // Uncheck all menu items in the DOM
+          const allMenus = document.querySelectorAll('.filter-group syn-menu');
+          const updatePromises = [];
+          
+          allMenus.forEach(menu => {
+            const checkedItems = menu.querySelectorAll('syn-menu-item[type="checkbox"][aria-checked="true"]');
+            checkedItems.forEach(item => {
+              item.checked = false;
+              updatePromises.push(item.updateComplete);
+            });
+          });
+          
+          // Wait for all menu items to update
+          await Promise.all(updatePromises);
+
+          filters.forEach(filter => filter.selected = []); // Clear selected options in the data model
+          
+          // Now recreate the filters based on the updated DOM state
+          createFiltersFromSelectedOptions();
+        }
       });
 
       // Listen for tag removal events

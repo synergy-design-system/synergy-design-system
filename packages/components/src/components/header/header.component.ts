@@ -97,9 +97,9 @@ export default class SynHeader extends SynergyElement {
 
   private toggleBurgerMenu() {
     switch (this.burgerMenu) {
-    case 'closed': this.burgerMenu = 'open'; break;
-    case 'open': this.burgerMenu = 'closed'; break;
-    default: break;
+      case 'closed': this.burgerMenu = 'open'; break;
+      case 'open': this.burgerMenu = 'closed'; break;
+      default: break;
     }
   }
 

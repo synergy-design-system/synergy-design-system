@@ -72,17 +72,17 @@ const getMultiplierValue = (multiplier: number, baseValue: number, isSmall: bool
  */
 const getSpecialCaseValue = (size: string): number | null => {
   switch (size) {
-  case 'circle':
-    return 1000;
-  case 'pill':
-    return 1001;
-  case 'none':
-    return -1000; // none should be first
-  case 'mediumlarge':
-    return 150; // between medium (100) and large (200)
-  default:
-    if (size.includes('overflow')) return 1002; // overflow sizes should be at the end
-    return null;
+    case 'circle':
+      return 1000;
+    case 'pill':
+      return 1001;
+    case 'none':
+      return -1000; // none should be first
+    case 'mediumlarge':
+      return 150; // between medium (100) and large (200)
+    default:
+      if (size.includes('overflow')) return 1002; // overflow sizes should be at the end
+      return null;
   }
 };
 

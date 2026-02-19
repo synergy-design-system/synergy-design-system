@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.5.0
+
+### Minor Changes
+
+- [#1191](https://github.com/synergy-design-system/synergy-design-system/pull/1191) [`30f3b74`](https://github.com/synergy-design-system/synergy-design-system/commit/30f3b74891cf693735a792a901c5b23b016c71b8) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-19
+
+  feat: ✨ Add new size `small` to `<syn-details>` and `<syn-accordion>` (#1154)
+
+  The `<syn-details>` element was the only element with a `size` property that had no `small` variant.
+  This was now added for consistency with other elements that have a `size` property.
+
+  This can be used via `<syn-details size="small"></syn-details>` or `<syn-accordion size="small"></syn-accordion>`.
+
+## 2.4.1
+
+### Patch Changes
+
+- [#1182](https://github.com/synergy-design-system/synergy-design-system/pull/1182) [`460f8c2`](https://github.com/synergy-design-system/synergy-design-system/commit/460f8c22dfdc305d3990ba0af4b4aefc451fa8ea) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-02-19
+
+  fix: 🐛 Dependency updates (#258)
+
+- Updated dependencies [[`460f8c2`](https://github.com/synergy-design-system/synergy-design-system/commit/460f8c22dfdc305d3990ba0af4b4aefc451fa8ea)]:
+  - @synergy-design-system/assets@2.0.1
+
 ## 2.4.0
 
 ### Minor Changes

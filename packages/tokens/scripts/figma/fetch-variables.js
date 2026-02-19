@@ -1,6 +1,7 @@
 /**
  * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse} GetLocalVariablesResponse
  * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse['meta']} VariablesAndCollections
+ * @typedef {import('@figma/rest-api-spec').ErrorResponsePayloadWithErrorBoolean} ErrorResponsePayloadWithErrorBoolean
  * @typedef {VariablesAndCollections['variables']} Variables
  * @typedef {VariablesAndCollections['variableCollections']} VariableCollections
  */
@@ -53,12 +54,12 @@ const filterHiddenCollections = (variableCollections, variables) => {
 
 /**
  * Validates the API response
- * @param {GetLocalVariablesResponse} variablesResponse - The API response
+ * @param {GetLocalVariablesResponse | ErrorResponsePayloadWithErrorBoolean} variablesResponse - The API response
  */
 const validateApiResponse = (variablesResponse) => {
   if (variablesResponse.error || !variablesResponse.meta) {
     const errorMessage = variablesResponse.error
-      ? `Error ${variablesResponse.status} while fetching `
+      ? `Error ${variablesResponse.status} while fetching. Message: ${variablesResponse?.message || ''}`
       : 'No metadata found in response';
     throw new Error(`Failed to fetch variables: ${errorMessage}`);
   }

@@ -14,7 +14,7 @@
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "eslint": "^9.39.2",
     "lit": "^3.3.2",
-    "stylelint": "^17.1.1"
+    "stylelint": "^17.3.0"
   },
   "exports": {
     ".": "./index.js"

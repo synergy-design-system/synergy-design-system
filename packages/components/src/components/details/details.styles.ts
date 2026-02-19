@@ -123,7 +123,7 @@ export default css`
     --details-icon-size: var(--syn-spacing-medium-large);
     --details-slotted-icon-size: var(--syn-spacing-medium-large);
     --details-header-padding-contained: var(--syn-spacing-small) var(--syn-spacing-large);
-    --details-content-padding-contained: var(--syn-spacing-x-small) var(--syn-spacing-large) var(--syn-spacing-medium-large);
+    --details-content-padding-contained: var(--syn-spacing-small) var(--syn-spacing-large) var(--syn-spacing-medium-large);
   }
 
   /* stylelint-disable-next-line no-descending-specificity */

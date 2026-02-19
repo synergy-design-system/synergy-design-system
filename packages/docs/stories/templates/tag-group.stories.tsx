@@ -20,52 +20,51 @@ import '../../../components/src/components/select/select.js';
 import '../../../components/src/components/tag-group/tag-group.js';
 import '../../../components/src/components/tag/tag.js';
 
-// Type declaration for global window property
-declare global {
-  interface Window {
-    tagGroupFilters: typeof filters;
-    tagGroupSelectedFilters: typeof selectedFilters;
-  }
-}
-
 const filters = [
   {
     id: 'filter-1',
     name: 'Leitungsmaterial',
     options: ['Option 1', 'Option 2', 'Option 3'],
+    selected: ['Option 1', 'Option 2'],
   },
   {
     id: 'filter-2',
     name: 'Leitungslänge',
     options: ['230 mm', '0.2 m', '0.3 m', '0.7 m'],
+    selected: ['230 mm', '0.2 m', '0.3 m', '0.7 m'],
   },
   {
     id: 'filter-3',
     name: 'Produktfamilie',
     options: ['Option 1', 'Option 2', 'Option 3'],
+    selected: ['Option 1', 'Option 2', 'Option 3'],
   },
   {
     id: 'filter-4',
     name: 'Schaltausgang',
     options: ['Option 1', 'Option 2', 'Option 3'],
+    selected: [],
   },
   {
     id: 'filter-5',
     name: 'Anschlussart',
     options: ['Option 1', 'Option 2', 'Option 3'],
+    selected: [],
   },
   {
     id: 'filter-6',
     name: 'Umgebungstemperatur Betrieb',
     options: ['-25°C...80°C', 'CQ'],
+    selected: [],
   },
 ];
 
-const selectedFilters: Record<string, string[]> = {
-  'filter-1': ['Option 1', 'Option 2'],
-  'filter-2': ['230 mm', '0.2 m', '0.3 m', '0.7 m'],
-  'filter-6': ['-25°C...80°C', 'CQ'],
-};
+// Type declaration for global window property
+declare global {
+  interface Window {
+    tagGroupFilters: typeof filters;
+  }
+}
 
 const meta: Meta = {
   parameters: {
@@ -104,8 +103,7 @@ export const TagGroup = {
     return html`
       <script>
       // Make filters available globally for the module script
-      window.tagGroupFilters = ${JSON.stringify(filters)};
-      window.tagGroupSelectedFilters = ${JSON.stringify(selectedFilters)};
+      window.tagGroupFilters = ${JSON.stringify(filters, null, 2)};
       </script>
 
       <form class="filter-form">
@@ -116,12 +114,12 @@ export const TagGroup = {
             <syn-dropdown stay-open-on-select>
               <syn-button slot="trigger" caret>
                 ${filter.name}
-                <span class="filter-count"> - ${selectedFilters[filter.id]?.length || 0}</span>
+                <span class="filter-count"> - ${filter.selected.length || 0}</span>
               </syn-button>
               <syn-menu id="${filter.id}" style="width: 200px;">
                 ${filter.options.map(option => html`
                   <syn-menu-item
-                    ?checked="${selectedFilters[filter.id]?.includes(option)}"
+                    ?checked="${filter.selected.includes(option)}"
                     type="checkbox"
                     value="${option}"
                   >${option}</syn-menu-item>
@@ -174,12 +172,33 @@ export const TagGroup = {
       <script type="module">
       // Access the filters from the global window object
       const filters = window.tagGroupFilters;
-      const selectedFilters = window.tagGroupSelectedFilters;
+
       const filterTagsContainer = document.querySelector('.filter-tags');
            
       const createFiltersFromSelectedOptions = () => {
+        // Always read current state from DOM
+        const currentState = filters.map(filter => {
+          const menu = document.querySelector(\`#\${filter.id}\`);
+          const selectedItems = menu ? Array.from(menu.querySelectorAll('syn-menu-item[type="checkbox"][aria-checked="true"]')) : [];
+          return {
+            ...filter,
+            selected: selectedItems.map(item => item.value)
+          };
+        });
+
+        // Update filter count displays
+        currentState.forEach(filter => {
+          const menu = document.querySelector(\`#\${filter.id}\`);
+          if (menu) {
+            const button = menu.parentElement.querySelector('syn-button .filter-count');
+            if (button) {
+              button.innerHTML = \` - \${filter.selected.length}\`;
+            }
+          }
+        });
+
         // Check if there are any actual selected values across all filters
-        const hasSelectedFilters = Object.values(selectedFilters).some(options => options.length > 0);
+        const hasSelectedFilters = currentState.some(filter => filter.selected.length > 0);
 
         // Clear existing content
         filterTagsContainer.replaceChildren();
@@ -190,17 +209,15 @@ export const TagGroup = {
         }
 
         // Create and append elements directly
-        Object
-          .entries(selectedFilters)
-          .filter(([, options]) => options.length > 0) // Only include filters with selections
-          .forEach(([filterId, options]) => {
+        currentState
+          .filter(filter => filter.selected.length > 0) // Only include filters with selections
+          .forEach(filter => {
             const newFilter = document.createElement('syn-tag-group');
-            const currentFilter = filters.find(filter => filter.id === filterId);
             
             newFilter.labelPosition = 'start';
-            newFilter.label = currentFilter.name; // Now we can use the property directly
+            newFilter.label = filter.name;
 
-            options.forEach(option => {
+            filter.selected.forEach(option => {
               const tag = document.createElement('syn-tag');
               tag.removable = true;
               tag.textContent = option;
@@ -234,25 +251,12 @@ export const TagGroup = {
         // DOM needs to be updated before we can get the checked items
         await target.updateComplete;
 
-        // Get the amount of checked items in the menu and set it as the suffix for the button text
-        const selectedOptions = Array.from(target.querySelectorAll('syn-menu-item[type="checkbox"][aria-checked="true"]'));
-        const button = target.parentElement.querySelector('syn-button .filter-count');
-        if (button) {
-          button.innerHTML = \` - \$\{selectedOptions.length.toString()\}\`;
-        }
-
-        // Update the selected filters array
-        const { id } = target;
-        
-        if (typeof selectedFilters[id] === 'undefined') {
-          selectedFilters[id] = [];
-        }
-        selectedFilters[id] = selectedOptions.map(option => option.value);
+        // Recreate filters based on current application state
         createFiltersFromSelectedOptions();
       });
 
       // Listen for tag removal events
-      filterTagsContainer.addEventListener('syn-remove', (e) => {
+      filterTagsContainer.addEventListener('syn-remove', async (e) => {
         const tag = e.target;
         const tagGroup = tag.closest('syn-tag-group');
         const filterName = tagGroup.label;
@@ -262,7 +266,20 @@ export const TagGroup = {
           return;
         }
 
-        selectedFilters[filter.id] = selectedFilters[filter.id].filter(option => option !== tag.textContent);
+        // Uncheck the corresponding menu item in the DOM
+        const menu = document.querySelector(\`#\${filter.id}\`);
+        if (menu) {
+          const menuItem = Array.from(menu.querySelectorAll('syn-menu-item[type="checkbox"]'))
+            .find(item => item.value === tag.textContent);
+          if (menuItem) {
+            menuItem.checked = false;
+            // Wait for the component to update before recreating filters
+            await menuItem.updateComplete;
+          }
+        }
+
+        // Recreate filters based on current application state
+        createFiltersFromSelectedOptions();
       });   
 
       const bootstrapFilters = async () => {

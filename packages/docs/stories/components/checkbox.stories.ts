@@ -279,6 +279,7 @@ export const Screenshot: Story = generateScreenshotStory({
   HelpText,
   Indeterminate,
   Disabled,
+  Readonly,
   Sizes,
 });
 /* eslint-enable sort-keys */

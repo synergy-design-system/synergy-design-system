@@ -295,7 +295,7 @@
   }
 
   .synergy-demo-content {
-    background: var(--syn-page-background-color);
+    background: var(--syn-page-background-color-muted);
     display: flex;
     flex: 1 0 auto;
     flex-direction: column;

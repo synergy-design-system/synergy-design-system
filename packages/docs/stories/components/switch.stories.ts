@@ -189,6 +189,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   Checked,
   Disabled,
+  Readonly,
   Sizes,
   HelpText,
 }, 200);

@@ -192,12 +192,12 @@ export default css`
     margin-inline-start: var(--syn-input-required-content-offset);
   }
 
-  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled) .switch__control {
+  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled):not(.switch--readonly) .switch__control {
     background-color: var(--syn-input-border-color-focus-error);
     border-color: var(--syn-input-border-color-focus-error);
   }
 
-  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled):hover .switch__control {
+  :host([data-user-invalid]) .switch:not(.switch--checked):not(.switch--disabled):not(.switch--readonly):hover .switch__control {
     background-color: var(--syn-input-border-color-hover);
     border-color: var(--syn-input-border-color-hover);
   }

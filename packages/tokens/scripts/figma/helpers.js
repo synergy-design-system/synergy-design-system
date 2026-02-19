@@ -51,18 +51,18 @@ export const getTypeForFloatVariable = (name) => {
     .find((key) => name.includes(key));
 
   switch (type) {
-  case 'letter-spacing':
-    return 'letterSpacing';
-  case 'line-height':
-    return 'lineHeights';
-  case 'opacity':
-    return 'opacity';
-  case 'weight':
-    return 'fontWeights';
-  case 'z-index':
-    return 'number';
-  default:
-    return 'sizing';
+    case 'letter-spacing':
+      return 'letterSpacing';
+    case 'line-height':
+      return 'lineHeights';
+    case 'opacity':
+      return 'opacity';
+    case 'weight':
+      return 'fontWeights';
+    case 'z-index':
+      return 'number';
+    default:
+      return 'sizing';
   }
 };
 
@@ -104,7 +104,7 @@ export const getAliasValue = (aliasId, modeId) => {
     newValue && typeof newValue === 'object' && 'type' in newValue
     && newValue.type === 'VARIABLE_ALIAS' && 'id' in newValue
   ) {
-    return getAliasValue(/** @type {string} */ (newValue.id), modeId);
+    return getAliasValue(/** @type {string} */(newValue.id), modeId);
   }
   return newValue;
 };

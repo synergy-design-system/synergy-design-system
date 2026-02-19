@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/tag-group/tag-group.js';
 import '../../../components/src/components/tag/tag.js';
 import '../../../components/src/components/icon/icon.js';
@@ -27,16 +24,15 @@ const generateTags = (count: number) => new Array(count)
   <syn-icon name="wallpaper"></syn-icon>
   Option
  </syn-tag>    
-    `.trim(),
-  )
-  .join("\n");
+  `.trim())
+  .join('\n');
 
 const meta: Meta = {
   args: overrideArgs([
     {
       name: 'label',
       type: 'slot',
-      value: 'This is a label'
+      value: 'This is a label',
     },
     {
       name: 'default',
@@ -57,7 +53,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Feedback', 'Filter'],
+  tags: ['Feedback', 'Tags', 'Filter'],
   title: 'Components/syn-tag-group',
 };
 export default meta;
@@ -112,7 +108,6 @@ export const LabelAlignment: Story = {
     </syn-tag-group>
   `,
 };
-
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({

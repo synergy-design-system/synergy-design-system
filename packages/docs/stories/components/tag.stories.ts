@@ -36,7 +36,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Feedback'],
+  tags: ['Feedback', 'Tags', 'Filter'],
   title: 'Components/syn-tag',
 };
 export default meta;

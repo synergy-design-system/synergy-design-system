@@ -6,8 +6,16 @@
 "@synergy-design-system/vue": minor
 ---
 
-feat: ✨ Added readonly for `<syn-checkbox>` and `<syn-switch>` (#1171, #1178)
+feat: ✨ Added readonly for various form fields (#1171, #1174, #1175, #1176, #1178)
 
-`<syn-checkbox>` and `<syn-switch>` now support being displayed as a `readonly` field.
+Applies to:
 
-Field marked `readonly` may receive focus, but their status (checked state) cannot be changed by customer inputs.
+- `<syn-checkbox>`
+- `<syn-radio>`
+- `<syn-radio-group>`
+- `<syn-range>`
+- `<syn-switch>`
+
+Form elements now support being displayed as `readonly` fields.
+
+Field marked `readonly` may receive focus, but their status (e.g. checked state) cannot be changed by customer inputs.

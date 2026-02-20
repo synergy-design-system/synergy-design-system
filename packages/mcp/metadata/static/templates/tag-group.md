@@ -14,8 +14,8 @@
         size="medium"
       >
         Leitungsmaterial
-        <span class="filter-count"> - 2</span>
-      </syn-button>
+        <span class="dynamic-count"> - 2</span></syn-button
+      >
       <syn-menu id="filter-1" role="menu">
         <syn-menu-item
           type="checkbox"
@@ -60,8 +60,8 @@
         size="medium"
       >
         Leitungslänge
-        <span class="filter-count"> - 4</span>
-      </syn-button>
+        <span class="dynamic-count"> - 4</span></syn-button
+      >
       <syn-menu id="filter-2" role="menu">
         <syn-menu-item
           type="checkbox"
@@ -118,8 +118,8 @@
         size="medium"
       >
         Produktfamilie
-        <span class="filter-count"> - 3</span>
-      </syn-button>
+        <span class="dynamic-count"> - 3</span></syn-button
+      >
       <syn-menu id="filter-3" role="menu">
         <syn-menu-item
           type="checkbox"
@@ -165,8 +165,8 @@
         size="medium"
       >
         Schaltausgang
-        <span class="filter-count"> - 0</span>
-      </syn-button>
+        <span class="dynamic-count"> - 0</span></syn-button
+      >
       <syn-menu id="filter-4" role="menu">
         <syn-menu-item
           type="checkbox"
@@ -209,8 +209,8 @@
         size="medium"
       >
         Anschlussart
-        <span class="filter-count"> - 0</span>
-      </syn-button>
+        <span class="dynamic-count"> - 0</span></syn-button
+      >
       <syn-menu id="filter-5" role="menu">
         <syn-menu-item
           type="checkbox"
@@ -253,8 +253,8 @@
         size="medium"
       >
         Umgebungstemperatur Betrieb
-        <span class="filter-count"> - 0</span>
-      </syn-button>
+        <span class="dynamic-count"> - 0</span></syn-button
+      >
       <syn-menu id="filter-6" role="menu">
         <syn-menu-item
           type="checkbox"
@@ -304,12 +304,11 @@
       ><syn-tag size="medium">Option 2</syn-tag
       ><syn-tag size="medium">Option 3</syn-tag></syn-tag-group
     ><syn-button title="" variant="text" size="medium"
-      >Alle Filter löschen
-      <syn-icon
-        name="delete"
+      >Alle Filter löschen<syn-icon
         slot="prefix"
         aria-hidden="true"
         library="default"
+        name="delete"
       ></syn-icon
     ></syn-button>
   </div>
@@ -351,13 +350,14 @@
         flex-direction: column;
         margin-bottom: var(--syn-spacing-2x-large);
 
-        /* Make sure buttons span the whole widtH */
+        /* Make sure buttons span the whole width */
         syn-dropdown syn-button {
           width: 100%;
           display: block;
-          &::part(label) {
-            width: 100%;
-          }
+        }
+
+        syn-dropdown syn-button::part(label) {
+          width: 100%;
         }
       }
 

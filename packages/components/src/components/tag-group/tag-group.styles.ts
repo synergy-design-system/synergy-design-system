@@ -9,29 +9,20 @@ export default css`
     display: block;
   }
 
-  .tag-group {
-    align-items: baseline;
-    display: flex;
-  }
-
-  .tag-group--top {
-    flex-direction: column;
-    gap: var(--syn-spacing-small);
-  }
-
-  .tag-group--start {
-    flex-direction: row;
-    gap: var(--tag-group-label-gap);
-  }
-
   /* Label Styles */
   .tag-group__label {
     color: var(--syn-input-label-color);
+    display: block;
     font: var(--tag-group-label-font);
+  }
+
+  .tag-group--top .tag-group__label {
+    margin-bottom: var(--tag-group-label-gap);
   }
 
   /* Tag Container */
   .tag-container {
+    align-items: anchor-center;
     display: flex;
     flex-wrap: wrap;
     gap: var(--tag-group-item-gap);

@@ -66,6 +66,16 @@ export default class SynTagGroup extends SynergyElement {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasLabel = this.label ? true : !!hasLabelSlot;
 
+    const label = html`
+      <span
+          part="tag-label"
+          class="tag-group__label"
+          aria-hidden=${hasLabel ? 'false' : 'true'}
+        >
+          <slot name="label">${this.label}</slot>
+      </span>
+    `;
+
     /* eslint-disable @typescript-eslint/unbound-method */
     return html`
       <div 
@@ -80,18 +90,13 @@ export default class SynTagGroup extends SynergyElement {
         })}
       >
 
-        <span
-          part="tag-label"
-          class="tag-group__label"
-          aria-hidden=${hasLabel ? 'false' : 'true'}
-        >
-          <slot name="label">${this.label}</slot>
-      </span>
+        ${this.labelPosition === 'top' ? label : null}
 
         <div
           class="tag-container"
           part="tag-container"
         >
+          ${this.labelPosition === 'start' ? label : null}
           <slot @slotchange=${this.handleSlotChange}></slot>
         </div>
       </div>

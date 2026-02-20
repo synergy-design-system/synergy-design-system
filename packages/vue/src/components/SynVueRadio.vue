@@ -57,6 +57,11 @@ attribute can typically be omitted.
    * Disables the radio.
    */
   disabled?: SynRadio['disabled'];
+
+  /**
+   * Sets the radio to a readonly state.
+   */
+  readonly?: SynRadio['readonly'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

@@ -1949,6 +1949,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the read-only attribute to a radio to draw it in a readonly state.",
+          "type": "text"
+        }
+      },
       "size": {
         "title": {
           "value": "Sizing Options",
@@ -2920,6 +2930,16 @@
         },
         "description": {
           "value": "Use the disabled attribute to disable a radio.",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the read-only attribute to draw a read-only radio.",
           "type": "text"
         }
       },

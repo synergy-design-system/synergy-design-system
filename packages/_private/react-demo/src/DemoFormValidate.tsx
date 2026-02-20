@@ -130,6 +130,7 @@ export const DemoFormValidate = () => {
             value={formData.gender}
           >
             <SynRadio value="">invalid</SynRadio>
+            <SynRadio value="" readonly>invalid (readonly)</SynRadio>
             <SynRadio value="f">Female</SynRadio>
             <SynRadio value="m">Male</SynRadio>
             <SynRadio value="other">Other</SynRadio>

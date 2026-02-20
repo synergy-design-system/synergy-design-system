@@ -1,14 +1,16 @@
-/* eslint-disable */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+/* eslint-disable no-param-reassign */
 import { classMap } from 'lit/directives/class-map.js';
-import {
-  customErrorValidityState,
-  FormControlController,
-  validValidityState,
-  valueMissingValidityState
-} from '../../internal/form.js';
-import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
+import type { CSSResultGroup } from 'lit';
+import {
+  FormControlController,
+  customErrorValidityState,
+  validValidityState,
+  valueMissingValidityState,
+} from '../../internal/form.js';
+import { HasSlotController } from '../../internal/slot.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
@@ -17,7 +19,6 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynButtonGroup from '../button-group/button-group.component.js';
 import styles from './radio-group.styles.js';
 import customStyles from './radio-group.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynRadio from '../radio/radio.js';
 import type SynRadioButton from '../radio-button/radio-button.js';
@@ -50,18 +51,25 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 @enableDefaultSettings('SynRadioGroup')
 export default class SynRadioGroup extends SynergyElement implements SynergyFormControl {
   static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
+
   static dependencies = { 'syn-button-group': SynButtonGroup };
 
   protected readonly formControlController = new FormControlController(this);
+
   private readonly hasSlotController = new HasSlotController(this, 'help-text', 'label');
+
   private customValidityMessage = '';
+
   private validationTimeout: number;
 
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+
   @query('.radio-group__validation-input') validationInput: HTMLInputElement;
 
   @state() private hasButtonGroup = false;
+
   @state() private errorMessage = '';
+
   @state() defaultValue: string | number = '';
 
   /**
@@ -90,7 +98,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
   @property({ reflect: true }) form = '';
 
   /** Ensures a child radio is checked before allowing the containing form to submit. */
-  @property({ type: Boolean, reflect: true }) required = false;
+  @property({ reflect: true, type: Boolean }) required = false;
 
   /** Gets the validity state object */
   get validity() {
@@ -99,7 +107,9 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
     if (hasCustomValidityMessage) {
       return customErrorValidityState;
-    } else if (isRequiredAndEmpty) {
+    }
+
+    if (isRequiredAndEmpty) {
       return valueMissingValidityState;
     }
 
@@ -113,7 +123,9 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
     if (hasCustomValidityMessage) {
       return this.customValidityMessage;
-    } else if (isRequiredAndEmpty) {
+    }
+
+    if (isRequiredAndEmpty) {
       return this.validationInput.validationMessage;
     }
 
@@ -138,12 +150,15 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
     const radios = this.getAllRadios();
     const oldValue = this.value;
 
-    if (!target || target.disabled) {
+    // #1174: If we have a radio, also do nothing if the radio is readonly
+    if (!target || target.disabled || (target as SynRadio).readonly) {
       return;
     }
 
     this.value = target.value;
-    radios.forEach(radio => (radio.checked = radio === target));
+    radios.forEach(radio => {
+      radio.checked = radio === target;
+    });
 
     if (this.value !== oldValue) {
       this.emit('syn-change');
@@ -156,8 +171,10 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
       return;
     }
 
-    const radios = this.getAllRadios().filter(radio => !radio.disabled);
+    // #1174: Filter out elements that are either disabled or readonly
+    const radios = this.getAllRadios().filter(radio => (!radio.disabled && !(radio as SynRadio).readonly));
     const checkedRadio = radios.find(radio => radio.checked) ?? radios[0];
+    // eslint-disable-next-line no-nested-ternary
     const incr = event.key === ' ' ? 0 : ['ArrowUp', 'ArrowLeft'].includes(event.key) ? -1 : 1;
     const oldValue = this.value;
     let index = radios.indexOf(checkedRadio) + incr;
@@ -214,7 +231,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
         await radio.updateComplete;
         radio.checked = radio.value === this.value;
         radio.size = this.size;
-      })
+      }),
     );
 
     this.hasButtonGroup = radios.some(radio => radio.tagName.toLowerCase() === 'syn-radio-button');
@@ -262,7 +279,9 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
   private updateCheckedRadio() {
     const radios = this.getAllRadios();
-    radios.forEach(radio => (radio.checked = radio.value === this.value));
+    radios.forEach(radio => {
+      radio.checked = radio.value === this.value;
+    });
     this.formControlController.setValidity(this.validity.valid);
   }
 
@@ -309,7 +328,9 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
       // Show the browser's constraint validation message
       this.validationInput.hidden = false;
       this.validationInput.reportValidity();
-      this.validationTimeout = setTimeout(() => (this.validationInput.hidden = true), 10000) as unknown as number;
+      this.validationTimeout = setTimeout(() => {
+        this.validationInput.hidden = true;
+      }, 10000) as unknown as number;
     }
 
     return isValid;
@@ -338,6 +359,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
   }
 
   render() {
+    /* eslint-disable @typescript-eslint/unbound-method */
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
@@ -351,12 +373,12 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
         part="form-control"
         class=${classMap({
           'form-control': true,
-          'form-control--small': this.size === 'small',
-          'form-control--medium': this.size === 'medium',
-          'form-control--large': this.size === 'large',
-          'form-control--radio-group': true,
+          'form-control--has-help-text': hasHelpText,
           'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
+          'form-control--large': this.size === 'large',
+          'form-control--medium': this.size === 'medium',
+          'form-control--radio-group': true,
+          'form-control--small': this.size === 'small',
         })}
         role="radiogroup"
         aria-labelledby="label"
@@ -407,5 +429,6 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
         </div>
       </fieldset>
     `;
+    /* eslint-enable @typescript-eslint/unbound-method */
   }
 }

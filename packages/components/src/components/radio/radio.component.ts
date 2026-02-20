@@ -1,14 +1,12 @@
-/* eslint-disable */
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit';
+import type { CSSResultGroup } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './radio.styles.js';
-import customStyles from './radio.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -32,10 +30,12 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynRadio')
 export default class SynRadio extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
+
   static dependencies = { 'syn-icon': SynIcon };
 
   @state() checked = false;
+
   @state() protected hasFocus = false;
 
   /** The radio's value. When selected, the radio group will receive this value. */
@@ -48,7 +48,10 @@ export default class SynRadio extends SynergyElement {
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Disables the radio. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ reflect: true, type: Boolean }) disabled = false;
+
+  /** Sets the radio to a readonly state. */
+  @property({ reflect: true, type: Boolean }) readonly = false;
 
   constructor() {
     super();
@@ -68,6 +71,11 @@ export default class SynRadio extends SynergyElement {
   };
 
   private handleClick = () => {
+    if (this.readonly) {
+      this.focus();
+      return;
+    }
+
     if (!this.disabled) {
       this.checked = true;
     }
@@ -81,7 +89,7 @@ export default class SynRadio extends SynergyElement {
   private setInitialAttributes() {
     this.setAttribute('role', 'radio');
     this.setAttribute('tabindex', '-1');
-    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+    this.setAttribute('aria-disabled', (this.disabled || this.readonly) ? 'true' : 'false');
   }
 
   @watch('checked')
@@ -90,9 +98,9 @@ export default class SynRadio extends SynergyElement {
     this.setAttribute('tabindex', this.checked ? '0' : '-1');
   }
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
+  @watch(['disabled', 'readonly'], { waitUntilFirstUpdate: true })
   handleDisabledChange() {
-    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+    this.setAttribute('aria-disabled', (this.disabled || this.readonly) ? 'true' : 'false');
   }
 
   render() {
@@ -104,9 +112,10 @@ export default class SynRadio extends SynergyElement {
           'radio--checked': this.checked,
           'radio--disabled': this.disabled,
           'radio--focused': this.hasFocus,
-          'radio--small': this.size === 'small',
+          'radio--large': this.size === 'large',
           'radio--medium': this.size === 'medium',
-          'radio--large': this.size === 'large'
+          'radio--readonly': this.readonly,
+          'radio--small': this.size === 'small',
         })}
       >
         <span part="${`control${this.checked ? ' control--checked' : ''}`}" class="radio__control">

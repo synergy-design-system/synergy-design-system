@@ -98,6 +98,7 @@ const synChange = () => {
           v-model="formData.gender"
         >
           <SynVueRadio value="">invalid</SynVueRadio>
+          <SynVueRadio value="" readonly>invalid (readonly)</SynVueRadio>
           <SynVueRadio value="f">Female</SynVueRadio>
           <SynVueRadio value="m">Male</SynVueRadio>
           <SynVueRadio value="other">Other</SynVueRadio>

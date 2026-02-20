@@ -7,10 +7,12 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   example: ({
     defaultSlot,
     disabled,
+    readonly,
     size,
   }) => html`
     <syn-radio
       disabled=${disabled}
+      readonly=${readonly}
       size=${size}
     >
       ${defaultSlot}
@@ -28,6 +30,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   props: {
     defaultSlot: figma.instance('↳ <slot (default)>'),
     disabled: figma.boolean('disabled'),
+    readonly: figma.boolean('readonly'),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',

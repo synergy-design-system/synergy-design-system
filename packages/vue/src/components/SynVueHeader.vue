@@ -34,6 +34,8 @@
  * @csspart meta-navigation - The Item wrapping the optional application menu
  * @csspart navigation - The wrapper that is holding the optional top navigation section
  * @csspart burger-menu-toggle-button - The button that toggles the burger menu
+ *
+ * @cssproperty --sticky-position - The position of the sticky header from the top of the viewport. Defaults to the top of the screen.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/header/header.js';
@@ -68,6 +70,12 @@ The following values can be used:
 - closed: The burger menu is visible and shows the open icon
  */
   burgerMenu?: SynHeader['burgerMenu'];
+
+  /**
+* Makes the header stick to the top of the viewport when scrolling.
+Also applies a shadow to the header when scrolling.
+ */
+  sticky?: SynHeader['sticky'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

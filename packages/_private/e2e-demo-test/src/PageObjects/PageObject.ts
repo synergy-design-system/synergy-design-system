@@ -72,14 +72,14 @@ export class PageObject {
 
   public getSizeToggle(size: 'small' | 'medium' | 'large'): Locator {
     switch (size) {
-    case 'small':
-      return this.page.locator(selectors.sizeToggleSmall);
-    case 'medium':
-      return this.page.locator(selectors.sizeToggleMedium);
-    case 'large':
-      return this.page.locator(selectors.sizeToggleLarge);
-    default:
-      throw new Error('Invalid size');
+      case 'small':
+        return this.page.locator(selectors.sizeToggleSmall);
+      case 'medium':
+        return this.page.locator(selectors.sizeToggleMedium);
+      case 'large':
+        return this.page.locator(selectors.sizeToggleLarge);
+      default:
+        throw new Error('Invalid size');
     }
   }
 }

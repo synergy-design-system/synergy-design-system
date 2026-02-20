@@ -131,9 +131,11 @@ export const Readonly: Story = {
     },
   },
   render: () => html`
-    <syn-checkbox name="a" value="a" readonly>Read only content</syn-checkbox>
-    <syn-checkbox name="b" value="b" readonly indeterminate>Read only content (indet)</syn-checkbox>
-    <syn-checkbox name="c" value="c" readonly checked>Read only content (checked)</syn-checkbox>
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-checkbox name="a" value="a" readonly>Read only content</syn-checkbox>
+      <syn-checkbox name="b" value="b" readonly indeterminate>Read only content (indet)</syn-checkbox>
+      <syn-checkbox name="c" value="c" readonly checked>Read only content (checked)</syn-checkbox>
+    </div>
   `,
 };
 

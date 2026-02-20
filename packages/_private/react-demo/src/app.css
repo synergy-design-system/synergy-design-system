@@ -5,7 +5,7 @@ html, body {
 }
 
 body {
-  background: var(--syn-page-background-color);
+  background: var(--syn-page-background-color-muted);
   color: var(--syn-color-neutral-900);
   font-family: var(--syn-font-sans);
   font-size: var(--syn-font-size-medium);
@@ -15,12 +15,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-
-syn-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
 }
 
 .custom-logo syn-icon {

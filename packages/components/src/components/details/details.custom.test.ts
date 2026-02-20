@@ -12,7 +12,7 @@ describe('<syn-details>', () => {
     });
   });
 
-  ['medium', 'large'].forEach((size) => {
+  ['small', 'medium', 'large'].forEach((size) => {
     it(`should add a class of "details--size-${size}" when the size is set to "${size}"`, async () => {
       const el = await fixture<SynDetails>(html`<syn-details size=${size}></syn-details>`);
       expect(el.shadowRoot!.querySelector('.details')!.classList.contains(`details--size-${size}`)).to.be.true;

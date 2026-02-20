@@ -277,7 +277,7 @@ describe('<syn-header>', () => {
     });
   });
 
-  describe('when mutation observer for side navigation', () => {
+  describe('when using the mutation observer for side navigation', () => {
     it('should not set up a mutation observer if no side navigation is available', async () => {
       const observeStub = sinon.stub();
       (globalThis.MutationObserver as unknown) = sinon.stub().returns({
@@ -352,4 +352,27 @@ describe('<syn-header>', () => {
       expect(disconnectStub).to.have.been.calledTwice;
     });
   });
+
+  // #529: Support sticky property
+  describe('when using the sticky property', () => {
+    it('should default to non-sticky', async () => {
+      const el = await fixture<SynHeader>(html`<syn-header></syn-header>`);
+      expect(el.sticky).to.be.false;
+    });
+
+    it('should set sticky to true when the property is set', async () => {
+      const el = await fixture<SynHeader>(html`<syn-header sticky></syn-header>`);
+      expect(el.sticky).to.be.true;
+    });
+
+    it('should add a shadow and "position: sticky" to the header when sticky is true', async () => {
+      const el = await fixture<SynHeader>(html`<syn-header sticky></syn-header>`);
+
+      const computedStyles = getComputedStyle(el);
+      expect(computedStyles.position).to.equal('sticky');
+      expect(computedStyles.top).to.equal('0px');
+      expect(computedStyles.boxShadow).not.to.equal('none');
+    });
+  });
+  // /#529
 });

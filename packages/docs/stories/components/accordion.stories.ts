@@ -205,8 +205,8 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    ${['medium', 'large'].map(size => html`
-      <syn-accordion class="accordion-size" size="${size as 'medium' | 'large'}">
+    ${['small', 'medium', 'large'].map(size => html`
+      <syn-accordion class="accordion-size" size="${size as 'small' | 'medium' | 'large'}">
         <syn-details>
           <span slot="summary">Accordion Element</span>
           <h3 style="margin: 0 0 var(--syn-spacing-x-small); font: var(--syn-body-small-bold);">Subheadline</h3>

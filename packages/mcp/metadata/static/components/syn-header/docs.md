@@ -132,3 +132,13 @@ Use the Burger Menu as trigger to open and close the Navigation. In the open sta
 ```html
 <syn-header burger-menu="closed" label="App Name"> </syn-header>
 ```
+
+---
+
+## Sticky
+
+Use the sticky attribute to add a shadow when the header is fixed at the top and other content scrolls behind it.
+
+```html
+<syn-header label="App Name" sticky="" burger-menu="hidden"></syn-header>
+```

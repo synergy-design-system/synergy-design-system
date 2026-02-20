@@ -74,12 +74,6 @@ const routeTo = (route: string) => {
 </template>
 
 <style scoped>
-syn-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}
-
 .custom-logo syn-icon {
   display: block;
   width: auto;

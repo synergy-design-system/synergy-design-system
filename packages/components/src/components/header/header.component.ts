@@ -41,6 +41,8 @@ import { watch } from '../../internal/watch.js';
  * @csspart meta-navigation - The Item wrapping the optional application menu
  * @csspart navigation - The wrapper that is holding the optional top navigation section
  * @csspart burger-menu-toggle-button - The button that toggles the burger menu
+ *
+ * @cssproperty --sticky-position - The position of the sticky header from the top of the viewport. Defaults to the top of the screen.
  */
 export default class SynHeader extends SynergyElement {
   static styles: CSSResultGroup = [
@@ -83,15 +85,21 @@ export default class SynHeader extends SynergyElement {
   @property({ attribute: 'burger-menu', reflect: true }) burgerMenu: 'hidden' | 'open' | 'closed' = 'hidden';
 
   /**
+   * Makes the header stick to the top of the viewport when scrolling.
+   * Also applies a shadow to the header when scrolling.
+   */
+  @property({ reflect: true, type: Boolean }) sticky = false;
+
+  /**
    * The side nav
    */
   @state() private sideNav: SynSideNav | null;
 
   private toggleBurgerMenu() {
     switch (this.burgerMenu) {
-    case 'closed': this.burgerMenu = 'open'; break;
-    case 'open': this.burgerMenu = 'closed'; break;
-    default: break;
+      case 'closed': this.burgerMenu = 'open'; break;
+      case 'open': this.burgerMenu = 'closed'; break;
+      default: break;
     }
   }
 

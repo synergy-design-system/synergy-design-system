@@ -234,19 +234,19 @@ const processTextStyle = (result, style) => {
  */
 const processStyle = (result, style, modeId) => {
   switch (style.styleType) {
-  // currently we only have style type EFFECT and TEXT
-  case 'EFFECT': {
-    processEffectStyle(result, style, modeId);
-    break;
-  }
-  case 'TEXT': {
-    processTextStyle(result, style);
-    break;
-  }
-  default:
-    // No processing for unknown style types
-    console.warn(`Unknown style type: ${style.styleType} for style ${style.name}`);
-    break;
+    // currently we only have style type EFFECT and TEXT
+    case 'EFFECT': {
+      processEffectStyle(result, style, modeId);
+      break;
+    }
+    case 'TEXT': {
+      processTextStyle(result, style);
+      break;
+    }
+    default:
+      // No processing for unknown style types
+      console.warn(`Unknown style type: ${style.styleType} for style ${style.name}`);
+      break;
   }
 };
 

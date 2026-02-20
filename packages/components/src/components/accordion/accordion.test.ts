@@ -74,7 +74,7 @@ describe('<syn-accordion>', () => {
       expect(accordion.size).to.equal('medium');
     });
 
-    ['medium', 'large'].forEach((size: 'medium' | 'large') => {
+    ['small', 'medium', 'large'].forEach((size: 'small' | 'medium' | 'large') => {
       it(`should set size to ${size} for all syn-details`, async () => {
         const accordion = await fixture<SynAccordion>(html`
           <syn-accordion size=${size}>

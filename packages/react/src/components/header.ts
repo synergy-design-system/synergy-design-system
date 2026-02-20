@@ -44,6 +44,8 @@ Component.define('syn-header');
  * @csspart meta-navigation - The Item wrapping the optional application menu
  * @csspart navigation - The wrapper that is holding the optional top navigation section
  * @csspart burger-menu-toggle-button - The button that toggles the burger menu
+ *
+ * @cssproperty --sticky-position - The position of the sticky header from the top of the viewport. Defaults to the top of the screen.
  */
 export const SynHeader = createComponent({
   displayName: 'SynHeader',

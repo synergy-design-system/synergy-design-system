@@ -26,13 +26,13 @@ type MaterialIconsMetadata = {
 
 const getBundledIconsForMode = (mode: Themes) => {
   switch (mode) {
-  case 'sick2018':
-    return sick2018Icons;
-  case 'sick2025-fill':
-    return sick2025FilledIcons;
-  case 'sick2025-outline':
-  default:
-    return sick2025OutlineIcons;
+    case 'sick2018':
+      return sick2018Icons;
+    case 'sick2025-fill':
+      return sick2025FilledIcons;
+    case 'sick2025-outline':
+    default:
+      return sick2025OutlineIcons;
   }
 };
 
@@ -54,13 +54,13 @@ const mapIconData = (icons: Record<string, string>, mode: Themes) => Object.keys
 
 const getIconsforMode = (mode: Themes): FontIcon[] => {
   switch (mode) {
-  case 'sick2018':
-    return mapIconData(sick2018Icons, mode);
-  case 'sick2025-fill':
-    return mapIconData(sick2025FilledIcons, mode);
-  case 'sick2025-outline':
-  default:
-    return mapIconData(sick2025OutlineIcons, mode);
+    case 'sick2018':
+      return mapIconData(sick2018Icons, mode);
+    case 'sick2025-fill':
+      return mapIconData(sick2025FilledIcons, mode);
+    case 'sick2025-outline':
+    default:
+      return mapIconData(sick2025OutlineIcons, mode);
   }
 };
 

@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 2.48.2
+ * @synergy-design-system/tokens version 3.2.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -307,8 +307,9 @@
   --syn-option-icon-color-hover: var(--syn-color-neutral-0);
   --syn-overlay-background-blur: 8px;
   --syn-overlay-background-color: rgba(0, 5, 26, 0.6);
-  --syn-page-background: var(--syn-color-neutral-0); /** Will be DEPRECATED */
+  --syn-page-background: var(--syn-page-background-color); /** Will be DEPRECATED */
   --syn-page-background-color: var(--syn-color-neutral-0);
+  --syn-page-background-color-muted: var(--syn-color-neutral-0);
   --syn-panel-background-color: var(--syn-color-neutral-50);
   --syn-panel-border-color: var(--syn-color-neutral-300);
   --syn-panel-border-radius: var(--syn-border-radius-medium);
@@ -320,6 +321,16 @@
   --syn-range-tick-color: var(--syn-color-neutral-600);
   --syn-range-track-color-active: var(--syn-interactive-emphasis-color);
   --syn-readonly-background-color: var(--syn-color-neutral-300);
+  --syn-shadow-medium: 0px 1px 2px 0px rgba(13, 13, 13, 0.08), 0px 1px 4px 0px rgba(13, 13, 13, 0.08), 0px 2px 8px 0px rgba(13, 13, 13, 0.08);
+  --syn-shadow-large: 0px 0px 3px 0px rgba(13, 13, 13, 0.12), 0px 2px 6px 0px rgba(13, 13, 13, 0.12), 0px 3px 8px 0px rgba(13, 13, 13, 0.16);
+  --syn-shadow-x-large: 0px 1px 4px 0px rgba(13, 13, 13, 0.12), 0px 8px 24px 0px rgba(13, 13, 13, 0.12), 0px 16px 48px 0px rgba(13, 13, 13, 0.16);
+  --syn-shadow-overflow-down: 0px 1px 4px 0px rgba(13, 13, 13, 0.12), 0px 3px 8px 0px rgba(13, 13, 13, 0.12), 0px 4px 12px 0px rgba(13, 13, 13, 0.16);
+  --syn-shadow-overflow-up: 0px -1px 4px 0px rgba(13, 13, 13, 0.12), 0px -3px 8px 0px rgba(13, 13, 13, 0.12), 0px -4px 12px 0px rgba(13, 13, 13, 0.16);
+  --syn-shadow-overflow-left: -1px 0px 4px 0px rgba(13, 13, 13, 0.12), -3px 0px 8px 0px rgba(13, 13, 13, 0.12), -4px 0px 12px 0px rgba(13, 13, 13, 0.16);
+  --syn-shadow-overflow-right: 1px 0px 4px 0px rgba(13, 13, 13, 0.12), 3px 0px 8px 0px rgba(13, 13, 13, 0.12), 4px 0px 12px 0px rgba(13, 13, 13, 0.16);
+  --syn-shadow-x-small: 0px 1px 2px 0px rgba(13, 13, 13, 0.04), 0px 1px 4px 0px rgba(13, 13, 13, 0.04), 0px 2px 8px 0px rgba(13, 13, 13, 0.04);
+  --syn-shadow-small: 0px 1px 2px 0px rgba(13, 13, 13, 0.06), 0px 1px 4px 0px rgba(13, 13, 13, 0.06), 0px 2px 8px 0px rgba(13, 13, 13, 0.06);
+  --syn-shadow-sticky-down: 0px 3px 8px 0px rgba(13, 13, 13, 0.16);
   --syn-spacing-1-5x-large: 40px;
   --syn-spacing-2x-large: 48px;
   --syn-spacing-2x-small: 4px;
@@ -373,15 +384,6 @@
   --syn-z-index-dropdown: 900; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-toast: 950; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-tooltip: 1000; /** Shoelace compatibility DO NOT USE */
-  --syn-shadow-medium: 0px 1px 2px 0px rgba(13, 13, 13, 0.08), 0px 1px 4px 0px rgba(13, 13, 13, 0.08), 0px 2px 8px 0px rgba(13, 13, 13, 0.08);
-  --syn-shadow-large: 0px 0px 3px 0px rgba(13, 13, 13, 0.12), 0px 2px 6px 0px rgba(13, 13, 13, 0.12), 0px 3px 8px 0px rgba(13, 13, 13, 0.16);
-  --syn-shadow-x-large: 0px 1px 4px 0px rgba(13, 13, 13, 0.12), 0px 8px 24px 0px rgba(13, 13, 13, 0.12), 0px 16px 48px 0px rgba(13, 13, 13, 0.16);
-  --syn-shadow-overflow-down: 0px 1px 4px 0px rgba(13, 13, 13, 0.12), 0px 3px 8px 0px rgba(13, 13, 13, 0.12), 0px 4px 12px 0px rgba(13, 13, 13, 0.16);
-  --syn-shadow-overflow-up: 0px -1px 4px 0px rgba(13, 13, 13, 0.12), 0px -3px 8px 0px rgba(13, 13, 13, 0.12), 0px -4px 12px 0px rgba(13, 13, 13, 0.16);
-  --syn-shadow-overflow-left: -1px 0px 4px 0px rgba(13, 13, 13, 0.12), -3px 0px 8px 0px rgba(13, 13, 13, 0.12), -4px 0px 12px 0px rgba(13, 13, 13, 0.16);
-  --syn-shadow-overflow-right: 1px 0px 4px 0px rgba(13, 13, 13, 0.12), 3px 0px 8px 0px rgba(13, 13, 13, 0.12), 4px 0px 12px 0px rgba(13, 13, 13, 0.16);
-  --syn-shadow-x-small: 0px 1px 2px 0px rgba(13, 13, 13, 0.04), 0px 1px 4px 0px rgba(13, 13, 13, 0.04), 0px 2px 8px 0px rgba(13, 13, 13, 0.04);
-  --syn-shadow-small: 0px 1px 2px 0px rgba(13, 13, 13, 0.06), 0px 1px 4px 0px rgba(13, 13, 13, 0.06), 0px 2px 8px 0px rgba(13, 13, 13, 0.06);
   --syn-body-x-small-regular: 400 12px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --syn-body-x-small-semibold: 600 12px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --syn-body-x-small-bold: 600 12px/1.4 'SICK Intl', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';

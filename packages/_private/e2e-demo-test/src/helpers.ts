@@ -65,16 +65,15 @@ export const clickFormControl = async (locator: Locator) => {
   const tagName = await locator.evaluate((el) => el.tagName.toLowerCase());
 
   switch (tagName) {
-  case 'syn-checkbox':
-    await locator.locator('.checkbox').click();
-    break;
-  case 'syn-switch':
-    await locator.locator('.switch').click();
-    break;
-  default:
-    // Fallback to clicking the root element for unknown components
-    await locator.click();
-    break;
+    case 'syn-checkbox':
+      await locator.locator('.checkbox').click();
+      break;
+    case 'syn-switch':
+      await locator.locator('.switch').click();
+      break;
+    default:
+      // Fallback to clicking the root element for unknown components
+      await locator.click();
   }
 };
 

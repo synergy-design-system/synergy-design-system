@@ -23,6 +23,7 @@ import {
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import {
   type FormStatus,
+  currencyNumberFormatter,
   mockData,
   statusError,
   statusSuccess,
@@ -43,6 +44,9 @@ const formData = ref({
 const formStatus = ref<FormStatus>(statusWarning);
 
 const formRef = ref<HTMLFormElement>();
+
+// Custom formatter for donations
+const formatter = currencyNumberFormatter;
 
 const reset = () => {
   formStatus.value = statusWarning;
@@ -285,6 +289,23 @@ const synChange = () => {
           </div>
         </SynVueRange>
       </SynVueValidate>
+
+      <SynVueRange
+        id="donations"
+        label="I would donate between"
+        :max="6000"
+        :min="0"
+        name="donations"
+        :readonly="parseInt(formData.happiness!, 10) <= 5"
+        v-model="formData.donations"
+        restrict-movement
+        :tooltipFormatter="(value: number) => formatter.format(value)"
+      >
+        <nav slot="ticks">
+          <SynVueRangeTick>0 €</SynVueRangeTick>
+          <SynVueRangeTick>6.000 €</SynVueRangeTick>
+        </nav>
+      </SynVueRange>
     </DemoFieldset>
     <!-- /.Happiness -->
 

@@ -220,6 +220,23 @@
       </syn-range>
     </syn-validate>
 
+    <syn-range
+      formControlName="donations"
+      id="donations"
+      label="I would donate between"
+      [max]="6000"
+      [min]="0"
+      name="donations"
+      restrictMovement
+      [readonly]="formData.get('happiness')?.value <= 5"
+      [tooltipFormatter]="currencyFormatter"
+    >
+      <nav slot="ticks">
+        <syn-range-tick>0 €</syn-range-tick>
+        <syn-range-tick>6.000 €</syn-range-tick>
+      </nav>
+    </syn-range>
+
   </demo-fieldset>
   <!-- /.Happiness -->
 

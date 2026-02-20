@@ -317,7 +317,6 @@
   --syn-progress-indicator-color: var(--syn-color-primary-700);
   --syn-progress-track-color: var(--syn-color-neutral-100);
   --syn-range-color-inactive: var(--syn-color-neutral-100);
-  --syn-range-color-readonly: var(--syn-input-readonly-background-color);
   --syn-range-error-color: var(--syn-color-error-600);
   --syn-range-tick-color: var(--syn-color-neutral-500);
   --syn-range-track-color-active: var(--syn-interactive-emphasis-color);

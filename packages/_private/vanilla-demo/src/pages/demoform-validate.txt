@@ -171,7 +171,7 @@
           value="5"
           name="happiness"
         >
-          <nav slot="ticks">
+          <nav aria-label="Ticks for Happiness" slot="ticks">
             <syn-range-tick>🤮</syn-range-tick>
             <syn-range-tick>🥱</syn-range-tick>
             <syn-range-tick>😍</syn-range-tick>
@@ -187,6 +187,21 @@
 
         </syn-range>
       </syn-validate>
+
+      <syn-range
+        id="donations"
+        label="I would donate between"
+        max="6000"
+        min="0"
+        restrict-movement
+        value="2000 4000"
+        name="donations"
+      >
+        <nav aria-label="Ticks for Donations" slot="ticks">
+          <syn-range-tick>0 €</syn-range-tick>
+          <syn-range-tick>6.000 €</syn-range-tick>
+        </nav>
+      </syn-range>
     </fieldset>
     <!-- /.Happiness -->
 

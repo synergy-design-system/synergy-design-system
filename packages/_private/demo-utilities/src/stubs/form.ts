@@ -33,6 +33,7 @@ export const initialValidateFormData: Partial<DemoFormData> = {
   code: '',
   comment: '',
   date: '',
+  donations: '2000 4000',
   email: '',
   files: undefined,
   gender: '',
@@ -44,4 +45,6 @@ export const initialValidateFormData: Partial<DemoFormData> = {
   newsletterUI: true,
   password: 'invalid',
   role: '',
+  testing: [],
+  topics: [],
 };

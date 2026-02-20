@@ -2061,6 +2061,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the read-only attribute to a range to draw it in a readonly state.",
+          "type": "text"
+        }
+      },
       "size": {
         "title": {
           "value": "Sizes",

@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { userEvent } from 'storybook/test';
 import { html } from 'lit';
@@ -137,6 +134,7 @@ export const Invalid: Story = {
         button.click();
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error in play function:', error);
     }
   },
@@ -197,6 +195,21 @@ export const Focus: Story = {
   render: () => html`
     <form>
       <syn-range max="100" min="0" value="50"></syn-range>
+    </form>
+  `,
+};
+
+export const Readonly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('range', 'readonly'),
+      },
+    },
+  },
+  render: () => html`
+    <form>
+      <syn-range label="Jens" max="100" min="0" value="50" readonly></syn-range>
     </form>
   `,
 };
@@ -539,13 +552,13 @@ export const TooltipFormatter: Story = {
   `,
 };
 
-// Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Labels,
   HelpText,
   Disabled,
+  Readonly,
   Sizes,
   PrefixSuffixText,
   CustomTrackColors,

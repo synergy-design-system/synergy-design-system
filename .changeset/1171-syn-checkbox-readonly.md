@@ -18,4 +18,4 @@ Applies to:
 
 Form elements now support being displayed as `readonly` fields.
 
-Field marked `readonly` may receive focus, but their status (e.g. checked state) cannot be changed by customer inputs.
+Field marked `readonly` may receive focus, but their value cannot be changed by customer inputs.

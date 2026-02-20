@@ -28,6 +28,7 @@ describe('<syn-range>', () => {
     expect(el.max).to.equal(100);
     expect(el.min).to.equal(0);
     expect(el.name).to.equal('');
+    expect(el.readonly).to.equal(false);
     expect(el.size).to.equal('medium');
     expect(el.step).to.equal(1);
     expect(el.tooltipPlacement).to.equal('top');
@@ -69,6 +70,13 @@ describe('<syn-range>', () => {
     const wrapper = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="form-control"]')!;
 
     expect(wrapper).to.have.class('form-control--is-disabled');
+  });
+
+  it('should be readonly with the readonly attribute', async () => {
+    const el = await fixture<SynRange>(html`<syn-range readonly></syn-range>`);
+    const wrapper = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="form-control"]')!;
+
+    expect(wrapper).to.have.class('form-control--is-readonly');
   });
 
   describe('value methods', () => {

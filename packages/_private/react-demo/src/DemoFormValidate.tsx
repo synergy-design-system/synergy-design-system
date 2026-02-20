@@ -28,6 +28,7 @@ import {
 } from '@synergy-design-system/react';
 import {
   type FormStatus,
+  currencyNumberFormatter,
   mockData,
   statusError,
   statusSuccess,
@@ -319,6 +320,24 @@ export const DemoFormValidate = () => {
               />
             </div>
           </SynRange>
+
+          <SynRange
+            id="donations"
+            label="I would donate between"
+            max={6000}
+            min={0}
+            name="donations"
+            restrict-movement
+            tooltipFormatter={value => currencyNumberFormatter.format(value)}
+            readonly={parseInt(formData.happiness!, 10) <= 5}
+            value={formData.donations}
+          >
+            <nav slot="ticks">
+              <syn-range-tick>0 €</syn-range-tick>
+              <syn-range-tick>6.000 €</syn-range-tick>
+            </nav>
+          </SynRange>
+
         </SynValidate>
 
       </DemoFieldset>

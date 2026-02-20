@@ -98,6 +98,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   /** Disables the range. */
   @property({ reflect: true, type: Boolean }) disabled = false;
 
+  /** Sets the range to a readonly state. */
+  @property({ reflect: true, type: Boolean }) readonly = false;
+
   /** The minimum acceptable value of the range. */
   @property({ type: Number }) min = 0;
 
@@ -354,6 +357,12 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #onClickTrack(event: PointerEvent, focusThumb = true) {
     if (this.disabled) return;
+    if (this.readonly) {
+      event.preventDefault();
+      this.focus();
+      return;
+    }
+
     const { clientX } = event;
 
     const thumbs = Array.from(this.thumbs);
@@ -443,7 +452,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   async #onClickThumb(event: PointerEvent) {
-    if (this.disabled) return;
+    if (this.disabled || this.readonly) return;
 
     const thumb = event.target as HTMLDivElement;
     this.#updateTooltip(thumb);
@@ -460,7 +469,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #onDragThumb(event: PointerEvent) {
-    if (this.disabled) return;
+    if (this.disabled || this.readonly) return;
 
     const thumb = event.target as HTMLDivElement;
     const rangeId = +thumb.dataset.rangeId!;
@@ -509,6 +518,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   async #onReleaseThumb(event: PointerEvent) {
+    if (this.disabled || this.readonly) return;
+
     const thumb = event.target as HTMLDivElement;
     if (!thumb.dataset.pointerId || event.pointerId !== +thumb.dataset.pointerId) return;
 
@@ -569,6 +580,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #onKeyPress(event: KeyboardEvent) {
+    if (this.readonly) return;
+
     const thumb = event.target as HTMLDivElement;
     const rangeId = +thumb.dataset.rangeId!;
 
@@ -756,7 +769,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           trigger="focus"
         >
           <div
-            aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
+            aria-disabled=${ifDefined((this.disabled || this.readonly) ? 'true' : undefined)}
             aria-labelledby=${ariaLabeledBy}
             aria-label=${ariaLabel}
             aria-valuemax="${this.max}"
@@ -802,6 +815,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           'form-control--has-prefix': hasPrefixSlot,
           'form-control--has-suffix': hasSuffixSlot,
           'form-control--is-disabled': this.disabled,
+          'form-control--is-readonly': this.readonly,
           'form-control--large': this.size === 'large',
           'form-control--medium': this.size === 'medium',
           'form-control--small': this.size === 'small',

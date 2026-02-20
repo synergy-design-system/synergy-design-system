@@ -1,8 +1,11 @@
-import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
+import { createCustomConfig } from '@synergy-design-system/eslint-config-syn/ts';
 import storybook from 'eslint-plugin-storybook';
 
 export default [
-  ...tsConfig,
+  ...createCustomConfig({
+    project: './tsconfig.json',
+    tsconfigRootDir: import.meta.dirname,
+  }),
   // Storybook-specific configuration
   {
     plugins: {

@@ -480,36 +480,5 @@ describe('when the value changes', () => {
     expect(getComputedStyle(visuallyHidden).position).to.equal('absolute');
   });
 
-  /**
-   * @see https://github.com/shoelace-style/shoelace/issues/1361
-   * This isn't really possible to test right now due to importing "synergy.js" which
-   * auto-defines all of our components up front. This should be tested if we ever split
-   * to non-auto-defining components and not auto-defining for tests.
-   */
-  it.skip('should sync up radios and radio buttons if defined after radio group', async () => {
-    // customElements.define("syn-radio-group", SynRadioGroup)
-    //
-    // const radioGroup = await fixture<SynRadioGroup>(html`
-    //   <syn-radio-group value="1">
-    //     <syn-radio id="radio-1" value="1"></syn-radio>
-    //     <syn-radio id="radio-2" value="2"></syn-radio>
-    //   </syn-radio-group>
-    // `);
-    //
-    // await aTimeout(1)
-    //
-    // customElements.define("syn-radio-button", SynRadioButton)
-    //
-    // expect(radioGroup.querySelector("syn-radio")?.getAttribute("aria-checked")).to.equal("false")
-    //
-    // await aTimeout(1)
-    //
-    // customElements.define("syn-radio", SynRadio)
-    //
-    // await aTimeout(1)
-    //
-    // expect(radioGroup.querySelector("syn-radio")?.getAttribute("aria-checked")).to.equal("true")
-  });
-
   runFormControlBaseTests('syn-radio-group');
 });

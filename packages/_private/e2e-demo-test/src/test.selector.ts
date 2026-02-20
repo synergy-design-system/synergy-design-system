@@ -130,6 +130,8 @@ export default {
   newsLocSynNg: '#checkbox-newsletter-angular',
   newsLocSynReact: '#checkbox-newsletter-react',
   newsLocSynVue: '#checkbox-newsletter-vue',
+  newsLocUI: '#checkbox-newsletter-ui',
+  newsLocUX: '#checkbox-newsletter-ux',
   newsLocVanilla: '#checkbox-newsletter-vanilla',
   passLoc: '#input-password',
   passRecoveryLoc: '#input-number',

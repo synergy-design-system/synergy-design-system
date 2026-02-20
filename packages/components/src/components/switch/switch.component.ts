@@ -13,7 +13,6 @@ import formControlStyles from '../../styles/form-control.styles.js';
 import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './switch.styles.js';
-import customStyles from './switch.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
@@ -45,7 +44,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynSwitch')
 export default class SynSwitch extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles];
 
   private readonly formControlController = new FormControlController(this, {
     value: (control: SynSwitch) => (control.checked ? control.value || 'on' : undefined),
@@ -70,6 +69,9 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
 
   /** Disables the switch. */
   @property({ type: Boolean, reflect: true }) disabled = false;
+
+  /** Sets the switch to a readonly state. */
+  @property({ type: Boolean, reflect: true }) readonly = false;
 
   /** Draws the switch in a checked state. */
   @property({ type: Boolean, reflect: true }) checked = false;
@@ -119,6 +121,11 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
   }
 
   private handleClick() {
+    if (this.readonly) {
+      this.focus();
+      return;
+    }
+
     this.checked = !this.checked;
     this.emit('syn-change');
   }
@@ -212,6 +219,7 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
             switch: true,
             'switch--checked': this.checked,
             'switch--disabled': this.disabled,
+            'switch--readonly': this.readonly,
             'switch--focused': this.hasFocus,
             'switch--small': this.size === 'small',
             'switch--medium': this.size === 'medium',
@@ -226,6 +234,7 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
             value=${ifDefined(this.value)}
             .checked=${live(this.checked)}
             .disabled=${this.disabled}
+            .readOnly=${this.readonly}
             .required=${this.required}
             role="switch"
             aria-checked=${this.checked ? 'true' : 'false'}

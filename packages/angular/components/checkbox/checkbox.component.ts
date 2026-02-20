@@ -155,6 +155,19 @@ export class SynCheckboxComponent {
   }
 
   /**
+   * Sets the checkbox to a readonly state.
+   */
+  @Input()
+  set readonly(v: '' | SynCheckbox['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
+  }
+  get readonly(): SynCheckbox['readonly'] {
+    return this.nativeElement.readonly;
+  }
+
+  /**
    * Draws the checkbox in a checked state.
    */
   @Input()

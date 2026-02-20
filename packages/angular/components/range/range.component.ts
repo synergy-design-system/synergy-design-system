@@ -178,6 +178,19 @@ export class SynRangeComponent {
   }
 
   /**
+   * Sets the range to a readonly state.
+   */
+  @Input()
+  set readonly(v: '' | SynRange['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
+  }
+  get readonly(): SynRange['readonly'] {
+    return this.nativeElement.readonly;
+  }
+
+  /**
    * The minimum acceptable value of the range.
    */
   @Input()

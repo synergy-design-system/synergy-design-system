@@ -57,7 +57,6 @@ const setupForm = (formSelector: string) => {
   updateStatusMessage(form, statusWarning);
 
   form.addEventListener('syn-change', () => {
-    updateStatusMessage(form, form.checkValidity() ? statusSuccess : statusError);
     console.log(serialize(form));
   });
 
@@ -72,6 +71,7 @@ const setupForm = (formSelector: string) => {
     const formElm = e.target as HTMLFormElement;
     const isValid = formElm.checkValidity();
 
+    console.log(serialize(form));
     updateStatusMessage(form, isValid ? statusSuccess : statusError);
   });
 };
@@ -132,6 +132,17 @@ export const afterRenderValidateForm = async () => {
     const val = (e.target as HTMLInputElement).value;
     slider.value = val;
   });
+
+  // Setup donations to link them to the happiness slider
+  const donations = document.querySelector<SynRange>('#donations')!;
+  donations.tooltipFormatter = value => currencyNumberFormatter.format(value);
+
+  const updateDonationReadonlyState = () => {
+    donations.readonly = parseInt(slider.value!, 10) <= 5;
+  };
+
+  slider.addEventListener('syn-change', updateDonationReadonlyState);
+  updateDonationReadonlyState();
 
   setupForm('#form-demo-validate');
 };

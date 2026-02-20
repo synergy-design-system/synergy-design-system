@@ -5,6 +5,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   type FormStatus,
+  currencyNumberFormatter,
   mockData,
   statusError,
   statusSuccess,
@@ -21,6 +22,8 @@ const initialData = {
     Validators.email,
   ]],
 };
+
+console.log(mockData('initialValidateFormData'));
 
 @Component({
   selector: 'demo-form-validate',
@@ -46,6 +49,8 @@ export class DemoFormValidate {
   testingFrameworks = mockData('testingFrameworks');
 
   highlightOptionRenderer = highlightOptionRenderer;
+
+  formatter = currencyNumberFormatter;
 
   private _initFormData() {
     this.formData = this.fb.group({
@@ -98,5 +103,9 @@ export class DemoFormValidate {
 
     // Log the normalized data
     console.log(normalizedData);
+  }
+
+  currencyFormatter = (value: number) => {
+    return this.formatter.format(value);
   }
 }

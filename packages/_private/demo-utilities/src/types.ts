@@ -32,6 +32,8 @@ export type DemoFormData = {
   newsletterBeta: boolean;
   newsletterReact: boolean;
   newsletterStandard: boolean;
+  newsletterUI: boolean;
+  newsletterUX: boolean;
   newsletterVanilla: boolean;
   newsletterVue: boolean;
   password: string;

@@ -151,11 +151,6 @@ export const TagGroup = {
                 </syn-menu>
               </syn-dropdown>        
             `)}
-
-            <syn-button variant="filled">
-              <syn-icon name="filter_alt" slot="prefix"></syn-icon>
-              Alle Filter
-            </syn-button>
           </div>
         </syn-details>
 
@@ -189,8 +184,10 @@ export const TagGroup = {
 
       <style>
         .filter-form {
+          background: var(--syn-page-background-color);
           container-type: inline-size;
           max-width: 1136px;
+          padding: var(--syn-spacing-x-large) var(--syn-spacing-medium);
         }
         
         .filter-form h1 {
@@ -200,6 +197,10 @@ export const TagGroup = {
           padding: 0;
         }
 
+        .filter-form syn-details::part(base) {
+          border-bottom: 0;
+        }
+        
         /* Hide the syn-details header per default. Only needed on mobile */
         .filter-form syn-details::part(header) {
           display: none;
@@ -218,7 +219,7 @@ export const TagGroup = {
 
         .filter-tags {
           align-items: center;
-          background: var(--syn-color-neutral-100);
+          background: var(--syn-page-background-color-muted);
           display: flex;
           flex-wrap: wrap;
           gap: var(--syn-spacing-large);
@@ -226,6 +227,11 @@ export const TagGroup = {
         }
 
         @container (max-width: 420px) {
+          .filter-form h1 {
+            font: var(--syn-heading-2x-large);
+            margin-bottom: var(--syn-spacing-large);
+          }
+
           .filter-form .filter-group {
             flex-direction: column;
             margin-bottom: var(--syn-spacing-2x-large);

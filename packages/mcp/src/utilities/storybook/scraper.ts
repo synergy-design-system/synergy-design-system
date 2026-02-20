@@ -90,11 +90,22 @@ export class StorybookScraper {
       const rawStoryMetadata = await page.evaluate(() => Array.from(
         document.querySelectorAll('.sb-anchor'),
       )
+        // eslint-disable-next-line complexity
         .map((story, index) => {
           const description = story.querySelector(':scope > p')?.textContent || '';
-          const exampleSource = story.querySelector('.sb-story #root-inner')?.innerHTML || '';
           const heading = story.querySelector('h3')?.textContent || '';
           const hasIframe = !!story.querySelector('.sb-story iframe');
+
+          let exampleSource = '';
+
+          if (!hasIframe) {
+            // #1152: The example source is usually in the #root-inner element.
+            // However, for at least one story (tag-group-template), the #root-inner container is missing.
+            // I am not sure why, but I think a fallback would be just to check the first element for the time being.
+            const exampleWithRoot = story.querySelector('.sb-story #root-inner')?.innerHTML || '';
+            const exampleWithoutRoot = story.querySelector('.sb-story > div')?.innerHTML || '';
+            exampleSource = exampleWithRoot || exampleWithoutRoot;
+          }
 
           return {
             description,
@@ -124,14 +135,18 @@ export class StorybookScraper {
           if (!exampleSource && storyMeta.hasIframe) {
             try {
               const storySection = page.locator('.sb-anchor').nth(storyMeta.index);
+
+              // Storybook uses lazy loading, so the iframe may not be loaded until we scroll it into view
+              await storySection.scrollIntoViewIfNeeded();
+              await page.waitForTimeout(1000);
+
               const frame = storySection.frameLocator('iframe');
 
               const frameContent = await frame.locator('#root-inner').innerHTML();
               exampleSource = frameContent || '';
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             } catch (error) {
               // If iframe content extraction fails, continue with empty content
-              console.log(`Failed to extract iframe content for story "${storyMeta.heading}"`);
+              console.log(`Failed to extract iframe content for story "${storyMeta.heading}"`, error);
             }
           }
 

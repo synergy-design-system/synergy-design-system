@@ -25,17 +25,17 @@ export const getDynamicMetaDataForFramework = async (
   let frameworkPath;
 
   switch (framework) {
-  case 'angular':
-    frameworkPath = angularPath;
-    break;
-  case 'react':
-    frameworkPath = reactPath;
-    break;
-  case 'vue':
-    frameworkPath = vuePath;
-    break;
-  default:
-    frameworkPath = componentStaticPath;
+    case 'angular':
+      frameworkPath = angularPath;
+      break;
+    case 'react':
+      frameworkPath = reactPath;
+      break;
+    case 'vue':
+      frameworkPath = vuePath;
+      break;
+    default:
+      frameworkPath = componentStaticPath;
   }
 
   return getStructuredMetaData(frameworkPath);
@@ -84,16 +84,16 @@ export const getInfoForComponent = async (
   ];
 
   switch (framework) {
-  case 'react':
-    namePatterns.push('component.react.ts');
-    break;
-  case 'vue':
-    namePatterns.push('component.vue');
-    break;
-  case 'angular':
-    namePatterns.push('component.angular.ts');
-    break;
-  default:
+    case 'react':
+      namePatterns.push('component.react.ts');
+      break;
+    case 'vue':
+      namePatterns.push('component.vue');
+      break;
+    case 'angular':
+      namePatterns.push('component.angular.ts');
+      break;
+    default:
   }
 
   const finalPattern = namePatterns.map(pattern => pattern.toLowerCase());

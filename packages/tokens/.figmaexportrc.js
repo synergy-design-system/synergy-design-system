@@ -1,4 +1,3 @@
-
 import { FIGMA_FETCHED_STYLES_PATH } from './scripts/config.js';
 import { styleDictionaryOutputter } from './scripts/figma/style-dict-outputter.js';
 
@@ -11,10 +10,10 @@ const styleOptions = {
   outputters: [
     styleDictionaryOutputter({ output: FIGMA_FETCHED_STYLES_PATH }),
   ],
-}
+};
 
 export default {
   commands: [
     ['styles', styleOptions],
-  ]
-}
+  ],
+};

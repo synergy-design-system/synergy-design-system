@@ -663,6 +663,8 @@ export type SynCustomElement<
  * @csspart meta-navigation - The Item wrapping the optional application menu
  * @csspart navigation - The wrapper that is holding the optional top navigation section
  * @csspart burger-menu-toggle-button - The button that toggles the burger menu
+ *
+ * @cssproperty --sticky-position - The position of the sticky header from the top of the viewport. Defaults to the top of the screen.
  */ export type SynHeaderJSXElement = SynCustomElement<
   SynHeader,
   [
@@ -1989,6 +1991,8 @@ declare module 'react' {
        * @csspart meta-navigation - The Item wrapping the optional application menu
        * @csspart navigation - The wrapper that is holding the optional top navigation section
        * @csspart burger-menu-toggle-button - The button that toggles the burger menu
+       *
+       * @cssproperty --sticky-position - The position of the sticky header from the top of the viewport. Defaults to the top of the screen.
        */ 'syn-header': SynHeaderJSXElement;
       /**
        * @summary Icons are symbols that can be used to represent various options within an application.

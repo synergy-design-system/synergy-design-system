@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.1.0
+ * @synergy-design-system/tokens version 3.4.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -325,6 +325,16 @@
   --syn-readonly-border-color: var(--syn-typography-color-text);
   --syn-readonly-indicator-color: var(--syn-typography-color-text);
   --syn-readonly-opacity-color: rgba(213, 219, 221, 0.7);
+  --syn-shadow-medium: 0px 1px 2px 0px rgba(49, 55, 58, 0.08), 0px 1px 4px 0px rgba(49, 55, 58, 0.08), 0px 2px 8px 0px rgba(49, 55, 58, 0.08);
+  --syn-shadow-large: 0px 0px 3px 0px rgba(49, 55, 58, 0.12), 0px 2px 6px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-x-large: 0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 8px 24px 0px rgba(49, 55, 58, 0.12), 0px 16px 48px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-overflow-down: 0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.12), 0px 4px 12px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-overflow-up: 0px -1px 4px 0px rgba(49, 55, 58, 0.12), 0px -3px 8px 0px rgba(49, 55, 58, 0.12), 0px -4px 12px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-overflow-left: -1px 0px 4px 0px rgba(49, 55, 58, 0.12), -3px 0px 8px 0px rgba(49, 55, 58, 0.12), -4px 0px 12px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-overflow-right: 1px 0px 4px 0px rgba(49, 55, 58, 0.12), 3px 0px 8px 0px rgba(49, 55, 58, 0.12), 4px 0px 12px 0px rgba(49, 55, 58, 0.16);
+  --syn-shadow-x-small: 0px 1px 2px 0px rgba(49, 55, 58, 0.04), 0px 1px 4px 0px rgba(49, 55, 58, 0.04), 0px 2px 8px 0px rgba(49, 55, 58, 0.04);
+  --syn-shadow-small: 0px 1px 2px 0px rgba(49, 55, 58, 0.06), 0px 1px 4px 0px rgba(49, 55, 58, 0.06), 0px 2px 8px 0px rgba(49, 55, 58, 0.06);
+  --syn-shadow-sticky-down: 0px 3px 8px 0px rgba(49, 55, 58, 0.16);
   --syn-spacing-1-5x-large: 40px;
   --syn-spacing-2x-large: 48px;
   --syn-spacing-2x-small: 4px;
@@ -378,15 +388,6 @@
   --syn-z-index-dropdown: 900; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-toast: 950; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-tooltip: 1000; /** Shoelace compatibility DO NOT USE */
-  --syn-shadow-medium: 0px 1px 2px 0px rgba(49, 55, 58, 0.08), 0px 1px 4px 0px rgba(49, 55, 58, 0.08), 0px 2px 8px 0px rgba(49, 55, 58, 0.08);
-  --syn-shadow-large: 0px 0px 3px 0px rgba(49, 55, 58, 0.12), 0px 2px 6px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.16);
-  --syn-shadow-x-large: 0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 8px 24px 0px rgba(49, 55, 58, 0.12), 0px 16px 48px 0px rgba(49, 55, 58, 0.16);
-  --syn-shadow-overflow-down: 0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.12), 0px 4px 12px 0px rgba(49, 55, 58, 0.16);
-  --syn-shadow-overflow-up: 0px -1px 4px 0px rgba(49, 55, 58, 0.12), 0px -3px 8px 0px rgba(49, 55, 58, 0.12), 0px -4px 12px 0px rgba(49, 55, 58, 0.16);
-  --syn-shadow-overflow-left: -1px 0px 4px 0px rgba(49, 55, 58, 0.12), -3px 0px 8px 0px rgba(49, 55, 58, 0.12), -4px 0px 12px 0px rgba(49, 55, 58, 0.16);
-  --syn-shadow-overflow-right: 1px 0px 4px 0px rgba(49, 55, 58, 0.12), 3px 0px 8px 0px rgba(49, 55, 58, 0.12), 4px 0px 12px 0px rgba(49, 55, 58, 0.16);
-  --syn-shadow-x-small: 0px 1px 2px 0px rgba(49, 55, 58, 0.04), 0px 1px 4px 0px rgba(49, 55, 58, 0.04), 0px 2px 8px 0px rgba(49, 55, 58, 0.04);
-  --syn-shadow-small: 0px 1px 2px 0px rgba(49, 55, 58, 0.06), 0px 1px 4px 0px rgba(49, 55, 58, 0.06), 0px 2px 8px 0px rgba(49, 55, 58, 0.06);
   --syn-body-x-small-regular: 400 12px/1.4 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --syn-body-x-small-semibold: 600 12px/1.4 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   --syn-body-x-small-bold: 700 12px/1.4 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';

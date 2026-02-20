@@ -613,6 +613,14 @@
         "value": "#072e4a"
       }
     },
+    "shadow": {
+      "sticky-down": {
+        "color": {
+          "type": "color",
+          "value": "rgba(49, 55, 58, 0.16)"
+        }
+      }
+    },
     "success": {
       "50": {
         "type": "color",
@@ -1531,6 +1539,48 @@
       }
     }
   },
+  "shadow": {
+    "medium": {
+      "type": "shadow",
+      "value": "0px 1px 2px 0px rgba(49, 55, 58, 0.08), 0px 1px 4px 0px rgba(49, 55, 58, 0.08), 0px 2px 8px 0px rgba(49, 55, 58, 0.08)"
+    },
+    "large": {
+      "type": "shadow",
+      "value": "0px 0px 3px 0px rgba(49, 55, 58, 0.12), 0px 2px 6px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.16)"
+    },
+    "x-large": {
+      "type": "shadow",
+      "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 8px 24px 0px rgba(49, 55, 58, 0.12), 0px 16px 48px 0px rgba(49, 55, 58, 0.16)"
+    },
+    "overflow-down": {
+      "type": "shadow",
+      "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.12), 0px 4px 12px 0px rgba(49, 55, 58, 0.16)"
+    },
+    "overflow-up": {
+      "type": "shadow",
+      "value": "0px -1px 4px 0px rgba(49, 55, 58, 0.12), 0px -3px 8px 0px rgba(49, 55, 58, 0.12), 0px -4px 12px 0px rgba(49, 55, 58, 0.16)"
+    },
+    "overflow-left": {
+      "type": "shadow",
+      "value": "-1px 0px 4px 0px rgba(49, 55, 58, 0.12), -3px 0px 8px 0px rgba(49, 55, 58, 0.12), -4px 0px 12px 0px rgba(49, 55, 58, 0.16)"
+    },
+    "overflow-right": {
+      "type": "shadow",
+      "value": "1px 0px 4px 0px rgba(49, 55, 58, 0.12), 3px 0px 8px 0px rgba(49, 55, 58, 0.12), 4px 0px 12px 0px rgba(49, 55, 58, 0.16)"
+    },
+    "x-small": {
+      "type": "shadow",
+      "value": "0px 1px 2px 0px rgba(49, 55, 58, 0.04), 0px 1px 4px 0px rgba(49, 55, 58, 0.04), 0px 2px 8px 0px rgba(49, 55, 58, 0.04)"
+    },
+    "small": {
+      "type": "shadow",
+      "value": "0px 1px 2px 0px rgba(49, 55, 58, 0.06), 0px 1px 4px 0px rgba(49, 55, 58, 0.06), 0px 2px 8px 0px rgba(49, 55, 58, 0.06)"
+    },
+    "sticky-down": {
+      "type": "shadow",
+      "value": "0px 3px 8px 0px rgba(49, 55, 58, 0.16)"
+    }
+  },
   "spacing": {
     "1_5x-large": {
       "type": "sizing",
@@ -1915,44 +1965,6 @@
       "description": "Shoelace compatibility DO NOT USE",
       "type": "number",
       "value": "1000"
-    }
-  },
-  "shadow": {
-    "medium": {
-      "type": "shadow",
-      "value": "0px 1px 2px 0px rgba(49, 55, 58, 0.08), 0px 1px 4px 0px rgba(49, 55, 58, 0.08), 0px 2px 8px 0px rgba(49, 55, 58, 0.08)"
-    },
-    "large": {
-      "type": "shadow",
-      "value": "0px 0px 3px 0px rgba(49, 55, 58, 0.12), 0px 2px 6px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.16)"
-    },
-    "x-large": {
-      "type": "shadow",
-      "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 8px 24px 0px rgba(49, 55, 58, 0.12), 0px 16px 48px 0px rgba(49, 55, 58, 0.16)"
-    },
-    "overflow-down": {
-      "type": "shadow",
-      "value": "0px 1px 4px 0px rgba(49, 55, 58, 0.12), 0px 3px 8px 0px rgba(49, 55, 58, 0.12), 0px 4px 12px 0px rgba(49, 55, 58, 0.16)"
-    },
-    "overflow-up": {
-      "type": "shadow",
-      "value": "0px -1px 4px 0px rgba(49, 55, 58, 0.12), 0px -3px 8px 0px rgba(49, 55, 58, 0.12), 0px -4px 12px 0px rgba(49, 55, 58, 0.16)"
-    },
-    "overflow-left": {
-      "type": "shadow",
-      "value": "-1px 0px 4px 0px rgba(49, 55, 58, 0.12), -3px 0px 8px 0px rgba(49, 55, 58, 0.12), -4px 0px 12px 0px rgba(49, 55, 58, 0.16)"
-    },
-    "overflow-right": {
-      "type": "shadow",
-      "value": "1px 0px 4px 0px rgba(49, 55, 58, 0.12), 3px 0px 8px 0px rgba(49, 55, 58, 0.12), 4px 0px 12px 0px rgba(49, 55, 58, 0.16)"
-    },
-    "x-small": {
-      "type": "shadow",
-      "value": "0px 1px 2px 0px rgba(49, 55, 58, 0.04), 0px 1px 4px 0px rgba(49, 55, 58, 0.04), 0px 2px 8px 0px rgba(49, 55, 58, 0.04)"
-    },
-    "small": {
-      "type": "shadow",
-      "value": "0px 1px 2px 0px rgba(49, 55, 58, 0.06), 0px 1px 4px 0px rgba(49, 55, 58, 0.06), 0px 2px 8px 0px rgba(49, 55, 58, 0.06)"
     }
   },
   "body": {

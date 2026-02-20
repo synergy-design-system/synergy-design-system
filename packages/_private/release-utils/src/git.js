@@ -16,15 +16,15 @@ import {
  */
 const getBumpTypeFromPrefix = (prefix) => {
   switch (prefix) {
-  case 'major':
-    return 'major';
-  case 'feat':
-    return 'minor';
-  case 'fix':
-    return 'patch';
-  // Default includes stuff like chore and docs
-  default:
-    return 'none';
+    case 'major':
+      return 'major';
+    case 'feat':
+      return 'minor';
+    case 'fix':
+      return 'patch';
+    // Default includes stuff like chore and docs
+    default:
+      return 'none';
   }
 };
 

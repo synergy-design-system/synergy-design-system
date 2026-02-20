@@ -4975,5 +4975,188 @@
       "textAlign": "left",
       "verticalAlign": "top"
     }
+  },
+  {
+    "name": "shadow/sticky-down",
+    "comment": "",
+    "visible": true,
+    "originalNode": {
+      "key": "aff2201ee4700cb10c0da76fc8c4d7e04658b2f7",
+      "name": "shadow/sticky-down",
+      "styleType": "EFFECT",
+      "remote": false,
+      "description": "",
+      "id": "47788:120738",
+      "type": "RECTANGLE",
+      "scrollBehavior": "SCROLLS",
+      "boundVariables": {
+        "effects": [
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:42207:355596"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:47639:165149"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:47639:165150"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:47639:165151"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:47639:165152"
+          },
+          {
+            "type": "VARIABLE_ALIAS",
+            "id": "VariableID:47639:165154"
+          }
+        ]
+      },
+      "blendMode": "PASS_THROUGH",
+      "fills": [
+        {
+          "blendMode": "NORMAL",
+          "type": "SOLID",
+          "color": {
+            "r": 0.8509804010391235,
+            "g": 0.8509804010391235,
+            "b": 0.8509804010391235,
+            "a": 1
+          }
+        }
+      ],
+      "strokes": [],
+      "strokeWeight": 1,
+      "strokeAlign": "INSIDE",
+      "absoluteBoundingBox": {
+        "x": 0,
+        "y": 0,
+        "width": 100,
+        "height": 100
+      },
+      "absoluteRenderBounds": {
+        "x": -8,
+        "y": -5,
+        "width": 116,
+        "height": 116
+      },
+      "constraints": {
+        "vertical": "TOP",
+        "horizontal": "LEFT"
+      },
+      "effects": [
+        {
+          "type": "INNER_SHADOW",
+          "visible": true,
+          "color": {
+            "r": 0.9019607901573181,
+            "g": 0.8823529481887817,
+            "b": 0.8627451062202454,
+            "a": 1
+          },
+          "blendMode": "NORMAL",
+          "offset": {
+            "x": 0,
+            "y": -1
+          },
+          "radius": 0,
+          "boundVariables": {
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:42207:355596"
+            }
+          }
+        },
+        {
+          "type": "DROP_SHADOW",
+          "visible": true,
+          "color": {
+            "r": 0.05098039284348488,
+            "g": 0.05098039284348488,
+            "b": 0.05098039284348488,
+            "a": 0.1599999964237213
+          },
+          "blendMode": "NORMAL",
+          "offset": {
+            "x": 0,
+            "y": 3
+          },
+          "radius": 8,
+          "showShadowBehindNode": false,
+          "boundVariables": {
+            "radius": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:47639:165151"
+            },
+            "spread": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:47639:165152"
+            },
+            "color": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:47639:165154"
+            },
+            "offsetX": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:47639:165149"
+            },
+            "offsetY": {
+              "type": "VARIABLE_ALIAS",
+              "id": "VariableID:47639:165150"
+            }
+          }
+        }
+      ],
+      "interactions": [],
+      "complexStrokeProperties": {
+        "strokeType": "BASIC"
+      }
+    },
+    "styleType": "EFFECT",
+    "effects": [
+      {
+        "type": "DROP_SHADOW",
+        "visible": true,
+        "color": {
+          "r": 13,
+          "g": 13,
+          "b": 13,
+          "a": 0.16,
+          "rgba": "rgba(13, 13, 13, 0.16)"
+        },
+        "inset": false,
+        "offset": {
+          "x": 0,
+          "y": 3
+        },
+        "blurRadius": 8,
+        "spreadRadius": 0,
+        "value": "0px 3px 8px 0px rgba(13, 13, 13, 0.16)"
+      },
+      {
+        "type": "INNER_SHADOW",
+        "visible": true,
+        "color": {
+          "r": 230,
+          "g": 225,
+          "b": 220,
+          "a": 1,
+          "rgba": "rgba(230, 225, 220, 1)"
+        },
+        "inset": true,
+        "offset": {
+          "x": 0,
+          "y": -1
+        },
+        "blurRadius": 0,
+        "spreadRadius": 0,
+        "value": "inset 0px -1px 0px 0px rgba(230, 225, 220, 1)"
+      }
+    ]
   }
 ]

@@ -46,6 +46,7 @@ export { default as SynSwitch } from './components/switch/switch.js';
 export { default as SynTabGroup } from './components/tab-group/tab-group.js';
 export { default as SynTabPanel } from './components/tab-panel/tab-panel.js';
 export { default as SynTab } from './components/tab/tab.js';
+export { default as SynTagGroup } from './components/tag-group/tag-group.js';
 export { default as SynTag } from './components/tag/tag.js';
 export { default as SynTextarea } from './components/textarea/textarea.js';
 export { default as SynTooltip } from './components/tooltip/tooltip.js';

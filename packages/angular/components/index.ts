@@ -46,6 +46,7 @@ export { SynTabComponent } from '@synergy-design-system/angular/components/tab';
 export { SynTabGroupComponent } from '@synergy-design-system/angular/components/tab-group';
 export { SynTabPanelComponent } from '@synergy-design-system/angular/components/tab-panel';
 export { SynTagComponent } from '@synergy-design-system/angular/components/tag';
+export { SynTagGroupComponent } from '@synergy-design-system/angular/components/tag-group';
 export { SynTextareaComponent } from '@synergy-design-system/angular/components/textarea';
 export { SynTooltipComponent } from '@synergy-design-system/angular/components/tooltip';
 export { SynValidateComponent } from '@synergy-design-system/angular/components/validate';

@@ -113,9 +113,9 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
     this.formControlController.updateValidity();
   }
 
-  private handleClick() {
+  private handleClick(e: MouseEvent) {
     if (this.readonly) {
-      this.focus();
+      e.preventDefault();
       return;
     }
 

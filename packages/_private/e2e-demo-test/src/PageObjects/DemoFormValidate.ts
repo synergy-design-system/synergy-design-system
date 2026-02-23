@@ -83,6 +83,7 @@ export class DemoFormValidate extends BaseFormObject {
   async checkInitialState(expect: Expect) {
     expect(await getInputValue(this.gender)).toBe('');
     expect(await getInputValue(this.role)).toBe('');
+    expect(await getInputValue(this.previousRoles)).toEqual(['backend', 'lead']);
     expect(await getInputValue(this.name)).toBe('');
     expect(await getInputValue(this.email)).toBe('');
     expect(await getInputValue(this.birth)).toBe('');

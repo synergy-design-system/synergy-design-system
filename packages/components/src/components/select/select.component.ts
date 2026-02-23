@@ -19,7 +19,6 @@ import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
 import SynTag from '../tag/tag.component.js';
 import styles from './select.styles.js';
-import customStyles from './select.custom.styles.js';
 import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type { SynRemoveEvent } from '../../events/syn-remove.js';
@@ -77,7 +76,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynSelect')
 export default class SynSelect extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles];
   static dependencies = {
     'syn-icon': SynIcon,
     'syn-popup': SynPopup,
@@ -167,6 +166,9 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
   /** Disables the select control. */
   @property({ type: Boolean, reflect: true }) disabled = false;
+
+  /** Sets the select to a readonly state. */
+  @property({ reflect: true, type: Boolean }) readonly = false;
 
   /** Adds a clear button when the select is not empty. */
   @property({ type: Boolean }) clearable = false;
@@ -458,6 +460,12 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
   };
 
+  private handleFormControlClick() {
+    if (this.readonly) {
+      this.displayInput.focus();
+    }
+  }
+
   private handleLabelClick() {
     this.displayInput.focus();
   }
@@ -467,7 +475,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const isIconButton = path.some(el => el instanceof Element && el.tagName.toLowerCase() === 'syn-icon-button');
 
     // Ignore disabled controls and clicks on tags (remove buttons)
-    if (this.disabled || isIconButton) {
+    if (this.disabled || this.readonly || isIconButton) {
       return;
     }
 
@@ -571,7 +579,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
     this.valueHasChanged = true;
 
-    if (!this.disabled) {
+    if (!this.disabled && !this.readonly) {
       this.toggleOptionSelection(option, false);
 
       // Emit after updating
@@ -702,10 +710,10 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     });
   }
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
+  @watch(['disabled', 'readonly'], { waitUntilFirstUpdate: true })
   handleDisabledChange() {
-    // Close the listbox when the control is disabled
-    if (this.disabled) {
+    // Close the listbox when the control is disabled or readonly
+    if (this.disabled || this.readonly) {
       this.open = false;
       this.handleOpenChange();
     }
@@ -774,7 +782,7 @@ protected override willUpdate(changedProperties: PropertyValues) {
 
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
-    if (this.open && !this.disabled) {
+    if (this.open && (!this.disabled && !this.readonly)) {
       // Reset the current option
       this.setCurrentOption(this.selectedOptions[0] || this.getFirstOption());
 
@@ -817,7 +825,7 @@ protected override willUpdate(changedProperties: PropertyValues) {
 
   /** Shows the listbox. */
   async show() {
-    if (this.open || this.disabled) {
+    if (this.open || this.disabled || this.readonly) {
       this.open = false;
       return undefined;
     }
@@ -828,7 +836,7 @@ protected override willUpdate(changedProperties: PropertyValues) {
 
   /** Hides the listbox. */
   async hide() {
-    if (!this.open || this.disabled) {
+    if (!this.open || this.disabled || this.readonly) {
       this.open = false;
       return undefined;
     }
@@ -874,7 +882,7 @@ protected override willUpdate(changedProperties: PropertyValues) {
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
-    const hasClearIcon = this.clearable && !this.disabled && hasValue;
+    const hasClearIcon = this.clearable && (!this.disabled && !this.readonly) && hasValue;
     const isPlaceholderVisible = this.placeholder && this.value && !hasValue;
 
     return html`
@@ -886,8 +894,9 @@ protected override willUpdate(changedProperties: PropertyValues) {
           'form-control--medium': this.size === 'medium',
           'form-control--large': this.size === 'large',
           'form-control--has-label': hasLabel,
-          'form-control--has-help-text': hasHelpText
+          'form-control--has-help-text': hasHelpText,
         })}
+        @click=${this.handleFormControlClick}
       >
         <label
           id="label"
@@ -906,6 +915,7 @@ protected override willUpdate(changedProperties: PropertyValues) {
               'select--standard': true,
               'select--open': this.open,
               'select--disabled': this.disabled,
+              'select--readonly': this.readonly,
               'select--multiple': this.multiple,
               'select--focused': this.hasFocus,
               'select--placeholder-visible': isPlaceholderVisible,
@@ -961,6 +971,7 @@ protected override willUpdate(changedProperties: PropertyValues) {
                 class="select__value-input"
                 type="text"
                 ?disabled=${this.disabled}
+                ?readonly=${this.readonly}
                 ?required=${this.required}
                 .value=${Array.isArray(this.value) ? this.value.join(', ') : this.value?.toString()}
                 tabindex="-1"

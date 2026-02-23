@@ -242,6 +242,87 @@ Use the disabled attribute to disable a select.
 
 ---
 
+## Readonly
+
+Add the readonly attribute to a select to draw it in a readonly state.
+
+```html
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
+>
+  <syn-select
+    placeholder="Readonly"
+    value="option-1"
+    readonly=""
+    size="medium"
+    placement="bottom"
+    form=""
+  >
+    <syn-icon
+      name="wallpaper"
+      slot="prefix"
+      aria-hidden="true"
+      library="default"
+    ></syn-icon>
+    <syn-option
+      value="option-1"
+      role="option"
+      aria-selected="true"
+      aria-disabled="false"
+      >Option 1</syn-option
+    >
+    <syn-option
+      value="option-2"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      >Option 2</syn-option
+    >
+    <syn-option
+      value="option-3"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      >Option 3</syn-option
+    >
+  </syn-select>
+  <syn-select
+    max-options-visible="2"
+    multiple=""
+    placeholder="Readonly"
+    value="option-1 option-2 option-3"
+    readonly=""
+    size="medium"
+    placement="bottom"
+    form=""
+  >
+    <syn-option
+      value="option-1"
+      role="option"
+      aria-selected="true"
+      aria-disabled="false"
+      >Option 1</syn-option
+    >
+    <syn-option
+      value="option-2"
+      role="option"
+      aria-selected="true"
+      aria-disabled="false"
+      >Option 2</syn-option
+    >
+    <syn-option
+      value="option-3"
+      role="option"
+      aria-selected="true"
+      aria-disabled="false"
+      >Option 3</syn-option
+    >
+  </syn-select>
+</div>
+```
+
+---
+
 ## Multiple
 
 To allow multiple options to be selected, use the multiple attribute. It’s a good practice to use clearable when this option is enabled. To set multiple values at once, set value to a space-delimited list of values.

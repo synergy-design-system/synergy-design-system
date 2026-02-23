@@ -5,6 +5,7 @@ import {
   type SynCombobox,
   type SynRadioGroup,
   type SynRange,
+  type SynSelect,
   highlightOptionRenderer,
   serialize,
 } from '@synergy-design-system/components';
@@ -109,10 +110,19 @@ export const afterRenderDefaultForm = async () => {
 };
 
 export const afterRenderValidateForm = async () => {
+  const mockedInitialData = mockData('initialValidateFormData');
+
   await Promise.allSettled([
     customElements.whenDefined('syn-button'),
     customElements.whenDefined('syn-range'),
+    customElements.whenDefined('syn-select'),
   ]);
+
+  // Set initial values for previousRoles multi-select
+  const previousRolesSelect = document.querySelector<SynSelect>('#select-previous-roles')!;
+  if (previousRolesSelect && mockedInitialData.previousRoles) {
+    previousRolesSelect.value = mockedInitialData.previousRoles;
+  }
 
   // Add custom highlighter for the combobox
   initCombobox();

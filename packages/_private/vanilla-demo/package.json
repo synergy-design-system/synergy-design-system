@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "start": "npm run dev",
+    "start": "vite",
     "dev": "vite",
     "_build": "tsc && vite build",
     "createsprites": "syn-create-spritesheet --icons=contact_emergency,contact_mail,home,weekend,density_small,density_medium,density_large,bug_report > public/synergy-icon-sprites.svg",

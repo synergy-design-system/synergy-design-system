@@ -129,6 +129,27 @@ const synChange = () => {
         </SynVueSelect>
       </SynVueValidate>
 
+      <SynVueValidate variant="inline">
+        <SynVueSelect
+          id="select-previous-roles"
+          label="Previous roles"
+          name="previousRoles"
+          multiple
+          readonly
+          required
+          v-model="formData.previousRoles"
+        >
+          <SynVueOption value="">---</SynVueOption>
+          <SynVueOptgroup label="Developers">
+            <SynVueOption value="backend">Backend Developer</SynVueOption>
+            <SynVueOption value="frontend">Frontend Developer</SynVueOption>
+          </SynVueOptgroup>
+          <SynVueOptgroup label="Other">
+            <SynVueOption value="lead">Team Lead</SynVueOption>
+            <SynVueOption value="other">Other (please specify in comment section below)</SynVueOption>
+          </SynVueOptgroup>
+        </SynVueSelect>
+      </SynVueValidate>
     
       <SynVueValidate variant="inline">
         <SynVueInput

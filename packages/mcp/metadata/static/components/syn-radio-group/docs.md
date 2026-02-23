@@ -257,7 +257,7 @@ Radios and radio buttons can be disabled by adding the disabled attribute to the
 
 ## Readonly
 
-Add the read-only attribute to a radio to draw it in a readonly state.
+Add the readonly attribute to a radio to draw it in a readonly state.
 
 ```html
 <syn-radio-group

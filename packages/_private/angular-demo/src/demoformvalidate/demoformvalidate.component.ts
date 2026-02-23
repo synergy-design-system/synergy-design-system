@@ -14,12 +14,20 @@ import {
 import { UsedSynergyComponentsModule } from '../modules/used-synergy.module';
 import { DemoFieldSetModule } from '../modules/demofieldset.module';
 
+const initialMockData = mockData('initialValidateFormData');
+
 const initialData = {
-  ...mockData('initialValidateFormData'),
+  ...initialMockData,
   // Custom test for angular validators
   email: ['', [
     Validators.required,
     Validators.email,
+  ]],
+  // Special case: When using an array to prefill,
+  // angular does not recognize the validators if they are in the same array,
+  // so we need to separate them
+  previousRoles: [initialMockData.previousRoles, [
+    Validators.required,
   ]],
 };
 

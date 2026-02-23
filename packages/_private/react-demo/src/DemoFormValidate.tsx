@@ -159,6 +159,28 @@ export const DemoFormValidate = () => {
         </SynValidate>
 
         <SynValidate variant="inline">
+          <SynSelect
+            id="select-previous-roles"
+            label="Previous roles"
+            name="previousRoles"
+            multiple
+            readonly
+            required
+            value={formData.previousRoles}
+          >
+            <SynOption value="">---</SynOption>
+            <SynOptgroup label="Developers">
+              <SynOption value="backend">Backend Developer</SynOption>
+              <SynOption value="frontend">Frontend Developer</SynOption>
+            </SynOptgroup>
+            <SynOptgroup label="Other">
+              <SynOption value="lead">Team Lead</SynOption>
+              <SynOption value="other">Other (please specify in comment section below)</SynOption>
+            </SynOptgroup>
+          </SynSelect>
+        </SynValidate>
+
+        <SynValidate variant="inline">
           <SynInput
             id="input-text"
             label="Name"

@@ -58,6 +58,28 @@
     </syn-validate>
 
     <syn-validate variant="inline">
+      <syn-select
+        formControlName="previousRoles"
+        id="select-previous-roles"
+        label="Previous roles"
+        name="previousRoles"
+        readonly
+        required
+        multiple
+      >
+        <syn-option value="">---</syn-option>
+        <syn-optgroup label="Developers">
+          <syn-option value="backend">Backend Developer</syn-option>
+          <syn-option value="frontend">Frontend Developer</syn-option>
+        </syn-optgroup>
+        <syn-optgroup label="Other">
+          <syn-option value="lead">Team Lead</syn-option>
+          <syn-option value="other">Other (please specify in comment section below)</syn-option>
+        </syn-optgroup>
+      </syn-select>
+    </syn-validate>
+
+    <syn-validate variant="inline">
       <syn-input
         formControlName="name"
         id="input-text"

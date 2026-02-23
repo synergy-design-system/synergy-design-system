@@ -76,7 +76,7 @@ Use the disabled attribute to disable a radio.
 
 ## Readonly
 
-Add the read-only attribute to draw a read-only radio.
+Add the readonly attribute to draw a read-only radio.
 
 ```html
 <syn-radio-group value="1" size="medium" form="">

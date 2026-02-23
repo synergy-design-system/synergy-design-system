@@ -209,7 +209,7 @@ export const Readonly: Story = {
   },
   render: () => html`
     <form>
-      <syn-range label="Jens" max="100" min="0" value="50" readonly></syn-range>
+      <syn-range max="100" min="0" value="50" readonly></syn-range>
     </form>
   `,
 };

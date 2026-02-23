@@ -6,7 +6,7 @@
 "@synergy-design-system/vue": minor
 ---
 
-feat: ✨ Added readonly for various form fields (#1171, #1174, #1175, #1176, #1178)
+feat: ✨ Added readonly for various form fields (#1171, #1174, #1175, #1176, #1177, #1178)
 
 Applies to:
 
@@ -14,6 +14,7 @@ Applies to:
 - `<syn-radio>`
 - `<syn-radio-group>`
 - `<syn-range>`
+- `<syn-select>`
 - `<syn-switch>`
 
 Form elements now support being displayed as `readonly` fields.

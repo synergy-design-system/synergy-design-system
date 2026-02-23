@@ -633,7 +633,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to draw a read-only checkbox.",
+          "value": "Add the readonly attribute to draw a read-only checkbox.",
           "type": "text"
         }
       },
@@ -1385,7 +1385,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to draw a read-only input.",
+          "value": "Add the readonly attribute to draw a read-only input.",
           "type": "text"
         }
       },
@@ -1955,7 +1955,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to a radio to draw it in a readonly state.",
+          "value": "Add the readonly attribute to a radio to draw it in a readonly state.",
           "type": "text"
         }
       },
@@ -2067,7 +2067,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to a range to draw it in a readonly state.",
+          "value": "Add the readonly attribute to a range to draw it in a readonly state.",
           "type": "text"
         }
       },
@@ -2305,6 +2305,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to a select to draw it in a readonly state.",
+          "type": "text"
+        }
+      },
       "multiple": {
         "title": {
           "value": "Multiple",
@@ -2495,7 +2505,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to draw a read-only switch.",
+          "value": "Add the readonly attribute to draw a read-only switch.",
           "type": "text"
         }
       },
@@ -2735,7 +2745,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to draw a read-only textarea.",
+          "value": "Add the readonly attribute to draw a read-only textarea.",
           "type": "text"
         }
       },
@@ -2949,7 +2959,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to draw a read-only radio.",
+          "value": "Add the readonly attribute to draw a read-only radio.",
           "type": "text"
         }
       },

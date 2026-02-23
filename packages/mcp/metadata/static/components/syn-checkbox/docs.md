@@ -68,7 +68,7 @@ Use the disabled attribute to disable the checkbox.
 
 ## Readonly
 
-Add the read-only attribute to draw a read-only checkbox.
+Add the readonly attribute to draw a read-only checkbox.
 
 ```html
 <div

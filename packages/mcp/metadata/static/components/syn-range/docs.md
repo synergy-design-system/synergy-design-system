@@ -109,12 +109,11 @@ The focus event gives the user feedback that the Range has been focused by the k
 
 ## Readonly
 
-Add the read-only attribute to a range to draw it in a readonly state.
+Add the readonly attribute to a range to draw it in a readonly state.
 
 ```html
 <form>
   <syn-range
-    label="Jens"
     max="100"
     min="0"
     value="50"

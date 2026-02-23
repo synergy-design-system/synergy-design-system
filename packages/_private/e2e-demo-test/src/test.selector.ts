@@ -90,6 +90,7 @@ const AllComponentSelectors = {
   selectLink: '#tab-Select',
   selectMixedIdMultiSelect: '#tab-content-Select syn-select[data-testid="select-805-multi-select"]',
   selectMixedIdSingleSelect: '#tab-content-Select syn-select[data-testid="select-805-single-select"]',
+  selectReadonly: '#tab-content-Select syn-select[data-testid="select-1177-readonly-select"]',
   selectWithDelimiter: '#tab-content-Select syn-select[data-testid="select-540-delimiter"]',
 
   // Tabgroup
@@ -120,7 +121,7 @@ export default {
   experienceLoc: '#experience',
   formLoc: 'form',
   formStatus: 'syn-alert.form-validation-message',
-  frontend: 'syn-option[value=frontend]',
+  frontend: '#select-role  syn-option[value=frontend]',
   genderLoc: '#radiogroup-gender',
   happinessLoc: '#happiness',
   nameLoc: '#input-text',
@@ -136,6 +137,7 @@ export default {
   passLoc: '#input-password',
   passRecoveryLoc: '#input-number',
   phoneLoc: '#input-phone',
+  previousRolesLoc: '#select-previous-roles',
   reset: '.syn-submit-buttons > syn-button:nth-child(1)',
   roleLoc: '#select-role',
   sizeToggleLarge: '.meta-navigation syn-icon-button[data-size=large]',

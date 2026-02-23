@@ -40,7 +40,7 @@ Use the disabled attribute to disable the switch.
 
 ## Readonly
 
-Add the read-only attribute to draw a read-only switch.
+Add the readonly attribute to draw a read-only switch.
 
 ```html
 <div

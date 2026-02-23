@@ -6,11 +6,12 @@
 "@synergy-design-system/vue": minor
 ---
 
-feat: ✨ Added readonly for various form fields (#1171, #1174, #1175, #1176, #1177, #1178)
+feat: ✨ Added readonly for various form fields (#1171, #1172, #1174, #1175, #1176, #1177, #1178)
 
 Applies to:
 
 - `<syn-checkbox>`
+- `<syn-combobox>`
 - `<syn-radio>`
 - `<syn-radio-group>`
 - `<syn-range>`

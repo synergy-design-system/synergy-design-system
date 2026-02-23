@@ -81,7 +81,7 @@ test.describe('<SynSelect />', () => {
         // Try to open the select. It should not be open, because it is readonly
         await select.click();
         await expect(select).not.toHaveAttribute('open');
-      }); // end initial value check
+      }); // end should be readonly and not open if a user clicks
     }); // feature#1177
 
     test.describe(`Regression#813: ${name}`, () => {

@@ -134,6 +134,22 @@
       </syn-combobox>
     </syn-validate>
 
+    <syn-validate variant="inline" on="live">
+      <syn-combobox
+        formControlName="previousNationality"
+        id="input-previous-nationality"
+        label="Previous Nationality"
+        name="previousNationality"
+        readonly
+        required
+        [getOption]="highlightOptionRenderer"
+      >
+        @for (nationality of nationalities; track nationality) {
+          <syn-option>{{nationality}}</syn-option>
+        }
+      </syn-combobox>
+    </syn-validate>
+
   </demo-fieldset>
   <!-- /PersonalInformation -->
 

@@ -104,6 +104,17 @@
         ></syn-combobox>
       </syn-validate>
 
+      <syn-validate variant="inline" on="live">
+        <syn-combobox
+          id="input-previous-nationality"
+          label="Previous Nationality"
+          name="input-previous-nationality"
+          readonly
+          required
+          value="German"
+        ></syn-combobox>
+      </syn-validate>
+
     </fieldset>
     <!-- PersonalInformation -->
 

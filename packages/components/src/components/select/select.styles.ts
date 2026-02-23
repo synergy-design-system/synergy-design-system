@@ -173,12 +173,6 @@ export default css`
     padding-inline: var(--syn-input-spacing-small);
   }
 
-  .select--readonly .select__combobox {
-    background: var(--syn-readonly-background-color);
-    border-color: var(--syn-readonly-background-color);
-    cursor: default;
-  }
-
   .select--small .select__clear {
     font-size: var(--syn-spacing-medium);
     margin-inline-start: var(--syn-input-spacing-small);
@@ -422,6 +416,12 @@ export default css`
   /**
    * #1177: Add support for readonly
    */
+  .select--readonly .select__combobox {
+    background: var(--syn-readonly-background-color);
+    border-color: var(--syn-readonly-background-color);
+    cursor: default;
+  }
+
   .select--readonly .select__expand-icon {
     /* @todo: We have a syn-readonly-opacity-color, but this seems to be a mask in Figma and cannot be used here */
     color: var(--syn-color-neutral-400);

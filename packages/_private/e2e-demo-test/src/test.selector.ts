@@ -41,6 +41,7 @@ const AllComponentSelectors = {
   comboboxContent: '#tab-content-Combobox',
   comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',
+  comboboxReadonly: '#tab-content-Combobox syn-combobox[data-testid="combobox-1172-readonly-combobox"]',
 
   // Input
   input417NoValue: '#tab-content-Input syn-input[data-testid="input-417-numeric-no-value"]',
@@ -137,6 +138,7 @@ export default {
   passLoc: '#input-password',
   passRecoveryLoc: '#input-number',
   phoneLoc: '#input-phone',
+  previousNationalities: '#input-previous-nationality',
   previousRolesLoc: '#select-previous-roles',
   reset: '.syn-submit-buttons > syn-button:nth-child(1)',
   roleLoc: '#select-role',

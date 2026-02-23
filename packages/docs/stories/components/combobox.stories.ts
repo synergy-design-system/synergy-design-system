@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/combobox/combobox.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
@@ -205,6 +200,34 @@ export const Disabled: Story = {
     <syn-combobox  disabled placeholder="Disabled">
       ${createColorOptionsHtml()}
     </syn-combobox>
+  `,
+};
+
+export const Readonly: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('combobox', 'readonly'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-combobox placeholder="Readonly" value="option-1" readonly>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-combobox>
+      <syn-combobox max-options-visible="2" multiple placeholder="Readonly" value="option-1 option-2 option-3" readonly>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-combobox>
+    </div>
   `,
 };
 
@@ -636,6 +659,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Placeholder,
   Clearable,
   Disabled,
+  Readonly,
   Multiple,
   SettingInitialValue,
   Restricted,

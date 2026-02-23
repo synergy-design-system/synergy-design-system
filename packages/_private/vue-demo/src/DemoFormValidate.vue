@@ -194,7 +194,22 @@ const synChange = () => {
           name="nationality"
           required
           v-model="formData.nationality"
-          ref="nationalityRef"
+          :getOption="highlightOptionRenderer"
+        >
+          <SynVueOption v-for="nationality in nationalities" :key="nationality">
+            {{ nationality }}
+          </SynVueOption>
+        </SynVueCombobox>
+      </SynVueValidate>
+
+      <SynVueValidate variant="inline" on="live">
+        <SynVueCombobox
+          id="input-previous-nationality"
+          label="Previous Nationality"
+          name="previousNationality"
+          readonly
+          required
+          v-model="formData.previousNationality"
           :getOption="highlightOptionRenderer"
         >
           <SynVueOption v-for="nationality in nationalities" :key="nationality">

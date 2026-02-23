@@ -90,6 +90,7 @@ export class DemoFormValidate extends BaseFormObject {
     expect(await getInputValue(this.password)).toBe('invalid');
     expect(await getInputValue(this.passwordRecovery)).toBe('');
     expect(await getInputValue(this.nationality)).toBe('');
+    expect(await getInputValue(this.previousNationalities)).toEqual('German');
     expect(await getInputValue(this.testingFrameworks)).toEqual([]);
 
     const all = (await Promise.all(this.allRequiredInputs.map((input) => input.getAttribute('data-invalid'))));

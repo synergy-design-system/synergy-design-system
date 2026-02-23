@@ -62,6 +62,10 @@ export class BaseFormObject extends PageObject {
     return this.page.locator(selectors.previousRolesLoc);
   }
 
+  get previousNationalities() {
+    return this.page.locator(selectors.previousNationalities);
+  }
+
   get role() {
     return this.page.locator(selectors.roleLoc);
   }

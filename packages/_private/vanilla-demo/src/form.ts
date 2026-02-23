@@ -19,13 +19,19 @@ import {
 } from '@synergy-design-system/demo-utilities';
 
 const initCombobox = () => {
-  const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality')!;
-  nationalitiesEl.getOption = highlightOptionRenderer;
-  mockData('nationalities').forEach((nationality) => {
-    const option = document.createElement('syn-option');
-    option.innerText = nationality;
-    nationalitiesEl.appendChild(option);
-  });
+  const nationalities = document.querySelectorAll<SynCombobox>('#input-nationality, #input-previous-nationality');
+  Array
+    .from(nationalities)
+    .forEach(el => {
+      // eslint-disable-next-line no-param-reassign
+      el.getOption = highlightOptionRenderer;
+      mockData('nationalities').forEach((nationality) => {
+        const option = document.createElement('syn-option');
+        option.value = nationality;
+        option.innerText = nationality;
+        el.appendChild(option);
+      });
+    });
 
   // Initialize testingFrameworks combobox if it exists
   const testingFrameworksEl = document.querySelector<SynCombobox>('#testing-frameworks')!;

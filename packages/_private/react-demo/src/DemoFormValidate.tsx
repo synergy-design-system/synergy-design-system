@@ -234,6 +234,25 @@ export const DemoFormValidate = () => {
           </SynCombobox>
         </SynValidate>
 
+        <SynValidate variant="inline" on="input blur">
+          <SynCombobox
+            id="input-previous-nationality"
+            label="Previous Nationality"
+            name="previousNationality"
+            readonly
+            required
+            value={formData.previousNationality}
+            placeholder='Please choose your nationality'
+            getOption={highlightOptionRenderer}
+          >
+            {(mockData('nationalities')).map(n => (
+              <SynOption key={n}>
+                {n}
+              </SynOption>
+            ))}
+          </SynCombobox>
+        </SynValidate>
+
       </DemoFieldset>
       {/* /PersonalInformation */}
 

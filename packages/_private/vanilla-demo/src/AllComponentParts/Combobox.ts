@@ -117,5 +117,16 @@ export const Combobox = (regressions: RegressionFns = []) => {
     >
       <syn-option .value=${0}>Zero (numeric)</syn-option>
     </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-1172-readonly-combobox"
+      label="Readonly Combobox"
+      readonly
+      value="option-1"
+    >
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 3</syn-option>
+    </syn-combobox>
   `;
 };

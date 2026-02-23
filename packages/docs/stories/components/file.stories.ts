@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/file/file.js';
 import '../../../components/src/components/button/button.js';
 import { html } from 'lit';
@@ -163,6 +160,29 @@ export const Disabled: Story = {
 `,
 } as Story;
 
+export const Readonly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('file', 'readonly'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: 1rem;">
+      <syn-file
+        readonly
+        label="This is a label"
+      ></syn-file>
+      <syn-file
+        readonly
+        droparea
+        label="This is a label"
+      ></syn-file>
+    </div>
+`,
+} as Story;
+
 export const Sizes: Story = {
   parameters: {
     docs: {
@@ -206,6 +226,7 @@ export const Invalid: Story = {
         button.click();
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error in play function:', error);
     }
   },

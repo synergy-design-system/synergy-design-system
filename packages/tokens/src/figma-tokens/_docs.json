@@ -1113,6 +1113,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Readonly",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the readonly attribute to set a file input to a readonly state.",
+          "type": "text"
+        }
+      },
       "sizes": {
         "title": {
           "value": "Sizes",

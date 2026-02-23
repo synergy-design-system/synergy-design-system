@@ -12,7 +12,6 @@ import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './textarea.styles.js';
-import customStyles from './textarea.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
@@ -41,7 +40,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynTextarea')
 export default class SynTextarea extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   private readonly formControlController = new FormControlController(this, {
     assumeInteractionOn: ['syn-blur', 'syn-input']

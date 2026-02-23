@@ -17,7 +17,6 @@ import formControlStyles from '../../styles/form-control.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynButtonGroup from '../button-group/button-group.component.js';
 import styles from './radio-group.styles.js';
-import customStyles from './radio-group.custom.styles.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import type SynRadio from '../radio/radio.js';
 import type SynRadioButton from '../radio-button/radio-button.js';
@@ -49,7 +48,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynRadioGroup')
 export default class SynRadioGroup extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
 
   static dependencies = { 'syn-button-group': SynButtonGroup };
 

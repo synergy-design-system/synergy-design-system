@@ -11,7 +11,6 @@ import { HasSlotController } from '../../internal/slot.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
-import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynTooltip from '../tooltip/tooltip.component.js';
 import {
@@ -78,7 +77,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   static styles: CSSResultGroup = [
     componentStyles,
     formControlStyles,
-    formControlCustomStyles,
     styles,
   ];
 

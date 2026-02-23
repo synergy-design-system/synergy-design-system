@@ -10,7 +10,6 @@ import { property, query } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
-import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './checkbox.styles.js';
@@ -46,7 +45,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynCheckbox')
 export default class SynCheckbox extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static dependencies = { 'syn-icon': SynIcon };
 
   private readonly formControlController = new FormControlController(this, {

@@ -15,7 +15,6 @@ import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
-import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
@@ -103,7 +102,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     componentStyles,
     formControlStyles,
     styles,
-    formControlCustomStyles,
   ];
 
   static dependencies = {

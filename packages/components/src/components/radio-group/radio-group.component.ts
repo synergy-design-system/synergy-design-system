@@ -14,7 +14,6 @@ import { HasSlotController } from '../../internal/slot.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
-import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynButtonGroup from '../button-group/button-group.component.js';
 import styles from './radio-group.styles.js';
@@ -50,7 +49,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynRadioGroup')
 export default class SynRadioGroup extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, customStyles];
 
   static dependencies = { 'syn-button-group': SynButtonGroup };
 

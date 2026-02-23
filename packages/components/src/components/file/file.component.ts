@@ -11,7 +11,6 @@ import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
-import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynButton from '../button/button.component.js';
 import SynIcon from '../icon/icon.component.js';
@@ -72,7 +71,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   static styles: CSSResultGroup = [
     componentStyles,
     formControlStyles,
-    formControlCustomStyles,
     styles,
   ];
 

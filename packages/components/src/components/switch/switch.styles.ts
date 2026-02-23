@@ -104,10 +104,6 @@ export default css`
     border-color: var(--syn-input-icon-icon-clearable-color-hover);
   }
 
-  .switch:not(.switch--checked):not(.switch--disabled):not(.switch--readonly):hover .switch__control:hover .switch__thumb {
-    background-color: var(--syn-color-neutral-0);
-  }
-
   /* Focus */
   .switch:not(.switch--checked):not(.switch--disabled):not(.switch--readonly) .switch__input:focus-visible ~ .switch__control {
     background-color: var(--syn-input-icon-icon-clearable-color);
@@ -129,7 +125,6 @@ export default css`
 
   .switch--checked .switch__control .switch__thumb {
     background-color: var(--syn-color-neutral-0);
-    border-color: var(--syn-interactive-emphasis-color);
     translate: calc((var(--width) - var(--height)) / 2);
   }
 
@@ -139,7 +134,7 @@ export default css`
     border-color: var(--syn-interactive-emphasis-color-hover);
   }
 
-  .switch.switch--checked:not(.switch--disabled):not(.switch--readonly):hover .switch__control:hover .switch__thumb {
+  .switch.switch--checked:not(.switch--disabled):not(.switch--readonly):hover .switch__control .switch__thumb {
     background-color: var(--syn-color-neutral-0);
   }
 
@@ -220,8 +215,8 @@ export default css`
   }
 
   .switch.switch--readonly:hover .switch__control {
-    background: var(--syn-input-readonly-background-color-hover) !important;
-    border-color: var(--syn-input-readonly-background-color-hover) !important;
+    background: var(--syn-input-readonly-background-color-hover);
+    border-color: var(--syn-input-readonly-background-color-hover);
   }
 
   .switch.switch--readonly .switch__input:focus ~ .switch__control {
@@ -230,12 +225,12 @@ export default css`
   }
 
   .switch.switch--readonly .switch__control .switch__thumb {
-    background: var(--syn-readonly-indicator-color) !important;
+    background: var(--syn-readonly-indicator-color);
   }
 
   /* Override base styles to remove outline from thumb for readonly switches */
   .switch.switch--readonly .switch__input:focus-visible ~ .switch__control .switch__thumb {
-    outline: none !important;
+    outline: none;
   }
 
   .switch.switch--readonly.switch--checked .switch__input:focus-visible ~ .switch__control .switch__thumb {
@@ -244,8 +239,8 @@ export default css`
 
   /* Focus override */
   .switch.switch--readonly .switch__input:focus-visible ~ .switch__control {
-    background-color: var(--syn-readonly-background-color) !important;
-    border-color: var(--syn-readonly-background-color) !important;
+    background-color: var(--syn-readonly-background-color);
+    border-color: var(--syn-readonly-background-color);
   }
 
   @media (forced-colors: active) {

@@ -119,9 +119,9 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
     this.formControlController.emitInvalidEvent(event);
   }
 
-  private handleClick() {
+  private handleClick(e: MouseEvent) {
     if (this.readonly) {
-      this.focus();
+      e.preventDefault();
       return;
     }
 

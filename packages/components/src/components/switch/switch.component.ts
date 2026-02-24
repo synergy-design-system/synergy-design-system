@@ -135,6 +135,10 @@ export default class SynSwitch extends SynergyElement implements SynergyFormCont
   }
 
   private handleKeyDown(event: KeyboardEvent) {
+    if (this.readonly) {
+      return;
+    }
+
     if (event.key === 'ArrowLeft') {
       event.preventDefault();
       this.checked = false;

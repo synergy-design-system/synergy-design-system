@@ -170,22 +170,25 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
     }
 
     // #1174: Filter out elements that are either disabled or readonly
-    const radios = this.getAllRadios().filter(radio => (!radio.disabled && !(radio as SynRadio).readonly));
-    const checkedRadio = radios.find(radio => radio.checked) ?? radios[0];
+    const availableRadios = this.getAllRadios().filter(radio => (!radio.disabled && !(radio as SynRadio).readonly));
+    const checkedRadio = availableRadios.find(radio => radio.checked) ?? availableRadios[0];
+
     // eslint-disable-next-line no-nested-ternary
     const incr = event.key === ' ' ? 0 : ['ArrowUp', 'ArrowLeft'].includes(event.key) ? -1 : 1;
     const oldValue = this.value;
-    let index = radios.indexOf(checkedRadio) + incr;
+    let index = availableRadios.indexOf(checkedRadio) + incr;
 
     if (index < 0) {
-      index = radios.length - 1;
+      index = availableRadios.length - 1;
     }
 
-    if (index > radios.length - 1) {
+    if (index > availableRadios.length - 1) {
       index = 0;
     }
 
-    this.getAllRadios().forEach(radio => {
+    const allRadios = this.getAllRadios();
+
+    allRadios.forEach(radio => {
       radio.checked = false;
 
       if (!this.hasButtonGroup) {
@@ -193,14 +196,19 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
       }
     });
 
-    this.value = radios[index].value;
-    radios[index].checked = true;
+    // #1175: If all radios are readonly, skip and focus the first one and do not change the value
+    if (!availableRadios[index]) {
+      return;
+    }
+
+    this.value = availableRadios[index].value;
+    availableRadios[index].checked = true;
 
     if (!this.hasButtonGroup) {
-      radios[index].setAttribute('tabindex', '0');
-      radios[index].focus();
+      availableRadios[index].setAttribute('tabindex', '0');
+      availableRadios[index].focus();
     } else {
-      radios[index].shadowRoot!.querySelector('button')!.focus();
+      availableRadios[index].shadowRoot!.querySelector('button')!.focus();
     }
 
     if (this.value !== oldValue) {

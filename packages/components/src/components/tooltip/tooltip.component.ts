@@ -13,6 +13,7 @@ import SynPopup from '../popup/popup.component.js';
 import styles from './tooltip.styles.js';
 import customStyles from './tooltip.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import type { VirtualElement } from '../popup/popup.component.js';
 
 /**
  * @summary Tooltips display additional information based on a specific action.
@@ -53,6 +54,13 @@ export default class SynTooltip extends SynergyElement {
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
   @query('.tooltip__body') body: HTMLElement;
   @query('syn-popup') popup: SynPopup;
+
+  /**
+   * The element the tooltip will be anchored to. If the anchor lives outside of the tooltip, you can provide the anchor
+   * element `id`, a DOM element reference, or a `VirtualElement`. If the anchor lives inside the tooltip, use the
+   * `anchor` slot instead.
+   */
+  @property() anchor: Element | string | VirtualElement;
 
   /** The tooltip's content. If you need to display HTML, use the `content` slot instead. */
   @property() content = '';
@@ -214,12 +222,48 @@ export default class SynTooltip extends SynergyElement {
     }
   }
 
-  @watch(['content', 'distance','placement', 'skidding'])
+  @watch(['anchor', 'content', 'distance','placement', 'skidding'])
   async handleOptionsChange() {
     if (this.hasUpdated) {
       await this.updateComplete;
       this.popup.reposition();
     }
+  }
+
+  /**
+   * Find an element within slotted content, including shadow DOM traversal
+   */
+  private findElementInSlottedContent(selector: string): Element | null {
+    const slottedElements = this.defaultSlot?.assignedElements() || [];
+    
+    for (const element of slottedElements) {
+      // Try direct querySelector first
+      const found = element.querySelector(selector);
+      if (found) return found;
+      
+      // If not found and element has shadow root, search there
+      if (element.shadowRoot) {
+        const shadowFound = element.shadowRoot.querySelector(selector);
+        if (shadowFound) return shadowFound;
+      }
+    }
+    
+    return null;
+  }
+
+  /**
+   * Get the effective anchor element to use for positioning
+   */
+  private getEffectiveAnchor(): Element | string | VirtualElement | undefined {
+    if (!this.anchor) return undefined;
+    
+    // If anchor is a string, try to find it in slotted content first
+    if (typeof this.anchor === 'string') {
+      const found = this.findElementInSlottedContent(this.anchor);
+      return found || this.anchor;
+    }
+    
+    return this.anchor;
   }
 
   @watch('disabled')
@@ -256,8 +300,10 @@ export default class SynTooltip extends SynergyElement {
   // element, otherwise positioning is incorrect.
   //
   render() {
+    const effectiveAnchor = this.getEffectiveAnchor();
     return html`
       <syn-popup
+        .anchor=${effectiveAnchor}
         part="base"
         exportparts="
           popup:base__popup,
@@ -275,7 +321,7 @@ export default class SynTooltip extends SynergyElement {
         arrow
         hover-bridge
       >
-        ${'' /* eslint-disable-next-line lit-a11y/no-aria-slot */}
+        ${'' /* Always render slotted content in anchor position - it's always visible */}
         <slot slot="anchor" aria-describedby="tooltip"></slot>
 
         ${'' /* eslint-disable-next-line lit-a11y/accessible-name */}

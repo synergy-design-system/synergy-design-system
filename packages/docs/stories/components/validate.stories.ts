@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/validate/validate.js';
@@ -100,14 +97,16 @@ export const TooltipVariant: Story = {
     <syn-validate
       class="validation-tooltip"
       variant="tooltip"
+      on="live"
+      eager
     >
       <syn-input
         label="Invalid input"
         type="email"
         value="team(at)synergy.com"
+        required
       ></syn-input>
-    </syn-validate>
-  `,
+    </syn-validate>`,
 };
 
 export const InlineVariant: Story = {
@@ -243,7 +242,7 @@ export const CustomFormField: Story = {
       on="live"
       variant="inline"
     >
-      <validate-demo-radio name="color"></validate-demo-radio>
+      <validate-demo-radio name="color" required></validate-demo-radio>
     </syn-validate>
   `,
 };

@@ -1,6 +1,11 @@
 import type { CSSResultGroup, PropertyValues } from 'lit';
 import { html } from 'lit';
-import { property, queryAssignedElements, state } from 'lit/decorators.js';
+import {
+  property,
+  query,
+  queryAssignedElements,
+  state,
+} from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
@@ -10,6 +15,7 @@ import SynAlert from '../alert/alert.component.js';
 import SynTooltip from '../tooltip/tooltip.component.js';
 import {
   alertSizeForInput,
+  getActualInputElement,
   getEventNameForElement,
   isBlurEvent,
   isInvalidEvent,
@@ -72,6 +78,8 @@ export default class SynValidate extends SynergyElement {
 
   @queryAssignedElements() private slottedChildren: HTMLElement[];
 
+  @query('syn-tooltip') private tooltipElement?: SynTooltip;
+
   @state() validationMessage = '';
 
   @state() eagerFirstMount = true;
@@ -81,6 +89,8 @@ export default class SynValidate extends SynergyElement {
   @state() isValid = true;
 
   @state() alertSize?: SynInput['size'];
+
+  @state() hasFocus = false;
 
   /**
    * The variant that should be used to show validation alerts.
@@ -257,6 +267,22 @@ export default class SynValidate extends SynergyElement {
         signal: this.controller.signal,
       });
     }
+
+    // #664: Add focus/blur listeners specifically for tooltip variant
+    // This is needed because we want to show the tooltip on focus and hide it on blur, but only when using the tooltip variant.
+    // Otherwise, this would interfere with the native validation tooltip, which also relies on focus and blur events.
+    if (this.variant === 'tooltip') {
+      const focusEvent = getEventNameForElement(input, 'focus');
+      const blurEvent = getEventNameForElement(input, 'blur');
+
+      input.addEventListener(focusEvent, this.handleInputFocus, {
+        signal: this.controller.signal,
+      });
+
+      input.addEventListener(blurEvent, this.handleInputBlur, {
+        signal: this.controller.signal,
+      });
+    }
   }
 
   private setValidationMessage(input: HTMLInputElement) {
@@ -286,6 +312,17 @@ export default class SynValidate extends SynergyElement {
     if (input.validity?.valid) {
       this.validationMessage = '';
     }
+  };
+
+  /**
+   * Handle focus/blur events for tooltip variant
+   */
+  private handleInputFocus = () => {
+    this.hasFocus = true;
+  };
+
+  private handleInputBlur = () => {
+    this.hasFocus = false;
   };
 
   /**
@@ -461,6 +498,36 @@ export default class SynValidate extends SynergyElement {
     this?.sizeObserver?.disconnect();
   }
 
+  updated(changedProperties: PropertyValues) {
+    super.updated(changedProperties);
+
+    // #664: Make sure to update the syn-tooltip if the validation state changes when using the tooltip variant
+    if (this.variant !== 'tooltip') {
+      return;
+    }
+
+    const tooltip = this.tooltipElement;
+
+    if (!tooltip) {
+      return;
+    }
+
+    // When we have a valid tooltip,
+    // we need to update the content and show or hide it based on the validation state and focus state.
+    // We have to do this manually, as there is a problem when updating open and content at the same time.
+    // The order is critical: fill before showing, don´t update the content during hide.
+    const shouldShowTooltip = !this.isValid && this.validationMessage && this.hasFocus;
+
+    if (shouldShowTooltip) {
+      tooltip.content = this.validationMessage;
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      tooltip.show();
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      tooltip.hide();
+    }
+  }
+
   private renderInlineValidation() {
     if (this.variant !== 'inline' || !this.validationMessage) {
       return '';
@@ -485,15 +552,15 @@ export default class SynValidate extends SynergyElement {
 
   render() {
     // #664: When using the tooltip variant, we need to wrap the default slot in a tooltip when the input is invalid and has a validation message.
-    // Note that we cannot just use disabled as in this case the focus may already be on the element and therefore the tooltip
-    // will not show up until the element is blurred and focused again. By using the validation state and message, we can make sure to show the tooltip immediately when the input is invalid.
-    const slotContent = this.variant === 'tooltip' && !this.isValid && this.validationMessage.length > 0
+    const slotContent = this.variant === 'tooltip'
       ? html`
         <syn-tooltip
-          content=${this.validationMessage}
+          .anchor=${getActualInputElement(this.getInput()) ?? undefined}
           exportparts="base:tooltip__base,base__popup:tooltip__popup,base__arrow:tooltip__arrow,body:tooltip__body"
-          open
+          .open=${this.eager ? !this.isValid && this.validationMessage.length > 0 : false}
           part="tooltip"
+          placement="bottom"
+          trigger="manual"
         >
           ${renderDefaultSlot()}
         </syn-tooltip>

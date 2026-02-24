@@ -2,6 +2,11 @@ import SynergyElement from '../../internal/synergy-element.js';
 import type SynInput from '../input/input.component.js';
 
 /**
+ * An actual element can be any HTMLElement (including SynergyElement subclasses) or undefined if no element is provided.
+ */
+type ActualElement = HTMLElement | undefined;
+
+/**
  * @var WhitelistedSynergyFormEventNames A list of all the event names that should be transformed
  * This is needed to allow the automatic transformation of events to synergy events,
  * but only for those synergy needs (e.g. we do not want to transform click to syn-click).
@@ -126,10 +131,15 @@ const queryInputInShadowRoot = (
  * @param element The element to get the actual input for
  * @returns The html input element
  */
-export const getActualInputElement = (element: HTMLInputElement | undefined): HTMLInputElement | undefined => {
+export const getActualInputElement = (element: ActualElement): ActualElement => {
   // If there is no input, skip before doing any harm
   if (!element) {
     return undefined;
+  }
+
+  // If the element doesn't have a shadow root, return it directly
+  if (!element.shadowRoot) {
+    return element;
   }
 
   const tagName = element.tagName.toLowerCase() as keyof typeof ELEMENT_SELECTORS;
@@ -141,7 +151,7 @@ export const getActualInputElement = (element: HTMLInputElement | undefined): HT
     if (actualInput) return actualInput;
   }
 
-  // Fallback: try common input selectors in shadow DOM (for any custom element)
+  // Fallback: try common input selectors in shadow DOM
   const fallbackInput = queryInputInShadowRoot(element, 'input,select,textarea');
   if (fallbackInput) return fallbackInput;
 

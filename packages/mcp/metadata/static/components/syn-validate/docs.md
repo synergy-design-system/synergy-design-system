@@ -31,17 +31,17 @@ When the tooltip variant is chosen, validation errors are displayed in a <syn-to
 
 ```html
 <form id="components-syn-validate--tooltip-variant-validate-demo-form">
-  <syn-validate class="validation-tooltip" variant="tooltip" on="">
+  <syn-validate class="validation-tooltip" variant="tooltip" on="live" eager="">
     <syn-input
       label="Invalid input"
       type="email"
       value="team(at)synergy.com"
+      required=""
       title=""
       size="medium"
       form=""
     ></syn-input>
   </syn-validate>
-
   <p>
     <syn-button type="submit" title="" variant="outline" size="medium"
       >Submit</syn-button
@@ -233,7 +233,7 @@ Wrap the element around any other form field, that follows browser standards to 
 <form id="components-syn-validate--custom-form-field-validate-demo-form">
   <h3 style="margin: 0; padding: 0">Choose SICK´s brand color</h3>
   <syn-validate class="validation-custom-form-field" on="live" variant="inline">
-    <validate-demo-radio name="color"></validate-demo-radio>
+    <validate-demo-radio name="color" required=""></validate-demo-radio>
   </syn-validate>
 
   <p>

@@ -52,6 +52,15 @@ defineExpose({
 // Map attributes
 const props = defineProps<{
   /**
+* The element the tooltip will be anchored to.
+* If the anchor lives outside of the tooltip, you can provide the anchor
+element `id`, a DOM element reference, or a `VirtualElement`.
+* If the anchor lives inside the tooltip, use the
+`anchor` slot instead.
+ */
+  anchor?: SynTooltip['anchor'];
+
+  /**
    * The tooltip's content.
    * If you need to display HTML, use the `content` slot instead.
    */

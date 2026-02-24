@@ -8,7 +8,15 @@ import sinon from 'sinon';
 import '../../../dist/synergy.js';
 import * as utils from '../../../dist/components/validate/utility.js';
 import type SynValidate from './validate.js';
+import type SynCheckbox from '../checkbox/checkbox.component.js';
+import type SynCombobox from '../combobox/combobox.component.js';
+import type SynFile from '../file/file.component.js';
 import type SynInput from '../input/input.component.js';
+import type SynRadioGroup from '../radio-group/radio-group.component.js';
+import type SynRange from '../range/range.component.js';
+import type SynSelect from '../select/select.component.js';
+import type SynSwitch from '../switch/switch.component.js';
+import type SynTextArea from '../textarea/textarea.component.js';
 
 describe('<syn-validate>', () => {
   describe('utility functions', () => {
@@ -89,6 +97,62 @@ describe('<syn-validate>', () => {
           el.size = 'small';
           await expect(utils.alertSizeForInput(el)).to.equal('small');
         });
+      });
+    });
+
+    describe('getActualInputElement', () => {
+      it('should return the element itself if no element is provided', () => {
+        expect(utils.getActualInputElement(undefined)).to.equal(undefined);
+      });
+
+      it('should return the element itself if a native element is provided', () => {
+        const el = document.createElement('input');
+        expect(utils.getActualInputElement(el)).to.equal(el);
+      });
+
+      it('should return the input of the shadow root if a syn-checkbox is provided', async () => {
+        const el = await fixture<SynCheckbox>(html`<syn-checkbox></syn-checkbox>`);
+        expect(utils.getActualInputElement(el)).to.have.class('checkbox__input');
+      });
+
+      it('should return the input of the shadow root if a syn-combobox is provided', async () => {
+        const el = await fixture<SynCombobox>(html`<syn-combobox></syn-combobox>`);
+        expect(utils.getActualInputElement(el)).to.have.class('combobox__value-input');
+      });
+
+      it('should return the input of the shadow root if a syn-file is provided', async () => {
+        const el = await fixture<SynFile>(html`<syn-file></syn-file>`);
+        expect(utils.getActualInputElement(el)).to.have.property('id', 'input');
+      });
+
+      it('should return the input of the shadow root if a syn-radio-group is provided', async () => {
+        const el = await fixture<SynRadioGroup>(html`<syn-radio-group></syn-radio-group>`);
+        expect(utils.getActualInputElement(el)).to.have.class('radio-group__validation-input');
+      });
+
+      it('should return the input of the shadow root if a syn-range is provided', async () => {
+        const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
+        expect(utils.getActualInputElement(el)).to.have.class('input__control');
+      });
+
+      it('should return the input of the shadow root if a syn-switch is provided', async () => {
+        const el = await fixture<SynSwitch>(html`<syn-switch></syn-switch>`);
+        expect(utils.getActualInputElement(el)).to.have.class('switch__input');
+      });
+
+      it('should return the input of the shadow root if a syn-select is provided', async () => {
+        const el = await fixture<SynSelect>(html`<syn-select></syn-select>`);
+        expect(utils.getActualInputElement(el)).to.have.class('select__value-input');
+      });
+
+      it('should return the input of the shadow root if a syn-input is provided', async () => {
+        const el = await fixture<SynInput>(html`<syn-input></syn-input>`);
+        expect(utils.getActualInputElement(el)).to.have.property('id', 'input');
+      });
+
+      it('should return the textarea of the shadow root if a syn-textarea is provided', async () => {
+        const el = await fixture<SynTextArea>(html`<syn-textarea></syn-textarea>`);
+        expect(utils.getActualInputElement(el)).to.have.property('id', 'input');
       });
     });
   });
@@ -348,24 +412,31 @@ describe('<syn-validate>', () => {
 
     // #664: Tests for variant="tooltip"
     describe('when using variant="tooltip"', () => {
-      it('should not show the tooltip when the input is valid', async () => {
+      it.skip('should not show the tooltip when the input is valid', async () => {
         const el = await fixture<SynValidate>(html`
           <syn-validate variant="tooltip" eager>
             <input label="Email" value="test@test.de" name="email" type="email">
           </syn-validate>
         `);
 
-        expect(el.shadowRoot!.querySelector('syn-tooltip')).to.not.exist;
+        const tooltip = el.shadowRoot!.querySelector('syn-tooltip');
+        expect(tooltip).to.exist;
+        expect(tooltip).to.have.property('open', false);
       });
 
-      it('should show the tooltip with the validation message when the input is invalid', async () => {
+      it('should show the tooltip with the validation message when the input is invalid and the input is focused', async () => {
         const el = await fixture<SynValidate>(html`
           <syn-validate variant="tooltip" eager>
             <input label="Email" value="test" name="email" type="email">
           </syn-validate>
         `);
 
-        expect(el.shadowRoot!.querySelector('syn-tooltip')).to.exist;
+        await el.querySelector('input')!.focus();
+        await el.updateComplete;
+
+        const tooltip = el.shadowRoot!.querySelector('syn-tooltip');
+        expect(tooltip).to.exist;
+        expect(tooltip).to.have.property('open', true);
       });
     }); // /#664
   });

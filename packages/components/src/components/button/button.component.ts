@@ -12,7 +12,6 @@ import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynSpinner from '../spinner/spinner.component.js';
 import styles from './button.styles.js';
-import customStyles from './button.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
@@ -43,7 +42,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynButton')
 export default class SynButton extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = {
     'syn-icon': SynIcon,
     'syn-spinner': SynSpinner

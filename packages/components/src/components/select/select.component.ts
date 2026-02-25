@@ -661,7 +661,12 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     if (this.multiple) {
       this.value = this.selectedOptions.map(el => el.value);
 
-      if (this.placeholder && this.value.length === 0) {
+      // #1177: When using a readonly field with multiple set,
+      // set the display label to the list of selected options instead of the count, since the user can't open the listbox to see which options are selected.
+      // This makes it possible to copy the values from the readonly select.
+      if (this.readonly) {
+        this.displayLabel = this.selectedOptions.map(opt => opt.getTextLabel()).join(', ');
+      } else if (this.placeholder && this.value.length === 0) {
         // When no items are selected, keep the value empty so the placeholder shows
         this.displayLabel = '';
       } else {
@@ -941,6 +946,8 @@ protected override willUpdate(changedProperties: PropertyValues) {
             >
               <slot part="prefix" name="prefix" class="select__prefix"></slot>
 
+              ${this.multiple ? html`<div part="tags" class="select__tags">${this.tags}</div>` : ''}
+
               <input
                 part="display-input"
                 class="select__display-input"
@@ -963,8 +970,6 @@ protected override willUpdate(changedProperties: PropertyValues) {
                 @focus=${this.handleFocus}
                 @blur=${this.handleBlur}
               />
-
-              ${this.multiple ? html`<div part="tags" class="select__tags">${this.tags}</div>` : ''}
 
               <input
                 class="select__value-input"

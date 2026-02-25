@@ -79,7 +79,7 @@ export default css`
   }
 
   /* Visually hide the display input when multiple is enabled */
-  .select--multiple:not(.select--placeholder-visible) .select__display-input {
+  .select--multiple:not(.select--readonly):not(.select--placeholder-visible) .select__display-input {
     height: 100%;
     left: 0;
     opacity: 0;
@@ -87,6 +87,16 @@ export default css`
     top: 0;
     width: 100%;
     z-index: -1;
+  }
+
+  /* #1177: Make sure that the values are copyable when using the readonly state */
+  .select--multiple.select--readonly:not(.select--placeholder-visible) .select__display-input {
+    flex: auto;
+  }
+
+  .select--multiple.select--readonly .select__tags {
+    flex: 0 0 auto;
+    margin-inline-end: var(--syn-input-spacing-small);
   }
 
   .select__value-input {

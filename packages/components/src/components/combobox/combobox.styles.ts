@@ -65,7 +65,6 @@ export default css`
     overflow: hidden;
     padding: 0;
     position: relative;
-    width: 100%;
     width: unset;
   }
 

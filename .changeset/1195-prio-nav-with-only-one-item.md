@@ -1,7 +1,6 @@
 ---
 "@synergy-design-system/components": patch
+"@synergy-design-system/mcp": patch
 ---
 
-fix: 🐛 `syn-prio-nav` now works with only one `syn-nav-item` (#1195)
-
-Fixes an issue that does not allow the `syn-prio-nav` to be used with only one `syn-nav-item` and therefore nothing was shown at all.
+fix: 🐛 prio nav with only one item (#1195)

@@ -1553,7 +1553,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
             >
               <slot part="prefix" name="prefix" class="combobox__prefix"></slot>
 
-              ${this.multiple ? html`<div part="tags" class="combobox__tags">${this.tags}</div>` : ''}
+              ${this.multiple && !this.readonly ? html`<div part="tags" class="combobox__tags">${this.tags}</div>` : ''}
 
               <input
                 part="display-input"

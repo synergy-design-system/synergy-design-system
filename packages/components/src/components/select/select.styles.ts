@@ -113,11 +113,6 @@ export default css`
     flex: auto;
   }
 
-  .select--multiple.select--readonly .select__tags {
-    flex: 0 0 auto;
-    margin-inline-end: var(--syn-input-spacing-small);
-  }
-
   .select__value-input {
     height: 100%;
     left: 0;
@@ -216,12 +211,7 @@ export default css`
   .select--multiple:not(.select--placeholder-visible) .select__prefix::slotted(*) {
     margin-inline-start: var(--syn-select-multiple-prefix-margin);
   }
-
-  .select--multiple:not(.select--placeholder-visible) .select__combobox {
-    padding-block: var(--syn-select-multiple-padding-block);
-    padding-inline-start: 0;
-  }
-  
+ 
   /* Prefix and Suffix */
   .select__prefix,
   .select__suffix {
@@ -375,21 +365,7 @@ export default css`
   }
 
   .select--readonly .select__expand-icon {
-    /* @todo: We have a syn-readonly-opacity-color, but this seems to be a mask in Figma and cannot be used here */
-    color: var(--syn-color-neutral-400);
-  }
-
-  .select--readonly .select__tags syn-tag::part(base) {
-    background: transparent;
-    border: 1px solid var(--syn-readonly-border-color);
-  }
-
-  .select--readonly .select__tags syn-tag::part(remove-button) {
-    color: var(--syn-color-neutral-400);
-  }
-
-  .select--readonly .select__tags syn-tag::part(remove-button__base) {
-    cursor: default;
+    color: var(--syn-readonly-icon-color-expand);
   }
 
   ${sharedOptionSize}

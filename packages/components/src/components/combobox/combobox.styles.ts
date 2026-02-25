@@ -386,21 +386,7 @@ export default css`
   }
 
   .combobox--readonly .combobox__expand-icon {
-    /* @todo: We have a syn-readonly-opacity-color, but this seems to be a mask in Figma and cannot be used here */
-    color: var(--syn-color-neutral-400);
-  }
-
-  .combobox--readonly .combobox__tags syn-tag::part(base) {
-    background: transparent;
-    border: 1px solid var(--syn-readonly-border-color);
-  }
-
-  .combobox--readonly .combobox__tags syn-tag::part(remove-button) {
-    color: var(--syn-color-neutral-400);
-  }
-
-  .combobox--readonly .combobox__tags syn-tag::part(remove-button__base) {
-    cursor: default;
+    color: var(--syn-readonly-icon-color-expand);
   }
 
   ${sharedOptionSize}

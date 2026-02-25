@@ -23,7 +23,6 @@ Component.define('syn-tag-group');
  *
  * @csspart base - The component's base wrapper.
  * @csspart tag-label - The tag group's label.
- * @csspart tag-container - The container wrapping the slotted tags.
  */
 export const SynTagGroup = createComponent({
   displayName: 'SynTagGroup',

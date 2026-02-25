@@ -39,86 +39,162 @@ A tag group is used to display multiple tags that belong together, often represe
 Use the size attribute to change a tag group’s size.
 
 ```html
-<syn-tag-group size="small" label="Small" label-position="top">
-  <syn-tag removable="" size="small">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="small">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="small">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="small">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="small">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="small">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-</syn-tag-group>
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-x-large)"
+>
+  <syn-tag-group size="small" label="Small" label-position="top">
+    <syn-tag removable="" size="small">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="small">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="small">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="small">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="small">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="small">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+  </syn-tag-group>
 
-<syn-tag-group size="medium" label="Medium" label-position="top">
-  <syn-tag removable="" size="medium">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="medium">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="medium">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="medium">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="medium">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="medium">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-</syn-tag-group>
+  <syn-tag-group size="medium" label="Medium" label-position="top">
+    <syn-tag removable="" size="medium">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="medium">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="medium">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="medium">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="medium">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="medium">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+  </syn-tag-group>
 
-<syn-tag-group size="large" label="Large" label-position="top">
-  <syn-tag removable="" size="large">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="large">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="large">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="large">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="large">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-  <syn-tag removable="" size="large">
-    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
-    Option
-  </syn-tag>
-</syn-tag-group>
+  <syn-tag-group size="large" label="Large" label-position="top">
+    <syn-tag removable="" size="large">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="large">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="large">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="large">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="large">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+    <syn-tag removable="" size="large">
+      <syn-icon
+        name="wallpaper"
+        aria-hidden="true"
+        library="default"
+      ></syn-icon>
+      Option
+    </syn-tag>
+  </syn-tag-group>
+</div>
 ```
 
 ---

@@ -1442,7 +1442,6 @@ export type SynCustomElement<
  *
  * @csspart base - The component's base wrapper.
  * @csspart tag-label - The tag group's label.
- * @csspart tag-container - The container wrapping the slotted tags.
  */ export type SynTagGroupJSXElement = SynCustomElement<SynTagGroup, []>;
 /**
  * @summary Textareas collect data from the user and allow multiple lines of text.
@@ -2681,7 +2680,6 @@ declare module 'react' {
        *
        * @csspart base - The component's base wrapper.
        * @csspart tag-label - The tag group's label.
-       * @csspart tag-container - The container wrapping the slotted tags.
        */ 'syn-tag-group': SynTagGroupJSXElement;
       /**
        * @summary Textareas collect data from the user and allow multiple lines of text.

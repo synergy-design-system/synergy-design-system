@@ -23,7 +23,6 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  *
  * @csspart base - The component's base wrapper.
  * @csspart tag-label - The tag group's label.
- * @csspart tag-container - The container wrapping the slotted tags.
  */
 @enableDefaultSettings('SynTagGroup')
 export default class SynTagGroup extends SynergyElement {
@@ -66,16 +65,6 @@ export default class SynTagGroup extends SynergyElement {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasLabel = this.label ? true : !!hasLabelSlot;
 
-    const label = html`
-      <span
-          part="tag-label"
-          class="tag-group__label"
-          aria-hidden=${hasLabel ? 'false' : 'true'}
-        >
-          <slot name="label">${this.label}</slot>
-      </span>
-    `;
-
     /* eslint-disable @typescript-eslint/unbound-method */
     return html`
       <div 
@@ -90,15 +79,15 @@ export default class SynTagGroup extends SynergyElement {
         })}
       >
 
-        ${this.labelPosition === 'top' ? label : null}
+        <span
+            part="tag-label"
+            class="tag-group__label"
+            aria-hidden=${hasLabel ? 'false' : 'true'}
+          >
+            <slot name="label">${this.label}</slot>
+        </span>
 
-        <div
-          class="tag-container"
-          part="tag-container"
-        >
-          ${this.labelPosition === 'start' ? label : null}
-          <slot @slotchange=${this.handleSlotChange}></slot>
-        </div>
+        <slot @slotchange=${this.handleSlotChange}></slot>
       </div>
     `;
     /* eslint-enable @typescript-eslint/unbound-method */

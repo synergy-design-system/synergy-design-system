@@ -83,14 +83,16 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    ${(['small', 'medium', 'large'] as const).map(size => html`
-      <syn-tag-group
-        size="${size}"
-        label=${size.charAt(0).toUpperCase() + size.slice(1)}
-      >
-        ${unsafeHTML(generateTags(6))}
-      </syn-tag-group>
-    `)}
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-x-large);">
+      ${(['small', 'medium', 'large'] as const).map(size => html`
+        <syn-tag-group
+          size="${size}"
+          label=${size.charAt(0).toUpperCase() + size.slice(1)}
+        >
+          ${unsafeHTML(generateTags(6))}
+        </syn-tag-group>
+      `)}
+    </div>
   `,
 };
 
@@ -114,5 +116,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   Sizes,
   LabelAlignment,
-});
+}, 350);
 /* eslint-enable sort-keys */

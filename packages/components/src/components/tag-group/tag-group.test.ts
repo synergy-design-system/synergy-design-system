@@ -1,4 +1,3 @@
-/* eslint-disable */
 import '../../../dist/synergy.js';
 import { expect, fixture, html } from '@open-wc/testing';
 import type SynTagGroup from './tag-group.js';

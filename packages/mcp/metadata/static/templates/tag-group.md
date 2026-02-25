@@ -345,7 +345,7 @@
         <syn-tag removable="" size="medium"> Option 3 </syn-tag>
       </syn-tag-group>
 
-      <syn-button variant="text" title="" size="medium">
+      <syn-button class="clear-button" variant="text" title="" size="medium">
         <syn-icon
           name="delete"
           slot="prefix"
@@ -428,7 +428,13 @@
       }
 
       .filter-form .filter-tags {
+        align-items: flex-start;
         flex-direction: column;
+      }
+
+      /* Center the clear button on mobile */
+      .clear-button {
+        margin: 0 auto;
       }
     }
   </style>

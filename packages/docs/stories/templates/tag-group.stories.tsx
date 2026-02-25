@@ -94,6 +94,7 @@ export const TagGroup = {
         },
       ],
       filtersOpen: true,
+      isMobile: false,
     };
 
     // Action type definitions
@@ -159,7 +160,10 @@ export const TagGroup = {
             ${currentState.filters
               .filter(filter => filter.selected.length > 0)
               .map(filter => html`
-                <syn-tag-group label-position="start" label="${filter.name}">
+                <syn-tag-group
+                  label-position="${currentState.isMobile ? 'top' : 'start'}"
+                  label="${filter.name}"
+                >
                   ${filter.selected.map(option => html`
                     <syn-tag
                       removable
@@ -171,7 +175,8 @@ export const TagGroup = {
                 </syn-tag-group>
               `)}
             
-            <syn-button 
+            <syn-button
+              class="clear-button"
               variant="text" 
               @click=${actions.clearAllFilters}
             >
@@ -253,7 +258,13 @@ export const TagGroup = {
           }
 
           .filter-form .filter-tags {
+            align-items: flex-start;
             flex-direction: column;
+          }
+
+          /* Center the clear button on mobile */
+          .clear-button {
+            margin: 0 auto;
           }
         }
       </style>
@@ -265,6 +276,7 @@ export const TagGroup = {
     // Create the system with proper dependency injection
     const createFilterSystem = () => {
       let currentActions: Actions;
+      let resizeObserver: ResizeObserver | null;
 
       const rerender = () => {
         render(renderView(state, currentActions), container);
@@ -273,6 +285,31 @@ export const TagGroup = {
       const updateState = (newState: Partial<typeof state>) => {
         state = { ...state, ...newState };
         rerender();
+      };
+
+      // Setup ResizeObserver to watch container width
+      const setupResizeObserver = () => {
+        if (!('ResizeObserver' in window)) {
+          return;
+        }
+
+        resizeObserver = new ResizeObserver((entries) => {
+          if (entries.length > 0) {
+            const entry = entries[0];
+            const isMobile = entry.contentRect.width <= 420;
+            if (state.isMobile !== isMobile) {
+              updateState({ isMobile });
+            }
+          }
+        });
+
+        // Start observing after initial render
+        setTimeout(() => {
+          const filterForm = container.querySelector('.filter-form');
+          if (filterForm && resizeObserver) {
+            resizeObserver.observe(filterForm);
+          }
+        }, 0);
       };
 
       const actions: Actions = {
@@ -324,7 +361,18 @@ export const TagGroup = {
       // Initial render
       rerender();
 
-      return { actions, rerender };
+      // Setup responsive behavior
+      setupResizeObserver();
+
+      return {
+        actions,
+        cleanup: () => {
+          if (resizeObserver) {
+            resizeObserver.disconnect();
+          }
+        },
+        rerender,
+      };
     };
 
     // Initialize the system

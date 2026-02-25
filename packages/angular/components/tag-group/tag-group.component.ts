@@ -29,7 +29,6 @@ import '@synergy-design-system/components/components/tag-group/tag-group.js';
  *
  * @csspart base - The component's base wrapper.
  * @csspart tag-label - The tag group's label.
- * @csspart tag-container - The container wrapping the slotted tags.
  */
 @Component({
   selector: 'syn-tag-group',

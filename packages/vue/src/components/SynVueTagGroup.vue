@@ -18,7 +18,6 @@
  *
  * @csspart base - The component's base wrapper.
  * @csspart tag-label - The tag group's label.
- * @csspart tag-container - The container wrapping the slotted tags.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/tag-group/tag-group.js';

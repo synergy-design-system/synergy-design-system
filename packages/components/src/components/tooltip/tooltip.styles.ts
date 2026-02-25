@@ -1,14 +1,18 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
+  /* stylelint-disable property-no-vendor-prefix */
   :host {
     --max-width: 20rem;
     --hide-delay: 0ms;
     --show-delay: 150ms;
 
     display: contents;
+  }
+
+  /** #640: Adjust the zIndex of the arrow to make sure the box-shadow above does not bleed out */
+  :host ::part(arrow) {
+    z-index: 0 !important;
   }
 
   .tooltip {
@@ -37,21 +41,22 @@ export default css`
   }
 
   .tooltip__body {
-    display: block;
-    width: max-content;
-    max-width: var(--max-width);
-    border-radius: var(--syn-tooltip-border-radius);
     background-color: var(--syn-tooltip-background-color);
+    border-radius: var(--syn-tooltip-border-radius);
+    box-shadow: var(--syn-shadow-large);
+    color: var(--syn-tooltip-color);
+    display: block;
     font-family: var(--syn-tooltip-font-family);
     font-size: var(--syn-tooltip-font-size);
     font-weight: var(--syn-tooltip-font-weight);
     line-height: var(--syn-tooltip-line-height);
-    text-align: start;
-    white-space: normal;
-    color: var(--syn-tooltip-color);
+    max-width: var(--max-width);
     padding: var(--syn-tooltip-padding);
     pointer-events: none;
-    user-select: none;
+    text-align: start;
     -webkit-user-select: none;
+    user-select: none;
+    white-space: normal;
+    width: max-content;
   }
 `;

@@ -11,7 +11,6 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynPopup from '../popup/popup.component.js';
 import styles from './tooltip.styles.js';
-import customStyles from './tooltip.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { VirtualElement } from '../popup/popup.component.js';
 
@@ -44,7 +43,7 @@ import type { VirtualElement } from '../popup/popup.component.js';
  * @animation tooltip.hide - The animation to use when hiding the tooltip.
  */
 export default class SynTooltip extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'syn-popup': SynPopup };
 
   private hoverTimeout: number;

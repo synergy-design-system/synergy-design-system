@@ -31,7 +31,7 @@ When the tooltip variant is chosen, validation errors are displayed in a <syn-to
 
 ```html
 <form id="components-syn-validate--tooltip-variant-validate-demo-form">
-  <syn-validate class="validation-tooltip" variant="tooltip" on="live" eager="">
+  <syn-validate class="validation-tooltip" variant="tooltip" on="live">
     <syn-input
       label="Invalid input"
       type="email"

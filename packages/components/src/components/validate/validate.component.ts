@@ -271,18 +271,16 @@ export default class SynValidate extends SynergyElement {
     // #664: Add focus/blur listeners specifically for tooltip variant
     // This is needed because we want to show the tooltip on focus and hide it on blur, but only when using the tooltip variant.
     // Otherwise, this would interfere with the native validation tooltip, which also relies on focus and blur events.
-    if (this.variant === 'tooltip') {
-      const focusEvent = getEventNameForElement(input, 'focus');
-      const blurEvent = getEventNameForElement(input, 'blur');
+    const focusEvent = getEventNameForElement(input, 'focus');
+    const blurEvent = getEventNameForElement(input, 'blur');
 
-      input.addEventListener(focusEvent, this.handleInputFocus, {
-        signal: this.controller.signal,
-      });
+    input.addEventListener(focusEvent, this.handleInputFocus, {
+      signal: this.controller.signal,
+    });
 
-      input.addEventListener(blurEvent, this.handleInputBlur, {
-        signal: this.controller.signal,
-      });
-    }
+    input.addEventListener(blurEvent, this.handleInputBlur, {
+      signal: this.controller.signal,
+    });
   }
 
   private setValidationMessage(input: HTMLInputElement) {
@@ -555,7 +553,7 @@ export default class SynValidate extends SynergyElement {
     const slotContent = this.variant === 'tooltip'
       ? html`
         <syn-tooltip
-          .anchor=${getActualInputElement(this.getInput()) ?? undefined}
+          .anchor=${getActualInputElement(this.getInput()) as Element ?? undefined}
           exportparts="base:tooltip__base,base__popup:tooltip__popup,base__arrow:tooltip__arrow,body:tooltip__body"
           .open=${this.eager ? !this.isValid && this.validationMessage.length > 0 : false}
           part="tooltip"

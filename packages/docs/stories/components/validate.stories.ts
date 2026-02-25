@@ -98,7 +98,6 @@ export const TooltipVariant: Story = {
       class="validation-tooltip"
       variant="tooltip"
       on="live"
-      eager
     >
       <syn-input
         label="Invalid input"

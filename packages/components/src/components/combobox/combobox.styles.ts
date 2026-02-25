@@ -5,7 +5,23 @@ export default css`
   /* stylelint-disable property-no-vendor-prefix */
   /* stylelint-disable no-descending-specificity */
   :host {
-    display: block;
+    /* Size-dependent CSS custom properties - defaults to medium */
+    --syn-combobox-input-border-radius: var(--syn-input-border-radius-medium);
+    --syn-combobox-input-font-size: var(--syn-input-font-size-medium);
+    --syn-combobox-input-height: var(--syn-input-height-medium);
+    --syn-combobox-input-spacing: var(--syn-input-spacing-medium);
+    --syn-combobox-clear-font-size: var(--syn-spacing-large);
+    --syn-combobox-clear-margin: var(--syn-spacing-small);
+    --syn-combobox-prefix-suffix-margin: var(--syn-input-spacing-small);
+    --syn-combobox-icon-font-size: var(--syn-font-size-x-large);
+    --syn-combobox-expand-icon-font-size: var(--syn-spacing-large);
+    --syn-combobox-tags-gap: var(--syn-spacing-x-small);
+    --syn-combobox-tags-margin: var(--syn-input-spacing-small);
+    --syn-combobox-no-results-font-size: var(--syn-input-font-size-medium);
+    --syn-combobox-no-results-height: var(--syn-input-height-medium);
+    --syn-combobox-no-results-padding: var(--syn-spacing-small) var(--syn-spacing-medium) var(--syn-spacing-small) 52px;
+
+    display: block;   
   }
 
   /** The popup */
@@ -32,15 +48,20 @@ export default css`
   /* Combobox */
   .combobox__inputs {
     align-items: center;
+    border-radius: var(--syn-combobox-input-border-radius);
     cursor: pointer;
     display: flex;
     flex: 1;
     font-family: var(--syn-input-font-family);
+    font-size: var(--syn-combobox-input-font-size);
     font-weight: var(--syn-input-font-weight);
     justify-content: start;
     letter-spacing: var(--syn-input-letter-spacing);
+    min-height: var(--syn-combobox-input-height);
     min-width: 0;
     overflow: hidden;
+    padding-block: 0;
+    padding-inline: var(--syn-combobox-input-spacing);
     position: relative;
     transition:
       var(--syn-transition-fast) color,
@@ -72,16 +93,16 @@ export default css`
     color: var(--syn-input-placeholder-color);
   }
 
-  .combobox:not(.combobox--disabled):hover:not(.combobox--readonly) .combobox__display-input {
-    color: var(--syn-input-color-hover);
+  .combobox__display-input:focus {
+    outline: none;
   }
 
   .combobox:not(.combobox--disabled):not(.combobox--readonly) .combobox__display-input {
     cursor: text;
   }
 
-  .combobox__display-input:focus {
-    outline: none;
+  .combobox:not(.combobox--disabled):hover:not(.combobox--readonly) .combobox__display-input {
+    color: var(--syn-input-color-hover);
   }
 
   .combobox__value-input {
@@ -116,82 +137,39 @@ export default css`
     border-color: var(--syn-input-border-color-hover);
   }
 
-  /* Sizes */
-  .combobox--small .combobox__inputs {
-    border-radius: var(--syn-input-border-radius-small);
-    font-size: var(--syn-input-font-size-small);
-    min-height: var(--syn-input-height-small);
-    padding-block: 0;
-    padding-inline: var(--syn-input-spacing-small);
+  /* Size variants */
+  .combobox--small {
+    --syn-combobox-input-border-radius: var(--syn-input-border-radius-small);
+    --syn-combobox-input-font-size: var(--syn-input-font-size-small);
+    --syn-combobox-input-height: var(--syn-input-height-small);
+    --syn-combobox-input-spacing: var(--syn-input-spacing-small);
+    --syn-combobox-clear-font-size: var(--syn-spacing-medium);
+    --syn-combobox-clear-margin: var(--syn-input-spacing-small);
+    --syn-combobox-prefix-suffix-margin: var(--syn-spacing-x-small);
+    --syn-combobox-icon-font-size: var(--syn-font-size-medium);
+    --syn-combobox-expand-icon-font-size: var(--syn-spacing-medium);
+    --syn-combobox-tags-gap: var(--syn-spacing-2x-small);
+    --syn-combobox-tags-margin: var(--syn-spacing-x-small);
+    --syn-combobox-no-results-font-size: var(--syn-input-font-size-small);
+    --syn-combobox-no-results-height: var(--syn-input-height-small);
+    --syn-combobox-no-results-padding: 0 var(--syn-spacing-small) 0 40px;
   }
 
-  .combobox--small .combobox__clear {
-    font-size: var(--syn-spacing-medium);
-    margin-inline-start: var(--syn-input-spacing-small);
-  }
-
-  .combobox--small .combobox__prefix::slotted(*) {
-    margin-inline-end: var(--syn-spacing-x-small);
-  }
-
-  .combobox--small .combobox__suffix::slotted(*) {
-    margin-inline-start: var(--syn-spacing-x-small);
-  }
-
-  .combobox--small .combobox__suffix::slotted(syn-icon),
-  .combobox--small .combobox__prefix::slotted(syn-icon) {
-    font-size: var(--syn-font-size-medium);
-  }
-
-  .combobox--medium .combobox__inputs {
-    border-radius: var(--syn-input-border-radius-medium);
-    font-size: var(--syn-input-font-size-medium);
-    min-height: var(--syn-input-height-medium);
-    padding-block: 0;
-    padding-inline: var(--syn-input-spacing-medium);
-  }
-
-  .combobox--medium .combobox__clear {
-    margin-inline-start: var(--syn-spacing-small);
-  }
-
-  .combobox--medium .combobox__prefix::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-small);
-  }
-
-  .combobox--medium .combobox__suffix::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-small);
-  }
-
-  .combobox--medium .combobox__suffix::slotted(syn-icon),
-  .combobox--medium .combobox__prefix::slotted(syn-icon) {
-    font-size: var(--syn-font-size-x-large);
-  }
-
-  .combobox--large .combobox__inputs {
-    border-radius: var(--syn-input-border-radius-large);
-    font-size: var(--syn-input-font-size-large);
-    min-height: var(--syn-input-height-large);
-    padding-block: 0;
-    padding-inline: var(--syn-input-spacing-large);
-  }
-
-  .combobox--large .combobox__clear {
-    font-size: var(--syn-spacing-x-large);
-    margin-inline-start: var(--syn-input-spacing-large);
-  }
-
-  .combobox--large .combobox__prefix::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-medium);
-  }
-
-  .combobox--large .combobox__suffix::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-medium);
-  }
-
-  .combobox--large .combobox__suffix::slotted(syn-icon),
-  .combobox--large .combobox__prefix::slotted(syn-icon) {
-    font-size: var(--syn-font-size-2x-large);
+  .combobox--large {
+    --syn-combobox-input-border-radius: var(--syn-input-border-radius-large);
+    --syn-combobox-input-font-size: var(--syn-input-font-size-large);
+    --syn-combobox-input-height: var(--syn-input-height-large);
+    --syn-combobox-input-spacing: var(--syn-input-spacing-large);
+    --syn-combobox-clear-font-size: var(--syn-spacing-x-large);
+    --syn-combobox-clear-margin: var(--syn-input-spacing-large);
+    --syn-combobox-prefix-suffix-margin: var(--syn-input-spacing-medium);
+    --syn-combobox-icon-font-size: var(--syn-font-size-2x-large);
+    --syn-combobox-expand-icon-font-size: var(--syn-spacing-x-large);
+    --syn-combobox-tags-gap: var(--syn-spacing-small);
+    --syn-combobox-tags-margin: var(--syn-input-spacing-medium);
+    --syn-combobox-no-results-font-size: var(--syn-input-font-size-large);
+    --syn-combobox-no-results-height: var(--syn-input-height-large);
+    --syn-combobox-no-results-padding: 0 var(--syn-spacing-large) 0 68px;
   }
 
   /* Prefix and Suffix */
@@ -203,8 +181,17 @@ export default css`
     flex: 0;
   }
 
+  .combobox__prefix::slotted(*) {
+    margin-inline-end: var(--syn-combobox-prefix-suffix-margin);
+  }
+
   .combobox__suffix::slotted(*) {
-    margin-inline-start: var(--syn-spacing-small);
+    margin-inline-start: var(--syn-combobox-prefix-suffix-margin);
+  }
+
+  .combobox__suffix::slotted(syn-icon),
+  .combobox__prefix::slotted(syn-icon) {
+    font-size: var(--syn-combobox-icon-font-size);
   }
 
   /* Clear button */
@@ -215,8 +202,9 @@ export default css`
     color: var(--syn-input-icon-icon-clearable-color);
     cursor: pointer;
     display: inline-flex;
-    font-size: var(--syn-spacing-large);
+    font-size: var(--syn-combobox-clear-font-size);
     justify-content: center;
+    margin-inline-start: var(--syn-combobox-clear-margin);
     padding: 0;
     transition: var(--syn-transition-fast) color;
   }
@@ -235,6 +223,7 @@ export default css`
     color: var(--syn-color-neutral-950);
     display: flex;
     flex: 0 0 auto;
+    font-size: var(--syn-combobox-expand-icon-font-size);
     margin-inline-start: var(--syn-spacing-small);
     rotate: 0deg;
     transition: var(--syn-transition-medium) rotate ease;
@@ -281,6 +270,7 @@ export default css`
     align-items: center;
     display: flex;
     flex-wrap: wrap;
+    gap: var(--syn-combobox-tags-gap);
     margin-inline-start: var(--syn-spacing-2x-small);
   }
 
@@ -293,28 +283,8 @@ export default css`
     cursor: not-allowed !important;
   }
 
-  .combobox--small .combobox__tags {
-    gap: var(--syn-spacing-2x-small);
-  }
-
-  .combobox--medium .combobox__tags {
-    gap: var(--syn-spacing-x-small);
-  }
-
-  .combobox--large .combobox__tags {
-    gap: var(--syn-spacing-small);
-  }
-
-  .combobox--tags-visible.combobox--small .combobox__tags {
-    margin-inline-end: var(--syn-spacing-x-small);
-  }
-
-  .combobox--tags-visible.combobox--medium .combobox__tags {
-    margin-inline-end: var(--syn-input-spacing-small);
-  }
-
-  .combobox--tags-visible.combobox--large .combobox__tags {
-    margin-inline-end: var(--syn-input-spacing-medium);
+  .combobox--tags-visible .combobox__tags {
+    margin-inline-end: var(--syn-combobox-tags-margin);
   }
 
   .listbox__options ::slotted(syn-option[hidden]), 
@@ -326,20 +296,10 @@ export default css`
     align-items: center;
     color: var(--syn-color-neutral-950);
     display: flex;
-    font: var(--syn-body-medium-regular);
-    padding: var(--syn-spacing-small) var(--syn-spacing-medium) var(--syn-spacing-small) 52px;
-  }
-
-  .combobox--small .listbox__no-results {
-    font-size: var(--syn-input-font-size-small);
-    min-height: var(--syn-input-height-small);
-    padding: 0 var(--syn-spacing-small) 0 40px;
-  }
-
-  .combobox--large .listbox__no-results {
-    font-size: var(--syn-input-font-size-large);
-    min-height: var(--syn-input-height-large);
-    padding: 0 var(--syn-spacing-large) 0 68px;
+    font-size: var(--syn-combobox-no-results-font-size);
+    font-weight: var(--syn-font-weight-normal);
+    min-height: var(--syn-combobox-no-results-height);
+    padding: var(--syn-combobox-no-results-padding);
   }
 
   /**
@@ -392,19 +352,6 @@ export default css`
   :host([data-user-invalid]) .combobox--standard:not(.combobox--disabled).combobox--focused .combobox__inputs {
     border-color: var(--syn-input-border-color-focus-error);
     box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-error);
-  }
-
-  /* Expand icon */
-  .combobox--small .combobox__expand-icon {
-    font-size: var(--syn-spacing-medium);
-  }
-
-  .combobox--medium .combobox__expand-icon {
-    font-size: var(--syn-spacing-large);
-  }
-
-  .combobox--large .combobox__expand-icon {
-    font-size: var(--syn-spacing-x-large);
   }
 
   .combobox--standard:not(.combobox--disabled).combobox--open .combobox__inputs,

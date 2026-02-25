@@ -5,6 +5,20 @@ export default css`
   /* stylelint-disable property-no-vendor-prefix */
   /* stylelint-disable no-descending-specificity */
   :host {
+    /* Size-dependent CSS custom properties - defaults to medium */
+    --syn-select-input-border-radius: var(--syn-input-border-radius-medium);
+    --syn-select-input-font-size: var(--syn-input-font-size-medium);
+    --syn-select-input-height: var(--syn-input-height-medium);
+    --syn-select-input-spacing: var(--syn-input-spacing-medium);
+    --syn-select-clear-font-size: var(--syn-spacing-large);
+    --syn-select-clear-margin: var(--syn-spacing-small);
+    --syn-select-prefix-suffix-margin: var(--syn-input-spacing-small);
+    --syn-select-icon-font-size: var(--syn-font-size-x-large);
+    --syn-select-expand-icon-font-size: var(--syn-spacing-large);
+    --syn-select-tags-gap: var(--syn-spacing-x-small);
+    --syn-select-multiple-padding-block: 3px;
+    --syn-select-multiple-prefix-margin: var(--syn-input-spacing-medium);
+
     display: block;
   }
 
@@ -32,15 +46,20 @@ export default css`
   /* Combobox */
   .select__combobox {
     align-items: center;
+    border-radius: var(--syn-select-input-border-radius);
     cursor: pointer;
     display: flex;
     flex: 1;
     font-family: var(--syn-input-font-family);
+    font-size: var(--syn-select-input-font-size);
     font-weight: var(--syn-input-font-weight);
     justify-content: start;
     letter-spacing: var(--syn-input-letter-spacing);
+    min-height: var(--syn-select-input-height);
     min-width: 0;
     overflow: hidden;
+    padding-block: 0;
+    padding-inline: var(--syn-select-input-spacing);
     position: relative;
     transition:
       var(--syn-transition-fast) color,
@@ -116,6 +135,7 @@ export default css`
     display: flex;
     flex: 1;
     flex-wrap: wrap;
+    gap: var(--syn-select-tags-gap);
     margin-inline-start: var(--syn-spacing-medium);
   }
 
@@ -161,135 +181,45 @@ export default css`
     border-color: var(--syn-input-border-color-hover);
   }
 
-  .select--standard:not(.select--disabled).select--open .select__combobox,
-  .select--standard:not(.select--disabled).select--focused .select__combobox {
-    background-color: var(--syn-input-background-color-focus);
-    border-color: var(--syn-input-border-color-focus);
-    box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-color);
+  /* Size variants */
+  .select--small {
+    --syn-select-input-border-radius: var(--syn-input-border-radius-small);
+    --syn-select-input-font-size: var(--syn-input-font-size-small);
+    --syn-select-input-height: var(--syn-input-height-small);
+    --syn-select-input-spacing: var(--syn-input-spacing-small);
+    --syn-select-clear-font-size: var(--syn-spacing-medium);
+    --syn-select-clear-margin: var(--syn-input-spacing-small);
+    --syn-select-prefix-suffix-margin: var(--syn-spacing-x-small);
+    --syn-select-icon-font-size: var(--syn-font-size-medium);
+    --syn-select-expand-icon-font-size: var(--syn-spacing-medium);
+    --syn-select-tags-gap: var(--syn-spacing-2x-small);
+    --syn-select-multiple-padding-block: 2px;
+    --syn-select-multiple-prefix-margin: var(--syn-input-spacing-small);
   }
 
-  .select--standard.select--readonly.select--focused .select__combobox {
-    background: var(--syn-readonly-background-color);
-    border-color: var(--syn-input-border-color-focus);
-    box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-color);
+  .select--large {
+    --syn-select-input-border-radius: var(--syn-input-border-radius-large);
+    --syn-select-input-font-size: var(--syn-input-font-size-large);
+    --syn-select-input-height: var(--syn-input-height-large);
+    --syn-select-input-spacing: var(--syn-input-spacing-large);
+    --syn-select-clear-font-size: var(--syn-spacing-x-large);
+    --syn-select-clear-margin: var(--syn-input-spacing-large);
+    --syn-select-prefix-suffix-margin: var(--syn-input-spacing-medium);
+    --syn-select-icon-font-size: var(--syn-font-size-2x-large);
+    --syn-select-expand-icon-font-size: var(--syn-spacing-x-large);
+    --syn-select-tags-gap: var(--syn-spacing-small);
+    --syn-select-multiple-padding-block: 4px;
+    --syn-select-multiple-prefix-margin: var(--syn-input-spacing-large);
   }
 
-  /* Sizes */
-  .select--small .select__combobox {
-    border-radius: var(--syn-input-border-radius-small);
-    font-size: var(--syn-input-font-size-small);
-    min-height: var(--syn-input-height-small);
-    padding-block: 0;
-    padding-inline: var(--syn-input-spacing-small);
+  /* Multiple select specific styles */
+  .select--multiple:not(.select--placeholder-visible) .select__prefix::slotted(*) {
+    margin-inline-start: var(--syn-select-multiple-prefix-margin);
   }
 
-  .select--small .select__clear {
-    font-size: var(--syn-spacing-medium);
-    margin-inline-start: var(--syn-input-spacing-small);
-  }
-
-  .select--small .select__prefix::slotted(*) {
-    margin-inline-end: var(--syn-spacing-x-small);
-  }
-
-  .select--small .select__suffix::slotted(*) {
-    margin-inline-start: var(--syn-spacing-x-small);
-  }
-
-  .select--small .select__suffix::slotted(syn-icon),
-  .select--small .select__prefix::slotted(syn-icon) {
-    font-size: var(--syn-font-size-medium);
-  }
-
-  .select--small.select--multiple:not(.select--placeholder-visible) .select__prefix::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-small);
-  }
-
-  .select--small.select--multiple:not(.select--placeholder-visible) .select__combobox {
-    padding-block: 2px;
+  .select--multiple:not(.select--placeholder-visible) .select__combobox {
+    padding-block: var(--syn-select-multiple-padding-block);
     padding-inline-start: 0;
-  }
-
-  .select--small .select__tags {
-    gap: var(--syn-spacing-2x-small);
-  }
-
-  .select--medium .select__combobox {
-    border-radius: var(--syn-input-border-radius-medium);
-    font-size: var(--syn-input-font-size-medium);
-    min-height: var(--syn-input-height-medium);
-    padding-block: 0;
-    padding-inline: var(--syn-input-spacing-medium);
-  }
-
-  .select--medium .select__clear {
-    font-size: var(--syn-spacing-large);
-    margin-inline-start: var(--syn-spacing-small);
-  }
-
-  .select--medium .select__prefix::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-small);
-  }
-
-  .select--medium .select__suffix::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-small);
-  }
-
-  .select--medium .select__suffix::slotted(syn-icon),
-  .select--medium .select__prefix::slotted(syn-icon) {
-    font-size: var(--syn-font-size-x-large);
-  }
-
-  .select--medium.select--multiple:not(.select--placeholder-visible) .select__prefix::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-medium);
-  }
-
-  .select--medium.select--multiple:not(.select--placeholder-visible) .select__combobox {
-    padding-block: 3px;
-    padding-inline-start: 0;
-  }
-
-  .select--medium .select__tags {
-    gap: var(--syn-spacing-x-small);
-  }
-
-  .select--large .select__combobox {
-    border-radius: var(--syn-input-border-radius-large);
-    font-size: var(--syn-input-font-size-large);
-    min-height: var(--syn-input-height-large);
-    padding-block: 0;
-    padding-inline: var(--syn-input-spacing-large);
-  }
-
-  .select--large .select__clear {
-    font-size: var(--syn-spacing-x-large);
-    margin-inline-start: var(--syn-input-spacing-large);
-  }
-
-  .select--large .select__prefix::slotted(*) {
-    margin-inline-end: var(--syn-input-spacing-medium);
-  }
-
-  .select--large .select__suffix::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-medium);
-  }
-
-  .select--large .select__suffix::slotted(syn-icon),
-  .select--large .select__prefix::slotted(syn-icon) {
-    font-size: var(--syn-font-size-2x-large);
-  }
-
-  .select--large.select--multiple:not(.select--placeholder-visible) .select__prefix::slotted(*) {
-    margin-inline-start: var(--syn-input-spacing-large);
-  }
-
-  .select--large.select--multiple:not(.select--placeholder-visible) .select__combobox {
-    padding-block: 4px;
-    padding-inline-start: 0;
-  }
-
-  .select--large .select__tags {
-    gap: var(--syn-spacing-small);
   }
   
   /* Prefix and Suffix */
@@ -301,8 +231,17 @@ export default css`
     flex: 0;
   }
 
+  .select__prefix::slotted(*) {
+    margin-inline-end: var(--syn-select-prefix-suffix-margin);
+  }
+
   .select__suffix::slotted(*) {
-    margin-inline-start: var(--syn-spacing-small);
+    margin-inline-start: var(--syn-select-prefix-suffix-margin);
+  }
+
+  .select__suffix::slotted(syn-icon),
+  .select__prefix::slotted(syn-icon) {
+    font-size: var(--syn-select-icon-font-size);
   }
 
   /* Clear button */
@@ -313,8 +252,9 @@ export default css`
     color: var(--syn-input-icon-icon-clearable-color);
     cursor: pointer;
     display: inline-flex;
-    font-size: var(--syn-spacing-large);
+    font-size: var(--syn-select-clear-font-size);
     justify-content: center;
+    margin-inline-start: var(--syn-select-clear-margin);
     padding: 0;
     transition: var(--syn-transition-fast) color;
   }
@@ -333,6 +273,7 @@ export default css`
     color: var(--syn-color-neutral-950);
     display: flex;
     flex: 0 0 auto;
+    font-size: var(--syn-select-expand-icon-font-size);
     margin-inline-start: var(--syn-spacing-small);
     rotate: 0deg;
     transition: var(--syn-transition-medium) rotate ease;
@@ -374,16 +315,17 @@ export default css`
     padding-inline: var(--syn-spacing-x-large);
   }
 
-  .select--small .select__expand-icon {
-    font-size: var(--syn-spacing-medium);
+  .select--standard:not(.select--disabled).select--open .select__combobox,
+  .select--standard:not(.select--disabled).select--focused .select__combobox {
+    background-color: var(--syn-input-background-color-focus);
+    border-color: var(--syn-input-border-color-focus);
+    box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-color);
   }
 
-  .select--medium .select__expand-icon {
-    font-size: var(--syn-spacing-large);
-  }
-
-  .select--large .select__expand-icon {
-    font-size: var(--syn-spacing-x-large);
+  .select--standard.select--readonly.select--focused .select__combobox {
+    background: var(--syn-readonly-background-color);
+    border-color: var(--syn-input-border-color-focus);
+    box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-color);
   }
 
   /**

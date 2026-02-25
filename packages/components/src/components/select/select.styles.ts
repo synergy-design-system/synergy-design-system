@@ -9,7 +9,7 @@ export default css`
     --syn-select-input-border-radius: var(--syn-input-border-radius-medium);
     --syn-select-input-font-size: var(--syn-input-font-size-medium);
     --syn-select-input-height: var(--syn-input-height-medium);
-    --syn-select-input-spacing: var(--syn-input-spacing-medium);
+    --syn-select-input-spacing: 0 var(--syn-input-spacing-medium);
     --syn-select-clear-font-size: var(--syn-spacing-large);
     --syn-select-clear-margin: var(--syn-spacing-small);
     --syn-select-prefix-suffix-margin: var(--syn-input-spacing-small);
@@ -181,7 +181,7 @@ export default css`
     --syn-select-input-border-radius: var(--syn-input-border-radius-small);
     --syn-select-input-font-size: var(--syn-input-font-size-small);
     --syn-select-input-height: var(--syn-input-height-small);
-    --syn-select-input-spacing: var(--syn-input-spacing-small);
+    --syn-select-input-spacing: 0 var(--syn-input-spacing-small);
     --syn-select-clear-font-size: var(--syn-spacing-medium);
     --syn-select-clear-margin: var(--syn-input-spacing-small);
     --syn-select-prefix-suffix-margin: var(--syn-spacing-x-small);
@@ -196,7 +196,7 @@ export default css`
     --syn-select-input-border-radius: var(--syn-input-border-radius-large);
     --syn-select-input-font-size: var(--syn-input-font-size-large);
     --syn-select-input-height: var(--syn-input-height-large);
-    --syn-select-input-spacing: var(--syn-input-spacing-large);
+    --syn-select-input-spacing: 0 var(--syn-input-spacing-large);
     --syn-select-clear-font-size: var(--syn-spacing-x-large);
     --syn-select-clear-margin: var(--syn-input-spacing-large);
     --syn-select-prefix-suffix-margin: var(--syn-input-spacing-medium);

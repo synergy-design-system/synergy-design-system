@@ -946,8 +946,6 @@ protected override willUpdate(changedProperties: PropertyValues) {
             >
               <slot part="prefix" name="prefix" class="select__prefix"></slot>
 
-              ${this.multiple && !this.readonly ? html`<div part="tags" class="select__tags">${this.tags}</div>` : ''}
-
               <input
                 part="display-input"
                 class="select__display-input"
@@ -970,6 +968,8 @@ protected override willUpdate(changedProperties: PropertyValues) {
                 @focus=${this.handleFocus}
                 @blur=${this.handleBlur}
               />
+
+              ${this.multiple && !this.readonly ? html`<div part="tags" class="select__tags">${this.tags}</div>` : ''}
 
               <input
                 class="select__value-input"

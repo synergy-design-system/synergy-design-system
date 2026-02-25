@@ -4,7 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -59,7 +59,7 @@ export default class SynTooltip extends SynergyElement {
    * element `id`, a DOM element reference, or a `VirtualElement`. If the anchor lives inside the tooltip, use the
    * `anchor` slot instead.
    */
-  @property() anchor: Element | string | VirtualElement;
+  @state() private anchor: Element | string | VirtualElement | undefined = undefined;
 
   /** The tooltip's content. If you need to display HTML, use the `content` slot instead. */
   @property() content = '';
@@ -229,42 +229,6 @@ export default class SynTooltip extends SynergyElement {
     }
   }
 
-  /**
-   * Find an element within slotted content, including shadow DOM traversal
-   */
-  private findElementInSlottedContent(selector: string): Element | null {
-    const slottedElements = this.defaultSlot?.assignedElements() || [];
-    
-    for (const element of slottedElements) {
-      // Try direct querySelector first
-      const found = element.querySelector(selector);
-      if (found) return found;
-      
-      // If not found and element has shadow root, search there
-      if (element.shadowRoot) {
-        const shadowFound = element.shadowRoot.querySelector(selector);
-        if (shadowFound) return shadowFound;
-      }
-    }
-    
-    return null;
-  }
-
-  /**
-   * Get the effective anchor element to use for positioning
-   */
-  private getEffectiveAnchor(): Element | string | VirtualElement | undefined {
-    if (!this.anchor) return undefined;
-    
-    // If anchor is a string, try to find it in slotted content first
-    if (typeof this.anchor === 'string') {
-      const found = this.findElementInSlottedContent(this.anchor);
-      return found || this.anchor;
-    }
-    
-    return this.anchor;
-  }
-
   @watch('disabled')
   handleDisabledChange() {
     if (this.disabled && this.open) {
@@ -299,10 +263,9 @@ export default class SynTooltip extends SynergyElement {
   // element, otherwise positioning is incorrect.
   //
   render() {
-    const effectiveAnchor = this.getEffectiveAnchor();
     return html`
       <syn-popup
-        .anchor=${effectiveAnchor}
+        .anchor=${this.anchor}
         part="base"
         exportparts="
           popup:base__popup,

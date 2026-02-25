@@ -81,7 +81,7 @@ export default css`
   }
 
   /* Hover */
-  .radio:not(.radio--checked):not(.radio--disabled):not(.radio--readonly) .radio__control:hover {
+  .radio:not(.radio--checked):not(.radio--disabled):not(.radio--readonly):hover .radio__control {
     border-color: var(--syn-input-border-color-hover);
   }
 

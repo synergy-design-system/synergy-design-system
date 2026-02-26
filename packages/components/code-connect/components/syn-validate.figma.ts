@@ -33,6 +33,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       inline: 'inline',
       'native (Edge/default)': 'native',
       'native (Safari)': 'native',
+      'tooltip': 'tooltip',
     }),
   } satisfies ValidProperties<SynValidate>,
 });

@@ -1,14 +1,21 @@
 import type { CSSResultGroup, PropertyValues } from 'lit';
 import { html } from 'lit';
-import { property, queryAssignedElements, state } from 'lit/decorators.js';
+import {
+  property,
+  query,
+  queryAssignedElements,
+  state,
+} from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import type SynInput from '../input/input.component.js';
 import { watch } from '../../internal/watch.js';
 import SynAlert from '../alert/alert.component.js';
+import SynTooltip from '../tooltip/tooltip.component.js';
 import {
   alertSizeForInput,
+  getActualInputElement,
   getEventNameForElement,
   isBlurEvent,
   isInvalidEvent,
@@ -19,28 +26,48 @@ import styles from './validate.styles.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
+ * Utility function that renders the default slot content.
+ * This is needed to avoid code duplication when rendering the default slot in both the tooltip and the regular render function.
+ */
+const renderDefaultSlot = () => html`
+  <slot
+    class="validate__input-wrapper"
+    part="input-wrapper"
+  ></slot>
+`;
+
+/**
  * @summary Validate provides form field validation messages in a unified way.
  * It does this by using [the native browser validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
  * and showing the validation message in a consistent, user defined way.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs
  * @dependency syn-alert
+ * @dependency syn-tooltip
  *
  * @slot - The form field that should be validated.
  * Avoid slotting in more than one element, as subsequent ones will be ignored.
  *
  * @csspart base - The component's base wrapper.
  * @csspart input-wrapper - The container that wraps the form field.
+ *
  * @csspart alert - The syn-alert that is shown when the variant is set to "inline".
  * @csspart alert__base - The container that wraps the alert.
  * @csspart alert__message - The container that wraps the alert message.
  * @csspart alert__icon - The container that wraps the alert icon.
- */
+ *
+ * @csspart tooltip - The syn-tooltip that is shown when the variant is set to "tooltip".
+ * @csspart tooltip__base - The container that wraps the tooltip.
+ * @csspart tooltip__popup - The container that wraps the tooltip popup.
+ * @csspart tooltip__arrow - The container that wraps the tooltip arrow.
+ * @csspart tooltip__body - The container that wraps the tooltip body.
+*/
 @enableDefaultSettings('SynValidate')
 export default class SynValidate extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
 
   static dependencies = {
     'syn-alert': SynAlert,
+    'syn-tooltip': SynTooltip,
   };
 
   controller = new AbortController();
@@ -50,6 +77,8 @@ export default class SynValidate extends SynergyElement {
   sizeObserver: MutationObserver;
 
   @queryAssignedElements() private slottedChildren: HTMLElement[];
+
+  @query('syn-tooltip') private tooltipElement?: SynTooltip;
 
   @state() validationMessage = '';
 
@@ -61,14 +90,17 @@ export default class SynValidate extends SynergyElement {
 
   @state() alertSize?: SynInput['size'];
 
+  @state() hasFocus = false;
+
   /**
    * The variant that should be used to show validation alerts.
    *
    * The following variants are supported:
    * - **native** (default): Uses the native browser validation, usually a browser tooltip.
+   * - **tooltip**: Show the validation message as a tooltip using a `<syn-tooltip>`.
    * - **inline**: Show the validation message underneath the element, using a `<syn-alert>`
    */
-  @property({ reflect: true }) variant: 'native' | 'inline' = 'native';
+  @property({ reflect: true }) variant: 'native' | 'tooltip' | 'inline' = 'native';
 
   /** Do not show the error icon when using the inline variant validation */
   @property({ attribute: 'hide-icon', reflect: true, type: Boolean }) hideIcon = false;
@@ -235,6 +267,20 @@ export default class SynValidate extends SynergyElement {
         signal: this.controller.signal,
       });
     }
+
+    // #664: Add focus/blur listeners specifically for tooltip variant
+    // This is needed because we want to show the tooltip on focus and hide it on blur, but only when using the tooltip variant.
+    // Otherwise, this would interfere with the native validation tooltip, which also relies on focus and blur events.
+    const focusEvent = getEventNameForElement(input, 'focus');
+    const blurEvent = getEventNameForElement(input, 'blur');
+
+    input.addEventListener(focusEvent, this.handleInputFocus, {
+      signal: this.controller.signal,
+    });
+
+    input.addEventListener(blurEvent, this.handleInputBlur, {
+      signal: this.controller.signal,
+    });
   }
 
   private setValidationMessage(input: HTMLInputElement) {
@@ -264,6 +310,17 @@ export default class SynValidate extends SynergyElement {
     if (input.validity?.valid) {
       this.validationMessage = '';
     }
+  };
+
+  /**
+   * Handle focus/blur events for tooltip variant
+   */
+  private handleInputFocus = () => {
+    this.hasFocus = true;
+  };
+
+  private handleInputBlur = () => {
+    this.hasFocus = false;
   };
 
   /**
@@ -439,6 +496,36 @@ export default class SynValidate extends SynergyElement {
     this?.sizeObserver?.disconnect();
   }
 
+  updated(changedProperties: PropertyValues) {
+    super.updated(changedProperties);
+
+    // #664: Make sure to update the syn-tooltip if the validation state changes when using the tooltip variant
+    if (this.variant !== 'tooltip') {
+      return;
+    }
+
+    const tooltip = this.tooltipElement;
+
+    if (!tooltip) {
+      return;
+    }
+
+    // When we have a valid tooltip,
+    // we need to update the content and show or hide it based on the validation state and focus state.
+    // We have to do this manually, as there is a problem when updating open and content at the same time.
+    // The order is critical: fill before showing, don´t update the content during hide.
+    const shouldShowTooltip = !this.isValid && this.validationMessage && this.hasFocus;
+
+    if (shouldShowTooltip) {
+      tooltip.content = this.validationMessage;
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      tooltip.show();
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      tooltip.hide();
+    }
+  }
+
   private renderInlineValidation() {
     if (this.variant !== 'inline' || !this.validationMessage) {
       return '';
@@ -462,16 +549,27 @@ export default class SynValidate extends SynergyElement {
   }
 
   render() {
+    // #664: When using the tooltip variant, we need to wrap the default slot in a tooltip when the input is invalid and has a validation message.
+    const slotContent = this.variant === 'tooltip'
+      ? html`
+        <syn-tooltip
+          .anchor=${getActualInputElement(this.getInput()) as Element ?? undefined}
+          exportparts="base:tooltip__base,base__popup:tooltip__popup,base__arrow:tooltip__arrow,body:tooltip__body"
+          .open=${this.eager ? !this.isValid && this.validationMessage.length > 0 : false}
+          part="tooltip"
+          placement="bottom"
+          trigger="manual"
+        >
+          ${renderDefaultSlot()}
+        </syn-tooltip>
+      ` : renderDefaultSlot();
+
     return html`
       <div
         class="validate"
         part="base"
       >
-        <slot
-          class="validate__input-wrapper"
-          part="input-wrapper"
-        ></slot>
-        
+        ${slotContent}
         ${this.renderInlineValidation()}
       </div>
     `;

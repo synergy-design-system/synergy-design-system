@@ -4,15 +4,15 @@ import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynPopup from '../popup/popup.component.js';
 import styles from './tooltip.styles.js';
-import customStyles from './tooltip.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
+import type { VirtualElement } from '../popup/popup.component.js';
 
 /**
  * @summary Tooltips display additional information based on a specific action.
@@ -43,7 +43,7 @@ import type { CSSResultGroup } from 'lit';
  * @animation tooltip.hide - The animation to use when hiding the tooltip.
  */
 export default class SynTooltip extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'syn-popup': SynPopup };
 
   private hoverTimeout: number;
@@ -53,6 +53,13 @@ export default class SynTooltip extends SynergyElement {
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
   @query('.tooltip__body') body: HTMLElement;
   @query('syn-popup') popup: SynPopup;
+
+  /**
+   * The element the tooltip will be anchored to. If the anchor lives outside of the tooltip, you can provide the anchor
+   * element `id`, a DOM element reference, or a `VirtualElement`. If the anchor lives inside the tooltip, use the
+   * `anchor` slot instead.
+   */
+  @state() private anchor: Element | string | VirtualElement | undefined = undefined;
 
   /** The tooltip's content. If you need to display HTML, use the `content` slot instead. */
   @property() content = '';
@@ -214,7 +221,7 @@ export default class SynTooltip extends SynergyElement {
     }
   }
 
-  @watch(['content', 'distance','placement', 'skidding'])
+  @watch(['anchor', 'content', 'distance','placement', 'skidding'])
   async handleOptionsChange() {
     if (this.hasUpdated) {
       await this.updateComplete;
@@ -258,6 +265,7 @@ export default class SynTooltip extends SynergyElement {
   render() {
     return html`
       <syn-popup
+        .anchor=${this.anchor}
         part="base"
         exportparts="
           popup:base__popup,
@@ -275,7 +283,7 @@ export default class SynTooltip extends SynergyElement {
         arrow
         hover-bridge
       >
-        ${'' /* eslint-disable-next-line lit-a11y/no-aria-slot */}
+        ${'' /* Always render slotted content in anchor position - it's always visible */}
         <slot slot="anchor" aria-describedby="tooltip"></slot>
 
         ${'' /* eslint-disable-next-line lit-a11y/accessible-name */}

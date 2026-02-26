@@ -2,7 +2,9 @@ import { expect, test } from '@playwright/test';
 import type { SynInput } from '@synergy-design-system/components';
 import { DemoForm } from './PageObjects/index.js';
 import {
+  clickFormControl,
   createTestCases,
+  getCheckedValue,
   getInputValue,
 } from './helpers.js';
 
@@ -66,5 +68,38 @@ createTestCases(({ name, port }) => {
 
       expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
     });
+
+    test('Readonly form fields', async ({ page }) => {
+      const form = new DemoForm(page, port);
+      await form.loadInitialPage();
+
+      // check initial state
+      await form.checkInitialState(expect);
+
+      // Check that the readonly elements are actually present and visible on the page
+      await Promise.all(
+        form.readonlyFields.map(
+          field => expect(
+            field,
+            'Readonly field should be visible on the page',
+          ).toBeVisible(),
+        ),
+      );
+
+      // Check that the readonly fields don't change when clicked
+      await Promise.all(
+        form.readonlyFields.map(async (field) => {
+          const initialChecked = await getCheckedValue(field);
+          // Use the helper to click on the correct control based on component type
+          await clickFormControl(field);
+          const afterClickChecked = await getCheckedValue(field);
+
+          return expect(
+            afterClickChecked,
+            'Readonly field should not change state when clicked',
+          ).toBe(initialChecked);
+        }),
+      );
+    }); // End of readonly form fields test
   });
 });

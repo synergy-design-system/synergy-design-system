@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/checkbox/checkbox.js';
 import '../../../components/src/components/button/button.js';
 import { type SynCheckbox } from '@synergy-design-system/components';
@@ -121,6 +120,23 @@ export const Disabled: Story = {
     },
   },
   render: () => html`<syn-checkbox disabled>Disabled</syn-checkbox>`,
+};
+
+export const Readonly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox', 'readonly'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-checkbox name="a" value="a" readonly>Read only content</syn-checkbox>
+      <syn-checkbox name="b" value="b" readonly indeterminate>Read only content (indet)</syn-checkbox>
+      <syn-checkbox name="c" value="c" readonly checked>Read only content (checked)</syn-checkbox>
+    </div>
+  `,
 };
 
 export const Sizes: Story = {
@@ -265,6 +281,7 @@ export const Screenshot: Story = generateScreenshotStory({
   HelpText,
   Indeterminate,
   Disabled,
+  Readonly,
   Sizes,
-});
+}, 200);
 /* eslint-enable sort-keys */

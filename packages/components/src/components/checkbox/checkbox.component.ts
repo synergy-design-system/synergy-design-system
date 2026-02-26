@@ -6,15 +6,13 @@ import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { live } from 'lit/directives/live.js';
-import { property, query, state } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
-import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './checkbox.styles.js';
-import customStyles from './checkbox.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
@@ -47,7 +45,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynCheckbox')
 export default class SynCheckbox extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, formControlCustomStyles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static dependencies = { 'syn-icon': SynIcon };
 
   private readonly formControlController = new FormControlController(this, {
@@ -58,8 +56,6 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
   private readonly hasSlotController = new HasSlotController(this, 'help-text');
 
   @query('input[type="checkbox"]') input: HTMLInputElement;
-
-  @state() private hasFocus = false;
 
   @property({ reflect: true }) title = ''; // make reactive to pass through
 
@@ -74,6 +70,9 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
 
   /** Disables the checkbox. */
   @property({ type: Boolean, reflect: true }) disabled = false;
+
+  /** Sets the checkbox to a readonly state. */
+  @property({ type: Boolean, reflect: true }) readonly = false;
 
   /** Draws the checkbox in a checked state. */
   @property({ type: Boolean, reflect: true }) checked = false;
@@ -114,14 +113,18 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
     this.formControlController.updateValidity();
   }
 
-  private handleClick() {
+  private handleClick(e: MouseEvent) {
+    if (this.readonly) {
+      e.preventDefault();
+      return;
+    }
+
     this.checked = !this.checked;
     this.indeterminate = false;
     this.emit('syn-change');
   }
 
   private handleBlur() {
-    this.hasFocus = false;
     this.emit('syn-blur');
   }
 
@@ -135,7 +138,6 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
   }
 
   private handleFocus() {
-    this.hasFocus = true;
     this.emit('syn-focus');
   }
 
@@ -216,7 +218,7 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
             checkbox: true,
             'checkbox--checked': this.checked,
             'checkbox--disabled': this.disabled,
-            'checkbox--focused': this.hasFocus,
+            'checkbox--readonly': this.readonly,
             'checkbox--indeterminate': this.indeterminate,
             'checkbox--small': this.size === 'small',
             'checkbox--medium': this.size === 'medium',
@@ -232,6 +234,7 @@ export default class SynCheckbox extends SynergyElement implements SynergyFormCo
             .indeterminate=${live(this.indeterminate)}
             .checked=${live(this.checked)}
             .disabled=${this.disabled}
+            .readOnly=${this.readonly}
             .required=${this.required}
             aria-checked=${this.checked ? 'true' : 'false'}
             aria-describedby="help-text"

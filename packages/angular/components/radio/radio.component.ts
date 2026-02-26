@@ -95,6 +95,19 @@ attribute can typically be omitted.
   }
 
   /**
+   * Sets the radio to a readonly state.
+   */
+  @Input()
+  set readonly(v: '' | SynRadio['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
+  }
+  get readonly(): SynRadio['readonly'] {
+    return this.nativeElement.readonly;
+  }
+
+  /**
    * Emitted when the control loses focus.
    */
   @Output() synBlurEvent = new EventEmitter<SynBlurEvent>();

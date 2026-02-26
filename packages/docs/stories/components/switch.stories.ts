@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import '../../../components/src/components/switch/switch.js';
 import '../../../components/src/components/button/button.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
@@ -98,6 +95,22 @@ export const Disabled: Story = {
   render: () => html`<syn-switch disabled>Disabled</syn-switch>`,
 };
 
+export const Readonly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('switch', 'readonly'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; gap: var(--syn-spacing-large); flex-direction: column; align-items: flex-start;">
+      <syn-switch readonly>Unchecked</syn-switch>
+      <syn-switch checked readonly>Checked</syn-switch>
+    </div>
+  `,
+};
+
 export const Sizes: Story = {
   parameters: {
     docs: {
@@ -176,6 +189,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   Checked,
   Disabled,
+  Readonly,
   Sizes,
   HelpText,
 }, 200);

@@ -83,12 +83,14 @@ export class DemoFormValidate extends BaseFormObject {
   async checkInitialState(expect: Expect) {
     expect(await getInputValue(this.gender)).toBe('');
     expect(await getInputValue(this.role)).toBe('');
+    expect(await getInputValue(this.previousRoles)).toEqual(['backend', 'lead']);
     expect(await getInputValue(this.name)).toBe('');
     expect(await getInputValue(this.email)).toBe('');
     expect(await getInputValue(this.birth)).toBe('');
     expect(await getInputValue(this.password)).toBe('invalid');
     expect(await getInputValue(this.passwordRecovery)).toBe('');
     expect(await getInputValue(this.nationality)).toBe('');
+    expect(await getInputValue(this.previousNationalities)).toEqual('German');
     expect(await getInputValue(this.testingFrameworks)).toEqual([]);
 
     const all = (await Promise.all(this.allRequiredInputs.map((input) => input.getAttribute('data-invalid'))));

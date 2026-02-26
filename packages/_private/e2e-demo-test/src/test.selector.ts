@@ -41,6 +41,7 @@ const AllComponentSelectors = {
   comboboxContent: '#tab-content-Combobox',
   comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',
+  comboboxReadonly: '#tab-content-Combobox syn-combobox[data-testid="combobox-1172-readonly-combobox"]',
 
   // Input
   input417NoValue: '#tab-content-Input syn-input[data-testid="input-417-numeric-no-value"]',
@@ -90,6 +91,7 @@ const AllComponentSelectors = {
   selectLink: '#tab-Select',
   selectMixedIdMultiSelect: '#tab-content-Select syn-select[data-testid="select-805-multi-select"]',
   selectMixedIdSingleSelect: '#tab-content-Select syn-select[data-testid="select-805-single-select"]',
+  selectReadonly: '#tab-content-Select syn-select[data-testid="select-1177-readonly-select"]',
   selectWithDelimiter: '#tab-content-Select syn-select[data-testid="select-540-delimiter"]',
 
   // Tabgroup
@@ -120,7 +122,7 @@ export default {
   experienceLoc: '#experience',
   formLoc: 'form',
   formStatus: 'syn-alert.form-validation-message',
-  frontend: 'syn-option[value=frontend]',
+  frontend: '#select-role  syn-option[value=frontend]',
   genderLoc: '#radiogroup-gender',
   happinessLoc: '#happiness',
   nameLoc: '#input-text',
@@ -130,10 +132,14 @@ export default {
   newsLocSynNg: '#checkbox-newsletter-angular',
   newsLocSynReact: '#checkbox-newsletter-react',
   newsLocSynVue: '#checkbox-newsletter-vue',
+  newsLocUI: '#checkbox-newsletter-ui',
+  newsLocUX: '#checkbox-newsletter-ux',
   newsLocVanilla: '#checkbox-newsletter-vanilla',
   passLoc: '#input-password',
   passRecoveryLoc: '#input-number',
   phoneLoc: '#input-phone',
+  previousNationalities: '#input-previous-nationality',
+  previousRolesLoc: '#select-previous-roles',
   reset: '.syn-submit-buttons > syn-button:nth-child(1)',
   roleLoc: '#select-role',
   sizeToggleLarge: '.meta-navigation syn-icon-button[data-size=large]',

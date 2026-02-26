@@ -93,7 +93,7 @@ Use the placeholder attribute to add a placeholder.
 
 ## Readonly Textareas
 
-Add the read-only attribute to draw a read-only textarea.
+Add the readonly attribute to draw a read-only textarea.
 
 ```html
 <syn-textarea

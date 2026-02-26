@@ -9,12 +9,14 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     defaultSlot,
     disabled,
     helpText,
+    readonly,
     size,
   }) => html`
     <syn-switch
       checked=${checked}
       disabled=${disabled}
       help-text=${helpText}
+      readonly=${readonly}
       size=${size}
     >
       ${defaultSlot}
@@ -38,6 +40,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     helpText: figma.boolean('help-text', {
       true: figma.string('↳ content/help-text'),
     }),
+    readonly: figma.boolean('readonly'),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',

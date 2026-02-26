@@ -66,8 +66,23 @@ test.describe('<SynSelect />', () => {
           const initialValue = await select.evaluate((ele: SynSelect) => ele.value);
           expect(initialValue).toEqual([1, 'three']);
         }); // end initial value check
-      }); // end single select
+      }); // end multi select
     }); // feature#805
+
+    test.describe(`Feature#1177: ${name}`, () => {
+      test('should be readonly and not open if a user clicks', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('selectLink');
+        await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+        const select = await AllComponents.getLocator('selectReadonly');
+
+        // Try to open the select. It should not be open, because it is readonly
+        await select.click();
+        await expect(select).not.toHaveAttribute('open');
+      }); // end should be readonly and not open if a user clicks
+    }); // feature#1177
 
     test.describe(`Regression#813: ${name}`, () => {
       test('should show the text content of the option, when value was set initially via property binding and options added dynamically', async ({ page }) => {

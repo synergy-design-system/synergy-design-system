@@ -255,6 +255,52 @@ Radios and radio buttons can be disabled by adding the disabled attribute to the
 
 ---
 
+## Readonly
+
+Add the readonly attribute to a radio to draw it in a readonly state.
+
+```html
+<syn-radio-group
+  label="This is a label"
+  help-text="This is readonly"
+  name="a"
+  value="2"
+  size="medium"
+  form=""
+>
+  <syn-radio
+    value="1"
+    role="radio"
+    tabindex="-1"
+    aria-disabled="false"
+    aria-checked="false"
+    size="medium"
+    >Option</syn-radio
+  >
+  <syn-radio
+    value="2"
+    readonly=""
+    role="radio"
+    tabindex="0"
+    aria-disabled="true"
+    aria-checked="true"
+    size="medium"
+    >Option</syn-radio
+  >
+  <syn-radio
+    value="3"
+    role="radio"
+    tabindex="-1"
+    aria-disabled="false"
+    aria-checked="false"
+    size="medium"
+    >Option</syn-radio
+  >
+</syn-radio-group>
+```
+
+---
+
 ## Sizes
 
 The size of Radios and Radio Buttons will be determined by the Radio Group’s size attribute.

@@ -74,6 +74,27 @@ Use the disabled attribute to disable a radio.
 
 ---
 
+## Readonly
+
+Add the readonly attribute to draw a read-only radio.
+
+```html
+<syn-radio-group value="1" size="medium" form="">
+  <syn-radio
+    value="1"
+    readonly=""
+    role="radio"
+    tabindex="0"
+    aria-disabled="true"
+    aria-checked="true"
+    size="medium"
+    >Read-only content</syn-radio
+  >
+</syn-radio-group>
+```
+
+---
+
 ## Sizes
 
 Add the size attribute to the Radio Group to change the radios’ size.

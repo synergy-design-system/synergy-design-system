@@ -13,6 +13,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     checked,
     disabled,
     helpTextSlot,
+    readonly,
     size,
     indeterminate,
   }) => html`
@@ -20,6 +21,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
       checked=${checked}
       disabled=${disabled}
       indeterminate=${indeterminate}
+      readonly=${readonly}
       size=${size}
     >
       <div slot="help-text">
@@ -48,6 +50,7 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     indeterminate: figma.enum('selected', {
       indeterminate: true,
     }),
+    readonly: figma.boolean('readonly'),
     size: figma.enum('size', {
       large: 'large',
       medium: 'medium',

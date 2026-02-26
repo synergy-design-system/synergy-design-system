@@ -1,3 +1,4 @@
+/* eslint-disable lit-a11y/click-events-have-key-events */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
@@ -14,7 +15,6 @@ import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
-import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
@@ -23,7 +23,6 @@ import SynOption from '../option/option.component.js';
 import type SynOptGroup from '../optgroup/optgroup.js';
 import SynTag from '../tag/tag.component.js';
 import styles from './combobox.styles.js';
-import customStyles from './combobox.custom.styles.js';
 import {
   checkValueBelongsToOption,
   createOptionFromDifferentTypes, filterOnlyOptgroups, getAllOptions, getAssignedElementsForSlot,
@@ -103,8 +102,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     componentStyles,
     formControlStyles,
     styles,
-    formControlCustomStyles,
-    customStyles,
   ];
 
   static dependencies = {
@@ -214,6 +211,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   /** Disables the combobox control. */
   @property({ reflect: true, type: Boolean }) disabled = false;
+
+  /** Sets the combobox to a readonly state. */
+  @property({ reflect: true, type: Boolean }) readonly = false;
 
   /** Adds a clear button when the combobox is not empty. */
   @property({ type: Boolean }) clearable = false;
@@ -674,6 +674,12 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     }
   };
 
+  private handleFormControlClick() {
+    if (this.readonly) {
+      this.displayInput.focus();
+    }
+  }
+
   private handleLabelClick() {
     this.displayInput.focus();
   }
@@ -683,7 +689,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     this.valueHasChanged = true;
 
-    if (!this.disabled) {
+    if (!this.disabled && !this.readonly) {
       this.toggleOptionSelection(option, false);
       this.selectionChanged();
 
@@ -701,7 +707,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     const isIconButton = path.some(el => el instanceof Element && el.tagName.toLowerCase() === 'syn-icon-button');
 
     // Ignore disabled controls and clicks on tags (remove buttons)
-    if (this.disabled || isIconButton) {
+    if (this.disabled || this.readonly || isIconButton) {
       return;
     }
 
@@ -963,9 +969,23 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.lastOptions = [...this.selectedOptions];
 
     // Update validity and display label
+    // Make sure to still show the display label if we are in multiple and readonly mode
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     this.updateComplete.then(() => {
-      this.displayLabel = this.multiple ? '' : this.selectedOptions[0]?.getTextLabel() ?? this.displayLabel;
+      let newLabel = this.displayLabel;
+
+      if (this.multiple && this.readonly) {
+        // For multiple and readonly, we want to show the labels of the selected options, otherwise we would just show the value which is not useful in readonly mode and multiple mode
+        newLabel = this.selectedOptions.map(opt => opt.getTextLabel()).join(', ');
+      } else if (this.multiple && !this.readonly) {
+        // For multiple and not readonly, we want to show the typed in value instead of the selected options, otherwise the user would not see what they typed in if they select an option which is not ideal. Showing the selected options is also not ideal in this case, because it would just be a long list of options which is not useful. So we show the typed in value which is more useful in this case. If there are no options selected, we want to show an empty string instead of the typed in value, because the typed in value is not valid in this case and showing it would be confusing.
+        newLabel = '';
+      } else {
+        // For single, we want to show the label of the selected option, if there is one, otherwise we show the typed in value which is already in displayLabel. This is also needed for `restricted` comboboxes, because if the user types in an invalid value, we want to show that value instead of the label of the selected option which would be confusing. If there are no options selected and no typed in value, we want to show an empty string instead of the label of the selected option, because showing the label of the selected option would be confusing in this case.
+        newLabel = this.selectedOptions[0]?.getTextLabel() ?? this.displayLabel;
+      }
+
+      this.displayLabel = newLabel;
       this.formControlController.updateValidity();
     });
   }
@@ -991,17 +1011,22 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
     this.createComboboxOptionsFromQuery(this.displayLabel);
   }
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
+  @watch(['disabled', 'readonly'], { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     // Disabled form controls are always valid
-    this.formControlController.setValidity(this.disabled);
-
-    // Close the listbox when the control is disabled
     if (this.disabled) {
+      this.formControlController.setValidity(this.disabled);
+    }
+
+    // Close the listbox when the control is disabled or readonly
+    if (this.disabled || this.readonly) {
       this.open = false;
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.handleOpenChange();
     }
+
+    // Recalculate display label when readonly changes
+    this.selectionChanged();
   }
 
   @watch('delimiter')
@@ -1026,7 +1051,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   @watch('open', { waitUntilFirstUpdate: true })
   async handleOpenChange() {
-    if (this.open && !this.disabled) {
+    if (this.open && (!this.disabled && !this.readonly)) {
       if (this.numberFilteredOptions === 0 && !this.restricted && !this.multiple) {
         // Don't open the listbox if there are no options and it is not restricted or multiple
         this.open = false;
@@ -1069,7 +1094,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
    * appropriate filtered options, a syn-error is emitted and the listbox stays closed.
    */
   async show() {
-    if (this.open || this.disabled) {
+    if (this.open || this.disabled || this.readonly) {
       this.open = false;
       return undefined;
     }
@@ -1080,7 +1105,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   /** Hides the listbox. */
   async hide() {
-    if (!this.open || this.disabled) {
+    if (!this.open || this.disabled || this.readonly) {
       this.open = false;
       return undefined;
     }
@@ -1466,7 +1491,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       hasValue = this.value !== undefined && this.value !== null && typeof this.value === 'number';
     }
 
-    const hasClearIcon = this.clearable && !this.disabled && hasValue;
+    const hasClearIcon = this.clearable && (!this.disabled && !this.readonly) && hasValue;
     const isPlaceholderVisible = this.placeholder && !hasValue;
     const tagsVisible = this.multiple && this.selectedOptions.length > 0;
 
@@ -1474,13 +1499,14 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       <div
         part="form-control"
         class=${classMap({
-      'form-control': true,
-      'form-control--has-help-text': hasHelpText,
-      'form-control--has-label': hasLabel,
-      'form-control--large': this.size === 'large',
-      'form-control--medium': this.size === 'medium',
-      'form-control--small': this.size === 'small',
-    })}
+          'form-control': true,
+          'form-control--has-help-text': hasHelpText,
+          'form-control--has-label': hasLabel,
+          'form-control--large': this.size === 'large',
+          'form-control--medium': this.size === 'medium',
+          'form-control--small': this.size === 'small',
+        })}
+        @click=${this.handleFormControlClick}
       >
         <label
           id="label"
@@ -1495,20 +1521,21 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         <div part="form-control-input" class="form-control-input">
           <syn-popup
             class=${classMap({
-      combobox: true,
-      'combobox--bottom': this.placement === 'bottom',
-      'combobox--disabled': this.disabled,
-      'combobox--focused': this.hasFocus,
-      'combobox--large': this.size === 'large',
-      'combobox--medium': this.size === 'medium',
-      'combobox--multiple': this.multiple,
-      'combobox--open': this.open,
-      'combobox--placeholder-visible': isPlaceholderVisible,
-      'combobox--small': this.size === 'small',
-      'combobox--standard': true,
-      'combobox--tags-visible': tagsVisible,
-      'combobox--top': this.placement === 'top',
-    })}
+              combobox: true,
+              'combobox--bottom': this.placement === 'bottom',
+              'combobox--disabled': this.disabled,
+              'combobox--focused': this.hasFocus,
+              'combobox--large': this.size === 'large',
+              'combobox--medium': this.size === 'medium',
+              'combobox--multiple': this.multiple,
+              'combobox--open': this.open,
+              'combobox--placeholder-visible': isPlaceholderVisible,
+              'combobox--readonly': this.readonly,
+              'combobox--small': this.size === 'small',
+              'combobox--standard': true,
+              'combobox--tags-visible': tagsVisible,
+              'combobox--top': this.placement === 'top',
+            })}
             placement=${`${this.placement}-start`}
             flip
             shift
@@ -1526,7 +1553,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
             >
               <slot part="prefix" name="prefix" class="combobox__prefix"></slot>
 
-              ${this.multiple ? html`<div part="tags" class="combobox__tags">${this.tags}</div>` : ''}
+              ${this.multiple && !this.readonly ? html`<div part="tags" class="combobox__tags">${this.tags}</div>` : ''}
 
               <input
                 part="display-input"
@@ -1534,6 +1561,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                 type="text"
                 placeholder=${this.placeholder}
                 .disabled=${this.disabled}
+                .readOnly=${this.readonly}
                 .value=${this.displayLabel}
                 autocomplete="off"
                 spellcheck="false"
@@ -1559,6 +1587,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                 class="combobox__value-input"
                 type="text"
                 ?disabled=${this.disabled}
+                ?readonly=${this.readonly}
                 ?required=${this.required}
                 .value=${Array.isArray(this.value) ? this.value.join(', ') : this.value?.toString()}
                 tabindex="-1"
@@ -1568,7 +1597,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
               />
        
               ${hasClearIcon
-        ? html`
+                ? html`
                     <button
                       part="clear-button"
                       class="combobox__clear"
@@ -1583,7 +1612,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                       </slot>
                     </button>
                   `
-        : ''}
+                : ''}
 
                 <slot name="suffix" part="suffix" class="combobox__suffix"></slot>
 

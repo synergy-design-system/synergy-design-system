@@ -627,6 +627,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to draw a read-only checkbox.",
+          "type": "text"
+        }
+      },
       "sizes": {
         "title": {
           "value": "Sizes",
@@ -1103,6 +1113,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Readonly",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the readonly attribute to set a file input to a readonly state.",
+          "type": "text"
+        }
+      },
       "sizes": {
         "title": {
           "value": "Sizes",
@@ -1375,7 +1395,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to draw a read-only input.",
+          "value": "Add the readonly attribute to draw a read-only input.",
           "type": "text"
         }
       },
@@ -1939,6 +1959,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to a radio to draw it in a readonly state.",
+          "type": "text"
+        }
+      },
       "size": {
         "title": {
           "value": "Sizing Options",
@@ -2038,6 +2068,16 @@
         },
         "description": {
           "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user.",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to a range to draw it in a readonly state.",
           "type": "text"
         }
       },
@@ -2275,6 +2315,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to a select to draw it in a readonly state.",
+          "type": "text"
+        }
+      },
       "multiple": {
         "title": {
           "value": "Multiple",
@@ -2456,6 +2506,16 @@
         },
         "description": {
           "value": "Use the disabled attribute to disable the switch.",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to draw a read-only switch.",
           "type": "text"
         }
       },
@@ -2695,7 +2755,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to draw a read-only textarea.",
+          "value": "Add the readonly attribute to draw a read-only textarea.",
           "type": "text"
         }
       },
@@ -2900,6 +2960,16 @@
         },
         "description": {
           "value": "Use the disabled attribute to disable a radio.",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to draw a read-only radio.",
           "type": "text"
         }
       },
@@ -3444,6 +3514,16 @@
         },
         "description": {
           "value": "Use the disabled attribute to disable a combobox.",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to draw a read-only combobox.",
           "type": "text"
         }
       },

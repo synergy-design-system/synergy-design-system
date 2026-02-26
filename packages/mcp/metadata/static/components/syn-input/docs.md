@@ -94,7 +94,7 @@ Add the password-toggle attribute to add a toggle button that will show the pass
 
 ## Readonly Inputs
 
-Add the read-only attribute to draw a read-only input.
+Add the readonly attribute to draw a read-only input.
 
 ```html
 <syn-input

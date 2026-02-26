@@ -99,6 +99,11 @@ const props = defineProps<{
   disabled?: SynRange['disabled'];
 
   /**
+   * Sets the range to a readonly state.
+   */
+  readonly?: SynRange['readonly'];
+
+  /**
    * The minimum acceptable value of the range.
    */
   min?: SynRange['min'];

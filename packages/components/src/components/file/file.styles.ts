@@ -158,7 +158,7 @@ export default css`
   }
 
   :host([readonly]) .droparea {
-    --highlight-color: var(--syn-color-neutral-300);
+    --highlight-color: var(--syn-readonly-icon-color-clearable);
 
     background: var(--syn-readonly-background-color);
     border: var(--syn-input-border-width) solid var(--syn-readonly-background-color);

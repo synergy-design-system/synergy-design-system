@@ -129,6 +129,10 @@ export const cssVariableFormatter = {
       // #1716: This token is not available anymore in figma, but the API still fetches it.
       // Kind of a zombie token. As I cannot get rid of it, I will ignore it for now. We can remove it later when we clean up the codebase.
       'range-color-readonly',
+
+      // #1171: Leftover after refactoring the readonly tokens.
+      // Can be removed as soon as it is gone in Figma.
+      'readonly-opacity-color',
     ].map(v => `${prefix}${v}`);
 
     /**

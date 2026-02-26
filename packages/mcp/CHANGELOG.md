@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.6.1
+
+### Patch Changes
+
+- [#1196](https://github.com/synergy-design-system/synergy-design-system/pull/1196) [`6a9b934`](https://github.com/synergy-design-system/synergy-design-system/commit/6a9b9349f6404a638fadd842e3f2fd8216fd81cd) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-02-25
+
+  fix: 🐛 prio nav with only one item (#1195)
+
 ## 2.6.0
 
 ### Minor Changes

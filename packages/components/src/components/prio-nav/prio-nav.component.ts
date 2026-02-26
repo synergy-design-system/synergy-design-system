@@ -187,7 +187,8 @@ export default class SynPrioNav extends SynergyElement {
     });
 
     const visibleItems = itemVisibilities.filter(({ isHidden }) => !isHidden).length;
-    const hasOnlyOneItem = visibleItems === 1;
+    // #1195 - If there are more than 1 item but only 1 is visible, we also want to hide that one item and show it in the priority menu. If there is only 1 item total, we just show that one item and hide the priority menu
+    const hasOnlyOneItem = (visibleItems === 1 && navItems.length > 1);
 
     // Finally, hide or show the items based on the visibility
     // As requested in #410, we hide all items if there is only one item

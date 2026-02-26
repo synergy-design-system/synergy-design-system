@@ -213,4 +213,14 @@ describe('<syn-prio-nav>', () => {
       expect(itemsInPrioritySlot).to.be.empty;
     });
   });
+
+  describe('#1195', () => {
+    it('should show the syn-nav-item without priority-menu for a single nav-item', async () => {
+      const nav = await fixture<SynPrioNav>(html`<syn-prio-nav><syn-nav-item horizontal>Item 1</syn-nav-item></syn-prio-nav>`);
+      const [itemsInDefaultSlot, itemsInPrioritySlot] = getSlottedChildrenAsTuple(nav);
+
+      expect(itemsInDefaultSlot).to.have.length(1);
+      expect(itemsInPrioritySlot).to.be.empty;
+    });
+  }); // #1195
 });

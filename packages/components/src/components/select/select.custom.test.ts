@@ -180,7 +180,7 @@ describe('<syn-select>', () => {
         const tagWrapper: HTMLDivElement = el.shadowRoot!.querySelector('.select__tags')!;
         const currentWidth = tagWrapper.style.getPropertyValue('--syn-select-tag-max-width');
 
-        expect(currentWidth, 'It should have max tag width of 180 pixels').to.equal('180px');
+        expect(currentWidth, 'It should have max tag width of 164 pixels').to.equal('164px');
       });
 
       it('should use a minimum width of 100 pixels when the syn-select is too small', async () => {

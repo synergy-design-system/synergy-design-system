@@ -29,6 +29,7 @@ export * from './Spinner';
 export * from './Switch';
 export * from './TabGroup';
 export * from './Tag';
+export * from './TagGroup';
 export * from './Textarea';
 export * from './Tooltip';
 export * from './Validate';

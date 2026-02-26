@@ -618,6 +618,52 @@ This restricts the combobox to only allow selections from the available options.
 
 ---
 
+## No Results Found
+
+A “No results found” message is displayed, when the search term doesn’t match the options.
+
+```html
+<syn-combobox
+  id="no-results"
+  value="Search term"
+  restricted=""
+  size="medium"
+  placement="bottom"
+  form=""
+  open=""
+>
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-0"
+    hidden=""
+    >Option 1</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-1"
+    hidden=""
+    >Option 2</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-2"
+    hidden=""
+    >Option 3</syn-option
+  >
+</syn-combobox>
+```
+
+---
+
 ## Sizes
 
 Use the size attribute to change a combobox size.

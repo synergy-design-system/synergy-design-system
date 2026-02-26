@@ -434,6 +434,14 @@ const SynTag = {
 /**
  * @type {import('html-validate').MetaElement}
  */
+const SynTagGroup = {
+  flow: true,
+  phrasing: true,
+};
+
+/**
+ * @type {import('html-validate').MetaElement}
+ */
 const SynTextarea = {
   flow: true,
   focusable: true,
@@ -510,6 +518,7 @@ export const rules = {
   SynTabGroup,
   SynTabPanel,
   SynTag,
+  SynTagGroup,
   SynTextarea,
   SynTooltip,
   SynValidate,

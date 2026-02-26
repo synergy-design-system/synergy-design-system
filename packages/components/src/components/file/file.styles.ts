@@ -155,10 +155,15 @@ export default css`
   /* #1173: Readonly Styles */
   :host([readonly]) .button::part(base) {
     background: var(--syn-readonly-background-color);
+    color: var(--syn-readonly-indicator-color);
+  }
+
+  :host([readonly]) .droparea__text strong {
+    color: var(--syn-readonly-color-text);
   }
 
   :host([readonly]) .droparea {
-    --highlight-color: var(--syn-readonly-icon-color-clearable);
+    --highlight-color: var(--syn-readonly-icon-color);
 
     background: var(--syn-readonly-background-color);
     border: var(--syn-input-border-width) solid var(--syn-readonly-background-color);

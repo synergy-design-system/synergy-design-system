@@ -322,6 +322,8 @@
   --syn-range-track-color-active: var(--syn-interactive-emphasis-color);
   --syn-readonly-background-color: var(--syn-color-neutral-300);
   --syn-readonly-border-color: var(--syn-typography-color-text);
+  --syn-readonly-color-text: var(--syn-color-neutral-500);
+  --syn-readonly-icon-color: var(--syn-color-neutral-500);
   --syn-readonly-icon-color-clearable: var(--syn-color-neutral-400);
   --syn-readonly-icon-color-expand: var(--syn-color-neutral-500);
   --syn-readonly-indicator-color: var(--syn-typography-color-text);

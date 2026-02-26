@@ -1526,7 +1526,15 @@
         "value": "{typography.color.text}"
       }
     },
+    "color-text": {
+      "type": "color",
+      "value": "{color.neutral.500}"
+    },
     "icon": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.500}"
+      },
       "color-clearable": {
         "type": "color",
         "value": "{color.neutral.400}"

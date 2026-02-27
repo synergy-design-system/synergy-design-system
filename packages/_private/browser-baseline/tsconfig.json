@@ -10,9 +10,11 @@
     "checkJs": true,
     "emitDeclarationOnly": true,
     "declaration": true,
+    "declarationMap": false,
     "outDir": "types",
+    "rootDir": "src",
     "resolveJsonModule": true,
     "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": ["src/**/*"],
 }

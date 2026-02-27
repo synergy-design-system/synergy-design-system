@@ -7,6 +7,18 @@
     ".": {
       "types": "./types/index.d.ts",
       "import": "./src/index.js"
+    },
+    "./types": {
+      "types": "./types/types.d.ts",
+      "import": "./src/types.d.ts"
+    },
+    "./baselines/*": {
+      "types": "./types/baselines/*.d.ts",
+      "import": "./src/baselines/*.js"
+    },
+    "./utilities/*": {
+      "types": "./types/utilities/*.d.ts",
+      "import": "./src/utilities/*.js"
     }
   },
   "files": [

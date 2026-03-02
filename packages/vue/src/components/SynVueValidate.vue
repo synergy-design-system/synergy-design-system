@@ -11,16 +11,24 @@
  * and showing the validation message in a consistent, user defined way.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs
  * @dependency syn-alert
+ * @dependency syn-tooltip
  *
  * @slot - The form field that should be validated.
  * Avoid slotting in more than one element, as subsequent ones will be ignored.
  *
  * @csspart base - The component's base wrapper.
  * @csspart input-wrapper - The container that wraps the form field.
+ *
  * @csspart alert - The syn-alert that is shown when the variant is set to "inline".
  * @csspart alert__base - The container that wraps the alert.
  * @csspart alert__message - The container that wraps the alert message.
  * @csspart alert__icon - The container that wraps the alert icon.
+ *
+ * @csspart tooltip - The syn-tooltip that is shown when the variant is set to "tooltip".
+ * @csspart tooltip__base - The container that wraps the tooltip.
+ * @csspart tooltip__popup - The container that wraps the tooltip popup.
+ * @csspart tooltip__arrow - The container that wraps the tooltip arrow.
+ * @csspart tooltip__body - The container that wraps the tooltip body.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/validate/validate.js';
@@ -41,6 +49,7 @@ const props = defineProps<{
 
 The following variants are supported:
 - **native** (default): Uses the native browser validation, usually a browser tooltip.
+- **tooltip**: Show the validation message as a tooltip using a `<syn-tooltip>`.
 - **inline**: Show the validation message underneath the element, using a `<syn-alert>`
  */
   variant?: SynValidate['variant'];

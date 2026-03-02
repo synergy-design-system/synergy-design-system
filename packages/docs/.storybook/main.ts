@@ -42,6 +42,7 @@ const config: StorybookConfig = {
   stories: [
     "../stories/Welcome.mdx",
     "../stories/Prerequisites.mdx",
+    "../stories/BrowserSupport.mdx",
     "../stories/ComponentOverview.mdx",
     "../stories/IconSearch.mdx",
     "../stories/GoalsAndGuidelines.mdx",

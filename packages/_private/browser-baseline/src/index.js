@@ -15,3 +15,9 @@ export const getBaseline = (version) => {
   }
   return baselines[version];
 };
+
+/**
+ * Get a list of available baseline versions
+ * @returns {string[]} An array of available baseline versions
+ */
+export const getAvailableBaselines = () => Object.keys(baselines);

@@ -42,6 +42,16 @@ const baseline = getBaseline('v3_0_0'); // ✅ Valid
 const invalid = getBaseline('invalid'); // ❌ TypeScript error
 ```
 
+### Get all available baselines
+
+```javascript
+import { getAvailableBaselines } from '@synergy-design-system/browser-baseline';
+
+// Get baseline for a specific version
+const allBaselines = getAvailableBaselines();
+console.log(allBaselines); // Array of versions
+```
+
 ### Direct Import of Specific Baselines
 
 ```javascript 

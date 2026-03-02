@@ -1,0 +1,37 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import { getAvailableBaselines } from "@synergy-design-system/browser-baseline";
+import { formatBrowserBaseline, formatVersionDisplay, compareVersions } from "../src/browsersupport";
+
+<Meta title="Browser Support" tags={['Browser Support']} />
+
+# Browser Support
+
+Synergy is designed to work across a wide range of browsers, ensuring that our components are accessible and functional for as many users as possible.
+To achieve this, we define a set of browser baselines that specify the minimum versions of browsers that Synergy supports.
+
+They are created based on `baseline widely available` and fixed during the first release of a major Synergy version. This means that the browser baselines for a given Synergy version will not change until the next major release, even if there are updates to browser usage or new versions of browsers are released.
+
+> Synergies baselines are usually updated once for each new major Synergy release to reflect changes in browser usage and to ensure that we are providing the best possible experience for our users.
+
+<table>
+  <thead>
+    <tr>
+      <th>Synergy Version</th>
+      <th>Supported Browsers</th>
+    </tr>
+  </thead>
+  <tbody>
+    {getAvailableBaselines().sort(compareVersions).map(baseline => (
+      <tr key={baseline}>
+        <td>{formatVersionDisplay(baseline)}</td>
+        <td>
+          <ul>
+            {formatBrowserBaseline(baseline).map(browser => (
+              <li key={`${baseline}-${browser}`}>{browser}</li>
+            ))}
+          </ul>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>

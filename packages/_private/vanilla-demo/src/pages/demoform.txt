@@ -217,6 +217,14 @@
         Please subscribe me to the synergy newsletter
       </syn-checkbox>
       <syn-checkbox
+        checked
+        id="checkbox-newsletter-ui"
+        name="newsletterUI"
+        readonly
+      >
+        Please subscribe me to the synergy UI newsletter
+      </syn-checkbox>
+      <syn-checkbox
         id="checkbox-newsletter-angular"
         name="checkbox-newsletter-angular"
       >
@@ -245,6 +253,14 @@
         name="checkbox-newsletter-beta"
       >
         I am interested in the Synergy Beta Program
+      </syn-switch>
+      <syn-switch
+        checked
+        id="checkbox-newsletter-ux"
+        name="newsletterUX"
+        readonly
+      >
+        I am interested in the Synergy UX Program
       </syn-switch>
     </fieldset>
     <!-- /Marketing -->

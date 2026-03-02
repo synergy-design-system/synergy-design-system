@@ -106,4 +106,15 @@ onMounted(async () => {
   >
     <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
   </SynVueSelect>
+
+  <SynVueSelect
+    data-testid="select-1177-readonly-select"
+    label="Readonly Select"
+    readonly
+    value="option-1"
+  >
+    <SynVueOption value="option-1">Option 1</SynVueOption>
+    <SynVueOption value="option-2">Option 2</SynVueOption>
+    <SynVueOption value="option-3">Option 3</SynVueOption>
+  </SynVueSelect>
 </template>

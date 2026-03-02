@@ -30,6 +30,7 @@
         required
       >
         <syn-radio value="">invalid</syn-radio>
+        <syn-radio value="" readonly>invalid (readonly)</syn-radio>
         <syn-radio value="f">Female</syn-radio>
         <syn-radio value="m">Male</syn-radio>
         <syn-radio value="other">Other</syn-radio>
@@ -43,6 +44,28 @@
         label="Current position"
         name="role"
         required
+      >
+        <syn-option value="">---</syn-option>
+        <syn-optgroup label="Developers">
+          <syn-option value="backend">Backend Developer</syn-option>
+          <syn-option value="frontend">Frontend Developer</syn-option>
+        </syn-optgroup>
+        <syn-optgroup label="Other">
+          <syn-option value="lead">Team Lead</syn-option>
+          <syn-option value="other">Other (please specify in comment section below)</syn-option>
+        </syn-optgroup>
+      </syn-select>
+    </syn-validate>
+
+    <syn-validate variant="inline">
+      <syn-select
+        formControlName="previousRoles"
+        id="select-previous-roles"
+        label="Previous roles"
+        name="previousRoles"
+        readonly
+        required
+        multiple
       >
         <syn-option value="">---</syn-option>
         <syn-optgroup label="Developers">
@@ -102,6 +125,22 @@
         id="input-nationality"
         label="Nationality"
         name="nationality"
+        required
+        [getOption]="highlightOptionRenderer"
+      >
+        @for (nationality of nationalities; track nationality) {
+          <syn-option>{{nationality}}</syn-option>
+        }
+      </syn-combobox>
+    </syn-validate>
+
+    <syn-validate variant="inline" on="live">
+      <syn-combobox
+        formControlName="previousNationality"
+        id="input-previous-nationality"
+        label="Previous Nationality"
+        name="previousNationality"
+        readonly
         required
         [getOption]="highlightOptionRenderer"
       >
@@ -218,6 +257,23 @@
         </div>
       </syn-range>
     </syn-validate>
+
+    <syn-range
+      formControlName="donations"
+      id="donations"
+      label="I would donate between"
+      [max]="6000"
+      [min]="0"
+      name="donations"
+      restrictMovement
+      [readonly]="formData.get('happiness')?.value <= 5"
+      [tooltipFormatter]="currencyFormatter"
+    >
+      <nav slot="ticks">
+        <syn-range-tick>0 €</syn-range-tick>
+        <syn-range-tick>6.000 €</syn-range-tick>
+      </nav>
+    </syn-range>
 
   </demo-fieldset>
   <!-- /.Happiness -->

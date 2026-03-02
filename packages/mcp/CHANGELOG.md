@@ -1,5 +1,27 @@
 # Changelog
 
+## 2.7.0
+
+### Minor Changes
+
+- [#1189](https://github.com/synergy-design-system/synergy-design-system/pull/1189) [`a4f49ac`](https://github.com/synergy-design-system/synergy-design-system/commit/a4f49ac79a660ef5b8d1b380fe9fcd2159dc9b78) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-26
+
+  feat: ✨ Added readonly for various form fields (#1171, #1172, #1173, #1174, #1175, #1176, #1177, #1178)
+
+  Applies to:
+  - `<syn-checkbox>`
+  - `<syn-combobox>`
+  - `<syn-file>`
+  - `<syn-radio>`
+  - `<syn-radio-group>`
+  - `<syn-range>`
+  - `<syn-select>`
+  - `<syn-switch>`
+
+  Form elements now support being displayed as `readonly` fields.
+
+  Field marked `readonly` may receive focus, but their value cannot be changed by customer inputs.
+
 ## 2.6.1
 
 ### Patch Changes

@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/select/select.js';
 import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/optgroup/optgroup.js';
@@ -156,8 +153,6 @@ export const Focus: Story = {
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const elm = canvasElement.querySelector<SynSelect>('syn-select');
-    // eslint-disable-next-line max-len
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     elm?.focus();
   },
   render: () => html`
@@ -171,6 +166,9 @@ export const Focus: Story = {
 
 export const Disabled: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('select', 'disabled'),
@@ -183,6 +181,34 @@ export const Disabled: Story = {
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
     </syn-select>
+  `,
+};
+
+export const Readonly: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('select', 'readonly'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-select placeholder="Readonly" value="option-1" readonly>
+        <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-select>
+      <syn-select max-options-visible="2" multiple placeholder="Readonly" value="option-1 option-2 option-3" readonly>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-select>
+    </div>
   `,
 };
 

@@ -213,20 +213,26 @@ export default css`
     cursor: not-allowed;
   }
 
+  :host([readonly]) .track__wrapper,
+  :host([readonly]) .thumb,
+  :host([readonly]) .thumb.grabbed {
+    cursor: default;
+  }
+
   /*
    * Guard against mobile devices not removing the transform
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/@media/any-hover
    */
   @media (any-hover: hover) {
-    :host(:not([disabled])) .thumb:hover  {
+    :host(:not([disabled]):not([readonly])) .thumb:hover  {
       transform: scale(var(--thumb-hit-area-size));
     }
 
-    :host(:not([disabled])) .thumb:not(.grabbed):hover  {
+    :host(:not([disabled]):not([readonly])) .thumb:not(.grabbed):hover  {
       background: var(--syn-interactive-emphasis-color-hover);
     }
     
-    :host(:not([disabled])) .thumb:hover::after  {
+    :host(:not([disabled]):not([readonly])) .thumb:hover::after  {
       /* Unset the area of the thumb click and drag area space, so it does not scale with the hover */
       inset: unset;
     }
@@ -281,5 +287,23 @@ export default css`
 
   :host([data-user-invalid]) .thumb {
     background-color: var(--syn-range-error-color);
+  }
+
+  /**
+   * #1176: Readonly state
+   */
+  :host([readonly]) {
+    --track-color-active: var(--syn-readonly-indicator-color);
+    --track-color-inactive: var(--syn-readonly-background-color);
+  }
+
+  :host([readonly]) .thumb {
+    background-color: var(--syn-readonly-indicator-color);
+  }
+
+  :host([readonly]) .thumb:focus {
+    background-color: var(--syn-readonly-indicator-color);
+    outline: var(--syn-focus-ring);
+    outline-offset: 0;
   }
 `;

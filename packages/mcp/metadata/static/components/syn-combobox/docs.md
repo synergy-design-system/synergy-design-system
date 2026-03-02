@@ -441,6 +441,98 @@ Use the disabled attribute to disable a combobox.
 
 ---
 
+## Readonly
+
+Add the readonly attribute to draw a read-only combobox.
+
+```html
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
+>
+  <syn-combobox
+    placeholder="Readonly"
+    value="option-1"
+    readonly=""
+    size="medium"
+    placement="bottom"
+    form=""
+  >
+    <syn-icon
+      name="wallpaper"
+      slot="prefix"
+      aria-hidden="true"
+      library="default"
+    ></syn-icon>
+    <syn-option
+      value="option-1"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-0"
+      >Option 1</syn-option
+    >
+    <syn-option
+      value="option-2"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-1"
+      hidden=""
+      >Option 2</syn-option
+    >
+    <syn-option
+      value="option-3"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-2"
+      hidden=""
+      >Option 3</syn-option
+    >
+  </syn-combobox>
+  <syn-combobox
+    max-options-visible="2"
+    multiple=""
+    placeholder="Readonly"
+    value="option-1 option-2 option-3"
+    readonly=""
+    size="medium"
+    placement="bottom"
+    form=""
+  >
+    <syn-option
+      value="option-1"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-0"
+      hidden=""
+      >Option 1</syn-option
+    >
+    <syn-option
+      value="option-2"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-1"
+      hidden=""
+      >Option 2</syn-option
+    >
+    <syn-option
+      value="option-3"
+      role="option"
+      aria-selected="false"
+      aria-disabled="false"
+      id="syn-combobox-option-2"
+      hidden=""
+      >Option 3</syn-option
+    >
+  </syn-combobox>
+</div>
+```
+
+---
+
 ## Multiple
 
 To allow multiple options to be selected, use the multiple attribute. It’s a good practice to use clearable when this option is enabled. To set multiple values at once, set value to a space-delimited list of values. Use the max-options-visible attribute to define the maximum number of selected options that will be visible. After the maximum, "+n" will be shown to indicate the number of additional items that are selected.
@@ -609,6 +701,52 @@ This restricts the combobox to only allow selections from the available options.
     role="option"
     aria-selected="false"
     aria-disabled="false"
+    id="syn-combobox-option-2"
+    hidden=""
+    >Option 3</syn-option
+  >
+</syn-combobox>
+```
+
+---
+
+## No Results Found
+
+A “No results found” message is displayed, when the search term doesn’t match the options.
+
+```html
+<syn-combobox
+  id="no-results"
+  value="Search term"
+  restricted=""
+  size="medium"
+  placement="bottom"
+  form=""
+  open=""
+>
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-0"
+    hidden=""
+    >Option 1</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
+    id="syn-combobox-option-1"
+    hidden=""
+    >Option 2</syn-option
+  >
+  <syn-option
+    role="option"
+    aria-selected="false"
+    aria-disabled="false"
+    value=""
     id="syn-combobox-option-2"
     hidden=""
     >Option 3</syn-option

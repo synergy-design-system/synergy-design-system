@@ -11,7 +11,6 @@ import { FormControlController } from '../../internal/form.js';
 import { HasSlotController } from '../../internal/slot.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
-import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynButton from '../button/button.component.js';
 import SynIcon from '../icon/icon.component.js';
@@ -72,7 +71,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   static styles: CSSResultGroup = [
     componentStyles,
     formControlStyles,
-    formControlCustomStyles,
     styles,
   ];
 
@@ -158,6 +156,9 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
 
   /** Disables the file control. */
   @property({ reflect: true, type: Boolean }) disabled = false;
+
+  /** Sets the file control to a readonly state. */
+  @property({ reflect: true, type: Boolean }) readonly = false;
 
   /** Draw the file control as a drop area */
   @property({ type: Boolean }) droparea = false;
@@ -362,12 +363,22 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   private handleDragOver(e: DragEvent) {
     e.preventDefault();
     e.stopPropagation();
+
+    if (this.disabled || this.readonly) {
+      return;
+    }
+
     this.userIsDragging = true;
   }
 
   private handleDragLeave(e: DragEvent) {
     e.preventDefault();
     e.stopPropagation();
+
+    if (this.disabled || this.readonly) {
+      return;
+    }
+
     this.userIsDragging = false;
   }
 
@@ -375,6 +386,10 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   private async handleDrop(e: DragEvent) {
     e.preventDefault();
     e.stopPropagation();
+
+    if (this.disabled || this.readonly) {
+      return;
+    }
 
     if (!e.dataTransfer) {
       return;
@@ -507,7 +522,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
         <syn-button
           class="button"
           @click=${this.handleClick}
-          ?disabled=${this.disabled}
+          ?disabled=${this.disabled || this.readonly}
           exportparts="base:button__base"
           part="button"
           size=${this.size}
@@ -522,7 +537,6 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
   /* eslint-enable @typescript-eslint/unbound-method */
 
   /* eslint-disable @typescript-eslint/unbound-method */
-  // eslint-disable-next-line complexity
   render() {
     const hasLabel = this.label || !!this.hasSlotController.test('label');
     const hasHelpText = this.helpText ? true : !!this.hasSlotController.test('help-text');
@@ -589,7 +603,7 @@ export default class SynFile extends SynergyElement implements SynergyFormContro
           aria-describedby="help-text"
           @change=${this.handleChange}
           class="input__control"
-          ?disabled=${this.disabled}
+          ?disabled=${this.disabled || this.readonly}
           id="input"
           @invalid=${this.handleInvalid}
           ?multiple=${this.multiple}

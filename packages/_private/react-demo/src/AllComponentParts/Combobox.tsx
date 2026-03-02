@@ -55,7 +55,7 @@ export const Combobox = () => {
         data-testid="combobox-632"
         label="Keyboard Interaction test #632"
         value={cb632Value}
-        onsyn-change={(e) => setcb632Value((e.target as SynCombobox).value)}
+        onsyn-change={(e) => setcb632Value((e.target as SynCombobox).value.toString())}
       >
         <syn-option value="option-1">Lorem</syn-option>
         <syn-option value="option-2">ipsum</syn-option>
@@ -192,6 +192,17 @@ export const Combobox = () => {
         value={0}
       >
         <syn-option value={0}>Zero (numeric)</syn-option>
+      </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-1172-readonly-combobox"
+        label="Readonly Combobox"
+        readonly
+        value="option-1"
+      >
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
       </syn-combobox>
 
     </>

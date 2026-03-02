@@ -111,6 +111,13 @@ describe('<syn-file>', () => {
         expect(input.disabled).to.be.true;
       });
 
+      it('should be disabled with the readonly attribute', async () => {
+        const el = await fixture<SynFile>(html`<syn-file readonly ?droparea=${droparea}>${triggerSlot}</syn-file>`);
+        const input = el.shadowRoot!.querySelector<HTMLInputElement>('#input')!;
+
+        expect(input.disabled).to.be.true;
+      });
+
       // TODO: When using Playwright and its dnd feature in future this test
       // should work (currently DataTransferItems are not supported)
       it.skip('should emit a syn-error event when multiple attribute is not set, but several files are dragged in ', async () => {
@@ -365,6 +372,7 @@ describe('<syn-file>', () => {
     expect(el.label).to.equal('');
     expect(el.helpText).to.equal('');
     expect(el.disabled).to.be.false;
+    expect(el.readonly).to.be.false;
     expect(el.droparea).to.be.false;
     expect(el.accept).to.equal('');
     expect(el.capture).to.be.undefined;

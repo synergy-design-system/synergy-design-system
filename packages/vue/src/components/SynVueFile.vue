@@ -116,6 +116,11 @@ If you need to display HTML, use the `help-text` slot instead.
   disabled?: SynFile['disabled'];
 
   /**
+   * Sets the file control to a readonly state.
+   */
+  readonly?: SynFile['readonly'];
+
+  /**
    * Draw the file control as a drop area
    */
   droparea?: SynFile['droparea'];

@@ -7,6 +7,21 @@ import { createTestCases, fillField, runActionAndValidateEvents } from '../helpe
 
 test.describe('<SynCombobox />', () => {
   createTestCases(({ name, port }) => {
+    test.describe(`Feature#1172: ${name}`, () => {
+      test('should be readonly and not open if a user clicks', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('selectLink');
+        await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+        const select = await AllComponents.getLocator('selectReadonly');
+
+        // Try to open the select. It should not be open, because it is readonly
+        await select.click();
+        await expect(select).not.toHaveAttribute('open');
+      }); // end should be readonly and not open if a user clicks
+    }); // feature#1172
+
     test.describe(`Regression#632: ${name}`, () => {
       test('should have a valid DOM tree after interaction', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);

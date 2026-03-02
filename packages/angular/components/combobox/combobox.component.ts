@@ -213,6 +213,19 @@ export class SynComboboxComponent {
   }
 
   /**
+   * Sets the combobox to a readonly state.
+   */
+  @Input()
+  set readonly(v: '' | SynCombobox['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
+  }
+  get readonly(): SynCombobox['readonly'] {
+    return this.nativeElement.readonly;
+  }
+
+  /**
    * Adds a clear button when the combobox is not empty.
    */
   @Input()

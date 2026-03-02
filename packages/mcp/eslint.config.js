@@ -1,11 +1,14 @@
-import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
+import { createCustomConfig } from '@synergy-design-system/eslint-config-syn/ts';
 
 export default [
   // Global ignores - must come first
   {
     ignores: ['metadata/'],
   },
-  ...tsConfig,
+  ...createCustomConfig({
+    project: './tsconfig.json',
+    tsconfigRootDir: import.meta.dirname,
+  }),
   // Build and utility scripts need relaxed rules
   {
     files: [

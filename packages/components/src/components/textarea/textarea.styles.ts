@@ -1,28 +1,29 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
+  /* stylelint-disable no-descending-specificity */
+  /* stylelint-disable plugin/no-unsupported-browser-features */
+  /* stylelint-disable property-no-vendor-prefix */
   :host {
     display: block;
   }
 
   .textarea {
-    display: grid;
     align-items: center;
-    position: relative;
-    width: 100%;
+    cursor: text;
+    display: grid;
     font-family: var(--syn-input-font-family);
     font-weight: var(--syn-input-font-weight);
-    line-height: var(--syn-line-height-normal);
     letter-spacing: var(--syn-input-letter-spacing);
-    vertical-align: middle;
+    line-height: var(--syn-line-height-normal);
+    position: relative;
     transition:
       var(--syn-transition-fast) color,
       var(--syn-transition-fast) border,
       var(--syn-transition-fast) box-shadow,
       var(--syn-transition-fast) background-color;
-    cursor: text;
+    vertical-align: middle;
+    width: 100%;
   }
 
   /* Standard textareas */
@@ -35,6 +36,7 @@ export default css`
     background-color: var(--syn-input-background-color-hover);
     border-color: var(--syn-input-border-color-hover);
   }
+
   .textarea--standard:hover:not(.textarea--disabled) .textarea__control {
     color: var(--syn-input-color-hover);
   }
@@ -42,8 +44,8 @@ export default css`
   .textarea--standard.textarea--focused:not(.textarea--disabled) {
     background-color: var(--syn-input-background-color-focus);
     border-color: var(--syn-input-border-color-focus);
-    color: var(--syn-input-color-focus);
     box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-color);
+    color: var(--syn-input-color-focus);
   }
 
   .textarea--standard.textarea--focused:not(.textarea--disabled) .textarea__control {
@@ -53,8 +55,8 @@ export default css`
   .textarea--standard.textarea--disabled {
     background-color: var(--syn-input-background-color-disabled);
     border-color: var(--syn-input-border-color-disabled);
-    opacity: 0.5;
     cursor: not-allowed;
+    opacity: var(--syn-input-disabled-opacity); /* #429: Use token for opacity */
   }
 
   .textarea__control,
@@ -63,9 +65,9 @@ export default css`
   }
 
   .textarea__size-adjuster {
-    visibility: hidden;
-    pointer-events: none;
     opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
   }
 
   .textarea--standard.textarea--disabled .textarea__control {
@@ -78,8 +80,8 @@ export default css`
 
   /* Readonly textareas */
   .textarea--readonly {
-    border: none;
     background-color: var(--syn-input-readonly-background-color);
+    border: none;
     color: var(--syn-input-color);
   }
 
@@ -95,21 +97,29 @@ export default css`
 
   .textarea--readonly.textarea--disabled {
     background-color: var(--syn-input-readonly-background-color-disabled);
-    opacity: 0.5;
     cursor: not-allowed;
+    opacity: var(--syn-input-disabled-opacity);
   }
 
   .textarea__control {
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: var(--syn-input-color);
+    cursor: inherit;
     font-family: inherit;
     font-size: inherit;
     font-weight: inherit;
     line-height: 1.4;
-    color: var(--syn-input-color);
-    border: none;
-    background: none;
-    box-shadow: none;
-    cursor: inherit;
-    -webkit-appearance: none;
+
+    /*
+    Unfortunately we need to add a small margin to the textarea control. This is needed for the new sick 2025 theme,
+    as because of the big border-radius the resize icon will otherwise overlap with the border
+    This added margin needs to be subtracted from the padding of the textarea
+    */
+    margin: var(--syn-spacing-3x-small);
   }
 
   .textarea__control::-webkit-search-decoration,
@@ -117,12 +127,13 @@ export default css`
   .textarea__control::-webkit-search-results-button,
   .textarea__control::-webkit-search-results-decoration {
     -webkit-appearance: none;
+    appearance: none;
   }
 
   .textarea__control::placeholder {
     color: var(--syn-input-placeholder-color);
-    user-select: none;
     -webkit-user-select: none;
+    user-select: none;
   }
 
   .textarea__control:focus {
@@ -132,14 +143,17 @@ export default css`
   /*
    * Size modifiers
    */
-
   .textarea--small {
     border-radius: var(--syn-input-border-radius-small);
     font-size: var(--syn-input-font-size-small);
   }
 
   .textarea--small .textarea__control {
-    padding: 0.5em var(--syn-input-spacing-small);
+    /* TODO: Wait for Design response, how to handle this left / right spacing. Design has "--syn-input-spacing-medium" for all sizes,
+      but we have different (coming from shoelace) */
+
+    /* We need to subtract the added margin of the textarea control from the padding */
+    padding: calc(var(--syn-spacing-x-small) - var(--syn-spacing-3x-small)) calc(var(--syn-input-spacing-small) - var(--syn-spacing-3x-small));
   }
 
   .textarea--medium {
@@ -148,7 +162,8 @@ export default css`
   }
 
   .textarea--medium .textarea__control {
-    padding: 0.5em var(--syn-input-spacing-medium);
+    /* We need to subtract the added margin of the textarea control from the padding */
+    padding: calc(var(--syn-spacing-x-small) - var(--syn-spacing-3x-small)) calc(var(--syn-input-spacing-medium) - var(--syn-spacing-3x-small));
   }
 
   .textarea--large {
@@ -157,13 +172,16 @@ export default css`
   }
 
   .textarea--large .textarea__control {
-    padding: 0.5em var(--syn-input-spacing-large);
+    /* TODO: Wait for Design response, how to handle this left / right spacing. Design has "--syn-input-spacing-medium" for all sizes,
+      but we have different (coming from shoelace) */
+
+    /* We need to subtract the added margin of the textarea control from the padding */
+    padding: calc(var(--syn-spacing-x-small) - var(--syn-spacing-3x-small)) calc(var(--syn-input-spacing-large) - var(--syn-spacing-3x-small));
   }
 
   /*
    * Resize types
    */
-
   .textarea--resize-none .textarea__control {
     resize: none;
   }
@@ -174,7 +192,17 @@ export default css`
 
   .textarea--resize-auto .textarea__control {
     height: auto;
-    resize: none;
     overflow-y: hidden;
+    resize: none;
+  }
+
+  /* Validation */
+  :host([data-user-invalid]) .textarea--standard {
+    border-color: var(--syn-input-border-color-focus-error);
+  }
+
+  :host([data-user-invalid]) .textarea--standard.textarea--focused:not(.textarea--disabled) {
+    border-color: var(--syn-input-border-color-focus-error);
+    box-shadow: 0 0 0 var(--syn-focus-ring-width) var(--syn-input-focus-ring-error);
   }
 `;

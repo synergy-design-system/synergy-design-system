@@ -5,6 +5,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
   type FormStatus,
+  currencyNumberFormatter,
   mockData,
   statusError,
   statusSuccess,
@@ -13,14 +14,24 @@ import {
 import { UsedSynergyComponentsModule } from '../modules/used-synergy.module';
 import { DemoFieldSetModule } from '../modules/demofieldset.module';
 
+const initialMockData = mockData('initialValidateFormData');
+
 const initialData = {
-  ...mockData('initialValidateFormData'),
+  ...initialMockData,
   // Custom test for angular validators
   email: ['', [
     Validators.required,
     Validators.email,
   ]],
+  // Special case: When using an array to prefill,
+  // angular does not recognize the validators if they are in the same array,
+  // so we need to separate them
+  previousRoles: [initialMockData.previousRoles, [
+    Validators.required,
+  ]],
 };
+
+console.log(mockData('initialValidateFormData'));
 
 @Component({
   selector: 'demo-form-validate',
@@ -46,6 +57,8 @@ export class DemoFormValidate {
   testingFrameworks = mockData('testingFrameworks');
 
   highlightOptionRenderer = highlightOptionRenderer;
+
+  formatter = currencyNumberFormatter;
 
   private _initFormData() {
     this.formData = this.fb.group({
@@ -98,5 +111,9 @@ export class DemoFormValidate {
 
     // Log the normalized data
     console.log(normalizedData);
+  }
+
+  currencyFormatter = (value: number) => {
+    return this.formatter.format(value);
   }
 }

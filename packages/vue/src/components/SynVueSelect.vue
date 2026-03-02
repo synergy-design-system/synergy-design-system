@@ -117,6 +117,11 @@ indicate the number of additional items that are selected.
   disabled?: SynSelect['disabled'];
 
   /**
+   * Sets the select to a readonly state.
+   */
+  readonly?: SynSelect['readonly'];
+
+  /**
    * Adds a clear button when the select is not empty.
    */
   clearable?: SynSelect['clearable'];

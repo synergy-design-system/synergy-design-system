@@ -152,6 +152,23 @@ export default css`
     font-size: var(--syn-spacing-4x-large)
   }
 
+  /* #1173: Readonly Styles */
+  :host([readonly]) .button::part(base) {
+    background: var(--syn-readonly-background-color);
+    color: var(--syn-readonly-indicator-color);
+  }
+
+  :host([readonly]) .droparea__text strong {
+    color: var(--syn-readonly-color-text);
+  }
+
+  :host([readonly]) .droparea {
+    --highlight-color: var(--syn-readonly-icon-color);
+
+    background: var(--syn-readonly-background-color);
+    border: var(--syn-input-border-width) solid var(--syn-readonly-background-color);
+  }
+
   /* Disabled Styles */
   :host([disabled]) .droparea,
   :host([disabled]) .input__value {
@@ -159,13 +176,13 @@ export default css`
     opacity: var(--syn-input-disabled-opacity);
   }
 
-  :host(:not([disabled])) .form-control--user-dragging .droparea {
+  :host(:not([disabled]):not([readonly])) .form-control--user-dragging .droparea {
     background: var(--syn-color-primary-50);
     border: var(--syn-input-border-width) solid var(--syn-interactive-emphasis-color);
     cursor: pointer;
   }
 
-  :host(:not([disabled])) .droparea:not(:focus-visible):hover {
+  :host(:not([disabled]):not([readonly])) .droparea:not(:focus-visible):hover {
     --highlight-color: var(--syn-interactive-emphasis-color-hover);
 
     border: var(--syn-input-border-width) dashed var(--syn-input-border-color-hover);
@@ -174,7 +191,7 @@ export default css`
 
   /* Validation */
   /* stylelint-disable-next-line no-descending-specificity */
-  :host([data-user-invalid]:not([disabled])) .droparea {
+  :host([data-user-invalid]:not([disabled]):not([readonly])) .droparea {
     border: var(--syn-input-border-width) dashed var(--syn-input-focus-ring-error);
   }
 `;

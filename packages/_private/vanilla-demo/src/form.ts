@@ -5,6 +5,7 @@ import {
   type SynCombobox,
   type SynRadioGroup,
   type SynRange,
+  type SynSelect,
   highlightOptionRenderer,
   serialize,
 } from '@synergy-design-system/components';
@@ -18,13 +19,19 @@ import {
 } from '@synergy-design-system/demo-utilities';
 
 const initCombobox = () => {
-  const nationalitiesEl = document.querySelector<SynCombobox>('#input-nationality')!;
-  nationalitiesEl.getOption = highlightOptionRenderer;
-  mockData('nationalities').forEach((nationality) => {
-    const option = document.createElement('syn-option');
-    option.innerText = nationality;
-    nationalitiesEl.appendChild(option);
-  });
+  const nationalities = document.querySelectorAll<SynCombobox>('#input-nationality, #input-previous-nationality');
+  Array
+    .from(nationalities)
+    .forEach(el => {
+      // eslint-disable-next-line no-param-reassign
+      el.getOption = highlightOptionRenderer;
+      mockData('nationalities').forEach((nationality) => {
+        const option = document.createElement('syn-option');
+        option.value = nationality;
+        option.innerText = nationality;
+        el.appendChild(option);
+      });
+    });
 
   // Initialize testingFrameworks combobox if it exists
   const testingFrameworksEl = document.querySelector<SynCombobox>('#testing-frameworks')!;
@@ -57,7 +64,6 @@ const setupForm = (formSelector: string) => {
   updateStatusMessage(form, statusWarning);
 
   form.addEventListener('syn-change', () => {
-    updateStatusMessage(form, form.checkValidity() ? statusSuccess : statusError);
     console.log(serialize(form));
   });
 
@@ -72,6 +78,7 @@ const setupForm = (formSelector: string) => {
     const formElm = e.target as HTMLFormElement;
     const isValid = formElm.checkValidity();
 
+    console.log(serialize(form));
     updateStatusMessage(form, isValid ? statusSuccess : statusError);
   });
 };
@@ -109,10 +116,19 @@ export const afterRenderDefaultForm = async () => {
 };
 
 export const afterRenderValidateForm = async () => {
+  const mockedInitialData = mockData('initialValidateFormData');
+
   await Promise.allSettled([
     customElements.whenDefined('syn-button'),
     customElements.whenDefined('syn-range'),
+    customElements.whenDefined('syn-select'),
   ]);
+
+  // Set initial values for previousRoles multi-select
+  const previousRolesSelect = document.querySelector<SynSelect>('#select-previous-roles')!;
+  if (previousRolesSelect && mockedInitialData.previousRoles) {
+    previousRolesSelect.value = mockedInitialData.previousRoles;
+  }
 
   // Add custom highlighter for the combobox
   initCombobox();
@@ -132,6 +148,17 @@ export const afterRenderValidateForm = async () => {
     const val = (e.target as HTMLInputElement).value;
     slider.value = val;
   });
+
+  // Setup donations to link them to the happiness slider
+  const donations = document.querySelector<SynRange>('#donations')!;
+  donations.tooltipFormatter = value => currencyNumberFormatter.format(value);
+
+  const updateDonationReadonlyState = () => {
+    donations.readonly = parseInt(slider.value!, 10) <= 5;
+  };
+
+  slider.addEventListener('syn-change', updateDonationReadonlyState);
+  updateDonationReadonlyState();
 
   setupForm('#form-demo-validate');
 };

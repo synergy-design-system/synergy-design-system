@@ -113,6 +113,11 @@ const props = defineProps<{
   disabled?: SynCombobox['disabled'];
 
   /**
+   * Sets the combobox to a readonly state.
+   */
+  readonly?: SynCombobox['readonly'];
+
+  /**
    * Adds a clear button when the combobox is not empty.
    */
   clearable?: SynCombobox['clearable'];

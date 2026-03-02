@@ -1,7 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable complexity */
-/* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/radio-group/radio-group.js';
 import '../../../components/src/components/radio/radio.js';
 import '../../../components/src/components/button/button.js';
@@ -44,12 +41,21 @@ type Story = StoryObj;
 
 export const Default: Story = {
   args: overrideArgs([
-    { name: 'label', type: 'attribute', value: 'This is a label' },
     {
-      name: 'default', type: 'slot', value: `<syn-radio value="1">Option</syn-radio>
-    <syn-radio value="2">Option</syn-radio>
-    <syn-radio value="3">Option</syn-radio>`,
-    }], args),
+      name: 'label',
+      type: 'attribute',
+      value: 'This is a label',
+    },
+    {
+      name: 'default',
+      type: 'slot',
+      value: `
+  <syn-radio value="1">Option</syn-radio>
+  <syn-radio value="2">Option</syn-radio>
+  <syn-radio value="3">Option</syn-radio>
+      `.trim(),
+    },
+  ], args),
   parameters: {
     controls: {
       disable: false,
@@ -126,8 +132,6 @@ export const Focus: Story = {
   },
   play: ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const elm = canvasElement.querySelector<SynRadioGroup>('syn-radio-group');
-    // eslint-disable-next-line max-len
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     elm?.focus();
   },
   render: () => html`
@@ -148,11 +152,29 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-  <syn-radio-group label="This is a label" help-text="This is disabled" name="a">
-    <syn-radio value="1">Option</syn-radio>
-    <syn-radio value="2" disabled>Option</syn-radio>
-    <syn-radio value="3">Option</syn-radio>
-  </syn-radio-group>`,
+    <syn-radio-group label="This is a label" help-text="This is disabled" name="a">
+      <syn-radio value="1">Option</syn-radio>
+      <syn-radio value="2" disabled>Option</syn-radio>
+      <syn-radio value="3">Option</syn-radio>
+    </syn-radio-group>
+  `,
+};
+
+export const Readonly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-group', 'readonly'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-radio-group label="This is a label" help-text="This is readonly" name="a" value="2">
+      <syn-radio value="1">Option</syn-radio>
+      <syn-radio value="2" readonly>Option</syn-radio>
+      <syn-radio value="3">Option</syn-radio>
+    </syn-radio-group>
+  `,
 };
 
 export const Sizes: Story = {
@@ -206,6 +228,7 @@ export const Invalid: Story = {
         (document.activeElement as HTMLElement)?.blur();
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error in play function:', error);
     }
   },
@@ -270,26 +293,30 @@ export const CustomValidity: Story = {
         await userEvent.click(button);
         button.click();
         if (radioGroup?.checkValidity()) {
+          // eslint-disable-next-line no-console
           console.log('All fields are valid!');
         } else {
+          // eslint-disable-next-line no-console
           console.error('Form validation failed');
         }
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Error in play function:', error);
     }
   },
 
   render: () => html`
-  <form>
-    <syn-radio-group label="Select an option" name="a" value="1">
-      <syn-radio value="1">Not me</syn-radio>
-      <syn-radio value="2">Me neither</syn-radio>
-      <syn-radio value="3">Choose me</syn-radio>
-    </syn-radio-group>
-    <br />
-    <syn-button type="submit" variant="filled">Submit</syn-button>
-  </form>`,
+    <form>
+      <syn-radio-group label="Select an option" name="a" value="1">
+        <syn-radio value="1">Not me</syn-radio>
+        <syn-radio value="2">Me neither</syn-radio>
+        <syn-radio value="3">Choose me</syn-radio>
+      </syn-radio-group>
+      <br />
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+  `,
 };
 
 // Bundled screenshot story
@@ -300,6 +327,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Checked,
   HelpText,
   Disabled,
+  Readonly,
   Sizes,
 }, 400);
 /* eslint-enable sort-keys */

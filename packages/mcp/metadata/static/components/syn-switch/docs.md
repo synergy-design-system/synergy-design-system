@@ -38,6 +38,28 @@ Use the disabled attribute to disable the switch.
 
 ---
 
+## Readonly
+
+Add the readonly attribute to draw a read-only switch.
+
+```html
+<div
+  style="
+    display: flex;
+    gap: var(--syn-spacing-large);
+    flex-direction: column;
+    align-items: flex-start;
+  "
+>
+  <syn-switch readonly="" title="" size="medium" form="">Unchecked</syn-switch>
+  <syn-switch checked="" readonly="" title="" size="medium" form=""
+    >Checked</syn-switch
+  >
+</div>
+```
+
+---
+
 ## Sizes
 
 Use the size attribute to change a switch’s size.

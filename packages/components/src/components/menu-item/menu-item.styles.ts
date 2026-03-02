@@ -125,8 +125,11 @@ export default css`
     font-size: var(--syn-font-size-x-large);
   }
 
-  :host(:hover) .menu-item .menu-item__prefix::slotted(syn-icon),
-  :host(:hover) .menu-item__suffix::slotted(syn-icon) {
+  /**
+   * #1194: Make sure hover is only done on non disabled items
+   */
+  :host(:hover) .menu-item:not(.menu-item--disabled) .menu-item__prefix::slotted(syn-icon),
+  :host(:hover) .menu-item:not(.menu-item--disabled) .menu-item__suffix::slotted(syn-icon) {
     color: var(--syn-option-icon-color-hover);
   }
 

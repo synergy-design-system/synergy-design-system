@@ -13,7 +13,6 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './alert.styles.js';
-import customStyles from './alert.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
@@ -44,7 +43,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynAlert')
 export default class SynAlert extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'syn-icon-button': SynIconButton };
 
   private autoHideTimeout: number;

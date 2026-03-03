@@ -90,6 +90,10 @@ const browsers = getBaseline("v3_0_0");
 Use the included CLI utility to create baselines for new versions:
 
 ```bash
+# Update the browserslist database to make sure to have latest data.
+# Heavily recommended whenever you create new releases.
+pnpm update-baseline
+
 # Create baseline for version 3.1.0 using default settings
 node src/syn-create-baseline.js --version 3.1.0
 

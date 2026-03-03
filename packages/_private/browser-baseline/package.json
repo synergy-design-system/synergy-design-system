@@ -26,6 +26,7 @@
     "src"
   ],
   "scripts": {
+    "update-baseline": "pnpm -w add -D update-browserslist-db@latest && pnpm -w exec update-browserslist-db",
     "build": "tsc",
     "lint:js": "eslint src",
     "lint:types": "tsc --noEmit",

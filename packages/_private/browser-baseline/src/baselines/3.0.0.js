@@ -2,7 +2,7 @@
  * Baseline for synergy version 3.0.0
  *
  * @version 3.0.0
- * @since 2026-02-27T09:47:39.678Z
+ * @since 2026-03-03T14:31:43.186Z
  *
  * Created with the following baseline query:
  * baseline widely available
@@ -12,7 +12,7 @@
  * node src/syn-create-baseline.js --baseline "baseline widely available" --version 3.0.0 --allow-replace
  */
 export default [
-  "and_chr 144",
+  "and_chr 145",
   "and_ff 147",
   "chrome 145",
   "chrome 144",
@@ -45,6 +45,7 @@ export default [
   "chrome 117",
   "chrome 116",
   "chrome 115",
+  "edge 145",
   "edge 144",
   "edge 143",
   "edge 142",

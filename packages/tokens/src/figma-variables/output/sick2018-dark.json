@@ -523,7 +523,6 @@
         "value": "#5e676b"
       },
       "300": {
-        "description": "SICK Gray",
         "type": "color",
         "value": "#859298"
       },
@@ -536,7 +535,6 @@
         "value": "#9ea9ae"
       },
       "600": {
-        "description": "//Sick Default",
         "type": "color",
         "value": "#bac2c6"
       },

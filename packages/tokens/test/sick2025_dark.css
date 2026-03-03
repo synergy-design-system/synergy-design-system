@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.6.0
+ * @synergy-design-system/tokens version 3.6.1
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -118,10 +118,10 @@
   --syn-color-muted-50: #2a2120;
   --syn-color-muted-100: #50423e;
   --syn-color-muted-200: #614e4b;
-  --syn-color-muted-300: #765f58; /** SICK Gray */
+  --syn-color-muted-300: #765f58;
   --syn-color-muted-400: #8d7269;
   --syn-color-muted-500: #ab988c;
-  --syn-color-muted-600: #d5ccc5; /** //Sick Default */
+  --syn-color-muted-600: #d5ccc5;
   --syn-color-muted-700: #e6e1dc;
   --syn-color-muted-800: #ece8e5;
   --syn-color-muted-900: #f2f0ed;

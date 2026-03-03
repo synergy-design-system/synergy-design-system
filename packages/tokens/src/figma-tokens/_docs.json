@@ -3251,6 +3251,16 @@
           "type": "text"
         }
       },
+      "options-with-dividers": {
+        "title": {
+          "value": "Meta Navigation with dividers",
+          "type": "text"
+        },
+        "description": {
+          "value": "If you need different icon groups or a separator between them, add a `<syn-divider>` between them.",
+          "type": "text"
+        }
+      },
       "navigation": {
         "title": {
           "value": "Top Navigation",

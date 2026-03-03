@@ -509,6 +509,54 @@
         "value": "#effaff"
       }
     },
+    "muted": {
+      "50": {
+        "type": "color",
+        "value": "#2a2120"
+      },
+      "100": {
+        "type": "color",
+        "value": "#50423e"
+      },
+      "200": {
+        "type": "color",
+        "value": "#614e4b"
+      },
+      "300": {
+        "description": "SICK Gray",
+        "type": "color",
+        "value": "#765f58"
+      },
+      "400": {
+        "type": "color",
+        "value": "#8d7269"
+      },
+      "500": {
+        "type": "color",
+        "value": "#ab988c"
+      },
+      "600": {
+        "description": "//Sick Default",
+        "type": "color",
+        "value": "#d5ccc5"
+      },
+      "700": {
+        "type": "color",
+        "value": "#e6e1dc"
+      },
+      "800": {
+        "type": "color",
+        "value": "#ece8e5"
+      },
+      "900": {
+        "type": "color",
+        "value": "#f2f0ed"
+      },
+      "950": {
+        "type": "color",
+        "value": "#f8f7f6"
+      }
+    },
     "neutral": {
       "0": {
         "type": "color",

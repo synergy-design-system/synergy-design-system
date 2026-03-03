@@ -218,7 +218,7 @@ export default css`
     color: var(--syn-option-check-color-active);
   }
 
-  :host(:hover) .menu-item--checked .menu-item__check {
+  :host(:hover) .menu-item--checked:not(.menu-item--disabled) .menu-item__check {  
     color: var(--syn-option-check-color-hover);
   }
 

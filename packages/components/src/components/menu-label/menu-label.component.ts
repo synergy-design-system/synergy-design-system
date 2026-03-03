@@ -4,7 +4,6 @@ import SynDivider from '../divider/divider.component.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './menu-label.styles.js';
-import customStyles from './menu-label.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -24,7 +23,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
  */
 export default class SynMenuLabel extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   static dependencies = {
     'syn-divider': SynDivider,

@@ -4,10 +4,6 @@
  *
  * The open attribute of the stories will be set to true when using chromatic per default
  */
-
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import isChromatic from 'chromatic/isChromatic';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';

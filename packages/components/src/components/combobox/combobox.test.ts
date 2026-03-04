@@ -59,6 +59,7 @@ describe('<syn-combobox>', () => {
     expect(el.clearable).to.be.false;
     expect(el.open).to.be.false;
     expect(el.label).to.equal('');
+    expect(el.maxlength).to.be.undefined;
     expect(el.placement).to.equal('bottom');
     expect(el.helpText).to.equal('');
     expect(el.form).to.equal('');
@@ -450,6 +451,25 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
 
       expect(secondOption.selected).to.be.true;
+    });
+
+    it('should limit the amount of input based on the maxlength attribute', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox maxlength="2">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      el.focus();
+      await sendKeys({ type: 'a' });
+      await sendKeys({ type: 'b' });
+      await sendKeys({ type: 'c' });
+      el.blur();
+      await el.updateComplete;
+
+      expect(el.value).to.equal('ab');
     });
   });
 

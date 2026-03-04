@@ -163,6 +163,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
    */
   @property({ attribute: false }) tooltipFormatter: (value: number) => string;
 
+  @query('.input__control') inputControl: HTMLInputElement;
+
   @query('.input__wrapper') baseDiv: HTMLDivElement;
 
   @query('.active-track') activeTrack: HTMLDivElement;
@@ -700,7 +702,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.formControlController.emitInvalidEvent(event);
   }
 
-  #updatePrefixSuffixPosition(height?: number) {
+  #updatePrefixSuffixPosition(height?: number | Event) {
     const hasTicksSlot = this.hasSlotController.test('ticks');
     const hasPrefixSlot = this.hasSlotController.test('prefix');
     const hasSuffixSlot = this.hasSlotController.test('suffix');
@@ -709,22 +711,34 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       return;
     }
 
-    let ticksHeight = height || this.shadowRoot?.querySelector('.ticks')?.clientHeight;
+    let ticksHeight: number | undefined;
+    if (height instanceof Event) {
+      ticksHeight = this.ticks.clientHeight;
+    } else {
+      ticksHeight = height || this.ticks.clientHeight;
+    }
+
     if (ticksHeight) {
       // Add two pixels as the 1px margin on top and bottom are not included in the clientHeight
       ticksHeight += 2;
 
       ticksHeight /= 2;
 
+      const slotTransform = `translateY(-${ticksHeight}px)`;
+
       if (hasPrefixSlot) {
         const prefix = this.shadowRoot?.querySelector('.input__prefix') as HTMLElement;
-        prefix.style.transform = `translateY(-${ticksHeight}px)`;
+        prefix.style.transform = slotTransform;
       }
 
       if (hasSuffixSlot) {
         const suffix = this.shadowRoot?.querySelector('.input__suffix') as HTMLElement;
-        suffix.style.transform = `translateY(-${ticksHeight}px)`;
+        suffix.style.transform = slotTransform;
       }
+
+      // #1143: When there are ticks, the input control needs to be moved down to prevent overlap with the label.
+      const containerMarginTop = (hasPrefixSlot || hasSuffixSlot) ? ticksHeight : 0;
+      this.inputControl.style.marginTop = `${containerMarginTop}px`;
     }
   }
 
@@ -836,7 +850,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
         <div class="base input__control" part="base">
           <span part="prefix" class="input__prefix">
-            <slot name="prefix"></slot>
+            <slot name="prefix" @slotchange=${this.#updatePrefixSuffixPosition}></slot>
           </span>
 
           <div class="input__wrapper" part="input-wrapper">
@@ -871,7 +885,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           </div>
 
           <span part="suffix" class="input__suffix">
-            <slot name="suffix"></slot>
+            <slot name="suffix" @slotchange=${this.#updatePrefixSuffixPosition}></slot>
           </span>
         </div>
 

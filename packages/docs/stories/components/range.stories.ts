@@ -391,7 +391,6 @@ export const MultiThumb: Story = {
 
 export const MultiThumbWithRestrictedMovement = {
   parameters: {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     docs: {
       description: {
         story: generateStoryDescription('range', 'multi-knob-restrict-movement'),

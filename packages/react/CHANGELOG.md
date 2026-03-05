@@ -1,5 +1,38 @@
 # @synergy-design-system/react
 
+## 3.6.1
+
+### Patch Changes
+
+- Updated dependencies [[`49c9d1c`](https://github.com/synergy-design-system/synergy-design-system/commit/49c9d1c30d777384024134ec983d183aed109421)]:
+  - @synergy-design-system/components@3.6.1
+  - @synergy-design-system/tokens@3.6.1
+
+## 3.6.0
+
+### Minor Changes
+
+- [#1192](https://github.com/synergy-design-system/synergy-design-system/pull/1192) [`31c54c0`](https://github.com/synergy-design-system/synergy-design-system/commit/31c54c04a651a14e20bc5f4b2aff1bd92ad26bc0) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-02
+
+  feat: ✨ New variant `tooltip` for `<syn-validate>` (#664)
+
+  `<syn-validate>` received the option to show validation errors using `<syn-tooltip>`.
+  To use this feature, set the `variant` property to `tooltip`.
+
+### Patch Changes
+
+- Updated dependencies [[`31c54c0`](https://github.com/synergy-design-system/synergy-design-system/commit/31c54c04a651a14e20bc5f4b2aff1bd92ad26bc0)]:
+  - @synergy-design-system/components@3.6.0
+  - @synergy-design-system/tokens@3.6.0
+
+## 3.5.0
+
+### Patch Changes
+
+- Updated dependencies [[`a4f49ac`](https://github.com/synergy-design-system/synergy-design-system/commit/a4f49ac79a660ef5b8d1b380fe9fcd2159dc9b78)]:
+  - @synergy-design-system/components@3.5.0
+  - @synergy-design-system/tokens@3.5.0
+
 ## 3.4.1
 
 ### Patch Changes

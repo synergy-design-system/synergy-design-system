@@ -73,6 +73,11 @@ const props = defineProps<{
   disabled?: SynCheckbox['disabled'];
 
   /**
+   * Sets the checkbox to a readonly state.
+   */
+  readonly?: SynCheckbox['readonly'];
+
+  /**
    * Draws the checkbox in a checked state.
    */
   checked?: SynCheckbox['checked'];

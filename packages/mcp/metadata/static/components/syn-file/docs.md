@@ -105,6 +105,30 @@ Use the disabled attribute to disable a file input.
 
 ---
 
+## Readonly
+
+Use the readonly attribute to set a file input to a readonly state.
+
+```html
+<div style="display: flex; flex-direction: column; gap: 1rem">
+  <syn-file
+    readonly=""
+    label="This is a label"
+    size="medium"
+    form=""
+  ></syn-file>
+  <syn-file
+    readonly=""
+    droparea=""
+    label="This is a label"
+    size="medium"
+    form=""
+  ></syn-file>
+</div>
+```
+
+---
+
 ## Sizes
 
 Use the size attribute to change the component's size.

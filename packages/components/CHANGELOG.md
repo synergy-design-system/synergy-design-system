@@ -1,5 +1,61 @@
 # Changelog
 
+## 3.6.1
+
+### Patch Changes
+
+- [#1208](https://github.com/synergy-design-system/synergy-design-system/pull/1208) [`49c9d1c`](https://github.com/synergy-design-system/synergy-design-system/commit/49c9d1c30d777384024134ec983d183aed109421) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-03
+
+  fix: 🐛 `<syn-menu-item>`: Slotted `<syn-icon>` elements not visible on hover (#1194)
+
+  This release fixes a bug that accidentally set the color of slotted elements in `<syn-menu-item>` to white which lead to the icons appear to be invisible.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.6.1
+
+## 3.6.0
+
+### Minor Changes
+
+- [#1192](https://github.com/synergy-design-system/synergy-design-system/pull/1192) [`31c54c0`](https://github.com/synergy-design-system/synergy-design-system/commit/31c54c04a651a14e20bc5f4b2aff1bd92ad26bc0) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-02
+
+  feat: ✨ New variant `tooltip` for `<syn-validate>` (#664)
+
+  `<syn-validate>` received the option to show validation errors using `<syn-tooltip>`.
+  To use this feature, set the `variant` property to `tooltip`.
+
+### Patch Changes
+
+- Updated dependencies [[`31c54c0`](https://github.com/synergy-design-system/synergy-design-system/commit/31c54c04a651a14e20bc5f4b2aff1bd92ad26bc0)]:
+  - @synergy-design-system/tokens@3.6.0
+
+## 3.5.0
+
+### Minor Changes
+
+- [#1189](https://github.com/synergy-design-system/synergy-design-system/pull/1189) [`a4f49ac`](https://github.com/synergy-design-system/synergy-design-system/commit/a4f49ac79a660ef5b8d1b380fe9fcd2159dc9b78) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-26
+
+  feat: ✨ Added readonly for various form fields (#1171, #1172, #1173, #1174, #1175, #1176, #1177, #1178)
+
+  Applies to:
+  - `<syn-checkbox>`
+  - `<syn-combobox>`
+  - `<syn-file>`
+  - `<syn-radio>`
+  - `<syn-radio-group>`
+  - `<syn-range>`
+  - `<syn-select>`
+  - `<syn-switch>`
+
+  Form elements now support being displayed as `readonly` fields.
+
+  Field marked `readonly` may receive focus, but their value cannot be changed by customer inputs.
+
+### Patch Changes
+
+- Updated dependencies [[`a4f49ac`](https://github.com/synergy-design-system/synergy-design-system/commit/a4f49ac79a660ef5b8d1b380fe9fcd2159dc9b78)]:
+  - @synergy-design-system/tokens@3.5.0
+
 ## 3.4.1
 
 ### Patch Changes

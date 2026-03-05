@@ -23,6 +23,7 @@ import {
 import { highlightOptionRenderer, serialize } from '@synergy-design-system/components';
 import {
   type FormStatus,
+  currencyNumberFormatter,
   mockData,
   statusError,
   statusSuccess,
@@ -43,6 +44,9 @@ const formData = ref({
 const formStatus = ref<FormStatus>(statusWarning);
 
 const formRef = ref<HTMLFormElement>();
+
+// Custom formatter for donations
+const formatter = currencyNumberFormatter;
 
 const reset = () => {
   formStatus.value = statusWarning;
@@ -98,6 +102,7 @@ const synChange = () => {
           v-model="formData.gender"
         >
           <SynVueRadio value="">invalid</SynVueRadio>
+          <SynVueRadio value="" readonly>invalid (readonly)</SynVueRadio>
           <SynVueRadio value="f">Female</SynVueRadio>
           <SynVueRadio value="m">Male</SynVueRadio>
           <SynVueRadio value="other">Other</SynVueRadio>
@@ -124,6 +129,27 @@ const synChange = () => {
         </SynVueSelect>
       </SynVueValidate>
 
+      <SynVueValidate variant="inline">
+        <SynVueSelect
+          id="select-previous-roles"
+          label="Previous roles"
+          name="previousRoles"
+          multiple
+          readonly
+          required
+          v-model="formData.previousRoles"
+        >
+          <SynVueOption value="">---</SynVueOption>
+          <SynVueOptgroup label="Developers">
+            <SynVueOption value="backend">Backend Developer</SynVueOption>
+            <SynVueOption value="frontend">Frontend Developer</SynVueOption>
+          </SynVueOptgroup>
+          <SynVueOptgroup label="Other">
+            <SynVueOption value="lead">Team Lead</SynVueOption>
+            <SynVueOption value="other">Other (please specify in comment section below)</SynVueOption>
+          </SynVueOptgroup>
+        </SynVueSelect>
+      </SynVueValidate>
     
       <SynVueValidate variant="inline">
         <SynVueInput
@@ -168,7 +194,22 @@ const synChange = () => {
           name="nationality"
           required
           v-model="formData.nationality"
-          ref="nationalityRef"
+          :getOption="highlightOptionRenderer"
+        >
+          <SynVueOption v-for="nationality in nationalities" :key="nationality">
+            {{ nationality }}
+          </SynVueOption>
+        </SynVueCombobox>
+      </SynVueValidate>
+
+      <SynVueValidate variant="inline" on="live">
+        <SynVueCombobox
+          id="input-previous-nationality"
+          label="Previous Nationality"
+          name="previousNationality"
+          readonly
+          required
+          v-model="formData.previousNationality"
           :getOption="highlightOptionRenderer"
         >
           <SynVueOption v-for="nationality in nationalities" :key="nationality">
@@ -284,6 +325,23 @@ const synChange = () => {
           </div>
         </SynVueRange>
       </SynVueValidate>
+
+      <SynVueRange
+        id="donations"
+        label="I would donate between"
+        :max="6000"
+        :min="0"
+        name="donations"
+        :readonly="parseInt(formData.happiness!, 10) <= 5"
+        v-model="formData.donations"
+        restrict-movement
+        :tooltipFormatter="(value: number) => formatter.format(value)"
+      >
+        <nav slot="ticks">
+          <SynVueRangeTick>0 €</SynVueRangeTick>
+          <SynVueRangeTick>6.000 €</SynVueRangeTick>
+        </nav>
+      </SynVueRange>
     </DemoFieldset>
     <!-- /.Happiness -->
 

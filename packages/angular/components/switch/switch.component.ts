@@ -154,6 +154,19 @@ export class SynSwitchComponent {
   }
 
   /**
+   * Sets the switch to a readonly state.
+   */
+  @Input()
+  set readonly(v: '' | SynSwitch['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
+  }
+  get readonly(): SynSwitch['readonly'] {
+    return this.nativeElement.readonly;
+  }
+
+  /**
    * Draws the switch in a checked state.
    */
   @Input()

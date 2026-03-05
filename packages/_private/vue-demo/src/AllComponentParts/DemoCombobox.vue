@@ -40,7 +40,7 @@ onMounted(async () => {
   </form>
 
   <SynVueCombobox data-testid="combobox-632" label="Keyboard Interaction test #632" :value="cb632Value"
-    @syn-change="(e) => cb632Value = ((e.target as SynCombobox).value)">
+    @syn-change="(e) => cb632Value = ((e.target as SynCombobox).value.toString())">
     <SynVueOption value="option-1">Lorem</SynVueOption>
     <SynVueOption value="option-2">ipsum</SynVueOption>
     <SynVueOption value="option-3">dolor</SynVueOption>
@@ -104,5 +104,16 @@ onMounted(async () => {
     :value="0"
   >
     <SynVueOption :value="0">Zero (numeric)</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueCombobox
+    data-testid="combobox-1172-readonly-combobox"
+    label="Readonly Combobox"
+    readonly
+    value="option-1"
+  >
+    <SynVueOption value="option-1">Option 1</SynVueOption>
+    <SynVueOption value="option-2">Option 2</SynVueOption>
+    <SynVueOption value="option-3">Option 3</SynVueOption>
   </SynVueCombobox>
 </template>

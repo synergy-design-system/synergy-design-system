@@ -66,6 +66,42 @@ Use the disabled attribute to disable the checkbox.
 
 ---
 
+## Readonly
+
+Add the readonly attribute to draw a read-only checkbox.
+
+```html
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
+>
+  <syn-checkbox name="a" value="a" readonly="" title="" size="medium" form=""
+    >Read only content</syn-checkbox
+  >
+  <syn-checkbox
+    name="b"
+    value="b"
+    readonly=""
+    indeterminate=""
+    title=""
+    size="medium"
+    form=""
+    >Read only content (indet)</syn-checkbox
+  >
+  <syn-checkbox
+    name="c"
+    value="c"
+    readonly=""
+    checked=""
+    title=""
+    size="medium"
+    form=""
+    >Read only content (checked)</syn-checkbox
+  >
+</div>
+```
+
+---
+
 ## Sizes
 
 Use the size attribute to change a checkbox’s size.

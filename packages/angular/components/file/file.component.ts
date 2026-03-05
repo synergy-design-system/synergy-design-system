@@ -210,6 +210,19 @@ If you need to display HTML, use the `help-text` slot instead.
   }
 
   /**
+   * Sets the file control to a readonly state.
+   */
+  @Input()
+  set readonly(v: '' | SynFile['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
+  }
+  get readonly(): SynFile['readonly'] {
+    return this.nativeElement.readonly;
+  }
+
+  /**
    * Draw the file control as a drop area
    */
   @Input()

@@ -1,17 +1,27 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
   :host {
     display: block;
   }
 
+  :host([data-user-invalid]) {
+    --syn-input-border-color: var(--syn-input-border-color-focus-error);
+    --syn-input-border-color-hover: var(--syn-input-border-color-focus-error);
+    --syn-color-primary-600: var(--syn-input-border-color-focus-error);
+    --syn-color-primary-900: var(--syn-color-error-900);
+    --syn-color-primary-950: var(--syn-color-error-950);
+    --syn-color-neutral-1000: var(--syn-input-border-color-focus-error);
+    --syn-interactive-emphasis-color: var(--syn-input-border-color-focus-error);
+    --syn-interactive-emphasis-color-hover: var(--syn-input-border-color-focus-error);
+    --syn-interactive-emphasis-color-active: var(--syn-input-border-color-focus-error);
+  }
+
   .form-control {
-    position: relative;
     border: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    position: relative;
   }
 
   .form-control__label {
@@ -24,14 +34,25 @@ export default css`
   }
 
   .visually-hidden {
-    position: absolute;
-    width: 1px;
+    border: 0;
+    /* stylelint-disable-next-line property-no-deprecated */
+    clip: rect(0, 0, 0, 0);
     height: 1px;
-    padding: 0;
     margin: -1px;
     overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+    padding: 0;
+    position: absolute;
     white-space: nowrap;
-    border: 0;
+    width: 1px;
+  }
+
+  .form-control-input {
+    display: flex;
+    flex-direction: column;
+    gap: var(--syn-spacing-x-small);
+  }
+
+  .form-control--has-help-text.form-control--radio-group .form-control__help-text {
+    margin-top: var(--syn-spacing-x-small);
   }
 `;

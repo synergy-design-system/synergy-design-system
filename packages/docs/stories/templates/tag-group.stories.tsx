@@ -392,8 +392,5 @@ export const TagGroupTablet = {
     controls: {
       exclude: ['default'],
     },
-    docs: {
-      disable: true,
-    },
   },
 };

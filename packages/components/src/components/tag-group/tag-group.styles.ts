@@ -3,7 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     --tag-group-item-gap: var(--syn-spacing-x-small);
-    --tag-group-label-gap: var(--syn-spacing-small);
+    --tag-group-label-gap: var(--syn-spacing-x-small);
     --tag-group-label-font: var(--syn-body-medium-semibold);
 
     display: block;
@@ -43,7 +43,7 @@ export default css`
 
   .tag-group--large {
     --tag-group-item-gap: var(--syn-spacing-small);
-    --tag-group-label-gap: var(--syn-spacing-medium);
+    --tag-group-label-gap: var(--syn-spacing-x-small);
     --tag-group-label-font: var(--syn-body-large-semibold);
   }
 `;

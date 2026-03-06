@@ -59,6 +59,7 @@ describe('<syn-combobox>', () => {
     expect(el.clearable).to.be.false;
     expect(el.open).to.be.false;
     expect(el.label).to.equal('');
+    expect(el.maxlength).to.be.undefined;
     expect(el.placement).to.equal('bottom');
     expect(el.helpText).to.equal('');
     expect(el.form).to.equal('');
@@ -369,7 +370,7 @@ describe('<syn-combobox>', () => {
       el.addEventListener('syn-input', handler);
 
       await clickOnElement(el);
-      await aTimeout(500);
+      await waitUntil(() => el.open === true);
       const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
 
       await clickOnElement(secondOption);
@@ -451,6 +452,25 @@ describe('<syn-combobox>', () => {
 
       expect(secondOption.selected).to.be.true;
     });
+
+    it('should limit the amount of input based on the maxlength attribute', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox maxlength="2">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-combobox>
+      `);
+
+      el.focus();
+      await sendKeys({ type: 'a' });
+      await sendKeys({ type: 'b' });
+      await sendKeys({ type: 'c' });
+      el.blur();
+      await el.updateComplete;
+
+      expect(el.value).to.equal('ab');
+    });
   });
 
   describe('keyboard handling', () => {
@@ -467,7 +487,7 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
       await sendKeys({ press: 'ArrowDown' });
       await el.updateComplete;
-      await aTimeout(500);
+      await waitUntil(() => el.open === true);
 
       const firstOption = el.querySelectorAll<SynOption>('syn-option')[0];
 
@@ -495,7 +515,7 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
       await sendKeys({ press: 'ArrowUp' });
       await el.updateComplete;
-      await aTimeout(500);
+      await waitUntil(() => el.open === true);
 
       const filteredOptions = el.querySelectorAll<SynOption>('syn-option');
       const lastOption = filteredOptions[filteredOptions.length - 1];

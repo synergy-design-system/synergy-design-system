@@ -370,7 +370,7 @@ describe('<syn-combobox>', () => {
       el.addEventListener('syn-input', handler);
 
       await clickOnElement(el);
-      await aTimeout(500);
+      await waitUntil(() => el.open === true);
       const secondOption = el.querySelectorAll<SynOption>('syn-option')[1];
 
       await clickOnElement(secondOption);
@@ -487,7 +487,7 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
       await sendKeys({ press: 'ArrowDown' });
       await el.updateComplete;
-      await aTimeout(500);
+      await waitUntil(() => el.open === true);
 
       const firstOption = el.querySelectorAll<SynOption>('syn-option')[0];
 
@@ -515,7 +515,7 @@ describe('<syn-combobox>', () => {
       await el.updateComplete;
       await sendKeys({ press: 'ArrowUp' });
       await el.updateComplete;
-      await aTimeout(500);
+      await waitUntil(() => el.open === true);
 
       const filteredOptions = el.querySelectorAll<SynOption>('syn-option');
       const lastOption = filteredOptions[filteredOptions.length - 1];

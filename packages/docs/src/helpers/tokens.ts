@@ -154,10 +154,6 @@ export const getRawValueFromToken = (token: string, parentElement?: HTMLElement)
   return getRawValueFromStyleProperty(token, finalElement as HTMLElement);
 };
 
-// token.toLowerCase() syncolordatamagenta100 
-// category: syncolorcolordatamagenta
-
-
 /**
  * Get all tokens from a category as array of key value pairs
  * @param category The category to search for

@@ -18,6 +18,8 @@ jobs:
           install-command: 'PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm install'
       - name: Check for uncommitted changes
         run: git diff --exit-code
+      - name: Temporary release check
+        run: pnpm changeset version; git diff; exit 1
 
   # Check for formatting issues
   format-check:

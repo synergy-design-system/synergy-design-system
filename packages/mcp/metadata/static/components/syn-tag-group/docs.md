@@ -237,7 +237,7 @@ Use the size attribute to change a tag group’s size.
 
 ## Label Alignment
 
-Change the label alignment to horizontal by using the horizontal alignment attribute.
+Use the label-position attribute to change the position of the label. Use 'top' to place the label above the tags, or 'start' to place it to the begin of the tag group.
 
 ```html
 <syn-tag-group label="This is a label" label-position="start" size="medium">

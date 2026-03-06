@@ -2735,7 +2735,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Change the label alignment to horizontal by using the horizontal alignment attribute.",
+          "value": "Use the label-position attribute to change the position of the label. Use 'top' to place the label above the tags, or 'start' to place it to the begin of the tag group.",
           "type": "text"
         }
       }

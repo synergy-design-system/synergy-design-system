@@ -704,6 +704,91 @@ describe('<syn-validate>', () => {
       }); // Element type (SynInput or HTMLInputElement)
     }); // End test #713
 
+    describe('#851: customValidationMessage should have precedence over internal validationMessage', () => {
+      it('Should prioritize customValidationMessage when both customValidationMessage and internal validationMessage are set', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate eager variant="inline" custom-validation-message="Custom priority message">
+            <syn-input type="email" value="invalid-email"></syn-input>
+          </syn-validate>
+        `);
+
+        const input = el.querySelector('syn-input')!;
+
+        // Trigger validation to ensure internal validation would be set
+        input.focus();
+        input.blur();
+        await el.updateComplete;
+
+        // customValidationMessage should be set
+        expect(el.customValidationMessage).to.equal('Custom priority message');
+
+        // The public validationMessage should return the custom message (precedence)
+        expect(el.validationMessage).to.equal('Custom priority message');
+
+        // The rendered message should show the custom message
+        const alert = el.shadowRoot!.querySelector('syn-alert');
+        expect(alert).to.exist;
+        expect(alert!.textContent.trim()).to.equal('Custom priority message');
+      }); // Test for precedence of customValidationMessage over internal validationMessage
+
+      it('Should fall back to internal validationMessage when customValidationMessage is empty', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate eager variant="inline">
+            <syn-input type="email" value="invalid-email"></syn-input>
+          </syn-validate>
+        `);
+
+        const input = el.querySelector('syn-input')!;
+
+        // Trigger validation to set internal validationMessage
+        input.focus();
+        input.blur();
+        await el.updateComplete;
+
+        // customValidationMessage should be empty
+        expect(el.customValidationMessage).to.equal('');
+
+        // The public validationMessage should fall back to browser validation
+        expect(el.validationMessage).to.include('email address');
+
+        // The rendered message should use internal validationMessage
+        const alert = el.shadowRoot!.querySelector('syn-alert');
+        expect(alert).to.exist;
+        expect(alert!.textContent.trim()).to.include('email address');
+      }); // Test for fallback when customValidationMessage is empty
+
+      it('Should update displayed message when customValidationMessage changes', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate eager variant="inline" custom-validation-message="Initial message">
+            <syn-input type="email" value="invalid-email"></syn-input>
+          </syn-validate>
+        `);
+
+        // Initially should show custom message
+        expect(el.validationMessage).to.equal('Initial message');
+        let alert = el.shadowRoot!.querySelector('syn-alert');
+        expect(alert!.textContent.trim()).to.equal('Initial message');
+
+        // Change customValidationMessage
+        el.customValidationMessage = 'Updated message';
+        await el.updateComplete;
+
+        // Should show updated custom message
+        expect(el.validationMessage).to.equal('Updated message');
+        alert = el.shadowRoot!.querySelector('syn-alert');
+        expect(alert!.textContent.trim()).to.equal('Updated message');
+
+        // Clear customValidationMessage - should fall back to browser validation
+        el.customValidationMessage = '';
+        await el.updateComplete;
+
+        // Should fall back to internal validation message
+        expect(el.validationMessage).to.include('email address');
+        alert = el.shadowRoot!.querySelector('syn-alert');
+        expect(alert!.textContent.trim()).to.include('email address');
+      }); // Test for dynamic changes to customValidationMessage
+    }); // End test #851
+
     describe('#717: disabled and readonly should trigger validation when changed', () => {
       it('should be invalid on mount, but not show the error message', async () => {
         const el = await fixture<SynValidate>(html`

@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.6.2
+
+### Patch Changes
+
+- [#1214](https://github.com/synergy-design-system/synergy-design-system/pull/1214) [`01c5e9c`](https://github.com/synergy-design-system/synergy-design-system/commit/01c5e9cc231c6bcc260cedc2f5d5713cf71ea254) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  fix: 🐛 Angular: `<syn-validate>` does not work when dynamically added to the DOM (#851)
+
+  This release fixes an issue that made `<syn-validate>` ignore its set `customValidationMessage` when the component gets dynamically added to the DOM in Angular. It does so by preferring the provided `customValidationMessage` over of the internally available `validationMessage`, which could be empty under certain conditions.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.6.2
+
 ## 3.6.1
 
 ### Patch Changes

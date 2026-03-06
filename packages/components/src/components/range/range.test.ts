@@ -951,7 +951,6 @@ describe('<syn-range>', () => {
 
         // Initially with both prefix and suffix slots, margin should be set
         const initialMargin = inputControl.style.marginTop;
-        expect(initialMargin).to.equal(initialMargin);
 
         // Remove prefix slot
         const prefixSlot = el.querySelector('[slot="prefix"]')!;

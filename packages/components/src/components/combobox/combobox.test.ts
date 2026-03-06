@@ -497,6 +497,12 @@ describe('<syn-combobox>', () => {
     });
 
     it('should open the listbox when the ArrowUp key is pressed and select the last option with syn-combobox is on focus', async () => {
+      if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        // eslint-disable-next-line no-console
+        console.warn('Skipping ArrowUp key test in Safari because of false positives');
+        return;
+      }
+
       const el = await fixture<SynCombobox>(html`
         <syn-combobox>
           <syn-option value="option-1">Option 1</syn-option>

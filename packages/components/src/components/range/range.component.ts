@@ -163,6 +163,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
    */
   @property({ attribute: false }) tooltipFormatter: (value: number) => string;
 
+  @query('.input__control') inputControl: HTMLInputElement;
+
   @query('.input__wrapper') baseDiv: HTMLDivElement;
 
   @query('.active-track') activeTrack: HTMLDivElement;
@@ -700,31 +702,58 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.formControlController.emitInvalidEvent(event);
   }
 
-  #updatePrefixSuffixPosition(height?: number) {
+  /**
+   * Updates the position of the prefix and suffix based on the position of the track.
+   * @param height The height of the ticks container or a bound slotchange event.
+   */
+  #updatePrefixSuffixPosition(height?: number | Event) {
     const hasTicksSlot = this.hasSlotController.test('ticks');
     const hasPrefixSlot = this.hasSlotController.test('prefix');
     const hasSuffixSlot = this.hasSlotController.test('suffix');
+    const prefix = hasPrefixSlot ? this.shadowRoot?.querySelector('.input__prefix') as HTMLElement : null;
+    const suffix = hasSuffixSlot ? this.shadowRoot?.querySelector('.input__suffix') as HTMLElement : null;
+    const trackWrapper = this.shadowRoot?.querySelector('.track__wrapper') as HTMLElement | null;
 
-    if (!hasTicksSlot) {
+    if (!hasTicksSlot || !trackWrapper) {
+      if (prefix) prefix.style.transform = '';
+      if (suffix) suffix.style.transform = '';
+      this.inputControl.style.marginTop = '';
       return;
     }
 
-    let ticksHeight = height || this.shadowRoot?.querySelector('.ticks')?.clientHeight;
+    let ticksHeight: number | undefined;
+    if (height instanceof Event) {
+      ticksHeight = this.ticks.getBoundingClientRect().height;
+    } else {
+      ticksHeight = height || this.ticks.getBoundingClientRect().height;
+    }
+
     if (ticksHeight) {
       // Add two pixels as the 1px margin on top and bottom are not included in the clientHeight
       ticksHeight += 2;
 
-      ticksHeight /= 2;
+      // #1143: When there are ticks, the input control needs to be moved down to prevent overlap with the label.
+      const containerMarginTop = (hasPrefixSlot || hasSuffixSlot) ? ticksHeight / 2 : 0;
+      this.inputControl.style.marginTop = containerMarginTop ? `${containerMarginTop}px` : '';
+    }
 
-      if (hasPrefixSlot) {
-        const prefix = this.shadowRoot?.querySelector('.input__prefix') as HTMLElement;
-        prefix.style.transform = `translateY(-${ticksHeight}px)`;
-      }
+    const trackRect = trackWrapper.getBoundingClientRect();
+    const trackCenter = trackRect.top + (trackRect.height / 2);
 
-      if (hasSuffixSlot) {
-        const suffix = this.shadowRoot?.querySelector('.input__suffix') as HTMLElement;
-        suffix.style.transform = `translateY(-${ticksHeight}px)`;
-      }
+    if (prefix) {
+      prefix.style.transform = '';
+      const prefixRect = prefix.getBoundingClientRect();
+      const prefixCenter = prefixRect.top + (prefixRect.height / 2);
+      const offset = trackCenter - prefixCenter;
+      prefix.style.transform = `translateY(${offset}px)`;
+    }
+
+    if (suffix) {
+      suffix.style.transform = '';
+      const suffixRect = suffix.getBoundingClientRect();
+      const suffixCenter = suffixRect.top + (suffixRect.height / 2);
+      const offset = trackCenter - suffixCenter;
+      suffix.style.transform = `translateY(${offset}px)`;
     }
   }
 
@@ -836,7 +865,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
         <div class="base input__control" part="base">
           <span part="prefix" class="input__prefix">
-            <slot name="prefix"></slot>
+            <slot name="prefix" @slotchange=${this.#updatePrefixSuffixPosition}></slot>
           </span>
 
           <div class="input__wrapper" part="input-wrapper">
@@ -866,12 +895,12 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
               @pointerdown=${this.#onClickTrackItem}
               role="presentation"
             >
-              <slot name="ticks"></slot>
+              <slot name="ticks" @slotchange=${this.#updatePrefixSuffixPosition}></slot>
             </div>
           </div>
 
           <span part="suffix" class="input__suffix">
-            <slot name="suffix"></slot>
+            <slot name="suffix" @slotchange=${this.#updatePrefixSuffixPosition}></slot>
           </span>
         </div>
 

@@ -344,12 +344,6 @@ describe('<syn-range>', () => {
     });
 
     it('should allow to set more than one value', async () => {
-      if (navigator.userAgent.includes('Firefox')) {
-        // eslint-disable-next-line no-console
-        console.warn('Skipping test in Firefox as drag and drop does not work right');
-        return;
-      }
-
       await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range value="20 80"></syn-range>`);
       const changeHandler = sinon.spy();
@@ -935,6 +929,112 @@ describe('<syn-range>', () => {
       expect(el.shadowRoot!.activeElement).to.equal(thumbEnd);
     });
   });
+
+  describe('regression tests', () => {
+    describe('#1143: Label and content should have correct margins when slots are dynamically changed', () => {
+      it('should correctly update inputControl margin when prefix/suffix slots are dynamically changed with ticks present', async () => {
+        const el = await fixture<SynRange>(html`
+          <syn-range label="Test Range">
+            <span slot="prefix">Prefix Text</span>
+            <span slot="suffix">Suffix Text</span>
+            <nav slot="ticks">
+              <syn-range-tick>0</syn-range-tick>
+              <syn-range-tick>50</syn-range-tick>
+              <syn-range-tick>100</syn-range-tick>
+            </nav>
+          </syn-range>
+        `);
+
+        await el.updateComplete;
+
+        const inputControl = el.shadowRoot!.querySelector('.input__control') as HTMLElement;
+
+        // Initially with both prefix and suffix slots, margin should be set
+        const initialMargin = inputControl.style.marginTop;
+
+        // Remove prefix slot
+        const prefixSlot = el.querySelector('[slot="prefix"]')!;
+        prefixSlot.remove();
+        await el.updateComplete;
+
+        // Margin should still be set (suffix still exists)
+        const afterPrefixRemoval = inputControl.style.marginTop;
+        expect(afterPrefixRemoval).to.equal(initialMargin);
+
+        // Remove suffix slot (no prefix or suffix slots remaining)
+        const suffixSlot = el.querySelector('[slot="suffix"]')!;
+        suffixSlot.remove();
+        await el.updateComplete;
+
+        // Margin should be reset when no prefix/suffix slots exist
+        const afterSuffixRemoval = inputControl.style.marginTop;
+        expect(afterSuffixRemoval).to.equal('');
+
+        // Add prefix slot back
+        const newPrefixSlot = document.createElement('span');
+        newPrefixSlot.setAttribute('slot', 'prefix');
+        newPrefixSlot.textContent = 'New Prefix';
+        el.appendChild(newPrefixSlot);
+        await el.updateComplete;
+
+        // Margin should be set again
+        const afterPrefixAdd = inputControl.style.marginTop;
+        expect(afterPrefixAdd).to.not.equal('');
+
+        // Add suffix slot back
+        const newSuffixSlot = document.createElement('span');
+        newSuffixSlot.setAttribute('slot', 'suffix');
+        newSuffixSlot.textContent = 'New Suffix';
+        el.appendChild(newSuffixSlot);
+        await el.updateComplete;
+
+        // Margin should still be set correctly
+        const afterSuffixAdd = inputControl.style.marginTop;
+        expect(afterSuffixAdd).to.not.equal('');
+      });
+
+      it('should update prefix positioning when the slot contains a syn-input', async () => {
+        const el = await fixture<SynRange>(html`
+          <syn-range label="Test Range">
+            <span slot="prefix">Prefix Text</span>
+            <nav slot="ticks">
+              <syn-range-tick>0</syn-range-tick>
+              <syn-range-tick>50</syn-range-tick>
+              <syn-range-tick>100</syn-range-tick>
+            </nav>
+          </syn-range>
+        `);
+
+        await el.updateComplete;
+
+        const prefixContainer = el.shadowRoot!.querySelector('.input__prefix') as HTMLElement;
+        const trackWrapper = el.shadowRoot!.querySelector('.track__wrapper') as HTMLElement;
+        const initialPrefixSlot = el.querySelector('[slot="prefix"]') as HTMLElement;
+        const initialPrefixHeight = initialPrefixSlot.getBoundingClientRect().height;
+
+        const prefixSlot = el.querySelector('[slot="prefix"]')!;
+        prefixSlot.remove();
+
+        const input = document.createElement('syn-input');
+        input.setAttribute('slot', 'prefix');
+        input.setAttribute('value', 'Large');
+        input.style.height = '48px';
+        el.appendChild(input);
+
+        await el.updateComplete;
+
+        const updatedPrefixSlot = el.querySelector('[slot="prefix"]') as HTMLElement;
+        const updatedPrefixHeight = updatedPrefixSlot.getBoundingClientRect().height;
+        expect(updatedPrefixHeight).to.not.equal(initialPrefixHeight);
+
+        const trackRect = trackWrapper.getBoundingClientRect();
+        const prefixRect = prefixContainer.getBoundingClientRect();
+        const trackCenter = trackRect.top + (trackRect.height / 2);
+        const prefixCenter = prefixRect.top + (prefixRect.height / 2);
+        expect(Math.abs(trackCenter - prefixCenter)).to.be.lessThan(1);
+      });
+    }); // #1143
+  }); // Regression tests
 
   runFormControlBaseTests('syn-range');
 });

@@ -133,6 +133,7 @@ If you need different icon groups or a separator between them, add a <syn-divide
       style="
         --spacing: var(--syn-spacing-x-small);
         align-self: center;
+        display: flex;
         height: var(--metanavigation-item-size);
       "
     ></syn-divider>
@@ -149,6 +150,7 @@ If you need different icon groups or a separator between them, add a <syn-divide
       style="
         --spacing: var(--syn-spacing-x-small);
         align-self: center;
+        display: flex;
         height: var(--metanavigation-item-size);
       "
     ></syn-divider>

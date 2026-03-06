@@ -158,7 +158,7 @@ export default class SynHeader extends SynergyElement {
     // - align-self: center makes sure the divider is centered in the meta navigation,
     // - height: var(--metanavigation-item-size) makes sure the divider has the same height as the other items in the meta navigation.
     // We use this approach as it is faster than 3 separate style changes and we can be sure to not override any other styles that might be set on the divider.
-    const cssText = '--spacing: var(--syn-spacing-x-small); align-self: center; height: var(--metanavigation-item-size);';
+    const cssText = '--spacing: var(--syn-spacing-x-small); align-self: center; display: flex; height: var(--metanavigation-item-size);';
 
     foundDividers
       .forEach(divider => {

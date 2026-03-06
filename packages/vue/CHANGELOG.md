@@ -1,5 +1,21 @@
 # @synergy-design-system/vue
 
+## 3.7.0
+
+### Minor Changes
+
+- [#1193](https://github.com/synergy-design-system/synergy-design-system/pull/1193) [`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ Add new component `<syn-tag-group>` (#1152)
+
+  Adds a new component `<syn-tag-group>`, including templates how to use this component.
+
+### Patch Changes
+
+- Updated dependencies [[`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302)]:
+  - @synergy-design-system/components@3.7.0
+  - @synergy-design-system/tokens@3.7.0
+
 ## 3.6.2
 
 ### Patch Changes

@@ -17,6 +17,10 @@ const COMPONENT_UPDATE_ORDER: Partial<Record<ComponentNamesWithDefaultValues, {
     dependsOn: ['SynRadio'],
     priority: 10,
   },
+  SynTagGroup: {
+    dependsOn: ['SynTag'],
+    priority: 10,
+  },
 } as const;
 
 /**

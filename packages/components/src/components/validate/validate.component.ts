@@ -283,6 +283,16 @@ export default class SynValidate extends SynergyElement {
     });
   }
 
+  /**
+   * #851: Get the validation message that should be displayed to the user.
+   * Prioritizes customValidationMessage over the internal validationMessage state.
+   * This is needed because frameworks may clear the internal validation message on
+   * dynamically rendered elements, but the customValidationMessage is still valid.
+   */
+  private getDisplayValidationMessage(): string {
+    return this.customValidationMessage || this.validationMessage;
+  }
+
   private setValidationMessage(input: HTMLInputElement) {
     const { customValidationMessage } = this;
     const validationMessage = customValidationMessage || input.validationMessage;
@@ -514,10 +524,11 @@ export default class SynValidate extends SynergyElement {
     // we need to update the content and show or hide it based on the validation state and focus state.
     // We have to do this manually, as there is a problem when updating open and content at the same time.
     // The order is critical: fill before showing, don´t update the content during hide.
-    const shouldShowTooltip = !this.isValid && this.validationMessage && this.hasFocus;
+    const displayMessage = this.getDisplayValidationMessage();
+    const shouldShowTooltip = !this.isValid && displayMessage && this.hasFocus;
 
     if (shouldShowTooltip) {
-      tooltip.content = this.validationMessage;
+      tooltip.content = displayMessage;
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
       tooltip.show();
     } else {
@@ -527,7 +538,9 @@ export default class SynValidate extends SynergyElement {
   }
 
   private renderInlineValidation() {
-    if (this.variant !== 'inline' || !this.validationMessage) {
+    const messageToShow = this.getDisplayValidationMessage();
+
+    if (this.variant !== 'inline' || !messageToShow) {
       return '';
     }
 
@@ -543,7 +556,7 @@ export default class SynValidate extends SynergyElement {
           ? html`<syn-icon slot="icon" name="status-error" library="system"></syn-icon>`
           : ''
         }
-        ${this.validationMessage}
+        ${messageToShow}
       </syn-alert>
     `;
   }
@@ -555,7 +568,7 @@ export default class SynValidate extends SynergyElement {
         <syn-tooltip
           .anchor=${getActualInputElement(this.getInput()) as Element ?? undefined}
           exportparts="base:tooltip__base,base__popup:tooltip__popup,base__arrow:tooltip__arrow,body:tooltip__body"
-          .open=${this.eager ? !this.isValid && this.validationMessage.length > 0 : false}
+          .open=${this.eager ? !this.isValid && this.getDisplayValidationMessage().length > 0 : false}
           part="tooltip"
           placement="bottom"
           trigger="manual"

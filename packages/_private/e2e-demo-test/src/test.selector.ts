@@ -105,6 +105,26 @@ const AllComponentSelectors = {
   tabGroupLink: '#tab-TabGroup',
 
   // Validate
+
+  // #851 syn-validate in dynamic tabs
+  validate851AddTabButton: '#tab-content-Demo851SynValidateInDynamicTabs syn-button[data-testid="validate851-add-tab-button"]',
+  validate851Content: '#tab-content-Demo851SynValidateInDynamicTabs',
+  validate851Link: '#tab-Demo851SynValidateInDynamicTabs',
+  validate851Select1: '#tab-content-Demo851SynValidateInDynamicTabs syn-select[data-testid="validate851-select-1"]',
+  validate851Select2: '#tab-content-Demo851SynValidateInDynamicTabs syn-select[data-testid="validate851-select-2"]',
+  validate851Select3: '#tab-content-Demo851SynValidateInDynamicTabs syn-select[data-testid="validate851-select-3"]',
+  validate851Select4: '#tab-content-Demo851SynValidateInDynamicTabs syn-select[data-testid="validate851-select-4"]',
+  validate851Tab1: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab[data-testid="validate851-tab-1"]',
+  validate851Tab2: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab[data-testid="validate851-tab-2"]',
+  validate851Tab3: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab[data-testid="validate851-tab-3"]',
+  validate851TabGroup: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab-group[data-testid="validate851-tab-group"]',
+  validate851TabPanel1: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab-panel[data-testid="validate851-tab-panel-1"]',
+  validate851TabPanel2: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab-panel[data-testid="validate851-tab-panel-2"]',
+  validate851TabPanel3: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab-panel[data-testid="validate851-tab-panel-3"]',
+  validate851Validate1: '#tab-content-Demo851SynValidateInDynamicTabs syn-validate[data-testid="validate851-validate-1"]',
+  validate851Validate2: '#tab-content-Demo851SynValidateInDynamicTabs syn-validate[data-testid="validate851-validate-2"]',
+  validate851Validate3: '#tab-content-Demo851SynValidateInDynamicTabs syn-validate[data-testid="validate851-validate-3"]',
+
   validate915: '#tab-content-Validate syn-validate[data-testid="validate-915"]',
   validateContent: '#tab-content-Validate',
   validateLink: '#tab-Validate',

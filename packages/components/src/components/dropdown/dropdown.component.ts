@@ -14,7 +14,6 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynPopup from '../popup/popup.component.js';
 import styles from './dropdown.styles.js';
-import customStyles from './dropdown.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynSelectEvent } from '../../events/syn-select.js';
 import type SynButton from '../button/button.js';
@@ -46,7 +45,7 @@ import type SynMenu from '../menu/menu.js';
  * @animation dropdown.hide - The animation to use when hiding the dropdown.
  */
 export default class SynDropdown extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'syn-popup': SynPopup };
 
   @query('.dropdown') popup: SynPopup;

@@ -136,6 +136,11 @@ and `hide()` methods and this attribute will reflect the combobox's open state.
   label?: SynCombobox['label'];
 
   /**
+   * The maximum length of input that will be considered valid.
+   */
+  maxlength?: SynCombobox['maxlength'];
+
+  /**
 * The preferred placement of the combobox's menu.
 Note that the actual placement may vary as needed to keep the listbox inside of the viewport.
  */

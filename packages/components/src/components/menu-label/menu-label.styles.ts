@@ -1,21 +1,31 @@
-/* eslint-disable */
 import { css } from 'lit';
+
 export default css`
-	/* stylelint-disable */
   :host {
+    --display-divider: block;
+
     display: block;
   }
 
+  .menu-label__divider {
+    --spacing: 0;
+
+    display: var(--display-divider);
+    margin-bottom: var(--syn-spacing-x-small);
+  }
+
   .menu-label {
+    color: var(--syn-input-color);
     display: inline-block;
     font-family: var(--syn-font-sans);
-    font-size: var(--syn-font-size-small);
+    font-size: var(--syn-font-size-medium);
     font-weight: var(--syn-font-weight-semibold);
-    line-height: var(--syn-line-height-normal);
     letter-spacing: var(--syn-letter-spacing-normal);
-    color: var(--syn-color-neutral-500);
-    padding: var(--syn-spacing-2x-small) var(--syn-spacing-x-large);
-    user-select: none;
+    line-height: var(--syn-line-height-normal);
+    padding: var(--syn-spacing-small) var(--syn-spacing-medium);
+
+    /* stylelint-disable-next-line property-no-vendor-prefix */
     -webkit-user-select: none;
+    user-select: none;
   }
 `;

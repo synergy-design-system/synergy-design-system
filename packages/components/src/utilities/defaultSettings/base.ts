@@ -28,6 +28,7 @@ import type SynRange from "../../components/range/range.js";
 import type SynSelect from "../../components/select/select.js";
 import type SynSideNav from "../../components/side-nav/side-nav.js";
 import type SynSwitch from "../../components/switch/switch.js";
+import type SynTagGroup from "../../components/tag-group/tag-group.js";
 import type SynTag from "../../components/tag/tag.js";
 import type SynTextarea from "../../components/textarea/textarea.js";
 import type SynValidate from "../../components/validate/validate.js";
@@ -87,6 +88,7 @@ export type ComponentNamesWithDefaultValues =
   | "SynSideNav"
   | "SynSwitch"
   | "SynTag"
+  | "SynTagGroup"
   | "SynTextarea"
   | "SynValidate";
 
@@ -129,6 +131,7 @@ export type SynDefaultSettings = {
     SynSelect?: AllowedValueForDefaultSetting<SynSelect, "size">;
     SynSwitch?: AllowedValueForDefaultSetting<SynSwitch, "size">;
     SynTag?: AllowedValueForDefaultSetting<SynTag, "size">;
+    SynTagGroup?: AllowedValueForDefaultSetting<SynTagGroup, "size">;
     SynTextarea?: AllowedValueForDefaultSetting<SynTextarea, "size">;
   };
   variant: {
@@ -173,6 +176,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynSelect: "medium",
     SynSwitch: "medium",
     SynTag: "medium",
+    SynTagGroup: "medium",
     SynTextarea: "medium",
   },
   variant: {
@@ -215,6 +219,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynSelect: "medium",
     SynSwitch: "medium",
     SynTag: "medium",
+    SynTagGroup: "medium",
     SynTextarea: "medium",
   },
   variant: {

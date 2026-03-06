@@ -1,5 +1,23 @@
 # @synergy-design-system/vue
 
+## 3.8.0
+
+### Minor Changes
+
+- [#1216](https://github.com/synergy-design-system/synergy-design-system/pull/1216) [`fa7ebf8`](https://github.com/synergy-design-system/synergy-design-system/commit/fa7ebf8ca9aef4e246f75688711c7dbb24cb25cb) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ `<syn-combobox>` should support `maxlength` attribute (#1184)
+
+  This release adds the ability to set a maximal input length for `<syn-combobox>` via `<syn-combobox maxlength="5">`.
+  This provides the ability to set the maximal amount of free text input for the comboboxes input field.
+  It still allows to use options from the list of available options and works as a restriction for free text only.
+
+### Patch Changes
+
+- Updated dependencies [[`fa7ebf8`](https://github.com/synergy-design-system/synergy-design-system/commit/fa7ebf8ca9aef4e246f75688711c7dbb24cb25cb)]:
+  - @synergy-design-system/components@3.8.0
+  - @synergy-design-system/tokens@3.8.0
+
 ## 3.7.0
 
 ### Minor Changes

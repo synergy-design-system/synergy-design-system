@@ -7,7 +7,7 @@ import { getTokensByCategory, sortTokens } from './tokens.js';
  * @returns Returns the complete color palette
  */
 export const getColorAsPalette = (palette: string, useFullTokenName = false) => Object.fromEntries(getTokensByCategory(`color${palette}`, useFullTokenName)
-  .sort((a, b) => sortTokens(a, b, { replaceString: `syncolor${palette}` })));
+  .sort((a, b) => sortTokens(a, b, { replaceString: `syncolor${palette.toLowerCase()}` })));
 
 /**
  * Get all palette members between a given weight

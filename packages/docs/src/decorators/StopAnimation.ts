@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import type { StoryFn } from '@storybook/web-components-vite';
+import type { Decorator } from '@storybook/web-components-vite';
 import isChromatic from 'chromatic/isChromatic';
 
 /**
@@ -8,7 +8,7 @@ import isChromatic from 'chromatic/isChromatic';
  * @param rest Optional parameters
  * @returns TemplateResult
  */
-export const stopAnimation = (Story: StoryFn, ...rest: Parameters<StoryFn>) => {
+export const stopAnimation: Decorator = (story, context) => {
   // Disable animations when running chromatic.
   // Can be tested by appending a get parameter chromatic=true / false
   if (isChromatic()) {
@@ -28,10 +28,10 @@ export const stopAnimation = (Story: StoryFn, ...rest: Parameters<StoryFn>) => {
         --speed: -1s !important;
       }
       </style>
-      ${Story(...rest)}
+      ${story(context)}
     `;
   }
 
   // Return the unaltered story
-  return Story(...rest);
+  return story(context.args);
 };

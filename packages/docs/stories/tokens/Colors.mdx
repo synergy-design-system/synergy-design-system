@@ -26,17 +26,22 @@ import {
 <MultiLineDescription value={docsTokens?.tokens?.color?.description?.value} />
 
 <TokensForThemes
-  themes={getThemesForComponent(['2018-light', '2018-dark', '2025-light', '2025-dark'], () => (
+  themes={getThemesForComponent(['2025-light', '2025-dark', '2018-light', '2018-dark'], () => (
     <table>
       <tbody>
         {[
           ['Neutral', getNeutralColorPalette(true)],
           ['Primary', getPrimaryColorPalette(true)],
+          ['Muted', getColorAsPalette('muted', true)],
           ['Accent', getAccentColorPalette(true)],
-          ['Critical', getCriticalColorPalette(true)],
           ['Error', getColorAsPalette('error', true)],
+          ['Critical', getCriticalColorPalette(true)],
           ['Warning', getColorAsPalette('warning', true)],
           ['Success', getColorAsPalette('success', true)],
+          ['Info', getColorAsPalette('info', true)],
+          ['Data/Magenta', getColorAsPalette('dataMagenta', true)],
+          ['Data/Teal', getColorAsPalette('dataTeal', true)],
+          ['Data/Purple', getColorAsPalette('dataPurple', true)],
         ].map(([title, palette]) => (
           <React.Fragment key={title}>
             <tr key={`${title}-header`}>

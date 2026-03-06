@@ -23,9 +23,12 @@ import {
 })
 export class SynNavItemRouterLinkDirective {
   constructor(router: Router, @Host() routerLink: RouterLink) {
+    // @ts-expect-error: We need to add some properties to the directive instance
     routerLink['isAnchorElement'] = true;
+    // @ts-expect-error: We need to add some properties to the directive instance
     routerLink['subscription'] = router.events.subscribe((s: Event) => {
       if (s instanceof NavigationEnd) {
+        // @ts-expect-error: We need to call the private updateHref method
         routerLink['updateHref']();
       }
     });

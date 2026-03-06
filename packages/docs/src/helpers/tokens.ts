@@ -154,6 +154,10 @@ export const getRawValueFromToken = (token: string, parentElement?: HTMLElement)
   return getRawValueFromStyleProperty(token, finalElement as HTMLElement);
 };
 
+// token.toLowerCase() syncolordatamagenta100 
+// category: syncolorcolordatamagenta
+
+
 /**
  * Get all tokens from a category as array of key value pairs
  * @param category The category to search for
@@ -161,7 +165,7 @@ export const getRawValueFromToken = (token: string, parentElement?: HTMLElement)
  * @returns Returns the complete tokens category
  */
 export const getTokensByCategory = (category: string, useFullTokenName = false): [string, string][] => Object.entries(tokens)
-  .filter(([token]) => token.toLowerCase().startsWith(`syn${category}`))
+  .filter(([token]) => token.toLowerCase().startsWith(`syn${category.toLocaleLowerCase()}`))
   .map(([token, value]) => [
     useFullTokenName ? token : token.toLowerCase().replace('syn', ''),
     value,

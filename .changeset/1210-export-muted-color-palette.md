@@ -5,4 +5,4 @@
 
 feat: ✨ tokens: export muted color palette (#1210)
 
-This release adds the muted color palette from Figma to the `@synergy-design-system/tokens` package.
+This release adds the muted color palette, as well as 3 new data color palettes from Figma to the `@synergy-design-system/tokens` package.

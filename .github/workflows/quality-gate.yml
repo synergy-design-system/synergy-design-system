@@ -19,6 +19,8 @@ jobs:
       - name: Check for uncommitted changes
         run: git diff --exit-code
       - name: Temporary release check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
         run: pnpm changeset version; git diff; exit 1
 
   # Check for formatting issues

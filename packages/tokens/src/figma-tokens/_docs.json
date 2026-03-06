@@ -2709,6 +2709,16 @@
           "type": "text"
         }
       },
+      "labels": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the tag-group an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
       "size": {
         "title": {
           "value": "Sizes",

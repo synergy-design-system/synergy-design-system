@@ -34,6 +34,42 @@ A tag group is used to display multiple tags that belong together, often represe
 
 ---
 
+## Labels
+
+Use the label attribute to give the tag-group an accessible label. For labels that contain HTML, use the label slot instead.
+
+```html
+<syn-tag-group label-position="top" size="medium">
+  <div slot="label">This is a label</div>
+  <syn-tag removable="" size="medium">
+    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
+    Option
+  </syn-tag>
+  <syn-tag removable="" size="medium">
+    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
+    Option
+  </syn-tag>
+  <syn-tag removable="" size="medium">
+    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
+    Option
+  </syn-tag>
+  <syn-tag removable="" size="medium">
+    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
+    Option
+  </syn-tag>
+  <syn-tag removable="" size="medium">
+    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
+    Option
+  </syn-tag>
+  <syn-tag removable="" size="medium">
+    <syn-icon name="wallpaper" aria-hidden="true" library="default"></syn-icon>
+    Option
+  </syn-tag>
+</syn-tag-group>
+```
+
+---
+
 ## Sizes
 
 Use the size attribute to change a tag group’s size.

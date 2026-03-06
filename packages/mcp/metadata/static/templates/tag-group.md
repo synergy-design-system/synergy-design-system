@@ -3,21 +3,9 @@
 ```html
 <div>
   <form class="filter-form">
-    <h1>Kapazitive Näherungssensoren</h1>
+    <h1>Capacitive proximity sensors</h1>
 
-    <syn-details size="small" summary="Filter ausblenden" open="">
-      <syn-icon
-        slot="expand-icon"
-        name="keyboard_arrow_down"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
-      <syn-icon
-        slot="collapse-icon"
-        name="keyboard_arrow_up"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-details size="small" summary="Hide filters" open="">
       <div class="filter-group">
         <syn-dropdown
           stay-open-on-select=""
@@ -31,39 +19,27 @@
             variant="outline"
             size="medium"
           >
-            Leitungsmaterial - 2
+            Housing
           </syn-button>
           <syn-menu id="filter-1" role="menu">
             <syn-menu-item
               type="checkbox"
-              checked=""
-              value="Option 1"
+              value="metric"
               role="menuitemcheckbox"
-              aria-checked="true"
+              aria-checked="false"
               aria-disabled="false"
               tabindex="0"
-              >Option 1</syn-menu-item
+              >metric</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              checked=""
-              value="Option 2"
-              role="menuitemcheckbox"
-              aria-checked="true"
-              aria-disabled="false"
-              tabindex="-1"
-              >Option 2</syn-menu-item
-            >
-
-            <syn-menu-item
-              type="checkbox"
-              value="Option 3"
+              value="rectangular"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >Option 3</syn-menu-item
+              >rectangular</syn-menu-item
             >
           </syn-menu>
         </syn-dropdown>
@@ -80,20 +56,47 @@
             variant="outline"
             size="medium"
           >
-            Leitungslänge - 4
+            Cable material - 1
           </syn-button>
           <syn-menu id="filter-2" role="menu">
             <syn-menu-item
               type="checkbox"
               checked=""
-              value="230 mm"
+              value="PUR"
               role="menuitemcheckbox"
               aria-checked="true"
               aria-disabled="false"
               tabindex="0"
-              >230 mm</syn-menu-item
+              >PUR</syn-menu-item
             >
 
+            <syn-menu-item
+              type="checkbox"
+              value="PVC"
+              role="menuitemcheckbox"
+              aria-checked="false"
+              aria-disabled="false"
+              tabindex="-1"
+              >PVC</syn-menu-item
+            >
+          </syn-menu>
+        </syn-dropdown>
+
+        <syn-dropdown
+          stay-open-on-select=""
+          sync="width"
+          placement="bottom-start"
+        >
+          <syn-button
+            slot="trigger"
+            caret=""
+            title=""
+            variant="outline"
+            size="medium"
+          >
+            Length of cable - 4
+          </syn-button>
+          <syn-menu id="filter-3" role="menu">
             <syn-menu-item
               type="checkbox"
               checked=""
@@ -101,7 +104,7 @@
               role="menuitemcheckbox"
               aria-checked="true"
               aria-disabled="false"
-              tabindex="-1"
+              tabindex="0"
               >0.2 m</syn-menu-item
             >
 
@@ -126,55 +129,26 @@
               tabindex="-1"
               >0.7 m</syn-menu-item
             >
-          </syn-menu>
-        </syn-dropdown>
-
-        <syn-dropdown
-          stay-open-on-select=""
-          sync="width"
-          placement="bottom-start"
-        >
-          <syn-button
-            slot="trigger"
-            caret=""
-            title=""
-            variant="outline"
-            size="medium"
-          >
-            Produktfamilie - 3
-          </syn-button>
-          <syn-menu id="filter-3" role="menu">
-            <syn-menu-item
-              type="checkbox"
-              checked=""
-              value="Option 1"
-              role="menuitemcheckbox"
-              aria-checked="true"
-              aria-disabled="false"
-              tabindex="0"
-              >Option 1</syn-menu-item
-            >
 
             <syn-menu-item
               type="checkbox"
               checked=""
-              value="Option 2"
+              value="0.23 m"
               role="menuitemcheckbox"
               aria-checked="true"
               aria-disabled="false"
               tabindex="-1"
-              >Option 2</syn-menu-item
+              >0.23 m</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              checked=""
-              value="Option 3"
+              value="2 m"
               role="menuitemcheckbox"
-              aria-checked="true"
+              aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >Option 3</syn-menu-item
+              >2 m</syn-menu-item
             >
           </syn-menu>
         </syn-dropdown>
@@ -191,37 +165,37 @@
             variant="outline"
             size="medium"
           >
-            Schaltausgang
+            Electrical wiring
           </syn-button>
           <syn-menu id="filter-4" role="menu">
             <syn-menu-item
               type="checkbox"
-              value="Option 1"
+              value="AC 2-wire"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="0"
-              >Option 1</syn-menu-item
+              >AC 2-wire</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              value="Option 2"
+              value="DC 3-wire"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >Option 2</syn-menu-item
+              >DC 3-wire</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              value="Option 3"
+              value="DC 4-wire"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >Option 3</syn-menu-item
+              >DC 4-wire</syn-menu-item
             >
           </syn-menu>
         </syn-dropdown>
@@ -238,37 +212,27 @@
             variant="outline"
             size="medium"
           >
-            Anschlussart
+            Switching output
           </syn-button>
           <syn-menu id="filter-5" role="menu">
             <syn-menu-item
               type="checkbox"
-              value="Option 1"
+              value="NPN"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="0"
-              >Option 1</syn-menu-item
+              >NPN</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              value="Option 2"
+              value="PNP"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >Option 2</syn-menu-item
-            >
-
-            <syn-menu-item
-              type="checkbox"
-              value="Option 3"
-              role="menuitemcheckbox"
-              aria-checked="false"
-              aria-disabled="false"
-              tabindex="-1"
-              >Option 3</syn-menu-item
+              >PNP</syn-menu-item
             >
           </syn-menu>
         </syn-dropdown>
@@ -285,27 +249,38 @@
             variant="outline"
             size="medium"
           >
-            Umgebungstemperatur Betrieb
+            Connection type - 1
           </syn-button>
           <syn-menu id="filter-6" role="menu">
             <syn-menu-item
               type="checkbox"
-              value="-25°C...80°C"
+              value="Cable, 2-wire"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="0"
-              >-25°C...80°C</syn-menu-item
+              >Cable, 2-wire</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              value="CQ"
+              checked=""
+              value="Cable, 3-wire"
+              role="menuitemcheckbox"
+              aria-checked="true"
+              aria-disabled="false"
+              tabindex="-1"
+              >Cable, 3-wire</syn-menu-item
+            >
+
+            <syn-menu-item
+              type="checkbox"
+              value="Cable, 4-wire"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >CQ</syn-menu-item
+              >Cable, 4-wire</syn-menu-item
             >
           </syn-menu>
         </syn-dropdown>
@@ -315,34 +290,32 @@
     <div class="filter-tags">
       <syn-tag-group
         label-position="start"
-        label="Leitungsmaterial"
+        label="Cable material"
         size="medium"
       >
-        <syn-tag removable="" size="medium"> Option 1 </syn-tag>
-
-        <syn-tag removable="" size="medium"> Option 2 </syn-tag>
+        <syn-tag removable="" size="medium"> PUR </syn-tag>
       </syn-tag-group>
 
-      <syn-tag-group label-position="start" label="Leitungslänge" size="medium">
-        <syn-tag removable="" size="medium"> 230 mm </syn-tag>
-
+      <syn-tag-group
+        label-position="start"
+        label="Length of cable"
+        size="medium"
+      >
         <syn-tag removable="" size="medium"> 0.2 m </syn-tag>
 
         <syn-tag removable="" size="medium"> 0.3 m </syn-tag>
 
         <syn-tag removable="" size="medium"> 0.7 m </syn-tag>
+
+        <syn-tag removable="" size="medium"> 0.23 m </syn-tag>
       </syn-tag-group>
 
       <syn-tag-group
         label-position="start"
-        label="Produktfamilie"
+        label="Connection type"
         size="medium"
       >
-        <syn-tag removable="" size="medium"> Option 1 </syn-tag>
-
-        <syn-tag removable="" size="medium"> Option 2 </syn-tag>
-
-        <syn-tag removable="" size="medium"> Option 3 </syn-tag>
+        <syn-tag removable="" size="medium"> Cable, 3-wire </syn-tag>
       </syn-tag-group>
 
       <syn-button class="clear-button" variant="text" title="" size="medium">
@@ -352,7 +325,7 @@
           aria-hidden="true"
           library="default"
         ></syn-icon>
-        Alle Filter löschen
+        Delete all filters
       </syn-button>
     </div>
   </form>
@@ -448,21 +421,9 @@
 ```html
 <div>
   <form class="filter-form">
-    <h1>Kapazitive Näherungssensoren</h1>
+    <h1>Capacitive proximity sensors</h1>
 
-    <syn-details size="small" summary="Filter ausblenden" open="">
-      <syn-icon
-        slot="expand-icon"
-        name="keyboard_arrow_down"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
-      <syn-icon
-        slot="collapse-icon"
-        name="keyboard_arrow_up"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-details size="small" summary="Hide filters" open="">
       <div class="filter-group">
         <syn-dropdown
           stay-open-on-select=""
@@ -476,39 +437,27 @@
             variant="outline"
             size="medium"
           >
-            Leitungsmaterial - 2
+            Housing
           </syn-button>
           <syn-menu id="filter-1" role="menu">
             <syn-menu-item
               type="checkbox"
-              checked=""
-              value="Option 1"
+              value="metric"
               role="menuitemcheckbox"
-              aria-checked="true"
+              aria-checked="false"
               aria-disabled="false"
               tabindex="0"
-              >Option 1</syn-menu-item
+              >metric</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              checked=""
-              value="Option 2"
-              role="menuitemcheckbox"
-              aria-checked="true"
-              aria-disabled="false"
-              tabindex="-1"
-              >Option 2</syn-menu-item
-            >
-
-            <syn-menu-item
-              type="checkbox"
-              value="Option 3"
+              value="rectangular"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >Option 3</syn-menu-item
+              >rectangular</syn-menu-item
             >
           </syn-menu>
         </syn-dropdown>
@@ -525,20 +474,47 @@
             variant="outline"
             size="medium"
           >
-            Leitungslänge - 4
+            Cable material - 1
           </syn-button>
           <syn-menu id="filter-2" role="menu">
             <syn-menu-item
               type="checkbox"
               checked=""
-              value="230 mm"
+              value="PUR"
               role="menuitemcheckbox"
               aria-checked="true"
               aria-disabled="false"
               tabindex="0"
-              >230 mm</syn-menu-item
+              >PUR</syn-menu-item
             >
 
+            <syn-menu-item
+              type="checkbox"
+              value="PVC"
+              role="menuitemcheckbox"
+              aria-checked="false"
+              aria-disabled="false"
+              tabindex="-1"
+              >PVC</syn-menu-item
+            >
+          </syn-menu>
+        </syn-dropdown>
+
+        <syn-dropdown
+          stay-open-on-select=""
+          sync="width"
+          placement="bottom-start"
+        >
+          <syn-button
+            slot="trigger"
+            caret=""
+            title=""
+            variant="outline"
+            size="medium"
+          >
+            Length of cable - 4
+          </syn-button>
+          <syn-menu id="filter-3" role="menu">
             <syn-menu-item
               type="checkbox"
               checked=""
@@ -546,7 +522,7 @@
               role="menuitemcheckbox"
               aria-checked="true"
               aria-disabled="false"
-              tabindex="-1"
+              tabindex="0"
               >0.2 m</syn-menu-item
             >
 
@@ -571,55 +547,26 @@
               tabindex="-1"
               >0.7 m</syn-menu-item
             >
-          </syn-menu>
-        </syn-dropdown>
-
-        <syn-dropdown
-          stay-open-on-select=""
-          sync="width"
-          placement="bottom-start"
-        >
-          <syn-button
-            slot="trigger"
-            caret=""
-            title=""
-            variant="outline"
-            size="medium"
-          >
-            Produktfamilie - 3
-          </syn-button>
-          <syn-menu id="filter-3" role="menu">
-            <syn-menu-item
-              type="checkbox"
-              checked=""
-              value="Option 1"
-              role="menuitemcheckbox"
-              aria-checked="true"
-              aria-disabled="false"
-              tabindex="0"
-              >Option 1</syn-menu-item
-            >
 
             <syn-menu-item
               type="checkbox"
               checked=""
-              value="Option 2"
+              value="0.23 m"
               role="menuitemcheckbox"
               aria-checked="true"
               aria-disabled="false"
               tabindex="-1"
-              >Option 2</syn-menu-item
+              >0.23 m</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              checked=""
-              value="Option 3"
+              value="2 m"
               role="menuitemcheckbox"
-              aria-checked="true"
+              aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >Option 3</syn-menu-item
+              >2 m</syn-menu-item
             >
           </syn-menu>
         </syn-dropdown>
@@ -636,37 +583,37 @@
             variant="outline"
             size="medium"
           >
-            Schaltausgang
+            Electrical wiring
           </syn-button>
           <syn-menu id="filter-4" role="menu">
             <syn-menu-item
               type="checkbox"
-              value="Option 1"
+              value="AC 2-wire"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="0"
-              >Option 1</syn-menu-item
+              >AC 2-wire</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              value="Option 2"
+              value="DC 3-wire"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >Option 2</syn-menu-item
+              >DC 3-wire</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              value="Option 3"
+              value="DC 4-wire"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >Option 3</syn-menu-item
+              >DC 4-wire</syn-menu-item
             >
           </syn-menu>
         </syn-dropdown>
@@ -683,37 +630,27 @@
             variant="outline"
             size="medium"
           >
-            Anschlussart
+            Switching output
           </syn-button>
           <syn-menu id="filter-5" role="menu">
             <syn-menu-item
               type="checkbox"
-              value="Option 1"
+              value="NPN"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="0"
-              >Option 1</syn-menu-item
+              >NPN</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              value="Option 2"
+              value="PNP"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >Option 2</syn-menu-item
-            >
-
-            <syn-menu-item
-              type="checkbox"
-              value="Option 3"
-              role="menuitemcheckbox"
-              aria-checked="false"
-              aria-disabled="false"
-              tabindex="-1"
-              >Option 3</syn-menu-item
+              >PNP</syn-menu-item
             >
           </syn-menu>
         </syn-dropdown>
@@ -730,27 +667,38 @@
             variant="outline"
             size="medium"
           >
-            Umgebungstemperatur Betrieb
+            Connection type - 1
           </syn-button>
           <syn-menu id="filter-6" role="menu">
             <syn-menu-item
               type="checkbox"
-              value="-25°C...80°C"
+              value="Cable, 2-wire"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="0"
-              >-25°C...80°C</syn-menu-item
+              >Cable, 2-wire</syn-menu-item
             >
 
             <syn-menu-item
               type="checkbox"
-              value="CQ"
+              checked=""
+              value="Cable, 3-wire"
+              role="menuitemcheckbox"
+              aria-checked="true"
+              aria-disabled="false"
+              tabindex="-1"
+              >Cable, 3-wire</syn-menu-item
+            >
+
+            <syn-menu-item
+              type="checkbox"
+              value="Cable, 4-wire"
               role="menuitemcheckbox"
               aria-checked="false"
               aria-disabled="false"
               tabindex="-1"
-              >CQ</syn-menu-item
+              >Cable, 4-wire</syn-menu-item
             >
           </syn-menu>
         </syn-dropdown>
@@ -760,34 +708,32 @@
     <div class="filter-tags">
       <syn-tag-group
         label-position="start"
-        label="Leitungsmaterial"
+        label="Cable material"
         size="medium"
       >
-        <syn-tag removable="" size="medium"> Option 1 </syn-tag>
-
-        <syn-tag removable="" size="medium"> Option 2 </syn-tag>
+        <syn-tag removable="" size="medium"> PUR </syn-tag>
       </syn-tag-group>
 
-      <syn-tag-group label-position="start" label="Leitungslänge" size="medium">
-        <syn-tag removable="" size="medium"> 230 mm </syn-tag>
-
+      <syn-tag-group
+        label-position="start"
+        label="Length of cable"
+        size="medium"
+      >
         <syn-tag removable="" size="medium"> 0.2 m </syn-tag>
 
         <syn-tag removable="" size="medium"> 0.3 m </syn-tag>
 
         <syn-tag removable="" size="medium"> 0.7 m </syn-tag>
+
+        <syn-tag removable="" size="medium"> 0.23 m </syn-tag>
       </syn-tag-group>
 
       <syn-tag-group
         label-position="start"
-        label="Produktfamilie"
+        label="Connection type"
         size="medium"
       >
-        <syn-tag removable="" size="medium"> Option 1 </syn-tag>
-
-        <syn-tag removable="" size="medium"> Option 2 </syn-tag>
-
-        <syn-tag removable="" size="medium"> Option 3 </syn-tag>
+        <syn-tag removable="" size="medium"> Cable, 3-wire </syn-tag>
       </syn-tag-group>
 
       <syn-button class="clear-button" variant="text" title="" size="medium">
@@ -797,7 +743,7 @@
           aria-hidden="true"
           library="default"
         ></syn-icon>
-        Alle Filter löschen
+        Delete all filters
       </syn-button>
     </div>
   </form>

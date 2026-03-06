@@ -58,39 +58,39 @@ export const TagGroup = {
       filters: [
         {
           id: 'filter-1',
-          name: 'Leitungsmaterial',
-          options: ['Option 1', 'Option 2', 'Option 3'],
-          selected: ['Option 1', 'Option 2'],
+          name: 'Housing',
+          options: ['metric', 'rectangular'],
+          selected: [],
         },
         {
           id: 'filter-2',
-          name: 'Leitungslänge',
-          options: ['230 mm', '0.2 m', '0.3 m', '0.7 m'],
-          selected: ['230 mm', '0.2 m', '0.3 m', '0.7 m'],
+          name: 'Cable material',
+          options: ['PUR', 'PVC'],
+          selected: ['PUR'],
         },
         {
           id: 'filter-3',
-          name: 'Produktfamilie',
-          options: ['Option 1', 'Option 2', 'Option 3'],
-          selected: ['Option 1', 'Option 2', 'Option 3'],
+          name: 'Length of cable',
+          options: ['0.2 m', '0.3 m', '0.7 m', '0.23 m', '2 m'],
+          selected: ['0.2 m', '0.3 m', '0.7 m', '0.23 m'],
         },
         {
           id: 'filter-4',
-          name: 'Schaltausgang',
-          options: ['Option 1', 'Option 2', 'Option 3'],
+          name: 'Electrical wiring',
+          options: ['AC 2-wire', 'DC 3-wire', 'DC 4-wire'],
           selected: [],
         },
         {
           id: 'filter-5',
-          name: 'Anschlussart',
-          options: ['Option 1', 'Option 2', 'Option 3'],
+          name: 'Switching output',
+          options: ['NPN', 'PNP'],
           selected: [],
         },
         {
           id: 'filter-6',
-          name: 'Umgebungstemperatur Betrieb',
-          options: ['-25°C...80°C', 'CQ'],
-          selected: [],
+          name: 'Connection type',
+          options: ['Cable, 2-wire', 'Cable, 3-wire', 'Cable, 4-wire'],
+          selected: ['Cable, 3-wire'],
         },
       ],
       filtersOpen: true,
@@ -108,10 +108,10 @@ export const TagGroup = {
     // Pure view function that takes state and actions as parameters
     const renderView = (currentState: typeof state, actions: Actions) => html`
       <form class="filter-form">
-        <h1>Kapazitive Näherungssensoren</h1>
+        <h1>Capacitive proximity sensors</h1>
         
         <syn-details
-          summary=${currentState.filtersOpen ? 'Filter ausblenden' : 'Filter öffnen'}
+          summary=${currentState.filtersOpen ? 'Hide filters' : 'Show filters'}
           ?open="${currentState.filtersOpen}"
           size="small"
           @syn-show=${(e: SynShowEvent) => {
@@ -127,8 +127,6 @@ export const TagGroup = {
             actions.toggleFilter(false);
           }}
         >
-          <syn-icon slot="expand-icon" name="keyboard_arrow_down"></syn-icon>
-          <syn-icon slot="collapse-icon" name="keyboard_arrow_up"></syn-icon>
           <div class="filter-group">
             ${currentState.filters.map(filter => html`
               <syn-dropdown stay-open-on-select sync="width">
@@ -181,7 +179,7 @@ export const TagGroup = {
               @click=${actions.clearAllFilters}
             >
               <syn-icon name="delete" slot="prefix"></syn-icon>
-              Alle Filter löschen
+              Delete all filters
             </syn-button>
           </div>
         ` : ''}

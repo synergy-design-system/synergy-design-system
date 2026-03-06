@@ -74,6 +74,22 @@ export const Default: Story = {
   render: args => generateTemplate({ args }),
 };
 
+export const Labels: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('tag-group', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-tag-group>
+      <div slot="label">This is a label</div>
+      ${unsafeHTML(generateTags(6))}
+    </syn-tag-group>
+  `,
+};
+
 export const Sizes: Story = {
   parameters: {
     docs: {
@@ -114,6 +130,7 @@ export const LabelAlignment: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
+  Labels,
   Sizes,
   LabelAlignment,
 }, 350);

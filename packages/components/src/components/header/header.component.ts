@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/unbound-method */
 import { classMap } from 'lit/directives/class-map.js';
 import { html } from 'lit/static-html.js';
-import { property, state } from 'lit/decorators.js';
+import { property, query, state } from 'lit/decorators.js';
 import type { CSSResultGroup } from 'lit';
 import SynergyElement from '../../internal/synergy-element.js';
 import { HasSlotController } from '../../internal/slot.js';
@@ -11,6 +10,7 @@ import SynIcon from '../icon/icon.js';
 import type SynSideNav from '../side-nav/side-nav.component.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { watch } from '../../internal/watch.js';
+import type SynDivider from '../divider/divider.component.js';
 
 /**
  * @summary The <syn-header /> element provides a generic application header
@@ -43,6 +43,7 @@ import { watch } from '../../internal/watch.js';
  * @csspart burger-menu-toggle-button - The button that toggles the burger menu
  *
  * @cssproperty --sticky-position - The position of the sticky header from the top of the viewport. Defaults to the top of the screen.
+ * @cssproperty --metanavigation-item-size - The size of the items in the meta navigation. Also used for the height of dividers in the meta navigation. Defaults to var(--syn-font-size-x-large)
  */
 export default class SynHeader extends SynergyElement {
   static styles: CSSResultGroup = [
@@ -67,6 +68,8 @@ export default class SynHeader extends SynergyElement {
    * #587: If the side nav is animating, we should not allow to trigger the burger menu
    */
   private isSideNavAnimating = false;
+
+  @query('slot[name="meta-navigation"]') private metaNavigationSlot: HTMLSlotElement;
 
   /**
    * The headers label. If you need to display HTML, use the `label` slot instead.
@@ -126,6 +129,43 @@ export default class SynHeader extends SynergyElement {
         this.burgerMenu = this.sideNav.open ? 'open' : 'closed';
       }
     }
+  }
+
+  /**
+   * #1130: Automatically set the correct styles for vertical syn-dividers in the meta navigation.
+   * Dividers may be slotted directly in the meta navigation or be nested in another element, e.g. a wrapper for the meta navigation.
+   * Horizontal dividers are not supported in the meta navigation and we don't want to override any styles for them that might be set by the user.
+   */
+  private updateMetaNavigation() {
+    const foundDividers: SynDivider[] = [];
+    this.metaNavigationSlot
+      // Get all slotted children.
+      // Needed because we may also have dividers in a wrapper that is used for the meta navigation
+      .assignedElements({ flatten: true })
+      .forEach(el => {
+        if (el.tagName.toLowerCase() === 'syn-divider') {
+          foundDividers.push(el as SynDivider);
+        } else {
+          const directChildDividers = el.querySelectorAll<SynDivider>(':scope > syn-divider');
+          if (directChildDividers.length) {
+            foundDividers.push(...directChildDividers);
+          }
+        }
+      });
+
+    // Set the correct styles for the found dividers
+    // - --spacing: var(--syn-spacing-x-small) makes the spacing slightly narrower,
+    // - align-self: center makes sure the divider is centered in the meta navigation,
+    // - height: var(--metanavigation-item-size) makes sure the divider has the same height as the other items in the meta navigation.
+    // We use this approach as it is faster than 3 separate style changes and we can be sure to not override any other styles that might be set on the divider.
+    const cssText = '--spacing: var(--syn-spacing-x-small); align-self: center; display: flex; height: var(--metanavigation-item-size);';
+
+    foundDividers
+      .filter(divider => divider.hasAttribute('vertical'))
+      .forEach(divider => {
+        // eslint-disable-next-line no-param-reassign
+        divider.style.cssText += cssText;
+      });
   }
 
   @watch('burgerMenu', { waitUntilFirstUpdate: true })
@@ -203,6 +243,7 @@ export default class SynHeader extends SynergyElement {
   }
 
   render() {
+    /* eslint-disable @typescript-eslint/unbound-method */
     const hasNavigation = this.hasSlotController.test('navigation');
     const showBurgerMenu = this.burgerMenu !== 'hidden';
     return html`
@@ -254,7 +295,7 @@ export default class SynHeader extends SynergyElement {
           </div>
 
           <div part="meta-navigation" class="header__meta-navigation">
-            <slot name="meta-navigation"></slot>
+            <slot @slotchange=${this.updateMetaNavigation} name="meta-navigation"></slot>
           </div>
         </div>
         <!-- /.header__content -->
@@ -264,5 +305,6 @@ export default class SynHeader extends SynergyElement {
         </div>
       </header>
     `;
+    /* eslint-enable @typescript-eslint/unbound-method */
   }
 }

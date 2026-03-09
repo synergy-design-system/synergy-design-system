@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.9.0
+
+### Minor Changes
+
+- [#1211](https://github.com/synergy-design-system/synergy-design-system/pull/1211) [`8d3e2a7`](https://github.com/synergy-design-system/synergy-design-system/commit/8d3e2a712619cb94938083620168caafc091323f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  feat: ✨ tokens: export muted color palette (#1210)
+
+  This release adds the muted color palette, as well as 3 new data color palettes from Figma to the `@synergy-design-system/tokens` package.
+
 ## 3.8.0
 
 ## 3.7.0

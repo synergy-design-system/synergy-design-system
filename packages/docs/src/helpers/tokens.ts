@@ -161,7 +161,7 @@ export const getRawValueFromToken = (token: string, parentElement?: HTMLElement)
  * @returns Returns the complete tokens category
  */
 export const getTokensByCategory = (category: string, useFullTokenName = false): [string, string][] => Object.entries(tokens)
-  .filter(([token]) => token.toLowerCase().startsWith(`syn${category}`))
+  .filter(([token]) => token.toLowerCase().startsWith(`syn${category.toLocaleLowerCase()}`))
   .map(([token, value]) => [
     useFullTokenName ? token : token.toLowerCase().replace('syn', ''),
     value,

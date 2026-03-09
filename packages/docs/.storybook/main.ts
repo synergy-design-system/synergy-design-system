@@ -1,14 +1,21 @@
-import type { StorybookConfig } from "@storybook/web-components-vite";
+import type { StorybookConfig } from '@storybook/web-components-vite';
+
+// @ts-expect-error - This is a local plugin, not published to npm, so TypeScript can't find types for it.
 import StorybookEnvPackageVersions from '../src/storybook-env-package-versions/index.ts';
 
 const config: StorybookConfig = {
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-a11y",
-    "@storybook/addon-themes",
+    '@storybook/addon-links',
+    '@storybook/addon-a11y',
+    '@storybook/addon-themes',
     '@chromatic-com/storybook',
-    { name: "@storybook/addon-designs", options: { renderTarget: "tab" }, },
-    "@storybook/addon-docs",
+    {
+      name: '@storybook/addon-designs',
+      options: {
+        renderTarget: 'tab',
+      },
+    },
+    '@storybook/addon-docs',
   ],
 
   core: {
@@ -20,7 +27,7 @@ const config: StorybookConfig = {
   }),
 
   framework: {
-    name: "@storybook/web-components-vite",
+    name: '@storybook/web-components-vite',
     options: {},
   },
 
@@ -40,38 +47,36 @@ const config: StorybookConfig = {
   ],
 
   stories: [
-    "../stories/Welcome.mdx",
-    "../stories/Prerequisites.mdx",
-    "../stories/ComponentOverview.mdx",
-    "../stories/IconSearch.mdx",
-    "../stories/GoalsAndGuidelines.mdx",
-    "../stories/Presentation.mdx",
-    "../stories/Accessibility.mdx",
-    "../stories/Contributing.mdx",
-    "../stories/migration/**/*.mdx",
-    "../stories/Migration2025.mdx",
-    "../stories/limitations/**/*.mdx",
-    "../stories/packages/**/*.mdx",
-    "../stories/tokens/**/*.@(mdx|stories.*)",
-    "../stories/components/**/*.@(mdx|stories.*)",
-    "../stories/styles/**/*.@(mdx|stories.*)",
-    "../stories/templates/**/*.@(mdx|stories.*)",
+    '../stories/Welcome.mdx',
+    '../stories/Prerequisites.mdx',
+    '../stories/ComponentOverview.mdx',
+    '../stories/IconSearch.mdx',
+    '../stories/GoalsAndGuidelines.mdx',
+    '../stories/Presentation.mdx',
+    '../stories/Accessibility.mdx',
+    '../stories/Contributing.mdx',
+    '../stories/migration/**/*.mdx',
+    '../stories/Migration2025.mdx',
+    '../stories/limitations/**/*.mdx',
+    '../stories/packages/**/*.mdx',
+    '../stories/tokens/**/*.@(mdx|stories.*)',
+    '../stories/components/**/*.@(mdx|stories.*)',
+    '../stories/styles/**/*.@(mdx|stories.*)',
+    '../stories/templates/**/*.@(mdx|stories.*)',
     // "../src/**/*.mdx",
     // "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
 
-  viteFinal: async (config) => {
-    return {
-      ...config,
-      build: {
-        ...config.build,
-        // This prevents an error with top level await statements
-        // that prevents bundling via `pnpm build`.
-        // @see https://github.com/vitejs/vite/issues/6985
-        target: 'esnext',
-      }
-    };
-  }
+  viteFinal: (cfg) => ({
+    ...cfg,
+    build: {
+      ...cfg.build,
+      // This prevents an error with top level await statements
+      // that prevents bundling via `pnpm build`.
+      // @see https://github.com/vitejs/vite/issues/6985
+      target: 'esnext',
+    },
+  }),
 };
 
 export default config;

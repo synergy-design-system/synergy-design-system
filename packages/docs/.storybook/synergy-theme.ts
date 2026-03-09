@@ -1,10 +1,10 @@
 import { create } from 'storybook/theming/create';
 
 const baseConfig = {
-  brandTitle: 'Synergy Design System',
-  brandUrl: '/',
   brandImage: '/synergy_logo_transparent.png',
   brandTarget: '_self',
+  brandTitle: 'Synergy Design System',
+  brandUrl: '/',
 };
 
 export const light = create({

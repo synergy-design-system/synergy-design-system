@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.4.1
+ * @synergy-design-system/tokens version 3.8.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -93,6 +93,39 @@
   --syn-color-critical-800: #983b08;
   --syn-color-critical-900: #7c310b;
   --syn-color-critical-950: #481700;
+  --syn-color-data-magenta-50: #fdf2f9;
+  --syn-color-data-magenta-100: #fce7f5;
+  --syn-color-data-magenta-200: #fcceed;
+  --syn-color-data-magenta-300: #fba6dd;
+  --syn-color-data-magenta-400: #f76fc5;
+  --syn-color-data-magenta-500: #ef45ab;
+  --syn-color-data-magenta-600: #e13393;
+  --syn-color-data-magenta-700: #c1156e;
+  --syn-color-data-magenta-800: #a0145b;
+  --syn-color-data-magenta-900: #85164f;
+  --syn-color-data-magenta-950: #51062c;
+  --syn-color-data-purple-50: #faf3ff;
+  --syn-color-data-purple-100: #f6e7ff;
+  --syn-color-data-purple-200: #ebceff;
+  --syn-color-data-purple-300: #e0a7ff;
+  --syn-color-data-purple-400: #c457ff;
+  --syn-color-data-purple-500: #b73ef7;
+  --syn-color-data-purple-600: #9d1edb;
+  --syn-color-data-purple-700: #8515b6;
+  --syn-color-data-purple-800: #6f1395;
+  --syn-color-data-purple-900: #5e1679;
+  --syn-color-data-purple-950: #3c0151;
+  --syn-color-data-teal-50: #effefc;
+  --syn-color-data-teal-100: #c7fff9;
+  --syn-color-data-teal-200: #90fff3;
+  --syn-color-data-teal-300: #51f7ec;
+  --syn-color-data-teal-400: #1de4dd;
+  --syn-color-data-teal-500: #04c8c3;
+  --syn-color-data-teal-600: #009797;
+  --syn-color-data-teal-700: #057f80;
+  --syn-color-data-teal-800: #0a6365;
+  --syn-color-data-teal-900: #0d5354;
+  --syn-color-data-teal-950: #002f33;
   --syn-color-error-50: #fff0f2;
   --syn-color-error-100: #ffdee2;
   --syn-color-error-200: #ffc3c9;
@@ -115,6 +148,17 @@
   --syn-color-info-800: #065786;
   --syn-color-info-900: #0b486f;
   --syn-color-info-950: #072e4a;
+  --syn-color-muted-50: #f9fafb;
+  --syn-color-muted-100: #f2f3f6;
+  --syn-color-muted-200: #e8ebec;
+  --syn-color-muted-300: #d5dbdd;
+  --syn-color-muted-400: #bac2c6;
+  --syn-color-muted-500: #9ea9ae;
+  --syn-color-muted-600: #859298;
+  --syn-color-muted-700: #737f85;
+  --syn-color-muted-800: #5e676b;
+  --syn-color-muted-900: #4c5357;
+  --syn-color-muted-950: #31373a;
   --syn-color-neutral-0: #ffffff;
   --syn-color-neutral-50: #f9fafb;
   --syn-color-neutral-100: #f2f3f6;

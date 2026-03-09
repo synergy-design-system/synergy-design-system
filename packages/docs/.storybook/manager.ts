@@ -3,5 +3,4 @@ import { light } from './synergy-theme.js';
 
 addons.setConfig({
   theme: light,
-})
-
+});

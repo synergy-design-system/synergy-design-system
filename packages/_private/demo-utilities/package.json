@@ -23,7 +23,7 @@
     "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
-    "eslint": "^9.39.3",
+    "eslint": "^9.39.4",
     "rimraf": "^6.1.3",
     "stylelint": "^17.4.0",
     "typescript": "^5.9.3"

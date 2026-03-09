@@ -301,7 +301,7 @@ test.describe('<SynCombobox />', () => {
         await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
 
         const combobox = await AllComponents.getLocator('combobox1036Delimiter');
-        const options = await combobox.locator('syn-option');
+        const options = combobox.locator('syn-option');
 
         const option1 = options.nth(0);
         const option2 = options.nth(1);

@@ -10,7 +10,7 @@
 feat: ✨ Allow `<syn-divider>` as a separator in meta-navigation of `<syn-header>` (#1130)
 
 This release adds the possiblity to use `<syn-divider>` as a separator between items in the `<syn-header>` metanavigation.
-It will automatically set the `height`, as well as add the `vertical` property to directly slotted dividers.
+It will automatically set the correct `height` on vertically aligned `<syn-dividers>`.
 
 You may use it via:
 
@@ -19,9 +19,9 @@ You may use it via:
   <nav slot="meta-navigation">
     <syn-icon-button name="settings_outline" label="Settings"></syn-icon-button>
     <syn-icon-button name="insert_chart_outlined" label="Analytics"></syn-icon-button>
-    <syn-divider></syn-divider>
+    <syn-divider vertical></syn-divider>
     <syn-icon-button name="dark_mode" label="Dark Mode"></syn-icon-button>
-    <syn-divider></syn-divider>
+    <syn-divider vertical></syn-divider>
     <syn-icon-button name="language" label="Language"></syn-icon-button>
     <syn-icon-button name="login" label="Login"></syn-icon-button>
   </nav>
@@ -34,9 +34,9 @@ or via directly slotting the `<syn-divider>` via
 <syn-header label="App Name">
   <syn-icon-button slot="meta-navigation" name="settings_outline" label="Settings"></syn-icon-button>
   <syn-icon-button slot="meta-navigation" name="insert_chart_outlined" label="Analytics"></syn-icon-button>
-  <syn-divider slot="meta-navigation"></syn-divider>
+  <syn-divider vertical slot="meta-navigation"></syn-divider>
   <syn-icon-button slot="meta-navigation" name="dark_mode" label="Dark Mode"></syn-icon-button>
-  <syn-divider slot="meta-navigation"></syn-divider>
+  <syn-divider vertical slot="meta-navigation"></syn-divider>
   <syn-icon-button slot="meta-navigation" name="language" label="Language"></syn-icon-button>
   <syn-icon-button slot="meta-navigation" name="login" label="Login"></syn-icon-button>
 </syn-header>

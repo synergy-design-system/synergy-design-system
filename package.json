@@ -39,6 +39,9 @@
       "style-dictionary",
       "unrs-resolver"
     ],
+    "overrides": {
+      "browserslist": ">=4.24.3"
+    },
     "patchedDependencies": {
       "@changesets/assemble-release-plan": "patches/@changesets__assemble-release-plan.patch"
     }

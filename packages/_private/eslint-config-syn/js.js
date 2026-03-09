@@ -5,9 +5,12 @@ import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
 import { defineConfig } from 'eslint/config';
 import js from '@eslint/js';
+import { getBaseline } from '@synergy-design-system/browser-baseline';
 import stylistic from '@stylistic/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import globals from 'globals';
+
+const browsers = getBaseline('v3_0_0');
 
 /**
  * Base JavaScript ESLint Configuration for Synergy Design System
@@ -104,7 +107,7 @@ export default defineConfig([
     },
     settings: {
       // Support browserslist without package.json
-      browsers: ['defaults and supports es6-module'],
+      browsers,
     },
   },
   // Disable base style rules that have @stylistic equivalents

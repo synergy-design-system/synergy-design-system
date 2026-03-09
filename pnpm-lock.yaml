@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  browserslist: '>=4.24.3'
+
 patchedDependencies:
   '@changesets/assemble-release-plan':
     hash: 6fdcc2166b020319e0742bd25d941750ec71305107123b86872326dfbc1f9320
@@ -120,6 +123,31 @@ importers:
         specifier: ~0.16.1
         version: 0.16.1
 
+  packages/_private/browser-baseline:
+    dependencies:
+      browserslist:
+        specifier: '>=4.24.3'
+        version: 4.28.1
+    devDependencies:
+      '@eslint/js':
+        specifier: ^9.39.2
+        version: 9.39.4
+      '@stylistic/eslint-plugin':
+        specifier: ^5.8.0
+        version: 5.10.0(eslint@9.39.4(jiti@2.6.1))
+      '@types/node':
+        specifier: ^24.10.13
+        version: 24.12.0
+      eslint:
+        specifier: ^9.39.2
+        version: 9.39.4(jiti@2.6.1)
+      eslint-plugin-import:
+        specifier: ^2.32.0
+        version: 2.32.0(eslint-import-resolver-typescript@4.4.4)(eslint@9.39.4(jiti@2.6.1))
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
   packages/_private/demo-utilities:
     devDependencies:
       '@synergy-design-system/components':
@@ -183,6 +211,9 @@ importers:
       '@stylistic/eslint-plugin':
         specifier: ^5.10.0
         version: 5.10.0(eslint@9.39.4(jiti@2.6.1))
+      '@synergy-design-system/browser-baseline':
+        specifier: workspace:*
+        version: link:../browser-baseline
       eslint-config-airbnb-base:
         specifier: ^15.0.0
         version: 15.0.0(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1)))(eslint@9.39.4(jiti@2.6.1))
@@ -333,6 +364,9 @@ importers:
 
   packages/_private/stylelint-config-syn:
     dependencies:
+      '@synergy-design-system/browser-baseline':
+        specifier: workspace:*
+        version: link:../browser-baseline
       postcss-lit:
         specifier: ^1.4.1
         version: 1.4.1(jiti@2.6.1)(postcss@8.5.8)(yaml@2.8.2)
@@ -744,6 +778,9 @@ importers:
       '@storybook/web-components-vite':
         specifier: ^10.2.16
         version: 10.2.16(esbuild@0.27.3)(lit@3.3.2)(rollup@4.59.0)(storybook@10.2.16(@testing-library/dom@10.4.0)(prettier@3.8.1)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(vite@7.3.1(@types/node@25.3.5)(jiti@2.6.1)(less@4.5.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(webpack@5.105.2(esbuild@0.27.3))
+      '@synergy-design-system/browser-baseline':
+        specifier: workspace:*
+        version: link:../_private/browser-baseline
       '@synergy-design-system/components':
         specifier: workspace:*
         version: link:../components
@@ -10267,7 +10304,7 @@ packages:
     resolution: {integrity: sha512-Js0m9cx+qOgDxo0eMiFGEueWztz+d4+M3rGlmKPT+T4IS/jP4ylw3Nwpu6cpTTP8R1MAC1kF4VbdLt3ARf209w==}
     hasBin: true
     peerDependencies:
-      browserslist: '>= 4.21.0'
+      browserslist: '>=4.24.3'
 
   update-check@1.5.4:
     resolution: {integrity: sha512-5YHsflzHP4t1G+8WGPlvKbJEbAJGCgw+Em+dGR1KmBUbr1J36SJBqlHLjR7oob7sco5hWHGQVcr9B2poIVDDTQ==}
@@ -14270,7 +14307,7 @@ snapshots:
 
   '@types/accepts@1.3.7':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/argparse@1.0.38': {}
 
@@ -14302,11 +14339,11 @@ snapshots:
   '@types/body-parser@1.19.6':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/bonjour@3.5.13':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/chai-dom@1.11.3':
     dependencies:
@@ -14321,7 +14358,7 @@ snapshots:
 
   '@types/co-body@6.1.3':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
       '@types/qs': 6.15.0
 
   '@types/command-line-args@5.2.3': {}
@@ -14329,11 +14366,11 @@ snapshots:
   '@types/connect-history-api-fallback@1.5.4':
     dependencies:
       '@types/express-serve-static-core': 4.19.8
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/content-disposition@0.5.9': {}
 
@@ -14344,11 +14381,11 @@ snapshots:
       '@types/connect': 3.4.38
       '@types/express': 5.0.6
       '@types/keygrip': 1.0.6
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/cors@2.8.19':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/debounce@1.2.4': {}
 
@@ -14375,14 +14412,14 @@ snapshots:
 
   '@types/express-serve-static-core@4.19.8':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
       '@types/qs': 6.15.0
       '@types/range-parser': 1.2.7
       '@types/send': 1.2.1
 
   '@types/express-serve-static-core@5.1.1':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
       '@types/qs': 6.15.0
       '@types/range-parser': 1.2.7
       '@types/send': 1.2.1
@@ -14406,7 +14443,7 @@ snapshots:
 
   '@types/http-proxy@1.17.17':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
@@ -14444,7 +14481,7 @@ snapshots:
       '@types/http-errors': 2.0.5
       '@types/keygrip': 1.0.6
       '@types/koa-compose': 3.2.9
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/mdx@2.0.13': {}
 
@@ -14466,10 +14503,11 @@ snapshots:
   '@types/node@25.3.5':
     dependencies:
       undici-types: 7.18.2
+    optional: true
 
   '@types/parse5@2.2.34':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/parse5@6.0.3': {}
 
@@ -14492,11 +14530,11 @@ snapshots:
   '@types/send@0.17.6':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/send@1.2.1':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/serve-handler@6.1.4':
     dependencies:
@@ -14509,13 +14547,13 @@ snapshots:
   '@types/serve-static@1.15.10':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
       '@types/send': 0.17.6
 
   '@types/serve-static@2.2.0':
     dependencies:
       '@types/http-errors': 2.0.5
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/sinon-chai@3.2.12':
     dependencies:
@@ -14530,7 +14568,7 @@ snapshots:
 
   '@types/sockjs@0.3.36':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/stack-utils@2.0.3': {}
 
@@ -14538,11 +14576,11 @@ snapshots:
 
   '@types/ws@7.4.7':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/ws@8.18.1':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
 
   '@types/yargs-parser@21.0.3': {}
 
@@ -14552,7 +14590,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.56.1(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)':
@@ -15750,7 +15788,7 @@ snapshots:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.0.1
+      chalk: 5.6.2
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0
@@ -15969,7 +16007,7 @@ snapshots:
 
   chrome-launcher@0.15.2:
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
       escape-string-regexp: 4.0.0
       is-wsl: 2.2.0
       lighthouse-logger: 1.4.2
@@ -16590,7 +16628,7 @@ snapshots:
   engine.io@6.6.5:
     dependencies:
       '@types/cors': 2.8.19
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.7.2
@@ -18664,7 +18702,7 @@ snapshots:
 
   jest-worker@27.5.1:
     dependencies:
-      '@types/node': 25.3.5
+      '@types/node': 24.12.0
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -21680,7 +21718,8 @@ snapshots:
 
   undici-types@7.16.0: {}
 
-  undici-types@7.18.2: {}
+  undici-types@7.18.2:
+    optional: true
 
   undici@6.23.0: {}
 

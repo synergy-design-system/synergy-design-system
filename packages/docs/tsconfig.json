@@ -24,6 +24,7 @@
     "jsx": "react"
   },
   "include": [
+    ".storybook/**/*.ts",
     "**/*.js",
     "**/*.ts",
     "**/*.tsx",

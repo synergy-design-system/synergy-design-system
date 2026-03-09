@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.9.0
+
+### Patch Changes
+
+- Updated dependencies [[`8d3e2a7`](https://github.com/synergy-design-system/synergy-design-system/commit/8d3e2a712619cb94938083620168caafc091323f)]:
+  - @synergy-design-system/tokens@3.9.0
+
 ## 3.8.0
 
 ### Minor Changes

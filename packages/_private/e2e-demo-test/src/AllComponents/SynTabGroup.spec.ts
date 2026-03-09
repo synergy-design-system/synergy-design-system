@@ -35,6 +35,7 @@ test.describe('<SynTabGroup />', () => {
         await expect(tabGroupLink).toHaveJSProperty('active', true);
       });
     }); // regression#757
+
     test.describe(`Regression#814: ${name}`, () => {
       test('should show the new added active tab with panel', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);

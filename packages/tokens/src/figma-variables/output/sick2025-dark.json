@@ -1676,10 +1676,6 @@
       "type": "color",
       "value": "{color.neutral.300}"
     },
-    "color-readonly": {
-      "type": "color",
-      "value": "{input.readonly-background.color}"
-    },
     "error": {
       "color": {
         "type": "color",

@@ -31,6 +31,8 @@ export default [
       'import/no-relative-packages': 'off',
       // Allow parameter reassignment in test utilities and page objects
       'no-param-reassign': 'off',
+
+      'playwright/prefer-to-have-count': 'off',
     },
   },
 

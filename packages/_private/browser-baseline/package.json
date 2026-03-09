@@ -1,0 +1,46 @@
+{
+  "name": "@synergy-design-system/browser-baseline",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./src/index.js"
+    },
+    "./types": {
+      "types": "./types/types.d.ts",
+      "import": "./src/types.d.ts"
+    },
+    "./baselines/*": {
+      "types": "./types/baselines/*.d.ts",
+      "import": "./src/baselines/*.js"
+    },
+    "./utilities/*": {
+      "types": "./types/utilities/*.d.ts",
+      "import": "./src/utilities/*.js"
+    }
+  },
+  "files": [
+    "types",
+    "src"
+  ],
+  "scripts": {
+    "update-baseline": "pnpm -w add -D update-browserslist-db@latest && pnpm add browserslist@latest && pnpm -w update browserslist && pnpm -w exec update-browserslist-db",
+    "build": "tsc",
+    "lint:js": "eslint src",
+    "lint:types": "tsc --noEmit",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "dependencies": {
+    "browserslist": "^4.28.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@stylistic/eslint-plugin": "^5.8.0",
+    "@types/node": "^24.10.13",
+    "eslint": "^9.39.2",
+    "eslint-plugin-import": "^2.32.0",
+    "typescript": "^5.9.3"
+  }
+}

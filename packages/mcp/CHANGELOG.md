@@ -1,5 +1,24 @@
 # Changelog
 
+## 2.13.0
+
+### Minor Changes
+
+- [#1207](https://github.com/synergy-design-system/synergy-design-system/pull/1207) [`806c0c7`](https://github.com/synergy-design-system/synergy-design-system/commit/806c0c791c0a25f8e22b849cefc10d0d08ede2fa) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  feat: ✨ enforce browser policy (#1190)
+
+## 2.12.1
+
+### Patch Changes
+
+- [#1223](https://github.com/synergy-design-system/synergy-design-system/pull/1223) [`60b2845`](https://github.com/synergy-design-system/synergy-design-system/commit/60b2845fc089c2508f7e4a2b068b359fad166288) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  fix: 🐛 dependency updates (#258)
+
+- Updated dependencies [[`60b2845`](https://github.com/synergy-design-system/synergy-design-system/commit/60b2845fc089c2508f7e4a2b068b359fad166288)]:
+  - @synergy-design-system/assets@2.0.2
+
 ## 2.12.0
 
 ### Minor Changes

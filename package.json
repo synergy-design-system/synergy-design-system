@@ -39,13 +39,16 @@
       "style-dictionary",
       "unrs-resolver"
     ],
+    "overrides": {
+      "browserslist": ">=4.24.3"
+    },
     "patchedDependencies": {
       "@changesets/assemble-release-plan": "patches/@changesets__assemble-release-plan.patch"
     }
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.2",
-    "@changesets/cli": "^2.29.8",
+    "@changesets/cli": "^2.30.0",
     "prettier": "^3.8.1",
     "update-browserslist-db": "^1.2.3"
   },

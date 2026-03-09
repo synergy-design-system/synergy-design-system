@@ -160,9 +160,9 @@ export const MetaNavigationWithDividers: Story = {
       <nav slot="meta-navigation">
         <syn-icon-button name="settings_outline" label="Settings"></syn-icon-button>
         <syn-icon-button name="insert_chart_outlined" label="Analytics"></syn-icon-button>
-        <syn-divider></syn-divider>
+        <syn-divider vertical></syn-divider>
         <syn-icon-button name="dark_mode" label="Dark Mode"></syn-icon-button>
-        <syn-divider></syn-divider>
+        <syn-divider vertical></syn-divider>
         <syn-icon-button name="language" label="Language"></syn-icon-button>
         <syn-icon-button name="login" label="Login"></syn-icon-button>
       </nav>

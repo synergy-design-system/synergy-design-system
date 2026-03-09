@@ -132,9 +132,9 @@ export default class SynHeader extends SynergyElement {
   }
 
   /**
-   * #1130: This method is needed to automatically set the correct styles for dividers in the meta navigation, because the meta navigation can contain any kind of element and we want to allow users to use dividers in the meta navigation as well.
-   * We need to do this via JavaScript because we need to support the case where users add dividers in a wrapper element like a dropdown or a menu, where the dividers are not direct children of the slot.
-   * .header__meta-navigation ::slotted(*) { will ONLY work for directly slotted children, but not for children of slotted elements, which is why we need to do this via JavaScript.
+   * #1130: Automatically set the correct styles for vertical syn-dividers in the meta navigation.
+   * Dividers may be slotted directly in the meta navigation or be nested in another element, e.g. a wrapper for the meta navigation.
+   * Horizontal dividers are not supported in the meta navigation and we don't want to override any styles for them that might be set by the user.
    */
   private updateMetaNavigation() {
     const foundDividers: SynDivider[] = [];
@@ -161,8 +161,8 @@ export default class SynHeader extends SynergyElement {
     const cssText = '--spacing: var(--syn-spacing-x-small); align-self: center; display: flex; height: var(--metanavigation-item-size);';
 
     foundDividers
+      .filter(divider => divider.hasAttribute('vertical'))
       .forEach(divider => {
-        divider.setAttribute('vertical', '');
         // eslint-disable-next-line no-param-reassign
         divider.style.cssText += cssText;
       });

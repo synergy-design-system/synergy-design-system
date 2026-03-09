@@ -419,12 +419,12 @@ describe('<syn-header>', () => {
         <syn-header label="App Name">
           <nav slot="meta-navigation">
             <syn-icon-button name="apps" label="Apps"></syn-icon-button>
-            <syn-divider></syn-divider>
+            <syn-divider vertical></syn-divider>
             <syn-icon-button name="account_circle" label="Account"></syn-icon-button>
-            <syn-divider></syn-divider>
+            <syn-divider vertical></syn-divider>
             <syn-icon-button name="more_vert" label="More"></syn-icon-button>
             <div>
-              <syn-divider>Not directly slotted</syn-divider>
+              <syn-divider vertical>Not directly slotted</syn-divider>
             </div>
           </nav>
         </syn-header>
@@ -437,17 +437,41 @@ describe('<syn-header>', () => {
       const el = await fixture<SynHeader>(html`
         <syn-header label="App Name">
           <syn-icon-button slot="meta-navigation" name="apps" label="Apps"></syn-icon-button>
-          <syn-divider slot="meta-navigation"></syn-divider>
+          <syn-divider vertical slot="meta-navigation"></syn-divider>
           <syn-icon-button slot="meta-navigation" name="account_circle" label="Account"></syn-icon-button>
-          <syn-divider slot="meta-navigation"></syn-divider>
+          <syn-divider vertical slot="meta-navigation"></syn-divider>
           <syn-icon-button slot="meta-navigation" name="more_vert" label="More"></syn-icon-button>
           <div>
-            <syn-divider>Not directly slotted</syn-divider>
+            <syn-divider vertical>Not directly slotted</syn-divider>
           </div>
         </syn-header>
       `);
 
       checkDividerStyles(el, true);
     }); // Test with direct children
+
+    it('should not apply styles to horizontal dividers in the meta navigation', async () => {
+      const el = await fixture<SynHeader>(html`
+        <syn-header label="App Name">
+          <nav slot="meta-navigation">
+            <syn-icon-button name="apps" label="Apps"></syn-icon-button>
+            <syn-divider slot="meta-navigation"></syn-divider>
+            <syn-icon-button name="account_circle" label="Account"></syn-icon-button>
+            <syn-divider slot="meta-navigation"></syn-divider>
+            <syn-icon-button name="more_vert" label="More"></syn-icon-button>
+          </nav>
+        </syn-header>
+      `);
+
+      const dividers = el.querySelectorAll<SynDivider>('syn-divider[slot="meta-navigation"]');
+
+      await el.updateComplete;
+
+      dividers.forEach(divider => {
+        expect(divider.style.height).to.not.equal('var(--metanavigation-item-size)');
+        expect(divider.style.alignSelf).to.not.equal('center');
+        expect(divider.style.getPropertyValue('--spacing')).to.not.equal('var(--syn-spacing-x-small)');
+      });
+    }); // Test that horizontal dividers are not targeted
   }); // /#1130
 });

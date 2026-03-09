@@ -127,9 +127,9 @@ If you need different icon groups or a separator between them, add a <syn-divide
       color="currentColor"
     ></syn-icon-button>
     <syn-divider
+      vertical=""
       role="separator"
       aria-orientation="vertical"
-      vertical=""
       style="
         --spacing: var(--syn-spacing-x-small);
         align-self: center;
@@ -144,9 +144,9 @@ If you need different icon groups or a separator between them, add a <syn-divide
       color="currentColor"
     ></syn-icon-button>
     <syn-divider
+      vertical=""
       role="separator"
       aria-orientation="vertical"
-      vertical=""
       style="
         --spacing: var(--syn-spacing-x-small);
         align-self: center;

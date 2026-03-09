@@ -3,6 +3,7 @@ import { css } from 'lit';
 export default css`
   :host {
     --sticky-position: 0;
+    --metanavigation-item-size: var(--syn-font-size-x-large);
 
     display: block;
   }
@@ -82,7 +83,7 @@ export default css`
   .header__meta-navigation ::slotted(*) {
     color: var(--syn-interactive-quiet-color);
     display: contents;
-    font-size: var(--syn-font-size-x-large);
+    font-size: var(--metanavigation-item-size);
   }
 
   /**

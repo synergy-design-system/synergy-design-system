@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.9.0
+
+### Minor Changes
+
+- [#1211](https://github.com/synergy-design-system/synergy-design-system/pull/1211) [`8d3e2a7`](https://github.com/synergy-design-system/synergy-design-system/commit/8d3e2a712619cb94938083620168caafc091323f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  feat: ✨ tokens: export muted color palette (#1210)
+
+  This release adds the muted color palette, as well as 3 new data color palettes from Figma to the `@synergy-design-system/tokens` package.
+
+## 3.8.0
+
+## 3.7.0
+
+### Minor Changes
+
+- [#1193](https://github.com/synergy-design-system/synergy-design-system/pull/1193) [`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ Add new component `<syn-tag-group>` (#1152)
+
+  Adds a new component `<syn-tag-group>`, including templates how to use this component.
+
+## 3.6.2
+
 ## 3.6.1
 
 ## 3.6.0

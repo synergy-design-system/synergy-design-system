@@ -1,5 +1,57 @@
 # Changelog
 
+## 3.9.0
+
+### Patch Changes
+
+- Updated dependencies [[`8d3e2a7`](https://github.com/synergy-design-system/synergy-design-system/commit/8d3e2a712619cb94938083620168caafc091323f)]:
+  - @synergy-design-system/tokens@3.9.0
+
+## 3.8.0
+
+### Minor Changes
+
+- [#1216](https://github.com/synergy-design-system/synergy-design-system/pull/1216) [`fa7ebf8`](https://github.com/synergy-design-system/synergy-design-system/commit/fa7ebf8ca9aef4e246f75688711c7dbb24cb25cb) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ `<syn-combobox>` should support `maxlength` attribute (#1184)
+
+  This release adds the ability to set a maximal input length for `<syn-combobox>` via `<syn-combobox maxlength="5">`.
+  This provides the ability to set the maximal amount of free text input for the comboboxes input field.
+  It still allows to use options from the list of available options and works as a restriction for free text only.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.8.0
+
+## 3.7.0
+
+### Minor Changes
+
+- [#1193](https://github.com/synergy-design-system/synergy-design-system/pull/1193) [`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ Add new component `<syn-tag-group>` (#1152)
+
+  Adds a new component `<syn-tag-group>`, including templates how to use this component.
+
+### Patch Changes
+
+- Updated dependencies [[`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302)]:
+  - @synergy-design-system/tokens@3.7.0
+
+## 3.6.2
+
+### Patch Changes
+
+- [#1214](https://github.com/synergy-design-system/synergy-design-system/pull/1214) [`01c5e9c`](https://github.com/synergy-design-system/synergy-design-system/commit/01c5e9cc231c6bcc260cedc2f5d5713cf71ea254) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  fix: 🐛 Angular: `<syn-validate>` does not work when dynamically added to the DOM (#851)
+
+  This release fixes an issue that made `<syn-validate>` ignore its set `customValidationMessage` when the component gets dynamically added to the DOM in Angular. It does so by preferring the provided `customValidationMessage` over of the internally available `validationMessage`, which could be empty under certain conditions.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.6.2
+
 ## 3.6.1
 
 ### Patch Changes

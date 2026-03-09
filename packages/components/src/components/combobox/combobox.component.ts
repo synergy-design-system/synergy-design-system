@@ -3,6 +3,7 @@
 /* eslint-disable no-underscore-dangle */
 import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
@@ -227,6 +228,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
   /** The combobox's label. If you need to display HTML, use the `label` slot instead. */
   @property() label = '';
+
+  /** The maximum length of input that will be considered valid. */
+  @property({ type: Number }) maxlength: number;
 
   /**
    * The preferred placement of the combobox's menu.
@@ -1563,6 +1567,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
                 .disabled=${this.disabled}
                 .readOnly=${this.readonly}
                 .value=${this.displayLabel}
+                maxlength=${ifDefined(this.maxlength)}
                 autocomplete="off"
                 spellcheck="false"
                 autocapitalize="off"

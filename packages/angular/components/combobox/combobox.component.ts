@@ -266,6 +266,17 @@ and `hide()` methods and this attribute will reflect the combobox's open state.
   }
 
   /**
+   * The maximum length of input that will be considered valid.
+   */
+  @Input()
+  set maxlength(v: SynCombobox['maxlength']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.maxlength = v));
+  }
+  get maxlength(): SynCombobox['maxlength'] {
+    return this.nativeElement.maxlength;
+  }
+
+  /**
 * The preferred placement of the combobox's menu.
 Note that the actual placement may vary as needed to keep the listbox inside of the viewport.
  */

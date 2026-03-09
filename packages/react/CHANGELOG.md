@@ -1,5 +1,45 @@
 # @synergy-design-system/react
 
+## 3.9.0
+
+### Patch Changes
+
+- Updated dependencies [[`8d3e2a7`](https://github.com/synergy-design-system/synergy-design-system/commit/8d3e2a712619cb94938083620168caafc091323f)]:
+  - @synergy-design-system/tokens@3.9.0
+  - @synergy-design-system/components@3.9.0
+
+## 3.8.0
+
+### Patch Changes
+
+- Updated dependencies [[`fa7ebf8`](https://github.com/synergy-design-system/synergy-design-system/commit/fa7ebf8ca9aef4e246f75688711c7dbb24cb25cb)]:
+  - @synergy-design-system/components@3.8.0
+  - @synergy-design-system/tokens@3.8.0
+
+## 3.7.0
+
+### Minor Changes
+
+- [#1193](https://github.com/synergy-design-system/synergy-design-system/pull/1193) [`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ Add new component `<syn-tag-group>` (#1152)
+
+  Adds a new component `<syn-tag-group>`, including templates how to use this component.
+
+### Patch Changes
+
+- Updated dependencies [[`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302)]:
+  - @synergy-design-system/components@3.7.0
+  - @synergy-design-system/tokens@3.7.0
+
+## 3.6.2
+
+### Patch Changes
+
+- Updated dependencies [[`01c5e9c`](https://github.com/synergy-design-system/synergy-design-system/commit/01c5e9cc231c6bcc260cedc2f5d5713cf71ea254)]:
+  - @synergy-design-system/components@3.6.2
+  - @synergy-design-system/tokens@3.6.2
+
 ## 3.6.1
 
 ### Patch Changes

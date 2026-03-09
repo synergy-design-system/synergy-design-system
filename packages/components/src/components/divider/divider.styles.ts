@@ -1,8 +1,6 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
   :host {
     --color: var(--syn-panel-border-color);
     --width: var(--syn-panel-border-width);
@@ -10,15 +8,15 @@ export default css`
   }
 
   :host(:not([vertical])) {
-    display: block;
     border-top: solid var(--width) var(--color);
+    display: block;
     margin: var(--spacing) 0;
   }
 
   :host([vertical]) {
+    border-left: solid var(--width) var(--color);
     display: inline-block;
     height: 100%;
-    border-left: solid var(--width) var(--color);
     margin: 0 var(--spacing);
   }
 `;

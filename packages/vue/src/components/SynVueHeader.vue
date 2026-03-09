@@ -36,6 +36,7 @@
  * @csspart burger-menu-toggle-button - The button that toggles the burger menu
  *
  * @cssproperty --sticky-position - The position of the sticky header from the top of the viewport. Defaults to the top of the screen.
+ * @cssproperty --metanavigation-item-size - The size of the items in the meta navigation. Also used for the height of dividers in the meta navigation. Defaults to var(--syn-font-size-x-large)
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/header/header.js';

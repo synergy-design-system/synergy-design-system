@@ -165,6 +165,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   @query('.input__wrapper') baseDiv: HTMLDivElement;
 
+  @query('.base') baseControl: HTMLDivElement;
+
   @query('.active-track') activeTrack: HTMLDivElement;
 
   @query('.ticks') ticks: HTMLDivElement;
@@ -178,6 +180,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   private readonly formControlController = new FormControlController(this, { assumeInteractionOn: ['syn-change'] });
 
   private localize = new LocalizeController(this);
+
+  private ticksResizeObserver: ResizeObserver;
 
   private visibilityObserver: IntersectionObserver;
 
@@ -204,22 +208,26 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    this?.ticksResizeObserver?.disconnect();
     this?.visibilityObserver?.disconnect();
   }
 
   firstUpdated() {
-    // #727: Check if the ticks are visible and update the prefix and suffix position when they are.
+    this.ticksResizeObserver = new ResizeObserver(() => {
+      this.#updateTicksHeight();
+    });
+    this.ticksResizeObserver.observe(this.ticks);
+
+    // #727: If the range starts hidden (e.g. inside inactive tabs), update once it becomes visible.
     this.visibilityObserver = new IntersectionObserver((entries) => {
       const entry = entries.at(0);
-      if (entry && entry.isIntersecting && entry.target.checkVisibility()) {
-        this.#updatePrefixSuffixPosition(entry.boundingClientRect.height);
+      if (entry && entry.isIntersecting) {
+        this.#updateTicksHeight();
       }
-    }, {
-      // We bind the root to the parent element of the ticks to make sure we are only called
-      // when the ticks are visible, not when the ticks are scrolled out of the viewport.
-      root: this.ticks.parentElement,
     });
-    this.visibilityObserver.observe(this.ticks);
+    this.visibilityObserver.observe(this);
+
+    this.#updateTicksHeight();
 
     this.formControlController.updateValidity();
     // initialize the lastChangeValue with the initial value
@@ -700,35 +708,14 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.formControlController.emitInvalidEvent(event);
   }
 
-  #updatePrefixSuffixPosition(height?: number) {
+  #updateTicksHeight() {
     const hasTicksSlot = this.hasSlotController.test('ticks');
-    const hasPrefixSlot = this.hasSlotController.test('prefix');
-    const hasSuffixSlot = this.hasSlotController.test('suffix');
-
-    if (!hasTicksSlot) {
-      return;
-    }
-
-    let ticksHeight = height || this.shadowRoot?.querySelector('.ticks')?.clientHeight;
-    if (ticksHeight) {
-      // Add two pixels as the 1px margin on top and bottom are not included in the clientHeight
-      ticksHeight += 2;
-
-      ticksHeight /= 2;
-
-      if (hasPrefixSlot) {
-        const prefix = this.shadowRoot?.querySelector('.input__prefix') as HTMLElement;
-        prefix.style.transform = `translateY(-${ticksHeight}px)`;
-      }
-
-      if (hasSuffixSlot) {
-        const suffix = this.shadowRoot?.querySelector('.input__suffix') as HTMLElement;
-        suffix.style.transform = `translateY(-${ticksHeight}px)`;
-      }
-    }
+    const ticksHeight = hasTicksSlot ? this.ticks.clientHeight : 0;
+    // #1143: Directly set margin-bottom on .base to counter the ticks container height,
+    // so ticks do not increase the overall height of the range component.
+    this.baseControl.style.marginBottom = ticksHeight > 0 ? `${ticksHeight}px` : '';
   }
 
-  /* eslint-disable @typescript-eslint/unbound-method */
   private renderThumbs(hasLabel: boolean) {
     // Aria special handling:
     // 1. When there is only one label: Use the provided label as the aria-label for the thumb
@@ -759,6 +746,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         }
       }
 
+      /* eslint-disable @typescript-eslint/unbound-method */
       return html`
         <syn-tooltip
           exportparts="base:tooltip__base, base__arrow:tooltip__arrow, base__popup:tooltip__popup, body:tooltip__body"
@@ -790,11 +778,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           ></div>
         </syn-tooltip>
       `;
+      /* eslint-enable @typescript-eslint/unbound-method */
     });
   }
-  /* eslint-enable @typescript-eslint/unbound-method */
 
-  /* eslint-disable @typescript-eslint/unbound-method */
   override render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
@@ -803,6 +790,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
+    /* eslint-disable @typescript-eslint/unbound-method */
     return html`
       <div
         part="form-control"
@@ -884,6 +872,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         </div>
       </div>
     `;
+    /* eslint-enable @typescript-eslint/unbound-method */
   }
-  /* eslint-enable @typescript-eslint/unbound-method */
 }

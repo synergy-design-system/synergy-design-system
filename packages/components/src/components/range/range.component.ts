@@ -217,6 +217,11 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
       this.#updateTicksHeight();
     });
     this.ticksResizeObserver.observe(this.ticks);
+    // Also observe .base so that a runtime change to the prefix/suffix slot
+    // (e.g. swapping in a taller <syn-input size="large">) re-triggers the
+    // overflow calculation — the formula reads baseControl.offsetHeight, which
+    // would otherwise be stale until the next ticks resize.
+    this.ticksResizeObserver.observe(this.baseControl);
 
     // #727: If the range starts hidden (e.g. inside inactive tabs), update once it becomes visible.
     this.visibilityObserver = new IntersectionObserver((entries) => {
@@ -709,11 +714,62 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #updateTicksHeight() {
-    const hasTicksSlot = this.hasSlotController.test('ticks');
-    const ticksHeight = hasTicksSlot ? this.ticks.clientHeight : 0;
-    // #1143: Directly set margin-bottom on .base to counter the ticks container height,
-    // so ticks do not increase the overall height of the range component.
-    this.baseControl.style.marginBottom = ticksHeight > 0 ? `${ticksHeight}px` : '';
+    if (!this.hasSlotController.test('ticks')) {
+      this.baseControl.style.marginBottom = '';
+      return;
+    }
+
+    /**
+     * Why this calculation is needed (#1143):
+     *
+     * `.ticks` is `position: absolute; top: 100%` inside `.input__wrapper`.
+     * This means the ticks render *below* `.input__wrapper` but are taken out of
+     * normal flow, so they do not affect `.base`'s intrinsic height.  Without
+     * correction the ticks would visually overlap whatever comes after `.base`
+     * (e.g. the help-text or the next form field).
+     *
+     * A naive fix — `margin-bottom = ticks.clientHeight` — over-corrects when a
+     * tall prefix/suffix slot is present.  Because `.base` uses `align-items:
+     * center`, `.input__wrapper` (which contains `.ticks`) is vertically centred
+     * inside `.base`.  The bottom edge of the ticks therefore sits at:
+     *
+     *   ticksBottom = (baseHeight + inputWrapperHeight) / 2 + ticksHeight
+     *
+     * The amount by which the ticks actually *protrude below* `.base` is:
+     *
+     *   overflow = ticksBottom - baseHeight
+     *            = ticksHeight - (baseHeight - inputWrapperHeight) / 2
+     *
+     * When the prefix/suffix content is taller than the ticks, the vertical
+     * space already available below `.input__wrapper` absorbs all of the ticks,
+     * so the overflow is zero (or negative — in which case no extra margin is
+     * needed).
+     *
+     * We therefore apply:
+     *   margin-bottom = max(0, ticksHeight - availableSpaceBelow)
+     *
+     * where:
+     *   availableSpaceBelow = (baseHeight - inputWrapperHeight) / 2
+     *
+     * All three heights are read via getBoundingClientRect().height rather than
+     * offsetHeight / clientHeight.  The latter return integers and can differ in
+     * rounding direction, causing (baseHeight - inputWrapperHeight) to be ±1 px
+     * off even when the two elements have the same real height.  With fractional
+     * measurements the subtraction is exact.  We then Math.ceil the overflow so
+     * we always apply enough margin and never leave the ticks 1 px short.
+     */
+    const ticksHeight = this.ticks.getBoundingClientRect().height;
+    const baseHeight = this.baseControl.getBoundingClientRect().height;
+    const inputWrapperHeight = this.baseDiv.getBoundingClientRect().height;
+
+    // Vertical space that already exists between the bottom of .input__wrapper
+    // and the bottom edge of .base (due to a taller prefix/suffix).
+    const availableSpaceBelow = (baseHeight - inputWrapperHeight) / 2;
+
+    // Only add a margin for the portion of the ticks that protrudes beyond .base.
+    // Math.ceil ensures we never undershoot by a sub-pixel fraction.
+    const overflow = Math.ceil(Math.max(0, ticksHeight - availableSpaceBelow));
+    this.baseControl.style.marginBottom = overflow > 0 ? `${overflow}px` : '';
   }
 
   private renderThumbs(hasLabel: boolean) {

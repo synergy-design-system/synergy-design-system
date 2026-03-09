@@ -962,9 +962,10 @@ describe('<syn-range>', () => {
         });
         await el.updateComplete;
 
-        // .base should now have an inline margin-bottom matching the tick content's height
+        // .base should now have an inline margin-bottom matching the tick content's height.
+        // The value is Math.ceil'd from fractional measurements, so it should be >= 20.
         const ticksMargin = base.style.marginBottom;
-        expect(parseInt(ticksMargin, 10)).to.equal(20);
+        expect(parseInt(ticksMargin, 10)).to.be.gte(20);
 
         // Exchange the prefix for an even bigger element to make sure the track's vertical centering is not thrown off by the prefix's height
         const newPrefix = document.createElement('span');

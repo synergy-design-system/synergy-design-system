@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.13.0
+
+### Minor Changes
+
+- [#1207](https://github.com/synergy-design-system/synergy-design-system/pull/1207) [`806c0c7`](https://github.com/synergy-design-system/synergy-design-system/commit/806c0c791c0a25f8e22b849cefc10d0d08ede2fa) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  feat: ✨ enforce browser policy (#1190)
+
 ## 2.12.1
 
 ### Patch Changes

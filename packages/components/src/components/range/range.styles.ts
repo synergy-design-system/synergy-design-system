@@ -241,8 +241,9 @@ export default css`
   /* Ticks */
   .ticks {
     cursor: pointer;
-    margin: 1px 0;
-    position: relative;
+    inset-inline: 0;
+    position: absolute;
+    top: 100%;
     user-select: none;
   }
 

@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.10.2
+
+### Patch Changes
+
+- [#1224](https://github.com/synergy-design-system/synergy-design-system/pull/1224) [`7defd03`](https://github.com/synergy-design-system/synergy-design-system/commit/7defd0349dc50d4f9549eda59c4b6bcc96c4612c) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  fix: 🐛 `<syn-range>` content may bleed into the label when rendering a prefix or suffix slot and using ticks (#1143)
+
+  This release fixes an issue with `<syn-range>` that caused a layout miscalculation when using prefix and suffix slots in combination with slots.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.10.2
+
 ## 3.10.1
 
 ### Patch Changes

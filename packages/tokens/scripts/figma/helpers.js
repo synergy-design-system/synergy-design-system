@@ -124,10 +124,6 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    */
   /primitive\/shadow.*\/(1st|2nd|3rd)/,
 
-  // Currently not used color palettes of muted
-  // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
-  /primitive\/muted/,
-
   /**
    * Letter spacing
    */

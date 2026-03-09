@@ -30,7 +30,7 @@ createTestCases(({ name, port }) => {
           input => input.evaluate(el => (el as SynInput).validity.valid),
         ),
       );
-      expect(states.length).toBe(form.allRequiredInputs.length);
+      expect(states).toHaveLength(form.allRequiredInputs.length);
       expect(states.every((state) => !state)).toBe(true);
     });
 

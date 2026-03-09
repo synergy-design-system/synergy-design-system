@@ -29,6 +29,7 @@ import DemoSpinner from "./DemoSpinner.vue";
 import DemoSwitch from "./DemoSwitch.vue";
 import DemoTabGroup from "./DemoTabGroup.vue";
 import DemoTag from "./DemoTag.vue";
+import DemoTagGroup from "./DemoTagGroup.vue";
 import DemoTextarea from "./DemoTextarea.vue";
 import DemoTooltip from "./DemoTooltip.vue";
 import DemoValidate from "./DemoValidate.vue";
@@ -65,6 +66,7 @@ export {
   DemoSwitch,
   DemoTabGroup,
   DemoTag,
+  DemoTagGroup,
   DemoTextarea,
   DemoTooltip,
   DemoValidate,

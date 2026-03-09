@@ -46,6 +46,7 @@ export { default as SynVueTab } from './components/SynVueTab.vue';
 export { default as SynVueTabGroup } from './components/SynVueTabGroup.vue';
 export { default as SynVueTabPanel } from './components/SynVueTabPanel.vue';
 export { default as SynVueTag } from './components/SynVueTag.vue';
+export { default as SynVueTagGroup } from './components/SynVueTagGroup.vue';
 export { default as SynVueTextarea } from './components/SynVueTextarea.vue';
 export { default as SynVueTooltip } from './components/SynVueTooltip.vue';
 export { default as SynVueValidate } from './components/SynVueValidate.vue';

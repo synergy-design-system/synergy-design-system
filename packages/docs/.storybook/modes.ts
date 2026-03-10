@@ -6,6 +6,7 @@ export const SICK_2025_DARK = '🌙 SICK 2025 Dark';
 export const LIGHT_THEME = '🌞 SICK 2018 Light';
 export const DARK_THEME = '🌙 SICK 2018 Dark';
 
+/* eslint-disable sort-keys */
 export const ChromaticModesSick2018 = {
   [LIGHT_THEME]: {
     theme: LIGHT_THEME,
@@ -14,7 +15,9 @@ export const ChromaticModesSick2018 = {
     theme: DARK_THEME,
   },
 };
+/* eslint-enable sort-keys */
 
+/* eslint-disable sort-keys */
 export const ChromaticModesSick2025 = {
   [SICK_2025_LIGHT]: {
     theme: SICK_2025_LIGHT,
@@ -23,6 +26,7 @@ export const ChromaticModesSick2025 = {
     theme: SICK_2025_DARK,
   },
 };
+/* eslint-enable sort-keys */
 
 export const ChromaticModesAll = {
   ...ChromaticModesSick2018,

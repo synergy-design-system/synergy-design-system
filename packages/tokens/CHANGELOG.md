@@ -1,5 +1,143 @@
 # Changelog
 
+## 3.10.2
+
+## 3.10.1
+
+### Patch Changes
+
+- [#1223](https://github.com/synergy-design-system/synergy-design-system/pull/1223) [`60b2845`](https://github.com/synergy-design-system/synergy-design-system/commit/60b2845fc089c2508f7e4a2b068b359fad166288) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  fix: 🐛 dependency updates (#258)
+
+## 3.10.0
+
+### Minor Changes
+
+- [#1209](https://github.com/synergy-design-system/synergy-design-system/pull/1209) [`5704a96`](https://github.com/synergy-design-system/synergy-design-system/commit/5704a96fbe2d0481822a30ce171a01df960c82f1) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  feat: ✨ Allow `<syn-divider>` as a separator in meta-navigation of `<syn-header>` (#1130)
+
+  This release adds the possiblity to use `<syn-divider>` as a separator between items in the `<syn-header>` metanavigation.
+  It will automatically set the correct `height` on vertically aligned `<syn-dividers>`.
+
+  You may use it via:
+
+  ```html
+  <syn-header label="App Name">
+    <nav slot="meta-navigation">
+      <syn-icon-button
+        name="settings_outline"
+        label="Settings"
+      ></syn-icon-button>
+      <syn-icon-button
+        name="insert_chart_outlined"
+        label="Analytics"
+      ></syn-icon-button>
+      <syn-divider vertical></syn-divider>
+      <syn-icon-button name="dark_mode" label="Dark Mode"></syn-icon-button>
+      <syn-divider vertical></syn-divider>
+      <syn-icon-button name="language" label="Language"></syn-icon-button>
+      <syn-icon-button name="login" label="Login"></syn-icon-button>
+    </nav>
+  </syn-header>
+  ```
+
+  or via directly slotting the `<syn-divider>` via
+
+  ```html
+  <syn-header label="App Name">
+    <syn-icon-button
+      slot="meta-navigation"
+      name="settings_outline"
+      label="Settings"
+    ></syn-icon-button>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="insert_chart_outlined"
+      label="Analytics"
+    ></syn-icon-button>
+    <syn-divider vertical slot="meta-navigation"></syn-divider>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="dark_mode"
+      label="Dark Mode"
+    ></syn-icon-button>
+    <syn-divider vertical slot="meta-navigation"></syn-divider>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="language"
+      label="Language"
+    ></syn-icon-button>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="login"
+      label="Login"
+    ></syn-icon-button>
+  </syn-header>
+  ```
+
+  `<syn-header>` now also exposes a new `cssproperty` `--metanavigation-item-size` that can be used to define the size of rendered `<syn-icon-buttons>`, as well as the height of `<syn-divider>`
+
+## 3.9.0
+
+### Minor Changes
+
+- [#1211](https://github.com/synergy-design-system/synergy-design-system/pull/1211) [`8d3e2a7`](https://github.com/synergy-design-system/synergy-design-system/commit/8d3e2a712619cb94938083620168caafc091323f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  feat: ✨ tokens: export muted color palette (#1210)
+
+  This release adds the muted color palette, as well as 3 new data color palettes from Figma to the `@synergy-design-system/tokens` package.
+
+## 3.8.0
+
+## 3.7.0
+
+### Minor Changes
+
+- [#1193](https://github.com/synergy-design-system/synergy-design-system/pull/1193) [`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ Add new component `<syn-tag-group>` (#1152)
+
+  Adds a new component `<syn-tag-group>`, including templates how to use this component.
+
+## 3.6.2
+
+## 3.6.1
+
+## 3.6.0
+
+### Minor Changes
+
+- [#1192](https://github.com/synergy-design-system/synergy-design-system/pull/1192) [`31c54c0`](https://github.com/synergy-design-system/synergy-design-system/commit/31c54c04a651a14e20bc5f4b2aff1bd92ad26bc0) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-02
+
+  feat: ✨ New variant `tooltip` for `<syn-validate>` (#664)
+
+  `<syn-validate>` received the option to show validation errors using `<syn-tooltip>`.
+  To use this feature, set the `variant` property to `tooltip`.
+
+## 3.5.0
+
+### Minor Changes
+
+- [#1189](https://github.com/synergy-design-system/synergy-design-system/pull/1189) [`a4f49ac`](https://github.com/synergy-design-system/synergy-design-system/commit/a4f49ac79a660ef5b8d1b380fe9fcd2159dc9b78) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-26
+
+  feat: ✨ Added readonly for various form fields (#1171, #1172, #1173, #1174, #1175, #1176, #1177, #1178)
+
+  Applies to:
+  - `<syn-checkbox>`
+  - `<syn-combobox>`
+  - `<syn-file>`
+  - `<syn-radio>`
+  - `<syn-radio-group>`
+  - `<syn-range>`
+  - `<syn-select>`
+  - `<syn-switch>`
+
+  Form elements now support being displayed as `readonly` fields.
+
+  Field marked `readonly` may receive focus, but their value cannot be changed by customer inputs.
+
 ## 3.4.1
 
 ## 3.4.0

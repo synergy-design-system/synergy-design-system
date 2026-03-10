@@ -28,6 +28,7 @@ describe('<syn-range>', () => {
     expect(el.max).to.equal(100);
     expect(el.min).to.equal(0);
     expect(el.name).to.equal('');
+    expect(el.readonly).to.equal(false);
     expect(el.size).to.equal('medium');
     expect(el.step).to.equal(1);
     expect(el.tooltipPlacement).to.equal('top');
@@ -69,6 +70,13 @@ describe('<syn-range>', () => {
     const wrapper = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="form-control"]')!;
 
     expect(wrapper).to.have.class('form-control--is-disabled');
+  });
+
+  it('should be readonly with the readonly attribute', async () => {
+    const el = await fixture<SynRange>(html`<syn-range readonly></syn-range>`);
+    const wrapper = el.shadowRoot!.querySelector<HTMLInputElement>('[part~="form-control"]')!;
+
+    expect(wrapper).to.have.class('form-control--is-readonly');
   });
 
   describe('value methods', () => {
@@ -336,12 +344,6 @@ describe('<syn-range>', () => {
     });
 
     it('should allow to set more than one value', async () => {
-      if (navigator.userAgent.includes('Firefox')) {
-        // eslint-disable-next-line no-console
-        console.warn('Skipping test in Firefox as drag and drop does not work right');
-        return;
-      }
-
       await resetMouse();
       const el = await fixture<SynRange>(html`<syn-range value="20 80"></syn-range>`);
       const changeHandler = sinon.spy();
@@ -927,6 +929,58 @@ describe('<syn-range>', () => {
       expect(el.shadowRoot!.activeElement).to.equal(thumbEnd);
     });
   });
+
+  describe('regression tests', () => {
+    describe('#1143: Label and content should have correct margins when slots are dynamically changed', () => {
+      it('should vertically align the prefix and suffix slots with the track when the ticks slot is filled', async () => {
+        const el = await fixture<SynRange>(html`
+          <syn-range label="Volume">
+            <span slot="prefix">Min</span>
+            <span slot="suffix">Max</span>
+          </syn-range>
+        `);
+
+        await el.updateComplete;
+
+        const base = el.shadowRoot!.querySelector<HTMLElement>('.base')!;
+
+        // Without ticks, no inline margin-bottom should be set on .base
+        expect(base.style.marginBottom).to.equal('');
+
+        // Dynamically add content to the ticks slot
+        const ticksContainer = document.createElement('div');
+        ticksContainer.setAttribute('slot', 'ticks');
+        ticksContainer.style.height = '20px';
+        el.appendChild(ticksContainer);
+
+        // ResizeObserver callbacks fire after layout, wait for two animation frames to be safe
+        await new Promise(resolve => {
+          requestAnimationFrame(resolve);
+        });
+        await new Promise(resolve => {
+          requestAnimationFrame(resolve);
+        });
+        await el.updateComplete;
+
+        // .base should now have an inline margin-bottom matching the tick content's height.
+        // The value is Math.ceil'd from fractional measurements, so it should be >= 20.
+        const ticksMargin = base.style.marginBottom;
+        expect(parseInt(ticksMargin, 10)).to.be.gte(20);
+
+        // Exchange the prefix for an even bigger element to make sure the track's vertical centering is not thrown off by the prefix's height
+        const newPrefix = document.createElement('span');
+        newPrefix.style.height = '40px';
+        newPrefix.setAttribute('slot', 'prefix');
+        newPrefix.textContent = 'Minimum';
+        el.appendChild(newPrefix);
+
+        await el.updateComplete;
+
+        // margin-bottom should still be the same and the track should still be vertically centered with the suffix
+        expect(base.style.marginBottom).to.equal(ticksMargin);
+      }); // Vertical alignment of prefix and suffix with track is off when ticks slot is filled #1143
+    }); // #1143
+  }); // Regression tests
 
   runFormControlBaseTests('syn-range');
 });

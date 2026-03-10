@@ -11,7 +11,6 @@ import { HasSlotController } from '../../internal/slot.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
-import formControlCustomStyles from '../../styles/form-control.custom.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynTooltip from '../tooltip/tooltip.component.js';
 import {
@@ -78,7 +77,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   static styles: CSSResultGroup = [
     componentStyles,
     formControlStyles,
-    formControlCustomStyles,
     styles,
   ];
 
@@ -97,6 +95,9 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   /** Disables the range. */
   @property({ reflect: true, type: Boolean }) disabled = false;
+
+  /** Sets the range to a readonly state. */
+  @property({ reflect: true, type: Boolean }) readonly = false;
 
   /** The minimum acceptable value of the range. */
   @property({ type: Number }) min = 0;
@@ -164,6 +165,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   @query('.input__wrapper') baseDiv: HTMLDivElement;
 
+  @query('.base') baseControl: HTMLDivElement;
+
   @query('.active-track') activeTrack: HTMLDivElement;
 
   @query('.ticks') ticks: HTMLDivElement;
@@ -177,6 +180,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   private readonly formControlController = new FormControlController(this, { assumeInteractionOn: ['syn-change'] });
 
   private localize = new LocalizeController(this);
+
+  private ticksResizeObserver: ResizeObserver;
 
   private visibilityObserver: IntersectionObserver;
 
@@ -203,22 +208,31 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   disconnectedCallback() {
     super.disconnectedCallback();
+    this?.ticksResizeObserver?.disconnect();
     this?.visibilityObserver?.disconnect();
   }
 
   firstUpdated() {
-    // #727: Check if the ticks are visible and update the prefix and suffix position when they are.
+    this.ticksResizeObserver = new ResizeObserver(() => {
+      this.#updateTicksHeight();
+    });
+    this.ticksResizeObserver.observe(this.ticks);
+    // Also observe .base so that a runtime change to the prefix/suffix slot
+    // (e.g. swapping in a taller <syn-input size="large">) re-triggers the
+    // overflow calculation — the formula reads baseControl.offsetHeight, which
+    // would otherwise be stale until the next ticks resize.
+    this.ticksResizeObserver.observe(this.baseControl);
+
+    // #727: If the range starts hidden (e.g. inside inactive tabs), update once it becomes visible.
     this.visibilityObserver = new IntersectionObserver((entries) => {
       const entry = entries.at(0);
-      if (entry && entry.isIntersecting && entry.target.checkVisibility()) {
-        this.#updatePrefixSuffixPosition(entry.boundingClientRect.height);
+      if (entry && entry.isIntersecting) {
+        this.#updateTicksHeight();
       }
-    }, {
-      // We bind the root to the parent element of the ticks to make sure we are only called
-      // when the ticks are visible, not when the ticks are scrolled out of the viewport.
-      root: this.ticks.parentElement,
     });
-    this.visibilityObserver.observe(this.ticks);
+    this.visibilityObserver.observe(this);
+
+    this.#updateTicksHeight();
 
     this.formControlController.updateValidity();
     // initialize the lastChangeValue with the initial value
@@ -354,6 +368,12 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
 
   #onClickTrack(event: PointerEvent, focusThumb = true) {
     if (this.disabled) return;
+    if (this.readonly) {
+      event.preventDefault();
+      this.focus();
+      return;
+    }
+
     const { clientX } = event;
 
     const thumbs = Array.from(this.thumbs);
@@ -443,7 +463,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   async #onClickThumb(event: PointerEvent) {
-    if (this.disabled) return;
+    if (this.disabled || this.readonly) return;
 
     const thumb = event.target as HTMLDivElement;
     this.#updateTooltip(thumb);
@@ -460,7 +480,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #onDragThumb(event: PointerEvent) {
-    if (this.disabled) return;
+    if (this.disabled || this.readonly) return;
 
     const thumb = event.target as HTMLDivElement;
     const rangeId = +thumb.dataset.rangeId!;
@@ -509,6 +529,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   async #onReleaseThumb(event: PointerEvent) {
+    if (this.disabled || this.readonly) return;
+
     const thumb = event.target as HTMLDivElement;
     if (!thumb.dataset.pointerId || event.pointerId !== +thumb.dataset.pointerId) return;
 
@@ -569,6 +591,8 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   }
 
   #onKeyPress(event: KeyboardEvent) {
+    if (this.readonly) return;
+
     const thumb = event.target as HTMLDivElement;
     const rangeId = +thumb.dataset.rangeId!;
 
@@ -689,35 +713,65 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.formControlController.emitInvalidEvent(event);
   }
 
-  #updatePrefixSuffixPosition(height?: number) {
-    const hasTicksSlot = this.hasSlotController.test('ticks');
-    const hasPrefixSlot = this.hasSlotController.test('prefix');
-    const hasSuffixSlot = this.hasSlotController.test('suffix');
-
-    if (!hasTicksSlot) {
+  #updateTicksHeight() {
+    if (!this.hasSlotController.test('ticks')) {
+      this.baseControl.style.marginBottom = '';
       return;
     }
 
-    let ticksHeight = height || this.shadowRoot?.querySelector('.ticks')?.clientHeight;
-    if (ticksHeight) {
-      // Add two pixels as the 1px margin on top and bottom are not included in the clientHeight
-      ticksHeight += 2;
+    /**
+     * Why this calculation is needed (#1143):
+     *
+     * `.ticks` is `position: absolute; top: 100%` inside `.input__wrapper`.
+     * This means the ticks render *below* `.input__wrapper` but are taken out of
+     * normal flow, so they do not affect `.base`'s intrinsic height.  Without
+     * correction the ticks would visually overlap whatever comes after `.base`
+     * (e.g. the help-text or the next form field).
+     *
+     * A naive fix — `margin-bottom = ticks.clientHeight` — over-corrects when a
+     * tall prefix/suffix slot is present.  Because `.base` uses `align-items:
+     * center`, `.input__wrapper` (which contains `.ticks`) is vertically centred
+     * inside `.base`.  The bottom edge of the ticks therefore sits at:
+     *
+     *   ticksBottom = (baseHeight + inputWrapperHeight) / 2 + ticksHeight
+     *
+     * The amount by which the ticks actually *protrude below* `.base` is:
+     *
+     *   overflow = ticksBottom - baseHeight
+     *            = ticksHeight - (baseHeight - inputWrapperHeight) / 2
+     *
+     * When the prefix/suffix content is taller than the ticks, the vertical
+     * space already available below `.input__wrapper` absorbs all of the ticks,
+     * so the overflow is zero (or negative — in which case no extra margin is
+     * needed).
+     *
+     * We therefore apply:
+     *   margin-bottom = max(0, ticksHeight - availableSpaceBelow)
+     *
+     * where:
+     *   availableSpaceBelow = (baseHeight - inputWrapperHeight) / 2
+     *
+     * All three heights are read via getBoundingClientRect().height rather than
+     * offsetHeight / clientHeight.  The latter return integers and can differ in
+     * rounding direction, causing (baseHeight - inputWrapperHeight) to be ±1 px
+     * off even when the two elements have the same real height.  With fractional
+     * measurements the subtraction is exact.  We then Math.ceil the overflow so
+     * we always apply enough margin and never leave the ticks 1 px short.
+     */
+    const ticksHeight = this.ticks.getBoundingClientRect().height;
+    const baseHeight = this.baseControl.getBoundingClientRect().height;
+    const inputWrapperHeight = this.baseDiv.getBoundingClientRect().height;
 
-      ticksHeight /= 2;
+    // Vertical space that already exists between the bottom of .input__wrapper
+    // and the bottom edge of .base (due to a taller prefix/suffix).
+    const availableSpaceBelow = (baseHeight - inputWrapperHeight) / 2;
 
-      if (hasPrefixSlot) {
-        const prefix = this.shadowRoot?.querySelector('.input__prefix') as HTMLElement;
-        prefix.style.transform = `translateY(-${ticksHeight}px)`;
-      }
-
-      if (hasSuffixSlot) {
-        const suffix = this.shadowRoot?.querySelector('.input__suffix') as HTMLElement;
-        suffix.style.transform = `translateY(-${ticksHeight}px)`;
-      }
-    }
+    // Only add a margin for the portion of the ticks that protrudes beyond .base.
+    // Math.ceil ensures we never undershoot by a sub-pixel fraction.
+    const overflow = Math.ceil(Math.max(0, ticksHeight - availableSpaceBelow));
+    this.baseControl.style.marginBottom = overflow > 0 ? `${overflow}px` : '';
   }
 
-  /* eslint-disable @typescript-eslint/unbound-method */
   private renderThumbs(hasLabel: boolean) {
     // Aria special handling:
     // 1. When there is only one label: Use the provided label as the aria-label for the thumb
@@ -748,6 +802,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         }
       }
 
+      /* eslint-disable @typescript-eslint/unbound-method */
       return html`
         <syn-tooltip
           exportparts="base:tooltip__base, base__arrow:tooltip__arrow, base__popup:tooltip__popup, body:tooltip__body"
@@ -756,7 +811,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           trigger="focus"
         >
           <div
-            aria-disabled=${ifDefined(this.disabled ? 'true' : undefined)}
+            aria-disabled=${ifDefined((this.disabled || this.readonly) ? 'true' : undefined)}
             aria-labelledby=${ariaLabeledBy}
             aria-label=${ariaLabel}
             aria-valuemax="${this.max}"
@@ -779,11 +834,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           ></div>
         </syn-tooltip>
       `;
+      /* eslint-enable @typescript-eslint/unbound-method */
     });
   }
-  /* eslint-enable @typescript-eslint/unbound-method */
 
-  /* eslint-disable @typescript-eslint/unbound-method */
   override render() {
     const hasLabelSlot = this.hasSlotController.test('label');
     const hasHelpTextSlot = this.hasSlotController.test('help-text');
@@ -792,6 +846,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     const hasLabel = this.label ? true : !!hasLabelSlot;
     const hasHelpText = this.helpText ? true : !!hasHelpTextSlot;
 
+    /* eslint-disable @typescript-eslint/unbound-method */
     return html`
       <div
         part="form-control"
@@ -802,6 +857,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           'form-control--has-prefix': hasPrefixSlot,
           'form-control--has-suffix': hasSuffixSlot,
           'form-control--is-disabled': this.disabled,
+          'form-control--is-readonly': this.readonly,
           'form-control--large': this.size === 'large',
           'form-control--medium': this.size === 'medium',
           'form-control--small': this.size === 'small',
@@ -872,6 +928,6 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         </div>
       </div>
     `;
+    /* eslint-enable @typescript-eslint/unbound-method */
   }
-  /* eslint-enable @typescript-eslint/unbound-method */
 }

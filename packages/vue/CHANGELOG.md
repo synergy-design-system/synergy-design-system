@@ -1,5 +1,203 @@
 # @synergy-design-system/vue
 
+## 3.10.2
+
+### Patch Changes
+
+- Updated dependencies [[`7defd03`](https://github.com/synergy-design-system/synergy-design-system/commit/7defd0349dc50d4f9549eda59c4b6bcc96c4612c)]:
+  - @synergy-design-system/components@3.10.2
+  - @synergy-design-system/tokens@3.10.2
+
+## 3.10.1
+
+### Patch Changes
+
+- [#1223](https://github.com/synergy-design-system/synergy-design-system/pull/1223) [`60b2845`](https://github.com/synergy-design-system/synergy-design-system/commit/60b2845fc089c2508f7e4a2b068b359fad166288) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  fix: 🐛 dependency updates (#258)
+
+- Updated dependencies [[`60b2845`](https://github.com/synergy-design-system/synergy-design-system/commit/60b2845fc089c2508f7e4a2b068b359fad166288)]:
+  - @synergy-design-system/components@3.10.1
+  - @synergy-design-system/tokens@3.10.1
+
+## 3.10.0
+
+### Minor Changes
+
+- [#1209](https://github.com/synergy-design-system/synergy-design-system/pull/1209) [`5704a96`](https://github.com/synergy-design-system/synergy-design-system/commit/5704a96fbe2d0481822a30ce171a01df960c82f1) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  feat: ✨ Allow `<syn-divider>` as a separator in meta-navigation of `<syn-header>` (#1130)
+
+  This release adds the possiblity to use `<syn-divider>` as a separator between items in the `<syn-header>` metanavigation.
+  It will automatically set the correct `height` on vertically aligned `<syn-dividers>`.
+
+  You may use it via:
+
+  ```html
+  <syn-header label="App Name">
+    <nav slot="meta-navigation">
+      <syn-icon-button
+        name="settings_outline"
+        label="Settings"
+      ></syn-icon-button>
+      <syn-icon-button
+        name="insert_chart_outlined"
+        label="Analytics"
+      ></syn-icon-button>
+      <syn-divider vertical></syn-divider>
+      <syn-icon-button name="dark_mode" label="Dark Mode"></syn-icon-button>
+      <syn-divider vertical></syn-divider>
+      <syn-icon-button name="language" label="Language"></syn-icon-button>
+      <syn-icon-button name="login" label="Login"></syn-icon-button>
+    </nav>
+  </syn-header>
+  ```
+
+  or via directly slotting the `<syn-divider>` via
+
+  ```html
+  <syn-header label="App Name">
+    <syn-icon-button
+      slot="meta-navigation"
+      name="settings_outline"
+      label="Settings"
+    ></syn-icon-button>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="insert_chart_outlined"
+      label="Analytics"
+    ></syn-icon-button>
+    <syn-divider vertical slot="meta-navigation"></syn-divider>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="dark_mode"
+      label="Dark Mode"
+    ></syn-icon-button>
+    <syn-divider vertical slot="meta-navigation"></syn-divider>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="language"
+      label="Language"
+    ></syn-icon-button>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="login"
+      label="Login"
+    ></syn-icon-button>
+  </syn-header>
+  ```
+
+  `<syn-header>` now also exposes a new `cssproperty` `--metanavigation-item-size` that can be used to define the size of rendered `<syn-icon-buttons>`, as well as the height of `<syn-divider>`
+
+### Patch Changes
+
+- Updated dependencies [[`5704a96`](https://github.com/synergy-design-system/synergy-design-system/commit/5704a96fbe2d0481822a30ce171a01df960c82f1)]:
+  - @synergy-design-system/components@3.10.0
+  - @synergy-design-system/tokens@3.10.0
+
+## 3.9.0
+
+### Patch Changes
+
+- Updated dependencies [[`8d3e2a7`](https://github.com/synergy-design-system/synergy-design-system/commit/8d3e2a712619cb94938083620168caafc091323f)]:
+  - @synergy-design-system/tokens@3.9.0
+  - @synergy-design-system/components@3.9.0
+
+## 3.8.0
+
+### Minor Changes
+
+- [#1216](https://github.com/synergy-design-system/synergy-design-system/pull/1216) [`fa7ebf8`](https://github.com/synergy-design-system/synergy-design-system/commit/fa7ebf8ca9aef4e246f75688711c7dbb24cb25cb) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ `<syn-combobox>` should support `maxlength` attribute (#1184)
+
+  This release adds the ability to set a maximal input length for `<syn-combobox>` via `<syn-combobox maxlength="5">`.
+  This provides the ability to set the maximal amount of free text input for the comboboxes input field.
+  It still allows to use options from the list of available options and works as a restriction for free text only.
+
+### Patch Changes
+
+- Updated dependencies [[`fa7ebf8`](https://github.com/synergy-design-system/synergy-design-system/commit/fa7ebf8ca9aef4e246f75688711c7dbb24cb25cb)]:
+  - @synergy-design-system/components@3.8.0
+  - @synergy-design-system/tokens@3.8.0
+
+## 3.7.0
+
+### Minor Changes
+
+- [#1193](https://github.com/synergy-design-system/synergy-design-system/pull/1193) [`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ Add new component `<syn-tag-group>` (#1152)
+
+  Adds a new component `<syn-tag-group>`, including templates how to use this component.
+
+### Patch Changes
+
+- Updated dependencies [[`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302)]:
+  - @synergy-design-system/components@3.7.0
+  - @synergy-design-system/tokens@3.7.0
+
+## 3.6.2
+
+### Patch Changes
+
+- Updated dependencies [[`01c5e9c`](https://github.com/synergy-design-system/synergy-design-system/commit/01c5e9cc231c6bcc260cedc2f5d5713cf71ea254)]:
+  - @synergy-design-system/components@3.6.2
+  - @synergy-design-system/tokens@3.6.2
+
+## 3.6.1
+
+### Patch Changes
+
+- Updated dependencies [[`49c9d1c`](https://github.com/synergy-design-system/synergy-design-system/commit/49c9d1c30d777384024134ec983d183aed109421)]:
+  - @synergy-design-system/components@3.6.1
+  - @synergy-design-system/tokens@3.6.1
+
+## 3.6.0
+
+### Minor Changes
+
+- [#1192](https://github.com/synergy-design-system/synergy-design-system/pull/1192) [`31c54c0`](https://github.com/synergy-design-system/synergy-design-system/commit/31c54c04a651a14e20bc5f4b2aff1bd92ad26bc0) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-02
+
+  feat: ✨ New variant `tooltip` for `<syn-validate>` (#664)
+
+  `<syn-validate>` received the option to show validation errors using `<syn-tooltip>`.
+  To use this feature, set the `variant` property to `tooltip`.
+
+### Patch Changes
+
+- Updated dependencies [[`31c54c0`](https://github.com/synergy-design-system/synergy-design-system/commit/31c54c04a651a14e20bc5f4b2aff1bd92ad26bc0)]:
+  - @synergy-design-system/components@3.6.0
+  - @synergy-design-system/tokens@3.6.0
+
+## 3.5.0
+
+### Minor Changes
+
+- [#1189](https://github.com/synergy-design-system/synergy-design-system/pull/1189) [`a4f49ac`](https://github.com/synergy-design-system/synergy-design-system/commit/a4f49ac79a660ef5b8d1b380fe9fcd2159dc9b78) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-26
+
+  feat: ✨ Added readonly for various form fields (#1171, #1172, #1173, #1174, #1175, #1176, #1177, #1178)
+
+  Applies to:
+  - `<syn-checkbox>`
+  - `<syn-combobox>`
+  - `<syn-file>`
+  - `<syn-radio>`
+  - `<syn-radio-group>`
+  - `<syn-range>`
+  - `<syn-select>`
+  - `<syn-switch>`
+
+  Form elements now support being displayed as `readonly` fields.
+
+  Field marked `readonly` may receive focus, but their value cannot be changed by customer inputs.
+
+### Patch Changes
+
+- Updated dependencies [[`a4f49ac`](https://github.com/synergy-design-system/synergy-design-system/commit/a4f49ac79a660ef5b8d1b380fe9fcd2159dc9b78)]:
+  - @synergy-design-system/components@3.5.0
+  - @synergy-design-system/tokens@3.5.0
+
 ## 3.4.1
 
 ### Patch Changes

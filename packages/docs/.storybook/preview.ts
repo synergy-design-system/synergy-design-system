@@ -1,5 +1,5 @@
 import type { ClassDeclaration, ClassMember, Package } from 'custom-elements-manifest/schema.d.ts';
-import type { WebComponentsRenderer, Preview, StoryContext } from '@storybook/web-components-vite';
+import type { Preview, StoryContext, WebComponentsRenderer } from '@storybook/web-components-vite';
 import { withThemeByClassName } from '@storybook/addon-themes';
 import { MINIMAL_VIEWPORTS } from 'storybook/viewport';
 import { setCustomElementsManifest } from '@storybook/web-components-vite';
@@ -21,7 +21,17 @@ import '@synergy-design-system/styles';
 import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
-import { LIGHT_THEME, DARK_THEME, SICK_2025_DARK, SICK_2025_LIGHT, ChromaticModesSick2018, SICK_2018_DARK_CLASS, SICK_2018_LIGHT_CLASS, SICK_2025_DARK_CLASS, SICK_2025_LIGHT_CLASS } from './modes.js';
+import {
+  ChromaticModesSick2025,
+  DARK_THEME,
+  LIGHT_THEME,
+  SICK_2018_DARK_CLASS,
+  SICK_2018_LIGHT_CLASS,
+  SICK_2025_DARK,
+  SICK_2025_DARK_CLASS,
+  SICK_2025_LIGHT,
+  SICK_2025_LIGHT_CLASS,
+} from './modes.js';
 import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { themeSwitchIcons } from '../src/decorators/ThemeSwitchIcons.js';
@@ -47,9 +57,7 @@ const stylesManifestFiltered = filteredManifest(stylesManifest as Package);
 const manifest = {
   ...componentsManifestFiltered,
   modules: [
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     ...componentsManifestFiltered.modules,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     ...stylesManifestFiltered.modules,
   ],
 } as Package;
@@ -73,18 +81,26 @@ const themeByClassName = withThemeByClassName<WebComponentsRenderer>({
 });
 
 const preview: Preview = {
-  decorators: [stopAnimation, themeByClassName, themeSwitchIcons],
+  decorators: [
+    stopAnimation,
+    themeByClassName,
+    themeSwitchIcons,
+  ],
   initialGlobals: {
     background: {
       value: 'neutral-50',
     },
-    viewport: { value: 'defaultViewPort', isRotated: false },
+    viewport: {
+      isRotated: false,
+      value: 'defaultViewPort',
+    },
   },
   parameters: {
     backgrounds: {
       options: {
-        'page': { name: 'page', value: 'var(--syn-page-background-color)' },
-        'panel': { name: 'panel', value: 'var(--syn-panel-background-color)' },
+        page: { name: 'page', value: 'var(--syn-page-background-color)' },
+        panel: { name: 'panel', value: 'var(--syn-panel-background-color)' },
+        // eslint-disable-next-line sort-keys
         'neutral-0': { name: 'neutral-0', value: 'var(--syn-color-neutral-0)' },
         'neutral-50': { name: 'neutral-50', value: 'var(--syn-color-neutral-50)' },
         'neutral-100': { name: 'neutral-100', value: 'var(--syn-color-neutral-100)' },
@@ -95,11 +111,11 @@ const preview: Preview = {
       diffThreshold: 0.063, // Original value is set to 0.063
       disableSnapshot: true,
       // @see https://www.chromatic.com/docs/themes/
-      modes: ChromaticModesSick2018,
+      modes: ChromaticModesSick2025,
     },
     controls: {
-      expanded: true,
       disable: true,
+      expanded: true,
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/,
@@ -107,19 +123,6 @@ const preview: Preview = {
     },
     design: generateFigmaPluginObject('104-238'),
     docs: {
-      stories: { inline: false },
-      toc: {
-        headingSelector: 'h2, h3',
-        ignoreSelector: [
-          '.toc-ignore h2',
-          '.toc-ignore h3',
-          '.docs-story h2',
-          '.docs-story h3',
-          '.synergy-changelog h3',
-          '.synergy-changelog h4',
-          '.synergy-changelog h5',
-        ].join(', '),
-      },
       source: {
         format: 'html',
         transform: async (source: string, storyContext: StoryContext) => {
@@ -137,8 +140,21 @@ const preview: Preview = {
             console.error(e);
             return resultWithCodepen;
           }
-        }
-      }
+        },
+      },
+      stories: { inline: false },
+      toc: {
+        headingSelector: 'h2, h3',
+        ignoreSelector: [
+          '.toc-ignore h2',
+          '.toc-ignore h3',
+          '.docs-story h2',
+          '.docs-story h3',
+          '.synergy-changelog h3',
+          '.synergy-changelog h4',
+          '.synergy-changelog h5',
+        ].join(', '),
+      },
     },
     // Configures the viewports addon to make sure
     // that we have a valid default viewport.
@@ -149,15 +165,15 @@ const preview: Preview = {
         defaultViewPort: {
           name: 'Default',
           styles: {
-            width: '100%',
             height: '100%',
+            width: '100%',
           },
           type: 'desktop',
         },
-      }
+      },
     },
   },
-  tags: ['autodocs']
+  tags: ['autodocs'],
 };
 
 export default preview;

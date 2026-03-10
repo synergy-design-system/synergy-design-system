@@ -107,6 +107,25 @@ The focus event gives the user feedback that the Range has been focused by the k
 
 ---
 
+## Readonly
+
+Add the readonly attribute to a range to draw it in a readonly state.
+
+```html
+<form>
+  <syn-range
+    max="100"
+    min="0"
+    value="50"
+    readonly=""
+    size="medium"
+    form=""
+  ></syn-range>
+</form>
+```
+
+---
+
 ## Sizes
 
 Use the size attribute to change a range’s size.

@@ -8,6 +8,8 @@ import {
   waitUntil,
 } from '@open-wc/testing';
 import type SynHeader from './header.js';
+import type SynDivider from '../divider/divider.component.js';
+import type SynergyElement from '../../internal/synergy-element.js';
 
 /**
  * Get the wanted part out of the header
@@ -375,4 +377,101 @@ describe('<syn-header>', () => {
     });
   });
   // /#529
+
+  // #1130: Automatically set the height of dividers in the meta navigation to match the font size of the items
+  describe('when using dividers in the meta navigation', () => {
+    /**
+     * Test function that checks if the dividers that are direct children of the nav have the correct styles and the dividers that are not direct children of the nav do not have the styles applied.
+     * @param el The element to do checks for
+     * @param withWrapper Defines if the element is wrapped. This means dividers are not directly slotted
+     */
+    const checkDividerStyles = async (el: SynergyElement, withWrapper: boolean = false) => {
+      let dividersThatShouldBeTargeted: NodeListOf<SynDivider>;
+      let dividersThatShouldNotBeTargeted: NodeListOf<SynDivider>;
+
+      if (withWrapper) {
+        dividersThatShouldBeTargeted = el.querySelectorAll<SynDivider>('nav > syn-divider');
+        dividersThatShouldNotBeTargeted = el.querySelectorAll<SynDivider>('nav > div syn-divider');
+      } else {
+        dividersThatShouldBeTargeted = el.querySelectorAll<SynDivider>('syn-divider[slot="meta-navigation"]');
+        dividersThatShouldNotBeTargeted = el.querySelectorAll<SynDivider>('syn-divider:not([slot="meta-navigation"])');
+      }
+
+      await el.updateComplete;
+
+      // Check for dividers that are direct children of the nav to make sure they are targeted by the styles
+      dividersThatShouldBeTargeted.forEach(divider => {
+        expect(divider.style.height).to.equal('var(--metanavigation-item-size)');
+        expect(divider.style.alignSelf).to.equal('center');
+        expect(divider.style.getPropertyValue('--spacing')).to.equal('var(--syn-spacing-x-small)');
+      });
+
+      // Check for dividers that are not direct children of the nav to make sure they are not targeted by the styles
+      dividersThatShouldNotBeTargeted.forEach(divider => {
+        expect(divider.style.height).to.not.equal('var(--metanavigation-item-size)');
+        expect(divider.style.alignSelf).to.not.equal('center');
+        expect(divider.style.getPropertyValue('--spacing')).to.not.equal('var(--syn-spacing-x-small)');
+      });
+    };
+
+    it('should set the height of dividers to match the font size of the items when they are slotted in another item', async () => {
+      const el = await fixture<SynHeader>(html`
+        <syn-header label="App Name">
+          <nav slot="meta-navigation">
+            <syn-icon-button name="apps" label="Apps"></syn-icon-button>
+            <syn-divider vertical></syn-divider>
+            <syn-icon-button name="account_circle" label="Account"></syn-icon-button>
+            <syn-divider vertical></syn-divider>
+            <syn-icon-button name="more_vert" label="More"></syn-icon-button>
+            <div>
+              <syn-divider vertical>Not directly slotted</syn-divider>
+            </div>
+          </nav>
+        </syn-header>
+      `);
+
+      checkDividerStyles(el, true);
+    }); // Test with wrappers
+
+    it('should set the height of dividers to match the font size of the items when they are slotted directly', async () => {
+      const el = await fixture<SynHeader>(html`
+        <syn-header label="App Name">
+          <syn-icon-button slot="meta-navigation" name="apps" label="Apps"></syn-icon-button>
+          <syn-divider vertical slot="meta-navigation"></syn-divider>
+          <syn-icon-button slot="meta-navigation" name="account_circle" label="Account"></syn-icon-button>
+          <syn-divider vertical slot="meta-navigation"></syn-divider>
+          <syn-icon-button slot="meta-navigation" name="more_vert" label="More"></syn-icon-button>
+          <div>
+            <syn-divider vertical>Not directly slotted</syn-divider>
+          </div>
+        </syn-header>
+      `);
+
+      checkDividerStyles(el, true);
+    }); // Test with direct children
+
+    it('should not apply styles to horizontal dividers in the meta navigation', async () => {
+      const el = await fixture<SynHeader>(html`
+        <syn-header label="App Name">
+          <nav slot="meta-navigation">
+            <syn-icon-button name="apps" label="Apps"></syn-icon-button>
+            <syn-divider slot="meta-navigation"></syn-divider>
+            <syn-icon-button name="account_circle" label="Account"></syn-icon-button>
+            <syn-divider slot="meta-navigation"></syn-divider>
+            <syn-icon-button name="more_vert" label="More"></syn-icon-button>
+          </nav>
+        </syn-header>
+      `);
+
+      const dividers = el.querySelectorAll<SynDivider>('syn-divider[slot="meta-navigation"]');
+
+      await el.updateComplete;
+
+      dividers.forEach(divider => {
+        expect(divider.style.height).to.not.equal('var(--metanavigation-item-size)');
+        expect(divider.style.alignSelf).to.not.equal('center');
+        expect(divider.style.getPropertyValue('--spacing')).to.not.equal('var(--syn-spacing-x-small)');
+      });
+    }); // Test that horizontal dividers are not targeted
+  }); // /#1130
 });

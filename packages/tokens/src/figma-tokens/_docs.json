@@ -627,6 +627,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to draw a read-only checkbox.",
+          "type": "text"
+        }
+      },
       "sizes": {
         "title": {
           "value": "Sizes",
@@ -1103,6 +1113,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Readonly",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the readonly attribute to set a file input to a readonly state.",
+          "type": "text"
+        }
+      },
       "sizes": {
         "title": {
           "value": "Sizes",
@@ -1375,7 +1395,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to draw a read-only input.",
+          "value": "Add the readonly attribute to draw a read-only input.",
           "type": "text"
         }
       },
@@ -1991,6 +2011,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to a radio to draw it in a readonly state.",
+          "type": "text"
+        }
+      },
       "size": {
         "title": {
           "value": "Sizing Options",
@@ -2090,6 +2120,16 @@
         },
         "description": {
           "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user.",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to a range to draw it in a readonly state.",
           "type": "text"
         }
       },
@@ -2327,6 +2367,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to a select to draw it in a readonly state.",
+          "type": "text"
+        }
+      },
       "multiple": {
         "title": {
           "value": "Multiple",
@@ -2511,6 +2561,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to draw a read-only switch.",
+          "type": "text"
+        }
+      },
       "sizes": {
         "title": {
           "value": "Sizes",
@@ -2690,6 +2750,48 @@
         }
       }
     },
+    "tag-group": {
+      "default": {
+        "description": {
+          "value": "A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels. It arranges tags in flexible rows and supports different sizes and layouts. Tags can be removable, icon based, or purely textual.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Tag-Group",
+          "type": "text"
+        }
+      },
+      "labels": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the tag-group an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
+      "size": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the size attribute to change a tag group’s size.",
+          "type": "text"
+        }
+      },
+      "label-alignment": {
+        "title": {
+          "value": "Label Alignment",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label-position attribute to change the position of the label. Use 'top' to place the label above the tags, or 'start' to place it to the begin of the tag group.",
+          "type": "text"
+        }
+      }
+    },
     "textarea": {
       "default": {
         "title": {
@@ -2747,7 +2849,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add the read-only attribute to draw a read-only textarea.",
+          "value": "Add the readonly attribute to draw a read-only textarea.",
           "type": "text"
         }
       },
@@ -2952,6 +3054,16 @@
         },
         "description": {
           "value": "Use the disabled attribute to disable a radio.",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to draw a read-only radio.",
           "type": "text"
         }
       },
@@ -3233,6 +3345,16 @@
           "type": "text"
         }
       },
+      "options-with-dividers": {
+        "title": {
+          "value": "Meta Navigation with dividers",
+          "type": "text"
+        },
+        "description": {
+          "value": "If you need different icon groups or a separator between them, add a `<syn-divider>` between them.",
+          "type": "text"
+        }
+      },
       "navigation": {
         "title": {
           "value": "Top Navigation",
@@ -3499,6 +3621,16 @@
           "type": "text"
         }
       },
+      "readonly": {
+        "title": {
+          "value": "Read-only",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add the readonly attribute to draw a read-only combobox.",
+          "type": "text"
+        }
+      },
       "multiple": {
         "title": {
           "value": "Multiple",
@@ -3598,6 +3730,16 @@
         },
         "description": {
           "value": "Validate offers options for convenient error handling in form elements.",
+          "type": "text"
+        }
+      },
+      "tooltip": {
+        "title": {
+          "value": "Tooltip variant",
+          "type": "text"
+        },
+        "description": {
+          "value": "When the tooltip variant is chosen, validation errors are displayed in a `<syn-tooltip>` component that has its center at the invalid element. The native tooltip is suppressed.",
           "type": "text"
         }
       },
@@ -4248,14 +4390,14 @@
         }
       }
     },
-    "tag": {
+    "tag-group": {
       "default": {
         "title": {
           "value": "Tag",
           "type": "text"
         },
         "description": {
-          "value": "These examples demonstrate the usage of syn-tag in various contexts: In combination with multiple filters and within a standalone tag group.",
+          "value": "These examples demonstrate the usage of the syn-tag-group component in combination with filters. The examples are intended solely for illustrating how syn-tag-group can be used with different label alignments (horizontally and vertically).",
           "type": "text"
         }
       }

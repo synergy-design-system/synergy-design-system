@@ -48,6 +48,17 @@ describe('<syn-select>', () => {
     expect(el.displayInput.disabled).to.be.true;
   });
 
+  it('should be readonly with the readonly attribute', async () => {
+    const el = await fixture<SynSelect>(html`
+      <syn-select readonly>
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 3</syn-option>
+      </syn-select>
+    `);
+    expect(el.shadowRoot!.querySelector<HTMLInputElement>('.select__value-input')!.readOnly).to.be.true;
+  });
+
   it('should show a placeholder when no options are selected', async () => {
     const el = await fixture<SynSelect>(html`
       <syn-select placeholder="Select one">

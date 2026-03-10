@@ -15,6 +15,7 @@
           required
         >
           <syn-radio>invalid</syn-radio>
+          <syn-radio readonly>invalid (readonly)</syn-radio>
           <syn-radio value="f">Female</syn-radio>
           <syn-radio value="m">Male</syn-radio>
           <syn-radio value="other">Other</syn-radio>
@@ -29,6 +30,27 @@
           required
         >
           <syn-option>---</syn-option>
+          <syn-optgroup label="Developers">
+            <syn-option value="backend">Backend Developer</syn-option>
+            <syn-option value="frontend">Frontend Developer</syn-option>
+          </syn-optgroup>
+          <syn-optgroup label="Other">
+            <syn-option value="lead">Team Lead</syn-option>
+            <syn-option value="other">Other (please specify in comment section below)</syn-option>
+          </syn-optgroup>
+        </syn-select>
+      </syn-validate>
+
+      <syn-validate variant="inline">
+        <syn-select
+          id="select-previous-roles"
+          label="Previous roles"
+          name="previousRoles"
+          readonly
+          required
+          multiple
+        >
+          <syn-option value="">---</syn-option>
           <syn-optgroup label="Developers">
             <syn-option value="backend">Backend Developer</syn-option>
             <syn-option value="frontend">Frontend Developer</syn-option>
@@ -79,6 +101,17 @@
           label="Nationality"
           name="input-nationality"
           required
+        ></syn-combobox>
+      </syn-validate>
+
+      <syn-validate variant="inline" on="live">
+        <syn-combobox
+          id="input-previous-nationality"
+          label="Previous Nationality"
+          name="input-previous-nationality"
+          readonly
+          required
+          value="German"
         ></syn-combobox>
       </syn-validate>
 
@@ -170,7 +203,7 @@
           value="5"
           name="happiness"
         >
-          <nav slot="ticks">
+          <nav aria-label="Ticks for Happiness" slot="ticks">
             <syn-range-tick>🤮</syn-range-tick>
             <syn-range-tick>🥱</syn-range-tick>
             <syn-range-tick>😍</syn-range-tick>
@@ -186,6 +219,21 @@
 
         </syn-range>
       </syn-validate>
+
+      <syn-range
+        id="donations"
+        label="I would donate between"
+        max="6000"
+        min="0"
+        restrict-movement
+        value="2000 4000"
+        name="donations"
+      >
+        <nav aria-label="Ticks for Donations" slot="ticks">
+          <syn-range-tick>0 €</syn-range-tick>
+          <syn-range-tick>6.000 €</syn-range-tick>
+        </nav>
+      </syn-range>
     </fieldset>
     <!-- /.Happiness -->
 

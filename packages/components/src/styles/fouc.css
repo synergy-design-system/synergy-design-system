@@ -57,6 +57,7 @@ syn-spinner:not(:defined),
 syn-switch:not(:defined),
 syn-tab:not(:defined),
 syn-tag:not(:defined),
+syn-tag-group:not(:defined),
 syn-tooltip:not(:defined) {
   display: inline-block;
   opacity: 0;

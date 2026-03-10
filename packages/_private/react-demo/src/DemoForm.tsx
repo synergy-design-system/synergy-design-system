@@ -330,6 +330,14 @@ export const DemoForm = () => {
           Please subscribe me to the synergy newsletter
         </syn-checkbox>
         <syn-checkbox
+          checked={formData.newsletterUI}
+          readonly
+          id="checkbox-newsletter-ui"
+          name="newsletterUI"
+        >
+          Please subscribe me to the synergy UI newsletter
+        </syn-checkbox>
+        <syn-checkbox
           checked={formData.newsletterAngular}
           id="checkbox-newsletter-angular"
           name="newsletterAngular"
@@ -363,6 +371,14 @@ export const DemoForm = () => {
           name="newsletterBeta"
         >
           I am interested in the Synergy Beta Program
+        </syn-switch>
+        <syn-switch
+          checked={formData.newsletterUX}
+          id="checkbox-newsletter-ux"
+          name="newsletterUX"
+          readonly
+        >
+          I am interested in the Synergy UX Program
         </syn-switch>
       </DemoFieldset>
       {/* /Marketing */}

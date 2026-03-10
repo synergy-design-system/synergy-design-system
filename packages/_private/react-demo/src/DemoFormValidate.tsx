@@ -28,6 +28,7 @@ import {
 } from '@synergy-design-system/react';
 import {
   type FormStatus,
+  currencyNumberFormatter,
   mockData,
   statusError,
   statusSuccess,
@@ -130,6 +131,7 @@ export const DemoFormValidate = () => {
             value={formData.gender}
           >
             <SynRadio value="">invalid</SynRadio>
+            <SynRadio value="" readonly>invalid (readonly)</SynRadio>
             <SynRadio value="f">Female</SynRadio>
             <SynRadio value="m">Male</SynRadio>
             <SynRadio value="other">Other</SynRadio>
@@ -143,6 +145,28 @@ export const DemoFormValidate = () => {
             name="role"
             required
             value={formData.role}
+          >
+            <SynOption value="">---</SynOption>
+            <SynOptgroup label="Developers">
+              <SynOption value="backend">Backend Developer</SynOption>
+              <SynOption value="frontend">Frontend Developer</SynOption>
+            </SynOptgroup>
+            <SynOptgroup label="Other">
+              <SynOption value="lead">Team Lead</SynOption>
+              <SynOption value="other">Other (please specify in comment section below)</SynOption>
+            </SynOptgroup>
+          </SynSelect>
+        </SynValidate>
+
+        <SynValidate variant="inline">
+          <SynSelect
+            id="select-previous-roles"
+            label="Previous roles"
+            name="previousRoles"
+            multiple
+            readonly
+            required
+            value={formData.previousRoles}
           >
             <SynOption value="">---</SynOption>
             <SynOptgroup label="Developers">
@@ -199,6 +223,25 @@ export const DemoFormValidate = () => {
             name="nationality"
             required
             value={formData.nationality}
+            placeholder='Please choose your nationality'
+            getOption={highlightOptionRenderer}
+          >
+            {(mockData('nationalities')).map(n => (
+              <SynOption key={n}>
+                {n}
+              </SynOption>
+            ))}
+          </SynCombobox>
+        </SynValidate>
+
+        <SynValidate variant="inline" on="input blur">
+          <SynCombobox
+            id="input-previous-nationality"
+            label="Previous Nationality"
+            name="previousNationality"
+            readonly
+            required
+            value={formData.previousNationality}
             placeholder='Please choose your nationality'
             getOption={highlightOptionRenderer}
           >
@@ -318,6 +361,24 @@ export const DemoFormValidate = () => {
               />
             </div>
           </SynRange>
+
+          <SynRange
+            id="donations"
+            label="I would donate between"
+            max={6000}
+            min={0}
+            name="donations"
+            restrict-movement
+            tooltipFormatter={value => currencyNumberFormatter.format(value)}
+            readonly={parseInt(formData.happiness!, 10) <= 5}
+            value={formData.donations}
+          >
+            <nav slot="ticks">
+              <syn-range-tick>0 €</syn-range-tick>
+              <syn-range-tick>6.000 €</syn-range-tick>
+            </nav>
+          </SynRange>
+
         </SynValidate>
 
       </DemoFieldset>

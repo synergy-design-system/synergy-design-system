@@ -213,6 +213,19 @@ export class SynComboboxComponent {
   }
 
   /**
+   * Sets the combobox to a readonly state.
+   */
+  @Input()
+  set readonly(v: '' | SynCombobox['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
+  }
+  get readonly(): SynCombobox['readonly'] {
+    return this.nativeElement.readonly;
+  }
+
+  /**
    * Adds a clear button when the combobox is not empty.
    */
   @Input()
@@ -250,6 +263,17 @@ and `hide()` methods and this attribute will reflect the combobox's open state.
   }
   get label(): SynCombobox['label'] {
     return this.nativeElement.label;
+  }
+
+  /**
+   * The maximum length of input that will be considered valid.
+   */
+  @Input()
+  set maxlength(v: SynCombobox['maxlength']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.maxlength = v));
+  }
+  get maxlength(): SynCombobox['maxlength'] {
+    return this.nativeElement.maxlength;
   }
 
   /**

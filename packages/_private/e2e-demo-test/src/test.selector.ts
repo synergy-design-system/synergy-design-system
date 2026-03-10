@@ -41,6 +41,7 @@ const AllComponentSelectors = {
   comboboxContent: '#tab-content-Combobox',
   comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',
+  comboboxReadonly: '#tab-content-Combobox syn-combobox[data-testid="combobox-1172-readonly-combobox"]',
 
   // Input
   input417NoValue: '#tab-content-Input syn-input[data-testid="input-417-numeric-no-value"]',
@@ -90,6 +91,7 @@ const AllComponentSelectors = {
   selectLink: '#tab-Select',
   selectMixedIdMultiSelect: '#tab-content-Select syn-select[data-testid="select-805-multi-select"]',
   selectMixedIdSingleSelect: '#tab-content-Select syn-select[data-testid="select-805-single-select"]',
+  selectReadonly: '#tab-content-Select syn-select[data-testid="select-1177-readonly-select"]',
   selectWithDelimiter: '#tab-content-Select syn-select[data-testid="select-540-delimiter"]',
 
   // Tabgroup
@@ -103,6 +105,26 @@ const AllComponentSelectors = {
   tabGroupLink: '#tab-TabGroup',
 
   // Validate
+
+  // #851 syn-validate in dynamic tabs
+  validate851AddTabButton: '#tab-content-Demo851SynValidateInDynamicTabs syn-button[data-testid="validate851-add-tab-button"]',
+  validate851Content: '#tab-content-Demo851SynValidateInDynamicTabs',
+  validate851Link: '#tab-Demo851SynValidateInDynamicTabs',
+  validate851Select1: '#tab-content-Demo851SynValidateInDynamicTabs syn-select[data-testid="validate851-select-1"]',
+  validate851Select2: '#tab-content-Demo851SynValidateInDynamicTabs syn-select[data-testid="validate851-select-2"]',
+  validate851Select3: '#tab-content-Demo851SynValidateInDynamicTabs syn-select[data-testid="validate851-select-3"]',
+  validate851Select4: '#tab-content-Demo851SynValidateInDynamicTabs syn-select[data-testid="validate851-select-4"]',
+  validate851Tab1: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab[data-testid="validate851-tab-1"]',
+  validate851Tab2: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab[data-testid="validate851-tab-2"]',
+  validate851Tab3: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab[data-testid="validate851-tab-3"]',
+  validate851TabGroup: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab-group[data-testid="validate851-tab-group"]',
+  validate851TabPanel1: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab-panel[data-testid="validate851-tab-panel-1"]',
+  validate851TabPanel2: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab-panel[data-testid="validate851-tab-panel-2"]',
+  validate851TabPanel3: '#tab-content-Demo851SynValidateInDynamicTabs syn-tab-panel[data-testid="validate851-tab-panel-3"]',
+  validate851Validate1: '#tab-content-Demo851SynValidateInDynamicTabs syn-validate[data-testid="validate851-validate-1"]',
+  validate851Validate2: '#tab-content-Demo851SynValidateInDynamicTabs syn-validate[data-testid="validate851-validate-2"]',
+  validate851Validate3: '#tab-content-Demo851SynValidateInDynamicTabs syn-validate[data-testid="validate851-validate-3"]',
+
   validate915: '#tab-content-Validate syn-validate[data-testid="validate-915"]',
   validateContent: '#tab-content-Validate',
   validateLink: '#tab-Validate',
@@ -120,7 +142,7 @@ export default {
   experienceLoc: '#experience',
   formLoc: 'form',
   formStatus: 'syn-alert.form-validation-message',
-  frontend: 'syn-option[value=frontend]',
+  frontend: '#select-role  syn-option[value=frontend]',
   genderLoc: '#radiogroup-gender',
   happinessLoc: '#happiness',
   nameLoc: '#input-text',
@@ -130,10 +152,14 @@ export default {
   newsLocSynNg: '#checkbox-newsletter-angular',
   newsLocSynReact: '#checkbox-newsletter-react',
   newsLocSynVue: '#checkbox-newsletter-vue',
+  newsLocUI: '#checkbox-newsletter-ui',
+  newsLocUX: '#checkbox-newsletter-ux',
   newsLocVanilla: '#checkbox-newsletter-vanilla',
   passLoc: '#input-password',
   passRecoveryLoc: '#input-number',
   phoneLoc: '#input-phone',
+  previousNationalities: '#input-previous-nationality',
+  previousRolesLoc: '#select-previous-roles',
   reset: '.syn-submit-buttons > syn-button:nth-child(1)',
   roleLoc: '#select-role',
   sizeToggleLarge: '.meta-navigation syn-icon-button[data-size=large]',

@@ -113,6 +113,11 @@ const props = defineProps<{
   disabled?: SynCombobox['disabled'];
 
   /**
+   * Sets the combobox to a readonly state.
+   */
+  readonly?: SynCombobox['readonly'];
+
+  /**
    * Adds a clear button when the combobox is not empty.
    */
   clearable?: SynCombobox['clearable'];
@@ -129,6 +134,11 @@ and `hide()` methods and this attribute will reflect the combobox's open state.
    * If you need to display HTML, use the `label` slot instead.
    */
   label?: SynCombobox['label'];
+
+  /**
+   * The maximum length of input that will be considered valid.
+   */
+  maxlength?: SynCombobox['maxlength'];
 
   /**
 * The preferred placement of the combobox's menu.

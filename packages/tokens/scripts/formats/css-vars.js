@@ -70,14 +70,6 @@ export const cssVariableFormatter = {
 
       'progress-track-readonly-color',
 
-      'progress-track-readonly-color',
-
-      // Readonly color are needed later
-      'readonly-border-color',
-      'readonly-indicator-color',
-      'readonly-opacity-color',
-      'range-color-readonly',
-
       // Font Style tokens are needed later
       'body-2x-small-regular',
       'body-2x-small-semibold',
@@ -133,6 +125,10 @@ export const cssVariableFormatter = {
       // #529: We needed to introduce a new color token for the header,
       // but dont want it to appear. We can remove it later, but for now we want to keep it in the codebase to not break the header.
       'color-shadow-sticky-down-color',
+
+      // #1171: Leftover after refactoring the readonly tokens.
+      // Can be removed as soon as it is gone in Figma.
+      'readonly-opacity-color',
     ].map(v => `${prefix}${v}`);
 
     /**

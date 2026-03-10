@@ -236,6 +236,19 @@ indicate the number of additional items that are selected.
   }
 
   /**
+   * Sets the select to a readonly state.
+   */
+  @Input()
+  set readonly(v: '' | SynSelect['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
+  }
+  get readonly(): SynSelect['readonly'] {
+    return this.nativeElement.readonly;
+  }
+
+  /**
    * Adds a clear button when the select is not empty.
    */
   @Input()

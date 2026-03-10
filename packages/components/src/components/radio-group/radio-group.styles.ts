@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
@@ -55,6 +54,16 @@ export default css`
     position: absolute;
     white-space: nowrap;
     width: 1px;
+  }
+
+  .form-control-input {
+    display: flex;
+    flex-direction: column;
+    gap: var(--syn-spacing-x-small);
+  }
+
+  .form-control--has-help-text.form-control--radio-group .form-control__help-text {
+    margin-top: var(--syn-spacing-x-small);
   }
 
   /**

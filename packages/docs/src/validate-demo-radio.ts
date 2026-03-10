@@ -100,6 +100,12 @@ export class ValidateDemoRadio extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.internals.setFormValue(this.value);
+
+    // Initial validation on connect
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    this.updateComplete.then(() => {
+      this.validate();
+    });
   }
 
   get willValidate() {
@@ -117,10 +123,12 @@ export class ValidateDemoRadio extends LitElement {
   }
 
   checkValidity() {
+    this.validate();
     return this.internals.checkValidity();
   }
 
   reportValidity() {
+    this.validate();
     return this.internals.reportValidity();
   }
 
@@ -138,10 +146,11 @@ export class ValidateDemoRadio extends LitElement {
     if (isValid) {
       this.internals.setValidity({});
     } else {
+      const anchorElement = this.shadowRoot!.querySelector('input[value="option3"]') as HTMLElement;
       this.internals.setValidity(
         { customError: true },
         'You know, that this is not correct.',
-        this.shadowRoot!.querySelector('input[value="option3"]') as HTMLElement,
+        anchorElement || undefined,
       );
     }
 
@@ -171,6 +180,12 @@ export class ValidateDemoRadio extends LitElement {
   selectOption(option: string) {
     this.value = option;
     this.internals.setFormValue(option);
+
+    // Always validate when value changes
     this.validate();
+
+    // Dispatch change and input events for better form integration
+    this.dispatchEvent(new Event('change', { bubbles: true }));
+    this.dispatchEvent(new Event('input', { bubbles: true }));
   }
 }

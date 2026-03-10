@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
+import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/prio-nav/prio-nav.js';
 import '../../../components/src/components/nav-item/nav-item.js';
 import '../../../components/src/components/header/header.js';
@@ -149,6 +147,29 @@ export const MetaNavigation: Story = {
   `,
 };
 
+export const MetaNavigationWithDividers: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('header', 'options-with-dividers'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-header label="App Name">
+      <nav slot="meta-navigation">
+        <syn-icon-button name="settings_outline" label="Settings"></syn-icon-button>
+        <syn-icon-button name="insert_chart_outlined" label="Analytics"></syn-icon-button>
+        <syn-divider vertical></syn-divider>
+        <syn-icon-button name="dark_mode" label="Dark Mode"></syn-icon-button>
+        <syn-divider vertical></syn-divider>
+        <syn-icon-button name="language" label="Language"></syn-icon-button>
+        <syn-icon-button name="login" label="Login"></syn-icon-button>
+      </nav>
+    </syn-header>
+  `,
+};
+
 export const Navigation = {
   parameters: {
     docs: {
@@ -224,6 +245,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Label,
   Logo,
   MetaNavigation,
+  MetaNavigationWithDividers,
   Navigation,
   BurgerMenu,
   Sticky,

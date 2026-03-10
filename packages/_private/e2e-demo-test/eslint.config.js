@@ -1,9 +1,12 @@
-import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
+import { createCustomConfig } from '@synergy-design-system/eslint-config-syn/ts';
 import testsPreset from '@synergy-design-system/eslint-config-syn/presets/tests';
 
 export default [
   // Base TypeScript config from synergy
-  ...tsConfig,
+  ...createCustomConfig({
+    project: './tsconfig.json',
+    tsconfigRootDir: import.meta.dirname,
+  }),
 
   // Playwright test configuration with all test-specific rules
   testsPreset,
@@ -28,6 +31,8 @@ export default [
       'import/no-relative-packages': 'off',
       // Allow parameter reassignment in test utilities and page objects
       'no-param-reassign': 'off',
+
+      'playwright/prefer-to-have-count': 'off',
     },
   },
 

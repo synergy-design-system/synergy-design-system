@@ -8,7 +8,15 @@ import sinon from 'sinon';
 import '../../../dist/synergy.js';
 import * as utils from '../../../dist/components/validate/utility.js';
 import type SynValidate from './validate.js';
+import type SynCheckbox from '../checkbox/checkbox.component.js';
+import type SynCombobox from '../combobox/combobox.component.js';
+import type SynFile from '../file/file.component.js';
 import type SynInput from '../input/input.component.js';
+import type SynRadioGroup from '../radio-group/radio-group.component.js';
+import type SynRange from '../range/range.component.js';
+import type SynSelect from '../select/select.component.js';
+import type SynSwitch from '../switch/switch.component.js';
+import type SynTextArea from '../textarea/textarea.component.js';
 
 describe('<syn-validate>', () => {
   describe('utility functions', () => {
@@ -89,6 +97,62 @@ describe('<syn-validate>', () => {
           el.size = 'small';
           await expect(utils.alertSizeForInput(el)).to.equal('small');
         });
+      });
+    });
+
+    describe('getActualInputElement', () => {
+      it('should return the element itself if no element is provided', () => {
+        expect(utils.getActualInputElement(undefined)).to.equal(undefined);
+      });
+
+      it('should return the element itself if a native element is provided', () => {
+        const el = document.createElement('input');
+        expect(utils.getActualInputElement(el)).to.equal(el);
+      });
+
+      it('should return the input of the shadow root if a syn-checkbox is provided', async () => {
+        const el = await fixture<SynCheckbox>(html`<syn-checkbox></syn-checkbox>`);
+        expect(utils.getActualInputElement(el)).to.have.class('checkbox__input');
+      });
+
+      it('should return the input of the shadow root if a syn-combobox is provided', async () => {
+        const el = await fixture<SynCombobox>(html`<syn-combobox></syn-combobox>`);
+        expect(utils.getActualInputElement(el)).to.have.class('combobox__value-input');
+      });
+
+      it('should return the input of the shadow root if a syn-file is provided', async () => {
+        const el = await fixture<SynFile>(html`<syn-file></syn-file>`);
+        expect(utils.getActualInputElement(el)).to.have.property('id', 'input');
+      });
+
+      it('should return the input of the shadow root if a syn-radio-group is provided', async () => {
+        const el = await fixture<SynRadioGroup>(html`<syn-radio-group></syn-radio-group>`);
+        expect(utils.getActualInputElement(el)).to.have.class('radio-group__validation-input');
+      });
+
+      it('should return the input of the shadow root if a syn-range is provided', async () => {
+        const el = await fixture<SynRange>(html`<syn-range></syn-range>`);
+        expect(utils.getActualInputElement(el)).to.have.class('input__control');
+      });
+
+      it('should return the input of the shadow root if a syn-switch is provided', async () => {
+        const el = await fixture<SynSwitch>(html`<syn-switch></syn-switch>`);
+        expect(utils.getActualInputElement(el)).to.have.class('switch__input');
+      });
+
+      it('should return the input of the shadow root if a syn-select is provided', async () => {
+        const el = await fixture<SynSelect>(html`<syn-select></syn-select>`);
+        expect(utils.getActualInputElement(el)).to.have.class('select__value-input');
+      });
+
+      it('should return the input of the shadow root if a syn-input is provided', async () => {
+        const el = await fixture<SynInput>(html`<syn-input></syn-input>`);
+        expect(utils.getActualInputElement(el)).to.have.property('id', 'input');
+      });
+
+      it('should return the textarea of the shadow root if a syn-textarea is provided', async () => {
+        const el = await fixture<SynTextArea>(html`<syn-textarea></syn-textarea>`);
+        expect(utils.getActualInputElement(el)).to.have.property('id', 'input');
       });
     });
   });
@@ -345,6 +409,36 @@ describe('<syn-validate>', () => {
       const alert = el.shadowRoot!.querySelector('syn-alert')!;
       expect(alert).to.have.attribute('size', 'medium');
     });
+
+    // #664: Tests for variant="tooltip"
+    describe('when using variant="tooltip"', () => {
+      it.skip('should not show the tooltip when the input is valid', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate variant="tooltip" eager>
+            <input label="Email" value="test@test.de" name="email" type="email">
+          </syn-validate>
+        `);
+
+        const tooltip = el.shadowRoot!.querySelector('syn-tooltip');
+        expect(tooltip).to.exist;
+        expect(tooltip).to.have.property('open', false);
+      });
+
+      it('should show the tooltip with the validation message when the input is invalid and the input is focused', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate variant="tooltip" eager>
+            <input label="Email" value="test" name="email" type="email">
+          </syn-validate>
+        `);
+
+        await el.querySelector('input')!.focus();
+        await el.updateComplete;
+
+        const tooltip = el.shadowRoot!.querySelector('syn-tooltip');
+        expect(tooltip).to.exist;
+        expect(tooltip).to.have.property('open', true);
+      });
+    }); // /#664
   });
 
   describe('when using synergy form elements', () => {
@@ -450,6 +544,23 @@ describe('<syn-validate>', () => {
       await input.updateComplete;
       await el.updateComplete;
       expect(reportValiditySpy).to.have.been.calledOnce;
+    });
+
+    it('should not call the reportValidity method for `variant="tooltip"` when the input is invalid and an observed event is called', async () => {
+      const el = await fixture<SynValidate>(html`
+        <syn-validate on="input" variant="tooltip">
+          <syn-input label="Email" value="test" type="email"></syn-input>
+        </syn-validate>
+      `);
+
+      const input = el.querySelector('syn-input')!;
+      const reportValiditySpy = sinon.spy(input, 'reportValidity');
+
+      input.value = 'test';
+      input.dispatchEvent(new Event('syn-input'));
+      await el.updateComplete;
+
+      expect(reportValiditySpy).to.not.have.been.called;
     });
 
     it('should not call the reportValidity method for `variant="inline"` when the input is invalid and an observed event is called', async () => {
@@ -592,6 +703,91 @@ describe('<syn-validate>', () => {
         }); // Test for both synergy and native elements
       }); // Element type (SynInput or HTMLInputElement)
     }); // End test #713
+
+    describe('#851: customValidationMessage should have precedence over internal validationMessage', () => {
+      it('Should prioritize customValidationMessage when both customValidationMessage and internal validationMessage are set', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate eager variant="inline" custom-validation-message="Custom priority message">
+            <syn-input type="email" value="invalid-email"></syn-input>
+          </syn-validate>
+        `);
+
+        const input = el.querySelector('syn-input')!;
+
+        // Trigger validation to ensure internal validation would be set
+        input.focus();
+        input.blur();
+        await el.updateComplete;
+
+        // customValidationMessage should be set
+        expect(el.customValidationMessage).to.equal('Custom priority message');
+
+        // The public validationMessage should return the custom message (precedence)
+        expect(el.validationMessage).to.equal('Custom priority message');
+
+        // The rendered message should show the custom message
+        const alert = el.shadowRoot!.querySelector('syn-alert');
+        expect(alert).to.exist;
+        expect(alert!.textContent.trim()).to.equal('Custom priority message');
+      }); // Test for precedence of customValidationMessage over internal validationMessage
+
+      it('Should fall back to internal validationMessage when customValidationMessage is empty', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate eager variant="inline">
+            <syn-input type="email" value="invalid-email"></syn-input>
+          </syn-validate>
+        `);
+
+        const input = el.querySelector('syn-input')!;
+
+        // Trigger validation to set internal validationMessage
+        input.focus();
+        input.blur();
+        await el.updateComplete;
+
+        // customValidationMessage should be empty
+        expect(el.customValidationMessage).to.equal('');
+
+        // The public validationMessage should fall back to browser validation
+        expect(el.validationMessage).to.include('email address');
+
+        // The rendered message should use internal validationMessage
+        const alert = el.shadowRoot!.querySelector('syn-alert');
+        expect(alert).to.exist;
+        expect(alert!.textContent.trim()).to.include('email address');
+      }); // Test for fallback when customValidationMessage is empty
+
+      it('Should update displayed message when customValidationMessage changes', async () => {
+        const el = await fixture<SynValidate>(html`
+          <syn-validate eager variant="inline" custom-validation-message="Initial message">
+            <syn-input type="email" value="invalid-email"></syn-input>
+          </syn-validate>
+        `);
+
+        // Initially should show custom message
+        expect(el.validationMessage).to.equal('Initial message');
+        let alert = el.shadowRoot!.querySelector('syn-alert');
+        expect(alert!.textContent.trim()).to.equal('Initial message');
+
+        // Change customValidationMessage
+        el.customValidationMessage = 'Updated message';
+        await el.updateComplete;
+
+        // Should show updated custom message
+        expect(el.validationMessage).to.equal('Updated message');
+        alert = el.shadowRoot!.querySelector('syn-alert');
+        expect(alert!.textContent.trim()).to.equal('Updated message');
+
+        // Clear customValidationMessage - should fall back to browser validation
+        el.customValidationMessage = '';
+        await el.updateComplete;
+
+        // Should fall back to internal validation message
+        expect(el.validationMessage).to.include('email address');
+        alert = el.shadowRoot!.querySelector('syn-alert');
+        expect(alert!.textContent.trim()).to.include('email address');
+      }); // Test for dynamic changes to customValidationMessage
+    }); // End test #851
 
     describe('#717: disabled and readonly should trigger validation when changed', () => {
       it('should be invalid on mount, but not show the error message', async () => {

@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import type { SynMenuItem } from '@synergy-design-system/components';
 import { html } from 'lit';

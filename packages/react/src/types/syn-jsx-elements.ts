@@ -75,6 +75,7 @@ import type {
   SynTabGroup,
   SynTabPanel,
   SynTag,
+  SynTagGroup,
   SynTextarea,
   SynTooltip,
   SynValidate,
@@ -665,6 +666,7 @@ export type SynCustomElement<
  * @csspart burger-menu-toggle-button - The button that toggles the burger menu
  *
  * @cssproperty --sticky-position - The position of the sticky header from the top of the viewport. Defaults to the top of the screen.
+ * @cssproperty --metanavigation-item-size - The size of the items in the meta navigation. Also used for the height of dividers in the meta navigation. Defaults to var(--syn-font-size-x-large)
  */ export type SynHeaderJSXElement = SynCustomElement<
   SynHeader,
   [
@@ -1429,6 +1431,20 @@ export type SynCustomElement<
   [['syn-remove', SynRemoveEvent]]
 >;
 /**
+ * @summary A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels.
+ * It arranges tags in flexible rows and supports different sizes and layouts.
+ * Tags can be removable, icon‑based, or purely textual.
+ *
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs
+ * @status stable
+ *
+ * @slot - The tag group's main content. Must be `<syn-tag />` elements.
+ * @slot label - The tag group's label. Alternatively, you can use the `label` attribute.
+ *
+ * @csspart base - The component's base wrapper.
+ * @csspart tag-label - The tag group's label.
+ */ export type SynTagGroupJSXElement = SynCustomElement<SynTagGroup, []>;
+/**
  * @summary Textareas collect data from the user and allow multiple lines of text.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs
  * @status stable
@@ -1501,16 +1517,24 @@ export type SynCustomElement<
  * and showing the validation message in a consistent, user defined way.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs
  * @dependency syn-alert
+ * @dependency syn-tooltip
  *
  * @slot - The form field that should be validated.
  * Avoid slotting in more than one element, as subsequent ones will be ignored.
  *
  * @csspart base - The component's base wrapper.
  * @csspart input-wrapper - The container that wraps the form field.
+ *
  * @csspart alert - The syn-alert that is shown when the variant is set to "inline".
  * @csspart alert__base - The container that wraps the alert.
  * @csspart alert__message - The container that wraps the alert message.
  * @csspart alert__icon - The container that wraps the alert icon.
+ *
+ * @csspart tooltip - The syn-tooltip that is shown when the variant is set to "tooltip".
+ * @csspart tooltip__base - The container that wraps the tooltip.
+ * @csspart tooltip__popup - The container that wraps the tooltip popup.
+ * @csspart tooltip__arrow - The container that wraps the tooltip arrow.
+ * @csspart tooltip__body - The container that wraps the tooltip body.
  */ export type SynValidateJSXElement = SynCustomElement<SynValidate, []>;
 
 declare module 'react' {
@@ -1993,6 +2017,7 @@ declare module 'react' {
        * @csspart burger-menu-toggle-button - The button that toggles the burger menu
        *
        * @cssproperty --sticky-position - The position of the sticky header from the top of the viewport. Defaults to the top of the screen.
+       * @cssproperty --metanavigation-item-size - The size of the items in the meta navigation. Also used for the height of dividers in the meta navigation. Defaults to var(--syn-font-size-x-large)
        */ 'syn-header': SynHeaderJSXElement;
       /**
        * @summary Icons are symbols that can be used to represent various options within an application.
@@ -2653,6 +2678,20 @@ declare module 'react' {
        * @csspart remove-button__base - The remove button's exported `base` part.
        */ 'syn-tag': SynTagJSXElement;
       /**
+       * @summary A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels.
+       * It arranges tags in flexible rows and supports different sizes and layouts.
+       * Tags can be removable, icon‑based, or purely textual.
+       *
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs
+       * @status stable
+       *
+       * @slot - The tag group's main content. Must be `<syn-tag />` elements.
+       * @slot label - The tag group's label. Alternatively, you can use the `label` attribute.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart tag-label - The tag group's label.
+       */ 'syn-tag-group': SynTagGroupJSXElement;
+      /**
        * @summary Textareas collect data from the user and allow multiple lines of text.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs
        * @status stable
@@ -2708,16 +2747,24 @@ declare module 'react' {
        * and showing the validation message in a consistent, user defined way.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs
        * @dependency syn-alert
+       * @dependency syn-tooltip
        *
        * @slot - The form field that should be validated.
        * Avoid slotting in more than one element, as subsequent ones will be ignored.
        *
        * @csspart base - The component's base wrapper.
        * @csspart input-wrapper - The container that wraps the form field.
+       *
        * @csspart alert - The syn-alert that is shown when the variant is set to "inline".
        * @csspart alert__base - The container that wraps the alert.
        * @csspart alert__message - The container that wraps the alert message.
        * @csspart alert__icon - The container that wraps the alert icon.
+       *
+       * @csspart tooltip - The syn-tooltip that is shown when the variant is set to "tooltip".
+       * @csspart tooltip__base - The container that wraps the tooltip.
+       * @csspart tooltip__popup - The container that wraps the tooltip popup.
+       * @csspart tooltip__arrow - The container that wraps the tooltip arrow.
+       * @csspart tooltip__body - The container that wraps the tooltip body.
        */ 'syn-validate': SynValidateJSXElement;
     }
   }

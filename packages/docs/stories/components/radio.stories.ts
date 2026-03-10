@@ -103,6 +103,21 @@ export const Disabled: Story = {
     <syn-radio value="1" disabled>Option</syn-radio>`,
 };
 
+export const Readonly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('radio', 'readonly'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-radio-group value="1">
+      <syn-radio value="1" readonly>Read-only content</syn-radio>
+    </syn-radio-group>
+  `,
+};
+
 export const Sizes: Story = {
   parameters: {
     docs: {
@@ -174,6 +189,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   InitialValue,
   Disabled,
+  Readonly,
   Sizes,
 });
 /* eslint-enable sort-keys */

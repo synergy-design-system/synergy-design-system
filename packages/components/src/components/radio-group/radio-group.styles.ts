@@ -56,16 +56,6 @@ export default css`
     width: 1px;
   }
 
-  .form-control-input {
-    display: flex;
-    flex-direction: column;
-    gap: var(--syn-spacing-x-small);
-  }
-
-  .form-control--has-help-text.form-control--radio-group .form-control__help-text {
-    margin-top: var(--syn-spacing-x-small);
-  }
-
   /**
    * #1140:
    * Apply custom styling when we are using syn-radio-button.

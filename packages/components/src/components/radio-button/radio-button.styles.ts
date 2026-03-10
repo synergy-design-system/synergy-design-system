@@ -1,4 +1,5 @@
 import { css } from 'lit';
+import buttonStyles from '../button/button.styles.js';
 
 export default css`
   .button {
@@ -40,7 +41,9 @@ export default css`
     cursor: not-allowed;
     opacity: 0.5;
   }
-  `;
+
+  ${buttonStyles}
+`;
 
 // export default css`
 //   .button__prefix,

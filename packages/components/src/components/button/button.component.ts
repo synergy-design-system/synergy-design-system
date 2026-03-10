@@ -1,18 +1,18 @@
-/* eslint-disable */
+import type { CSSResultGroup } from 'lit';
+import { html, literal } from 'lit/static-html.js';
+import { property, query, state } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { FormControlController, validValidityState } from '../../internal/form.js';
 import { HasSlotController, getTextContent } from '../../internal/slot.js';
-import { html, literal } from 'lit/static-html.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import SynSpinner from '../spinner/spinner.component.js';
 import styles from './button.styles.js';
-import type { CSSResultGroup } from 'lit';
+import buttonGroupStyles from './button-group.styles.js';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
@@ -42,26 +42,31 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynButton')
 export default class SynButton extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, styles, buttonGroupStyles];
+
   static dependencies = {
     'syn-icon': SynIcon,
-    'syn-spinner': SynSpinner
+    'syn-spinner': SynSpinner,
   };
 
   private readonly formControlController = new FormControlController(this, {
-    assumeInteractionOn: ['click']
+    assumeInteractionOn: ['click'],
   });
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
+
   private readonly localize = new LocalizeController(this);
 
   @query('.button') button: HTMLButtonElement | HTMLLinkElement;
+
   @query('slot:not([name])') defaultSlot: HTMLSlotElement;
 
   @state() private iconOnly = false;
 
   @state() private hasFocus = false;
+
   @state() invalid = false;
+
   @property({ reflect: true }) title = ''; // make reactive to pass through
 
   /** The button's theme variant. */
@@ -71,13 +76,13 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /** Draws the button with a caret. Used to indicate that the button triggers a dropdown menu or similar behavior. */
-  @property({ type: Boolean, reflect: true }) caret = false;
+  @property({ reflect: true, type: Boolean }) caret = false;
 
   /** Disables the button. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ reflect: true, type: Boolean }) disabled = false;
 
   /** Draws the button in a loading state. */
-  @property({ type: Boolean, reflect: true }) loading = false;
+  @property({ reflect: true, type: Boolean }) loading = false;
 
   /**
    * The type of button. Note that the default value is `button` instead of `submit`, which is opposite of how native
@@ -134,24 +139,19 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
   @property({ attribute: 'formnovalidate', type: Boolean }) formNoValidate: boolean;
 
   /** Used to override the form owner's `target` attribute. */
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   @property({ attribute: 'formtarget' }) formTarget: '_self' | '_blank' | '_parent' | '_top' | string;
 
   /** Gets the validity state object */
   get validity() {
-    if (this.isButton()) {
-      return (this.button as HTMLButtonElement).validity;
-    }
-
-    return validValidityState;
+    return this.isButton()
+      ? (this.button as HTMLButtonElement).validity
+      : validValidityState;
   }
 
   /** Gets the validation message */
   get validationMessage() {
-    if (this.isButton()) {
-      return (this.button as HTMLButtonElement).validationMessage;
-    }
-
-    return '';
+    return this.isButton() ? (this.button as HTMLButtonElement).validationMessage : '';
   }
 
   firstUpdated() {
@@ -186,16 +186,16 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
   }
 
   private isButton() {
-    return this.href ? false : true;
+    return !this.href;
   }
 
   private isLink() {
-    return this.href ? true : false;
+    return !!this.href;
   }
 
   private handleSlotChange() {
     const textContent = getTextContent(this.defaultSlot).trim();
-    const assignedElements = this.defaultSlot.assignedElements({flatten: true})
+    const assignedElements = this.defaultSlot.assignedElements({flatten: true});
     const iconOnlyElement = assignedElements.length === 1 && assignedElements[0].tagName.toLowerCase() === 'syn-icon';
 
     this.iconOnly = iconOnlyElement && textContent === '';
@@ -226,11 +226,7 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
 
   /** Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. */
   checkValidity() {
-    if (this.isButton()) {
-      return (this.button as HTMLButtonElement).checkValidity();
-    }
-
-    return true;
+    return this.isButton() ? (this.button as HTMLButtonElement).checkValidity() : true;
   }
 
   /** Gets the associated form, if one exists. */
@@ -240,11 +236,7 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
 
   /** Checks for validity and shows the browser's validation message if the control is invalid. */
   reportValidity() {
-    if (this.isButton()) {
-      return (this.button as HTMLButtonElement).reportValidity();
-    }
-
-    return true;
+    return this.isButton() ? (this.button as HTMLButtonElement).reportValidity() : true;
   }
 
   /** Sets a custom validation message. Pass an empty string to restore validity. */
@@ -255,32 +247,32 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
     }
   }
 
+  // eslint-disable-next-line complexity
   render() {
     const isLink = this.isLink();
     const tag = isLink ? literal`a` : literal`button`;
 
-    /* eslint-disable lit/no-invalid-html */
-    /* eslint-disable lit/binding-positions */
+    /* eslint-disable @typescript-eslint/unbound-method, lit/binding-positions, lit/no-invalid-html */
     return html`
       <${tag}
         part="base"
         class=${classMap({
           button: true,
-          'button--primary': true,
-          'button--text': this.variant === 'text',
-          'button--small': this.size === 'small',
-          'button--medium': this.size === 'medium',
-          'button--large': this.size === 'large',
           'button--caret': this.caret,
           'button--disabled': this.disabled,
-          'button--focused': this.hasFocus,
-          'button--loading': this.loading,
           'button--filled': this.variant === 'filled',
-          'button--outline': this.variant === 'outline',
-          'button--rtl': this.localize.dir() === 'rtl',
+          'button--focused': this.hasFocus,
           'button--has-label': this.hasSlotController.test('[default]'),
           'button--has-prefix': this.hasSlotController.test('prefix'),
-          'button--has-suffix': this.hasSlotController.test('suffix')
+          'button--has-suffix': this.hasSlotController.test('suffix'),
+          'button--large': this.size === 'large',
+          'button--loading': this.loading,
+          'button--medium': this.size === 'medium',
+          'button--outline': this.variant === 'outline',
+          'button--primary': true,
+          'button--rtl': this.localize.dir() === 'rtl',
+          'button--small': this.size === 'small',
+          'button--text': this.variant === 'text',
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : this.type)}
@@ -300,15 +292,12 @@ export default class SynButton extends SynergyElement implements SynergyFormCont
         @click=${this.handleClick}
       >
         <slot name="prefix" part="prefix" class="button__prefix"></slot>
-        <slot part="label" class=${classMap({ 'button__label': true, 'button__icon-only': this.iconOnly })} @slotchange=${this.handleSlotChange}></slot>
+        <slot part="label" class=${classMap({ 'button__icon-only': this.iconOnly, button__label: true })} @slotchange=${this.handleSlotChange}></slot>
         <slot name="suffix" part="suffix" class="button__suffix"></slot>
-        ${
-          this.caret ? html` <syn-icon part="caret" class="button__caret" library="system" name="chevron-down"></syn-icon> ` : ''
-        }
+        ${this.caret ? html` <syn-icon part="caret" class="button__caret" library="system" name="chevron-down"></syn-icon> ` : ''}
         ${this.loading ? html`<syn-spinner part="spinner"></syn-spinner>` : ''}
       </${tag}>
     `;
-    /* eslint-enable lit/no-invalid-html */
-    /* eslint-enable lit/binding-positions */
+    /* eslint-enable @typescript-eslint/unbound-method, lit/binding-positions, lit/no-invalid-html */
   }
 }

@@ -379,6 +379,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
         part="form-control"
         class=${classMap({
           'form-control': true,
+          'form-control--has-button-group': this.hasButtonGroup,
           'form-control--has-help-text': hasHelpText,
           'form-control--has-label': hasLabel,
           'form-control--large': this.size === 'large',
@@ -418,7 +419,12 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
           ${this.hasButtonGroup
             ? html`
-                <syn-button-group size=${this.size} part="button-group" exportparts="base:button-group__base" role="presentation">
+                <syn-button-group
+                  exportparts="base:button-group__base"
+                  part="button-group"
+                  role="presentation"
+                  size=${this.size}
+                >
                   ${defaultSlot}
                 </syn-button-group>
               `

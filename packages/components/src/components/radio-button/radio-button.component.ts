@@ -8,6 +8,7 @@ import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './radio-button.styles.js';
+import buttonStyles from '../button/button.styles.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -32,7 +33,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynRadioButton')
 export default class SynRadioButton extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, buttonStyles, styles];
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
 
@@ -113,13 +114,16 @@ export default class SynRadioButton extends SynergyElement {
             'button--checked': this.checked,
             'button--default': true,
             'button--disabled': this.disabled,
+            'button--filled': this.checked,
             'button--focused': this.hasFocus,
             'button--has-label': this.hasSlotController.test('[default]'),
             'button--has-prefix': this.hasSlotController.test('prefix'),
             'button--has-suffix': this.hasSlotController.test('suffix'),
             'button--large': this.size === 'large',
             'button--medium': this.size === 'medium',
+            'button--primary': true,
             'button--small': this.size === 'small',
+            'button--text': !this.checked,
           })}
           aria-disabled=${this.disabled}
           type="button"

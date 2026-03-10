@@ -1,69 +1,47 @@
 import { css } from 'lit';
-import buttonStyles from '../button/button.styles.js';
 
 export default css`
   .button {
-    align-items: stretch;
-    background: var(--syn-interactive-emphasis-color);
-    border: calc(var(--syn-spacing-x-small) - var(--syn-spacing-3x-small) - var(--syn-border-width-small)) solid var(--syn-input-background-color);
-    color: var(--syn-color-neutral-0);
-    display: inline-flex;
-    font-family: var(--syn-input-font-family);
-    font-weight: var(--syn-font-weight-normal);
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-    user-select: none;
-    vertical-align: middle;
-    white-space: nowrap;
-    width: 100%;
+    --syn-radio-button-height-small: 24px;
+    --syn-radio-button-height-medium: 32px;
+    --syn-radio-button-height-large: 48px;
+
+    border-radius: var(--syn-border-radius-small);
+    font-weight: normal;
   }
 
-  .button:not(.button--disabled) {
-    cursor: pointer;
+  .button--small {
+    line-height: calc(var(--syn-radio-button-height-small) - var(--syn-input-border-width) * 2);
+    min-height: var(--syn-radio-button-height-small);
   }
 
-  .button::-moz-focus-inner {
-    border: 0;
+  .button--medium {
+    line-height: calc(var(--syn-radio-button-height-medium) - var(--syn-input-border-width) * 2);
+    min-height: var(--syn-radio-button-height-medium);
   }
 
-  .button:focus {
-    outline: none;
+  .button--large {
+    line-height: calc(var(--syn-radio-button-height-large) - var(--syn-input-border-width) * 2);
+    min-height: var(--syn-radio-button-height-large);
   }
 
-  .button:focus-visible {
-    outline: var(--syn-focus-ring);
-    outline-offset: var(--syn-focus-ring-offset);
+  /**
+   * Override the default unchecked button
+   */
+  .button--text {
+    color: var(--syn-interactive-quiet-color);
   }
 
-  .button--disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
+  .button--text:hover {
+    background: var(--syn-interactive-background-color-hover);
+    color: var(--syn-interactive-quiet-color-hover);
   }
 
-  ${buttonStyles}
+  .hidden-input {
+     all: unset;
+     inset: 0;
+     opacity: 0;
+     position: absolute;
+     z-index: -1;
+   }
 `;
-
-// export default css`
-//   .button__prefix,
-//   .button__suffix,
-//   .button__label {
-//     align-items: center;
-//     display: inline-flex;
-//     position: relative;
-//   }
-
-//   /*
-//    * We use a hidden input so constraint validation errors work, since they don't appear to show when used with buttons.
-//    * We can't actually hide it, though, otherwise the messages will be suppressed by the browser.
-//    */
-//   .hidden-input {
-//     all: unset;
-//     inset: 0;
-//     opacity: 0;
-//     outline: dotted 1px red;
-//     position: absolute;
-//     z-index: -1;
-//   }
-// `;

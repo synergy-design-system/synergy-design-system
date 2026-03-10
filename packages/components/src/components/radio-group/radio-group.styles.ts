@@ -63,16 +63,26 @@ export default css`
    * and should not adhere to the default styling needed for regular button groups.
    */
   .form-control--has-button-group .form-control-input {
-    background: var(--syn-input-background-color);
-    border: 1px solid var(--syn-radio-button-group-border-color);
-    border-radius: var(--syn-input-border-radius-medium);
-    max-width: fit-content;
-    padding: var(--syn-spacing-3x-small);
+    max-width: 100%; /* Fallback for older browsers, do not remove */
+  }
+
+  @supports (max-width: fit-content) {
+    .form-control--has-button-group .form-control-input {
+      /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+      max-width: fit-content;
+    }
   }
 
   .form-control--has-button-group syn-button-group::part(base) {
-    border: 1px solid var(--component-radio-button-group-border-color, #737F85);
+    --radiogroup-padding: calc(var(--syn-spacing-x-small) - 1px);
+
+    border: 1px solid var(--syn-input-border-color);
     border-radius: var(--syn-input-border-radius-large);
-    padding: var(--syn-spacing-3x-small);
+    gap: var(--radiogroup-padding);
+    padding: var(--radiogroup-padding);
+  }
+
+  .form-control--has-button-group syn-button-group[size="small"] {
+    --radiogroup-padding: calc(var(--syn-spacing-x-small) - 3px);
   }
 `;

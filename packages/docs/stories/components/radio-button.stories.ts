@@ -112,13 +112,15 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    ${['small', 'medium', 'large'].map(size => html`
-      <syn-radio-group label="Select an option" name="size" size=${size} value="1" style="margin-bottom: 16px;">
-        <syn-radio-button value="1">Option 1</syn-radio-button>
-        <syn-radio-button value="2">Option 2</syn-radio-button>
-        <syn-radio-button value="3">Option 3</syn-radio-button>
-      </syn-radio-group>
-    `)}
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium);">
+      ${['small', 'medium', 'large'].map(size => html`
+        <syn-radio-group label="Select an option" name="size" size=${size} value="1">
+          <syn-radio-button value="1">Option 1</syn-radio-button>
+          <syn-radio-button value="2">Option 2</syn-radio-button>
+          <syn-radio-button value="3">Option 3</syn-radio-button>
+        </syn-radio-group>
+      `)}
+    </div>
   `,
 };
 

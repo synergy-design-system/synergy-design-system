@@ -39,7 +39,7 @@ export default css`
      * - 2018 does not have a focus ring, so the border radius is as small as the border, essentially negating it to "0"
      * - 2025 needs to adapt with another pixel to make it match the rounding of the focus ring
      */
-    border-radius: calc(calc(var(--syn-focus-ring-border-radius) * 2) + var(--option-inset-border-vertical) - 1px);
+    border-radius: calc(calc(var(--syn-focus-ring-border-radius) * 2) + var(--option-inset-border-vertical) - 2px) / calc(calc(var(--syn-focus-ring-border-radius) * 2) + var(--option-inset-border-vertical) - 4px);
     border-width: var(--option-inset-border-horizontal) var(--option-inset-border-vertical);
     color: var(--syn-color-neutral-700);
     cursor: pointer;

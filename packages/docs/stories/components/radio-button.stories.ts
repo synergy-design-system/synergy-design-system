@@ -61,7 +61,7 @@ export const Default: Story = {
     },
   },
   render: args => html`
-    <syn-radio-group label="Select an option" name="a">
+    <syn-radio-group label="Select an option" name="a" value="1">
       ${generateTemplate({ args })}
       <syn-radio-button value="2">Option 2</syn-radio-button>
       <syn-radio-button value="3">Option 3</syn-radio-button>
@@ -103,6 +103,23 @@ export const Disabled: Story = {
   `,
 };
 
+export const Readonly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-button', 'readonly'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-radio-group label="Select an option" name="b" value="1">
+      <syn-radio-button value="1" readonly>Option 1</syn-radio-button>
+      <syn-radio-button value="2" readonly>Option 2</syn-radio-button>
+      <syn-radio-button value="3" readonly>Option 3</syn-radio-button>
+    </syn-radio-group>
+  `,
+};
+
 export const Sizes: Story = {
   parameters: {
     docs: {
@@ -113,7 +130,7 @@ export const Sizes: Story = {
   },
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium);">
-      ${['small', 'medium', 'large'].map(size => html`
+      ${(['small', 'medium', 'large'] as const).map(size => html`
         <syn-radio-group label="Select an option" name="size" size=${size} value="1">
           <syn-radio-button value="1">Option 1</syn-radio-button>
           <syn-radio-button value="2">Option 2</syn-radio-button>
@@ -189,6 +206,7 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   CheckedStates,
   Disabled,
+  Readonly,
   Sizes,
   PrefixAndSuffixIcons,
   ButtonsWithIcons,

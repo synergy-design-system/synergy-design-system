@@ -55,6 +55,9 @@ export default class SynRadioButton extends SynergyElement {
   /** Disables the radio button. */
   @property({ reflect: true, type: Boolean }) disabled = false;
 
+  /** Sets the radio button to a readonly state. */
+  @property({ reflect: true, type: Boolean }) readonly = false;
+
   /**
    * The radio button's size. When used inside a radio group, the size will be determined by the radio group's size so
    * this attribute can typically be omitted.
@@ -66,13 +69,17 @@ export default class SynRadioButton extends SynergyElement {
     this.setAttribute('role', 'presentation');
   }
 
+  private isDisabled() {
+    return this.disabled || this.readonly;
+  }
+
   private handleBlur() {
     this.hasFocus = false;
     this.emit('syn-blur');
   }
 
   private handleClick(e: MouseEvent) {
-    if (this.disabled) {
+    if (this.isDisabled()) {
       e.preventDefault();
       e.stopPropagation();
       return;
@@ -86,9 +93,9 @@ export default class SynRadioButton extends SynergyElement {
     this.emit('syn-focus');
   }
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
+  @watch(['disabled', 'readonly'], { waitUntilFirstUpdate: true })
   handleDisabledChange() {
-    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+    this.setAttribute('aria-disabled', this.isDisabled() ? 'true' : 'false');
   }
 
   /** Sets focus on the radio button. */
@@ -122,6 +129,7 @@ export default class SynRadioButton extends SynergyElement {
             'button--large': this.size === 'large',
             'button--medium': this.size === 'medium',
             'button--primary': true,
+            'button--readonly': this.readonly,
             'button--small': this.size === 'small',
             'button--text': !this.checked,
           })}

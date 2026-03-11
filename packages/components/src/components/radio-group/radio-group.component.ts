@@ -186,6 +186,11 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
       index = 0;
     }
 
+    // #1175: If all radios are readonly, skip and focus the first one and do not change the value
+    if (!availableRadios[index]) {
+      return;
+    }
+
     const allRadios = this.getAllRadios();
 
     allRadios.forEach(radio => {
@@ -195,11 +200,6 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
         radio.setAttribute('tabindex', '-1');
       }
     });
-
-    // #1175: If all radios are readonly, skip and focus the first one and do not change the value
-    if (!availableRadios[index]) {
-      return;
-    }
 
     this.value = availableRadios[index].value;
     availableRadios[index].checked = true;

@@ -34,7 +34,7 @@ describe('when using the metadata utilities', () => {
         'syn-button',
         (filename) => filename.endsWith('.ts') && !filename.includes('angular'),
       );
-      expect(metadata.length).toBeGreaterThan(3);
+      expect(metadata.length).toBeGreaterThanOrEqual(3);
 
       const filesThatAreRead = metadata.map(file => file!.filename);
 

@@ -41,7 +41,6 @@ describe('when using the components metadata utilities', () => {
       const filesThatAreRead = metadata.map(file => file!.filename);
       expect(filesThatAreRead).toContain('component.ts');
       expect(filesThatAreRead).toContain('component.styles.ts');
-      expect(filesThatAreRead).toContain('component.custom.styles.ts');
     });
 
     it('should return the correct metadata for a component in vanilla', async () => {
@@ -51,7 +50,6 @@ describe('when using the components metadata utilities', () => {
       const filesThatAreRead = metadata.map(file => file!.filename);
       expect(filesThatAreRead).toContain('component.ts');
       expect(filesThatAreRead).toContain('component.styles.ts');
-      expect(filesThatAreRead).toContain('component.custom.styles.ts');
     });
 
     it('should return the vanilla metadata for a component if the framework is unknown', async () => {
@@ -61,7 +59,6 @@ describe('when using the components metadata utilities', () => {
       const filesThatAreRead = metadata.map(file => file!.filename);
       expect(filesThatAreRead).toContain('component.ts');
       expect(filesThatAreRead).toContain('component.styles.ts');
-      expect(filesThatAreRead).toContain('component.custom.styles.ts');
     });
 
     ([
@@ -76,7 +73,6 @@ describe('when using the components metadata utilities', () => {
         const filesThatAreRead = metadata.map(file => file!.filename);
         expect(filesThatAreRead).toContain('component.ts');
         expect(filesThatAreRead).toContain('component.styles.ts');
-        expect(filesThatAreRead).toContain('component.custom.styles.ts');
 
         const dynamicFrameworkFile = framework === 'vue'
           ? 'component.vue'

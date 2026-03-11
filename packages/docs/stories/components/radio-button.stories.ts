@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
+import { userEvent } from 'storybook/test';
 import '../../../components/src/components/radio-group/radio-group.js';
 import '../../../components/src/components/radio-button/radio-button.js';
 import {
@@ -69,11 +70,11 @@ export const Default: Story = {
   `,
 };
 
-export const CheckedStates: Story = {
+export const Checked: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('radio-button', 'checked-states'),
+        story: generateStoryDescription('radio-button', 'checked'),
       },
     },
   },
@@ -117,6 +118,57 @@ export const Readonly: Story = {
       <syn-radio-button value="2" readonly>Option 2</syn-radio-button>
       <syn-radio-button value="3" readonly>Option 3</syn-radio-button>
     </syn-radio-group>
+  `,
+};
+
+export const Invalid: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-button', 'invalid'),
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    try {
+      const button = canvasElement.querySelector('syn-button');
+
+      if (button) {
+        // make sure to always fire both events:
+        // 1. userEvent.click is needed for storybooks play function to register
+        // 2. button.click is needed to really click the button
+        // userEvent.click works on native elements only
+        await userEvent.click(button);
+        button.click();
+        (document.activeElement as HTMLElement)?.blur();
+      }
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error('Error in play function:', error);
+    }
+  },
+  render: () => html`
+    <form class="custom-validity">
+      <syn-radio-group label="Select an option" name="a" help-text="This is required" required>
+        <syn-radio-button value="1">Option 1</syn-radio-button>
+        <syn-radio-button value="2">Option 2</syn-radio-button>
+        <syn-radio-button value="3">Option 3</syn-radio-button>
+      </syn-radio-group>
+      <syn-button type="submit" variant="filled">Submit</syn-button>
+    </form>
+    <style>
+      .custom-validity {
+        display: flex;
+        flex-direction: column;
+        gap: var(--syn-spacing-large);
+      }
+      syn-button {
+        align-self: flex-start;
+      }
+    </style>
   `,
 };
 
@@ -204,7 +256,7 @@ export const ButtonsWithIcons: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
-  CheckedStates,
+  Checked,
   Disabled,
   Readonly,
   Sizes,

@@ -6,11 +6,11 @@ Radios buttons allow the user to select a single option from a group using a but
 <syn-radio-group
   label="Select an option"
   name="a"
-  value=""
+  value="1"
   size="medium"
   form=""
 >
-  <syn-radio-button value="1" role="presentation" size="medium">
+  <syn-radio-button value="1" role="presentation" size="medium" checked="">
     Option 1
   </syn-radio-button>
 
@@ -25,7 +25,7 @@ Radios buttons allow the user to select a single option from a group using a but
 
 ---
 
-## Checked States
+## Checked
 
 To set the initial value and checked state, use the value attribute on the containing radio group.
 
@@ -77,67 +77,140 @@ Use the disabled attribute to disable a radio button.
 
 ---
 
+## Readonly
+
+Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button as well as for the entire button group.
+
+```html
+<syn-radio-group
+  label="Select an option"
+  name="b"
+  value="1"
+  size="medium"
+  form=""
+>
+  <syn-radio-button
+    value="1"
+    readonly=""
+    role="presentation"
+    size="medium"
+    checked=""
+    >Option 1</syn-radio-button
+  >
+  <syn-radio-button value="2" readonly="" role="presentation" size="medium"
+    >Option 2</syn-radio-button
+  >
+  <syn-radio-button value="3" readonly="" role="presentation" size="medium"
+    >Option 3</syn-radio-button
+  >
+</syn-radio-group>
+```
+
+---
+
+## Invalid
+
+The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio-button is mandatory and nothing has been checked.
+
+```html
+<form class="custom-validity">
+  <syn-radio-group
+    label="Select an option"
+    name="a"
+    help-text="This is required"
+    required=""
+    value=""
+    size="medium"
+    form=""
+  >
+    <syn-radio-button value="1" role="presentation" size="medium"
+      >Option 1</syn-radio-button
+    >
+    <syn-radio-button value="2" role="presentation" size="medium"
+      >Option 2</syn-radio-button
+    >
+    <syn-radio-button value="3" role="presentation" size="medium"
+      >Option 3</syn-radio-button
+    >
+  </syn-radio-group>
+  <syn-button type="submit" variant="filled">Submit</syn-button>
+</form>
+<style>
+  .custom-validity {
+    display: flex;
+    flex-direction: column;
+    gap: var(--syn-spacing-large);
+  }
+  syn-button {
+    align-self: flex-start;
+  }
+</style>
+```
+
+---
+
 ## Sizes
 
 Use the size attribute to change a radio button’s size.
 
 ```html
-<syn-radio-group
-  label="Select an option"
-  name="size"
-  value="1"
-  style="margin-bottom: 16px"
-  size="small"
-  form=""
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium)"
 >
-  <syn-radio-button value="1" role="presentation" size="small" checked=""
-    >Option 1</syn-radio-button
+  <syn-radio-group
+    label="Select an option"
+    name="size"
+    value="1"
+    size="small"
+    form=""
   >
-  <syn-radio-button value="2" role="presentation" size="small"
-    >Option 2</syn-radio-button
-  >
-  <syn-radio-button value="3" role="presentation" size="small"
-    >Option 3</syn-radio-button
-  >
-</syn-radio-group>
+    <syn-radio-button value="1" role="presentation" size="small" checked=""
+      >Option 1</syn-radio-button
+    >
+    <syn-radio-button value="2" role="presentation" size="small"
+      >Option 2</syn-radio-button
+    >
+    <syn-radio-button value="3" role="presentation" size="small"
+      >Option 3</syn-radio-button
+    >
+  </syn-radio-group>
 
-<syn-radio-group
-  label="Select an option"
-  name="size"
-  value="1"
-  style="margin-bottom: 16px"
-  size="medium"
-  form=""
->
-  <syn-radio-button value="1" role="presentation" size="medium" checked=""
-    >Option 1</syn-radio-button
+  <syn-radio-group
+    label="Select an option"
+    name="size"
+    value="1"
+    size="medium"
+    form=""
   >
-  <syn-radio-button value="2" role="presentation" size="medium"
-    >Option 2</syn-radio-button
-  >
-  <syn-radio-button value="3" role="presentation" size="medium"
-    >Option 3</syn-radio-button
-  >
-</syn-radio-group>
+    <syn-radio-button value="1" role="presentation" size="medium" checked=""
+      >Option 1</syn-radio-button
+    >
+    <syn-radio-button value="2" role="presentation" size="medium"
+      >Option 2</syn-radio-button
+    >
+    <syn-radio-button value="3" role="presentation" size="medium"
+      >Option 3</syn-radio-button
+    >
+  </syn-radio-group>
 
-<syn-radio-group
-  label="Select an option"
-  name="size"
-  value="1"
-  style="margin-bottom: 16px"
-  size="large"
-  form=""
->
-  <syn-radio-button value="1" role="presentation" size="large" checked=""
-    >Option 1</syn-radio-button
+  <syn-radio-group
+    label="Select an option"
+    name="size"
+    value="1"
+    size="large"
+    form=""
   >
-  <syn-radio-button value="2" role="presentation" size="large"
-    >Option 2</syn-radio-button
-  >
-  <syn-radio-button value="3" role="presentation" size="large"
-    >Option 3</syn-radio-button
-  >
-</syn-radio-group>
+    <syn-radio-button value="1" role="presentation" size="large" checked=""
+      >Option 1</syn-radio-button
+    >
+    <syn-radio-button value="2" role="presentation" size="large"
+      >Option 2</syn-radio-button
+    >
+    <syn-radio-button value="3" role="presentation" size="large"
+      >Option 3</syn-radio-button
+    >
+  </syn-radio-group>
+</div>
 ```
 
 ---

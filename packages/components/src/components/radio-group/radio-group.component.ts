@@ -144,14 +144,15 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
   }
 
   private handleRadioClick(event: MouseEvent) {
-    const target = (event.target as HTMLElement).closest<SynRadio | SynRadioButton>('syn-radio, syn-radio-button')!;
-    const radios = this.getAllRadios();
-    const oldValue = this.value;
+    const target = (event.target as HTMLElement).closest<SynRadio | SynRadioButton>('syn-radio, syn-radio-button');
 
     // #1174: If we have a radio, also do nothing if the radio is readonly
-    if (!target || target.disabled || (target as SynRadio).readonly) {
+    if (!target || target.disabled || target.readonly) {
       return;
     }
+
+    const radios = this.getAllRadios();
+    const oldValue = this.value;
 
     this.value = target.value;
     radios.forEach(radio => {
@@ -170,7 +171,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
     }
 
     // #1174: Filter out elements that are either disabled or readonly
-    const availableRadios = this.getAllRadios().filter(radio => (!radio.disabled && !(radio as SynRadio).readonly));
+    const availableRadios = this.getAllRadios().filter(radio => (!radio.disabled && !radio.readonly));
     const checkedRadio = availableRadios.find(radio => radio.checked) ?? availableRadios[0];
 
     // eslint-disable-next-line no-nested-ternary

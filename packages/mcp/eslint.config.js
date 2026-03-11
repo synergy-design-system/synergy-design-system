@@ -6,7 +6,7 @@ export default [
     ignores: ['metadata/'],
   },
   ...createCustomConfig({
-    project: './tsconfig.json',
+    project: './tsconfig.lint.json',
     tsconfigRootDir: import.meta.dirname,
   }),
   // Build and utility scripts need relaxed rules

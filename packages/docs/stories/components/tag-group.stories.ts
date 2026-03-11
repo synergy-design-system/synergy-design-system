@@ -12,7 +12,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-tag-group');
 const { generateTemplate } = storybookTemplate('syn-tag-group');
@@ -44,7 +44,7 @@ const meta: Meta = {
   component: 'syn-tag-group',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('45275-174458'),
     docs: {

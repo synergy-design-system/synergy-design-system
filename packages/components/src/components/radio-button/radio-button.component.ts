@@ -1,14 +1,14 @@
-/* eslint-disable */
+import type { CSSResultGroup } from 'lit';
+import { html } from 'lit/static-html.js';
+import { property, query, state } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { HasSlotController } from '../../internal/slot.js';
-import { html } from 'lit/static-html.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
-import { property, query, state } from 'lit/decorators.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './radio-button.styles.js';
-import type { CSSResultGroup } from 'lit';
+import buttonStyles from '../button/button.styles.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -33,11 +33,12 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynRadioButton')
 export default class SynRadioButton extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles];
+  static styles: CSSResultGroup = [componentStyles, buttonStyles, styles];
 
   private readonly hasSlotController = new HasSlotController(this, '[default]', 'prefix', 'suffix');
 
   @query('.button') input: HTMLInputElement;
+
   @query('.hidden-input') hiddenInput: HTMLInputElement;
 
   @state() protected hasFocus = false;
@@ -46,13 +47,16 @@ export default class SynRadioButton extends SynergyElement {
    * @internal The radio button's checked state. This is exposed as an "internal" attribute so we can reflect it, making
    * it easier to style in button groups.
    */
-  @property({ type: Boolean, reflect: true }) checked = false;
+  @property({ reflect: true, type: Boolean }) checked = false;
 
   /** The radio's value. When selected, the radio group will receive this value. */
   @property() value: string | number;
 
   /** Disables the radio button. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ reflect: true, type: Boolean }) disabled = false;
+
+  /** Sets the radio button to a readonly state. */
+  @property({ reflect: true, type: Boolean }) readonly = false;
 
   /**
    * The radio button's size. When used inside a radio group, the size will be determined by the radio group's size so
@@ -60,12 +64,13 @@ export default class SynRadioButton extends SynergyElement {
    */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-  /** Draws a pill-style radio button with rounded edges. */
-  @property({ type: Boolean, reflect: true }) pill = false;
-
   connectedCallback() {
     super.connectedCallback();
     this.setAttribute('role', 'presentation');
+  }
+
+  private isDisabled() {
+    return this.disabled || this.readonly;
   }
 
   private handleBlur() {
@@ -74,7 +79,7 @@ export default class SynRadioButton extends SynergyElement {
   }
 
   private handleClick(e: MouseEvent) {
-    if (this.disabled) {
+    if (this.isDisabled()) {
       e.preventDefault();
       e.stopPropagation();
       return;
@@ -88,9 +93,9 @@ export default class SynRadioButton extends SynergyElement {
     this.emit('syn-focus');
   }
 
-  @watch('disabled', { waitUntilFirstUpdate: true })
+  @watch(['disabled', 'readonly'], { waitUntilFirstUpdate: true })
   handleDisabledChange() {
-    this.setAttribute('aria-disabled', this.disabled ? 'true' : 'false');
+    this.setAttribute('aria-disabled', this.isDisabled() ? 'true' : 'false');
   }
 
   /** Sets focus on the radio button. */
@@ -104,6 +109,7 @@ export default class SynRadioButton extends SynergyElement {
   }
 
   render() {
+    /* eslint-disable @typescript-eslint/unbound-method */
     return html`
       <div part="base" role="presentation">
         <button
@@ -112,18 +118,20 @@ export default class SynRadioButton extends SynergyElement {
           aria-checked="${this.checked}"
           class=${classMap({
             button: true,
-            'button--default': true,
-            'button--small': this.size === 'small',
-            'button--medium': this.size === 'medium',
-            'button--large': this.size === 'large',
             'button--checked': this.checked,
+            'button--default': true,
             'button--disabled': this.disabled,
+            'button--filled': this.checked,
             'button--focused': this.hasFocus,
-            'button--outline': true,
-            'button--pill': this.pill,
             'button--has-label': this.hasSlotController.test('[default]'),
             'button--has-prefix': this.hasSlotController.test('prefix'),
-            'button--has-suffix': this.hasSlotController.test('suffix')
+            'button--has-suffix': this.hasSlotController.test('suffix'),
+            'button--large': this.size === 'large',
+            'button--medium': this.size === 'medium',
+            'button--primary': true,
+            'button--readonly': this.readonly,
+            'button--small': this.size === 'small',
+            'button--text': !this.checked,
           })}
           aria-disabled=${this.disabled}
           type="button"
@@ -138,5 +146,6 @@ export default class SynRadioButton extends SynergyElement {
         </button>
       </div>
     `;
+    /* eslint-enable @typescript-eslint/unbound-method */
   }
 }

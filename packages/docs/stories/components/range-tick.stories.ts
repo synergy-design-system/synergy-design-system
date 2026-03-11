@@ -11,7 +11,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-range-tick');
 const { generateTemplate } = storybookTemplate('syn-range-tick');
@@ -22,7 +22,7 @@ const meta: Meta = {
   component: 'syn-range-tick',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('0628-87581'),
     docs: {

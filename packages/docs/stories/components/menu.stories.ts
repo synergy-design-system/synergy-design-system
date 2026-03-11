@@ -14,7 +14,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-menu');
 const { overrideArgs } = storybookHelpers('syn-menu');
@@ -40,7 +40,7 @@ const meta: Meta = {
   component: 'syn-menu',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('11581-378368'),
     docs: {

@@ -1,14 +1,19 @@
-/* eslint-disable */
+import type { CSSResultGroup } from 'lit';
 import { html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './button-group.styles.js';
-import customStyles from './button-group.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 import type SynButton from '../button/button.component.js';
 import type SynRadioButton from '../radio-button/radio-button.component.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
+
+function findButton(el: HTMLElement) {
+  const selector = 'syn-button, syn-radio-button';
+
+  // The button could be the target element or a child of it (e.g. a dropdown or tooltip anchor)
+  return el.closest(selector) ?? el.querySelector(selector);
+}
 
 /**
  * @summary Button groups can be used to group related buttons into sections.
@@ -22,7 +27,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynButtonGroup')
 export default class SynButtonGroup extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   @query('slot') defaultSlot: HTMLSlotElement;
 
@@ -42,21 +47,25 @@ export default class SynButtonGroup extends SynergyElement {
 
   private mutationObserver: MutationObserver;
 
+  // eslint-disable-next-line class-methods-use-this
   private handleFocus(event: Event) {
     const button = findButton(event.target as HTMLElement);
     button?.toggleAttribute('data-syn-button-group__button--focus', true);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private handleBlur(event: Event) {
     const button = findButton(event.target as HTMLElement);
     button?.toggleAttribute('data-syn-button-group__button--focus', false);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private handleMouseOver(event: Event) {
     const button = findButton(event.target as HTMLElement);
     button?.toggleAttribute('data-syn-button-group__button--hover', true);
   }
 
+  // eslint-disable-next-line class-methods-use-this
   private handleMouseOut(event: Event) {
     const button = findButton(event.target as HTMLElement);
     button?.toggleAttribute('data-syn-button-group__button--hover', false);
@@ -82,7 +91,7 @@ export default class SynButtonGroup extends SynergyElement {
         button.toggleAttribute('data-syn-button-group__button--last', index === slottedElements.length - 1);
         button.toggleAttribute(
           'data-syn-button-group__button--radio',
-          button.tagName.toLowerCase() === 'syn-radio-button'
+          button.tagName.toLowerCase() === 'syn-radio-button',
         );
       }
     });
@@ -91,9 +100,9 @@ export default class SynButtonGroup extends SynergyElement {
   firstUpdated() {
     const startObserving = () => {
       this.mutationObserver.observe(this, {
-        subtree: true,
-        attributes: true,
         attributeFilter: ['size', 'variant'],
+        attributes: true,
+        subtree: true,
       });
     };
 
@@ -115,11 +124,11 @@ export default class SynButtonGroup extends SynergyElement {
 
             if (button) {
               // Unset the size property to allow button-group to control it
-              button.size = undefined as any;
+              button.size = undefined as never;
 
               // Also unset variant for syn-buttons
               if (button.tagName.toLowerCase() === 'syn-button') {
-                (button as SynButton).variant = undefined as any;
+                (button as SynButton).variant = undefined as never;
               }
             }
           });
@@ -129,8 +138,9 @@ export default class SynButtonGroup extends SynergyElement {
       if (buttonGroupChanged || childrenChanged) {
         this.handleSlotChange();
       }
-      
+
       // Reconnect observer after changes are done
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       this.updateComplete.then(() => {
         startObserving();
       });
@@ -145,7 +155,7 @@ export default class SynButtonGroup extends SynergyElement {
   }
 
   render() {
-    // eslint-disable-next-line lit-a11y/mouse-events-have-key-events
+    /* eslint-disable @typescript-eslint/unbound-method, lit-a11y/mouse-events-have-key-events */
     return html`
       <div
         part="base"
@@ -160,12 +170,6 @@ export default class SynButtonGroup extends SynergyElement {
         <slot @slotchange=${this.handleSlotChange}></slot>
       </div>
     `;
+    /* eslint-enable @typescript-eslint/unbound-method, lit-a11y/mouse-events-have-key-events */
   }
-}
-
-function findButton(el: HTMLElement) {
-  const selector = 'syn-button, syn-radio-button';
-
-  // The button could be the target element or a child of it (e.g. a dropdown or tooltip anchor)
-  return el.closest(selector) ?? el.querySelector(selector);
 }

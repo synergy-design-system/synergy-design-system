@@ -12,7 +12,7 @@ import {
 } from '../../src/helpers/component.js';
 import '../../src/validate-demo-radio.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-validate');
 const { overrideArgs } = storybookHelpers('syn-validate');
@@ -57,7 +57,7 @@ const meta: Meta = {
   ],
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('24853-35456'),
     docs: {

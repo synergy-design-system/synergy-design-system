@@ -13,7 +13,7 @@ import { type RenderArgs, renderStyles } from '../../src/helpers/styles.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import '../../../components/src/components/icon/icon.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-link');
 const { overrideArgs } = storybookHelpers('syn-link');
@@ -35,7 +35,7 @@ const meta: Meta = {
   component: 'syn-link',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('24700-38828'),
     docs: {

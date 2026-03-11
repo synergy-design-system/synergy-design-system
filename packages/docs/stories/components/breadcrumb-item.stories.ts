@@ -14,7 +14,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-breadcrumb-item');
 const { overrideArgs } = storybookHelpers('syn-breadcrumb-item');
@@ -42,7 +42,7 @@ const meta: Meta = {
   component: 'syn-breadcrumb-item',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('17186-185318'),
     docs: {

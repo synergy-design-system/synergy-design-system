@@ -15,7 +15,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-dialog');
 const { overrideArgs } = storybookHelpers('syn-dialog');
@@ -89,7 +89,7 @@ const meta: Meta = {
   parameters: {
     chromatic: {
       disableSnapshot: false,
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('14953-11300'),
     docs: {

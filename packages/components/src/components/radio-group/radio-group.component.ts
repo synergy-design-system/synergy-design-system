@@ -144,14 +144,15 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
   }
 
   private handleRadioClick(event: MouseEvent) {
-    const target = (event.target as HTMLElement).closest<SynRadio | SynRadioButton>('syn-radio, syn-radio-button')!;
-    const radios = this.getAllRadios();
-    const oldValue = this.value;
+    const target = (event.target as HTMLElement).closest<SynRadio | SynRadioButton>('syn-radio, syn-radio-button');
 
     // #1174: If we have a radio, also do nothing if the radio is readonly
-    if (!target || target.disabled || (target as SynRadio).readonly) {
+    if (!target || target.disabled || target.readonly) {
       return;
     }
+
+    const radios = this.getAllRadios();
+    const oldValue = this.value;
 
     this.value = target.value;
     radios.forEach(radio => {
@@ -170,7 +171,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
     }
 
     // #1174: Filter out elements that are either disabled or readonly
-    const availableRadios = this.getAllRadios().filter(radio => (!radio.disabled && !(radio as SynRadio).readonly));
+    const availableRadios = this.getAllRadios().filter(radio => (!radio.disabled && !radio.readonly));
     const checkedRadio = availableRadios.find(radio => radio.checked) ?? availableRadios[0];
 
     // eslint-disable-next-line no-nested-ternary
@@ -186,6 +187,11 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
       index = 0;
     }
 
+    // #1175: If all radios are readonly, skip and focus the first one and do not change the value
+    if (!availableRadios[index]) {
+      return;
+    }
+
     const allRadios = this.getAllRadios();
 
     allRadios.forEach(radio => {
@@ -195,11 +201,6 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
         radio.setAttribute('tabindex', '-1');
       }
     });
-
-    // #1175: If all radios are readonly, skip and focus the first one and do not change the value
-    if (!availableRadios[index]) {
-      return;
-    }
 
     this.value = availableRadios[index].value;
     availableRadios[index].checked = true;
@@ -379,6 +380,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
         part="form-control"
         class=${classMap({
           'form-control': true,
+          'form-control--has-button-group': this.hasButtonGroup,
           'form-control--has-help-text': hasHelpText,
           'form-control--has-label': hasLabel,
           'form-control--large': this.size === 'large',
@@ -418,7 +420,12 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
 
           ${this.hasButtonGroup
             ? html`
-                <syn-button-group part="button-group" exportparts="base:button-group__base" role="presentation">
+                <syn-button-group
+                  exportparts="base:button-group__base"
+                  part="button-group"
+                  role="presentation"
+                  size=${this.size}
+                >
                   ${defaultSlot}
                 </syn-button-group>
               `

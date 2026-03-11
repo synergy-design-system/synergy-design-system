@@ -18,7 +18,7 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { ChromaticModesAll } from '../../.storybook/modes.js';
 
 const { args, argTypes } = storybookDefaults('syn-combobox');
 const { overrideArgs } = storybookHelpers('syn-combobox');
@@ -30,7 +30,7 @@ const meta: Meta = {
   component: 'syn-combobox',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: ChromaticModesAll,
     },
     design: generateFigmaPluginObject('25272-35634'),
     docs: {

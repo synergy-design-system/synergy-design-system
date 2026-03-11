@@ -130,9 +130,22 @@ export const footer = {
   copyRight: '© 2025 SICK AG',
 };
 
+export const fileUpload = {
+  multiple: {
+    headline: 'The multiple input attribute',
+  },
+  single: {
+    headline: 'The single input attribute',
+  },
+  label: 'Select Files',
+  helpText: 'Max file size is 500kb. Supported file types are .jgp, .png and .pdf',
+  uploadButton: 'Upload',
+};
+
 export const translations = {
   appShell,
   contactForm,
+  fileUpload,
   footer,
   table,
 };

@@ -19,6 +19,8 @@ import '../../../components/src/components/select/select.js';
 import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/combobox/combobox.js';
 import '../../../components/src/components/button/button.js';
+import '../../../components/src/components/icon-button/icon-button.js';
+import '../../../components/src/components/file/file.js';
 
 const meta: Meta = {
   parameters: {
@@ -270,4 +272,120 @@ export const ContactFormTablet = {
       disable: true,
     },
   },
+};
+
+export const MultipleFilesUploadForm = {
+  render: () => html`
+    <div class="synergy-form-demo">
+      <h1>${getTranslation('fileUpload.multiple.headline')}</h1>
+
+      <form enctype="multipart/form-data" method="post">
+        <syn-file
+          droparea
+          name="files"
+          label="${getTranslation('fileUpload.label')}"
+          help-text="${getTranslation('fileUpload.helpText')}"
+          multiple
+        ></syn-file>
+
+        <ul class="uploaded-files">
+          <li>
+            <em>Bildschirmfoto 2024-05-23 um 10.17.14.345.345645656.png</em>
+            <span class="uploaded-files--status">
+              <syn-spinner></syn-spinner>
+            </span>
+          </li>
+          <li>
+            <em>document-label</em>
+            <span class="uploaded-files--status">
+              <syn-icon-button name="check" label="Upload success"></syn-icon-button>
+            </span>
+          </li>
+          <li>
+            <em>document-label</em>
+            <span class="uploaded-files--status">
+              <syn-icon-button name="cancel" label="Cancel upload"></syn-icon-button>
+            </span>
+          </li>
+          <li>
+            <em>
+              document-label
+              <span class="uploaded-files--help-text">
+                File exceeds size limit.
+              </span>
+            </em>
+            <span class="uploaded-files--status">
+              <syn-icon-button name="cancel" label="Cancel upload"></syn-icon-button>
+            </span>
+          </li>
+        </ul>
+
+        <div class="submit-actions">
+          <syn-button type="submit" variant="filled">${getTranslation('fileUpload.uploadButton')}</syn-button>
+        </div>
+
+      </form>
+    </div>
+
+    <style>
+      .synergy-form-demo {
+        background: var(--syn-color-neutral-0);
+        margin: 0 auto;
+        padding: var(--syn-spacing-x-large);
+        max-width: 750px;
+      }
+
+      h1 {
+        font-size: var(--syn-font-size-3x-large);
+        font-weight: var(--syn-font-weight-bold);
+        margin: 0 0 var(--syn-spacing-medium) 0;
+      }
+
+      .uploaded-files {
+        display: flex;
+        flex-direction: column;
+        gap: var(--syn-spacing-medium);
+        list-style: none;
+        margin: var(--syn-spacing-medium) 0;
+        padding: 0;
+        
+        li {
+          align-items: baseline;
+          display: flex;
+          flex-direction: row;
+          font: var(--syn-body-medium-regular);
+          gap: var(--syn-spacing-small);
+          padding: var(--syn-spacing-small) 0;
+          
+          em {
+            flex: 1;
+          }
+          
+          .uploaded-files--status {
+            text-align: end;
+            width: var(--syn-spacing-large);
+          }
+
+          .uploaded-files--help-text {
+            color: var(--syn-input-border-color-focus-error);
+            display: block;
+            font: var(--syn-body-small-regular);
+            margin-top: var(--syn-spacing-x-small);
+          }
+        }
+      }
+
+      .submit-actions {
+        display: flex;
+        justify-content: right;
+        margin-top: var(--syn-spacing-2x-large);
+      }
+    </style>
+  `,
+};
+
+export const SingleFilesUploadForm = {
+  render: () => html`
+    <div>Implement</div>
+  `,
 };

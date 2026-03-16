@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta } from '@storybook/web-components-vite';
+import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import {
   Description,
   Stories,
@@ -23,6 +23,8 @@ import '../../../components/src/components/icon-button/icon-button.js';
 import '../../../components/src/components/spinner/spinner.js';
 import '../../../components/src/components/file/file.js';
 import '../../../components/src/components/divider/divider.js';
+
+type Story = StoryObj;
 
 const meta: Meta = {
   parameters: {
@@ -276,19 +278,48 @@ export const ContactFormTablet = {
   },
 };
 
-export const MultipleFilesUploadForm = {
-  render: () => html`
-    <div class="synergy-form-demo">
+export const MultipleFilesUploadForm: Story = {
+  args: {
+    initialData: [
+      {
+        error: null,
+        filename: 'image.png',
+        id: 1,
+        state: 'uploading',
+      },
+      {
+        error: null,
+        filename: 'document-label',
+        id: 2,
+        state: 'success',
+      },
+      {
+        error: null,
+        filename: 'document-label',
+        id: 3,
+        state: 'queued',
+      },
+      {
+        error: 'File exceeds size limit.',
+        filename: 'document-label',
+        id: 4,
+        state: 'queued',
+      },
+    ],
+    multiple: true,
+    wrapperId: 'upload-multiple-form',
+  },
+  render: ({ initialData, multiple, wrapperId }) => html`
+    <div class="synergy-upload-form-demo">
       <h1>${getTranslation('fileUpload.multiple.headline')}</h1>
 
-      <form id="upload-multiple-form" enctype="multipart/form-data" method="post">
+      <form id="${wrapperId}" enctype="multipart/form-data" method="post">
         <syn-file
           droparea
-          id="upload-multiple-input"
           name="files"
           label="${getTranslation('fileUpload.label')}"
           help-text="${getTranslation('fileUpload.helpText')}"
-          multiple
+          ?multiple=${multiple}
         ></syn-file>
 
         <!-- File list: hidden until files are selected -->
@@ -302,11 +333,17 @@ export const MultipleFilesUploadForm = {
     </div>
 
     <style>
-      .synergy-form-demo {
+      .synergy-upload-form-demo {
         background: var(--syn-color-neutral-0);
         margin: 0 auto;
         padding: var(--syn-spacing-x-large);
         max-width: 750px;
+
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: var(--syn-spacing-medium);
+        }
       }
 
       h1 {
@@ -320,36 +357,55 @@ export const MultipleFilesUploadForm = {
         flex-direction: column;
         gap: var(--syn-spacing-medium);
         list-style: none;
-        margin: var(--syn-spacing-medium) 0;
         padding: 0;
 
         li {
-          align-items: baseline;
+          --indicator-color: var(--syn-input-icon-icon-clearable-color);
+
+          align-items: center;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
           font: var(--syn-body-medium-regular);
           gap: var(--syn-spacing-small);
+          min-height: 50px;
+          position: relative;
+
+          &.entry-success {
+            --indicator-color: var(--syn-color-success-700);
+          }
 
           em {
+            font-style: normal;
             flex: 1;
           }
 
           .uploaded-files--status {
+            color: var(--indicator-color);
             text-align: end;
             width: var(--syn-spacing-large);
+            font-size: var(--syn-font-size-large);
+
+            syn-icon-button {
+              &::part(base) {
+                font-size: var(--syn-spacing-large);
+                padding: 0;
+              }
+            }
           }
 
           .uploaded-files--help-text {
             color: var(--syn-input-border-color-focus-error);
             display: block;
             font: var(--syn-body-small-regular);
-            margin-top: var(--syn-spacing-x-small);
+            margin: var(--syn-spacing-x-small) 0;
           }
 
           syn-divider {
             width: 100%;
             margin: 0;
+            position: absolute;
+            bottom: 0;
           }
         }
       }
@@ -362,41 +418,15 @@ export const MultipleFilesUploadForm = {
     </style>
 
     <script type="module">
-      let entries = [
-        {
-          error: null,
-          filename: 'image.png',
-          id: 1,
-          state: 'uploading',
-        },
-        {
-          error: null,
-          filename: 'document-label',
-          id: 2,
-          state: 'success',
-        },
-        {
-          error: null,
-          filename: 'document-label',
-          id: 3,
-          state: 'queued',
-        },
-        {
-          error: 'File exceeds size limit.',
-          filename: 'document-label',
-          id: 3,
-          state: 'queued',
-        },
-      ];
+      let entries = ${JSON.stringify(initialData)};
       let entryId = entries.at(-1).id + 1;
 
-      const form = document.querySelector('#upload-multiple-form');
-      const fileInput = document.querySelector('#upload-multiple-input');
-      const fileList = document.querySelector('#upload-multiple-form .uploaded-files');
+      const form = document.querySelector('#${wrapperId}');
+      const fileInput = form.querySelector('syn-file');
+      const fileList = form.querySelector('.uploaded-files');
       const submitButton = form.querySelector('syn-button[type="submit"]');
 
       const render = () => {
-        console.log(entries);
         fileList.innerHTML = '';
         if (entries.length === 0) {
           submitButton.setAttribute('disabled', '');
@@ -408,6 +438,7 @@ export const MultipleFilesUploadForm = {
 
         entries.forEach((entry) => {
           const li = document.createElement('li');
+          li.className = 'entry-' + entry.state;
 
           const em = document.createElement('em');
           em.textContent = entry.filename;
@@ -429,13 +460,14 @@ export const MultipleFilesUploadForm = {
             statusSpan.appendChild(spinner);
           } else if (entry.state === 'success') {
             const checkBtn = document.createElement('syn-icon-button');
-            checkBtn.setAttribute('name', 'check');
+            checkBtn.setAttribute('name', 'check_circle');
             checkBtn.setAttribute('label', 'Upload successful');
+            checkBtn.setAttribute('size', 'medium');
             statusSpan.appendChild(checkBtn);
           } else {
             // queued or error: show cancel / remove button
             const cancelBtn = document.createElement('syn-icon-button');
-            cancelBtn.setAttribute('name', 'cancel');
+            cancelBtn.setAttribute('name', 'clear');
             cancelBtn.setAttribute('label', entry.state === 'error' ? 'Remove' : 'Cancel upload');
             cancelBtn.addEventListener('click', () => {
               entries = entries.filter((e) => e.id !== entry.id);
@@ -465,7 +497,7 @@ export const MultipleFilesUploadForm = {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const queued = entries.filter((entry) => entry.state === 'queued');
+        const queued = entries.filter((entry) => entry.state !== 'success' && entry.state !== 'error');
         if (queued.length === 0) return;
 
         // Immediately switch all queued entries to uploading
@@ -484,8 +516,8 @@ export const MultipleFilesUploadForm = {
             // Skip if the entry was removed (canceled) while uploading
             if (!target || target.state !== 'uploading') return;
 
-            if (isLast) {
-              target.state = 'error';
+            if (${multiple} && isLast) {
+              target.state = 'queued';
               target.error = 'Connection lost. Please try again.';
             } else {
               target.state = 'success';
@@ -498,8 +530,18 @@ export const MultipleFilesUploadForm = {
   `,
 };
 
-export const SingleFilesUploadForm = {
-  render: () => html`
-    <div>Implement</div>
-  `,
+export const SingleFilesUploadForm: Story = {
+  ...MultipleFilesUploadForm,
+  args: {
+    initialData: [
+      {
+        error: null,
+        filename: 'document-label',
+        id: 1,
+        state: 'uploading',
+      },
+    ],
+    multiple: false,
+    wrapperId: 'upload-single-form',
+  },
 };

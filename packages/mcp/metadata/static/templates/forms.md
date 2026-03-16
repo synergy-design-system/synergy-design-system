@@ -367,3 +367,297 @@
   </form>
 </div>
 ```
+
+---
+
+## Multiple Files Upload Form
+
+```html
+<div class="synergy-upload-form-demo">
+  <h1>The multiple input attribute</h1>
+
+  <form enctype="multipart/form-data" method="post" id="upload-multiple-form">
+    <syn-file
+      droparea=""
+      name="files"
+      label="Select Files"
+      help-text="Max file size is 500kb. Supported file types are .jgp, .png and .pdf"
+      multiple=""
+      size="medium"
+      form=""
+    ></syn-file>
+
+    <!-- File list: hidden until files are selected -->
+    <ul class="uploaded-files">
+      <li class="entry-uploading">
+        <em>image.png</em
+        ><span class="uploaded-files--status"><syn-spinner></syn-spinner></span
+        ><syn-divider
+          role="separator"
+          aria-orientation="horizontal"
+        ></syn-divider>
+      </li>
+      <li class="entry-success">
+        <em>document-label</em
+        ><span class="uploaded-files--status"
+          ><syn-icon-button
+            name="check_circle"
+            label="Upload successful"
+            size="medium"
+            color="currentColor"
+          ></syn-icon-button></span
+        ><syn-divider
+          role="separator"
+          aria-orientation="horizontal"
+        ></syn-divider>
+      </li>
+      <li class="entry-queued">
+        <em>document-label</em
+        ><span class="uploaded-files--status"
+          ><syn-icon-button
+            name="clear"
+            label="Cancel upload"
+            size="inherit"
+            color="currentColor"
+          ></syn-icon-button></span
+        ><syn-divider
+          role="separator"
+          aria-orientation="horizontal"
+        ></syn-divider>
+      </li>
+      <li class="entry-queued">
+        <em
+          >document-label<span class="uploaded-files--help-text"
+            >File exceeds size limit.</span
+          ></em
+        ><span class="uploaded-files--status"
+          ><syn-icon-button
+            name="clear"
+            label="Cancel upload"
+            size="inherit"
+            color="currentColor"
+          ></syn-icon-button></span
+        ><syn-divider
+          role="separator"
+          aria-orientation="horizontal"
+        ></syn-divider>
+      </li>
+    </ul>
+
+    <div class="submit-actions">
+      <syn-button type="submit" variant="filled" title="" size="medium"
+        >Upload</syn-button
+      >
+    </div>
+  </form>
+</div>
+
+<style>
+  .synergy-upload-form-demo {
+    background: var(--syn-color-neutral-0);
+    margin: 0 auto;
+    padding: var(--syn-spacing-x-large);
+    max-width: 750px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--syn-spacing-medium);
+    }
+  }
+
+  h1 {
+    font-size: var(--syn-font-size-3x-large);
+    font-weight: var(--syn-font-weight-bold);
+    margin: 0 0 var(--syn-spacing-medium) 0;
+  }
+
+  .uploaded-files {
+    display: flex;
+    flex-direction: column;
+    gap: var(--syn-spacing-medium);
+    list-style: none;
+    padding: 0;
+
+    li {
+      --indicator-color: var(--syn-input-icon-icon-clearable-color);
+
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      font: var(--syn-body-medium-regular);
+      gap: var(--syn-spacing-small);
+      min-height: 50px;
+      position: relative;
+
+      &.entry-success {
+        --indicator-color: var(--syn-color-success-700);
+      }
+
+      em {
+        font-style: normal;
+        flex: 1;
+      }
+
+      .uploaded-files--status {
+        color: var(--indicator-color);
+        text-align: end;
+        width: var(--syn-spacing-large);
+        font-size: var(--syn-font-size-large);
+
+        syn-icon-button {
+          &::part(base) {
+            font-size: var(--syn-spacing-large);
+            padding: 0;
+          }
+        }
+      }
+
+      .uploaded-files--help-text {
+        color: var(--syn-input-border-color-focus-error);
+        display: block;
+        font: var(--syn-body-small-regular);
+        margin: var(--syn-spacing-x-small) 0;
+      }
+
+      syn-divider {
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
+
+  .submit-actions {
+    display: flex;
+    justify-content: right;
+    margin-top: var(--syn-spacing-2x-large);
+  }
+</style>
+```
+
+---
+
+## Single Files Upload Form
+
+```html
+<div class="synergy-upload-form-demo">
+  <h1>The multiple input attribute</h1>
+
+  <form enctype="multipart/form-data" method="post" id="upload-single-form">
+    <syn-file
+      droparea=""
+      name="files"
+      label="Select Files"
+      help-text="Max file size is 500kb. Supported file types are .jgp, .png and .pdf"
+      size="medium"
+      form=""
+    ></syn-file>
+
+    <!-- File list: hidden until files are selected -->
+    <ul class="uploaded-files">
+      <li class="entry-uploading">
+        <em>document-label</em
+        ><span class="uploaded-files--status"><syn-spinner></syn-spinner></span
+        ><syn-divider
+          role="separator"
+          aria-orientation="horizontal"
+        ></syn-divider>
+      </li>
+    </ul>
+
+    <div class="submit-actions">
+      <syn-button type="submit" variant="filled" title="" size="medium"
+        >Upload</syn-button
+      >
+    </div>
+  </form>
+</div>
+
+<style>
+  .synergy-upload-form-demo {
+    background: var(--syn-color-neutral-0);
+    margin: 0 auto;
+    padding: var(--syn-spacing-x-large);
+    max-width: 750px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--syn-spacing-medium);
+    }
+  }
+
+  h1 {
+    font-size: var(--syn-font-size-3x-large);
+    font-weight: var(--syn-font-weight-bold);
+    margin: 0 0 var(--syn-spacing-medium) 0;
+  }
+
+  .uploaded-files {
+    display: flex;
+    flex-direction: column;
+    gap: var(--syn-spacing-medium);
+    list-style: none;
+    padding: 0;
+
+    li {
+      --indicator-color: var(--syn-input-icon-icon-clearable-color);
+
+      align-items: center;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      font: var(--syn-body-medium-regular);
+      gap: var(--syn-spacing-small);
+      min-height: 50px;
+      position: relative;
+
+      &.entry-success {
+        --indicator-color: var(--syn-color-success-700);
+      }
+
+      em {
+        font-style: normal;
+        flex: 1;
+      }
+
+      .uploaded-files--status {
+        color: var(--indicator-color);
+        text-align: end;
+        width: var(--syn-spacing-large);
+        font-size: var(--syn-font-size-large);
+
+        syn-icon-button {
+          &::part(base) {
+            font-size: var(--syn-spacing-large);
+            padding: 0;
+          }
+        }
+      }
+
+      .uploaded-files--help-text {
+        color: var(--syn-input-border-color-focus-error);
+        display: block;
+        font: var(--syn-body-small-regular);
+        margin: var(--syn-spacing-x-small) 0;
+      }
+
+      syn-divider {
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
+
+  .submit-actions {
+    display: flex;
+    justify-content: right;
+    margin-top: var(--syn-spacing-2x-large);
+  }
+</style>
+```

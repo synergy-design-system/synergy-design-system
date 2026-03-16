@@ -20,7 +20,9 @@ import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/combobox/combobox.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon-button/icon-button.js';
+import '../../../components/src/components/spinner/spinner.js';
 import '../../../components/src/components/file/file.js';
+import '../../../components/src/components/divider/divider.js';
 
 const meta: Meta = {
   parameters: {
@@ -279,49 +281,21 @@ export const MultipleFilesUploadForm = {
     <div class="synergy-form-demo">
       <h1>${getTranslation('fileUpload.multiple.headline')}</h1>
 
-      <form enctype="multipart/form-data" method="post">
+      <form id="upload-multiple-form" enctype="multipart/form-data" method="post">
         <syn-file
           droparea
+          id="upload-multiple-input"
           name="files"
           label="${getTranslation('fileUpload.label')}"
           help-text="${getTranslation('fileUpload.helpText')}"
           multiple
         ></syn-file>
 
-        <ul class="uploaded-files">
-          <li>
-            <em>Bildschirmfoto 2024-05-23 um 10.17.14.345.345645656.png</em>
-            <span class="uploaded-files--status">
-              <syn-spinner></syn-spinner>
-            </span>
-          </li>
-          <li>
-            <em>document-label</em>
-            <span class="uploaded-files--status">
-              <syn-icon-button name="check" label="Upload success"></syn-icon-button>
-            </span>
-          </li>
-          <li>
-            <em>document-label</em>
-            <span class="uploaded-files--status">
-              <syn-icon-button name="cancel" label="Cancel upload"></syn-icon-button>
-            </span>
-          </li>
-          <li>
-            <em>
-              document-label
-              <span class="uploaded-files--help-text">
-                File exceeds size limit.
-              </span>
-            </em>
-            <span class="uploaded-files--status">
-              <syn-icon-button name="cancel" label="Cancel upload"></syn-icon-button>
-            </span>
-          </li>
-        </ul>
+        <!-- File list: hidden until files are selected -->
+        <ul class="uploaded-files" hidden></ul>
 
         <div class="submit-actions">
-          <syn-button type="submit" variant="filled">${getTranslation('fileUpload.uploadButton')}</syn-button>
+          <syn-button type="submit" variant="filled" disabled>${getTranslation('fileUpload.uploadButton')}</syn-button>
         </div>
 
       </form>
@@ -348,19 +322,19 @@ export const MultipleFilesUploadForm = {
         list-style: none;
         margin: var(--syn-spacing-medium) 0;
         padding: 0;
-        
+
         li {
           align-items: baseline;
           display: flex;
           flex-direction: row;
+          flex-wrap: wrap;
           font: var(--syn-body-medium-regular);
           gap: var(--syn-spacing-small);
-          padding: var(--syn-spacing-small) 0;
-          
+
           em {
             flex: 1;
           }
-          
+
           .uploaded-files--status {
             text-align: end;
             width: var(--syn-spacing-large);
@@ -372,6 +346,11 @@ export const MultipleFilesUploadForm = {
             font: var(--syn-body-small-regular);
             margin-top: var(--syn-spacing-x-small);
           }
+
+          syn-divider {
+            width: 100%;
+            margin: 0;
+          }
         }
       }
 
@@ -381,6 +360,141 @@ export const MultipleFilesUploadForm = {
         margin-top: var(--syn-spacing-2x-large);
       }
     </style>
+
+    <script type="module">
+      let entries = [
+        {
+          error: null,
+          filename: 'image.png',
+          id: 1,
+          state: 'uploading',
+        },
+        {
+          error: null,
+          filename: 'document-label',
+          id: 2,
+          state: 'success',
+        },
+        {
+          error: null,
+          filename: 'document-label',
+          id: 3,
+          state: 'queued',
+        },
+        {
+          error: 'File exceeds size limit.',
+          filename: 'document-label',
+          id: 3,
+          state: 'queued',
+        },
+      ];
+      let entryId = entries.at(-1).id + 1;
+
+      const form = document.querySelector('#upload-multiple-form');
+      const fileInput = document.querySelector('#upload-multiple-input');
+      const fileList = document.querySelector('#upload-multiple-form .uploaded-files');
+      const submitButton = form.querySelector('syn-button[type="submit"]');
+
+      const render = () => {
+        console.log(entries);
+        fileList.innerHTML = '';
+        if (entries.length === 0) {
+          submitButton.setAttribute('disabled', '');
+          fileList.hidden = true;
+          return;
+        }
+        fileList.hidden = false;
+        submitButton.removeAttribute('disabled');
+
+        entries.forEach((entry) => {
+          const li = document.createElement('li');
+
+          const em = document.createElement('em');
+          em.textContent = entry.filename;
+
+          const divider = document.createElement('syn-divider');
+
+          if (entry.error) {
+            const helpSpan = document.createElement('span');
+            helpSpan.className = 'uploaded-files--help-text';
+            helpSpan.textContent = entry.error;
+            em.appendChild(helpSpan);
+          }
+
+          const statusSpan = document.createElement('span');
+          statusSpan.className = 'uploaded-files--status';
+
+          if (entry.state === 'uploading') {
+            const spinner = document.createElement('syn-spinner');
+            statusSpan.appendChild(spinner);
+          } else if (entry.state === 'success') {
+            const checkBtn = document.createElement('syn-icon-button');
+            checkBtn.setAttribute('name', 'check');
+            checkBtn.setAttribute('label', 'Upload successful');
+            statusSpan.appendChild(checkBtn);
+          } else {
+            // queued or error: show cancel / remove button
+            const cancelBtn = document.createElement('syn-icon-button');
+            cancelBtn.setAttribute('name', 'cancel');
+            cancelBtn.setAttribute('label', entry.state === 'error' ? 'Remove' : 'Cancel upload');
+            cancelBtn.addEventListener('click', () => {
+              entries = entries.filter((e) => e.id !== entry.id);
+              render();
+            });
+            statusSpan.appendChild(cancelBtn);
+          }
+
+          li.appendChild(em);
+          li.appendChild(statusSpan);
+          li.appendChild(divider);
+          fileList.appendChild(li);
+        });
+      };
+
+      // Render first time
+      render();
+
+      // Populate list as "queued" whenever the user selects / drops files
+      fileInput.addEventListener('syn-change', () => {
+        const files = fileInput.files ? Array.from(fileInput.files) : [];
+        entries = files.map((file) => ({ error: null, filename: file.name, id: String(++entryId), state: 'queued' }));
+        render();
+      });
+
+      // Upload button: start fake uploads for all queued entries
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const queued = entries.filter((entry) => entry.state === 'queued');
+        if (queued.length === 0) return;
+
+        // Immediately switch all queued entries to uploading
+        queued.forEach((entry) => { entry.state = 'uploading'; });
+        render();
+
+        // Schedule outcomes:
+        // - All but the last file succeed, staggered by 1.5s each
+        // - The last file always fails after 3s (simulates a connection loss)
+        queued.forEach((entry, i) => {
+          const isLast = i === queued.length - 1;
+          const delay = isLast ? 3000 : (i + 1) * 1500;
+
+          setTimeout(() => {
+            const target = entries.find((e) => e.id === entry.id);
+            // Skip if the entry was removed (canceled) while uploading
+            if (!target || target.state !== 'uploading') return;
+
+            if (isLast) {
+              target.state = 'error';
+              target.error = 'Connection lost. Please try again.';
+            } else {
+              target.state = 'success';
+            }
+            render();
+          }, delay);
+        });
+      });
+    </script>
   `,
 };
 

@@ -1941,7 +1941,7 @@
       },
       "readonly": {
         "description": {
-          "value": "Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button as well as for the entire button group.",
+          "value": "Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button.",
           "type": "text"
         },
         "title": {

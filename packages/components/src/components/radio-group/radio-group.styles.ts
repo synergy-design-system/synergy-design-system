@@ -82,7 +82,22 @@ export default css`
     padding: var(--radiogroup-padding);
   }
 
-  .form-control--has-button-group syn-button-group[size="small"] {
-    --radiogroup-padding: calc(var(--syn-spacing-x-small) - 3px);
+  .form-control--has-button-group syn-button-group[readonly]::part(base) {
+    background: var(--syn-readonly-background-color);
+    border-color: var(--syn-readonly-background-color);
+  }
+
+  .form-control--has-button-group syn-button-group[size="small"]::part(base) {
+    --radiogroup-padding: calc(var(--syn-spacing-2x-small) + var(--syn-input-width));
+  }
+
+  /**
+   * #1140: This statement overrides the children selectors that are used for showing readonly fields
+   * We are not able to easily forward them to the radio button, so we need to override them here.
+   */
+  .form-control--has-button-group syn-button-group[readonly] ::slotted(syn-radio-button) {
+    --syn-readonly-indicator-color: var(--syn-readonly-background-color);
+    --syn-readonly-border-color: transparent;
+    --syn-color-neutral-0: var(--syn-readonly-color-text);
   }
 `;

@@ -79,31 +79,57 @@ Use the disabled attribute to disable a radio button.
 
 ## Readonly
 
-Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button as well as for the entire button group.
+Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button.
 
 ```html
-<syn-radio-group
-  label="Select an option"
-  name="b"
-  value="1"
-  size="medium"
-  form=""
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium)"
 >
-  <syn-radio-button
+  <syn-radio-group
+    label="Select an option"
+    name="b"
     value="1"
-    readonly=""
-    role="presentation"
     size="medium"
-    checked=""
-    >Option 1</syn-radio-button
+    form=""
   >
-  <syn-radio-button value="2" readonly="" role="presentation" size="medium"
-    >Option 2</syn-radio-button
+    <syn-radio-button
+      value="1"
+      readonly=""
+      role="presentation"
+      size="medium"
+      checked=""
+      >Option 1</syn-radio-button
+    >
+    <syn-radio-button value="2" readonly="" role="presentation" size="medium"
+      >Option 2</syn-radio-button
+    >
+    <syn-radio-button value="3" readonly="" role="presentation" size="medium"
+      >Option 3</syn-radio-button
+    >
+  </syn-radio-group>
+  <syn-radio-group
+    label="Select an option"
+    name="b"
+    value="1"
+    size="medium"
+    form=""
   >
-  <syn-radio-button value="3" readonly="" role="presentation" size="medium"
-    >Option 3</syn-radio-button
-  >
-</syn-radio-group>
+    <syn-radio-button
+      value="1"
+      readonly=""
+      role="presentation"
+      size="medium"
+      checked=""
+      >Option 1</syn-radio-button
+    >
+    <syn-radio-button value="2" role="presentation" size="medium"
+      >Option 2</syn-radio-button
+    >
+    <syn-radio-button value="3" role="presentation" size="medium"
+      >Option 3</syn-radio-button
+    >
+  </syn-radio-group>
+</div>
 ```
 
 ---

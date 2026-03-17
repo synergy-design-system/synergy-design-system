@@ -6,27 +6,24 @@ export default css`
   }
 
   .button {
-    --syn-radio-button-height-small: 24px;
-    --syn-radio-button-height-medium: 32px;
-    --syn-radio-button-height-large: 48px;
+    /* Medium size is the default */
+    --syn-radio-button-height: 32px;
+    --syn-radio-button-radius: var(--syn-radio-button-group-border-radius-medium);
 
-    border-radius: var(--syn-border-radius-small);
+    border-radius: var(--syn-radio-button-radius);
     font-weight: normal;
+    line-height: calc(var(--syn-radio-button-height) - var(--syn-input-border-width) * 2);
+    min-height: var(--syn-radio-button-height);
   }
 
   .button--small {
-    line-height: calc(var(--syn-radio-button-height-small) - var(--syn-input-border-width) * 2);
-    min-height: var(--syn-radio-button-height-small);
-  }
-
-  .button--medium {
-    line-height: calc(var(--syn-radio-button-height-medium) - var(--syn-input-border-width) * 2);
-    min-height: var(--syn-radio-button-height-medium);
+    --syn-radio-button-height: 24px;
+    --syn-radio-button-radius: var(--syn-radio-button-group-border-radius-small);
   }
 
   .button--large {
-    line-height: calc(var(--syn-radio-button-height-large) - var(--syn-input-border-width) * 2);
-    min-height: var(--syn-radio-button-height-large);
+    --syn-radio-button-height: 48px;
+    --syn-radio-button-radius: var(--syn-radio-button-group-border-radius-large);
   }
 
   /**

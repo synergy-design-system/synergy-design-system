@@ -258,6 +258,11 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
     if (this.hasButtonGroup) {
       const buttonGroup = this.shadowRoot?.querySelector('syn-button-group');
 
+      // Check if all radios in the group are readonly. If they are, set the button group to readonly as well to prevent focus and hover styles
+      if (buttonGroup) {
+        buttonGroup.toggleAttribute('readonly', radios.every(radio => radio.readonly));
+      }
+
       if (buttonGroup) {
         buttonGroup.disableRole = true;
       }

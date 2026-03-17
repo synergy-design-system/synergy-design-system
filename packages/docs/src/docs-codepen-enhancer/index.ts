@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-param-reassign */
 import { StoryContext } from '@storybook/web-components-vite';
 

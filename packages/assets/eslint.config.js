@@ -1,4 +1,4 @@
-import tsConfig from '@synergy-design-system/eslint-config-syn/ts';
+import { createCustomConfig } from '@synergy-design-system/eslint-config-syn/ts';
 import scriptsPreset from '@synergy-design-system/eslint-config-syn/presets/scripts';
 
 export default [
@@ -7,7 +7,10 @@ export default [
     ignores: ['dist/', 'dist/**/*'],
   },
   // Base TypeScript configuration
-  ...tsConfig,
+  ...createCustomConfig({
+    project: './tsconfig.lint.json',
+    tsconfigRootDir: import.meta.dirname,
+  }),
   // Build scripts configuration
   scriptsPreset,
 ];

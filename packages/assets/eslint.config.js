@@ -8,7 +8,7 @@ export default [
   },
   // Base TypeScript configuration
   ...createCustomConfig({
-    project: './tsconfig.lint.json',
+    project: './tsconfig.json',
     tsconfigRootDir: import.meta.dirname,
   }),
   // Build scripts configuration

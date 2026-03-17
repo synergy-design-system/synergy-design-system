@@ -15,7 +15,7 @@ import {
 } from '../../src/helpers/component.js';
 import { DisableFocusTrap } from '../../src/shared-components/DisableFocusTrap.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { ChromaticModesAll } from '../../.storybook/modes.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-side-nav');
 const { overrideArgs } = storybookHelpers('syn-side-nav');
@@ -27,7 +27,7 @@ const meta: Meta = {
   component: 'syn-side-nav',
   parameters: {
     chromatic: {
-      modes: ChromaticModesAll,
+      modes: Chromatic_Modes_All,
     },
     design: generateFigmaPluginObject('12362-10883'),
     docs: {

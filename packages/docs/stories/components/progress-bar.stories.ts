@@ -13,7 +13,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { ChromaticModesAll } from '../../.storybook/modes.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-progress-bar');
 const { overrideArgs } = storybookHelpers('syn-progress-bar');
@@ -29,7 +29,7 @@ const meta: Meta = {
   component: 'syn-progress-bar',
   parameters: {
     chromatic: {
-      modes: ChromaticModesAll,
+      modes: Chromatic_Modes_All,
     },
     design: generateFigmaPluginObject('15533-15734'),
     docs: {

@@ -11,7 +11,7 @@ import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
 import { getTranslation } from '../../src/translations.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { ChromaticModesAll } from '../../.storybook/modes.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 import '../../../components/src/components/checkbox/checkbox.js';
 import '../../../components/src/components/textarea/textarea.js';
 import '../../../components/src/components/input/input.js';
@@ -26,7 +26,7 @@ const meta: Meta = {
     chromatic: {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
-      modes: ChromaticModesAll,
+      modes: Chromatic_Modes_All,
     },
     design: generateFigmaPluginObject('8462-8334'),
     docs: {

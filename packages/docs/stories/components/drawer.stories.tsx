@@ -16,7 +16,7 @@ import {
 } from '../../src/helpers/component.js';
 import { DisableFocusTrap } from '../../src/shared-components/DisableFocusTrap.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { ChromaticModesAll } from '../../.storybook/modes.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-drawer');
 const { overrideArgs } = storybookHelpers('syn-drawer');
@@ -28,7 +28,7 @@ const meta: Meta = {
   component: 'syn-drawer',
   parameters: {
     chromatic: {
-      modes: ChromaticModesAll,
+      modes: Chromatic_Modes_All,
     },
     design: generateFigmaPluginObject('9983-7882'),
     docs: {

@@ -6,31 +6,27 @@ export const SICK_2025_DARK = '🌙 SICK 2025 Dark';
 export const LIGHT_THEME = '🌞 SICK 2018 Light';
 export const DARK_THEME = '🌙 SICK 2018 Dark';
 
-/* eslint-disable sort-keys */
-export const ChromaticModesSick2018 = {
-  [LIGHT_THEME]: {
-    theme: LIGHT_THEME,
-  },
+export const Chromatic_Modes_Sick_2018 = {
   [DARK_THEME]: {
     theme: DARK_THEME,
   },
-};
-/* eslint-enable sort-keys */
-
-/* eslint-disable sort-keys */
-export const ChromaticModesSick2025 = {
-  [SICK_2025_LIGHT]: {
-    theme: SICK_2025_LIGHT,
+  [LIGHT_THEME]: {
+    theme: LIGHT_THEME,
   },
+};
+
+export const Chromatic_Modes_Sick_2025 = {
   [SICK_2025_DARK]: {
     theme: SICK_2025_DARK,
   },
+  [SICK_2025_LIGHT]: {
+    theme: SICK_2025_LIGHT,
+  },
 };
-/* eslint-enable sort-keys */
 
-export const ChromaticModesAll = {
-  ...ChromaticModesSick2018,
-  ...ChromaticModesSick2025,
+export const Chromatic_Modes_All = {
+  ...Chromatic_Modes_Sick_2018,
+  ...Chromatic_Modes_Sick_2025,
 };
 
 export const SICK_2018_LIGHT_CLASS = 'syn-sick2018-light';

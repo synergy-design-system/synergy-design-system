@@ -36,9 +36,9 @@ export default css`
     color: var(--syn-interactive-quiet-color);
   }
 
-  .button--text:hover {
-    background: var(--syn-interactive-background-color-hover) !important;
-    color: var(--syn-interactive-quiet-color-hover) !important;
+  .button--text:hover:not(.button--disabled):not(.button--readonly) {
+    background: var(--syn-interactive-background-color-hover);
+    color: var(--syn-interactive-quiet-color-hover);
   }
 
   /**
@@ -48,6 +48,7 @@ export default css`
     background: var(--syn-readonly-background-color);
     color: var(--syn-readonly-color-text);
     cursor: text;
+    pointer-events: none;
     user-select: text;
   }
 
@@ -61,12 +62,4 @@ export default css`
     border-color: var(--syn-readonly-border-color);
     color: var(--syn-color-neutral-0);
   }
-
-  .hidden-input {
-     all: unset;
-     inset: 0;
-     opacity: 0;
-     position: absolute;
-     z-index: -1;
-   }
 `;

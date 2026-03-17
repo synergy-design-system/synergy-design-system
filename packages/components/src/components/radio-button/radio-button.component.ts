@@ -39,8 +39,6 @@ export default class SynRadioButton extends SynergyElement {
 
   @query('.button') input: HTMLInputElement;
 
-  @query('.hidden-input') hiddenInput: HTMLInputElement;
-
   @state() protected hasFocus = false;
 
   /**
@@ -135,6 +133,7 @@ export default class SynRadioButton extends SynergyElement {
           })}
           aria-disabled=${this.disabled}
           type="button"
+          tabindex=${ifDefined(this.disabled ? '-1': undefined)}
           value=${ifDefined(this.value)}
           @blur=${this.handleBlur}
           @focus=${this.handleFocus}

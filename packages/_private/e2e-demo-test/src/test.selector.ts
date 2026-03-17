@@ -158,6 +158,8 @@ export default {
   passLoc: '#input-password',
   passRecoveryLoc: '#input-number',
   phoneLoc: '#input-phone',
+  preferredContactEmail: '#preferred-contact-method syn-radio-button[value=email]',
+  preferredContactLoc: '#preferred-contact-method',
   previousNationalities: '#input-previous-nationality',
   previousRolesLoc: '#select-previous-roles',
   reset: '.syn-submit-buttons > syn-button:nth-child(1)',

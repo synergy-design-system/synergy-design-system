@@ -12,6 +12,7 @@ import {
   SynVueOptgroup,
   SynVueOption,
   SynVueRadio,
+  SynVueRadioButton,
   SynVueRange,
   SynVueRangeTick,
   SynVueRadioGroup,
@@ -366,6 +367,17 @@ const synChange = () => {
       >
         I am interested in the Synergy UX Program
       </SynVueSwitch>
+
+      <SynVueRadioGroup
+        id="preferred-contact-method"
+        label="Preferred contact method"
+        name="preferredContactMethod"
+        v-model="formData.preferredContactMethod"
+      >
+        <SynVueRadioButton value="email">E-Mail</SynVueRadioButton>
+        <SynVueRadioButton value="phone">Phone</SynVueRadioButton>
+        <SynVueRadioButton value="other">Other</SynVueRadioButton>
+      </SynVueRadioGroup>
     </DemoFieldset>
     <!-- /Marketing -->
 

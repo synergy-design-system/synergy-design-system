@@ -22,6 +22,7 @@ export * from './Option';
 export * from './PrioNav';
 export * from './ProgressBar';
 export * from './ProgressRing';
+export * from './RadioButton';
 export * from './RadioGroup';
 export * from './Range';
 export * from './Select';

@@ -24,6 +24,7 @@ export const initialFullFormData: DemoFormData = {
   newsletterVue: false,
   password: 'invalid',
   phone: '',
+  preferredContactMethod: 'other',
   previousNationality: '',
   previousRoles: [],
   role: '',

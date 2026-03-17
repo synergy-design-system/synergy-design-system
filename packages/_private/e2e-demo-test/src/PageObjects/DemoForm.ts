@@ -20,6 +20,7 @@ export class DemoForm extends BaseFormObject {
     return [
       this.newsUI,
       this.newsUX,
+      this.preferredContactPhone,
     ];
   }
 
@@ -76,6 +77,10 @@ export class DemoForm extends BaseFormObject {
 
   get preferredContactEmail(): Locator {
     return this.page.locator(selectors.preferredContactEmail);
+  }
+
+  get preferredContactPhone(): Locator {
+    return this.page.locator(selectors.preferredContactPhone);
   }
 
   get allRequiredInputs(): Array<Locator> {

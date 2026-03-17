@@ -375,7 +375,7 @@ const synChange = () => {
         v-model="formData.preferredContactMethod"
       >
         <SynVueRadioButton value="email">E-Mail</SynVueRadioButton>
-        <SynVueRadioButton value="phone">Phone</SynVueRadioButton>
+        <SynVueRadioButton value="phone" readonly>Phone</SynVueRadioButton>
         <SynVueRadioButton value="other">Other</SynVueRadioButton>
       </SynVueRadioGroup>
     </DemoFieldset>

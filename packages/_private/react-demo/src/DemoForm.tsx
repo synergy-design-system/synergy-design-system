@@ -388,7 +388,7 @@ export const DemoForm = () => {
           value={formData.preferredContactMethod}
         >
           <syn-radio-button value="email">E-Mail</syn-radio-button>
-          <syn-radio-button value="phone">Phone</syn-radio-button>
+          <syn-radio-button value="phone" readonly>Phone</syn-radio-button>
           <syn-radio-button value="other">Other</syn-radio-button>
         </syn-radio-group>
       </DemoFieldset>

@@ -29,7 +29,7 @@ export default css`
     --button-suffix-spacing: var(--syn-spacing-small);
     --button-affix-size: var(--button-medium-icon-size);
     --button-labeled-prefix-spacing: var(--syn-spacing-medium);
-    --button-labeled-suffix-spacing: var(--syn-spacing-small);
+    --button-labeled-suffix-spacing: var(--syn-spacing-medium);
 
     align-items: stretch;
     border-style: solid;
@@ -345,8 +345,7 @@ export default css`
     padding-inline-start: var(--button-labeled-prefix-spacing);
   }
 
-  .button--has-label.button--has-suffix,
-  .button--has-label.button--caret {
+  .button--has-label.button--has-suffix {
     padding-inline-end: var(--button-labeled-suffix-spacing);
   }
 `;

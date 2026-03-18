@@ -5,6 +5,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './pagination.styles.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
  * @summary The default pagination offers the most comprehensive controls and is optimized for tables, lists, and complex data views.
@@ -17,6 +18,7 @@ import styles from './pagination.styles.js';
  *
  * @csspart base - The component's base wrapper.
  */
+@enableDefaultSettings('SynPagination')
 export default class SynPagination extends SynergyElement {
   static styles: CSSResultGroup = [
     componentStyles,

@@ -20,6 +20,7 @@ const componentsUsingBlockLayout = [
   'nav-item',
   'opt-group',
   'option',
+  'pagination',
   'prio-nav',
   'progress-bar',
   'radio-group',

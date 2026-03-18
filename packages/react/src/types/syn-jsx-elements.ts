@@ -58,6 +58,7 @@ import type {
   SynNavItem,
   SynOptgroup,
   SynOption,
+  SynPagination,
   SynPopup,
   SynPrioNav,
   SynProgressBar,
@@ -914,6 +915,17 @@ export type SynCustomElement<
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  */ export type SynOptionJSXElement = SynCustomElement<SynOption, []>;
+/**
+ * @summary The default pagination offers the most comprehensive controls and is optimized for tables, lists, and complex data views.
+ * It is intended for use cases where users need to adjust both the number of displayed rows and the active page.
+ * The navigation controls allow switching between pages as well as jumping directly to the first or last page.
+ *
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-pagination--docs
+ * @status stable
+ * @since 3.0.0
+ *
+ * @csspart base - The component's base wrapper.
+ */ export type SynPaginationJSXElement = SynCustomElement<SynPagination, []>;
 /**
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs
@@ -2230,6 +2242,17 @@ declare module 'react' {
        * @csspart prefix - The container that wraps the prefix.
        * @csspart suffix - The container that wraps the suffix.
        */ 'syn-option': SynOptionJSXElement;
+      /**
+       * @summary The default pagination offers the most comprehensive controls and is optimized for tables, lists, and complex data views.
+       * It is intended for use cases where users need to adjust both the number of displayed rows and the active page.
+       * The navigation controls allow switching between pages as well as jumping directly to the first or last page.
+       *
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-pagination--docs
+       * @status stable
+       * @since 3.0.0
+       *
+       * @csspart base - The component's base wrapper.
+       */ 'syn-pagination': SynPaginationJSXElement;
       /**
        * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs

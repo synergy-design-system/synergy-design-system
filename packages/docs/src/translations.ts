@@ -132,10 +132,7 @@ export const footer = {
 
 export const fileUpload = {
   multiple: {
-    headline: 'The multiple input attribute',
-  },
-  single: {
-    headline: 'The single input attribute',
+    headline: 'Multiple files upload',
   },
   label: 'Select Files',
   helpText: 'Max file size is 500kb. Supported file types are .jgp, .png and .pdf',

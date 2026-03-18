@@ -289,37 +289,35 @@ export const MultipleFilesUploadForm: Story = {
       },
       {
         error: null,
-        filename: 'document-label',
+        filename: 'file-name',
         id: 2,
         state: 'success',
       },
       {
         error: null,
-        filename: 'document-label',
+        filename: 'file-name',
         id: 3,
         state: 'queued',
       },
       {
         error: 'File exceeds size limit.',
-        filename: 'document-label',
+        filename: 'file-name-large',
         id: 4,
         state: 'queued',
       },
     ],
-    multiple: true,
-    wrapperId: 'upload-multiple-form',
   },
-  render: ({ initialData, multiple, wrapperId }) => html`
+  render: ({ initialData }) => html`
     <div class="synergy-upload-form-demo">
       <h1>${getTranslation('fileUpload.multiple.headline')}</h1>
 
-      <form id="${wrapperId}" enctype="multipart/form-data" method="post">
+      <form id="upload-multiple-form" enctype="multipart/form-data" method="post">
         <syn-file
           droparea
           name="files"
           label="${getTranslation('fileUpload.label')}"
           help-text="${getTranslation('fileUpload.helpText')}"
-          ?multiple=${multiple}
+          multiple
         ></syn-file>
 
         <!-- File list: hidden until files are selected -->
@@ -372,7 +370,9 @@ export const MultipleFilesUploadForm: Story = {
           position: relative;
 
           &.entry-success {
-            --indicator-color: var(--syn-color-success-700);
+            --indicator-color: var(--syn-namur-success-color);
+
+            pointer-events: none;
           }
 
           em {
@@ -421,7 +421,7 @@ export const MultipleFilesUploadForm: Story = {
       let entries = ${JSON.stringify(initialData)};
       let entryId = entries.at(-1).id + 1;
 
-      const form = document.querySelector('#${wrapperId}');
+      const form = document.querySelector('#upload-multiple-form');
       const fileInput = form.querySelector('syn-file');
       const fileList = form.querySelector('.uploaded-files');
       const submitButton = form.querySelector('syn-button[type="submit"]');
@@ -435,6 +435,12 @@ export const MultipleFilesUploadForm: Story = {
         }
         fileList.hidden = false;
         submitButton.removeAttribute('disabled');
+
+        // I everything was uploaded, disable the upload button again to prevent confusion, as there are no more files to upload
+        const allUploaded = entries.every((entry) => entry.state === 'success');
+        if (allUploaded) {
+          submitButton.setAttribute('disabled', '');
+        }
 
         entries.forEach((entry) => {
           const li = document.createElement('li');
@@ -458,22 +464,28 @@ export const MultipleFilesUploadForm: Story = {
           if (entry.state === 'uploading') {
             const spinner = document.createElement('syn-spinner');
             statusSpan.appendChild(spinner);
-          } else if (entry.state === 'success') {
-            const checkBtn = document.createElement('syn-icon-button');
-            checkBtn.setAttribute('name', 'check_circle');
-            checkBtn.setAttribute('label', 'Upload successful');
-            checkBtn.setAttribute('size', 'medium');
-            statusSpan.appendChild(checkBtn);
           } else {
-            // queued or error: show cancel / remove button
-            const cancelBtn = document.createElement('syn-icon-button');
-            cancelBtn.setAttribute('name', 'clear');
-            cancelBtn.setAttribute('label', entry.state === 'error' ? 'Remove' : 'Cancel upload');
-            cancelBtn.addEventListener('click', () => {
-              entries = entries.filter((e) => e.id !== entry.id);
-              render();
-            });
-            statusSpan.appendChild(cancelBtn);
+            const btn = document.createElement('syn-icon-button');
+            btn.setAttribute('library', 'system');
+            btn.setAttribute('size', 'medium');
+
+            if (entry.state === 'success') {
+              btn.setAttribute('name', 'status-success');
+              btn.setAttribute('label', 'Upload successful');
+              btn.setAttribute('tabindex', '-1');
+              statusSpan.appendChild(btn);
+            } else {
+              // queued or error: show cancel / remove button
+              btn.setAttribute('name', 'x-lg');
+              btn.setAttribute('label', entry.state === 'error' ? 'Remove' : 'Cancel upload');
+              btn.addEventListener('click', () => {
+                entries = entries.filter((e) => e.id !== entry.id);
+                console.log(entries);
+                render();
+              });
+            }
+
+            statusSpan.appendChild(btn);
           }
 
           li.appendChild(em);
@@ -516,7 +528,7 @@ export const MultipleFilesUploadForm: Story = {
             // Skip if the entry was removed (canceled) while uploading
             if (!target || target.state !== 'uploading') return;
 
-            if (${multiple} && isLast) {
+            if (isLast) {
               target.state = 'queued';
               target.error = 'Connection lost. Please try again.';
             } else {
@@ -528,20 +540,4 @@ export const MultipleFilesUploadForm: Story = {
       });
     </script>
   `,
-};
-
-export const SingleFilesUploadForm: Story = {
-  ...MultipleFilesUploadForm,
-  args: {
-    initialData: [
-      {
-        error: null,
-        filename: 'document-label',
-        id: 1,
-        state: 'uploading',
-      },
-    ],
-    multiple: false,
-    wrapperId: 'upload-single-form',
-  },
 };

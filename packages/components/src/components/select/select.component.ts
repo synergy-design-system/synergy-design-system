@@ -236,7 +236,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
   
   private enableResizeObserver() {
-    if (this.multiple) {
+    if (this.multiple && !this.readonly && this.tagContainer) {
       this.resizeObserver = new ResizeObserver(entries => {
         const entry = entries.at(0)!;
         this.tagContainer.style.setProperty('--syn-select-tag-max-width', `${entry.contentRect.width}px`);
@@ -726,10 +726,10 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   
   protected updated(changedProperties: PropertyValues<this>) {
     super.updated(changedProperties);
-    if (changedProperties.has('multiple')) {
-      if (!this.multiple) {
-        this.resizeObserver?.disconnect();
-      } else {
+    if (changedProperties.has('multiple') || changedProperties.has('readonly')) {
+      this.resizeObserver?.disconnect();
+
+      if (this.multiple && !this.readonly) {
         this.enableResizeObserver();
       }
     }

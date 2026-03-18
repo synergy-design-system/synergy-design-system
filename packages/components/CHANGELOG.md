@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.10.3
+
+### Patch Changes
+
+- [#1227](https://github.com/synergy-design-system/synergy-design-system/pull/1227) [`c827385`](https://github.com/synergy-design-system/synergy-design-system/commit/c82738594731dc3c2a5041695741f099393068de) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-10
+
+  fix: 🐛 `<syn-select>` may throw an error when configured to be `readonly` and `multiple` (#1225)
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.10.3
+
 ## 3.10.2
 
 ### Patch Changes

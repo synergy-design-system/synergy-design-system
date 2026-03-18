@@ -8,6 +8,7 @@ import {
   fixture,
   html,
   oneEvent,
+  waitUntil,
 } from '@open-wc/testing';
 import { serialize } from '../../../dist/synergy.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
@@ -953,19 +954,18 @@ describe('<syn-range>', () => {
         ticksContainer.style.height = '20px';
         el.appendChild(ticksContainer);
 
-        // ResizeObserver callbacks fire after layout, wait for two animation frames to be safe
-        await new Promise(resolve => {
-          requestAnimationFrame(resolve);
+        // after appending ticksContainer
+        await waitUntil(() => {
+          const v = Number.parseFloat(base.style.marginBottom);
+          return Number.isFinite(v) && v > 0;
+        }, undefined, {
+          timeout: 2000,
         });
-        await new Promise(resolve => {
-          requestAnimationFrame(resolve);
-        });
-        await el.updateComplete;
 
         // .base should now have an inline margin-bottom matching the tick content's height.
-        // The value is Math.ceil'd from fractional measurements, so it should be >= 20.
-        const ticksMargin = base.style.marginBottom;
-        expect(parseInt(ticksMargin, 10)).to.be.gte(20);
+        // The value is Math.ceil'd from fractional measurements, so it should close to 20.
+        const ticksMargin = Number.parseFloat(base.style.marginBottom);
+        expect(ticksMargin).to.be.closeTo(20, 1); // tolerate Firefox subpixel/layout differences
 
         // Exchange the prefix for an even bigger element to make sure the track's vertical centering is not thrown off by the prefix's height
         const newPrefix = document.createElement('span');
@@ -974,10 +974,15 @@ describe('<syn-range>', () => {
         newPrefix.textContent = 'Minimum';
         el.appendChild(newPrefix);
 
-        await el.updateComplete;
-
-        // margin-bottom should still be the same and the track should still be vertically centered with the suffix
-        expect(base.style.marginBottom).to.equal(ticksMargin);
+        // after replacing prefix
+        await waitUntil(
+          () => Number.isFinite(Number.parseFloat(base.style.marginBottom)),
+          undefined,
+          {
+            timeout: 2000,
+          },
+        );
+        expect(Number.parseFloat(base.style.marginBottom)).to.be.closeTo(ticksMargin, 1);
       }); // Vertical alignment of prefix and suffix with track is off when ticks slot is filled #1143
     }); // #1143
   }); // Regression tests

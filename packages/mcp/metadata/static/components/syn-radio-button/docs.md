@@ -254,17 +254,37 @@ Use the prefix and suffix slots to add icons.
   form=""
 >
   <syn-radio-button value="1" role="presentation" size="medium" checked="">
-    <syn-icon slot="prefix" name="wallpaper"></syn-icon>
+    <syn-icon
+      slot="prefix"
+      name="wallpaper"
+      aria-hidden="true"
+      library="default"
+    ></syn-icon>
     Option 1
   </syn-radio-button>
   <syn-radio-button value="2" role="presentation" size="medium">
     Option 2
-    <syn-icon slot="suffix" name="wallpaper"></syn-icon>
+    <syn-icon
+      slot="suffix"
+      name="wallpaper"
+      aria-hidden="true"
+      library="default"
+    ></syn-icon>
   </syn-radio-button>
   <syn-radio-button value="3" role="presentation" size="medium">
-    <syn-icon slot="prefix" name="wallpaper"></syn-icon>
+    <syn-icon
+      slot="prefix"
+      name="wallpaper"
+      aria-hidden="true"
+      library="default"
+    ></syn-icon>
     Option 3
-    <syn-icon slot="suffix" name="wallpaper"></syn-icon>
+    <syn-icon
+      slot="suffix"
+      name="wallpaper"
+      aria-hidden="true"
+      library="default"
+    ></syn-icon>
   </syn-radio-button>
 </syn-radio-group>
 ```
@@ -284,11 +304,23 @@ You can omit button labels and use icons instead. Make sure to set a label attri
   form=""
 >
   <syn-radio-button value="angry" role="presentation" size="medium">
-    <syn-icon name="face_5" label="Angry"></syn-icon>
+    <syn-icon
+      name="face_5"
+      label="Angry"
+      role="img"
+      aria-label="Angry"
+      library="default"
+    ></syn-icon>
   </syn-radio-button>
 
   <syn-radio-button value="sad" role="presentation" size="medium">
-    <syn-icon name="face_4" label="Sad"></syn-icon>
+    <syn-icon
+      name="face_4"
+      label="Sad"
+      role="img"
+      aria-label="Sad"
+      library="default"
+    ></syn-icon>
   </syn-radio-button>
 
   <syn-radio-button
@@ -297,15 +329,33 @@ You can omit button labels and use icons instead. Make sure to set a label attri
     size="medium"
     checked=""
   >
-    <syn-icon name="face_3" label="Neutral"></syn-icon>
+    <syn-icon
+      name="face_3"
+      label="Neutral"
+      role="img"
+      aria-label="Neutral"
+      library="default"
+    ></syn-icon>
   </syn-radio-button>
 
   <syn-radio-button value="happy" role="presentation" size="medium">
-    <syn-icon name="face_2" label="Happy"></syn-icon>
+    <syn-icon
+      name="face_2"
+      label="Happy"
+      role="img"
+      aria-label="Happy"
+      library="default"
+    ></syn-icon>
   </syn-radio-button>
 
   <syn-radio-button value="laughing" role="presentation" size="medium">
-    <syn-icon name="face_6" label="Laughing"></syn-icon>
+    <syn-icon
+      name="face_6"
+      label="Laughing"
+      role="img"
+      aria-label="Laughing"
+      library="default"
+    ></syn-icon>
   </syn-radio-button>
 </syn-radio-group>
 ```

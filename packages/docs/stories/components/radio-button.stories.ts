@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { userEvent } from 'storybook/test';
+import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/radio-group/radio-group.js';
 import '../../../components/src/components/radio-button/radio-button.js';
 import {

@@ -1,8 +1,6 @@
 import { css } from 'lit';
 
 export default css`
-  /* stylelint-disable property-no-vendor-prefix */
-  /* stylelint-disable no-descending-specificity */
   :host {
     cursor: pointer;
     display: inline-block;
@@ -12,25 +10,26 @@ export default css`
 
   .button {
     /* Icon size tokens */
-    --syn-button-small-icon-size: var(--syn-font-size-medium);
-    --syn-button-medium-icon-size: var(--syn-font-size-x-large);
-    --syn-button-large-icon-size: var(--syn-font-size-2x-large);
+    --button-small-icon-size: var(--syn-font-size-medium);
+    --button-medium-icon-size: var(--syn-font-size-x-large);
+    --button-large-icon-size: var(--syn-font-size-2x-large);
 
     /* Icon alignment tokens */
-    --syn-button-icon-offset-base: -2px;
-    --syn-button-icon-offset-small: -3px;
-    --syn-button-icon-offset-medium: -6px;
-    --syn-button-icon-offset-large: -8px;
+    --button-icon-offset-small: -3px;
+    --button-icon-offset-medium: -6px;
+    --button-icon-offset-large: -8px;
 
     /* Default (medium) spacing tokens */
-    --syn-button-icon-only-padding: 0 calc(var(--syn-spacing-small) - var(--syn-spacing-4x-small));
-    --syn-button-label-padding: 0 var(--syn-spacing-medium);
-    --syn-button-prefix-spacing: var(--syn-spacing-small);
-    --syn-button-suffix-spacing: var(--syn-spacing-small);
-    --syn-button-prefix-size: var(--syn-spacing-large);
-    --syn-button-labeled-prefix-spacing: var(--syn-spacing-medium);
-    --syn-button-labeled-suffix-spacing: var(--syn-spacing-medium);
-    --syn-button-caret-size: var(--syn-button-medium-icon-size);
+    --button-icon-only-padding: 0 calc(var(--syn-spacing-small) - var(--syn-spacing-4x-small));
+    --button-label-padding-inline-start: var(--syn-spacing-medium);
+    --button-label-padding-inline-end: var(--syn-spacing-medium);
+    --button-label-padding-inline-start-with-prefix: var(--syn-spacing-x-small);
+    --button-label-padding-inline-end-with-suffix: var(--syn-spacing-x-small);
+    --button-prefix-spacing: var(--syn-spacing-small);
+    --button-suffix-spacing: var(--syn-spacing-small);
+    --button-affix-size: var(--button-medium-icon-size);
+    --button-labeled-prefix-spacing: var(--syn-spacing-medium);
+    --button-labeled-suffix-spacing: var(--syn-spacing-small);
 
     align-items: stretch;
     border-style: solid;
@@ -48,6 +47,7 @@ export default css`
       var(--syn-transition-x-fast) color,
       var(--syn-transition-x-fast) border,
       var(--syn-transition-x-fast) box-shadow;
+    /* stylelint-disable-next-line property-no-vendor-prefix */
     -webkit-user-select: none;
     user-select: none;
     vertical-align: middle;
@@ -79,6 +79,12 @@ export default css`
   }
 
   .button__prefix,
+  .button__suffix,
+  .button__caret {
+    font-size: var(--button-affix-size);
+  }
+
+  .button__prefix,
   .button__suffix {
     align-items: center;
     display: flex;
@@ -94,12 +100,12 @@ export default css`
    * Icon-only buttons
    */
   .button__label.button__icon-only {
-    padding: var(--syn-button-icon-only-padding);
+    padding: var(--button-icon-only-padding);
   }
 
   .button__label::slotted(syn-icon) {
-    font-size: var(--syn-button-medium-icon-size);
-    vertical-align: var(--syn-button-icon-offset-medium);
+    font-size: var(--button-medium-icon-size);
+    vertical-align: var(--button-icon-offset-medium);
   }
 
   /*
@@ -195,14 +201,16 @@ export default css`
    */
 
   .button--small {
-    --syn-button-icon-only-padding: 0 calc(var(--syn-spacing-x-small) + var(--syn-spacing-4x-small));
-    --syn-button-label-padding: 0 var(--syn-spacing-small);
-    --syn-button-prefix-spacing: var(--syn-spacing-x-small);
-    --syn-button-suffix-spacing: var(--syn-spacing-x-small);
-    --syn-button-prefix-size: var(--syn-spacing-medium);
-    --syn-button-labeled-prefix-spacing: var(--syn-spacing-small);
-    --syn-button-labeled-suffix-spacing: var(--syn-spacing-small);
-    --syn-button-caret-size: var(--syn-button-small-icon-size);
+    --button-icon-only-padding: 0 calc(var(--syn-spacing-x-small) + var(--syn-spacing-4x-small));
+    --button-label-padding-inline-start: var(--syn-spacing-small);
+    --button-label-padding-inline-end: var(--syn-spacing-small);
+    --button-label-padding-inline-start-with-prefix: var(--syn-spacing-2x-small);
+    --button-label-padding-inline-end-with-suffix: var(--syn-spacing-2x-small);
+    --button-prefix-spacing: var(--syn-spacing-x-small);
+    --button-suffix-spacing: var(--syn-spacing-x-small);
+    --button-affix-size: var(--button-small-icon-size);
+    --button-labeled-prefix-spacing: var(--syn-spacing-small);
+    --button-labeled-suffix-spacing: var(--syn-spacing-small);
     
     border-radius: var(--syn-button-border-radius-small);
     font-size: var(--syn-button-font-size-small);
@@ -211,8 +219,8 @@ export default css`
   }
 
   .button--small .button__label::slotted(syn-icon) {
-    font-size: var(--syn-button-small-icon-size);
-    vertical-align: var(--syn-button-icon-offset-small);
+    font-size: var(--button-small-icon-size);
+    vertical-align: var(--button-icon-offset-small);
   }
 
   .button--medium {
@@ -223,11 +231,14 @@ export default css`
   }
 
   .button--large {
-    --syn-button-icon-only-padding: 0 calc(var(--syn-spacing-medium) - var(--syn-spacing-4x-small));
-    --syn-button-label-padding: 0 var(--syn-spacing-large);
-    --syn-button-labeled-prefix-spacing: var(--syn-spacing-large);
-    --syn-button-labeled-suffix-spacing: var(--syn-spacing-large);
-    --syn-button-caret-size: var(--syn-button-large-icon-size);
+    --button-icon-only-padding: 0 calc(var(--syn-spacing-medium) - var(--syn-spacing-4x-small));
+    --button-label-padding-inline-start: var(--syn-spacing-large);
+    --button-label-padding-inline-end: var(--syn-spacing-large);
+    --button-label-padding-inline-start-with-prefix: var(--syn-spacing-small);
+    --button-label-padding-inline-end-with-suffix: var(--syn-spacing-small);
+    --button-affix-size: var(--button-large-icon-size);
+    --button-labeled-prefix-spacing: var(--syn-spacing-large);
+    --button-labeled-suffix-spacing: var(--syn-spacing-large);
     
     border-radius: var(--syn-button-border-radius-large);
     font-size: var(--syn-button-font-size-large);
@@ -236,8 +247,8 @@ export default css`
   }
 
   .button--large .button__label::slotted(syn-icon) {
-    font-size: var(--syn-button-large-icon-size);
-    vertical-align: var(--syn-button-icon-offset-large);
+    font-size: var(--button-large-icon-size);
+    vertical-align: var(--button-icon-offset-large);
   }
 
   /*
@@ -248,7 +259,6 @@ export default css`
   }
 
   .button--caret .button__caret {
-    font-size: var(--syn-button-caret-size);
     height: auto;
   }
 
@@ -299,44 +309,44 @@ export default css`
    * Button spacing
    */
   .button--has-label .button__label {
-    padding: var(--syn-button-label-padding);
+    padding-block: 0;
+    padding-inline: var(--button-label-padding-inline-start) var(--button-label-padding-inline-end);
+  }
+
+  .button--has-label .button__label.button__icon-only {
+    padding: var(--button-icon-only-padding);
+  }
+
+  /*
+   * Adjustments for button label paddings
+   * @see https://github.com/synergy-design-system/synergy-design-system/issues/243
+   */
+  .button--has-prefix .button__label {
+    padding-inline-start: var(--button-label-padding-inline-start-with-prefix);
+  }
+
+  .button--has-suffix .button__label,
+  .button--caret .button__label {
+    padding-inline-end: var(--button-label-padding-inline-end-with-suffix);
   }
 
   /* Basic prefix/suffix spacing */
   .button--has-prefix {
-    padding-inline-start: var(--syn-button-prefix-spacing);
+    padding-inline-start: var(--button-prefix-spacing);
   }
 
   .button--has-suffix,
   .button--caret {
-    padding-inline-end: var(--syn-button-suffix-spacing);
+    padding-inline-end: var(--button-suffix-spacing);
   }
 
   /* Enhanced spacing for labeled buttons with prefix/suffix */
   .button--has-label.button--has-prefix {
-    padding-inline-start: var(--syn-button-labeled-prefix-spacing);
+    padding-inline-start: var(--button-labeled-prefix-spacing);
   }
 
-  .button--has-label.button--has-suffix {
-    padding-inline-end: var(--syn-button-labeled-suffix-spacing);
-  }
-
-  .button--has-prefix .button__prefix, 
-  .button--has-suffix .button__suffix {
-    font-size: var(--syn-button-prefix-size);
-  }
-
-  .button--large .button__prefix, 
-  .button--large .button__suffix {
-    font-size: var(--syn-button-large-icon-size);
-  }
-
-  /* Size-specific label adjustments */
-  .button--large.button--has-label.button--has-prefix .button__label {
-    padding-inline-start: var(--syn-spacing-small);
-  }
-
-  .button--large.button--has-label.button--has-suffix .button__label {
-    padding-inline-end: var(--syn-spacing-small);
+  .button--has-label.button--has-suffix,
+  .button--has-label.button--caret {
+    padding-inline-end: var(--button-labeled-suffix-spacing);
   }
 `;

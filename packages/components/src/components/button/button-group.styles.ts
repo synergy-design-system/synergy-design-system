@@ -51,12 +51,6 @@ export default css`
   }
 
   /* #392: Button Groups */
-  :host([data-syn-button-group__button--inner]) .button--filled.button,
-  :host([data-syn-button-group__button--first]:not([data-syn-button-group__button--last])) .button--filled.button,
-  :host([data-syn-button-group__button--last]:not([data-syn-button-group__button--first])) .button--filled.button {
-    border-color: var(--syn-panel-background-color);
-  }
-
   :host([data-syn-button-group__button--inner]) .button--filled.button {
     border-left-color: var(--syn-panel-background-color);
     border-right-color: var(--syn-panel-background-color);

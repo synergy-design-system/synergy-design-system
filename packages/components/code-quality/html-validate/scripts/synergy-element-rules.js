@@ -277,6 +277,14 @@ const SynOption = {
 /**
  * @type {import('html-validate').MetaElement}
  */
+const SynPagination = {
+  flow: true,
+  interactive: true,
+};
+
+/**
+ * @type {import('html-validate').MetaElement}
+ */
 const SynPopup = {
   attributes: {
     strategy: {
@@ -502,6 +510,7 @@ export const rules = {
   SynNavItem,
   SynOptgroup,
   SynOption,
+  SynPagination,
   SynPopup,
   SynPrioNav,
   SynProgressBar,

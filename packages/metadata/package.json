@@ -1,0 +1,45 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+  },
+  "description": "Metadata for the Synergy Design System, usable by MCP Servers or other AI tools",
+  "devDependencies": {
+    "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@types/node": "^24.12.0",
+    "eslint": "^9.39.4",
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+  },
+  "files": [
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/metadata",
+  "keywords": [
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System",
+    "UI",
+    "UI Metadata Server",
+    "Synergy Metadata"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/metadata",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/metadata"
+  },
+  "scripts": {
+    "build": "tsc",
+    "lint:js": "eslint src",
+    "lint": "pnpm run /^lint:.*/"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

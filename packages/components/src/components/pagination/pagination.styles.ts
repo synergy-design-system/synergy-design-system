@@ -5,19 +5,28 @@ export default css`
     display: block;
   }
 
-  .base {
+  .pagination {
+    --base-font: var(--syn-body-medium-regular);
+    --base-gap: var(--syn-spacing-small);
+    --navigation-gap: var(--syn-spacing-small);
     --pagination-page-size-option-char-count: 2;
     --pagination-total-pages-char-count: 3;
-    --base-padding: var(--syn-spacing-medium);
-    --base-gap: var(--syn-spacing-small);
-    --base-font: var(--syn-body-medium-regular);
-    --navigation-gap: var(--syn-spacing-small);
 
     align-items: center;
     display: flex;
     font: var(--base-font);
     gap: var(--base-gap);
-    padding: var(--base-padding);
+  }
+
+  /* Sizes */
+  :host([size="small"]) .pagination {
+    --base-gap: var(--syn-spacing-x-small);
+    --base-font: var(--syn-body-small-regular);
+  }
+
+  :host([size="large"]) .pagination {
+    --base-gap: var(--syn-spacing-medium);
+    --base-font: var(--syn-body-large-regular);
   }
 
   /* Select */
@@ -43,7 +52,7 @@ export default css`
     flex: 1;
     gap: var(--navigation-gap);
     justify-content: end;
-    margin-inline-start: var(--base-gap);
+    margin-inline-start: var(--syn-spacing-large);
   }
 
   .pagination__navigation section > * {
@@ -57,5 +66,11 @@ export default css`
   .pagination__page-input::part(input) {
     max-width: calc((var(--pagination-total-pages-char-count) * 1ch) + 3ch);
     text-align: center;
+  }
+
+  /* Compact Version */
+  :host([variant="compact"]) .pagination__navigation {
+    justify-content: center;
+    margin-inline-start: 0;
   }
 `;

@@ -30,7 +30,7 @@ const meta: Meta = {
     {
       name: 'current-page',
       type: 'attribute',
-      value: 2,
+      value: 1,
     },
   ], defaultArgs),
   argTypes,
@@ -76,7 +76,7 @@ export const WithDivider: Story = {
     },
   },
   render: () => html`
-    <syn-pagination divider></syn-pagination>
+    <syn-pagination divider current-page="2" page-size="25" total-items="500" ></syn-pagination>
   `,
 };
 
@@ -89,7 +89,7 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-    <syn-pagination disabled></syn-pagination>
+    <syn-pagination disabled current-page="1" page-size="25" total-items="500" ></syn-pagination>
   `,
 };
 
@@ -102,7 +102,7 @@ export const Compact: Story = {
     },
   },
   render: () => html`
-    <syn-pagination compact></syn-pagination>
+    <syn-pagination variant="compact" current-page="1" page-size="25" total-items="500"></syn-pagination>
   `,
 };
 
@@ -115,10 +115,10 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium);">
-      <syn-pagination size="small"></syn-pagination>
-      <syn-pagination size="medium"></syn-pagination>
-      <syn-pagination size="large"></syn-pagination>
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-2x-large);">
+      <syn-pagination current-page="1" page-size="25" total-items="500" size="small"></syn-pagination>
+      <syn-pagination current-page="1" page-size="25" total-items="500" size="medium"></syn-pagination>
+      <syn-pagination current-page="1" page-size="25" total-items="500" size="large"></syn-pagination>
     </div>
   `,
 };

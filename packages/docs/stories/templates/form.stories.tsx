@@ -279,11 +279,10 @@ export const ContactFormTablet = {
 };
 
 export const MultipleFilesUploadForm: Story = {
-  render: () => html`
+  render: (_, context) => html`
     <div class="synergy-upload-form-demo">
       <h1>${getTranslation('fileUpload.multiple.headline')}</h1>
-
-      <form id="upload-multiple-form" enctype="multipart/form-data" method="post">
+      <form id="upload-multiple-form-${context.viewMode}" enctype="multipart/form-data" method="post">
         <syn-file
           droparea
           name="files"
@@ -428,7 +427,8 @@ export const MultipleFilesUploadForm: Story = {
       ];
       let entryId = entries.at(-1).id + 1;
 
-      const form = document.querySelector('#upload-multiple-form');
+      const formId = "#upload-multiple-form-" + "${context.viewMode}";
+      const form = document.querySelector(formId);
       const fileInput = form.querySelector('syn-file');
       const fileList = form.querySelector('.uploaded-files');
       const submitButton = form.querySelector('syn-button[type="submit"]');

@@ -375,8 +375,11 @@
 ```html
 <div class="synergy-upload-form-demo">
   <h1>Multiple files upload</h1>
-
-  <form id="upload-multiple-form" enctype="multipart/form-data" method="post">
+  <form
+    enctype="multipart/form-data"
+    method="post"
+    id="upload-multiple-form-docs"
+  >
     <syn-file
       droparea=""
       name="files"
@@ -479,7 +482,6 @@
   .uploaded-files {
     display: flex;
     flex-direction: column;
-    gap: var(--syn-spacing-medium);
     list-style: none;
     padding: 0;
 
@@ -487,9 +489,11 @@
       --indicator-color: var(--syn-input-icon-icon-clearable-color);
 
       align-items: center;
+      box-sizing: border-box;
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      padding: var(--syn-spacing-small) 0;
       font: var(--syn-body-medium-regular);
       gap: var(--syn-spacing-small);
       min-height: 50px;
@@ -502,6 +506,7 @@
       }
 
       em {
+        font: var(--syn-body-medium-regular);
         font-style: normal;
         flex: 1;
       }
@@ -511,6 +516,9 @@
         text-align: end;
         width: var(--syn-spacing-large);
         font-size: var(--syn-font-size-large);
+        position: absolute;
+        right: 0;
+        top: var(--syn-spacing-small);
 
         syn-icon-button {
           &::part(base) {
@@ -525,6 +533,11 @@
         display: block;
         font: var(--syn-body-small-regular);
         margin: var(--syn-spacing-x-small) 0;
+      }
+
+      /* Spinner surface is slightly larger as buttons have some padding applied */
+      .uploaded-files--status:has(syn-spinner) {
+        right: 2px;
       }
 
       syn-divider {

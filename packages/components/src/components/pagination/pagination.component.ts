@@ -244,15 +244,12 @@ export default class SynPagination extends SynergyElement {
           <syn-select
             class="pagination__page-size-select"
             ?disabled=${isDisabled}
+            label=${this.localize.term('paginationItemsPerPage')}
             part="page-size-select"
             value=${selectedPageSizeOption}
             size=${this.size}
             @syn-change=${this.pageSizeChanged}
           >
-            <span slot="label">
-              ${this.localize.term('paginationItemsPerPage')}
-            </span>
-
             ${this.pageSizeOptions.map(option => html`
               <syn-option value="${option}">
                 ${option}

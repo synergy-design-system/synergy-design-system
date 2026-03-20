@@ -4,6 +4,7 @@
     "url": "https://www.sick.com"
   },
   "dependencies": {
+    "zod": "^4.0.0"
   },
   "description": "Metadata for the Synergy Design System, usable by MCP Servers or other AI tools",
   "devDependencies": {
@@ -36,7 +37,7 @@
     "directory": "packages/metadata"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && node dist/cli/build.js",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/"
   },

@@ -27,11 +27,6 @@ const meta: Meta = {
       type: 'attribute',
       value: '10, 25, 50, 100',
     },
-    {
-      name: 'current-page',
-      type: 'attribute',
-      value: 1,
-    },
   ], defaultArgs),
   argTypes,
   component: 'syn-pagination',
@@ -39,7 +34,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('10540-8605'),
+    design: generateFigmaPluginObject('45235-64809'),
     docs: {
       description: {
         component: generateStoryDescription('pagination', 'default'),

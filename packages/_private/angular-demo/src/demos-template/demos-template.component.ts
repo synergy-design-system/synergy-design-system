@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SynTabGroupComponent, SynTabComponent, SynTabPanelComponent } from '@synergy-design-system/angular';
+import { SynDividerComponent, SynTabGroupComponent, SynTabComponent, SynTabPanelComponent } from '@synergy-design-system/angular';
 import { CommonModule, type NgComponentOutlet } from '@angular/common';
 import { type SynTabShowEvent } from '@synergy-design-system/components';
 import { ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true,
   imports: [
     CommonModule,
+    SynDividerComponent,
     SynTabGroupComponent,
     SynTabComponent,
     SynTabPanelComponent,

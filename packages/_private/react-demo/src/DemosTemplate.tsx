@@ -42,6 +42,8 @@ export const DemosTemplate = ({ demos }: DemosTemplateProps) => {
             name={name}
           >
             <div id={`tab-content-${name}`}>
+              <h1 className="syn-heading--3x-large">{name}</h1>
+              <syn-divider />
               <Component />
             </div>
           </syn-tab-panel>

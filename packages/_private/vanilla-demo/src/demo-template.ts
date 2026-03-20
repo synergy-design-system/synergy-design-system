@@ -44,6 +44,8 @@ class DemoTemplate extends LitElement {
             name=${name}
           >
             <div id="tab-content-${name}">
+              <h1 class="syn-heading--3x-large">${name}</h1>
+              <syn-divider></syn-divider>
               ${html`${Component((this.regressions && this.regressions.has(name)) ? (this.regressions.get(name) || []) : [])}`}
             </div>
           </syn-tab-panel>

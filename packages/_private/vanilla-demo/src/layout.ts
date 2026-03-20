@@ -81,7 +81,7 @@ export const createLayout = () => `
         placeholder="Select theme to use"
         id="theme-switch"
         size="small"
-        value="2018-light"
+        value="2025-light"
       >
         <syn-icon name="light_mode" slot="prefix" style="color: var(--syn-color-warning-500)"></syn-icon>
       </syn-select>

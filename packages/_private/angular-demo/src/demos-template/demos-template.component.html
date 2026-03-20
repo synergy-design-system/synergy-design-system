@@ -20,6 +20,8 @@
         [name]="demo[0]"
       >
         <div [id]="'tab-content-' + demo[0]">
+          <h1 class="syn-heading--3x-large">{{demo[0]}}</h1>
+          <syn-divider></syn-divider>
           <ng-container *ngComponentOutlet="demo[1]"></ng-container>
         </div>
       </syn-tab-panel>

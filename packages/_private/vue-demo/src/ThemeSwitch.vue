@@ -14,7 +14,7 @@ import { ref } from 'vue';
 
 const availableThemes = getAvailableThemes();
 const currentMode = ref<string>('light_mode');
-const currentTheme = ref<string>('2018-light');
+const currentTheme = ref<string>('2025-light');
 
 const setTheme = (e: SynChangeEvent) => {
   const value = (e.target as SynSelect).value as string;

@@ -1764,6 +1764,58 @@
         }
       }
     },
+    "pagination": {
+      "default": {
+        "description": {
+          "value": "The default pagination offers the most comprehensive controls and is optimized for tables, lists, and complex data views. It is intended for use cases where users need to adjust both the number of displayed rows and the active page. The navigation controls allow switching between pages as well as jumping directly to the first or last page.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Pagination",
+          "type": "text"
+        }
+      },
+      "with-divider": {
+        "description": {
+          "value": "An optional divider can be shown to provide visual separation depending on the layout needs.",
+          "type": "text"
+        },
+        "title": {
+          "value": "With Divider",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "description": {
+          "value": "Use the disabled attribute to disable all interactive elements like syn-select, syn-input, and the previous and next syn-icon-buttons. This can be useful if you want to prevent the user from entering something again immediately after an entry before the first entry has been processed.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        }
+      },
+      "compact": {
+        "description": {
+          "value": "The compact variant focuses on essential pagination controls and fits tight layouts or mobile environments. Use this variant when space is limited or page size stays fixed.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Compact Pagination",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "description": {
+          "value": "Use the size attribute to change the pagination size.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        }
+      }
+    },
     "popup": {
       "default": {
         "description": {

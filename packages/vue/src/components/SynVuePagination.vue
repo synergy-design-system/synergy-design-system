@@ -6,19 +6,27 @@
 // ---------------------------------------------------------------------
 
 /**
- * @summary The default pagination offers the most comprehensive controls and is optimized for tables, lists, and complex data views.
- * It is intended for use cases where users need to adjust both the number of displayed rows and the active page.
- * The navigation controls allow switching between pages as well as jumping directly to the first or last page.
+ * @summary <syn-pagination /> is a component that provides a data-heavy views, combining page navigation, direct page input, and configurable page-size selection in one control.
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-pagination--docs
  * @status stable
  * @since 3.0.0
  *
+ * @event syn-pagination-page-changed - Emitted when the current page changes
+ * @event syn-pagination-page-size-changed - Emitted when the page size changes
+ *
  * @csspart base - The component's base wrapper.
+ * @csspart page-size-select - The page size select element.
+ * @csspart page-item-summary - The text element displaying the current page item range and total items.
+ * @csspart page-input-section - The section containing the page number input and total pages display.
+ * @csspart page-input - The page number input element.
+ * @csspart navigation - The pagination navigation element.
  */
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/pagination/pagination.js';
 
+import type { SynPaginationPageChangedEvent } from '@synergy-design-system/components';
+import type { SynPaginationPageSizeChangedEvent } from '@synergy-design-system/components';
 import type { SynPagination } from '@synergy-design-system/components';
 
 // DOM Reference to the element
@@ -90,8 +98,33 @@ const visibleProps = computed(() =>
     Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
   ),
 );
+
+// Map events
+defineEmits<{
+  /**
+   * Emitted when the current page changes
+   */
+  'syn-pagination-page-changed': [e: SynPaginationPageChangedEvent];
+
+  /**
+   * Emitted when the page size changes
+   */
+  'syn-pagination-page-size-changed': [e: SynPaginationPageSizeChangedEvent];
+}>();
+</script>
+
+<script lang="ts">
+export type { SynPaginationPageChangedEvent } from '@synergy-design-system/components';
+export type { SynPaginationPageSizeChangedEvent } from '@synergy-design-system/components';
 </script>
 
 <template>
-  <syn-pagination v-bind="visibleProps" ref="nativeElement"> </syn-pagination>
+  <syn-pagination
+    @syn-pagination-page-changed="$emit('syn-pagination-page-changed', $event)"
+    @syn-pagination-page-size-changed="
+      $emit('syn-pagination-page-size-changed', $event)
+    "
+    v-bind="visibleProps"
+    ref="nativeElement">
+  </syn-pagination>
 </template>

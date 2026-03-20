@@ -7,24 +7,42 @@ import * as React from 'react';
 import { createComponent } from '@lit/react';
 import Component from '@synergy-design-system/components/components/pagination/pagination.component.js';
 
+import { type EventName } from '@lit/react';
+import type { SynPaginationPageChangedEvent } from '@synergy-design-system/components';
+import type { SynPaginationPageSizeChangedEvent } from '@synergy-design-system/components';
+
 const tagName = 'syn-pagination';
 Component.define('syn-pagination');
 
 /**
- * @summary The default pagination offers the most comprehensive controls and is optimized for tables, lists, and complex data views.
- * It is intended for use cases where users need to adjust both the number of displayed rows and the active page.
- * The navigation controls allow switching between pages as well as jumping directly to the first or last page.
+ * @summary <syn-pagination /> is a component that provides a data-heavy views, combining page navigation, direct page input, and configurable page-size selection in one control.
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-pagination--docs
  * @status stable
  * @since 3.0.0
  *
+ * @event syn-pagination-page-changed - Emitted when the current page changes
+ * @event syn-pagination-page-size-changed - Emitted when the page size changes
+ *
  * @csspart base - The component's base wrapper.
+ * @csspart page-size-select - The page size select element.
+ * @csspart page-item-summary - The text element displaying the current page item range and total items.
+ * @csspart page-input-section - The section containing the page number input and total pages display.
+ * @csspart page-input - The page number input element.
+ * @csspart navigation - The pagination navigation element.
  */
 export const SynPagination = createComponent({
   displayName: 'SynPagination',
   elementClass: Component,
-  events: {},
+  events: {
+    onSynPaginationPageChanged:
+      'syn-pagination-page-changed' as EventName<SynPaginationPageChangedEvent>,
+    onSynPaginationPageSizeChanged:
+      'syn-pagination-page-size-changed' as EventName<SynPaginationPageSizeChangedEvent>,
+  },
   react: React,
   tagName,
 });
+
+export type { SynPaginationPageChangedEvent } from '@synergy-design-system/components';
+export type { SynPaginationPageSizeChangedEvent } from '@synergy-design-system/components';

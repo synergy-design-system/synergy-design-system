@@ -1,7 +1,6 @@
-/* eslint-disable */
 import { LocalizeController as DefaultLocalizationController, registerTranslation } from '@shoelace-style/localize';
-import en from '../translations/en.js'; // Register English as the default/fallback language
 import type { Translation as DefaultTranslation } from '@shoelace-style/localize';
+import en from '../translations/en.js'; // Register English as the default/fallback language
 
 // Extend the controller and apply our own translation interface for better typings
 export class LocalizeController extends DefaultLocalizationController<Translation> {
@@ -30,6 +29,13 @@ export interface Translation extends DefaultTranslation {
   notification: string;
   numFilesSelected: (num: number, dir: boolean) => string;
   openMenu: string;
+  paginationFirstPage: string;
+  paginationItemSummary: (start: number, end: number, total: number) => string;
+  paginationItemsPerPage: string;
+  paginationLastPage: string;
+  paginationNextPage: string;
+  paginationOfTotalPages: (totalPages: number) => string;
+  paginationPreviousPage: string;
   rangeMax: string;
   rangeMin: string;
   sideNav: string;

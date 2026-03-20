@@ -29,6 +29,11 @@ export default css`
     --base-font: var(--syn-body-large-regular);
   }
 
+  /* Divider */
+  syn-divider {
+    --spacing: 0 auto var(--syn-spacing-small);
+  }
+
   /* Select */
   .pagination__page-size-select::part(form-control) {
     align-items: center;

@@ -1,11 +1,11 @@
-/* eslint-disable */
+/* eslint-disable sort-keys */
 import { registerTranslation } from '@shoelace-style/localize';
 import type { Translation } from '../utilities/localize.js';
 
 const translation: Translation = {
   $code: 'en',
-  $name: 'English',
   $dir: 'ltr',
+  $name: 'English',
 
   carousel: 'Carousel',
   clearEntry: 'Clear entry',
@@ -46,10 +46,17 @@ const translation: Translation = {
   noResults: 'No results found',
   notification: 'Notification',
   numFilesSelected: (num, dir) => {
-      if (num === 0) return `No ${dir ? 'folder' : 'files'} chosen`;
-      return `${num} files`;
-    },
+    if (num === 0) return `No ${dir ? 'folder' : 'files'} chosen`;
+    return `${num} files`;
+  },
   openMenu: 'Open menu',
+  paginationFirstPage: 'First page',
+  paginationItemsPerPage: 'Items per page',
+  paginationItemSummary: (start, end, total) => `${start}-${end} of ${total} items`,
+  paginationLastPage: 'Last page',
+  paginationNextPage: 'Next page',
+  paginationOfTotalPages: totalPages => `of ${totalPages}`,
+  paginationPreviousPage: 'Previous page',
   rangeMax: 'Maximum',
   rangeMin: 'Minimum',
   sideNav: 'Side navigation',

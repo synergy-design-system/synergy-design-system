@@ -1,11 +1,11 @@
-/* eslint-disable */
+/* eslint-disable sort-keys */
 import { registerTranslation } from '../utilities/localize.js';
 import type { Translation } from '../utilities/localize.js';
 
 const translation: Translation = {
   $code: 'de',
-  $name: 'Deutsch',
   $dir: 'ltr',
+  $name: 'Deutsch',
 
   carousel: 'Karussell',
   clearEntry: 'Eingabe löschen',
@@ -33,8 +33,6 @@ const translation: Translation = {
   showPassword: 'Passwort anzeigen',
   slideNum: slide => `Folie ${slide}`,
   toggleColorFormat: 'Farbformat umschalten',
-
-  // Synergy custom translations start
   closeMenu: 'Menü schließen',
   danger: 'Gefahr',
   fileButtonText: 'Datei auswählen',
@@ -46,10 +44,17 @@ const translation: Translation = {
   noResults: 'Keine Ergebnisse gefunden',
   notification: 'Benachrichtigung',
   numFilesSelected: (num, dir) => {
-      if (num === 0) return `Keine ${dir ? 'Ordner' : 'Dateien'} ausgewählt`;
-      return `${num} Dateien`;
-    },
+    if (num === 0) return `Keine ${dir ? 'Ordner' : 'Dateien'} ausgewählt`;
+    return `${num} Dateien`;
+  },
   openMenu: 'Menü öffnen',
+  paginationFirstPage: 'Erste Seite',
+  paginationItemsPerPage: 'Einträge pro Seite',
+  paginationItemSummary: (start, end, total) => `${start}-${end} von ${total} Einträgen`,
+  paginationLastPage: 'Letzte Seite',
+  paginationNextPage: 'Nächste Seite',
+  paginationOfTotalPages: totalPages => `von ${totalPages}`,
+  paginationPreviousPage: 'Vorherige Seite',
   rangeMax: 'Maximum',
   rangeMin: 'Minimum',
   sideNav: 'Seitennavigation',

@@ -28,6 +28,7 @@ import '@synergy-design-system/components/components/pagination/pagination.js';
  * @event syn-pagination-page-size-changed - Emitted when the page size changes
  *
  * @csspart base - The component's base wrapper.
+ * @csspart divider - The divider element separating the page navigation and page size selector.
  * @csspart page-size-select - The page size select element.
  * @csspart page-item-summary - The text element displaying the current page item range and total items.
  * @csspart page-input-section - The section containing the page number input and total pages display.

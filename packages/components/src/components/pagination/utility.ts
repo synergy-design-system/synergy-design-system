@@ -9,6 +9,13 @@ export const calculateTotalPages = (totalItems: number, pageSize: number) => Mat
  * Calculates the item start and end indices for the current page based on the total number of items, selected page size, and current page number.
  */
 export const calculatePageItemIndices = (totalItems: number, pageSize: number, currentPage: number) => {
+  if (totalItems <= 0) {
+    return {
+      endIndex: 0,
+      startIndex: 0,
+    };
+  }
+
   const totalPages = calculateTotalPages(totalItems, pageSize);
   const validCurrentPage = Math.min(Math.max(currentPage, 1), totalPages);
   const startIndex = (validCurrentPage - 1) * pageSize + 1;

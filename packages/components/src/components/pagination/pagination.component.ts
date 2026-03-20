@@ -6,6 +6,7 @@ import {
 } from 'lit';
 import { property } from 'lit/decorators.js';
 import { createRef, ref } from 'lit/directives/ref.js';
+import { LocalizeController } from '../../utilities/localize.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './pagination.styles.js';
@@ -36,6 +37,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @event syn-pagination-page-size-changed - Emitted when the page size changes
  *
  * @csspart base - The component's base wrapper.
+ * @csspart divider - The divider element separating the page navigation and page size selector.
  * @csspart page-size-select - The page size select element.
  * @csspart page-item-summary - The text element displaying the current page item range and total items.
  * @csspart page-input-section - The section containing the page number input and total pages display.
@@ -45,6 +47,8 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 @enableDefaultSettings('SynPagination')
 export default class SynPagination extends SynergyElement {
   private readonly baseRef = createRef<HTMLDivElement>();
+
+  private readonly localize = new LocalizeController(this);
 
   static styles: CSSResultGroup = [
     componentStyles,
@@ -209,95 +213,13 @@ export default class SynPagination extends SynergyElement {
     }
   }
 
-  private renderNavigation(totalPages: number) {
-    const isFirstPage = this.currentPage === 1;
-    const isLastPage = this.currentPage === totalPages;
-    const isDisabled = this.disabled || totalPages === 0;
-
-    /* eslint-disable @typescript-eslint/unbound-method */
-    return html`
-      <nav
-        aria-label="Pagination navigation"
-        class="pagination__navigation"
-        part="navigation"
-      >
-        <section aria-label="Page navigation controls for first and previous page">
-          <syn-icon-button
-            @click=${() => this.updateCurrentPage(1)}
-            color="primary"
-            ?disabled=${isFirstPage || isDisabled}
-            label="First page"
-            name="first_page"
-            size=${this.size}
-          ></syn-icon-button>
-
-          <syn-icon-button
-            @click=${() => this.updateCurrentPage(this.currentPage - 1)}
-            color="primary"
-            ?disabled=${isFirstPage || isDisabled}
-            label="Previous page"
-            name="chevron_left"
-            size=${this.size}
-          ></syn-icon-button>
-        </section>
-
-        <section aria-label="Manual page input" part="page-input-section">
-          <syn-input
-            class="pagination__page-input"
-            ?disabled=${isDisabled}
-            max=${totalPages}
-            min="1"
-            no-spin-buttons
-            numeric-strategy="modern"
-            part="page-input"
-            size=${this.size}
-            @syn-change=${this.pageChangedViaUserInput}
-            type="number"
-            value=${this.currentPage}
-          ></syn-input>
-          
-          <span>of ${totalPages}</span>
-        </section>
-
-        <section aria-label="Page navigation controls for next and last page">
-          <syn-icon-button
-            @click=${() => this.updateCurrentPage(this.currentPage + 1)}
-            color="primary"
-            ?disabled=${isLastPage || isDisabled}
-            label="Next page"
-            name="chevron_right"
-            size=${this.size}
-          ></syn-icon-button>
-          
-          <syn-icon-button
-            @click=${() => this.updateCurrentPage(totalPages)}
-            color="primary"
-            ?disabled=${isLastPage || isDisabled}
-            label="Last page"
-            name="last_page"
-            size=${this.size}
-          ></syn-icon-button>
-        </section>
-      </nav>
-      <!-- /.pagination__navigation -->
-    `;
-    /* eslint-enable @typescript-eslint/unbound-method */
-  }
-
   render() {
     // List of total pages.
     // Used to determine the disabled state of navigation buttons and to calculate the page item indices for display.
     const totalPages = calculateTotalPages(this.totalItems, this.pageSize);
 
-    // Only render the page size selector if we're in the full variant.
-    if (this.variant === 'compact') {
-      return html`
-        ${this.divider ? html`<syn-divider></syn-divider>` : nothing}
-        <div class="pagination" part="base" ${ref(this.baseRef)}>
-          ${this.renderNavigation(totalPages)}
-        </div>
-      `;
-    }
+    // Determine if we're in compact mode to conditionally apply styles and layout adjustments.
+    const isCompact = this.variant === 'compact';
 
     // Condition to determine if the pagination controls should be disabled.
     const isDisabled = this.disabled || totalPages === 0;
@@ -311,36 +233,105 @@ export default class SynPagination extends SynergyElement {
       ? this.pageSize
       : this.pageSizeOptions[0];
 
+    const isFirstPage = this.currentPage === 1;
+    const isLastPage = this.currentPage === totalPages;
+
     /* eslint-disable @typescript-eslint/unbound-method */
     return html`
-      ${this.divider ? html`<syn-divider></syn-divider>` : nothing}
+      ${this.divider ? html`<syn-divider part="divider"></syn-divider>` : nothing}
       <div class="pagination" part="base" ${ref(this.baseRef)}>
-        <syn-select
-          class="pagination__page-size-select"
-          ?disabled=${isDisabled}
-          part="page-size-select"
-          value=${selectedPageSizeOption}
-          size=${this.size}
-          @syn-change=${this.pageSizeChanged}
-        >
-          <span slot="label">
-            Items per page
+        ${!isCompact ? html`
+          <syn-select
+            class="pagination__page-size-select"
+            ?disabled=${isDisabled}
+            part="page-size-select"
+            value=${selectedPageSizeOption}
+            size=${this.size}
+            @syn-change=${this.pageSizeChanged}
+          >
+            <span slot="label">
+              ${this.localize.term('paginationItemsPerPage')}
+            </span>
+
+            ${this.pageSizeOptions.map(option => html`
+              <syn-option value="${option}">
+                ${option}
+              </syn-option>
+            `)}
+          </syn-select>
+          <!-- /.pagination__page-size-select -->
+
+          <span part="page-item-summary">
+            ${this.localize.term(
+              'paginationItemSummary',
+              pageItemIndices.startIndex,
+              pageItemIndices.endIndex,
+              this.totalItems,
+            )}
           </span>
+          <!-- /.pagination__page-item-summary -->
+        `: nothing}
 
-          ${this.pageSizeOptions.map(option => html`
-            <syn-option value="${option}">
-              ${option}
-            </syn-option>
-          `)}
-        </syn-select>
-        <!-- /.pagination__page-size-select -->
+        <div class="pagination__navigation" part="navigation">
+          <section>
+            <syn-icon-button
+              @click=${() => this.updateCurrentPage(1)}
+              color="primary"
+              ?disabled=${isFirstPage || isDisabled}
+              label=${this.localize.term('paginationFirstPage')}
+              name="first_page"
+              size=${this.size}
+            ></syn-icon-button>
 
-        <span part="page-item-summary">
-          ${pageItemIndices.startIndex}-${pageItemIndices.endIndex} of ${this.totalItems} items
-        </span>
-        <!-- /.pagination__page-item-summary -->
+            <syn-icon-button
+              @click=${() => this.updateCurrentPage(this.currentPage - 1)}
+              color="primary"
+              ?disabled=${isFirstPage || isDisabled}
+              label=${this.localize.term('paginationPreviousPage')}
+              name="chevron_left"
+              size=${this.size}
+            ></syn-icon-button>
+          </section>
 
-        ${this.renderNavigation(totalPages)}
+          <section part="page-input-section">
+            <syn-input
+              class="pagination__page-input"
+              ?disabled=${isDisabled}
+              max=${totalPages}
+              min="1"
+              no-spin-buttons
+              numeric-strategy="modern"
+              part="page-input"
+              size=${this.size}
+              @syn-change=${this.pageChangedViaUserInput}
+              type="number"
+              value=${this.currentPage}
+            ></syn-input>
+            
+            <span>${this.localize.term('paginationOfTotalPages', totalPages)}</span>
+          </section>
+
+          <section>
+            <syn-icon-button
+              @click=${() => this.updateCurrentPage(this.currentPage + 1)}
+              color="primary"
+              ?disabled=${isLastPage || isDisabled}
+              label=${this.localize.term('paginationNextPage')}
+              name="chevron_right"
+              size=${this.size}
+            ></syn-icon-button>
+            
+            <syn-icon-button
+              @click=${() => this.updateCurrentPage(totalPages)}
+              color="primary"
+              ?disabled=${isLastPage || isDisabled}
+              label=${this.localize.term('paginationLastPage')}
+              name="last_page"
+              size=${this.size}
+            ></syn-icon-button>
+          </section>
+        </div>
+        <!-- /.pagination__navigation -->
       </div>
     `;
     /* eslint-enable @typescript-eslint/unbound-method */

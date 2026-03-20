@@ -49,6 +49,7 @@ const translation: Translation = {
   },
   openMenu: 'Menü öffnen',
   paginationFirstPage: 'Erste Seite',
+  paginationInputLabel: 'Zu gewünschter Seitenzahl wechseln',
   paginationItemsPerPage: 'Einträge pro Seite',
   paginationItemSummary: (start, end, total) => `${start}-${end} von ${total} Einträgen`,
   paginationLastPage: 'Letzte Seite',

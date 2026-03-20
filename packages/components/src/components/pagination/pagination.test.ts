@@ -115,11 +115,7 @@ describe('<syn-pagination>', () => {
       const pagination = await fixture<SynPagination>(html`
         <syn-pagination total-items="100"></syn-pagination>
       `);
-      await expect(pagination).to.be.accessible({
-        // The page input is not labeled as it does not need a label.
-        // Because of this, we have to relax our rules around label-only and label-content for this element.
-        ignoredRules: ['label-title-only', 'label'],
-      });
+      await expect(pagination).to.be.accessible();
     });
   });
 

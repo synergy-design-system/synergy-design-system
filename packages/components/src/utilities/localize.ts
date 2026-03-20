@@ -32,6 +32,7 @@ export interface Translation extends DefaultTranslation {
   paginationFirstPage: string;
   paginationItemSummary: (start: number, end: number, total: number) => string;
   paginationItemsPerPage: string;
+  paginationInputLabel: string;
   paginationLastPage: string;
   paginationNextPage: string;
   paginationOfTotalPages: (totalPages: number) => string;

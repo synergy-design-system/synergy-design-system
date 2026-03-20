@@ -73,6 +73,23 @@ export default css`
     text-align: center;
   }
 
+  /**
+   * Make sure to hide the label of the page input, but keep it accessible for screen readers.
+   * We can't use the label slot of syn-input for this, because it would mess with the layout.
+   */
+  .pagination__page-input::part(form-control-label) {
+    border: 0;
+    /* stylelint-disable-next-line property-no-deprecated */
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
   /* Compact Version */
   :host([variant="compact"]) .pagination__navigation {
     justify-content: center;

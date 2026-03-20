@@ -294,6 +294,7 @@ export default class SynPagination extends SynergyElement {
             <syn-input
               class="pagination__page-input"
               ?disabled=${isDisabled}
+              label=${this.localize.term('paginationInputLabel')}
               max=${totalPages}
               min="1"
               no-spin-buttons

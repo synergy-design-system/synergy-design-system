@@ -25,7 +25,12 @@ const showTab = (e: SynTabShowEvent) => {
     There are no demos available.
   </span>
 
-  <SynVueTabGroup @syn-tab-show="showTab" v-else>
+  <SynVueTabGroup
+    class="demo-tab-group"
+    @syn-tab-show="showTab"
+    placement="end"
+    v-else
+  >
     <template
       v-for="([name, Component]) in demos"
       :key="name"

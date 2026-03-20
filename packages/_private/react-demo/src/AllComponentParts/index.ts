@@ -19,6 +19,7 @@ export * from './Menu.js';
 export * from './NavItem.js';
 export * from './OptGroup.js';
 export * from './Option.js';
+export * from './Pagination.js';
 export * from './PrioNav.js';
 export * from './ProgressBar.js';
 export * from './ProgressRing.js';

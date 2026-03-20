@@ -20,7 +20,6 @@ export class DemosTemplateComponent {
 
   demos: Array<[string, typeof NgComponentOutlet]> = [];
 
-
   constructor(private route: ActivatedRoute) {
     const routeDemos = this.route.snapshot.data['demos'];
     if (routeDemos) {

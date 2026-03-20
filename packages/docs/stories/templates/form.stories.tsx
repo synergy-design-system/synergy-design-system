@@ -279,35 +279,7 @@ export const ContactFormTablet = {
 };
 
 export const MultipleFilesUploadForm: Story = {
-  args: {
-    initialData: [
-      {
-        error: null,
-        filename: 'image.png',
-        id: 1,
-        state: 'uploading',
-      },
-      {
-        error: null,
-        filename: 'file-name',
-        id: 2,
-        state: 'success',
-      },
-      {
-        error: null,
-        filename: 'file-name',
-        id: 3,
-        state: 'queued',
-      },
-      {
-        error: 'File exceeds size limit.',
-        filename: 'file-name-large',
-        id: 4,
-        state: 'queued',
-      },
-    ],
-  },
-  render: ({ initialData }) => html`
+  render: () => html`
     <div class="synergy-upload-form-demo">
       <h1>${getTranslation('fileUpload.multiple.headline')}</h1>
 
@@ -353,7 +325,6 @@ export const MultipleFilesUploadForm: Story = {
       .uploaded-files {
         display: flex;
         flex-direction: column;
-        gap: var(--syn-spacing-medium);
         list-style: none;
         padding: 0;
 
@@ -361,9 +332,11 @@ export const MultipleFilesUploadForm: Story = {
           --indicator-color: var(--syn-input-icon-icon-clearable-color);
 
           align-items: center;
+          box-sizing: border-box;
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
+          padding: var(--syn-spacing-small) 0;
           font: var(--syn-body-medium-regular);
           gap: var(--syn-spacing-small);
           min-height: 50px;
@@ -376,6 +349,7 @@ export const MultipleFilesUploadForm: Story = {
           }
 
           em {
+            font: var(--syn-body-medium-regular);
             font-style: normal;
             flex: 1;
           }
@@ -385,6 +359,9 @@ export const MultipleFilesUploadForm: Story = {
             text-align: end;
             width: var(--syn-spacing-large);
             font-size: var(--syn-font-size-large);
+            position: absolute;
+            right: 0;
+            top: var(--syn-spacing-small);
 
             syn-icon-button {
               &::part(base) {
@@ -399,6 +376,11 @@ export const MultipleFilesUploadForm: Story = {
             display: block;
             font: var(--syn-body-small-regular);
             margin: var(--syn-spacing-x-small) 0;
+          }
+
+          /* Spinner surface is slightly larger as buttons have some padding applied */
+          .uploaded-files--status:has(syn-spinner) {
+            right: 2px;
           }
 
           syn-divider {
@@ -418,7 +400,32 @@ export const MultipleFilesUploadForm: Story = {
     </style>
 
     <script type="module">
-      let entries = ${JSON.stringify(initialData)};
+      let entries = [
+        {
+          error: null,
+          filename: 'image.png',
+          id: 1,
+          state: 'uploading',
+        },
+        {
+          error: null,
+          filename: 'file-name',
+          id: 2,
+          state: 'success',
+        },
+        {
+          error: null,
+          filename: 'file-name',
+          id: 3,
+          state: 'queued',
+        },
+        {
+          error: 'File exceeds size limit.',
+          filename: 'file-name-large',
+          id: 4,
+          state: 'queued',
+        },
+      ];
       let entryId = entries.at(-1).id + 1;
 
       const form = document.querySelector('#upload-multiple-form');
@@ -436,7 +443,7 @@ export const MultipleFilesUploadForm: Story = {
         fileList.hidden = false;
         submitButton.removeAttribute('disabled');
 
-        // I everything was uploaded, disable the upload button again to prevent confusion, as there are no more files to upload
+        // If everything was uploaded, disable the upload button again to prevent confusion, as there are no more files to upload
         const allUploaded = entries.every((entry) => entry.state === 'success');
         if (allUploaded) {
           submitButton.setAttribute('disabled', '');

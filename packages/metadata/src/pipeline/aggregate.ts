@@ -2,7 +2,7 @@
  * Aggregation: merge core entities from multiple source pipelines.
  */
 
-import { type Result, err, ok } from '../core/result.js';
+import { type Result, ok } from '../core/result.js';
 import { type Context } from '../core/context.js';
 import { type CoreEntity } from '../schemas/index.js';
 import { type AggregateError } from '../core/errors.js';

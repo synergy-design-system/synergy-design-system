@@ -35,7 +35,73 @@
         "selector": "syn-badge",
         "sourcePath": "packages/angular/components/badge/badge.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Feedback"
+      ],
+      "storySourcePath": "components.badge",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Badge",
+            "type": "text"
+          },
+          "description": {
+            "value": "Badges are used to draw attention and display statuses or counts.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "variants",
+          "title": {
+            "value": "Variants",
+            "type": "text"
+          },
+          "description": {
+            "value": "Set the variant attribute to change the badge’s variant.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "withButton",
+          "title": {
+            "value": "With Buttons",
+            "type": "text"
+          },
+          "description": {
+            "value": "One of the most common use cases for badges is attaching them to buttons. \n\nDEV: To make this easier, badges will be automatically positioned at the top-right when they’re a child of a button.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "menu",
+          "title": {
+            "value": "With Menu Items",
+            "type": "text"
+          },
+          "description": {
+            "value": "When including badges in menu items, use the suffix slot to make sure they’re aligned correctly.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "withEmptyContent",
+          "title": {
+            "value": "With empty content",
+            "type": "text"
+          },
+          "description": {
+            "value": "Badges can be used without content to just show an status indicator.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/feedback"
+    ]
   },
   "id": "component:syn-badge",
   "kind": "component",

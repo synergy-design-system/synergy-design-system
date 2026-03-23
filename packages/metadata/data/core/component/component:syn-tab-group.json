@@ -44,7 +44,106 @@
         "selector": "syn-tab-group",
         "sourcePath": "packages/angular/components/tab-group/tab-group.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Navigation"
+      ],
+      "storySourcePath": "components.tab-group",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Tab Group",
+            "type": "text"
+          },
+          "description": {
+            "value": "Tab groups organize content into a container that shows one section at a time. Tab groups make use of tabs and tab panels. Each tab must be slotted into the nav slot and its panel must refer to a tab panel of the same name.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "start",
+          "title": {
+            "value": "Tabs on Start",
+            "type": "text"
+          },
+          "description": {
+            "value": "Tabs can be shown on the starting side by setting placement to start.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "end",
+          "title": {
+            "value": "Tabs on End",
+            "type": "text"
+          },
+          "description": {
+            "value": "Tabs can be shown on the ending side by setting placement to end.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "closable",
+          "title": {
+            "value": "Closable Tabs",
+            "type": "text"
+          },
+          "description": {
+            "value": "Add the closable attribute to a tab to show a close button. This example shows how you can dynamically remove tabs from the DOM when the close button is activated.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "scrolling",
+          "title": {
+            "value": "Scrolling Tabs",
+            "type": "text"
+          },
+          "description": {
+            "value": "When there are more tabs than horizontal space allows, the nav will be scrollable.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "manuel",
+          "title": {
+            "value": "Manual Activation",
+            "type": "text"
+          },
+          "description": {
+            "value": "When focused, keyboard users can press Left or Right to select the desired tab. By default, the corresponding tab panel will be shown immediately (automatic activation). You can change this behavior by setting activation=\"manual\" which will require the user to press Space or Enter before showing the tab panel (manual activation).",
+            "type": "text"
+          }
+        },
+        {
+          "name": "hierachy",
+          "title": {
+            "value": "Visual Hierarchy",
+            "type": "text"
+          },
+          "description": {
+            "value": "To structure the Page, you can use different tab styles.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "icon",
+          "title": {
+            "value": "Icons",
+            "type": "text"
+          },
+          "description": {
+            "value": "It is also possible to a Add icon to the Tabs.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/navigation"
+    ]
   },
   "id": "component:syn-tab-group",
   "kind": "component",

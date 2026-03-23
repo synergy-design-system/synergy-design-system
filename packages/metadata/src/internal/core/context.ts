@@ -1,3 +1,5 @@
+import { type ConfigContext } from '../../config/types.js';
+
 /**
  * Execution context passed through the ETL pipeline.
  * Carries workspace information and optional logger.
@@ -29,6 +31,11 @@ export interface Context {
    * Arbitrary context data passed through pipeline stages.
    */
   metadata?: Record<string, unknown>;
+
+  /**
+   * Loaded configuration (overrides, clustering, artifacts).
+   */
+  config?: ConfigContext;
 }
 
 /**

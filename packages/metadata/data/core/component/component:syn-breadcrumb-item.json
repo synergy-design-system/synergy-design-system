@@ -35,7 +35,29 @@
         "selector": "syn-breadcrumb-item",
         "sourcePath": "packages/angular/components/breadcrumb-item/breadcrumb-item.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Navigation"
+      ],
+      "storySourcePath": "components.breadcrumb-item",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Breadcrumb Item",
+            "type": "text"
+          },
+          "description": {
+            "value": "Breadcrumb Items are used inside breadcrumbs to represent different links.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/navigation"
+    ]
   },
   "id": "component:syn-breadcrumb-item",
   "kind": "component",

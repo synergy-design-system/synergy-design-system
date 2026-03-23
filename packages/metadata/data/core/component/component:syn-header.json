@@ -48,7 +48,117 @@
         "selector": "syn-header",
         "sourcePath": "packages/angular/components/header/header.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Application Shell"
+      ],
+      "storySourcePath": "components.header",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Header",
+            "type": "text"
+          },
+          "description": {
+            "value": "The header is used to indicate the name of the app, provide important actions in a toolbar and a navigation.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "label",
+          "title": {
+            "value": "Label",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the label attribute to change the app name.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "logo",
+          "title": {
+            "value": "Logo",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the logo slot to change the app logo. Usually this is only needed in whitelabel solutions, when the SICK branding explicitly has to be hidden.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "focus",
+          "title": {
+            "value": "Focus",
+            "type": "text"
+          },
+          "description": {
+            "value": "The focus event gives the user feedback that a link in the logo has been focused by the keyboard interaction and that the link is ready to be navigated to.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "options",
+          "title": {
+            "value": "Meta Navigation",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the Meta Navigation slot to add additional functionalities to your application. Please be aware of the guidelines regarding the order of icons in the toolbar.\nImportant: The Options Menu doesn’t handle any responsive behaviour, e. g. if there is not enough space for all items in different screen sizes. You have to make sure yourself, that your app works correctly and e. g. move elements into the footer of the side navigation or inside a “more” button in the Options Menu.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "options-with-dividers",
+          "title": {
+            "value": "Meta Navigation with dividers",
+            "type": "text"
+          },
+          "description": {
+            "value": "If you need different icon groups or a separator between them, add a `<syn-divider>` between them.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "navigation",
+          "title": {
+            "value": "Top Navigation",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the top navigation slot to add syn-navigation and horizontal syn-navigation-items.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "burger-menu",
+          "title": {
+            "value": "Burger Menu",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the Burger Menu as trigger to open and close the Navigation. In the open state, the icon changes to a cancel icon. This will be hidden, if you use a rail navigation.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "sticky",
+          "title": {
+            "value": "Sticky Header with Shadow",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the sticky attribute to add a shadow when the header is fixed at the top and other content scrolls behind it.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/application-shell"
+    ]
   },
   "id": "component:syn-header",
   "kind": "component",

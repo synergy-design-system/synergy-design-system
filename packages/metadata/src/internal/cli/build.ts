@@ -2,17 +2,19 @@
  * Main CLI entry point: orchestrate the entire metadata build.
  *
  * Steps:
- * 1. Run all source pipelines (collectors) in parallel
- * 2. Aggregate results
- * 3. Validate entities
- * 4. Process and write layer assets (before core entities)
- * 5. Write core entities with layer data
- * 6. Write supporting artifacts (index, manifest)
- * 7. Generate JSON schemas
+ * 1. Load configuration (overrides, clustering, artifacts)
+ * 2. Run all source pipelines (collectors) in parallel
+ * 3. Aggregate results
+ * 4. Validate entities
+ * 5. Process and write layer assets (before core entities)
+ * 6. Write core entities with layer data
+ * 7. Write supporting artifacts (index, manifest)
+ * 8. Generate JSON schemas
  */
 import { resolve } from 'node:path';
 import { createConsoleLogger } from '../core/context.js';
 import { type Context } from '../core/context.js';
+import { loadConfig } from '../../config/index.js';
 import {
   assetsPipeline,
   componentsPipeline,
@@ -23,6 +25,7 @@ import {
 import {
   aggregateEntities,
   buildIndex,
+  enrichEntitiesWithConfig,
   runSourcePipeline,
   validateEntities,
   validateManifestData,
@@ -54,6 +57,22 @@ async function main() {
   ctx.logger?.info(`Output: ${outputDir}`);
 
   try {
+    // Step 0: Load configuration
+    ctx.logger?.info('Step 0: Loading configuration');
+    const configDir = resolve(ctx.workspaceRoot, 'config');
+    try {
+      ctx.config = await loadConfig(configDir);
+      ctx.logger?.info('Configuration loaded', {
+        artifactsCount: Object.keys(ctx.config.artifacts).length,
+        overridesCount: ctx.config.overrides.size,
+        clusteringCount: ctx.config.clustering.size,
+      });
+    } catch (configErr) {
+      ctx.logger?.warn('Failed to load configuration, proceeding without it', {
+        error: String(configErr),
+      });
+    }
+
     // Step 1: Run pipelines
     ctx.logger?.info('Step 1: Running source pipelines');
     const [componentsResult, tokensResult, stylesResult, fontsResult, assetsResult] = await Promise.all([
@@ -144,19 +163,48 @@ async function main() {
       process.exit(1);
     }
 
+    // Step 3.5: Enrich with configuration
+    ctx.logger?.info('Step 3.5: Enriching entities with configuration');
+
+    const enriched = enrichEntitiesWithConfig(validated.value, ctx);
+    const enrichedWithStats = enriched.filter((e) => {
+      const custom = (e.custom as Record<string, unknown> | undefined) ?? {};
+      return !!custom.override || !!custom.clusters;
+    });
+
+    const withOverridesCount = enriched.filter((e) => {
+      const custom = (e.custom as Record<string, unknown> | undefined) ?? {};
+      return !!custom.override;
+    }).length;
+    const withClustersCount = enriched.filter((e) => {
+      const custom = (e.custom as Record<string, unknown> | undefined) ?? {};
+      return !!custom.clusters;
+    }).length;
+
+    if (enrichedWithStats.length > 0) {
+      ctx.logger?.info(
+        `Enriched ${enrichedWithStats.length} entities with config metadata (${withOverridesCount} with overrides, ${withClustersCount} with clusters)`,
+      );
+    } else if (ctx.config) {
+      ctx.logger?.warn('No entities were enriched with config metadata', {
+        overridesCount: ctx.config.overrides.size,
+        clusteringCount: ctx.config.clustering.size,
+      });
+    }
+
     // Calculate repo root (two levels up from metadata package)
     const repoRoot = resolve(ctx.workspaceRoot, '..', '..');
 
     // Step 4: Process layer assets
     ctx.logger?.info('Step 4: Processing layer assets');
-    const layersResult = await writeLayerAssets(validated.value, outputDir, repoRoot, ctx);
+    const layersResult = await writeLayerAssets(enriched, outputDir, repoRoot, ctx);
     if (!layersResult.ok) {
       ctx.logger?.error('Writing layers failed', layersResult.error);
       process.exit(1);
     }
 
-    // Merge layer data back into entities
-    const entitiesWithLayers: CoreEntity[] = validated.value.map((entity) => {
+    // Merge layer data back into entities (using enriched entities to preserve override/cluster data)
+    const entitiesWithLayers: CoreEntity[] = enriched.map((entity) => {
       const layerData = layersResult.value[entity.id];
       if (!layerData) {
         return entity;

@@ -35,7 +35,16 @@
         "selector": "syn-optgroup",
         "sourcePath": "packages/angular/components/optgroup/optgroup.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Form"
+      ],
+      "storySourcePath": "components.optgroup"
+    },
+    "clusters": [
+      "components-by-tag/form"
+    ]
   },
   "id": "component:syn-optgroup",
   "kind": "component",

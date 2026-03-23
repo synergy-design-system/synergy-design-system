@@ -10,6 +10,7 @@ import { type Context } from '../core/context.js';
 import { type WriteError } from '../core/errors.js';
 import { type CoreEntity } from '../schemas/index.js';
 import { type LayerRef } from '../schemas/layer-ref.js';
+import { getOverride, type EnrichedOverride } from '../../config/index.js';
 import { ensureDir } from './fs-utils.js';
 
 export interface EntityLayers {
@@ -170,7 +171,10 @@ const formatCell = (value: string | undefined): string => {
 
 const slotDisplayName = (name: string): string => (name.length === 0 ? '(default)' : name);
 
-const renderInterfaceMarkdown = (rawSnapshot: Record<string, unknown>): string => {
+const renderInterfaceMarkdown = (
+  rawSnapshot: Record<string, unknown>,
+  enrichedOverride?: EnrichedOverride,
+): string => {
   const snapshot = rawSnapshot as InterfaceSnapshot;
 
   const lines: string[] = [];
@@ -298,6 +302,17 @@ const renderInterfaceMarkdown = (rawSnapshot: Record<string, unknown>): string =
   lines.push('');
   lines.push(`- **Status:** ${status}`);
   lines.push(`- **Since:** ${since}`);
+
+  // Add custom sections if provided through override
+  if (enrichedOverride?.customSections) {
+    for (const [_key, section] of Object.entries(enrichedOverride.customSections)) {
+      const sectionData = section as { title: string; content: string };
+      lines.push('');
+      lines.push(`## ${sectionData.title}`);
+      lines.push('');
+      lines.push(sectionData.content);
+    }
+  }
 
   return `${lines.join('\n')}\n`;
 };
@@ -430,8 +445,16 @@ export async function writeLayerAssets(
         const interfacePath = join(layersDir, 'interface', entity.kind, `${entity.id}.json`);
         const interfaceMarkdownPath = join(layersDir, 'interface', entity.kind, `${entity.id}.md`);
         await ensureDir(dirname(interfacePath));
+        
+        // Get enriched override if config is available
+        const enrichedOverride = ctx.config ? (getOverride(ctx.config, entity.id, true) ?? undefined) : undefined;
+        
         await writeFile(interfacePath, `${JSON.stringify(interfaceSnapshot, null, 2)}\n`, 'utf8');
-        await writeFile(interfaceMarkdownPath, renderInterfaceMarkdown(interfaceSnapshot), 'utf8');
+        await writeFile(
+          interfaceMarkdownPath,
+          renderInterfaceMarkdown(interfaceSnapshot, enrichedOverride),
+          'utf8',
+        );
         interfaceLayerRefs.push({
           layer: 'interface',
           path: relative(outputDir, interfacePath),

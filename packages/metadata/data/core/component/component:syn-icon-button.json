@@ -44,7 +44,99 @@
         "selector": "syn-icon-button",
         "sourcePath": "packages/angular/components/icon-button/icon-button.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Form",
+        "Navigation",
+        "Icons"
+      ],
+      "storySourcePath": "components.icon-button",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Icon Button",
+            "type": "text"
+          },
+          "description": {
+            "value": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.\n\nFor a full list of icons that come bundled with Synergy, refer to the Assets.\n\n**Note:** To make the icon-button work in development, have a look at the icon documentation for how to set up the assets package.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "sizes",
+          "title": {
+            "value": "Sizes",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the size attribute to change a icon-button size.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "disabled",
+          "title": {
+            "value": "Disabled",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the disabled attribute to disable the icon button.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "focus",
+          "title": {
+            "value": "Focus",
+            "type": "text"
+          },
+          "description": {
+            "value": "The focus event gives the user feedback that the icon-button has been focused by the keyboard interaction.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "color",
+          "title": {
+            "value": "Color",
+            "type": "text"
+          },
+          "description": {
+            "value": "The Icon button can have two color variants, Primary or Neutral Color.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "label",
+          "title": {
+            "value": "Accessibility Label",
+            "type": "text"
+          },
+          "description": {
+            "value": "A description that gets read by assistive devices. For optimal accessibility, you have to include a label that describes what the icon button does.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "link",
+          "title": {
+            "value": "Link Buttons",
+            "type": "text"
+          },
+          "description": {
+            "value": "It’s often helpful to have a button that works like a link. This is possible by setting the href attribute, which will make the component render an <a> under the hood. This gives you all the default link behavior the browser provides (e.g. CMD/CTRL/SHIFT + CLICK) and exposes the target and download attributes.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/form",
+      "components-by-tag/icons",
+      "components-by-tag/navigation"
+    ]
   },
   "id": "component:syn-icon-button",
   "kind": "component",

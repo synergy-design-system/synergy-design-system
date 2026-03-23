@@ -59,7 +59,194 @@
         "selector": "syn-range",
         "sourcePath": "packages/angular/components/range/range.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Form"
+      ],
+      "storySourcePath": "components.range",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Range",
+            "type": "text"
+          },
+          "description": {
+            "value": "Ranges allow the user to select values within a given range using a thumb.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "labels",
+          "title": {
+            "value": "Labels",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "help-text",
+          "title": {
+            "value": "Help Text",
+            "type": "text"
+          },
+          "description": {
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "focus",
+          "title": {
+            "value": "Focus / Active",
+            "type": "text"
+          },
+          "description": {
+            "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "readonly",
+          "title": {
+            "value": "Read-only",
+            "type": "text"
+          },
+          "description": {
+            "value": "Add the readonly attribute to a range to draw it in a readonly state.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "size",
+          "title": {
+            "value": "Sizes",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the size attribute to change a range’s size.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "invalid",
+          "title": {
+            "value": "Invalid",
+            "type": "text"
+          },
+          "description": {
+            "value": "The invalid status is used to warn the user that the input is invalid. As range validation is not supported by the browser, you will need to implement your own validation logic.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "disabled",
+          "title": {
+            "value": "Disabled",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the disabled attribute to disable a range.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "prefix-suffix",
+          "title": {
+            "value": "Prefix and Suffix",
+            "type": "text"
+          },
+          "description": {
+            "value": "Add any element to the start and end of range items using the prefix and suffix slots.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "custom-track-colors",
+          "title": {
+            "value": "Custom Track Colors",
+            "type": "text"
+          },
+          "description": {
+            "value": "You can customize the active and inactive portions of the track using the --track-color-active and --track-color-inactive custom properties.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "custom-track-offset",
+          "title": {
+            "value": "Custom Track Offset",
+            "type": "text"
+          },
+          "description": {
+            "value": "You can customize the initial offset of the active track using the --track-active-offset custom property.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "multi-knob",
+          "title": {
+            "value": "Multi thumb",
+            "type": "text"
+          },
+          "description": {
+            "value": "You can add multiple range-thumbs to your range.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "multi-knob-restrict-movement",
+          "title": {
+            "value": "Multi thumb with restricted movement",
+            "type": "text"
+          },
+          "description": {
+            "value": "Set the restrict-movement attribute to true to prevent the thumbs from overlapping.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "tooltip-placement",
+          "title": {
+            "value": "Tooltip Placement",
+            "type": "text"
+          },
+          "description": {
+            "value": "By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the range.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "tooltip-disabled",
+          "title": {
+            "value": "Disable the Tooltip",
+            "type": "text"
+          },
+          "description": {
+            "value": "To disable the tooltip, set tooltip-placement to none.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "tooltip-formatter",
+          "title": {
+            "value": "Custom Tooltip Formatter",
+            "type": "text"
+          },
+          "description": {
+            "value": "You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/form"
+    ]
   },
   "id": "component:syn-range",
   "kind": "component",

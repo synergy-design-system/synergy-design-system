@@ -35,7 +35,29 @@
         "selector": "syn-tab-panel",
         "sourcePath": "packages/angular/components/tab-panel/tab-panel.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Navigation"
+      ],
+      "storySourcePath": "components.tab-panel",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Tab Panel",
+            "type": "text"
+          },
+          "description": {
+            "value": "Tab panels are used inside tab groups to display tabbed content.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/navigation"
+    ]
   },
   "id": "component:syn-tab-panel",
   "kind": "component",

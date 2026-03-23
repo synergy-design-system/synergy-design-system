@@ -35,7 +35,73 @@
         "selector": "syn-divider",
         "sourcePath": "packages/angular/components/divider/divider.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Structure"
+      ],
+      "storySourcePath": "components.divider",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Divider",
+            "type": "text"
+          },
+          "description": {
+            "value": "Dividers are used to visually separate or group elements.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "width",
+          "title": {
+            "value": "Width",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the --width custom property to change the width of the divider.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "color",
+          "title": {
+            "value": "Color",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the --color custom property to change the color of the divider.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "spacing",
+          "title": {
+            "value": "Spacing",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the --spacing custom property to change the amount of space between the divider and it’s neighboring elements.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "vertical",
+          "title": {
+            "value": "Vertical",
+            "type": "text"
+          },
+          "description": {
+            "value": "Add the vertical attribute to draw the divider in a vertical orientation. The divider will span the full height of its container. Vertical dividers work especially well inside of a flex container.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/structure"
+    ]
   },
   "id": "component:syn-divider",
   "kind": "component",

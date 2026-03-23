@@ -44,7 +44,17 @@
         "selector": "syn-icon",
         "sourcePath": "packages/angular/components/icon/icon.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Icons"
+      ],
+      "storySourcePath": "components.icon",
+      "stories": []
+    },
+    "clusters": [
+      "components-by-tag/icons"
+    ]
   },
   "id": "component:syn-icon",
   "kind": "component",

@@ -52,7 +52,95 @@
         "selector": "syn-side-nav",
         "sourcePath": "packages/angular/components/side-nav/side-nav.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Application Shell"
+      ],
+      "storySourcePath": "components.side-nav",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Side Navigation",
+            "type": "text"
+          },
+          "description": {
+            "value": "Side navigation lets the user navigate through the entire content of a product. It supports single or nested navigation levels.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "rail",
+          "title": {
+            "value": "Rail",
+            "type": "text"
+          },
+          "description": {
+            "value": "Set the variant attribute to rail to only show a small navigation stripe at the left side using only the prefix-icons of the navigation items. This will open on hover on the rail navigation, therefore the header doesn't have an burger-menu-icon.\nOn touch devices the navigation opens on click and shows an overlay to be closable.\n\nNote: The Rail is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "sticky",
+          "title": {
+            "value": "Sticky",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the sticky variant when you need a persistent, toggleable side navigation that alternates between a compact “rail” (icon‐only) state and a full‐width state. \n\nNote: This pattern is only possible for flat navigation structures (no nesting) where every first‐level item has an icon.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "footer",
+          "title": {
+            "value": "Footer",
+            "type": "text"
+          },
+          "description": {
+            "value": "The Side navigation can have an optional bottom navigation \"slot\" to split up the navigation entries.\n\nPlease avoid having to many navigation entries (at the bottom) as it can massively influence the user experience.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "fixed",
+          "title": {
+            "value": "Fixed Content",
+            "type": "text"
+          },
+          "description": {
+            "value": "Per default, the side navigation shows an overlay. This should always be the case, if the content of the app is not shrinking. This makes especially sense for applications, where you navigate to a place and stay there for a longer time.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "shrinking",
+          "title": {
+            "value": "Shrinking Content",
+            "type": "text"
+          },
+          "description": {
+            "value": "For specific cases it might make sense to have the navigation open while still being able to interact with the app. This especially makes sense for cases where you switch a lot between areas to interact with an app.\n\nYou can decide yourself depending on your app and screen size, when it makes sense to omit the overlay and shrink the content.\n\nThis should never be used in combination with a Rail navigation, as this would lead to too much friction on hover.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "indentation",
+          "title": {
+            "value": "Indentation",
+            "type": "text"
+          },
+          "description": {
+            "value": "The different levels of navigation can be organized using the indention. The current status of a page shows the user directly which page they are browsing.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/application-shell"
+    ]
   },
   "id": "component:syn-side-nav",
   "kind": "component",

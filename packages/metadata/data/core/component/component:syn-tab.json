@@ -40,7 +40,29 @@
         "selector": "syn-tab",
         "sourcePath": "packages/angular/components/tab/tab.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Navigation"
+      ],
+      "storySourcePath": "components.tab",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Tab",
+            "type": "text"
+          },
+          "description": {
+            "value": "Tabs are used inside tab groups to represent and activate tab panels.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/navigation"
+    ]
   },
   "id": "component:syn-tab",
   "kind": "component",

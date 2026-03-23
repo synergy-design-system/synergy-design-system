@@ -35,7 +35,29 @@
         "selector": "syn-menu-label",
         "sourcePath": "packages/angular/components/menu-label/menu-label.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Navigation"
+      ],
+      "storySourcePath": "components.menu-label",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Menu Label",
+            "type": "text"
+          },
+          "description": {
+            "value": "Menu labels are used to describe a group of menu items.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/navigation"
+    ]
   },
   "id": "component:syn-menu-label",
   "kind": "component",

@@ -35,7 +35,95 @@
         "selector": "syn-card",
         "sourcePath": "packages/angular/components/card/card.component.ts"
       }
-    }
+    },
+    "override": {
+      "storyTags": [
+        "Structure"
+      ],
+      "storySourcePath": "components.card",
+      "stories": [
+        {
+          "name": "default",
+          "title": {
+            "value": "Card",
+            "type": "text"
+          },
+          "description": {
+            "value": "Cards can be used to group related subjects in a container.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "basic-card",
+          "title": {
+            "value": "Basic Card",
+            "type": "text"
+          },
+          "description": {
+            "value": "Basic cards aren’t very exciting, but they can display any content you want them to.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "with-header",
+          "title": {
+            "value": "Card with Header",
+            "type": "text"
+          },
+          "description": {
+            "value": "Headers can be used to display titles and more.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "with-footer",
+          "title": {
+            "value": "Card with Footer",
+            "type": "text"
+          },
+          "description": {
+            "value": "Footers can be used to display actions, summaries, or other relevant content.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "images",
+          "title": {
+            "value": "Images",
+            "type": "text"
+          },
+          "description": {
+            "value": "Cards accept an image slot. The image is displayed atop the card and stretches to fit.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "sharp",
+          "title": {
+            "value": "Sharp Card",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the sharp variant attribute for the Card to Use a different style.",
+            "type": "text"
+          }
+        },
+        {
+          "name": "shadow",
+          "title": {
+            "value": "Card with shadow",
+            "type": "text"
+          },
+          "description": {
+            "value": "Use the shadow attribute to add a shadow.",
+            "type": "text"
+          }
+        }
+      ]
+    },
+    "clusters": [
+      "components-by-tag/structure"
+    ]
   },
   "id": "component:syn-card",
   "kind": "component",

@@ -108,6 +108,12 @@ describe('metadata build integration', () => {
         'setup',
         'setup:assets-package.json',
       );
+      const tokenFigmaArtifactPath = path.join(
+        outputDir,
+        'core',
+        'token',
+        'token:tokens-figma-variables-sick2018-dark-json.json',
+      );
 
       await access(indexPath);
       await access(manifestPath);
@@ -124,6 +130,7 @@ describe('metadata build integration', () => {
       await access(stylesSetupPath);
       await access(fontsSetupPath);
       await access(assetsSetupPath);
+      await access(tokenFigmaArtifactPath);
 
       const indexJson = JSON.parse(await readFile(indexPath, 'utf8'));
       const manifestJson = JSON.parse(await readFile(manifestPath, 'utf8'));
@@ -139,6 +146,7 @@ describe('metadata build integration', () => {
       const stylesSetupJson = JSON.parse(await readFile(stylesSetupPath, 'utf8'));
       const fontsSetupJson = JSON.parse(await readFile(fontsSetupPath, 'utf8'));
       const assetsSetupJson = JSON.parse(await readFile(assetsSetupPath, 'utf8'));
+      const tokenFigmaArtifactJson = JSON.parse(await readFile(tokenFigmaArtifactPath, 'utf8'));
 
       expect(indexJson).to.have.property('version', '1.0.0');
       expect(indexJson).to.have.property('entities').that.is.an('array').that.is.not.empty;
@@ -175,6 +183,10 @@ describe('metadata build integration', () => {
       expect(tokensSetupJson.sources).to.include('packages/tokens/README.md');
       expect(tokensSetupJson.sources).to.include('packages/tokens/CHANGELOG.md');
       expect(tokensSetupJson.sources).to.include('packages/tokens/package.json');
+      expect(tokensSetupJson.sources).to.not.include('packages/tokens/src/figma-variables/output/sick2018-dark.json');
+      expect(tokenFigmaArtifactJson).to.have.property('kind', 'token');
+      expect(tokenFigmaArtifactJson).to.have.property('package', 'tokens');
+      expect(tokenFigmaArtifactJson.layers.full.some((ref) => ref.path === 'layers/full/tokens/figma-variables/sick2018-dark.json')).to.equal(true);
       expect(stylesSetupJson).to.have.property('kind', 'setup');
       expect(stylesSetupJson).to.have.property('package', 'styles');
       expect(stylesSetupJson.sources).to.include('packages/styles/README.md');
@@ -191,6 +203,7 @@ describe('metadata build integration', () => {
       expect(assetsSetupJson.sources).to.include('packages/assets/CHANGELOG.md');
       expect(assetsSetupJson.sources).to.include('packages/assets/package.json');
       expect(indexJson.entities.some((entity) => entity.id === 'setup:tokens-package')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'token:tokens-figma-variables-sick2018-dark-json')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:styles-package')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:fonts-package')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:assets-package')).to.equal(true);

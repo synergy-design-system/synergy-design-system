@@ -1,0 +1,30 @@
+{
+  "custom": {
+    "artifactPath": "figma-variables/sick2018-dark.json",
+    "sourceType": "figma-variables-output"
+  },
+  "id": "token:tokens-figma-variables-sick2018-dark-json",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/figma-variables/sick2018-dark.json"
+      }
+    ]
+  },
+  "name": "sick2018-dark.json",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.10.4",
+  "sources": [
+    "packages/tokens/src/figma-variables/output/sick2018-dark.json"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "figma-variables-output"
+  ]
+}

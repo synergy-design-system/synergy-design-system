@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-23T10:33:34.516Z",
+  "builtAt": "2026-03-23T11:00:27.455Z",
   "entities": [
     {
       "corePath": "data/core/component/component:syn-accordion.json",
@@ -1053,6 +1053,193 @@
         "framework",
         "setup",
         "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-figma-variables-sick2018-dark-json.json",
+      "id": "token:tokens-figma-variables-sick2018-dark-json",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2018-dark.json",
+      "search": [
+        "token:tokens-figma-variables-sick2018-dark-json",
+        "sick2018-dark.json",
+        "artifact",
+        "token",
+        "tokens",
+        "figma-variables-output"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-figma-variables-sick2018-light-json.json",
+      "id": "token:tokens-figma-variables-sick2018-light-json",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2018-light.json",
+      "search": [
+        "token:tokens-figma-variables-sick2018-light-json",
+        "sick2018-light.json",
+        "artifact",
+        "token",
+        "tokens",
+        "figma-variables-output"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-figma-variables-sick2025-dark-json.json",
+      "id": "token:tokens-figma-variables-sick2025-dark-json",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025-dark.json",
+      "search": [
+        "token:tokens-figma-variables-sick2025-dark-json",
+        "sick2025-dark.json",
+        "artifact",
+        "token",
+        "tokens",
+        "figma-variables-output"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-figma-variables-sick2025-light-json.json",
+      "id": "token:tokens-figma-variables-sick2025-light-json",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025-light.json",
+      "search": [
+        "token:tokens-figma-variables-sick2025-light-json",
+        "sick2025-light.json",
+        "artifact",
+        "token",
+        "tokens",
+        "figma-variables-output"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-js-index-d-ts.json",
+      "id": "token:tokens-js-index-d-ts",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "index.d.ts",
+      "search": [
+        "token:tokens-js-index-d-ts",
+        "index.d.ts",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-js-index-js.json",
+      "id": "token:tokens-js-index-js",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "index.js",
+      "search": [
+        "token:tokens-js-index-js",
+        "index.js",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-scss-tokens-scss.json",
+      "id": "token:tokens-scss-tokens-scss",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "_tokens.scss",
+      "search": [
+        "token:tokens-scss-tokens-scss",
+        "_tokens.scss",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-themes-sick2018-dark-css.json",
+      "id": "token:tokens-themes-sick2018-dark-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2018_dark.css",
+      "search": [
+        "token:tokens-themes-sick2018-dark-css",
+        "sick2018_dark.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-themes-sick2018-light-css.json",
+      "id": "token:tokens-themes-sick2018-light-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2018_light.css",
+      "search": [
+        "token:tokens-themes-sick2018-light-css",
+        "sick2018_light.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-themes-sick2025-dark-css.json",
+      "id": "token:tokens-themes-sick2025-dark-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025_dark.css",
+      "search": [
+        "token:tokens-themes-sick2025-dark-css",
+        "sick2025_dark.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-themes-sick2025-light-css.json",
+      "id": "token:tokens-themes-sick2025-light-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025_light.css",
+      "search": [
+        "token:tokens-themes-sick2025-light-css",
+        "sick2025_light.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
       ]
     }
   ],

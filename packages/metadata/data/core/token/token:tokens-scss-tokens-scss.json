@@ -1,0 +1,30 @@
+{
+  "custom": {
+    "artifactPath": "scss/_tokens.scss",
+    "sourceType": "dist"
+  },
+  "id": "token:tokens-scss-tokens-scss",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/scss/_tokens.scss"
+      }
+    ]
+  },
+  "name": "_tokens.scss",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.10.4",
+  "sources": [
+    "packages/tokens/dist/scss/_tokens.scss"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "dist"
+  ]
+}

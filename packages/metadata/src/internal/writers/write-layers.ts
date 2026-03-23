@@ -4,7 +4,7 @@
  */
 
 import { copyFile, mkdir, writeFile } from 'node:fs/promises';
-import { basename, join, relative } from 'node:path';
+import { basename, dirname, join, relative } from 'node:path';
 import { type Result, err, ok } from '../core/result.js';
 import { type Context } from '../core/context.js';
 import { type WriteError } from '../core/errors.js';
@@ -30,6 +30,22 @@ const getPackageLabel = (sourcePath: string): string => {
   }
 
   return parts[0] === 'packages' && parts[1] ? parts[1] : '_other';
+};
+
+const mapTokenLayerPath = (sourcePath: string): string => {
+  if (sourcePath.startsWith('packages/tokens/dist/')) {
+    return sourcePath.slice('packages/tokens/dist/'.length);
+  }
+
+  if (sourcePath.startsWith('packages/tokens/src/figma-variables/output/')) {
+    return `figma-variables/${sourcePath.slice('packages/tokens/src/figma-variables/output/'.length)}`;
+  }
+
+  if (sourcePath.startsWith('packages/tokens/')) {
+    return sourcePath.slice('packages/tokens/'.length);
+  }
+
+  return basename(sourcePath);
 };
 
 /**
@@ -90,21 +106,34 @@ export async function writeLayerAssets(
     const layerRefs: LayerRef[] = [];
 
     try {
+      // Token artifact entities are grouped by package path under layers/full/tokens.
+      const isGroupedTokenEntity = entity.kind === 'token' && entity.package === 'tokens';
+
       // Create entity's layer directory
-      const entityLayerDir = join(layersDir, 'full', entity.kind, entity.id);
+      const entityLayerDir = isGroupedTokenEntity
+        ? join(layersDir, 'full', 'tokens')
+        : join(layersDir, 'full', entity.kind, entity.id);
       await ensureDir(entityLayerDir);
 
       // Copy each source file
       for (const sourcePath of entity.sources) {
         const fullSourcePath = join(repoRoot, sourcePath);
-        // Group files by package label (components|react|vue|angular|…) so that
-        // identically-named files from different packages don't collide,
-        // e.g. layers/full/component/component:syn-button/react/button.ts
-        const packageLabel = getPackageLabel(sourcePath);
-        const destPath = join(entityLayerDir, packageLabel, basename(sourcePath));
+        const destPath = isGroupedTokenEntity
+          ? join(
+            entityLayerDir,
+            mapTokenLayerPath(sourcePath),
+          )
+          : join(
+            // Group files by package label (components|react|vue|angular|…) so that
+            // identically-named files from different packages don't collide,
+            // e.g. layers/full/component/component:syn-button/react/button.ts
+            entityLayerDir,
+            getPackageLabel(sourcePath),
+            basename(sourcePath),
+          );
 
         try {
-          await mkdir(join(entityLayerDir, packageLabel), { recursive: true });
+          await mkdir(dirname(destPath), { recursive: true });
           await copyFile(fullSourcePath, destPath);
 
           const relativeLayerPath = relative(outputDir, destPath);

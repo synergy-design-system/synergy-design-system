@@ -1,0 +1,30 @@
+{
+  "custom": {
+    "artifactPath": "themes/sick2018_light.css",
+    "sourceType": "dist"
+  },
+  "id": "token:tokens-themes-sick2018-light-css",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/themes/sick2018_light.css"
+      }
+    ]
+  },
+  "name": "sick2018_light.css",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.10.4",
+  "sources": [
+    "packages/tokens/dist/themes/sick2018_light.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "dist"
+  ]
+}

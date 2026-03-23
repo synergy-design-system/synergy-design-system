@@ -1,5 +1,22 @@
 {
   "custom": {
+    "artifactGroups": {
+      "dist": [
+        "packages/tokens/dist/js/index.d.ts",
+        "packages/tokens/dist/js/index.js",
+        "packages/tokens/dist/scss/_tokens.scss",
+        "packages/tokens/dist/themes/sick2018_dark.css",
+        "packages/tokens/dist/themes/sick2018_light.css",
+        "packages/tokens/dist/themes/sick2025_dark.css",
+        "packages/tokens/dist/themes/sick2025_light.css"
+      ],
+      "figmaVariablesOutput": [
+        "packages/tokens/src/figma-variables/output/sick2018-dark.json",
+        "packages/tokens/src/figma-variables/output/sick2018-light.json",
+        "packages/tokens/src/figma-variables/output/sick2025-dark.json",
+        "packages/tokens/src/figma-variables/output/sick2025-light.json"
+      ]
+    },
     "exports": [
       ".",
       "./package.json",
@@ -15,7 +32,7 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/setup/setup:tokens-package/tokens/README.md"
+        "path": "layers/full/setup/setup:tokens-package/tokens/BREAKING_CHANGES.md"
       },
       {
         "layer": "full",
@@ -23,7 +40,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/setup/setup:tokens-package/tokens/BREAKING_CHANGES.md"
+        "path": "layers/full/setup/setup:tokens-package/tokens/README.md"
       },
       {
         "layer": "full",
@@ -36,9 +53,9 @@
   "relations": [],
   "since": "3.10.4",
   "sources": [
-    "packages/tokens/README.md",
-    "packages/tokens/CHANGELOG.md",
     "packages/tokens/BREAKING_CHANGES.md",
+    "packages/tokens/CHANGELOG.md",
+    "packages/tokens/README.md",
     "packages/tokens/package.json"
   ],
   "status": "stable",

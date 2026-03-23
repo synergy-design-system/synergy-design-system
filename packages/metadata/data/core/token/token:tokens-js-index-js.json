@@ -1,0 +1,30 @@
+{
+  "custom": {
+    "artifactPath": "js/index.js",
+    "sourceType": "dist"
+  },
+  "id": "token:tokens-js-index-js",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/js/index.js"
+      }
+    ]
+  },
+  "name": "index.js",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.10.4",
+  "sources": [
+    "packages/tokens/dist/js/index.js"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "dist"
+  ]
+}

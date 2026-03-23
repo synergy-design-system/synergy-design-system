@@ -19,8 +19,21 @@
     "typescript": "^5.9.3"
   },
   "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./public": {
+      "types": "./dist/public/index.d.ts",
+      "default": "./dist/public/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "files": [
+    "data/**",
+    "dist/index.d.ts",
+    "dist/index.js",
+    "dist/public/**",
     "README.md",
     "CHANGELOG.md"
   ],
@@ -35,6 +48,7 @@
     "Synergy Metadata"
   ],
   "license": "MIT",
+  "main": "./dist/index.js",
   "name": "@synergy-design-system/metadata",
   "repository": {
     "type": "git",
@@ -49,6 +63,7 @@
     "pretest": "pnpm build",
     "test": "mocha \"test/**/*.test.mjs\""
   },
+  "types": "./dist/index.d.ts",
   "type": "module",
   "version": "1.0.0"
 }

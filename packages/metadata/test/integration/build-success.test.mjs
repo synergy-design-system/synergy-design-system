@@ -90,6 +90,24 @@ describe('metadata build integration', () => {
         'setup',
         'setup:tokens-package.json',
       );
+      const stylesSetupPath = path.join(
+        outputDir,
+        'core',
+        'setup',
+        'setup:styles-package.json',
+      );
+      const fontsSetupPath = path.join(
+        outputDir,
+        'core',
+        'setup',
+        'setup:fonts-package.json',
+      );
+      const assetsSetupPath = path.join(
+        outputDir,
+        'core',
+        'setup',
+        'setup:assets-package.json',
+      );
 
       await access(indexPath);
       await access(manifestPath);
@@ -103,6 +121,9 @@ describe('metadata build integration', () => {
       await access(reactSetupPath);
       await access(vueSetupPath);
       await access(tokensSetupPath);
+      await access(stylesSetupPath);
+      await access(fontsSetupPath);
+      await access(assetsSetupPath);
 
       const indexJson = JSON.parse(await readFile(indexPath, 'utf8'));
       const manifestJson = JSON.parse(await readFile(manifestPath, 'utf8'));
@@ -115,6 +136,9 @@ describe('metadata build integration', () => {
       const reactSetupJson = JSON.parse(await readFile(reactSetupPath, 'utf8'));
       const vueSetupJson = JSON.parse(await readFile(vueSetupPath, 'utf8'));
       const tokensSetupJson = JSON.parse(await readFile(tokensSetupPath, 'utf8'));
+      const stylesSetupJson = JSON.parse(await readFile(stylesSetupPath, 'utf8'));
+      const fontsSetupJson = JSON.parse(await readFile(fontsSetupPath, 'utf8'));
+      const assetsSetupJson = JSON.parse(await readFile(assetsSetupPath, 'utf8'));
 
       expect(indexJson).to.have.property('version', '1.0.0');
       expect(indexJson).to.have.property('entities').that.is.an('array').that.is.not.empty;
@@ -151,7 +175,25 @@ describe('metadata build integration', () => {
       expect(tokensSetupJson.sources).to.include('packages/tokens/README.md');
       expect(tokensSetupJson.sources).to.include('packages/tokens/CHANGELOG.md');
       expect(tokensSetupJson.sources).to.include('packages/tokens/package.json');
+      expect(stylesSetupJson).to.have.property('kind', 'setup');
+      expect(stylesSetupJson).to.have.property('package', 'styles');
+      expect(stylesSetupJson.sources).to.include('packages/styles/README.md');
+      expect(stylesSetupJson.sources).to.include('packages/styles/CHANGELOG.md');
+      expect(stylesSetupJson.sources).to.include('packages/styles/package.json');
+      expect(fontsSetupJson).to.have.property('kind', 'setup');
+      expect(fontsSetupJson).to.have.property('package', 'fonts');
+      expect(fontsSetupJson.sources).to.include('packages/fonts/README.md');
+      expect(fontsSetupJson.sources).to.include('packages/fonts/CHANGELOG.md');
+      expect(fontsSetupJson.sources).to.include('packages/fonts/package.json');
+      expect(assetsSetupJson).to.have.property('kind', 'setup');
+      expect(assetsSetupJson).to.have.property('package', 'assets');
+      expect(assetsSetupJson.sources).to.include('packages/assets/README.md');
+      expect(assetsSetupJson.sources).to.include('packages/assets/CHANGELOG.md');
+      expect(assetsSetupJson.sources).to.include('packages/assets/package.json');
       expect(indexJson.entities.some((entity) => entity.id === 'setup:tokens-package')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'setup:styles-package')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'setup:fonts-package')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'setup:assets-package')).to.equal(true);
     } finally {
       await rm(tempRoot, { force: true, recursive: true });
     }

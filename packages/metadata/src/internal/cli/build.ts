@@ -13,7 +13,13 @@
 import { resolve } from 'node:path';
 import { createConsoleLogger } from '../core/context.js';
 import { type Context } from '../core/context.js';
-import { componentsPipeline, tokensPipeline } from '../collectors/index.js';
+import {
+  assetsPipeline,
+  componentsPipeline,
+  fontsPipeline,
+  stylesPipeline,
+  tokensPipeline,
+} from '../collectors/index.js';
 import {
   aggregateEntities,
   buildIndex,
@@ -50,7 +56,7 @@ async function main() {
   try {
     // Step 1: Run pipelines
     ctx.logger?.info('Step 1: Running source pipelines');
-    const [componentsResult, tokensResult] = await Promise.all([
+    const [componentsResult, tokensResult, stylesResult, fontsResult, assetsResult] = await Promise.all([
       runSourcePipeline(
         componentsPipeline,
         {
@@ -68,6 +74,27 @@ async function main() {
         },
         ctx,
       ),
+      runSourcePipeline(
+        stylesPipeline,
+        {
+          packagePath: 'packages/styles',
+        },
+        ctx,
+      ),
+      runSourcePipeline(
+        fontsPipeline,
+        {
+          packagePath: 'packages/fonts',
+        },
+        ctx,
+      ),
+      runSourcePipeline(
+        assetsPipeline,
+        {
+          packagePath: 'packages/assets',
+        },
+        ctx,
+      ),
     ]);
 
     if (!componentsResult.ok) {
@@ -80,9 +107,30 @@ async function main() {
       process.exit(1);
     }
 
+    if (!stylesResult.ok) {
+      ctx.logger?.error('Styles pipeline failed', stylesResult.error);
+      process.exit(1);
+    }
+
+    if (!fontsResult.ok) {
+      ctx.logger?.error('Fonts pipeline failed', fontsResult.error);
+      process.exit(1);
+    }
+
+    if (!assetsResult.ok) {
+      ctx.logger?.error('Assets pipeline failed', assetsResult.error);
+      process.exit(1);
+    }
+
     // Step 2: Aggregate
     ctx.logger?.info('Step 2: Aggregating entities');
-    const aggregated = aggregateEntities([componentsResult.value, tokensResult.value], ctx);
+    const aggregated = aggregateEntities([
+      componentsResult.value,
+      tokensResult.value,
+      stylesResult.value,
+      fontsResult.value,
+      assetsResult.value,
+    ], ctx);
     if (!aggregated.ok) {
       ctx.logger?.error('Aggregation failed', aggregated.error);
       process.exit(1);
@@ -181,6 +229,18 @@ async function main() {
       }, {
         entityCount: tokensResult.value.length,
         source: 'tokens',
+        status: 'success',
+      }, {
+        entityCount: stylesResult.value.length,
+        source: 'styles',
+        status: 'success',
+      }, {
+        entityCount: fontsResult.value.length,
+        source: 'fonts',
+        status: 'success',
+      }, {
+        entityCount: assetsResult.value.length,
+        source: 'assets',
         status: 'success',
       }, {
         entityCount: 4,

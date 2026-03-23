@@ -1,9 +1,14 @@
 {
-  "builtAt": "2026-03-23T10:27:58.721Z",
+  "builtAt": "2026-03-23T10:33:34.517Z",
   "sources": [
     {
       "entityCount": 4,
       "source": "angular",
+      "status": "success"
+    },
+    {
+      "entityCount": 1,
+      "source": "assets",
       "status": "success"
     },
     {
@@ -13,7 +18,17 @@
     },
     {
       "entityCount": 1,
+      "source": "fonts",
+      "status": "success"
+    },
+    {
+      "entityCount": 1,
       "source": "react",
+      "status": "success"
+    },
+    {
+      "entityCount": 1,
+      "source": "styles",
       "status": "success"
     },
     {

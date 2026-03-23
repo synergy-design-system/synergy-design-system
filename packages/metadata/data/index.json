@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-23T10:27:58.719Z",
+  "builtAt": "2026-03-23T10:33:34.516Z",
   "entities": [
     {
       "corePath": "data/core/component/component:syn-accordion.json",
@@ -932,6 +932,21 @@
       ]
     },
     {
+      "corePath": "data/core/setup/setup:assets-package.json",
+      "id": "setup:assets-package",
+      "kind": "setup",
+      "layers": {
+        "full": 4
+      },
+      "name": "Assets Package",
+      "search": [
+        "setup:assets-package",
+        "Assets Package",
+        "assets",
+        "setup"
+      ]
+    },
+    {
       "corePath": "data/core/setup/setup:components-package.json",
       "id": "setup:components-package",
       "kind": "setup",
@@ -948,6 +963,21 @@
       ]
     },
     {
+      "corePath": "data/core/setup/setup:fonts-package.json",
+      "id": "setup:fonts-package",
+      "kind": "setup",
+      "layers": {
+        "full": 3
+      },
+      "name": "Fonts Package",
+      "search": [
+        "setup:fonts-package",
+        "Fonts Package",
+        "fonts",
+        "setup"
+      ]
+    },
+    {
       "corePath": "data/core/setup/setup:react-package.json",
       "id": "setup:react-package",
       "kind": "setup",
@@ -961,6 +991,21 @@
         "framework",
         "react",
         "setup"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:styles-package.json",
+      "id": "setup:styles-package",
+      "kind": "setup",
+      "layers": {
+        "full": 4
+      },
+      "name": "Styles Package",
+      "search": [
+        "setup:styles-package",
+        "Styles Package",
+        "setup",
+        "styles"
       ]
     },
     {

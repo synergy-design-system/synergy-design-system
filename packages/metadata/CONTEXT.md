@@ -133,9 +133,31 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   - `packages/mcp/metadata/davinci-migration/migration-guide.md`
 - In layer output, the DaVinci migration guide is written to a `davinci/` folder under the migration setup entity.
 
+### Tokens/Styles/Fonts/Assets Setup Collectors (Phase 2 setup scope)
+- Setup collectors are now implemented for package-level metadata in:
+  - `src/internal/collectors/tokens/`
+  - `src/internal/collectors/styles/`
+  - `src/internal/collectors/fonts/`
+  - `src/internal/collectors/assets/`
+- Each collector currently emits one setup entity with package docs + export surface metadata from `package.json`:
+  - `setup:tokens-package`
+  - `setup:styles-package`
+  - `setup:fonts-package`
+  - `setup:assets-package`
+- `BREAKING_CHANGES.md` is included conditionally where present.
+- Phase 2 setup scope remains docs/export metadata first; deep package artifact ingestion is deferred.
+
 ### Pipeline and CLI
 - `runSourcePipeline`, `aggregate`, `validate`, `build-index` wired.
 - `runSourcePipeline` now supports async/config-aware enrich steps.
+- CLI now runs source pipelines in parallel for:
+  - components
+  - tokens
+  - styles
+  - fonts
+  - assets
+- Aggregation now merges entities from all active pipelines.
+- Manifest source reporting includes tokens/styles/fonts/assets in addition to existing framework sources.
 - 8-step CLI build pipeline:
   1. Run source pipelines
   2. Aggregate entities
@@ -145,7 +167,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   6. Write core entities (with layer data merged in)
   7. Write index + manifest
   8. Generate and write JSON schemas
-- Build now reports 48 canonical components and 8 setup entities for 56 total entities.
+- Build now reports 48 canonical components and 12 setup entities for 60 total entities.
 - CLI build output directory is configurable via `SYNERGY_METADATA_OUTPUT_DIR`.
 
 ### Public Runtime API
@@ -176,6 +198,12 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Build integration test now also verifies Vue framework metadata on `component:syn-accordion` and the emitted `setup:vue-package` entity.
 - Build integration test now also verifies React framework metadata on canonical component entities and the emitted `setup:react-package` entity.
 - Build integration test now also verifies Angular framework metadata on canonical component entities and emitted Angular setup entities.
+- Build integration test now also verifies setup entities for:
+  - `setup:tokens-package`
+  - `setup:styles-package`
+  - `setup:fonts-package`
+  - `setup:assets-package`
+- Build integration test also verifies these setup entities are discoverable through `index.json`.
 - Build integration test writes to a temporary output directory instead of mutating committed `data/`.
 - 9 tests passing.
 - `pretest` now runs TypeScript compilation only; full metadata regeneration is explicit.
@@ -197,7 +225,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Scraped docs ingestion is intentionally out of scope in this phase.
 - Some metadata values are still fallback/default driven (e.g. `unknown` for missing `since`).
 - Package exports now expose only the public runtime query API; internal build/runtime modules are intentionally unpublished.
-- Only the components collector exists; tokens/styles/fonts/assets/docs collectors are not yet implemented.
+- Tokens/styles/fonts/assets collectors currently cover package-level setup metadata only; deep domain collectors are not implemented yet.
 - The public API currently provides generic store/query access only; domain-specific facades (components/tokens/styles/assets) are not implemented yet.
 
 ## Data/Folder State
@@ -211,6 +239,10 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/core/setup/setup:angular-components-module.json` — Angular components module setup metadata
 - `data/core/setup/setup:angular-forms-module.json` — Angular forms module setup metadata
 - `data/core/setup/setup:angular-validators-module.json` — Angular validators module setup metadata
+- `data/core/setup/setup:tokens-package.json` — package-level Tokens setup metadata
+- `data/core/setup/setup:styles-package.json` — package-level Styles setup metadata
+- `data/core/setup/setup:fonts-package.json` — package-level Fonts setup metadata
+- `data/core/setup/setup:assets-package.json` — package-level Assets setup metadata
 - `data/layers/full/component/component:{name}/{components|react|vue}/` — package-namespaced source files copied per component (no filename collisions)
 - `data/layers/full/component/component:{name}/angular/` — Angular wrapper source files for each enriched component
 - `data/layers/full/component/component:{name}/react/{Syn*JSXElement.ts}` — generated per-component React JSX type snippets
@@ -219,26 +251,29 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/layers/full/setup/setup:synergy-migrations/davinci/` — DaVinci migration guide copied into layers
 - `data/layers/full/setup/setup:react-package/` — React package docs/export surface copied into layers
 - `data/layers/full/setup/setup:vue-package/` — Vue package docs/export surface copied into layers
+- `data/layers/full/setup/setup:tokens-package/` — Tokens package docs/export surface copied into layers
+- `data/layers/full/setup/setup:styles-package/` — Styles package docs/export surface copied into layers
+- `data/layers/full/setup/setup:fonts-package/` — Fonts package docs/export surface copied into layers
+- `data/layers/full/setup/setup:assets-package/` — Assets package docs/export surface copied into layers
 - `data/schemas/core-entity.schema.json`, `layer-ref.schema.json`, `manifest.schema.json`
-- `data/index.json` — searchable index with 56 entries (48 components + 8 setup entities)
+- `data/index.json` — searchable index with 60 entries (48 components + 12 setup entities)
 - `data/manifest.json` — build manifest with timestamp and source stats
 
 ## Suggested Next Steps
-1. Phase 2 (active): add package-level setup entities for the remaining low-complexity packages: tokens, styles, fonts, assets.
-2. In Phase 2, implement `setup:tokens-package`, `setup:styles-package`, `setup:fonts-package`, and `setup:assets-package` using the existing `setup:*` entity pattern.
-3. In Phase 2, wire new package collectors into build orchestration (`runSourcePipeline`), aggregation, index/manifest writing, and integration tests.
-4. Build domain-specific public facades on top of the generic store API, starting with components.
-5. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
-6. Implement `interface` layer: extract user-facing markdown/API summaries from component and wrapper source files.
-7. Decide whether React JSX metadata should later feed generated `interface` markdown directly.
-8. Implement `examples` layer later via Storybook/docs scraping.
+1. Phase 2 setup-entity milestone is complete for tokens/styles/fonts/assets; keep parity checks against `packages/mcp/metadata/packages/{tokens|styles|fonts|assets}/`.
+2. Optional follow-up: add artifact-depth for package setup entities (e.g., token CSS/JS/SCSS surfaces) while keeping optional file handling robust.
+3. Build domain-specific public facades on top of the generic store API, starting with components.
+4. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
+5. Implement `interface` layer: extract user-facing markdown/API summaries from component and wrapper source files.
+6. Decide whether React JSX metadata should later feed generated `interface` markdown directly.
+7. Implement `examples` layer later via Storybook/docs scraping.
 
 ## Resume Notes
 - If build fails on components manifest path, ensure components package has been built so `dist/custom-elements.json` exists.
 - Keep metadata package independent from MCP package internals.
 - For Phase 2 parity checks, always compare package-level setup outputs against legacy MCP metadata folders under `packages/mcp/metadata/packages/{tokens|styles|fonts|assets}/`.
 - For Phase 2 setup entities, keep `BREAKING_CHANGES.md` optional per package and include it only when present.
-- Expected total entity count after Phase 2 setup-entity rollout is 60 (48 components + 12 setup entities).
+- Phase 2 setup-entity rollout is complete at 60 total entities (48 components + 12 setup entities).
 - Run `pnpm test` from `packages/metadata/` for compile + tests without rewriting committed `data/`.
 - Run `pnpm build` or `pnpm test:with-build` only when you intentionally want a fresh metadata rebuild.
 - Layer assets are written before core entities so layer references are available when entities are serialized.

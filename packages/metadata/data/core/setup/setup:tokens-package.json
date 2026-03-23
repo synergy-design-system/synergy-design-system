@@ -1,0 +1,49 @@
+{
+  "custom": {
+    "exports": [
+      ".",
+      "./package.json",
+      "./scss/*",
+      "./themes/*"
+    ],
+    "packageName": "@synergy-design-system/tokens",
+    "packageVersion": "3.10.4"
+  },
+  "id": "setup:tokens-package",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:tokens-package/tokens/README.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:tokens-package/tokens/CHANGELOG.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:tokens-package/tokens/BREAKING_CHANGES.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:tokens-package/tokens/package.json"
+      }
+    ]
+  },
+  "name": "Tokens Package",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.10.4",
+  "sources": [
+    "packages/tokens/README.md",
+    "packages/tokens/CHANGELOG.md",
+    "packages/tokens/BREAKING_CHANGES.md",
+    "packages/tokens/package.json"
+  ],
+  "status": "stable",
+  "tags": [
+    "setup",
+    "tokens"
+  ]
+}

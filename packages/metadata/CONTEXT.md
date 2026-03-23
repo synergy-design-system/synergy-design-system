@@ -20,6 +20,10 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - React uses a dual-surface model on top of the canonical component entity:
   - `react.wrapper` for `@lit/react` runtime wrappers
   - `react.jsx` for TSX custom-element typings parsed from the generated types file
+- Phase 2 migration constraint for package-level setup entities:
+  - Treat `packages/mcp/metadata/packages/tokens/`, `packages/mcp/metadata/packages/styles/`, `packages/mcp/metadata/packages/fonts/`, and `packages/mcp/metadata/packages/assets/` as legacy baseline references for parity checks.
+  - Keep metadata generation independent from MCP internals; authoritative inputs for new setup entities come from current monorepo packages (`packages/tokens`, `packages/styles`, `packages/fonts`, `packages/assets`).
+  - Phase 2 setup scope is package-facing docs and export surfaces first (README/CHANGELOG/package.json/BREAKING_CHANGES where present), not deep source ingestion.
 
 ## Current Architecture
 - Source code root: `src/`
@@ -220,17 +224,21 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/manifest.json` — build manifest with timestamp and source stats
 
 ## Suggested Next Steps
-1. Add package-level entities for the remaining low-complexity packages: tokens, styles, fonts, assets.
-2. Build domain-specific public facades on top of the generic store API, starting with components.
-3. Add package-level entities for tokens/styles/fonts/assets as their collectors land.
-4. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
-5. Implement `interface` layer: extract user-facing markdown/API summaries from component and wrapper source files.
-6. Decide whether React JSX metadata should later feed generated `interface` markdown directly.
-7. Implement `examples` layer later via Storybook/docs scraping.
+1. Phase 2 (active): add package-level setup entities for the remaining low-complexity packages: tokens, styles, fonts, assets.
+2. In Phase 2, implement `setup:tokens-package`, `setup:styles-package`, `setup:fonts-package`, and `setup:assets-package` using the existing `setup:*` entity pattern.
+3. In Phase 2, wire new package collectors into build orchestration (`runSourcePipeline`), aggregation, index/manifest writing, and integration tests.
+4. Build domain-specific public facades on top of the generic store API, starting with components.
+5. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
+6. Implement `interface` layer: extract user-facing markdown/API summaries from component and wrapper source files.
+7. Decide whether React JSX metadata should later feed generated `interface` markdown directly.
+8. Implement `examples` layer later via Storybook/docs scraping.
 
 ## Resume Notes
 - If build fails on components manifest path, ensure components package has been built so `dist/custom-elements.json` exists.
 - Keep metadata package independent from MCP package internals.
+- For Phase 2 parity checks, always compare package-level setup outputs against legacy MCP metadata folders under `packages/mcp/metadata/packages/{tokens|styles|fonts|assets}/`.
+- For Phase 2 setup entities, keep `BREAKING_CHANGES.md` optional per package and include it only when present.
+- Expected total entity count after Phase 2 setup-entity rollout is 60 (48 components + 12 setup entities).
 - Run `pnpm test` from `packages/metadata/` for compile + tests without rewriting committed `data/`.
 - Run `pnpm build` or `pnpm test:with-build` only when you intentionally want a fresh metadata rebuild.
 - Layer assets are written before core entities so layer references are available when entities are serialized.

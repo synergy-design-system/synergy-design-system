@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-23T09:57:58.425Z",
+  "builtAt": "2026-03-23T10:27:58.719Z",
   "entities": [
     {
       "corePath": "data/core/component/component:syn-accordion.json",
@@ -977,6 +977,21 @@
         "breaking-changes",
         "migrations",
         "setup"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:tokens-package.json",
+      "id": "setup:tokens-package",
+      "kind": "setup",
+      "layers": {
+        "full": 4
+      },
+      "name": "Tokens Package",
+      "search": [
+        "setup:tokens-package",
+        "Tokens Package",
+        "setup",
+        "tokens"
       ]
     },
     {

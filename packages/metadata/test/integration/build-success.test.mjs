@@ -84,6 +84,12 @@ describe('metadata build integration', () => {
         'setup',
         'setup:vue-package.json',
       );
+      const tokensSetupPath = path.join(
+        outputDir,
+        'core',
+        'setup',
+        'setup:tokens-package.json',
+      );
 
       await access(indexPath);
       await access(manifestPath);
@@ -96,6 +102,7 @@ describe('metadata build integration', () => {
       await access(angularValidatorsModuleSetupPath);
       await access(reactSetupPath);
       await access(vueSetupPath);
+      await access(tokensSetupPath);
 
       const indexJson = JSON.parse(await readFile(indexPath, 'utf8'));
       const manifestJson = JSON.parse(await readFile(manifestPath, 'utf8'));
@@ -107,6 +114,7 @@ describe('metadata build integration', () => {
       const angularValidatorsModuleSetupJson = JSON.parse(await readFile(angularValidatorsModuleSetupPath, 'utf8'));
       const reactSetupJson = JSON.parse(await readFile(reactSetupPath, 'utf8'));
       const vueSetupJson = JSON.parse(await readFile(vueSetupPath, 'utf8'));
+      const tokensSetupJson = JSON.parse(await readFile(tokensSetupPath, 'utf8'));
 
       expect(indexJson).to.have.property('version', '1.0.0');
       expect(indexJson).to.have.property('entities').that.is.an('array').that.is.not.empty;
@@ -138,6 +146,12 @@ describe('metadata build integration', () => {
       expect(reactSetupJson).to.have.property('package', 'react');
       expect(vueSetupJson).to.have.property('kind', 'setup');
       expect(vueSetupJson).to.have.property('package', 'vue');
+      expect(tokensSetupJson).to.have.property('kind', 'setup');
+      expect(tokensSetupJson).to.have.property('package', 'tokens');
+      expect(tokensSetupJson.sources).to.include('packages/tokens/README.md');
+      expect(tokensSetupJson.sources).to.include('packages/tokens/CHANGELOG.md');
+      expect(tokensSetupJson.sources).to.include('packages/tokens/package.json');
+      expect(indexJson.entities.some((entity) => entity.id === 'setup:tokens-package')).to.equal(true);
     } finally {
       await rm(tempRoot, { force: true, recursive: true });
     }

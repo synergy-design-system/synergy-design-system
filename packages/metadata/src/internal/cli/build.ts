@@ -13,7 +13,7 @@
 import { resolve } from 'node:path';
 import { createConsoleLogger } from '../core/context.js';
 import { type Context } from '../core/context.js';
-import { componentsPipeline } from '../collectors/index.js';
+import { componentsPipeline, tokensPipeline } from '../collectors/index.js';
 import {
   aggregateEntities,
   buildIndex,
@@ -50,25 +50,39 @@ async function main() {
   try {
     // Step 1: Run pipelines
     ctx.logger?.info('Step 1: Running source pipelines');
-    const componentsResult = await runSourcePipeline(
-      componentsPipeline,
-      {
-        angularPackagePath: 'packages/angular',
-        packagePath: 'packages/components',
-        reactPackagePath: 'packages/react',
-        vuePackagePath: 'packages/vue',
-      },
-      ctx,
-    );
+    const [componentsResult, tokensResult] = await Promise.all([
+      runSourcePipeline(
+        componentsPipeline,
+        {
+          angularPackagePath: 'packages/angular',
+          packagePath: 'packages/components',
+          reactPackagePath: 'packages/react',
+          vuePackagePath: 'packages/vue',
+        },
+        ctx,
+      ),
+      runSourcePipeline(
+        tokensPipeline,
+        {
+          packagePath: 'packages/tokens',
+        },
+        ctx,
+      ),
+    ]);
 
     if (!componentsResult.ok) {
       ctx.logger?.error('Components pipeline failed', componentsResult.error);
       process.exit(1);
     }
 
+    if (!tokensResult.ok) {
+      ctx.logger?.error('Tokens pipeline failed', tokensResult.error);
+      process.exit(1);
+    }
+
     // Step 2: Aggregate
     ctx.logger?.info('Step 2: Aggregating entities');
-    const aggregated = aggregateEntities([componentsResult.value], ctx);
+    const aggregated = aggregateEntities([componentsResult.value, tokensResult.value], ctx);
     if (!aggregated.ok) {
       ctx.logger?.error('Aggregation failed', aggregated.error);
       process.exit(1);
@@ -161,8 +175,12 @@ async function main() {
     const manifest: Manifest = {
       builtAt: new Date().toISOString(),
       sources: [{
-        entityCount: entitiesForWrite.length,
+        entityCount: componentsResult.value.length,
         source: 'components',
+        status: 'success',
+      }, {
+        entityCount: tokensResult.value.length,
+        source: 'tokens',
         status: 'success',
       }, {
         entityCount: 4,

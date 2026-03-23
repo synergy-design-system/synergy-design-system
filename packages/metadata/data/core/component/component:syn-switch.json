@@ -1,0 +1,43 @@
+{
+  "custom": {
+    "sourceModulePath": "components/switch/switch.js",
+    "summary": "Switches allow the user to toggle an option on or off."
+  },
+  "id": "component:syn-switch",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/switch.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/switch.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/switch.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/switch.ts"
+      }
+    ]
+  },
+  "name": "Switch",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/switch/switch.component.ts",
+    "packages/components/src/components/switch/switch.styles.ts",
+    "packages/components/src/components/switch/switch.test.ts",
+    "packages/components/src/components/switch/switch.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-switch",
+    "component"
+  ]
+}

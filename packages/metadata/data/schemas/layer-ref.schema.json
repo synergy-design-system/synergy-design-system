@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "layer": {
+      "type": "string",
+      "enum": [
+        "examples",
+        "interface",
+        "full"
+      ]
+    },
+    "path": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "layer",
+    "path"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,60 @@
+{
+  "custom": {
+    "sourceModulePath": "components/side-nav/side-nav.js",
+    "summary": "The <syn-side-nav /> element contains secondary navigation and fits below the header.\nIt can be used to group multiple navigation items (<syn-nav-item />s) together."
+  },
+  "id": "component:syn-side-nav",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/side-nav.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/side-nav.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/side-nav.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/side-nav.ts"
+      }
+    ]
+  },
+  "name": "Side Nav",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-divider",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-drawer",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-nav-item",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "1.14.0",
+  "sources": [
+    "packages/components/src/components/side-nav/side-nav.component.ts",
+    "packages/components/src/components/side-nav/side-nav.styles.ts",
+    "packages/components/src/components/side-nav/side-nav.test.ts",
+    "packages/components/src/components/side-nav/side-nav.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-side-nav",
+    "component"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "custom": {
+    "sourceModulePath": "components/popup/popup.js",
+    "summary": "Popup is a utility that lets you declaratively anchor \"popup\" containers to another element."
+  },
+  "id": "component:syn-popup",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/popup.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/popup.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/popup.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/popup.ts"
+      }
+    ]
+  },
+  "name": "Popup",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/popup/popup.component.ts",
+    "packages/components/src/components/popup/popup.styles.ts",
+    "packages/components/src/components/popup/popup.test.ts",
+    "packages/components/src/components/popup/popup.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-popup",
+    "component"
+  ]
+}

@@ -1,0 +1,39 @@
+/* eslint-disable */
+import '../../../dist/synergy.js';
+import { aTimeout, expect, fixture, html } from '@open-wc/testing';
+import type SynOption from './option.js';
+
+describe('<syn-option>', () => {
+  it('passes accessibility test', async () => {
+    const el = await fixture<SynOption>(html`
+      <syn-select label="Select one">
+        <syn-option value="1">Option 1</syn-option>
+        <syn-option value="2">Option 2</syn-option>
+        <syn-option value="3">Option 3</syn-option>
+        <syn-option value="4" disabled>Disabled</syn-option>
+      </syn-select>
+    `);
+    await expect(el).to.be.accessible();
+  });
+
+  it('default properties', async () => {
+    const el = await fixture<SynOption>(html` <syn-option>Test</syn-option> `);
+
+    expect(el.value).to.equal('');
+    expect(el.disabled).to.be.false;
+    expect(el.getAttribute('aria-disabled')).to.equal('false');
+  });
+
+  it('changes aria attributes', async () => {
+    const el = await fixture<SynOption>(html` <syn-option>Test</syn-option> `);
+
+    el.disabled = true;
+    await aTimeout(100);
+    expect(el.getAttribute('aria-disabled')).to.equal('true');
+  });
+
+  it('should escape HTML when calling getTextLabel()', async () => {
+    const el = await fixture<SynOption>(html` <syn-option><strong>Option</strong></syn-option> `);
+    expect(el.getTextLabel()).to.equal('Option');
+  });
+});

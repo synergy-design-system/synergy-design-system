@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/breadcrumb-item/breadcrumb-item.js",
+    "summary": "Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links."
+  },
+  "id": "component:syn-breadcrumb-item",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/breadcrumb-item.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/breadcrumb-item.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/breadcrumb-item.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/breadcrumb-item.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/breadcrumb-item.ts"
+      }
+    ]
+  },
+  "name": "Breadcrumb Item",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/breadcrumb-item/breadcrumb-item.component.ts",
+    "packages/components/src/components/breadcrumb-item/breadcrumb-item.custom.styles.ts",
+    "packages/components/src/components/breadcrumb-item/breadcrumb-item.styles.ts",
+    "packages/components/src/components/breadcrumb-item/breadcrumb-item.test.ts",
+    "packages/components/src/components/breadcrumb-item/breadcrumb-item.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-breadcrumb-item",
+    "component"
+  ]
+}

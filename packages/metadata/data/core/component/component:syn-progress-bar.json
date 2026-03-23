@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/progress-bar/progress-bar.js",
+    "summary": "Progress bars are used to show the status of an ongoing operation."
+  },
+  "id": "component:syn-progress-bar",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/progress-bar.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/progress-bar.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/progress-bar.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/progress-bar.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/progress-bar.ts"
+      }
+    ]
+  },
+  "name": "Progress Bar",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/progress-bar/progress-bar.component.ts",
+    "packages/components/src/components/progress-bar/progress-bar.custom.styles.ts",
+    "packages/components/src/components/progress-bar/progress-bar.styles.ts",
+    "packages/components/src/components/progress-bar/progress-bar.test.ts",
+    "packages/components/src/components/progress-bar/progress-bar.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-progress-bar",
+    "component"
+  ]
+}

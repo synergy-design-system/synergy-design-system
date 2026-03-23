@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/dropdown/dropdown.js",
+    "summary": "Dropdowns expose additional content that \"drops down\" in a panel."
+  },
+  "id": "component:syn-dropdown",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dropdown/dropdown.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dropdown/dropdown.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dropdown/dropdown.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dropdown/dropdown.ts"
+      }
+    ]
+  },
+  "name": "Dropdown",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-popup",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/dropdown/dropdown.component.ts",
+    "packages/components/src/components/dropdown/dropdown.styles.ts",
+    "packages/components/src/components/dropdown/dropdown.test.ts",
+    "packages/components/src/components/dropdown/dropdown.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-dropdown",
+    "component"
+  ]
+}

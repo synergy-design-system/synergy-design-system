@@ -1,0 +1,43 @@
+{
+  "custom": {
+    "sourceModulePath": "components/divider/divider.js",
+    "summary": "Dividers are used to visually separate or group elements."
+  },
+  "id": "component:syn-divider",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/divider.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/divider.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/divider.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/divider.ts"
+      }
+    ]
+  },
+  "name": "Divider",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/divider/divider.component.ts",
+    "packages/components/src/components/divider/divider.styles.ts",
+    "packages/components/src/components/divider/divider.test.ts",
+    "packages/components/src/components/divider/divider.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-divider",
+    "component"
+  ]
+}

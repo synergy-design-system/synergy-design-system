@@ -1,0 +1,43 @@
+{
+  "custom": {
+    "sourceModulePath": "components/textarea/textarea.js",
+    "summary": "Textareas collect data from the user and allow multiple lines of text."
+  },
+  "id": "component:syn-textarea",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/textarea.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/textarea.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/textarea.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/textarea.ts"
+      }
+    ]
+  },
+  "name": "Textarea",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/textarea/textarea.component.ts",
+    "packages/components/src/components/textarea/textarea.styles.ts",
+    "packages/components/src/components/textarea/textarea.test.ts",
+    "packages/components/src/components/textarea/textarea.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-textarea",
+    "component"
+  ]
+}

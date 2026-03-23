@@ -1,0 +1,46 @@
+/* eslint-disable */
+import { html } from 'lit';
+import SynDivider from '../divider/divider.component.js';
+import componentStyles from '../../styles/component.styles.js';
+import SynergyElement from '../../internal/synergy-element.js';
+import styles from './menu-label.styles.js';
+import type { CSSResultGroup } from 'lit';
+
+/**
+ * @summary Menu labels are used to describe a group of menu items.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs
+ * @status stable
+ * @since 2.0
+ *
+ * @slot - The menu label's content.
+ *
+ * @csspart base - The component's base wrapper.
+ * @csspart divider - The divider that is displayed above the content
+ * @csspart label - The label that is displayed below the divider
+ *
+ * @dependency syn-divider
+ *
+ * @cssproperty --display-divider - Display property of the divider. Defaults to "block"
+ */
+export default class SynMenuLabel extends SynergyElement {
+  static styles: CSSResultGroup = [componentStyles, styles];
+
+  static dependencies = {
+    'syn-divider': SynDivider,
+  };
+    
+  render() {
+    return html`
+      <div part="base" class="menu-label-wrapper">
+        <syn-divider class="menu-label__divider" part="divider"></syn-divider>
+        <slot part="label" class="menu-label"></slot>
+      </div>
+    `;
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    'syn-menu-label': SynMenuLabel;
+  }
+}

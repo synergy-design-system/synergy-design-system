@@ -1,0 +1,53 @@
+{
+  "custom": {
+    "sourceModulePath": "components/details/details.js",
+    "summary": "Details show a brief summary and expand to show additional content."
+  },
+  "id": "component:syn-details",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/details.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/details.custom.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/details.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/details.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/details.ts"
+      }
+    ]
+  },
+  "name": "Details",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/details/details.component.ts",
+    "packages/components/src/components/details/details.custom.test.ts",
+    "packages/components/src/components/details/details.styles.ts",
+    "packages/components/src/components/details/details.test.ts",
+    "packages/components/src/components/details/details.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-details",
+    "component"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "custom": {
+    "sourceModulePath": "components/tag/tag.js",
+    "summary": "Tags are used as labels to organize things or to indicate a selection."
+  },
+  "id": "component:syn-tag",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag/tag.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag/tag.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag/tag.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag/tag.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag/tag.ts"
+      }
+    ]
+  },
+  "name": "Tag",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/tag/tag.component.ts",
+    "packages/components/src/components/tag/tag.custom.styles.ts",
+    "packages/components/src/components/tag/tag.styles.ts",
+    "packages/components/src/components/tag/tag.test.ts",
+    "packages/components/src/components/tag/tag.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-tag",
+    "component"
+  ]
+}

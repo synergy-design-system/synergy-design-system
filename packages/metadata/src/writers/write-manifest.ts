@@ -2,10 +2,12 @@
  * Write manifest describing the build.
  */
 
-import { type Result, ok } from '../core/result.js';
+import { join } from 'node:path';
+import { type Result, err, ok } from '../core/result.js';
 import { type Context } from '../core/context.js';
 import { type Manifest } from '../schemas/index.js';
 import { type WriteError } from '../core/errors.js';
+import { writeJsonAtomic } from './fs-utils.js';
 
 /**
  * Write manifest to data/manifest.json
@@ -13,14 +15,28 @@ import { type WriteError } from '../core/errors.js';
  */
 export async function writeManifest(
   manifest: Manifest,
-  _outputDir: string,
+  outputDir: string,
   ctx: Context,
 ): Promise<Result<void, WriteError>> {
   ctx.logger?.info('Writing manifest');
 
-  // TODO: Write to data/manifest.json
-  // const manifestPath = join(outputDir, 'manifest.json');
-  // await writeFile(manifestPath, JSON.stringify(manifest, null, 2));
+  const normalizedManifest: Manifest = {
+    ...manifest,
+    sources: manifest.sources
+      ? [...manifest.sources].sort((a, b) => a.source.localeCompare(b.source))
+      : undefined,
+  };
+
+  try {
+    await writeJsonAtomic(join(outputDir, 'manifest.json'), normalizedManifest);
+  } catch (cause) {
+    return err({
+      details: { cause: String(cause) },
+      kind: 'write',
+      message: 'Failed to write manifest',
+      path: join(outputDir, 'manifest.json'),
+    });
+  }
 
   return ok(undefined);
 }

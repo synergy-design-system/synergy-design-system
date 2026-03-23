@@ -1,0 +1,65 @@
+{
+  "custom": {
+    "sourceModulePath": "components/prio-nav/prio-nav.js",
+    "summary": "The `<syn-prio-nav />` element provides a generic navigation bar\nthat can be used to group multiple navigation items  (usually horizontal `<syn-nav-item />`s)\ntogether. It will automatically group all items not visible in the viewport into a custom\npriority menu."
+  },
+  "id": "component:syn-prio-nav",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-prio-nav/prio-nav.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-prio-nav/prio-nav.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-prio-nav/prio-nav.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-prio-nav/prio-nav.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-prio-nav/utils.ts"
+      }
+    ]
+  },
+  "name": "Prio Nav",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-dropdown",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-menu",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-nav-item",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "1.14.0",
+  "sources": [
+    "packages/components/src/components/prio-nav/prio-nav.component.ts",
+    "packages/components/src/components/prio-nav/prio-nav.styles.ts",
+    "packages/components/src/components/prio-nav/prio-nav.test.ts",
+    "packages/components/src/components/prio-nav/prio-nav.ts",
+    "packages/components/src/components/prio-nav/utils.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-prio-nav",
+    "component"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "custom": {
+    "sourceModulePath": "components/breadcrumb/breadcrumb.js",
+    "summary": "Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy."
+  },
+  "id": "component:syn-breadcrumb",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb/breadcrumb.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb/breadcrumb.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb/breadcrumb.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb/breadcrumb.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb/breadcrumb.ts"
+      }
+    ]
+  },
+  "name": "Breadcrumb",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/breadcrumb/breadcrumb.component.ts",
+    "packages/components/src/components/breadcrumb/breadcrumb.custom.styles.ts",
+    "packages/components/src/components/breadcrumb/breadcrumb.styles.ts",
+    "packages/components/src/components/breadcrumb/breadcrumb.test.ts",
+    "packages/components/src/components/breadcrumb/breadcrumb.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-breadcrumb",
+    "component"
+  ]
+}

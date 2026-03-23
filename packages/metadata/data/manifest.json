@@ -1,0 +1,12 @@
+{
+  "builtAt": "2026-03-23T06:54:28.291Z",
+  "sources": [
+    {
+      "entityCount": 48,
+      "source": "components",
+      "status": "success"
+    }
+  ],
+  "synergyVersion": "local",
+  "version": "1.0.0"
+}

@@ -1,0 +1,53 @@
+{
+  "custom": {
+    "sourceModulePath": "components/icon-button/icon-button.js",
+    "summary": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars."
+  },
+  "id": "component:syn-icon-button",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/icon-button.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/icon-button.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/icon-button.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/icon-button.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/icon-button.ts"
+      }
+    ]
+  },
+  "name": "Icon Button",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/icon-button/icon-button.component.ts",
+    "packages/components/src/components/icon-button/icon-button.custom.styles.ts",
+    "packages/components/src/components/icon-button/icon-button.styles.ts",
+    "packages/components/src/components/icon-button/icon-button.test.ts",
+    "packages/components/src/components/icon-button/icon-button.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-icon-button",
+    "component"
+  ]
+}

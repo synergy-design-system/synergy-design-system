@@ -1,0 +1,53 @@
+{
+  "custom": {
+    "sourceModulePath": "components/dialog/dialog.js",
+    "summary": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention."
+  },
+  "id": "component:syn-dialog",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/dialog.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/dialog.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/dialog.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/dialog.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/dialog.ts"
+      }
+    ]
+  },
+  "name": "Dialog",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/dialog/dialog.component.ts",
+    "packages/components/src/components/dialog/dialog.custom.styles.ts",
+    "packages/components/src/components/dialog/dialog.styles.ts",
+    "packages/components/src/components/dialog/dialog.test.ts",
+    "packages/components/src/components/dialog/dialog.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-dialog",
+    "component"
+  ]
+}

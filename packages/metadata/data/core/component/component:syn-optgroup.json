@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/optgroup/optgroup.js",
+    "summary": "The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>."
+  },
+  "id": "component:syn-optgroup",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/optgroup.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/optgroup.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/optgroup.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/optgroup.ts"
+      }
+    ]
+  },
+  "name": "Optgroup",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-divider",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "1.3.0",
+  "sources": [
+    "packages/components/src/components/optgroup/optgroup.component.ts",
+    "packages/components/src/components/optgroup/optgroup.styles.ts",
+    "packages/components/src/components/optgroup/optgroup.test.ts",
+    "packages/components/src/components/optgroup/optgroup.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-optgroup",
+    "component"
+  ]
+}

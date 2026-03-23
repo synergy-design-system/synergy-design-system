@@ -1,0 +1,72 @@
+{
+  "custom": {
+    "sourceModulePath": "components/input/input.js",
+    "summary": "Inputs collect data from the user."
+  },
+  "id": "component:syn-input",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/formatter.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/input.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/input.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/input.custom.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/input.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/input.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/input.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/strategies.ts"
+      }
+    ]
+  },
+  "name": "Input",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-divider",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/input/formatter.ts",
+    "packages/components/src/components/input/input.component.ts",
+    "packages/components/src/components/input/input.custom.styles.ts",
+    "packages/components/src/components/input/input.custom.test.ts",
+    "packages/components/src/components/input/input.styles.ts",
+    "packages/components/src/components/input/input.test.ts",
+    "packages/components/src/components/input/input.ts",
+    "packages/components/src/components/input/strategies.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-input",
+    "component"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/checkbox/checkbox.js",
+    "summary": "Checkboxes allow the user to toggle an option on or off."
+  },
+  "id": "component:syn-checkbox",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/checkbox.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/checkbox.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/checkbox.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/checkbox.ts"
+      }
+    ]
+  },
+  "name": "Checkbox",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/checkbox/checkbox.component.ts",
+    "packages/components/src/components/checkbox/checkbox.styles.ts",
+    "packages/components/src/components/checkbox/checkbox.test.ts",
+    "packages/components/src/components/checkbox/checkbox.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-checkbox",
+    "component"
+  ]
+}

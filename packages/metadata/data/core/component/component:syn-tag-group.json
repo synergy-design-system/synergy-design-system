@@ -1,0 +1,43 @@
+{
+  "custom": {
+    "sourceModulePath": "components/tag-group/tag-group.js",
+    "summary": "A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels.\nIt arranges tags in flexible rows and supports different sizes and layouts.\nTags can be removable, icon‑based, or purely textual."
+  },
+  "id": "component:syn-tag-group",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag-group/tag-group.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag-group/tag-group.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag-group/tag-group.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag-group/tag-group.ts"
+      }
+    ]
+  },
+  "name": "Tag Group",
+  "package": "components",
+  "relations": [],
+  "since": "unknown",
+  "sources": [
+    "packages/components/src/components/tag-group/tag-group.component.ts",
+    "packages/components/src/components/tag-group/tag-group.styles.ts",
+    "packages/components/src/components/tag-group/tag-group.test.ts",
+    "packages/components/src/components/tag-group/tag-group.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-tag-group",
+    "component"
+  ]
+}

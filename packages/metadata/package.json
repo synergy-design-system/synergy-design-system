@@ -10,8 +10,11 @@
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@types/node": "^24.12.0",
+    "chai": "^5.2.0",
     "custom-elements-manifest": "^2.1.0",
     "eslint": "^9.39.4",
+    "execa": "^9.6.0",
+    "mocha": "^11.1.0",
     "typescript": "^5.9.3"
   },
   "exports": {
@@ -40,7 +43,9 @@
   "scripts": {
     "build": "tsc && node dist/cli/build.js",
     "lint:js": "eslint src",
-    "lint": "pnpm run /^lint:.*/"
+    "lint": "pnpm run /^lint:.*/",
+    "pretest": "pnpm build",
+    "test": "mocha \"test/**/*.test.mjs\""
   },
   "type": "module",
   "version": "1.0.0"

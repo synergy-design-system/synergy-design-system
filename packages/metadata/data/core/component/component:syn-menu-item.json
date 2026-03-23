@@ -1,0 +1,66 @@
+{
+  "custom": {
+    "sourceModulePath": "components/menu-item/menu-item.js",
+    "summary": "Menu items provide options for the user to pick from in a menu."
+  },
+  "id": "component:syn-menu-item",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/menu-item.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/menu-item.custom.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/menu-item.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/menu-item.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/menu-item.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/submenu-controller.ts"
+      }
+    ]
+  },
+  "name": "Menu Item",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-popup",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-spinner",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/menu-item/menu-item.component.ts",
+    "packages/components/src/components/menu-item/menu-item.custom.test.ts",
+    "packages/components/src/components/menu-item/menu-item.styles.ts",
+    "packages/components/src/components/menu-item/menu-item.test.ts",
+    "packages/components/src/components/menu-item/menu-item.ts",
+    "packages/components/src/components/menu-item/submenu-controller.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-menu-item",
+    "component"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "custom": {
+    "sourceModulePath": "components/button/button.js",
+    "summary": "Buttons represent actions that are available to the user."
+  },
+  "id": "component:syn-button",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button/button.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button/button.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button/button.custom.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button/button.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button/button.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button/button.ts"
+      }
+    ]
+  },
+  "name": "Button",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-spinner",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/button/button.component.ts",
+    "packages/components/src/components/button/button.custom.styles.ts",
+    "packages/components/src/components/button/button.custom.test.ts",
+    "packages/components/src/components/button/button.styles.ts",
+    "packages/components/src/components/button/button.test.ts",
+    "packages/components/src/components/button/button.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-button",
+    "component"
+  ]
+}

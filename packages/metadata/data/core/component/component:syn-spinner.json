@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/spinner/spinner.js",
+    "summary": "Spinners are used to show the progress of an indeterminate operation."
+  },
+  "id": "component:syn-spinner",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/spinner.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/spinner.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/spinner.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/spinner.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/spinner.ts"
+      }
+    ]
+  },
+  "name": "Spinner",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/spinner/spinner.component.ts",
+    "packages/components/src/components/spinner/spinner.custom.styles.ts",
+    "packages/components/src/components/spinner/spinner.styles.ts",
+    "packages/components/src/components/spinner/spinner.test.ts",
+    "packages/components/src/components/spinner/spinner.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-spinner",
+    "component"
+  ]
+}

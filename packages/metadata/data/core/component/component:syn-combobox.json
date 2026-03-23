@@ -1,0 +1,71 @@
+{
+  "custom": {
+    "sourceModulePath": "components/combobox/combobox.js",
+    "summary": "A combobox component that combines the functionality of a text input with a dropdown listbox,\nallowing users to either select from predefined options or enter custom values (when not restricted)."
+  },
+  "id": "component:syn-combobox",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/combobox.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/combobox.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/combobox.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/combobox.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/option-renderer.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/option-renderer.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/utils.ts"
+      }
+    ]
+  },
+  "name": "Combobox",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-popup",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-tag",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "unknown",
+  "sources": [
+    "packages/components/src/components/combobox/combobox.component.ts",
+    "packages/components/src/components/combobox/combobox.styles.ts",
+    "packages/components/src/components/combobox/combobox.test.ts",
+    "packages/components/src/components/combobox/combobox.ts",
+    "packages/components/src/components/combobox/option-renderer.test.ts",
+    "packages/components/src/components/combobox/option-renderer.ts",
+    "packages/components/src/components/combobox/utils.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-combobox",
+    "component"
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/tooltip/tooltip.js",
+    "summary": "Tooltips display additional information based on a specific action."
+  },
+  "id": "component:syn-tooltip",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/tooltip.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/tooltip.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/tooltip.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/tooltip.ts"
+      }
+    ]
+  },
+  "name": "Tooltip",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-popup",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/tooltip/tooltip.component.ts",
+    "packages/components/src/components/tooltip/tooltip.styles.ts",
+    "packages/components/src/components/tooltip/tooltip.test.ts",
+    "packages/components/src/components/tooltip/tooltip.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-tooltip",
+    "component"
+  ]
+}

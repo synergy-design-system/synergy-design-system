@@ -1,6 +1,9 @@
 import { createCustomConfig } from '@synergy-design-system/eslint-config-syn/ts';
 
 export default [
+  {
+    ignores: ['data/**'],
+  },
   ...createCustomConfig({
     project: './tsconfig.json',
     tsconfigRootDir: import.meta.dirname,
@@ -17,8 +20,38 @@ export default [
       // Its an etl pipeline, so we want to allow for more complex functions
       complexity: 'off',
 
-      // We use for of loops in some places for better readability and performance, and we don't use the features that these rules prevent
-      'no-restricted-syntax': ['error', 'ForInStatement', 'LabeledStatement', 'WithStatement'],
+      // ETL pipelines iterate over async operations (file I/O, validation loops)
+      'no-await-in-loop': 'off',
+
+      // Some patterns legitimately use continue for control flow
+      'no-continue': 'off',
+
+      // ETL pipelines use for loops for sequential processing
+      'no-restricted-syntax': 'off',
+    },
+  },
+  {
+    files: [
+      'test/**/*.mjs',
+    ],
+    rules: {
+      // Chai assertions rely on expression chains.
+      '@typescript-eslint/no-unused-expressions': 'off',
+
+      // Integration tests intentionally import dev-only tooling.
+      'import/no-extraneous-dependencies': 'off',
+
+      // Async validation loops in tests require await inside the loop.
+      'no-await-in-loop': 'off',
+
+      // Tests need to iterate and await async operations sequentially for validation.
+      'no-restricted-syntax': 'off',
+
+      // Node-style path helpers are acceptable in tests.
+      'no-underscore-dangle': 'off',
+
+      // Chai assertions rely on expression chains.
+      'no-unused-expressions': 'off',
     },
   },
 ];

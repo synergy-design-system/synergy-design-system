@@ -1,0 +1,43 @@
+{
+  "custom": {
+    "sourceModulePath": "components/accordion/accordion.js",
+    "summary": "Accordions provide the ability to group a list of `<syn-details>`."
+  },
+  "id": "component:syn-accordion",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-accordion/accordion.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-accordion/accordion.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-accordion/accordion.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-accordion/accordion.ts"
+      }
+    ]
+  },
+  "name": "Accordion",
+  "package": "components",
+  "relations": [],
+  "since": "1.23.0",
+  "sources": [
+    "packages/components/src/components/accordion/accordion.component.ts",
+    "packages/components/src/components/accordion/accordion.styles.ts",
+    "packages/components/src/components/accordion/accordion.test.ts",
+    "packages/components/src/components/accordion/accordion.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-accordion",
+    "component"
+  ]
+}

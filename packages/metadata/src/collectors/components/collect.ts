@@ -6,7 +6,7 @@
  * - Resolve source files from packages/components/src/components/<tagNameWithoutPrefix>
  * - Keep scraped docs out of scope for now
  */
-import { readFile, readdir } from 'node:fs/promises';
+import { access, readFile, readdir } from 'node:fs/promises';
 import { join, relative, resolve } from 'node:path';
 import type { CustomElementDeclaration, Module } from 'custom-elements-manifest/schema.d.ts';
 import { type Result, ok } from '../../core/result.js';
@@ -100,6 +100,21 @@ export const collect = async (
   const componentsRoot = join(repoRoot, config.packagePath);
   const manifestPath = join(componentsRoot, 'dist', 'custom-elements.json');
   const componentsSourceRoot = join(componentsRoot, 'src', 'components');
+
+  try {
+    await access(manifestPath);
+  } catch {
+    return {
+      error: createCollectError(
+        'Components manifest missing. Build components package first (pnpm --filter @synergy-design-system/components build).',
+        'components',
+        {
+          manifestPath,
+        },
+      ),
+      ok: false,
+    };
+  }
 
   try {
     const manifestRaw = await readFile(manifestPath, 'utf8');

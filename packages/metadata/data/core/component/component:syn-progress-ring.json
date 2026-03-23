@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/progress-ring/progress-ring.js",
+    "summary": "Progress rings are used to show the progress of a determinate operation in a circular fashion."
+  },
+  "id": "component:syn-progress-ring",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-ring/progress-ring.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-ring/progress-ring.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-ring/progress-ring.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-ring/progress-ring.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-ring/progress-ring.ts"
+      }
+    ]
+  },
+  "name": "Progress Ring",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/progress-ring/progress-ring.component.ts",
+    "packages/components/src/components/progress-ring/progress-ring.custom.styles.ts",
+    "packages/components/src/components/progress-ring/progress-ring.styles.ts",
+    "packages/components/src/components/progress-ring/progress-ring.test.ts",
+    "packages/components/src/components/progress-ring/progress-ring.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-progress-ring",
+    "component"
+  ]
+}

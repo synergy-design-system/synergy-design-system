@@ -1,0 +1,57 @@
+{
+  "custom": {
+    "sourceModulePath": "components/validate/validate.js",
+    "summary": "Validate provides form field validation messages in a unified way.\nIt does this by using [the native browser validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)\nand showing the validation message in a consistent, user defined way."
+  },
+  "id": "component:syn-validate",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-validate/utility.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-validate/validate.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-validate/validate.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-validate/validate.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-validate/validate.ts"
+      }
+    ]
+  },
+  "name": "Validate",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-alert",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-tooltip",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "unknown",
+  "sources": [
+    "packages/components/src/components/validate/utility.ts",
+    "packages/components/src/components/validate/validate.component.ts",
+    "packages/components/src/components/validate/validate.styles.ts",
+    "packages/components/src/components/validate/validate.test.ts",
+    "packages/components/src/components/validate/validate.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-validate",
+    "component"
+  ]
+}

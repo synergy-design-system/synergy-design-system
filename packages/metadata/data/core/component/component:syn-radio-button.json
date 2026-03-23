@@ -1,0 +1,38 @@
+{
+  "custom": {
+    "sourceModulePath": "components/radio-button/radio-button.js",
+    "summary": "Radios buttons allow the user to select a single option from a group using a button-like control."
+  },
+  "id": "component:syn-radio-button",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio-button/radio-button.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio-button/radio-button.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio-button/radio-button.ts"
+      }
+    ]
+  },
+  "name": "Radio Button",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/radio-button/radio-button.component.ts",
+    "packages/components/src/components/radio-button/radio-button.styles.ts",
+    "packages/components/src/components/radio-button/radio-button.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-radio-button",
+    "component"
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "custom": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {}
+    },
+    "id": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "component",
+        "token",
+        "utility",
+        "setup",
+        "style"
+      ]
+    },
+    "layers": {
+      "default": {},
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "layer": {
+              "type": "string",
+              "enum": [
+                "examples",
+                "interface",
+                "full"
+              ]
+            },
+            "path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "layer",
+            "path"
+          ],
+          "additionalProperties": false
+        }
+      }
+    },
+    "name": {
+      "type": "string"
+    },
+    "package": {
+      "type": "string"
+    },
+    "relations": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "dependsOn",
+              "usedBy",
+              "partOf",
+              "relates"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "type"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "since": {
+      "type": "string"
+    },
+    "sources": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "stable",
+        "beta",
+        "experimental",
+        "deprecated"
+      ]
+    },
+    "tags": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "kind",
+    "layers",
+    "name",
+    "package",
+    "relations",
+    "since",
+    "sources",
+    "status",
+    "tags"
+  ],
+  "additionalProperties": false
+}

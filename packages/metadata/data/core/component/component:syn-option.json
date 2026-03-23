@@ -1,0 +1,63 @@
+{
+  "custom": {
+    "sourceModulePath": "components/option/option.js",
+    "summary": "Options define the selectable items within various form controls such as [select](/components/select)."
+  },
+  "id": "component:syn-option",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/option-size.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/option.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/option.custom.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/option.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/option.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/option.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/utility.ts"
+      }
+    ]
+  },
+  "name": "Option",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/option/option-size.styles.ts",
+    "packages/components/src/components/option/option.component.ts",
+    "packages/components/src/components/option/option.custom.test.ts",
+    "packages/components/src/components/option/option.styles.ts",
+    "packages/components/src/components/option/option.test.ts",
+    "packages/components/src/components/option/option.ts",
+    "packages/components/src/components/option/utility.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-option",
+    "component"
+  ]
+}

@@ -1,0 +1,726 @@
+{
+  "builtAt": "2026-03-23T06:54:28.290Z",
+  "entities": [
+    {
+      "corePath": "data/core/component/component:syn-accordion.json",
+      "id": "component:syn-accordion",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Accordion",
+      "search": [
+        "component:syn-accordion",
+        "Accordion",
+        "syn-accordion",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-alert.json",
+      "id": "component:syn-alert",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Alert",
+      "search": [
+        "component:syn-alert",
+        "Alert",
+        "syn-alert",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-badge.json",
+      "id": "component:syn-badge",
+      "kind": "component",
+      "layers": {
+        "full": 6
+      },
+      "name": "Badge",
+      "search": [
+        "component:syn-badge",
+        "Badge",
+        "syn-badge",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-breadcrumb.json",
+      "id": "component:syn-breadcrumb",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Breadcrumb",
+      "search": [
+        "component:syn-breadcrumb",
+        "Breadcrumb",
+        "syn-breadcrumb",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-breadcrumb-item.json",
+      "id": "component:syn-breadcrumb-item",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Breadcrumb Item",
+      "search": [
+        "component:syn-breadcrumb-item",
+        "Breadcrumb Item",
+        "syn-breadcrumb-item",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-button.json",
+      "id": "component:syn-button",
+      "kind": "component",
+      "layers": {
+        "full": 6
+      },
+      "name": "Button",
+      "search": [
+        "component:syn-button",
+        "Button",
+        "syn-button",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-button-group.json",
+      "id": "component:syn-button-group",
+      "kind": "component",
+      "layers": {
+        "full": 6
+      },
+      "name": "Button Group",
+      "search": [
+        "component:syn-button-group",
+        "Button Group",
+        "syn-button-group",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-card.json",
+      "id": "component:syn-card",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Card",
+      "search": [
+        "component:syn-card",
+        "Card",
+        "syn-card",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-checkbox.json",
+      "id": "component:syn-checkbox",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Checkbox",
+      "search": [
+        "component:syn-checkbox",
+        "Checkbox",
+        "syn-checkbox",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-combobox.json",
+      "id": "component:syn-combobox",
+      "kind": "component",
+      "layers": {
+        "full": 7
+      },
+      "name": "Combobox",
+      "search": [
+        "component:syn-combobox",
+        "Combobox",
+        "syn-combobox",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-details.json",
+      "id": "component:syn-details",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Details",
+      "search": [
+        "component:syn-details",
+        "Details",
+        "syn-details",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-dialog.json",
+      "id": "component:syn-dialog",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Dialog",
+      "search": [
+        "component:syn-dialog",
+        "Dialog",
+        "syn-dialog",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-divider.json",
+      "id": "component:syn-divider",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Divider",
+      "search": [
+        "component:syn-divider",
+        "Divider",
+        "syn-divider",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-drawer.json",
+      "id": "component:syn-drawer",
+      "kind": "component",
+      "layers": {
+        "full": 6
+      },
+      "name": "Drawer",
+      "search": [
+        "component:syn-drawer",
+        "Drawer",
+        "syn-drawer",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-dropdown.json",
+      "id": "component:syn-dropdown",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Dropdown",
+      "search": [
+        "component:syn-dropdown",
+        "Dropdown",
+        "syn-dropdown",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-file.json",
+      "id": "component:syn-file",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "File",
+      "search": [
+        "component:syn-file",
+        "File",
+        "syn-file",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-header.json",
+      "id": "component:syn-header",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Header",
+      "search": [
+        "component:syn-header",
+        "Header",
+        "syn-header",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-icon.json",
+      "id": "component:syn-icon",
+      "kind": "component",
+      "layers": {
+        "full": 12
+      },
+      "name": "Icon",
+      "search": [
+        "component:syn-icon",
+        "Icon",
+        "syn-icon",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-icon-button.json",
+      "id": "component:syn-icon-button",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Icon Button",
+      "search": [
+        "component:syn-icon-button",
+        "Icon Button",
+        "syn-icon-button",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-input.json",
+      "id": "component:syn-input",
+      "kind": "component",
+      "layers": {
+        "full": 8
+      },
+      "name": "Input",
+      "search": [
+        "component:syn-input",
+        "Input",
+        "syn-input",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-menu.json",
+      "id": "component:syn-menu",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Menu",
+      "search": [
+        "component:syn-menu",
+        "Menu",
+        "syn-menu",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-menu-item.json",
+      "id": "component:syn-menu-item",
+      "kind": "component",
+      "layers": {
+        "full": 6
+      },
+      "name": "Menu Item",
+      "search": [
+        "component:syn-menu-item",
+        "Menu Item",
+        "syn-menu-item",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-menu-label.json",
+      "id": "component:syn-menu-label",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Menu Label",
+      "search": [
+        "component:syn-menu-label",
+        "Menu Label",
+        "syn-menu-label",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-nav-item.json",
+      "id": "component:syn-nav-item",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Nav Item",
+      "search": [
+        "component:syn-nav-item",
+        "Nav Item",
+        "syn-nav-item",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-optgroup.json",
+      "id": "component:syn-optgroup",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Optgroup",
+      "search": [
+        "component:syn-optgroup",
+        "Optgroup",
+        "syn-optgroup",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-option.json",
+      "id": "component:syn-option",
+      "kind": "component",
+      "layers": {
+        "full": 7
+      },
+      "name": "Option",
+      "search": [
+        "component:syn-option",
+        "Option",
+        "syn-option",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-popup.json",
+      "id": "component:syn-popup",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Popup",
+      "search": [
+        "component:syn-popup",
+        "Popup",
+        "syn-popup",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-prio-nav.json",
+      "id": "component:syn-prio-nav",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Prio Nav",
+      "search": [
+        "component:syn-prio-nav",
+        "Prio Nav",
+        "syn-prio-nav",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-progress-bar.json",
+      "id": "component:syn-progress-bar",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Progress Bar",
+      "search": [
+        "component:syn-progress-bar",
+        "Progress Bar",
+        "syn-progress-bar",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-progress-ring.json",
+      "id": "component:syn-progress-ring",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Progress Ring",
+      "search": [
+        "component:syn-progress-ring",
+        "Progress Ring",
+        "syn-progress-ring",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-radio.json",
+      "id": "component:syn-radio",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Radio",
+      "search": [
+        "component:syn-radio",
+        "Radio",
+        "syn-radio",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-radio-button.json",
+      "id": "component:syn-radio-button",
+      "kind": "component",
+      "layers": {
+        "full": 3
+      },
+      "name": "Radio Button",
+      "search": [
+        "component:syn-radio-button",
+        "Radio Button",
+        "syn-radio-button",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-radio-group.json",
+      "id": "component:syn-radio-group",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Radio Group",
+      "search": [
+        "component:syn-radio-group",
+        "Radio Group",
+        "syn-radio-group",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-range.json",
+      "id": "component:syn-range",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Range",
+      "search": [
+        "component:syn-range",
+        "Range",
+        "syn-range",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-range-tick.json",
+      "id": "component:syn-range-tick",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Range Tick",
+      "search": [
+        "component:syn-range-tick",
+        "Range Tick",
+        "syn-range-tick",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-resize-observer.json",
+      "id": "component:syn-resize-observer",
+      "kind": "component",
+      "layers": {
+        "full": 2
+      },
+      "name": "Resize Observer",
+      "search": [
+        "component:syn-resize-observer",
+        "Resize Observer",
+        "syn-resize-observer",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-select.json",
+      "id": "component:syn-select",
+      "kind": "component",
+      "layers": {
+        "full": 6
+      },
+      "name": "Select",
+      "search": [
+        "component:syn-select",
+        "Select",
+        "syn-select",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-side-nav.json",
+      "id": "component:syn-side-nav",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Side Nav",
+      "search": [
+        "component:syn-side-nav",
+        "Side Nav",
+        "syn-side-nav",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-spinner.json",
+      "id": "component:syn-spinner",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Spinner",
+      "search": [
+        "component:syn-spinner",
+        "Spinner",
+        "syn-spinner",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-switch.json",
+      "id": "component:syn-switch",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Switch",
+      "search": [
+        "component:syn-switch",
+        "Switch",
+        "syn-switch",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tab.json",
+      "id": "component:syn-tab",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Tab",
+      "search": [
+        "component:syn-tab",
+        "Tab",
+        "syn-tab",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tab-group.json",
+      "id": "component:syn-tab-group",
+      "kind": "component",
+      "layers": {
+        "full": 6
+      },
+      "name": "Tab Group",
+      "search": [
+        "component:syn-tab-group",
+        "Tab Group",
+        "syn-tab-group",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tab-panel.json",
+      "id": "component:syn-tab-panel",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Tab Panel",
+      "search": [
+        "component:syn-tab-panel",
+        "Tab Panel",
+        "syn-tab-panel",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tag.json",
+      "id": "component:syn-tag",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Tag",
+      "search": [
+        "component:syn-tag",
+        "Tag",
+        "syn-tag",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tag-group.json",
+      "id": "component:syn-tag-group",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Tag Group",
+      "search": [
+        "component:syn-tag-group",
+        "Tag Group",
+        "syn-tag-group",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-textarea.json",
+      "id": "component:syn-textarea",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Textarea",
+      "search": [
+        "component:syn-textarea",
+        "Textarea",
+        "syn-textarea",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tooltip.json",
+      "id": "component:syn-tooltip",
+      "kind": "component",
+      "layers": {
+        "full": 4
+      },
+      "name": "Tooltip",
+      "search": [
+        "component:syn-tooltip",
+        "Tooltip",
+        "syn-tooltip",
+        "component"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-validate.json",
+      "id": "component:syn-validate",
+      "kind": "component",
+      "layers": {
+        "full": 5
+      },
+      "name": "Validate",
+      "search": [
+        "component:syn-validate",
+        "Validate",
+        "syn-validate",
+        "component"
+      ]
+    }
+  ],
+  "version": "1.0.0"
+}

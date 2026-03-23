@@ -1,0 +1,53 @@
+{
+  "custom": {
+    "sourceModulePath": "components/range/range.js",
+    "summary": "Ranges allow the user to select values within a given range using one or two thumbs."
+  },
+  "id": "component:syn-range",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/range.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/range.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/range.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/range.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/utility.ts"
+      }
+    ]
+  },
+  "name": "Range",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-tooltip",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "unknown",
+  "sources": [
+    "packages/components/src/components/range/range.component.ts",
+    "packages/components/src/components/range/range.styles.ts",
+    "packages/components/src/components/range/range.test.ts",
+    "packages/components/src/components/range/range.ts",
+    "packages/components/src/components/range/utility.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-range",
+    "component"
+  ]
+}

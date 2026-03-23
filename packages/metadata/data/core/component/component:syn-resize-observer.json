@@ -1,0 +1,33 @@
+{
+  "custom": {
+    "sourceModulePath": "components/resize-observer/resize-observer.js",
+    "summary": "The Resize Observer component offers a thin, declarative interface to the [`ResizeObserver API`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver)."
+  },
+  "id": "component:syn-resize-observer",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-resize-observer/resize-observer.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-resize-observer/resize-observer.styles.ts"
+      }
+    ]
+  },
+  "name": "Resize Observer",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/resize-observer/resize-observer.component.ts",
+    "packages/components/src/components/resize-observer/resize-observer.styles.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-resize-observer",
+    "component"
+  ]
+}

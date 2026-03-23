@@ -1,0 +1,53 @@
+{
+  "custom": {
+    "sourceModulePath": "components/alert/alert.js",
+    "summary": "Alerts are used to display important messages inline or as toast notifications."
+  },
+  "id": "component:syn-alert",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-alert/alert.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-alert/alert.custom.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-alert/alert.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-alert/alert.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-alert/alert.ts"
+      }
+    ]
+  },
+  "name": "Alert",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/alert/alert.component.ts",
+    "packages/components/src/components/alert/alert.custom.test.ts",
+    "packages/components/src/components/alert/alert.styles.ts",
+    "packages/components/src/components/alert/alert.test.ts",
+    "packages/components/src/components/alert/alert.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-alert",
+    "component"
+  ]
+}

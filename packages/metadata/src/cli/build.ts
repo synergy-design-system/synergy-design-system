@@ -5,9 +5,12 @@
  * 1. Run all source pipelines (collectors) in parallel
  * 2. Aggregate results
  * 3. Validate entities
- * 4. Write artifacts to data/
- * 5. Generate JSON schemas
+ * 4. Process and write layer assets (before core entities)
+ * 5. Write core entities with layer data
+ * 6. Write supporting artifacts (index, manifest)
+ * 7. Generate JSON schemas
  */
+import { resolve } from 'node:path';
 import { createConsoleLogger } from '../core/context.js';
 import { type Context } from '../core/context.js';
 import { componentsPipeline } from '../collectors/index.js';
@@ -24,7 +27,8 @@ import {
   writeLayerAssets,
   writeManifest,
 } from '../writers/index.js';
-import { type Manifest } from '../schemas/index.js';
+import { writeSchemas } from '../writers/write-schemas.js';
+import { type CoreEntity, type Manifest } from '../schemas/index.js';
 import { CoreEntitySchema, LayerRefSchema, ManifestSchema } from '../schemas/index.js';
 
 const logger = createConsoleLogger('metadata-build');
@@ -69,27 +73,44 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 4: Build index
-    ctx.logger?.info('Step 4: Building index');
-    const indexResult = buildIndex(validated.value, ctx);
+    // Calculate repo root (two levels up from metadata package)
+    const repoRoot = resolve(ctx.workspaceRoot, '..', '..');
+
+    // Step 4: Process layer assets
+    ctx.logger?.info('Step 4: Processing layer assets');
+    const outputDir = 'data';
+    const layersResult = await writeLayerAssets(validated.value, outputDir, repoRoot, ctx);
+    if (!layersResult.ok) {
+      ctx.logger?.error('Writing layers failed', layersResult.error);
+      process.exit(1);
+    }
+
+    // Merge layer data back into entities
+    const entitiesWithLayers: CoreEntity[] = validated.value.map((entity) => {
+      const layerData = layersResult.value[entity.id];
+      if (!layerData) {
+        return entity;
+      }
+
+      return {
+        ...entity,
+        layers: layerData,
+      };
+    });
+
+    // Step 5: Build index
+    ctx.logger?.info('Step 5: Building index');
+    const indexResult = buildIndex(entitiesWithLayers, ctx);
     if (!indexResult.ok) {
       ctx.logger?.error('Index build failed', indexResult.error);
       process.exit(1);
     }
 
-    // Step 5: Write artifacts
-    ctx.logger?.info('Step 5: Writing artifacts');
-    const outputDir = 'data';
-
-    const coreResult = await writeCoreEntities(validated.value, outputDir, ctx);
+    // Step 6: Write core entities (now with layer data)
+    ctx.logger?.info('Step 6: Writing core entities');
+    const coreResult = await writeCoreEntities(entitiesWithLayers, outputDir, ctx);
     if (!coreResult.ok) {
       ctx.logger?.error('Writing core failed', coreResult.error);
-      process.exit(1);
-    }
-
-    const layersResult = await writeLayerAssets(outputDir, ctx);
-    if (!layersResult.ok) {
-      ctx.logger?.error('Writing layers failed', layersResult.error);
       process.exit(1);
     }
 
@@ -99,12 +120,12 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 6: Create and write manifest
-    ctx.logger?.info('Step 6: Creating manifest');
+    // Step 7: Create and write manifest
+    ctx.logger?.info('Step 7: Creating manifest');
     const manifest: Manifest = {
       builtAt: new Date().toISOString(),
       sources: [{
-        entityCount: validated.value.length,
+        entityCount: entitiesWithLayers.length,
         source: 'components',
         status: 'success',
       }],
@@ -128,21 +149,22 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 7: Generate JSON schemas
-    ctx.logger?.info('Step 7: Generating JSON schemas');
+    // Step 8: Generate JSON schemas
+    ctx.logger?.info('Step 8: Generating JSON schemas');
     const schemas = {
       'core-entity.schema.json': CoreEntitySchema.toJSONSchema(),
       'layer-ref.schema.json': LayerRefSchema.toJSONSchema(),
       'manifest.schema.json': ManifestSchema.toJSONSchema(),
     };
 
-    ctx.logger?.info('Schemas generated (would be written to data/schemas/ in real implementation)');
-    for (const [name, schema] of Object.entries(schemas)) {
-      ctx.logger?.debug(`  - ${name}: ${JSON.stringify(schema).length} bytes`);
+    const schemasWriteResult = await writeSchemas(schemas, outputDir, ctx);
+    if (!schemasWriteResult.ok) {
+      ctx.logger?.error('Writing schemas failed', schemasWriteResult.error);
+      process.exit(1);
     }
 
     ctx.logger?.info('=== Build Complete ===');
-    ctx.logger?.info(`Entities: ${validated.value.length}`);
+    ctx.logger?.info(`Entities: ${entitiesWithLayers.length}`);
     ctx.logger?.info(`Index entries: ${indexResult.value.length}`);
   } catch (error) {
     ctx.logger?.error('Build failed with exception', { error: String(error) });

@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/card/card.js",
+    "summary": "Cards can be used to group related subjects in a container."
+  },
+  "id": "component:syn-card",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/card.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/card.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/card.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/card.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/card.ts"
+      }
+    ]
+  },
+  "name": "Card",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/card/card.component.ts",
+    "packages/components/src/components/card/card.custom.styles.ts",
+    "packages/components/src/components/card/card.styles.ts",
+    "packages/components/src/components/card/card.test.ts",
+    "packages/components/src/components/card/card.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-card",
+    "component"
+  ]
+}

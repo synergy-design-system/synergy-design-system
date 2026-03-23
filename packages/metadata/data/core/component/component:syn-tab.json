@@ -1,0 +1,53 @@
+{
+  "custom": {
+    "sourceModulePath": "components/tab/tab.js",
+    "summary": "Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel)."
+  },
+  "id": "component:syn-tab",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/tab.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/tab.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/tab.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/tab.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/tab.ts"
+      }
+    ]
+  },
+  "name": "Tab",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/tab/tab.component.ts",
+    "packages/components/src/components/tab/tab.custom.styles.ts",
+    "packages/components/src/components/tab/tab.styles.ts",
+    "packages/components/src/components/tab/tab.test.ts",
+    "packages/components/src/components/tab/tab.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-tab",
+    "component"
+  ]
+}

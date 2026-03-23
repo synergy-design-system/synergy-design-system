@@ -1,0 +1,52 @@
+{
+  "custom": {
+    "sourceModulePath": "components/file/file.js",
+    "summary": "File controls allow selecting an arbitrary number of files for uploading."
+  },
+  "id": "component:syn-file",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/file.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/file.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/file.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/file.ts"
+      }
+    ]
+  },
+  "name": "File",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-button",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "unknown",
+  "sources": [
+    "packages/components/src/components/file/file.component.ts",
+    "packages/components/src/components/file/file.styles.ts",
+    "packages/components/src/components/file/file.test.ts",
+    "packages/components/src/components/file/file.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-file",
+    "component"
+  ]
+}

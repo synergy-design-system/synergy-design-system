@@ -1,0 +1,53 @@
+{
+  "custom": {
+    "sourceModulePath": "components/badge/badge.js",
+    "summary": "Badges are used to draw attention and display statuses or counts."
+  },
+  "id": "component:syn-badge",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/badge.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/badge.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/badge.custom.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/badge.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/badge.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/badge.ts"
+      }
+    ]
+  },
+  "name": "Badge",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/badge/badge.component.ts",
+    "packages/components/src/components/badge/badge.custom.styles.ts",
+    "packages/components/src/components/badge/badge.custom.test.ts",
+    "packages/components/src/components/badge/badge.styles.ts",
+    "packages/components/src/components/badge/badge.test.ts",
+    "packages/components/src/components/badge/badge.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-badge",
+    "component"
+  ]
+}

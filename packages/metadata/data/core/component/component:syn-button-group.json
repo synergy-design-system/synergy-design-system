@@ -1,0 +1,53 @@
+{
+  "custom": {
+    "sourceModulePath": "components/button-group/button-group.js",
+    "summary": "Button groups can be used to group related buttons into sections."
+  },
+  "id": "component:syn-button-group",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button-group/button-group.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button-group/button-group.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button-group/button-group.custom.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button-group/button-group.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button-group/button-group.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button-group/button-group.ts"
+      }
+    ]
+  },
+  "name": "Button Group",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/button-group/button-group.component.ts",
+    "packages/components/src/components/button-group/button-group.custom.styles.ts",
+    "packages/components/src/components/button-group/button-group.custom.test.ts",
+    "packages/components/src/components/button-group/button-group.styles.ts",
+    "packages/components/src/components/button-group/button-group.test.ts",
+    "packages/components/src/components/button-group/button-group.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-button-group",
+    "component"
+  ]
+}

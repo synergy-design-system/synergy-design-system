@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/menu-label/menu-label.js",
+    "summary": "Menu labels are used to describe a group of menu items."
+  },
+  "id": "component:syn-menu-label",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/menu-label.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/menu-label.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/menu-label.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/menu-label.ts"
+      }
+    ]
+  },
+  "name": "Menu Label",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-divider",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/menu-label/menu-label.component.ts",
+    "packages/components/src/components/menu-label/menu-label.styles.ts",
+    "packages/components/src/components/menu-label/menu-label.test.ts",
+    "packages/components/src/components/menu-label/menu-label.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-menu-label",
+    "component"
+  ]
+}

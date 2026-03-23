@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/radio/radio.js",
+    "summary": "Radios allow the user to select a single option from a group."
+  },
+  "id": "component:syn-radio",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio/radio.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio/radio.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio/radio.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio/radio.ts"
+      }
+    ]
+  },
+  "name": "Radio",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/radio/radio.component.ts",
+    "packages/components/src/components/radio/radio.styles.ts",
+    "packages/components/src/components/radio/radio.test.ts",
+    "packages/components/src/components/radio/radio.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-radio",
+    "component"
+  ]
+}

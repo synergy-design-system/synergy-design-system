@@ -1,0 +1,66 @@
+{
+  "custom": {
+    "sourceModulePath": "components/select/select.js",
+    "summary": "Selects allow you to choose items from a menu of predefined options."
+  },
+  "id": "component:syn-select",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/select.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/select.custom.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/select.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/select.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/select.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/utility.ts"
+      }
+    ]
+  },
+  "name": "Select",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-popup",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-tag",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/select/select.component.ts",
+    "packages/components/src/components/select/select.custom.test.ts",
+    "packages/components/src/components/select/select.styles.ts",
+    "packages/components/src/components/select/select.test.ts",
+    "packages/components/src/components/select/select.ts",
+    "packages/components/src/components/select/utility.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-select",
+    "component"
+  ]
+}

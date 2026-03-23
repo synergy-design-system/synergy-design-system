@@ -1,0 +1,43 @@
+{
+  "custom": {
+    "sourceModulePath": "components/range-tick/range-tick.js",
+    "summary": "Ticks visually improve positioning on range sliders."
+  },
+  "id": "component:syn-range-tick",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/range-tick.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/range-tick.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/range-tick.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/range-tick.ts"
+      }
+    ]
+  },
+  "name": "Range Tick",
+  "package": "components",
+  "relations": [],
+  "since": "unknown",
+  "sources": [
+    "packages/components/src/components/range-tick/range-tick.component.ts",
+    "packages/components/src/components/range-tick/range-tick.styles.ts",
+    "packages/components/src/components/range-tick/range-tick.test.ts",
+    "packages/components/src/components/range-tick/range-tick.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-range-tick",
+    "component"
+  ]
+}

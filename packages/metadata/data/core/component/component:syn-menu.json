@@ -1,0 +1,48 @@
+{
+  "custom": {
+    "sourceModulePath": "components/menu/menu.js",
+    "summary": "Menus provide a list of options for the user to choose from."
+  },
+  "id": "component:syn-menu",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu/menu.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu/menu.custom.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu/menu.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu/menu.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu/menu.ts"
+      }
+    ]
+  },
+  "name": "Menu",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/components/src/components/menu/menu.component.ts",
+    "packages/components/src/components/menu/menu.custom.test.ts",
+    "packages/components/src/components/menu/menu.styles.ts",
+    "packages/components/src/components/menu/menu.test.ts",
+    "packages/components/src/components/menu/menu.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-menu",
+    "component"
+  ]
+}

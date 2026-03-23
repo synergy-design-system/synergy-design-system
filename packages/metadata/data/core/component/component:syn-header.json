@@ -1,0 +1,43 @@
+{
+  "custom": {
+    "sourceModulePath": "components/header/header.js",
+    "summary": "The <syn-header /> element provides a generic application header\nthat can be used to add applications name, toolbar and primary navigation."
+  },
+  "id": "component:syn-header",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-header/header.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-header/header.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-header/header.test.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-header/header.ts"
+      }
+    ]
+  },
+  "name": "Header",
+  "package": "components",
+  "relations": [],
+  "since": "1.10.0",
+  "sources": [
+    "packages/components/src/components/header/header.component.ts",
+    "packages/components/src/components/header/header.styles.ts",
+    "packages/components/src/components/header/header.test.ts",
+    "packages/components/src/components/header/header.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "syn-header",
+    "component"
+  ]
+}

@@ -78,6 +78,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-divider.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-divider.md"
       }
     ]
   },

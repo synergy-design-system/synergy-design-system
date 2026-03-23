@@ -86,6 +86,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-menu-item.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-menu-item.md"
       }
     ]
   },

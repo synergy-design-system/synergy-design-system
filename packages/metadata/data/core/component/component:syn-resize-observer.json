@@ -20,6 +20,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-resize-observer.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-resize-observer.md"
       }
     ]
   },

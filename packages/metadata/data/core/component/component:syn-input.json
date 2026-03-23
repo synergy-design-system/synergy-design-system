@@ -123,6 +123,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-input.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-input.md"
       }
     ]
   },

@@ -95,6 +95,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tooltip.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tooltip.md"
       }
     ]
   },

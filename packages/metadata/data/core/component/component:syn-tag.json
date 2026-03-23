@@ -87,6 +87,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tag.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tag.md"
       }
     ]
   },

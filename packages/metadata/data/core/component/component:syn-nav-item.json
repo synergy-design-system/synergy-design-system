@@ -95,6 +95,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-nav-item.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-nav-item.md"
       }
     ]
   },

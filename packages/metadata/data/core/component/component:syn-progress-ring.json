@@ -82,6 +82,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-progress-ring.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-progress-ring.md"
       }
     ]
   },

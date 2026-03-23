@@ -91,6 +91,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-radio-group.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-radio-group.md"
       }
     ]
   },

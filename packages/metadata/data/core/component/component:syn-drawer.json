@@ -111,6 +111,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-drawer.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-drawer.md"
       }
     ]
   },

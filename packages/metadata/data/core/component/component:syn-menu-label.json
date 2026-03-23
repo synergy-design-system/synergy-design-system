@@ -78,6 +78,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-menu-label.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-menu-label.md"
       }
     ]
   },

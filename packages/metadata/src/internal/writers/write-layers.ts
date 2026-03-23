@@ -122,6 +122,186 @@ const getComponentInterfaceSnapshot = (entity: CoreEntity): Record<string, unkno
   return snapshot as Record<string, unknown>;
 };
 
+type InterfaceNamedDescription = { description: string; name: string };
+type InterfaceAttribute = {
+  default?: string;
+  description: string;
+  name: string;
+  reflects: boolean;
+  type?: string;
+};
+type InterfaceProperty = {
+  access: 'public' | 'readonly';
+  default?: string;
+  description: string;
+  name: string;
+  type?: string;
+};
+type InterfaceMethod = {
+  description: string;
+  name: string;
+  parameters: Array<{ name: string; type?: string }>;
+  returnType?: string;
+};
+type InterfaceEvent = { description: string; name: string; type?: string };
+type InterfaceSnapshot = {
+  attributes?: InterfaceAttribute[];
+  cssParts?: InterfaceNamedDescription[];
+  dependencies?: string[];
+  documentation?: string;
+  events?: InterfaceEvent[];
+  methods?: InterfaceMethod[];
+  properties?: InterfaceProperty[];
+  since?: string;
+  slots?: InterfaceNamedDescription[];
+  sourceModulePath?: string;
+  status?: string;
+  summary?: string;
+  tagName?: string;
+};
+
+const formatCell = (value: string | undefined): string => {
+  if (!value || value.length === 0) {
+    return '-';
+  }
+
+  return value.replace(/\|/g, '\\|').replace(/\n/g, ' ');
+};
+
+const slotDisplayName = (name: string): string => (name.length === 0 ? '(default)' : name);
+
+const renderInterfaceMarkdown = (rawSnapshot: Record<string, unknown>): string => {
+  const snapshot = rawSnapshot as InterfaceSnapshot;
+
+  const lines: string[] = [];
+  const tagName = snapshot.tagName ?? 'unknown-component';
+  const summary = snapshot.summary ?? '';
+  const documentation = snapshot.documentation;
+  const sourceModulePath = snapshot.sourceModulePath ?? '-';
+  const status = snapshot.status ?? '-';
+  const since = snapshot.since ?? '-';
+  const slots = snapshot.slots ?? [];
+  const attributes = snapshot.attributes ?? [];
+  const properties = snapshot.properties ?? [];
+  const methods = snapshot.methods ?? [];
+  const cssParts = snapshot.cssParts ?? [];
+  const events = snapshot.events ?? [];
+  const dependencies = snapshot.dependencies ?? [];
+
+  lines.push(`# ${tagName}`);
+  lines.push('');
+  lines.push('## Summary');
+  lines.push('');
+  lines.push(summary.length > 0 ? summary : '-');
+
+  if (documentation) {
+    lines.push('');
+    lines.push('## Documentation');
+    lines.push('');
+    lines.push(`[Component Documentation](${documentation})`);
+  }
+
+  lines.push('');
+  lines.push('## Class Information');
+  lines.push('');
+  lines.push(`- **Module Path:** ${sourceModulePath}`);
+  lines.push(`- **Tag Name:** ${tagName}`);
+
+  lines.push('');
+  lines.push('## Available Slots');
+  lines.push('');
+  lines.push('| Name | Description |');
+  lines.push('|------|-------------|');
+  for (const slot of slots) {
+    lines.push(`| ${formatCell(slotDisplayName(slot.name))} | ${formatCell(slot.description)} |`);
+  }
+  if (slots.length === 0) {
+    lines.push('| - | - |');
+  }
+
+  lines.push('');
+  lines.push('## Available Attributes');
+  lines.push('');
+  lines.push('| Name | Type | Default | Description | Reflects |');
+  lines.push('|------|------|---------|-------------|----------|');
+  for (const attribute of attributes) {
+    lines.push(`| ${formatCell(attribute.name)} | ${formatCell(attribute.type)} | ${formatCell(attribute.default)} | ${formatCell(attribute.description)} | ${attribute.reflects ? '✓' : '-'} |`);
+  }
+  if (attributes.length === 0) {
+    lines.push('| - | - | - | - | - |');
+  }
+
+  lines.push('');
+  lines.push('## Available Properties');
+  lines.push('');
+  lines.push('| Name | Type | Default | Description | Access |');
+  lines.push('|------|------|---------|-------------|--------|');
+  for (const property of properties) {
+    lines.push(`| ${formatCell(property.name)} | ${formatCell(property.type)} | ${formatCell(property.default)} | ${formatCell(property.description)} | ${formatCell(property.access)} |`);
+  }
+  if (properties.length === 0) {
+    lines.push('| - | - | - | - | - |');
+  }
+
+  lines.push('');
+  lines.push('## Available Methods');
+  lines.push('');
+  lines.push('| Name | Parameters | Return Type | Description |');
+  lines.push('|------|------------|-------------|-------------|');
+  for (const method of methods) {
+    const parameters = method.parameters.length > 0
+      ? method.parameters.map((parameter) => (parameter.type ? `${parameter.name}: ${parameter.type}` : parameter.name)).join(', ')
+      : '-';
+    lines.push(`| ${formatCell(method.name)} | ${formatCell(parameters)} | ${formatCell(method.returnType)} | ${formatCell(method.description)} |`);
+  }
+  if (methods.length === 0) {
+    lines.push('| - | - | - | - |');
+  }
+
+  lines.push('');
+  lines.push('## Available CSS Parts');
+  lines.push('');
+  lines.push('| Name | Description |');
+  lines.push('|------|-------------|');
+  for (const part of cssParts) {
+    lines.push(`| ${formatCell(part.name)} | ${formatCell(part.description)} |`);
+  }
+  if (cssParts.length === 0) {
+    lines.push('| - | - |');
+  }
+
+  lines.push('');
+  lines.push('## Available Events');
+  lines.push('');
+  lines.push('| Name | Event Type | Description |');
+  lines.push('|------|------------|-------------|');
+  for (const event of events) {
+    lines.push(`| ${formatCell(event.name)} | ${formatCell(event.type)} | ${formatCell(event.description)} |`);
+  }
+  if (events.length === 0) {
+    lines.push('| - | - | - |');
+  }
+
+  lines.push('');
+  lines.push('## Dependencies');
+  lines.push('');
+  if (dependencies.length > 0) {
+    for (const dependency of dependencies) {
+      lines.push(`- **${dependency}**`);
+    }
+  } else {
+    lines.push('- None');
+  }
+
+  lines.push('');
+  lines.push('## Usage Information');
+  lines.push('');
+  lines.push(`- **Status:** ${status}`);
+  lines.push(`- **Since:** ${since}`);
+
+  return `${lines.join('\n')}\n`;
+};
+
 /**
  * Write layer assets to data/layers/{layer}/{kind}/{id}/...
  * Copies source files for each entity and builds layer references.
@@ -248,13 +428,20 @@ export async function writeLayerAssets(
       const interfaceSnapshot = getComponentInterfaceSnapshot(entity);
       if (interfaceSnapshot) {
         const interfacePath = join(layersDir, 'interface', entity.kind, `${entity.id}.json`);
+        const interfaceMarkdownPath = join(layersDir, 'interface', entity.kind, `${entity.id}.md`);
         await ensureDir(dirname(interfacePath));
         await writeFile(interfacePath, `${JSON.stringify(interfaceSnapshot, null, 2)}\n`, 'utf8');
+        await writeFile(interfaceMarkdownPath, renderInterfaceMarkdown(interfaceSnapshot), 'utf8');
         interfaceLayerRefs.push({
           layer: 'interface',
           path: relative(outputDir, interfacePath),
         });
+        interfaceLayerRefs.push({
+          layer: 'interface',
+          path: relative(outputDir, interfaceMarkdownPath),
+        });
         ctx.logger?.debug(`Wrote interface snapshot: ${relative(outputDir, interfacePath)}`);
+        ctx.logger?.debug(`Wrote interface markdown: ${relative(outputDir, interfaceMarkdownPath)}`);
       }
 
       if (fullLayerRefs.length > 0 || interfaceLayerRefs.length > 0) {

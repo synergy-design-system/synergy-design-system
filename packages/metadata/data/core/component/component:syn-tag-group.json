@@ -77,6 +77,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tag-group.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tag-group.md"
       }
     ]
   },

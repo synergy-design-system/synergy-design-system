@@ -80,6 +80,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-validate.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-validate.md"
       }
     ]
   },

@@ -82,6 +82,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-card.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-card.md"
       }
     ]
   },

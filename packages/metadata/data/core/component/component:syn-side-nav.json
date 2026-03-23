@@ -95,6 +95,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-side-nav.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-side-nav.md"
       }
     ]
   },

@@ -77,6 +77,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-range-tick.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-range-tick.md"
       }
     ]
   },

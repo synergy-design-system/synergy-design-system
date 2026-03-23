@@ -106,6 +106,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-range.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-range.md"
       }
     ]
   },

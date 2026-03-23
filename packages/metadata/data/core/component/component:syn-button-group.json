@@ -86,6 +86,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-button-group.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-button-group.md"
       }
     ]
   },

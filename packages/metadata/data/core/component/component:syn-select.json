@@ -127,6 +127,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-select.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-select.md"
       }
     ]
   },

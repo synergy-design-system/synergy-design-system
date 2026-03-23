@@ -83,6 +83,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-radio-button.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-radio-button.md"
       }
     ]
   },

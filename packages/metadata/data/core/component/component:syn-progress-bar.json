@@ -82,6 +82,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-progress-bar.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-progress-bar.md"
       }
     ]
   },

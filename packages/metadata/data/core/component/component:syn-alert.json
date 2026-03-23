@@ -99,6 +99,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-alert.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-alert.md"
       }
     ]
   },

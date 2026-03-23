@@ -82,6 +82,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-breadcrumb.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-breadcrumb.md"
       }
     ]
   },

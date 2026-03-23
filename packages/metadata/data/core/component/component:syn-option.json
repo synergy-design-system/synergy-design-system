@@ -90,6 +90,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-option.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-option.md"
       }
     ]
   },

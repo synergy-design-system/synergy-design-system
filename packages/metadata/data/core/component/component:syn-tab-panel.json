@@ -82,6 +82,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tab-panel.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tab-panel.md"
       }
     ]
   },

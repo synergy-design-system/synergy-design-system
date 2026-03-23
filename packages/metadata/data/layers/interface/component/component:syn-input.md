@@ -1,0 +1,170 @@
+# syn-input
+
+## Summary
+
+Inputs collect data from the user.
+
+## Documentation
+
+[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs)
+
+## Class Information
+
+- **Module Path:** components/input/input.js
+- **Tag Name:** syn-input
+
+## Available Slots
+
+| Name | Description |
+|------|-------------|
+| label | The input's label. Alternatively, you can use the `label` attribute. |
+| prefix | Used to prepend a presentational icon or similar element to the input. |
+| suffix | Used to append a presentational icon or similar element to the input. |
+| clear-icon | An icon to use in lieu of the default clear icon. |
+| show-password-icon | An icon to use in lieu of the default show password icon. |
+| hide-password-icon | An icon to use in lieu of the default hide password icon. |
+| help-text | Text that describes how to use the input. Alternatively, you can use the `help-text` attribute. |
+| increment-number-stepper | An icon to use in lieu of the default increment number stepper icon. |
+| decrement-number-stepper | An icon to use in lieu of the default decrement number stepper icon. |
+
+## Available Attributes
+
+| Name | Type | Default | Description | Reflects |
+|------|------|---------|-------------|----------|
+| title | string | '' | - | ✓ |
+| type | \| 'date'     \| 'datetime-local'     \| 'email'     \| 'number'     \| 'password'     \| 'search'     \| 'tel'     \| 'text'     \| 'time'     \| 'url' | 'text' | The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults to `text`. | ✓ |
+| name | string | '' | The name of the input, submitted as a name/value pair with form data. | - |
+| value | string | '' | The current value of the input, submitted as a name/value pair with form data. | - |
+| size | 'small' \| 'medium' \| 'large' | 'medium' | The input's size. | ✓ |
+| label | string | '' | The input's label. If you need to display HTML, use the `label` slot instead. | - |
+| help-text | string | '' | The input's help text. If you need to display HTML, use the `help-text` slot instead. | - |
+| clearable | boolean | false | Adds a clear button when the input is not empty. | - |
+| disabled | boolean | false | Disables the input. | ✓ |
+| placeholder | string | '' | Placeholder text to show as a hint when the input is empty. | - |
+| readonly | boolean | false | Makes the input readonly. | ✓ |
+| password-toggle | boolean | false | Adds a button to toggle the password's visibility. Only applies to password types. | - |
+| password-visible | boolean | false | Determines whether or not the password is currently visible. Only applies to password input types. | - |
+| no-spin-buttons | boolean | false | Hides the increment/decrement spin buttons for number inputs. | - |
+| form | string | '' | By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you to place the form control outside of a form and associate it with the form that has this `id`. The form must be in the same document or shadow root for this to work. | ✓ |
+| required | boolean | false | Makes the input a required field. | ✓ |
+| pattern | string | - | A regular expression pattern to validate input against. | - |
+| minlength | number | - | The minimum length of input that will be considered valid. | - |
+| maxlength | number | - | The maximum length of input that will be considered valid. | - |
+| min | number \| string | - | The input's minimum value. Only applies to date and number input types. | - |
+| max | number \| string | - | The input's maximum value. Only applies to date and number input types. | - |
+| step | number \| 'any' | - | Specifies the granularity that the value must adhere to, or the special value `any` which means no stepping is implied, allowing any numeric value. Only applies to date and number input types. | - |
+| autocapitalize | 'off' \| 'none' \| 'on' \| 'sentences' \| 'words' \| 'characters' | - | Controls whether and how text input is automatically capitalized as it is entered by the user. | - |
+| autocorrect | boolean | - | Indicates whether the browser's autocorrect feature is on or off. | ✓ |
+| autocomplete | string | - | Specifies what permission the browser has to provide assistance in filling out form field values. Refer to [this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values. | - |
+| autofocus | boolean | - | Indicates that the input should receive focus on page load. | - |
+| enterkeyhint | 'enter' \| 'done' \| 'go' \| 'next' \| 'previous' \| 'search' \| 'send' | - | Used to customize the label or icon of the Enter key on virtual keyboards. | - |
+| spellcheck | boolean | true | Enables spell checking on the input. | - |
+| inputmode | 'none' \| 'text' \| 'decimal' \| 'numeric' \| 'tel' \| 'search' \| 'email' \| 'url' | - | Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual keyboard on supportive devices. | - |
+| min-fraction-digits | number | - | The minimal amount of fraction digits to use for numeric values. Used to format the number when the input type is `number`. | - |
+| max-fraction-digits | number | - | The maximal amount of fraction digits to use for numeric values. Used to format the number when the input type is `number`. | - |
+| numeric-strategy | 'native' \| 'modern' \| Partial<NumericStrategy> | modernNumericStrategy | Defines the strategy for handling numbers in the numeric input. This is used to determine how the input behaves when the user interacts with it.  Includes the following configuration options:  - **autoClamp**: If true, the input will clamp the value to the min and max attributes. - **noStepAlign**: If true, the input will not align the value to the step attribute. - **noStepValidation**: If true, the input will not validate the value against the step attribute.  You may provide this as one of the following values:  - 'native': Uses the native browser implementation. - 'modern': Uses a more intuitive implementation:   - Values are clamped to the nearest min or max value.   - Stepping is inclusive to the provided min and max values.   - Provided stepping is no longer used in validation. - An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`! | - |
+
+## Available Properties
+
+| Name | Type | Default | Description | Access |
+|------|------|---------|-------------|--------|
+| input | HTMLInputElement | - | - | public |
+| title | string | '' | - | public |
+| type | \| 'date'     \| 'datetime-local'     \| 'email'     \| 'number'     \| 'password'     \| 'search'     \| 'tel'     \| 'text'     \| 'time'     \| 'url' | 'text' | The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults to `text`. | public |
+| name | string | '' | The name of the input, submitted as a name/value pair with form data. | public |
+| value | string | '' | The current value of the input, submitted as a name/value pair with form data. | public |
+| defaultValue | string | '' | The default value of the form control. Primarily used for resetting the form control. | public |
+| size | 'small' \| 'medium' \| 'large' | 'medium' | The input's size. | public |
+| label | string | '' | The input's label. If you need to display HTML, use the `label` slot instead. | public |
+| helpText | string | '' | The input's help text. If you need to display HTML, use the `help-text` slot instead. | public |
+| clearable | boolean | false | Adds a clear button when the input is not empty. | public |
+| disabled | boolean | false | Disables the input. | public |
+| placeholder | string | '' | Placeholder text to show as a hint when the input is empty. | public |
+| readonly | boolean | false | Makes the input readonly. | public |
+| passwordToggle | boolean | false | Adds a button to toggle the password's visibility. Only applies to password types. | public |
+| passwordVisible | boolean | false | Determines whether or not the password is currently visible. Only applies to password input types. | public |
+| noSpinButtons | boolean | false | Hides the increment/decrement spin buttons for number inputs. | public |
+| form | string | '' | By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you to place the form control outside of a form and associate it with the form that has this `id`. The form must be in the same document or shadow root for this to work. | public |
+| required | boolean | false | Makes the input a required field. | public |
+| pattern | string | - | A regular expression pattern to validate input against. | public |
+| minlength | number | - | The minimum length of input that will be considered valid. | public |
+| maxlength | number | - | The maximum length of input that will be considered valid. | public |
+| min | number \| string | - | The input's minimum value. Only applies to date and number input types. | public |
+| max | number \| string | - | The input's maximum value. Only applies to date and number input types. | public |
+| step | number \| 'any' | - | Specifies the granularity that the value must adhere to, or the special value `any` which means no stepping is implied, allowing any numeric value. Only applies to date and number input types. | public |
+| autocapitalize | 'off' \| 'none' \| 'on' \| 'sentences' \| 'words' \| 'characters' | - | Controls whether and how text input is automatically capitalized as it is entered by the user. | public |
+| autocorrect | boolean | - | Indicates whether the browser's autocorrect feature is on or off. | public |
+| autocomplete | string | - | Specifies what permission the browser has to provide assistance in filling out form field values. Refer to [this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values. | public |
+| autofocus | boolean | - | Indicates that the input should receive focus on page load. | public |
+| enterkeyhint | 'enter' \| 'done' \| 'go' \| 'next' \| 'previous' \| 'search' \| 'send' | - | Used to customize the label or icon of the Enter key on virtual keyboards. | public |
+| spellcheck | boolean | true | Enables spell checking on the input. | public |
+| inputmode | 'none' \| 'text' \| 'decimal' \| 'numeric' \| 'tel' \| 'search' \| 'email' \| 'url' | - | Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual keyboard on supportive devices. | public |
+| numberFormatterOptions | Intl.NumberFormatOptions | - | Optional options that should be passed to the `NumberFormatter` when formatting the value. This is used to format the number when the input type is `number`. Note this can only be set via `property`, not as an `attribute`! | public |
+| minFractionDigits | number | - | The minimal amount of fraction digits to use for numeric values. Used to format the number when the input type is `number`. | public |
+| maxFractionDigits | number | - | The maximal amount of fraction digits to use for numeric values. Used to format the number when the input type is `number`. | public |
+| numericStrategy | 'native' \| 'modern' \| Partial<NumericStrategy> | modernNumericStrategy | Defines the strategy for handling numbers in the numeric input. This is used to determine how the input behaves when the user interacts with it.  Includes the following configuration options:  - **autoClamp**: If true, the input will clamp the value to the min and max attributes. - **noStepAlign**: If true, the input will not align the value to the step attribute. - **noStepValidation**: If true, the input will not validate the value against the step attribute.  You may provide this as one of the following values:  - 'native': Uses the native browser implementation. - 'modern': Uses a more intuitive implementation:   - Values are clamped to the nearest min or max value.   - Stepping is inclusive to the provided min and max values.   - Provided stepping is no longer used in validation. - An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`! | public |
+| valueAsDate | - | - | Gets or sets the current value as a `Date` object. Returns `null` if the value can't be converted. This will use the native `<input type="{{type}}">` implementation and may result in an error. | public |
+| valueAsNumber | - | - | Gets or sets the current value as a number. Returns `NaN` if the value can't be converted. | public |
+| validity | - | - | Gets the validity state object | readonly |
+| validationMessage | - | - | Gets the validation message | readonly |
+
+## Available Methods
+
+| Name | Parameters | Return Type | Description |
+|------|------------|-------------|-------------|
+| handleDisabledChange | - | - | - |
+| handleStepChange | - | - | - |
+| handleValueChange | - | - | - |
+| focus | options: FocusOptions | - | Sets focus on the input. |
+| blur | - | - | Removes focus from the input. |
+| select | - | - | Selects all the text in the input. |
+| setSelectionRange | selectionStart: number, selectionEnd: number, selectionDirection: 'forward' \| 'backward' \| 'none' | - | Sets the start and end positions of the text selection (0-based). |
+| setRangeText | replacement: string, start: number, end: number, selectMode: 'select' \| 'start' \| 'end' \| 'preserve' | - | Replaces a range of text with a new string. |
+| showPicker | - | - | Displays the browser picker for an input element (only works if the browser supports it for the input type). |
+| stepUp | - | - | Increments the value of a numeric input type by the value of the step attribute. |
+| stepDown | - | - | Decrements the value of a numeric input type by the value of the step attribute. |
+| checkValidity | - | - | Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid. |
+| getForm | - | - | Gets the associated form, if one exists. |
+| reportValidity | - | - | Checks for validity and shows the browser's validation message if the control is invalid. |
+| setCustomValidity | message: string | - | Sets a custom validation message. Pass an empty string to restore validity. |
+
+## Available CSS Parts
+
+| Name | Description |
+|------|-------------|
+| form-control | The form control that wraps the label, input, and help text. |
+| form-control-label | The label's wrapper. |
+| form-control-input | The input's wrapper. |
+| form-control-help-text | The help text's wrapper. |
+| base | The component's base wrapper. |
+| input | The internal `<input>` control. |
+| prefix | The container that wraps the prefix. |
+| clear-button | The clear button. |
+| password-toggle-button | The password toggle button. |
+| suffix | The container that wraps the suffix. |
+| stepper | The container that wraps the number stepper. |
+| decrement-number-stepper | The decrement number stepper button. |
+| increment-number-stepper | The increment number stepper button. |
+| divider | The divider between the increment and decrement number stepper buttons. |
+
+## Available Events
+
+| Name | Event Type | Description |
+|------|------------|-------------|
+| syn-blur | SynBlurEvent | Emitted when the control loses focus. |
+| syn-change | SynChangeEvent | Emitted when an alteration to the control's value is committed by the user. |
+| syn-clear | SynClearEvent | Emitted when the clear button is activated. |
+| syn-focus | SynFocusEvent | Emitted when the control gains focus. |
+| syn-input | SynInputEvent | Emitted when the control receives input. |
+| syn-invalid | SynInvalidEvent | Emitted when the form control has been checked for validity and its constraints aren't satisfied. |
+| syn-clamp | SynClampEvent | Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute. |
+
+## Dependencies
+
+- **syn-icon**
+- **syn-divider**
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 2.0

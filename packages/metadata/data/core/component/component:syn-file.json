@@ -98,6 +98,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-file.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-file.md"
       }
     ]
   },

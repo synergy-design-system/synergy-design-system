@@ -134,6 +134,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-combobox.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-combobox.md"
       }
     ]
   },

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-23T13:55:41.453Z",
+  "builtAt": "2026-03-23T14:02:06.170Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -113,7 +113,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Accordion",
       "search": [
@@ -132,7 +132,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Alert",
       "search": [
@@ -151,7 +151,7 @@
       "kind": "component",
       "layers": {
         "full": 10,
-        "interface": 1
+        "interface": 2
       },
       "name": "Badge",
       "search": [
@@ -170,7 +170,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Breadcrumb",
       "search": [
@@ -189,7 +189,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Breadcrumb Item",
       "search": [
@@ -208,7 +208,7 @@
       "kind": "component",
       "layers": {
         "full": 10,
-        "interface": 1
+        "interface": 2
       },
       "name": "Button",
       "search": [
@@ -227,7 +227,7 @@
       "kind": "component",
       "layers": {
         "full": 10,
-        "interface": 1
+        "interface": 2
       },
       "name": "Button Group",
       "search": [
@@ -246,7 +246,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Card",
       "search": [
@@ -265,7 +265,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Checkbox",
       "search": [
@@ -284,7 +284,7 @@
       "kind": "component",
       "layers": {
         "full": 11,
-        "interface": 1
+        "interface": 2
       },
       "name": "Combobox",
       "search": [
@@ -303,7 +303,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Details",
       "search": [
@@ -322,7 +322,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Dialog",
       "search": [
@@ -341,7 +341,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Divider",
       "search": [
@@ -360,7 +360,7 @@
       "kind": "component",
       "layers": {
         "full": 10,
-        "interface": 1
+        "interface": 2
       },
       "name": "Drawer",
       "search": [
@@ -379,7 +379,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Dropdown",
       "search": [
@@ -398,7 +398,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "File",
       "search": [
@@ -417,7 +417,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Header",
       "search": [
@@ -436,7 +436,7 @@
       "kind": "component",
       "layers": {
         "full": 16,
-        "interface": 1
+        "interface": 2
       },
       "name": "Icon",
       "search": [
@@ -455,7 +455,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Icon Button",
       "search": [
@@ -474,7 +474,7 @@
       "kind": "component",
       "layers": {
         "full": 12,
-        "interface": 1
+        "interface": 2
       },
       "name": "Input",
       "search": [
@@ -493,7 +493,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Menu",
       "search": [
@@ -512,7 +512,7 @@
       "kind": "component",
       "layers": {
         "full": 10,
-        "interface": 1
+        "interface": 2
       },
       "name": "Menu Item",
       "search": [
@@ -531,7 +531,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Menu Label",
       "search": [
@@ -550,7 +550,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Nav Item",
       "search": [
@@ -569,7 +569,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Optgroup",
       "search": [
@@ -588,7 +588,7 @@
       "kind": "component",
       "layers": {
         "full": 11,
-        "interface": 1
+        "interface": 2
       },
       "name": "Option",
       "search": [
@@ -607,7 +607,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Popup",
       "search": [
@@ -626,7 +626,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Prio Nav",
       "search": [
@@ -645,7 +645,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Progress Bar",
       "search": [
@@ -664,7 +664,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Progress Ring",
       "search": [
@@ -683,7 +683,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Radio",
       "search": [
@@ -702,7 +702,7 @@
       "kind": "component",
       "layers": {
         "full": 7,
-        "interface": 1
+        "interface": 2
       },
       "name": "Radio Button",
       "search": [
@@ -721,7 +721,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Radio Group",
       "search": [
@@ -740,7 +740,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Range",
       "search": [
@@ -759,7 +759,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Range Tick",
       "search": [
@@ -778,7 +778,7 @@
       "kind": "component",
       "layers": {
         "full": 2,
-        "interface": 1
+        "interface": 2
       },
       "name": "Resize Observer",
       "search": [
@@ -794,7 +794,7 @@
       "kind": "component",
       "layers": {
         "full": 10,
-        "interface": 1
+        "interface": 2
       },
       "name": "Select",
       "search": [
@@ -813,7 +813,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Side Nav",
       "search": [
@@ -832,7 +832,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Spinner",
       "search": [
@@ -851,7 +851,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Switch",
       "search": [
@@ -870,7 +870,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Tab",
       "search": [
@@ -889,7 +889,7 @@
       "kind": "component",
       "layers": {
         "full": 10,
-        "interface": 1
+        "interface": 2
       },
       "name": "Tab Group",
       "search": [
@@ -908,7 +908,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Tab Panel",
       "search": [
@@ -927,7 +927,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Tag",
       "search": [
@@ -946,7 +946,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Tag Group",
       "search": [
@@ -965,7 +965,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Textarea",
       "search": [
@@ -984,7 +984,7 @@
       "kind": "component",
       "layers": {
         "full": 8,
-        "interface": 1
+        "interface": 2
       },
       "name": "Tooltip",
       "search": [
@@ -1003,7 +1003,7 @@
       "kind": "component",
       "layers": {
         "full": 9,
-        "interface": 1
+        "interface": 2
       },
       "name": "Validate",
       "search": [

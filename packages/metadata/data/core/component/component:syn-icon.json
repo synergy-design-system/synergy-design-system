@@ -119,6 +119,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-icon.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-icon.md"
       }
     ]
   },

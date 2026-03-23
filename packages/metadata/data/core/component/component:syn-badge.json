@@ -86,6 +86,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-badge.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-badge.md"
       }
     ]
   },

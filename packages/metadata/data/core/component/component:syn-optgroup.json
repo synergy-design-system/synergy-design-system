@@ -78,6 +78,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-optgroup.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-optgroup.md"
       }
     ]
   },

@@ -91,6 +91,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-header.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-header.md"
       }
     ]
   },

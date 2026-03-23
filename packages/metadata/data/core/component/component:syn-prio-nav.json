@@ -82,6 +82,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-prio-nav.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-prio-nav.md"
       }
     ]
   },

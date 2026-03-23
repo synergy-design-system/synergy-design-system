@@ -107,6 +107,10 @@
       {
         "layer": "interface",
         "path": "layers/interface/component/component:syn-dialog.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-dialog.md"
       }
     ]
   },

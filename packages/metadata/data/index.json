@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-23T11:00:27.455Z",
+  "builtAt": "2026-03-23T11:09:21.383Z",
   "entities": [
     {
       "corePath": "data/core/component/component:syn-accordion.json",
@@ -1053,6 +1053,74 @@
         "framework",
         "setup",
         "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:styles-link.json",
+      "id": "style:styles-link",
+      "kind": "style",
+      "layers": {
+        "full": 1
+      },
+      "name": "Link Styles",
+      "search": [
+        "style:styles-link",
+        "Link Styles",
+        "module",
+        "style",
+        "styles",
+        "link"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:styles-link-list.json",
+      "id": "style:styles-link-list",
+      "kind": "style",
+      "layers": {
+        "full": 1
+      },
+      "name": "Link List Styles",
+      "search": [
+        "style:styles-link-list",
+        "Link List Styles",
+        "module",
+        "style",
+        "styles",
+        "link-list"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:styles-tables.json",
+      "id": "style:styles-tables",
+      "kind": "style",
+      "layers": {
+        "full": 2
+      },
+      "name": "Tables Styles",
+      "search": [
+        "style:styles-tables",
+        "Tables Styles",
+        "module",
+        "style",
+        "styles",
+        "tables"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:styles-typography.json",
+      "id": "style:styles-typography",
+      "kind": "style",
+      "layers": {
+        "full": 3
+      },
+      "name": "Typography Styles",
+      "search": [
+        "style:styles-typography",
+        "Typography Styles",
+        "module",
+        "style",
+        "styles",
+        "typography"
       ]
     },
     {

@@ -1,0 +1,34 @@
+{
+  "custom": {
+    "moduleName": "tables"
+  },
+  "id": "style:styles-tables",
+  "kind": "style",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/styles/tables/table-cell.css"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/styles/tables/table.css"
+      }
+    ]
+  },
+  "name": "Tables Styles",
+  "package": "styles",
+  "relations": [],
+  "since": "2.0.2",
+  "sources": [
+    "packages/styles/src/tables/table-cell.css",
+    "packages/styles/src/tables/table.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "module",
+    "style",
+    "styles",
+    "tables"
+  ]
+}

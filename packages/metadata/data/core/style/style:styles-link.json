@@ -1,0 +1,29 @@
+{
+  "custom": {
+    "moduleName": "link"
+  },
+  "id": "style:styles-link",
+  "kind": "style",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/styles/link/index.css"
+      }
+    ]
+  },
+  "name": "Link Styles",
+  "package": "styles",
+  "relations": [],
+  "since": "2.0.2",
+  "sources": [
+    "packages/styles/src/link/index.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "module",
+    "style",
+    "styles",
+    "link"
+  ]
+}

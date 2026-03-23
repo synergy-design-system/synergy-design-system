@@ -7,9 +7,14 @@ import { type NormalizeError, createNormalizeError } from '../../core/errors.js'
 import { type CoreEntity } from '../../schemas/index.js';
 import { type StylesRaw } from './collect.js';
 
+const toDisplayName = (moduleName: string): string => moduleName
+  .split('-')
+  .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+  .join(' ');
+
 export const normalize = (raw: StylesRaw): Result<CoreEntity[], NormalizeError> => {
   try {
-    const entity: CoreEntity = {
+    const setupEntity: CoreEntity = {
       custom: {
         exports: raw.exportKeys,
         packageName: raw.packageName,
@@ -22,12 +27,28 @@ export const normalize = (raw: StylesRaw): Result<CoreEntity[], NormalizeError> 
       package: 'styles',
       relations: [],
       since: raw.packageVersion,
-      sources: raw.sources,
+      sources: raw.setupSources,
       status: 'stable',
       tags: ['setup', 'styles'],
     };
 
-    return ok([entity]);
+    const styleEntities: CoreEntity[] = raw.moduleEntries.map((moduleEntry) => ({
+      custom: {
+        moduleName: moduleEntry.moduleName,
+      },
+      id: `style:styles-${moduleEntry.moduleName}`,
+      kind: 'style',
+      layers: {},
+      name: `${toDisplayName(moduleEntry.moduleName)} Styles`,
+      package: 'styles',
+      relations: [],
+      since: raw.packageVersion,
+      sources: moduleEntry.sourceFiles,
+      status: 'stable',
+      tags: ['module', 'style', 'styles', moduleEntry.moduleName],
+    }));
+
+    return ok([setupEntity, ...styleEntities]);
   } catch (error) {
     return {
       error: createNormalizeError('Failed to normalize styles metadata', 'styles', {

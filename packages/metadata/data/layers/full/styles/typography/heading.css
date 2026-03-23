@@ -1,0 +1,19 @@
+/**
+ * Typographic headline classes
+ * @variant {3x-large | 2x-large | x-large | large} syn-heading The size of the headline
+ */
+.syn-heading--large {
+  font: var(--syn-heading-large);
+}
+
+.syn-heading--x-large {
+  font: var(--syn-heading-x-large);
+}
+
+.syn-heading--2x-large {
+  font: var(--syn-heading-2x-large);
+}
+
+.syn-heading--3x-large {
+  font: var(--syn-heading-3x-large);
+}

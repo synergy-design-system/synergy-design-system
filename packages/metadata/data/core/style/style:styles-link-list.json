@@ -1,0 +1,29 @@
+{
+  "custom": {
+    "moduleName": "link-list"
+  },
+  "id": "style:styles-link-list",
+  "kind": "style",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/styles/link-list/index.css"
+      }
+    ]
+  },
+  "name": "Link List Styles",
+  "package": "styles",
+  "relations": [],
+  "since": "2.0.2",
+  "sources": [
+    "packages/styles/src/link-list/index.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "module",
+    "style",
+    "styles",
+    "link-list"
+  ]
+}

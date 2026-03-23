@@ -114,6 +114,12 @@ describe('metadata build integration', () => {
         'token',
         'token:tokens-figma-variables-sick2018-dark-json.json',
       );
+      const stylesLinkPath = path.join(
+        outputDir,
+        'core',
+        'style',
+        'style:styles-link.json',
+      );
 
       await access(indexPath);
       await access(manifestPath);
@@ -131,6 +137,7 @@ describe('metadata build integration', () => {
       await access(fontsSetupPath);
       await access(assetsSetupPath);
       await access(tokenFigmaArtifactPath);
+      await access(stylesLinkPath);
 
       const indexJson = JSON.parse(await readFile(indexPath, 'utf8'));
       const manifestJson = JSON.parse(await readFile(manifestPath, 'utf8'));
@@ -147,6 +154,7 @@ describe('metadata build integration', () => {
       const fontsSetupJson = JSON.parse(await readFile(fontsSetupPath, 'utf8'));
       const assetsSetupJson = JSON.parse(await readFile(assetsSetupPath, 'utf8'));
       const tokenFigmaArtifactJson = JSON.parse(await readFile(tokenFigmaArtifactPath, 'utf8'));
+      const stylesLinkJson = JSON.parse(await readFile(stylesLinkPath, 'utf8'));
 
       expect(indexJson).to.have.property('version', '1.0.0');
       expect(indexJson).to.have.property('entities').that.is.an('array').that.is.not.empty;
@@ -192,6 +200,10 @@ describe('metadata build integration', () => {
       expect(stylesSetupJson.sources).to.include('packages/styles/README.md');
       expect(stylesSetupJson.sources).to.include('packages/styles/CHANGELOG.md');
       expect(stylesSetupJson.sources).to.include('packages/styles/package.json');
+      expect(stylesLinkJson).to.have.property('kind', 'style');
+      expect(stylesLinkJson).to.have.property('package', 'styles');
+      expect(stylesLinkJson.sources).to.deep.equal(['packages/styles/src/link/index.css']);
+      expect(stylesLinkJson.layers.full.some((ref) => ref.path === 'layers/full/styles/link/index.css')).to.equal(true);
       expect(fontsSetupJson).to.have.property('kind', 'setup');
       expect(fontsSetupJson).to.have.property('package', 'fonts');
       expect(fontsSetupJson.sources).to.include('packages/fonts/README.md');
@@ -205,6 +217,7 @@ describe('metadata build integration', () => {
       expect(indexJson.entities.some((entity) => entity.id === 'setup:tokens-package')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'token:tokens-figma-variables-sick2018-dark-json')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:styles-package')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'style:styles-link')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:fonts-package')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:assets-package')).to.equal(true);
     } finally {

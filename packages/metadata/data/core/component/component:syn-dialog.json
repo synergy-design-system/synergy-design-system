@@ -1,7 +1,59 @@
 {
   "custom": {
     "sourceModulePath": "components/dialog/dialog.js",
-    "summary": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention."
+    "summary": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueDialog",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDialog.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynDialog",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/dialog.ts"
+        },
+        "jsx": {
+          "componentName": "SynDialog",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            },
+            {
+              "name": "syn-initial-focus",
+              "type": "SynInitialFocusEvent"
+            },
+            {
+              "name": "syn-request-close",
+              "type": "SynRequestCloseEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynDialogJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-dialog",
   "kind": "component",
@@ -9,23 +61,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dialog/dialog.component.ts"
+        "path": "layers/full/component/component:syn-dialog/components/dialog.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dialog/dialog.custom.styles.ts"
+        "path": "layers/full/component/component:syn-dialog/components/dialog.custom.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dialog/dialog.styles.ts"
+        "path": "layers/full/component/component:syn-dialog/components/dialog.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dialog/dialog.test.ts"
+        "path": "layers/full/component/component:syn-dialog/components/dialog.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dialog/dialog.ts"
+        "path": "layers/full/component/component:syn-dialog/components/dialog.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/react/dialog.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/vue/SynVueDialog.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/react/SynDialogJSXElement.ts"
       }
     ]
   },
@@ -43,11 +107,15 @@
     "packages/components/src/components/dialog/dialog.custom.styles.ts",
     "packages/components/src/components/dialog/dialog.styles.ts",
     "packages/components/src/components/dialog/dialog.test.ts",
-    "packages/components/src/components/dialog/dialog.ts"
+    "packages/components/src/components/dialog/dialog.ts",
+    "packages/react/src/components/dialog.ts",
+    "packages/vue/src/components/SynVueDialog.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-dialog",
-    "component"
+    "vue"
   ]
 }

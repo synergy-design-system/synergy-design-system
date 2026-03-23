@@ -1,7 +1,55 @@
 {
   "custom": {
     "sourceModulePath": "components/switch/switch.js",
-    "summary": "Switches allow the user to toggle an option on or off."
+    "summary": "Switches allow the user to toggle an option on or off.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueSwitch",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSwitch.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynSwitch",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/switch.ts"
+        },
+        "jsx": {
+          "componentName": "SynSwitch",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynSwitchJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-switch",
   "kind": "component",
@@ -9,19 +57,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-switch/switch.component.ts"
+        "path": "layers/full/component/component:syn-switch/components/switch.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-switch/switch.styles.ts"
+        "path": "layers/full/component/component:syn-switch/components/switch.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-switch/switch.test.ts"
+        "path": "layers/full/component/component:syn-switch/components/switch.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-switch/switch.ts"
+        "path": "layers/full/component/component:syn-switch/components/switch.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/react/switch.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/vue/SynVueSwitch.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/react/SynSwitchJSXElement.ts"
       }
     ]
   },
@@ -33,11 +93,15 @@
     "packages/components/src/components/switch/switch.component.ts",
     "packages/components/src/components/switch/switch.styles.ts",
     "packages/components/src/components/switch/switch.test.ts",
-    "packages/components/src/components/switch/switch.ts"
+    "packages/components/src/components/switch/switch.ts",
+    "packages/react/src/components/switch.ts",
+    "packages/vue/src/components/SynVueSwitch.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-switch",
-    "component"
+    "vue"
   ]
 }

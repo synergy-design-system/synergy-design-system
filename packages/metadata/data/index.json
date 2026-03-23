@@ -1,19 +1,21 @@
 {
-  "builtAt": "2026-03-23T06:54:28.290Z",
+  "builtAt": "2026-03-23T08:55:32.523Z",
   "entities": [
     {
       "corePath": "data/core/component/component:syn-accordion.json",
       "id": "component:syn-accordion",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Accordion",
       "search": [
         "component:syn-accordion",
         "Accordion",
+        "component",
+        "react",
         "syn-accordion",
-        "component"
+        "vue"
       ]
     },
     {
@@ -21,14 +23,16 @@
       "id": "component:syn-alert",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Alert",
       "search": [
         "component:syn-alert",
         "Alert",
+        "component",
+        "react",
         "syn-alert",
-        "component"
+        "vue"
       ]
     },
     {
@@ -36,14 +40,16 @@
       "id": "component:syn-badge",
       "kind": "component",
       "layers": {
-        "full": 6
+        "full": 9
       },
       "name": "Badge",
       "search": [
         "component:syn-badge",
         "Badge",
+        "component",
+        "react",
         "syn-badge",
-        "component"
+        "vue"
       ]
     },
     {
@@ -51,14 +57,16 @@
       "id": "component:syn-breadcrumb",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Breadcrumb",
       "search": [
         "component:syn-breadcrumb",
         "Breadcrumb",
+        "component",
+        "react",
         "syn-breadcrumb",
-        "component"
+        "vue"
       ]
     },
     {
@@ -66,14 +74,16 @@
       "id": "component:syn-breadcrumb-item",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Breadcrumb Item",
       "search": [
         "component:syn-breadcrumb-item",
         "Breadcrumb Item",
+        "component",
+        "react",
         "syn-breadcrumb-item",
-        "component"
+        "vue"
       ]
     },
     {
@@ -81,14 +91,16 @@
       "id": "component:syn-button",
       "kind": "component",
       "layers": {
-        "full": 6
+        "full": 9
       },
       "name": "Button",
       "search": [
         "component:syn-button",
         "Button",
+        "component",
+        "react",
         "syn-button",
-        "component"
+        "vue"
       ]
     },
     {
@@ -96,14 +108,16 @@
       "id": "component:syn-button-group",
       "kind": "component",
       "layers": {
-        "full": 6
+        "full": 9
       },
       "name": "Button Group",
       "search": [
         "component:syn-button-group",
         "Button Group",
+        "component",
+        "react",
         "syn-button-group",
-        "component"
+        "vue"
       ]
     },
     {
@@ -111,14 +125,16 @@
       "id": "component:syn-card",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Card",
       "search": [
         "component:syn-card",
         "Card",
+        "component",
+        "react",
         "syn-card",
-        "component"
+        "vue"
       ]
     },
     {
@@ -126,14 +142,16 @@
       "id": "component:syn-checkbox",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Checkbox",
       "search": [
         "component:syn-checkbox",
         "Checkbox",
+        "component",
+        "react",
         "syn-checkbox",
-        "component"
+        "vue"
       ]
     },
     {
@@ -141,14 +159,16 @@
       "id": "component:syn-combobox",
       "kind": "component",
       "layers": {
-        "full": 7
+        "full": 10
       },
       "name": "Combobox",
       "search": [
         "component:syn-combobox",
         "Combobox",
+        "component",
+        "react",
         "syn-combobox",
-        "component"
+        "vue"
       ]
     },
     {
@@ -156,14 +176,16 @@
       "id": "component:syn-details",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Details",
       "search": [
         "component:syn-details",
         "Details",
+        "component",
+        "react",
         "syn-details",
-        "component"
+        "vue"
       ]
     },
     {
@@ -171,14 +193,16 @@
       "id": "component:syn-dialog",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Dialog",
       "search": [
         "component:syn-dialog",
         "Dialog",
+        "component",
+        "react",
         "syn-dialog",
-        "component"
+        "vue"
       ]
     },
     {
@@ -186,14 +210,16 @@
       "id": "component:syn-divider",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Divider",
       "search": [
         "component:syn-divider",
         "Divider",
+        "component",
+        "react",
         "syn-divider",
-        "component"
+        "vue"
       ]
     },
     {
@@ -201,14 +227,16 @@
       "id": "component:syn-drawer",
       "kind": "component",
       "layers": {
-        "full": 6
+        "full": 9
       },
       "name": "Drawer",
       "search": [
         "component:syn-drawer",
         "Drawer",
+        "component",
+        "react",
         "syn-drawer",
-        "component"
+        "vue"
       ]
     },
     {
@@ -216,14 +244,16 @@
       "id": "component:syn-dropdown",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Dropdown",
       "search": [
         "component:syn-dropdown",
         "Dropdown",
+        "component",
+        "react",
         "syn-dropdown",
-        "component"
+        "vue"
       ]
     },
     {
@@ -231,14 +261,16 @@
       "id": "component:syn-file",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "File",
       "search": [
         "component:syn-file",
         "File",
+        "component",
+        "react",
         "syn-file",
-        "component"
+        "vue"
       ]
     },
     {
@@ -246,14 +278,16 @@
       "id": "component:syn-header",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Header",
       "search": [
         "component:syn-header",
         "Header",
+        "component",
+        "react",
         "syn-header",
-        "component"
+        "vue"
       ]
     },
     {
@@ -261,14 +295,16 @@
       "id": "component:syn-icon",
       "kind": "component",
       "layers": {
-        "full": 12
+        "full": 15
       },
       "name": "Icon",
       "search": [
         "component:syn-icon",
         "Icon",
+        "component",
+        "react",
         "syn-icon",
-        "component"
+        "vue"
       ]
     },
     {
@@ -276,14 +312,16 @@
       "id": "component:syn-icon-button",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Icon Button",
       "search": [
         "component:syn-icon-button",
         "Icon Button",
+        "component",
+        "react",
         "syn-icon-button",
-        "component"
+        "vue"
       ]
     },
     {
@@ -291,14 +329,16 @@
       "id": "component:syn-input",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 11
       },
       "name": "Input",
       "search": [
         "component:syn-input",
         "Input",
+        "component",
+        "react",
         "syn-input",
-        "component"
+        "vue"
       ]
     },
     {
@@ -306,14 +346,16 @@
       "id": "component:syn-menu",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Menu",
       "search": [
         "component:syn-menu",
         "Menu",
+        "component",
+        "react",
         "syn-menu",
-        "component"
+        "vue"
       ]
     },
     {
@@ -321,14 +363,16 @@
       "id": "component:syn-menu-item",
       "kind": "component",
       "layers": {
-        "full": 6
+        "full": 9
       },
       "name": "Menu Item",
       "search": [
         "component:syn-menu-item",
         "Menu Item",
+        "component",
+        "react",
         "syn-menu-item",
-        "component"
+        "vue"
       ]
     },
     {
@@ -336,14 +380,16 @@
       "id": "component:syn-menu-label",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Menu Label",
       "search": [
         "component:syn-menu-label",
         "Menu Label",
+        "component",
+        "react",
         "syn-menu-label",
-        "component"
+        "vue"
       ]
     },
     {
@@ -351,14 +397,16 @@
       "id": "component:syn-nav-item",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Nav Item",
       "search": [
         "component:syn-nav-item",
         "Nav Item",
+        "component",
+        "react",
         "syn-nav-item",
-        "component"
+        "vue"
       ]
     },
     {
@@ -366,14 +414,16 @@
       "id": "component:syn-optgroup",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Optgroup",
       "search": [
         "component:syn-optgroup",
         "Optgroup",
+        "component",
+        "react",
         "syn-optgroup",
-        "component"
+        "vue"
       ]
     },
     {
@@ -381,14 +431,16 @@
       "id": "component:syn-option",
       "kind": "component",
       "layers": {
-        "full": 7
+        "full": 10
       },
       "name": "Option",
       "search": [
         "component:syn-option",
         "Option",
+        "component",
+        "react",
         "syn-option",
-        "component"
+        "vue"
       ]
     },
     {
@@ -396,14 +448,16 @@
       "id": "component:syn-popup",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Popup",
       "search": [
         "component:syn-popup",
         "Popup",
+        "component",
+        "react",
         "syn-popup",
-        "component"
+        "vue"
       ]
     },
     {
@@ -411,14 +465,16 @@
       "id": "component:syn-prio-nav",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Prio Nav",
       "search": [
         "component:syn-prio-nav",
         "Prio Nav",
+        "component",
+        "react",
         "syn-prio-nav",
-        "component"
+        "vue"
       ]
     },
     {
@@ -426,14 +482,16 @@
       "id": "component:syn-progress-bar",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Progress Bar",
       "search": [
         "component:syn-progress-bar",
         "Progress Bar",
+        "component",
+        "react",
         "syn-progress-bar",
-        "component"
+        "vue"
       ]
     },
     {
@@ -441,14 +499,16 @@
       "id": "component:syn-progress-ring",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Progress Ring",
       "search": [
         "component:syn-progress-ring",
         "Progress Ring",
+        "component",
+        "react",
         "syn-progress-ring",
-        "component"
+        "vue"
       ]
     },
     {
@@ -456,14 +516,16 @@
       "id": "component:syn-radio",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Radio",
       "search": [
         "component:syn-radio",
         "Radio",
+        "component",
+        "react",
         "syn-radio",
-        "component"
+        "vue"
       ]
     },
     {
@@ -471,14 +533,16 @@
       "id": "component:syn-radio-button",
       "kind": "component",
       "layers": {
-        "full": 3
+        "full": 6
       },
       "name": "Radio Button",
       "search": [
         "component:syn-radio-button",
         "Radio Button",
+        "component",
+        "react",
         "syn-radio-button",
-        "component"
+        "vue"
       ]
     },
     {
@@ -486,14 +550,16 @@
       "id": "component:syn-radio-group",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Radio Group",
       "search": [
         "component:syn-radio-group",
         "Radio Group",
+        "component",
+        "react",
         "syn-radio-group",
-        "component"
+        "vue"
       ]
     },
     {
@@ -501,14 +567,16 @@
       "id": "component:syn-range",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Range",
       "search": [
         "component:syn-range",
         "Range",
+        "component",
+        "react",
         "syn-range",
-        "component"
+        "vue"
       ]
     },
     {
@@ -516,14 +584,16 @@
       "id": "component:syn-range-tick",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Range Tick",
       "search": [
         "component:syn-range-tick",
         "Range Tick",
+        "component",
+        "react",
         "syn-range-tick",
-        "component"
+        "vue"
       ]
     },
     {
@@ -546,14 +616,16 @@
       "id": "component:syn-select",
       "kind": "component",
       "layers": {
-        "full": 6
+        "full": 9
       },
       "name": "Select",
       "search": [
         "component:syn-select",
         "Select",
+        "component",
+        "react",
         "syn-select",
-        "component"
+        "vue"
       ]
     },
     {
@@ -561,14 +633,16 @@
       "id": "component:syn-side-nav",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Side Nav",
       "search": [
         "component:syn-side-nav",
         "Side Nav",
+        "component",
+        "react",
         "syn-side-nav",
-        "component"
+        "vue"
       ]
     },
     {
@@ -576,14 +650,16 @@
       "id": "component:syn-spinner",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Spinner",
       "search": [
         "component:syn-spinner",
         "Spinner",
+        "component",
+        "react",
         "syn-spinner",
-        "component"
+        "vue"
       ]
     },
     {
@@ -591,14 +667,16 @@
       "id": "component:syn-switch",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Switch",
       "search": [
         "component:syn-switch",
         "Switch",
+        "component",
+        "react",
         "syn-switch",
-        "component"
+        "vue"
       ]
     },
     {
@@ -606,14 +684,16 @@
       "id": "component:syn-tab",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Tab",
       "search": [
         "component:syn-tab",
         "Tab",
+        "component",
+        "react",
         "syn-tab",
-        "component"
+        "vue"
       ]
     },
     {
@@ -621,14 +701,16 @@
       "id": "component:syn-tab-group",
       "kind": "component",
       "layers": {
-        "full": 6
+        "full": 9
       },
       "name": "Tab Group",
       "search": [
         "component:syn-tab-group",
         "Tab Group",
+        "component",
+        "react",
         "syn-tab-group",
-        "component"
+        "vue"
       ]
     },
     {
@@ -636,14 +718,16 @@
       "id": "component:syn-tab-panel",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Tab Panel",
       "search": [
         "component:syn-tab-panel",
         "Tab Panel",
+        "component",
+        "react",
         "syn-tab-panel",
-        "component"
+        "vue"
       ]
     },
     {
@@ -651,14 +735,16 @@
       "id": "component:syn-tag",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Tag",
       "search": [
         "component:syn-tag",
         "Tag",
+        "component",
+        "react",
         "syn-tag",
-        "component"
+        "vue"
       ]
     },
     {
@@ -666,14 +752,16 @@
       "id": "component:syn-tag-group",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Tag Group",
       "search": [
         "component:syn-tag-group",
         "Tag Group",
+        "component",
+        "react",
         "syn-tag-group",
-        "component"
+        "vue"
       ]
     },
     {
@@ -681,14 +769,16 @@
       "id": "component:syn-textarea",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Textarea",
       "search": [
         "component:syn-textarea",
         "Textarea",
+        "component",
+        "react",
         "syn-textarea",
-        "component"
+        "vue"
       ]
     },
     {
@@ -696,14 +786,16 @@
       "id": "component:syn-tooltip",
       "kind": "component",
       "layers": {
-        "full": 4
+        "full": 7
       },
       "name": "Tooltip",
       "search": [
         "component:syn-tooltip",
         "Tooltip",
+        "component",
+        "react",
         "syn-tooltip",
-        "component"
+        "vue"
       ]
     },
     {
@@ -711,14 +803,48 @@
       "id": "component:syn-validate",
       "kind": "component",
       "layers": {
-        "full": 5
+        "full": 8
       },
       "name": "Validate",
       "search": [
         "component:syn-validate",
         "Validate",
+        "component",
+        "react",
         "syn-validate",
-        "component"
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:react-package.json",
+      "id": "setup:react-package",
+      "kind": "setup",
+      "layers": {
+        "full": 6
+      },
+      "name": "React Framework Package",
+      "search": [
+        "setup:react-package",
+        "React Framework Package",
+        "framework",
+        "react",
+        "setup"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:vue-package.json",
+      "id": "setup:vue-package",
+      "kind": "setup",
+      "layers": {
+        "full": 5
+      },
+      "name": "Vue Framework Package",
+      "search": [
+        "setup:vue-package",
+        "Vue Framework Package",
+        "framework",
+        "setup",
+        "vue"
       ]
     }
   ],

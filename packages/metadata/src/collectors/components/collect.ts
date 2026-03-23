@@ -12,6 +12,7 @@ import type { CustomElementDeclaration, Module } from 'custom-elements-manifest/
 import { type Result, ok } from '../../core/result.js';
 import { type CollectError, createCollectError } from '../../core/errors.js';
 import { type Context } from '../../core/context.js';
+import { type ComponentsConfig } from './types.js';
 
 /**
  * Raw component data from source files.
@@ -28,10 +29,6 @@ export interface ComponentRawEntry {
   sourceFiles: string[];
   status: 'stable' | 'beta' | 'experimental' | 'deprecated';
   summary: string;
-}
-
-export interface ComponentsCollectConfig {
-  packagePath: string;
 }
 
 type ComponentsManifest = {
@@ -91,7 +88,7 @@ const toStatus = (
  * (Currently a stub that returns empty)
  */
 export const collect = async (
-  config: ComponentsCollectConfig,
+  config: ComponentsConfig,
   ctx: Context,
 ): Promise<Result<ComponentRaw, CollectError>> => {
   ctx.logger?.info('ComponentsCollector: collecting from components manifest');

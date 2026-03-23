@@ -1,7 +1,34 @@
 {
   "custom": {
     "sourceModulePath": "components/option/option.js",
-    "summary": "Options define the selectable items within various form controls such as [select](/components/select)."
+    "summary": "Options define the selectable items within various form controls such as [select](/components/select).",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueOption",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueOption.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynOption",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/option.ts"
+        },
+        "jsx": {
+          "componentName": "SynOption",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynOptionJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-option",
   "kind": "component",
@@ -9,31 +36,43 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-option/option-size.styles.ts"
+        "path": "layers/full/component/component:syn-option/components/option-size.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-option/option.component.ts"
+        "path": "layers/full/component/component:syn-option/components/option.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-option/option.custom.test.ts"
+        "path": "layers/full/component/component:syn-option/components/option.custom.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-option/option.styles.ts"
+        "path": "layers/full/component/component:syn-option/components/option.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-option/option.test.ts"
+        "path": "layers/full/component/component:syn-option/components/option.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-option/option.ts"
+        "path": "layers/full/component/component:syn-option/components/option.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-option/utility.ts"
+        "path": "layers/full/component/component:syn-option/components/utility.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/react/option.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/vue/SynVueOption.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/react/SynOptionJSXElement.ts"
       }
     ]
   },
@@ -53,11 +92,15 @@
     "packages/components/src/components/option/option.styles.ts",
     "packages/components/src/components/option/option.test.ts",
     "packages/components/src/components/option/option.ts",
-    "packages/components/src/components/option/utility.ts"
+    "packages/components/src/components/option/utility.ts",
+    "packages/react/src/components/option.ts",
+    "packages/vue/src/components/SynVueOption.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-option",
-    "component"
+    "vue"
   ]
 }

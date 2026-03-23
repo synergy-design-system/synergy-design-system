@@ -1,7 +1,51 @@
 {
   "custom": {
     "sourceModulePath": "components/side-nav/side-nav.js",
-    "summary": "The <syn-side-nav /> element contains secondary navigation and fits below the header.\nIt can be used to group multiple navigation items (<syn-nav-item />s) together."
+    "summary": "The <syn-side-nav /> element contains secondary navigation and fits below the header.\nIt can be used to group multiple navigation items (<syn-nav-item />s) together.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueSideNav",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSideNav.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynSideNav",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/side-nav.ts"
+        },
+        "jsx": {
+          "componentName": "SynSideNav",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.14.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynSideNavJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-side-nav",
   "kind": "component",
@@ -9,19 +53,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-side-nav/side-nav.component.ts"
+        "path": "layers/full/component/component:syn-side-nav/components/side-nav.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-side-nav/side-nav.styles.ts"
+        "path": "layers/full/component/component:syn-side-nav/components/side-nav.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-side-nav/side-nav.test.ts"
+        "path": "layers/full/component/component:syn-side-nav/components/side-nav.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-side-nav/side-nav.ts"
+        "path": "layers/full/component/component:syn-side-nav/components/side-nav.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/react/side-nav.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/vue/SynVueSideNav.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/react/SynSideNavJSXElement.ts"
       }
     ]
   },
@@ -50,11 +106,15 @@
     "packages/components/src/components/side-nav/side-nav.component.ts",
     "packages/components/src/components/side-nav/side-nav.styles.ts",
     "packages/components/src/components/side-nav/side-nav.test.ts",
-    "packages/components/src/components/side-nav/side-nav.ts"
+    "packages/components/src/components/side-nav/side-nav.ts",
+    "packages/react/src/components/side-nav.ts",
+    "packages/vue/src/components/SynVueSideNav.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-side-nav",
-    "component"
+    "vue"
   ]
 }

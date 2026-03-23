@@ -1,7 +1,39 @@
 {
   "custom": {
     "sourceModulePath": "components/menu/menu.js",
-    "summary": "Menus provide a list of options for the user to choose from."
+    "summary": "Menus provide a list of options for the user to choose from.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueMenu",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueMenu.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynMenu",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/menu.ts"
+        },
+        "jsx": {
+          "componentName": "SynMenu",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs",
+          "events": [
+            {
+              "name": "syn-select",
+              "type": "SynSelectEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynMenuJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-menu",
   "kind": "component",
@@ -9,23 +41,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-menu/menu.component.ts"
+        "path": "layers/full/component/component:syn-menu/components/menu.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-menu/menu.custom.test.ts"
+        "path": "layers/full/component/component:syn-menu/components/menu.custom.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-menu/menu.styles.ts"
+        "path": "layers/full/component/component:syn-menu/components/menu.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-menu/menu.test.ts"
+        "path": "layers/full/component/component:syn-menu/components/menu.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-menu/menu.ts"
+        "path": "layers/full/component/component:syn-menu/components/menu.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu/react/menu.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu/vue/SynVueMenu.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu/react/SynMenuJSXElement.ts"
       }
     ]
   },
@@ -38,11 +82,15 @@
     "packages/components/src/components/menu/menu.custom.test.ts",
     "packages/components/src/components/menu/menu.styles.ts",
     "packages/components/src/components/menu/menu.test.ts",
-    "packages/components/src/components/menu/menu.ts"
+    "packages/components/src/components/menu/menu.ts",
+    "packages/react/src/components/menu.ts",
+    "packages/vue/src/components/SynVueMenu.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-menu",
-    "component"
+    "vue"
   ]
 }

@@ -1,7 +1,43 @@
 {
   "custom": {
     "sourceModulePath": "components/icon-button/icon-button.js",
-    "summary": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars."
+    "summary": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueIconButton",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueIconButton.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynIconButton",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/icon-button.ts"
+        },
+        "jsx": {
+          "componentName": "SynIconButton",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-icon-button--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynIconButtonJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-icon-button",
   "kind": "component",
@@ -9,23 +45,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-icon-button/icon-button.component.ts"
+        "path": "layers/full/component/component:syn-icon-button/components/icon-button.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-icon-button/icon-button.custom.styles.ts"
+        "path": "layers/full/component/component:syn-icon-button/components/icon-button.custom.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-icon-button/icon-button.styles.ts"
+        "path": "layers/full/component/component:syn-icon-button/components/icon-button.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-icon-button/icon-button.test.ts"
+        "path": "layers/full/component/component:syn-icon-button/components/icon-button.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-icon-button/icon-button.ts"
+        "path": "layers/full/component/component:syn-icon-button/components/icon-button.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/react/icon-button.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/vue/SynVueIconButton.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/react/SynIconButtonJSXElement.ts"
       }
     ]
   },
@@ -43,11 +91,15 @@
     "packages/components/src/components/icon-button/icon-button.custom.styles.ts",
     "packages/components/src/components/icon-button/icon-button.styles.ts",
     "packages/components/src/components/icon-button/icon-button.test.ts",
-    "packages/components/src/components/icon-button/icon-button.ts"
+    "packages/components/src/components/icon-button/icon-button.ts",
+    "packages/react/src/components/icon-button.ts",
+    "packages/vue/src/components/SynVueIconButton.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-icon-button",
-    "component"
+    "vue"
   ]
 }

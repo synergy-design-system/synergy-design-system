@@ -1,7 +1,47 @@
 {
   "custom": {
     "sourceModulePath": "components/radio-group/radio-group.js",
-    "summary": "Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control."
+    "summary": "Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueRadioGroup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueRadioGroup.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynRadioGroup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/radio-group.ts"
+        },
+        "jsx": {
+          "componentName": "SynRadioGroup",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-radio-group--docs",
+          "events": [
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynRadioGroupJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-radio-group",
   "kind": "component",
@@ -9,19 +49,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-radio-group/radio-group.component.ts"
+        "path": "layers/full/component/component:syn-radio-group/components/radio-group.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-radio-group/radio-group.styles.ts"
+        "path": "layers/full/component/component:syn-radio-group/components/radio-group.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-radio-group/radio-group.test.ts"
+        "path": "layers/full/component/component:syn-radio-group/components/radio-group.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-radio-group/radio-group.ts"
+        "path": "layers/full/component/component:syn-radio-group/components/radio-group.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio-group/react/radio-group.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio-group/vue/SynVueRadioGroup.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio-group/react/SynRadioGroupJSXElement.ts"
       }
     ]
   },
@@ -38,11 +90,15 @@
     "packages/components/src/components/radio-group/radio-group.component.ts",
     "packages/components/src/components/radio-group/radio-group.styles.ts",
     "packages/components/src/components/radio-group/radio-group.test.ts",
-    "packages/components/src/components/radio-group/radio-group.ts"
+    "packages/components/src/components/radio-group/radio-group.ts",
+    "packages/react/src/components/radio-group.ts",
+    "packages/vue/src/components/SynVueRadioGroup.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-radio-group",
-    "component"
+    "vue"
   ]
 }

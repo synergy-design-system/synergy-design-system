@@ -1,7 +1,51 @@
 {
   "custom": {
     "sourceModulePath": "components/nav-item/nav-item.js",
-    "summary": "Flexible button / link component that can be used to quickly build navigations."
+    "summary": "Flexible button / link component that can be used to quickly build navigations.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueNavItem",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueNavItem.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynNavItem",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/nav-item.ts"
+        },
+        "jsx": {
+          "componentName": "SynNavItem",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-nav-item--docs\nTakes one of 3 forms:\n- button (default),\n- link (overrides button if a 'href' is provided),\n- or accordion (overrides all other if 'children' slot is defined).",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.14.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynNavItemJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-nav-item",
   "kind": "component",
@@ -9,19 +53,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-nav-item/nav-item.component.ts"
+        "path": "layers/full/component/component:syn-nav-item/components/nav-item.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-nav-item/nav-item.styles.ts"
+        "path": "layers/full/component/component:syn-nav-item/components/nav-item.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-nav-item/nav-item.test.ts"
+        "path": "layers/full/component/component:syn-nav-item/components/nav-item.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-nav-item/nav-item.ts"
+        "path": "layers/full/component/component:syn-nav-item/components/nav-item.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/react/nav-item.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/vue/SynVueNavItem.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/react/SynNavItemJSXElement.ts"
       }
     ]
   },
@@ -42,11 +98,15 @@
     "packages/components/src/components/nav-item/nav-item.component.ts",
     "packages/components/src/components/nav-item/nav-item.styles.ts",
     "packages/components/src/components/nav-item/nav-item.test.ts",
-    "packages/components/src/components/nav-item/nav-item.ts"
+    "packages/components/src/components/nav-item/nav-item.ts",
+    "packages/react/src/components/nav-item.ts",
+    "packages/vue/src/components/SynVueNavItem.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-nav-item",
-    "component"
+    "vue"
   ]
 }

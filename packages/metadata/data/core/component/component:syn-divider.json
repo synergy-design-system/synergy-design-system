@@ -1,7 +1,34 @@
 {
   "custom": {
     "sourceModulePath": "components/divider/divider.js",
-    "summary": "Dividers are used to visually separate or group elements."
+    "summary": "Dividers are used to visually separate or group elements.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueDivider",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDivider.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynDivider",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/divider.ts"
+        },
+        "jsx": {
+          "componentName": "SynDivider",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-divider--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynDividerJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-divider",
   "kind": "component",
@@ -9,19 +36,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-divider/divider.component.ts"
+        "path": "layers/full/component/component:syn-divider/components/divider.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-divider/divider.styles.ts"
+        "path": "layers/full/component/component:syn-divider/components/divider.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-divider/divider.test.ts"
+        "path": "layers/full/component/component:syn-divider/components/divider.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-divider/divider.ts"
+        "path": "layers/full/component/component:syn-divider/components/divider.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/react/divider.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/vue/SynVueDivider.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/react/SynDividerJSXElement.ts"
       }
     ]
   },
@@ -33,11 +72,15 @@
     "packages/components/src/components/divider/divider.component.ts",
     "packages/components/src/components/divider/divider.styles.ts",
     "packages/components/src/components/divider/divider.test.ts",
-    "packages/components/src/components/divider/divider.ts"
+    "packages/components/src/components/divider/divider.ts",
+    "packages/react/src/components/divider.ts",
+    "packages/vue/src/components/SynVueDivider.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-divider",
-    "component"
+    "vue"
   ]
 }

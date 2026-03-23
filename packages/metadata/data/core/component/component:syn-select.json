@@ -1,7 +1,75 @@
 {
   "custom": {
     "sourceModulePath": "components/select/select.js",
-    "summary": "Selects allow you to choose items from a menu of predefined options."
+    "summary": "Selects allow you to choose items from a menu of predefined options.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueSelect",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSelect.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynSelect",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/select.ts"
+        },
+        "jsx": {
+          "componentName": "SynSelect",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs",
+          "events": [
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-clear",
+              "type": "SynClearEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynSelectJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-select",
   "kind": "component",
@@ -9,27 +77,39 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-select/select.component.ts"
+        "path": "layers/full/component/component:syn-select/components/select.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-select/select.custom.test.ts"
+        "path": "layers/full/component/component:syn-select/components/select.custom.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-select/select.styles.ts"
+        "path": "layers/full/component/component:syn-select/components/select.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-select/select.test.ts"
+        "path": "layers/full/component/component:syn-select/components/select.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-select/select.ts"
+        "path": "layers/full/component/component:syn-select/components/select.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-select/utility.ts"
+        "path": "layers/full/component/component:syn-select/components/utility.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/react/select.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/vue/SynVueSelect.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/react/SynSelectJSXElement.ts"
       }
     ]
   },
@@ -56,11 +136,15 @@
     "packages/components/src/components/select/select.styles.ts",
     "packages/components/src/components/select/select.test.ts",
     "packages/components/src/components/select/select.ts",
-    "packages/components/src/components/select/utility.ts"
+    "packages/components/src/components/select/utility.ts",
+    "packages/react/src/components/select.ts",
+    "packages/vue/src/components/SynVueSelect.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-select",
-    "component"
+    "vue"
   ]
 }

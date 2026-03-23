@@ -1,7 +1,34 @@
 {
   "custom": {
     "sourceModulePath": "components/prio-nav/prio-nav.js",
-    "summary": "The `<syn-prio-nav />` element provides a generic navigation bar\nthat can be used to group multiple navigation items  (usually horizontal `<syn-nav-item />`s)\ntogether. It will automatically group all items not visible in the viewport into a custom\npriority menu."
+    "summary": "The `<syn-prio-nav />` element provides a generic navigation bar\nthat can be used to group multiple navigation items  (usually horizontal `<syn-nav-item />`s)\ntogether. It will automatically group all items not visible in the viewport into a custom\npriority menu.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVuePrioNav",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVuePrioNav.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynPrioNav",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/prio-nav.ts"
+        },
+        "jsx": {
+          "componentName": "SynPrioNav",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.14.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynPrioNavJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-prio-nav",
   "kind": "component",
@@ -9,23 +36,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-prio-nav/prio-nav.component.ts"
+        "path": "layers/full/component/component:syn-prio-nav/components/prio-nav.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-prio-nav/prio-nav.styles.ts"
+        "path": "layers/full/component/component:syn-prio-nav/components/prio-nav.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-prio-nav/prio-nav.test.ts"
+        "path": "layers/full/component/component:syn-prio-nav/components/prio-nav.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-prio-nav/prio-nav.ts"
+        "path": "layers/full/component/component:syn-prio-nav/components/prio-nav.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-prio-nav/utils.ts"
+        "path": "layers/full/component/component:syn-prio-nav/components/utils.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-prio-nav/react/prio-nav.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-prio-nav/vue/SynVuePrioNav.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-prio-nav/react/SynPrioNavJSXElement.ts"
       }
     ]
   },
@@ -55,11 +94,15 @@
     "packages/components/src/components/prio-nav/prio-nav.styles.ts",
     "packages/components/src/components/prio-nav/prio-nav.test.ts",
     "packages/components/src/components/prio-nav/prio-nav.ts",
-    "packages/components/src/components/prio-nav/utils.ts"
+    "packages/components/src/components/prio-nav/utils.ts",
+    "packages/react/src/components/prio-nav.ts",
+    "packages/vue/src/components/SynVuePrioNav.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-prio-nav",
-    "component"
+    "vue"
   ]
 }

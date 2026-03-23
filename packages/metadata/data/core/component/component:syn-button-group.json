@@ -1,7 +1,34 @@
 {
   "custom": {
     "sourceModulePath": "components/button-group/button-group.js",
-    "summary": "Button groups can be used to group related buttons into sections."
+    "summary": "Button groups can be used to group related buttons into sections.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueButtonGroup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueButtonGroup.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynButtonGroup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/button-group.ts"
+        },
+        "jsx": {
+          "componentName": "SynButtonGroup",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynButtonGroupJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-button-group",
   "kind": "component",
@@ -9,27 +36,39 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button-group/button-group.component.ts"
+        "path": "layers/full/component/component:syn-button-group/components/button-group.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button-group/button-group.custom.styles.ts"
+        "path": "layers/full/component/component:syn-button-group/components/button-group.custom.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button-group/button-group.custom.test.ts"
+        "path": "layers/full/component/component:syn-button-group/components/button-group.custom.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button-group/button-group.styles.ts"
+        "path": "layers/full/component/component:syn-button-group/components/button-group.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button-group/button-group.test.ts"
+        "path": "layers/full/component/component:syn-button-group/components/button-group.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button-group/button-group.ts"
+        "path": "layers/full/component/component:syn-button-group/components/button-group.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button-group/react/button-group.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button-group/vue/SynVueButtonGroup.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button-group/react/SynButtonGroupJSXElement.ts"
       }
     ]
   },
@@ -43,11 +82,15 @@
     "packages/components/src/components/button-group/button-group.custom.test.ts",
     "packages/components/src/components/button-group/button-group.styles.ts",
     "packages/components/src/components/button-group/button-group.test.ts",
-    "packages/components/src/components/button-group/button-group.ts"
+    "packages/components/src/components/button-group/button-group.ts",
+    "packages/react/src/components/button-group.ts",
+    "packages/vue/src/components/SynVueButtonGroup.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-button-group",
-    "component"
+    "vue"
   ]
 }

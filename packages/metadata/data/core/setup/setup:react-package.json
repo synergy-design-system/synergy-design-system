@@ -1,0 +1,60 @@
+{
+  "custom": {
+    "framework": "react",
+    "packageName": "@synergy-design-system/react",
+    "packageVersion": "3.10.4",
+    "subpathExports": [
+      ".",
+      "./components/*",
+      "./types/latest"
+    ]
+  },
+  "id": "setup:react-package",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:react-package/react/README.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:react-package/react/CHANGELOG.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:react-package/react/LIMITATIONS.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:react-package/react/package.json"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:react-package/react/index.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:react-package/react/syn-jsx-elements.ts"
+      }
+    ]
+  },
+  "name": "React Framework Package",
+  "package": "react",
+  "relations": [],
+  "since": "3.10.4",
+  "sources": [
+    "packages/react/README.md",
+    "packages/react/CHANGELOG.md",
+    "packages/react/LIMITATIONS.md",
+    "packages/react/package.json",
+    "packages/react/src/index.ts",
+    "packages/react/src/types/syn-jsx-elements.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "framework",
+    "react",
+    "setup"
+  ]
+}

@@ -1,7 +1,34 @@
 {
   "custom": {
     "sourceModulePath": "components/tab-panel/tab-panel.js",
-    "summary": "Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content."
+    "summary": "Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueTabPanel",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTabPanel.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynTabPanel",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tab-panel.ts"
+        },
+        "jsx": {
+          "componentName": "SynTabPanel",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTabPanelJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-tab-panel",
   "kind": "component",
@@ -9,23 +36,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tab-panel/tab-panel.component.ts"
+        "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tab-panel/tab-panel.custom.styles.ts"
+        "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.custom.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tab-panel/tab-panel.styles.ts"
+        "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tab-panel/tab-panel.test.ts"
+        "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tab-panel/tab-panel.ts"
+        "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/react/tab-panel.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/vue/SynVueTabPanel.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/react/SynTabPanelJSXElement.ts"
       }
     ]
   },
@@ -38,11 +77,15 @@
     "packages/components/src/components/tab-panel/tab-panel.custom.styles.ts",
     "packages/components/src/components/tab-panel/tab-panel.styles.ts",
     "packages/components/src/components/tab-panel/tab-panel.test.ts",
-    "packages/components/src/components/tab-panel/tab-panel.ts"
+    "packages/components/src/components/tab-panel/tab-panel.ts",
+    "packages/react/src/components/tab-panel.ts",
+    "packages/vue/src/components/SynVueTabPanel.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-tab-panel",
-    "component"
+    "vue"
   ]
 }

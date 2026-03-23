@@ -1,7 +1,51 @@
 {
   "custom": {
     "sourceModulePath": "components/tooltip/tooltip.js",
-    "summary": "Tooltips display additional information based on a specific action."
+    "summary": "Tooltips display additional information based on a specific action.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueTooltip",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTooltip.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynTooltip",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tooltip.ts"
+        },
+        "jsx": {
+          "componentName": "SynTooltip",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tooltip--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTooltipJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-tooltip",
   "kind": "component",
@@ -9,19 +53,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tooltip/tooltip.component.ts"
+        "path": "layers/full/component/component:syn-tooltip/components/tooltip.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tooltip/tooltip.styles.ts"
+        "path": "layers/full/component/component:syn-tooltip/components/tooltip.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tooltip/tooltip.test.ts"
+        "path": "layers/full/component/component:syn-tooltip/components/tooltip.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tooltip/tooltip.ts"
+        "path": "layers/full/component/component:syn-tooltip/components/tooltip.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/react/tooltip.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/vue/SynVueTooltip.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/react/SynTooltipJSXElement.ts"
       }
     ]
   },
@@ -38,11 +94,15 @@
     "packages/components/src/components/tooltip/tooltip.component.ts",
     "packages/components/src/components/tooltip/tooltip.styles.ts",
     "packages/components/src/components/tooltip/tooltip.test.ts",
-    "packages/components/src/components/tooltip/tooltip.ts"
+    "packages/components/src/components/tooltip/tooltip.ts",
+    "packages/react/src/components/tooltip.ts",
+    "packages/vue/src/components/SynVueTooltip.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-tooltip",
-    "component"
+    "vue"
   ]
 }

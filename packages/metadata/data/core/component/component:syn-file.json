@@ -1,7 +1,54 @@
 {
   "custom": {
     "sourceModulePath": "components/file/file.js",
-    "summary": "File controls allow selecting an arbitrary number of files for uploading."
+    "summary": "File controls allow selecting an arbitrary number of files for uploading.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueFile",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueFile.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynFile",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/file.ts"
+        },
+        "jsx": {
+          "componentName": "SynFile",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-error",
+              "type": "SynErrorEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynFileJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-file",
   "kind": "component",
@@ -9,19 +56,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-file/file.component.ts"
+        "path": "layers/full/component/component:syn-file/components/file.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-file/file.styles.ts"
+        "path": "layers/full/component/component:syn-file/components/file.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-file/file.test.ts"
+        "path": "layers/full/component/component:syn-file/components/file.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-file/file.ts"
+        "path": "layers/full/component/component:syn-file/components/file.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/react/file.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/vue/SynVueFile.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/react/SynFileJSXElement.ts"
       }
     ]
   },
@@ -42,11 +101,15 @@
     "packages/components/src/components/file/file.component.ts",
     "packages/components/src/components/file/file.styles.ts",
     "packages/components/src/components/file/file.test.ts",
-    "packages/components/src/components/file/file.ts"
+    "packages/components/src/components/file/file.ts",
+    "packages/react/src/components/file.ts",
+    "packages/vue/src/components/SynVueFile.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-file",
-    "component"
+    "vue"
   ]
 }

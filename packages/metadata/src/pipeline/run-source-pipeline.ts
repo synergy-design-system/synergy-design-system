@@ -5,7 +5,7 @@
 import { type Result } from '../core/result.js';
 import { type Context } from '../core/context.js';
 import { type PipelineError } from '../core/errors.js';
-import { type SourcePipeline } from '../collectors/components/index.js';
+import { type SourcePipeline } from '../collectors/components/types.js';
 
 /**
  * Run a complete source pipeline: collect → validate → normalize → enrich.
@@ -34,5 +34,5 @@ export async function runSourcePipeline<Cfg, Raw, Canonical>(
   }
 
   ctx.logger?.debug('Pipeline: enrich phase starting');
-  return pipeline.enrich(normalized.value);
+  return pipeline.enrich(normalized.value, config, ctx);
 }

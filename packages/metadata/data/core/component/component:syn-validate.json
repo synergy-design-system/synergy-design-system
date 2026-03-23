@@ -1,7 +1,32 @@
 {
   "custom": {
     "sourceModulePath": "components/validate/validate.js",
-    "summary": "Validate provides form field validation messages in a unified way.\nIt does this by using [the native browser validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)\nand showing the validation message in a consistent, user defined way."
+    "summary": "Validate provides form field validation messages in a unified way.\nIt does this by using [the native browser validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)\nand showing the validation message in a consistent, user defined way.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueValidate",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueValidate.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynValidate",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/validate.ts"
+        },
+        "jsx": {
+          "componentName": "SynValidate",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "subpathExport": "./types/latest",
+          "typeName": "SynValidateJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-validate",
   "kind": "component",
@@ -9,23 +34,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-validate/utility.ts"
+        "path": "layers/full/component/component:syn-validate/components/utility.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-validate/validate.component.ts"
+        "path": "layers/full/component/component:syn-validate/components/validate.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-validate/validate.styles.ts"
+        "path": "layers/full/component/component:syn-validate/components/validate.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-validate/validate.test.ts"
+        "path": "layers/full/component/component:syn-validate/components/validate.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-validate/validate.ts"
+        "path": "layers/full/component/component:syn-validate/components/validate.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-validate/react/validate.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-validate/vue/SynVueValidate.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-validate/react/SynValidateJSXElement.ts"
       }
     ]
   },
@@ -47,11 +84,15 @@
     "packages/components/src/components/validate/validate.component.ts",
     "packages/components/src/components/validate/validate.styles.ts",
     "packages/components/src/components/validate/validate.test.ts",
-    "packages/components/src/components/validate/validate.ts"
+    "packages/components/src/components/validate/validate.ts",
+    "packages/react/src/components/validate.ts",
+    "packages/vue/src/components/SynVueValidate.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-validate",
-    "component"
+    "vue"
   ]
 }

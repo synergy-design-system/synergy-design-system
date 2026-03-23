@@ -1,7 +1,59 @@
 {
   "custom": {
     "sourceModulePath": "components/drawer/drawer.js",
-    "summary": "Drawers slide in from a container to expose additional options and information."
+    "summary": "Drawers slide in from a container to expose additional options and information.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueDrawer",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDrawer.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynDrawer",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/drawer.ts"
+        },
+        "jsx": {
+          "componentName": "SynDrawer",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            },
+            {
+              "name": "syn-initial-focus",
+              "type": "SynInitialFocusEvent"
+            },
+            {
+              "name": "syn-request-close",
+              "type": "SynRequestCloseEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynDrawerJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-drawer",
   "kind": "component",
@@ -9,27 +61,39 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-drawer/drawer.component.ts"
+        "path": "layers/full/component/component:syn-drawer/components/drawer.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-drawer/drawer.custom.styles.ts"
+        "path": "layers/full/component/component:syn-drawer/components/drawer.custom.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-drawer/drawer.custom.test.ts"
+        "path": "layers/full/component/component:syn-drawer/components/drawer.custom.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-drawer/drawer.styles.ts"
+        "path": "layers/full/component/component:syn-drawer/components/drawer.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-drawer/drawer.test.ts"
+        "path": "layers/full/component/component:syn-drawer/components/drawer.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-drawer/drawer.ts"
+        "path": "layers/full/component/component:syn-drawer/components/drawer.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/react/drawer.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/vue/SynVueDrawer.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/react/SynDrawerJSXElement.ts"
       }
     ]
   },
@@ -48,11 +112,15 @@
     "packages/components/src/components/drawer/drawer.custom.test.ts",
     "packages/components/src/components/drawer/drawer.styles.ts",
     "packages/components/src/components/drawer/drawer.test.ts",
-    "packages/components/src/components/drawer/drawer.ts"
+    "packages/components/src/components/drawer/drawer.ts",
+    "packages/react/src/components/drawer.ts",
+    "packages/vue/src/components/SynVueDrawer.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-drawer",
-    "component"
+    "vue"
   ]
 }

@@ -1,7 +1,43 @@
 {
   "custom": {
     "sourceModulePath": "components/radio-button/radio-button.js",
-    "summary": "Radios buttons allow the user to select a single option from a group using a button-like control."
+    "summary": "Radios buttons allow the user to select a single option from a group using a button-like control.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueRadioButton",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueRadioButton.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynRadioButton",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/radio-button.ts"
+        },
+        "jsx": {
+          "componentName": "SynRadioButton",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynRadioButtonJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-radio-button",
   "kind": "component",
@@ -9,15 +45,27 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-radio-button/radio-button.component.ts"
+        "path": "layers/full/component/component:syn-radio-button/components/radio-button.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-radio-button/radio-button.styles.ts"
+        "path": "layers/full/component/component:syn-radio-button/components/radio-button.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-radio-button/radio-button.ts"
+        "path": "layers/full/component/component:syn-radio-button/components/radio-button.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio-button/react/radio-button.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio-button/vue/SynVueRadioButton.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio-button/react/SynRadioButtonJSXElement.ts"
       }
     ]
   },
@@ -28,11 +76,15 @@
   "sources": [
     "packages/components/src/components/radio-button/radio-button.component.ts",
     "packages/components/src/components/radio-button/radio-button.styles.ts",
-    "packages/components/src/components/radio-button/radio-button.ts"
+    "packages/components/src/components/radio-button/radio-button.ts",
+    "packages/react/src/components/radio-button.ts",
+    "packages/vue/src/components/SynVueRadioButton.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-radio-button",
-    "component"
+    "vue"
   ]
 }

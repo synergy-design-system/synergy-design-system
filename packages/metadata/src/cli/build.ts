@@ -48,7 +48,11 @@ async function main() {
     ctx.logger?.info('Step 1: Running source pipelines');
     const componentsResult = await runSourcePipeline(
       componentsPipeline,
-      { packagePath: 'packages/components' },
+      {
+        packagePath: 'packages/components',
+        reactPackagePath: 'packages/react',
+        vuePackagePath: 'packages/vue',
+      },
       ctx,
     );
 
@@ -98,9 +102,37 @@ async function main() {
       };
     });
 
+    // Keep raw JSX type text only for generated layer files; do not persist it in core JSON.
+    const entitiesForWrite: CoreEntity[] = entitiesWithLayers.map((entity) => {
+      const frameworks = (entity.custom as Record<string, unknown> | undefined)?.frameworks as Record<string, unknown> | undefined;
+      const react = frameworks?.react as Record<string, unknown> | undefined;
+      const jsx = react?.jsx as Record<string, unknown> | undefined;
+
+      if (!jsx) {
+        return entity;
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { typeText, ...jsxWithoutTypeText } = jsx;
+
+      return {
+        ...entity,
+        custom: {
+          ...entity.custom,
+          frameworks: {
+            ...frameworks,
+            react: {
+              ...react,
+              jsx: jsxWithoutTypeText,
+            },
+          },
+        },
+      };
+    });
+
     // Step 5: Build index
     ctx.logger?.info('Step 5: Building index');
-    const indexResult = buildIndex(entitiesWithLayers, ctx);
+    const indexResult = buildIndex(entitiesForWrite, ctx);
     if (!indexResult.ok) {
       ctx.logger?.error('Index build failed', indexResult.error);
       process.exit(1);
@@ -108,7 +140,7 @@ async function main() {
 
     // Step 6: Write core entities (now with layer data)
     ctx.logger?.info('Step 6: Writing core entities');
-    const coreResult = await writeCoreEntities(entitiesWithLayers, outputDir, ctx);
+    const coreResult = await writeCoreEntities(entitiesForWrite, outputDir, ctx);
     if (!coreResult.ok) {
       ctx.logger?.error('Writing core failed', coreResult.error);
       process.exit(1);
@@ -125,8 +157,16 @@ async function main() {
     const manifest: Manifest = {
       builtAt: new Date().toISOString(),
       sources: [{
-        entityCount: entitiesWithLayers.length,
+        entityCount: entitiesForWrite.length,
         source: 'components',
+        status: 'success',
+      }, {
+        entityCount: 1,
+        source: 'react',
+        status: 'success',
+      }, {
+        entityCount: 1,
+        source: 'vue',
         status: 'success',
       }],
       synergyVersion: 'local',
@@ -164,7 +204,7 @@ async function main() {
     }
 
     ctx.logger?.info('=== Build Complete ===');
-    ctx.logger?.info(`Entities: ${entitiesWithLayers.length}`);
+    ctx.logger?.info(`Entities: ${entitiesForWrite.length}`);
     ctx.logger?.info(`Index entries: ${indexResult.value.length}`);
   } catch (error) {
     ctx.logger?.error('Build failed with exception', { error: String(error) });

@@ -1,7 +1,47 @@
 {
   "custom": {
     "sourceModulePath": "components/header/header.js",
-    "summary": "The <syn-header /> element provides a generic application header\nthat can be used to add applications name, toolbar and primary navigation."
+    "summary": "The <syn-header /> element provides a generic application header\nthat can be used to add applications name, toolbar and primary navigation.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueHeader",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueHeader.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynHeader",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/header.ts"
+        },
+        "jsx": {
+          "componentName": "SynHeader",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-header--docs",
+          "events": [
+            {
+              "name": "syn-burger-menu-closed",
+              "type": "SynBurgerMenuClosedEvent"
+            },
+            {
+              "name": "syn-burger-menu-hidden",
+              "type": "SynBurgerMenuHiddenEvent"
+            },
+            {
+              "name": "syn-burger-menu-open",
+              "type": "SynBurgerMenuOpenEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.10.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynHeaderJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-header",
   "kind": "component",
@@ -9,19 +49,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-header/header.component.ts"
+        "path": "layers/full/component/component:syn-header/components/header.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-header/header.styles.ts"
+        "path": "layers/full/component/component:syn-header/components/header.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-header/header.test.ts"
+        "path": "layers/full/component/component:syn-header/components/header.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-header/header.ts"
+        "path": "layers/full/component/component:syn-header/components/header.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-header/react/header.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-header/vue/SynVueHeader.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-header/react/SynHeaderJSXElement.ts"
       }
     ]
   },
@@ -33,11 +85,15 @@
     "packages/components/src/components/header/header.component.ts",
     "packages/components/src/components/header/header.styles.ts",
     "packages/components/src/components/header/header.test.ts",
-    "packages/components/src/components/header/header.ts"
+    "packages/components/src/components/header/header.ts",
+    "packages/react/src/components/header.ts",
+    "packages/vue/src/components/SynVueHeader.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-header",
-    "component"
+    "vue"
   ]
 }

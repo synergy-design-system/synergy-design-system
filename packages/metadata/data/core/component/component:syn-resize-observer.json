@@ -9,11 +9,11 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-resize-observer/resize-observer.component.ts"
+        "path": "layers/full/component/component:syn-resize-observer/components/resize-observer.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-resize-observer/resize-observer.styles.ts"
+        "path": "layers/full/component/component:syn-resize-observer/components/resize-observer.styles.ts"
       }
     ]
   },

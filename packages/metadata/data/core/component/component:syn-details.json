@@ -1,7 +1,51 @@
 {
   "custom": {
     "sourceModulePath": "components/details/details.js",
-    "summary": "Details show a brief summary and expand to show additional content."
+    "summary": "Details show a brief summary and expand to show additional content.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueDetails",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDetails.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynDetails",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/details.ts"
+        },
+        "jsx": {
+          "componentName": "SynDetails",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynDetailsJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-details",
   "kind": "component",
@@ -9,23 +53,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-details/details.component.ts"
+        "path": "layers/full/component/component:syn-details/components/details.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-details/details.custom.test.ts"
+        "path": "layers/full/component/component:syn-details/components/details.custom.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-details/details.styles.ts"
+        "path": "layers/full/component/component:syn-details/components/details.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-details/details.test.ts"
+        "path": "layers/full/component/component:syn-details/components/details.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-details/details.ts"
+        "path": "layers/full/component/component:syn-details/components/details.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/react/details.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/vue/SynVueDetails.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/react/SynDetailsJSXElement.ts"
       }
     ]
   },
@@ -43,11 +99,15 @@
     "packages/components/src/components/details/details.custom.test.ts",
     "packages/components/src/components/details/details.styles.ts",
     "packages/components/src/components/details/details.test.ts",
-    "packages/components/src/components/details/details.ts"
+    "packages/components/src/components/details/details.ts",
+    "packages/react/src/components/details.ts",
+    "packages/vue/src/components/SynVueDetails.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-details",
-    "component"
+    "vue"
   ]
 }

@@ -1,7 +1,51 @@
 {
   "custom": {
     "sourceModulePath": "components/dropdown/dropdown.js",
-    "summary": "Dropdowns expose additional content that \"drops down\" in a panel."
+    "summary": "Dropdowns expose additional content that \"drops down\" in a panel.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueDropdown",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDropdown.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynDropdown",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/dropdown.ts"
+        },
+        "jsx": {
+          "componentName": "SynDropdown",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-dropdown--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynDropdownJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-dropdown",
   "kind": "component",
@@ -9,19 +53,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dropdown/dropdown.component.ts"
+        "path": "layers/full/component/component:syn-dropdown/components/dropdown.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dropdown/dropdown.styles.ts"
+        "path": "layers/full/component/component:syn-dropdown/components/dropdown.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dropdown/dropdown.test.ts"
+        "path": "layers/full/component/component:syn-dropdown/components/dropdown.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dropdown/dropdown.ts"
+        "path": "layers/full/component/component:syn-dropdown/components/dropdown.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dropdown/react/dropdown.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dropdown/vue/SynVueDropdown.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dropdown/react/SynDropdownJSXElement.ts"
       }
     ]
   },
@@ -38,11 +94,15 @@
     "packages/components/src/components/dropdown/dropdown.component.ts",
     "packages/components/src/components/dropdown/dropdown.styles.ts",
     "packages/components/src/components/dropdown/dropdown.test.ts",
-    "packages/components/src/components/dropdown/dropdown.ts"
+    "packages/components/src/components/dropdown/dropdown.ts",
+    "packages/react/src/components/dropdown.ts",
+    "packages/vue/src/components/SynVueDropdown.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-dropdown",
-    "component"
+    "vue"
   ]
 }

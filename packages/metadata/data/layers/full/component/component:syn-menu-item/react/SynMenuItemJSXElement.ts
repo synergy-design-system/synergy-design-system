@@ -1,0 +1,1 @@
+export type SynMenuItemJSXElement = SynCustomElement<SynMenuItem, []>;

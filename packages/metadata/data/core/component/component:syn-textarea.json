@@ -1,7 +1,55 @@
 {
   "custom": {
     "sourceModulePath": "components/textarea/textarea.js",
-    "summary": "Textareas collect data from the user and allow multiple lines of text."
+    "summary": "Textareas collect data from the user and allow multiple lines of text.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueTextarea",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTextarea.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynTextarea",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/textarea.ts"
+        },
+        "jsx": {
+          "componentName": "SynTextarea",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTextareaJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-textarea",
   "kind": "component",
@@ -9,19 +57,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-textarea/textarea.component.ts"
+        "path": "layers/full/component/component:syn-textarea/components/textarea.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-textarea/textarea.styles.ts"
+        "path": "layers/full/component/component:syn-textarea/components/textarea.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-textarea/textarea.test.ts"
+        "path": "layers/full/component/component:syn-textarea/components/textarea.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-textarea/textarea.ts"
+        "path": "layers/full/component/component:syn-textarea/components/textarea.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/react/textarea.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/vue/SynVueTextarea.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/react/SynTextareaJSXElement.ts"
       }
     ]
   },
@@ -33,11 +93,15 @@
     "packages/components/src/components/textarea/textarea.component.ts",
     "packages/components/src/components/textarea/textarea.styles.ts",
     "packages/components/src/components/textarea/textarea.test.ts",
-    "packages/components/src/components/textarea/textarea.ts"
+    "packages/components/src/components/textarea/textarea.ts",
+    "packages/react/src/components/textarea.ts",
+    "packages/vue/src/components/SynVueTextarea.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-textarea",
-    "component"
+    "vue"
   ]
 }

@@ -1,7 +1,58 @@
 {
   "custom": {
     "sourceModulePath": "components/range/range.js",
-    "summary": "Ranges allow the user to select values within a given range using one or two thumbs."
+    "summary": "Ranges allow the user to select values within a given range using one or two thumbs.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueRange",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueRange.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynRange",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/range.ts"
+        },
+        "jsx": {
+          "componentName": "SynRange",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            },
+            {
+              "name": "syn-move",
+              "type": "SynMoveEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynRangeJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-range",
   "kind": "component",
@@ -9,23 +60,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-range/range.component.ts"
+        "path": "layers/full/component/component:syn-range/components/range.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-range/range.styles.ts"
+        "path": "layers/full/component/component:syn-range/components/range.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-range/range.test.ts"
+        "path": "layers/full/component/component:syn-range/components/range.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-range/range.ts"
+        "path": "layers/full/component/component:syn-range/components/range.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-range/utility.ts"
+        "path": "layers/full/component/component:syn-range/components/utility.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/react/range.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/vue/SynVueRange.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/react/SynRangeJSXElement.ts"
       }
     ]
   },
@@ -43,11 +106,15 @@
     "packages/components/src/components/range/range.styles.ts",
     "packages/components/src/components/range/range.test.ts",
     "packages/components/src/components/range/range.ts",
-    "packages/components/src/components/range/utility.ts"
+    "packages/components/src/components/range/utility.ts",
+    "packages/react/src/components/range.ts",
+    "packages/vue/src/components/SynVueRange.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-range",
-    "component"
+    "vue"
   ]
 }

@@ -1,7 +1,55 @@
 {
   "custom": {
     "sourceModulePath": "components/checkbox/checkbox.js",
-    "summary": "Checkboxes allow the user to toggle an option on or off."
+    "summary": "Checkboxes allow the user to toggle an option on or off.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueCheckbox",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueCheckbox.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynCheckbox",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/checkbox.ts"
+        },
+        "jsx": {
+          "componentName": "SynCheckbox",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynCheckboxJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-checkbox",
   "kind": "component",
@@ -9,19 +57,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-checkbox/checkbox.component.ts"
+        "path": "layers/full/component/component:syn-checkbox/components/checkbox.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-checkbox/checkbox.styles.ts"
+        "path": "layers/full/component/component:syn-checkbox/components/checkbox.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-checkbox/checkbox.test.ts"
+        "path": "layers/full/component/component:syn-checkbox/components/checkbox.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-checkbox/checkbox.ts"
+        "path": "layers/full/component/component:syn-checkbox/components/checkbox.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/react/checkbox.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/vue/SynVueCheckbox.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/react/SynCheckboxJSXElement.ts"
       }
     ]
   },
@@ -38,11 +98,15 @@
     "packages/components/src/components/checkbox/checkbox.component.ts",
     "packages/components/src/components/checkbox/checkbox.styles.ts",
     "packages/components/src/components/checkbox/checkbox.test.ts",
-    "packages/components/src/components/checkbox/checkbox.ts"
+    "packages/components/src/components/checkbox/checkbox.ts",
+    "packages/react/src/components/checkbox.ts",
+    "packages/vue/src/components/SynVueCheckbox.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-checkbox",
-    "component"
+    "vue"
   ]
 }

@@ -1,7 +1,51 @@
 {
   "custom": {
     "sourceModulePath": "components/alert/alert.js",
-    "summary": "Alerts are used to display important messages inline or as toast notifications."
+    "summary": "Alerts are used to display important messages inline or as toast notifications.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueAlert",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueAlert.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynAlert",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/alert.ts"
+        },
+        "jsx": {
+          "componentName": "SynAlert",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynAlertJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-alert",
   "kind": "component",
@@ -9,23 +53,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-alert/alert.component.ts"
+        "path": "layers/full/component/component:syn-alert/components/alert.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-alert/alert.custom.test.ts"
+        "path": "layers/full/component/component:syn-alert/components/alert.custom.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-alert/alert.styles.ts"
+        "path": "layers/full/component/component:syn-alert/components/alert.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-alert/alert.test.ts"
+        "path": "layers/full/component/component:syn-alert/components/alert.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-alert/alert.ts"
+        "path": "layers/full/component/component:syn-alert/components/alert.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-alert/react/alert.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-alert/vue/SynVueAlert.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-alert/react/SynAlertJSXElement.ts"
       }
     ]
   },
@@ -43,11 +99,15 @@
     "packages/components/src/components/alert/alert.custom.test.ts",
     "packages/components/src/components/alert/alert.styles.ts",
     "packages/components/src/components/alert/alert.test.ts",
-    "packages/components/src/components/alert/alert.ts"
+    "packages/components/src/components/alert/alert.ts",
+    "packages/react/src/components/alert.ts",
+    "packages/vue/src/components/SynVueAlert.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-alert",
-    "component"
+    "vue"
   ]
 }

@@ -1,7 +1,34 @@
 {
   "custom": {
     "sourceModulePath": "components/badge/badge.js",
-    "summary": "Badges are used to draw attention and display statuses or counts."
+    "summary": "Badges are used to draw attention and display statuses or counts.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueBadge",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueBadge.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynBadge",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/badge.ts"
+        },
+        "jsx": {
+          "componentName": "SynBadge",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynBadgeJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-badge",
   "kind": "component",
@@ -9,27 +36,39 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-badge/badge.component.ts"
+        "path": "layers/full/component/component:syn-badge/components/badge.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-badge/badge.custom.styles.ts"
+        "path": "layers/full/component/component:syn-badge/components/badge.custom.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-badge/badge.custom.test.ts"
+        "path": "layers/full/component/component:syn-badge/components/badge.custom.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-badge/badge.styles.ts"
+        "path": "layers/full/component/component:syn-badge/components/badge.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-badge/badge.test.ts"
+        "path": "layers/full/component/component:syn-badge/components/badge.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-badge/badge.ts"
+        "path": "layers/full/component/component:syn-badge/components/badge.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/react/badge.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/vue/SynVueBadge.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/react/SynBadgeJSXElement.ts"
       }
     ]
   },
@@ -43,11 +82,15 @@
     "packages/components/src/components/badge/badge.custom.test.ts",
     "packages/components/src/components/badge/badge.styles.ts",
     "packages/components/src/components/badge/badge.test.ts",
-    "packages/components/src/components/badge/badge.ts"
+    "packages/components/src/components/badge/badge.ts",
+    "packages/react/src/components/badge.ts",
+    "packages/vue/src/components/SynVueBadge.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-badge",
-    "component"
+    "vue"
   ]
 }

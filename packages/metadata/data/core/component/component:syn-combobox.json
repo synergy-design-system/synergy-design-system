@@ -1,7 +1,78 @@
 {
   "custom": {
     "sourceModulePath": "components/combobox/combobox.js",
-    "summary": "A combobox component that combines the functionality of a text input with a dropdown listbox,\nallowing users to either select from predefined options or enter custom values (when not restricted)."
+    "summary": "A combobox component that combines the functionality of a text input with a dropdown listbox,\nallowing users to either select from predefined options or enter custom values (when not restricted).",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueCombobox",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueCombobox.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynCombobox",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/combobox.ts"
+        },
+        "jsx": {
+          "componentName": "SynCombobox",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs",
+          "events": [
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-clear",
+              "type": "SynClearEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            },
+            {
+              "name": "syn-error",
+              "type": "SynErrorEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynComboboxJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-combobox",
   "kind": "component",
@@ -9,31 +80,43 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-combobox/combobox.component.ts"
+        "path": "layers/full/component/component:syn-combobox/components/combobox.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-combobox/combobox.styles.ts"
+        "path": "layers/full/component/component:syn-combobox/components/combobox.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-combobox/combobox.test.ts"
+        "path": "layers/full/component/component:syn-combobox/components/combobox.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-combobox/combobox.ts"
+        "path": "layers/full/component/component:syn-combobox/components/combobox.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-combobox/option-renderer.test.ts"
+        "path": "layers/full/component/component:syn-combobox/components/option-renderer.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-combobox/option-renderer.ts"
+        "path": "layers/full/component/component:syn-combobox/components/option-renderer.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-combobox/utils.ts"
+        "path": "layers/full/component/component:syn-combobox/components/utils.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/react/combobox.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/vue/SynVueCombobox.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/react/SynComboboxJSXElement.ts"
       }
     ]
   },
@@ -61,11 +144,15 @@
     "packages/components/src/components/combobox/combobox.ts",
     "packages/components/src/components/combobox/option-renderer.test.ts",
     "packages/components/src/components/combobox/option-renderer.ts",
-    "packages/components/src/components/combobox/utils.ts"
+    "packages/components/src/components/combobox/utils.ts",
+    "packages/react/src/components/combobox.ts",
+    "packages/vue/src/components/SynVueCombobox.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-combobox",
-    "component"
+    "vue"
   ]
 }

@@ -1,0 +1,1 @@
+export type SynPrioNavJSXElement = SynCustomElement<SynPrioNav, []>;

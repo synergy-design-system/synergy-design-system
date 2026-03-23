@@ -1,7 +1,39 @@
 {
   "custom": {
     "sourceModulePath": "components/tag/tag.js",
-    "summary": "Tags are used as labels to organize things or to indicate a selection."
+    "summary": "Tags are used as labels to organize things or to indicate a selection.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueTag",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTag.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynTag",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tag.ts"
+        },
+        "jsx": {
+          "componentName": "SynTag",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs",
+          "events": [
+            {
+              "name": "syn-remove",
+              "type": "SynRemoveEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTagJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-tag",
   "kind": "component",
@@ -9,23 +41,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tag/tag.component.ts"
+        "path": "layers/full/component/component:syn-tag/components/tag.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tag/tag.custom.styles.ts"
+        "path": "layers/full/component/component:syn-tag/components/tag.custom.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tag/tag.styles.ts"
+        "path": "layers/full/component/component:syn-tag/components/tag.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tag/tag.test.ts"
+        "path": "layers/full/component/component:syn-tag/components/tag.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tag/tag.ts"
+        "path": "layers/full/component/component:syn-tag/components/tag.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag/react/tag.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag/vue/SynVueTag.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag/react/SynTagJSXElement.ts"
       }
     ]
   },
@@ -43,11 +87,15 @@
     "packages/components/src/components/tag/tag.custom.styles.ts",
     "packages/components/src/components/tag/tag.styles.ts",
     "packages/components/src/components/tag/tag.test.ts",
-    "packages/components/src/components/tag/tag.ts"
+    "packages/components/src/components/tag/tag.ts",
+    "packages/react/src/components/tag.ts",
+    "packages/vue/src/components/SynVueTag.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-tag",
-    "component"
+    "vue"
   ]
 }

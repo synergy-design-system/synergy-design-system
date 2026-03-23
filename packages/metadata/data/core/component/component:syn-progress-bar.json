@@ -1,7 +1,34 @@
 {
   "custom": {
     "sourceModulePath": "components/progress-bar/progress-bar.js",
-    "summary": "Progress bars are used to show the status of an ongoing operation."
+    "summary": "Progress bars are used to show the status of an ongoing operation.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueProgressBar",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueProgressBar.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynProgressBar",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/progress-bar.ts"
+        },
+        "jsx": {
+          "componentName": "SynProgressBar",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-progress-bar--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynProgressBarJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-progress-bar",
   "kind": "component",
@@ -9,23 +36,35 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-progress-bar/progress-bar.component.ts"
+        "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-progress-bar/progress-bar.custom.styles.ts"
+        "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.custom.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-progress-bar/progress-bar.styles.ts"
+        "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-progress-bar/progress-bar.test.ts"
+        "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-progress-bar/progress-bar.ts"
+        "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/react/progress-bar.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/vue/SynVueProgressBar.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/react/SynProgressBarJSXElement.ts"
       }
     ]
   },
@@ -38,11 +77,15 @@
     "packages/components/src/components/progress-bar/progress-bar.custom.styles.ts",
     "packages/components/src/components/progress-bar/progress-bar.styles.ts",
     "packages/components/src/components/progress-bar/progress-bar.test.ts",
-    "packages/components/src/components/progress-bar/progress-bar.ts"
+    "packages/components/src/components/progress-bar/progress-bar.ts",
+    "packages/react/src/components/progress-bar.ts",
+    "packages/vue/src/components/SynVueProgressBar.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-progress-bar",
-    "component"
+    "vue"
   ]
 }

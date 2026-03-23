@@ -1,7 +1,47 @@
 {
   "custom": {
     "sourceModulePath": "components/button/button.js",
-    "summary": "Buttons represent actions that are available to the user."
+    "summary": "Buttons represent actions that are available to the user.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVueButton",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueButton.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynButton",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/button.ts"
+        },
+        "jsx": {
+          "componentName": "SynButton",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynButtonJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-button",
   "kind": "component",
@@ -9,27 +49,39 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button/button.component.ts"
+        "path": "layers/full/component/component:syn-button/components/button.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button/button.custom.styles.ts"
+        "path": "layers/full/component/component:syn-button/components/button.custom.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button/button.custom.test.ts"
+        "path": "layers/full/component/component:syn-button/components/button.custom.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button/button.styles.ts"
+        "path": "layers/full/component/component:syn-button/components/button.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button/button.test.ts"
+        "path": "layers/full/component/component:syn-button/components/button.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button/button.ts"
+        "path": "layers/full/component/component:syn-button/components/button.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button/react/button.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button/vue/SynVueButton.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button/react/SynButtonJSXElement.ts"
       }
     ]
   },
@@ -52,11 +104,15 @@
     "packages/components/src/components/button/button.custom.test.ts",
     "packages/components/src/components/button/button.styles.ts",
     "packages/components/src/components/button/button.test.ts",
-    "packages/components/src/components/button/button.ts"
+    "packages/components/src/components/button/button.ts",
+    "packages/react/src/components/button.ts",
+    "packages/vue/src/components/SynVueButton.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-button",
-    "component"
+    "vue"
   ]
 }

@@ -1,7 +1,39 @@
 {
   "custom": {
     "sourceModulePath": "components/popup/popup.js",
-    "summary": "Popup is a utility that lets you declaratively anchor \"popup\" containers to another element."
+    "summary": "Popup is a utility that lets you declaratively anchor \"popup\" containers to another element.",
+    "frameworks": {
+      "vue": {
+        "componentName": "SynVuePopup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVuePopup.vue"
+      },
+      "react": {
+        "wrapper": {
+          "componentName": "SynPopup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/popup.ts"
+        },
+        "jsx": {
+          "componentName": "SynPopup",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs",
+          "events": [
+            {
+              "name": "syn-reposition",
+              "type": "SynRepositionEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynPopupJSXElement"
+        }
+      }
+    }
   },
   "id": "component:syn-popup",
   "kind": "component",
@@ -9,19 +41,31 @@
     "full": [
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-popup/popup.component.ts"
+        "path": "layers/full/component/component:syn-popup/components/popup.component.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-popup/popup.styles.ts"
+        "path": "layers/full/component/component:syn-popup/components/popup.styles.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-popup/popup.test.ts"
+        "path": "layers/full/component/component:syn-popup/components/popup.test.ts"
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-popup/popup.ts"
+        "path": "layers/full/component/component:syn-popup/components/popup.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/react/popup.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/vue/SynVuePopup.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/react/SynPopupJSXElement.ts"
       }
     ]
   },
@@ -33,11 +77,15 @@
     "packages/components/src/components/popup/popup.component.ts",
     "packages/components/src/components/popup/popup.styles.ts",
     "packages/components/src/components/popup/popup.test.ts",
-    "packages/components/src/components/popup/popup.ts"
+    "packages/components/src/components/popup/popup.ts",
+    "packages/react/src/components/popup.ts",
+    "packages/vue/src/components/SynVuePopup.vue"
   ],
   "status": "stable",
   "tags": [
+    "component",
+    "react",
     "syn-popup",
-    "component"
+    "vue"
   ]
 }

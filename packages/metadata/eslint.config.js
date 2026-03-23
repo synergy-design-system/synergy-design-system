@@ -32,6 +32,15 @@ export default [
   },
   {
     files: [
+      'src/collectors/**/*.ts',
+    ],
+    rules: {
+      // Collectors may rely on build-time-only parsing utilities.
+      'import/no-extraneous-dependencies': 'off',
+    },
+  },
+  {
+    files: [
       'test/**/*.mjs',
     ],
     rules: {

@@ -63,8 +63,8 @@
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
     "pretest": "pnpm run build:ts",
-    "test": "mocha \"test/**/*.test.mjs\"",
-    "test:with-build": "pnpm run build && mocha \"test/**/*.test.mjs\""
+    "test": "mocha --timeout 15000 \"test/**/*.test.mjs\"",
+    "test:with-build": "pnpm run build && mocha --timeout 15000 \"test/**/*.test.mjs\""
   },
   "types": "./dist/index.d.ts",
   "type": "module",

@@ -1,6 +1,112 @@
 {
-  "builtAt": "2026-03-23T11:56:03.787Z",
+  "builtAt": "2026-03-23T13:19:51.266Z",
   "entities": [
+    {
+      "corePath": "data/core/asset/asset:sick2018-icons.json",
+      "id": "asset:sick2018-icons",
+      "kind": "asset",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2018 Icons",
+      "search": [
+        "asset:sick2018-icons",
+        "sick2018 Icons",
+        "asset",
+        "icons",
+        "sick2018"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2018-logos.json",
+      "id": "asset:sick2018-logos",
+      "kind": "asset",
+      "layers": {},
+      "name": "sick2018 Logos",
+      "search": [
+        "asset:sick2018-logos",
+        "sick2018 Logos",
+        "asset",
+        "logos",
+        "sick2018"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2018-system-icons.json",
+      "id": "asset:sick2018-system-icons",
+      "kind": "asset",
+      "layers": {},
+      "name": "sick2018 System Icons",
+      "search": [
+        "asset:sick2018-system-icons",
+        "sick2018 System Icons",
+        "asset",
+        "sick2018",
+        "system-icons"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2025-icons-fill.json",
+      "id": "asset:sick2025-icons-fill",
+      "kind": "asset",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025 Icons (Fill)",
+      "search": [
+        "asset:sick2025-icons-fill",
+        "sick2025 Icons (Fill)",
+        "asset",
+        "fill",
+        "icons",
+        "sick2025"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2025-icons-outline.json",
+      "id": "asset:sick2025-icons-outline",
+      "kind": "asset",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025 Icons (Outline)",
+      "search": [
+        "asset:sick2025-icons-outline",
+        "sick2025 Icons (Outline)",
+        "asset",
+        "icons",
+        "outline",
+        "sick2025"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2025-logos.json",
+      "id": "asset:sick2025-logos",
+      "kind": "asset",
+      "layers": {},
+      "name": "sick2025 Logos",
+      "search": [
+        "asset:sick2025-logos",
+        "sick2025 Logos",
+        "asset",
+        "logos",
+        "sick2025"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2025-system-icons.json",
+      "id": "asset:sick2025-system-icons",
+      "kind": "asset",
+      "layers": {},
+      "name": "sick2025 System Icons",
+      "search": [
+        "asset:sick2025-system-icons",
+        "sick2025 System Icons",
+        "asset",
+        "sick2025",
+        "system-icons"
+      ]
+    },
     {
       "corePath": "data/core/component/component:syn-accordion.json",
       "id": "component:syn-accordion",

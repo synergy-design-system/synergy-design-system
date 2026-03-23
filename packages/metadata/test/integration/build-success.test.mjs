@@ -108,6 +108,48 @@ describe('metadata build integration', () => {
         'setup',
         'setup:assets-package.json',
       );
+      const sick2018IconsPath = path.join(
+        outputDir,
+        'core',
+        'asset',
+        'asset:sick2018-icons.json',
+      );
+      const sick2025IconsFillPath = path.join(
+        outputDir,
+        'core',
+        'asset',
+        'asset:sick2025-icons-fill.json',
+      );
+      const sick2025IconsOutlinePath = path.join(
+        outputDir,
+        'core',
+        'asset',
+        'asset:sick2025-icons-outline.json',
+      );
+      const sick2018LogosPath = path.join(
+        outputDir,
+        'core',
+        'asset',
+        'asset:sick2018-logos.json',
+      );
+      const sick2025LogosPath = path.join(
+        outputDir,
+        'core',
+        'asset',
+        'asset:sick2025-logos.json',
+      );
+      const sick2018SystemIconsPath = path.join(
+        outputDir,
+        'core',
+        'asset',
+        'asset:sick2018-system-icons.json',
+      );
+      const sick2025SystemIconsPath = path.join(
+        outputDir,
+        'core',
+        'asset',
+        'asset:sick2025-system-icons.json',
+      );
       const tokenFigmaArtifactPath = path.join(
         outputDir,
         'core',
@@ -142,6 +184,13 @@ describe('metadata build integration', () => {
       await access(stylesSetupPath);
       await access(fontsSetupPath);
       await access(assetsSetupPath);
+      await access(sick2018IconsPath);
+      await access(sick2025IconsFillPath);
+      await access(sick2025IconsOutlinePath);
+      await access(sick2018LogosPath);
+      await access(sick2025LogosPath);
+      await access(sick2018SystemIconsPath);
+      await access(sick2025SystemIconsPath);
       await access(tokenFigmaArtifactPath);
       await access(stylesLinkPath);
       await access(fontsArtifactPath);
@@ -160,6 +209,13 @@ describe('metadata build integration', () => {
       const stylesSetupJson = JSON.parse(await readFile(stylesSetupPath, 'utf8'));
       const fontsSetupJson = JSON.parse(await readFile(fontsSetupPath, 'utf8'));
       const assetsSetupJson = JSON.parse(await readFile(assetsSetupPath, 'utf8'));
+      const sick2018IconsJson = JSON.parse(await readFile(sick2018IconsPath, 'utf8'));
+      const sick2025IconsFillJson = JSON.parse(await readFile(sick2025IconsFillPath, 'utf8'));
+      const sick2025IconsOutlineJson = JSON.parse(await readFile(sick2025IconsOutlinePath, 'utf8'));
+      const sick2018LogosJson = JSON.parse(await readFile(sick2018LogosPath, 'utf8'));
+      const sick2025LogosJson = JSON.parse(await readFile(sick2025LogosPath, 'utf8'));
+      const sick2018SystemIconsJson = JSON.parse(await readFile(sick2018SystemIconsPath, 'utf8'));
+      const sick2025SystemIconsJson = JSON.parse(await readFile(sick2025SystemIconsPath, 'utf8'));
       const tokenFigmaArtifactJson = JSON.parse(await readFile(tokenFigmaArtifactPath, 'utf8'));
       const stylesLinkJson = JSON.parse(await readFile(stylesLinkPath, 'utf8'));
       const fontsArtifactJson = JSON.parse(await readFile(fontsArtifactPath, 'utf8'));
@@ -228,6 +284,76 @@ describe('metadata build integration', () => {
       expect(assetsSetupJson.sources).to.include('packages/assets/README.md');
       expect(assetsSetupJson.sources).to.include('packages/assets/CHANGELOG.md');
       expect(assetsSetupJson.sources).to.include('packages/assets/package.json');
+      // sick2018 icon set entity (registry)
+      expect(sick2018IconsJson).to.have.property('kind', 'asset');
+      expect(sick2018IconsJson).to.have.property('package', 'assets');
+      expect(sick2018IconsJson.custom).to.have.property('theme', 'sick2018');
+      expect(sick2018IconsJson.custom).to.have.property('variant', 'all');
+      expect(sick2018IconsJson.custom).to.have.property('iconCount').that.is.greaterThan(0);
+      expect(sick2018IconsJson.custom).to.not.have.property('iconNames');
+      expect(sick2018IconsJson.custom).to.not.have.property('material');
+      expect(sick2018IconsJson.sources).to.deep.equal(['packages/assets/src/sick2018/js/index.ts']);
+      expect(sick2018IconsJson.layers.full.some((ref) => ref.path === 'layers/full/assets/sick2018/js/index.ts')).to.equal(true);
+      // icons dict spot-check
+      expect(sick2018IconsJson.custom.icons).to.be.an('object');
+      expect(sick2018IconsJson.custom.icons['add']).to.exist;
+      expect(sick2018IconsJson.custom.icons['add'].categories).to.be.an('array').that.is.not.empty;
+      expect(sick2018IconsJson.custom.icons['add'].tags).to.be.an('array').that.is.not.empty;
+
+      // sick2025 fill icon set entity (registry)
+      expect(sick2025IconsFillJson).to.have.property('kind', 'asset');
+      expect(sick2025IconsFillJson.custom).to.have.property('theme', 'sick2025');
+      expect(sick2025IconsFillJson.custom).to.have.property('variant', 'fill');
+      expect(sick2025IconsFillJson.custom).to.have.property('iconCount').that.is.greaterThan(0);
+      expect(sick2025IconsFillJson.custom).to.not.have.property('iconNames');
+      expect(sick2025IconsFillJson.custom).to.not.have.property('material');
+      expect(sick2025IconsFillJson.sources).to.deep.equal(['packages/assets/src/sick2025/js/filled.ts']);
+      expect(sick2025IconsFillJson.layers.full.some((ref) => ref.path === 'layers/full/assets/sick2025/js/filled.ts')).to.equal(true);
+      // icons dict spot-check
+      expect(sick2025IconsFillJson.custom.icons).to.be.an('object');
+      expect(sick2025IconsFillJson.custom.icons['add']).to.exist;
+      expect(sick2025IconsFillJson.custom.icons['add'].categories).to.be.an('array').that.is.not.empty;
+      expect(sick2025IconsFillJson.custom.icons['add'].tags).to.be.an('array').that.is.not.empty;
+
+      // sick2025 outline icon set entity (registry)
+      expect(sick2025IconsOutlineJson).to.have.property('kind', 'asset');
+      expect(sick2025IconsOutlineJson.custom).to.have.property('theme', 'sick2025');
+      expect(sick2025IconsOutlineJson.custom).to.have.property('variant', 'outline');
+      expect(sick2025IconsOutlineJson.custom).to.not.have.property('iconNames');
+      expect(sick2025IconsOutlineJson.custom).to.not.have.property('material');
+      expect(sick2025IconsOutlineJson.sources).to.deep.equal(['packages/assets/src/sick2025/js/outline.ts']);
+      // icons dict spot-check
+      expect(sick2025IconsOutlineJson.custom.icons).to.be.an('object');
+      expect(sick2025IconsOutlineJson.custom.icons['add']).to.exist;
+      expect(sick2025IconsOutlineJson.custom.icons['add'].categories).to.be.an('array').that.is.not.empty;
+      expect(sick2025IconsOutlineJson.custom.icons['add'].tags).to.be.an('array').that.is.not.empty;
+
+      // Logo entities — no sources, filenames in custom.files
+      expect(sick2018LogosJson).to.have.property('kind', 'asset');
+      expect(sick2018LogosJson.custom).to.have.property('category', 'logos');
+      expect(sick2018LogosJson.custom).to.have.property('theme', 'sick2018');
+      expect(sick2018LogosJson.custom.files).to.be.an('array').that.is.not.empty;
+      expect(sick2018LogosJson.custom.files).to.include('logo-black.svg');
+      expect(sick2018LogosJson.sources).to.deep.equal([]);
+
+      expect(sick2025LogosJson).to.have.property('kind', 'asset');
+      expect(sick2025LogosJson.custom).to.have.property('category', 'logos');
+      expect(sick2025LogosJson.custom).to.have.property('theme', 'sick2025');
+      expect(sick2025LogosJson.custom.files).to.be.an('array').that.is.not.empty;
+      expect(sick2025LogosJson.sources).to.deep.equal([]);
+
+      // System-icon entities — no sources, filenames in custom.files
+      expect(sick2018SystemIconsJson).to.have.property('kind', 'asset');
+      expect(sick2018SystemIconsJson.custom).to.have.property('category', 'system-icons');
+      expect(sick2018SystemIconsJson.custom.files).to.include('add.svg');
+      expect(sick2018SystemIconsJson.custom).to.not.have.property('material');
+      expect(sick2018SystemIconsJson.sources).to.deep.equal([]);
+
+      expect(sick2025SystemIconsJson).to.have.property('kind', 'asset');
+      expect(sick2025SystemIconsJson.custom).to.have.property('category', 'system-icons');
+      expect(sick2025SystemIconsJson.custom.files).to.include('add.svg');
+      expect(sick2025SystemIconsJson.custom).to.not.have.property('material');
+      expect(sick2025SystemIconsJson.sources).to.deep.equal([]);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:tokens-package')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'token:tokens-figma-variables-sick2018-dark-json')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:styles-package')).to.equal(true);
@@ -235,6 +361,16 @@ describe('metadata build integration', () => {
       expect(indexJson.entities.some((entity) => entity.id === 'setup:fonts-package')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'utility:fonts-sick-intl')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:assets-package')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'asset:sick2018-icons')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'asset:sick2025-icons-fill')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'asset:sick2025-icons-outline')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'asset:sick2018-icon-add')).to.equal(false);
+      expect(indexJson.entities.some((entity) => entity.id === 'asset:sick2025-fill-icon-add')).to.equal(false);
+      expect(indexJson.entities.some((entity) => entity.id === 'asset:sick2025-outline-icon-add')).to.equal(false);
+      expect(indexJson.entities.some((entity) => entity.id === 'asset:sick2018-logos')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'asset:sick2025-logos')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'asset:sick2018-system-icons')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'asset:sick2025-system-icons')).to.equal(true);
     } finally {
       await rm(tempRoot, { force: true, recursive: true });
     }

@@ -5,11 +5,12 @@ import { LayerRefSchema } from './layer-ref.js';
  * Entity kind: component, design token, utility, setup guide, etc.
  */
 export const EntityKindSchema = z.enum([
+  'asset',
   'component',
+  'style',
+  'setup',
   'token',
   'utility',
-  'setup',
-  'style',
 ]);
 
 export type EntityKind = z.infer<typeof EntityKindSchema>;

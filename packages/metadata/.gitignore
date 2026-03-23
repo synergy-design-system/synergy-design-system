@@ -1,4 +1,4 @@
 dist
 node_modules
 *.tsbuildinfo
-
+adr.md

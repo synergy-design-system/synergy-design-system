@@ -72,6 +72,18 @@ const mapFontsLayerPath = (sourcePath: string): string => {
   return basename(sourcePath);
 };
 
+const mapAssetsLayerPath = (sourcePath: string): string => {
+  if (sourcePath.startsWith('packages/assets/src/')) {
+    return sourcePath.slice('packages/assets/src/'.length);
+  }
+
+  if (sourcePath.startsWith('packages/assets/')) {
+    return sourcePath.slice('packages/assets/'.length);
+  }
+
+  return basename(sourcePath);
+};
+
 /**
  * Extract per-component React JSX type snippets from custom framework metadata.
  * These are generated files (not copies of repo source) derived from the AST parse
@@ -136,6 +148,8 @@ export async function writeLayerAssets(
       const isGroupedStyleEntity = entity.kind === 'style' && entity.package === 'styles';
       // Font artifact entities are grouped by package path under layers/full/fonts.
       const isGroupedFontsEntity = entity.kind === 'utility' && entity.package === 'fonts';
+      // Asset artifact entities are grouped by package path under layers/full/assets.
+      const isGroupedAssetEntity = entity.kind === 'asset' && entity.package === 'assets';
 
       // Create entity's layer directory
       const entityLayerDir = isGroupedTokenEntity
@@ -144,6 +158,8 @@ export async function writeLayerAssets(
           ? join(layersDir, 'full', 'styles')
           : isGroupedFontsEntity
             ? join(layersDir, 'full', 'fonts')
+            : isGroupedAssetEntity
+              ? join(layersDir, 'full', 'assets')
         : join(layersDir, 'full', entity.kind, entity.id);
       await ensureDir(entityLayerDir);
 
@@ -165,6 +181,11 @@ export async function writeLayerAssets(
                 entityLayerDir,
                 mapFontsLayerPath(sourcePath),
               )
+              : isGroupedAssetEntity
+                ? join(
+                  entityLayerDir,
+                  mapAssetsLayerPath(sourcePath),
+                )
           : join(
             // Group files by package label (components|react|vue|angular|…) so that
             // identically-named files from different packages don't collide,

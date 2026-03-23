@@ -14,6 +14,16 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - JSON Schema generation uses native Zod v4 support via toJSONSchema().
 - Entity IDs use a namespaced format: `kind:name` (e.g. `component:syn-button`, `token:color-primary`).
 - Layer types: `full` (raw source), `interface` (API/JSDocs), `examples` (usage snippets) — only `full` is implemented so far.
+- Layer types: `full` (raw source), `interface` (CEM-derived API Markdown), `examples` (usage snippets), `code` (minimal code references) — only `full` is implemented so far.
+- Layer content contract:
+  - `interface` — Compact, human+AI readable Markdown derived from CEM. Include: name, summary/purpose, props/attributes, events, slots, CSS parts, public methods only. Exclude: private/internal fields, full source code, long prose, class hierarchies. Written to `data/layers/interface/<kind>/<entity-id>.md`.
+  - `examples` — Curated usage examples (sourced from Storybook). One canonical example per core scenario; redundant/deprecated examples trimmed. Written to `data/layers/examples/<kind>/<entity-id>.json`.
+  - `code` — Minimal code references/snippets only; no complete source files. Written to `data/layers/code/<kind>/<entity-id>.json`.
+  - `full` — Complete source file copies (already implemented).
+- Verbosity model (for MCP and all future consumers): `interface | examples | code | full`. Default to `interface` to minimize token usage.
+- Token efficiency target (ADR benchmark): `syn-checkbox` through current full MCP response ≈ 22 KB → `interface` layer target ≈ 5 KB (~77% reduction). Use as acceptance benchmark for Phase 2.
+- Size budgets (ADR targets, enforced by CI guards once implemented): `interface` ≤ 6 KB, `examples` ≤ 8 KB, `code` ≤ 10 KB per component. Tune thresholds after initial generation.
+- Future entity fields specified in ADR but not yet in schema: `shortDescription`, `llmHint`, `usageHints` — short, AI-optimized summary fields for constrained contexts. Decide before first npm publish.
 - Framework wrappers are being attached to canonical `component:*` entities instead of being modeled as separate per-framework component entities.
 - Layer asset paths are package-namespaced and shallow per entity (`components|react|vue|angular`) to avoid filename collisions across packages.
 - Migration artifacts are grouped by concern where needed (DaVinci migration is grouped under `davinci/` in layer output).
@@ -139,7 +149,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   - `src/internal/collectors/styles/`
   - `src/internal/collectors/fonts/`
   - `src/internal/collectors/assets/`
-- Each collector currently emits one setup entity with package docs + export surface metadata from `package.json`:
+- Each collector emits one setup entity with package docs + export surface metadata from `package.json`:
   - `setup:tokens-package`
   - `setup:styles-package`
   - `setup:fonts-package`
@@ -183,6 +193,21 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Canonical fonts path mapping for layers:
   - `packages/fonts/src/<...>` -> `layers/full/fonts/<...>`
 
+### Assets Icon Entities (Phase 2 artifact-depth)
+- Assets setup metadata remains in `setup:assets-package` (docs + package metadata only).
+- Icon metadata is embedded directly in the three icon set entities as a compact `custom.icons` dictionary — **no per-icon entity files are written**.
+- Icon set entities emitted:
+  - `asset:sick2018-icons` — all sick2018 icons
+  - `asset:sick2025-icons-fill` — sick2025 fill variant
+  - `asset:sick2025-icons-outline` — sick2025 outline variant
+- Each entity's `custom` includes:
+  - `theme`, `variant`, `iconCount`, `exportName`
+  - `icons: Record<string, { categories?: string[]; tags?: string[] }>` — one key per icon name; entries without Material Symbols taxonomy matches get an empty object `{}`
+- Logo file lists are emitted as `asset:sick2018-logos` and `asset:sick2025-logos` with `custom.files`.
+- System-icon file lists are emitted as `asset:sick2018-system-icons` and `asset:sick2025-system-icons` with `custom.files`.
+- Icon set JS source files are listed in `sources` and copied into `layers/full/assets/`.
+- Design decision: embedding icons as a dict in set entities (rather than N individual files) avoids ~3,800 atomic file writes, keeps total data size ~18MB, and keeps build time deterministic.
+
 ### Pipeline and CLI
 - `runSourcePipeline`, `aggregate`, `validate`, `build-index` wired.
 - `runSourcePipeline` now supports async/config-aware enrich steps.
@@ -204,12 +229,13 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   7. Write index + manifest
   8. Generate and write JSON schemas
 - Entity count now varies with artifact availability (especially `dist/`-backed sources).
-- Baseline with current workspace state (tokens/styles dist may be empty) is 69 entities:
+- Baseline with current workspace state (tokens/styles dist may be empty) is 83 entities:
   - 48 components
   - 12 setup entities
   - 4 token artifact entities (figma-variables output)
   - 4 styles module entities
   - 1 fonts utility artifact entity
+  - 8 assets artifact entities (3 icon sets + 2 logos + 2 system-icons + 1 assets setup)
 - CLI build output directory is configurable via `SYNERGY_METADATA_OUTPUT_DIR`.
 
 ### Public Runtime API
@@ -253,6 +279,8 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Build integration test now verifies token artifact entity materialization and canonical full-layer mapping.
 - Build integration test now verifies styles module entity materialization (`style:styles-link`) and canonical full-layer mapping.
 - Build integration test now verifies fonts utility artifact materialization (`utility:fonts-sick-intl`) and canonical full-layer mapping.
+- Build integration test verifies asset icon set entities (`asset:sick2018-icons`, `asset:sick2025-icons-fill`, `asset:sick2025-icons-outline`) and that their `custom.icons` dict contains valid `categories`/`tags` arrays for icon `add`.
+- Build integration test confirms per-icon entities (`asset:sick2018-icon-add` etc.) are NOT present in the index.
 - Build integration test writes to a temporary output directory instead of mutating committed `data/`.
 - 9 tests passing.
 - `pretest` now runs TypeScript compilation only; full metadata regeneration is explicit.
@@ -270,13 +298,18 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Only the public API is exported/published; `src/internal/` is for repo-local tooling and build orchestration.
 
 ## Current Limitations
-- Only the `full` layer type is implemented (raw source files). `interface` (API docs) and `examples` (usage snippets) are not yet implemented.
-- Scraped docs ingestion is intentionally out of scope in this phase.
+## Current Limitations
+- Only the `full` layer type is implemented (raw source files). `interface`, `examples`, and `code` layers are not yet implemented.
+- `interface` layer is the highest-priority missing item — it is the primary token-efficiency driver (~77% reduction target) and a prerequisite for MCP verbosity controls.
+- Scraped docs ingestion (for `examples` layer) is a later concern; Storybook story files are the planned source.
 - Some metadata values are still fallback/default driven (e.g. `unknown` for missing `since`).
-- Package exports now expose only the public runtime query API; internal build/runtime modules are intentionally unpublished.
-- Tokens, styles, and fonts now have partial artifact-depth collectors; assets currently remains setup-only.
-- Assets artifact entities and canonical layer mappings are not implemented yet.
-- The public API currently provides generic store/query access only; domain-specific facades (components/tokens/styles/assets) are not implemented yet.
+- Package exports expose only generic store queries. ADR-specified domain helpers not yet implemented: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
+- No CI size budget guards exist yet. These are required before publishing (targets: `interface` ≤ 6 KB, `examples` ≤ 8 KB, `code` ≤ 10 KB).
+- MCP has not yet been migrated to consume from this package; it still has its own builder.
+- Package not yet published to npm.
+- No `llms.txt` file exists yet.
+- Tokens, styles, and fonts have partial artifact-depth collectors; assets icon metadata is embedded in set-level entities rather than individual files.
+
 
 ## Data/Folder State
 - `data/core/component/component:{name}.json` — 48 component entity files
@@ -296,6 +329,12 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/core/token/token:tokens-*.json` — token artifact entities (figma-variables output and optional dist-backed files)
 - `data/core/style/style:styles-*.json` — styles module artifact entities (one per `packages/styles/src` module folder)
 - `data/core/utility/utility:fonts-sick-intl.json` — fonts metadata artifact entity (`font.css` + `LICENSE`)
+- `data/core/asset/asset:sick2018-icons.json` — sick2018 icon set with embedded `custom.icons` dict
+- `data/core/asset/asset:sick2025-icons-fill.json` — sick2025 fill icon set with embedded `custom.icons` dict
+- `data/core/asset/asset:sick2025-icons-outline.json` — sick2025 outline icon set with embedded `custom.icons` dict
+- `data/core/asset/asset:sick2018-logos.json`, `asset:sick2025-logos.json` — logo file lists
+- `data/core/asset/asset:sick2018-system-icons.json`, `asset:sick2025-system-icons.json` — system-icon file lists
+- `data/layers/full/assets/sick2018/js/index.ts`, `sick2025/js/filled.ts`, `sick2025/js/outline.ts` — icon set JS source copies
 - `data/layers/full/component/component:{name}/{components|react|vue}/` — package-namespaced source files copied per component (no filename collisions)
 - `data/layers/full/component/component:{name}/angular/` — Angular wrapper source files for each enriched component
 - `data/layers/full/component/component:{name}/react/{Syn*JSXElement.ts}` — generated per-component React JSX type snippets
@@ -312,18 +351,50 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/layers/full/styles/` — canonical styles module paths mapped from `packages/styles/src/*`
 - `data/layers/full/fonts/` — canonical fonts metadata paths mapped from `packages/fonts/src/*`
 - `data/schemas/core-entity.schema.json`, `layer-ref.schema.json`, `manifest.schema.json`
-- `data/index.json` — searchable index; count varies with artifact availability (baseline 69 in current workspace state)
+- `data/index.json` — searchable index; count varies with artifact availability (baseline 83 in current workspace state)
 - `data/manifest.json` — build manifest with timestamp and source stats
 
 ## Suggested Next Steps
-1. Phase 2 setup-entity milestone is complete for tokens/styles/fonts/assets; keep parity checks against `packages/mcp/metadata/packages/{tokens|styles|fonts|assets}/`.
-2. Continue artifact-depth for the remaining packages:
-  - Add assets artifact entities + canonical full-layer mapping
-3. Build domain-specific public facades on top of the generic store API, starting with components.
-4. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
-5. Implement `interface` layer: extract user-facing markdown/API summaries from component and wrapper source files.
-6. Decide whether React JSX metadata should later feed generated `interface` markdown directly.
-7. Implement `examples` layer later via Storybook/docs scraping.
+## ADR Roadmap & Phase Status
+
+The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strategy](adr.md). Phase status:
+
+| Phase | Description | Status |
+|---|---|---|
+| 1 | Establish metadata package as canonical source | ✅ Architecture complete; MCP migration + npm publish pending |
+| 2 | Introduce layered metadata + verbosity controls | 🔄 Next — `interface` layer first |
+| 3 | Expand distribution (MCP HTTP, npm publish, llms.txt) | ❌ Not started |
+| 4 | Refine token efficiency and metadata architecture | ❌ Not started |
+| 5 | Cross-platform interoperability (Blockbrain, compatibility matrix) | ❌ Not started |
+| 6 | Full governance and stabilization | ❌ Not started |
+| 7 | Continuous improvement, new metadata types | ❌ Not started |
+
+### Phase 2 — Concrete Actions
+1. Implement `interface` layer generator for `component:*` entities. Source: CEM (`custom-elements.json`) + existing `custom.frameworks.*` metadata. Output: `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB target.
+2. Implement `examples` layer for `component:*` entities. Source: Storybook story files in `packages/docs/`. Output: `data/layers/examples/component/<entity-id>.json`.
+3. Implement `code` layer for `component:*` entities. Output: `data/layers/code/component/<entity-id>.json`.
+4. Expose layer-aware domain helpers on the public API: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
+5. Add CI size budget checks: fail PRs where `interface` > 6 KB, `examples` > 8 KB, `code` > 10 KB per entity.
+
+### Phase 3 — Concrete Actions
+1. Migrate MCP server to consume from `@synergy-design-system/metadata`; remove all metadata-building logic from MCP.
+2. Add `verbosity: 'interface' | 'examples' | 'code' | 'full'` parameter to MCP tools; default `interface`.
+3. Enable MCP HTTP transport.
+4. Publish `@synergy-design-system/metadata` to npm.
+5. Create `llms.txt` in the Synergy docs domain referencing canonical layer URLs.
+
+### Token Efficiency Benchmark (Phase 2 acceptance gate)
+- `syn-checkbox` `interface` layer must be ≈ 5 KB or less (current full MCP response ≈ 22 KB, ~77% reduction target).
+
+## Suggested Next Steps
+1. **[Phase 2 — highest priority]** Implement `interface` layer for component entities: CEM-derived Markdown, ≤ 6 KB target, written to `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB benchmark.
+2. **[Phase 2]** Implement `examples` layer for component entities from Storybook story files in `packages/docs/`.
+3. **[Phase 2]** Implement `code` layer for component entities (minimal code references only).
+4. **[Phase 2]** Expose layer-aware domain helpers on the public API: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
+5. **[Phase 2]** Add CI size budget guards (fail on `interface` > 6 KB, `examples` > 8 KB, `code` > 10 KB).
+6. Decide whether to add `shortDescription`/`llmHint`/`usageHints` fields to `CoreEntity` schema before first npm publish.
+7. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
+8. **[Phase 3]** Migrate MCP to consume from this package; publish to npm; create `llms.txt`; enable MCP HTTP transport.
 
 ## Resume Notes
 - If build fails on components manifest path, ensure components package has been built so `dist/custom-elements.json` exists.
@@ -340,6 +411,10 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Fonts setup vs artifact rule:
   - `setup:fonts-package` is setup-only
   - fonts metadata artifacts are emitted as `utility:*` entities and mapped under `layers/full/fonts/`
+- Assets icon metadata rule:
+  - Icon taxonomy (categories/tags) is embedded as `custom.icons` dict in the 3 set-level `asset:*` entities.
+  - No per-icon entity files are written; this keeps data size ~18MB and build time deterministic.
+  - Run `pnpm clean` before `pnpm test:with-build` to remove any stale files from previous builds (the build does not auto-clean its output directory).
 - Run `pnpm test` from `packages/metadata/` for compile + tests without rewriting committed `data/`.
 - Run `pnpm build` or `pnpm test:with-build` only when you intentionally want a fresh metadata rebuild.
 - Layer assets are written before core entities so layer references are available when entities are serialized.

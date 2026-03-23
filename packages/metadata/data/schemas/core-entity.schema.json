@@ -15,11 +15,12 @@
     "kind": {
       "type": "string",
       "enum": [
+        "asset",
         "component",
-        "token",
-        "utility",
+        "style",
         "setup",
-        "style"
+        "token",
+        "utility"
       ]
     },
     "layers": {

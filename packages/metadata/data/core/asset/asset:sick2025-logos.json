@@ -1,0 +1,34 @@
+{
+  "custom": {
+    "category": "logos",
+    "files": [
+      "logo-claim-below-black.svg",
+      "logo-claim-below-blue.svg",
+      "logo-claim-below-white.svg",
+      "logo-claim-right-bottom-black.svg",
+      "logo-claim-right-bottom-blue.svg",
+      "logo-claim-right-bottom-white.svg",
+      "logo-claim-right-top-black.svg",
+      "logo-claim-right-top-blue.svg",
+      "logo-claim-right-top-white.svg",
+      "logo-logo-black.svg",
+      "logo-logo-blue.svg",
+      "logo-logo-white.svg"
+    ],
+    "theme": "sick2025"
+  },
+  "id": "asset:sick2025-logos",
+  "kind": "asset",
+  "layers": {},
+  "name": "sick2025 Logos",
+  "package": "assets",
+  "relations": [],
+  "since": "2.0.2",
+  "sources": [],
+  "status": "stable",
+  "tags": [
+    "asset",
+    "logos",
+    "sick2025"
+  ]
+}

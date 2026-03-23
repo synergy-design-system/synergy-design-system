@@ -10,7 +10,7 @@ describe('metadata build integration', () => {
   const metadataPackageDir = path.resolve(__dirname, '..', '..');
 
   it('builds and writes expected metadata artifacts', async () => {
-    await execa('node', ['dist/cli/build.js'], {
+    await execa('node', ['dist/internal/cli/build.js'], {
       cwd: metadataPackageDir,
     });
 

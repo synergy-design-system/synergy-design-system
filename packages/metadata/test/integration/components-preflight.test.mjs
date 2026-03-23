@@ -2,7 +2,7 @@ import { mkdir, mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { expect } from 'chai';
-import { collect } from '../../dist/collectors/components/collect.js';
+import { collect } from '../../dist/internal/collectors/components/collect.js';
 
 describe('components collector preflight', () => {
   it('returns actionable error when custom-elements manifest is missing', async () => {

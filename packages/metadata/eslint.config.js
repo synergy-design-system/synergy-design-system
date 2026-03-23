@@ -32,7 +32,7 @@ export default [
   },
   {
     files: [
-      'src/collectors/**/*.ts',
+      'src/internal/collectors/**/*.ts',
     ],
     rules: {
       // Collectors may rely on build-time-only parsing utilities.

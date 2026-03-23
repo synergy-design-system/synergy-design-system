@@ -30,4 +30,6 @@ const migrationFiles = await store.getDataForLayer('migrations', 'full');
 
 ## Internal Modules
 
-Collectors, writers, pipeline orchestration, and CLI build logic are internal runtime behavior and may change without notice.
+Collectors, writers, pipeline orchestration, schemas, core helpers, and CLI build logic live under `src/internal/` and are internal runtime behavior that may change without notice.
+
+For repository-local tooling, an internal barrel exists at `src/internal/index.ts`, but it is intentionally not exported or published as part of the package contract.

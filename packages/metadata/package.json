@@ -56,7 +56,7 @@
     "directory": "packages/metadata"
   },
   "scripts": {
-    "build": "tsc && node dist/cli/build.js",
+    "build": "tsc && node dist/internal/cli/build.js",
     "clean": "rimraf dist && ( [ -d data ] && find data -type f ! -name '.gitkeep' -delete && find data -type d -empty -delete || true )",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",

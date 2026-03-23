@@ -23,6 +23,8 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 
 ## Current Architecture
 - Source code root: `src/`
+- Public runtime surface: `src/public/`
+- Internal build/runtime surface: `src/internal/`
 - Persisted outputs root: `data/`
 - Pipeline shape: collect -> normalize -> enrich -> aggregate -> validate -> write layers -> write core -> write index/manifest/schemas
 - Functional Result pattern is used for error flow.
@@ -30,13 +32,13 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 ## Implemented So Far
 
 ### Core and Contracts
-- Result/error/context foundation created under `src/core/`.
-- Zod schemas created under `src/schemas/`:
+- Result/error/context foundation created under `src/internal/core/`.
+- Zod schemas created under `src/internal/schemas/`:
   - core-entity
   - layer-ref
   - snapshot
   - manifest
-- Validators wired through `src/schemas/index.ts`.
+- Validators wired through `src/internal/schemas/index.ts`.
 
 ### Components Collector
 - Collector reads from components package source-of-truth manifest:
@@ -162,12 +164,13 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - TypeScript: `data/` excluded from compilation.
 - Package scripts include `clean` (`rimraf data dist`) for deterministic rebuilds.
 - `data/` is currently not gitignored.
+- Only the public API is exported/published; `src/internal/` is for repo-local tooling and build orchestration.
 
 ## Current Limitations
 - Only the `full` layer type is implemented (raw source files). `interface` (API docs) and `examples` (usage snippets) are not yet implemented.
 - Scraped docs ingestion is intentionally out of scope in this phase.
 - Some metadata values are still fallback/default driven (e.g. `unknown` for missing `since`).
-- Package `exports` field is empty — no public read API for consumers yet.
+- Package exports now expose only the public runtime query API; internal build/runtime modules are intentionally unpublished.
 - Only the components collector exists; tokens/styles/fonts/assets/docs collectors are not yet implemented.
 
 ## Data/Folder State

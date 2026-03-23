@@ -52,6 +52,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynDrawerJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynDrawerComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-drawer",
+        "sourcePath": "packages/angular/components/drawer/drawer.component.ts"
       }
     }
   },
@@ -59,6 +66,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/angular/drawer.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-drawer/components/drawer.component.ts"
@@ -107,6 +118,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/drawer/drawer.component.ts",
     "packages/components/src/components/drawer/drawer.component.ts",
     "packages/components/src/components/drawer/drawer.custom.styles.ts",
     "packages/components/src/components/drawer/drawer.custom.test.ts",
@@ -118,6 +130,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-drawer",

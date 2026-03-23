@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynPrioNavJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynPrioNavComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-prio-nav",
+        "sourcePath": "packages/angular/components/prio-nav/prio-nav.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-prio-nav/angular/prio-nav.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-prio-nav/components/prio-nav.component.ts"
@@ -90,6 +101,7 @@
   ],
   "since": "1.14.0",
   "sources": [
+    "packages/angular/components/prio-nav/prio-nav.component.ts",
     "packages/components/src/components/prio-nav/prio-nav.component.ts",
     "packages/components/src/components/prio-nav/prio-nav.styles.ts",
     "packages/components/src/components/prio-nav/prio-nav.test.ts",
@@ -100,6 +112,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-prio-nav",

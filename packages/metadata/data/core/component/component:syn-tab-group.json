@@ -36,6 +36,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynTabGroupJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynTabGroupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tab-group",
+        "sourcePath": "packages/angular/components/tab-group/tab-group.component.ts"
       }
     }
   },
@@ -43,6 +50,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-group/angular/tab-group.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-tab-group/components/tab-group.component.ts"
@@ -91,6 +102,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/tab-group/tab-group.component.ts",
     "packages/components/src/components/tab-group/tab-group.component.ts",
     "packages/components/src/components/tab-group/tab-group.custom.styles.ts",
     "packages/components/src/components/tab-group/tab-group.custom.test.ts",
@@ -102,6 +114,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-tab-group",

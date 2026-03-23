@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynOptionJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynOptionComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-option",
+        "sourcePath": "packages/angular/components/option/option.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-option/angular/option.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-option/components/option-size.styles.ts"
@@ -86,6 +97,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/option/option.component.ts",
     "packages/components/src/components/option/option-size.styles.ts",
     "packages/components/src/components/option/option.component.ts",
     "packages/components/src/components/option/option.custom.test.ts",
@@ -98,6 +110,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-option",

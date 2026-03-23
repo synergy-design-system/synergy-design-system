@@ -40,6 +40,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynButtonJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynButtonComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-button",
+        "sourcePath": "packages/angular/components/button/button.component.ts"
       }
     }
   },
@@ -47,6 +54,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-button/angular/button.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-button/components/button.component.ts"
@@ -99,6 +110,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/button/button.component.ts",
     "packages/components/src/components/button/button.component.ts",
     "packages/components/src/components/button/button.custom.styles.ts",
     "packages/components/src/components/button/button.custom.test.ts",
@@ -110,6 +122,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-button",

@@ -68,6 +68,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynSelectJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynSelectComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-select",
+        "sourcePath": "packages/angular/components/select/select.component.ts"
       }
     }
   },
@@ -75,6 +82,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/angular/select.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-select/components/select.component.ts"
@@ -131,6 +142,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/select/select.component.ts",
     "packages/components/src/components/select/select.component.ts",
     "packages/components/src/components/select/select.custom.test.ts",
     "packages/components/src/components/select/select.styles.ts",
@@ -142,6 +154,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-select",

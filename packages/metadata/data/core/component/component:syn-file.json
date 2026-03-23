@@ -47,6 +47,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynFileJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynFileComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-file",
+        "sourcePath": "packages/angular/components/file/file.component.ts"
       }
     }
   },
@@ -54,6 +61,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/angular/file.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-file/components/file.component.ts"
@@ -98,6 +109,7 @@
   ],
   "since": "unknown",
   "sources": [
+    "packages/angular/components/file/file.component.ts",
     "packages/components/src/components/file/file.component.ts",
     "packages/components/src/components/file/file.styles.ts",
     "packages/components/src/components/file/file.test.ts",
@@ -107,6 +119,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-file",

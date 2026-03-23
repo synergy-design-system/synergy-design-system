@@ -36,6 +36,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynRadioJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynRadioComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-radio",
+        "sourcePath": "packages/angular/components/radio/radio.component.ts"
       }
     }
   },
@@ -43,6 +50,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio/angular/radio.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-radio/components/radio.component.ts"
@@ -83,6 +94,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/radio/radio.component.ts",
     "packages/components/src/components/radio/radio.component.ts",
     "packages/components/src/components/radio/radio.styles.ts",
     "packages/components/src/components/radio/radio.test.ts",
@@ -92,6 +104,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-radio",

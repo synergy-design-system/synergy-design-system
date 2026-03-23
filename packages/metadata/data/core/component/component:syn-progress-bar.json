@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynProgressBarJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynProgressBarComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-progress-bar",
+        "sourcePath": "packages/angular/components/progress-bar/progress-bar.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/angular/progress-bar.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.component.ts"
@@ -73,6 +84,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/progress-bar/progress-bar.component.ts",
     "packages/components/src/components/progress-bar/progress-bar.component.ts",
     "packages/components/src/components/progress-bar/progress-bar.custom.styles.ts",
     "packages/components/src/components/progress-bar/progress-bar.styles.ts",
@@ -83,6 +95,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-progress-bar",

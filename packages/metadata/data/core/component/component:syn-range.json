@@ -51,6 +51,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynRangeJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynRangeComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-range",
+        "sourcePath": "packages/angular/components/range/range.component.ts"
       }
     }
   },
@@ -58,6 +65,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/angular/range.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-range/components/range.component.ts"
@@ -102,6 +113,7 @@
   ],
   "since": "unknown",
   "sources": [
+    "packages/angular/components/range/range.component.ts",
     "packages/components/src/components/range/range.component.ts",
     "packages/components/src/components/range/range.styles.ts",
     "packages/components/src/components/range/range.test.ts",
@@ -112,6 +124,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-range",

@@ -1,0 +1,37 @@
+{
+  "custom": {
+    "framework": "angular",
+    "moduleClass": "SynergyValidatorsModule",
+    "packageName": "@synergy-design-system/angular",
+    "validators": [
+      "SynMinValidator",
+      "SynMaxValidator",
+      "SynCheckboxRequiredValidator"
+    ]
+  },
+  "id": "setup:angular-validators-module",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:angular-validators-module/angular/validators.ts"
+      }
+    ]
+  },
+  "name": "Angular Validators Module",
+  "package": "angular",
+  "relations": [],
+  "since": "3.10.4",
+  "sources": [
+    "packages/angular/directives/validators/validators.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "framework",
+    "module",
+    "setup",
+    "validators"
+  ]
+}

@@ -44,6 +44,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynAlertJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynAlertComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-alert",
+        "sourcePath": "packages/angular/components/alert/alert.component.ts"
       }
     }
   },
@@ -51,6 +58,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-alert/angular/alert.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-alert/components/alert.component.ts"
@@ -95,6 +106,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/alert/alert.component.ts",
     "packages/components/src/components/alert/alert.component.ts",
     "packages/components/src/components/alert/alert.custom.test.ts",
     "packages/components/src/components/alert/alert.styles.ts",
@@ -105,6 +117,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-alert",

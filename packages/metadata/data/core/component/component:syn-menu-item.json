@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynMenuItemJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynMenuItemComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-menu-item",
+        "sourcePath": "packages/angular/components/menu-item/menu-item.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/angular/menu-item.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-menu-item/components/menu-item.component.ts"
@@ -90,6 +101,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/menu-item/menu-item.component.ts",
     "packages/components/src/components/menu-item/menu-item.component.ts",
     "packages/components/src/components/menu-item/menu-item.custom.test.ts",
     "packages/components/src/components/menu-item/menu-item.styles.ts",
@@ -101,6 +113,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-menu-item",

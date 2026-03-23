@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynCardJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynCardComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-card",
+        "sourcePath": "packages/angular/components/card/card.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/angular/card.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-card/components/card.component.ts"
@@ -73,6 +84,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/card/card.component.ts",
     "packages/components/src/components/card/card.component.ts",
     "packages/components/src/components/card/card.custom.styles.ts",
     "packages/components/src/components/card/card.styles.ts",
@@ -83,6 +95,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-card",

@@ -36,6 +36,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynIconJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynIconComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-icon",
+        "sourcePath": "packages/angular/components/icon/icon.component.ts"
       }
     }
   },
@@ -43,6 +50,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/angular/icon.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-icon/components/icon.component.ts"
@@ -110,6 +121,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/icon/icon.component.ts",
     "packages/components/src/components/icon/icon.component.ts",
     "packages/components/src/components/icon/icon.custom.styles.ts",
     "packages/components/src/components/icon/icon.custom.test.ts",
@@ -127,6 +139,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-icon",

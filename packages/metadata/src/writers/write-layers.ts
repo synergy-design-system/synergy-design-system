@@ -23,6 +23,12 @@ export interface EntityLayers {
  */
 const getPackageLabel = (sourcePath: string): string => {
   const parts = sourcePath.split('/');
+
+  // Keep migration guides grouped by concern instead of their source package.
+  if (sourcePath.includes('/davinci-migration/')) {
+    return 'davinci';
+  }
+
   return parts[0] === 'packages' && parts[1] ? parts[1] : '_other';
 };
 

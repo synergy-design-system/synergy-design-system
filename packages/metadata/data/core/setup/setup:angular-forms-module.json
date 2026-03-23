@@ -1,0 +1,37 @@
+{
+  "custom": {
+    "framework": "angular",
+    "moduleClass": "SynergyFormsModule",
+    "packageName": "@synergy-design-system/angular",
+    "valueAccessors": [
+      "SynDefaultValueAccessor",
+      "SynCheckedValueAccessor",
+      "SynFileValueAccessor"
+    ]
+  },
+  "id": "setup:angular-forms-module",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:angular-forms-module/angular/forms.module.ts"
+      }
+    ]
+  },
+  "name": "Angular Forms Module",
+  "package": "angular",
+  "relations": [],
+  "since": "3.10.4",
+  "sources": [
+    "packages/angular/modules/forms/forms.module.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "forms",
+    "framework",
+    "module",
+    "setup"
+  ]
+}

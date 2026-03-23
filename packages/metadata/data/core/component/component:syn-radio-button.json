@@ -36,6 +36,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynRadioButtonJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynRadioButtonComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-radio-button",
+        "sourcePath": "packages/angular/components/radio-button/radio-button.component.ts"
       }
     }
   },
@@ -43,6 +50,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-radio-button/angular/radio-button.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-radio-button/components/radio-button.component.ts"
@@ -74,6 +85,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/radio-button/radio-button.component.ts",
     "packages/components/src/components/radio-button/radio-button.component.ts",
     "packages/components/src/components/radio-button/radio-button.styles.ts",
     "packages/components/src/components/radio-button/radio-button.ts",
@@ -82,6 +94,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-radio-button",

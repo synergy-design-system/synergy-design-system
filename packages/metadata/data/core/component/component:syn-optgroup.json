@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynOptgroupJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynOptgroupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-optgroup",
+        "sourcePath": "packages/angular/components/optgroup/optgroup.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/angular/optgroup.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-optgroup/components/optgroup.component.ts"
@@ -74,6 +85,7 @@
   ],
   "since": "1.3.0",
   "sources": [
+    "packages/angular/components/optgroup/optgroup.component.ts",
     "packages/components/src/components/optgroup/optgroup.component.ts",
     "packages/components/src/components/optgroup/optgroup.styles.ts",
     "packages/components/src/components/optgroup/optgroup.test.ts",
@@ -83,6 +95,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-optgroup",

@@ -52,6 +52,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynDialogJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynDialogComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-dialog",
+        "sourcePath": "packages/angular/components/dialog/dialog.component.ts"
       }
     }
   },
@@ -59,6 +66,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/angular/dialog.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-dialog/components/dialog.component.ts"
@@ -103,6 +114,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/dialog/dialog.component.ts",
     "packages/components/src/components/dialog/dialog.component.ts",
     "packages/components/src/components/dialog/dialog.custom.styles.ts",
     "packages/components/src/components/dialog/dialog.styles.ts",
@@ -113,6 +125,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-dialog",

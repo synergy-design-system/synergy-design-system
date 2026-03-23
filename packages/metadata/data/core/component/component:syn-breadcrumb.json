@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynBreadcrumbJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynBreadcrumbComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-breadcrumb",
+        "sourcePath": "packages/angular/components/breadcrumb/breadcrumb.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb/angular/breadcrumb.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-breadcrumb/components/breadcrumb.component.ts"
@@ -78,6 +89,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/breadcrumb/breadcrumb.component.ts",
     "packages/components/src/components/breadcrumb/breadcrumb.component.ts",
     "packages/components/src/components/breadcrumb/breadcrumb.custom.styles.ts",
     "packages/components/src/components/breadcrumb/breadcrumb.styles.ts",
@@ -88,6 +100,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-breadcrumb",

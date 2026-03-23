@@ -25,6 +25,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynValidateJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynValidateComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-validate",
+        "sourcePath": "packages/angular/components/validate/validate.component.ts"
       }
     }
   },
@@ -32,6 +39,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-validate/angular/validate.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-validate/components/utility.ts"
@@ -80,6 +91,7 @@
   ],
   "since": "unknown",
   "sources": [
+    "packages/angular/components/validate/validate.component.ts",
     "packages/components/src/components/validate/utility.ts",
     "packages/components/src/components/validate/validate.component.ts",
     "packages/components/src/components/validate/validate.styles.ts",
@@ -90,6 +102,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-validate",

@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynBreadcrumbItemJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynBreadcrumbItemComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-breadcrumb-item",
+        "sourcePath": "packages/angular/components/breadcrumb-item/breadcrumb-item.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/angular/breadcrumb-item.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-breadcrumb-item/components/breadcrumb-item.component.ts"
@@ -73,6 +84,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/breadcrumb-item/breadcrumb-item.component.ts",
     "packages/components/src/components/breadcrumb-item/breadcrumb-item.component.ts",
     "packages/components/src/components/breadcrumb-item/breadcrumb-item.custom.styles.ts",
     "packages/components/src/components/breadcrumb-item/breadcrumb-item.styles.ts",
@@ -83,6 +95,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-breadcrumb-item",

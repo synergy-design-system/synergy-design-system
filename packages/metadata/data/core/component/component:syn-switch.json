@@ -48,6 +48,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynSwitchJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynSwitchComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-switch",
+        "sourcePath": "packages/angular/components/switch/switch.component.ts"
       }
     }
   },
@@ -55,6 +62,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/angular/switch.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-switch/components/switch.component.ts"
@@ -90,6 +101,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/switch/switch.component.ts",
     "packages/components/src/components/switch/switch.component.ts",
     "packages/components/src/components/switch/switch.styles.ts",
     "packages/components/src/components/switch/switch.test.ts",
@@ -99,6 +111,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-switch",

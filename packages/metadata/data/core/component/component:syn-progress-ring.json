@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynProgressRingJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynProgressRingComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-progress-ring",
+        "sourcePath": "packages/angular/components/progress-ring/progress-ring.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-ring/angular/progress-ring.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-progress-ring/components/progress-ring.component.ts"
@@ -73,6 +84,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/progress-ring/progress-ring.component.ts",
     "packages/components/src/components/progress-ring/progress-ring.component.ts",
     "packages/components/src/components/progress-ring/progress-ring.custom.styles.ts",
     "packages/components/src/components/progress-ring/progress-ring.styles.ts",
@@ -83,6 +95,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-progress-ring",

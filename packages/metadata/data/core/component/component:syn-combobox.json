@@ -71,6 +71,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynComboboxJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynComboboxComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-combobox",
+        "sourcePath": "packages/angular/components/combobox/combobox.component.ts"
       }
     }
   },
@@ -78,6 +85,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/angular/combobox.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-combobox/components/combobox.component.ts"
@@ -138,6 +149,7 @@
   ],
   "since": "unknown",
   "sources": [
+    "packages/angular/components/combobox/combobox.component.ts",
     "packages/components/src/components/combobox/combobox.component.ts",
     "packages/components/src/components/combobox/combobox.styles.ts",
     "packages/components/src/components/combobox/combobox.test.ts",
@@ -150,6 +162,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-combobox",

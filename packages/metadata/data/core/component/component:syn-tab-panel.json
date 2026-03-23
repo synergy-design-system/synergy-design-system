@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynTabPanelJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynTabPanelComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tab-panel",
+        "sourcePath": "packages/angular/components/tab-panel/tab-panel.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/angular/tab-panel.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.component.ts"
@@ -73,6 +84,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/tab-panel/tab-panel.component.ts",
     "packages/components/src/components/tab-panel/tab-panel.component.ts",
     "packages/components/src/components/tab-panel/tab-panel.custom.styles.ts",
     "packages/components/src/components/tab-panel/tab-panel.styles.ts",
@@ -83,6 +95,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-tab-panel",

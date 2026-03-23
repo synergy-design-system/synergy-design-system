@@ -40,6 +40,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynHeaderJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynHeaderComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-header",
+        "sourcePath": "packages/angular/components/header/header.component.ts"
       }
     }
   },
@@ -47,6 +54,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-header/angular/header.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-header/components/header.component.ts"
@@ -82,6 +93,7 @@
   "relations": [],
   "since": "1.10.0",
   "sources": [
+    "packages/angular/components/header/header.component.ts",
     "packages/components/src/components/header/header.component.ts",
     "packages/components/src/components/header/header.styles.ts",
     "packages/components/src/components/header/header.test.ts",
@@ -91,6 +103,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-header",

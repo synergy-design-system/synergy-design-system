@@ -1,8 +1,13 @@
 {
-  "builtAt": "2026-03-23T08:55:32.524Z",
+  "builtAt": "2026-03-23T09:28:52.885Z",
   "sources": [
     {
-      "entityCount": 50,
+      "entityCount": 4,
+      "source": "angular",
+      "status": "success"
+    },
+    {
+      "entityCount": 56,
       "source": "components",
       "status": "success"
     },

@@ -48,6 +48,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynTextareaJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynTextareaComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-textarea",
+        "sourcePath": "packages/angular/components/textarea/textarea.component.ts"
       }
     }
   },
@@ -55,6 +62,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/angular/textarea.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-textarea/components/textarea.component.ts"
@@ -90,6 +101,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/textarea/textarea.component.ts",
     "packages/components/src/components/textarea/textarea.component.ts",
     "packages/components/src/components/textarea/textarea.styles.ts",
     "packages/components/src/components/textarea/textarea.test.ts",
@@ -99,6 +111,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-textarea",

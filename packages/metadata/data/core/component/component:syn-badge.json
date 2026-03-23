@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynBadgeJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynBadgeComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-badge",
+        "sourcePath": "packages/angular/components/badge/badge.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/angular/badge.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-badge/components/badge.component.ts"
@@ -77,6 +88,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/badge/badge.component.ts",
     "packages/components/src/components/badge/badge.component.ts",
     "packages/components/src/components/badge/badge.custom.styles.ts",
     "packages/components/src/components/badge/badge.custom.test.ts",
@@ -88,6 +100,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-badge",

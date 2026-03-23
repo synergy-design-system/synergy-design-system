@@ -1,0 +1,38 @@
+{
+  "custom": {
+    "migrationType": "breaking",
+    "versions": [
+      "3.0",
+      "2.0",
+      "1.0"
+    ]
+  },
+  "id": "setup:synergy-migrations",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/components/BREAKING_CHANGES.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/davinci/migration-guide.md"
+      }
+    ]
+  },
+  "name": "Synergy Breaking Changes & Migrations",
+  "package": "migrations",
+  "relations": [],
+  "since": "1.0.0",
+  "sources": [
+    "packages/components/BREAKING_CHANGES.md",
+    "packages/mcp/metadata/davinci-migration/migration-guide.md"
+  ],
+  "status": "stable",
+  "tags": [
+    "breaking-changes",
+    "migrations",
+    "setup"
+  ]
+}

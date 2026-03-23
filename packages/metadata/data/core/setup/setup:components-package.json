@@ -1,0 +1,49 @@
+{
+  "custom": {
+    "packageName": "@synergy-design-system/components",
+    "packageVersion": "3.10.4"
+  },
+  "id": "setup:components-package",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/components/README.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/components/CHANGELOG.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/components/BREAKING_CHANGES.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/components/LIMITATIONS.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/components/package.json"
+      }
+    ]
+  },
+  "name": "Components Package",
+  "package": "components",
+  "relations": [],
+  "since": "3.10.4",
+  "sources": [
+    "packages/components/README.md",
+    "packages/components/CHANGELOG.md",
+    "packages/components/BREAKING_CHANGES.md",
+    "packages/components/LIMITATIONS.md",
+    "packages/components/package.json"
+  ],
+  "status": "stable",
+  "tags": [
+    "components",
+    "setup",
+    "web-components"
+  ]
+}

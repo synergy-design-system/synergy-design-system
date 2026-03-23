@@ -32,6 +32,14 @@ type ReactWrapperMetadata = {
   sourcePath: string;
 };
 
+type AngularWrapperMetadata = {
+  componentName: string;
+  exportPath: string;
+  packageName: string;
+  selector: string;
+  sourcePath: string;
+};
+
 type ReactJsxEventMetadata = {
   name: string;
   type: string;
@@ -90,6 +98,73 @@ const getJSDocTagValue = (node: ts.Node, tagName: string): string | undefined =>
 const hasExportModifier = (modifiers: ts.NodeArray<ts.ModifierLike> | undefined): boolean => modifiers?.some(
   (modifier) => modifier.kind === ts.SyntaxKind.ExportKeyword,
 ) ?? false;
+
+const getAngularDecoratorConfig = (classNode: ts.ClassDeclaration): ts.ObjectLiteralExpression | undefined => {
+  const decorators = ts.getDecorators(classNode);
+  if (!decorators) {
+    return undefined;
+  }
+
+  const componentDecorator = decorators.find((decorator) => {
+    if (!ts.isCallExpression(decorator.expression)) {
+      return false;
+    }
+
+    return ts.isIdentifier(decorator.expression.expression)
+      && decorator.expression.expression.text === 'Component';
+  });
+
+  if (!componentDecorator || !ts.isCallExpression(componentDecorator.expression)) {
+    return undefined;
+  }
+
+  const [configArg] = componentDecorator.expression.arguments;
+  return configArg && ts.isObjectLiteralExpression(configArg) ? configArg : undefined;
+};
+
+const getAngularSelector = (sourceFile: ts.SourceFile): string | undefined => {
+  for (const node of sourceFile.statements) {
+    if (!ts.isClassDeclaration(node)) {
+      continue;
+    }
+
+    const config = getAngularDecoratorConfig(node);
+    if (!config) {
+      continue;
+    }
+
+    const selectorProp = config.properties.find((property) => {
+      if (!ts.isPropertyAssignment(property)) {
+        return false;
+      }
+
+      return ts.isIdentifier(property.name)
+        && property.name.text === 'selector';
+    });
+
+    if (!selectorProp || !ts.isPropertyAssignment(selectorProp)) {
+      continue;
+    }
+
+    if (ts.isStringLiteral(selectorProp.initializer) || ts.isNoSubstitutionTemplateLiteral(selectorProp.initializer)) {
+      return selectorProp.initializer.text;
+    }
+  }
+
+  return undefined;
+};
+
+const getExportedClassName = (sourceFile: ts.SourceFile): string | undefined => {
+  for (const node of sourceFile.statements) {
+    if (!ts.isClassDeclaration(node) || !node.name || !hasExportModifier(node.modifiers)) {
+      continue;
+    }
+
+    return node.name.text;
+  }
+
+  return undefined;
+};
 
 const getCanonicalComponentTag = (entity: CoreEntity): string | undefined => {
   if (entity.kind !== 'component') {
@@ -205,6 +280,61 @@ const buildReactWrapperMap = async (
 
   return {
     packageInfo: toFrameworkPackageInfo(packageJson, '@synergy-design-system/react'),
+    wrappers,
+  };
+};
+
+const buildAngularWrapperMap = async (
+  repoRoot: string,
+  angularPackagePath: string,
+): Promise<{
+  packageInfo: FrameworkPackageInfo;
+  wrappers: Map<string, AngularWrapperMetadata>;
+}> => {
+  const angularRoot = join(repoRoot, angularPackagePath);
+  const componentsDir = join(angularRoot, 'components');
+  const indexPath = join(angularRoot, 'index.ts');
+  const packageJsonPath = join(angularRoot, 'package.json');
+
+  await access(componentsDir);
+  await access(indexPath);
+  await access(packageJsonPath);
+
+  const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf8')) as FrameworkPackageJson;
+  const componentFolders = await readdir(componentsDir, { withFileTypes: true });
+  const wrappers = new Map<string, AngularWrapperMetadata>();
+
+  await Promise.all(componentFolders
+    .filter((entry) => entry.isDirectory())
+    .map(async (entry) => {
+      const wrapperPath = join(componentsDir, entry.name, `${entry.name}.component.ts`);
+
+      try {
+        await access(wrapperPath);
+      } catch {
+        return;
+      }
+
+      const sourceText = await readFile(wrapperPath, 'utf8');
+      const sourceFile = ts.createSourceFile(wrapperPath, sourceText, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+
+      const componentName = getExportedClassName(sourceFile);
+      const selector = getAngularSelector(sourceFile);
+      if (!componentName || !selector || !selector.startsWith('syn-')) {
+        return;
+      }
+
+      wrappers.set(selector, {
+        componentName,
+        exportPath: relative(repoRoot, indexPath),
+        packageName: packageJson.name ?? '@synergy-design-system/angular',
+        selector,
+        sourcePath: relative(repoRoot, wrapperPath),
+      });
+    }));
+
+  return {
+    packageInfo: toFrameworkPackageInfo(packageJson, '@synergy-design-system/angular'),
     wrappers,
   };
 };
@@ -350,6 +480,173 @@ const createReactSetupEntity = (
   };
 };
 
+const createAngularSetupEntities = (
+  repoRoot: string,
+  angularPackagePath: string,
+  packageInfo: FrameworkPackageInfo,
+): CoreEntity[] => {
+  const angularRoot = join(repoRoot, angularPackagePath);
+
+  const toSource = (filePath: string): string => relative(repoRoot, join(angularRoot, filePath));
+
+  return [
+    {
+      custom: {
+        framework: 'angular',
+        packageName: packageInfo.name,
+        packageVersion: packageInfo.version,
+        subpathExports: ['.', './components/*', './directives/*', './modules/*'],
+      },
+      id: 'setup:angular-package',
+      kind: 'setup',
+      layers: {},
+      name: 'Angular Framework Package',
+      package: 'angular',
+      relations: [],
+      since: packageInfo.version,
+      sources: [
+        toSource('README.md'),
+        toSource('CHANGELOG.md'),
+        toSource('LIMITATIONS.md'),
+        toSource('package.json'),
+        toSource('index.ts'),
+      ],
+      status: 'stable',
+      tags: ['angular', 'framework', 'setup'],
+    },
+    {
+      custom: {
+        framework: 'angular',
+        moduleClass: 'SynergyComponentsModule',
+        packageName: packageInfo.name,
+      },
+      id: 'setup:angular-components-module',
+      kind: 'setup',
+      layers: {},
+      name: 'Angular Components Module',
+      package: 'angular',
+      relations: [],
+      since: packageInfo.version,
+      sources: [
+        toSource('modules/synergy/synergy.module.ts'),
+        toSource('components/index.ts'),
+      ],
+      status: 'stable',
+      tags: ['angular', 'framework', 'module', 'setup'],
+    },
+    {
+      custom: {
+        framework: 'angular',
+        moduleClass: 'SynergyFormsModule',
+        packageName: packageInfo.name,
+        valueAccessors: ['SynDefaultValueAccessor', 'SynCheckedValueAccessor', 'SynFileValueAccessor'],
+      },
+      id: 'setup:angular-forms-module',
+      kind: 'setup',
+      layers: {},
+      name: 'Angular Forms Module',
+      package: 'angular',
+      relations: [],
+      since: packageInfo.version,
+      sources: [
+        toSource('modules/forms/forms.module.ts'),
+      ],
+      status: 'stable',
+      tags: ['angular', 'forms', 'framework', 'module', 'setup'],
+    },
+    {
+      custom: {
+        framework: 'angular',
+        moduleClass: 'SynergyValidatorsModule',
+        packageName: packageInfo.name,
+        validators: ['SynMinValidator', 'SynMaxValidator', 'SynCheckboxRequiredValidator'],
+      },
+      id: 'setup:angular-validators-module',
+      kind: 'setup',
+      layers: {},
+      name: 'Angular Validators Module',
+      package: 'angular',
+      relations: [],
+      since: packageInfo.version,
+      sources: [
+        toSource('directives/validators/validators.ts'),
+      ],
+      status: 'stable',
+      tags: ['angular', 'framework', 'module', 'setup', 'validators'],
+    },
+  ];
+};
+
+const createComponentsSetupEntity = (
+  repoRoot: string,
+  componentPackagePath: string,
+  packageInfo: FrameworkPackageInfo,
+): CoreEntity => {
+  const componentRoot = join(repoRoot, componentPackagePath);
+  const sources = [
+    'README.md',
+    'CHANGELOG.md',
+    'BREAKING_CHANGES.md',
+    'LIMITATIONS.md',
+    'package.json',
+  ].map((filePath) => relative(repoRoot, join(componentRoot, filePath)));
+
+  return {
+    custom: {
+      packageName: packageInfo.name,
+      packageVersion: packageInfo.version,
+    },
+    id: 'setup:components-package',
+    kind: 'setup',
+    layers: {},
+    name: 'Components Package',
+    package: 'components',
+    relations: [],
+    since: packageInfo.version,
+    sources,
+    status: 'stable',
+    tags: ['components', 'setup', 'web-components'],
+  };
+};
+
+const createMigrationsSetupEntity = (
+  repoRoot: string,
+  componentPackagePath: string,
+): CoreEntity => {
+  const componentRoot = join(repoRoot, componentPackagePath);
+
+  // Always include BREAKING_CHANGES.md from components
+  const sources = [
+    relative(repoRoot, join(componentRoot, 'BREAKING_CHANGES.md')),
+  ];
+
+  // Try to include DaVinci migration if it exists
+  const davinciMigrationPath = join(repoRoot, 'packages', 'mcp', 'metadata', 'davinci-migration', 'migration-guide.md');
+  try {
+    // We just add it - the layer writer will handle if file doesn't exist
+    sources.push(relative(repoRoot, davinciMigrationPath));
+  } catch {
+    // If path manipulation fails, just skip it
+  }
+
+  return {
+    custom: {
+      migrationType: 'breaking',
+      versions: ['3.0', '2.0', '1.0'],
+    },
+    id: 'setup:synergy-migrations',
+    kind: 'setup',
+    layers: {},
+    name: 'Synergy Breaking Changes & Migrations',
+    package: 'migrations',
+    relations: [],
+    since: '1.0.0',
+    sources,
+    status: 'stable',
+    tags: ['breaking-changes', 'migrations', 'setup'],
+  };
+};
+
 /**
  * Enrich component entities with framework wrapper metadata.
  */
@@ -358,13 +655,27 @@ export const enrich = async (
   config: ComponentsConfig,
   ctx: Context,
 ): Promise<Result<CoreEntity[], EnrichError>> => {
-  const { reactPackagePath, vuePackagePath } = config;
+  const { angularPackagePath, packagePath, reactPackagePath, vuePackagePath } = config;
 
   const repoRoot = resolve(ctx.workspaceRoot, '..', '..');
 
   try {
     let enrichedRecords = records;
     const setupEntities: CoreEntity[] = [];
+
+    // Create components package setup entity
+    if (packagePath) {
+      const componentRoot = join(repoRoot, packagePath);
+      const packageJsonPath = join(componentRoot, 'package.json');
+      try {
+        const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf8')) as FrameworkPackageJson;
+        const packageInfo = toFrameworkPackageInfo(packageJson, '@synergy-design-system/components');
+        setupEntities.push(createComponentsSetupEntity(repoRoot, packagePath, packageInfo));
+        setupEntities.push(createMigrationsSetupEntity(repoRoot, packagePath));
+      } catch {
+        // If we can't read package.json, skip setup entities
+      }
+    }
 
     if (vuePackagePath) {
       const { packageInfo, wrappers } = await buildVueWrapperMap(repoRoot, vuePackagePath);
@@ -467,6 +778,47 @@ export const enrich = async (
       setupEntities.push(createReactSetupEntity(repoRoot, reactPackagePath, packageInfo));
     }
 
+    if (angularPackagePath) {
+      const { packageInfo, wrappers } = await buildAngularWrapperMap(repoRoot, angularPackagePath);
+
+      enrichedRecords = enrichedRecords.map((record) => {
+        const canonicalTag = getCanonicalComponentTag(record);
+        if (!canonicalTag) {
+          return record;
+        }
+
+        const wrapper = wrappers.get(canonicalTag);
+        if (!wrapper) {
+          return record;
+        }
+
+        const existingFrameworks = typeof record.custom?.frameworks === 'object' && record.custom?.frameworks !== null
+          ? record.custom.frameworks as Record<string, unknown>
+          : {};
+
+        return {
+          ...record,
+          custom: {
+            ...record.custom,
+            frameworks: {
+              ...existingFrameworks,
+              angular: {
+                componentName: wrapper.componentName,
+                exportPath: wrapper.exportPath,
+                packageName: wrapper.packageName,
+                selector: wrapper.selector,
+                sourcePath: wrapper.sourcePath,
+              },
+            },
+          },
+          sources: appendSources(record, [wrapper.sourcePath]),
+          tags: appendTags(record, ['angular']),
+        };
+      });
+
+      setupEntities.push(...createAngularSetupEntities(repoRoot, angularPackagePath, packageInfo));
+    }
+
     return ok([...enrichedRecords, ...setupEntities]);
   } catch (error) {
     return {
@@ -474,6 +826,7 @@ export const enrich = async (
         'Failed to enrich components with framework metadata',
         'components',
         {
+          angularPackagePath,
           cause: error instanceof Error ? error.message : String(error),
           reactPackagePath,
           vuePackagePath,

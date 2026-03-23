@@ -49,6 +49,7 @@ async function main() {
     const componentsResult = await runSourcePipeline(
       componentsPipeline,
       {
+        angularPackagePath: 'packages/angular',
         packagePath: 'packages/components',
         reactPackagePath: 'packages/react',
         vuePackagePath: 'packages/vue',
@@ -159,6 +160,10 @@ async function main() {
       sources: [{
         entityCount: entitiesForWrite.length,
         source: 'components',
+        status: 'success',
+      }, {
+        entityCount: 4,
+        source: 'angular',
         status: 'success',
       }, {
         entityCount: 1,

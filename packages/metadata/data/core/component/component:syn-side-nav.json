@@ -44,6 +44,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynSideNavJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynSideNavComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-side-nav",
+        "sourcePath": "packages/angular/components/side-nav/side-nav.component.ts"
       }
     }
   },
@@ -51,6 +58,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/angular/side-nav.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-side-nav/components/side-nav.component.ts"
@@ -103,6 +114,7 @@
   ],
   "since": "1.14.0",
   "sources": [
+    "packages/angular/components/side-nav/side-nav.component.ts",
     "packages/components/src/components/side-nav/side-nav.component.ts",
     "packages/components/src/components/side-nav/side-nav.styles.ts",
     "packages/components/src/components/side-nav/side-nav.test.ts",
@@ -112,6 +124,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-side-nav",

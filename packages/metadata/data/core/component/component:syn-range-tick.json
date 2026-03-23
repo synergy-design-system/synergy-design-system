@@ -26,6 +26,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynRangeTickJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynRangeTickComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-range-tick",
+        "sourcePath": "packages/angular/components/range-tick/range-tick.component.ts"
       }
     }
   },
@@ -33,6 +40,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/angular/range-tick.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-range-tick/components/range-tick.component.ts"
@@ -68,6 +79,7 @@
   "relations": [],
   "since": "unknown",
   "sources": [
+    "packages/angular/components/range-tick/range-tick.component.ts",
     "packages/components/src/components/range-tick/range-tick.component.ts",
     "packages/components/src/components/range-tick/range-tick.styles.ts",
     "packages/components/src/components/range-tick/range-tick.test.ts",
@@ -77,6 +89,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-range-tick",

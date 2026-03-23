@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynAccordionJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynAccordionComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-accordion",
+        "sourcePath": "packages/angular/components/accordion/accordion.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-accordion/angular/accordion.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-accordion/components/accordion.component.ts"
@@ -69,6 +80,7 @@
   "relations": [],
   "since": "1.23.0",
   "sources": [
+    "packages/angular/components/accordion/accordion.component.ts",
     "packages/components/src/components/accordion/accordion.component.ts",
     "packages/components/src/components/accordion/accordion.styles.ts",
     "packages/components/src/components/accordion/accordion.test.ts",
@@ -78,6 +90,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-accordion",

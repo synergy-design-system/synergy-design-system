@@ -32,6 +32,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynTagJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynTagComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tag",
+        "sourcePath": "packages/angular/components/tag/tag.component.ts"
       }
     }
   },
@@ -39,6 +46,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tag/angular/tag.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-tag/components/tag.component.ts"
@@ -83,6 +94,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/tag/tag.component.ts",
     "packages/components/src/components/tag/tag.component.ts",
     "packages/components/src/components/tag/tag.custom.styles.ts",
     "packages/components/src/components/tag/tag.styles.ts",
@@ -93,6 +105,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-tag",

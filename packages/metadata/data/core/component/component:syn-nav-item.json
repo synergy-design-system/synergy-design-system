@@ -44,6 +44,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynNavItemJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynNavItemComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-nav-item",
+        "sourcePath": "packages/angular/components/nav-item/nav-item.component.ts"
       }
     }
   },
@@ -51,6 +58,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/angular/nav-item.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-nav-item/components/nav-item.component.ts"
@@ -95,6 +106,7 @@
   ],
   "since": "1.14.0",
   "sources": [
+    "packages/angular/components/nav-item/nav-item.component.ts",
     "packages/components/src/components/nav-item/nav-item.component.ts",
     "packages/components/src/components/nav-item/nav-item.styles.ts",
     "packages/components/src/components/nav-item/nav-item.test.ts",
@@ -104,6 +116,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-nav-item",

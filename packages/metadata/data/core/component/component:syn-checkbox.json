@@ -48,6 +48,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynCheckboxJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynCheckboxComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-checkbox",
+        "sourcePath": "packages/angular/components/checkbox/checkbox.component.ts"
       }
     }
   },
@@ -55,6 +62,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/angular/checkbox.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-checkbox/components/checkbox.component.ts"
@@ -95,6 +106,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/checkbox/checkbox.component.ts",
     "packages/components/src/components/checkbox/checkbox.component.ts",
     "packages/components/src/components/checkbox/checkbox.styles.ts",
     "packages/components/src/components/checkbox/checkbox.test.ts",
@@ -104,6 +116,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-checkbox",

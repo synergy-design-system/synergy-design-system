@@ -1,0 +1,56 @@
+{
+  "custom": {
+    "framework": "angular",
+    "packageName": "@synergy-design-system/angular",
+    "packageVersion": "3.10.4",
+    "subpathExports": [
+      ".",
+      "./components/*",
+      "./directives/*",
+      "./modules/*"
+    ]
+  },
+  "id": "setup:angular-package",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:angular-package/angular/README.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:angular-package/angular/CHANGELOG.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:angular-package/angular/LIMITATIONS.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:angular-package/angular/package.json"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:angular-package/angular/index.ts"
+      }
+    ]
+  },
+  "name": "Angular Framework Package",
+  "package": "angular",
+  "relations": [],
+  "since": "3.10.4",
+  "sources": [
+    "packages/angular/README.md",
+    "packages/angular/CHANGELOG.md",
+    "packages/angular/LIMITATIONS.md",
+    "packages/angular/package.json",
+    "packages/angular/index.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "framework",
+    "setup"
+  ]
+}

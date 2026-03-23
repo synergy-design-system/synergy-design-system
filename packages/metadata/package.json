@@ -43,7 +43,7 @@
   },
   "scripts": {
     "build": "tsc && node dist/cli/build.js",
-    "clean": "rimraf data dist",
+    "clean": "rimraf dist && ( [ -d data ] && find data -type f ! -name '.gitkeep' -delete && find data -type d -empty -delete || true )",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
     "pretest": "pnpm build",

@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynMenuLabelJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynMenuLabelComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-menu-label",
+        "sourcePath": "packages/angular/components/menu-label/menu-label.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/angular/menu-label.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-menu-label/components/menu-label.component.ts"
@@ -74,6 +85,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/menu-label/menu-label.component.ts",
     "packages/components/src/components/menu-label/menu-label.component.ts",
     "packages/components/src/components/menu-label/menu-label.styles.ts",
     "packages/components/src/components/menu-label/menu-label.test.ts",
@@ -83,6 +95,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-menu-label",

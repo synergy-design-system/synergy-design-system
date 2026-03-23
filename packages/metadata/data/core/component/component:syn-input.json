@@ -56,6 +56,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynInputJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynInputComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-input",
+        "sourcePath": "packages/angular/components/input/input.component.ts"
       }
     }
   },
@@ -63,6 +70,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/angular/input.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-input/components/formatter.ts"
@@ -123,6 +134,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/input/input.component.ts",
     "packages/components/src/components/input/formatter.ts",
     "packages/components/src/components/input/input.component.ts",
     "packages/components/src/components/input/input.custom.styles.ts",
@@ -136,6 +148,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-input",

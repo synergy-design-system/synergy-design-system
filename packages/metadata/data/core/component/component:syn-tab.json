@@ -32,6 +32,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynTabJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynTabComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tab",
+        "sourcePath": "packages/angular/components/tab/tab.component.ts"
       }
     }
   },
@@ -39,6 +46,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/angular/tab.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-tab/components/tab.component.ts"
@@ -83,6 +94,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/tab/tab.component.ts",
     "packages/components/src/components/tab/tab.component.ts",
     "packages/components/src/components/tab/tab.custom.styles.ts",
     "packages/components/src/components/tab/tab.styles.ts",
@@ -93,6 +105,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-tab",

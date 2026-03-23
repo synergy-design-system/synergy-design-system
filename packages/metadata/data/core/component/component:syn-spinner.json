@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynSpinnerJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynSpinnerComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-spinner",
+        "sourcePath": "packages/angular/components/spinner/spinner.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/angular/spinner.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-spinner/components/spinner.component.ts"
@@ -73,6 +84,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/spinner/spinner.component.ts",
     "packages/components/src/components/spinner/spinner.component.ts",
     "packages/components/src/components/spinner/spinner.custom.styles.ts",
     "packages/components/src/components/spinner/spinner.styles.ts",
@@ -83,6 +95,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-spinner",

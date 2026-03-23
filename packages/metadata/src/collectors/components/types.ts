@@ -6,6 +6,7 @@
  * Configuration for the components collector and framework enrichments.
  */
 export interface ComponentsConfig {
+  angularPackagePath?: string;
   packagePath: string;
   reactPackagePath?: string;
   vuePackagePath?: string;

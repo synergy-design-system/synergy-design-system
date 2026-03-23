@@ -27,6 +27,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynDividerJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynDividerComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-divider",
+        "sourcePath": "packages/angular/components/divider/divider.component.ts"
       }
     }
   },
@@ -34,6 +41,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/angular/divider.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-divider/components/divider.component.ts"
@@ -69,6 +80,7 @@
   "relations": [],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/divider/divider.component.ts",
     "packages/components/src/components/divider/divider.component.ts",
     "packages/components/src/components/divider/divider.styles.ts",
     "packages/components/src/components/divider/divider.test.ts",
@@ -78,6 +90,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-divider",

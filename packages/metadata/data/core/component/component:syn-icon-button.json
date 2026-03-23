@@ -36,6 +36,13 @@
           "subpathExport": "./types/latest",
           "typeName": "SynIconButtonJSXElement"
         }
+      },
+      "angular": {
+        "componentName": "SynIconButtonComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-icon-button",
+        "sourcePath": "packages/angular/components/icon-button/icon-button.component.ts"
       }
     }
   },
@@ -43,6 +50,10 @@
   "kind": "component",
   "layers": {
     "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/angular/icon-button.component.ts"
+      },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-icon-button/components/icon-button.component.ts"
@@ -87,6 +98,7 @@
   ],
   "since": "2.0",
   "sources": [
+    "packages/angular/components/icon-button/icon-button.component.ts",
     "packages/components/src/components/icon-button/icon-button.component.ts",
     "packages/components/src/components/icon-button/icon-button.custom.styles.ts",
     "packages/components/src/components/icon-button/icon-button.styles.ts",
@@ -97,6 +109,7 @@
   ],
   "status": "stable",
   "tags": [
+    "angular",
     "component",
     "react",
     "syn-icon-button",

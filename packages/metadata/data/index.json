@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-23T11:09:21.383Z",
+  "builtAt": "2026-03-23T11:56:03.787Z",
   "entities": [
     {
       "corePath": "data/core/component/component:syn-accordion.json",
@@ -1308,6 +1308,23 @@
         "token",
         "tokens",
         "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/utility/utility:fonts-sick-intl.json",
+      "id": "utility:fonts-sick-intl",
+      "kind": "utility",
+      "layers": {
+        "full": 2
+      },
+      "name": "SICK Intl Font Source",
+      "search": [
+        "utility:fonts-sick-intl",
+        "SICK Intl Font Source",
+        "font",
+        "fonts",
+        "metadata",
+        "utility"
       ]
     }
   ],

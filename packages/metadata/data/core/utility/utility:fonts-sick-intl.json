@@ -1,0 +1,35 @@
+{
+  "custom": {
+    "artifactPath": "sick-intl",
+    "artifactType": "font-source"
+  },
+  "id": "utility:fonts-sick-intl",
+  "kind": "utility",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/fonts/sick-intl/font.css"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/fonts/sick-intl/LICENSE"
+      }
+    ]
+  },
+  "name": "SICK Intl Font Source",
+  "package": "fonts",
+  "relations": [],
+  "since": "1.0.4",
+  "sources": [
+    "packages/fonts/src/sick-intl/font.css",
+    "packages/fonts/src/sick-intl/LICENSE"
+  ],
+  "status": "stable",
+  "tags": [
+    "font",
+    "fonts",
+    "metadata",
+    "utility"
+  ]
+}

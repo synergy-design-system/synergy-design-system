@@ -60,6 +60,18 @@ const mapStyleLayerPath = (sourcePath: string): string => {
   return basename(sourcePath);
 };
 
+const mapFontsLayerPath = (sourcePath: string): string => {
+  if (sourcePath.startsWith('packages/fonts/src/')) {
+    return sourcePath.slice('packages/fonts/src/'.length);
+  }
+
+  if (sourcePath.startsWith('packages/fonts/')) {
+    return sourcePath.slice('packages/fonts/'.length);
+  }
+
+  return basename(sourcePath);
+};
+
 /**
  * Extract per-component React JSX type snippets from custom framework metadata.
  * These are generated files (not copies of repo source) derived from the AST parse
@@ -122,12 +134,16 @@ export async function writeLayerAssets(
       const isGroupedTokenEntity = entity.kind === 'token' && entity.package === 'tokens';
       // Style module entities are grouped by package path under layers/full/styles.
       const isGroupedStyleEntity = entity.kind === 'style' && entity.package === 'styles';
+      // Font artifact entities are grouped by package path under layers/full/fonts.
+      const isGroupedFontsEntity = entity.kind === 'utility' && entity.package === 'fonts';
 
       // Create entity's layer directory
       const entityLayerDir = isGroupedTokenEntity
         ? join(layersDir, 'full', 'tokens')
         : isGroupedStyleEntity
           ? join(layersDir, 'full', 'styles')
+          : isGroupedFontsEntity
+            ? join(layersDir, 'full', 'fonts')
         : join(layersDir, 'full', entity.kind, entity.id);
       await ensureDir(entityLayerDir);
 
@@ -144,6 +160,11 @@ export async function writeLayerAssets(
               entityLayerDir,
               mapStyleLayerPath(sourcePath),
             )
+            : isGroupedFontsEntity
+              ? join(
+                entityLayerDir,
+                mapFontsLayerPath(sourcePath),
+              )
           : join(
             // Group files by package label (components|react|vue|angular|…) so that
             // identically-named files from different packages don't collide,

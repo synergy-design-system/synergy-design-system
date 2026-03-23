@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-23T11:09:21.384Z",
+  "builtAt": "2026-03-23T11:56:03.788Z",
   "sources": [
     {
       "entityCount": 4,
@@ -17,7 +17,7 @@
       "status": "success"
     },
     {
-      "entityCount": 1,
+      "entityCount": 2,
       "source": "fonts",
       "status": "success"
     },

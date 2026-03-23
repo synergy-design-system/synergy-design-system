@@ -16,10 +16,11 @@ type FontsPackageJson = {
 };
 
 export interface FontsRaw {
+  artifactSources: string[];
   exportKeys: string[];
   packageName: string;
   packageVersion: string;
-  sources: string[];
+  setupSources: string[];
 }
 
 const toOptionalRelativePath = async (
@@ -50,18 +51,25 @@ export const collect = async (
   try {
     const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf8')) as FontsPackageJson;
 
-    const sources = [
+    const setupSources = [
       await toOptionalRelativePath(repoRoot, packageRoot, 'README.md'),
       await toOptionalRelativePath(repoRoot, packageRoot, 'CHANGELOG.md'),
       await toOptionalRelativePath(repoRoot, packageRoot, 'BREAKING_CHANGES.md'),
       relative(repoRoot, packageJsonPath),
     ].filter((value): value is string => typeof value === 'string');
 
+    // Intentionally include metadata-relevant sources only; no binary font payloads.
+    const artifactSources = [
+      await toOptionalRelativePath(repoRoot, packageRoot, 'src/sick-intl/font.css'),
+      await toOptionalRelativePath(repoRoot, packageRoot, 'src/sick-intl/LICENSE'),
+    ].filter((value): value is string => typeof value === 'string');
+
     return ok({
+      artifactSources,
       exportKeys: Object.keys(packageJson.exports ?? {}).sort(),
       packageName: packageJson.name ?? '@synergy-design-system/fonts',
       packageVersion: packageJson.version ?? 'unknown',
-      sources,
+      setupSources,
     });
   } catch (error) {
     return {

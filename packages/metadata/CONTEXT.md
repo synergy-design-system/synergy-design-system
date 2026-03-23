@@ -173,6 +173,16 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Canonical styles path mapping for layers:
   - `packages/styles/src/<module>/<file>.css` -> `layers/full/styles/<module>/<file>.css`
 
+### Fonts Artifact Entity (Phase 2 artifact-depth, partial)
+- Fonts setup metadata remains in `setup:fonts-package` (docs + package metadata only).
+- Fonts metadata artifact is now emitted as one dedicated entity:
+  - `utility:fonts-sick-intl`
+- Artifact scope is intentionally metadata-only (no binary font payloads):
+  - `packages/fonts/src/sick-intl/font.css`
+  - `packages/fonts/src/sick-intl/LICENSE`
+- Canonical fonts path mapping for layers:
+  - `packages/fonts/src/<...>` -> `layers/full/fonts/<...>`
+
 ### Pipeline and CLI
 - `runSourcePipeline`, `aggregate`, `validate`, `build-index` wired.
 - `runSourcePipeline` now supports async/config-aware enrich steps.
@@ -194,11 +204,12 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   7. Write index + manifest
   8. Generate and write JSON schemas
 - Entity count now varies with artifact availability (especially `dist/`-backed sources).
-- Baseline with current workspace state (tokens/styles dist may be empty) is 68 entities:
+- Baseline with current workspace state (tokens/styles dist may be empty) is 69 entities:
   - 48 components
   - 12 setup entities
   - 4 token artifact entities (figma-variables output)
   - 4 styles module entities
+  - 1 fonts utility artifact entity
 - CLI build output directory is configurable via `SYNERGY_METADATA_OUTPUT_DIR`.
 
 ### Public Runtime API
@@ -221,6 +232,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `write-layers.ts` now has package-specific canonical path mapping for artifact entities:
   - token entities (`kind=token`, `package=tokens`) are grouped under `data/layers/full/tokens/`
   - style entities (`kind=style`, `package=styles`) are grouped under `data/layers/full/styles/`
+  - fonts utility entities (`kind=utility`, `package=fonts`) are grouped under `data/layers/full/fonts/`
 - `write-schemas.ts`: Persists generated JSON schemas to `data/schemas/*.json`.
 - `fs-utils.ts`: Shared atomic write helpers (`ensureDir`, `writeJsonAtomic`).
 
@@ -240,6 +252,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Build integration test also verifies these setup entities are discoverable through `index.json`.
 - Build integration test now verifies token artifact entity materialization and canonical full-layer mapping.
 - Build integration test now verifies styles module entity materialization (`style:styles-link`) and canonical full-layer mapping.
+- Build integration test now verifies fonts utility artifact materialization (`utility:fonts-sick-intl`) and canonical full-layer mapping.
 - Build integration test writes to a temporary output directory instead of mutating committed `data/`.
 - 9 tests passing.
 - `pretest` now runs TypeScript compilation only; full metadata regeneration is explicit.
@@ -261,8 +274,8 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Scraped docs ingestion is intentionally out of scope in this phase.
 - Some metadata values are still fallback/default driven (e.g. `unknown` for missing `since`).
 - Package exports now expose only the public runtime query API; internal build/runtime modules are intentionally unpublished.
-- Tokens and styles now have partial artifact-depth collectors; fonts/assets currently remain setup-only.
-- Fonts/assets artifact entities and canonical layer mappings are not implemented yet.
+- Tokens, styles, and fonts now have partial artifact-depth collectors; assets currently remains setup-only.
+- Assets artifact entities and canonical layer mappings are not implemented yet.
 - The public API currently provides generic store/query access only; domain-specific facades (components/tokens/styles/assets) are not implemented yet.
 
 ## Data/Folder State
@@ -282,6 +295,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/core/setup/setup:assets-package.json` — package-level Assets setup metadata
 - `data/core/token/token:tokens-*.json` — token artifact entities (figma-variables output and optional dist-backed files)
 - `data/core/style/style:styles-*.json` — styles module artifact entities (one per `packages/styles/src` module folder)
+- `data/core/utility/utility:fonts-sick-intl.json` — fonts metadata artifact entity (`font.css` + `LICENSE`)
 - `data/layers/full/component/component:{name}/{components|react|vue}/` — package-namespaced source files copied per component (no filename collisions)
 - `data/layers/full/component/component:{name}/angular/` — Angular wrapper source files for each enriched component
 - `data/layers/full/component/component:{name}/react/{Syn*JSXElement.ts}` — generated per-component React JSX type snippets
@@ -296,14 +310,14 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/layers/full/setup/setup:assets-package/` — Assets package docs/export surface copied into layers
 - `data/layers/full/tokens/` — canonical token artifact paths (dist surfaces and `figma-variables/` output)
 - `data/layers/full/styles/` — canonical styles module paths mapped from `packages/styles/src/*`
+- `data/layers/full/fonts/` — canonical fonts metadata paths mapped from `packages/fonts/src/*`
 - `data/schemas/core-entity.schema.json`, `layer-ref.schema.json`, `manifest.schema.json`
-- `data/index.json` — searchable index; count varies with artifact availability (baseline 68 in current workspace state)
+- `data/index.json` — searchable index; count varies with artifact availability (baseline 69 in current workspace state)
 - `data/manifest.json` — build manifest with timestamp and source stats
 
 ## Suggested Next Steps
 1. Phase 2 setup-entity milestone is complete for tokens/styles/fonts/assets; keep parity checks against `packages/mcp/metadata/packages/{tokens|styles|fonts|assets}/`.
 2. Continue artifact-depth for the remaining packages:
-  - Add fonts artifact entities + canonical full-layer mapping
   - Add assets artifact entities + canonical full-layer mapping
 3. Build domain-specific public facades on top of the generic store API, starting with components.
 4. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
@@ -323,6 +337,9 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Styles setup vs artifact rule:
   - `setup:styles-package` is setup-only
   - styles module artifacts are emitted as `style:*` entities and mapped under `layers/full/styles/`
+- Fonts setup vs artifact rule:
+  - `setup:fonts-package` is setup-only
+  - fonts metadata artifacts are emitted as `utility:*` entities and mapped under `layers/full/fonts/`
 - Run `pnpm test` from `packages/metadata/` for compile + tests without rewriting committed `data/`.
 - Run `pnpm build` or `pnpm test:with-build` only when you intentionally want a fresh metadata rebuild.
 - Layer assets are written before core entities so layer references are available when entities are serialized.

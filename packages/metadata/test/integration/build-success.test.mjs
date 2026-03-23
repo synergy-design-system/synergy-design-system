@@ -120,6 +120,12 @@ describe('metadata build integration', () => {
         'style',
         'style:styles-link.json',
       );
+      const fontsArtifactPath = path.join(
+        outputDir,
+        'core',
+        'utility',
+        'utility:fonts-sick-intl.json',
+      );
 
       await access(indexPath);
       await access(manifestPath);
@@ -138,6 +144,7 @@ describe('metadata build integration', () => {
       await access(assetsSetupPath);
       await access(tokenFigmaArtifactPath);
       await access(stylesLinkPath);
+      await access(fontsArtifactPath);
 
       const indexJson = JSON.parse(await readFile(indexPath, 'utf8'));
       const manifestJson = JSON.parse(await readFile(manifestPath, 'utf8'));
@@ -155,6 +162,7 @@ describe('metadata build integration', () => {
       const assetsSetupJson = JSON.parse(await readFile(assetsSetupPath, 'utf8'));
       const tokenFigmaArtifactJson = JSON.parse(await readFile(tokenFigmaArtifactPath, 'utf8'));
       const stylesLinkJson = JSON.parse(await readFile(stylesLinkPath, 'utf8'));
+      const fontsArtifactJson = JSON.parse(await readFile(fontsArtifactPath, 'utf8'));
 
       expect(indexJson).to.have.property('version', '1.0.0');
       expect(indexJson).to.have.property('entities').that.is.an('array').that.is.not.empty;
@@ -209,6 +217,12 @@ describe('metadata build integration', () => {
       expect(fontsSetupJson.sources).to.include('packages/fonts/README.md');
       expect(fontsSetupJson.sources).to.include('packages/fonts/CHANGELOG.md');
       expect(fontsSetupJson.sources).to.include('packages/fonts/package.json');
+      expect(fontsArtifactJson).to.have.property('kind', 'utility');
+      expect(fontsArtifactJson).to.have.property('package', 'fonts');
+      expect(fontsArtifactJson.sources).to.include('packages/fonts/src/sick-intl/font.css');
+      expect(fontsArtifactJson.sources).to.include('packages/fonts/src/sick-intl/LICENSE');
+      expect(fontsArtifactJson.layers.full.some((ref) => ref.path === 'layers/full/fonts/sick-intl/font.css')).to.equal(true);
+      expect(fontsArtifactJson.layers.full.some((ref) => ref.path === 'layers/full/fonts/sick-intl/LICENSE')).to.equal(true);
       expect(assetsSetupJson).to.have.property('kind', 'setup');
       expect(assetsSetupJson).to.have.property('package', 'assets');
       expect(assetsSetupJson.sources).to.include('packages/assets/README.md');
@@ -219,6 +233,7 @@ describe('metadata build integration', () => {
       expect(indexJson.entities.some((entity) => entity.id === 'setup:styles-package')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'style:styles-link')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:fonts-package')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'utility:fonts-sick-intl')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:assets-package')).to.equal(true);
     } finally {
       await rm(tempRoot, { force: true, recursive: true });

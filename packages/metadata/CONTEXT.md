@@ -28,6 +28,8 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Persisted outputs root: `data/`
 - Pipeline shape: collect -> normalize -> enrich -> aggregate -> validate -> write layers -> write core -> write index/manifest/schemas
 - Functional Result pattern is used for error flow.
+- Public package root (`src/index.ts`) re-exports only the supported runtime query API.
+- Internal repo tooling has a dedicated unstable barrel at `src/internal/index.ts` which is not published.
 
 ## Implemented So Far
 
@@ -140,6 +142,19 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   7. Write index + manifest
   8. Generate and write JSON schemas
 - Build now reports 48 canonical components and 8 setup entities for 56 total entities.
+- CLI build output directory is configurable via `SYNERGY_METADATA_OUTPUT_DIR`.
+
+### Public Runtime API
+- A stable consumer-facing query layer now exists under `src/public/`.
+- `createMetadataStore()` is exported publicly and provides:
+  - `getIndex()`
+  - `getEntity(id)`
+  - `findEntities(query)`
+  - `getPackageEntities(packageName)`
+  - `getLayerFiles(entityId, layer)`
+  - `getDataForLayer(packageName, layer)`
+- The public runtime reads shipped artifacts from `data/` and does not depend on collectors/pipeline internals.
+- Package exports are intentionally restricted to the public API entrypoints and packaged data artifacts.
 
 ### Writers (fully implemented)
 - `write-core.ts`: Persists `data/core/{kind}/{id}.json` with deterministic sort.
@@ -152,17 +167,24 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 ### Test Suite (Mocha + Chai)
 - `test/integration/build-success.test.mjs`: Verifies build succeeds and artifacts exist and parse correctly.
 - `test/integration/components-preflight.test.mjs`: Verifies actionable error when manifest is missing.
+- `test/integration/public-api.test.mjs`: Verifies the public metadata store works against generated artifacts.
 - `test/integration/schema-linting.test.mjs`: 6 tests verifying schema files, entity structure, layer refs, and cross-validation.
 - Build integration test now also verifies Vue framework metadata on `component:syn-accordion` and the emitted `setup:vue-package` entity.
 - Build integration test now also verifies React framework metadata on canonical component entities and the emitted `setup:react-package` entity.
 - Build integration test now also verifies Angular framework metadata on canonical component entities and emitted Angular setup entities.
-- All 8 tests passing.
-- `pretest` script automatically runs build before tests.
+- Build integration test writes to a temporary output directory instead of mutating committed `data/`.
+- 9 tests passing.
+- `pretest` now runs TypeScript compilation only; full metadata regeneration is explicit.
 
 ### Tooling
 - ESLint: `data/` ignored; `src/**/*.ts` has ETL-appropriate rule relaxations; `test/**/*.mjs` has test-appropriate rule relaxations.
 - TypeScript: `data/` excluded from compilation.
 - Package scripts include `clean` (`rimraf data dist`) for deterministic rebuilds.
+- Scripts are split into:
+  - `build:ts` for compilation only
+  - `build:data` for metadata generation only
+  - `build` for both
+  - `test:with-build` for explicit rebuild + test
 - `data/` is currently not gitignored.
 - Only the public API is exported/published; `src/internal/` is for repo-local tooling and build orchestration.
 
@@ -172,6 +194,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Some metadata values are still fallback/default driven (e.g. `unknown` for missing `since`).
 - Package exports now expose only the public runtime query API; internal build/runtime modules are intentionally unpublished.
 - Only the components collector exists; tokens/styles/fonts/assets/docs collectors are not yet implemented.
+- The public API currently provides generic store/query access only; domain-specific facades (components/tokens/styles/assets) are not implemented yet.
 
 ## Data/Folder State
 - `data/core/component/component:{name}.json` — 48 component entity files
@@ -198,16 +221,18 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 
 ## Suggested Next Steps
 1. Add package-level entities for the remaining low-complexity packages: tokens, styles, fonts, assets.
-2. Add pure metadata query helpers for downstream facades (MCP/API), without introducing HTTP concerns here.
-3. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
-4. Implement `interface` layer: extract user-facing markdown/API summaries from component and wrapper source files.
-5. Decide whether React JSX metadata should later feed generated `interface` markdown directly.
-6. Implement `examples` layer later via Storybook/docs scraping.
+2. Build domain-specific public facades on top of the generic store API, starting with components.
+3. Add package-level entities for tokens/styles/fonts/assets as their collectors land.
+4. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
+5. Implement `interface` layer: extract user-facing markdown/API summaries from component and wrapper source files.
+6. Decide whether React JSX metadata should later feed generated `interface` markdown directly.
+7. Implement `examples` layer later via Storybook/docs scraping.
 
 ## Resume Notes
 - If build fails on components manifest path, ensure components package has been built so `dist/custom-elements.json` exists.
 - Keep metadata package independent from MCP package internals.
-- Run `pnpm test` from `packages/metadata/` to build and verify all 8 tests pass.
+- Run `pnpm test` from `packages/metadata/` for compile + tests without rewriting committed `data/`.
+- Run `pnpm build` or `pnpm test:with-build` only when you intentionally want a fresh metadata rebuild.
 - Layer assets are written before core entities so layer references are available when entities are serialized.
 - React JSX snippet files are generated during layer writing; `typeText` is stripped before core entity serialization.
 - Vue support is the first adopted framework pattern: canonical component entity plus attached framework metadata, with package-level framework docs/setup represented as separate `setup:*` entities.
@@ -215,3 +240,4 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Angular support now follows the same canonical component pattern and adds module-oriented `setup:*` entities for package integration guidance.
 - Components package and migration setup entities are now included (`setup:components-package`, `setup:synergy-migrations`).
 - DaVinci migration is intentionally grouped under `davinci/` in layer output.
+- The source tree is now physically split into `src/public/` and `src/internal/`.

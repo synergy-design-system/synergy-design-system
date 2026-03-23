@@ -33,6 +33,8 @@ import { CoreEntitySchema, LayerRefSchema, ManifestSchema } from '../schemas/ind
 
 const logger = createConsoleLogger('metadata-build');
 
+const getOutputDir = (): string => process.env.SYNERGY_METADATA_OUTPUT_DIR?.trim() || 'data';
+
 async function main() {
   const ctx: Context = {
     logger,
@@ -42,6 +44,8 @@ async function main() {
 
   ctx.logger?.info('=== Synergy Metadata Build ===');
   ctx.logger?.info(`Workspace: ${ctx.workspaceRoot}`);
+  const outputDir = getOutputDir();
+  ctx.logger?.info(`Output: ${outputDir}`);
 
   try {
     // Step 1: Run pipelines
@@ -83,7 +87,6 @@ async function main() {
 
     // Step 4: Process layer assets
     ctx.logger?.info('Step 4: Processing layer assets');
-    const outputDir = 'data';
     const layersResult = await writeLayerAssets(validated.value, outputDir, repoRoot, ctx);
     if (!layersResult.ok) {
       ctx.logger?.error('Writing layers failed', layersResult.error);

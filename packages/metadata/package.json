@@ -56,12 +56,15 @@
     "directory": "packages/metadata"
   },
   "scripts": {
-    "build": "tsc && node dist/internal/cli/build.js",
+    "build": "pnpm run build:ts && pnpm run build:data",
+    "build:data": "node dist/internal/cli/build.js",
+    "build:ts": "tsc",
     "clean": "rimraf dist && ( [ -d data ] && find data -type f ! -name '.gitkeep' -delete && find data -type d -empty -delete || true )",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
-    "pretest": "pnpm build",
-    "test": "mocha \"test/**/*.test.mjs\""
+    "pretest": "pnpm run build:ts",
+    "test": "mocha \"test/**/*.test.mjs\"",
+    "test:with-build": "pnpm run build && mocha \"test/**/*.test.mjs\""
   },
   "types": "./dist/index.d.ts",
   "type": "module",

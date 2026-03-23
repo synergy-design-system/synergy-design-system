@@ -1,0 +1,104 @@
+{
+  "attributes": [
+    {
+      "description": "The name of the icon to draw. Available names depend on the icon library being used.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": true,
+      "type": "string | undefined"
+    },
+    {
+      "description": "An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and\ncan result in XSS attacks.",
+      "fieldName": "src",
+      "name": "src",
+      "reflects": false,
+      "type": "string | undefined"
+    },
+    {
+      "default": "''",
+      "description": "An alternate description to use for assistive devices. If omitted, the icon will be considered presentational and\nignored by assistive devices.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'default'",
+      "description": "The name of a registered custom icon library.",
+      "fieldName": "library",
+      "name": "library",
+      "reflects": true,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The internal SVG element.",
+      "name": "svg"
+    },
+    {
+      "description": "The <use> element generated when using `spriteSheet: true`",
+      "name": "use"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs",
+  "events": [
+    {
+      "description": "Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit.",
+      "name": "syn-load",
+      "type": "SynLoadEvent"
+    },
+    {
+      "description": "Emitted when the icon fails to load due to an error. When using `spriteSheet: true` this will not emit.",
+      "name": "syn-error",
+      "type": "SynErrorEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "",
+      "name": "handleLabelChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "setIcon",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "The name of the icon to draw. Available names depend on the icon library being used.",
+      "name": "name",
+      "type": "string | undefined"
+    },
+    {
+      "access": "public",
+      "description": "An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and\ncan result in XSS attacks.",
+      "name": "src",
+      "type": "string | undefined"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "An alternate description to use for assistive devices. If omitted, the icon will be considered presentational and\nignored by assistive devices.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'default'",
+      "description": "The name of a registered custom icon library.",
+      "name": "library",
+      "type": "string"
+    }
+  ],
+  "since": "2.0",
+  "slots": [],
+  "sourceModulePath": "components/icon/icon.js",
+  "status": "stable",
+  "summary": "Icons are symbols that can be used to represent various options within an application.",
+  "tagName": "syn-icon"
+}

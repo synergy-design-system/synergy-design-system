@@ -48,6 +48,13 @@ describe('metadata build integration', () => {
         'component',
         'component:syn-alert.json',
       );
+      const accordionInterfacePath = path.join(
+        outputDir,
+        'layers',
+        'interface',
+        'component',
+        'component:syn-accordion.json',
+      );
       const reactSetupPath = path.join(
         outputDir,
         'core',
@@ -174,6 +181,7 @@ describe('metadata build integration', () => {
       await access(coreEntitySchemaPath);
       await access(accordionPath);
       await access(alertPath);
+      await access(accordionInterfacePath);
       await access(angularPackageSetupPath);
       await access(angularComponentsModuleSetupPath);
       await access(angularFormsModuleSetupPath);
@@ -199,6 +207,7 @@ describe('metadata build integration', () => {
       const manifestJson = JSON.parse(await readFile(manifestPath, 'utf8'));
       const accordionJson = JSON.parse(await readFile(accordionPath, 'utf8'));
       const alertJson = JSON.parse(await readFile(alertPath, 'utf8'));
+      const accordionInterfaceJson = JSON.parse(await readFile(accordionInterfacePath, 'utf8'));
       const angularPackageSetupJson = JSON.parse(await readFile(angularPackageSetupPath, 'utf8'));
       const angularComponentsModuleSetupJson = JSON.parse(await readFile(angularComponentsModuleSetupPath, 'utf8'));
       const angularFormsModuleSetupJson = JSON.parse(await readFile(angularFormsModuleSetupPath, 'utf8'));
@@ -230,9 +239,19 @@ describe('metadata build integration', () => {
       expect(accordionJson.custom).to.have.nested.property('frameworks.react.jsx.typeName', 'SynAccordionJSXElement');
       expect(accordionJson.custom).to.have.nested.property('frameworks.angular.componentName', 'SynAccordionComponent');
       expect(accordionJson.custom).to.have.nested.property('frameworks.angular.selector', 'syn-accordion');
+      expect(accordionJson.custom).to.not.have.property('interfaceSnapshot');
+      expect(accordionJson.layers.interface.some((ref) => ref.path === 'layers/interface/component/component:syn-accordion.json')).to.equal(true);
       expect(accordionJson.sources).to.include('packages/vue/src/components/SynVueAccordion.vue');
       expect(accordionJson.sources).to.include('packages/react/src/components/accordion.ts');
       expect(accordionJson.sources).to.include('packages/angular/components/accordion/accordion.component.ts');
+      expect(accordionInterfaceJson).to.have.property('tagName', 'syn-accordion');
+      expect(accordionInterfaceJson).to.have.property('summary').that.is.a('string');
+      expect(accordionInterfaceJson).to.have.property('slots').that.is.an('array');
+      expect(accordionInterfaceJson).to.have.property('attributes').that.is.an('array');
+      expect(accordionInterfaceJson).to.have.property('properties').that.is.an('array');
+      expect(accordionInterfaceJson).to.have.property('methods').that.is.an('array');
+      expect(accordionInterfaceJson).to.have.property('events').that.is.an('array');
+      expect(accordionInterfaceJson).to.have.property('cssParts').that.is.an('array');
       expect(alertJson.custom).to.have.nested.property('frameworks.react.jsx.typeName', 'SynAlertJSXElement');
       expect(alertJson.custom.frameworks.react.jsx.events).to.deep.include({
         name: 'syn-show',

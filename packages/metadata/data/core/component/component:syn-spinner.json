@@ -77,6 +77,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-spinner/react/SynSpinnerJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-spinner.json"
+      }
     ]
   },
   "name": "Spinner",

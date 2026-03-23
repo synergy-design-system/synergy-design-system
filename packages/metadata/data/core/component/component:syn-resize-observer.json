@@ -15,6 +15,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-resize-observer/components/resize-observer.styles.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-resize-observer.json"
+      }
     ]
   },
   "name": "Resize Observer",

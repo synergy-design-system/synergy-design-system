@@ -81,6 +81,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-button-group/react/SynButtonGroupJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-button-group.json"
+      }
     ]
   },
   "name": "Button Group",

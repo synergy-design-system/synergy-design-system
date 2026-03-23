@@ -1,0 +1,20 @@
+{
+  "attributes": [],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-spinner--docs",
+  "events": [],
+  "methods": [],
+  "properties": [],
+  "since": "2.0",
+  "slots": [],
+  "sourceModulePath": "components/spinner/spinner.js",
+  "status": "stable",
+  "summary": "Spinners are used to show the progress of an indeterminate operation.",
+  "tagName": "syn-spinner"
+}

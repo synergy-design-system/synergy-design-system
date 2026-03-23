@@ -82,6 +82,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-tab/react/SynTabJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tab.json"
+      }
     ]
   },
   "name": "Tab",

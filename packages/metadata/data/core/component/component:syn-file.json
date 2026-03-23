@@ -93,6 +93,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-file/react/SynFileJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-file.json"
+      }
     ]
   },
   "name": "File",

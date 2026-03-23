@@ -94,6 +94,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-button/react/SynButtonJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-button.json"
+      }
     ]
   },
   "name": "Button",

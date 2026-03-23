@@ -1,0 +1,85 @@
+{
+  "attributes": [
+    {
+      "default": "''",
+      "description": "A label to use for the button group. This won't be displayed on the screen, but it will be announced by assistive\ndevices when interacting with the control and is strongly recommended.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'medium'",
+      "description": "The button-groups size. This affects all buttons within the group.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "default": "'outline'",
+      "description": "The button-group's theme variant. This affects all buttons within the group.",
+      "fieldName": "variant",
+      "name": "variant",
+      "reflects": true,
+      "type": "'filled' | 'outline'"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs",
+  "events": [],
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "",
+      "name": "disableRole",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "A label to use for the button group. This won't be displayed on the screen, but it will be announced by assistive\ndevices when interacting with the control and is strongly recommended.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The button-groups size. This affects all buttons within the group.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "default": "'outline'",
+      "description": "The button-group's theme variant. This affects all buttons within the group.",
+      "name": "variant",
+      "type": "'filled' | 'outline'"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "One or more `<syn-button>` elements to display in the button group.",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/button-group/button-group.js",
+  "status": "stable",
+  "summary": "Button groups can be used to group related buttons into sections.",
+  "tagName": "syn-button-group"
+}

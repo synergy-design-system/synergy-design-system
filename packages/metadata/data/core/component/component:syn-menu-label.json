@@ -73,6 +73,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-menu-label/react/SynMenuLabelJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-menu-label.json"
+      }
     ]
   },
   "name": "Menu Label",

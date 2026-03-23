@@ -1,0 +1,85 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Draws the card with a shadow. Can be used when the card has to stand out visually, for example in dashboards.",
+      "fieldName": "shadow",
+      "name": "shadow",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Draws the card with sharp edges. Can be used e.g. when nesting multiple syn-cards to create hierarchy.",
+      "fieldName": "sharp",
+      "name": "sharp",
+      "reflects": true,
+      "type": "boolean"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The container that wraps the card's image.",
+      "name": "image"
+    },
+    {
+      "description": "The container that wraps the card's header.",
+      "name": "header"
+    },
+    {
+      "description": "The container that wraps the card's main content.",
+      "name": "body"
+    },
+    {
+      "description": "The container that wraps the card's footer.",
+      "name": "footer"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs",
+  "events": [],
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the card with a shadow. Can be used when the card has to stand out visually, for example in dashboards.",
+      "name": "shadow",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the card with sharp edges. Can be used e.g. when nesting multiple syn-cards to create hierarchy.",
+      "name": "sharp",
+      "type": "boolean"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The card's main content.",
+      "name": ""
+    },
+    {
+      "description": "An optional header for the card.",
+      "name": "header"
+    },
+    {
+      "description": "An optional footer for the card.",
+      "name": "footer"
+    },
+    {
+      "description": "An optional image to render at the start of the card.",
+      "name": "image"
+    }
+  ],
+  "sourceModulePath": "components/card/card.js",
+  "status": "stable",
+  "summary": "Cards can be used to group related subjects in a container.",
+  "tagName": "syn-card"
+}

@@ -90,6 +90,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-tab-group/react/SynTabGroupJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tab-group.json"
+      }
     ]
   },
   "name": "Tab Group",

@@ -90,6 +90,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-nav-item/react/SynNavItemJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-nav-item.json"
+      }
     ]
   },
   "name": "Nav Item",

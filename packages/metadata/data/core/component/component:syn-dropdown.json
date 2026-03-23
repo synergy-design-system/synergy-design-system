@@ -90,6 +90,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-dropdown/react/SynDropdownJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-dropdown.json"
+      }
     ]
   },
   "name": "Dropdown",

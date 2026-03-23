@@ -94,6 +94,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-details/react/SynDetailsJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-details.json"
+      }
     ]
   },
   "name": "Details",

@@ -72,6 +72,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-range-tick/react/SynRangeTickJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-range-tick.json"
+      }
     ]
   },
   "name": "Range Tick",

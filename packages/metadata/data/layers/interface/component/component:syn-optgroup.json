@@ -1,0 +1,97 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Disables all options in the optgroup.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The optgroups label. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The container that wraps prefix, label and base",
+      "name": "label-container"
+    },
+    {
+      "description": "The divider that is displayed above the content",
+      "name": "divider"
+    },
+    {
+      "description": "The container that wraps the prefix.",
+      "name": "prefix"
+    },
+    {
+      "description": "The container that wraps the suffix.",
+      "name": "suffix"
+    },
+    {
+      "description": "The container that wraps the <syn-option> elements.",
+      "name": "options"
+    }
+  ],
+  "dependencies": [
+    "syn-divider"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs",
+  "events": [],
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "assignedOptions",
+      "type": "SynOption[]"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables all options in the optgroup.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The optgroups label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "since": "1.3.0",
+  "slots": [
+    {
+      "description": "The given options. Must be `<syn-option>` elements.",
+      "name": ""
+    },
+    {
+      "description": "A presentational prefix icon or similar element.",
+      "name": "prefix"
+    },
+    {
+      "description": "The label for the optgroup",
+      "name": "label"
+    },
+    {
+      "description": "A presentational suffix icon or similar element.",
+      "name": "suffix"
+    }
+  ],
+  "sourceModulePath": "components/optgroup/optgroup.js",
+  "status": "stable",
+  "summary": "The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.",
+  "tagName": "syn-optgroup"
+}

@@ -1,0 +1,73 @@
+{
+  "attributes": [
+    {
+      "default": "0",
+      "description": "The current progress as a percentage, 0 to 100.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": true,
+      "type": "number"
+    },
+    {
+      "default": "''",
+      "description": "A custom label for assistive devices.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The progress ring label.",
+      "name": "label"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs",
+  "events": [],
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "indicator",
+      "type": "SVGCircleElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "indicatorOffset",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "0",
+      "description": "The current progress as a percentage, 0 to 100.",
+      "name": "value",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "A custom label for assistive devices.",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "A label to show inside the ring.",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/progress-ring/progress-ring.js",
+  "status": "stable",
+  "summary": "Progress rings are used to show the progress of a determinate operation in a circular fashion.",
+  "tagName": "syn-progress-ring"
+}

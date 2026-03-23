@@ -73,6 +73,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-accordion/react/SynAccordionJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-accordion.json"
+      }
     ]
   },
   "name": "Accordion",

@@ -1,0 +1,215 @@
+{
+  "attributes": [
+    {
+      "default": "''",
+      "description": "The tooltip's content. If you need to display HTML, use the `content` slot instead.",
+      "fieldName": "content",
+      "name": "content",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'top'",
+      "description": "The preferred placement of the tooltip. Note that the actual placement may vary as needed to keep the tooltip\ninside of the viewport.",
+      "fieldName": "placement",
+      "name": "placement",
+      "reflects": false,
+      "type": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+    },
+    {
+      "default": "false",
+      "description": "Disables the tooltip so it won't show when triggered.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "13",
+      "description": "The distance in pixels from which to offset the tooltip away from its target.",
+      "fieldName": "distance",
+      "name": "distance",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "default": "false",
+      "description": "Indicates whether or not the tooltip is open. You can use this in lieu of the show/hide methods.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "0",
+      "description": "The distance in pixels from which to offset the tooltip along its target.",
+      "fieldName": "skidding",
+      "name": "skidding",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "default": "'hover focus'",
+      "description": "Controls how the tooltip is activated. Possible options include `click`, `hover`, `focus`, and `manual`. Multiple\noptions can be passed by separating them with a space. When manual is used, the tooltip must be activated\nprogrammatically.",
+      "fieldName": "trigger",
+      "name": "trigger",
+      "reflects": false,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper, an `<syn-popup>` element.",
+      "name": "base"
+    },
+    {
+      "description": "The popup's exported `popup` part. Use this to target the tooltip's popup container.",
+      "name": "base__popup"
+    },
+    {
+      "description": "The popup's exported `arrow` part. Use this to target the tooltip's arrow.",
+      "name": "base__arrow"
+    },
+    {
+      "description": "The tooltip's body where its content is rendered.",
+      "name": "body"
+    }
+  ],
+  "dependencies": [
+    "syn-popup"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tooltip--docs",
+  "events": [
+    {
+      "description": "Emitted when the tooltip begins to show.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
+    },
+    {
+      "description": "Emitted after the tooltip has shown and all animations are complete.",
+      "name": "syn-after-show",
+      "type": "SynAfterShowEvent"
+    },
+    {
+      "description": "Emitted when the tooltip begins to hide.",
+      "name": "syn-hide",
+      "type": "SynHideEvent"
+    },
+    {
+      "description": "Emitted after the tooltip has hidden and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "",
+      "name": "handleOpenChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleOptionsChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    },
+    {
+      "description": "Shows the tooltip.",
+      "name": "show",
+      "parameters": []
+    },
+    {
+      "description": "Hides the tooltip",
+      "name": "hide",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "body",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "popup",
+      "type": "SynPopup"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The tooltip's content. If you need to display HTML, use the `content` slot instead.",
+      "name": "content",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'top'",
+      "description": "The preferred placement of the tooltip. Note that the actual placement may vary as needed to keep the tooltip\ninside of the viewport.",
+      "name": "placement",
+      "type": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the tooltip so it won't show when triggered.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "13",
+      "description": "The distance in pixels from which to offset the tooltip away from its target.",
+      "name": "distance",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not the tooltip is open. You can use this in lieu of the show/hide methods.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "0",
+      "description": "The distance in pixels from which to offset the tooltip along its target.",
+      "name": "skidding",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "'hover focus'",
+      "description": "Controls how the tooltip is activated. Possible options include `click`, `hover`, `focus`, and `manual`. Multiple\noptions can be passed by separating them with a space. When manual is used, the tooltip must be activated\nprogrammatically.",
+      "name": "trigger",
+      "type": "string"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The tooltip's target element. Avoid slotting in more than one element, as subsequent ones will be ignored.",
+      "name": ""
+    },
+    {
+      "description": "The content to render in the tooltip. Alternatively, you can use the `content` attribute.",
+      "name": "content"
+    }
+  ],
+  "sourceModulePath": "components/tooltip/tooltip.js",
+  "status": "stable",
+  "summary": "Tooltips display additional information based on a specific action.",
+  "tagName": "syn-tooltip"
+}

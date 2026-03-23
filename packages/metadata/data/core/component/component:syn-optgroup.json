@@ -73,6 +73,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-optgroup/react/SynOptgroupJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-optgroup.json"
+      }
     ]
   },
   "name": "Optgroup",

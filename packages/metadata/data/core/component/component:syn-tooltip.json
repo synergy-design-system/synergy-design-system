@@ -90,6 +90,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-tooltip/react/SynTooltipJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tooltip.json"
+      }
     ]
   },
   "name": "Tooltip",

@@ -81,6 +81,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-menu-item/react/SynMenuItemJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-menu-item.json"
+      }
     ]
   },
   "name": "Menu Item",

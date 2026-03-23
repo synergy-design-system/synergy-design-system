@@ -77,6 +77,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-prio-nav/react/SynPrioNavJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-prio-nav.json"
+      }
     ]
   },
   "name": "Prio Nav",

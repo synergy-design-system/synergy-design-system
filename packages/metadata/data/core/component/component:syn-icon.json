@@ -114,6 +114,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-icon/react/SynIconJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-icon.json"
+      }
     ]
   },
   "name": "Icon",

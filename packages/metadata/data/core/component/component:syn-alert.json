@@ -94,6 +94,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-alert/react/SynAlertJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-alert.json"
+      }
     ]
   },
   "name": "Alert",

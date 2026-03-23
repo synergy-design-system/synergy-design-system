@@ -82,6 +82,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-tag/react/SynTagJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tag.json"
+      }
     ]
   },
   "name": "Tag",

@@ -1,0 +1,181 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Indicates whether or not the alert is open. You can toggle this attribute to show and hide the alert, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the alert's open state.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Enables a close button that allows the user to dismiss the alert.",
+      "fieldName": "closable",
+      "name": "closable",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'primary'",
+      "description": "The alert's theme variant.",
+      "fieldName": "variant",
+      "name": "variant",
+      "reflects": true,
+      "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+    },
+    {
+      "default": "Infinity",
+      "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`, meaning\nthe alert will not close on its own.",
+      "fieldName": "duration",
+      "name": "duration",
+      "reflects": false
+    },
+    {
+      "default": "'medium'",
+      "description": "The alert's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The container that wraps the optional icon.",
+      "name": "icon"
+    },
+    {
+      "description": "The container that wraps the alert's main content.",
+      "name": "message"
+    },
+    {
+      "description": "The close button, an `<syn-icon-button>`.",
+      "name": "close-button"
+    },
+    {
+      "description": "The close button's exported `base` part.",
+      "name": "close-button__base"
+    }
+  ],
+  "dependencies": [
+    "syn-icon-button"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs",
+  "events": [
+    {
+      "description": "Emitted when the alert opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
+    },
+    {
+      "description": "Emitted after the alert opens and all animations are complete.",
+      "name": "syn-after-show",
+      "type": "SynAfterShowEvent"
+    },
+    {
+      "description": "Emitted when the alert closes.",
+      "name": "syn-hide",
+      "type": "SynHideEvent"
+    },
+    {
+      "description": "Emitted after the alert closes and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "",
+      "name": "handleOpenChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDurationChange",
+      "parameters": []
+    },
+    {
+      "description": "Shows the alert.",
+      "name": "show",
+      "parameters": []
+    },
+    {
+      "description": "Hides the alert",
+      "name": "hide",
+      "parameters": []
+    },
+    {
+      "description": "Displays the alert as a toast notification. This will move the alert out of its position in the DOM and, when\ndismissed, it will be removed from the DOM completely. By storing a reference to the alert, you can reuse it by\ncalling this method again. The returned promise will resolve after the alert is hidden.",
+      "name": "toast",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "base",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "countdownElement",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not the alert is open. You can toggle this attribute to show and hide the alert, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the alert's open state.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Enables a close button that allows the user to dismiss the alert.",
+      "name": "closable",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'primary'",
+      "description": "The alert's theme variant.",
+      "name": "variant",
+      "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+    },
+    {
+      "access": "public",
+      "default": "Infinity",
+      "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`, meaning\nthe alert will not close on its own.",
+      "name": "duration"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The alert's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The alert's main content.",
+      "name": ""
+    },
+    {
+      "description": "An icon to show in the alert. Works best with `<syn-icon>`.",
+      "name": "icon"
+    }
+  ],
+  "sourceModulePath": "components/alert/alert.js",
+  "status": "stable",
+  "summary": "Alerts are used to display important messages inline or as toast notifications.",
+  "tagName": "syn-alert"
+}

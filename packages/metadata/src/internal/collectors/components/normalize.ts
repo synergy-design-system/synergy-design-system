@@ -21,6 +21,7 @@ export const normalize = (
   try {
     const entities: CoreEntity[] = raw.entries.map((entry) => ({
       custom: {
+        interfaceSnapshot: entry.interfaceSnapshot,
         sourceModulePath: entry.sourceModulePath,
         summary: entry.summary,
       },

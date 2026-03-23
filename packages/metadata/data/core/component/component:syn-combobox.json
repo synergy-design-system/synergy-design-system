@@ -129,6 +129,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-combobox/react/SynComboboxJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-combobox.json"
+      }
     ]
   },
   "name": "Combobox",

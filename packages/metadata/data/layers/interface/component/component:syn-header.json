@@ -1,0 +1,148 @@
+{
+  "attributes": [
+    {
+      "default": "''",
+      "description": "The headers label. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'hidden'",
+      "description": "Defines the current visibility and icon of the burger-menu icon.\nThe menu button is added automatically if the component finds a syn-side-nav in\nvariant=\"default\".\nThe following values can be used:\n- hidden: The burger menu is not visible\n- open: The burger menu is visible and shows the close icon\n- closed: The burger menu is visible and shows the open icon",
+      "fieldName": "burgerMenu",
+      "name": "burger-menu",
+      "reflects": true,
+      "type": "'hidden' | 'open' | 'closed'"
+    },
+    {
+      "default": "false",
+      "description": "Makes the header stick to the top of the viewport when scrolling.\nAlso applies a shadow to the header when scrolling.",
+      "fieldName": "sticky",
+      "name": "sticky",
+      "reflects": true,
+      "type": "boolean"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper",
+      "name": "base"
+    },
+    {
+      "description": "The wrapper most content items reside",
+      "name": "content"
+    },
+    {
+      "description": "The wrapper the application logo resides in",
+      "name": "logo"
+    },
+    {
+      "description": "The element wrapping the application name",
+      "name": "label"
+    },
+    {
+      "description": "The Item wrapping the optional application menu",
+      "name": "meta-navigation"
+    },
+    {
+      "description": "The wrapper that is holding the optional top navigation section",
+      "name": "navigation"
+    },
+    {
+      "description": "The button that toggles the burger menu",
+      "name": "burger-menu-toggle-button"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-header--docs",
+  "events": [
+    {
+      "description": "Emitted when the burger menu is toggled to closed",
+      "name": "syn-burger-menu-closed",
+      "type": "SynBurgerMenuClosedEvent"
+    },
+    {
+      "description": "Emitted when the burger menu is toggled to hidden",
+      "name": "syn-burger-menu-hidden",
+      "type": "SynBurgerMenuHiddenEvent"
+    },
+    {
+      "description": "Emitted when the burger menu is toggled to open",
+      "name": "syn-burger-menu-open",
+      "type": "SynBurgerMenuOpenEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "",
+      "name": "handleBurgerMenu",
+      "parameters": []
+    },
+    {
+      "description": "Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation\nlike showing the burger menu icon and open / close handling.\n\nIf no side navigation is connected, the header will use the first `syn-side-nav` element it\nfinds.",
+      "name": "connectSideNavigation",
+      "parameters": [
+        {
+          "name": "sideNav",
+          "type": "SynSideNav | null"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The headers label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'hidden'",
+      "description": "Defines the current visibility and icon of the burger-menu icon.\nThe menu button is added automatically if the component finds a syn-side-nav in\nvariant=\"default\".\nThe following values can be used:\n- hidden: The burger menu is not visible\n- open: The burger menu is visible and shows the close icon\n- closed: The burger menu is visible and shows the open icon",
+      "name": "burgerMenu",
+      "type": "'hidden' | 'open' | 'closed'"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Makes the header stick to the top of the viewport when scrolling.\nAlso applies a shadow to the header when scrolling.",
+      "name": "sticky",
+      "type": "boolean"
+    }
+  ],
+  "since": "1.10.0",
+  "slots": [
+    {
+      "description": "The label for the header",
+      "name": "label"
+    },
+    {
+      "description": "The logo that should be displayed. Will fall back to the SICK logo if not provided",
+      "name": "logo"
+    },
+    {
+      "description": "The meta-navigation is used to add various application toolbar icons Best used with `<syn-icon-button />` and `<syn-drop-down />`",
+      "name": "meta-navigation"
+    },
+    {
+      "description": "This slot can be used to add an optional horizontal navigation",
+      "name": "navigation"
+    },
+    {
+      "description": "An icon to use in lieu of the default burger-menu=open state. The default close icon is a 'x'.",
+      "name": "open-burger-menu-icon"
+    },
+    {
+      "description": "An icon to use in lieu of the default burger-menu=closed state. The default open icon is a burger menu.",
+      "name": "closed-burger-menu-icon"
+    }
+  ],
+  "sourceModulePath": "components/header/header.js",
+  "status": "stable",
+  "summary": "The <syn-header /> element provides a generic application header\nthat can be used to add applications name, toolbar and primary navigation.",
+  "tagName": "syn-header"
+}

@@ -107,6 +107,21 @@ const getReactJsxSnippets = (
   }];
 };
 
+const getComponentInterfaceSnapshot = (entity: CoreEntity): Record<string, unknown> | undefined => {
+  if (entity.kind !== 'component') {
+    return undefined;
+  }
+
+  const custom = entity.custom as Record<string, unknown> | undefined;
+  const snapshot = custom?.interfaceSnapshot;
+
+  if (!snapshot || typeof snapshot !== 'object' || Array.isArray(snapshot)) {
+    return undefined;
+  }
+
+  return snapshot as Record<string, unknown>;
+};
+
 /**
  * Write layer assets to data/layers/{layer}/{kind}/{id}/...
  * Copies source files for each entity and builds layer references.
@@ -135,11 +150,8 @@ export async function writeLayerAssets(
 
   // Process each entity's source files
   for (const entity of entities) {
-    if (!entity.sources || entity.sources.length === 0) {
-      continue;
-    }
-
-    const layerRefs: LayerRef[] = [];
+    const fullLayerRefs: LayerRef[] = [];
+    const interfaceLayerRefs: LayerRef[] = [];
 
     try {
       // Token artifact entities are grouped by package path under layers/full/tokens.
@@ -164,7 +176,7 @@ export async function writeLayerAssets(
       await ensureDir(entityLayerDir);
 
       // Copy each source file
-      for (const sourcePath of entity.sources) {
+      for (const sourcePath of entity.sources ?? []) {
         const fullSourcePath = join(repoRoot, sourcePath);
         const destPath = isGroupedTokenEntity
           ? join(
@@ -201,7 +213,7 @@ export async function writeLayerAssets(
 
           const relativeLayerPath = relative(outputDir, destPath);
 
-          layerRefs.push({
+          fullLayerRefs.push({
             layer: 'full',
             path: relativeLayerPath,
           });
@@ -220,7 +232,7 @@ export async function writeLayerAssets(
         try {
           await mkdir(join(entityLayerDir, 'react'), { recursive: true });
           await writeFile(destPath, snippet.text, 'utf8');
-          layerRefs.push({
+          fullLayerRefs.push({
             layer: 'full',
             path: relative(outputDir, destPath),
           });
@@ -232,9 +244,23 @@ export async function writeLayerAssets(
         }
       }
 
-      if (layerRefs.length > 0) {
+      // Write canonical component interface snapshot JSON.
+      const interfaceSnapshot = getComponentInterfaceSnapshot(entity);
+      if (interfaceSnapshot) {
+        const interfacePath = join(layersDir, 'interface', entity.kind, `${entity.id}.json`);
+        await ensureDir(dirname(interfacePath));
+        await writeFile(interfacePath, `${JSON.stringify(interfaceSnapshot, null, 2)}\n`, 'utf8');
+        interfaceLayerRefs.push({
+          layer: 'interface',
+          path: relative(outputDir, interfacePath),
+        });
+        ctx.logger?.debug(`Wrote interface snapshot: ${relative(outputDir, interfacePath)}`);
+      }
+
+      if (fullLayerRefs.length > 0 || interfaceLayerRefs.length > 0) {
         layersByEntity[entity.id] = {
-          full: layerRefs,
+          ...(fullLayerRefs.length > 0 ? { full: fullLayerRefs } : {}),
+          ...(interfaceLayerRefs.length > 0 ? { interface: interfaceLayerRefs } : {}),
         };
       }
     } catch (cause) {

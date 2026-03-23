@@ -78,6 +78,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-popup/react/SynPopupJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-popup.json"
+      }
     ]
   },
   "name": "Popup",

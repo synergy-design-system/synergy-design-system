@@ -85,6 +85,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-option/react/SynOptionJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-option.json"
+      }
     ]
   },
   "name": "Option",

@@ -1,0 +1,188 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Indicates whether or not the side-nav is open.\nYou can toggle this attribute to show and hide the side-nav, or you can use the `show()` and\n`hide()` methods and this attribute will reflect the side-nav's open state.\n\nDepending on the \"variant\" attribute, the behavior will differ.\n\n__Default__:\nWith `open` will show the side-nav with an overlay.\nWithout `open`, the side-nav will be hidden.\n\n__Rail__:\nWith `open` will show the whole side-nav with an overlay for touch devices\nor without an overlay for non-touch devices.\nWithout `open`, the side-nav will only show the prefix of nav-item's.\n\n__Sticky__:\nWith `open` will show the whole side-nav with an overlay for touch devices\nor without an overlay for non-touch devices.\nWithout `open`, the side-nav will only show the prefix of nav-item's.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'default'",
+      "description": "The variant that should be used to show the side navigation.\n\nThe following variants are supported:\n- **default** (default): Always shows the whole content and additionally an overlay.\nThis makes especially sense for applications, where you navigate to a place and stay\nthere for a longer time.\n- **rail**: Only show the prefix of navigation items in closed state.\nThis will open on hover on the rail navigation.\nOn touch devices the navigation opens on click and shows an overlay.\nNote: The rail variant is only an option if all Navigation Items on the first level\nhave an Icon.\nIf this is not the case you should use a burger navigation.\n- **sticky**: The side-nav has a pin button to show the side-nav in small (icon only)\nand full width. This variant is only possible for non-nested navigation items.\nNote: The sticky variant is only an option if all Navigation Items on the first level\nhave an Icon and if there are only \"first level\" items.",
+      "fieldName": "variant",
+      "name": "variant",
+      "reflects": true,
+      "type": "'default' | 'rail' | 'sticky'"
+    },
+    {
+      "default": "false",
+      "description": "By default, the side-nav traps the focus if in variant=\"default\" and open.\nTo disable the focus trapping, set this attribute.",
+      "fieldName": "noFocusTrapping",
+      "name": "no-focus-trapping",
+      "reflects": true,
+      "type": "boolean"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The components base wrapper",
+      "name": "base"
+    },
+    {
+      "description": "The drawer that is used under the hood for creating the side-nav",
+      "name": "drawer"
+    },
+    {
+      "description": "The components main content container",
+      "name": "content-container"
+    },
+    {
+      "description": "The components main content",
+      "name": "content"
+    },
+    {
+      "description": "The components footer content container (where the footer slot content is rendered)",
+      "name": "footer-container"
+    },
+    {
+      "description": "The components footer divider",
+      "name": "footer-divider"
+    },
+    {
+      "description": "The components footer content",
+      "name": "footer"
+    },
+    {
+      "description": "The overlay that covers the screen behind the side-nav.",
+      "name": "overlay"
+    },
+    {
+      "description": "The side-nav's panel (where the whole content is rendered).",
+      "name": "panel"
+    },
+    {
+      "description": "The side-nav's body (where the default slot content is rendered)",
+      "name": "body"
+    },
+    {
+      "description": "The drawer's base wrapper",
+      "name": "drawer__base"
+    },
+    {
+      "description": "The nav-item to toggle open state for variant=\"sticky\"",
+      "name": "toggle-nav-item"
+    },
+    {
+      "description": "The icon of the toggle nav-item for variant=\"sticky\"",
+      "name": "toggle-icon"
+    },
+    {
+      "description": "The label of the toggle nav-item for variant=\"sticky\".",
+      "name": "toggle-label"
+    }
+  ],
+  "dependencies": [
+    "syn-divider",
+    "syn-drawer",
+    "syn-icon",
+    "syn-nav-item"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs",
+  "events": [
+    {
+      "description": "Emitted when the side-nav opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
+    },
+    {
+      "description": "Emitted after the side-nav opens and all animations are complete.",
+      "name": "syn-after-show",
+      "type": "SynAfterShowEvent"
+    },
+    {
+      "description": "Emitted when the side-nav closes.",
+      "name": "syn-hide",
+      "type": "SynHideEvent"
+    },
+    {
+      "description": "Emitted after the side-nav closes and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "",
+      "name": "handleVariantChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleOpenChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleFocusTrapping",
+      "parameters": []
+    },
+    {
+      "description": "Shows the side-nav.",
+      "name": "show",
+      "parameters": []
+    },
+    {
+      "description": "Hides the side-nav",
+      "name": "hide",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not the side-nav is open.\nYou can toggle this attribute to show and hide the side-nav, or you can use the `show()` and\n`hide()` methods and this attribute will reflect the side-nav's open state.\n\nDepending on the \"variant\" attribute, the behavior will differ.\n\n__Default__:\nWith `open` will show the side-nav with an overlay.\nWithout `open`, the side-nav will be hidden.\n\n__Rail__:\nWith `open` will show the whole side-nav with an overlay for touch devices\nor without an overlay for non-touch devices.\nWithout `open`, the side-nav will only show the prefix of nav-item's.\n\n__Sticky__:\nWith `open` will show the whole side-nav with an overlay for touch devices\nor without an overlay for non-touch devices.\nWithout `open`, the side-nav will only show the prefix of nav-item's.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'default'",
+      "description": "The variant that should be used to show the side navigation.\n\nThe following variants are supported:\n- **default** (default): Always shows the whole content and additionally an overlay.\nThis makes especially sense for applications, where you navigate to a place and stay\nthere for a longer time.\n- **rail**: Only show the prefix of navigation items in closed state.\nThis will open on hover on the rail navigation.\nOn touch devices the navigation opens on click and shows an overlay.\nNote: The rail variant is only an option if all Navigation Items on the first level\nhave an Icon.\nIf this is not the case you should use a burger navigation.\n- **sticky**: The side-nav has a pin button to show the side-nav in small (icon only)\nand full width. This variant is only possible for non-nested navigation items.\nNote: The sticky variant is only an option if all Navigation Items on the first level\nhave an Icon and if there are only \"first level\" items.",
+      "name": "variant",
+      "type": "'default' | 'rail' | 'sticky'"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "By default, the side-nav traps the focus if in variant=\"default\" and open.\nTo disable the focus trapping, set this attribute.",
+      "name": "noFocusTrapping",
+      "type": "boolean"
+    }
+  ],
+  "since": "1.14.0",
+  "slots": [
+    {
+      "description": "The main content of the side-nav. Used for <syn-nav-item /> elements.",
+      "name": ""
+    },
+    {
+      "description": "The footer content of the side-nav. Used for <syn-nav-item /> elements. Please avoid having to many nav-items as it can massively influence the user experience.",
+      "name": "footer"
+    },
+    {
+      "description": "The label of the toggle nav-item for variant=\"sticky\".",
+      "name": "toggle-label"
+    },
+    {
+      "description": "An icon to use in lieu of the default icon for the toggle nav-item for variant=\"sticky\".",
+      "name": "toggle-icon"
+    }
+  ],
+  "sourceModulePath": "components/side-nav/side-nav.js",
+  "status": "stable",
+  "summary": "The <syn-side-nav /> element contains secondary navigation and fits below the header.\nIt can be used to group multiple navigation items (<syn-nav-item />s) together.",
+  "tagName": "syn-side-nav"
+}

@@ -94,6 +94,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-textarea/react/SynTextareaJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-textarea.json"
+      }
     ]
   },
   "name": "Textarea",

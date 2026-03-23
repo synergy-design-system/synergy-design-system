@@ -1,0 +1,233 @@
+{
+  "attributes": [
+    {
+      "default": "'top'",
+      "description": "The placement of the tabs.",
+      "fieldName": "placement",
+      "name": "placement",
+      "reflects": false,
+      "type": "'top' | 'start' | 'end'"
+    },
+    {
+      "default": "'auto'",
+      "description": "When set to auto, navigating tabs with the arrow keys will instantly show the corresponding tab panel. When set to\nmanual, the tab will receive focus but will not show until the user presses spacebar or enter.",
+      "fieldName": "activation",
+      "name": "activation",
+      "reflects": false,
+      "type": "'auto' | 'manual'"
+    },
+    {
+      "default": "false",
+      "description": "Disables the scroll arrows that appear when tabs overflow.",
+      "fieldName": "noScrollControls",
+      "name": "no-scroll-controls",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Draws the tab group as a contained element.",
+      "fieldName": "contained",
+      "name": "contained",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Draws the tab group with edges instead of roundings. Takes only effect if used with the 'contained' property",
+      "fieldName": "sharp",
+      "name": "sharp",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Prevent scroll buttons from being hidden when inactive.",
+      "fieldName": "fixedScrollControls",
+      "name": "fixed-scroll-controls",
+      "reflects": false,
+      "type": "boolean"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The tab group's navigation container where tabs are slotted in.",
+      "name": "nav"
+    },
+    {
+      "description": "The container that wraps the tabs.",
+      "name": "tabs"
+    },
+    {
+      "description": "The line that highlights the currently selected tab.",
+      "name": "active-tab-indicator"
+    },
+    {
+      "description": "The tab group's body where tab panels are slotted in.",
+      "name": "body"
+    },
+    {
+      "description": "The previous/next scroll buttons that show when tabs are scrollable, an `<syn-icon-button>`.",
+      "name": "scroll-button"
+    },
+    {
+      "description": "The starting scroll button.",
+      "name": "scroll-button--start"
+    },
+    {
+      "description": "The ending scroll button.",
+      "name": "scroll-button--end"
+    },
+    {
+      "description": "The scroll button's exported `base` part.",
+      "name": "scroll-button__base"
+    }
+  ],
+  "dependencies": [
+    "syn-icon-button"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab-group--docs",
+  "events": [
+    {
+      "description": "Emitted when a tab is shown. The payload of the event returns the \"panel\" attribute of the shown tab.",
+      "name": "syn-tab-show",
+      "type": "SynTabShowEvent"
+    },
+    {
+      "description": "Emitted when a tab is hidden. The payload of the event returns the \"panel\" attribute of the hidden tab.",
+      "name": "syn-tab-hide",
+      "type": "SynTabHideEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "",
+      "name": "updateScrollControls",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "syncIndicator",
+      "parameters": []
+    },
+    {
+      "description": "Shows the specified tab panel.",
+      "name": "show",
+      "parameters": [
+        {
+          "name": "panel",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "name": "preventFocus",
+      "parameters": [
+        {
+          "name": "e",
+          "type": "MouseEvent"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "tabs",
+      "type": "SynTab[]"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "panels",
+      "type": "SynTabPanel[]"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "tabGroup",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "body",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "nav",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "indicator",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "default": "'top'",
+      "description": "The placement of the tabs.",
+      "name": "placement",
+      "type": "'top' | 'start' | 'end'"
+    },
+    {
+      "access": "public",
+      "default": "'auto'",
+      "description": "When set to auto, navigating tabs with the arrow keys will instantly show the corresponding tab panel. When set to\nmanual, the tab will receive focus but will not show until the user presses spacebar or enter.",
+      "name": "activation",
+      "type": "'auto' | 'manual'"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the scroll arrows that appear when tabs overflow.",
+      "name": "noScrollControls",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the tab group as a contained element.",
+      "name": "contained",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the tab group with edges instead of roundings. Takes only effect if used with the 'contained' property",
+      "name": "sharp",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Prevent scroll buttons from being hidden when inactive.",
+      "name": "fixedScrollControls",
+      "type": "boolean"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "Used for grouping tab panels in the tab group. Must be `<syn-tab-panel>` elements.",
+      "name": ""
+    },
+    {
+      "description": "Used for grouping tabs in the tab group. Must be `<syn-tab>` elements.",
+      "name": "nav"
+    }
+  ],
+  "sourceModulePath": "components/tab-group/tab-group.js",
+  "status": "stable",
+  "summary": "Tab groups organize content into a container that shows one section at a time.",
+  "tagName": "syn-tab-group"
+}

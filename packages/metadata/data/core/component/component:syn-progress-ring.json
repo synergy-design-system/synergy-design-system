@@ -77,6 +77,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-progress-ring/react/SynProgressRingJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-progress-ring.json"
+      }
     ]
   },
   "name": "Progress Ring",

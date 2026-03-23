@@ -122,6 +122,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-select/react/SynSelectJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-select.json"
+      }
     ]
   },
   "name": "Select",

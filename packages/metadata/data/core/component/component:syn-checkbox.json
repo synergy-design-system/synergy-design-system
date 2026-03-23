@@ -94,6 +94,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-checkbox/react/SynCheckboxJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-checkbox.json"
+      }
     ]
   },
   "name": "Checkbox",

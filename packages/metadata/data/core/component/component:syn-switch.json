@@ -94,6 +94,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-switch/react/SynSwitchJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-switch.json"
+      }
     ]
   },
   "name": "Switch",

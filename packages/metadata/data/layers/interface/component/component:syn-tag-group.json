@@ -1,0 +1,97 @@
+{
+  "attributes": [
+    {
+      "default": "''",
+      "description": "The tag group's label. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'top'",
+      "description": "Controls the label position. Use 'top' to place the label above the tags, or 'start' to place it to the begin of the tag group.",
+      "fieldName": "labelPosition",
+      "name": "label-position",
+      "reflects": true,
+      "type": "'top' | 'start'"
+    },
+    {
+      "default": "'medium'",
+      "description": "The size that should be applied to all slotted `<syn-tag>` elements",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The tag group's label.",
+      "name": "tag-label"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs",
+  "events": [],
+  "methods": [
+    {
+      "description": "",
+      "name": "handleSizeChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleSlotChange",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "tagsInDefaultSlot",
+      "type": "SynTag[]"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The tag group's label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'top'",
+      "description": "Controls the label position. Use 'top' to place the label above the tags, or 'start' to place it to the begin of the tag group.",
+      "name": "labelPosition",
+      "type": "'top' | 'start'"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The size that should be applied to all slotted `<syn-tag>` elements",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    }
+  ],
+  "since": "unknown",
+  "slots": [
+    {
+      "description": "The tag group's main content. Must be `<syn-tag />` elements.",
+      "name": ""
+    },
+    {
+      "description": "The tag group's label. Alternatively, you can use the `label` attribute.",
+      "name": "label"
+    }
+  ],
+  "sourceModulePath": "components/tag-group/tag-group.js",
+  "status": "stable",
+  "summary": "A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels.\nIt arranges tags in flexible rows and supports different sizes and layouts.\nTags can be removable, icon‑based, or purely textual.",
+  "tagName": "syn-tag-group"
+}

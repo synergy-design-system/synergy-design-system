@@ -102,6 +102,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-dialog/react/SynDialogJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-dialog.json"
+      }
     ]
   },
   "name": "Dialog",

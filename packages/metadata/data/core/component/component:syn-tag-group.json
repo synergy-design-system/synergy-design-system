@@ -72,6 +72,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-tag-group/react/SynTagGroupJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tag-group.json"
+      }
     ]
   },
   "name": "Tag Group",

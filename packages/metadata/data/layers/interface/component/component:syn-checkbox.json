@@ -1,0 +1,329 @@
+{
+  "attributes": [
+    {
+      "default": "''",
+      "description": "",
+      "fieldName": "title",
+      "name": "title",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The name of the checkbox, submitted as a name/value pair with form data.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "description": "The current value of the checkbox, submitted as a name/value pair with form data.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'medium'",
+      "description": "The checkbox's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "default": "false",
+      "description": "Disables the checkbox.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Sets the checkbox to a readonly state.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Draws the checkbox in a checked state.",
+      "fieldName": "checked",
+      "name": "checked",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Draws the checkbox in an indeterminate state. This is usually applied to checkboxes that represents a \"select\nall/none\" behavior when associated checkboxes have a mix of checked and unchecked states.",
+      "fieldName": "indeterminate",
+      "name": "indeterminate",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "fieldName": "form",
+      "name": "form",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Makes the checkbox a required field.",
+      "fieldName": "required",
+      "name": "required",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The checkbox's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "fieldName": "helpText",
+      "name": "help-text",
+      "reflects": false,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The square container that wraps the checkbox's checked state.",
+      "name": "control"
+    },
+    {
+      "description": "Matches the control part when the checkbox is checked.",
+      "name": "control--checked"
+    },
+    {
+      "description": "Matches the control part when the checkbox is indeterminate.",
+      "name": "control--indeterminate"
+    },
+    {
+      "description": "The checked icon, an `<syn-icon>` element.",
+      "name": "checked-icon"
+    },
+    {
+      "description": "The indeterminate icon, an `<syn-icon>` element.",
+      "name": "indeterminate-icon"
+    },
+    {
+      "description": "The container that wraps the checkbox's label.",
+      "name": "label"
+    },
+    {
+      "description": "The help text's wrapper.",
+      "name": "form-control-help-text"
+    }
+  ],
+  "dependencies": [
+    "syn-icon"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs",
+  "events": [
+    {
+      "description": "Emitted when the checkbox loses focus.",
+      "name": "syn-blur",
+      "type": "SynBlurEvent"
+    },
+    {
+      "description": "Emitted when the checked state changes.",
+      "name": "syn-change",
+      "type": "SynChangeEvent"
+    },
+    {
+      "description": "Emitted when the checkbox gains focus.",
+      "name": "syn-focus",
+      "type": "SynFocusEvent"
+    },
+    {
+      "description": "Emitted when the checkbox receives input.",
+      "name": "syn-input",
+      "type": "SynInputEvent"
+    },
+    {
+      "description": "Emitted when the form control has been checked for validity and its constraints aren't satisfied.",
+      "name": "syn-invalid",
+      "type": "SynInvalidEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleStateChange",
+      "parameters": []
+    },
+    {
+      "description": "Simulates a click on the checkbox.",
+      "name": "click",
+      "parameters": []
+    },
+    {
+      "description": "Sets focus on the checkbox.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    },
+    {
+      "description": "Removes focus from the checkbox.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
+      "name": "checkValidity",
+      "parameters": []
+    },
+    {
+      "description": "Gets the associated form, if one exists.",
+      "name": "getForm",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
+      "name": "reportValidity",
+      "parameters": []
+    },
+    {
+      "description": "Sets a custom validation message. The value provided will be shown to the user when the form is submitted. To clear\nthe custom validation message, call this method with an empty string.",
+      "name": "setCustomValidity",
+      "parameters": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "input",
+      "type": "HTMLInputElement"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the checkbox, submitted as a name/value pair with form data.",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "The current value of the checkbox, submitted as a name/value pair with form data.",
+      "name": "value",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The checkbox's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the checkbox.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Sets the checkbox to a readonly state.",
+      "name": "readonly",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the checkbox in a checked state.",
+      "name": "checked",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the checkbox in an indeterminate state. This is usually applied to checkboxes that represents a \"select\nall/none\" behavior when associated checkboxes have a mix of checked and unchecked states.",
+      "name": "indeterminate",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "The default value of the form control. Primarily used for resetting the form control.",
+      "name": "defaultChecked",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "name": "form",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Makes the checkbox a required field.",
+      "name": "required",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The checkbox's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "name": "helpText",
+      "type": "string"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validity state object",
+      "name": "validity"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validation message",
+      "name": "validationMessage"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The checkbox's label.",
+      "name": ""
+    },
+    {
+      "description": "Text that describes how to use the checkbox. Alternatively, you can use the `help-text` attribute.",
+      "name": "help-text"
+    }
+  ],
+  "sourceModulePath": "components/checkbox/checkbox.js",
+  "status": "stable",
+  "summary": "Checkboxes allow the user to toggle an option on or off.",
+  "tagName": "syn-checkbox"
+}

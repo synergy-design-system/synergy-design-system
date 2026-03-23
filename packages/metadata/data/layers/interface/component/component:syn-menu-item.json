@@ -1,0 +1,184 @@
+{
+  "attributes": [
+    {
+      "default": "'normal'",
+      "description": "The type of menu item to render. To use `checked`, this value must be set to `checkbox`.",
+      "fieldName": "type",
+      "name": "type",
+      "reflects": false,
+      "type": "'normal' | 'checkbox'"
+    },
+    {
+      "default": "false",
+      "description": "Draws the item in a checked state.",
+      "fieldName": "checked",
+      "name": "checked",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "A unique value to store in the menu item. This can be used as a way to identify menu items when selected.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Draws the menu item in a loading state.",
+      "fieldName": "loading",
+      "name": "loading",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Draws the menu item in a disabled state, preventing selection.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The checked icon, which is only visible when the menu item is checked.",
+      "name": "checked-icon"
+    },
+    {
+      "description": "The prefix container.",
+      "name": "prefix"
+    },
+    {
+      "description": "The menu item label.",
+      "name": "label"
+    },
+    {
+      "description": "The suffix container.",
+      "name": "suffix"
+    },
+    {
+      "description": "The spinner that shows when the menu item is in the loading state.",
+      "name": "spinner"
+    },
+    {
+      "description": "The spinner's base part.",
+      "name": "spinner__base"
+    },
+    {
+      "description": "The submenu icon, visible only when the menu item has a submenu (not yet implemented).",
+      "name": "submenu-icon"
+    }
+  ],
+  "dependencies": [
+    "syn-icon",
+    "syn-popup",
+    "syn-spinner"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs",
+  "events": [],
+  "methods": [
+    {
+      "description": "",
+      "name": "handleCheckedChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleTypeChange",
+      "parameters": []
+    },
+    {
+      "description": "Returns a text label based on the contents of the menu item's default slot.",
+      "name": "getTextLabel",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "isSubmenu",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "menuItem",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "default": "'normal'",
+      "description": "The type of menu item to render. To use `checked`, this value must be set to `checkbox`.",
+      "name": "type",
+      "type": "'normal' | 'checkbox'"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the item in a checked state.",
+      "name": "checked",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "A unique value to store in the menu item. This can be used as a way to identify menu items when selected.",
+      "name": "value",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the menu item in a loading state.",
+      "name": "loading",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the menu item in a disabled state, preventing selection.",
+      "name": "disabled",
+      "type": "boolean"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The menu item's label.",
+      "name": ""
+    },
+    {
+      "description": "Used to prepend an icon or similar element to the menu item.",
+      "name": "prefix"
+    },
+    {
+      "description": "Used to append an icon or similar element to the menu item.",
+      "name": "suffix"
+    },
+    {
+      "description": "Used to denote a nested menu.",
+      "name": "submenu"
+    }
+  ],
+  "sourceModulePath": "components/menu-item/menu-item.js",
+  "status": "stable",
+  "summary": "Menu items provide options for the user to pick from in a menu.",
+  "tagName": "syn-menu-item"
+}

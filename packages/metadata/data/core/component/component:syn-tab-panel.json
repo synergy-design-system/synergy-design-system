@@ -77,6 +77,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-tab-panel/react/SynTabPanelJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tab-panel.json"
+      }
     ]
   },
   "name": "Tab Panel",

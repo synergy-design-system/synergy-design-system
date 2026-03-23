@@ -1,0 +1,201 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Indicates whether or not the details is open. You can toggle this attribute to show and hide the details, or you\ncan use the `show()` and `hide()` methods and this attribute will reflect the details' open state.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "description": "The summary to show in the header. If you need to display HTML, use the `summary` slot instead.",
+      "fieldName": "summary",
+      "name": "summary",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Disables the details so it can't be toggled.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Draws the details as contained element.",
+      "fieldName": "contained",
+      "name": "contained",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The details's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The header that wraps both the summary and the expand/collapse icon.",
+      "name": "header"
+    },
+    {
+      "description": "The container that wraps the summary.",
+      "name": "summary"
+    },
+    {
+      "description": "The container that wraps the expand/collapse icons.",
+      "name": "summary-icon"
+    },
+    {
+      "description": "The details content.",
+      "name": "content"
+    },
+    {
+      "description": "The container that wraps the details content.",
+      "name": "body"
+    }
+  ],
+  "dependencies": [
+    "syn-icon"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs",
+  "events": [
+    {
+      "description": "Emitted when the details opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
+    },
+    {
+      "description": "Emitted after the details opens and all animations are complete.",
+      "name": "syn-after-show",
+      "type": "SynAfterShowEvent"
+    },
+    {
+      "description": "Emitted when the details closes.",
+      "name": "syn-hide",
+      "type": "SynHideEvent"
+    },
+    {
+      "description": "Emitted after the details closes and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "",
+      "name": "handleOpenChange",
+      "parameters": []
+    },
+    {
+      "description": "Shows the details.",
+      "name": "show",
+      "parameters": []
+    },
+    {
+      "description": "Hides the details",
+      "name": "hide",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "details",
+      "type": "HTMLDetailsElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "header",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "body",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "expandIconSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "detailsObserver",
+      "type": "MutationObserver"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not the details is open. You can toggle this attribute to show and hide the details, or you\ncan use the `show()` and `hide()` methods and this attribute will reflect the details' open state.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "The summary to show in the header. If you need to display HTML, use the `summary` slot instead.",
+      "name": "summary",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the details so it can't be toggled.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the details as contained element.",
+      "name": "contained",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The details's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The details' main content.",
+      "name": ""
+    },
+    {
+      "description": "The details' summary. Alternatively, you can use the `summary` attribute.",
+      "name": "summary"
+    },
+    {
+      "description": "Optional expand icon to use instead of the default. Works best with `<syn-icon>`.",
+      "name": "expand-icon"
+    },
+    {
+      "description": "Optional collapse icon to use instead of the default. Works best with `<syn-icon>`.",
+      "name": "collapse-icon"
+    }
+  ],
+  "sourceModulePath": "components/details/details.js",
+  "status": "stable",
+  "summary": "Details show a brief summary and expand to show additional content.",
+  "tagName": "syn-details"
+}

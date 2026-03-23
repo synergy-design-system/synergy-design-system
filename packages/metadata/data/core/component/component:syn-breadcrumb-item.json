@@ -77,6 +77,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-breadcrumb-item/react/SynBreadcrumbItemJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-breadcrumb-item.json"
+      }
     ]
   },
   "name": "Breadcrumb Item",

@@ -101,6 +101,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-range/react/SynRangeJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-range.json"
+      }
     ]
   },
   "name": "Range",

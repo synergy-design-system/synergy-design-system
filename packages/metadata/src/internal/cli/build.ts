@@ -168,14 +168,20 @@ async function main() {
       };
     });
 
-    // Keep raw JSX type text only for generated layer files; do not persist it in core JSON.
+    // Keep generated-only data in layers; do not persist it in core JSON.
     const entitiesForWrite: CoreEntity[] = entitiesWithLayers.map((entity) => {
-      const frameworks = (entity.custom as Record<string, unknown> | undefined)?.frameworks as Record<string, unknown> | undefined;
+      const custom = (entity.custom as Record<string, unknown> | undefined) ?? {};
+      const frameworks = custom.frameworks as Record<string, unknown> | undefined;
       const react = frameworks?.react as Record<string, unknown> | undefined;
       const jsx = react?.jsx as Record<string, unknown> | undefined;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { interfaceSnapshot: _interfaceSnapshot, ...customWithoutInterfaceSnapshot } = custom;
 
       if (!jsx) {
-        return entity;
+        return {
+          ...entity,
+          custom: customWithoutInterfaceSnapshot,
+        };
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -184,7 +190,7 @@ async function main() {
       return {
         ...entity,
         custom: {
-          ...entity.custom,
+          ...customWithoutInterfaceSnapshot,
           frameworks: {
             ...frameworks,
             react: {

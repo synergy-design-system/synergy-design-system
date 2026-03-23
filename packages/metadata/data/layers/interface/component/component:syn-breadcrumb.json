@@ -1,0 +1,60 @@
+{
+  "attributes": [
+    {
+      "default": "''",
+      "description": "The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by\nscreen readers and other assistive devices to provide more context for users.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    }
+  ],
+  "dependencies": [
+    "syn-icon"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb--docs",
+  "events": [],
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "separatorSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by\nscreen readers and other assistive devices to provide more context for users.",
+      "name": "label",
+      "type": "string"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "One or more breadcrumb items to display.",
+      "name": ""
+    },
+    {
+      "description": "The separator to use between breadcrumb items. Works best with `<syn-icon>`.",
+      "name": "separator"
+    }
+  ],
+  "sourceModulePath": "components/breadcrumb/breadcrumb.js",
+  "status": "stable",
+  "summary": "Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.",
+  "tagName": "syn-breadcrumb"
+}

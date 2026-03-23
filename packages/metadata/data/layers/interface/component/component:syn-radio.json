@@ -1,0 +1,139 @@
+{
+  "attributes": [
+    {
+      "description": "The radio's value. When selected, the radio group will receive this value.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string | number"
+    },
+    {
+      "default": "'medium'",
+      "description": "The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this\nattribute can typically be omitted.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "default": "false",
+      "description": "Disables the radio.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Sets the radio to a readonly state.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The circular container that wraps the radio's checked state.",
+      "name": "control"
+    },
+    {
+      "description": "The radio control when the radio is checked.",
+      "name": "control--checked"
+    },
+    {
+      "description": "The checked icon, an `<syn-icon>` element.",
+      "name": "checked-icon"
+    },
+    {
+      "description": "The container that wraps the radio's label.",
+      "name": "label"
+    }
+  ],
+  "dependencies": [
+    "syn-icon"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs",
+  "events": [
+    {
+      "description": "Emitted when the control loses focus.",
+      "name": "syn-blur",
+      "type": "SynBlurEvent"
+    },
+    {
+      "description": "Emitted when the control gains focus.",
+      "name": "syn-focus",
+      "type": "SynFocusEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "",
+      "name": "handleCheckedChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "",
+      "name": "checked",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "",
+      "name": "hasFocus",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "The radio's value. When selected, the radio group will receive this value.",
+      "name": "value",
+      "type": "string | number"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this\nattribute can typically be omitted.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the radio.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Sets the radio to a readonly state.",
+      "name": "readonly",
+      "type": "boolean"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The radio's label.",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/radio/radio.js",
+  "status": "stable",
+  "summary": "Radios allow the user to select a single option from a group.",
+  "tagName": "syn-radio"
+}

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-23T13:19:51.266Z",
+  "builtAt": "2026-03-23T13:55:41.453Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -112,7 +112,8 @@
       "id": "component:syn-accordion",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Accordion",
       "search": [
@@ -130,7 +131,8 @@
       "id": "component:syn-alert",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Alert",
       "search": [
@@ -148,7 +150,8 @@
       "id": "component:syn-badge",
       "kind": "component",
       "layers": {
-        "full": 10
+        "full": 10,
+        "interface": 1
       },
       "name": "Badge",
       "search": [
@@ -166,7 +169,8 @@
       "id": "component:syn-breadcrumb",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Breadcrumb",
       "search": [
@@ -184,7 +188,8 @@
       "id": "component:syn-breadcrumb-item",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Breadcrumb Item",
       "search": [
@@ -202,7 +207,8 @@
       "id": "component:syn-button",
       "kind": "component",
       "layers": {
-        "full": 10
+        "full": 10,
+        "interface": 1
       },
       "name": "Button",
       "search": [
@@ -220,7 +226,8 @@
       "id": "component:syn-button-group",
       "kind": "component",
       "layers": {
-        "full": 10
+        "full": 10,
+        "interface": 1
       },
       "name": "Button Group",
       "search": [
@@ -238,7 +245,8 @@
       "id": "component:syn-card",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Card",
       "search": [
@@ -256,7 +264,8 @@
       "id": "component:syn-checkbox",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Checkbox",
       "search": [
@@ -274,7 +283,8 @@
       "id": "component:syn-combobox",
       "kind": "component",
       "layers": {
-        "full": 11
+        "full": 11,
+        "interface": 1
       },
       "name": "Combobox",
       "search": [
@@ -292,7 +302,8 @@
       "id": "component:syn-details",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Details",
       "search": [
@@ -310,7 +321,8 @@
       "id": "component:syn-dialog",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Dialog",
       "search": [
@@ -328,7 +340,8 @@
       "id": "component:syn-divider",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Divider",
       "search": [
@@ -346,7 +359,8 @@
       "id": "component:syn-drawer",
       "kind": "component",
       "layers": {
-        "full": 10
+        "full": 10,
+        "interface": 1
       },
       "name": "Drawer",
       "search": [
@@ -364,7 +378,8 @@
       "id": "component:syn-dropdown",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Dropdown",
       "search": [
@@ -382,7 +397,8 @@
       "id": "component:syn-file",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "File",
       "search": [
@@ -400,7 +416,8 @@
       "id": "component:syn-header",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Header",
       "search": [
@@ -418,7 +435,8 @@
       "id": "component:syn-icon",
       "kind": "component",
       "layers": {
-        "full": 16
+        "full": 16,
+        "interface": 1
       },
       "name": "Icon",
       "search": [
@@ -436,7 +454,8 @@
       "id": "component:syn-icon-button",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Icon Button",
       "search": [
@@ -454,7 +473,8 @@
       "id": "component:syn-input",
       "kind": "component",
       "layers": {
-        "full": 12
+        "full": 12,
+        "interface": 1
       },
       "name": "Input",
       "search": [
@@ -472,7 +492,8 @@
       "id": "component:syn-menu",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Menu",
       "search": [
@@ -490,7 +511,8 @@
       "id": "component:syn-menu-item",
       "kind": "component",
       "layers": {
-        "full": 10
+        "full": 10,
+        "interface": 1
       },
       "name": "Menu Item",
       "search": [
@@ -508,7 +530,8 @@
       "id": "component:syn-menu-label",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Menu Label",
       "search": [
@@ -526,7 +549,8 @@
       "id": "component:syn-nav-item",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Nav Item",
       "search": [
@@ -544,7 +568,8 @@
       "id": "component:syn-optgroup",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Optgroup",
       "search": [
@@ -562,7 +587,8 @@
       "id": "component:syn-option",
       "kind": "component",
       "layers": {
-        "full": 11
+        "full": 11,
+        "interface": 1
       },
       "name": "Option",
       "search": [
@@ -580,7 +606,8 @@
       "id": "component:syn-popup",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Popup",
       "search": [
@@ -598,7 +625,8 @@
       "id": "component:syn-prio-nav",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Prio Nav",
       "search": [
@@ -616,7 +644,8 @@
       "id": "component:syn-progress-bar",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Progress Bar",
       "search": [
@@ -634,7 +663,8 @@
       "id": "component:syn-progress-ring",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Progress Ring",
       "search": [
@@ -652,7 +682,8 @@
       "id": "component:syn-radio",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Radio",
       "search": [
@@ -670,7 +701,8 @@
       "id": "component:syn-radio-button",
       "kind": "component",
       "layers": {
-        "full": 7
+        "full": 7,
+        "interface": 1
       },
       "name": "Radio Button",
       "search": [
@@ -688,7 +720,8 @@
       "id": "component:syn-radio-group",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Radio Group",
       "search": [
@@ -706,7 +739,8 @@
       "id": "component:syn-range",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Range",
       "search": [
@@ -724,7 +758,8 @@
       "id": "component:syn-range-tick",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Range Tick",
       "search": [
@@ -742,7 +777,8 @@
       "id": "component:syn-resize-observer",
       "kind": "component",
       "layers": {
-        "full": 2
+        "full": 2,
+        "interface": 1
       },
       "name": "Resize Observer",
       "search": [
@@ -757,7 +793,8 @@
       "id": "component:syn-select",
       "kind": "component",
       "layers": {
-        "full": 10
+        "full": 10,
+        "interface": 1
       },
       "name": "Select",
       "search": [
@@ -775,7 +812,8 @@
       "id": "component:syn-side-nav",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Side Nav",
       "search": [
@@ -793,7 +831,8 @@
       "id": "component:syn-spinner",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Spinner",
       "search": [
@@ -811,7 +850,8 @@
       "id": "component:syn-switch",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Switch",
       "search": [
@@ -829,7 +869,8 @@
       "id": "component:syn-tab",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Tab",
       "search": [
@@ -847,7 +888,8 @@
       "id": "component:syn-tab-group",
       "kind": "component",
       "layers": {
-        "full": 10
+        "full": 10,
+        "interface": 1
       },
       "name": "Tab Group",
       "search": [
@@ -865,7 +907,8 @@
       "id": "component:syn-tab-panel",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Tab Panel",
       "search": [
@@ -883,7 +926,8 @@
       "id": "component:syn-tag",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Tag",
       "search": [
@@ -901,7 +945,8 @@
       "id": "component:syn-tag-group",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Tag Group",
       "search": [
@@ -919,7 +964,8 @@
       "id": "component:syn-textarea",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Textarea",
       "search": [
@@ -937,7 +983,8 @@
       "id": "component:syn-tooltip",
       "kind": "component",
       "layers": {
-        "full": 8
+        "full": 8,
+        "interface": 1
       },
       "name": "Tooltip",
       "search": [
@@ -955,7 +1002,8 @@
       "id": "component:syn-validate",
       "kind": "component",
       "layers": {
-        "full": 9
+        "full": 9,
+        "interface": 1
       },
       "name": "Validate",
       "search": [

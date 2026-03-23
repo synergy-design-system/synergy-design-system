@@ -118,6 +118,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-input/react/SynInputJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-input.json"
+      }
     ]
   },
   "name": "Input",

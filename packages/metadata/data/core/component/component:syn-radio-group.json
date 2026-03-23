@@ -86,6 +86,12 @@
         "layer": "full",
         "path": "layers/full/component/component:syn-radio-group/react/SynRadioGroupJSXElement.ts"
       }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-radio-group.json"
+      }
     ]
   },
   "name": "Radio Group",

@@ -1,0 +1,37 @@
+{
+  "custom": {
+    "moduleName": "tables",
+    "styleName": "table"
+  },
+  "id": "style:syn-table",
+  "kind": "style",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style:syn-table.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/styles/tables/table.css"
+      }
+    ]
+  },
+  "name": "Table Styles",
+  "package": "styles",
+  "relations": [],
+  "since": "2.0.2",
+  "sources": [
+    "packages/styles/src/tables/table.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "module",
+    "style",
+    "styles",
+    "tables",
+    "table"
+  ]
+}

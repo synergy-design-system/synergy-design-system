@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-24T12:24:58.354Z",
+  "builtAt": "2026-03-24T14:37:55.461Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -1256,71 +1256,136 @@
       ]
     },
     {
-      "corePath": "data/core/style/style:styles-link.json",
-      "id": "style:styles-link",
+      "corePath": "data/core/style/style:syn-body.json",
+      "id": "style:syn-body",
       "kind": "style",
       "layers": {
+        "examples": 1,
+        "full": 1
+      },
+      "name": "Body Styles",
+      "search": [
+        "style:syn-body",
+        "Body Styles",
+        "module",
+        "style",
+        "styles",
+        "typography",
+        "body"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:syn-heading.json",
+      "id": "style:syn-heading",
+      "kind": "style",
+      "layers": {
+        "examples": 1,
+        "full": 1
+      },
+      "name": "Heading Styles",
+      "search": [
+        "style:syn-heading",
+        "Heading Styles",
+        "module",
+        "style",
+        "styles",
+        "typography",
+        "heading"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:syn-link.json",
+      "id": "style:syn-link",
+      "kind": "style",
+      "layers": {
+        "examples": 1,
         "full": 1
       },
       "name": "Link Styles",
       "search": [
-        "style:styles-link",
+        "style:syn-link",
         "Link Styles",
         "module",
         "style",
         "styles",
+        "link",
         "link"
       ]
     },
     {
-      "corePath": "data/core/style/style:styles-link-list.json",
-      "id": "style:styles-link-list",
+      "corePath": "data/core/style/style:syn-link-list.json",
+      "id": "style:syn-link-list",
       "kind": "style",
       "layers": {
+        "examples": 1,
         "full": 1
       },
       "name": "Link List Styles",
       "search": [
-        "style:styles-link-list",
+        "style:syn-link-list",
         "Link List Styles",
         "module",
         "style",
         "styles",
+        "link-list",
         "link-list"
       ]
     },
     {
-      "corePath": "data/core/style/style:styles-tables.json",
-      "id": "style:styles-tables",
+      "corePath": "data/core/style/style:syn-table.json",
+      "id": "style:syn-table",
       "kind": "style",
       "layers": {
-        "full": 2
+        "examples": 1,
+        "full": 1
       },
-      "name": "Tables Styles",
+      "name": "Table Styles",
       "search": [
-        "style:styles-tables",
-        "Tables Styles",
+        "style:syn-table",
+        "Table Styles",
         "module",
         "style",
         "styles",
-        "tables"
+        "tables",
+        "table"
       ]
     },
     {
-      "corePath": "data/core/style/style:styles-typography.json",
-      "id": "style:styles-typography",
+      "corePath": "data/core/style/style:syn-table-cell.json",
+      "id": "style:syn-table-cell",
       "kind": "style",
       "layers": {
-        "full": 3
+        "examples": 1,
+        "full": 1
       },
-      "name": "Typography Styles",
+      "name": "Table Cell Styles",
       "search": [
-        "style:styles-typography",
-        "Typography Styles",
+        "style:syn-table-cell",
+        "Table Cell Styles",
         "module",
         "style",
         "styles",
-        "typography"
+        "tables",
+        "table-cell"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:syn-weight.json",
+      "id": "style:syn-weight",
+      "kind": "style",
+      "layers": {
+        "examples": 1,
+        "full": 1
+      },
+      "name": "Weight Styles",
+      "search": [
+        "style:syn-weight",
+        "Weight Styles",
+        "module",
+        "style",
+        "styles",
+        "typography",
+        "weight"
       ]
     },
     {

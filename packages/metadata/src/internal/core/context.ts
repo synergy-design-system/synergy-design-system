@@ -52,10 +52,8 @@ export const createNoOpLogger = (): Logger => ({
  * Create a simple console logger.
  */
 export const createConsoleLogger = (prefix = 'metadata'): Logger => ({
-  /* eslint-disable no-console */
   debug: (msg, data) => console.debug(`[${prefix}] DEBUG ${msg}`, data),
   error: (msg, data) => console.error(`[${prefix}] ERR ${msg}`, data),
   info: (msg, data) => console.log(`[${prefix}] ${msg}`, data),
   warn: (msg, data) => console.warn(`[${prefix}] WARN ${msg}`, data),
-  /* eslint-enable no-console */
 });

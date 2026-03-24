@@ -4,6 +4,12 @@
 Build a standalone metadata package that replaces MCP-coupled metadata generation.
 
 ## Key Decisions
+- "Interface" in this package means the public programmatic API and data contracts (for MCP + other machine consumers), not a human web UI.
+- Primary audience is developers and AI systems. Designers are not a direct query audience for this package.
+- Primary near-term objective is parity with the current MCP tool surface (`packages/mcp/src/tools/*`) while keeping the API extensible for future consumers (external knowledge bases, HTTP-hosted MCP).
+- No static page or frontend application is in scope for now. Any browser-style UI is explicitly deferred to a later phase.
+- Access model is read-only; this package is a canonical data source, not an interactive editing system.
+- Optimization target is use-case dependent: preserve completeness of canonical data while enabling token-efficient consumption via layers/verbosity.
 - Metadata package must not depend on MCP metadata output paths.
 - Data generation follows a layered model:
   - core: canonical machine-readable metadata
@@ -229,15 +235,19 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 
 ### Styles Module Entities (Phase 2 artifact-depth, partial)
 - Styles setup metadata remains in `setup:styles-package` (docs + package metadata only).
-- Styles artifact files are now emitted as dedicated `style:*` entities, one per module folder under `packages/styles/src/`:
-  - `style:styles-link`
-  - `style:styles-link-list`
-  - `style:styles-tables`
-  - `style:styles-typography`
-- Module selection rule:
+- Styles artifact files are now emitted as dedicated `style:*` entities derived from the actual CSS source names so they align directly with Storybook/example artifact naming.
+- Current canonical examples include:
+  - `style:syn-link`
+  - `style:syn-link-list`
+  - `style:syn-table`
+  - `style:syn-table-cell`
+  - `style:syn-body`
+  - `style:syn-heading`
+  - `style:syn-weight`
+- Selection rule:
   - Ignore top-level `packages/styles/src/index.css`
-  - If a module folder has one file, include it (usually `index.css`)
-  - If a module folder has more than one file, exclude `index.css`
+  - If a module folder has one file and that file is `index.css`, use the module name as the canonical style name
+  - If a module folder has more than one file, exclude `index.css` and emit one entity per concrete CSS source file
 - Canonical styles path mapping for layers:
   - `packages/styles/src/<module>/<file>.css` -> `layers/full/styles/<module>/<file>.css`
 
@@ -307,6 +317,13 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   - `getPackageEntities(packageName)`
   - `getLayerFiles(entityId, layer)`
   - `getDataForLayer(packageName, layer)`
+- Layer-aware domain helpers now exist for the current implemented parity slice:
+  - `getComponentMetadata()`
+  - `listComponents()`
+  - `getTokens()`
+  - `getMigrations()`
+  - `getStyleMetadata()`
+  - `listStyles()`
 - The public runtime reads shipped artifacts from `data/` and does not depend on collectors/pipeline internals.
 - Package exports are intentionally restricted to the public API entrypoints and packaged data artifacts.
 
@@ -350,12 +367,13 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   - `setup:assets-package`
 - Build integration test also verifies these setup entities are discoverable through `index.json`.
 - Build integration test now verifies token artifact entity materialization and canonical full-layer mapping.
-- Build integration test now verifies styles module entity materialization (`style:styles-link`) and canonical full-layer mapping.
+- Build integration test now verifies styles entity materialization (`style:syn-link`) and canonical full-layer mapping.
 - Build integration test now verifies fonts utility artifact materialization (`utility:fonts-sick-intl`) and canonical full-layer mapping.
 - Build integration test verifies asset icon set entities (`asset:sick2018-icons`, `asset:sick2025-icons-fill`, `asset:sick2025-icons-outline`) and that their `custom.icons` dict contains valid `categories`/`tags` arrays for icon `add`.
 - Build integration test confirms per-icon entities (`asset:sick2018-icon-add` etc.) are NOT present in the index.
 - Build integration test writes to a temporary output directory instead of mutating committed `data/`.
-- 12 tests passing.
+- Public API integration coverage now includes components, tokens, migrations, and styles domain helpers, including strict-layer behavior.
+- 17 tests passing.
 - `pretest` now runs TypeScript compilation only; full metadata regeneration is explicit.
 
 ### Tooling
@@ -400,7 +418,8 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Implemented layers are `full`, `interface`, and `examples`; a separate `code` layer is currently not planned.
 - Schema lint runs via `pnpm run lint:schemas` and is transitively included in CI through the root recursive `pnpm lint` chain. A dedicated CI step calling it by name does not exist.
 - Some metadata values are still fallback/default driven (e.g. `unknown` for missing `since`).
-- Package exports expose only generic store queries. ADR-specified domain helpers not yet implemented: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
+- Implemented public domain helpers currently cover components, tokens, migrations, and styles.
+- Remaining parity helpers not yet implemented: assets, templates, frameworks, fonts, version.
 - No CI size budget guards exist yet. These are required before publishing (targets: `interface` ≤ 6 KB, `examples` ≤ 8 KB per entity). Current baseline check: `syn-checkbox` interface layer is 5,661 bytes (~5.53 KiB), but enforcement is still manual.
 - MCP has not yet been migrated to consume from this package; it still has its own builder.
 - Package not yet published to npm.
@@ -426,7 +445,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/core/setup/setup:fonts-package.json` — package-level Fonts setup metadata
 - `data/core/setup/setup:assets-package.json` — package-level Assets setup metadata
 - `data/core/token/token:tokens-*.json` — token artifact entities (figma-variables output and optional dist-backed files)
-- `data/core/style/style:styles-*.json` — styles module artifact entities (one per `packages/styles/src` module folder)
+- `data/core/style/style:syn-*.json` — styles artifact entities derived from canonical source/style names
 - `data/core/utility/utility:fonts-sick-intl.json` — fonts metadata artifact entity (`font.css` + `LICENSE`)
 - `data/core/asset/asset:sick2018-icons.json` — sick2018 icon set with embedded `custom.icons` dict
 - `data/core/asset/asset:sick2025-icons-fill.json` — sick2025 fill icon set with embedded `custom.icons` dict
@@ -460,7 +479,7 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 | Phase | Description | Status |
 |---|---|---|
 | 1 | Establish metadata package as canonical source | ✅ Architecture complete; MCP migration + npm publish pending |
-| 2 | Introduce layered metadata + verbosity controls | 🔄 In progress — `interface`/`examples` layers and schema-lint are implemented, and `syn-checkbox` interface size now meets target; remaining work is scrape-failure hardening, CI size guards, and public API helpers |
+| 2 | Introduce layered metadata + verbosity controls | 🔄 In progress — `interface`/`examples` layers and schema-lint are implemented, `syn-checkbox` interface size now meets target, and public API helpers now cover components/tokens/migrations/styles; remaining work is scrape-failure hardening, CI size guards, and the remaining parity domains |
 | 3 | Expand distribution (MCP HTTP, npm publish, llms.txt) | ❌ Not started |
 | 4 | Refine token efficiency and metadata architecture | ❌ Not started |
 | 5 | Cross-platform interoperability (Blockbrain, compatibility matrix) | ❌ Not started |
@@ -469,7 +488,7 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 
 ### Phase 2 — Concrete Actions
 1. **Fix Storybook failure path in `build.ts`:** Step 6 currently issues a `warn` and continues on scrape failure. It should abort (or offer a `--fail-on-scrape-error` flag) so `build:all` never silently produces a build with zero examples.
-2. **Expose ADR-specified layer-aware domain helpers** on the public API: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
+2. **Finish parity helpers on the public API** for the remaining MCP-style domains: assets, templates, frameworks, fonts, version.
 3. **Add broader interface/examples size validation:** `syn-checkbox` now meets budget, but CI still needs representative multi-component budget checks to prevent regressions.
 4. **Add CI size budget guards:** fail PRs where any `interface` layer file exceeds 6 KB or any `examples` layer file exceeds 8 KB.
 
@@ -479,19 +498,139 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 3. Enable MCP HTTP transport.
 4. Publish `@synergy-design-system/metadata` to npm.
 5. Create `llms.txt` in the Synergy docs domain referencing canonical layer URLs.
+6. Keep browser/static UI delivery explicitly out of scope until API parity + distribution goals are complete.
 
 ### Token Efficiency Benchmark (Phase 2 acceptance gate)
 - `syn-checkbox` `interface` layer must be ≤ 6 KB (current full MCP response ≈ 22 KB, ~77% reduction target).
 - **Current measured size: 5,661 bytes (~5.53 KiB)** — target met for `syn-checkbox`; remaining work is CI enforcement and broader component-set validation.
 
+## Public API Contract Draft (Step 1, agreed before implementation)
+
+### Scope and Ownership
+- Public methods belong in `src/public/` runtime modules, not in `src/internal/collectors/*`.
+- Collectors stay build-time/source-ingestion only; public API stays read-only/runtime-consumption only.
+- Metadata package will not include a legacy/deprecation compatibility layer for MCP.
+- MCP vNext will adapt to metadata package contracts as a thin facade.
+
+### Layer vs Verbosity (separate concepts)
+- **Layer** = what content family is returned (`interface | examples | full`).
+- **Verbosity** = how content is encoded for transport (`readable | compact | minified`).
+- Verbosity changes representation, not semantic payload.
+
+### Public Module Structure (to avoid a monolithic file)
+- Keep generic store in `src/public/store.ts` (`getEntity`, `findEntities`, `getLayerFiles`, etc.).
+- Add domain modules under `src/public/domains/`:
+  - `components.ts`
+  - `tokens.ts`
+  - `migrations.ts`
+  - `assets.ts`
+  - `styles.ts`
+  - `templates.ts`
+  - `frameworks.ts`
+  - `fonts.ts`
+  - `version.ts`
+- Add shared runtime helpers under `src/public/common/`:
+  - pagination (`limit`, `offset`)
+  - envelope/meta builders
+  - layer/verbosity resolution
+  - deterministic ordering helpers
+
+### Planned Public Methods (parity-first, future-open)
+- `getComponentMetadata(nameOrId, options?)`
+- `listComponents(options?)`
+- `getTokens(options?)`
+- `getMigrations(options?)`
+- Domain parity helpers for current MCP tool families (assets/styles/templates/framework/font/version).
+- Keep `findEntities()` and `getEntity()` as generic fallback/query primitives.
+
+### Global Request Options (draft)
+- `layer?: 'interface' | 'examples' | 'full'`
+- `verbosity?: 'readable' | 'compact' | 'minified'`
+- `strictLayer?: boolean` (default `false`)
+- `limit?: number` (max returned items)
+- `offset?: number` (items to skip in deterministic result order)
+- `includeSources?: boolean`
+- `includeLayerRefs?: boolean`
+
+### Default Layer Rules (draft)
+- Components default to `interface`.
+- Domains without meaningful non-full layers default to `full`.
+- If requested layer is unavailable and `strictLayer=false`, resolve to `full` with metadata note.
+- If requested layer is unavailable and `strictLayer=true`, return explicit layer-unavailable error.
+
+### Response Envelope (draft)
+- `meta`: schema version, generation timestamp, requested/resolved layer, requested verbosity, warnings.
+- `data`: typed domain payload.
+- `links`: optional layer refs/source refs/index refs.
+- `errors`: stable error code + message + details.
+
+### Knowledge-Base Consumption Clarification
+- "Knowledge-base consumption" means non-MCP machine ingestion (e.g. RAG/indexing/search pipelines) reading metadata package outputs/APIs directly.
+- This remains read-only and transport-agnostic.
+
+### Explicit Non-Goals (current phase)
+- No static browser UI/page delivery yet.
+- No human end-user interaction features (favorites/history/mutations).
+- No MCP compatibility/deprecation shim inside metadata package.
+
+### Implementation Checklist (Step 2, file-by-file)
+
+1. **Public type contracts** (`src/public/types.ts`)
+  - Add `LayerName` + `Verbosity` request concepts as separate types.
+  - Add shared request option types (`layer`, `verbosity`, `strictLayer`, `limit`, `offset`, `includeSources`, `includeLayerRefs`).
+  - Add response envelope contracts (`meta`, `data`, `links`, `errors`).
+  - Add stable error code union (`NOT_FOUND`, `INVALID_QUERY`, `INVALID_LAYER`, `LAYER_NOT_AVAILABLE`, `INVALID_VERBOSITY`, `DATA_NOT_READY`, `INTERNAL_ERROR`).
+
+2. **Shared runtime helpers** (`src/public/common/*`)
+  - Create pagination helper for deterministic `limit`/`offset` slicing.
+  - Create layer resolver helper implementing `strictLayer` fallback behavior.
+  - Create envelope builder helper for consistent method responses.
+  - Create stable ordering helper for deterministic list outputs.
+
+3. **Keep generic store minimal** (`src/public/store.ts`)
+  - Keep `createMetadataStore()` as the low-level primitive source.
+  - Do not add domain-specific branching into generic store internals.
+  - Reuse existing methods (`getEntity`, `findEntities`, `getLayerFiles`, `getDataForLayer`) as backend primitives.
+
+4. **Add domain modules** (`src/public/domains/*`)
+  - `components.ts`: `getComponentMetadata`, `listComponents`.
+  - `tokens.ts`: `getTokens`.
+  - `migrations.ts`: `getMigrations`.
+  - `styles.ts`: `getStyleMetadata`, `listStyles`.
+  - Add parity modules for `assets`, `templates`, `frameworks`, `fonts`, `version` as thin wrappers over store queries.
+  - Keep each module focused on one domain (no cross-domain monolith).
+
+5. **Public export surface** (`src/public/index.ts`, package exports)
+  - Export new domain methods and new public types.
+  - Keep exports explicit and stable; do not expose `src/internal/*`.
+  - Ensure package exports remain runtime-consumer focused.
+
+6. **Behavior defaults and fallbacks (all domain methods)**
+  - Components default to `layer='interface'`.
+  - Other domains default to `layer='full'` unless non-full layers are explicitly available.
+  - If requested layer missing and `strictLayer=false`, resolve to `full` and emit warning metadata.
+  - If requested layer missing and `strictLayer=true`, return `LAYER_NOT_AVAILABLE`.
+
+7. **Tests** (`test/integration/public-api*.test.mjs`)
+  - Add tests for each new public helper method.
+  - Add tests for `layer`/`verbosity` separation and fallback semantics.
+  - Add tests for deterministic pagination (`limit`/`offset`) with stable ordering.
+  - Keep backward compatibility coverage for existing generic store methods.
+
+8. **Documentation updates** (`CONTEXT.md`, later `README.md`)
+  - Keep this section as the implementation tracker for API rollout.
+  - After implementation, promote the finalized method signatures to package README/API docs.
+  - Keep MCP migration concerns out of metadata implementation details (handled in MCP vNext).
+
 ## Suggested Next Steps
 1. **[Phase 2 — current priority]** Fix Storybook scrape failure path in `build.ts` Step 6: change `warn + continue` to `error + exit(1)` (or add a `--fail-on-scrape-error` flag) so a failed scrape never produces a `build:all` artefact that silently drops all examples.
-2. **[Phase 2]** Expose layer-aware public API helpers: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
+2. **[Phase 2]** Finish the remaining public API parity helpers: assets, templates, frameworks, fonts, version.
 3. **[Phase 2]** Add representative size-budget verification across components/examples to keep current gains stable and visible in CI output.
 4. **[Phase 2]** Add CI size budget guards (fail on `interface` > 6 KB, `examples` > 8 KB per entity).
-5. Decide whether to add `shortDescription`/`llmHint`/`usageHints` fields to `CoreEntity` schema before first npm publish.
-6. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
-7. **[Phase 3]** Migrate MCP to consume from this package; publish to npm; create `llms.txt`; enable MCP HTTP transport.
+5. Templates are intentionally deferred for now; when resumed, wire them from the existing Storybook/source pipeline rather than introducing a separate collector.
+6. Decide whether to add `shortDescription`/`llmHint`/`usageHints` fields to `CoreEntity` schema before first npm publish.
+7. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
+8. **[Phase 3]** Migrate MCP to consume from this package; publish to npm; create `llms.txt`; enable MCP HTTP transport.
 
 ## Resume Notes
 - If build fails on components manifest path, ensure components package has been built so `dist/custom-elements.json` exists.
@@ -504,7 +643,7 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
   - token artifacts are emitted as `token:*` entities and mapped under `layers/full/tokens/`
 - Styles setup vs artifact rule:
   - `setup:styles-package` is setup-only
-  - styles module artifacts are emitted as `style:*` entities and mapped under `layers/full/styles/`
+  - styles artifacts are emitted as source-aligned `style:syn-*` entities and mapped under `layers/full/styles/`
 - Fonts setup vs artifact rule:
   - `setup:fonts-package` is setup-only
   - fonts metadata artifacts are emitted as `utility:*` entities and mapped under `layers/full/fonts/`
@@ -523,6 +662,7 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 - DaVinci migration is intentionally grouped under `davinci/` in layer output.
 - The source tree is now physically split into `src/public/` and `src/internal/`.
 - Storybook/examples scraping must NEVER be part of `build` or `test`. Use a dedicated `build:all` target.
+- Templates are intentionally skipped for now in the public API rollout; resume them later from the existing Storybook/source support rather than from a new standalone collector.
 - Current monorepo CI git-diff enforcement is documented for MCP metadata; metadata package should follow the same principle when CI wiring is added.
 - For the next Storybook refactor, preserve these invariants:
   - default `pnpm build` stays scraper-free

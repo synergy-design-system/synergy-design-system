@@ -17,6 +17,20 @@ describe('storybook examples sync', () => {
   const __dirname = path.dirname(__filename);
   const metadataPackageDir = path.resolve(__dirname, '..', '..');
 
+  /**
+   * Keep runtime path dynamic for integration tests while preserving editor type support.
+   *
+   * @returns {Promise<typeof import('../../dist/internal/collectors/storybook/write.js')>}
+   */
+  const loadStorybookWriteModule = async () => import(path.join(
+    metadataPackageDir,
+    'dist',
+    'internal',
+    'collectors',
+    'storybook',
+    'write.js',
+  ));
+
   it('prunes stale examples and keeps core refs in sync', async () => {
     const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'metadata-storybook-prune-test-'));
 
@@ -33,14 +47,7 @@ describe('storybook examples sync', () => {
       await mkdir(path.dirname(staleAccordionExamplePath), { recursive: true });
       await writeFile(staleAccordionExamplePath, '# stale accordion example\n', 'utf8');
 
-      const { writeStorybookArtifacts } = await import(path.join(
-        metadataPackageDir,
-        'dist',
-        'internal',
-        'collectors',
-        'storybook',
-        'write.js',
-      ));
+      const { writeStorybookArtifacts } = await loadStorybookWriteModule();
 
       await writeStorybookArtifacts(
         [

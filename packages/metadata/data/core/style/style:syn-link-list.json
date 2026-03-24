@@ -1,10 +1,17 @@
 {
   "custom": {
-    "moduleName": "link-list"
+    "moduleName": "link-list",
+    "styleName": "link-list"
   },
-  "id": "style:styles-link-list",
+  "id": "style:syn-link-list",
   "kind": "style",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style:syn-link-list.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",
@@ -24,6 +31,7 @@
     "module",
     "style",
     "styles",
+    "link-list",
     "link-list"
   ]
 }

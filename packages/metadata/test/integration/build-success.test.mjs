@@ -174,7 +174,7 @@ describe('metadata build integration', () => {
         outputDir,
         'core',
         'style',
-        'style:styles-link.json',
+        'style:syn-link.json',
       );
       const fontsArtifactPath = path.join(
         outputDir,
@@ -388,7 +388,7 @@ describe('metadata build integration', () => {
       expect(indexJson.entities.some((entity) => entity.id === 'setup:tokens-package')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'token:tokens-figma-variables-sick2018-dark-json')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:styles-package')).to.equal(true);
-      expect(indexJson.entities.some((entity) => entity.id === 'style:styles-link')).to.equal(true);
+      expect(indexJson.entities.some((entity) => entity.id === 'style:syn-link')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:fonts-package')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'utility:fonts-sick-intl')).to.equal(true);
       expect(indexJson.entities.some((entity) => entity.id === 'setup:assets-package')).to.equal(true);

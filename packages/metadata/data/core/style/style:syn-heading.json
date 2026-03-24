@@ -1,0 +1,37 @@
+{
+  "custom": {
+    "moduleName": "typography",
+    "styleName": "heading"
+  },
+  "id": "style:syn-heading",
+  "kind": "style",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style:syn-heading.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/styles/typography/heading.css"
+      }
+    ]
+  },
+  "name": "Heading Styles",
+  "package": "styles",
+  "relations": [],
+  "since": "2.0.2",
+  "sources": [
+    "packages/styles/src/typography/heading.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "module",
+    "style",
+    "styles",
+    "typography",
+    "heading"
+  ]
+}

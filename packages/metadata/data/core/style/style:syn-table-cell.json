@@ -1,34 +1,37 @@
 {
   "custom": {
-    "moduleName": "tables"
+    "moduleName": "tables",
+    "styleName": "table-cell"
   },
-  "id": "style:styles-tables",
+  "id": "style:syn-table-cell",
   "kind": "style",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style:syn-table-cell.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",
         "path": "layers/full/styles/tables/table-cell.css"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/styles/tables/table.css"
       }
     ]
   },
-  "name": "Tables Styles",
+  "name": "Table Cell Styles",
   "package": "styles",
   "relations": [],
   "since": "2.0.2",
   "sources": [
-    "packages/styles/src/tables/table-cell.css",
-    "packages/styles/src/tables/table.css"
+    "packages/styles/src/tables/table-cell.css"
   ],
   "status": "stable",
   "tags": [
     "module",
     "style",
     "styles",
-    "tables"
+    "tables",
+    "table-cell"
   ]
 }

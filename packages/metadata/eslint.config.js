@@ -12,6 +12,7 @@ export default [
   {
     files: [
       'src/**/*.ts',
+      'src/**/*.js',
     ],
     rules: {
       // There are some cases where we want to allow async functions that may appear to not have await, such as when they are used as callbacks or when they are required by an interface, and we don't want to enforce that all async functions must have an await
@@ -36,6 +37,22 @@ export default [
     ],
     rules: {
       // Collectors may rely on build-time-only parsing utilities.
+      'import/no-extraneous-dependencies': 'off',
+    },
+  },
+  {
+    files: [
+      'src/internal/cli/**/*.ts',
+      'src/internal/cli/**/*.js',
+    ],
+    rules: {
+      // CLI entrypoints intentionally print user-facing status and failures.
+      'no-console': 'off',
+
+      // CLI bootstrap pattern intentionally ignores returned Promise value.
+      'no-void': 'off',
+
+      // CLI utilities may use build-time-only validation dependencies.
       'import/no-extraneous-dependencies': 'off',
     },
   },

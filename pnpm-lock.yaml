@@ -987,6 +987,12 @@ importers:
       '@types/serve-handler':
         specifier: ^6.1.4
         version: 6.1.4
+      ajv:
+        specifier: ^8.17.1
+        version: 8.18.0
+      ajv-formats:
+        specifier: ^3.0.1
+        version: 3.0.1(ajv@8.18.0)
       chai:
         specifier: ^5.2.0
         version: 5.3.3

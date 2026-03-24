@@ -89,6 +89,12 @@
   "id": "component:syn-menu",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-menu.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

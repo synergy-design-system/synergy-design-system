@@ -326,6 +326,12 @@
   "id": "component:syn-combobox",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-combobox.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

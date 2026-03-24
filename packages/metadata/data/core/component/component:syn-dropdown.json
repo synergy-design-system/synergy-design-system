@@ -134,6 +134,12 @@
   "id": "component:syn-dropdown",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-dropdown.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

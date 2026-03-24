@@ -95,6 +95,12 @@
   "id": "component:syn-option",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-option.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

@@ -257,6 +257,12 @@
   "id": "component:syn-select",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-select.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

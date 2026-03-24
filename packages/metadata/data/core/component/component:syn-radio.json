@@ -137,6 +137,12 @@
   "id": "component:syn-radio",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-radio.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

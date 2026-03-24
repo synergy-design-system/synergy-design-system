@@ -91,6 +91,12 @@
   "id": "component:syn-tag",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-tag.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

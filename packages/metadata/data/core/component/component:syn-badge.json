@@ -106,6 +106,12 @@
   "id": "component:syn-badge",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-badge.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

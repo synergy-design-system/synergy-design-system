@@ -95,6 +95,12 @@
   "id": "component:syn-spinner",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-spinner.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

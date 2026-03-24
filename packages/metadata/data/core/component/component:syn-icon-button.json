@@ -141,6 +141,12 @@
   "id": "component:syn-icon-button",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-icon-button.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

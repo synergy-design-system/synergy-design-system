@@ -163,6 +163,12 @@
   "id": "component:syn-header",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-header.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

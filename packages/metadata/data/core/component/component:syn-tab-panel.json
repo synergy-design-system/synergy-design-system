@@ -62,6 +62,12 @@
   "id": "component:syn-tab-panel",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-tab-panel.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

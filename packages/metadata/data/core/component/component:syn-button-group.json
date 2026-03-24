@@ -123,6 +123,12 @@
   "id": "component:syn-button-group",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-button-group.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

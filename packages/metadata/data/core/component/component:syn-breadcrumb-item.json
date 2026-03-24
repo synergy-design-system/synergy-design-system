@@ -62,6 +62,12 @@
   "id": "component:syn-breadcrumb-item",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-breadcrumb-item.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

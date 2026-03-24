@@ -93,7 +93,7 @@ export class StorybookScraper {
       const rawStoryMetadata = await page.evaluate(() => Array.from(
         document.querySelectorAll('.sb-anchor'),
       )
-        // eslint-disable-next-line complexity
+
         .map((story, index) => {
           const description = story.querySelector(':scope > p')?.textContent || '';
           const heading = story.querySelector('h3')?.textContent || '';

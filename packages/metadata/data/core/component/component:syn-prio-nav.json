@@ -73,6 +73,12 @@
   "id": "component:syn-prio-nav",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-prio-nav.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

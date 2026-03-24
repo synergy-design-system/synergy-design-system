@@ -159,6 +159,12 @@
   "id": "component:syn-validate",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-validate.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

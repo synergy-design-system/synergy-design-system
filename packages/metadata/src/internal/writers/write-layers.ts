@@ -2,7 +2,9 @@
  * Write layer assets (markup, source code snapshots, etc.)
  * Copies source files to data/layers/full/{kind}/{id}/ and builds layer references.
  */
-import { copyFile, mkdir, writeFile } from 'node:fs/promises';
+import {
+  access, copyFile, mkdir, writeFile,
+} from 'node:fs/promises';
 import {
   basename, dirname, join, relative,
 } from 'node:path';
@@ -474,10 +476,25 @@ export async function writeLayerAssets(
         ctx.logger?.debug(`Wrote interface markdown: ${relative(outputDir, interfaceMarkdownPath)}`);
       }
 
-      if (fullLayerRefs.length > 0 || interfaceLayerRefs.length > 0) {
+      // Discover generated examples files (from storybook scraper) for this entity
+      const examplesLayerRefs: LayerRef[] = [];
+      const examplesFilePath = join(layersDir, 'examples', entity.kind, `${entity.id}.md`);
+      try {
+        await access(examplesFilePath);
+        examplesLayerRefs.push({
+          layer: 'examples',
+          path: relative(outputDir, examplesFilePath),
+        });
+        ctx.logger?.debug(`Discovered examples file: ${relative(outputDir, examplesFilePath)}`);
+      } catch {
+        // File doesn't exist, which is fine - examples are optional and only generated during build:all
+      }
+
+      if (fullLayerRefs.length > 0 || interfaceLayerRefs.length > 0 || examplesLayerRefs.length > 0) {
         layersByEntity[entity.id] = {
           ...(fullLayerRefs.length > 0 ? { full: fullLayerRefs } : {}),
           ...(interfaceLayerRefs.length > 0 ? { interface: interfaceLayerRefs } : {}),
+          ...(examplesLayerRefs.length > 0 ? { examples: examplesLayerRefs } : {}),
         };
       }
     } catch (cause) {

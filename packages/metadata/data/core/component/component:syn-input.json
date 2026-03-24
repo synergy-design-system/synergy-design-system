@@ -256,6 +256,12 @@
   "id": "component:syn-input",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-input.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

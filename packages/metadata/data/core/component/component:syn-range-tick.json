@@ -94,6 +94,12 @@
   "id": "component:syn-range-tick",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-range-tick.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

@@ -62,6 +62,12 @@
   "id": "component:syn-menu-label",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-menu-label.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

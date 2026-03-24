@@ -148,6 +148,12 @@
   "id": "component:syn-tab-group",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-tab-group.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

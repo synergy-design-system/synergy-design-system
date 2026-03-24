@@ -178,6 +178,12 @@
   "id": "component:syn-nav-item",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-nav-item.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

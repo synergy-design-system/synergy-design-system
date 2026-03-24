@@ -185,6 +185,12 @@
   "id": "component:syn-radio-group",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-radio-group.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

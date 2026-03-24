@@ -182,6 +182,12 @@
   "id": "component:syn-checkbox",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-checkbox.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

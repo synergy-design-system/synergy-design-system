@@ -204,6 +204,12 @@
   "id": "component:syn-textarea",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-textarea.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

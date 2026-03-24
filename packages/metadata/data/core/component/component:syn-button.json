@@ -187,6 +187,12 @@
   "id": "component:syn-button",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-button.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

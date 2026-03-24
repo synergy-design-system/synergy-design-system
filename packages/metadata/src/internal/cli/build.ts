@@ -6,10 +6,12 @@
  * 2. Run all source pipelines (collectors) in parallel
  * 3. Aggregate results
  * 4. Validate entities
- * 5. Process and write layer assets (before core entities)
- * 6. Write core entities with layer data
- * 7. Write supporting artifacts (index, manifest)
- * 8. Generate JSON schemas
+ * 5. Enrich with configuration
+ * 6. Run storybook scraper (generates examples files)
+ * 7. Process and write layer assets (before core entities)
+ * 8. Write core entities with layer data
+ * 9. Write supporting artifacts (index, manifest)
+ * 10. Generate JSON schemas
  */
 import { resolve } from 'node:path';
 import { createConsoleLogger } from '../core/context.js';
@@ -39,6 +41,7 @@ import {
 import { writeSchemas } from '../writers/write-schemas.js';
 import { type CoreEntity, type Manifest } from '../schemas/index.js';
 import { CoreEntitySchema, LayerRefSchema, ManifestSchema } from '../schemas/index.js';
+import { runStorybook } from '../collectors/storybook/build-docs.js';
 
 const logger = createConsoleLogger('metadata-build');
 
@@ -57,8 +60,8 @@ async function main() {
   ctx.logger?.info(`Output: ${outputDir}`);
 
   try {
-    // Step 0: Load configuration
-    ctx.logger?.info('Step 0: Loading configuration');
+    // Step 1: Load configuration (overrides, clustering, artifacts)
+    ctx.logger?.info('Step 1: Loading configuration');
     const configDir = resolve(ctx.workspaceRoot, 'config');
     try {
       ctx.config = await loadConfig(configDir);
@@ -73,8 +76,8 @@ async function main() {
       });
     }
 
-    // Step 1: Run pipelines
-    ctx.logger?.info('Step 1: Running source pipelines');
+    // Step 2: Run all source pipelines (collectors) in parallel
+    ctx.logger?.info('Step 2: Running source pipelines');
     const [componentsResult, tokensResult, stylesResult, fontsResult, assetsResult] = await Promise.all([
       runSourcePipeline(
         componentsPipeline,
@@ -141,8 +144,8 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 2: Aggregate
-    ctx.logger?.info('Step 2: Aggregating entities');
+    // Step 3: Aggregate results
+    ctx.logger?.info('Step 3: Aggregating entities');
     const aggregated = aggregateEntities([
       componentsResult.value,
       tokensResult.value,
@@ -155,16 +158,16 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 3: Validate
-    ctx.logger?.info('Step 3: Validating entities');
+    // Step 4: Validate entities
+    ctx.logger?.info('Step 4: Validating entities');
     const validated = validateEntities(aggregated.value, ctx);
     if (!validated.ok) {
       ctx.logger?.error('Validation failed', validated.error);
       process.exit(1);
     }
 
-    // Step 3.5: Enrich with configuration
-    ctx.logger?.info('Step 3.5: Enriching entities with configuration');
+    // Step 5: Enrich with configuration
+    ctx.logger?.info('Step 5: Enriching entities with configuration');
 
     const enriched = enrichEntitiesWithConfig(validated.value, ctx);
     const enrichedWithStats = enriched.filter((e) => {
@@ -195,8 +198,26 @@ async function main() {
     // Calculate repo root (two levels up from metadata package)
     const repoRoot = resolve(ctx.workspaceRoot, '..', '..');
 
-    // Step 4: Process layer assets
-    ctx.logger?.info('Step 4: Processing layer assets');
+    // Step 6: Run storybook scraper (optional, generates examples files)
+    // Only runs if RUN_STORYBOOK_SCRAPER environment variable is set to 'true'
+    const runStorybookScraper = process.env.RUN_STORYBOOK_SCRAPER?.toLowerCase() === 'true';
+    if (runStorybookScraper) {
+      ctx.logger?.info('Step 6: Running storybook scraper');
+      const storybookSuccess = await runStorybook('all', ctx);
+      if (!storybookSuccess) {
+        ctx.logger?.warn(
+          'Storybook scraper failed or docs not built yet. Examples will not be included. '
+          + 'Run `pnpm -C ../docs build` first if you want examples in the metadata build.',
+        );
+      }
+    } else {
+      ctx.logger?.info(
+        'Step 6: Skipping storybook scraper (set RUN_STORYBOOK_SCRAPER=true to enable)',
+      );
+    }
+
+    // Step 7: Process and write layer assets (before core entities)
+    ctx.logger?.info('Step 7: Processing layer assets');
     const layersResult = await writeLayerAssets(enriched, outputDir, repoRoot, ctx);
     if (!layersResult.ok) {
       ctx.logger?.error('Writing layers failed', layersResult.error);
@@ -250,16 +271,16 @@ async function main() {
       };
     });
 
-    // Step 5: Build index
-    ctx.logger?.info('Step 5: Building index');
+    // Step 8: Write core entities with layer data
+    ctx.logger?.info('Step 8: Building index');
     const indexResult = buildIndex(entitiesForWrite, ctx);
     if (!indexResult.ok) {
       ctx.logger?.error('Index build failed', indexResult.error);
       process.exit(1);
     }
 
-    // Step 6: Write core entities (now with layer data)
-    ctx.logger?.info('Step 6: Writing core entities');
+    // Step 8: Write core entities with layer data (continued)
+    ctx.logger?.info('Step 8: Writing core entities');
     const coreResult = await writeCoreEntities(entitiesForWrite, outputDir, ctx);
     if (!coreResult.ok) {
       ctx.logger?.error('Writing core failed', coreResult.error);
@@ -272,8 +293,8 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 7: Create and write manifest
-    ctx.logger?.info('Step 7: Creating manifest');
+    // Step 9: Write supporting artifacts (index, manifest)
+    ctx.logger?.info('Step 9: Creating manifest');
     const manifest: Manifest = {
       builtAt: new Date().toISOString(),
       sources: [{
@@ -329,8 +350,8 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 8: Generate JSON schemas
-    ctx.logger?.info('Step 8: Generating JSON schemas');
+    // Step 10: Generate JSON schemas
+    ctx.logger?.info('Step 10: Generating JSON schemas');
     const schemas = {
       'core-entity.schema.json': CoreEntitySchema.toJSONSchema(),
       'layer-ref.schema.json': LayerRefSchema.toJSONSchema(),

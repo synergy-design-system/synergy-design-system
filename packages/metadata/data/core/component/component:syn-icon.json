@@ -59,6 +59,12 @@
   "id": "component:syn-icon",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-icon.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

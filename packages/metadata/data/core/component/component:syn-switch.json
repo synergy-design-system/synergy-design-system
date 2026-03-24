@@ -160,6 +160,12 @@
   "id": "component:syn-switch",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-switch.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

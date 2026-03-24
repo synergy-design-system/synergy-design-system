@@ -156,6 +156,12 @@
   "id": "component:syn-tooltip",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-tooltip.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

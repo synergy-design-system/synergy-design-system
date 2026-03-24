@@ -251,6 +251,12 @@
   "id": "component:syn-range",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-range.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

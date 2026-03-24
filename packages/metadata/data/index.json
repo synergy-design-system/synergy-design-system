@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-24T06:38:03.267Z",
+  "builtAt": "2026-03-24T08:30:20.852Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -112,6 +112,7 @@
       "id": "component:syn-accordion",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -131,6 +132,7 @@
       "id": "component:syn-alert",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -150,6 +152,7 @@
       "id": "component:syn-badge",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 10,
         "interface": 2
       },
@@ -169,6 +172,7 @@
       "id": "component:syn-breadcrumb",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -188,6 +192,7 @@
       "id": "component:syn-breadcrumb-item",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -207,6 +212,7 @@
       "id": "component:syn-button",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 10,
         "interface": 2
       },
@@ -226,6 +232,7 @@
       "id": "component:syn-button-group",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 10,
         "interface": 2
       },
@@ -245,6 +252,7 @@
       "id": "component:syn-card",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -264,6 +272,7 @@
       "id": "component:syn-checkbox",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -283,6 +292,7 @@
       "id": "component:syn-combobox",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 11,
         "interface": 2
       },
@@ -302,6 +312,7 @@
       "id": "component:syn-details",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -321,6 +332,7 @@
       "id": "component:syn-dialog",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -340,6 +352,7 @@
       "id": "component:syn-divider",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -359,6 +372,7 @@
       "id": "component:syn-drawer",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 10,
         "interface": 2
       },
@@ -378,6 +392,7 @@
       "id": "component:syn-dropdown",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -397,6 +412,7 @@
       "id": "component:syn-file",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -416,6 +432,7 @@
       "id": "component:syn-header",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -435,6 +452,7 @@
       "id": "component:syn-icon",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 16,
         "interface": 2
       },
@@ -454,6 +472,7 @@
       "id": "component:syn-icon-button",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -473,6 +492,7 @@
       "id": "component:syn-input",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 12,
         "interface": 2
       },
@@ -492,6 +512,7 @@
       "id": "component:syn-menu",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -511,6 +532,7 @@
       "id": "component:syn-menu-item",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 10,
         "interface": 2
       },
@@ -530,6 +552,7 @@
       "id": "component:syn-menu-label",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -549,6 +572,7 @@
       "id": "component:syn-nav-item",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -568,6 +592,7 @@
       "id": "component:syn-optgroup",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -587,6 +612,7 @@
       "id": "component:syn-option",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 11,
         "interface": 2
       },
@@ -606,6 +632,7 @@
       "id": "component:syn-popup",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -625,6 +652,7 @@
       "id": "component:syn-prio-nav",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -644,6 +672,7 @@
       "id": "component:syn-progress-bar",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -663,6 +692,7 @@
       "id": "component:syn-progress-ring",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -682,6 +712,7 @@
       "id": "component:syn-radio",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -720,6 +751,7 @@
       "id": "component:syn-radio-group",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -739,6 +771,7 @@
       "id": "component:syn-range",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -758,6 +791,7 @@
       "id": "component:syn-range-tick",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -793,6 +827,7 @@
       "id": "component:syn-select",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 10,
         "interface": 2
       },
@@ -812,6 +847,7 @@
       "id": "component:syn-side-nav",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -831,6 +867,7 @@
       "id": "component:syn-spinner",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -850,6 +887,7 @@
       "id": "component:syn-switch",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -869,6 +907,7 @@
       "id": "component:syn-tab",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -888,6 +927,7 @@
       "id": "component:syn-tab-group",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 10,
         "interface": 2
       },
@@ -907,6 +947,7 @@
       "id": "component:syn-tab-panel",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -926,6 +967,7 @@
       "id": "component:syn-tag",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },
@@ -945,6 +987,7 @@
       "id": "component:syn-tag-group",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -964,6 +1007,7 @@
       "id": "component:syn-textarea",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -983,6 +1027,7 @@
       "id": "component:syn-tooltip",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 8,
         "interface": 2
       },
@@ -1002,6 +1047,7 @@
       "id": "component:syn-validate",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 9,
         "interface": 2
       },

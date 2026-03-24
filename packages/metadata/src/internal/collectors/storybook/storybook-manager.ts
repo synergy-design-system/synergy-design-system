@@ -5,10 +5,10 @@ import { exec } from 'node:child_process';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import handler from 'serve-handler';
-import { createConsoleLogger } from '../../core/context.js';
+import { type Logger, createConsoleLogger } from '../../core/context.js';
 import { StorybookServer } from './types.js';
 
-const logger = createConsoleLogger('storybook');
+const defaultLogger = createConsoleLogger('storybook');
 
 const execAsync = promisify(exec);
 
@@ -20,6 +20,12 @@ export class StaticServerManager {
   private server: Server | null = null;
 
   private serverInfo: StorybookServer | null = null;
+
+  private logger: Logger;
+
+  constructor(logger?: Logger) {
+    this.logger = logger ?? defaultLogger;
+  }
 
   /**
    * Check if a port is available
@@ -38,7 +44,7 @@ export class StaticServerManager {
    */
   private static async findAvailablePort(startPort: number = 6006): Promise<number> {
     let port = startPort;
-    // eslint-disable-next-line no-await-in-loop
+
     while (!(await StaticServerManager.isPortAvailable(port))) {
       port += 1;
       if (port > startPort + 100) {
@@ -53,7 +59,7 @@ export class StaticServerManager {
    */
   async start(port: number = 6006): Promise<StorybookServer> {
     if (this.serverInfo?.isRunning) {
-      logger.info('Static server is already running');
+      this.logger.info('Static server is already running');
       return this.serverInfo;
     }
 
@@ -61,8 +67,8 @@ export class StaticServerManager {
     const url = `http://localhost:${availablePort}`;
     const storybookDistPath = resolve(currentDir, '../../../../../docs/dist');
 
-    logger.info(`Starting static server on port ${availablePort}...`);
-    logger.info(`Serving files from: ${storybookDistPath}`);
+    this.logger.info(`Starting static server on port ${availablePort}...`);
+    this.logger.info(`Serving files from: ${storybookDistPath}`);
 
     this.server = createServer((request, response) => {
       // Add custom URL rewriting before serve-handler
@@ -99,13 +105,13 @@ export class StaticServerManager {
 
       // Handle server errors
       this.server.on('error', (error) => {
-        logger.error('Static server error', { error: String(error) });
+        this.logger.error('Static server error', { error: String(error) });
         reject(error);
       });
 
       // Server is ready when listening event fires
       this.server.on('listening', () => {
-        logger.info(`✓ Static server started successfully at ${url}`);
+        this.logger.info(`✓ Static server started successfully at ${url}`);
         resolvePromise();
       });
 
@@ -119,7 +125,7 @@ export class StaticServerManager {
       url,
     };
 
-    logger.info(`Static server ready at ${url}`);
+    this.logger.info(`Static server ready at ${url}`);
     return this.serverInfo;
   }
 
@@ -128,11 +134,11 @@ export class StaticServerManager {
    */
   async stop(): Promise<void> {
     if (!this.server || !this.serverInfo) {
-      logger.info('No static server to stop');
+      this.logger.info('No static server to stop');
       return;
     }
 
-    logger.info('Stopping static server...');
+    this.logger.info('Stopping static server...');
 
     await new Promise<void>((resolvePromise) => {
       if (!this.server) {
@@ -143,7 +149,7 @@ export class StaticServerManager {
       this.server.close(() => {
         this.serverInfo = null;
         this.server = null;
-        logger.info('Static server stopped successfully');
+        this.logger.info('Static server stopped successfully');
         resolvePromise();
       });
     });

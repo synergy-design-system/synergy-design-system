@@ -67,6 +67,12 @@
   "id": "component:syn-popup",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-popup.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

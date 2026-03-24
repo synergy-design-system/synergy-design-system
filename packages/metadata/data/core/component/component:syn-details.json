@@ -145,6 +145,12 @@
   "id": "component:syn-details",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-details.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

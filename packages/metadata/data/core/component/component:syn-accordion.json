@@ -118,6 +118,12 @@
   "id": "component:syn-accordion",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-accordion.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

@@ -4,8 +4,8 @@ import { fileURLToPath } from 'node:url';
 import {
   type LayerName,
   type MetadataEntity,
-  type MetadataIndexEntry,
   type MetadataIndex,
+  type MetadataIndexEntry,
   type MetadataLayerRef,
   type MetadataQuery,
   type MetadataStore,

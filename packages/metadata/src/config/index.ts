@@ -13,4 +13,6 @@ export {
   StorybookArtifactSchema,
 } from './types.js';
 
-export { enrichOverride, getClustersForEntity, getOverride, loadConfig } from './loader.js';
+export {
+  enrichOverride, getClustersForEntity, getOverride, loadConfig,
+} from './loader.js';

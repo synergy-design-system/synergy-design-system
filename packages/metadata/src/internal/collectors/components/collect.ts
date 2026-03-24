@@ -116,12 +116,12 @@ const getTypeText = (value: unknown): string | undefined => {
     return undefined;
   }
 
-  const type = value.type;
+  const {type} = value;
   if (!isObjectRecord(type)) {
     return undefined;
   }
 
-  const text = type.text;
+  const {text} = type;
   return typeof text === 'string' ? text : undefined;
 };
 
@@ -139,6 +139,29 @@ const toNamedDescription = (entry: unknown): NamedDescription | undefined => {
     description: getStringField(entry, 'description') ?? '',
     name,
   };
+};
+
+const getStringArrayField = (value: unknown, key: string): string[] => {
+  if (!isObjectRecord(value)) {
+    return [];
+  }
+
+  const field = value[key];
+  if (!Array.isArray(field)) {
+    return [];
+  }
+
+  return field.filter((item): item is string => typeof item === 'string');
+};
+
+const toStatus = (
+  value: string | undefined,
+): 'stable' | 'beta' | 'experimental' | 'deprecated' => {
+  if (value === 'beta' || value === 'experimental' || value === 'deprecated') {
+    return value;
+  }
+
+  return 'stable';
 };
 
 const buildInterfaceSnapshot = (
@@ -304,19 +327,6 @@ const buildInterfaceSnapshot = (
   };
 };
 
-const getStringArrayField = (value: unknown, key: string): string[] => {
-  if (!isObjectRecord(value)) {
-    return [];
-  }
-
-  const field = value[key];
-  if (!Array.isArray(field)) {
-    return [];
-  }
-
-  return field.filter((item): item is string => typeof item === 'string');
-};
-
 const isSynCustomElementDeclaration = (
   declaration: unknown,
 ): declaration is SynCustomElementDeclaration => {
@@ -325,16 +335,6 @@ const isSynCustomElementDeclaration = (
   }
 
   return declaration.kind === 'class' && typeof declaration.tagName === 'string';
-};
-
-const toStatus = (
-  value: string | undefined,
-): 'stable' | 'beta' | 'experimental' | 'deprecated' => {
-  if (value === 'beta' || value === 'experimental' || value === 'deprecated') {
-    return value;
-  }
-
-  return 'stable';
 };
 
 /**

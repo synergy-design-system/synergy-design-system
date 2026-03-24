@@ -46,85 +46,85 @@
       }
     },
     "override": {
+      "storySourcePath": "components.radio",
       "storyTags": [
         "Form"
       ],
-      "storySourcePath": "components.radio",
       "stories": [
         {
+          "description": {
+            "value": "Radios allow the user to select a single option from a group. \\nRadios are designed to be used with radio groups.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Radio",
             "type": "text"
-          },
-          "description": {
-            "value": "Radios allow the user to select a single option from a group. \\nRadios are designed to be used with radio groups.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The focus event gives the user feedback that the Radio has been focused by the keyboard interaction.",
+            "type": "text"
+          },
           "name": "focus",
           "title": {
             "value": "Focus",
             "type": "text"
-          },
-          "description": {
-            "value": "The focus event gives the user feedback that the Radio has been focused by the keyboard interaction.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the disabled attribute to disable a radio.",
+            "type": "text"
+          },
           "name": "disabled",
           "title": {
             "value": "Disabled",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the disabled attribute to disable a radio.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Add the readonly attribute to draw a read-only radio.",
+            "type": "text"
+          },
           "name": "readonly",
           "title": {
             "value": "Read-only",
             "type": "text"
-          },
-          "description": {
-            "value": "Add the readonly attribute to draw a read-only radio.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Add the size attribute to the Radio Group to change the radios’ size.",
+            "type": "text"
+          },
           "name": "sizes",
           "title": {
             "value": "Sizes",
             "type": "text"
-          },
-          "description": {
-            "value": "Add the size attribute to the Radio Group to change the radios’ size.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The invalid status is used to warn the user that the Radio is invalid. For example, if the radio is mandatory and nothing has been checked.",
+            "type": "text"
+          },
           "name": "invalid",
           "title": {
             "value": "Invalid",
             "type": "text"
-          },
-          "description": {
-            "value": "The invalid status is used to warn the user that the Radio is invalid. For example, if the radio is mandatory and nothing has been checked.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "To set the initial value and checked state, use the value attribute on the radio element.",
+            "type": "text"
+          },
           "name": "initialValue",
           "title": {
             "value": "Initial Value",
-            "type": "text"
-          },
-          "description": {
-            "value": "To set the initial value and checked state, use the value attribute on the radio element.",
             "type": "text"
           }
         }

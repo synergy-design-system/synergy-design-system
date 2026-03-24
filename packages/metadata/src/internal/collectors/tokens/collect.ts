@@ -3,7 +3,9 @@
  */
 
 import { access, readFile, readdir } from 'node:fs/promises';
-import { basename, dirname, join, relative, resolve } from 'node:path';
+import {
+  basename, dirname, join, relative, resolve,
+} from 'node:path';
 import { type Result, ok } from '../../core/result.js';
 import { type CollectError, createCollectError } from '../../core/errors.js';
 import { type Context } from '../../core/context.js';

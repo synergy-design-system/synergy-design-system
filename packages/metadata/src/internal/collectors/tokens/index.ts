@@ -5,7 +5,7 @@
 import { type CoreEntity } from '../../schemas/index.js';
 import { type TokensRaw, collect } from './collect.js';
 import { normalize } from './normalize.js';
-import { type TokensConfig, type SourcePipeline } from './types.js';
+import { type SourcePipeline, type TokensConfig } from './types.js';
 
 export type { TokensConfig } from './types.js';
 

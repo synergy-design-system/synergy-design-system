@@ -42,19 +42,19 @@
       }
     },
     "override": {
+      "storySourcePath": "components.tab",
       "storyTags": [
         "Navigation"
       ],
-      "storySourcePath": "components.tab",
       "stories": [
         {
+          "description": {
+            "value": "Tabs are used inside tab groups to represent and activate tab panels.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Tab",
-            "type": "text"
-          },
-          "description": {
-            "value": "Tabs are used inside tab groups to represent and activate tab panels.",
             "type": "text"
           }
         }

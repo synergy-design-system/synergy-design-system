@@ -64,8 +64,8 @@ async function main() {
       ctx.config = await loadConfig(configDir);
       ctx.logger?.info('Configuration loaded', {
         artifactsCount: Object.keys(ctx.config.artifacts).length,
-        overridesCount: ctx.config.overrides.size,
         clusteringCount: ctx.config.clustering.size,
+        overridesCount: ctx.config.overrides.size,
       });
     } catch (configErr) {
       ctx.logger?.warn('Failed to load configuration, proceeding without it', {
@@ -187,8 +187,8 @@ async function main() {
       );
     } else if (ctx.config) {
       ctx.logger?.warn('No entities were enriched with config metadata', {
-        overridesCount: ctx.config.overrides.size,
         clusteringCount: ctx.config.clustering.size,
+        overridesCount: ctx.config.overrides.size,
       });
     }
 
@@ -218,7 +218,7 @@ async function main() {
 
     // Keep generated-only data in layers; do not persist it in core JSON.
     const entitiesForWrite: CoreEntity[] = entitiesWithLayers.map((entity) => {
-      const custom = (entity.custom as Record<string, unknown> | undefined) ?? {};
+      const custom = (entity.custom) ?? {};
       const frameworks = custom.frameworks as Record<string, unknown> | undefined;
       const react = frameworks?.react as Record<string, unknown> | undefined;
       const jsx = react?.jsx as Record<string, unknown> | undefined;

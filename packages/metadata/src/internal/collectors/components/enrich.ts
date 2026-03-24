@@ -1,7 +1,6 @@
 /**
  * Enricher: Add framework wrapper metadata and package-level setup entities.
  */
-
 import { access, readFile, readdir } from 'node:fs/promises';
 import { join, relative, resolve } from 'node:path';
 import ts from 'typescript';
@@ -404,8 +403,8 @@ const buildReactJsxMap = async (
       sourcePath,
       status: getJSDocTagValue(node, 'status'),
       subpathExport: './types/latest',
-      typeText: node.getText(sourceFile),
       typeName: node.name.text,
+      typeText: node.getText(sourceFile),
     });
   });
 
@@ -655,7 +654,9 @@ export const enrich = async (
   config: ComponentsConfig,
   ctx: Context,
 ): Promise<Result<CoreEntity[], EnrichError>> => {
-  const { angularPackagePath, packagePath, reactPackagePath, vuePackagePath } = config;
+  const {
+    angularPackagePath, packagePath, reactPackagePath, vuePackagePath,
+  } = config;
 
   const repoRoot = resolve(ctx.workspaceRoot, '..', '..');
 
@@ -763,8 +764,8 @@ export const enrich = async (
                     sourcePath: jsx.sourcePath,
                     status: jsx.status,
                     subpathExport: jsx.subpathExport,
-                    typeText: jsx.typeText,
                     typeName: jsx.typeName,
+                    typeText: jsx.typeText,
                   },
                 } : {}),
               },

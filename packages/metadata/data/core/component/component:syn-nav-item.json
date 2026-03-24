@@ -54,118 +54,118 @@
       }
     },
     "override": {
+      "storySourcePath": "components.nav-item",
       "storyTags": [
         "Navigation"
       ],
-      "storySourcePath": "components.nav-item",
       "stories": [
         {
+          "description": {
+            "value": "The navigation item is used to trigger page switches.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Navigation Item",
             "type": "text"
-          },
-          "description": {
-            "value": "The navigation item is used to trigger page switches.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the label attribute to change the content of a navigation item.",
+            "type": "text"
+          },
           "name": "labels",
           "title": {
             "value": "Labels",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the label attribute to change the content of a navigation item.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The current attribute provides the user feedback about which of the navigation elements is currently selected.",
+            "type": "text"
+          },
           "name": "current",
           "title": {
             "value": "Current",
             "type": "text"
-          },
-          "description": {
-            "value": "The current attribute provides the user feedback about which of the navigation elements is currently selected.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The focus event gives the user feedback that the Navigation Item has been focused by the keyboard interaction or active click from the user.",
+            "type": "text"
+          },
           "name": "focus",
           "title": {
             "value": "Focus",
             "type": "text"
-          },
-          "description": {
-            "value": "The focus event gives the user feedback that the Navigation Item has been focused by the keyboard interaction or active click from the user.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)",
+            "type": "text"
+          },
           "name": "nav-horizontal",
           "title": {
             "value": "Horizontal Navigation",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the prefix and suffix slots to add e. g. icons or tags. If available the prefix slot will be shown in the rail navigation.",
+            "type": "text"
+          },
           "name": "prefix-suffix",
           "title": {
             "value": "Prefix and suffix Slot",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the prefix and suffix slots to add e. g. icons or tags. If available the prefix slot will be shown in the rail navigation.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the *children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.\n\nNote:\nSince there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided.",
+            "type": "text"
+          },
           "name": "children",
           "title": {
             "value": "Children closed / open (vertical only)",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the *children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.\n\nNote:\nSince there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the divider attribute to add a border at the top. This should be used for first level elements in vertical navigations.",
+            "type": "text"
+          },
           "name": "divider",
           "title": {
             "value": "Divider",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the divider attribute to add a border at the top. This should be used for first level elements in vertical navigations.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Vertical navigation elements can be indented to indicate deeper navigation levels.",
+            "type": "text"
+          },
           "name": "indentation",
           "title": {
             "value": "Indentation",
             "type": "text"
-          },
-          "description": {
-            "value": "Vertical navigation elements can be indented to indicate deeper navigation levels.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the disabled attribute to disable a navigation-item.",
+            "type": "text"
+          },
           "name": "disabled",
           "title": {
             "value": "Disabled",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the disabled attribute to disable a navigation-item.",
             "type": "text"
           }
         }

@@ -1,13 +1,16 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import {
-  ComponentOverrideSchema,
-  ClusterSchema,
   type Cluster,
+  ClusterSchema,
+  ComponentOverrideSchema,
   type ConfigContext,
   type EnrichedOverride,
   type StorybookArtifact,
+  StorybookArtifactSchema,
 } from './types.js';
+
+const parseJsonUnknown = (content: string): unknown => JSON.parse(content) as unknown;
 
 /**
  * Load configuration from metadata package config directory
@@ -15,8 +18,8 @@ import {
 export async function loadConfig(configDir: string): Promise<ConfigContext> {
   const context: ConfigContext = {
     artifacts: {},
-    overrides: new Map(),
     clustering: new Map(),
+    overrides: new Map(),
   };
 
   // Load artifacts
@@ -24,7 +27,8 @@ export async function loadConfig(configDir: string): Promise<ConfigContext> {
   try {
     const storybookPath = join(artifactsDir, 'storybook', '_docs.json');
     const storybookContent = await readFile(storybookPath, 'utf-8');
-    context.artifacts.storybook = JSON.parse(storybookContent) as StorybookArtifact;
+    const storybookData = parseJsonUnknown(storybookContent);
+    context.artifacts.storybook = StorybookArtifactSchema.parse(storybookData);
   } catch {
     // Storybook artifact is optional
   }
@@ -37,7 +41,7 @@ export async function loadConfig(configDir: string): Promise<ConfigContext> {
       if (!file.endsWith('.json')) continue;
       const filePath = join(overridesDir, file);
       const content = await readFile(filePath, 'utf-8');
-      const data = JSON.parse(content);
+      const data = parseJsonUnknown(content);
       const parsed = ComponentOverrideSchema.parse(data);
       const entityId = file.replace('.json', '');
       context.overrides.set(entityId, parsed);
@@ -58,7 +62,7 @@ export async function loadConfig(configDir: string): Promise<ConfigContext> {
         if (!file.endsWith('.json')) continue;
         const filePath = join(categoryDir, file);
         const content = await readFile(filePath, 'utf-8');
-        const data = JSON.parse(content);
+        const data = parseJsonUnknown(content);
         const parsed = ClusterSchema.parse(data);
         const clusterId = `${entry.name}/${file.replace('.json', '')}`;
         context.clustering.set(clusterId, parsed);
@@ -77,7 +81,7 @@ export async function loadConfig(configDir: string): Promise<ConfigContext> {
  */
 function getStorybookStructure(
   artifact: StorybookArtifact,
-  path: string
+  path: string,
 ): Record<string, unknown> | null {
   const parts = path.split('.');
   let current: unknown = artifact;
@@ -95,7 +99,7 @@ function getStorybookStructure(
  */
 export function enrichOverride(
   override: Omit<EnrichedOverride, 'stories'>,
-  context: ConfigContext
+  context: ConfigContext,
 ): EnrichedOverride {
   const enriched: EnrichedOverride = { ...override };
 
@@ -109,9 +113,9 @@ export function enrichOverride(
 
         const storyData = value as Record<string, unknown>;
         enriched.stories.push({
+          description: (storyData.description as string) || undefined,
           name: key,
           title: (storyData.title as string) || undefined,
-          description: (storyData.description as string) || undefined,
         });
       }
     }
@@ -126,7 +130,7 @@ export function enrichOverride(
 export function getOverride(
   context: ConfigContext,
   entityId: string,
-  enrich = true
+  enrich = true,
 ): EnrichedOverride | null {
   const override = context.overrides.get(entityId);
   if (!override) return null;

@@ -2,15 +2,16 @@
  * Write layer assets (markup, source code snapshots, etc.)
  * Copies source files to data/layers/full/{kind}/{id}/ and builds layer references.
  */
-
 import { copyFile, mkdir, writeFile } from 'node:fs/promises';
-import { basename, dirname, join, relative } from 'node:path';
+import {
+  basename, dirname, join, relative,
+} from 'node:path';
 import { type Result, err, ok } from '../core/result.js';
 import { type Context } from '../core/context.js';
 import { type WriteError } from '../core/errors.js';
 import { type CoreEntity } from '../schemas/index.js';
 import { type LayerRef } from '../schemas/layer-ref.js';
-import { getOverride, type EnrichedOverride } from '../../config/index.js';
+import { type EnrichedOverride, getOverride } from '../../config/index.js';
 import { ensureDir } from './fs-utils.js';
 
 export interface EntityLayers {
@@ -93,7 +94,7 @@ const mapAssetsLayerPath = (sourcePath: string): string => {
 const getReactJsxSnippets = (
   entity: CoreEntity,
 ): { fileName: string; text: string }[] => {
-  const jsx = (entity.custom as Record<string, unknown> | undefined)
+  const jsx = (entity.custom)
     ?.frameworks as Record<string, unknown> | undefined;
   const reactJsx = jsx?.react as Record<string, unknown> | undefined;
   const jsxMeta = reactJsx?.jsx as Record<string, unknown> | undefined;
@@ -113,7 +114,7 @@ const getComponentInterfaceSnapshot = (entity: CoreEntity): Record<string, unkno
     return undefined;
   }
 
-  const custom = entity.custom as Record<string, unknown> | undefined;
+  const {custom} = entity;
   const snapshot = custom?.interfaceSnapshot;
 
   if (!snapshot || typeof snapshot !== 'object' || Array.isArray(snapshot)) {
@@ -180,7 +181,7 @@ const renderInterfaceMarkdown = (
   const lines: string[] = [];
   const tagName = snapshot.tagName ?? 'unknown-component';
   const summary = snapshot.summary ?? '';
-  const documentation = snapshot.documentation;
+  const {documentation} = snapshot;
   const sourceModulePath = snapshot.sourceModulePath ?? '-';
   const status = snapshot.status ?? '-';
   const since = snapshot.since ?? '-';
@@ -305,7 +306,7 @@ const renderInterfaceMarkdown = (
 
   // Add custom sections if provided through override
   if (enrichedOverride?.customSections) {
-    for (const [_key, section] of Object.entries(enrichedOverride.customSections)) {
+    for (const [, section] of Object.entries(enrichedOverride.customSections)) {
       const sectionData = section as { title: string; content: string };
       lines.push('');
       lines.push(`## ${sectionData.title}`);
@@ -359,41 +360,46 @@ export async function writeLayerAssets(
       const isGroupedAssetEntity = entity.kind === 'asset' && entity.package === 'assets';
 
       // Create entity's layer directory
-      const entityLayerDir = isGroupedTokenEntity
-        ? join(layersDir, 'full', 'tokens')
-        : isGroupedStyleEntity
-          ? join(layersDir, 'full', 'styles')
-          : isGroupedFontsEntity
-            ? join(layersDir, 'full', 'fonts')
-            : isGroupedAssetEntity
-              ? join(layersDir, 'full', 'assets')
-        : join(layersDir, 'full', entity.kind, entity.id);
+      let entityLayerDir: string;
+      if (isGroupedTokenEntity) {
+        entityLayerDir = join(layersDir, 'full', 'tokens');
+      } else if (isGroupedStyleEntity) {
+        entityLayerDir = join(layersDir, 'full', 'styles');
+      } else if (isGroupedFontsEntity) {
+        entityLayerDir = join(layersDir, 'full', 'fonts');
+      } else if (isGroupedAssetEntity) {
+        entityLayerDir = join(layersDir, 'full', 'assets');
+      } else {
+        entityLayerDir = join(layersDir, 'full', entity.kind, entity.id);
+      }
       await ensureDir(entityLayerDir);
 
       // Copy each source file
       for (const sourcePath of entity.sources ?? []) {
         const fullSourcePath = join(repoRoot, sourcePath);
-        const destPath = isGroupedTokenEntity
-          ? join(
+        let destPath: string;
+        if (isGroupedTokenEntity) {
+          destPath = join(
             entityLayerDir,
             mapTokenLayerPath(sourcePath),
-          )
-          : isGroupedStyleEntity
-            ? join(
-              entityLayerDir,
-              mapStyleLayerPath(sourcePath),
-            )
-            : isGroupedFontsEntity
-              ? join(
-                entityLayerDir,
-                mapFontsLayerPath(sourcePath),
-              )
-              : isGroupedAssetEntity
-                ? join(
-                  entityLayerDir,
-                  mapAssetsLayerPath(sourcePath),
-                )
-          : join(
+          );
+        } else if (isGroupedStyleEntity) {
+          destPath = join(
+            entityLayerDir,
+            mapStyleLayerPath(sourcePath),
+          );
+        } else if (isGroupedFontsEntity) {
+          destPath = join(
+            entityLayerDir,
+            mapFontsLayerPath(sourcePath),
+          );
+        } else if (isGroupedAssetEntity) {
+          destPath = join(
+            entityLayerDir,
+            mapAssetsLayerPath(sourcePath),
+          );
+        } else {
+          destPath = join(
             // Group files by package label (components|react|vue|angular|…) so that
             // identically-named files from different packages don't collide,
             // e.g. layers/full/component/component:syn-button/react/button.ts
@@ -401,6 +407,7 @@ export async function writeLayerAssets(
             getPackageLabel(sourcePath),
             basename(sourcePath),
           );
+        }
 
         try {
           await mkdir(dirname(destPath), { recursive: true });
@@ -445,10 +452,10 @@ export async function writeLayerAssets(
         const interfacePath = join(layersDir, 'interface', entity.kind, `${entity.id}.json`);
         const interfaceMarkdownPath = join(layersDir, 'interface', entity.kind, `${entity.id}.md`);
         await ensureDir(dirname(interfacePath));
-        
+
         // Get enriched override if config is available
         const enrichedOverride = ctx.config ? (getOverride(ctx.config, entity.id, true) ?? undefined) : undefined;
-        
+
         await writeFile(interfacePath, `${JSON.stringify(interfaceSnapshot, null, 2)}\n`, 'utf8');
         await writeFile(
           interfaceMarkdownPath,

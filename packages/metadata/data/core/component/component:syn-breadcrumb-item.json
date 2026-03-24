@@ -37,19 +37,19 @@
       }
     },
     "override": {
+      "storySourcePath": "components.breadcrumb-item",
       "storyTags": [
         "Navigation"
       ],
-      "storySourcePath": "components.breadcrumb-item",
       "stories": [
         {
+          "description": {
+            "value": "Breadcrumb Items are used inside breadcrumbs to represent different links.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Breadcrumb Item",
-            "type": "text"
-          },
-          "description": {
-            "value": "Breadcrumb Items are used inside breadcrumbs to represent different links.",
             "type": "text"
           }
         }

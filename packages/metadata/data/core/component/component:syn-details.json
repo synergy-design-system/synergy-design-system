@@ -54,85 +54,85 @@
       }
     },
     "override": {
+      "storySourcePath": "components.details",
       "storyTags": [
         "Structure"
       ],
-      "storySourcePath": "components.details",
       "stories": [
         {
+          "description": {
+            "value": "Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Details",
             "type": "text"
-          },
-          "description": {
-            "value": "Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the disable attribute to prevent the details from expanding.",
+            "type": "text"
+          },
           "name": "disabled",
           "title": {
             "value": "Disabled",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the disable attribute to prevent the details from expanding.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the size attribute to change a detail’s size.",
+            "type": "text"
+          },
           "name": "size",
           "title": {
             "value": "Sizes",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the size attribute to change a detail’s size.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Details show a brief summary and expand to show additional content.",
+            "type": "text"
+          },
           "name": "open",
           "title": {
             "value": "Open",
             "type": "text"
-          },
-          "description": {
-            "value": "Details show a brief summary and expand to show additional content.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
+            "type": "text"
+          },
           "name": "focus",
           "title": {
             "value": "Focus",
             "type": "text"
-          },
-          "description": {
-            "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "To give content more structure, you can use the property contained.",
+            "type": "text"
+          },
           "name": "contained",
           "title": {
             "value": "Contained",
             "type": "text"
-          },
-          "description": {
-            "value": "To give content more structure, you can use the property contained.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the prefix Icon to prepend an icon to the details.",
+            "type": "text"
+          },
           "name": "icon",
           "title": {
             "value": "Prefix Icons",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the prefix Icon to prepend an icon to the details.",
             "type": "text"
           }
         }

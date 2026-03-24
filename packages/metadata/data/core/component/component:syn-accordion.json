@@ -38,74 +38,74 @@
     },
     "override": {
       "figmaComponentId": "16967-26428",
+      "storySourcePath": "components.accordion",
       "storyTags": [
         "Structure"
       ],
-      "storySourcePath": "components.accordion",
       "stories": [
         {
+          "description": {
+            "value": "Accordion is a group of syn-details to show a brief summary and expand to show additional content.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Accordion",
             "type": "text"
-          },
-          "description": {
-            "value": "Accordion is a group of syn-details to show a brief summary and expand to show additional content.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the disable attribute to prevent the details from expanding.",
+            "type": "text"
+          },
           "name": "disabled",
           "title": {
             "value": "Disabled",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the disable attribute to prevent the details from expanding.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the size attribute to change a detail’s size. The size attribute should not be mixed within an accordion",
+            "type": "text"
+          },
           "name": "size",
           "title": {
             "value": "Sizes",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the size attribute to change a detail’s size. The size attribute should not be mixed within an accordion",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Set the `close-others` property to true to ensure only one detail is open at a time.",
+            "type": "text"
+          },
           "name": "grouping",
           "title": {
             "value": "Grouping Details",
             "type": "text"
-          },
-          "description": {
-            "value": "Set the `close-others` property to true to ensure only one detail is open at a time.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "To give content more structure, you can use the property contained.",
+            "type": "text"
+          },
           "name": "contained",
           "title": {
             "value": "Contained",
             "type": "text"
-          },
-          "description": {
-            "value": "To give content more structure, you can use the property contained.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
+            "type": "text"
+          },
           "name": "focus",
           "title": {
             "value": "Focus",
-            "type": "text"
-          },
-          "description": {
-            "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
             "type": "text"
           }
         }

@@ -66,184 +66,184 @@
       }
     },
     "override": {
+      "storySourcePath": "components.input",
       "storyTags": [
         "Form"
       ],
-      "storySourcePath": "components.input",
       "stories": [
         {
+          "description": {
+            "value": "Inputs collect data from the user.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Input",
             "type": "text"
-          },
-          "description": {
-            "value": "Inputs collect data from the user.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead.",
+            "type": "text"
+          },
           "name": "label",
           "title": {
             "value": "Labels",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+            "type": "text"
+          },
           "name": "help-text",
           "title": {
             "value": "help-text",
             "type": "text"
-          },
-          "description": {
-            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the placeholder attribute to add a placeholder.",
+            "type": "text"
+          },
           "name": "placeholder",
           "title": {
             "value": "Placeholder",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the placeholder attribute to add a placeholder.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Add the clearable attribute to add a clear button when the input has content.",
+            "type": "text"
+          },
           "name": "clearable",
           "title": {
             "value": "Clearable",
             "type": "text"
-          },
-          "description": {
-            "value": "Add the clearable attribute to add a clear button when the input has content.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Add the password-toggle attribute to add a toggle button that will show the password when activated.",
+            "type": "text"
+          },
           "name": "password-toggle",
           "title": {
             "value": "Toggle Password",
             "type": "text"
-          },
-          "description": {
-            "value": "Add the password-toggle attribute to add a toggle button that will show the password when activated.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Add the readonly attribute to draw a read-only input.",
+            "type": "text"
+          },
           "name": "readonly",
           "title": {
             "value": "Read-only Inputs",
             "type": "text"
-          },
-          "description": {
-            "value": "Add the readonly attribute to draw a read-only input.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the disabled attribute to disable an input.",
+            "type": "text"
+          },
           "name": "disabled",
           "title": {
             "value": "Disabled",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the disabled attribute to disable an input.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the size attribute to change an input's size.",
+            "type": "text"
+          },
           "name": "size",
           "title": {
             "value": "Sizes",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the size attribute to change an input's size.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the prefix and suffix slots to add text and icons.",
+            "type": "text"
+          },
           "name": "prefix-suffix",
           "title": {
             "value": "Prefix Suffix Text and Icons",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the prefix and suffix slots to add text and icons.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The focus attribute provides feedback to the users, informing them that the input component is ready for use.",
+            "type": "text"
+          },
           "name": "focus",
           "title": {
             "value": "Focus / Active",
             "type": "text"
-          },
-          "description": {
-            "value": "The focus attribute provides feedback to the users, informing them that the input component is ready for use.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
+            "type": "text"
+          },
           "name": "invalid",
           "title": {
             "value": "Invalid",
             "type": "text"
-          },
-          "description": {
-            "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The Stepper (Input type number) attribute has additional step buttons at the right side for incrementing and decrementing values. It is ideal for situations where users need to adjust quantities or settings within a range.",
+            "type": "text"
+          },
           "name": "stepper",
           "title": {
             "value": "Stepper",
             "type": "text"
-          },
-          "description": {
-            "value": "The Stepper (Input type number) attribute has additional step buttons at the right side for incrementing and decrementing values. It is ideal for situations where users need to adjust quantities or settings within a range.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The `numeric-strategy` property defines how numeric input is handled during user interaction. It lets you select between the browsers native control and Synergy’s enhanced number-input logic.\n\nnative: Uses the browser’s built-in number control. Values are not auto-clamped, and stepping/validation can vary across browsers.\n\nmodern: Provides a more intuitive and predictable behavior by automatically clamping values to the nearest min/max value, including those bounds when stepping, and ignoring the step attribute during validation.",
+            "type": "text"
+          },
           "name": "stepper-input-handling",
           "title": {
             "value": "Stepper Input Handling",
             "type": "text"
-          },
-          "description": {
-            "value": "The `numeric-strategy` property defines how numeric input is handled during user interaction. It lets you select between the browsers native control and Synergy’s enhanced number-input logic.\n\nnative: Uses the browser’s built-in number control. Values are not auto-clamped, and stepping/validation can vary across browsers.\n\nmodern: Provides a more intuitive and predictable behavior by automatically clamping values to the nearest min/max value, including those bounds when stepping, and ignoring the step attribute during validation.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "The type attribute controls the type of input the browser renders.",
+            "type": "text"
+          },
           "name": "types",
           "title": {
             "value": "Input Types",
             "type": "text"
-          },
-          "description": {
-            "value": "The type attribute controls the type of input the browser renders.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls.",
+            "type": "text"
+          },
           "name": "label-position",
           "title": {
             "value": "Customizing Label Position",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls.",
             "type": "text"
           }
         }

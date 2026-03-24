@@ -37,10 +37,10 @@
       }
     },
     "override": {
+      "storySourcePath": "components.optgroup",
       "storyTags": [
         "Form"
-      ],
-      "storySourcePath": "components.optgroup"
+      ]
     },
     "clusters": [
       "components-by-tag/form"

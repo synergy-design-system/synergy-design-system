@@ -42,41 +42,41 @@
       }
     },
     "override": {
+      "storySourcePath": "components.menu",
       "storyTags": [
         "Navigation"
       ],
-      "storySourcePath": "components.menu",
       "stories": [
         {
+          "description": {
+            "value": "Menus provide a list of options for the user to choose from.\n\nYou can use menu items, menu labels, and dividers to compose a menu. Menus support keyboard interactions, including type-to-select an option.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Menu",
             "type": "text"
-          },
-          "description": {
-            "value": "Menus provide a list of options for the user to choose from.\n\nYou can use menu items, menu labels, and dividers to compose a menu. Menus support keyboard interactions, including type-to-select an option.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Menus work really well when used inside dropdowns.",
+            "type": "text"
+          },
           "name": "dropdown",
           "title": {
             "value": "In Dropdowns",
             "type": "text"
-          },
-          "description": {
-            "value": "Menus work really well when used inside dropdowns.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "To create a submenu, nest an <syn-menu slot=\"submenu\"> in any menu item.",
+            "type": "text"
+          },
           "name": "submenu",
           "title": {
             "value": "Submenus",
-            "type": "text"
-          },
-          "description": {
-            "value": "To create a submenu, nest an <syn-menu slot=\"submenu\"> in any menu item.",
             "type": "text"
           }
         }

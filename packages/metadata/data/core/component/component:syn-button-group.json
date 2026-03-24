@@ -37,83 +37,83 @@
       }
     },
     "override": {
-      "storyTags": [],
       "storySourcePath": "components.button-group",
+      "storyTags": [],
       "stories": [
         {
+          "description": {
+            "value": "Button groups can be used to group related buttons into sections.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Button Group",
             "type": "text"
-          },
-          "description": {
-            "value": "Button groups can be used to group related buttons into sections.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "All button sizes are supported. The size of the button-group will be used to determine the size of the buttons.",
+            "type": "text"
+          },
           "name": "size",
           "title": {
             "value": "Button Sizes",
             "type": "text"
-          },
-          "description": {
-            "value": "All button sizes are supported. The size of the button-group will be used to determine the size of the buttons.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the variant attribute to set the button’s variant. Variants can be Filled, Outline. There is no Text variant.",
+            "type": "text"
+          },
           "name": "variant",
           "title": {
             "value": "Variants",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the variant attribute to set the button’s variant. Variants can be Filled, Outline. There is no Text variant.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": " Dropdowns can be placed inside button groups as long as the trigger is an <syn-button> element. ",
+            "type": "text"
+          },
           "name": "dropdowns-in-button-groups",
           "title": {
             "value": " Dropdowns in Button Groups ",
             "type": "text"
-          },
-          "description": {
-            "value": " Dropdowns can be placed inside button groups as long as the trigger is an <syn-button> element. ",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Create a split button using a button and a dropdown. Use a visually hidden label to ensure the dropdown is accessible to users with assistive devices.",
+            "type": "text"
+          },
           "name": "split-buttons",
           "title": {
             "value": "Split Buttons",
             "type": "text"
-          },
-          "description": {
-            "value": "Create a split button using a button and a dropdown. Use a visually hidden label to ensure the dropdown is accessible to users with assistive devices.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Buttons can be wrapped in tooltips to provide more detail when the user interacts with them.",
+            "type": "text"
+          },
           "name": "tooltips",
           "title": {
             "value": "Tooltips in Button Groups",
             "type": "text"
-          },
-          "description": {
-            "value": "Buttons can be wrapped in tooltips to provide more detail when the user interacts with them.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Create interactive toolbars with button groups.",
+            "type": "text"
+          },
           "name": "toolbar",
           "title": {
             "value": "Toolbar Example",
-            "type": "text"
-          },
-          "description": {
-            "value": "Create interactive toolbars with button groups.",
             "type": "text"
           }
         }

@@ -46,10 +46,10 @@
       }
     },
     "override": {
+      "storySourcePath": "components.icon",
       "storyTags": [
         "Icons"
       ],
-      "storySourcePath": "components.icon",
       "stories": []
     },
     "clusters": [

@@ -37,19 +37,19 @@
       }
     },
     "override": {
+      "storySourcePath": "components.tab-panel",
       "storyTags": [
         "Navigation"
       ],
-      "storySourcePath": "components.tab-panel",
       "stories": [
         {
+          "description": {
+            "value": "Tab panels are used inside tab groups to display tabbed content.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Tab Panel",
-            "type": "text"
-          },
-          "description": {
-            "value": "Tab panels are used inside tab groups to display tabbed content.",
             "type": "text"
           }
         }

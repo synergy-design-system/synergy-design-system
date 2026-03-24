@@ -16,18 +16,18 @@ export type StorybookArtifact = z.infer<typeof StorybookArtifactSchema>;
  */
 export const ComponentOverrideSchema = z
   .object({
-    figmaComponentId: z.string().optional(),
-    storyTags: z.array(z.string()).optional(),
-    storySourcePath: z.string().optional(),
     customSections: z
       .record(
         z.string(),
         z.object({
-          title: z.string(),
           content: z.string(),
-        })
+          title: z.string(),
+        }),
       )
       .optional(),
+    figmaComponentId: z.string().optional(),
+    storySourcePath: z.string().optional(),
+    storyTags: z.array(z.string()).optional(),
   })
   .strict();
 
@@ -38,9 +38,9 @@ export type ComponentOverride = z.infer<typeof ComponentOverrideSchema>;
  */
 export const ClusterSchema = z
   .object({
-    name: z.string(),
     description: z.string().optional(),
     entities: z.array(z.string()),
+    name: z.string(),
   })
   .strict();
 

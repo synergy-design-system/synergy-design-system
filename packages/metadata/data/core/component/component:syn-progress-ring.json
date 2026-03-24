@@ -37,70 +37,70 @@
       }
     },
     "override": {
+      "storySourcePath": "components.progress-ring",
       "storyTags": [
         "Feedback"
       ],
-      "storySourcePath": "components.progress-ring",
       "stories": [
         {
+          "description": {
+            "value": "Progress rings are used to show the progress of a determinate operation in a circular fashion.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Progress Ring",
             "type": "text"
-          },
-          "description": {
-            "value": "Progress rings are used to show the progress of a determinate operation in a circular fashion.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the --size custom property to set the diameter of the progress ring.",
+            "type": "text"
+          },
           "name": "size",
           "title": {
             "value": "Size",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the --size custom property to set the diameter of the progress ring.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the --track-width and --indicator-width custom properties to set the width of the progress ring’s track and indicator.",
+            "type": "text"
+          },
           "name": "track-indicator-width",
           "title": {
             "value": "Track and Indicator Width",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the --track-width and --indicator-width custom properties to set the width of the progress ring’s track and indicator.",
-            "type": "text"
           }
         },
         {
-          "name": "color",
           "description": {
             "value": "To change the color, use the --track-color and --indicator-color custom properties.",
             "type": "text"
-          }
+          },
+          "name": "color"
         },
         {
+          "description": {
+            "value": "Use the label attribute to label the progress ring and tell assistive devices how to announce it.",
+            "type": "text"
+          },
           "name": "labels",
           "title": {
             "value": "Labels",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the label attribute to label the progress ring and tell assistive devices how to announce it.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the default slot to show a label inside the progress ring. To display the value correctly, you should keep to a minimum width of 85 pixels.",
+            "type": "text"
+          },
           "name": "show-values",
           "title": {
             "value": "Showing Values",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the default slot to show a label inside the progress ring. To display the value correctly, you should keep to a minimum width of 85 pixels.",
             "type": "text"
           }
         }

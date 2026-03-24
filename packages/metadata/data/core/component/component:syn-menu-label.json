@@ -37,19 +37,19 @@
       }
     },
     "override": {
+      "storySourcePath": "components.menu-label",
       "storyTags": [
         "Navigation"
       ],
-      "storySourcePath": "components.menu-label",
       "stories": [
         {
+          "description": {
+            "value": "Menu labels are used to describe a group of menu items.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Menu Label",
-            "type": "text"
-          },
-          "description": {
-            "value": "Menu labels are used to describe a group of menu items.",
             "type": "text"
           }
         }

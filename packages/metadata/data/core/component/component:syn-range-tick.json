@@ -36,52 +36,52 @@
       }
     },
     "override": {
+      "storySourcePath": "components.range-tick",
       "storyTags": [
         "Form"
       ],
-      "storySourcePath": "components.range-tick",
       "stories": [
         {
+          "description": {
+            "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Ticks",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the default slot to give the tick a label.",
+            "type": "text"
+          },
           "name": "label",
           "title": {
             "value": "Labels",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the default slot to give the tick a label.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Grouping multiple ticks can be used as a scale. This can be used for uneven distributions as well.",
+            "type": "text"
+          },
           "name": "grouping",
           "title": {
             "value": "Grouping",
             "type": "text"
-          },
-          "description": {
-            "value": "Grouping multiple ticks can be used as a scale. This can be used for uneven distributions as well.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "It is possible to divide the space between major ticks for finer scale readings.",
+            "type": "text"
+          },
           "name": "subdivision",
           "title": {
             "value": "Subdivision Ticks",
-            "type": "text"
-          },
-          "description": {
-            "value": "It is possible to divide the space between major ticks for finer scale readings.",
             "type": "text"
           }
         }

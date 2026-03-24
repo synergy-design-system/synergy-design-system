@@ -42,43 +42,43 @@
       }
     },
     "override": {
+      "storySourcePath": "components.tag",
       "storyTags": [
         "Feedback",
         "Tags",
         "Filter"
       ],
-      "storySourcePath": "components.tag",
       "stories": [
         {
+          "description": {
+            "value": "Tags are used as labels to organize things or to indicate a selection.",
+            "type": "text"
+          },
           "name": "default",
           "title": {
             "value": "Tag",
             "type": "text"
-          },
-          "description": {
-            "value": "Tags are used as labels to organize things or to indicate a selection.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the size attribute to change a tab’s size.",
+            "type": "text"
+          },
           "name": "size",
           "title": {
             "value": "Sizes",
             "type": "text"
-          },
-          "description": {
-            "value": "Use the size attribute to change a tab’s size.",
-            "type": "text"
           }
         },
         {
+          "description": {
+            "value": "Use the removable attribute to add a remove button to the tag.",
+            "type": "text"
+          },
           "name": "removable",
           "title": {
             "value": "Removable",
-            "type": "text"
-          },
-          "description": {
-            "value": "Use the removable attribute to add a remove button to the tag.",
             "type": "text"
           }
         }

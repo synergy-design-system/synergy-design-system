@@ -30,16 +30,16 @@
     },
     {
       "access": "public",
-      "description": "",
-      "name": "separatorSlot",
-      "type": "HTMLSlotElement"
-    },
-    {
-      "access": "public",
       "default": "''",
       "description": "The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by\nscreen readers and other assistive devices to provide more context for users.",
       "name": "label",
       "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "separatorSlot",
+      "type": "HTMLSlotElement"
     }
   ],
   "since": "2.0",

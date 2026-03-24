@@ -1,20 +1,6 @@
 {
   "attributes": [
     {
-      "description": "The name of the icon to draw. Available names depend on the icon library being used.",
-      "fieldName": "name",
-      "name": "name",
-      "reflects": true,
-      "type": "string | undefined"
-    },
-    {
-      "description": "An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and\ncan result in XSS attacks.",
-      "fieldName": "src",
-      "name": "src",
-      "reflects": false,
-      "type": "string | undefined"
-    },
-    {
       "default": "''",
       "description": "An alternate description to use for assistive devices. If omitted, the icon will be considered presentational and\nignored by assistive devices.",
       "fieldName": "label",
@@ -29,6 +15,20 @@
       "name": "library",
       "reflects": true,
       "type": "string"
+    },
+    {
+      "description": "The name of the icon to draw. Available names depend on the icon library being used.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": true,
+      "type": "string | undefined"
+    },
+    {
+      "description": "An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and\ncan result in XSS attacks.",
+      "fieldName": "src",
+      "name": "src",
+      "reflects": false,
+      "type": "string | undefined"
     }
   ],
   "cssParts": [
@@ -45,14 +45,14 @@
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs",
   "events": [
     {
-      "description": "Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit.",
-      "name": "syn-load",
-      "type": "SynLoadEvent"
-    },
-    {
       "description": "Emitted when the icon fails to load due to an error. When using `spriteSheet: true` this will not emit.",
       "name": "syn-error",
       "type": "SynErrorEvent"
+    },
+    {
+      "description": "Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit.",
+      "name": "syn-load",
+      "type": "SynLoadEvent"
     }
   ],
   "methods": [
@@ -70,18 +70,6 @@
   "properties": [
     {
       "access": "public",
-      "description": "The name of the icon to draw. Available names depend on the icon library being used.",
-      "name": "name",
-      "type": "string | undefined"
-    },
-    {
-      "access": "public",
-      "description": "An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and\ncan result in XSS attacks.",
-      "name": "src",
-      "type": "string | undefined"
-    },
-    {
-      "access": "public",
       "default": "''",
       "description": "An alternate description to use for assistive devices. If omitted, the icon will be considered presentational and\nignored by assistive devices.",
       "name": "label",
@@ -93,6 +81,18 @@
       "description": "The name of a registered custom icon library.",
       "name": "library",
       "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "The name of the icon to draw. Available names depend on the icon library being used.",
+      "name": "name",
+      "type": "string | undefined"
+    },
+    {
+      "access": "public",
+      "description": "An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and\ncan result in XSS attacks.",
+      "name": "src",
+      "type": "string | undefined"
     }
   ],
   "since": "2.0",

@@ -23,20 +23,20 @@
       "name": "base"
     },
     {
-      "description": "The container that wraps the card's image.",
-      "name": "image"
-    },
-    {
-      "description": "The container that wraps the card's header.",
-      "name": "header"
-    },
-    {
       "description": "The container that wraps the card's main content.",
       "name": "body"
     },
     {
       "description": "The container that wraps the card's footer.",
       "name": "footer"
+    },
+    {
+      "description": "The container that wraps the card's header.",
+      "name": "header"
+    },
+    {
+      "description": "The container that wraps the card's image.",
+      "name": "image"
     }
   ],
   "dependencies": [],

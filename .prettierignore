@@ -38,6 +38,9 @@ packages/docs/src/materialSymbolsMetadata.json
 # MCP does not need to be checked for formatting issues
 packages/mcp/metadata
 
+# Metadata is generated and should not be formatted
+packages/metadata/data
+
 # Do not format tokens!
 packages/tokens/src/**/*.json
 

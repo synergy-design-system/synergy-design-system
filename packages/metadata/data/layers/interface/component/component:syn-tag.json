@@ -1,20 +1,20 @@
 {
   "attributes": [
     {
-      "default": "'medium'",
-      "description": "The tag's size.",
-      "fieldName": "size",
-      "name": "size",
-      "reflects": true,
-      "type": "'small' | 'medium' | 'large'"
-    },
-    {
       "default": "false",
       "description": "Makes the tag removable and shows a remove button.",
       "fieldName": "removable",
       "name": "removable",
       "reflects": false,
       "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The tag's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
     }
   ],
   "cssParts": [
@@ -50,17 +50,17 @@
   "properties": [
     {
       "access": "public",
-      "default": "'medium'",
-      "description": "The tag's size.",
-      "name": "size",
-      "type": "'small' | 'medium' | 'large'"
-    },
-    {
-      "access": "public",
       "default": "false",
       "description": "Makes the tag removable and shows a remove button.",
       "name": "removable",
       "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The tag's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
     }
   ],
   "since": "2.0",

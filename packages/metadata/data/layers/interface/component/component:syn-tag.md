@@ -10,8 +10,14 @@ Tags are used as labels to organize things or to indicate a selection.
 
 ## Class Information
 
+- **Import Example:** `import SynTag from '@synergy-design-system/components/components/tag/tag.js';`
 - **Module Path:** components/tag/tag.js
-- **Tag Name:** syn-tag
+- **Tag Name:** `syn-tag`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 2.0
 
 ## Available Slots
 
@@ -19,25 +25,12 @@ Tags are used as labels to organize things or to indicate a selection.
 | --------- | ------------------ |
 | (default) | The tag's content. |
 
-## Available Attributes
-
-| Name      | Type                           | Default  | Description                                        | Reflects |
-| --------- | ------------------------------ | -------- | -------------------------------------------------- | -------- |
-| size      | 'small' \| 'medium' \| 'large' | 'medium' | The tag's size.                                    | ✓        |
-| removable | boolean                        | false    | Makes the tag removable and shows a remove button. | -        |
-
 ## Available Properties
 
-| Name      | Type                           | Default  | Description                                        | Access |
-| --------- | ------------------------------ | -------- | -------------------------------------------------- | ------ |
-| size      | 'small' \| 'medium' \| 'large' | 'medium' | The tag's size.                                    | public |
-| removable | boolean                        | false    | Makes the tag removable and shows a remove button. | public |
-
-## Available Methods
-
-| Name | Parameters | Return Type | Description |
-| ---- | ---------- | ----------- | ----------- |
-| -    | -          | -           | -           |
+| Property  | Attribute   | Reflects | Type                             | Default    | Description                                        |
+| --------- | ----------- | :------: | -------------------------------- | ---------- | -------------------------------------------------- |
+| removable | `removable` |    -     | `boolean`                        | `false`    | Makes the tag removable and shows a remove button. |
+| size      | `size`      |    ✓     | `'small' \| 'medium' \| 'large'` | `'medium'` | The tag's size.                                    |
 
 ## Available CSS Parts
 
@@ -50,15 +43,10 @@ Tags are used as labels to organize things or to indicate a selection.
 
 ## Available Events
 
-| Name       | Event Type     | Description                                  |
-| ---------- | -------------- | -------------------------------------------- |
-| syn-remove | SynRemoveEvent | Emitted when the remove button is activated. |
+| Name       | Event Type       | Description                                  |
+| ---------- | ---------------- | -------------------------------------------- |
+| syn-remove | `SynRemoveEvent` | Emitted when the remove button is activated. |
 
 ## Dependencies
 
-- **syn-icon-button**
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 2.0
+- `syn-icon-button`

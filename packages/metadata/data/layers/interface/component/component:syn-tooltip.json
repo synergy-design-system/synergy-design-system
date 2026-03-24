@@ -9,14 +9,6 @@
       "type": "string"
     },
     {
-      "default": "'top'",
-      "description": "The preferred placement of the tooltip. Note that the actual placement may vary as needed to keep the tooltip\ninside of the viewport.",
-      "fieldName": "placement",
-      "name": "placement",
-      "reflects": false,
-      "type": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
-    },
-    {
       "default": "false",
       "description": "Disables the tooltip so it won't show when triggered.",
       "fieldName": "disabled",
@@ -41,6 +33,14 @@
       "type": "boolean"
     },
     {
+      "default": "'top'",
+      "description": "The preferred placement of the tooltip. Note that the actual placement may vary as needed to keep the tooltip\ninside of the viewport.",
+      "fieldName": "placement",
+      "name": "placement",
+      "reflects": false,
+      "type": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+    },
+    {
       "default": "0",
       "description": "The distance in pixels from which to offset the tooltip along its target.",
       "fieldName": "skidding",
@@ -63,12 +63,12 @@
       "name": "base"
     },
     {
-      "description": "The popup's exported `popup` part. Use this to target the tooltip's popup container.",
-      "name": "base__popup"
-    },
-    {
       "description": "The popup's exported `arrow` part. Use this to target the tooltip's arrow.",
       "name": "base__arrow"
+    },
+    {
+      "description": "The popup's exported `popup` part. Use this to target the tooltip's popup container.",
+      "name": "base__popup"
     },
     {
       "description": "The tooltip's body where its content is rendered.",
@@ -81,9 +81,9 @@
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tooltip--docs",
   "events": [
     {
-      "description": "Emitted when the tooltip begins to show.",
-      "name": "syn-show",
-      "type": "SynShowEvent"
+      "description": "Emitted after the tooltip has hidden and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
     },
     {
       "description": "Emitted after the tooltip has shown and all animations are complete.",
@@ -96,12 +96,17 @@
       "type": "SynHideEvent"
     },
     {
-      "description": "Emitted after the tooltip has hidden and all animations are complete.",
-      "name": "syn-after-hide",
-      "type": "SynAfterHideEvent"
+      "description": "Emitted when the tooltip begins to show.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
     }
   ],
   "methods": [
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    },
     {
       "description": "",
       "name": "handleOpenChange",
@@ -113,18 +118,13 @@
       "parameters": []
     },
     {
-      "description": "",
-      "name": "handleDisabledChange",
+      "description": "Hides the tooltip",
+      "name": "hide",
       "parameters": []
     },
     {
       "description": "Shows the tooltip.",
       "name": "show",
-      "parameters": []
-    },
-    {
-      "description": "Hides the tooltip",
-      "name": "hide",
       "parameters": []
     }
   ],
@@ -132,20 +132,8 @@
     {
       "access": "public",
       "description": "",
-      "name": "defaultSlot",
-      "type": "HTMLSlotElement"
-    },
-    {
-      "access": "public",
-      "description": "",
       "name": "body",
       "type": "HTMLElement"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "popup",
-      "type": "SynPopup"
     },
     {
       "access": "public",
@@ -156,10 +144,9 @@
     },
     {
       "access": "public",
-      "default": "'top'",
-      "description": "The preferred placement of the tooltip. Note that the actual placement may vary as needed to keep the tooltip\ninside of the viewport.",
-      "name": "placement",
-      "type": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
     },
     {
       "access": "public",
@@ -181,6 +168,19 @@
       "description": "Indicates whether or not the tooltip is open. You can use this in lieu of the show/hide methods.",
       "name": "open",
       "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'top'",
+      "description": "The preferred placement of the tooltip. Note that the actual placement may vary as needed to keep the tooltip\ninside of the viewport.",
+      "name": "placement",
+      "type": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "popup",
+      "type": "SynPopup"
     },
     {
       "access": "public",

@@ -1,12 +1,20 @@
 {
   "attributes": [
     {
-      "default": "'native'",
-      "description": "The variant that should be used to show validation alerts.\n\nThe following variants are supported:\n- **native** (default): Uses the native browser validation, usually a browser tooltip.\n- **tooltip**: Show the validation message as a tooltip using a `<syn-tooltip>`.\n- **inline**: Show the validation message underneath the element, using a `<syn-alert>`",
-      "fieldName": "variant",
-      "name": "variant",
-      "reflects": true,
-      "type": "'native' | 'tooltip' | 'inline'"
+      "default": "''",
+      "description": "Custom validation message to be displayed when the input is invalid.\nWill override the default browser validation message.\nSet to an empty string to reset the validation message.",
+      "fieldName": "customValidationMessage",
+      "name": "custom-validation-message",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Set this to true to validate the input immediately when it is rendered.\nBest used with a `variant` of `inline`.\nWhen setting eager, the input will not be focused automatically.\n\nWhen using a `variant` of `native` the browser will focus\nthe last eager field as it is using a tooltip.\nIn this case it is better to just provide one eager field.",
+      "fieldName": "eager",
+      "name": "eager",
+      "reflects": false,
+      "type": "boolean"
     },
     {
       "default": "false",
@@ -25,31 +33,15 @@
       "type": "string"
     },
     {
-      "default": "''",
-      "description": "Custom validation message to be displayed when the input is invalid.\nWill override the default browser validation message.\nSet to an empty string to reset the validation message.",
-      "fieldName": "customValidationMessage",
-      "name": "custom-validation-message",
-      "reflects": false,
-      "type": "string"
-    },
-    {
-      "default": "false",
-      "description": "Set this to true to validate the input immediately when it is rendered.\nBest used with a `variant` of `inline`.\nWhen setting eager, the input will not be focused automatically.\n\nWhen using a `variant` of `native` the browser will focus\nthe last eager field as it is using a tooltip.\nIn this case it is better to just provide one eager field.",
-      "fieldName": "eager",
-      "name": "eager",
-      "reflects": false,
-      "type": "boolean"
+      "default": "'native'",
+      "description": "The variant that should be used to show validation alerts.\n\nThe following variants are supported:\n- **native** (default): Uses the native browser validation, usually a browser tooltip.\n- **tooltip**: Show the validation message as a tooltip using a `<syn-tooltip>`.\n- **inline**: Show the validation message underneath the element, using a `<syn-alert>`",
+      "fieldName": "variant",
+      "name": "variant",
+      "reflects": true,
+      "type": "'native' | 'tooltip' | 'inline'"
     }
   ],
   "cssParts": [
-    {
-      "description": "The component's base wrapper.",
-      "name": "base"
-    },
-    {
-      "description": "The container that wraps the form field.",
-      "name": "input-wrapper"
-    },
     {
       "description": "The syn-alert that is shown when the variant is set to \"inline\".",
       "name": "alert"
@@ -59,32 +51,40 @@
       "name": "alert__base"
     },
     {
+      "description": "The container that wraps the alert icon.",
+      "name": "alert__icon"
+    },
+    {
       "description": "The container that wraps the alert message.",
       "name": "alert__message"
     },
     {
-      "description": "The container that wraps the alert icon.",
-      "name": "alert__icon"
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The container that wraps the form field.",
+      "name": "input-wrapper"
     },
     {
       "description": "The syn-tooltip that is shown when the variant is set to \"tooltip\".",
       "name": "tooltip"
     },
     {
-      "description": "The container that wraps the tooltip.",
-      "name": "tooltip__base"
-    },
-    {
-      "description": "The container that wraps the tooltip popup.",
-      "name": "tooltip__popup"
-    },
-    {
       "description": "The container that wraps the tooltip arrow.",
       "name": "tooltip__arrow"
     },
     {
+      "description": "The container that wraps the tooltip.",
+      "name": "tooltip__base"
+    },
+    {
       "description": "The container that wraps the tooltip body.",
       "name": "tooltip__body"
+    },
+    {
+      "description": "The container that wraps the tooltip popup.",
+      "name": "tooltip__popup"
     }
   ],
   "dependencies": [
@@ -95,8 +95,13 @@
   "events": [],
   "methods": [
     {
+      "description": "Returns the validity state of the input component.\n`true` for valid and `false` for invalid.",
+      "name": "getValidity",
+      "parameters": []
+    },
+    {
       "description": "",
-      "name": "handleListenerChange",
+      "name": "handleCustomValidationMessageChange",
       "parameters": []
     },
     {
@@ -106,16 +111,17 @@
     },
     {
       "description": "",
-      "name": "handleCustomValidationMessageChange",
-      "parameters": []
-    },
-    {
-      "description": "Returns the validity state of the input component.\n`true` for valid and `false` for invalid.",
-      "name": "getValidity",
+      "name": "handleListenerChange",
       "parameters": []
     }
   ],
   "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "alertSize",
+      "type": "SynInput['size'] | undefined"
+    },
     {
       "access": "public",
       "default": "new AbortController()",
@@ -124,28 +130,37 @@
     },
     {
       "access": "public",
-      "description": "",
-      "name": "observer",
-      "type": "MutationObserver"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "sizeObserver",
-      "type": "MutationObserver"
-    },
-    {
-      "access": "public",
       "default": "''",
-      "description": "",
-      "name": "validationMessage",
+      "description": "Custom validation message to be displayed when the input is invalid.\nWill override the default browser validation message.\nSet to an empty string to reset the validation message.",
+      "name": "customValidationMessage",
       "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Set this to true to validate the input immediately when it is rendered.\nBest used with a `variant` of `inline`.\nWhen setting eager, the input will not be focused automatically.\n\nWhen using a `variant` of `native` the browser will focus\nthe last eager field as it is using a tooltip.\nIn this case it is better to just provide one eager field.",
+      "name": "eager",
+      "type": "boolean"
     },
     {
       "access": "public",
       "default": "true",
       "description": "",
       "name": "eagerFirstMount",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "",
+      "name": "hasFocus",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Do not show the error icon when using the inline variant validation",
+      "name": "hideIcon",
       "type": "boolean"
     },
     {
@@ -165,29 +180,8 @@
     {
       "access": "public",
       "description": "",
-      "name": "alertSize",
-      "type": "SynInput['size'] | undefined"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "",
-      "name": "hasFocus",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "default": "'native'",
-      "description": "The variant that should be used to show validation alerts.\n\nThe following variants are supported:\n- **native** (default): Uses the native browser validation, usually a browser tooltip.\n- **tooltip**: Show the validation message as a tooltip using a `<syn-tooltip>`.\n- **inline**: Show the validation message underneath the element, using a `<syn-alert>`",
-      "name": "variant",
-      "type": "'native' | 'tooltip' | 'inline'"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Do not show the error icon when using the inline variant validation",
-      "name": "hideIcon",
-      "type": "boolean"
+      "name": "observer",
+      "type": "MutationObserver"
     },
     {
       "access": "public",
@@ -198,17 +192,23 @@
     },
     {
       "access": "public",
+      "description": "",
+      "name": "sizeObserver",
+      "type": "MutationObserver"
+    },
+    {
+      "access": "public",
       "default": "''",
-      "description": "Custom validation message to be displayed when the input is invalid.\nWill override the default browser validation message.\nSet to an empty string to reset the validation message.",
-      "name": "customValidationMessage",
+      "description": "",
+      "name": "validationMessage",
       "type": "string"
     },
     {
       "access": "public",
-      "default": "false",
-      "description": "Set this to true to validate the input immediately when it is rendered.\nBest used with a `variant` of `inline`.\nWhen setting eager, the input will not be focused automatically.\n\nWhen using a `variant` of `native` the browser will focus\nthe last eager field as it is using a tooltip.\nIn this case it is better to just provide one eager field.",
-      "name": "eager",
-      "type": "boolean"
+      "default": "'native'",
+      "description": "The variant that should be used to show validation alerts.\n\nThe following variants are supported:\n- **native** (default): Uses the native browser validation, usually a browser tooltip.\n- **tooltip**: Show the validation message as a tooltip using a `<syn-tooltip>`.\n- **inline**: Show the validation message underneath the element, using a `<syn-alert>`",
+      "name": "variant",
+      "type": "'native' | 'tooltip' | 'inline'"
     }
   ],
   "since": "unknown",

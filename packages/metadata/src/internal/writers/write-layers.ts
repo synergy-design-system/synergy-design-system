@@ -131,6 +131,7 @@ type InterfaceNamedDescription = { description: string; name: string };
 type InterfaceAttribute = {
   default?: string;
   description: string;
+  fieldName?: string;
   name: string;
   reflects: boolean;
   type?: string;
@@ -175,19 +176,42 @@ const formatCell = (value: string | undefined): string => {
 
 const slotDisplayName = (name: string): string => (name.length === 0 ? '(default)' : name);
 
+const renderAttributeCell = (attribute: InterfaceAttribute | undefined): string => {
+  if (!attribute) {
+    return '-';
+  }
+
+  return `\`${attribute.name}\``;
+};
+
+const renderReflectsCell = (attribute: InterfaceAttribute | undefined): string => {
+  if (!attribute) {
+    return '-';
+  }
+
+  return attribute.reflects ? '✓' : '-';
+};
+
+const renderMarkdownSection = (title: string, content: string | undefined): string => {
+  if (!content || content.trim().length === 0) {
+    return '';
+  }
+
+  return `## ${title}\n\n${content.trimEnd()}`;
+};
+
 const renderInterfaceMarkdown = (
   rawSnapshot: Record<string, unknown>,
   enrichedOverride?: EnrichedOverride,
 ): string => {
   const snapshot = rawSnapshot as InterfaceSnapshot;
 
-  const lines: string[] = [];
   const tagName = snapshot.tagName ?? 'unknown-component';
   const summary = snapshot.summary ?? '';
   const {documentation} = snapshot;
-  const sourceModulePath = snapshot.sourceModulePath ?? '-';
-  const status = snapshot.status ?? '-';
-  const since = snapshot.since ?? '-';
+  const sourceModulePath = snapshot.sourceModulePath?.trim();
+  const status = snapshot.status?.trim();
+  const since = snapshot.since?.trim();
   const slots = snapshot.slots ?? [];
   const attributes = snapshot.attributes ?? [];
   const properties = snapshot.properties ?? [];
@@ -196,129 +220,144 @@ const renderInterfaceMarkdown = (
   const events = snapshot.events ?? [];
   const dependencies = snapshot.dependencies ?? [];
 
-  lines.push(`# ${tagName}`);
-  lines.push('');
-  lines.push('## Summary');
-  lines.push('');
-  lines.push(summary.length > 0 ? summary : '-');
+  // Build import example from module path
+  const importExample = sourceModulePath
+    ? `import ${tagName.charAt(0).toUpperCase() + tagName.slice(1).replace(/-./g, (x) => x[1].toUpperCase())} from '@synergy-design-system/components/${sourceModulePath.replace(/\.js$/, '')}.js';`
+    : undefined;
 
-  if (documentation) {
-    lines.push('');
-    lines.push('## Documentation');
-    lines.push('');
-    lines.push(`[Component Documentation](${documentation})`);
+  const classInformationLines: string[] = [];
+  if (importExample) {
+    classInformationLines.push(`- **Import Example:** \`${importExample}\``);
   }
-
-  lines.push('');
-  lines.push('## Class Information');
-  lines.push('');
-  lines.push(`- **Module Path:** ${sourceModulePath}`);
-  lines.push(`- **Tag Name:** ${tagName}`);
-
-  lines.push('');
-  lines.push('## Available Slots');
-  lines.push('');
-  lines.push('| Name | Description |');
-  lines.push('|------|-------------|');
-  for (const slot of slots) {
-    lines.push(`| ${formatCell(slotDisplayName(slot.name))} | ${formatCell(slot.description)} |`);
+  if (sourceModulePath) {
+    classInformationLines.push(`- **Module Path:** ${sourceModulePath}`);
   }
-  if (slots.length === 0) {
-    lines.push('| - | - |');
-  }
+  classInformationLines.push(`- **Tag Name:** \`${tagName}\``);
 
-  lines.push('');
-  lines.push('## Available Attributes');
-  lines.push('');
-  lines.push('| Name | Type | Default | Description | Reflects |');
-  lines.push('|------|------|---------|-------------|----------|');
+  const slotsContent = slots.length > 0
+    ? [
+      '| Name | Description |',
+      '|------|-------------|',
+      ...slots.map((slot) => `| ${formatCell(slotDisplayName(slot.name))} | ${formatCell(slot.description)} |`),
+    ].join('\n')
+    : undefined;
+
+  // Filter properties to only include public ones with descriptions.
+  const publicProperties = properties.filter((p) => p.access === 'public' && p.description && p.description.trim().length > 0);
+
+  const attributeByPropertyName = new Map<string, InterfaceAttribute>();
   for (const attribute of attributes) {
-    lines.push(`| ${formatCell(attribute.name)} | ${formatCell(attribute.type)} | ${formatCell(attribute.default)} | ${formatCell(attribute.description)} | ${attribute.reflects ? '✓' : '-'} |`);
-  }
-  if (attributes.length === 0) {
-    lines.push('| - | - | - | - | - |');
-  }
-
-  lines.push('');
-  lines.push('## Available Properties');
-  lines.push('');
-  lines.push('| Name | Type | Default | Description | Access |');
-  lines.push('|------|------|---------|-------------|--------|');
-  for (const property of properties) {
-    lines.push(`| ${formatCell(property.name)} | ${formatCell(property.type)} | ${formatCell(property.default)} | ${formatCell(property.description)} | ${formatCell(property.access)} |`);
-  }
-  if (properties.length === 0) {
-    lines.push('| - | - | - | - | - |');
-  }
-
-  lines.push('');
-  lines.push('## Available Methods');
-  lines.push('');
-  lines.push('| Name | Parameters | Return Type | Description |');
-  lines.push('|------|------------|-------------|-------------|');
-  for (const method of methods) {
-    const parameters = method.parameters.length > 0
-      ? method.parameters.map((parameter) => (parameter.type ? `${parameter.name}: ${parameter.type}` : parameter.name)).join(', ')
-      : '-';
-    lines.push(`| ${formatCell(method.name)} | ${formatCell(parameters)} | ${formatCell(method.returnType)} | ${formatCell(method.description)} |`);
-  }
-  if (methods.length === 0) {
-    lines.push('| - | - | - | - |');
-  }
-
-  lines.push('');
-  lines.push('## Available CSS Parts');
-  lines.push('');
-  lines.push('| Name | Description |');
-  lines.push('|------|-------------|');
-  for (const part of cssParts) {
-    lines.push(`| ${formatCell(part.name)} | ${formatCell(part.description)} |`);
-  }
-  if (cssParts.length === 0) {
-    lines.push('| - | - |');
-  }
-
-  lines.push('');
-  lines.push('## Available Events');
-  lines.push('');
-  lines.push('| Name | Event Type | Description |');
-  lines.push('|------|------------|-------------|');
-  for (const event of events) {
-    lines.push(`| ${formatCell(event.name)} | ${formatCell(event.type)} | ${formatCell(event.description)} |`);
-  }
-  if (events.length === 0) {
-    lines.push('| - | - | - |');
-  }
-
-  lines.push('');
-  lines.push('## Dependencies');
-  lines.push('');
-  if (dependencies.length > 0) {
-    for (const dependency of dependencies) {
-      lines.push(`- **${dependency}**`);
+    if (!attribute.fieldName) {
+      continue;
     }
-  } else {
-    lines.push('- None');
+
+    if (!attributeByPropertyName.has(attribute.fieldName)) {
+      attributeByPropertyName.set(attribute.fieldName, attribute);
+    }
   }
 
-  lines.push('');
-  lines.push('## Usage Information');
-  lines.push('');
-  lines.push(`- **Status:** ${status}`);
-  lines.push(`- **Since:** ${since}`);
+  const propertiesContent = publicProperties.length > 0
+    ? [
+      '| Property | Attribute | Reflects | Type | Default | Description |',
+      '|----------|-----------|:--------:|------|---------|-------------|',
+      ...publicProperties.map((property) => {
+        const defaultValue = formatCell(property.default);
+        const formattedDefault = defaultValue === '-' ? '-' : `\`${defaultValue}\``;
+        const mappedAttribute = attributeByPropertyName.get(property.name);
+        return `| ${formatCell(property.name)} | ${renderAttributeCell(mappedAttribute)} | ${renderReflectsCell(mappedAttribute)} | \`${formatCell(property.type)}\` | ${formattedDefault} | ${formatCell(property.description)} |`;
+      }),
+    ].join('\n')
+    : undefined;
+
+  const publicPropertyNames = new Set(publicProperties.map((p) => p.name));
+  const attributeOnlyMembers = attributes.filter(
+    (attribute) => !attribute.fieldName || !publicPropertyNames.has(attribute.fieldName),
+  );
+  const attributesContent = attributeOnlyMembers.length > 0
+    ? [
+      '| Name | Type | Default | Description |',
+      '|------|------|---------|-------------|',
+      ...attributeOnlyMembers.map((attribute) => {
+        const defaultValue = formatCell(attribute.default);
+        const formattedDefault = defaultValue === '-' ? '-' : `\`${defaultValue}\``;
+        return `| ${formatCell(attribute.name)} | \`${formatCell(attribute.type)}\` | ${formattedDefault} | ${formatCell(attribute.description)} |`;
+      }),
+    ].join('\n')
+    : undefined;
+
+  // Filter methods to only include those with descriptions, and format parameters
+  const publicMethods = methods.filter((m) => m.description && m.description.trim().length > 0);
+  const methodsContent = publicMethods.length > 0
+    ? [
+      '| Name | Parameters | Return Type | Description |',
+      '|------|------------|-------------|-------------|',
+      ...publicMethods.map((method) => {
+        const parameters = method.parameters.length > 0
+          ? method.parameters.map((parameter) => (parameter.type ? `\`${parameter.name}: ${parameter.type}\`` : `\`${parameter.name}\``)).join(', ')
+          : '-';
+        return `| \`${method.name}()\` | ${formatCell(parameters)} | ${formatCell(method.returnType)} | ${formatCell(method.description)} |`;
+      }),
+    ].join('\n')
+    : undefined;
+
+  const cssPartsContent = cssParts.length > 0
+    ? [
+      '| Name | Description |',
+      '|------|-------------|',
+      ...cssParts.map((part) => `| ${formatCell(part.name)} | ${formatCell(part.description)} |`),
+    ].join('\n')
+    : undefined;
+
+  // Format event types with backticks
+  const eventsContent = events.length > 0
+    ? [
+      '| Name | Event Type | Description |',
+      '|------|------------|-------------|',
+      ...events.map((event) => `| ${formatCell(event.name)} | ${formatCell(event.type ? `\`${event.type}\`` : '-')} | ${formatCell(event.description)} |`),
+    ].join('\n')
+    : undefined;
+
+  // Format dependency names with backticks
+  const dependenciesContent = dependencies.length > 0
+    ? dependencies.map((dependency) => `- \`${dependency}\``).join('\n')
+    : undefined;
+
+  const usageLines: string[] = [];
+  if (status) {
+    usageLines.push(`- **Status:** ${status}`);
+  }
+  if (since) {
+    usageLines.push(`- **Since:** ${since}`);
+  }
+  const usageContent = usageLines.length > 0 ? usageLines.join('\n') : undefined;
+
+  const sections: string[] = [
+    renderMarkdownSection('Summary', summary.length > 0 ? summary : '-'),
+    renderMarkdownSection(
+      'Documentation',
+      documentation ? `[Component Documentation](${documentation})` : undefined,
+    ),
+    renderMarkdownSection('Class Information', classInformationLines.join('\n')),
+    renderMarkdownSection('Usage Information', usageContent),
+    renderMarkdownSection('Available Slots', slotsContent),
+    renderMarkdownSection('Available Properties', propertiesContent),
+    renderMarkdownSection('Attribute-only Members', attributesContent),
+    renderMarkdownSection('Available Methods', methodsContent),
+    renderMarkdownSection('Available CSS Parts', cssPartsContent),
+    renderMarkdownSection('Available Events', eventsContent),
+    renderMarkdownSection('Dependencies', dependenciesContent),
+  ];
 
   // Add custom sections if provided through override
   if (enrichedOverride?.customSections) {
     for (const [, section] of Object.entries(enrichedOverride.customSections)) {
       const sectionData = section as { title: string; content: string };
-      lines.push('');
-      lines.push(`## ${sectionData.title}`);
-      lines.push('');
-      lines.push(sectionData.content);
+      sections.push(renderMarkdownSection(sectionData.title, sectionData.content));
     }
   }
 
-  return `${lines.join('\n')}\n`;
+  const nonEmptySections = sections.filter((section) => section.length > 0);
+  return `# ${tagName}\n\n${nonEmptySections.join('\n\n')}\n`;
 };
 
 /**

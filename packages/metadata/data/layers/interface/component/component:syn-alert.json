@@ -2,27 +2,11 @@
   "attributes": [
     {
       "default": "false",
-      "description": "Indicates whether or not the alert is open. You can toggle this attribute to show and hide the alert, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the alert's open state.",
-      "fieldName": "open",
-      "name": "open",
-      "reflects": true,
-      "type": "boolean"
-    },
-    {
-      "default": "false",
       "description": "Enables a close button that allows the user to dismiss the alert.",
       "fieldName": "closable",
       "name": "closable",
       "reflects": true,
       "type": "boolean"
-    },
-    {
-      "default": "'primary'",
-      "description": "The alert's theme variant.",
-      "fieldName": "variant",
-      "name": "variant",
-      "reflects": true,
-      "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
     },
     {
       "default": "Infinity",
@@ -32,12 +16,28 @@
       "reflects": false
     },
     {
+      "default": "false",
+      "description": "Indicates whether or not the alert is open. You can toggle this attribute to show and hide the alert, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the alert's open state.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
       "default": "'medium'",
       "description": "The alert's size.",
       "fieldName": "size",
       "name": "size",
       "reflects": true,
       "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "default": "'primary'",
+      "description": "The alert's theme variant.",
+      "fieldName": "variant",
+      "name": "variant",
+      "reflects": true,
+      "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
     }
   ],
   "cssParts": [
@@ -46,20 +46,20 @@
       "name": "base"
     },
     {
-      "description": "The container that wraps the optional icon.",
-      "name": "icon"
-    },
-    {
-      "description": "The container that wraps the alert's main content.",
-      "name": "message"
-    },
-    {
       "description": "The close button, an `<syn-icon-button>`.",
       "name": "close-button"
     },
     {
       "description": "The close button's exported `base` part.",
       "name": "close-button__base"
+    },
+    {
+      "description": "The container that wraps the optional icon.",
+      "name": "icon"
+    },
+    {
+      "description": "The container that wraps the alert's main content.",
+      "name": "message"
     }
   ],
   "dependencies": [
@@ -68,9 +68,9 @@
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs",
   "events": [
     {
-      "description": "Emitted when the alert opens.",
-      "name": "syn-show",
-      "type": "SynShowEvent"
+      "description": "Emitted after the alert closes and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
     },
     {
       "description": "Emitted after the alert opens and all animations are complete.",
@@ -83,30 +83,30 @@
       "type": "SynHideEvent"
     },
     {
-      "description": "Emitted after the alert closes and all animations are complete.",
-      "name": "syn-after-hide",
-      "type": "SynAfterHideEvent"
+      "description": "Emitted when the alert opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
     }
   ],
   "methods": [
-    {
-      "description": "",
-      "name": "handleOpenChange",
-      "parameters": []
-    },
     {
       "description": "",
       "name": "handleDurationChange",
       "parameters": []
     },
     {
-      "description": "Shows the alert.",
-      "name": "show",
+      "description": "",
+      "name": "handleOpenChange",
       "parameters": []
     },
     {
       "description": "Hides the alert",
       "name": "hide",
+      "parameters": []
+    },
+    {
+      "description": "Shows the alert.",
+      "name": "show",
       "parameters": []
     },
     {
@@ -124,9 +124,22 @@
     },
     {
       "access": "public",
+      "default": "false",
+      "description": "Enables a close button that allows the user to dismiss the alert.",
+      "name": "closable",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
       "description": "",
       "name": "countdownElement",
       "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "default": "Infinity",
+      "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`, meaning\nthe alert will not close on its own.",
+      "name": "duration"
     },
     {
       "access": "public",
@@ -137,10 +150,10 @@
     },
     {
       "access": "public",
-      "default": "false",
-      "description": "Enables a close button that allows the user to dismiss the alert.",
-      "name": "closable",
-      "type": "boolean"
+      "default": "'medium'",
+      "description": "The alert's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
     },
     {
       "access": "public",
@@ -148,19 +161,6 @@
       "description": "The alert's theme variant.",
       "name": "variant",
       "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
-    },
-    {
-      "access": "public",
-      "default": "Infinity",
-      "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`, meaning\nthe alert will not close on its own.",
-      "name": "duration"
-    },
-    {
-      "access": "public",
-      "default": "'medium'",
-      "description": "The alert's size.",
-      "name": "size",
-      "type": "'small' | 'medium' | 'large'"
     }
   ],
   "since": "2.0",

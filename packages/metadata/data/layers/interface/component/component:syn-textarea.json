@@ -1,36 +1,70 @@
 {
   "attributes": [
     {
+      "description": "Controls whether and how text input is automatically capitalized as it is entered by the user.",
+      "fieldName": "autocapitalize",
+      "name": "autocapitalize",
+      "reflects": false,
+      "type": "'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'"
+    },
+    {
+      "description": "Specifies what permission the browser has to provide assistance in filling out form field values. Refer to\n[this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.",
+      "fieldName": "autocomplete",
+      "name": "autocomplete",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "description": "Indicates whether the browser's autocorrect feature is on or off.",
+      "fieldName": "autocorrect",
+      "name": "autocorrect",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "description": "Indicates that the input should receive focus on page load.",
+      "fieldName": "autofocus",
+      "name": "autofocus",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Disables the textarea.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "description": "Used to customize the label or icon of the Enter key on virtual keyboards.",
+      "fieldName": "enterkeyhint",
+      "name": "enterkeyhint",
+      "reflects": false,
+      "type": "'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'"
+    },
+    {
       "default": "''",
-      "description": "",
-      "fieldName": "title",
-      "name": "title",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "fieldName": "form",
+      "name": "form",
       "reflects": true,
       "type": "string"
     },
     {
       "default": "''",
-      "description": "The name of the textarea, submitted as a name/value pair with form data.",
-      "fieldName": "name",
-      "name": "name",
+      "description": "The textarea's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "fieldName": "helpText",
+      "name": "help-text",
       "reflects": false,
       "type": "string"
     },
     {
-      "default": "''",
-      "description": "The current value of the textarea, submitted as a name/value pair with form data.",
-      "fieldName": "value",
-      "name": "value",
+      "description": "Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual\nkeyboard on supportive devices.",
+      "fieldName": "inputmode",
+      "name": "inputmode",
       "reflects": false,
-      "type": "string"
-    },
-    {
-      "default": "'medium'",
-      "description": "The textarea's size.",
-      "fieldName": "size",
-      "name": "size",
-      "reflects": true,
-      "type": "'small' | 'medium' | 'large'"
+      "type": "'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'"
     },
     {
       "default": "''",
@@ -41,10 +75,24 @@
       "type": "string"
     },
     {
+      "description": "The maximum length of input that will be considered valid.",
+      "fieldName": "maxlength",
+      "name": "maxlength",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "description": "The minimum length of input that will be considered valid.",
+      "fieldName": "minlength",
+      "name": "minlength",
+      "reflects": false,
+      "type": "number"
+    },
+    {
       "default": "''",
-      "description": "The textarea's help text. If you need to display HTML, use the `help-text` slot instead.",
-      "fieldName": "helpText",
-      "name": "help-text",
+      "description": "The name of the textarea, submitted as a name/value pair with form data.",
+      "fieldName": "name",
+      "name": "name",
       "reflects": false,
       "type": "string"
     },
@@ -57,44 +105,12 @@
       "type": "string"
     },
     {
-      "default": "4",
-      "description": "The number of rows to display by default.",
-      "fieldName": "rows",
-      "name": "rows",
-      "reflects": false,
-      "type": "number"
-    },
-    {
-      "default": "'vertical'",
-      "description": "Controls how the textarea can be resized.",
-      "fieldName": "resize",
-      "name": "resize",
-      "reflects": false,
-      "type": "'none' | 'vertical' | 'auto'"
-    },
-    {
-      "default": "false",
-      "description": "Disables the textarea.",
-      "fieldName": "disabled",
-      "name": "disabled",
-      "reflects": true,
-      "type": "boolean"
-    },
-    {
       "default": "false",
       "description": "Makes the textarea readonly.",
       "fieldName": "readonly",
       "name": "readonly",
       "reflects": true,
       "type": "boolean"
-    },
-    {
-      "default": "''",
-      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
-      "fieldName": "form",
-      "name": "form",
-      "reflects": true,
-      "type": "string"
     },
     {
       "default": "false",
@@ -105,53 +121,28 @@
       "type": "boolean"
     },
     {
-      "description": "The minimum length of input that will be considered valid.",
-      "fieldName": "minlength",
-      "name": "minlength",
+      "default": "'vertical'",
+      "description": "Controls how the textarea can be resized.",
+      "fieldName": "resize",
+      "name": "resize",
+      "reflects": false,
+      "type": "'none' | 'vertical' | 'auto'"
+    },
+    {
+      "default": "4",
+      "description": "The number of rows to display by default.",
+      "fieldName": "rows",
+      "name": "rows",
       "reflects": false,
       "type": "number"
     },
     {
-      "description": "The maximum length of input that will be considered valid.",
-      "fieldName": "maxlength",
-      "name": "maxlength",
-      "reflects": false,
-      "type": "number"
-    },
-    {
-      "description": "Controls whether and how text input is automatically capitalized as it is entered by the user.",
-      "fieldName": "autocapitalize",
-      "name": "autocapitalize",
-      "reflects": false,
-      "type": "'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'"
-    },
-    {
-      "description": "Indicates whether the browser's autocorrect feature is on or off.",
-      "fieldName": "autocorrect",
-      "name": "autocorrect",
+      "default": "'medium'",
+      "description": "The textarea's size.",
+      "fieldName": "size",
+      "name": "size",
       "reflects": true,
-      "type": "boolean"
-    },
-    {
-      "description": "Specifies what permission the browser has to provide assistance in filling out form field values. Refer to\n[this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.",
-      "fieldName": "autocomplete",
-      "name": "autocomplete",
-      "reflects": false,
-      "type": "string"
-    },
-    {
-      "description": "Indicates that the input should receive focus on page load.",
-      "fieldName": "autofocus",
-      "name": "autofocus",
-      "reflects": false,
-      "type": "boolean"
-    },
-    {
-      "description": "Used to customize the label or icon of the Enter key on virtual keyboards.",
-      "fieldName": "enterkeyhint",
-      "name": "enterkeyhint",
-      "reflects": false,
-      "type": "'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'"
+      "type": "'small' | 'medium' | 'large'"
     },
     {
       "default": "true",
@@ -162,33 +153,42 @@
       "type": "boolean"
     },
     {
-      "description": "Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual\nkeyboard on supportive devices.",
-      "fieldName": "inputmode",
-      "name": "inputmode",
+      "default": "''",
+      "description": "",
+      "fieldName": "title",
+      "name": "title",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The current value of the textarea, submitted as a name/value pair with form data.",
+      "fieldName": "value",
+      "name": "value",
       "reflects": false,
-      "type": "'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'"
+      "type": "string"
     }
   ],
   "cssParts": [
     {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
       "description": "The form control that wraps the label, input, and help text.",
       "name": "form-control"
-    },
-    {
-      "description": "The label's wrapper.",
-      "name": "form-control-label"
-    },
-    {
-      "description": "The input's wrapper.",
-      "name": "form-control-input"
     },
     {
       "description": "The help text's wrapper.",
       "name": "form-control-help-text"
     },
     {
-      "description": "The component's base wrapper.",
-      "name": "base"
+      "description": "The input's wrapper.",
+      "name": "form-control-input"
+    },
+    {
+      "description": "The label's wrapper.",
+      "name": "form-control-label"
     },
     {
       "description": "The internal `<textarea>` control.",
@@ -226,6 +226,31 @@
   ],
   "methods": [
     {
+      "description": "Removes focus from the textarea.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
+      "name": "checkValidity",
+      "parameters": []
+    },
+    {
+      "description": "Sets focus on the textarea.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    },
+    {
+      "description": "Gets the associated form, if one exists.",
+      "name": "getForm",
+      "parameters": []
+    },
+    {
       "description": "",
       "name": "handleDisabledChange",
       "parameters": []
@@ -241,23 +266,8 @@
       "parameters": []
     },
     {
-      "description": "Sets focus on the textarea.",
-      "name": "focus",
-      "parameters": [
-        {
-          "name": "options",
-          "type": "FocusOptions"
-        }
-      ]
-    },
-    {
-      "description": "Removes focus from the textarea.",
-      "name": "blur",
-      "parameters": []
-    },
-    {
-      "description": "Selects all the text in the textarea.",
-      "name": "select",
+      "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
+      "name": "reportValidity",
       "parameters": []
     },
     {
@@ -271,20 +281,17 @@
       ]
     },
     {
-      "description": "Sets the start and end positions of the text selection (0-based).",
-      "name": "setSelectionRange",
+      "description": "Selects all the text in the textarea.",
+      "name": "select",
+      "parameters": []
+    },
+    {
+      "description": "Sets a custom validation message. Pass an empty string to restore validity.",
+      "name": "setCustomValidity",
       "parameters": [
         {
-          "name": "selectionStart",
-          "type": "number"
-        },
-        {
-          "name": "selectionEnd",
-          "type": "number"
-        },
-        {
-          "name": "selectionDirection",
-          "type": "'forward' | 'backward' | 'none'"
+          "name": "message",
+          "type": "string"
         }
       ]
     },
@@ -311,27 +318,20 @@
       ]
     },
     {
-      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
-      "name": "checkValidity",
-      "parameters": []
-    },
-    {
-      "description": "Gets the associated form, if one exists.",
-      "name": "getForm",
-      "parameters": []
-    },
-    {
-      "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
-      "name": "reportValidity",
-      "parameters": []
-    },
-    {
-      "description": "Sets a custom validation message. Pass an empty string to restore validity.",
-      "name": "setCustomValidity",
+      "description": "Sets the start and end positions of the text selection (0-based).",
+      "name": "setSelectionRange",
       "parameters": [
         {
-          "name": "message",
-          "type": "string"
+          "name": "selectionStart",
+          "type": "number"
+        },
+        {
+          "name": "selectionEnd",
+          "type": "number"
+        },
+        {
+          "name": "selectionDirection",
+          "type": "'forward' | 'backward' | 'none'"
         }
       ]
     }
@@ -339,49 +339,53 @@
   "properties": [
     {
       "access": "public",
-      "description": "",
-      "name": "input",
-      "type": "HTMLTextAreaElement"
+      "description": "Controls whether and how text input is automatically capitalized as it is entered by the user.",
+      "name": "autocapitalize",
+      "type": "'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'"
     },
     {
       "access": "public",
-      "description": "",
-      "name": "sizeAdjuster",
-      "type": "HTMLTextAreaElement"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "",
-      "name": "title",
+      "description": "Specifies what permission the browser has to provide assistance in filling out form field values. Refer to\n[this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.",
+      "name": "autocomplete",
       "type": "string"
     },
     {
       "access": "public",
+      "description": "Indicates whether the browser's autocorrect feature is on or off.",
+      "name": "autocorrect",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "Indicates that the input should receive focus on page load.",
+      "name": "autofocus",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
       "default": "''",
-      "description": "The name of the textarea, submitted as a name/value pair with form data.",
-      "name": "name",
+      "description": "The default value of the form control. Primarily used for resetting the form control.",
+      "name": "defaultValue",
       "type": "string"
     },
     {
       "access": "public",
-      "default": "''",
-      "description": "The current value of the textarea, submitted as a name/value pair with form data.",
-      "name": "value",
-      "type": "string"
+      "default": "false",
+      "description": "Disables the textarea.",
+      "name": "disabled",
+      "type": "boolean"
     },
     {
       "access": "public",
-      "default": "'medium'",
-      "description": "The textarea's size.",
-      "name": "size",
-      "type": "'small' | 'medium' | 'large'"
+      "description": "Used to customize the label or icon of the Enter key on virtual keyboards.",
+      "name": "enterkeyhint",
+      "type": "'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'"
     },
     {
       "access": "public",
       "default": "''",
-      "description": "The textarea's label. If you need to display HTML, use the `label` slot instead.",
-      "name": "label",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "name": "form",
       "type": "string"
     },
     {
@@ -393,101 +397,9 @@
     },
     {
       "access": "public",
-      "default": "''",
-      "description": "Placeholder text to show as a hint when the input is empty.",
-      "name": "placeholder",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "4",
-      "description": "The number of rows to display by default.",
-      "name": "rows",
-      "type": "number"
-    },
-    {
-      "access": "public",
-      "default": "'vertical'",
-      "description": "Controls how the textarea can be resized.",
-      "name": "resize",
-      "type": "'none' | 'vertical' | 'auto'"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Disables the textarea.",
-      "name": "disabled",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Makes the textarea readonly.",
-      "name": "readonly",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
-      "name": "form",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Makes the textarea a required field.",
-      "name": "required",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "description": "The minimum length of input that will be considered valid.",
-      "name": "minlength",
-      "type": "number"
-    },
-    {
-      "access": "public",
-      "description": "The maximum length of input that will be considered valid.",
-      "name": "maxlength",
-      "type": "number"
-    },
-    {
-      "access": "public",
-      "description": "Controls whether and how text input is automatically capitalized as it is entered by the user.",
-      "name": "autocapitalize",
-      "type": "'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'"
-    },
-    {
-      "access": "public",
-      "description": "Indicates whether the browser's autocorrect feature is on or off.",
-      "name": "autocorrect",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "description": "Specifies what permission the browser has to provide assistance in filling out form field values. Refer to\n[this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.",
-      "name": "autocomplete",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "description": "Indicates that the input should receive focus on page load.",
-      "name": "autofocus",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "description": "Used to customize the label or icon of the Enter key on virtual keyboards.",
-      "name": "enterkeyhint",
-      "type": "'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'"
-    },
-    {
-      "access": "public",
-      "default": "true",
-      "description": "Enables spell checking on the textarea.",
-      "name": "spellcheck",
-      "type": "boolean"
+      "description": "",
+      "name": "input",
+      "type": "HTMLTextAreaElement"
     },
     {
       "access": "public",
@@ -498,9 +410,95 @@
     {
       "access": "public",
       "default": "''",
-      "description": "The default value of the form control. Primarily used for resetting the form control.",
-      "name": "defaultValue",
+      "description": "The textarea's label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
       "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "The maximum length of input that will be considered valid.",
+      "name": "maxlength",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "description": "The minimum length of input that will be considered valid.",
+      "name": "minlength",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the textarea, submitted as a name/value pair with form data.",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "Placeholder text to show as a hint when the input is empty.",
+      "name": "placeholder",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Makes the textarea readonly.",
+      "name": "readonly",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Makes the textarea a required field.",
+      "name": "required",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'vertical'",
+      "description": "Controls how the textarea can be resized.",
+      "name": "resize",
+      "type": "'none' | 'vertical' | 'auto'"
+    },
+    {
+      "access": "public",
+      "default": "4",
+      "description": "The number of rows to display by default.",
+      "name": "rows",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The textarea's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "sizeAdjuster",
+      "type": "HTMLTextAreaElement"
+    },
+    {
+      "access": "public",
+      "default": "true",
+      "description": "Enables spell checking on the textarea.",
+      "name": "spellcheck",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validation message",
+      "name": "validationMessage"
     },
     {
       "access": "readonly",
@@ -508,9 +506,11 @@
       "name": "validity"
     },
     {
-      "access": "readonly",
-      "description": "Gets the validation message",
-      "name": "validationMessage"
+      "access": "public",
+      "default": "''",
+      "description": "The current value of the textarea, submitted as a name/value pair with form data.",
+      "name": "value",
+      "type": "string"
     }
   ],
   "since": "2.0",

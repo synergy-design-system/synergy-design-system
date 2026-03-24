@@ -10,8 +10,14 @@ Tab panels are used inside [tab groups](/components/tab-group) to display tabbed
 
 ## Class Information
 
+- **Import Example:** `import SynTabPanel from '@synergy-design-system/components/components/tab-panel/tab-panel.js';`
 - **Module Path:** components/tab-panel/tab-panel.js
-- **Tag Name:** syn-tab-panel
+- **Tag Name:** `syn-tab-panel`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 2.0
 
 ## Available Slots
 
@@ -19,43 +25,15 @@ Tab panels are used inside [tab groups](/components/tab-group) to display tabbed
 | --------- | ------------------------ |
 | (default) | The tab panel's content. |
 
-## Available Attributes
-
-| Name   | Type    | Default | Description                             | Reflects |
-| ------ | ------- | ------- | --------------------------------------- | -------- |
-| name   | string  | ''      | The tab panel's name.                   | ✓        |
-| active | boolean | false   | When true, the tab panel will be shown. | ✓        |
-
 ## Available Properties
 
-| Name   | Type    | Default | Description                             | Access |
-| ------ | ------- | ------- | --------------------------------------- | ------ |
-| name   | string  | ''      | The tab panel's name.                   | public |
-| active | boolean | false   | When true, the tab panel will be shown. | public |
-
-## Available Methods
-
-| Name               | Parameters | Return Type | Description |
-| ------------------ | ---------- | ----------- | ----------- |
-| handleActiveChange | -          | -           | -           |
+| Property | Attribute | Reflects | Type      | Default | Description                             |
+| -------- | --------- | :------: | --------- | ------- | --------------------------------------- |
+| active   | `active`  |    ✓     | `boolean` | `false` | When true, the tab panel will be shown. |
+| name     | `name`    |    ✓     | `string`  | `''`    | The tab panel's name.                   |
 
 ## Available CSS Parts
 
 | Name | Description                   |
 | ---- | ----------------------------- |
 | base | The component's base wrapper. |
-
-## Available Events
-
-| Name | Event Type | Description |
-| ---- | ---------- | ----------- |
-| -    | -          | -           |
-
-## Dependencies
-
-- None
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 2.0

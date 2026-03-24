@@ -10,8 +10,14 @@ Progress bars are used to show the status of an ongoing operation.
 
 ## Class Information
 
+- **Import Example:** `import SynProgressBar from '@synergy-design-system/components/components/progress-bar/progress-bar.js';`
 - **Module Path:** components/progress-bar/progress-bar.js
-- **Tag Name:** syn-progress-bar
+- **Tag Name:** `syn-progress-bar`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 2.0
 
 ## Available Slots
 
@@ -19,27 +25,13 @@ Progress bars are used to show the status of an ongoing operation.
 | --------- | ---------------------------------------------- |
 | (default) | A label to show inside the progress indicator. |
 
-## Available Attributes
-
-| Name          | Type    | Default | Description                                                                                                     | Reflects |
-| ------------- | ------- | ------- | --------------------------------------------------------------------------------------------------------------- | -------- |
-| value         | number  | 0       | The current progress as a percentage, 0 to 100.                                                                 | ✓        |
-| indeterminate | boolean | false   | When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state. | ✓        |
-| label         | string  | ''      | A custom label for assistive devices.                                                                           | -        |
-
 ## Available Properties
 
-| Name          | Type    | Default | Description                                                                                                     | Access |
-| ------------- | ------- | ------- | --------------------------------------------------------------------------------------------------------------- | ------ |
-| value         | number  | 0       | The current progress as a percentage, 0 to 100.                                                                 | public |
-| indeterminate | boolean | false   | When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state. | public |
-| label         | string  | ''      | A custom label for assistive devices.                                                                           | public |
-
-## Available Methods
-
-| Name | Parameters | Return Type | Description |
-| ---- | ---------- | ----------- | ----------- |
-| -    | -          | -           | -           |
+| Property      | Attribute       | Reflects | Type      | Default | Description                                                                                                     |
+| ------------- | --------------- | :------: | --------- | ------- | --------------------------------------------------------------------------------------------------------------- |
+| indeterminate | `indeterminate` |    ✓     | `boolean` | `false` | When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state. |
+| label         | `label`         |    -     | `string`  | `''`    | A custom label for assistive devices.                                                                           |
+| value         | `value`         |    ✓     | `number`  | `0`     | The current progress as a percentage, 0 to 100.                                                                 |
 
 ## Available CSS Parts
 
@@ -48,18 +40,3 @@ Progress bars are used to show the status of an ongoing operation.
 | base      | The component's base wrapper. |
 | indicator | The progress bar's indicator. |
 | label     | The progress bar's label.     |
-
-## Available Events
-
-| Name | Event Type | Description |
-| ---- | ---------- | ----------- |
-| -    | -          | -           |
-
-## Dependencies
-
-- None
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 2.0

@@ -23,12 +23,16 @@
       "name": "base"
     },
     {
+      "description": "The divider that is displayed above the content",
+      "name": "divider"
+    },
+    {
       "description": "The container that wraps prefix, label and base",
       "name": "label-container"
     },
     {
-      "description": "The divider that is displayed above the content",
-      "name": "divider"
+      "description": "The container that wraps the <syn-option> elements.",
+      "name": "options"
     },
     {
       "description": "The container that wraps the prefix.",
@@ -37,10 +41,6 @@
     {
       "description": "The container that wraps the suffix.",
       "name": "suffix"
-    },
-    {
-      "description": "The container that wraps the <syn-option> elements.",
-      "name": "options"
     }
   ],
   "dependencies": [

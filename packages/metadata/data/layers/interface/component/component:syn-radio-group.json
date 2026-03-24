@@ -2,10 +2,10 @@
   "attributes": [
     {
       "default": "''",
-      "description": "The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot\ninstead.",
-      "fieldName": "label",
-      "name": "label",
-      "reflects": false,
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "fieldName": "form",
+      "name": "form",
+      "reflects": true,
       "type": "string"
     },
     {
@@ -13,6 +13,14 @@
       "description": "The radio groups's help text. If you need to display HTML, use the `help-text` slot instead.",
       "fieldName": "helpText",
       "name": "help-text",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot\ninstead.",
+      "fieldName": "label",
+      "name": "label",
       "reflects": false,
       "type": "string"
     },
@@ -25,12 +33,12 @@
       "type": "string"
     },
     {
-      "default": "''",
-      "description": "The current value of the radio group, submitted as a name/value pair with form data.",
-      "fieldName": "value",
-      "name": "value",
+      "default": "false",
+      "description": "Ensures a child radio is checked before allowing the containing form to submit.",
+      "fieldName": "required",
+      "name": "required",
       "reflects": true,
-      "type": "string | number"
+      "type": "boolean"
     },
     {
       "default": "'medium'",
@@ -42,38 +50,14 @@
     },
     {
       "default": "''",
-      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
-      "fieldName": "form",
-      "name": "form",
+      "description": "The current value of the radio group, submitted as a name/value pair with form data.",
+      "fieldName": "value",
+      "name": "value",
       "reflects": true,
-      "type": "string"
-    },
-    {
-      "default": "false",
-      "description": "Ensures a child radio is checked before allowing the containing form to submit.",
-      "fieldName": "required",
-      "name": "required",
-      "reflects": true,
-      "type": "boolean"
+      "type": "string | number"
     }
   ],
   "cssParts": [
-    {
-      "description": "The form control that wraps the label, input, and help text.",
-      "name": "form-control"
-    },
-    {
-      "description": "The label's wrapper.",
-      "name": "form-control-label"
-    },
-    {
-      "description": "The input's wrapper.",
-      "name": "form-control-input"
-    },
-    {
-      "description": "The help text's wrapper.",
-      "name": "form-control-help-text"
-    },
     {
       "description": "The button group that wraps radio buttons.",
       "name": "button-group"
@@ -81,6 +65,22 @@
     {
       "description": "The button group's `base` part.",
       "name": "button-group__base"
+    },
+    {
+      "description": "The form control that wraps the label, input, and help text.",
+      "name": "form-control"
+    },
+    {
+      "description": "The help text's wrapper.",
+      "name": "form-control-help-text"
+    },
+    {
+      "description": "The input's wrapper.",
+      "name": "form-control-input"
+    },
+    {
+      "description": "The label's wrapper.",
+      "name": "form-control-label"
     }
   ],
   "dependencies": [
@@ -106,6 +106,26 @@
   ],
   "methods": [
     {
+      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
+      "name": "checkValidity",
+      "parameters": []
+    },
+    {
+      "description": "Sets focus on the radio-group.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    },
+    {
+      "description": "Gets the associated form, if one exists.",
+      "name": "getForm",
+      "parameters": []
+    },
+    {
       "description": "",
       "name": "handleSizeChange",
       "parameters": []
@@ -113,16 +133,6 @@
     {
       "description": "",
       "name": "handleValueChange",
-      "parameters": []
-    },
-    {
-      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
-      "name": "checkValidity",
-      "parameters": []
-    },
-    {
-      "description": "Gets the associated form, if one exists.",
-      "name": "getForm",
       "parameters": []
     },
     {
@@ -138,36 +148,14 @@
           "name": "message"
         }
       ]
-    },
-    {
-      "description": "Sets focus on the radio-group.",
-      "name": "focus",
-      "parameters": [
-        {
-          "name": "options",
-          "type": "FocusOptions"
-        }
-      ]
     }
   ],
   "properties": [
-    {
-      "access": "readonly",
-      "default": "new FormControlController(this)",
-      "description": "",
-      "name": "formControlController"
-    },
     {
       "access": "public",
       "description": "",
       "name": "defaultSlot",
       "type": "HTMLSlotElement"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "validationInput",
-      "type": "HTMLInputElement"
     },
     {
       "access": "public",
@@ -179,15 +167,28 @@
     {
       "access": "public",
       "default": "''",
-      "description": "The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot\ninstead.",
-      "name": "label",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "name": "form",
       "type": "string"
+    },
+    {
+      "access": "readonly",
+      "default": "new FormControlController(this)",
+      "description": "",
+      "name": "formControlController"
     },
     {
       "access": "public",
       "default": "''",
       "description": "The radio groups's help text. If you need to display HTML, use the `help-text` slot instead.",
       "name": "helpText",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot\ninstead.",
+      "name": "label",
       "type": "string"
     },
     {
@@ -199,10 +200,10 @@
     },
     {
       "access": "public",
-      "default": "''",
-      "description": "The current value of the radio group, submitted as a name/value pair with form data.",
-      "name": "value",
-      "type": "string | number"
+      "default": "false",
+      "description": "Ensures a child radio is checked before allowing the containing form to submit.",
+      "name": "required",
+      "type": "boolean"
     },
     {
       "access": "public",
@@ -213,17 +214,14 @@
     },
     {
       "access": "public",
-      "default": "''",
-      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
-      "name": "form",
-      "type": "string"
+      "description": "",
+      "name": "validationInput",
+      "type": "HTMLInputElement"
     },
     {
-      "access": "public",
-      "default": "false",
-      "description": "Ensures a child radio is checked before allowing the containing form to submit.",
-      "name": "required",
-      "type": "boolean"
+      "access": "readonly",
+      "description": "Gets the validation message",
+      "name": "validationMessage"
     },
     {
       "access": "readonly",
@@ -231,9 +229,11 @@
       "name": "validity"
     },
     {
-      "access": "readonly",
-      "description": "Gets the validation message",
-      "name": "validationMessage"
+      "access": "public",
+      "default": "''",
+      "description": "The current value of the radio group, submitted as a name/value pair with form data.",
+      "name": "value",
+      "type": "string | number"
     }
   ],
   "since": "2.0",

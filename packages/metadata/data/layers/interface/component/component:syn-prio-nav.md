@@ -13,8 +13,14 @@ priority menu.
 
 ## Class Information
 
+- **Import Example:** `import SynPrioNav from '@synergy-design-system/components/components/prio-nav/prio-nav.js';`
 - **Module Path:** components/prio-nav/prio-nav.js
-- **Tag Name:** syn-prio-nav
+- **Tag Name:** `syn-prio-nav`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 1.14.0
 
 ## Available Slots
 
@@ -22,49 +28,20 @@ priority menu.
 | --------- | --------------------------------------------------------------------------------------------- |
 | (default) | The given navigation items. Must be horizontal `<syn-nav-item>`s or have a role of "menuitem" |
 
-## Available Attributes
-
-| Name | Type | Default | Description | Reflects |
-| ---- | ---- | ------- | ----------- | -------- |
-| -    | -    | -       | -           | -        |
-
-## Available Properties
-
-| Name | Type | Default | Description | Access |
-| ---- | ---- | ------- | ----------- | ------ |
-| -    | -    | -       | -           | -      |
-
-## Available Methods
-
-| Name | Parameters | Return Type | Description |
-| ---- | ---------- | ----------- | ----------- |
-| -    | -          | -           | -           |
-
 ## Available CSS Parts
 
 | Name                    | Description                                                                   |
 | ----------------------- | ----------------------------------------------------------------------------- |
 | base                    | The component's base wrapper.                                                 |
 | priority-menu           | The wrapper around the priority menu                                          |
-| priority-menu-nav-item  | The navigation item for the priority menu                                     |
-| priority-menu-label     | The label for the priority menu                                               |
-| priority-menu-icon      | The icon for the priority menu                                                |
 | priority-menu-container | The container for the shifted navigation items, if there is not enough space. |
-
-## Available Events
-
-| Name | Event Type | Description |
-| ---- | ---------- | ----------- |
-| -    | -          | -           |
+| priority-menu-icon      | The icon for the priority menu                                                |
+| priority-menu-label     | The label for the priority menu                                               |
+| priority-menu-nav-item  | The navigation item for the priority menu                                     |
 
 ## Dependencies
 
-- **syn-dropdown**
-- **syn-icon**
-- **syn-menu**
-- **syn-nav-item**
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 1.14.0
+- `syn-dropdown`
+- `syn-icon`
+- `syn-menu`
+- `syn-nav-item`

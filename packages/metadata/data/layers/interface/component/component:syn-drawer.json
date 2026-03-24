@@ -2,9 +2,9 @@
   "attributes": [
     {
       "default": "false",
-      "description": "Indicates whether or not the drawer is open. You can toggle this attribute to show and hide the drawer, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the drawer's open state.",
-      "fieldName": "open",
-      "name": "open",
+      "description": "By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of\nits parent element, set this attribute and add `position: relative` to the parent.",
+      "fieldName": "contained",
+      "name": "contained",
       "reflects": true,
       "type": "boolean"
     },
@@ -17,28 +17,28 @@
       "type": "string"
     },
     {
-      "default": "'end'",
-      "description": "The direction from which the drawer will open.",
-      "fieldName": "placement",
-      "name": "placement",
-      "reflects": true,
-      "type": "'top' | 'end' | 'bottom' | 'start'"
-    },
-    {
-      "default": "false",
-      "description": "By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of\nits parent element, set this attribute and add `position: relative` to the parent.",
-      "fieldName": "contained",
-      "name": "contained",
-      "reflects": true,
-      "type": "boolean"
-    },
-    {
       "default": "false",
       "description": "Removes the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the drawer.",
       "fieldName": "noHeader",
       "name": "no-header",
       "reflects": true,
       "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Indicates whether or not the drawer is open. You can toggle this attribute to show and hide the drawer, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the drawer's open state.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'end'",
+      "description": "The direction from which the drawer will open.",
+      "fieldName": "placement",
+      "name": "placement",
+      "reflects": true,
+      "type": "'top' | 'end' | 'bottom' | 'start'"
     }
   ],
   "cssParts": [
@@ -47,24 +47,8 @@
       "name": "base"
     },
     {
-      "description": "The overlay that covers the screen behind the drawer.",
-      "name": "overlay"
-    },
-    {
-      "description": "The drawer's panel (where the drawer and its content are rendered).",
-      "name": "panel"
-    },
-    {
-      "description": "The drawer's header. This element wraps the title and header actions.",
-      "name": "header"
-    },
-    {
-      "description": "Optional actions to add to the header. Works best with `<syn-icon-button>`.",
-      "name": "header-actions"
-    },
-    {
-      "description": "The drawer's title.",
-      "name": "title"
+      "description": "The drawer's body.",
+      "name": "body"
     },
     {
       "description": "The close button, an `<syn-icon-button>`.",
@@ -75,12 +59,28 @@
       "name": "close-button__base"
     },
     {
-      "description": "The drawer's body.",
-      "name": "body"
-    },
-    {
       "description": "The drawer's footer.",
       "name": "footer"
+    },
+    {
+      "description": "The drawer's header. This element wraps the title and header actions.",
+      "name": "header"
+    },
+    {
+      "description": "Optional actions to add to the header. Works best with `<syn-icon-button>`.",
+      "name": "header-actions"
+    },
+    {
+      "description": "The overlay that covers the screen behind the drawer.",
+      "name": "overlay"
+    },
+    {
+      "description": "The drawer's panel (where the drawer and its content are rendered).",
+      "name": "panel"
+    },
+    {
+      "description": "The drawer's title.",
+      "name": "title"
     }
   ],
   "dependencies": [
@@ -89,9 +89,9 @@
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs",
   "events": [
     {
-      "description": "Emitted when the drawer opens.",
-      "name": "syn-show",
-      "type": "SynShowEvent"
+      "description": "Emitted after the drawer closes and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
     },
     {
       "description": "Emitted after the drawer opens and all animations are complete.",
@@ -104,11 +104,6 @@
       "type": "SynHideEvent"
     },
     {
-      "description": "Emitted after the drawer closes and all animations are complete.",
-      "name": "syn-after-hide",
-      "type": "SynAfterHideEvent"
-    },
-    {
       "description": "Emitted when the drawer opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.",
       "name": "syn-initial-focus",
       "type": "SynInitialFocusEvent"
@@ -117,29 +112,14 @@
       "description": "Emitted when the user attempts to close the drawer by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the drawer open. Avoid using this unless closing the drawer will result in destructive behavior such as data loss.",
       "name": "syn-request-close",
       "type": "SynRequestCloseEvent"
+    },
+    {
+      "description": "Emitted when the drawer opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
     }
   ],
   "methods": [
-    {
-      "description": "",
-      "name": "handleOpenChange",
-      "parameters": []
-    },
-    {
-      "description": "",
-      "name": "handleNoModalChange",
-      "parameters": []
-    },
-    {
-      "description": "Shows the drawer.",
-      "name": "show",
-      "parameters": []
-    },
-    {
-      "description": "Hides the drawer",
-      "name": "hide",
-      "parameters": []
-    },
     {
       "description": "",
       "name": "forceVisibility",
@@ -149,39 +129,41 @@
           "type": "boolean"
         }
       ]
+    },
+    {
+      "description": "",
+      "name": "handleNoModalChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleOpenChange",
+      "parameters": []
+    },
+    {
+      "description": "Hides the drawer",
+      "name": "hide",
+      "parameters": []
+    },
+    {
+      "description": "Shows the drawer.",
+      "name": "show",
+      "parameters": []
     }
   ],
   "properties": [
     {
       "access": "public",
-      "default": "new Modal(this)",
-      "description": "Exposes the internal modal utility that controls focus trapping. To temporarily disable focus trapping and allow third-party modals spawned from an active Synergy modal, call `modal.activateExternal()` when the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Synergy's focus trapping.",
-      "name": "modal"
+      "default": "false",
+      "description": "By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of\nits parent element, set this attribute and add `position: relative` to the parent.",
+      "name": "contained",
+      "type": "boolean"
     },
     {
       "access": "public",
       "description": "",
       "name": "drawer",
       "type": "HTMLElement"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "panel",
-      "type": "HTMLElement"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "overlay",
-      "type": "HTMLElement"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Indicates whether or not the drawer is open. You can toggle this attribute to show and hide the drawer, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the drawer's open state.",
-      "name": "open",
-      "type": "boolean"
     },
     {
       "access": "public",
@@ -192,17 +174,9 @@
     },
     {
       "access": "public",
-      "default": "'end'",
-      "description": "The direction from which the drawer will open.",
-      "name": "placement",
-      "type": "'top' | 'end' | 'bottom' | 'start'"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of\nits parent element, set this attribute and add `position: relative` to the parent.",
-      "name": "contained",
-      "type": "boolean"
+      "default": "new Modal(this)",
+      "description": "Exposes the internal modal utility that controls focus trapping. To temporarily disable focus trapping and allow third-party modals spawned from an active Synergy modal, call `modal.activateExternal()` when the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Synergy's focus trapping.",
+      "name": "modal"
     },
     {
       "access": "public",
@@ -210,6 +184,32 @@
       "description": "Removes the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the drawer.",
       "name": "noHeader",
       "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not the drawer is open. You can toggle this attribute to show and hide the drawer, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the drawer's open state.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "overlay",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "panel",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "default": "'end'",
+      "description": "The direction from which the drawer will open.",
+      "name": "placement",
+      "type": "'top' | 'end' | 'bottom' | 'start'"
     }
   ],
   "since": "2.0",

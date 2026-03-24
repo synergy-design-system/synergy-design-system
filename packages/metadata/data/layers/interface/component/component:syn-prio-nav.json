@@ -10,20 +10,20 @@
       "name": "priority-menu"
     },
     {
-      "description": "The navigation item for the priority menu",
-      "name": "priority-menu-nav-item"
-    },
-    {
-      "description": "The label for the priority menu",
-      "name": "priority-menu-label"
+      "description": "The container for the shifted navigation items, if there is not enough space.",
+      "name": "priority-menu-container"
     },
     {
       "description": "The icon for the priority menu",
       "name": "priority-menu-icon"
     },
     {
-      "description": "The container for the shifted navigation items, if there is not enough space.",
-      "name": "priority-menu-container"
+      "description": "The label for the priority menu",
+      "name": "priority-menu-label"
+    },
+    {
+      "description": "The navigation item for the priority menu",
+      "name": "priority-menu-nav-item"
     }
   ],
   "dependencies": [

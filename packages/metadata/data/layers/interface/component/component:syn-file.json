@@ -1,74 +1,6 @@
 {
   "attributes": [
     {
-      "description": "The selected files as a FileList object containing a list of File objects.\nThe FileList behaves like an array, so you can get the number of selected files\nvia its length property.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files)",
-      "fieldName": "files",
-      "name": "files",
-      "reflects": false
-    },
-    {
-      "default": "''",
-      "description": "The name of the file control, submitted as a name/value pair with form data.",
-      "fieldName": "name",
-      "name": "name",
-      "reflects": false,
-      "type": "string"
-    },
-    {
-      "description": "The value of the file control contains a string that represents the path of the selected file.\nIf multiple files are selected, the value represents the first file in the list.\nIf no file is selected, the value is an empty string.\nBeware that the only valid value when setting a file control is an empty string!\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value)",
-      "fieldName": "value",
-      "name": "value",
-      "reflects": false
-    },
-    {
-      "default": "'medium'",
-      "description": "The file control's size.",
-      "fieldName": "size",
-      "name": "size",
-      "reflects": true,
-      "type": "'small' | 'medium' | 'large'"
-    },
-    {
-      "default": "''",
-      "description": "The file control's label. If you need to display HTML, use the `label` slot instead.",
-      "fieldName": "label",
-      "name": "label",
-      "reflects": false,
-      "type": "string"
-    },
-    {
-      "default": "''",
-      "description": "The file control's help text.\nIf you need to display HTML, use the `help-text` slot instead.",
-      "fieldName": "helpText",
-      "name": "help-text",
-      "reflects": false,
-      "type": "string"
-    },
-    {
-      "default": "false",
-      "description": "Disables the file control.",
-      "fieldName": "disabled",
-      "name": "disabled",
-      "reflects": true,
-      "type": "boolean"
-    },
-    {
-      "default": "false",
-      "description": "Sets the file control to a readonly state.",
-      "fieldName": "readonly",
-      "name": "readonly",
-      "reflects": true,
-      "type": "boolean"
-    },
-    {
-      "default": "false",
-      "description": "Draw the file control as a drop area",
-      "fieldName": "droparea",
-      "name": "droparea",
-      "reflects": false,
-      "type": "boolean"
-    },
-    {
       "default": "''",
       "description": "Comma separated list of supported file types\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept)",
       "fieldName": "accept",
@@ -85,19 +17,25 @@
     },
     {
       "default": "false",
-      "description": "Indicates whether the user can select more than one file.\nHas no effect if webkitdirectory is set.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)",
-      "fieldName": "multiple",
-      "name": "multiple",
+      "description": "Disables the file control.",
+      "fieldName": "disabled",
+      "name": "disabled",
       "reflects": true,
       "type": "boolean"
     },
     {
       "default": "false",
-      "description": "Indicates that the file control should let the user select directories instead of files.\nWhen a directory is selected, the directory and its entire hierarchy of contents are included\nin the set of selected items.\nNote: This is a non-standard attribute but is supported in the major browsers.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)",
-      "fieldName": "webkitdirectory",
-      "name": "webkitdirectory",
-      "reflects": true,
+      "description": "Draw the file control as a drop area",
+      "fieldName": "droparea",
+      "name": "droparea",
+      "reflects": false,
       "type": "boolean"
+    },
+    {
+      "description": "The selected files as a FileList object containing a list of File objects.\nThe FileList behaves like an array, so you can get the number of selected files\nvia its length property.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files)",
+      "fieldName": "files",
+      "name": "files",
+      "reflects": false
     },
     {
       "default": "''",
@@ -108,12 +46,12 @@
       "type": "string"
     },
     {
-      "default": "false",
-      "description": "Makes the input a required field.",
-      "fieldName": "required",
-      "name": "required",
-      "reflects": true,
-      "type": "boolean"
+      "default": "''",
+      "description": "The file control's help text.\nIf you need to display HTML, use the `help-text` slot instead.",
+      "fieldName": "helpText",
+      "name": "help-text",
+      "reflects": false,
+      "type": "string"
     },
     {
       "default": "false",
@@ -122,29 +60,71 @@
       "name": "hide-value",
       "reflects": false,
       "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The file control's label. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Indicates whether the user can select more than one file.\nHas no effect if webkitdirectory is set.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)",
+      "fieldName": "multiple",
+      "name": "multiple",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The name of the file control, submitted as a name/value pair with form data.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Sets the file control to a readonly state.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Makes the input a required field.",
+      "fieldName": "required",
+      "name": "required",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The file control's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "description": "The value of the file control contains a string that represents the path of the selected file.\nIf multiple files are selected, the value represents the first file in the list.\nIf no file is selected, the value is an empty string.\nBeware that the only valid value when setting a file control is an empty string!\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value)",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false
+    },
+    {
+      "default": "false",
+      "description": "Indicates that the file control should let the user select directories instead of files.\nWhen a directory is selected, the directory and its entire hierarchy of contents are included\nin the set of selected items.\nNote: This is a non-standard attribute but is supported in the major browsers.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)",
+      "fieldName": "webkitdirectory",
+      "name": "webkitdirectory",
+      "reflects": true,
+      "type": "boolean"
     }
   ],
   "cssParts": [
-    {
-      "description": "The form control that wraps the label, input, and help text.",
-      "name": "form-control"
-    },
-    {
-      "description": "The label's wrapper.",
-      "name": "form-control-label"
-    },
-    {
-      "description": "The input's wrapper.",
-      "name": "form-control-input"
-    },
-    {
-      "description": "The help text's wrapper.",
-      "name": "form-control-help-text"
-    },
-    {
-      "description": "The wrapper around the button and text value.",
-      "name": "button-wrapper"
-    },
     {
       "description": "The syn-button acting as a file input.",
       "name": "button"
@@ -154,8 +134,8 @@
       "name": "button__base"
     },
     {
-      "description": "The chosen files or placeholder text for the file input.",
-      "name": "value"
+      "description": "The wrapper around the button and text value.",
+      "name": "button-wrapper"
     },
     {
       "description": "The element wrapping the drop zone.",
@@ -174,8 +154,28 @@
       "name": "droparea-value"
     },
     {
+      "description": "The form control that wraps the label, input, and help text.",
+      "name": "form-control"
+    },
+    {
+      "description": "The help text's wrapper.",
+      "name": "form-control-help-text"
+    },
+    {
+      "description": "The input's wrapper.",
+      "name": "form-control-input"
+    },
+    {
+      "description": "The label's wrapper.",
+      "name": "form-control-label"
+    },
+    {
       "description": "The container that wraps the trigger.",
       "name": "trigger"
+    },
+    {
+      "description": "The chosen files or placeholder text for the file input.",
+      "name": "value"
     }
   ],
   "dependencies": [
@@ -212,13 +212,38 @@
   ],
   "methods": [
     {
+      "description": "Removes focus from the button or droparea.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
       "description": "Checks for validity but does not show a validation message.\nReturns `true` when valid and `false` when invalid.",
       "name": "checkValidity",
       "parameters": []
     },
     {
+      "description": "Sets focus on the button or droparea.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    },
+    {
       "description": "Gets the associated form, if one exists.",
       "name": "getForm",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleValueChange",
       "parameters": []
     },
     {
@@ -235,77 +260,33 @@
           "type": "string"
         }
       ]
-    },
-    {
-      "description": "",
-      "name": "handleDisabledChange",
-      "parameters": []
-    },
-    {
-      "description": "",
-      "name": "handleValueChange",
-      "parameters": []
-    },
-    {
-      "description": "Sets focus on the button or droparea.",
-      "name": "focus",
-      "parameters": [
-        {
-          "name": "options",
-          "type": "FocusOptions"
-        }
-      ]
-    },
-    {
-      "description": "Removes focus from the button or droparea.",
-      "name": "blur",
-      "parameters": []
     }
   ],
   "properties": [
     {
       "access": "public",
-      "description": "The selected files as a FileList object containing a list of File objects.\nThe FileList behaves like an array, so you can get the number of selected files\nvia its length property.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files)",
-      "name": "files"
-    },
-    {
-      "access": "public",
       "default": "''",
-      "description": "The name of the file control, submitted as a name/value pair with form data.",
-      "name": "name",
+      "description": "Comma separated list of supported file types\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept)",
+      "name": "accept",
       "type": "string"
     },
     {
       "access": "public",
-      "description": "The value of the file control contains a string that represents the path of the selected file.\nIf multiple files are selected, the value represents the first file in the list.\nIf no file is selected, the value is an empty string.\nBeware that the only valid value when setting a file control is an empty string!\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value)",
-      "name": "value"
+      "description": "",
+      "name": "button",
+      "type": "SynButton"
+    },
+    {
+      "access": "public",
+      "description": "Specifies the types of files that the server accepts.\nCan be set either to user or environment.\nWorks only when not using a droparea!\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)",
+      "name": "capture",
+      "type": "'user' | 'environment'"
     },
     {
       "access": "public",
       "default": "''",
       "description": "The default value of the form control. Primarily used for resetting the form control.",
       "name": "defaultValue",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "'medium'",
-      "description": "The file control's size.",
-      "name": "size",
-      "type": "'small' | 'medium' | 'large'"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "The file control's label. If you need to display HTML, use the `label` slot instead.",
-      "name": "label",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "The file control's help text.\nIf you need to display HTML, use the `help-text` slot instead.",
-      "name": "helpText",
       "type": "string"
     },
     {
@@ -318,43 +299,26 @@
     {
       "access": "public",
       "default": "false",
-      "description": "Sets the file control to a readonly state.",
-      "name": "readonly",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "default": "false",
       "description": "Draw the file control as a drop area",
       "name": "droparea",
       "type": "boolean"
     },
     {
       "access": "public",
-      "default": "''",
-      "description": "Comma separated list of supported file types\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept)",
-      "name": "accept",
-      "type": "string"
+      "description": "",
+      "name": "dropareaIcon",
+      "type": "HTMLSpanElement"
     },
     {
       "access": "public",
-      "description": "Specifies the types of files that the server accepts.\nCan be set either to user or environment.\nWorks only when not using a droparea!\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)",
-      "name": "capture",
-      "type": "'user' | 'environment'"
+      "description": "",
+      "name": "dropareaWrapper",
+      "type": "HTMLDivElement"
     },
     {
       "access": "public",
-      "default": "false",
-      "description": "Indicates whether the user can select more than one file.\nHas no effect if webkitdirectory is set.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)",
-      "name": "multiple",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Indicates that the file control should let the user select directories instead of files.\nWhen a directory is selected, the directory and its entire hierarchy of contents are included\nin the set of selected items.\nNote: This is a non-standard attribute but is supported in the major browsers.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)",
-      "name": "webkitdirectory",
-      "type": "boolean"
+      "description": "The selected files as a FileList object containing a list of File objects.\nThe FileList behaves like an array, so you can get the number of selected files\nvia its length property.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files)",
+      "name": "files"
     },
     {
       "access": "public",
@@ -365,10 +329,10 @@
     },
     {
       "access": "public",
-      "default": "false",
-      "description": "Makes the input a required field.",
-      "name": "required",
-      "type": "boolean"
+      "default": "''",
+      "description": "The file control's help text.\nIf you need to display HTML, use the `help-text` slot instead.",
+      "name": "helpText",
+      "type": "string"
     },
     {
       "access": "public",
@@ -386,26 +350,55 @@
     {
       "access": "public",
       "description": "",
-      "name": "button",
-      "type": "SynButton"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "dropareaWrapper",
-      "type": "HTMLDivElement"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "dropareaIcon",
-      "type": "HTMLSpanElement"
-    },
-    {
-      "access": "public",
-      "description": "",
       "name": "inputChosen",
       "type": "HTMLSpanElement"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The file control's label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether the user can select more than one file.\nHas no effect if webkitdirectory is set.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)",
+      "name": "multiple",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the file control, submitted as a name/value pair with form data.",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Sets the file control to a readonly state.",
+      "name": "readonly",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Makes the input a required field.",
+      "name": "required",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The file control's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validation message",
+      "name": "validationMessage"
     },
     {
       "access": "readonly",
@@ -413,9 +406,16 @@
       "name": "validity"
     },
     {
-      "access": "readonly",
-      "description": "Gets the validation message",
-      "name": "validationMessage"
+      "access": "public",
+      "description": "The value of the file control contains a string that represents the path of the selected file.\nIf multiple files are selected, the value represents the first file in the list.\nIf no file is selected, the value is an empty string.\nBeware that the only valid value when setting a file control is an empty string!\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value)",
+      "name": "value"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates that the file control should let the user select directories instead of files.\nWhen a directory is selected, the directory and its entire hierarchy of contents are included\nin the set of selected items.\nNote: This is a non-standard attribute but is supported in the major browsers.\n[see MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)",
+      "name": "webkitdirectory",
+      "type": "boolean"
     }
   ],
   "since": "unknown",

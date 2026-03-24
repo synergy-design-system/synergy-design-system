@@ -10,8 +10,14 @@ Tabs are used inside [tab groups](/components/tab-group) to represent and activa
 
 ## Class Information
 
+- **Import Example:** `import SynTab from '@synergy-design-system/components/components/tab/tab.js';`
 - **Module Path:** components/tab/tab.js
-- **Tag Name:** syn-tab
+- **Tag Name:** `syn-tab`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 2.0
 
 ## Available Slots
 
@@ -19,31 +25,14 @@ Tabs are used inside [tab groups](/components/tab-group) to represent and activa
 | --------- | ---------------- |
 | (default) | The tab's label. |
 
-## Available Attributes
-
-| Name     | Type    | Default | Description                                                                                             | Reflects |
-| -------- | ------- | ------- | ------------------------------------------------------------------------------------------------------- | -------- |
-| panel    | string  | ''      | The name of the tab panel this tab is associated with. The panel must be located in the same tab group. | ✓        |
-| active   | boolean | false   | Draws the tab in an active state.                                                                       | ✓        |
-| closable | boolean | false   | Makes the tab closable and shows a close button.                                                        | ✓        |
-| disabled | boolean | false   | Disables the tab and prevents selection.                                                                | ✓        |
-
 ## Available Properties
 
-| Name     | Type        | Default | Description                                                                                             | Access |
-| -------- | ----------- | ------- | ------------------------------------------------------------------------------------------------------- | ------ |
-| tab      | HTMLElement | -       | -                                                                                                       | public |
-| panel    | string      | ''      | The name of the tab panel this tab is associated with. The panel must be located in the same tab group. | public |
-| active   | boolean     | false   | Draws the tab in an active state.                                                                       | public |
-| closable | boolean     | false   | Makes the tab closable and shows a close button.                                                        | public |
-| disabled | boolean     | false   | Disables the tab and prevents selection.                                                                | public |
-
-## Available Methods
-
-| Name                 | Parameters | Return Type | Description |
-| -------------------- | ---------- | ----------- | ----------- |
-| handleActiveChange   | -          | -           | -           |
-| handleDisabledChange | -          | -           | -           |
+| Property | Attribute  | Reflects | Type      | Default | Description                                                                                             |
+| -------- | ---------- | :------: | --------- | ------- | ------------------------------------------------------------------------------------------------------- |
+| active   | `active`   |    ✓     | `boolean` | `false` | Draws the tab in an active state.                                                                       |
+| closable | `closable` |    ✓     | `boolean` | `false` | Makes the tab closable and shows a close button.                                                        |
+| disabled | `disabled` |    ✓     | `boolean` | `false` | Disables the tab and prevents selection.                                                                |
+| panel    | `panel`    |    ✓     | `string`  | `''`    | The name of the tab panel this tab is associated with. The panel must be located in the same tab group. |
 
 ## Available CSS Parts
 
@@ -55,15 +44,10 @@ Tabs are used inside [tab groups](/components/tab-group) to represent and activa
 
 ## Available Events
 
-| Name      | Event Type    | Description                                                         |
-| --------- | ------------- | ------------------------------------------------------------------- |
-| syn-close | SynCloseEvent | Emitted when the tab is closable and the close button is activated. |
+| Name      | Event Type      | Description                                                         |
+| --------- | --------------- | ------------------------------------------------------------------- |
+| syn-close | `SynCloseEvent` | Emitted when the tab is closable and the close button is activated. |
 
 ## Dependencies
 
-- **syn-icon-button**
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 2.0
+- `syn-icon-button`

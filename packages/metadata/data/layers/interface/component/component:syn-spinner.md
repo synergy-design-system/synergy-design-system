@@ -10,50 +10,17 @@ Spinners are used to show the progress of an indeterminate operation.
 
 ## Class Information
 
+- **Import Example:** `import SynSpinner from '@synergy-design-system/components/components/spinner/spinner.js';`
 - **Module Path:** components/spinner/spinner.js
-- **Tag Name:** syn-spinner
+- **Tag Name:** `syn-spinner`
 
-## Available Slots
+## Usage Information
 
-| Name | Description |
-| ---- | ----------- |
-| -    | -           |
-
-## Available Attributes
-
-| Name | Type | Default | Description | Reflects |
-| ---- | ---- | ------- | ----------- | -------- |
-| -    | -    | -       | -           | -        |
-
-## Available Properties
-
-| Name | Type | Default | Description | Access |
-| ---- | ---- | ------- | ----------- | ------ |
-| -    | -    | -       | -           | -      |
-
-## Available Methods
-
-| Name | Parameters | Return Type | Description |
-| ---- | ---------- | ----------- | ----------- |
-| -    | -          | -           | -           |
+- **Status:** stable
+- **Since:** 2.0
 
 ## Available CSS Parts
 
 | Name | Description                   |
 | ---- | ----------------------------- |
 | base | The component's base wrapper. |
-
-## Available Events
-
-| Name | Event Type | Description |
-| ---- | ---------- | ----------- |
-| -    | -          | -           |
-
-## Dependencies
-
-- None
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 2.0

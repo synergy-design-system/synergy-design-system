@@ -1,30 +1,6 @@
 {
   "attributes": [
     {
-      "default": "''",
-      "description": "",
-      "fieldName": "title",
-      "name": "title",
-      "reflects": true,
-      "type": "string"
-    },
-    {
-      "default": "'outline'",
-      "description": "The button's theme variant.",
-      "fieldName": "variant",
-      "name": "variant",
-      "reflects": true,
-      "type": "'filled' | 'outline' | 'text'"
-    },
-    {
-      "default": "'medium'",
-      "description": "The button's size.",
-      "fieldName": "size",
-      "name": "size",
-      "reflects": true,
-      "type": "'small' | 'medium' | 'large'"
-    },
-    {
       "default": "false",
       "description": "Draws the button with a caret. Used to indicate that the button triggers a dropdown menu or similar behavior.",
       "fieldName": "caret",
@@ -39,61 +15,6 @@
       "name": "disabled",
       "reflects": true,
       "type": "boolean"
-    },
-    {
-      "default": "false",
-      "description": "Draws the button in a loading state.",
-      "fieldName": "loading",
-      "name": "loading",
-      "reflects": true,
-      "type": "boolean"
-    },
-    {
-      "default": "'button'",
-      "description": "The type of button. Note that the default value is `button` instead of `submit`, which is opposite of how native\n`<button>` elements behave. When the type is `submit`, the button will submit the surrounding form.",
-      "fieldName": "type",
-      "name": "type",
-      "reflects": false,
-      "type": "'button' | 'submit' | 'reset'"
-    },
-    {
-      "default": "''",
-      "description": "The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter.\nThis attribute is ignored when `href` is present.",
-      "fieldName": "name",
-      "name": "name",
-      "reflects": false,
-      "type": "string"
-    },
-    {
-      "default": "''",
-      "description": "The value of the button, submitted as a pair with the button's name as part of the form data, but only when this\nbutton is the submitter. This attribute is ignored when `href` is present.",
-      "fieldName": "value",
-      "name": "value",
-      "reflects": false,
-      "type": "string"
-    },
-    {
-      "default": "''",
-      "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
-      "fieldName": "href",
-      "name": "href",
-      "reflects": false,
-      "type": "string"
-    },
-    {
-      "description": "Tells the browser where to open the link. Only used when `href` is present.",
-      "fieldName": "target",
-      "name": "target",
-      "reflects": false,
-      "type": "'_blank' | '_parent' | '_self' | '_top'"
-    },
-    {
-      "default": "'noreferrer noopener'",
-      "description": "When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the\ndefault is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a\nspecific tab/window, this will prevent that from working correctly. You can remove or change the default value by\nsetting the attribute to an empty string or a value of your choice, respectively.",
-      "fieldName": "rel",
-      "name": "rel",
-      "reflects": false,
-      "type": "string"
     },
     {
       "description": "Tells the browser to download the linked file as this filename. Only used when `href` is present.",
@@ -143,6 +64,85 @@
       "name": "formtarget",
       "reflects": false,
       "type": "'_self' | '_blank' | '_parent' | '_top' | string"
+    },
+    {
+      "default": "''",
+      "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
+      "fieldName": "href",
+      "name": "href",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Draws the button in a loading state.",
+      "fieldName": "loading",
+      "name": "loading",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter.\nThis attribute is ignored when `href` is present.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'noreferrer noopener'",
+      "description": "When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the\ndefault is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a\nspecific tab/window, this will prevent that from working correctly. You can remove or change the default value by\nsetting the attribute to an empty string or a value of your choice, respectively.",
+      "fieldName": "rel",
+      "name": "rel",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'medium'",
+      "description": "The button's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "description": "Tells the browser where to open the link. Only used when `href` is present.",
+      "fieldName": "target",
+      "name": "target",
+      "reflects": false,
+      "type": "'_blank' | '_parent' | '_self' | '_top'"
+    },
+    {
+      "default": "''",
+      "description": "",
+      "fieldName": "title",
+      "name": "title",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "'button'",
+      "description": "The type of button. Note that the default value is `button` instead of `submit`, which is opposite of how native\n`<button>` elements behave. When the type is `submit`, the button will submit the surrounding form.",
+      "fieldName": "type",
+      "name": "type",
+      "reflects": false,
+      "type": "'button' | 'submit' | 'reset'"
+    },
+    {
+      "default": "''",
+      "description": "The value of the button, submitted as a pair with the button's name as part of the form data, but only when this\nbutton is the submitter. This attribute is ignored when `href` is present.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'outline'",
+      "description": "The button's theme variant.",
+      "fieldName": "variant",
+      "name": "variant",
+      "reflects": true,
+      "type": "'filled' | 'outline' | 'text'"
     }
   ],
   "cssParts": [
@@ -151,24 +151,24 @@
       "name": "base"
     },
     {
-      "description": "The container that wraps the prefix.",
-      "name": "prefix"
+      "description": "The button's caret icon, an `<syn-icon>` element.",
+      "name": "caret"
     },
     {
       "description": "The button's label.",
       "name": "label"
     },
     {
-      "description": "The container that wraps the suffix.",
-      "name": "suffix"
-    },
-    {
-      "description": "The button's caret icon, an `<syn-icon>` element.",
-      "name": "caret"
+      "description": "The container that wraps the prefix.",
+      "name": "prefix"
     },
     {
       "description": "The spinner that shows when the button is in the loading state.",
       "name": "spinner"
+    },
+    {
+      "description": "The container that wraps the suffix.",
+      "name": "suffix"
     }
   ],
   "dependencies": [
@@ -195,8 +195,13 @@
   ],
   "methods": [
     {
-      "description": "",
-      "name": "handleDisabledChange",
+      "description": "Removes focus from the button.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
+      "name": "checkValidity",
       "parameters": []
     },
     {
@@ -215,18 +220,13 @@
       ]
     },
     {
-      "description": "Removes focus from the button.",
-      "name": "blur",
-      "parameters": []
-    },
-    {
-      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
-      "name": "checkValidity",
-      "parameters": []
-    },
-    {
       "description": "Gets the associated form, if one exists.",
       "name": "getForm",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
       "parameters": []
     },
     {
@@ -254,40 +254,6 @@
     },
     {
       "access": "public",
-      "description": "",
-      "name": "defaultSlot",
-      "type": "HTMLSlotElement"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "",
-      "name": "invalid",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "",
-      "name": "title",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "'outline'",
-      "description": "The button's theme variant.",
-      "name": "variant",
-      "type": "'filled' | 'outline' | 'text'"
-    },
-    {
-      "access": "public",
-      "default": "'medium'",
-      "description": "The button's size.",
-      "name": "size",
-      "type": "'small' | 'medium' | 'large'"
-    },
-    {
-      "access": "public",
       "default": "false",
       "description": "Draws the button with a caret. Used to indicate that the button triggers a dropdown menu or similar behavior.",
       "name": "caret",
@@ -295,58 +261,16 @@
     },
     {
       "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
       "default": "false",
       "description": "Disables the button.",
       "name": "disabled",
       "type": "boolean"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Draws the button in a loading state.",
-      "name": "loading",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "default": "'button'",
-      "description": "The type of button. Note that the default value is `button` instead of `submit`, which is opposite of how native\n`<button>` elements behave. When the type is `submit`, the button will submit the surrounding form.",
-      "name": "type",
-      "type": "'button' | 'submit' | 'reset'"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter.\nThis attribute is ignored when `href` is present.",
-      "name": "name",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "The value of the button, submitted as a pair with the button's name as part of the form data, but only when this\nbutton is the submitter. This attribute is ignored when `href` is present.",
-      "name": "value",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
-      "name": "href",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "description": "Tells the browser where to open the link. Only used when `href` is present.",
-      "name": "target",
-      "type": "'_blank' | '_parent' | '_self' | '_top'"
-    },
-    {
-      "access": "public",
-      "default": "'noreferrer noopener'",
-      "description": "When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the\ndefault is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a\nspecific tab/window, this will prevent that from working correctly. You can remove or change the default value by\nsetting the attribute to an empty string or a value of your choice, respectively.",
-      "name": "rel",
-      "type": "string"
     },
     {
       "access": "public",
@@ -391,14 +315,90 @@
       "type": "'_self' | '_blank' | '_parent' | '_top' | string"
     },
     {
-      "access": "readonly",
-      "description": "Gets the validity state object",
-      "name": "validity"
+      "access": "public",
+      "default": "''",
+      "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
+      "name": "href",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "",
+      "name": "invalid",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the button in a loading state.",
+      "name": "loading",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter.\nThis attribute is ignored when `href` is present.",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'noreferrer noopener'",
+      "description": "When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the\ndefault is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a\nspecific tab/window, this will prevent that from working correctly. You can remove or change the default value by\nsetting the attribute to an empty string or a value of your choice, respectively.",
+      "name": "rel",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The button's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "description": "Tells the browser where to open the link. Only used when `href` is present.",
+      "name": "target",
+      "type": "'_blank' | '_parent' | '_self' | '_top'"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'button'",
+      "description": "The type of button. Note that the default value is `button` instead of `submit`, which is opposite of how native\n`<button>` elements behave. When the type is `submit`, the button will submit the surrounding form.",
+      "name": "type",
+      "type": "'button' | 'submit' | 'reset'"
     },
     {
       "access": "readonly",
       "description": "Gets the validation message",
       "name": "validationMessage"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validity state object",
+      "name": "validity"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The value of the button, submitted as a pair with the button's name as part of the form data, but only when this\nbutton is the submitter. This attribute is ignored when `href` is present.",
+      "name": "value",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'outline'",
+      "description": "The button's theme variant.",
+      "name": "variant",
+      "type": "'filled' | 'outline' | 'text'"
     }
   ],
   "since": "2.0",

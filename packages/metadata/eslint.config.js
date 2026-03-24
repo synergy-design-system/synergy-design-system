@@ -42,18 +42,18 @@ export default [
   },
   {
     files: [
-      'src/internal/cli/**/*.ts',
-      'src/internal/cli/**/*.js',
+      'src/internal/**/*.ts',
+      'src/internal/**/*.js',
     ],
     rules: {
+      // CLI utilities may use build-time-only validation dependencies.
+      'import/no-extraneous-dependencies': 'off',
+
       // CLI entrypoints intentionally print user-facing status and failures.
       'no-console': 'off',
 
       // CLI bootstrap pattern intentionally ignores returned Promise value.
       'no-void': 'off',
-
-      // CLI utilities may use build-time-only validation dependencies.
-      'import/no-extraneous-dependencies': 'off',
     },
   },
   {

@@ -37,12 +37,12 @@
   "methods": [
     {
       "description": "",
-      "name": "handleSizeChange",
+      "name": "handleContainedChange",
       "parameters": []
     },
     {
       "description": "",
-      "name": "handleContainedChange",
+      "name": "handleSizeChange",
       "parameters": []
     },
     {
@@ -52,12 +52,6 @@
     }
   ],
   "properties": [
-    {
-      "access": "public",
-      "description": "",
-      "name": "detailsInDefaultSlot",
-      "type": "SynDetails[]"
-    },
     {
       "access": "public",
       "default": "false",
@@ -71,6 +65,12 @@
       "description": "Draws the accordion and the slotted `<syn-details>` as contained elements.",
       "name": "contained",
       "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "detailsInDefaultSlot",
+      "type": "SynDetails[]"
     },
     {
       "access": "public",

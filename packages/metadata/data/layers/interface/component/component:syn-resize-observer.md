@@ -10,8 +10,14 @@ The Resize Observer component offers a thin, declarative interface to the [`Resi
 
 ## Class Information
 
+- **Import Example:** `import SynResizeObserver from '@synergy-design-system/components/components/resize-observer/resize-observer.js';`
 - **Module Path:** components/resize-observer/resize-observer.js
-- **Tag Name:** syn-resize-observer
+- **Tag Name:** `syn-resize-observer`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 2.0
 
 ## Available Slots
 
@@ -19,41 +25,14 @@ The Resize Observer component offers a thin, declarative interface to the [`Resi
 | --------- | ------------------------------------------- |
 | (default) | One or more elements to watch for resizing. |
 
-## Available Attributes
-
-| Name     | Type    | Default | Description            | Reflects |
-| -------- | ------- | ------- | ---------------------- | -------- |
-| disabled | boolean | false   | Disables the observer. | ✓        |
-
 ## Available Properties
 
-| Name     | Type    | Default | Description            | Access |
-| -------- | ------- | ------- | ---------------------- | ------ |
-| disabled | boolean | false   | Disables the observer. | public |
-
-## Available Methods
-
-| Name                 | Parameters | Return Type | Description |
-| -------------------- | ---------- | ----------- | ----------- |
-| handleDisabledChange | -          | -           | -           |
-
-## Available CSS Parts
-
-| Name | Description |
-| ---- | ----------- |
-| -    | -           |
+| Property | Attribute  | Reflects | Type      | Default | Description            |
+| -------- | ---------- | :------: | --------- | ------- | ---------------------- |
+| disabled | `disabled` |    ✓     | `boolean` | `false` | Disables the observer. |
 
 ## Available Events
 
-| Name       | Event Type     | Description                          |
-| ---------- | -------------- | ------------------------------------ |
-| syn-resize | SynResizeEvent | Emitted when the element is resized. |
-
-## Dependencies
-
-- None
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 2.0
+| Name       | Event Type       | Description                          |
+| ---------- | ---------------- | ------------------------------------ |
+| syn-resize | `SynResizeEvent` | Emitted when the element is resized. |

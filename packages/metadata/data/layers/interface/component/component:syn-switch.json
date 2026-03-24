@@ -1,57 +1,18 @@
 {
   "attributes": [
     {
-      "default": "''",
-      "description": "",
-      "fieldName": "title",
-      "name": "title",
+      "default": "false",
+      "description": "Draws the switch in a checked state.",
+      "fieldName": "checked",
+      "name": "checked",
       "reflects": true,
-      "type": "string"
-    },
-    {
-      "default": "''",
-      "description": "The name of the switch, submitted as a name/value pair with form data.",
-      "fieldName": "name",
-      "name": "name",
-      "reflects": false,
-      "type": "string"
-    },
-    {
-      "description": "The current value of the switch, submitted as a name/value pair with form data.",
-      "fieldName": "value",
-      "name": "value",
-      "reflects": false,
-      "type": "string"
-    },
-    {
-      "default": "'medium'",
-      "description": "The switch's size.",
-      "fieldName": "size",
-      "name": "size",
-      "reflects": true,
-      "type": "'small' | 'medium' | 'large'"
+      "type": "boolean"
     },
     {
       "default": "false",
       "description": "Disables the switch.",
       "fieldName": "disabled",
       "name": "disabled",
-      "reflects": true,
-      "type": "boolean"
-    },
-    {
-      "default": "false",
-      "description": "Sets the switch to a readonly state.",
-      "fieldName": "readonly",
-      "name": "readonly",
-      "reflects": true,
-      "type": "boolean"
-    },
-    {
-      "default": "false",
-      "description": "Draws the switch in a checked state.",
-      "fieldName": "checked",
-      "name": "checked",
       "reflects": true,
       "type": "boolean"
     },
@@ -64,6 +25,30 @@
       "type": "string"
     },
     {
+      "default": "''",
+      "description": "The switch's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "fieldName": "helpText",
+      "name": "help-text",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The name of the switch, submitted as a name/value pair with form data.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Sets the switch to a readonly state.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
       "default": "false",
       "description": "Makes the switch a required field.",
       "fieldName": "required",
@@ -72,10 +57,25 @@
       "type": "boolean"
     },
     {
+      "default": "'medium'",
+      "description": "The switch's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
       "default": "''",
-      "description": "The switch's help text. If you need to display HTML, use the `help-text` slot instead.",
-      "fieldName": "helpText",
-      "name": "help-text",
+      "description": "",
+      "fieldName": "title",
+      "name": "title",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "description": "The current value of the switch, submitted as a name/value pair with form data.",
+      "fieldName": "value",
+      "name": "value",
       "reflects": false,
       "type": "string"
     }
@@ -90,16 +90,16 @@
       "name": "control"
     },
     {
-      "description": "The switch's thumb.",
-      "name": "thumb"
+      "description": "The help text's wrapper.",
+      "name": "form-control-help-text"
     },
     {
       "description": "The switch's label.",
       "name": "label"
     },
     {
-      "description": "The help text's wrapper.",
-      "name": "form-control-help-text"
+      "description": "The switch's thumb.",
+      "name": "thumb"
     }
   ],
   "dependencies": [],
@@ -116,14 +116,14 @@
       "type": "SynChangeEvent"
     },
     {
-      "description": "Emitted when the control receives input.",
-      "name": "syn-input",
-      "type": "SynInputEvent"
-    },
-    {
       "description": "Emitted when the control gains focus.",
       "name": "syn-focus",
       "type": "SynFocusEvent"
+    },
+    {
+      "description": "Emitted when the control receives input.",
+      "name": "syn-input",
+      "type": "SynInputEvent"
     },
     {
       "description": "Emitted when the form control has been checked for validity and its constraints aren't satisfied.",
@@ -133,13 +133,13 @@
   ],
   "methods": [
     {
-      "description": "",
-      "name": "handleCheckedChange",
+      "description": "Removes focus from the switch.",
+      "name": "blur",
       "parameters": []
     },
     {
-      "description": "",
-      "name": "handleDisabledChange",
+      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
+      "name": "checkValidity",
       "parameters": []
     },
     {
@@ -158,18 +158,18 @@
       ]
     },
     {
-      "description": "Removes focus from the switch.",
-      "name": "blur",
-      "parameters": []
-    },
-    {
-      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
-      "name": "checkValidity",
-      "parameters": []
-    },
-    {
       "description": "Gets the associated form, if one exists.",
       "name": "getForm",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleCheckedChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
       "parameters": []
     },
     {
@@ -191,53 +191,6 @@
   "properties": [
     {
       "access": "public",
-      "description": "",
-      "name": "input",
-      "type": "HTMLInputElement"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "",
-      "name": "title",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "The name of the switch, submitted as a name/value pair with form data.",
-      "name": "name",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "description": "The current value of the switch, submitted as a name/value pair with form data.",
-      "name": "value",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "'medium'",
-      "description": "The switch's size.",
-      "name": "size",
-      "type": "'small' | 'medium' | 'large'"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Disables the switch.",
-      "name": "disabled",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Sets the switch to a readonly state.",
-      "name": "readonly",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
       "default": "false",
       "description": "Draws the switch in a checked state.",
       "name": "checked",
@@ -252,10 +205,44 @@
     },
     {
       "access": "public",
+      "default": "false",
+      "description": "Disables the switch.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
       "default": "''",
       "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
       "name": "form",
       "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The switch's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "name": "helpText",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "input",
+      "type": "HTMLInputElement"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the switch, submitted as a name/value pair with form data.",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Sets the switch to a readonly state.",
+      "name": "readonly",
+      "type": "boolean"
     },
     {
       "access": "public",
@@ -266,10 +253,22 @@
     },
     {
       "access": "public",
+      "default": "'medium'",
+      "description": "The switch's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
       "default": "''",
-      "description": "The switch's help text. If you need to display HTML, use the `help-text` slot instead.",
-      "name": "helpText",
+      "description": "",
+      "name": "title",
       "type": "string"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validation message",
+      "name": "validationMessage"
     },
     {
       "access": "readonly",
@@ -277,9 +276,10 @@
       "name": "validity"
     },
     {
-      "access": "readonly",
-      "description": "Gets the validation message",
-      "name": "validationMessage"
+      "access": "public",
+      "description": "The current value of the switch, submitted as a name/value pair with form data.",
+      "name": "value",
+      "type": "string"
     }
   ],
   "since": "2.0",

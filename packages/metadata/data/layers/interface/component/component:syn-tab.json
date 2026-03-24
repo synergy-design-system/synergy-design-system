@@ -1,14 +1,6 @@
 {
   "attributes": [
     {
-      "default": "''",
-      "description": "The name of the tab panel this tab is associated with. The panel must be located in the same tab group.",
-      "fieldName": "panel",
-      "name": "panel",
-      "reflects": true,
-      "type": "string"
-    },
-    {
       "default": "false",
       "description": "Draws the tab in an active state.",
       "fieldName": "active",
@@ -31,6 +23,14 @@
       "name": "disabled",
       "reflects": true,
       "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The name of the tab panel this tab is associated with. The panel must be located in the same tab group.",
+      "fieldName": "panel",
+      "name": "panel",
+      "reflects": true,
+      "type": "string"
     }
   ],
   "cssParts": [
@@ -73,19 +73,6 @@
   "properties": [
     {
       "access": "public",
-      "description": "",
-      "name": "tab",
-      "type": "HTMLElement"
-    },
-    {
-      "access": "public",
-      "default": "''",
-      "description": "The name of the tab panel this tab is associated with. The panel must be located in the same tab group.",
-      "name": "panel",
-      "type": "string"
-    },
-    {
-      "access": "public",
       "default": "false",
       "description": "Draws the tab in an active state.",
       "name": "active",
@@ -104,6 +91,19 @@
       "description": "Disables the tab and prevents selection.",
       "name": "disabled",
       "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the tab panel this tab is associated with. The panel must be located in the same tab group.",
+      "name": "panel",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "tab",
+      "type": "HTMLElement"
     }
   ],
   "since": "2.0",

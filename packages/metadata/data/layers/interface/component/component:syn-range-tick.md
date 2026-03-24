@@ -10,8 +10,14 @@ Ticks visually improve positioning on range sliders.
 
 ## Class Information
 
+- **Import Example:** `import SynRangeTick from '@synergy-design-system/components/components/range-tick/range-tick.js';`
 - **Module Path:** components/range-tick/range-tick.js
-- **Tag Name:** syn-range-tick
+- **Tag Name:** `syn-range-tick`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** unknown
 
 ## Available Slots
 
@@ -19,23 +25,11 @@ Ticks visually improve positioning on range sliders.
 | --------- | ---------------- |
 | (default) | The tick's label |
 
-## Available Attributes
-
-| Name        | Type    | Default | Description                                        | Reflects |
-| ----------- | ------- | ------- | -------------------------------------------------- | -------- |
-| subdivision | boolean | false   | Whether the tick should be shown as a subdivision. | ✓        |
-
 ## Available Properties
 
-| Name        | Type    | Default | Description                                        | Access |
-| ----------- | ------- | ------- | -------------------------------------------------- | ------ |
-| subdivision | boolean | false   | Whether the tick should be shown as a subdivision. | public |
-
-## Available Methods
-
-| Name | Parameters | Return Type | Description |
-| ---- | ---------- | ----------- | ----------- |
-| -    | -          | -           | -           |
+| Property    | Attribute     | Reflects | Type      | Default | Description                                        |
+| ----------- | ------------- | :------: | --------- | ------- | -------------------------------------------------- |
+| subdivision | `subdivision` |    ✓     | `boolean` | `false` | Whether the tick should be shown as a subdivision. |
 
 ## Available CSS Parts
 
@@ -44,18 +38,3 @@ Ticks visually improve positioning on range sliders.
 | base  | The component's base wrapper. |
 | label | The component's label.        |
 | line  | The component's tick line.    |
-
-## Available Events
-
-| Name | Event Type | Description |
-| ---- | ---------- | ----------- |
-| -    | -          | -           |
-
-## Dependencies
-
-- None
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** unknown

@@ -13,15 +13,15 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Validation/contracts use Zod v4.
 - JSON Schema generation uses native Zod v4 support via toJSONSchema().
 - Entity IDs use a namespaced format: `kind:name` (e.g. `component:syn-button`, `token:color-primary`).
-- Layer types: `full` (raw source), `interface` (CEM-derived API Markdown), `examples` (usage snippets), `code` (minimal code references) — only `full` is implemented so far.
+- Layer types: `full` (raw source), `interface` (CEM-derived API Markdown), `examples` (usage snippets).
+- `code` layer is intentionally out of scope for now; code-oriented needs are covered by `examples` and `full`.
 - Layer content contract:
   - `interface` — Compact, human+AI readable Markdown derived from CEM. Include: name, summary/purpose, props/attributes, events, slots, CSS parts, public methods only. Exclude: private/internal fields, full source code, long prose, class hierarchies. Written to `data/layers/interface/<kind>/<entity-id>.md`.
-  - `examples` — Curated usage examples (sourced from Storybook). One canonical example per core scenario; redundant/deprecated examples trimmed. Written to `data/layers/examples/<kind>/<entity-id>.json`.
-  - `code` — Minimal code references/snippets only; no complete source files. Written to `data/layers/code/<kind>/<entity-id>.json`.
+  - `examples` — Curated usage examples (sourced from Storybook). One canonical example per core scenario; redundant/deprecated examples trimmed. Written to `data/layers/examples/<kind>/<entity-id>.md`.
   - `full` — Complete source file copies (already implemented).
-- Verbosity model (for MCP and all future consumers): `interface | examples | code | full`. Default to `interface` to minimize token usage.
+- Verbosity model (for MCP and all future consumers): `interface | examples | full`. Default to `interface` to minimize token usage.
 - Token efficiency target (ADR benchmark): `syn-checkbox` through current full MCP response ≈ 22 KB → `interface` layer target ≈ 5 KB (~77% reduction). Use as acceptance benchmark for Phase 2.
-- Size budgets (ADR targets, enforced by CI guards once implemented): `interface` ≤ 6 KB, `examples` ≤ 8 KB, `code` ≤ 10 KB per component. Tune thresholds after initial generation.
+- Size budgets (ADR targets, enforced by CI guards once implemented): `interface` ≤ 6 KB, `examples` ≤ 8 KB per component. Tune thresholds after initial generation.
 - Future entity fields specified in ADR but not yet in schema: `shortDescription`, `llmHint`, `usageHints` — short, AI-optimized summary fields for constrained contexts. Decide before first npm publish.
 - Framework wrappers are being attached to canonical `component:*` entities instead of being modeled as separate per-framework component entities.
 - Layer asset paths are package-namespaced and shallow per entity (`components|react|vue|angular`) to avoid filename collisions across packages.
@@ -277,15 +277,17 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   - assets
 - Aggregation now merges entities from all active pipelines.
 - Manifest source reporting includes tokens/styles/fonts/assets in addition to existing framework sources.
-- 8-step CLI build pipeline:
-  1. Run source pipelines
-  2. Aggregate entities
-  3. Validate entities (Zod)
-  4. Process and write layer assets
-  5. Build index
-  6. Write core entities (with layer data merged in)
-  7. Write index + manifest
-  8. Generate and write JSON schemas
+- 10-step CLI build pipeline:
+  1. Load configuration (overrides, clustering, artifacts)
+  2. Run source pipelines in parallel (components, tokens, styles, fonts, assets)
+  3. Aggregate entities
+  4. Validate entities (Zod)
+  5. Enrich entities with configuration
+  6. Run Storybook scraper (conditional on `RUN_STORYBOOK_SCRAPER=true`; e.g. `build:all`)
+  7. Process and write layer assets
+  8. Write core entities (with layer data merged in)
+  9. Write index + manifest
+  10. Generate and write JSON schemas
 - Entity count now varies with artifact availability (especially `dist/`-backed sources).
 - Baseline with current workspace state (tokens/styles dist may be empty) is 83 entities:
   - 48 components
@@ -320,6 +322,19 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `write-schemas.ts`: Persists generated JSON schemas to `data/schemas/*.json`.
 - `fs-utils.ts`: Shared atomic write helpers (`ensureDir`, `writeJsonAtomic`).
 
+### Interface Markdown Renderer Improvements (completed)
+- The `renderInterfaceMarkdown()` function in `write-layers.ts` was enhanced to generate human-friendly, semantically accurate component API documentation.
+- **Improvements implemented:**
+  1. **Import example in Class Information** — Automatically generates TypeScript import statements with proper camelCase component names and absolute package paths, formatted as a list item for consistency
+  2. **Code formatting with backticks** — Tag names, types, default values, method parameters, event types, and dependencies are preformatted with backticks for proper syntax highlighting
+  3. **Public API filtering** — Properties are filtered to only include those marked as `public` with non-empty descriptions, excluding internal implementation details
+  4. **Method filtering** — Only methods with valid JSDoc descriptions are included, following the convention that documented methods = public interface
+  5. **Property-first API table** — Interface output now uses properties as the primary table and maps each property to its HTML attribute, with a dedicated `Reflects` column and an `Attribute-only Members` fallback section
+  6. **Deterministic API ordering in collector** — Attributes/properties/methods/events/css parts/dependencies are sorted during CEM ingestion (slots intentionally keep source order)
+- **Framework examples section** — Considered but deferred; will be handled by agentic skills layer instead to keep interface markdown focused on API reference
+- Generated interface markdown now matches actual public API surfaces (like Angular wrappers) and provides clear, copy-paste-ready import statements for developers.
+- Example output: `data/layers/interface/component/component:syn-button.md` demonstrates the clean, compact format with minimal internal state exposure
+
 ### Test Suite (Mocha + Chai)
 - `test/integration/build-success.test.mjs`: Verifies build succeeds and artifacts exist and parse correctly.
 - `test/integration/components-preflight.test.mjs`: Verifies actionable error when manifest is missing.
@@ -340,7 +355,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Build integration test verifies asset icon set entities (`asset:sick2018-icons`, `asset:sick2025-icons-fill`, `asset:sick2025-icons-outline`) and that their `custom.icons` dict contains valid `categories`/`tags` arrays for icon `add`.
 - Build integration test confirms per-icon entities (`asset:sick2018-icon-add` etc.) are NOT present in the index.
 - Build integration test writes to a temporary output directory instead of mutating committed `data/`.
-- 9 tests passing.
+- 12 tests passing.
 - `pretest` now runs TypeScript compilation only; full metadata regeneration is explicit.
 
 ### Tooling
@@ -365,6 +380,10 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Scraper is now integrated at the correct pipeline position (Step 6, before layer writing), allowing examples to be discovered and registered with canonical component entities during layer asset processing (Step 7).
 - Examples layer files are now generated and written to `data/layers/examples/{kind}/{entity.id}.md` when the scraper runs.
 - Default `pnpm build` remains fast (no Playwright, no Storybook serve); full examples generation only happens with explicit `build:all`.
+- **Storybook sync hardening — partial:**
+  - ✅ `pruneStaleArtifacts()` in `write.ts` prunes stale `.md` files not present in the current scrape set on successful runs.
+  - ✅ `write.ts` throws if content is empty (`Refusing to write empty storybook artifact`), preventing blank replacements.
+  - ❌ **Gap remaining:** Step 6 in `build.ts` only issues a `warn` on scrape failure and continues the pipeline. It should abort (or be configurable to abort) to prevent a successful `build:all` run that silently drops all examples.
 
 ### Previous Hardening and Config Work
 - Clustering config was generated from Storybook tags and expanded with concrete group files under `config/clustering/components-by-tag/`.
@@ -378,16 +397,17 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Integration coverage was added for config loading behavior and deterministic JSON serialization ordering.
 
 ## Current Limitations
-- Only the `full` and `examples` layer types are implemented. `interface` and `code` layers are not yet implemented.
-- Phase 2 execution order is now: `interface` layer generation, then standalone schema-lint CI validation, then public API helper completion.
+- Implemented layers are `full`, `interface`, and `examples`; a separate `code` layer is currently not planned.
+- Schema lint runs via `pnpm run lint:schemas` and is transitively included in CI through the root recursive `pnpm lint` chain. A dedicated CI step calling it by name does not exist.
 - Some metadata values are still fallback/default driven (e.g. `unknown` for missing `since`).
 - Package exports expose only generic store queries. ADR-specified domain helpers not yet implemented: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
-- No CI size budget guards exist yet. These are required before publishing (targets: `interface` ≤ 6 KB, `examples` ≤ 8 KB, `code` ≤ 10 KB).
+- No CI size budget guards exist yet. These are required before publishing (targets: `interface` ≤ 6 KB, `examples` ≤ 8 KB per entity). Current baseline check: `syn-checkbox` interface layer is 5,661 bytes (~5.53 KiB), but enforcement is still manual.
 - MCP has not yet been migrated to consume from this package; it still has its own builder.
 - Package not yet published to npm.
 - No `llms.txt` file exists yet.
 - Tokens, styles, and fonts have partial artifact-depth collectors; assets icon metadata is embedded in set-level entities rather than individual files.
 - Build outputs are still written in multiple phases, not as a single graph-first final commit. This can leave partially updated outputs if failures happen after some writes.
+- Storybook scrape failures in `build:all` (Step 6) issue a warning and continue rather than aborting, which can silently produce a build with no examples.
 
 
 ## Data/Folder State
@@ -440,7 +460,7 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 | Phase | Description | Status |
 |---|---|---|
 | 1 | Establish metadata package as canonical source | ✅ Architecture complete; MCP migration + npm publish pending |
-| 2 | Introduce layered metadata + verbosity controls | 🔄 In progress — execution order: `examples` -> schema-lint CI -> public API helpers |
+| 2 | Introduce layered metadata + verbosity controls | 🔄 In progress — `interface`/`examples` layers and schema-lint are implemented, and `syn-checkbox` interface size now meets target; remaining work is scrape-failure hardening, CI size guards, and public API helpers |
 | 3 | Expand distribution (MCP HTTP, npm publish, llms.txt) | ❌ Not started |
 | 4 | Refine token efficiency and metadata architecture | ❌ Not started |
 | 5 | Cross-platform interoperability (Blockbrain, compatibility matrix) | ❌ Not started |
@@ -448,33 +468,30 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 | 7 | Continuous improvement, new metadata types | ❌ Not started |
 
 ### Phase 2 — Concrete Actions
-1. Complete Storybook examples synchronization hardening: ensure successful `build:all` runs prune stale examples files, ensure failed scrape runs never mutate example artifacts, and keep core layer refs in sync through file discovery.
-2. Add a standalone schema-lint validation step suitable for CI and local runs (script/CLI + CI wiring).
-3. Expose ADR-specified layer-aware domain helpers on the public API: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
-4. Implement `interface` layer generator for `component:*` entities. Source: CEM (`custom-elements.json`) + existing `custom.frameworks.*` metadata. Output: `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB target.
-5. Implement `code` layer for `component:*` entities. Output: `data/layers/code/component/<entity-id>.json`.
-6. Add CI size budget checks: fail PRs where `interface` > 6 KB, `examples` > 8 KB, `code` > 10 KB per entity.
+1. **Fix Storybook failure path in `build.ts`:** Step 6 currently issues a `warn` and continues on scrape failure. It should abort (or offer a `--fail-on-scrape-error` flag) so `build:all` never silently produces a build with zero examples.
+2. **Expose ADR-specified layer-aware domain helpers** on the public API: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
+3. **Add broader interface/examples size validation:** `syn-checkbox` now meets budget, but CI still needs representative multi-component budget checks to prevent regressions.
+4. **Add CI size budget guards:** fail PRs where any `interface` layer file exceeds 6 KB or any `examples` layer file exceeds 8 KB.
 
 ### Phase 3 — Concrete Actions
 1. Migrate MCP server to consume from `@synergy-design-system/metadata`; remove all metadata-building logic from MCP.
-2. Add `verbosity: 'interface' | 'examples' | 'code' | 'full'` parameter to MCP tools; default `interface`.
+2. Add `verbosity: 'interface' | 'examples' | 'full'` parameter to MCP tools; default `interface`.
 3. Enable MCP HTTP transport.
 4. Publish `@synergy-design-system/metadata` to npm.
 5. Create `llms.txt` in the Synergy docs domain referencing canonical layer URLs.
 
 ### Token Efficiency Benchmark (Phase 2 acceptance gate)
-- `syn-checkbox` `interface` layer must be ≈ 5 KB or less (current full MCP response ≈ 22 KB, ~77% reduction target).
+- `syn-checkbox` `interface` layer must be ≤ 6 KB (current full MCP response ≈ 22 KB, ~77% reduction target).
+- **Current measured size: 5,661 bytes (~5.53 KiB)** — target met for `syn-checkbox`; remaining work is CI enforcement and broader component-set validation.
 
 ## Suggested Next Steps
-1. **[Phase 2 — current priority]** Finalize Storybook examples sync behavior: success-only stale-file pruning during `build:all`, no-write-on-failure guarantees, and verification that core `layers.examples` refs are removed when examples are removed from Storybook.
-2. **[Phase 2]** Add a standalone schema-lint validation command and wire it into CI.
-3. **[Phase 2]** Expose layer-aware public API helpers: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
-4. **[Phase 2]** Implement `interface` layer for component entities: CEM-derived Markdown, ≤ 6 KB target, written to `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB benchmark.
-5. **[Phase 2]** Implement `code` layer for component entities (minimal code references only).
-6. **[Phase 2]** Add CI size budget guards (fail on `interface` > 6 KB, `examples` > 8 KB, `code` > 10 KB).
-7. Decide whether to add `shortDescription`/`llmHint`/`usageHints` fields to `CoreEntity` schema before first npm publish.
-8. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
-9. **[Phase 3]** Migrate MCP to consume from this package; publish to npm; create `llms.txt`; enable MCP HTTP transport.
+1. **[Phase 2 — current priority]** Fix Storybook scrape failure path in `build.ts` Step 6: change `warn + continue` to `error + exit(1)` (or add a `--fail-on-scrape-error` flag) so a failed scrape never produces a `build:all` artefact that silently drops all examples.
+2. **[Phase 2]** Expose layer-aware public API helpers: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
+3. **[Phase 2]** Add representative size-budget verification across components/examples to keep current gains stable and visible in CI output.
+4. **[Phase 2]** Add CI size budget guards (fail on `interface` > 6 KB, `examples` > 8 KB per entity).
+5. Decide whether to add `shortDescription`/`llmHint`/`usageHints` fields to `CoreEntity` schema before first npm publish.
+6. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
+7. **[Phase 3]** Migrate MCP to consume from this package; publish to npm; create `llms.txt`; enable MCP HTTP transport.
 
 ## Resume Notes
 - If build fails on components manifest path, ensure components package has been built so `dist/custom-elements.json` exists.
@@ -505,7 +522,8 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 - Components package and migration setup entities are now included (`setup:components-package`, `setup:synergy-migrations`).
 - DaVinci migration is intentionally grouped under `davinci/` in layer output.
 - The source tree is now physically split into `src/public/` and `src/internal/`.
-- Storybook/examples scraping must NEVER be part of `build` or `test`. Use a dedicated `build:all` target. CI enforces this by checking git diff — a missing examples diff is a merge blocker.
+- Storybook/examples scraping must NEVER be part of `build` or `test`. Use a dedicated `build:all` target.
+- Current monorepo CI git-diff enforcement is documented for MCP metadata; metadata package should follow the same principle when CI wiring is added.
 - For the next Storybook refactor, preserve these invariants:
   - default `pnpm build` stays scraper-free
   - `build:all` remains the only full examples regeneration path

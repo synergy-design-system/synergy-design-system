@@ -1,20 +1,20 @@
 {
   "attributes": [
     {
-      "default": "''",
-      "description": "The headers label. If you need to display HTML, use the `label` slot instead.",
-      "fieldName": "label",
-      "name": "label",
-      "reflects": false,
-      "type": "string"
-    },
-    {
       "default": "'hidden'",
       "description": "Defines the current visibility and icon of the burger-menu icon.\nThe menu button is added automatically if the component finds a syn-side-nav in\nvariant=\"default\".\nThe following values can be used:\n- hidden: The burger menu is not visible\n- open: The burger menu is visible and shows the close icon\n- closed: The burger menu is visible and shows the open icon",
       "fieldName": "burgerMenu",
       "name": "burger-menu",
       "reflects": true,
       "type": "'hidden' | 'open' | 'closed'"
+    },
+    {
+      "default": "''",
+      "description": "The headers label. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
     },
     {
       "default": "false",
@@ -31,16 +31,20 @@
       "name": "base"
     },
     {
+      "description": "The button that toggles the burger menu",
+      "name": "burger-menu-toggle-button"
+    },
+    {
       "description": "The wrapper most content items reside",
       "name": "content"
     },
     {
-      "description": "The wrapper the application logo resides in",
-      "name": "logo"
-    },
-    {
       "description": "The element wrapping the application name",
       "name": "label"
+    },
+    {
+      "description": "The wrapper the application logo resides in",
+      "name": "logo"
     },
     {
       "description": "The Item wrapping the optional application menu",
@@ -49,10 +53,6 @@
     {
       "description": "The wrapper that is holding the optional top navigation section",
       "name": "navigation"
-    },
-    {
-      "description": "The button that toggles the burger menu",
-      "name": "burger-menu-toggle-button"
     }
   ],
   "dependencies": [],
@@ -76,11 +76,6 @@
   ],
   "methods": [
     {
-      "description": "",
-      "name": "handleBurgerMenu",
-      "parameters": []
-    },
-    {
       "description": "Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation\nlike showing the burger menu icon and open / close handling.\n\nIf no side navigation is connected, the header will use the first `syn-side-nav` element it\nfinds.",
       "name": "connectSideNavigation",
       "parameters": [
@@ -89,22 +84,27 @@
           "type": "SynSideNav | null"
         }
       ]
+    },
+    {
+      "description": "",
+      "name": "handleBurgerMenu",
+      "parameters": []
     }
   ],
   "properties": [
-    {
-      "access": "public",
-      "default": "''",
-      "description": "The headers label. If you need to display HTML, use the `label` slot instead.",
-      "name": "label",
-      "type": "string"
-    },
     {
       "access": "public",
       "default": "'hidden'",
       "description": "Defines the current visibility and icon of the burger-menu icon.\nThe menu button is added automatically if the component finds a syn-side-nav in\nvariant=\"default\".\nThe following values can be used:\n- hidden: The burger menu is not visible\n- open: The burger menu is visible and shows the close icon\n- closed: The burger menu is visible and shows the open icon",
       "name": "burgerMenu",
       "type": "'hidden' | 'open' | 'closed'"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The headers label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
     },
     {
       "access": "public",

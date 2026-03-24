@@ -164,6 +164,10 @@ const toStatus = (
   return 'stable';
 };
 
+const sortByName = <T extends { name: string }>(items: T[]): T[] => [...items].sort((a, b) => a.name.localeCompare(b.name));
+
+const sortStrings = (items: string[]): string[] => [...items].sort((a, b) => a.localeCompare(b));
+
 const buildInterfaceSnapshot = (
   declaration: SynCustomElementDeclaration,
   sourceModulePath: string,
@@ -311,13 +315,13 @@ const buildInterfaceSnapshot = (
   const dependencies = getStringArrayField(declaration, 'dependencies');
 
   return {
-    attributes,
-    cssParts,
-    dependencies,
+    attributes: sortByName(attributes),
+    cssParts: sortByName(cssParts),
+    dependencies: sortStrings(dependencies),
     documentation: getStringField(declaration, 'documentation'),
-    events,
-    methods,
-    properties,
+    events: sortByName(events),
+    methods: sortByName(methods),
+    properties: sortByName(properties),
     since,
     slots,
     sourceModulePath,

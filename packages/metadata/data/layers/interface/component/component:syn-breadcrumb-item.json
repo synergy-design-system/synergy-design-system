@@ -8,19 +8,19 @@
       "type": "string | undefined"
     },
     {
-      "description": "Tells the browser where to open the link. Only used when `href` is set.",
-      "fieldName": "target",
-      "name": "target",
-      "reflects": false,
-      "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
-    },
-    {
       "default": "'noreferrer noopener'",
       "description": "The `rel` attribute to use on the link. Only used when `href` is set.",
       "fieldName": "rel",
       "name": "rel",
       "reflects": false,
       "type": "string"
+    },
+    {
+      "description": "Tells the browser where to open the link. Only used when `href` is set.",
+      "fieldName": "target",
+      "name": "target",
+      "reflects": false,
+      "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
     }
   ],
   "cssParts": [
@@ -37,12 +37,12 @@
       "name": "prefix"
     },
     {
-      "description": "The container that wraps the suffix.",
-      "name": "suffix"
-    },
-    {
       "description": "The container that wraps the separator.",
       "name": "separator"
+    },
+    {
+      "description": "The container that wraps the suffix.",
+      "name": "suffix"
     }
   ],
   "dependencies": [],
@@ -51,12 +51,12 @@
   "methods": [
     {
       "description": "",
-      "name": "hrefChanged",
+      "name": "handleSlotChange",
       "parameters": []
     },
     {
       "description": "",
-      "name": "handleSlotChange",
+      "name": "hrefChanged",
       "parameters": []
     }
   ],
@@ -75,16 +75,16 @@
     },
     {
       "access": "public",
-      "description": "Tells the browser where to open the link. Only used when `href` is set.",
-      "name": "target",
-      "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
-    },
-    {
-      "access": "public",
       "default": "'noreferrer noopener'",
       "description": "The `rel` attribute to use on the link. Only used when `href` is set.",
       "name": "rel",
       "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "Tells the browser where to open the link. Only used when `href` is set.",
+      "name": "target",
+      "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
     }
   ],
   "since": "2.0",

@@ -10,8 +10,14 @@ Radios allow the user to select a single option from a group.
 
 ## Class Information
 
+- **Import Example:** `import SynRadio from '@synergy-design-system/components/components/radio/radio.js';`
 - **Module Path:** components/radio/radio.js
-- **Tag Name:** syn-radio
+- **Tag Name:** `syn-radio`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 2.0
 
 ## Available Slots
 
@@ -19,55 +25,32 @@ Radios allow the user to select a single option from a group.
 | --------- | ------------------ |
 | (default) | The radio's label. |
 
-## Available Attributes
-
-| Name     | Type                           | Default  | Description                                                                                                                                         | Reflects |
-| -------- | ------------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| value    | string \| number               | -        | The radio's value. When selected, the radio group will receive this value.                                                                          | -        |
-| size     | 'small' \| 'medium' \| 'large' | 'medium' | The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this attribute can typically be omitted. | ✓        |
-| disabled | boolean                        | false    | Disables the radio.                                                                                                                                 | ✓        |
-| readonly | boolean                        | false    | Sets the radio to a readonly state.                                                                                                                 | ✓        |
-
 ## Available Properties
 
-| Name     | Type                           | Default  | Description                                                                                                                                         | Access |
-| -------- | ------------------------------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| checked  | boolean                        | false    | -                                                                                                                                                   | public |
-| hasFocus | boolean                        | false    | -                                                                                                                                                   | public |
-| value    | string \| number               | -        | The radio's value. When selected, the radio group will receive this value.                                                                          | public |
-| size     | 'small' \| 'medium' \| 'large' | 'medium' | The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this attribute can typically be omitted. | public |
-| disabled | boolean                        | false    | Disables the radio.                                                                                                                                 | public |
-| readonly | boolean                        | false    | Sets the radio to a readonly state.                                                                                                                 | public |
-
-## Available Methods
-
-| Name                 | Parameters | Return Type | Description |
-| -------------------- | ---------- | ----------- | ----------- |
-| handleCheckedChange  | -          | -           | -           |
-| handleDisabledChange | -          | -           | -           |
+| Property | Attribute  | Reflects | Type                             | Default    | Description                                                                                                                                         |
+| -------- | ---------- | :------: | -------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| disabled | `disabled` |    ✓     | `boolean`                        | `false`    | Disables the radio.                                                                                                                                 |
+| readonly | `readonly` |    ✓     | `boolean`                        | `false`    | Sets the radio to a readonly state.                                                                                                                 |
+| size     | `size`     |    ✓     | `'small' \| 'medium' \| 'large'` | `'medium'` | The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this attribute can typically be omitted. |
+| value    | `value`    |    -     | `string \| number`               | -          | The radio's value. When selected, the radio group will receive this value.                                                                          |
 
 ## Available CSS Parts
 
 | Name             | Description                                                  |
 | ---------------- | ------------------------------------------------------------ |
 | base             | The component's base wrapper.                                |
+| checked-icon     | The checked icon, an `<syn-icon>` element.                   |
 | control          | The circular container that wraps the radio's checked state. |
 | control--checked | The radio control when the radio is checked.                 |
-| checked-icon     | The checked icon, an `<syn-icon>` element.                   |
 | label            | The container that wraps the radio's label.                  |
 
 ## Available Events
 
-| Name      | Event Type    | Description                           |
-| --------- | ------------- | ------------------------------------- |
-| syn-blur  | SynBlurEvent  | Emitted when the control loses focus. |
-| syn-focus | SynFocusEvent | Emitted when the control gains focus. |
+| Name      | Event Type      | Description                           |
+| --------- | --------------- | ------------------------------------- |
+| syn-blur  | `SynBlurEvent`  | Emitted when the control loses focus. |
+| syn-focus | `SynFocusEvent` | Emitted when the control gains focus. |
 
 ## Dependencies
 
-- **syn-icon**
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 2.0
+- `syn-icon`

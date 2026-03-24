@@ -1,17 +1,18 @@
 {
   "attributes": [
     {
-      "description": "The radio's value. When selected, the radio group will receive this value.",
-      "fieldName": "value",
-      "name": "value",
-      "reflects": false,
-      "type": "string | number"
-    },
-    {
       "default": "false",
       "description": "Disables the radio button.",
       "fieldName": "disabled",
       "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Draws a pill-style radio button with rounded edges.",
+      "fieldName": "pill",
+      "name": "pill",
       "reflects": true,
       "type": "boolean"
     },
@@ -24,12 +25,11 @@
       "type": "'small' | 'medium' | 'large'"
     },
     {
-      "default": "false",
-      "description": "Draws a pill-style radio button with rounded edges.",
-      "fieldName": "pill",
-      "name": "pill",
-      "reflects": true,
-      "type": "boolean"
+      "description": "The radio's value. When selected, the radio group will receive this value.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string | number"
     }
   ],
   "cssParts": [
@@ -46,12 +46,12 @@
       "name": "button--checked"
     },
     {
-      "description": "The container that wraps the prefix.",
-      "name": "prefix"
-    },
-    {
       "description": "The container that wraps the radio button's label.",
       "name": "label"
+    },
+    {
+      "description": "The container that wraps the prefix.",
+      "name": "prefix"
     },
     {
       "description": "The container that wraps the suffix.",
@@ -74,8 +74,8 @@
   ],
   "methods": [
     {
-      "description": "",
-      "name": "handleDisabledChange",
+      "description": "Removes focus from the radio button.",
+      "name": "blur",
       "parameters": []
     },
     {
@@ -89,23 +89,18 @@
       ]
     },
     {
-      "description": "Removes focus from the radio button.",
-      "name": "blur",
+      "description": "",
+      "name": "handleDisabledChange",
       "parameters": []
     }
   ],
   "properties": [
     {
       "access": "public",
-      "description": "",
-      "name": "input",
-      "type": "HTMLInputElement"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "hiddenInput",
-      "type": "HTMLInputElement"
+      "default": "false",
+      "description": "Disables the radio button.",
+      "name": "disabled",
+      "type": "boolean"
     },
     {
       "access": "public",
@@ -116,15 +111,21 @@
     },
     {
       "access": "public",
-      "description": "The radio's value. When selected, the radio group will receive this value.",
-      "name": "value",
-      "type": "string | number"
+      "description": "",
+      "name": "hiddenInput",
+      "type": "HTMLInputElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "input",
+      "type": "HTMLInputElement"
     },
     {
       "access": "public",
       "default": "false",
-      "description": "Disables the radio button.",
-      "name": "disabled",
+      "description": "Draws a pill-style radio button with rounded edges.",
+      "name": "pill",
       "type": "boolean"
     },
     {
@@ -136,10 +137,9 @@
     },
     {
       "access": "public",
-      "default": "false",
-      "description": "Draws a pill-style radio button with rounded edges.",
-      "name": "pill",
-      "type": "boolean"
+      "description": "The radio's value. When selected, the radio group will receive this value.",
+      "name": "value",
+      "type": "string | number"
     }
   ],
   "since": "2.0",

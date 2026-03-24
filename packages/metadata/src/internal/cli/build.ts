@@ -375,7 +375,6 @@ async function main() {
 
 main().catch((err) => {
   // Catch any unhandled promise rejections
-  // eslint-disable-next-line no-console
   console.error('Uncaught error:', err);
   process.exit(1);
 });

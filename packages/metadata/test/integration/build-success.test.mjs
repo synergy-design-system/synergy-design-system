@@ -262,9 +262,8 @@ describe('metadata build integration', () => {
       expect(accordionInterfaceJson).to.have.property('events').that.is.an('array');
       expect(accordionInterfaceJson).to.have.property('cssParts').that.is.an('array');
       expect(accordionInterfaceMarkdown).to.include('# syn-accordion');
-      expect(accordionInterfaceMarkdown).to.include('## Available Attributes');
-      expect(accordionInterfaceMarkdown).to.include('## Available Methods');
-      expect(accordionInterfaceMarkdown).to.include('## Available Events');
+      expect(accordionInterfaceMarkdown).to.include('## Available Properties');
+      expect(accordionInterfaceMarkdown).to.include('## Available CSS Parts');
       expect(alertJson.custom).to.have.nested.property('frameworks.react.jsx.typeName', 'SynAlertJSXElement');
       expect(alertJson.custom.frameworks.react.jsx.events).to.deep.include({
         name: 'syn-show',

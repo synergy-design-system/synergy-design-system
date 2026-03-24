@@ -2,18 +2,11 @@
   "attributes": [
     {
       "default": "false",
-      "description": "Indicates whether or not the details is open. You can toggle this attribute to show and hide the details, or you\ncan use the `show()` and `hide()` methods and this attribute will reflect the details' open state.",
-      "fieldName": "open",
-      "name": "open",
+      "description": "Draws the details as contained element.",
+      "fieldName": "contained",
+      "name": "contained",
       "reflects": true,
       "type": "boolean"
-    },
-    {
-      "description": "The summary to show in the header. If you need to display HTML, use the `summary` slot instead.",
-      "fieldName": "summary",
-      "name": "summary",
-      "reflects": false,
-      "type": "string"
     },
     {
       "default": "false",
@@ -25,9 +18,9 @@
     },
     {
       "default": "false",
-      "description": "Draws the details as contained element.",
-      "fieldName": "contained",
-      "name": "contained",
+      "description": "Indicates whether or not the details is open. You can toggle this attribute to show and hide the details, or you\ncan use the `show()` and `hide()` methods and this attribute will reflect the details' open state.",
+      "fieldName": "open",
+      "name": "open",
       "reflects": true,
       "type": "boolean"
     },
@@ -38,12 +31,27 @@
       "name": "size",
       "reflects": true,
       "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "description": "The summary to show in the header. If you need to display HTML, use the `summary` slot instead.",
+      "fieldName": "summary",
+      "name": "summary",
+      "reflects": false,
+      "type": "string"
     }
   ],
   "cssParts": [
     {
       "description": "The component's base wrapper.",
       "name": "base"
+    },
+    {
+      "description": "The container that wraps the details content.",
+      "name": "body"
+    },
+    {
+      "description": "The details content.",
+      "name": "content"
     },
     {
       "description": "The header that wraps both the summary and the expand/collapse icon.",
@@ -56,14 +64,6 @@
     {
       "description": "The container that wraps the expand/collapse icons.",
       "name": "summary-icon"
-    },
-    {
-      "description": "The details content.",
-      "name": "content"
-    },
-    {
-      "description": "The container that wraps the details content.",
-      "name": "body"
     }
   ],
   "dependencies": [
@@ -72,9 +72,9 @@
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs",
   "events": [
     {
-      "description": "Emitted when the details opens.",
-      "name": "syn-show",
-      "type": "SynShowEvent"
+      "description": "Emitted after the details closes and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
     },
     {
       "description": "Emitted after the details opens and all animations are complete.",
@@ -87,9 +87,9 @@
       "type": "SynHideEvent"
     },
     {
-      "description": "Emitted after the details closes and all animations are complete.",
-      "name": "syn-after-hide",
-      "type": "SynAfterHideEvent"
+      "description": "Emitted when the details opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
     }
   ],
   "methods": [
@@ -99,13 +99,13 @@
       "parameters": []
     },
     {
-      "description": "Shows the details.",
-      "name": "show",
+      "description": "Hides the details",
+      "name": "hide",
       "parameters": []
     },
     {
-      "description": "Hides the details",
-      "name": "hide",
+      "description": "Shows the details.",
+      "name": "show",
       "parameters": []
     }
   ],
@@ -113,52 +113,8 @@
     {
       "access": "public",
       "description": "",
-      "name": "details",
-      "type": "HTMLDetailsElement"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "header",
-      "type": "HTMLElement"
-    },
-    {
-      "access": "public",
-      "description": "",
       "name": "body",
       "type": "HTMLElement"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "expandIconSlot",
-      "type": "HTMLSlotElement"
-    },
-    {
-      "access": "public",
-      "description": "",
-      "name": "detailsObserver",
-      "type": "MutationObserver"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Indicates whether or not the details is open. You can toggle this attribute to show and hide the details, or you\ncan use the `show()` and `hide()` methods and this attribute will reflect the details' open state.",
-      "name": "open",
-      "type": "boolean"
-    },
-    {
-      "access": "public",
-      "description": "The summary to show in the header. If you need to display HTML, use the `summary` slot instead.",
-      "name": "summary",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "false",
-      "description": "Disables the details so it can't be toggled.",
-      "name": "disabled",
-      "type": "boolean"
     },
     {
       "access": "public",
@@ -169,10 +125,54 @@
     },
     {
       "access": "public",
+      "description": "",
+      "name": "details",
+      "type": "HTMLDetailsElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "detailsObserver",
+      "type": "MutationObserver"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the details so it can't be toggled.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "expandIconSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "header",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not the details is open. You can toggle this attribute to show and hide the details, or you\ncan use the `show()` and `hide()` methods and this attribute will reflect the details' open state.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
       "default": "'medium'",
       "description": "The details's size.",
       "name": "size",
       "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "description": "The summary to show in the header. If you need to display HTML, use the `summary` slot instead.",
+      "name": "summary",
+      "type": "string"
     }
   ],
   "since": "2.0",

@@ -10,50 +10,17 @@ Dividers are used to visually separate or group elements.
 
 ## Class Information
 
+- **Import Example:** `import SynDivider from '@synergy-design-system/components/components/divider/divider.js';`
 - **Module Path:** components/divider/divider.js
-- **Tag Name:** syn-divider
-
-## Available Slots
-
-| Name | Description |
-| ---- | ----------- |
-| -    | -           |
-
-## Available Attributes
-
-| Name     | Type    | Default | Description                                  | Reflects |
-| -------- | ------- | ------- | -------------------------------------------- | -------- |
-| vertical | boolean | false   | Draws the divider in a vertical orientation. | ✓        |
-
-## Available Properties
-
-| Name     | Type    | Default | Description                                  | Access |
-| -------- | ------- | ------- | -------------------------------------------- | ------ |
-| vertical | boolean | false   | Draws the divider in a vertical orientation. | public |
-
-## Available Methods
-
-| Name                 | Parameters | Return Type | Description |
-| -------------------- | ---------- | ----------- | ----------- |
-| handleVerticalChange | -          | -           | -           |
-
-## Available CSS Parts
-
-| Name | Description |
-| ---- | ----------- |
-| -    | -           |
-
-## Available Events
-
-| Name | Event Type | Description |
-| ---- | ---------- | ----------- |
-| -    | -          | -           |
-
-## Dependencies
-
-- None
+- **Tag Name:** `syn-divider`
 
 ## Usage Information
 
 - **Status:** stable
 - **Since:** 2.0
+
+## Available Properties
+
+| Property | Attribute  | Reflects | Type      | Default | Description                                  |
+| -------- | ---------- | :------: | --------- | ------- | -------------------------------------------- |
+| vertical | `vertical` |    ✓     | `boolean` | `false` | Draws the divider in a vertical orientation. |

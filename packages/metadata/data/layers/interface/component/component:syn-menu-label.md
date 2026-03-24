@@ -10,32 +10,20 @@ Menu labels are used to describe a group of menu items.
 
 ## Class Information
 
+- **Import Example:** `import SynMenuLabel from '@synergy-design-system/components/components/menu-label/menu-label.js';`
 - **Module Path:** components/menu-label/menu-label.js
-- **Tag Name:** syn-menu-label
+- **Tag Name:** `syn-menu-label`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 2.0
 
 ## Available Slots
 
 | Name      | Description               |
 | --------- | ------------------------- |
 | (default) | The menu label's content. |
-
-## Available Attributes
-
-| Name | Type | Default | Description | Reflects |
-| ---- | ---- | ------- | ----------- | -------- |
-| -    | -    | -       | -           | -        |
-
-## Available Properties
-
-| Name | Type | Default | Description | Access |
-| ---- | ---- | ------- | ----------- | ------ |
-| -    | -    | -       | -           | -      |
-
-## Available Methods
-
-| Name | Parameters | Return Type | Description |
-| ---- | ---------- | ----------- | ----------- |
-| -    | -          | -           | -           |
 
 ## Available CSS Parts
 
@@ -45,17 +33,6 @@ Menu labels are used to describe a group of menu items.
 | divider | The divider that is displayed above the content |
 | label   | The label that is displayed below the divider   |
 
-## Available Events
-
-| Name | Event Type | Description |
-| ---- | ---------- | ----------- |
-| -    | -          | -           |
-
 ## Dependencies
 
-- **syn-divider**
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 2.0
+- `syn-divider`

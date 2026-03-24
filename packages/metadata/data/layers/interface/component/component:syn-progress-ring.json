@@ -1,20 +1,20 @@
 {
   "attributes": [
     {
-      "default": "0",
-      "description": "The current progress as a percentage, 0 to 100.",
-      "fieldName": "value",
-      "name": "value",
-      "reflects": true,
-      "type": "number"
-    },
-    {
       "default": "''",
       "description": "A custom label for assistive devices.",
       "fieldName": "label",
       "name": "label",
       "reflects": false,
       "type": "string"
+    },
+    {
+      "default": "0",
+      "description": "The current progress as a percentage, 0 to 100.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": true,
+      "type": "number"
     }
   ],
   "cssParts": [
@@ -46,17 +46,17 @@
     },
     {
       "access": "public",
-      "default": "0",
-      "description": "The current progress as a percentage, 0 to 100.",
-      "name": "value",
-      "type": "number"
-    },
-    {
-      "access": "public",
       "default": "''",
       "description": "A custom label for assistive devices.",
       "name": "label",
       "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "0",
+      "description": "The current progress as a percentage, 0 to 100.",
+      "name": "value",
+      "type": "number"
     }
   ],
   "since": "2.0",

@@ -10,8 +10,14 @@ Progress rings are used to show the progress of a determinate operation in a cir
 
 ## Class Information
 
+- **Import Example:** `import SynProgressRing from '@synergy-design-system/components/components/progress-ring/progress-ring.js';`
 - **Module Path:** components/progress-ring/progress-ring.js
-- **Tag Name:** syn-progress-ring
+- **Tag Name:** `syn-progress-ring`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 2.0
 
 ## Available Slots
 
@@ -19,27 +25,12 @@ Progress rings are used to show the progress of a determinate operation in a cir
 | --------- | -------------------------------- |
 | (default) | A label to show inside the ring. |
 
-## Available Attributes
-
-| Name  | Type   | Default | Description                                     | Reflects |
-| ----- | ------ | ------- | ----------------------------------------------- | -------- |
-| value | number | 0       | The current progress as a percentage, 0 to 100. | ✓        |
-| label | string | ''      | A custom label for assistive devices.           | -        |
-
 ## Available Properties
 
-| Name            | Type             | Default | Description                                     | Access |
-| --------------- | ---------------- | ------- | ----------------------------------------------- | ------ |
-| indicator       | SVGCircleElement | -       | -                                               | public |
-| indicatorOffset | string           | -       | -                                               | public |
-| value           | number           | 0       | The current progress as a percentage, 0 to 100. | public |
-| label           | string           | ''      | A custom label for assistive devices.           | public |
-
-## Available Methods
-
-| Name | Parameters | Return Type | Description |
-| ---- | ---------- | ----------- | ----------- |
-| -    | -          | -           | -           |
+| Property | Attribute | Reflects | Type     | Default | Description                                     |
+| -------- | --------- | :------: | -------- | ------- | ----------------------------------------------- |
+| label    | `label`   |    -     | `string` | `''`    | A custom label for assistive devices.           |
+| value    | `value`   |    ✓     | `number` | `0`     | The current progress as a percentage, 0 to 100. |
 
 ## Available CSS Parts
 
@@ -47,18 +38,3 @@ Progress rings are used to show the progress of a determinate operation in a cir
 | ----- | ----------------------------- |
 | base  | The component's base wrapper. |
 | label | The progress ring label.      |
-
-## Available Events
-
-| Name | Event Type | Description |
-| ---- | ---------- | ----------- |
-| -    | -          | -           |
-
-## Dependencies
-
-- None
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 2.0

@@ -1,26 +1,12 @@
 {
   "attributes": [
     {
-      "description": "The navigation item's href target.\nIf provided, the navigation item will use an anchor tag otherwise it will use a button tag.\n\nIf the 'children' slot is provided, the navigation item will ignore the 'href' and use\naccordion behavior.",
-      "fieldName": "href",
-      "name": "href",
+      "default": "false",
+      "description": "Appends a chevron to the right side of a navigation item.\nOnly used if `horizontal` is false.",
+      "fieldName": "chevron",
+      "name": "chevron",
       "reflects": true,
-      "type": "string"
-    },
-    {
-      "description": "Tells the browser where to open the link. Only used when `href` is present.",
-      "fieldName": "target",
-      "name": "target",
-      "reflects": false,
-      "type": "'_blank' | '_parent' | '_self' | '_top'"
-    },
-    {
-      "default": "'noreferrer noopener'",
-      "description": "When using `href`, this attribute will map to the underlying link's `rel` attribute.\nUnlike regular links, the default is `noreferrer noopener` to prevent security exploits.\n\nHowever, if you're using `target` to point to a specific tab/window,\nthis will prevent that from working correctly.\n\nYou can remove or change the default value by setting the attribute\nto an empty string or a value of your choice, respectively.",
-      "fieldName": "rel",
-      "name": "rel",
-      "reflects": false,
-      "type": "string"
+      "type": "boolean"
     },
     {
       "default": "false",
@@ -40,6 +26,14 @@
     },
     {
       "default": "false",
+      "description": "Toggle to true to show a divider above the element.\nOnly available when horizontal is false.",
+      "fieldName": "divider",
+      "name": "divider",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
       "description": "The navigation item's orientation.",
       "fieldName": "horizontal",
       "name": "horizontal",
@@ -47,12 +41,11 @@
       "type": "boolean"
     },
     {
-      "default": "false",
-      "description": "Appends a chevron to the right side of a navigation item.\nOnly used if `horizontal` is false.",
-      "fieldName": "chevron",
-      "name": "chevron",
+      "description": "The navigation item's href target.\nIf provided, the navigation item will use an anchor tag otherwise it will use a button tag.\n\nIf the 'children' slot is provided, the navigation item will ignore the 'href' and use\naccordion behavior.",
+      "fieldName": "href",
+      "name": "href",
       "reflects": true,
-      "type": "boolean"
+      "type": "string"
     },
     {
       "default": "false",
@@ -63,12 +56,19 @@
       "type": "boolean"
     },
     {
-      "default": "false",
-      "description": "Toggle to true to show a divider above the element.\nOnly available when horizontal is false.",
-      "fieldName": "divider",
-      "name": "divider",
-      "reflects": true,
-      "type": "boolean"
+      "default": "'noreferrer noopener'",
+      "description": "When using `href`, this attribute will map to the underlying link's `rel` attribute.\nUnlike regular links, the default is `noreferrer noopener` to prevent security exploits.\n\nHowever, if you're using `target` to point to a specific tab/window,\nthis will prevent that from working correctly.\n\nYou can remove or change the default value by setting the attribute\nto an empty string or a value of your choice, respectively.",
+      "fieldName": "rel",
+      "name": "rel",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "description": "Tells the browser where to open the link. Only used when `href` is present.",
+      "fieldName": "target",
+      "name": "target",
+      "reflects": false,
+      "type": "'_blank' | '_parent' | '_self' | '_top'"
     }
   ],
   "cssParts": [
@@ -77,24 +77,24 @@
       "name": "base"
     },
     {
-      "description": "The wrapper that holds the children",
-      "name": "children"
+      "description": "The container that wraps the chevron.",
+      "name": "chevron"
     },
     {
-      "description": "The component's content wrapper.",
-      "name": "content-wrapper"
+      "description": "The wrapper that holds the children",
+      "name": "children"
     },
     {
       "description": "The component's content excluding children.",
       "name": "content"
     },
     {
-      "description": "The indicator used when current is set to true",
-      "name": "current-indicator"
+      "description": "The component's content wrapper.",
+      "name": "content-wrapper"
     },
     {
-      "description": "The container that wraps the chevron.",
-      "name": "chevron"
+      "description": "The indicator used when current is set to true",
+      "name": "current-indicator"
     },
     {
       "description": "The details element rendered when there are children available",
@@ -120,16 +120,6 @@
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-nav-item--docs",
   "events": [
     {
-      "description": "Emitted when the navigation item: - has children, - and is clicked while HTML details are hidden.",
-      "name": "syn-show",
-      "type": "SynShowEvent"
-    },
-    {
-      "description": "Emitted when the navigation item: - has children, - and is clicked while HTML details are shown.",
-      "name": "syn-hide",
-      "type": "SynHideEvent"
-    },
-    {
       "description": "Emitted when the button loses focus.",
       "name": "syn-blur",
       "type": "SynBlurEvent"
@@ -138,14 +128,19 @@
       "description": "Emitted when the button gains focus.",
       "name": "syn-focus",
       "type": "SynFocusEvent"
+    },
+    {
+      "description": "Emitted when the navigation item: - has children, - and is clicked while HTML details are shown.",
+      "name": "syn-hide",
+      "type": "SynHideEvent"
+    },
+    {
+      "description": "Emitted when the navigation item: - has children, - and is clicked while HTML details are hidden.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
     }
   ],
   "methods": [
-    {
-      "description": "",
-      "name": "handleHorizontalChange",
-      "parameters": []
-    },
     {
       "description": "Removes focus from the button.",
       "name": "blur",
@@ -165,9 +160,21 @@
           "type": "FocusOptions"
         }
       ]
+    },
+    {
+      "description": "",
+      "name": "handleHorizontalChange",
+      "parameters": []
     }
   ],
   "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Appends a chevron to the right side of a navigation item.\nOnly used if `horizontal` is false.",
+      "name": "chevron",
+      "type": "boolean"
+    },
     {
       "access": "public",
       "description": "Reference to the children slot",
@@ -179,25 +186,6 @@
       "description": "Reference to the outermost button",
       "name": "control",
       "type": "HTMLButtonElement | HTMLLinkElement | HTMLElement"
-    },
-    {
-      "access": "public",
-      "description": "The navigation item's href target.\nIf provided, the navigation item will use an anchor tag otherwise it will use a button tag.\n\nIf the 'children' slot is provided, the navigation item will ignore the 'href' and use\naccordion behavior.",
-      "name": "href",
-      "type": "string"
-    },
-    {
-      "access": "public",
-      "description": "Tells the browser where to open the link. Only used when `href` is present.",
-      "name": "target",
-      "type": "'_blank' | '_parent' | '_self' | '_top'"
-    },
-    {
-      "access": "public",
-      "default": "'noreferrer noopener'",
-      "description": "When using `href`, this attribute will map to the underlying link's `rel` attribute.\nUnlike regular links, the default is `noreferrer noopener` to prevent security exploits.\n\nHowever, if you're using `target` to point to a specific tab/window,\nthis will prevent that from working correctly.\n\nYou can remove or change the default value by setting the attribute\nto an empty string or a value of your choice, respectively.",
-      "name": "rel",
-      "type": "string"
     },
     {
       "access": "public",
@@ -216,16 +204,22 @@
     {
       "access": "public",
       "default": "false",
+      "description": "Toggle to true to show a divider above the element.\nOnly available when horizontal is false.",
+      "name": "divider",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
       "description": "The navigation item's orientation.",
       "name": "horizontal",
       "type": "boolean"
     },
     {
       "access": "public",
-      "default": "false",
-      "description": "Appends a chevron to the right side of a navigation item.\nOnly used if `horizontal` is false.",
-      "name": "chevron",
-      "type": "boolean"
+      "description": "The navigation item's href target.\nIf provided, the navigation item will use an anchor tag otherwise it will use a button tag.\n\nIf the 'children' slot is provided, the navigation item will ignore the 'href' and use\naccordion behavior.",
+      "name": "href",
+      "type": "string"
     },
     {
       "access": "public",
@@ -236,10 +230,16 @@
     },
     {
       "access": "public",
-      "default": "false",
-      "description": "Toggle to true to show a divider above the element.\nOnly available when horizontal is false.",
-      "name": "divider",
-      "type": "boolean"
+      "default": "'noreferrer noopener'",
+      "description": "When using `href`, this attribute will map to the underlying link's `rel` attribute.\nUnlike regular links, the default is `noreferrer noopener` to prevent security exploits.\n\nHowever, if you're using `target` to point to a specific tab/window,\nthis will prevent that from working correctly.\n\nYou can remove or change the default value by setting the attribute\nto an empty string or a value of your choice, respectively.",
+      "name": "rel",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "Tells the browser where to open the link. Only used when `href` is present.",
+      "name": "target",
+      "type": "'_blank' | '_parent' | '_self' | '_top'"
     }
   ],
   "since": "1.14.0",

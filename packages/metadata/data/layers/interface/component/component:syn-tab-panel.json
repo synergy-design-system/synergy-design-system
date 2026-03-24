@@ -1,20 +1,20 @@
 {
   "attributes": [
     {
-      "default": "''",
-      "description": "The tab panel's name.",
-      "fieldName": "name",
-      "name": "name",
-      "reflects": true,
-      "type": "string"
-    },
-    {
       "default": "false",
       "description": "When true, the tab panel will be shown.",
       "fieldName": "active",
       "name": "active",
       "reflects": true,
       "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The tab panel's name.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": true,
+      "type": "string"
     }
   ],
   "cssParts": [
@@ -36,17 +36,17 @@
   "properties": [
     {
       "access": "public",
-      "default": "''",
-      "description": "The tab panel's name.",
-      "name": "name",
-      "type": "string"
-    },
-    {
-      "access": "public",
       "default": "false",
       "description": "When true, the tab panel will be shown.",
       "name": "active",
       "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The tab panel's name.",
+      "name": "name",
+      "type": "string"
     }
   ],
   "since": "2.0",

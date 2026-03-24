@@ -53,12 +53,6 @@
   "properties": [
     {
       "access": "public",
-      "description": "",
-      "name": "tagsInDefaultSlot",
-      "type": "SynTag[]"
-    },
-    {
-      "access": "public",
       "default": "''",
       "description": "The tag group's label. If you need to display HTML, use the `label` slot instead.",
       "name": "label",
@@ -77,6 +71,12 @@
       "description": "The size that should be applied to all slotted `<syn-tag>` elements",
       "name": "size",
       "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "tagsInDefaultSlot",
+      "type": "SynTag[]"
     }
   ],
   "since": "unknown",

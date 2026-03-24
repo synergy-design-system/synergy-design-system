@@ -10,8 +10,14 @@ Menu items provide options for the user to pick from in a menu.
 
 ## Class Information
 
+- **Import Example:** `import SynMenuItem from '@synergy-design-system/components/components/menu-item/menu-item.js';`
 - **Module Path:** components/menu-item/menu-item.js
-- **Tag Name:** syn-menu-item
+- **Tag Name:** `syn-menu-item`
+
+## Usage Information
+
+- **Status:** stable
+- **Since:** 2.0
 
 ## Available Slots
 
@@ -22,37 +28,21 @@ Menu items provide options for the user to pick from in a menu.
 | suffix    | Used to append an icon or similar element to the menu item.  |
 | submenu   | Used to denote a nested menu.                                |
 
-## Available Attributes
-
-| Name     | Type                   | Default  | Description                                                                                               | Reflects |
-| -------- | ---------------------- | -------- | --------------------------------------------------------------------------------------------------------- | -------- |
-| type     | 'normal' \| 'checkbox' | 'normal' | The type of menu item to render. To use `checked`, this value must be set to `checkbox`.                  | -        |
-| checked  | boolean                | false    | Draws the item in a checked state.                                                                        | ✓        |
-| value    | string                 | ''       | A unique value to store in the menu item. This can be used as a way to identify menu items when selected. | -        |
-| loading  | boolean                | false    | Draws the menu item in a loading state.                                                                   | ✓        |
-| disabled | boolean                | false    | Draws the menu item in a disabled state, preventing selection.                                            | ✓        |
-
 ## Available Properties
 
-| Name        | Type                   | Default  | Description                                                                                               | Access |
-| ----------- | ---------------------- | -------- | --------------------------------------------------------------------------------------------------------- | ------ |
-| defaultSlot | HTMLSlotElement        | -        | -                                                                                                         | public |
-| menuItem    | HTMLElement            | -        | -                                                                                                         | public |
-| type        | 'normal' \| 'checkbox' | 'normal' | The type of menu item to render. To use `checked`, this value must be set to `checkbox`.                  | public |
-| checked     | boolean                | false    | Draws the item in a checked state.                                                                        | public |
-| value       | string                 | ''       | A unique value to store in the menu item. This can be used as a way to identify menu items when selected. | public |
-| loading     | boolean                | false    | Draws the menu item in a loading state.                                                                   | public |
-| disabled    | boolean                | false    | Draws the menu item in a disabled state, preventing selection.                                            | public |
+| Property | Attribute  | Reflects | Type                     | Default    | Description                                                                                               |
+| -------- | ---------- | :------: | ------------------------ | ---------- | --------------------------------------------------------------------------------------------------------- |
+| checked  | `checked`  |    ✓     | `boolean`                | `false`    | Draws the item in a checked state.                                                                        |
+| disabled | `disabled` |    ✓     | `boolean`                | `false`    | Draws the menu item in a disabled state, preventing selection.                                            |
+| loading  | `loading`  |    ✓     | `boolean`                | `false`    | Draws the menu item in a loading state.                                                                   |
+| type     | `type`     |    -     | `'normal' \| 'checkbox'` | `'normal'` | The type of menu item to render. To use `checked`, this value must be set to `checkbox`.                  |
+| value    | `value`    |    -     | `string`                 | `''`       | A unique value to store in the menu item. This can be used as a way to identify menu items when selected. |
 
 ## Available Methods
 
-| Name                 | Parameters | Return Type | Description                                                                 |
-| -------------------- | ---------- | ----------- | --------------------------------------------------------------------------- |
-| handleCheckedChange  | -          | -           | -                                                                           |
-| handleDisabledChange | -          | -           | -                                                                           |
-| handleTypeChange     | -          | -           | -                                                                           |
-| getTextLabel         | -          | -           | Returns a text label based on the contents of the menu item's default slot. |
-| isSubmenu            | -          | -           | -                                                                           |
+| Name             | Parameters | Return Type | Description                                                                 |
+| ---------------- | ---------- | ----------- | --------------------------------------------------------------------------- |
+| `getTextLabel()` | -          | -           | Returns a text label based on the contents of the menu item's default slot. |
 
 ## Available CSS Parts
 
@@ -60,26 +50,15 @@ Menu items provide options for the user to pick from in a menu.
 | --------------- | -------------------------------------------------------------------------------------- |
 | base            | The component's base wrapper.                                                          |
 | checked-icon    | The checked icon, which is only visible when the menu item is checked.                 |
-| prefix          | The prefix container.                                                                  |
 | label           | The menu item label.                                                                   |
-| suffix          | The suffix container.                                                                  |
+| prefix          | The prefix container.                                                                  |
 | spinner         | The spinner that shows when the menu item is in the loading state.                     |
 | spinner\_\_base | The spinner's base part.                                                               |
 | submenu-icon    | The submenu icon, visible only when the menu item has a submenu (not yet implemented). |
-
-## Available Events
-
-| Name | Event Type | Description |
-| ---- | ---------- | ----------- |
-| -    | -          | -           |
+| suffix          | The suffix container.                                                                  |
 
 ## Dependencies
 
-- **syn-icon**
-- **syn-popup**
-- **syn-spinner**
-
-## Usage Information
-
-- **Status:** stable
-- **Since:** 2.0
+- `syn-icon`
+- `syn-popup`
+- `syn-spinner`

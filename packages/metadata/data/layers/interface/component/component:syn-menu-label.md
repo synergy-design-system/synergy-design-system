@@ -15,41 +15,41 @@ Menu labels are used to describe a group of menu items.
 
 ## Available Slots
 
-| Name | Description |
-|------|-------------|
+| Name      | Description               |
+| --------- | ------------------------- |
 | (default) | The menu label's content. |
 
 ## Available Attributes
 
 | Name | Type | Default | Description | Reflects |
-|------|------|---------|-------------|----------|
-| - | - | - | - | - |
+| ---- | ---- | ------- | ----------- | -------- |
+| -    | -    | -       | -           | -        |
 
 ## Available Properties
 
 | Name | Type | Default | Description | Access |
-|------|------|---------|-------------|--------|
-| - | - | - | - | - |
+| ---- | ---- | ------- | ----------- | ------ |
+| -    | -    | -       | -           | -      |
 
 ## Available Methods
 
 | Name | Parameters | Return Type | Description |
-|------|------------|-------------|-------------|
-| - | - | - | - |
+| ---- | ---------- | ----------- | ----------- |
+| -    | -          | -           | -           |
 
 ## Available CSS Parts
 
-| Name | Description |
-|------|-------------|
-| base | The component's base wrapper. |
+| Name    | Description                                     |
+| ------- | ----------------------------------------------- |
+| base    | The component's base wrapper.                   |
 | divider | The divider that is displayed above the content |
-| label | The label that is displayed below the divider |
+| label   | The label that is displayed below the divider   |
 
 ## Available Events
 
 | Name | Event Type | Description |
-|------|------------|-------------|
-| - | - | - |
+| ---- | ---------- | ----------- |
+| -    | -          | -           |
 
 ## Dependencies
 

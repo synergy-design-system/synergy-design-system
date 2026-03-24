@@ -15,39 +15,39 @@ Menus provide a list of options for the user to choose from.
 
 ## Available Slots
 
-| Name | Description |
-|------|-------------|
+| Name      | Description                                                          |
+| --------- | -------------------------------------------------------------------- |
 | (default) | The menu's content, including menu items, menu labels, and dividers. |
 
 ## Available Attributes
 
 | Name | Type | Default | Description | Reflects |
-|------|------|---------|-------------|----------|
-| - | - | - | - | - |
+| ---- | ---- | ------- | ----------- | -------- |
+| -    | -    | -       | -           | -        |
 
 ## Available Properties
 
-| Name | Type | Default | Description | Access |
-|------|------|---------|-------------|--------|
-| defaultSlot | HTMLSlotElement | - | - | public |
-| hasMenuItemsWithCheckmarks | boolean | false | - | public |
+| Name                       | Type            | Default | Description | Access |
+| -------------------------- | --------------- | ------- | ----------- | ------ |
+| defaultSlot                | HTMLSlotElement | -       | -           | public |
+| hasMenuItemsWithCheckmarks | boolean         | false   | -           | public |
 
 ## Available Methods
 
 | Name | Parameters | Return Type | Description |
-|------|------------|-------------|-------------|
-| - | - | - | - |
+| ---- | ---------- | ----------- | ----------- |
+| -    | -          | -           | -           |
 
 ## Available CSS Parts
 
 | Name | Description |
-|------|-------------|
-| - | - |
+| ---- | ----------- |
+| -    | -           |
 
 ## Available Events
 
-| Name | Event Type | Description |
-|------|------------|-------------|
+| Name       | Event Type     | Description                           |
+| ---------- | -------------- | ------------------------------------- |
 | syn-select | SynSelectEvent | Emitted when a menu item is selected. |
 
 ## Dependencies

@@ -15,44 +15,44 @@ Progress rings are used to show the progress of a determinate operation in a cir
 
 ## Available Slots
 
-| Name | Description |
-|------|-------------|
+| Name      | Description                      |
+| --------- | -------------------------------- |
 | (default) | A label to show inside the ring. |
 
 ## Available Attributes
 
-| Name | Type | Default | Description | Reflects |
-|------|------|---------|-------------|----------|
-| value | number | 0 | The current progress as a percentage, 0 to 100. | ✓ |
-| label | string | '' | A custom label for assistive devices. | - |
+| Name  | Type   | Default | Description                                     | Reflects |
+| ----- | ------ | ------- | ----------------------------------------------- | -------- |
+| value | number | 0       | The current progress as a percentage, 0 to 100. | ✓        |
+| label | string | ''      | A custom label for assistive devices.           | -        |
 
 ## Available Properties
 
-| Name | Type | Default | Description | Access |
-|------|------|---------|-------------|--------|
-| indicator | SVGCircleElement | - | - | public |
-| indicatorOffset | string | - | - | public |
-| value | number | 0 | The current progress as a percentage, 0 to 100. | public |
-| label | string | '' | A custom label for assistive devices. | public |
+| Name            | Type             | Default | Description                                     | Access |
+| --------------- | ---------------- | ------- | ----------------------------------------------- | ------ |
+| indicator       | SVGCircleElement | -       | -                                               | public |
+| indicatorOffset | string           | -       | -                                               | public |
+| value           | number           | 0       | The current progress as a percentage, 0 to 100. | public |
+| label           | string           | ''      | A custom label for assistive devices.           | public |
 
 ## Available Methods
 
 | Name | Parameters | Return Type | Description |
-|------|------------|-------------|-------------|
-| - | - | - | - |
+| ---- | ---------- | ----------- | ----------- |
+| -    | -          | -           | -           |
 
 ## Available CSS Parts
 
-| Name | Description |
-|------|-------------|
-| base | The component's base wrapper. |
-| label | The progress ring label. |
+| Name  | Description                   |
+| ----- | ----------------------------- |
+| base  | The component's base wrapper. |
+| label | The progress ring label.      |
 
 ## Available Events
 
 | Name | Event Type | Description |
-|------|------------|-------------|
-| - | - | - |
+| ---- | ---------- | ----------- |
+| -    | -          | -           |
 
 ## Dependencies
 

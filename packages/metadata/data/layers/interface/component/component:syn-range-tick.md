@@ -15,41 +15,41 @@ Ticks visually improve positioning on range sliders.
 
 ## Available Slots
 
-| Name | Description |
-|------|-------------|
+| Name      | Description      |
+| --------- | ---------------- |
 | (default) | The tick's label |
 
 ## Available Attributes
 
-| Name | Type | Default | Description | Reflects |
-|------|------|---------|-------------|----------|
-| subdivision | boolean | false | Whether the tick should be shown as a subdivision. | ✓ |
+| Name        | Type    | Default | Description                                        | Reflects |
+| ----------- | ------- | ------- | -------------------------------------------------- | -------- |
+| subdivision | boolean | false   | Whether the tick should be shown as a subdivision. | ✓        |
 
 ## Available Properties
 
-| Name | Type | Default | Description | Access |
-|------|------|---------|-------------|--------|
-| subdivision | boolean | false | Whether the tick should be shown as a subdivision. | public |
+| Name        | Type    | Default | Description                                        | Access |
+| ----------- | ------- | ------- | -------------------------------------------------- | ------ |
+| subdivision | boolean | false   | Whether the tick should be shown as a subdivision. | public |
 
 ## Available Methods
 
 | Name | Parameters | Return Type | Description |
-|------|------------|-------------|-------------|
-| - | - | - | - |
+| ---- | ---------- | ----------- | ----------- |
+| -    | -          | -           | -           |
 
 ## Available CSS Parts
 
-| Name | Description |
-|------|-------------|
-| base | The component's base wrapper. |
-| label | The component's label. |
-| line | The component's tick line. |
+| Name  | Description                   |
+| ----- | ----------------------------- |
+| base  | The component's base wrapper. |
+| label | The component's label.        |
+| line  | The component's tick line.    |
 
 ## Available Events
 
 | Name | Event Type | Description |
-|------|------------|-------------|
-| - | - | - |
+| ---- | ---------- | ----------- |
+| -    | -          | -           |
 
 ## Dependencies
 

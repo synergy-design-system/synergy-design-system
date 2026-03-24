@@ -15,42 +15,42 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
 
 ## Available Slots
 
-| Name | Description |
-|------|-------------|
-| (default) | One or more breadcrumb items to display. |
+| Name      | Description                                                                  |
+| --------- | ---------------------------------------------------------------------------- |
+| (default) | One or more breadcrumb items to display.                                     |
 | separator | The separator to use between breadcrumb items. Works best with `<syn-icon>`. |
 
 ## Available Attributes
 
-| Name | Type | Default | Description | Reflects |
-|------|------|---------|-------------|----------|
-| label | string | '' | The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by screen readers and other assistive devices to provide more context for users. | - |
+| Name  | Type   | Default | Description                                                                                                                                                                                  | Reflects |
+| ----- | ------ | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| label | string | ''      | The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by screen readers and other assistive devices to provide more context for users. | -        |
 
 ## Available Properties
 
-| Name | Type | Default | Description | Access |
-|------|------|---------|-------------|--------|
-| defaultSlot | HTMLSlotElement | - | - | public |
-| separatorSlot | HTMLSlotElement | - | - | public |
-| label | string | '' | The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by screen readers and other assistive devices to provide more context for users. | public |
+| Name          | Type            | Default | Description                                                                                                                                                                                  | Access |
+| ------------- | --------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| defaultSlot   | HTMLSlotElement | -       | -                                                                                                                                                                                            | public |
+| separatorSlot | HTMLSlotElement | -       | -                                                                                                                                                                                            | public |
+| label         | string          | ''      | The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by screen readers and other assistive devices to provide more context for users. | public |
 
 ## Available Methods
 
 | Name | Parameters | Return Type | Description |
-|------|------------|-------------|-------------|
-| - | - | - | - |
+| ---- | ---------- | ----------- | ----------- |
+| -    | -          | -           | -           |
 
 ## Available CSS Parts
 
-| Name | Description |
-|------|-------------|
+| Name | Description                   |
+| ---- | ----------------------------- |
 | base | The component's base wrapper. |
 
 ## Available Events
 
 | Name | Event Type | Description |
-|------|------------|-------------|
-| - | - | - |
+| ---- | ---------- | ----------- |
+| -    | -          | -           |
 
 ## Dependencies
 

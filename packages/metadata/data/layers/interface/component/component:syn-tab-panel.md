@@ -15,41 +15,41 @@ Tab panels are used inside [tab groups](/components/tab-group) to display tabbed
 
 ## Available Slots
 
-| Name | Description |
-|------|-------------|
+| Name      | Description              |
+| --------- | ------------------------ |
 | (default) | The tab panel's content. |
 
 ## Available Attributes
 
-| Name | Type | Default | Description | Reflects |
-|------|------|---------|-------------|----------|
-| name | string | '' | The tab panel's name. | ✓ |
-| active | boolean | false | When true, the tab panel will be shown. | ✓ |
+| Name   | Type    | Default | Description                             | Reflects |
+| ------ | ------- | ------- | --------------------------------------- | -------- |
+| name   | string  | ''      | The tab panel's name.                   | ✓        |
+| active | boolean | false   | When true, the tab panel will be shown. | ✓        |
 
 ## Available Properties
 
-| Name | Type | Default | Description | Access |
-|------|------|---------|-------------|--------|
-| name | string | '' | The tab panel's name. | public |
-| active | boolean | false | When true, the tab panel will be shown. | public |
+| Name   | Type    | Default | Description                             | Access |
+| ------ | ------- | ------- | --------------------------------------- | ------ |
+| name   | string  | ''      | The tab panel's name.                   | public |
+| active | boolean | false   | When true, the tab panel will be shown. | public |
 
 ## Available Methods
 
-| Name | Parameters | Return Type | Description |
-|------|------------|-------------|-------------|
-| handleActiveChange | - | - | - |
+| Name               | Parameters | Return Type | Description |
+| ------------------ | ---------- | ----------- | ----------- |
+| handleActiveChange | -          | -           | -           |
 
 ## Available CSS Parts
 
-| Name | Description |
-|------|-------------|
+| Name | Description                   |
+| ---- | ----------------------------- |
 | base | The component's base wrapper. |
 
 ## Available Events
 
 | Name | Event Type | Description |
-|------|------------|-------------|
-| - | - | - |
+| ---- | ---------- | ----------- |
+| -    | -          | -           |
 
 ## Dependencies
 

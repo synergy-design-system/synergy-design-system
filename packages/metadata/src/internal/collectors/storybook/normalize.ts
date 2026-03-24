@@ -1,5 +1,5 @@
-import prettier from 'prettier';
 import { type NormalizeError, createNormalizeError } from '../../core/errors.js';
+import { formatGeneratedMarkdown } from '../../core/markdown.js';
 import { type Result, err, ok } from '../../core/result.js';
 import { scrapingConfigByKind } from './source/configs.js';
 import { type StorybookCollectedDocument, type StorybookExampleArtifact } from './types.js';
@@ -9,9 +9,8 @@ export async function normalize(
 ): Promise<Result<StorybookExampleArtifact[], NormalizeError>> {
   try {
     const artifacts = await Promise.all(documents.map(async (document) => {
-      const content = await prettier.format(
+      const content = await formatGeneratedMarkdown(
         scrapingConfigByKind[document.kind].formatContent(document.item, document.stories),
-        { parser: 'markdown' },
       );
 
       if (content.trim().length === 0) {

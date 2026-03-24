@@ -14,6 +14,7 @@ import { type WriteError } from '../core/errors.js';
 import { type CoreEntity } from '../schemas/index.js';
 import { type LayerRef } from '../schemas/layer-ref.js';
 import { type EnrichedOverride, getOverride } from '../../config/index.js';
+import { formatGeneratedMarkdown } from '../core/markdown.js';
 import { ensureDir, writeJsonAtomic } from './fs-utils.js';
 
 export interface EntityLayers {
@@ -457,11 +458,14 @@ export async function writeLayerAssets(
 
         // Get enriched override if config is available
         const enrichedOverride = ctx.config ? (getOverride(ctx.config, entity.id, true) ?? undefined) : undefined;
+        const interfaceMarkdown = await formatGeneratedMarkdown(
+          renderInterfaceMarkdown(interfaceSnapshot, enrichedOverride),
+        );
 
         await writeJsonAtomic(interfacePath, interfaceSnapshot);
         await writeFile(
           interfaceMarkdownPath,
-          renderInterfaceMarkdown(interfaceSnapshot, enrichedOverride),
+          interfaceMarkdown,
           'utf8',
         );
         interfaceLayerRefs.push({

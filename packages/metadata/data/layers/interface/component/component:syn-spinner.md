@@ -16,38 +16,38 @@ Spinners are used to show the progress of an indeterminate operation.
 ## Available Slots
 
 | Name | Description |
-|------|-------------|
-| - | - |
+| ---- | ----------- |
+| -    | -           |
 
 ## Available Attributes
 
 | Name | Type | Default | Description | Reflects |
-|------|------|---------|-------------|----------|
-| - | - | - | - | - |
+| ---- | ---- | ------- | ----------- | -------- |
+| -    | -    | -       | -           | -        |
 
 ## Available Properties
 
 | Name | Type | Default | Description | Access |
-|------|------|---------|-------------|--------|
-| - | - | - | - | - |
+| ---- | ---- | ------- | ----------- | ------ |
+| -    | -    | -       | -           | -      |
 
 ## Available Methods
 
 | Name | Parameters | Return Type | Description |
-|------|------------|-------------|-------------|
-| - | - | - | - |
+| ---- | ---------- | ----------- | ----------- |
+| -    | -          | -           | -           |
 
 ## Available CSS Parts
 
-| Name | Description |
-|------|-------------|
+| Name | Description                   |
+| ---- | ----------------------------- |
 | base | The component's base wrapper. |
 
 ## Available Events
 
 | Name | Event Type | Description |
-|------|------------|-------------|
-| - | - | - |
+| ---- | ---------- | ----------- |
+| -    | -          | -           |
 
 ## Dependencies
 

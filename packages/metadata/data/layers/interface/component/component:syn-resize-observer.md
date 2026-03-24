@@ -15,38 +15,38 @@ The Resize Observer component offers a thin, declarative interface to the [`Resi
 
 ## Available Slots
 
-| Name | Description |
-|------|-------------|
+| Name      | Description                                 |
+| --------- | ------------------------------------------- |
 | (default) | One or more elements to watch for resizing. |
 
 ## Available Attributes
 
-| Name | Type | Default | Description | Reflects |
-|------|------|---------|-------------|----------|
-| disabled | boolean | false | Disables the observer. | ✓ |
+| Name     | Type    | Default | Description            | Reflects |
+| -------- | ------- | ------- | ---------------------- | -------- |
+| disabled | boolean | false   | Disables the observer. | ✓        |
 
 ## Available Properties
 
-| Name | Type | Default | Description | Access |
-|------|------|---------|-------------|--------|
-| disabled | boolean | false | Disables the observer. | public |
+| Name     | Type    | Default | Description            | Access |
+| -------- | ------- | ------- | ---------------------- | ------ |
+| disabled | boolean | false   | Disables the observer. | public |
 
 ## Available Methods
 
-| Name | Parameters | Return Type | Description |
-|------|------------|-------------|-------------|
-| handleDisabledChange | - | - | - |
+| Name                 | Parameters | Return Type | Description |
+| -------------------- | ---------- | ----------- | ----------- |
+| handleDisabledChange | -          | -           | -           |
 
 ## Available CSS Parts
 
 | Name | Description |
-|------|-------------|
-| - | - |
+| ---- | ----------- |
+| -    | -           |
 
 ## Available Events
 
-| Name | Event Type | Description |
-|------|------------|-------------|
+| Name       | Event Type     | Description                          |
+| ---------- | -------------- | ------------------------------------ |
 | syn-resize | SynResizeEvent | Emitted when the element is resized. |
 
 ## Dependencies

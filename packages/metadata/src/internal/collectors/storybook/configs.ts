@@ -1,10 +1,18 @@
+import { dirname, join, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import storybookOutput from '@synergy-design-system/docs/dist/index.json' with { type: 'json' };
 import { ScrapingConfig } from './types.js';
-import {
-  staticComponentPath,
-  staticStylesPath,
-  templatesPath,
-} from '../config.js';
+
+// Resolve output base from compiled location: dist/internal/collectors/storybook/ → 4 up → package root
+const filename = fileURLToPath(import.meta.url);
+const currentDir = dirname(filename);
+const packageRoot = resolve(currentDir, '../../../..');
+const outputDir = process.env.SYNERGY_METADATA_OUTPUT_DIR?.trim() || 'data';
+const examplesBase = resolve(packageRoot, outputDir, 'layers/examples');
+
+const staticComponentPath = join(examplesBase, 'component');
+const staticStylesPath = join(examplesBase, 'styles');
+const templatesPath = join(examplesBase, 'templates');
 
 /**
  * Get stories from Storybook output based on a prefix.

@@ -975,12 +975,18 @@ importers:
         specifier: ^4.0.0
         version: 4.3.6
     devDependencies:
+      '@synergy-design-system/docs':
+        specifier: workspace:*
+        version: link:../docs
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../_private/eslint-config-syn
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0
+      '@types/serve-handler':
+        specifier: ^6.1.4
+        version: 6.1.4
       chai:
         specifier: ^5.2.0
         version: 5.3.3
@@ -996,9 +1002,18 @@ importers:
       mocha:
         specifier: ^11.1.0
         version: 11.7.5
+      playwright:
+        specifier: ^1.58.2
+        version: 1.58.2
+      prettier:
+        specifier: ^3.8.1
+        version: 3.8.1
       rimraf:
         specifier: ^6.1.3
         version: 6.1.3
+      serve-handler:
+        specifier: ^6.1.7
+        version: 6.1.7
       typescript:
         specifier: ^5.9.3
         version: 5.9.3

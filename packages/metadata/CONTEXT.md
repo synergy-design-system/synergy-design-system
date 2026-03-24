@@ -44,6 +44,19 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Public package root (`src/index.ts`) re-exports only the supported runtime query API.
 - Internal repo tooling has a dedicated unstable barrel at `src/internal/index.ts` which is not published.
 
+## Storybook Scraper Migration Plan (agreed direction)
+- Goal: move the existing MCP Storybook scraper package into metadata first with behavior parity, then refactor.
+- Target location in metadata: `src/internal/collectors/storybook/` for moved modules (`build-docs.ts`, `configs.ts`, `docs-scraper.ts`, `scraper.ts`, `storybook-manager.ts`, `types.ts`, `index.ts`) adapted to metadata conventions.
+- Dependency adds in `packages/metadata/package.json` (initial move): `playwright`, `prettier`, `@synergy-design-system/docs` (matching MCP behavior baseline).
+- Output architecture decision: output location is configured at config/CLI + writer boundary (default under `data/layers/examples/component/`), not by enrichers.
+- Clean separation: collectors/scrapers gather examples data; writers decide filesystem paths; enrichers only enrich metadata and should not own output path routing.
+- Config approach: keep `SYNERGY_METADATA_OUTPUT_DIR` as root and add an optional examples-layer subpath config (env or config file) with sensible default.
+- Scope for first migration: preserve current behavior and content shape; postpone optimization/refactor until parity is validated.
+- Out of scope for this first move: changing story extraction semantics, changing formatting policy, or redesigning example schema.
+- **Build separation (critical):** The Storybook scraper MUST NOT run as part of the default `build` or `build:data` script — it is too costly (requires Playwright + Storybook serve). It must be gated behind a separate script, e.g. `build:all` (matching MCP convention), which runs `build` first and then the Storybook scrape + examples layer generation as a second step.
+- **Validation enforcement:** The reason for the separate script is that CI validates a git diff after a pipeline run. This ensures developers have run the full pipeline (including examples generation) on their branch before merging. A stale or missing `data/layers/examples/` diff is a merge blocker.
+- Regular `pnpm build` and `pnpm test` must complete without any Storybook dependency (docs build, Playwright, serve-handler). These dependencies are only exercised by `build:all`.
+
 ## Implemented So Far
 
 ### Core and Contracts
@@ -310,7 +323,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 ## Current Limitations
 - Only the `full` layer type is implemented (raw source files). `interface`, `examples`, and `code` layers are not yet implemented.
 - Phase 2 execution order is now: `examples` layer generation first, then standalone schema-lint CI validation, then public API helper completion.
-- Storybook example extraction is planned by reusing/adapting the proven MCP Storybook build/scrape architecture while keeping this package MCP-independent.
+- Storybook example extraction is planned as a move-first migration of the MCP Storybook utility package into metadata internals, followed by parity validation and later refactoring.
 - Some metadata values are still fallback/default driven (e.g. `unknown` for missing `since`).
 - Package exports expose only generic store queries. ADR-specified domain helpers not yet implemented: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
 - No CI size budget guards exist yet. These are required before publishing (targets: `interface` ≤ 6 KB, `examples` ≤ 8 KB, `code` ≤ 10 KB).
@@ -378,7 +391,7 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 | 7 | Continuous improvement, new metadata types | ❌ Not started |
 
 ### Phase 2 — Concrete Actions
-1. Implement `examples` layer for `component:*` entities by extracting/adapting the existing MCP Storybook build pipeline architecture. Output: `data/layers/examples/component/<entity-id>.json`.
+1. Implement `examples` layer for `component:*` entities by moving the MCP Storybook utility package into metadata internals first (behavior-preserving), then wiring output to `data/layers/examples/component/<entity-id>.json`.
 2. Add a standalone schema-lint validation step suitable for CI and local runs (script/CLI + CI wiring).
 3. Expose ADR-specified layer-aware domain helpers on the public API: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
 4. Implement `interface` layer generator for `component:*` entities. Source: CEM (`custom-elements.json`) + existing `custom.frameworks.*` metadata. Output: `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB target.
@@ -396,7 +409,7 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 - `syn-checkbox` `interface` layer must be ≈ 5 KB or less (current full MCP response ≈ 22 KB, ~77% reduction target).
 
 ## Suggested Next Steps
-1. **[Phase 2 — current priority]** Implement `examples` layer for component entities by extracting/adapting the MCP Storybook generation flow into metadata package internals.
+1. **[Phase 2 — current priority]** Move the MCP Storybook scraper utility package into metadata internals first (behavior-preserving), then wire the `examples` layer output for component entities.
 2. **[Phase 2]** Add a standalone schema-lint validation command and wire it into CI.
 3. **[Phase 2]** Expose layer-aware public API helpers: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
 4. **[Phase 2]** Implement `interface` layer for component entities: CEM-derived Markdown, ≤ 6 KB target, written to `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB benchmark.
@@ -435,3 +448,4 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 - Components package and migration setup entities are now included (`setup:components-package`, `setup:synergy-migrations`).
 - DaVinci migration is intentionally grouped under `davinci/` in layer output.
 - The source tree is now physically split into `src/public/` and `src/internal/`.
+- Storybook/examples scraping must NEVER be part of `build` or `test`. Use a dedicated `build:all` target. CI enforces this by checking git diff — a missing examples diff is a merge blocker.

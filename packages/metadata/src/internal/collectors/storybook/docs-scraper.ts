@@ -4,7 +4,10 @@ import {
   stylesScrapingConfig,
   templateScrapingConfig,
 } from './configs.js';
+import { createConsoleLogger } from '../../core/context.js';
 import { ScrapingConfig } from './types.js';
+
+const logger = createConsoleLogger('storybook');
 
 export class DocsScraper {
   private baseUrl: string;
@@ -18,13 +21,13 @@ export class DocsScraper {
    */
   async scrapeWithConfig(config: ScrapingConfig): Promise<void> {
     try {
-      console.log(`Using Storybook server at ${this.baseUrl}`);
+      logger.info(`Using Storybook server at ${this.baseUrl}`);
 
       // Create scraper and run
       const scraper = new StorybookScraper(config);
       await scraper.scrapeAll(this.baseUrl);
     } catch (error) {
-      console.error('Error during scraping process:', error);
+      logger.error('Error during scraping process', { error: String(error) });
       throw error;
     }
   }
@@ -33,7 +36,7 @@ export class DocsScraper {
    * Scrape component documentation
    */
   async scrapeComponents(): Promise<void> {
-    console.log('Starting component documentation scraping...');
+    logger.info('Starting component documentation scraping...');
     await this.scrapeWithConfig(componentScrapingConfig);
   }
 
@@ -41,7 +44,7 @@ export class DocsScraper {
    * Scrape styles documentation
    */
   async scrapeStyles(): Promise<void> {
-    console.log('Starting styles documentation scraping...');
+    logger.info('Starting styles documentation scraping...');
     await this.scrapeWithConfig(stylesScrapingConfig);
   }
 
@@ -49,7 +52,7 @@ export class DocsScraper {
    * Scrape styles documentation
    */
   async scrapeTemplates(): Promise<void> {
-    console.log('Starting templates documentation scraping...');
+    logger.info('Starting templates documentation scraping...');
     await this.scrapeWithConfig(templateScrapingConfig);
   }
 
@@ -57,29 +60,29 @@ export class DocsScraper {
    * Scrape all documentation types
    */
   async scrapeAll(): Promise<void> {
-    console.log('Starting comprehensive documentation scraping...');
+    logger.info('Starting comprehensive documentation scraping...');
 
     try {
-      console.log(`Using Storybook server at ${this.baseUrl}`);
+      logger.info(`Using Storybook server at ${this.baseUrl}`);
 
       // Scrape components
-      console.log('Scraping component documentation...');
+      logger.info('Scraping component documentation...');
       const componentScraper = new StorybookScraper(componentScrapingConfig);
       await componentScraper.scrapeAll(this.baseUrl);
 
       // Scrape styles
-      console.log('Scraping styles documentation...');
+      logger.info('Scraping styles documentation...');
       const stylesScraper = new StorybookScraper(stylesScrapingConfig);
       await stylesScraper.scrapeAll(this.baseUrl);
 
       // Scrape templates
-      console.log('Scraping templates documentation...');
+      logger.info('Scraping templates documentation...');
       const templatesScraper = new StorybookScraper(templateScrapingConfig);
       await templatesScraper.scrapeAll(this.baseUrl);
 
-      console.log('All documentation scraping completed successfully!');
+      logger.info('All documentation scraping completed successfully!');
     } catch (error) {
-      console.error('Error during comprehensive scraping process:', error);
+      logger.error('Error during comprehensive scraping process', { error: String(error) });
       throw error;
     }
   }
@@ -110,7 +113,7 @@ export async function runDocsScraper(
         throw new Error(`Unknown scraping type: ${type as string}`);
     }
   } catch (error) {
-    console.error('Scraping failed:', error);
+    logger.error('Scraping failed', { error: String(error) });
     throw error;
   }
 }

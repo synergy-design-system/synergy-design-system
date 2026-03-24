@@ -3,7 +3,10 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { Browser, chromium } from 'playwright';
 import prettier from 'prettier';
 import storybookOutput from '@synergy-design-system/docs/dist/index.json' with { type: 'json' };
+import { createConsoleLogger } from '../../core/context.js';
 import { ScrapedStory, ScrapingConfig } from './types.js';
+
+const logger = createConsoleLogger('storybook');
 
 interface StorybookEntry {
   id: string;
@@ -121,7 +124,7 @@ export class StorybookScraper {
       const storyMetadata = rawStoryMetadata.filter(story => {
         const shouldSkip = shouldSkipStoryByHeading(storyId, story.heading);
         if (shouldSkip) {
-          console.log(`Skipping story "${story.heading}" due to skip_mcp tag`);
+          logger.info(`Skipping story "${story.heading}" due to skip_mcp tag`);
         }
         return !shouldSkip;
       });
@@ -146,7 +149,7 @@ export class StorybookScraper {
               exampleSource = frameContent || '';
             } catch (error) {
               // If iframe content extraction fails, continue with empty content
-              console.log(`Failed to extract iframe content for story "${storyMeta.heading}"`, error);
+              logger.warn(`Failed to extract iframe content for story "${storyMeta.heading}"`, { error: String(error) });
             }
           }
 
@@ -225,27 +228,12 @@ export class StorybookScraper {
 
       // Generate final report
       if (scrapingReport.status !== 'success') {
-        console.log(`📊 Scraping Report for ${storyId}:`);
-        console.log('   Status: ❌ Error');
-        console.log(`   Found Stories: ${scrapingReport.foundStories}`);
-        console.log(`   Processed Stories: ${scrapingReport.processedStories}`);
-
-        if (scrapingReport.storyDetails.length > 0) {
-          console.log('   Story Details:');
-          scrapingReport.storyDetails.forEach((detail, index) => {
-            const statusIcon = detail.status === 'success' ? '✅' : '❌';
-            console.log(`     ${index + 1}. ${statusIcon} ${detail.heading}`);
-            if (detail.error) {
-              console.log(`        Error: ${detail.error}`);
-            }
-          });
-        }
-
-        if (scrapingReport.error) {
-          console.log(`   Error Details: ${scrapingReport.error.message}`);
-        }
-
-        console.log(''); // Empty line for readability
+        logger.error(`Scraping failed for ${storyId}`, {
+          error: scrapingReport.error?.message,
+          foundStories: scrapingReport.foundStories,
+          processedStories: scrapingReport.processedStories,
+          storyDetails: scrapingReport.storyDetails,
+        });
       }
     }
   }
@@ -254,7 +242,7 @@ export class StorybookScraper {
    * Scrape all configured items and write documentation
    */
   async scrapeAll(baseUrl: string = 'http://localhost:6006'): Promise<void> {
-    console.log('Starting scraping process...');
+    logger.info('Starting scraping process...');
 
     const items = await this.config.getItems();
 
@@ -275,7 +263,7 @@ export class StorybookScraper {
         }),
       );
 
-      console.log('Writing documentation files...');
+      logger.info('Writing documentation files...');
 
       // Write out the results
       await Promise.all(
@@ -292,7 +280,7 @@ export class StorybookScraper {
         }),
       );
 
-      console.log('Scraping process completed successfully!');
+      logger.info('Scraping process completed successfully!');
     } finally {
       // Always close the browser, even if an error occurs
       await browser.close();

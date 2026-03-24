@@ -1,24 +1,15 @@
-export interface ScrapingConfig {
-  /** The output directory path */
-  outputPath: string;
-  /** Function to get the list of items to scrape */
-  getItems: () => Promise<string[]> | string[];
-  /** Function to generate the story ID from an item */
-  generateStoryId: (item: string) => string;
-  /** Function to generate the output file path from an item */
-  generateOutputPath: (item: string) => string;
-  /** Function to format the scraped content */
-  formatContent: (item: string, stories: ScrapedStory[]) => string;
-}
+import {
+  type ScrapedStory, type StorybookArtifactKind, type StorybookCollectedDocument, type StorybookScrapeType,
+} from './source/types.js';
 
-export interface ScrapedStory {
-  heading: string;
-  description: string;
-  example: string;
-}
+export type {
+  ScrapedStory, StorybookArtifactKind, StorybookCollectedDocument, StorybookScrapeType,
+};
 
-export interface StorybookServer {
-  port: number;
-  url: string;
-  isRunning: boolean;
+export interface StorybookExampleArtifact {
+  content: string;
+  entityId: string;
+  item: string;
+  kind: StorybookArtifactKind;
+  stories: ScrapedStory[];
 }

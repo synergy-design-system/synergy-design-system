@@ -1,10 +1,8 @@
-import { dirname } from 'node:path';
-import { mkdir, writeFile } from 'node:fs/promises';
 import { Browser, chromium } from 'playwright';
 import prettier from 'prettier';
 import storybookOutput from '@synergy-design-system/docs/dist/index.json' with { type: 'json' };
-import { createConsoleLogger } from '../../core/context.js';
-import { ScrapedStory, ScrapingConfig } from './types.js';
+import { createConsoleLogger } from '../../../core/context.js';
+import { type ScrapedStory, type ScrapingConfig, type StorybookCollectedDocument } from './types.js';
 
 const logger = createConsoleLogger('storybook');
 
@@ -241,7 +239,7 @@ export class StorybookScraper {
   /**
    * Scrape all configured items and write documentation
    */
-  async scrapeAll(baseUrl: string = 'http://localhost:6006'): Promise<void> {
+  async scrapeAll(baseUrl: string = 'http://localhost:6006'): Promise<StorybookCollectedDocument[]> {
     logger.info('Starting scraping process...');
 
     const items = await this.config.getItems();
@@ -263,24 +261,22 @@ export class StorybookScraper {
         }),
       );
 
-      logger.info('Writing documentation files...');
+      const failedPages = scrapedPages.filter(({ stories }) => stories.length === 0);
+      if (failedPages.length > 0) {
+        const failedIds = failedPages
+          .map(({ item }) => this.config.generateEntityId(item))
+          .sort();
+        throw new Error(`Failed to scrape storybook examples for ${failedIds.join(', ')}`);
+      }
 
-      // Write out the results
-      await Promise.all(
-        scrapedPages.map(async ({ item, stories }) => {
-          const filePath = this.config.generateOutputPath(item);
+      logger.info(`Collected ${scrapedPages.length} documentation artifacts`);
 
-          // Ensure the directory exists before writing
-          const dir = dirname(filePath);
-          await mkdir(dir, { recursive: true });
-          const content = await prettier.format(this.config.formatContent(item, stories), {
-            parser: 'markdown',
-          });
-          await writeFile(filePath, content, 'utf-8');
-        }),
-      );
-
-      logger.info('Scraping process completed successfully!');
+      return scrapedPages.map(({ item, stories }) => ({
+        entityId: this.config.generateEntityId(item),
+        item,
+        kind: this.config.kind,
+        stories,
+      }));
     } finally {
       // Always close the browser, even if an error occurs
       await browser.close();

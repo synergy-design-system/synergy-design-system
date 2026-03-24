@@ -44,18 +44,49 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Public package root (`src/index.ts`) re-exports only the supported runtime query API.
 - Internal repo tooling has a dedicated unstable barrel at `src/internal/index.ts` which is not published.
 
-## Storybook Scraper Migration Plan (agreed direction)
-- Goal: move the existing MCP Storybook scraper package into metadata first with behavior parity, then refactor.
-- Target location in metadata: `src/internal/collectors/storybook/` for moved modules (`build-docs.ts`, `configs.ts`, `docs-scraper.ts`, `scraper.ts`, `storybook-manager.ts`, `types.ts`, `index.ts`) adapted to metadata conventions.
-- Dependency adds in `packages/metadata/package.json` (initial move): `playwright`, `prettier`, `@synergy-design-system/docs` (matching MCP behavior baseline).
-- Output architecture decision: output location is configured at config/CLI + writer boundary (default under `data/layers/examples/component/`), not by enrichers.
-- Clean separation: collectors/scrapers gather examples data; writers decide filesystem paths; enrichers only enrich metadata and should not own output path routing.
-- Config approach: keep `SYNERGY_METADATA_OUTPUT_DIR` as root and add an optional examples-layer subpath config (env or config file) with sensible default.
-- Scope for first migration: preserve current behavior and content shape; postpone optimization/refactor until parity is validated.
-- Out of scope for this first move: changing story extraction semantics, changing formatting policy, or redesigning example schema.
-- **Build separation (critical):** The Storybook scraper MUST NOT run as part of the default `build` or `build:data` script — it is too costly (requires Playwright + Storybook serve). It must be gated behind a separate script, e.g. `build:all` (matching MCP convention), which runs `build` first and then the Storybook scrape + examples layer generation as a second step.
-- **Validation enforcement:** The reason for the separate script is that CI validates a git diff after a pipeline run. This ensures developers have run the full pipeline (including examples generation) on their branch before merging. A stale or missing `data/layers/examples/` diff is a merge blocker.
-- Regular `pnpm build` and `pnpm test` must complete without any Storybook dependency (docs build, Playwright, serve-handler). These dependencies are only exercised by `build:all`.
+## Storybook Scraper Migration (completed)
+- Goal: move the existing MCP Storybook scraper package into metadata first with behavior parity, then refactor. ✅ **COMPLETED**
+- Implementation location: `src/internal/collectors/storybook/` with moved modules:
+  - `build-docs.ts` — main orchestration, exports `runStorybook(type?, ctx?)` for library use; CLI code guarded to only run when directly executed
+  - `docs-scraper.ts` — documentation scraping logic
+  - `storybook-manager.ts` — static server management (Playwright-based)
+  - `types.ts` — shared type definitions
+  - `index.ts` — public exports for collectors
+- Dependencies added: `playwright`, `prettier`, `@synergy-design-system/docs` (matching MCP behavior baseline).
+- Output architecture: examples layer is written to `data/layers/examples/{kind}/{entity.id}.md` by the layer writer during Step 7 (now happens after Step 6 scraper completes).
+- **Build separation (critical, IMPLEMENTED):** The Storybook scraper does NOT run as part of the default `pnpm build` or `pnpm build:data` — it is gated behind the `RUN_STORYBOOK_SCRAPER` environment variable.
+  - Default `pnpm build`: skips scraper (Step 6: Skipping storybook scraper)
+  - `RUN_STORYBOOK_SCRAPER=true pnpm build`: runs scraper (Step 6: Running storybook scraper)
+  - Convenience alias: `pnpm run build:all` sets `RUN_STORYBOOK_SCRAPER=true` and invokes the full pipeline
+- **Module-level code fix:** CLI code in `build-docs.ts` (argument parsing, logger init, signal handlers, `main()` call) is now guarded to only execute when the file is directly executed (checks `process.argv[1]`), preventing side effects on import.
+- **Integration point in pipeline:** Scraper runs as Step 6 in the main CLI build (before Step 7: Processing layer assets), allowing examples to be discovered and merged into entity data during layer writing.
+- Regular `pnpm build` and `pnpm test` complete without Storybook dependencies; these are only exercised by `build:all` or explicit `RUN_STORYBOOK_SCRAPER=true`.
+
+### Storybook Facade Refactor (next agreed direction)
+- Keep the current Step 6 build integration and env-var gating behavior; the refactor is internal structure only, not a behavior change.
+- Use a facade pattern for `src/internal/collectors/storybook/` so the directory exposes a collector-style surface while hiding Playwright/Storybook implementation details.
+- Move the current low-level scraper/server implementation into a dedicated internal subfolder such as `src/internal/collectors/storybook/source/`.
+- Keep `build-docs.ts` as a thin orchestration/CLI entrypoint only; it should call the facade instead of directly owning scrape details.
+- Introduce collector-style stages for Storybook examples generation:
+  - `collect()` gathers raw scraped story/example data and diagnostics
+  - `normalize()` converts raw scraped results into deterministic example documents/artifacts
+  - optional `enrich()` may validate/link scraped output against known canonical entities if useful
+- Do **not** force Storybook into the normal `CoreEntity` aggregation path. It is a layer/artifact producer, not a canonical entity producer.
+- Preferred intermediate shape is structured data, not a plain string, for example: entity id, kind, story id, stories, markdown, and scrape diagnostics.
+- File path ownership should remain outside the low-level scraper implementation. Scraper/facade gathers data; writer/orchestration decides where files live.
+- Synchronization rule for examples layer:
+  - On successful full scrape (`build:all`), Storybook output is authoritative for examples and stale example files must be pruned.
+  - On scrape failure, do not write or delete examples artifacts; preserve last known-good files.
+  - Core layer refs are rebuilt from discovered files in the same run, so pruning stale files removes stale refs in core entities.
+- If adopted, the first implementation step should be a no-behavior-change extraction: move internals under `source/`, keep output format and Step 6 orchestration stable, then add facade functions on top.
+- Longer-term architectural target: Storybook can evolve into a dedicated layer/artifact pipeline, but the immediate step is only a facade boundary.
+
+### Storybook Sync and Failure-Safety Rules (current agreement)
+- Source scraping code must not write files directly; it only returns structured story/example data.
+- Facade write step must reject empty artifacts and must not overwrite existing example files with empty content.
+- If any story scrape fails for an entity, the scrape run is considered failed for write purposes.
+- `build:all` should perform success-only pruning of stale files in `data/layers/examples/{kind}/` based on the current authoritative scrape result set.
+- Default `pnpm build` remains scraper-free and does not prune examples.
 
 ## Implemented So Far
 
@@ -138,6 +169,21 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   - `setup:angular-forms-module`
   - `setup:angular-validators-module`
 - Angular module setup entities intentionally exclude `ng-package.json` files, since those are build metadata and not consumer-facing integration guidance.
+
+### Storybook Scraper Collector (Examples Layer Generation)
+- Collector location: `src/internal/collectors/storybook/`
+- Purpose: scrape Storybook documentation for components and generate examples layer files.
+- Behavior: reads from the docs package Storybook build output, scrapes component documentation using Playwright, formats examples with Prettier, and passes results to the layer writer for persistence.
+- Integration: runs as Step 6 in the main CLI pipeline before layer asset writing (Step 7), allowing example files to be discovered and linked to canonical component entities.
+- Environment variable gating: controlled by `RUN_STORYBOOK_SCRAPER` flag. Defaults to false for speed (Playwright startup is costly); explicitly enabled by `pnpm run build:all` or when set to `true`.
+- Module separation: `build-docs.ts` exports `runStorybook(type?, ctx?)` as an importable function; CLI-specific code is guarded so it only runs when directly executed, preventing side effects during import.
+- Exported function signature:
+  - Parameter `type`: 'components' | 'styles' | 'templates' | 'all' (default 'all')
+  - Parameter `ctx`: optional build context with logger; uses default console logger if not provided
+  - Returns: Promise<boolean> indicating success/failure
+- Server management: `StaticServerManager` handles startup/shutdown of local static server on port 6006, wrapping filesystem routing.
+- Documentation extraction: `DocsScraper` extracts story metadata, extracts code examples from story files, formats with Prettier, produces `component:syn-<name>` example markdown files.
+- Output format: `data/layers/examples/{kind}/{entity.id}.md` with structured markdown containing component description, usage examples, and code snippets.
 
 ### Components Package and Migration Setup
 - Components package setup entity is emitted:
@@ -309,7 +355,18 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/` is currently not gitignored.
 - Only the public API is exported/published; `src/internal/` is for repo-local tooling and build orchestration.
 
-### Latest Hardening and Config Work (current branch)
+### Latest: Storybook Scraper Integration and Module-Level Separation (current branch)
+- Moved and integrated MCP Storybook scraper into metadata package as Step 6 of the build pipeline.
+- Fixed module-level CLI code in `build-docs.ts` which was executing unconditionally on import. All CLI-specific code (argument parsing, logging, signal handlers, `main()` call) is now guarded behind a check for direct execution, allowing safe library import.
+- Environment variable gating implemented: `RUN_STORYBOOK_SCRAPER` controls whether scraper runs (defaults to false). Package scripts:
+  - `build` (fast): runs `build:ts` + `build:data` without scraper
+  - `build:all` (full): runs `build:ts` + `RUN_STORYBOOK_SCRAPER=true build:data` with scraper
+  - `build:data`: CLI entry point that reads the env var at runtime
+- Scraper is now integrated at the correct pipeline position (Step 6, before layer writing), allowing examples to be discovered and registered with canonical component entities during layer asset processing (Step 7).
+- Examples layer files are now generated and written to `data/layers/examples/{kind}/{entity.id}.md` when the scraper runs.
+- Default `pnpm build` remains fast (no Playwright, no Storybook serve); full examples generation only happens with explicit `build:all`.
+
+### Previous Hardening and Config Work
 - Clustering config was generated from Storybook tags and expanded with concrete group files under `config/clustering/components-by-tag/`.
 - Component overrides were expanded under `config/overrides/` to improve enrichment coverage.
 - Temporary debug diagnostics were removed from the build + enrichment path to keep CLI output focused and stable.
@@ -321,9 +378,8 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Integration coverage was added for config loading behavior and deterministic JSON serialization ordering.
 
 ## Current Limitations
-- Only the `full` layer type is implemented (raw source files). `interface`, `examples`, and `code` layers are not yet implemented.
-- Phase 2 execution order is now: `examples` layer generation first, then standalone schema-lint CI validation, then public API helper completion.
-- Storybook example extraction is planned as a move-first migration of the MCP Storybook utility package into metadata internals, followed by parity validation and later refactoring.
+- Only the `full` and `examples` layer types are implemented. `interface` and `code` layers are not yet implemented.
+- Phase 2 execution order is now: `interface` layer generation, then standalone schema-lint CI validation, then public API helper completion.
 - Some metadata values are still fallback/default driven (e.g. `unknown` for missing `since`).
 - Package exports expose only generic store queries. ADR-specified domain helpers not yet implemented: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
 - No CI size budget guards exist yet. These are required before publishing (targets: `interface` ≤ 6 KB, `examples` ≤ 8 KB, `code` ≤ 10 KB).
@@ -331,6 +387,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Package not yet published to npm.
 - No `llms.txt` file exists yet.
 - Tokens, styles, and fonts have partial artifact-depth collectors; assets icon metadata is embedded in set-level entities rather than individual files.
+- Build outputs are still written in multiple phases, not as a single graph-first final commit. This can leave partially updated outputs if failures happen after some writes.
 
 
 ## Data/Folder State
@@ -391,7 +448,7 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 | 7 | Continuous improvement, new metadata types | ❌ Not started |
 
 ### Phase 2 — Concrete Actions
-1. Implement `examples` layer for `component:*` entities by moving the MCP Storybook utility package into metadata internals first (behavior-preserving), then wiring output to `data/layers/examples/component/<entity-id>.json`.
+1. Complete Storybook examples synchronization hardening: ensure successful `build:all` runs prune stale examples files, ensure failed scrape runs never mutate example artifacts, and keep core layer refs in sync through file discovery.
 2. Add a standalone schema-lint validation step suitable for CI and local runs (script/CLI + CI wiring).
 3. Expose ADR-specified layer-aware domain helpers on the public API: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
 4. Implement `interface` layer generator for `component:*` entities. Source: CEM (`custom-elements.json`) + existing `custom.frameworks.*` metadata. Output: `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB target.
@@ -409,7 +466,7 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 - `syn-checkbox` `interface` layer must be ≈ 5 KB or less (current full MCP response ≈ 22 KB, ~77% reduction target).
 
 ## Suggested Next Steps
-1. **[Phase 2 — current priority]** Move the MCP Storybook scraper utility package into metadata internals first (behavior-preserving), then wire the `examples` layer output for component entities.
+1. **[Phase 2 — current priority]** Finalize Storybook examples sync behavior: success-only stale-file pruning during `build:all`, no-write-on-failure guarantees, and verification that core `layers.examples` refs are removed when examples are removed from Storybook.
 2. **[Phase 2]** Add a standalone schema-lint validation command and wire it into CI.
 3. **[Phase 2]** Expose layer-aware public API helpers: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
 4. **[Phase 2]** Implement `interface` layer for component entities: CEM-derived Markdown, ≤ 6 KB target, written to `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB benchmark.
@@ -449,3 +506,12 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 - DaVinci migration is intentionally grouped under `davinci/` in layer output.
 - The source tree is now physically split into `src/public/` and `src/internal/`.
 - Storybook/examples scraping must NEVER be part of `build` or `test`. Use a dedicated `build:all` target. CI enforces this by checking git diff — a missing examples diff is a merge blocker.
+- For the next Storybook refactor, preserve these invariants:
+  - default `pnpm build` stays scraper-free
+  - `build:all` remains the only full examples regeneration path
+  - Storybook should produce structured example artifacts, not `CoreEntity` records
+  - low-level Playwright/server logic stays hidden behind the storybook collector facade
+- Storybook examples sync guardrails:
+  - If `component:syn-accordion` (or any entity) is removed from Storybook, stale `data/layers/examples/...` files must be pruned on successful `build:all` so core layer refs are removed on the next write.
+  - If scraping fails, keep prior examples files and refs unchanged (no destructive partial writes).
+  - Reject empty artifact writes to prevent accidental replacement of valid examples with blank files.

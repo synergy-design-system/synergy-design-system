@@ -17,6 +17,7 @@ import { resolve } from 'node:path';
 import { createConsoleLogger } from '../core/context.js';
 import { type Context } from '../core/context.js';
 import { loadConfig } from '../../config/index.js';
+import { runStorybook } from '../collectors/storybook/build-docs.js';
 import {
   assetsPipeline,
   componentsPipeline,
@@ -41,7 +42,6 @@ import {
 import { writeSchemas } from '../writers/write-schemas.js';
 import { type CoreEntity, type Manifest } from '../schemas/index.js';
 import { CoreEntitySchema, LayerRefSchema, ManifestSchema } from '../schemas/index.js';
-import { runStorybook } from '../collectors/storybook/build-docs.js';
 
 const logger = createConsoleLogger('metadata-build');
 

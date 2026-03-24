@@ -69,15 +69,15 @@ const docsScraper = new DocsScraper("/path/to/storybook");
 
 // Scrape with custom configuration
 const customConfig = {
-  outputPath: "/custom/path",
+  kind: "component",
   getItems: async () => ["item1", "item2"],
+  generateEntityId: item => `component:${item}`,
   generateStoryId: item => `my-${item}--docs`,
-  generateOutputPath: item => `/custom/path/${item}.md`,
   formatContent: (item, stories) =>
     `# ${item}\n\n${stories.map(s => s.description).join("\n")}`,
 };
 
-await docsScraper.scrapeWithConfig(customConfig);
+const documents = await docsScraper.scrapeWithConfig(customConfig);
 ```
 
 ### Command Line Usage
@@ -97,10 +97,10 @@ node build-docs.ts             # Scrape everything (default)
 
 ```typescript
 interface ScrapingConfig {
-  outputPath: string; // Base output directory
+  kind: "component" | "style" | "template"; // Output artifact kind
   getItems: () => Promise<string[]> | string[]; // Function to get items to scrape
+  generateEntityId: (item: string) => string; // Generate canonical entity ID from item
   generateStoryId: (item: string) => string; // Generate story ID from item
-  generateOutputPath: (item: string) => string; // Generate output path from item
   formatContent: (item: string, stories: ScrapedStory[]) => string; // Format content
 }
 ```
@@ -109,10 +109,10 @@ interface ScrapingConfig {
 
 ```typescript
 const myCustomConfig: ScrapingConfig = {
-  outputPath: "/path/to/examples",
+  kind: "component",
   getItems: async () => ["example1", "example2"],
+  generateEntityId: example => `component:${example}`,
   generateStoryId: example => `examples-${example}--docs`,
-  generateOutputPath: example => `/path/to/examples/${example}/README.md`,
   formatContent: (example, stories) => {
     return stories
       .map(
@@ -130,6 +130,8 @@ ${story.example}
   },
 };
 ```
+
+`DocsScraper` and `StorybookScraper` now only collect and return structured data. Persisting markdown files is handled by the storybook facade in the parent directory.
 
 ## Storybook Server Management
 

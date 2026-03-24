@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
+import { access } from 'node:fs/promises';
 import { type Server, createServer } from 'http';
 import { promisify } from 'node:util';
 import { exec } from 'node:child_process';
 import { dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
 import handler from 'serve-handler';
-import { type Logger, createConsoleLogger } from '../../core/context.js';
+import { type Logger, createConsoleLogger } from '../../../core/context.js';
 import { StorybookServer } from './types.js';
 
 const defaultLogger = createConsoleLogger('storybook');
@@ -15,6 +16,25 @@ const execAsync = promisify(exec);
 // Get current directory for resolving the Storybook build path
 const filename = fileURLToPath(import.meta.url);
 const currentDir = dirname(filename);
+
+const getStorybookDistCandidates = (): string[] => [
+  resolve(process.cwd(), '..', 'docs', 'dist'),
+  resolve(currentDir, '../../../../../../docs/dist'),
+  resolve(currentDir, '../../../../../docs/dist'),
+];
+
+const resolveStorybookDistPath = async (): Promise<string> => {
+  for (const candidate of getStorybookDistCandidates()) {
+    try {
+      await access(candidate);
+      return candidate;
+    } catch {
+      // Try next candidate path.
+    }
+  }
+
+  throw new Error(`Could not locate Storybook dist directory. Tried: ${getStorybookDistCandidates().join(', ')}`);
+};
 
 export class StaticServerManager {
   private server: Server | null = null;
@@ -65,7 +85,7 @@ export class StaticServerManager {
 
     const availablePort = await StaticServerManager.findAvailablePort(port);
     const url = `http://localhost:${availablePort}`;
-    const storybookDistPath = resolve(currentDir, '../../../../../docs/dist');
+    const storybookDistPath = await resolveStorybookDistPath();
 
     this.logger.info(`Starting static server on port ${availablePort}...`);
     this.logger.info(`Serving files from: ${storybookDistPath}`);

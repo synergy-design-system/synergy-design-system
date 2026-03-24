@@ -1,21 +1,14 @@
 {
   "custom": {
-    "sourceModulePath": "components/button-group/button-group.js",
-    "summary": "Button groups can be used to group related buttons into sections.",
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueButtonGroup",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueButtonGroup.vue"
+      "angular": {
+        "componentName": "SynButtonGroupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-button-group",
+        "sourcePath": "packages/angular/components/button-group/button-group.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynButtonGroup",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/button-group.ts"
-        },
         "jsx": {
           "componentName": "SynButtonGroup",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs",
@@ -26,99 +19,106 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynButtonGroupJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynButtonGroup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/button-group.ts"
         }
       },
-      "angular": {
-        "componentName": "SynButtonGroupComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-button-group",
-        "sourcePath": "packages/angular/components/button-group/button-group.component.ts"
+      "vue": {
+        "componentName": "SynVueButtonGroup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueButtonGroup.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.button-group",
-      "storyTags": [],
       "stories": [
         {
           "description": {
-            "value": "Button groups can be used to group related buttons into sections.",
-            "type": "text"
+            "type": "text",
+            "value": "Button groups can be used to group related buttons into sections."
           },
           "name": "default",
           "title": {
-            "value": "Button Group",
-            "type": "text"
+            "type": "text",
+            "value": "Button Group"
           }
         },
         {
           "description": {
-            "value": "All button sizes are supported. The size of the button-group will be used to determine the size of the buttons.",
-            "type": "text"
+            "type": "text",
+            "value": "All button sizes are supported. The size of the button-group will be used to determine the size of the buttons."
           },
           "name": "size",
           "title": {
-            "value": "Button Sizes",
-            "type": "text"
+            "type": "text",
+            "value": "Button Sizes"
           }
         },
         {
           "description": {
-            "value": "Use the variant attribute to set the button’s variant. Variants can be Filled, Outline. There is no Text variant.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the variant attribute to set the button’s variant. Variants can be Filled, Outline. There is no Text variant."
           },
           "name": "variant",
           "title": {
-            "value": "Variants",
-            "type": "text"
+            "type": "text",
+            "value": "Variants"
           }
         },
         {
           "description": {
-            "value": " Dropdowns can be placed inside button groups as long as the trigger is an <syn-button> element. ",
-            "type": "text"
+            "type": "text",
+            "value": " Dropdowns can be placed inside button groups as long as the trigger is an <syn-button> element. "
           },
           "name": "dropdowns-in-button-groups",
           "title": {
-            "value": " Dropdowns in Button Groups ",
-            "type": "text"
+            "type": "text",
+            "value": " Dropdowns in Button Groups "
           }
         },
         {
           "description": {
-            "value": "Create a split button using a button and a dropdown. Use a visually hidden label to ensure the dropdown is accessible to users with assistive devices.",
-            "type": "text"
+            "type": "text",
+            "value": "Create a split button using a button and a dropdown. Use a visually hidden label to ensure the dropdown is accessible to users with assistive devices."
           },
           "name": "split-buttons",
           "title": {
-            "value": "Split Buttons",
-            "type": "text"
+            "type": "text",
+            "value": "Split Buttons"
           }
         },
         {
           "description": {
-            "value": "Buttons can be wrapped in tooltips to provide more detail when the user interacts with them.",
-            "type": "text"
+            "type": "text",
+            "value": "Buttons can be wrapped in tooltips to provide more detail when the user interacts with them."
           },
           "name": "tooltips",
           "title": {
-            "value": "Tooltips in Button Groups",
-            "type": "text"
+            "type": "text",
+            "value": "Tooltips in Button Groups"
           }
         },
         {
           "description": {
-            "value": "Create interactive toolbars with button groups.",
-            "type": "text"
+            "type": "text",
+            "value": "Create interactive toolbars with button groups."
           },
           "name": "toolbar",
           "title": {
-            "value": "Toolbar Example",
-            "type": "text"
+            "type": "text",
+            "value": "Toolbar Example"
           }
         }
-      ]
-    }
+      ],
+      "storySourcePath": "components.button-group",
+      "storyTags": []
+    },
+    "sourceModulePath": "components/button-group/button-group.js",
+    "summary": "Button groups can be used to group related buttons into sections."
   },
   "id": "component:syn-button-group",
   "kind": "component",

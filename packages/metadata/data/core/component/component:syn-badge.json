@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/badge/badge.js",
-    "summary": "Badges are used to draw attention and display statuses or counts.",
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueBadge",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueBadge.vue"
+      "angular": {
+        "componentName": "SynBadgeComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-badge",
+        "sourcePath": "packages/angular/components/badge/badge.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynBadge",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/badge.ts"
-        },
         "jsx": {
           "componentName": "SynBadge",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs",
@@ -26,82 +22,86 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynBadgeJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynBadge",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/badge.ts"
         }
       },
-      "angular": {
-        "componentName": "SynBadgeComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-badge",
-        "sourcePath": "packages/angular/components/badge/badge.component.ts"
+      "vue": {
+        "componentName": "SynVueBadge",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueBadge.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.badge",
-      "storyTags": [
-        "Feedback"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Badges are used to draw attention and display statuses or counts.",
-            "type": "text"
+            "type": "text",
+            "value": "Badges are used to draw attention and display statuses or counts."
           },
           "name": "default",
           "title": {
-            "value": "Badge",
-            "type": "text"
+            "type": "text",
+            "value": "Badge"
           }
         },
         {
           "description": {
-            "value": "Set the variant attribute to change the badge’s variant.",
-            "type": "text"
+            "type": "text",
+            "value": "Set the variant attribute to change the badge’s variant."
           },
           "name": "variants",
           "title": {
-            "value": "Variants",
-            "type": "text"
+            "type": "text",
+            "value": "Variants"
           }
         },
         {
           "description": {
-            "value": "One of the most common use cases for badges is attaching them to buttons. \n\nDEV: To make this easier, badges will be automatically positioned at the top-right when they’re a child of a button.",
-            "type": "text"
+            "type": "text",
+            "value": "One of the most common use cases for badges is attaching them to buttons. \n\nDEV: To make this easier, badges will be automatically positioned at the top-right when they’re a child of a button."
           },
           "name": "withButton",
           "title": {
-            "value": "With Buttons",
-            "type": "text"
+            "type": "text",
+            "value": "With Buttons"
           }
         },
         {
           "description": {
-            "value": "When including badges in menu items, use the suffix slot to make sure they’re aligned correctly.",
-            "type": "text"
+            "type": "text",
+            "value": "When including badges in menu items, use the suffix slot to make sure they’re aligned correctly."
           },
           "name": "menu",
           "title": {
-            "value": "With Menu Items",
-            "type": "text"
+            "type": "text",
+            "value": "With Menu Items"
           }
         },
         {
           "description": {
-            "value": "Badges can be used without content to just show an status indicator.",
-            "type": "text"
+            "type": "text",
+            "value": "Badges can be used without content to just show an status indicator."
           },
           "name": "withEmptyContent",
           "title": {
-            "value": "With empty content",
-            "type": "text"
+            "type": "text",
+            "value": "With empty content"
           }
         }
+      ],
+      "storySourcePath": "components.badge",
+      "storyTags": [
+        "Feedback"
       ]
     },
-    "clusters": [
-      "components-by-tag/feedback"
-    ]
+    "sourceModulePath": "components/badge/badge.js",
+    "summary": "Badges are used to draw attention and display statuses or counts."
   },
   "id": "component:syn-badge",
   "kind": "component",

@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/input/input.js",
-    "summary": "Inputs collect data from the user.",
+    "clusters": [
+      "components-by-tag/form"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueInput",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueInput.vue"
+      "angular": {
+        "componentName": "SynInputComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-input",
+        "sourcePath": "packages/angular/components/input/input.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynInput",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/input.ts"
-        },
         "jsx": {
           "componentName": "SynInput",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs",
@@ -55,203 +51,207 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynInputJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynInput",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/input.ts"
         }
       },
-      "angular": {
-        "componentName": "SynInputComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-input",
-        "sourcePath": "packages/angular/components/input/input.component.ts"
+      "vue": {
+        "componentName": "SynVueInput",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueInput.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.input",
-      "storyTags": [
-        "Form"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Inputs collect data from the user.",
-            "type": "text"
+            "type": "text",
+            "value": "Inputs collect data from the user."
           },
           "name": "default",
           "title": {
-            "value": "Input",
-            "type": "text"
+            "type": "text",
+            "value": "Input"
           }
         },
         {
           "description": {
-            "value": "Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead."
           },
           "name": "label",
           "title": {
-            "value": "Labels",
-            "type": "text"
+            "type": "text",
+            "value": "Labels"
           }
         },
         {
           "description": {
-            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
-            "type": "text"
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
           },
           "name": "help-text",
           "title": {
-            "value": "help-text",
-            "type": "text"
+            "type": "text",
+            "value": "help-text"
           }
         },
         {
           "description": {
-            "value": "Use the placeholder attribute to add a placeholder.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the placeholder attribute to add a placeholder."
           },
           "name": "placeholder",
           "title": {
-            "value": "Placeholder",
-            "type": "text"
+            "type": "text",
+            "value": "Placeholder"
           }
         },
         {
           "description": {
-            "value": "Add the clearable attribute to add a clear button when the input has content.",
-            "type": "text"
+            "type": "text",
+            "value": "Add the clearable attribute to add a clear button when the input has content."
           },
           "name": "clearable",
           "title": {
-            "value": "Clearable",
-            "type": "text"
+            "type": "text",
+            "value": "Clearable"
           }
         },
         {
           "description": {
-            "value": "Add the password-toggle attribute to add a toggle button that will show the password when activated.",
-            "type": "text"
+            "type": "text",
+            "value": "Add the password-toggle attribute to add a toggle button that will show the password when activated."
           },
           "name": "password-toggle",
           "title": {
-            "value": "Toggle Password",
-            "type": "text"
+            "type": "text",
+            "value": "Toggle Password"
           }
         },
         {
           "description": {
-            "value": "Add the readonly attribute to draw a read-only input.",
-            "type": "text"
+            "type": "text",
+            "value": "Add the readonly attribute to draw a read-only input."
           },
           "name": "readonly",
           "title": {
-            "value": "Read-only Inputs",
-            "type": "text"
+            "type": "text",
+            "value": "Read-only Inputs"
           }
         },
         {
           "description": {
-            "value": "Use the disabled attribute to disable an input.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the disabled attribute to disable an input."
           },
           "name": "disabled",
           "title": {
-            "value": "Disabled",
-            "type": "text"
+            "type": "text",
+            "value": "Disabled"
           }
         },
         {
           "description": {
-            "value": "Use the size attribute to change an input's size.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the size attribute to change an input's size."
           },
           "name": "size",
           "title": {
-            "value": "Sizes",
-            "type": "text"
+            "type": "text",
+            "value": "Sizes"
           }
         },
         {
           "description": {
-            "value": "Use the prefix and suffix slots to add text and icons.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the prefix and suffix slots to add text and icons."
           },
           "name": "prefix-suffix",
           "title": {
-            "value": "Prefix Suffix Text and Icons",
-            "type": "text"
+            "type": "text",
+            "value": "Prefix Suffix Text and Icons"
           }
         },
         {
           "description": {
-            "value": "The focus attribute provides feedback to the users, informing them that the input component is ready for use.",
-            "type": "text"
+            "type": "text",
+            "value": "The focus attribute provides feedback to the users, informing them that the input component is ready for use."
           },
           "name": "focus",
           "title": {
-            "value": "Focus / Active",
-            "type": "text"
+            "type": "text",
+            "value": "Focus / Active"
           }
         },
         {
           "description": {
-            "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
-            "type": "text"
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format."
           },
           "name": "invalid",
           "title": {
-            "value": "Invalid",
-            "type": "text"
+            "type": "text",
+            "value": "Invalid"
           }
         },
         {
           "description": {
-            "value": "The Stepper (Input type number) attribute has additional step buttons at the right side for incrementing and decrementing values. It is ideal for situations where users need to adjust quantities or settings within a range.",
-            "type": "text"
+            "type": "text",
+            "value": "The Stepper (Input type number) attribute has additional step buttons at the right side for incrementing and decrementing values. It is ideal for situations where users need to adjust quantities or settings within a range."
           },
           "name": "stepper",
           "title": {
-            "value": "Stepper",
-            "type": "text"
+            "type": "text",
+            "value": "Stepper"
           }
         },
         {
           "description": {
-            "value": "The `numeric-strategy` property defines how numeric input is handled during user interaction. It lets you select between the browsers native control and Synergy’s enhanced number-input logic.\n\nnative: Uses the browser’s built-in number control. Values are not auto-clamped, and stepping/validation can vary across browsers.\n\nmodern: Provides a more intuitive and predictable behavior by automatically clamping values to the nearest min/max value, including those bounds when stepping, and ignoring the step attribute during validation.",
-            "type": "text"
+            "type": "text",
+            "value": "The `numeric-strategy` property defines how numeric input is handled during user interaction. It lets you select between the browsers native control and Synergy’s enhanced number-input logic.\n\nnative: Uses the browser’s built-in number control. Values are not auto-clamped, and stepping/validation can vary across browsers.\n\nmodern: Provides a more intuitive and predictable behavior by automatically clamping values to the nearest min/max value, including those bounds when stepping, and ignoring the step attribute during validation."
           },
           "name": "stepper-input-handling",
           "title": {
-            "value": "Stepper Input Handling",
-            "type": "text"
+            "type": "text",
+            "value": "Stepper Input Handling"
           }
         },
         {
           "description": {
-            "value": "The type attribute controls the type of input the browser renders.",
-            "type": "text"
+            "type": "text",
+            "value": "The type attribute controls the type of input the browser renders."
           },
           "name": "types",
           "title": {
-            "value": "Input Types",
-            "type": "text"
+            "type": "text",
+            "value": "Input Types"
           }
         },
         {
           "description": {
-            "value": "Use to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls.",
-            "type": "text"
+            "type": "text",
+            "value": "Use to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls."
           },
           "name": "label-position",
           "title": {
-            "value": "Customizing Label Position",
-            "type": "text"
+            "type": "text",
+            "value": "Customizing Label Position"
           }
         }
+      ],
+      "storySourcePath": "components.input",
+      "storyTags": [
+        "Form"
       ]
     },
-    "clusters": [
-      "components-by-tag/form"
-    ]
+    "sourceModulePath": "components/input/input.js",
+    "summary": "Inputs collect data from the user."
   },
   "id": "component:syn-input",
   "kind": "component",

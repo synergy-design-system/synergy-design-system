@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/range/range.js",
-    "summary": "Ranges allow the user to select values within a given range using one or two thumbs.",
+    "clusters": [
+      "components-by-tag/form"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueRange",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueRange.vue"
+      "angular": {
+        "componentName": "SynRangeComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-range",
+        "sourcePath": "packages/angular/components/range/range.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynRange",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/range.ts"
-        },
         "jsx": {
           "componentName": "SynRange",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs",
@@ -50,203 +46,207 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynRangeJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynRange",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/range.ts"
         }
       },
-      "angular": {
-        "componentName": "SynRangeComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-range",
-        "sourcePath": "packages/angular/components/range/range.component.ts"
+      "vue": {
+        "componentName": "SynVueRange",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueRange.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.range",
-      "storyTags": [
-        "Form"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Ranges allow the user to select values within a given range using a thumb.",
-            "type": "text"
+            "type": "text",
+            "value": "Ranges allow the user to select values within a given range using a thumb."
           },
           "name": "default",
           "title": {
-            "value": "Range",
-            "type": "text"
+            "type": "text",
+            "value": "Range"
           }
         },
         {
           "description": {
-            "value": "Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead."
           },
           "name": "labels",
           "title": {
-            "value": "Labels",
-            "type": "text"
+            "type": "text",
+            "value": "Labels"
           }
         },
         {
           "description": {
-            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
-            "type": "text"
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
           },
           "name": "help-text",
           "title": {
-            "value": "Help Text",
-            "type": "text"
+            "type": "text",
+            "value": "Help Text"
           }
         },
         {
           "description": {
-            "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user.",
-            "type": "text"
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user."
           },
           "name": "focus",
           "title": {
-            "value": "Focus / Active",
-            "type": "text"
+            "type": "text",
+            "value": "Focus / Active"
           }
         },
         {
           "description": {
-            "value": "Add the readonly attribute to a range to draw it in a readonly state.",
-            "type": "text"
+            "type": "text",
+            "value": "Add the readonly attribute to a range to draw it in a readonly state."
           },
           "name": "readonly",
           "title": {
-            "value": "Read-only",
-            "type": "text"
+            "type": "text",
+            "value": "Read-only"
           }
         },
         {
           "description": {
-            "value": "Use the size attribute to change a range’s size.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the size attribute to change a range’s size."
           },
           "name": "size",
           "title": {
-            "value": "Sizes",
-            "type": "text"
+            "type": "text",
+            "value": "Sizes"
           }
         },
         {
           "description": {
-            "value": "The invalid status is used to warn the user that the input is invalid. As range validation is not supported by the browser, you will need to implement your own validation logic.",
-            "type": "text"
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the input is invalid. As range validation is not supported by the browser, you will need to implement your own validation logic."
           },
           "name": "invalid",
           "title": {
-            "value": "Invalid",
-            "type": "text"
+            "type": "text",
+            "value": "Invalid"
           }
         },
         {
           "description": {
-            "value": "Use the disabled attribute to disable a range.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the disabled attribute to disable a range."
           },
           "name": "disabled",
           "title": {
-            "value": "Disabled",
-            "type": "text"
+            "type": "text",
+            "value": "Disabled"
           }
         },
         {
           "description": {
-            "value": "Add any element to the start and end of range items using the prefix and suffix slots.",
-            "type": "text"
+            "type": "text",
+            "value": "Add any element to the start and end of range items using the prefix and suffix slots."
           },
           "name": "prefix-suffix",
           "title": {
-            "value": "Prefix and Suffix",
-            "type": "text"
+            "type": "text",
+            "value": "Prefix and Suffix"
           }
         },
         {
           "description": {
-            "value": "You can customize the active and inactive portions of the track using the --track-color-active and --track-color-inactive custom properties.",
-            "type": "text"
+            "type": "text",
+            "value": "You can customize the active and inactive portions of the track using the --track-color-active and --track-color-inactive custom properties."
           },
           "name": "custom-track-colors",
           "title": {
-            "value": "Custom Track Colors",
-            "type": "text"
+            "type": "text",
+            "value": "Custom Track Colors"
           }
         },
         {
           "description": {
-            "value": "You can customize the initial offset of the active track using the --track-active-offset custom property.",
-            "type": "text"
+            "type": "text",
+            "value": "You can customize the initial offset of the active track using the --track-active-offset custom property."
           },
           "name": "custom-track-offset",
           "title": {
-            "value": "Custom Track Offset",
-            "type": "text"
+            "type": "text",
+            "value": "Custom Track Offset"
           }
         },
         {
           "description": {
-            "value": "You can add multiple range-thumbs to your range.",
-            "type": "text"
+            "type": "text",
+            "value": "You can add multiple range-thumbs to your range."
           },
           "name": "multi-knob",
           "title": {
-            "value": "Multi thumb",
-            "type": "text"
+            "type": "text",
+            "value": "Multi thumb"
           }
         },
         {
           "description": {
-            "value": "Set the restrict-movement attribute to true to prevent the thumbs from overlapping.",
-            "type": "text"
+            "type": "text",
+            "value": "Set the restrict-movement attribute to true to prevent the thumbs from overlapping."
           },
           "name": "multi-knob-restrict-movement",
           "title": {
-            "value": "Multi thumb with restricted movement",
-            "type": "text"
+            "type": "text",
+            "value": "Multi thumb with restricted movement"
           }
         },
         {
           "description": {
-            "value": "By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the range.",
-            "type": "text"
+            "type": "text",
+            "value": "By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the range."
           },
           "name": "tooltip-placement",
           "title": {
-            "value": "Tooltip Placement",
-            "type": "text"
+            "type": "text",
+            "value": "Tooltip Placement"
           }
         },
         {
           "description": {
-            "value": "To disable the tooltip, set tooltip-placement to none.",
-            "type": "text"
+            "type": "text",
+            "value": "To disable the tooltip, set tooltip-placement to none."
           },
           "name": "tooltip-disabled",
           "title": {
-            "value": "Disable the Tooltip",
-            "type": "text"
+            "type": "text",
+            "value": "Disable the Tooltip"
           }
         },
         {
           "description": {
-            "value": "You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument.",
-            "type": "text"
+            "type": "text",
+            "value": "You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument."
           },
           "name": "tooltip-formatter",
           "title": {
-            "value": "Custom Tooltip Formatter",
-            "type": "text"
+            "type": "text",
+            "value": "Custom Tooltip Formatter"
           }
         }
+      ],
+      "storySourcePath": "components.range",
+      "storyTags": [
+        "Form"
       ]
     },
-    "clusters": [
-      "components-by-tag/form"
-    ]
+    "sourceModulePath": "components/range/range.js",
+    "summary": "Ranges allow the user to select values within a given range using one or two thumbs."
   },
   "id": "component:syn-range",
   "kind": "component",

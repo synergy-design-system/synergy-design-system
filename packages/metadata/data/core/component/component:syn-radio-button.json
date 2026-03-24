@@ -1,21 +1,14 @@
 {
   "custom": {
-    "sourceModulePath": "components/radio-button/radio-button.js",
-    "summary": "Radios buttons allow the user to select a single option from a group using a button-like control.",
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueRadioButton",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueRadioButton.vue"
+      "angular": {
+        "componentName": "SynRadioButtonComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-radio-button",
+        "sourcePath": "packages/angular/components/radio-button/radio-button.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynRadioButton",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/radio-button.ts"
-        },
         "jsx": {
           "componentName": "SynRadioButton",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs",
@@ -35,16 +28,23 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynRadioButtonJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynRadioButton",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/radio-button.ts"
         }
       },
-      "angular": {
-        "componentName": "SynRadioButtonComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-radio-button",
-        "sourcePath": "packages/angular/components/radio-button/radio-button.component.ts"
+      "vue": {
+        "componentName": "SynVueRadioButton",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueRadioButton.vue"
       }
-    }
+    },
+    "sourceModulePath": "components/radio-button/radio-button.js",
+    "summary": "Radios buttons allow the user to select a single option from a group using a button-like control."
   },
   "id": "component:syn-radio-button",
   "kind": "component",

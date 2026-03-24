@@ -1,19 +1,18 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "type": "object",
+  "additionalProperties": false,
   "properties": {
     "custom": {
-      "type": "object",
+      "additionalProperties": {},
       "propertyNames": {
         "type": "string"
       },
-      "additionalProperties": {}
+      "type": "object"
     },
     "id": {
       "type": "string"
     },
     "kind": {
-      "type": "string",
       "enum": [
         "asset",
         "component",
@@ -21,26 +20,21 @@
         "setup",
         "token",
         "utility"
-      ]
+      ],
+      "type": "string"
     },
     "layers": {
-      "default": {},
-      "type": "object",
-      "propertyNames": {
-        "type": "string"
-      },
       "additionalProperties": {
-        "type": "array",
         "items": {
-          "type": "object",
+          "additionalProperties": false,
           "properties": {
             "layer": {
-              "type": "string",
               "enum": [
                 "examples",
                 "interface",
                 "full"
-              ]
+              ],
+              "type": "string"
             },
             "path": {
               "type": "string"
@@ -50,9 +44,15 @@
             "layer",
             "path"
           ],
-          "additionalProperties": false
-        }
-      }
+          "type": "object"
+        },
+        "type": "array"
+      },
+      "default": {},
+      "propertyNames": {
+        "type": "string"
+      },
+      "type": "object"
     },
     "name": {
       "type": "string"
@@ -62,55 +62,55 @@
     },
     "relations": {
       "default": [],
-      "type": "array",
       "items": {
-        "type": "object",
+        "additionalProperties": false,
         "properties": {
           "id": {
             "type": "string"
           },
           "type": {
-            "type": "string",
             "enum": [
               "dependsOn",
               "usedBy",
               "partOf",
               "relates"
-            ]
+            ],
+            "type": "string"
           }
         },
         "required": [
           "id",
           "type"
         ],
-        "additionalProperties": false
-      }
+        "type": "object"
+      },
+      "type": "array"
     },
     "since": {
       "type": "string"
     },
     "sources": {
       "default": [],
-      "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "type": "array"
     },
     "status": {
-      "type": "string",
       "enum": [
         "stable",
         "beta",
         "experimental",
         "deprecated"
-      ]
+      ],
+      "type": "string"
     },
     "tags": {
       "default": [],
-      "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "type": "array"
     }
   },
   "required": [
@@ -125,5 +125,5 @@
     "status",
     "tags"
   ],
-  "additionalProperties": false
+  "type": "object"
 }

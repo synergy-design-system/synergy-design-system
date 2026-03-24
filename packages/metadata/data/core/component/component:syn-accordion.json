@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/accordion/accordion.js",
-    "summary": "Accordions provide the ability to group a list of `<syn-details>`.",
+    "clusters": [
+      "components-by-tag/structure"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueAccordion",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueAccordion.vue"
+      "angular": {
+        "componentName": "SynAccordionComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-accordion",
+        "sourcePath": "packages/angular/components/accordion/accordion.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynAccordion",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/accordion.ts"
-        },
         "jsx": {
           "componentName": "SynAccordion",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs",
@@ -26,94 +22,98 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynAccordionJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynAccordion",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/accordion.ts"
         }
       },
-      "angular": {
-        "componentName": "SynAccordionComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-accordion",
-        "sourcePath": "packages/angular/components/accordion/accordion.component.ts"
+      "vue": {
+        "componentName": "SynVueAccordion",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueAccordion.vue"
       }
     },
     "override": {
       "figmaComponentId": "16967-26428",
-      "storySourcePath": "components.accordion",
-      "storyTags": [
-        "Structure"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Accordion is a group of syn-details to show a brief summary and expand to show additional content.",
-            "type": "text"
+            "type": "text",
+            "value": "Accordion is a group of syn-details to show a brief summary and expand to show additional content."
           },
           "name": "default",
           "title": {
-            "value": "Accordion",
-            "type": "text"
+            "type": "text",
+            "value": "Accordion"
           }
         },
         {
           "description": {
-            "value": "Use the disable attribute to prevent the details from expanding.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the disable attribute to prevent the details from expanding."
           },
           "name": "disabled",
           "title": {
-            "value": "Disabled",
-            "type": "text"
+            "type": "text",
+            "value": "Disabled"
           }
         },
         {
           "description": {
-            "value": "Use the size attribute to change a detail’s size. The size attribute should not be mixed within an accordion",
-            "type": "text"
+            "type": "text",
+            "value": "Use the size attribute to change a detail’s size. The size attribute should not be mixed within an accordion"
           },
           "name": "size",
           "title": {
-            "value": "Sizes",
-            "type": "text"
+            "type": "text",
+            "value": "Sizes"
           }
         },
         {
           "description": {
-            "value": "Set the `close-others` property to true to ensure only one detail is open at a time.",
-            "type": "text"
+            "type": "text",
+            "value": "Set the `close-others` property to true to ensure only one detail is open at a time."
           },
           "name": "grouping",
           "title": {
-            "value": "Grouping Details",
-            "type": "text"
+            "type": "text",
+            "value": "Grouping Details"
           }
         },
         {
           "description": {
-            "value": "To give content more structure, you can use the property contained.",
-            "type": "text"
+            "type": "text",
+            "value": "To give content more structure, you can use the property contained."
           },
           "name": "contained",
           "title": {
-            "value": "Contained",
-            "type": "text"
+            "type": "text",
+            "value": "Contained"
           }
         },
         {
           "description": {
-            "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction.",
-            "type": "text"
+            "type": "text",
+            "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction."
           },
           "name": "focus",
           "title": {
-            "value": "Focus",
-            "type": "text"
+            "type": "text",
+            "value": "Focus"
           }
         }
+      ],
+      "storySourcePath": "components.accordion",
+      "storyTags": [
+        "Structure"
       ]
     },
-    "clusters": [
-      "components-by-tag/structure"
-    ]
+    "sourceModulePath": "components/accordion/accordion.js",
+    "summary": "Accordions provide the ability to group a list of `<syn-details>`."
   },
   "id": "component:syn-accordion",
   "kind": "component",

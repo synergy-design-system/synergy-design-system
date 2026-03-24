@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/menu/menu.js",
-    "summary": "Menus provide a list of options for the user to choose from.",
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueMenu",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueMenu.vue"
+      "angular": {
+        "componentName": "SynMenuComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-menu",
+        "sourcePath": "packages/angular/components/menu/menu.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynMenu",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/menu.ts"
-        },
         "jsx": {
           "componentName": "SynMenu",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs",
@@ -31,60 +27,64 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynMenuJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynMenu",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/menu.ts"
         }
       },
-      "angular": {
-        "componentName": "SynMenuComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-menu",
-        "sourcePath": "packages/angular/components/menu/menu.component.ts"
+      "vue": {
+        "componentName": "SynVueMenu",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueMenu.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.menu",
-      "storyTags": [
-        "Navigation"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Menus provide a list of options for the user to choose from.\n\nYou can use menu items, menu labels, and dividers to compose a menu. Menus support keyboard interactions, including type-to-select an option.",
-            "type": "text"
+            "type": "text",
+            "value": "Menus provide a list of options for the user to choose from.\n\nYou can use menu items, menu labels, and dividers to compose a menu. Menus support keyboard interactions, including type-to-select an option."
           },
           "name": "default",
           "title": {
-            "value": "Menu",
-            "type": "text"
+            "type": "text",
+            "value": "Menu"
           }
         },
         {
           "description": {
-            "value": "Menus work really well when used inside dropdowns.",
-            "type": "text"
+            "type": "text",
+            "value": "Menus work really well when used inside dropdowns."
           },
           "name": "dropdown",
           "title": {
-            "value": "In Dropdowns",
-            "type": "text"
+            "type": "text",
+            "value": "In Dropdowns"
           }
         },
         {
           "description": {
-            "value": "To create a submenu, nest an <syn-menu slot=\"submenu\"> in any menu item.",
-            "type": "text"
+            "type": "text",
+            "value": "To create a submenu, nest an <syn-menu slot=\"submenu\"> in any menu item."
           },
           "name": "submenu",
           "title": {
-            "value": "Submenus",
-            "type": "text"
+            "type": "text",
+            "value": "Submenus"
           }
         }
+      ],
+      "storySourcePath": "components.menu",
+      "storyTags": [
+        "Navigation"
       ]
     },
-    "clusters": [
-      "components-by-tag/navigation"
-    ]
+    "sourceModulePath": "components/menu/menu.js",
+    "summary": "Menus provide a list of options for the user to choose from."
   },
   "id": "component:syn-menu",
   "kind": "component",

@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/card/card.js",
-    "summary": "Cards can be used to group related subjects in a container.",
+    "clusters": [
+      "components-by-tag/structure"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueCard",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueCard.vue"
+      "angular": {
+        "componentName": "SynCardComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-card",
+        "sourcePath": "packages/angular/components/card/card.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynCard",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/card.ts"
-        },
         "jsx": {
           "componentName": "SynCard",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs",
@@ -26,104 +22,108 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynCardJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynCard",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/card.ts"
         }
       },
-      "angular": {
-        "componentName": "SynCardComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-card",
-        "sourcePath": "packages/angular/components/card/card.component.ts"
+      "vue": {
+        "componentName": "SynVueCard",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueCard.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.card",
-      "storyTags": [
-        "Structure"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Cards can be used to group related subjects in a container.",
-            "type": "text"
+            "type": "text",
+            "value": "Cards can be used to group related subjects in a container."
           },
           "name": "default",
           "title": {
-            "value": "Card",
-            "type": "text"
+            "type": "text",
+            "value": "Card"
           }
         },
         {
           "description": {
-            "value": "Basic cards aren’t very exciting, but they can display any content you want them to.",
-            "type": "text"
+            "type": "text",
+            "value": "Basic cards aren’t very exciting, but they can display any content you want them to."
           },
           "name": "basic-card",
           "title": {
-            "value": "Basic Card",
-            "type": "text"
+            "type": "text",
+            "value": "Basic Card"
           }
         },
         {
           "description": {
-            "value": "Headers can be used to display titles and more.",
-            "type": "text"
+            "type": "text",
+            "value": "Headers can be used to display titles and more."
           },
           "name": "with-header",
           "title": {
-            "value": "Card with Header",
-            "type": "text"
+            "type": "text",
+            "value": "Card with Header"
           }
         },
         {
           "description": {
-            "value": "Footers can be used to display actions, summaries, or other relevant content.",
-            "type": "text"
+            "type": "text",
+            "value": "Footers can be used to display actions, summaries, or other relevant content."
           },
           "name": "with-footer",
           "title": {
-            "value": "Card with Footer",
-            "type": "text"
+            "type": "text",
+            "value": "Card with Footer"
           }
         },
         {
           "description": {
-            "value": "Cards accept an image slot. The image is displayed atop the card and stretches to fit.",
-            "type": "text"
+            "type": "text",
+            "value": "Cards accept an image slot. The image is displayed atop the card and stretches to fit."
           },
           "name": "images",
           "title": {
-            "value": "Images",
-            "type": "text"
+            "type": "text",
+            "value": "Images"
           }
         },
         {
           "description": {
-            "value": "Use the sharp variant attribute for the Card to Use a different style.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the sharp variant attribute for the Card to Use a different style."
           },
           "name": "sharp",
           "title": {
-            "value": "Sharp Card",
-            "type": "text"
+            "type": "text",
+            "value": "Sharp Card"
           }
         },
         {
           "description": {
-            "value": "Use the shadow attribute to add a shadow.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the shadow attribute to add a shadow."
           },
           "name": "shadow",
           "title": {
-            "value": "Card with shadow",
-            "type": "text"
+            "type": "text",
+            "value": "Card with shadow"
           }
         }
+      ],
+      "storySourcePath": "components.card",
+      "storyTags": [
+        "Structure"
       ]
     },
-    "clusters": [
-      "components-by-tag/structure"
-    ]
+    "sourceModulePath": "components/card/card.js",
+    "summary": "Cards can be used to group related subjects in a container."
   },
   "id": "component:syn-card",
   "kind": "component",

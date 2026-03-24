@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/tag-group/tag-group.js",
-    "summary": "A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels.\nIt arranges tags in flexible rows and supports different sizes and layouts.\nTags can be removable, icon‑based, or purely textual.",
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueTagGroup",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueTagGroup.vue"
+      "angular": {
+        "componentName": "SynTagGroupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tag-group",
+        "sourcePath": "packages/angular/components/tag-group/tag-group.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynTagGroup",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/tag-group.ts"
-        },
         "jsx": {
           "componentName": "SynTagGroup",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs",
@@ -25,73 +21,77 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynTagGroupJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTagGroup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tag-group.ts"
         }
       },
-      "angular": {
-        "componentName": "SynTagGroupComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-tag-group",
-        "sourcePath": "packages/angular/components/tag-group/tag-group.component.ts"
+      "vue": {
+        "componentName": "SynVueTagGroup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTagGroup.vue"
       }
     },
     "override": {
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels. It arranges tags in flexible rows and supports different sizes and layouts. Tags can be removable, icon based, or purely textual."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Tag-Group"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label attribute to give the tag-group an accessible label. For labels that contain HTML, use the label slot instead."
+          },
+          "name": "labels",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a tag group’s size."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label-position attribute to change the position of the label. Use 'top' to place the label above the tags, or 'start' to place it to the begin of the tag group."
+          },
+          "name": "label-alignment",
+          "title": {
+            "type": "text",
+            "value": "Label Alignment"
+          }
+        }
+      ],
       "storySourcePath": "components.tag-group",
       "storyTags": [
         "Feedback",
         "Tags",
         "Filter"
-      ],
-      "stories": [
-        {
-          "description": {
-            "value": "A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels. It arranges tags in flexible rows and supports different sizes and layouts. Tags can be removable, icon based, or purely textual.",
-            "type": "text"
-          },
-          "name": "default",
-          "title": {
-            "value": "Tag-Group",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the label attribute to give the tag-group an accessible label. For labels that contain HTML, use the label slot instead.",
-            "type": "text"
-          },
-          "name": "labels",
-          "title": {
-            "value": "Labels",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the size attribute to change a tag group’s size.",
-            "type": "text"
-          },
-          "name": "size",
-          "title": {
-            "value": "Sizes",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the label-position attribute to change the position of the label. Use 'top' to place the label above the tags, or 'start' to place it to the begin of the tag group.",
-            "type": "text"
-          },
-          "name": "label-alignment",
-          "title": {
-            "value": "Label Alignment",
-            "type": "text"
-          }
-        }
       ]
     },
-    "clusters": [
-      "components-by-tag/feedback"
-    ]
+    "sourceModulePath": "components/tag-group/tag-group.js",
+    "summary": "A tag group is used to display multiple tags that belong together, often representing selected filters, categories, or user‑generated labels.\nIt arranges tags in flexible rows and supports different sizes and layouts.\nTags can be removable, icon‑based, or purely textual."
   },
   "id": "component:syn-tag-group",
   "kind": "component",

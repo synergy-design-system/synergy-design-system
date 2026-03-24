@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/prio-nav/prio-nav.js",
-    "summary": "The `<syn-prio-nav />` element provides a generic navigation bar\nthat can be used to group multiple navigation items  (usually horizontal `<syn-nav-item />`s)\ntogether. It will automatically group all items not visible in the viewport into a custom\npriority menu.",
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVuePrioNav",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVuePrioNav.vue"
+      "angular": {
+        "componentName": "SynPrioNavComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-prio-nav",
+        "sourcePath": "packages/angular/components/prio-nav/prio-nav.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynPrioNav",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/prio-nav.ts"
-        },
         "jsx": {
           "componentName": "SynPrioNav",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs",
@@ -26,49 +22,53 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynPrioNavJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynPrioNav",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/prio-nav.ts"
         }
       },
-      "angular": {
-        "componentName": "SynPrioNavComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-prio-nav",
-        "sourcePath": "packages/angular/components/prio-nav/prio-nav.component.ts"
+      "vue": {
+        "componentName": "SynVuePrioNav",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVuePrioNav.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.prio-nav",
-      "storyTags": [
-        "Navigation"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Priority navigation is supported as product navigation if required. This navigation layout provides a high level of findability and support so that users know where they are at all times and can ensure that they can easily reach their goals.\n\nNote: Please note that the priority navigation does not have a child menu navigation, if you want to have a child navigation, combine the priority navigation and the side navigation",
-            "type": "text"
+            "type": "text",
+            "value": "Priority navigation is supported as product navigation if required. This navigation layout provides a high level of findability and support so that users know where they are at all times and can ensure that they can easily reach their goals.\n\nNote: Please note that the priority navigation does not have a child menu navigation, if you want to have a child navigation, combine the priority navigation and the side navigation"
           },
           "name": "default",
           "title": {
-            "value": "Priority Navigation",
-            "type": "text"
+            "type": "text",
+            "value": "Priority Navigation"
           }
         },
         {
           "description": {
-            "value": "If there is not enough space, elements will move into a dropdown. If there is only space for  one item, it will display the priority menu only.",
-            "type": "text"
+            "type": "text",
+            "value": "If there is not enough space, elements will move into a dropdown. If there is only space for  one item, it will display the priority menu only."
           },
           "name": "priority-menu",
           "title": {
-            "value": "Priority Menu",
-            "type": "text"
+            "type": "text",
+            "value": "Priority Menu"
           }
         }
+      ],
+      "storySourcePath": "components.prio-nav",
+      "storyTags": [
+        "Navigation"
       ]
     },
-    "clusters": [
-      "components-by-tag/navigation"
-    ]
+    "sourceModulePath": "components/prio-nav/prio-nav.js",
+    "summary": "The `<syn-prio-nav />` element provides a generic navigation bar\nthat can be used to group multiple navigation items  (usually horizontal `<syn-nav-item />`s)\ntogether. It will automatically group all items not visible in the viewport into a custom\npriority menu."
   },
   "id": "component:syn-prio-nav",
   "kind": "component",

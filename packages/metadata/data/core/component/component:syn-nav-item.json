@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/nav-item/nav-item.js",
-    "summary": "Flexible button / link component that can be used to quickly build navigations.",
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueNavItem",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueNavItem.vue"
+      "angular": {
+        "componentName": "SynNavItemComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-nav-item",
+        "sourcePath": "packages/angular/components/nav-item/nav-item.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynNavItem",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/nav-item.ts"
-        },
         "jsx": {
           "componentName": "SynNavItem",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-nav-item--docs\nTakes one of 3 forms:\n- button (default),\n- link (overrides button if a 'href' is provided),\n- or accordion (overrides all other if 'children' slot is defined).",
@@ -43,137 +39,141 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynNavItemJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynNavItem",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/nav-item.ts"
         }
       },
-      "angular": {
-        "componentName": "SynNavItemComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-nav-item",
-        "sourcePath": "packages/angular/components/nav-item/nav-item.component.ts"
+      "vue": {
+        "componentName": "SynVueNavItem",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueNavItem.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.nav-item",
-      "storyTags": [
-        "Navigation"
-      ],
       "stories": [
         {
           "description": {
-            "value": "The navigation item is used to trigger page switches.",
-            "type": "text"
+            "type": "text",
+            "value": "The navigation item is used to trigger page switches."
           },
           "name": "default",
           "title": {
-            "value": "Navigation Item",
-            "type": "text"
+            "type": "text",
+            "value": "Navigation Item"
           }
         },
         {
           "description": {
-            "value": "Use the label attribute to change the content of a navigation item.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the label attribute to change the content of a navigation item."
           },
           "name": "labels",
           "title": {
-            "value": "Labels",
-            "type": "text"
+            "type": "text",
+            "value": "Labels"
           }
         },
         {
           "description": {
-            "value": "The current attribute provides the user feedback about which of the navigation elements is currently selected.",
-            "type": "text"
+            "type": "text",
+            "value": "The current attribute provides the user feedback about which of the navigation elements is currently selected."
           },
           "name": "current",
           "title": {
-            "value": "Current",
-            "type": "text"
+            "type": "text",
+            "value": "Current"
           }
         },
         {
           "description": {
-            "value": "The focus event gives the user feedback that the Navigation Item has been focused by the keyboard interaction or active click from the user.",
-            "type": "text"
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Navigation Item has been focused by the keyboard interaction or active click from the user."
           },
           "name": "focus",
           "title": {
-            "value": "Focus",
-            "type": "text"
+            "type": "text",
+            "value": "Focus"
           }
         },
         {
           "description": {
-            "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)",
-            "type": "text"
+            "type": "text",
+            "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)"
           },
           "name": "nav-horizontal",
           "title": {
-            "value": "Horizontal Navigation",
-            "type": "text"
+            "type": "text",
+            "value": "Horizontal Navigation"
           }
         },
         {
           "description": {
-            "value": "Use the prefix and suffix slots to add e. g. icons or tags. If available the prefix slot will be shown in the rail navigation.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the prefix and suffix slots to add e. g. icons or tags. If available the prefix slot will be shown in the rail navigation."
           },
           "name": "prefix-suffix",
           "title": {
-            "value": "Prefix and suffix Slot",
-            "type": "text"
+            "type": "text",
+            "value": "Prefix and suffix Slot"
           }
         },
         {
           "description": {
-            "value": "Use the *children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.\n\nNote:\nSince there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the *children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.\n\nNote:\nSince there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided."
           },
           "name": "children",
           "title": {
-            "value": "Children closed / open (vertical only)",
-            "type": "text"
+            "type": "text",
+            "value": "Children closed / open (vertical only)"
           }
         },
         {
           "description": {
-            "value": "Use the divider attribute to add a border at the top. This should be used for first level elements in vertical navigations.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the divider attribute to add a border at the top. This should be used for first level elements in vertical navigations."
           },
           "name": "divider",
           "title": {
-            "value": "Divider",
-            "type": "text"
+            "type": "text",
+            "value": "Divider"
           }
         },
         {
           "description": {
-            "value": "Vertical navigation elements can be indented to indicate deeper navigation levels.",
-            "type": "text"
+            "type": "text",
+            "value": "Vertical navigation elements can be indented to indicate deeper navigation levels."
           },
           "name": "indentation",
           "title": {
-            "value": "Indentation",
-            "type": "text"
+            "type": "text",
+            "value": "Indentation"
           }
         },
         {
           "description": {
-            "value": "Use the disabled attribute to disable a navigation-item.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the disabled attribute to disable a navigation-item."
           },
           "name": "disabled",
           "title": {
-            "value": "Disabled",
-            "type": "text"
+            "type": "text",
+            "value": "Disabled"
           }
         }
+      ],
+      "storySourcePath": "components.nav-item",
+      "storyTags": [
+        "Navigation"
       ]
     },
-    "clusters": [
-      "components-by-tag/navigation"
-    ]
+    "sourceModulePath": "components/nav-item/nav-item.js",
+    "summary": "Flexible button / link component that can be used to quickly build navigations."
   },
   "id": "component:syn-nav-item",
   "kind": "component",

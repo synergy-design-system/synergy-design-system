@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/radio-group/radio-group.js",
-    "summary": "Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.",
+    "clusters": [
+      "components-by-tag/form"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueRadioGroup",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueRadioGroup.vue"
+      "angular": {
+        "componentName": "SynRadioGroupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-radio-group",
+        "sourcePath": "packages/angular/components/radio-group/radio-group.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynRadioGroup",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/radio-group.ts"
-        },
         "jsx": {
           "componentName": "SynRadioGroup",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-radio-group--docs",
@@ -39,148 +35,152 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynRadioGroupJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynRadioGroup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/radio-group.ts"
         }
       },
-      "angular": {
-        "componentName": "SynRadioGroupComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-radio-group",
-        "sourcePath": "packages/angular/components/radio-group/radio-group.component.ts"
+      "vue": {
+        "componentName": "SynVueRadioGroup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueRadioGroup.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.radio-group",
-      "storyTags": [
-        "Form"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Radio groups are used to group multiple radios or radio buttons so they function as a single form control.",
-            "type": "text"
+            "type": "text",
+            "value": "Radio groups are used to group multiple radios or radio buttons so they function as a single form control."
           },
           "name": "default",
           "title": {
-            "value": "Radio Group",
-            "type": "text"
+            "type": "text",
+            "value": "Radio Group"
           }
         },
         {
           "description": {
-            "value": "Use the label attribute to give the radio-group an accessible label. For labels that contain HTML, use the label slot instead.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the label attribute to give the radio-group an accessible label. For labels that contain HTML, use the label slot instead."
           },
           "name": "labels",
           "title": {
-            "value": "Labels",
-            "type": "text"
+            "type": "text",
+            "value": "Labels"
           }
         },
         {
           "description": {
-            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
-            "type": "text"
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
           },
           "name": "help-text",
           "title": {
-            "value": "Help Text",
-            "type": "text"
+            "type": "text",
+            "value": "Help Text"
           }
         },
         {
           "description": {
-            "value": "Radios and radio buttons can be disabled by adding the disabled attribute to the respective options inside the radio group.",
-            "type": "text"
+            "type": "text",
+            "value": "Radios and radio buttons can be disabled by adding the disabled attribute to the respective options inside the radio group."
           },
           "name": "disabled",
           "title": {
-            "value": "Disabling Options",
-            "type": "text"
+            "type": "text",
+            "value": "Disabling Options"
           }
         },
         {
           "description": {
-            "value": "Add the readonly attribute to a radio to draw it in a readonly state.",
-            "type": "text"
+            "type": "text",
+            "value": "Add the readonly attribute to a radio to draw it in a readonly state."
           },
           "name": "readonly",
           "title": {
-            "value": "Read-only",
-            "type": "text"
+            "type": "text",
+            "value": "Read-only"
           }
         },
         {
           "description": {
-            "value": "The size of Radios and Radio Buttons will be determined by the Radio Group’s size attribute.",
-            "type": "text"
+            "type": "text",
+            "value": "The size of Radios and Radio Buttons will be determined by the Radio Group’s size attribute."
           },
           "name": "size",
           "title": {
-            "value": "Sizing Options",
-            "type": "text"
+            "type": "text",
+            "value": "Sizing Options"
           }
         },
         {
           "description": {
-            "value": "Setting the required attribute to make selecting an option mandatory. If a value has not been selected, it will prevent the form from submitting and display an error message.",
-            "type": "text"
+            "type": "text",
+            "value": "Setting the required attribute to make selecting an option mandatory. If a value has not been selected, it will prevent the form from submitting and display an error message."
           },
           "name": "required",
           "title": {
-            "value": "Validation",
-            "type": "text"
+            "type": "text",
+            "value": "Validation"
           }
         },
         {
           "description": {
-            "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string."
           },
           "name": "setCustomValidity",
           "title": {
-            "value": "Custom Validity",
-            "type": "text"
+            "type": "text",
+            "value": "Custom Validity"
           }
         },
         {
           "description": {
-            "value": "The focus event gives the user feedback that one of the radio buttons has been focused by the keyboard interaction.",
-            "type": "text"
+            "type": "text",
+            "value": "The focus event gives the user feedback that one of the radio buttons has been focused by the keyboard interaction."
           },
           "name": "focus",
           "title": {
-            "value": "Focus",
-            "type": "text"
+            "type": "text",
+            "value": "Focus"
           }
         },
         {
           "description": {
-            "value": "The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio is mandatory and nothing has been checked.",
-            "type": "text"
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio is mandatory and nothing has been checked."
           },
           "name": "invalid",
           "title": {
-            "value": "Invalid",
-            "type": "text"
+            "type": "text",
+            "value": "Invalid"
           }
         },
         {
           "description": {
-            "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
-            "type": "text"
+            "type": "text",
+            "value": "To set the initial value and checked state, use the value attribute on the containing radio group."
           },
           "name": "checked",
           "title": {
-            "value": "Checked",
-            "type": "text"
+            "type": "text",
+            "value": "Checked"
           }
         }
+      ],
+      "storySourcePath": "components.radio-group",
+      "storyTags": [
+        "Form"
       ]
     },
-    "clusters": [
-      "components-by-tag/form"
-    ]
+    "sourceModulePath": "components/radio-group/radio-group.js",
+    "summary": "Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control."
   },
   "id": "component:syn-radio-group",
   "kind": "component",

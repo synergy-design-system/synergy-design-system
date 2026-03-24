@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/menu-label/menu-label.js",
-    "summary": "Menu labels are used to describe a group of menu items.",
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueMenuLabel",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueMenuLabel.vue"
+      "angular": {
+        "componentName": "SynMenuLabelComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-menu-label",
+        "sourcePath": "packages/angular/components/menu-label/menu-label.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynMenuLabel",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/menu-label.ts"
-        },
         "jsx": {
           "componentName": "SynMenuLabel",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs",
@@ -26,38 +22,42 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynMenuLabelJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynMenuLabel",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/menu-label.ts"
         }
       },
-      "angular": {
-        "componentName": "SynMenuLabelComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-menu-label",
-        "sourcePath": "packages/angular/components/menu-label/menu-label.component.ts"
+      "vue": {
+        "componentName": "SynVueMenuLabel",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueMenuLabel.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.menu-label",
-      "storyTags": [
-        "Navigation"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Menu labels are used to describe a group of menu items.",
-            "type": "text"
+            "type": "text",
+            "value": "Menu labels are used to describe a group of menu items."
           },
           "name": "default",
           "title": {
-            "value": "Menu Label",
-            "type": "text"
+            "type": "text",
+            "value": "Menu Label"
           }
         }
+      ],
+      "storySourcePath": "components.menu-label",
+      "storyTags": [
+        "Navigation"
       ]
     },
-    "clusters": [
-      "components-by-tag/navigation"
-    ]
+    "sourceModulePath": "components/menu-label/menu-label.js",
+    "summary": "Menu labels are used to describe a group of menu items."
   },
   "id": "component:syn-menu-label",
   "kind": "component",

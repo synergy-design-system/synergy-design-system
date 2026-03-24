@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/tab/tab.js",
-    "summary": "Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).",
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueTab",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueTab.vue"
+      "angular": {
+        "componentName": "SynTabComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tab",
+        "sourcePath": "packages/angular/components/tab/tab.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynTab",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/tab.ts"
-        },
         "jsx": {
           "componentName": "SynTab",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab--docs",
@@ -31,38 +27,42 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynTabJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTab",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tab.ts"
         }
       },
-      "angular": {
-        "componentName": "SynTabComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-tab",
-        "sourcePath": "packages/angular/components/tab/tab.component.ts"
+      "vue": {
+        "componentName": "SynVueTab",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTab.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.tab",
-      "storyTags": [
-        "Navigation"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Tabs are used inside tab groups to represent and activate tab panels.",
-            "type": "text"
+            "type": "text",
+            "value": "Tabs are used inside tab groups to represent and activate tab panels."
           },
           "name": "default",
           "title": {
-            "value": "Tab",
-            "type": "text"
+            "type": "text",
+            "value": "Tab"
           }
         }
+      ],
+      "storySourcePath": "components.tab",
+      "storyTags": [
+        "Navigation"
       ]
     },
-    "clusters": [
-      "components-by-tag/navigation"
-    ]
+    "sourceModulePath": "components/tab/tab.js",
+    "summary": "Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel)."
   },
   "id": "component:syn-tab",
   "kind": "component",

@@ -1931,6 +1931,49 @@
           "video setting"
         ]
       },
+      "6_ft_apart": {
+        "categories": [
+          "social"
+        ],
+        "tags": [
+          "6",
+          "6 feet",
+          "6ft apart",
+          "apart",
+          "arrows",
+          "body",
+          "coronavirus",
+          "covid",
+          "covid-19",
+          "distance",
+          "distancing",
+          "feet",
+          "figures",
+          "ft",
+          "gap",
+          "guidelines",
+          "health",
+          "human",
+          "infection control",
+          "measure",
+          "pandemic",
+          "people",
+          "person",
+          "prevention",
+          "regulation",
+          "rule",
+          "safety",
+          "sars-cov-2",
+          "separation",
+          "six feet",
+          "six ft apart",
+          "social",
+          "social distancing",
+          "space",
+          "two figures",
+          "two people"
+        ]
+      },
       "60fps": {
         "categories": [
           "device"
@@ -2014,49 +2057,6 @@
           "video playback",
           "video quality",
           "video settings"
-        ]
-      },
-      "6_ft_apart": {
-        "categories": [
-          "social"
-        ],
-        "tags": [
-          "6",
-          "6 feet",
-          "6ft apart",
-          "apart",
-          "arrows",
-          "body",
-          "coronavirus",
-          "covid",
-          "covid-19",
-          "distance",
-          "distancing",
-          "feet",
-          "figures",
-          "ft",
-          "gap",
-          "guidelines",
-          "health",
-          "human",
-          "infection control",
-          "measure",
-          "pandemic",
-          "people",
-          "person",
-          "prevention",
-          "regulation",
-          "rule",
-          "safety",
-          "sars-cov-2",
-          "separation",
-          "six feet",
-          "six ft apart",
-          "social",
-          "social distancing",
-          "space",
-          "two figures",
-          "two people"
         ]
       },
       "6k": {
@@ -17434,40 +17434,6 @@
           "web storage"
         ]
       },
-      "co2": {
-        "categories": [
-          "social"
-        ],
-        "tags": [
-          "air pollution",
-          "atmosphere",
-          "carbon",
-          "carbon dioxide",
-          "carbon footprint",
-          "chemical",
-          "climate",
-          "climate change",
-          "co2",
-          "co2 emissions",
-          "co2 icon",
-          "co2 levels",
-          "co2 reduction",
-          "dioxide",
-          "ecology",
-          "emissions",
-          "environment",
-          "footprint",
-          "gas",
-          "global warming",
-          "greenhouse effect",
-          "greenhouse gas",
-          "molecule",
-          "pollution",
-          "reduce emissions",
-          "science",
-          "sustainability"
-        ]
-      },
       "co_present": {
         "categories": [
           "communication"
@@ -17509,6 +17475,40 @@
           "website",
           "wfh",
           "work from home"
+        ]
+      },
+      "co2": {
+        "categories": [
+          "social"
+        ],
+        "tags": [
+          "air pollution",
+          "atmosphere",
+          "carbon",
+          "carbon dioxide",
+          "carbon footprint",
+          "chemical",
+          "climate",
+          "climate change",
+          "co2",
+          "co2 emissions",
+          "co2 icon",
+          "co2 levels",
+          "co2 reduction",
+          "dioxide",
+          "ecology",
+          "emissions",
+          "environment",
+          "footprint",
+          "gas",
+          "global warming",
+          "greenhouse effect",
+          "greenhouse gas",
+          "molecule",
+          "pollution",
+          "reduce emissions",
+          "science",
+          "sustainability"
         ]
       },
       "code": {

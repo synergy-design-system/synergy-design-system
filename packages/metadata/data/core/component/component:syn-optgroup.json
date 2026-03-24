@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/optgroup/optgroup.js",
-    "summary": "The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.",
+    "clusters": [
+      "components-by-tag/form"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueOptgroup",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueOptgroup.vue"
+      "angular": {
+        "componentName": "SynOptgroupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-optgroup",
+        "sourcePath": "packages/angular/components/optgroup/optgroup.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynOptgroup",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/optgroup.ts"
-        },
         "jsx": {
           "componentName": "SynOptgroup",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs",
@@ -26,14 +22,19 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynOptgroupJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynOptgroup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/optgroup.ts"
         }
       },
-      "angular": {
-        "componentName": "SynOptgroupComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-optgroup",
-        "sourcePath": "packages/angular/components/optgroup/optgroup.component.ts"
+      "vue": {
+        "componentName": "SynVueOptgroup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueOptgroup.vue"
       }
     },
     "override": {
@@ -42,9 +43,8 @@
         "Form"
       ]
     },
-    "clusters": [
-      "components-by-tag/form"
-    ]
+    "sourceModulePath": "components/optgroup/optgroup.js",
+    "summary": "The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>."
   },
   "id": "component:syn-optgroup",
   "kind": "component",

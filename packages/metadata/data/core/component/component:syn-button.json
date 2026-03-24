@@ -1,21 +1,18 @@
 {
   "custom": {
-    "sourceModulePath": "components/button/button.js",
-    "summary": "Buttons represent actions that are available to the user.",
+    "clusters": [
+      "components-by-tag/form",
+      "components-by-tag/navigation"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueButton",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueButton.vue"
+      "angular": {
+        "componentName": "SynButtonComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-button",
+        "sourcePath": "packages/angular/components/button/button.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynButton",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/button.ts"
-        },
         "jsx": {
           "componentName": "SynButton",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs",
@@ -39,150 +36,153 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynButtonJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynButton",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/button.ts"
         }
       },
-      "angular": {
-        "componentName": "SynButtonComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-button",
-        "sourcePath": "packages/angular/components/button/button.component.ts"
+      "vue": {
+        "componentName": "SynVueButton",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueButton.vue"
       }
     },
     "override": {
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Buttons represent actions that are available to the user."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Button"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the variant attribute to set the button’s variant. Variants can be Filled, Outline and Text Buttons. Use the outline attribute to draw outlined buttons with transparent backgrounds. Use the text variant to create text buttons that share the same size as regular buttons but don’t have backgrounds or borders."
+          },
+          "name": "variant",
+          "title": {
+            "type": "text",
+            "value": "Variants"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a button’s size."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "It’s often helpful to have a button that works like a link. This is possible by setting the href attribute, which will make the component render an <a> under the hood. This gives you all the default link behavior the browser provides (e.g. CMD/CTRL/SHIFT + CLICK) and exposes the target and download attributes."
+          },
+          "name": "link",
+          "title": {
+            "type": "text",
+            "value": "Link Buttons"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "As expected, buttons can be given a custom width by setting the width attribute. This is useful for making buttons span the full width of their container on smaller screens."
+          },
+          "name": "width",
+          "title": {
+            "type": "text",
+            "value": "Setting a Custom Width"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the prefix and suffix slots to add icons."
+          },
+          "name": "prefix-suffix",
+          "title": {
+            "type": "text",
+            "value": "Prefix and Suffix Icons."
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the caret attribute to add a dropdown indicator when a button will trigger a dropdown, menu, or popover."
+          },
+          "name": "caret",
+          "title": {
+            "type": "text",
+            "value": "Caret"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the loading attribute to make a button busy. The width will remain the same as before, preventing adjacent elements from moving around. Clicks will be suppressed until the loading state is removed."
+          },
+          "name": "loading",
+          "title": {
+            "type": "text",
+            "value": "Loading"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable a button."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Button has been focused by the keyboard interaction and that the button component is ready for use."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Insert just a single icon to use the same button style."
+          },
+          "name": "icon-only",
+          "title": {
+            "type": "text",
+            "value": "Icon-only"
+          }
+        }
+      ],
       "storySourcePath": "components.button",
       "storyTags": [
         "Form",
         "Navigation"
-      ],
-      "stories": [
-        {
-          "description": {
-            "value": "Buttons represent actions that are available to the user.",
-            "type": "text"
-          },
-          "name": "default",
-          "title": {
-            "value": "Button",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the variant attribute to set the button’s variant. Variants can be Filled, Outline and Text Buttons. Use the outline attribute to draw outlined buttons with transparent backgrounds. Use the text variant to create text buttons that share the same size as regular buttons but don’t have backgrounds or borders.",
-            "type": "text"
-          },
-          "name": "variant",
-          "title": {
-            "value": "Variants",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the size attribute to change a button’s size.",
-            "type": "text"
-          },
-          "name": "size",
-          "title": {
-            "value": "Sizes",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "It’s often helpful to have a button that works like a link. This is possible by setting the href attribute, which will make the component render an <a> under the hood. This gives you all the default link behavior the browser provides (e.g. CMD/CTRL/SHIFT + CLICK) and exposes the target and download attributes.",
-            "type": "text"
-          },
-          "name": "link",
-          "title": {
-            "value": "Link Buttons",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "As expected, buttons can be given a custom width by setting the width attribute. This is useful for making buttons span the full width of their container on smaller screens.",
-            "type": "text"
-          },
-          "name": "width",
-          "title": {
-            "value": "Setting a Custom Width",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the prefix and suffix slots to add icons.",
-            "type": "text"
-          },
-          "name": "prefix-suffix",
-          "title": {
-            "value": "Prefix and Suffix Icons.",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the caret attribute to add a dropdown indicator when a button will trigger a dropdown, menu, or popover.",
-            "type": "text"
-          },
-          "name": "caret",
-          "title": {
-            "value": "Caret",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the loading attribute to make a button busy. The width will remain the same as before, preventing adjacent elements from moving around. Clicks will be suppressed until the loading state is removed.",
-            "type": "text"
-          },
-          "name": "loading",
-          "title": {
-            "value": "Loading",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the disabled attribute to disable a button.",
-            "type": "text"
-          },
-          "name": "disabled",
-          "title": {
-            "value": "Disabled",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "The focus event gives the user feedback that the Button has been focused by the keyboard interaction and that the button component is ready for use.",
-            "type": "text"
-          },
-          "name": "focus",
-          "title": {
-            "value": "Focus",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Insert just a single icon to use the same button style.",
-            "type": "text"
-          },
-          "name": "icon-only",
-          "title": {
-            "value": "Icon-only",
-            "type": "text"
-          }
-        }
       ]
     },
-    "clusters": [
-      "components-by-tag/form",
-      "components-by-tag/navigation"
-    ]
+    "sourceModulePath": "components/button/button.js",
+    "summary": "Buttons represent actions that are available to the user."
   },
   "id": "component:syn-button",
   "kind": "component",

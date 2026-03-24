@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/popup/popup.js",
-    "summary": "Popup is a utility that lets you declaratively anchor \"popup\" containers to another element.",
+    "clusters": [
+      "components-by-tag/structure"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVuePopup",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVuePopup.vue"
+      "angular": {
+        "componentName": "SynPopupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-popup",
+        "sourcePath": "packages/angular/components/popup/popup.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynPopup",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/popup.ts"
-        },
         "jsx": {
           "componentName": "SynPopup",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs",
@@ -31,38 +27,42 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynPopupJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynPopup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/popup.ts"
         }
       },
-      "angular": {
-        "componentName": "SynPopupComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-popup",
-        "sourcePath": "packages/angular/components/popup/popup.component.ts"
+      "vue": {
+        "componentName": "SynVuePopup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVuePopup.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.popup",
-      "storyTags": [
-        "Structure"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Popup is a utility that lets you declaratively anchor “popup” containers to another element.\nThis component’s name is inspired by `<popup>`. It uses Floating UI under the hood to provide a well-tested, lightweight, and fully declarative positioning utility for tooltips, dropdowns, and more.\n\nPopup doesn’t provide any styles — just positioning! The popup’s preferred placement, distance, and skidding (offset) can be configured using attributes. An arrow that points to the anchor can be shown and customized to your liking. Additional positioning options are available and described in more detail below.",
-            "type": "text"
+            "type": "text",
+            "value": "Popup is a utility that lets you declaratively anchor “popup” containers to another element.\nThis component’s name is inspired by `<popup>`. It uses Floating UI under the hood to provide a well-tested, lightweight, and fully declarative positioning utility for tooltips, dropdowns, and more.\n\nPopup doesn’t provide any styles — just positioning! The popup’s preferred placement, distance, and skidding (offset) can be configured using attributes. An arrow that points to the anchor can be shown and customized to your liking. Additional positioning options are available and described in more detail below."
           },
           "name": "default",
           "title": {
-            "value": "Popup",
-            "type": "text"
+            "type": "text",
+            "value": "Popup"
           }
         }
+      ],
+      "storySourcePath": "components.popup",
+      "storyTags": [
+        "Structure"
       ]
     },
-    "clusters": [
-      "components-by-tag/structure"
-    ]
+    "sourceModulePath": "components/popup/popup.js",
+    "summary": "Popup is a utility that lets you declaratively anchor \"popup\" containers to another element."
   },
   "id": "component:syn-popup",
   "kind": "component",

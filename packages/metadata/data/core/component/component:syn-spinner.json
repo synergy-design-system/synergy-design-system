@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/spinner/spinner.js",
-    "summary": "Spinners are used to show the progress of an indeterminate operation.",
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueSpinner",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueSpinner.vue"
+      "angular": {
+        "componentName": "SynSpinnerComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-spinner",
+        "sourcePath": "packages/angular/components/spinner/spinner.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynSpinner",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/spinner.ts"
-        },
         "jsx": {
           "componentName": "SynSpinner",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-spinner--docs",
@@ -26,71 +22,75 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynSpinnerJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynSpinner",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/spinner.ts"
         }
       },
-      "angular": {
-        "componentName": "SynSpinnerComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-spinner",
-        "sourcePath": "packages/angular/components/spinner/spinner.component.ts"
+      "vue": {
+        "componentName": "SynVueSpinner",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSpinner.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.spinner",
-      "storyTags": [
-        "Feedback"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Spinners are used to show the progress of an indeterminate operation.",
-            "type": "text"
+            "type": "text",
+            "value": "Spinners are used to show the progress of an indeterminate operation."
           },
           "name": "default",
           "title": {
-            "value": "Spinner",
-            "type": "text"
+            "type": "text",
+            "value": "Spinner"
           }
         },
         {
           "description": {
-            "value": "Spinners are sized based on the current font size. To change their size, set the font-size property on the spinner itself or on a parent element as shown below.",
-            "type": "text"
+            "type": "text",
+            "value": "Spinners are sized based on the current font size. To change their size, set the font-size property on the spinner itself or on a parent element as shown below."
           },
           "name": "size",
           "title": {
-            "value": "Size",
-            "type": "text"
+            "type": "text",
+            "value": "Size"
           }
         },
         {
           "description": {
-            "value": "The width of the spinner’s track can be changed by setting the --track-width custom property.",
-            "type": "text"
+            "type": "text",
+            "value": "The width of the spinner’s track can be changed by setting the --track-width custom property."
           },
           "name": "track-width",
           "title": {
-            "value": "Track Width",
-            "type": "text"
+            "type": "text",
+            "value": "Track Width"
           }
         },
         {
           "description": {
-            "value": "The spinner’s colors can be changed by setting the --indicator-color and --track-color custom properties.",
-            "type": "text"
+            "type": "text",
+            "value": "The spinner’s colors can be changed by setting the --indicator-color and --track-color custom properties."
           },
           "name": "color",
           "title": {
-            "value": "Color",
-            "type": "text"
+            "type": "text",
+            "value": "Color"
           }
         }
+      ],
+      "storySourcePath": "components.spinner",
+      "storyTags": [
+        "Feedback"
       ]
     },
-    "clusters": [
-      "components-by-tag/feedback"
-    ]
+    "sourceModulePath": "components/spinner/spinner.js",
+    "summary": "Spinners are used to show the progress of an indeterminate operation."
   },
   "id": "component:syn-spinner",
   "kind": "component",

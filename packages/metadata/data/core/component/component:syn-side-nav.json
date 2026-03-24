@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/side-nav/side-nav.js",
-    "summary": "The <syn-side-nav /> element contains secondary navigation and fits below the header.\nIt can be used to group multiple navigation items (<syn-nav-item />s) together.",
+    "clusters": [
+      "components-by-tag/application-shell"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueSideNav",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueSideNav.vue"
+      "angular": {
+        "componentName": "SynSideNavComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-side-nav",
+        "sourcePath": "packages/angular/components/side-nav/side-nav.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynSideNav",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/side-nav.ts"
-        },
         "jsx": {
           "componentName": "SynSideNav",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs",
@@ -43,104 +39,108 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynSideNavJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynSideNav",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/side-nav.ts"
         }
       },
-      "angular": {
-        "componentName": "SynSideNavComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-side-nav",
-        "sourcePath": "packages/angular/components/side-nav/side-nav.component.ts"
+      "vue": {
+        "componentName": "SynVueSideNav",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSideNav.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.side-nav",
-      "storyTags": [
-        "Application Shell"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Side navigation lets the user navigate through the entire content of a product. It supports single or nested navigation levels.",
-            "type": "text"
+            "type": "text",
+            "value": "Side navigation lets the user navigate through the entire content of a product. It supports single or nested navigation levels."
           },
           "name": "default",
           "title": {
-            "value": "Side Navigation",
-            "type": "text"
+            "type": "text",
+            "value": "Side Navigation"
           }
         },
         {
           "description": {
-            "value": "Set the variant attribute to rail to only show a small navigation stripe at the left side using only the prefix-icons of the navigation items. This will open on hover on the rail navigation, therefore the header doesn't have an burger-menu-icon.\nOn touch devices the navigation opens on click and shows an overlay to be closable.\n\nNote: The Rail is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation.",
-            "type": "text"
+            "type": "text",
+            "value": "Set the variant attribute to rail to only show a small navigation stripe at the left side using only the prefix-icons of the navigation items. This will open on hover on the rail navigation, therefore the header doesn't have an burger-menu-icon.\nOn touch devices the navigation opens on click and shows an overlay to be closable.\n\nNote: The Rail is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation."
           },
           "name": "rail",
           "title": {
-            "value": "Rail",
-            "type": "text"
+            "type": "text",
+            "value": "Rail"
           }
         },
         {
           "description": {
-            "value": "Use the sticky variant when you need a persistent, toggleable side navigation that alternates between a compact “rail” (icon‐only) state and a full‐width state. \n\nNote: This pattern is only possible for flat navigation structures (no nesting) where every first‐level item has an icon.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the sticky variant when you need a persistent, toggleable side navigation that alternates between a compact “rail” (icon‐only) state and a full‐width state. \n\nNote: This pattern is only possible for flat navigation structures (no nesting) where every first‐level item has an icon."
           },
           "name": "sticky",
           "title": {
-            "value": "Sticky",
-            "type": "text"
+            "type": "text",
+            "value": "Sticky"
           }
         },
         {
           "description": {
-            "value": "The Side navigation can have an optional bottom navigation \"slot\" to split up the navigation entries.\n\nPlease avoid having to many navigation entries (at the bottom) as it can massively influence the user experience.",
-            "type": "text"
+            "type": "text",
+            "value": "The Side navigation can have an optional bottom navigation \"slot\" to split up the navigation entries.\n\nPlease avoid having to many navigation entries (at the bottom) as it can massively influence the user experience."
           },
           "name": "footer",
           "title": {
-            "value": "Footer",
-            "type": "text"
+            "type": "text",
+            "value": "Footer"
           }
         },
         {
           "description": {
-            "value": "Per default, the side navigation shows an overlay. This should always be the case, if the content of the app is not shrinking. This makes especially sense for applications, where you navigate to a place and stay there for a longer time.",
-            "type": "text"
+            "type": "text",
+            "value": "Per default, the side navigation shows an overlay. This should always be the case, if the content of the app is not shrinking. This makes especially sense for applications, where you navigate to a place and stay there for a longer time."
           },
           "name": "fixed",
           "title": {
-            "value": "Fixed Content",
-            "type": "text"
+            "type": "text",
+            "value": "Fixed Content"
           }
         },
         {
           "description": {
-            "value": "For specific cases it might make sense to have the navigation open while still being able to interact with the app. This especially makes sense for cases where you switch a lot between areas to interact with an app.\n\nYou can decide yourself depending on your app and screen size, when it makes sense to omit the overlay and shrink the content.\n\nThis should never be used in combination with a Rail navigation, as this would lead to too much friction on hover.",
-            "type": "text"
+            "type": "text",
+            "value": "For specific cases it might make sense to have the navigation open while still being able to interact with the app. This especially makes sense for cases where you switch a lot between areas to interact with an app.\n\nYou can decide yourself depending on your app and screen size, when it makes sense to omit the overlay and shrink the content.\n\nThis should never be used in combination with a Rail navigation, as this would lead to too much friction on hover."
           },
           "name": "shrinking",
           "title": {
-            "value": "Shrinking Content",
-            "type": "text"
+            "type": "text",
+            "value": "Shrinking Content"
           }
         },
         {
           "description": {
-            "value": "The different levels of navigation can be organized using the indention. The current status of a page shows the user directly which page they are browsing.",
-            "type": "text"
+            "type": "text",
+            "value": "The different levels of navigation can be organized using the indention. The current status of a page shows the user directly which page they are browsing."
           },
           "name": "indentation",
           "title": {
-            "value": "Indentation",
-            "type": "text"
+            "type": "text",
+            "value": "Indentation"
           }
         }
+      ],
+      "storySourcePath": "components.side-nav",
+      "storyTags": [
+        "Application Shell"
       ]
     },
-    "clusters": [
-      "components-by-tag/application-shell"
-    ]
+    "sourceModulePath": "components/side-nav/side-nav.js",
+    "summary": "The <syn-side-nav /> element contains secondary navigation and fits below the header.\nIt can be used to group multiple navigation items (<syn-nav-item />s) together."
   },
   "id": "component:syn-side-nav",
   "kind": "component",

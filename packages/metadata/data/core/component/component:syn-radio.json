@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/radio/radio.js",
-    "summary": "Radios allow the user to select a single option from a group.",
+    "clusters": [
+      "components-by-tag/form"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueRadio",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueRadio.vue"
+      "angular": {
+        "componentName": "SynRadioComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-radio",
+        "sourcePath": "packages/angular/components/radio/radio.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynRadio",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/radio.ts"
-        },
         "jsx": {
           "componentName": "SynRadio",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs",
@@ -35,104 +31,108 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynRadioJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynRadio",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/radio.ts"
         }
       },
-      "angular": {
-        "componentName": "SynRadioComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-radio",
-        "sourcePath": "packages/angular/components/radio/radio.component.ts"
+      "vue": {
+        "componentName": "SynVueRadio",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueRadio.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.radio",
-      "storyTags": [
-        "Form"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Radios allow the user to select a single option from a group. \\nRadios are designed to be used with radio groups.",
-            "type": "text"
+            "type": "text",
+            "value": "Radios allow the user to select a single option from a group. \\nRadios are designed to be used with radio groups."
           },
           "name": "default",
           "title": {
-            "value": "Radio",
-            "type": "text"
+            "type": "text",
+            "value": "Radio"
           }
         },
         {
           "description": {
-            "value": "The focus event gives the user feedback that the Radio has been focused by the keyboard interaction.",
-            "type": "text"
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Radio has been focused by the keyboard interaction."
           },
           "name": "focus",
           "title": {
-            "value": "Focus",
-            "type": "text"
+            "type": "text",
+            "value": "Focus"
           }
         },
         {
           "description": {
-            "value": "Use the disabled attribute to disable a radio.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the disabled attribute to disable a radio."
           },
           "name": "disabled",
           "title": {
-            "value": "Disabled",
-            "type": "text"
+            "type": "text",
+            "value": "Disabled"
           }
         },
         {
           "description": {
-            "value": "Add the readonly attribute to draw a read-only radio.",
-            "type": "text"
+            "type": "text",
+            "value": "Add the readonly attribute to draw a read-only radio."
           },
           "name": "readonly",
           "title": {
-            "value": "Read-only",
-            "type": "text"
+            "type": "text",
+            "value": "Read-only"
           }
         },
         {
           "description": {
-            "value": "Add the size attribute to the Radio Group to change the radios’ size.",
-            "type": "text"
+            "type": "text",
+            "value": "Add the size attribute to the Radio Group to change the radios’ size."
           },
           "name": "sizes",
           "title": {
-            "value": "Sizes",
-            "type": "text"
+            "type": "text",
+            "value": "Sizes"
           }
         },
         {
           "description": {
-            "value": "The invalid status is used to warn the user that the Radio is invalid. For example, if the radio is mandatory and nothing has been checked.",
-            "type": "text"
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the Radio is invalid. For example, if the radio is mandatory and nothing has been checked."
           },
           "name": "invalid",
           "title": {
-            "value": "Invalid",
-            "type": "text"
+            "type": "text",
+            "value": "Invalid"
           }
         },
         {
           "description": {
-            "value": "To set the initial value and checked state, use the value attribute on the radio element.",
-            "type": "text"
+            "type": "text",
+            "value": "To set the initial value and checked state, use the value attribute on the radio element."
           },
           "name": "initialValue",
           "title": {
-            "value": "Initial Value",
-            "type": "text"
+            "type": "text",
+            "value": "Initial Value"
           }
         }
+      ],
+      "storySourcePath": "components.radio",
+      "storyTags": [
+        "Form"
       ]
     },
-    "clusters": [
-      "components-by-tag/form"
-    ]
+    "sourceModulePath": "components/radio/radio.js",
+    "summary": "Radios allow the user to select a single option from a group."
   },
   "id": "component:syn-radio",
   "kind": "component",

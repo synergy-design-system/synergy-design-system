@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/tag/tag.js",
-    "summary": "Tags are used as labels to organize things or to indicate a selection.",
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueTag",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueTag.vue"
+      "angular": {
+        "componentName": "SynTagComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tag",
+        "sourcePath": "packages/angular/components/tag/tag.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynTag",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/tag.ts"
-        },
         "jsx": {
           "componentName": "SynTag",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs",
@@ -31,62 +27,66 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynTagJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTag",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tag.ts"
         }
       },
-      "angular": {
-        "componentName": "SynTagComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-tag",
-        "sourcePath": "packages/angular/components/tag/tag.component.ts"
+      "vue": {
+        "componentName": "SynVueTag",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTag.vue"
       }
     },
     "override": {
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Tags are used as labels to organize things or to indicate a selection."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Tag"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a tab’s size."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the removable attribute to add a remove button to the tag."
+          },
+          "name": "removable",
+          "title": {
+            "type": "text",
+            "value": "Removable"
+          }
+        }
+      ],
       "storySourcePath": "components.tag",
       "storyTags": [
         "Feedback",
         "Tags",
         "Filter"
-      ],
-      "stories": [
-        {
-          "description": {
-            "value": "Tags are used as labels to organize things or to indicate a selection.",
-            "type": "text"
-          },
-          "name": "default",
-          "title": {
-            "value": "Tag",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the size attribute to change a tab’s size.",
-            "type": "text"
-          },
-          "name": "size",
-          "title": {
-            "value": "Sizes",
-            "type": "text"
-          }
-        },
-        {
-          "description": {
-            "value": "Use the removable attribute to add a remove button to the tag.",
-            "type": "text"
-          },
-          "name": "removable",
-          "title": {
-            "value": "Removable",
-            "type": "text"
-          }
-        }
       ]
     },
-    "clusters": [
-      "components-by-tag/feedback"
-    ]
+    "sourceModulePath": "components/tag/tag.js",
+    "summary": "Tags are used as labels to organize things or to indicate a selection."
   },
   "id": "component:syn-tag",
   "kind": "component",

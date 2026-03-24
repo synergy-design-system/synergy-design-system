@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/progress-bar/progress-bar.js",
-    "summary": "Progress bars are used to show the status of an ongoing operation.",
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueProgressBar",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueProgressBar.vue"
+      "angular": {
+        "componentName": "SynProgressBarComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-progress-bar",
+        "sourcePath": "packages/angular/components/progress-bar/progress-bar.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynProgressBar",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/progress-bar.ts"
-        },
         "jsx": {
           "componentName": "SynProgressBar",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-progress-bar--docs",
@@ -26,82 +22,86 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynProgressBarJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynProgressBar",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/progress-bar.ts"
         }
       },
-      "angular": {
-        "componentName": "SynProgressBarComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-progress-bar",
-        "sourcePath": "packages/angular/components/progress-bar/progress-bar.component.ts"
+      "vue": {
+        "componentName": "SynVueProgressBar",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueProgressBar.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.progress-bar",
-      "storyTags": [
-        "Feedback"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Progress bars are used to show the status of an ongoing operation.",
-            "type": "text"
+            "type": "text",
+            "value": "Progress bars are used to show the status of an ongoing operation."
           },
           "name": "default",
           "title": {
-            "value": "Progress Bar",
-            "type": "text"
+            "type": "text",
+            "value": "Progress Bar"
           }
         },
         {
           "description": {
-            "value": "Use the `label` attribute to label the progress bar and tell assistive devices how to announce it.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the `label` attribute to label the progress bar and tell assistive devices how to announce it."
           },
           "name": "labels",
           "title": {
-            "value": "Labels",
-            "type": "text"
+            "type": "text",
+            "value": "Labels"
           }
         },
         {
           "description": {
-            "value": "Use the --height custom property to set the progress bar’s height.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the --height custom property to set the progress bar’s height."
           },
           "name": "custom-height",
           "title": {
-            "value": "Custom Height",
-            "type": "text"
+            "type": "text",
+            "value": "Custom Height"
           }
         },
         {
           "description": {
-            "value": "Use the default slot to show a value.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the default slot to show a value."
           },
           "name": "showing-values",
           "title": {
-            "value": "Showing Values",
-            "type": "text"
+            "type": "text",
+            "value": "Showing Values"
           }
         },
         {
           "description": {
-            "value": "The indeterminate attribute can be used to inform the user that the operation is pending, but its status cannot currently be determined. In this state, value is ignored and the label, if present, will not be shown.",
-            "type": "text"
+            "type": "text",
+            "value": "The indeterminate attribute can be used to inform the user that the operation is pending, but its status cannot currently be determined. In this state, value is ignored and the label, if present, will not be shown."
           },
           "name": "indeterminate",
           "title": {
-            "value": "Indeterminate",
-            "type": "text"
+            "type": "text",
+            "value": "Indeterminate"
           }
         }
+      ],
+      "storySourcePath": "components.progress-bar",
+      "storyTags": [
+        "Feedback"
       ]
     },
-    "clusters": [
-      "components-by-tag/feedback"
-    ]
+    "sourceModulePath": "components/progress-bar/progress-bar.js",
+    "summary": "Progress bars are used to show the status of an ongoing operation."
   },
   "id": "component:syn-progress-bar",
   "kind": "component",

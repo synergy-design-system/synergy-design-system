@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/select/select.js",
-    "summary": "Selects allow you to choose items from a menu of predefined options.",
+    "clusters": [
+      "components-by-tag/form"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueSelect",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueSelect.vue"
+      "angular": {
+        "componentName": "SynSelectComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-select",
+        "sourcePath": "packages/angular/components/select/select.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynSelect",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/select.ts"
-        },
         "jsx": {
           "componentName": "SynSelect",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs",
@@ -67,192 +63,196 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynSelectJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynSelect",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/select.ts"
         }
       },
-      "angular": {
-        "componentName": "SynSelectComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-select",
-        "sourcePath": "packages/angular/components/select/select.component.ts"
+      "vue": {
+        "componentName": "SynVueSelect",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSelect.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.select",
-      "storyTags": [
-        "Form"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Selects allow you to choose items from a menu of predefined options.",
-            "type": "text"
+            "type": "text",
+            "value": "Selects allow you to choose items from a menu of predefined options."
           },
           "name": "default",
           "title": {
-            "value": "Select",
-            "type": "text"
+            "type": "text",
+            "value": "Select"
           }
         },
         {
           "description": {
-            "value": "Use the label attribute to give the select an accessible label. For labels that contain HTML, use the label slot instead.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the label attribute to give the select an accessible label. For labels that contain HTML, use the label slot instead."
           },
           "name": "labels",
           "title": {
-            "value": "Labels",
-            "type": "text"
+            "type": "text",
+            "value": "Labels"
           }
         },
         {
           "description": {
-            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
-            "type": "text"
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
           },
           "name": "help-text",
           "title": {
-            "value": "Help Text",
-            "type": "text"
+            "type": "text",
+            "value": "Help Text"
           }
         },
         {
           "description": {
-            "value": "Use the clearable attribute to make the control clearable. The clear button only appears when an option is selected.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the clearable attribute to make the control clearable. The clear button only appears when an option is selected."
           },
           "name": "clearable",
           "title": {
-            "value": "Clearable",
-            "type": "text"
+            "type": "text",
+            "value": "Clearable"
           }
         },
         {
           "description": {
-            "value": "Use the disabled attribute to disable a select.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the disabled attribute to disable a select."
           },
           "name": "disabled",
           "title": {
-            "value": "Disabled",
-            "type": "text"
+            "type": "text",
+            "value": "Disabled"
           }
         },
         {
           "description": {
-            "value": "Add the readonly attribute to a select to draw it in a readonly state.",
-            "type": "text"
+            "type": "text",
+            "value": "Add the readonly attribute to a select to draw it in a readonly state."
           },
           "name": "readonly",
           "title": {
-            "value": "Read-only",
-            "type": "text"
+            "type": "text",
+            "value": "Read-only"
           }
         },
         {
           "description": {
-            "value": "To allow multiple options to be selected, use the multiple attribute. It’s a good practice to use clearable when this option is enabled. To set multiple values at once, set value to a space-delimited list of values.",
-            "type": "text"
+            "type": "text",
+            "value": "To allow multiple options to be selected, use the multiple attribute. It’s a good practice to use clearable when this option is enabled. To set multiple values at once, set value to a space-delimited list of values."
           },
           "name": "multiple",
           "title": {
-            "value": "Multiple",
-            "type": "text"
+            "type": "text",
+            "value": "Multiple"
           }
         },
         {
           "description": {
-            "value": "Use the value attribute to set the initial selection.\n\nWhen using multiple, the value attribute uses space-delimited values to select more than one option. Because of this, <syn-option> values cannot contain spaces. If you’re accessing the value property through Javascript, it will be an array.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the value attribute to set the initial selection.\n\nWhen using multiple, the value attribute uses space-delimited values to select more than one option. Because of this, <syn-option> values cannot contain spaces. If you’re accessing the value property through Javascript, it will be an array."
           },
           "name": "initialvalue",
           "title": {
-            "value": "Setting Initial Values",
-            "type": "text"
+            "type": "text",
+            "value": "Setting Initial Values"
           }
         },
         {
           "description": {
-            "value": "Use <syn-optgroup> to group listbox items visually.",
-            "type": "text"
+            "type": "text",
+            "value": "Use <syn-optgroup> to group listbox items visually."
           },
           "name": "group",
           "title": {
-            "value": "Grouping Options",
-            "type": "text"
+            "type": "text",
+            "value": "Grouping Options"
           }
         },
         {
           "description": {
-            "value": "Use the size attribute to change a select’s size. Note that size does not apply to listbox options.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the size attribute to change a select’s size. Note that size does not apply to listbox options."
           },
           "name": "size",
           "title": {
-            "value": "Sizes",
-            "type": "text"
+            "type": "text",
+            "value": "Sizes"
           }
         },
         {
           "description": {
-            "value": "Use the prefix and suffix slots to add text and icons.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the prefix and suffix slots to add text and icons."
           },
           "name": "prefix-suffix",
           "title": {
-            "value": "Prefix and Suffix Icons",
-            "type": "text"
+            "type": "text",
+            "value": "Prefix and Suffix Icons"
           }
         },
         {
           "description": {
-            "value": "When multiple options can be selected, you can provide custom tags by passing a function to the getTag property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getTag() function will be called for each option. The first argument is an <syn-option> element and the second argument is the tag’s index (its position in the tag list).\n\nRemember that custom tags are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector.",
-            "type": "text"
+            "type": "text",
+            "value": "When multiple options can be selected, you can provide custom tags by passing a function to the getTag property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getTag() function will be called for each option. The first argument is an <syn-option> element and the second argument is the tag’s index (its position in the tag list).\n\nRemember that custom tags are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector."
           },
           "name": "gettag",
           "title": {
-            "value": "Custom Tags",
-            "type": "text"
+            "type": "text",
+            "value": "Custom Tags"
           }
         },
         {
           "description": {
-            "value": "Use the placeholder attribute to add a placeholder.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the placeholder attribute to add a placeholder."
           },
           "name": "placeholder",
           "title": {
-            "value": "Placeholder",
-            "type": "text"
+            "type": "text",
+            "value": "Placeholder"
           }
         },
         {
           "description": {
-            "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction or active click from the user..",
-            "type": "text"
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction or active click from the user.."
           },
           "name": "focus",
           "title": {
-            "value": "Focus / Active",
-            "type": "text"
+            "type": "text",
+            "value": "Focus / Active"
           }
         },
         {
           "description": {
-            "value": "The invalid status is used to warn the user that the Select is invalid. For example, if the entry of text is mandatory and nothing has been entered.",
-            "type": "text"
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the Select is invalid. For example, if the entry of text is mandatory and nothing has been entered."
           },
           "name": "invalid",
           "title": {
-            "value": "Invalid",
-            "type": "text"
+            "type": "text",
+            "value": "Invalid"
           }
         }
+      ],
+      "storySourcePath": "components.select",
+      "storyTags": [
+        "Form"
       ]
     },
-    "clusters": [
-      "components-by-tag/form"
-    ]
+    "sourceModulePath": "components/select/select.js",
+    "summary": "Selects allow you to choose items from a menu of predefined options."
   },
   "id": "component:syn-select",
   "kind": "component",

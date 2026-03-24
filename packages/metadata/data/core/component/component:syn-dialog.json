@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/dialog/dialog.js",
-    "summary": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention.",
+    "clusters": [
+      "components-by-tag/structure"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueDialog",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueDialog.vue"
+      "angular": {
+        "componentName": "SynDialogComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-dialog",
+        "sourcePath": "packages/angular/components/dialog/dialog.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynDialog",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/dialog.ts"
-        },
         "jsx": {
           "componentName": "SynDialog",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs",
@@ -51,93 +47,97 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynDialogJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynDialog",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/dialog.ts"
         }
       },
-      "angular": {
-        "componentName": "SynDialogComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-dialog",
-        "sourcePath": "packages/angular/components/dialog/dialog.component.ts"
+      "vue": {
+        "componentName": "SynVueDialog",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDialog.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.dialog",
-      "storyTags": [
-        "Structure"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention.",
-            "type": "text"
+            "type": "text",
+            "value": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention."
           },
           "name": "default",
           "title": {
-            "value": "Dialog",
-            "type": "text"
+            "type": "text",
+            "value": "Dialog"
           }
         },
         {
           "description": {
-            "value": "Use the --width custom property to set the dialog’s width.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the --width custom property to set the dialog’s width."
           },
           "name": "custom-width",
           "title": {
-            "value": "Custom Width",
-            "type": "text"
+            "type": "text",
+            "value": "Custom Width"
           }
         },
         {
           "description": {
-            "value": "By design, a dialog’s height will never exceed that of the viewport. As such, dialogs will not scroll with the page ensuring the header and footer are always accessible to the user.",
-            "type": "text"
+            "type": "text",
+            "value": "By design, a dialog’s height will never exceed that of the viewport. As such, dialogs will not scroll with the page ensuring the header and footer are always accessible to the user."
           },
           "name": "scrolling",
           "title": {
-            "value": "Scrolling",
-            "type": "text"
+            "type": "text",
+            "value": "Scrolling"
           }
         },
         {
           "description": {
-            "value": "The header shows a functional close button by default. You can use the header-actions slot to add additional icon buttons if needed.",
-            "type": "text"
+            "type": "text",
+            "value": "The header shows a functional close button by default. You can use the header-actions slot to add additional icon buttons if needed."
           },
           "name": "header-actions",
           "title": {
-            "value": "Header Actions",
-            "type": "text"
+            "type": "text",
+            "value": "Header Actions"
           }
         },
         {
           "description": {
-            "value": "By default, dialogs will close when the user clicks the close button, clicks the overlay, or presses the Escape key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.\n\nTo keep the dialog open in such cases, you can cancel the syn-request-close event. When canceled, the dialog will remain open and pulse briefly to draw the user’s attention to it.\n\nYou can use event.detail.source to determine what triggered the request to close. This example prevents the dialog from closing when the overlay is clicked, but allows the close button or Escape to dismiss it.",
-            "type": "text"
+            "type": "text",
+            "value": "By default, dialogs will close when the user clicks the close button, clicks the overlay, or presses the Escape key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.\n\nTo keep the dialog open in such cases, you can cancel the syn-request-close event. When canceled, the dialog will remain open and pulse briefly to draw the user’s attention to it.\n\nYou can use event.detail.source to determine what triggered the request to close. This example prevents the dialog from closing when the overlay is clicked, but allows the close button or Escape to dismiss it."
           },
           "name": "prevent-closing",
           "title": {
-            "value": "Preventing the Dialog from Closing",
-            "type": "text"
+            "type": "text",
+            "value": "Preventing the Dialog from Closing"
           }
         },
         {
           "description": {
-            "value": "By default, the dialog’s panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the dialog. If you want a different element to have focus, add the autofocus attribute to it as shown below.",
-            "type": "text"
+            "type": "text",
+            "value": "By default, the dialog’s panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the dialog. If you want a different element to have focus, add the autofocus attribute to it as shown below."
           },
           "name": "focus",
           "title": {
-            "value": "Customizing Initial Focus",
-            "type": "text"
+            "type": "text",
+            "value": "Customizing Initial Focus"
           }
         }
+      ],
+      "storySourcePath": "components.dialog",
+      "storyTags": [
+        "Structure"
       ]
     },
-    "clusters": [
-      "components-by-tag/structure"
-    ]
+    "sourceModulePath": "components/dialog/dialog.js",
+    "summary": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention."
   },
   "id": "component:syn-dialog",
   "kind": "component",

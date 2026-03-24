@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/progress-ring/progress-ring.js",
-    "summary": "Progress rings are used to show the progress of a determinate operation in a circular fashion.",
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueProgressRing",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueProgressRing.vue"
+      "angular": {
+        "componentName": "SynProgressRingComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-progress-ring",
+        "sourcePath": "packages/angular/components/progress-ring/progress-ring.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynProgressRing",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/progress-ring.ts"
-        },
         "jsx": {
           "componentName": "SynProgressRing",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs",
@@ -26,89 +22,93 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynProgressRingJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynProgressRing",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/progress-ring.ts"
         }
       },
-      "angular": {
-        "componentName": "SynProgressRingComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-progress-ring",
-        "sourcePath": "packages/angular/components/progress-ring/progress-ring.component.ts"
+      "vue": {
+        "componentName": "SynVueProgressRing",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueProgressRing.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.progress-ring",
-      "storyTags": [
-        "Feedback"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Progress rings are used to show the progress of a determinate operation in a circular fashion.",
-            "type": "text"
+            "type": "text",
+            "value": "Progress rings are used to show the progress of a determinate operation in a circular fashion."
           },
           "name": "default",
           "title": {
-            "value": "Progress Ring",
-            "type": "text"
+            "type": "text",
+            "value": "Progress Ring"
           }
         },
         {
           "description": {
-            "value": "Use the --size custom property to set the diameter of the progress ring.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the --size custom property to set the diameter of the progress ring."
           },
           "name": "size",
           "title": {
-            "value": "Size",
-            "type": "text"
+            "type": "text",
+            "value": "Size"
           }
         },
         {
           "description": {
-            "value": "Use the --track-width and --indicator-width custom properties to set the width of the progress ring’s track and indicator.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the --track-width and --indicator-width custom properties to set the width of the progress ring’s track and indicator."
           },
           "name": "track-indicator-width",
           "title": {
-            "value": "Track and Indicator Width",
-            "type": "text"
+            "type": "text",
+            "value": "Track and Indicator Width"
           }
         },
         {
           "description": {
-            "value": "To change the color, use the --track-color and --indicator-color custom properties.",
-            "type": "text"
+            "type": "text",
+            "value": "To change the color, use the --track-color and --indicator-color custom properties."
           },
           "name": "color"
         },
         {
           "description": {
-            "value": "Use the label attribute to label the progress ring and tell assistive devices how to announce it.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the label attribute to label the progress ring and tell assistive devices how to announce it."
           },
           "name": "labels",
           "title": {
-            "value": "Labels",
-            "type": "text"
+            "type": "text",
+            "value": "Labels"
           }
         },
         {
           "description": {
-            "value": "Use the default slot to show a label inside the progress ring. To display the value correctly, you should keep to a minimum width of 85 pixels.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the default slot to show a label inside the progress ring. To display the value correctly, you should keep to a minimum width of 85 pixels."
           },
           "name": "show-values",
           "title": {
-            "value": "Showing Values",
-            "type": "text"
+            "type": "text",
+            "value": "Showing Values"
           }
         }
+      ],
+      "storySourcePath": "components.progress-ring",
+      "storyTags": [
+        "Feedback"
       ]
     },
-    "clusters": [
-      "components-by-tag/feedback"
-    ]
+    "sourceModulePath": "components/progress-ring/progress-ring.js",
+    "summary": "Progress rings are used to show the progress of a determinate operation in a circular fashion."
   },
   "id": "component:syn-progress-ring",
   "kind": "component",

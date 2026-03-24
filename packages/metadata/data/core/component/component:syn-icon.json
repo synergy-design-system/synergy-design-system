@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/icon/icon.js",
-    "summary": "Icons are symbols that can be used to represent various options within an application.",
+    "clusters": [
+      "components-by-tag/icons"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueIcon",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueIcon.vue"
+      "angular": {
+        "componentName": "SynIconComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-icon",
+        "sourcePath": "packages/angular/components/icon/icon.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynIcon",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/icon.ts"
-        },
         "jsx": {
           "componentName": "SynIcon",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs",
@@ -35,26 +31,30 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynIconJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynIcon",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/icon.ts"
         }
       },
-      "angular": {
-        "componentName": "SynIconComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-icon",
-        "sourcePath": "packages/angular/components/icon/icon.component.ts"
+      "vue": {
+        "componentName": "SynVueIcon",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueIcon.vue"
       }
     },
     "override": {
+      "stories": [],
       "storySourcePath": "components.icon",
       "storyTags": [
         "Icons"
-      ],
-      "stories": []
+      ]
     },
-    "clusters": [
-      "components-by-tag/icons"
-    ]
+    "sourceModulePath": "components/icon/icon.js",
+    "summary": "Icons are symbols that can be used to represent various options within an application."
   },
   "id": "component:syn-icon",
   "kind": "component",

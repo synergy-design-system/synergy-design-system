@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/textarea/textarea.js",
-    "summary": "Textareas collect data from the user and allow multiple lines of text.",
+    "clusters": [
+      "components-by-tag/form"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueTextarea",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueTextarea.vue"
+      "angular": {
+        "componentName": "SynTextareaComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-textarea",
+        "sourcePath": "packages/angular/components/textarea/textarea.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynTextarea",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/textarea.ts"
-        },
         "jsx": {
           "componentName": "SynTextarea",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs",
@@ -47,159 +43,163 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynTextareaJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTextarea",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/textarea.ts"
         }
       },
-      "angular": {
-        "componentName": "SynTextareaComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-textarea",
-        "sourcePath": "packages/angular/components/textarea/textarea.component.ts"
+      "vue": {
+        "componentName": "SynVueTextarea",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTextarea.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.textarea",
-      "storyTags": [
-        "Form"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Textareas collect data from the user and allow multiple lines of text.",
-            "type": "text"
+            "type": "text",
+            "value": "Textareas collect data from the user and allow multiple lines of text."
           },
           "name": "default",
           "title": {
-            "value": "Textarea",
-            "type": "text"
+            "type": "text",
+            "value": "Textarea"
           }
         },
         {
           "description": {
-            "value": "Use the label attribute to give the textarea an accessible label. For labels that contain HTML, use the label slot instead.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the label attribute to give the textarea an accessible label. For labels that contain HTML, use the label slot instead."
           },
           "name": "labels",
           "title": {
-            "value": "Labels",
-            "type": "text"
+            "type": "text",
+            "value": "Labels"
           }
         },
         {
           "description": {
-            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
-            "type": "text"
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
           },
           "name": "help-text",
           "title": {
-            "value": "Help Text",
-            "type": "text"
+            "type": "text",
+            "value": "Help Text"
           }
         },
         {
           "description": {
-            "value": "Use the rows attribute to change the number of text rows that get shown.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the rows attribute to change the number of text rows that get shown."
           },
           "name": "rows",
           "title": {
-            "value": "Rows",
-            "type": "text"
+            "type": "text",
+            "value": "Rows"
           }
         },
         {
           "description": {
-            "value": "Use the placeholder attribute to add a placeholder.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the placeholder attribute to add a placeholder."
           },
           "name": "placeholder",
           "title": {
-            "value": "Placeholders",
-            "type": "text"
+            "type": "text",
+            "value": "Placeholders"
           }
         },
         {
           "description": {
-            "value": "Add the readonly attribute to draw a read-only textarea.",
-            "type": "text"
+            "type": "text",
+            "value": "Add the readonly attribute to draw a read-only textarea."
           },
           "name": "readonly",
           "title": {
-            "value": "Read-only Textareas",
-            "type": "text"
+            "type": "text",
+            "value": "Read-only Textareas"
           }
         },
         {
           "description": {
-            "value": "Use the disabled attribute to disable a textarea.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the disabled attribute to disable a textarea."
           },
           "name": "disabled",
           "title": {
-            "value": "Disabled",
-            "type": "text"
+            "type": "text",
+            "value": "Disabled"
           }
         },
         {
           "description": {
-            "value": "Use the size attribute to change a textarea’s size.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the size attribute to change a textarea’s size."
           },
           "name": "size",
           "title": {
-            "value": "Sizes",
-            "type": "text"
+            "type": "text",
+            "value": "Sizes"
           }
         },
         {
           "description": {
-            "value": "By default, textareas can be resized vertically by the user. To prevent resizing, set the resize attribute to none.",
-            "type": "text"
+            "type": "text",
+            "value": "By default, textareas can be resized vertically by the user. To prevent resizing, set the resize attribute to none."
           },
           "name": "resize",
           "title": {
-            "value": "Prevent Resizing",
-            "type": "text"
+            "type": "text",
+            "value": "Prevent Resizing"
           }
         },
         {
           "description": {
-            "value": "Textareas will automatically resize to expand to fit their content when resize is set to auto.",
-            "type": "text"
+            "type": "text",
+            "value": "Textareas will automatically resize to expand to fit their content when resize is set to auto."
           },
           "name": "resize-auto",
           "title": {
-            "value": "Expand with Content",
-            "type": "text"
+            "type": "text",
+            "value": "Expand with Content"
           }
         },
         {
           "description": {
-            "value": "The focus event gives the user feedback that the Textarea has been focused by the keyboard interaction and that the Textarea component is ready for use.",
-            "type": "text"
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Textarea has been focused by the keyboard interaction and that the Textarea component is ready for use."
           },
           "name": "focus",
           "title": {
-            "value": "Focus / Active",
-            "type": "text"
+            "type": "text",
+            "value": "Focus / Active"
           }
         },
         {
           "description": {
-            "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
-            "type": "text"
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format."
           },
           "name": "invalid",
           "title": {
-            "value": "Invalid",
-            "type": "text"
+            "type": "text",
+            "value": "Invalid"
           }
         }
+      ],
+      "storySourcePath": "components.textarea",
+      "storyTags": [
+        "Form"
       ]
     },
-    "clusters": [
-      "components-by-tag/form"
-    ]
+    "sourceModulePath": "components/textarea/textarea.js",
+    "summary": "Textareas collect data from the user and allow multiple lines of text."
   },
   "id": "component:syn-textarea",
   "kind": "component",

@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/file/file.js",
-    "summary": "File controls allow selecting an arbitrary number of files for uploading.",
+    "clusters": [
+      "components-by-tag/form"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueFile",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueFile.vue"
+      "angular": {
+        "componentName": "SynFileComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-file",
+        "sourcePath": "packages/angular/components/file/file.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynFile",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/file.ts"
-        },
         "jsx": {
           "componentName": "SynFile",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs",
@@ -46,159 +42,163 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynFileJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynFile",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/file.ts"
         }
       },
-      "angular": {
-        "componentName": "SynFileComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-file",
-        "sourcePath": "packages/angular/components/file/file.component.ts"
+      "vue": {
+        "componentName": "SynVueFile",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueFile.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.file",
-      "storyTags": [
-        "Form"
-      ],
       "stories": [
         {
           "description": {
-            "value": "File control is a component with which a user can select a local file. It shows the value of the selected file.",
-            "type": "text"
+            "type": "text",
+            "value": "File control is a component with which a user can select a local file. It shows the value of the selected file."
           },
           "name": "default",
           "title": {
-            "value": "File",
-            "type": "text"
+            "type": "text",
+            "value": "File"
           }
         },
         {
           "description": {
-            "value": "Use the label attribute to give the file selector an accessible label. For labels that contain HTML, use the label slot instead.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the label attribute to give the file selector an accessible label. For labels that contain HTML, use the label slot instead."
           },
           "name": "label",
           "title": {
-            "value": "Labels",
-            "type": "text"
+            "type": "text",
+            "value": "Labels"
           }
         },
         {
           "description": {
-            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
-            "type": "text"
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
           },
           "name": "help-text",
           "title": {
-            "value": "Help Text",
-            "type": "text"
+            "type": "text",
+            "value": "Help Text"
           }
         },
         {
           "description": {
-            "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/droparea and value text directly, to indicate that multiple files are selected (“file” -> “files”)",
-            "type": "text"
+            "type": "text",
+            "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/droparea and value text directly, to indicate that multiple files are selected (“file” -> “files”)"
           },
           "name": "multiple",
           "title": {
-            "value": "Multiple",
-            "type": "text"
+            "type": "text",
+            "value": "Multiple"
           }
         },
         {
           "description": {
-            "value": "There might be situations, where you don’t want to show the selected value (e. g. when something is automatically uploading).",
-            "type": "text"
+            "type": "text",
+            "value": "There might be situations, where you don’t want to show the selected value (e. g. when something is automatically uploading)."
           },
           "name": "hide-value",
           "title": {
-            "value": "Hide Value",
-            "type": "text"
+            "type": "text",
+            "value": "Hide Value"
           }
         },
         {
           "description": {
-            "value": "Use the disabled attribute to disable a file input.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the disabled attribute to disable a file input."
           },
           "name": "disabled",
           "title": {
-            "value": "Disabled",
-            "type": "text"
+            "type": "text",
+            "value": "Disabled"
           }
         },
         {
           "description": {
-            "value": "Use the readonly attribute to set a file input to a readonly state.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the readonly attribute to set a file input to a readonly state."
           },
           "name": "readonly",
           "title": {
-            "value": "Readonly",
-            "type": "text"
+            "type": "text",
+            "value": "Readonly"
           }
         },
         {
           "description": {
-            "value": "Use the size attribute to change the component's size.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the size attribute to change the component's size."
           },
           "name": "sizes",
           "title": {
-            "value": "Sizes",
-            "type": "text"
+            "type": "text",
+            "value": "Sizes"
           }
         },
         {
           "description": {
-            "value": "Use the droparea attribute to switch to a full-width button with a drop area.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the droparea attribute to switch to a full-width button with a drop area."
           },
           "name": "droparea",
           "title": {
-            "value": "Droparea",
-            "type": "text"
+            "type": "text",
+            "value": "Droparea"
           }
         },
         {
           "description": {
-            "value": "The focus event gives the user feedback that the Dropzone has been focused by the keyboard interaction and that the syn-file component is ready for use.",
-            "type": "text"
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Dropzone has been focused by the keyboard interaction and that the syn-file component is ready for use."
           },
           "name": "focus",
           "title": {
-            "value": "Focus / Active",
-            "type": "text"
+            "type": "text",
+            "value": "Focus / Active"
           }
         },
         {
           "description": {
-            "value": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.",
-            "type": "text"
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format."
           },
           "name": "invalid",
           "title": {
-            "value": "Invalid",
-            "type": "text"
+            "type": "text",
+            "value": "Invalid"
           }
         },
         {
           "description": {
-            "value": "The webkitdirectory setting allows users to select entire directories instead of individual files. When a directory is chosen, all files inside (including those in sub-directories) are selected. Although this feature is not part of the official HTML specification, it is widely supported across major browsers.",
-            "type": "text"
+            "type": "text",
+            "value": "The webkitdirectory setting allows users to select entire directories instead of individual files. When a directory is chosen, all files inside (including those in sub-directories) are selected. Although this feature is not part of the official HTML specification, it is widely supported across major browsers."
           },
           "name": "directory",
           "title": {
-            "value": "Directory",
-            "type": "text"
+            "type": "text",
+            "value": "Directory"
           }
         }
+      ],
+      "storySourcePath": "components.file",
+      "storyTags": [
+        "Form"
       ]
     },
-    "clusters": [
-      "components-by-tag/form"
-    ]
+    "sourceModulePath": "components/file/file.js",
+    "summary": "File controls allow selecting an arbitrary number of files for uploading."
   },
   "id": "component:syn-file",
   "kind": "component",

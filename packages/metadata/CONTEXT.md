@@ -13,7 +13,6 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Validation/contracts use Zod v4.
 - JSON Schema generation uses native Zod v4 support via toJSONSchema().
 - Entity IDs use a namespaced format: `kind:name` (e.g. `component:syn-button`, `token:color-primary`).
-- Layer types: `full` (raw source), `interface` (API/JSDocs), `examples` (usage snippets) — only `full` is implemented so far.
 - Layer types: `full` (raw source), `interface` (CEM-derived API Markdown), `examples` (usage snippets), `code` (minimal code references) — only `full` is implemented so far.
 - Layer content contract:
   - `interface` — Compact, human+AI readable Markdown derived from CEM. Include: name, summary/purpose, props/attributes, events, slots, CSS parts, public methods only. Exclude: private/internal fields, full source code, long prose, class hierarchies. Written to `data/layers/interface/<kind>/<entity-id>.md`.
@@ -297,11 +296,21 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/` is currently not gitignored.
 - Only the public API is exported/published; `src/internal/` is for repo-local tooling and build orchestration.
 
-## Current Limitations
+### Latest Hardening and Config Work (current branch)
+- Clustering config was generated from Storybook tags and expanded with concrete group files under `config/clustering/components-by-tag/`.
+- Component overrides were expanded under `config/overrides/` to improve enrichment coverage.
+- Temporary debug diagnostics were removed from the build + enrichment path to keep CLI output focused and stable.
+- Lint/maintainability refactors were applied in critical paths:
+  - nested ternaries replaced with explicit control flow in layer writing
+  - helper order fixed in component collection to avoid use-before-define issues
+  - `JSON.parse` boundaries tightened to `unknown` before schema parsing
+- JSON output determinism was strengthened by recursively sorting object keys in shared JSON writer utilities.
+- Integration coverage was added for config loading behavior and deterministic JSON serialization ordering.
+
 ## Current Limitations
 - Only the `full` layer type is implemented (raw source files). `interface`, `examples`, and `code` layers are not yet implemented.
-- `interface` layer is the highest-priority missing item — it is the primary token-efficiency driver (~77% reduction target) and a prerequisite for MCP verbosity controls.
-- Scraped docs ingestion (for `examples` layer) is a later concern; Storybook story files are the planned source.
+- Phase 2 execution order is now: `examples` layer generation first, then standalone schema-lint CI validation, then public API helper completion.
+- Storybook example extraction is planned by reusing/adapting the proven MCP Storybook build/scrape architecture while keeping this package MCP-independent.
 - Some metadata values are still fallback/default driven (e.g. `unknown` for missing `since`).
 - Package exports expose only generic store queries. ADR-specified domain helpers not yet implemented: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
 - No CI size budget guards exist yet. These are required before publishing (targets: `interface` ≤ 6 KB, `examples` ≤ 8 KB, `code` ≤ 10 KB).
@@ -354,7 +363,6 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - `data/index.json` — searchable index; count varies with artifact availability (baseline 83 in current workspace state)
 - `data/manifest.json` — build manifest with timestamp and source stats
 
-## Suggested Next Steps
 ## ADR Roadmap & Phase Status
 
 The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strategy](adr.md). Phase status:
@@ -362,7 +370,7 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 | Phase | Description | Status |
 |---|---|---|
 | 1 | Establish metadata package as canonical source | ✅ Architecture complete; MCP migration + npm publish pending |
-| 2 | Introduce layered metadata + verbosity controls | 🔄 Next — `interface` layer first |
+| 2 | Introduce layered metadata + verbosity controls | 🔄 In progress — execution order: `examples` -> schema-lint CI -> public API helpers |
 | 3 | Expand distribution (MCP HTTP, npm publish, llms.txt) | ❌ Not started |
 | 4 | Refine token efficiency and metadata architecture | ❌ Not started |
 | 5 | Cross-platform interoperability (Blockbrain, compatibility matrix) | ❌ Not started |
@@ -370,11 +378,12 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 | 7 | Continuous improvement, new metadata types | ❌ Not started |
 
 ### Phase 2 — Concrete Actions
-1. Implement `interface` layer generator for `component:*` entities. Source: CEM (`custom-elements.json`) + existing `custom.frameworks.*` metadata. Output: `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB target.
-2. Implement `examples` layer for `component:*` entities. Source: Storybook story files in `packages/docs/`. Output: `data/layers/examples/component/<entity-id>.json`.
-3. Implement `code` layer for `component:*` entities. Output: `data/layers/code/component/<entity-id>.json`.
-4. Expose layer-aware domain helpers on the public API: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
-5. Add CI size budget checks: fail PRs where `interface` > 6 KB, `examples` > 8 KB, `code` > 10 KB per entity.
+1. Implement `examples` layer for `component:*` entities by extracting/adapting the existing MCP Storybook build pipeline architecture. Output: `data/layers/examples/component/<entity-id>.json`.
+2. Add a standalone schema-lint validation step suitable for CI and local runs (script/CLI + CI wiring).
+3. Expose ADR-specified layer-aware domain helpers on the public API: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
+4. Implement `interface` layer generator for `component:*` entities. Source: CEM (`custom-elements.json`) + existing `custom.frameworks.*` metadata. Output: `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB target.
+5. Implement `code` layer for `component:*` entities. Output: `data/layers/code/component/<entity-id>.json`.
+6. Add CI size budget checks: fail PRs where `interface` > 6 KB, `examples` > 8 KB, `code` > 10 KB per entity.
 
 ### Phase 3 — Concrete Actions
 1. Migrate MCP server to consume from `@synergy-design-system/metadata`; remove all metadata-building logic from MCP.
@@ -387,14 +396,15 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
 - `syn-checkbox` `interface` layer must be ≈ 5 KB or less (current full MCP response ≈ 22 KB, ~77% reduction target).
 
 ## Suggested Next Steps
-1. **[Phase 2 — highest priority]** Implement `interface` layer for component entities: CEM-derived Markdown, ≤ 6 KB target, written to `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB benchmark.
-2. **[Phase 2]** Implement `examples` layer for component entities from Storybook story files in `packages/docs/`.
-3. **[Phase 2]** Implement `code` layer for component entities (minimal code references only).
-4. **[Phase 2]** Expose layer-aware domain helpers on the public API: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
-5. **[Phase 2]** Add CI size budget guards (fail on `interface` > 6 KB, `examples` > 8 KB, `code` > 10 KB).
-6. Decide whether to add `shortDescription`/`llmHint`/`usageHints` fields to `CoreEntity` schema before first npm publish.
-7. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
-8. **[Phase 3]** Migrate MCP to consume from this package; publish to npm; create `llms.txt`; enable MCP HTTP transport.
+1. **[Phase 2 — current priority]** Implement `examples` layer for component entities by extracting/adapting the MCP Storybook generation flow into metadata package internals.
+2. **[Phase 2]** Add a standalone schema-lint validation command and wire it into CI.
+3. **[Phase 2]** Expose layer-aware public API helpers: `getComponentMetadata(name, layer)`, `listComponents()`, `getTokens()`, `getMigrations()`.
+4. **[Phase 2]** Implement `interface` layer for component entities: CEM-derived Markdown, ≤ 6 KB target, written to `data/layers/interface/component/<entity-id>.md`. Validate against syn-checkbox ≈ 5 KB benchmark.
+5. **[Phase 2]** Implement `code` layer for component entities (minimal code references only).
+6. **[Phase 2]** Add CI size budget guards (fail on `interface` > 6 KB, `examples` > 8 KB, `code` > 10 KB).
+7. Decide whether to add `shortDescription`/`llmHint`/`usageHints` fields to `CoreEntity` schema before first npm publish.
+8. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
+9. **[Phase 3]** Migrate MCP to consume from this package; publish to npm; create `llms.txt`; enable MCP HTTP transport.
 
 ## Resume Notes
 - If build fails on components manifest path, ensure components package has been built so `dist/custom-elements.json` exists.

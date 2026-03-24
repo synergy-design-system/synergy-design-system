@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/breadcrumb-item/breadcrumb-item.js",
-    "summary": "Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.",
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueBreadcrumbItem",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueBreadcrumbItem.vue"
+      "angular": {
+        "componentName": "SynBreadcrumbItemComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-breadcrumb-item",
+        "sourcePath": "packages/angular/components/breadcrumb-item/breadcrumb-item.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynBreadcrumbItem",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/breadcrumb-item.ts"
-        },
         "jsx": {
           "componentName": "SynBreadcrumbItem",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs",
@@ -26,38 +22,42 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynBreadcrumbItemJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynBreadcrumbItem",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/breadcrumb-item.ts"
         }
       },
-      "angular": {
-        "componentName": "SynBreadcrumbItemComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-breadcrumb-item",
-        "sourcePath": "packages/angular/components/breadcrumb-item/breadcrumb-item.component.ts"
+      "vue": {
+        "componentName": "SynVueBreadcrumbItem",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueBreadcrumbItem.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.breadcrumb-item",
-      "storyTags": [
-        "Navigation"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Breadcrumb Items are used inside breadcrumbs to represent different links.",
-            "type": "text"
+            "type": "text",
+            "value": "Breadcrumb Items are used inside breadcrumbs to represent different links."
           },
           "name": "default",
           "title": {
-            "value": "Breadcrumb Item",
-            "type": "text"
+            "type": "text",
+            "value": "Breadcrumb Item"
           }
         }
+      ],
+      "storySourcePath": "components.breadcrumb-item",
+      "storyTags": [
+        "Navigation"
       ]
     },
-    "clusters": [
-      "components-by-tag/navigation"
-    ]
+    "sourceModulePath": "components/breadcrumb-item/breadcrumb-item.js",
+    "summary": "Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links."
   },
   "id": "component:syn-breadcrumb-item",
   "kind": "component",

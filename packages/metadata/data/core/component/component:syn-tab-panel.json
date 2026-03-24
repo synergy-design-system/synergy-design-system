@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/tab-panel/tab-panel.js",
-    "summary": "Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.",
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueTabPanel",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueTabPanel.vue"
+      "angular": {
+        "componentName": "SynTabPanelComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tab-panel",
+        "sourcePath": "packages/angular/components/tab-panel/tab-panel.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynTabPanel",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/tab-panel.ts"
-        },
         "jsx": {
           "componentName": "SynTabPanel",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs",
@@ -26,38 +22,42 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynTabPanelJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTabPanel",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tab-panel.ts"
         }
       },
-      "angular": {
-        "componentName": "SynTabPanelComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-tab-panel",
-        "sourcePath": "packages/angular/components/tab-panel/tab-panel.component.ts"
+      "vue": {
+        "componentName": "SynVueTabPanel",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTabPanel.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.tab-panel",
-      "storyTags": [
-        "Navigation"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Tab panels are used inside tab groups to display tabbed content.",
-            "type": "text"
+            "type": "text",
+            "value": "Tab panels are used inside tab groups to display tabbed content."
           },
           "name": "default",
           "title": {
-            "value": "Tab Panel",
-            "type": "text"
+            "type": "text",
+            "value": "Tab Panel"
           }
         }
+      ],
+      "storySourcePath": "components.tab-panel",
+      "storyTags": [
+        "Navigation"
       ]
     },
-    "clusters": [
-      "components-by-tag/navigation"
-    ]
+    "sourceModulePath": "components/tab-panel/tab-panel.js",
+    "summary": "Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content."
   },
   "id": "component:syn-tab-panel",
   "kind": "component",

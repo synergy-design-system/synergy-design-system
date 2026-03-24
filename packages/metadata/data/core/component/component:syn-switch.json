@@ -1,21 +1,17 @@
 {
   "custom": {
-    "sourceModulePath": "components/switch/switch.js",
-    "summary": "Switches allow the user to toggle an option on or off.",
+    "clusters": [
+      "components-by-tag/form"
+    ],
     "frameworks": {
-      "vue": {
-        "componentName": "SynVueSwitch",
-        "exportPath": "packages/vue/src/index.ts",
-        "packageName": "@synergy-design-system/vue",
-        "sourcePath": "packages/vue/src/components/SynVueSwitch.vue"
+      "angular": {
+        "componentName": "SynSwitchComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-switch",
+        "sourcePath": "packages/angular/components/switch/switch.component.ts"
       },
       "react": {
-        "wrapper": {
-          "componentName": "SynSwitch",
-          "exportPath": "packages/react/src/index.ts",
-          "packageName": "@synergy-design-system/react",
-          "sourcePath": "packages/react/src/components/switch.ts"
-        },
         "jsx": {
           "componentName": "SynSwitch",
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs",
@@ -47,115 +43,119 @@
           "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynSwitchJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynSwitch",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/switch.ts"
         }
       },
-      "angular": {
-        "componentName": "SynSwitchComponent",
-        "exportPath": "packages/angular/index.ts",
-        "packageName": "@synergy-design-system/angular",
-        "selector": "syn-switch",
-        "sourcePath": "packages/angular/components/switch/switch.component.ts"
+      "vue": {
+        "componentName": "SynVueSwitch",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSwitch.vue"
       }
     },
     "override": {
-      "storySourcePath": "components.switch",
-      "storyTags": [
-        "Form"
-      ],
       "stories": [
         {
           "description": {
-            "value": "Switches allow the user to toggle an option on or off.",
-            "type": "text"
+            "type": "text",
+            "value": "Switches allow the user to toggle an option on or off."
           },
           "name": "default",
           "title": {
-            "value": "Switch",
-            "type": "text"
+            "type": "text",
+            "value": "Switch"
           }
         },
         {
           "description": {
-            "value": "Use the checked attribute to activate the switch.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the checked attribute to activate the switch."
           },
           "name": "checked",
           "title": {
-            "value": "Checked",
-            "type": "text"
+            "type": "text",
+            "value": "Checked"
           }
         },
         {
           "description": {
-            "value": "Use the disabled attribute to disable the switch.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the disabled attribute to disable the switch."
           },
           "name": "disabled",
           "title": {
-            "value": "Disabled",
-            "type": "text"
+            "type": "text",
+            "value": "Disabled"
           }
         },
         {
           "description": {
-            "value": "Add the readonly attribute to draw a read-only switch.",
-            "type": "text"
+            "type": "text",
+            "value": "Add the readonly attribute to draw a read-only switch."
           },
           "name": "readonly",
           "title": {
-            "value": "Read-only",
-            "type": "text"
+            "type": "text",
+            "value": "Read-only"
           }
         },
         {
           "description": {
-            "value": "Use the size attribute to change a switch’s size.",
-            "type": "text"
+            "type": "text",
+            "value": "Use the size attribute to change a switch’s size."
           },
           "name": "sizes",
           "title": {
-            "value": "Sizes",
-            "type": "text"
+            "type": "text",
+            "value": "Sizes"
           }
         },
         {
           "description": {
-            "value": "The focus event gives the user feedback that the Switch has been focused by the keyboard interaction.",
-            "type": "text"
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Switch has been focused by the keyboard interaction."
           },
           "name": "focus",
           "title": {
-            "value": "Focus",
-            "type": "text"
+            "type": "text",
+            "value": "Focus"
           }
         },
         {
           "description": {
-            "value": "The invalid status is used to warn the user that the Switch is invalid.",
-            "type": "text"
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the Switch is invalid."
           },
           "name": "invalid",
           "title": {
-            "value": "Invalid",
-            "type": "text"
+            "type": "text",
+            "value": "Invalid"
           }
         },
         {
           "description": {
-            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
-            "type": "text"
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
           },
           "name": "help-text",
           "title": {
-            "value": "Help Text",
-            "type": "text"
+            "type": "text",
+            "value": "Help Text"
           }
         }
+      ],
+      "storySourcePath": "components.switch",
+      "storyTags": [
+        "Form"
       ]
     },
-    "clusters": [
-      "components-by-tag/form"
-    ]
+    "sourceModulePath": "components/switch/switch.js",
+    "summary": "Switches allow the user to toggle an option on or off."
   },
   "id": "component:syn-switch",
   "kind": "component",

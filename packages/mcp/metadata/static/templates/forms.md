@@ -367,3 +367,192 @@
   </form>
 </div>
 ```
+
+---
+
+## Multiple Files Upload Form
+
+```html
+<div class="synergy-upload-form-demo">
+  <h1>Multiple files upload</h1>
+  <form
+    enctype="multipart/form-data"
+    method="post"
+    id="upload-multiple-form-docs"
+  >
+    <syn-file
+      droparea=""
+      name="files"
+      multiple=""
+      label="Select Files"
+      help-text="Max file size is 500kb. Supported file types are .jgp, .png and .pdf"
+      size="medium"
+      form=""
+    ></syn-file>
+
+    <!-- File list: hidden until files are selected -->
+    <ul class="uploaded-files">
+      <li class="entry-uploading">
+        <em>image.png</em
+        ><span class="uploaded-files--status"><syn-spinner></syn-spinner></span
+        ><syn-divider
+          role="separator"
+          aria-orientation="horizontal"
+        ></syn-divider>
+      </li>
+      <li class="entry-success">
+        <em>file-name</em
+        ><span class="uploaded-files--status"
+          ><syn-icon-button
+            library="system"
+            size="medium"
+            name="status-success"
+            label="Upload successful"
+            tabindex="-1"
+            color="currentColor"
+          ></syn-icon-button></span
+        ><syn-divider
+          role="separator"
+          aria-orientation="horizontal"
+        ></syn-divider>
+      </li>
+      <li class="entry-queued">
+        <em>file-name</em
+        ><span class="uploaded-files--status"
+          ><syn-icon-button
+            library="system"
+            size="medium"
+            name="x-lg"
+            label="Cancel upload"
+            color="currentColor"
+          ></syn-icon-button></span
+        ><syn-divider
+          role="separator"
+          aria-orientation="horizontal"
+        ></syn-divider>
+      </li>
+      <li class="entry-queued">
+        <em
+          >file-name-large<span class="uploaded-files--help-text"
+            >File exceeds size limit.</span
+          ></em
+        ><span class="uploaded-files--status"
+          ><syn-icon-button
+            library="system"
+            size="medium"
+            name="x-lg"
+            label="Cancel upload"
+            color="currentColor"
+          ></syn-icon-button></span
+        ><syn-divider
+          role="separator"
+          aria-orientation="horizontal"
+        ></syn-divider>
+      </li>
+    </ul>
+
+    <div class="submit-actions">
+      <syn-button type="submit" variant="filled" title="" size="medium"
+        >Upload</syn-button
+      >
+    </div>
+  </form>
+</div>
+
+<style>
+  .synergy-upload-form-demo {
+    background: var(--syn-color-neutral-0);
+    margin: 0 auto;
+    padding: var(--syn-spacing-x-large);
+    max-width: 750px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--syn-spacing-medium);
+    }
+  }
+
+  h1 {
+    font-size: var(--syn-font-size-3x-large);
+    font-weight: var(--syn-font-weight-bold);
+    margin: 0 0 var(--syn-spacing-medium) 0;
+  }
+
+  .uploaded-files {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+
+    li {
+      --indicator-color: var(--syn-input-icon-icon-clearable-color);
+
+      align-items: center;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      padding: var(--syn-spacing-small) 0;
+      font: var(--syn-body-medium-regular);
+      gap: var(--syn-spacing-small);
+      min-height: 50px;
+      position: relative;
+
+      &.entry-success {
+        --indicator-color: var(--syn-namur-success-color);
+
+        pointer-events: none;
+      }
+
+      em {
+        font: var(--syn-body-medium-regular);
+        font-style: normal;
+        flex: 1;
+      }
+
+      .uploaded-files--status {
+        color: var(--indicator-color);
+        text-align: end;
+        width: var(--syn-spacing-large);
+        font-size: var(--syn-font-size-large);
+        position: absolute;
+        right: 0;
+        top: var(--syn-spacing-small);
+
+        syn-icon-button {
+          &::part(base) {
+            font-size: var(--syn-spacing-large);
+            padding: 0;
+          }
+        }
+      }
+
+      .uploaded-files--help-text {
+        color: var(--syn-input-border-color-focus-error);
+        display: block;
+        font: var(--syn-body-small-regular);
+        margin: var(--syn-spacing-x-small) 0;
+      }
+
+      /* Spinner surface is slightly larger as buttons have some padding applied */
+      .uploaded-files--status:has(syn-spinner) {
+        right: 2px;
+      }
+
+      syn-divider {
+        width: 100%;
+        margin: 0;
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
+
+  .submit-actions {
+    display: flex;
+    justify-content: right;
+    margin-top: var(--syn-spacing-2x-large);
+  }
+</style>
+```

@@ -8,7 +8,6 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './option.styles.js';
-import customStyles from './option.custom.styles.js';
 import { delimiterToWhiteSpace } from './utility.js';
 import type { CSSResultGroup } from 'lit';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
@@ -33,7 +32,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynOption')
 export default class SynOption extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'syn-icon': SynIcon };
 
   // @ts-expect-error - Controller is currently unused

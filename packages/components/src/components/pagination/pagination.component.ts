@@ -38,6 +38,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  *
  * @csspart base - The component's base wrapper.
  * @csspart divider - The divider element separating the page navigation and page size selector.
+ * @csspart page-size-select-wrapper - The wrapper element containing the page size select and page item summary.
  * @csspart page-size-select - The page size select element.
  * @csspart page-item-summary - The text element displaying the current page item range and total items.
  * @csspart page-input-section - The section containing the page number input and total pages display.
@@ -241,32 +242,35 @@ export default class SynPagination extends SynergyElement {
       ${this.divider ? html`<syn-divider part="divider"></syn-divider>` : nothing}
       <div class="pagination" part="base" ${ref(this.baseRef)}>
         ${!isCompact ? html`
-          <syn-select
-            class="pagination__page-size-select"
-            ?disabled=${isDisabled}
-            label=${this.localize.term('paginationItemsPerPage')}
-            part="page-size-select"
-            value=${selectedPageSizeOption}
-            size=${this.size}
-            @syn-change=${this.pageSizeChanged}
-          >
-            ${this.pageSizeOptions.map(option => html`
-              <syn-option value="${option}">
-                ${option}
-              </syn-option>
-            `)}
-          </syn-select>
-          <!-- /.pagination__page-size-select -->
+          <div class="pagination__page-size-select-wrapper" part="page-size-select-wrapper">
+            <syn-select
+              class="pagination__page-size-select"
+              ?disabled=${isDisabled}
+              label=${this.localize.term('paginationItemsPerPage')}
+              part="page-size-select"
+              value=${selectedPageSizeOption}
+              size=${this.size}
+              @syn-change=${this.pageSizeChanged}
+            >
+              ${this.pageSizeOptions.map(option => html`
+                <syn-option value="${option}">
+                  ${option}
+                </syn-option>
+              `)}
+            </syn-select>
+            <!-- /.pagination__page-size-select -->
 
-          <span part="page-item-summary">
-            ${this.localize.term(
-              'paginationItemSummary',
-              pageItemIndices.startIndex,
-              pageItemIndices.endIndex,
-              this.totalItems,
-            )}
-          </span>
-          <!-- /.pagination__page-item-summary -->
+            <span part="page-item-summary">
+              ${this.localize.term(
+                'paginationItemSummary',
+                pageItemIndices.startIndex,
+                pageItemIndices.endIndex,
+                this.totalItems,
+              )}
+            </span>
+            <!-- /.pagination__page-item-summary -->
+          </div>
+          <!-- /.pagination__page-size-select-wrapper -->
         `: nothing}
 
         <div class="pagination__navigation" part="navigation">

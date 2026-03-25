@@ -14,8 +14,9 @@ export default css`
 
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
     font: var(--base-font);
-    gap: var(--base-gap);
+    gap: var(--base-gap) var(--syn-spacing-large);
   }
 
   /* Sizes */
@@ -35,6 +36,12 @@ export default css`
   }
 
   /* Select */
+  .pagination__page-size-select-wrapper {
+    align-items: center;
+    display: flex;
+    gap: var(--base-gap);
+  }
+
   .pagination__page-size-select::part(form-control) {
     align-items: center;
     display: flex;
@@ -47,7 +54,7 @@ export default css`
   }
 
   .pagination__page-size-select::part(display-input) {
-    max-width: calc((var(--pagination-page-size-option-char-count) * 1ch) + 1ch);
+    width: calc((var(--pagination-page-size-option-char-count) * 1ch) + 1ch);
   }
 
   /* Navigation */
@@ -55,13 +62,15 @@ export default css`
     align-items: center;
     display: flex;
     flex: 1;
+    flex-wrap: nowrap;
     gap: var(--navigation-gap);
     justify-content: end;
-    margin-inline-start: var(--syn-spacing-large);
   }
 
-  .pagination__navigation section > * {
-    display: inline-flex;
+  .pagination__navigation > section {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
   }
 
   .pagination__page-input {
@@ -69,8 +78,8 @@ export default css`
   }
 
   .pagination__page-input::part(input) {
-    max-width: calc((var(--pagination-total-pages-char-count) * 1ch) + 3ch);
     text-align: center;
+    width: calc((var(--pagination-total-pages-char-count) * 1ch) + 3ch);
   }
 
   /**
@@ -93,6 +102,18 @@ export default css`
   /* Compact Version */
   :host([variant="compact"]) .pagination__navigation {
     justify-content: center;
-    margin-inline-start: 0;
+  }
+
+  /* Adjustments for really small container widths */
+  @supports (container-type: inline-size) {
+    :host {
+      container-type: inline-size;
+    }
+
+    @container (max-width: 400px) {
+      .pagination__navigation {
+        justify-content: center;
+      }
+    }
   }
 `;

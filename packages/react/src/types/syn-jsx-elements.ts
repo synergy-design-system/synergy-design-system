@@ -929,6 +929,7 @@ export type SynCustomElement<
  *
  * @csspart base - The component's base wrapper.
  * @csspart divider - The divider element separating the page navigation and page size selector.
+ * @csspart page-size-select-wrapper - The wrapper element containing the page size select and page item summary.
  * @csspart page-size-select - The page size select element.
  * @csspart page-item-summary - The text element displaying the current page item range and total items.
  * @csspart page-input-section - The section containing the page number input and total pages display.
@@ -2269,6 +2270,7 @@ declare module 'react' {
        *
        * @csspart base - The component's base wrapper.
        * @csspart divider - The divider element separating the page navigation and page size selector.
+       * @csspart page-size-select-wrapper - The wrapper element containing the page size select and page item summary.
        * @csspart page-size-select - The page size select element.
        * @csspart page-item-summary - The text element displaying the current page item range and total items.
        * @csspart page-input-section - The section containing the page number input and total pages display.

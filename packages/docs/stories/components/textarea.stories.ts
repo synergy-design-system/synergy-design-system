@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/textarea/textarea.js';
 import '../../../components/src/components/button/button.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { userEvent } from 'storybook/test';
+import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
@@ -163,6 +163,7 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
+  decorators: [FormSubmitDecorator],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -186,26 +187,14 @@ export const Invalid: Story = {
         // userEvent.click works on native elements only
         await userEvent.click(button);
         button.click();
+        (document.activeElement as HTMLElement)?.blur();
       }
     } catch (error) {
       console.error('Error in play function:', error);
     }
   },
   render: () => html`
-    <form class="custom-validity">
-      <syn-textarea placeholder="Type something" help-text="This textarea is required." required></syn-textarea>
-      <syn-button type="submit" variant="filled">Submit</syn-button>
-    </form>
-    <style>
-    .custom-validity {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    syn-button {
-      align-self: flex-start;
-    }
-    </style>
+    <syn-textarea placeholder="Type something" help-text="This textarea is required." required></syn-textarea>
   `,
 };
 

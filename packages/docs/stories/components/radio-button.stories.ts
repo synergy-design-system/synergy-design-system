@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { userEvent } from 'storybook/test';
+import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/radio-group/radio-group.js';
 import '../../../components/src/components/radio-button/radio-button.js';
+import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -130,6 +132,7 @@ export const Readonly: Story = {
 };
 
 export const Invalid: Story = {
+  decorators: [FormSubmitDecorator],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -159,24 +162,11 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-    <form class="custom-validity">
-      <syn-radio-group label="Select an option" name="a" help-text="This is required" required>
-        <syn-radio-button value="1">Option 1</syn-radio-button>
-        <syn-radio-button value="2">Option 2</syn-radio-button>
-        <syn-radio-button value="3">Option 3</syn-radio-button>
-      </syn-radio-group>
-      <syn-button type="submit" variant="filled">Submit</syn-button>
-    </form>
-    <style>
-      .custom-validity {
-        display: flex;
-        flex-direction: column;
-        gap: var(--syn-spacing-large);
-      }
-      syn-button {
-        align-self: flex-start;
-      }
-    </style>
+    <syn-radio-group label="Select an option" name="a" help-text="This is required" required>
+      <syn-radio-button value="1">Option 1</syn-radio-button>
+      <syn-radio-button value="2">Option 2</syn-radio-button>
+      <syn-radio-button value="3">Option 3</syn-radio-button>
+    </syn-radio-group>
   `,
 };
 

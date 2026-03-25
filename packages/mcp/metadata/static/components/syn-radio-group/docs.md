@@ -379,7 +379,13 @@ The size of Radios and Radio Buttons will be determined by the Radio Group’s s
 The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio is mandatory and nothing has been checked.
 
 ```html
-<form class="custom-validity">
+<form
+  onsubmit="
+    event.preventDefault();
+    event.stopPropagation();
+  "
+  id="components-syn-radio-group--invalid"
+>
   <syn-radio-group
     label="Select an option"
     name="a"
@@ -417,12 +423,13 @@ The invalid status is used to warn the user that the Radio Group is invalid. For
       >Option 3</syn-radio
     >
   </syn-radio-group>
+
   <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>
 <style>
-  .custom-validity {
+  #components-syn-radio-group--invalid {
     display: flex;
     flex-direction: column;
     gap: var(--syn-spacing-large);

@@ -139,7 +139,13 @@ Add the read-only attribute to render a readonly radio button. Please note that 
 The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio-button is mandatory and nothing has been checked.
 
 ```html
-<form class="custom-validity">
+<form
+  onsubmit="
+    event.preventDefault();
+    event.stopPropagation();
+  "
+  id="components-syn-radio-button--invalid"
+>
   <syn-radio-group
     label="Select an option"
     name="a"
@@ -159,10 +165,13 @@ The invalid status is used to warn the user that the Radio Group is invalid. For
       >Option 3</syn-radio-button
     >
   </syn-radio-group>
-  <syn-button type="submit" variant="filled">Submit</syn-button>
+
+  <syn-button type="submit" variant="filled" title="" size="medium"
+    >Submit</syn-button
+  >
 </form>
 <style>
-  .custom-validity {
+  #components-syn-radio-button--invalid {
     display: flex;
     flex-direction: column;
     gap: var(--syn-spacing-large);

@@ -65,7 +65,13 @@ Use the disabled attribute to disable a range.
 The invalid status is used to warn the user that the input is invalid. As range validation is not supported by the browser, you will need to implement your own validation logic.
 
 ```html
-<form class="custom-validity">
+<form
+  onsubmit="
+    event.preventDefault();
+    event.stopPropagation();
+  "
+  id="components-syn-range--invalid"
+>
   <syn-range
     help-text="This is an error text"
     id="range-invalid"
@@ -74,18 +80,17 @@ The invalid status is used to warn the user that the input is invalid. As range 
     value="50"
     size="medium"
     form=""
-  >
-  </syn-range>
-  <syn-button type="submit" title="" variant="outline" size="medium"
+  ></syn-range>
+
+  <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>
-
 <style>
-  .custom-validity {
+  #components-syn-range--invalid {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--syn-spacing-large);
   }
   syn-button {
     align-self: flex-start;

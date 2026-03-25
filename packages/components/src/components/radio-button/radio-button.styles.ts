@@ -27,6 +27,14 @@ export default css`
   }
 
   /**
+   * Icon only buttons
+   */
+  .button--icon-only .button__label {
+    border-radius: var(--syn-border-radius-medium);
+    padding-inline: var(--syn-spacing-2x-small);
+  }
+
+  /**
    * Override the default unchecked button
    */
   .button--text {

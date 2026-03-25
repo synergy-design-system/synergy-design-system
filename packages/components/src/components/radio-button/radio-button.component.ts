@@ -1,9 +1,8 @@
-import type { CSSResultGroup } from 'lit';
-import { html } from 'lit/static-html.js';
+import { type CSSResultGroup, html } from 'lit';
 import { property, query, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { HasSlotController } from '../../internal/slot.js';
+import { HasSlotController, getTextContent } from '../../internal/slot.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
@@ -39,7 +38,11 @@ export default class SynRadioButton extends SynergyElement {
 
   @query('.button') input: HTMLInputElement;
 
+  @query('slot:not([name])') defaultSlot: HTMLSlotElement;
+
   @state() protected hasFocus = false;
+
+  @state() private iconOnly = false;
 
   /**
    * @internal The radio button's checked state. This is exposed as an "internal" attribute so we can reflect it, making
@@ -91,6 +94,14 @@ export default class SynRadioButton extends SynergyElement {
     this.emit('syn-focus');
   }
 
+  private handleSlotChange() {
+    const textContent = getTextContent(this.defaultSlot).trim();
+    const assignedElements = this.defaultSlot.assignedElements({ flatten: true });
+    const iconOnlyElement = assignedElements.length === 1 && assignedElements[0].tagName.toLowerCase() === 'syn-icon';
+
+    this.iconOnly = iconOnlyElement && textContent === '';
+  }
+
   @watch(['disabled', 'readonly'], { waitUntilFirstUpdate: true })
   handleDisabledChange() {
     this.setAttribute('aria-disabled', this.isDisabled() ? 'true' : 'false');
@@ -124,6 +135,7 @@ export default class SynRadioButton extends SynergyElement {
             'button--has-label': this.hasSlotController.test('[default]'),
             'button--has-prefix': this.hasSlotController.test('prefix'),
             'button--has-suffix': this.hasSlotController.test('suffix'),
+            'button--icon-only': this.iconOnly,
             'button--large': this.size === 'large',
             'button--medium': this.size === 'medium',
             'button--primary': true,
@@ -140,7 +152,7 @@ export default class SynRadioButton extends SynergyElement {
           @click=${this.handleClick}
         >
           <slot name="prefix" part="prefix" class="button__prefix"></slot>
-          <slot part="label" class="button__label"></slot>
+          <slot part="label" class="button__label" @slotchange=${this.handleSlotChange}></slot>
           <slot name="suffix" part="suffix" class="button__suffix"></slot>
         </button>
       </div>

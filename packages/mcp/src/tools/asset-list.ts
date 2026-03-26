@@ -1,6 +1,8 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { listAssets } from '@synergy-design-system/metadata';
 import {
   getStructuredMetaData,
+  toContentArray,
 } from '../utilities/index.js';
 
 /**
@@ -11,38 +13,42 @@ export const assetListTool = (server: McpServer) => {
   server.registerTool(
     'asset-list',
     {
+      annotations: {
+        destructiveHint: true,
+        idempotentHint: true,
+        readOnlyHint: true,
+      },
       description: 'Get the available iconsets in the Synergy Design System.',
       title: 'Available iconsets',
     },
     async () => {
-      const aiRules = await getStructuredMetaData('../../metadata/static/assets');
-      return {
-        content: [
-          {
-            text: 'Available iconsets in the Synergy Design System:',
+      try {
+        // Get the data from metadata files.
+        const [aiRules] = await getStructuredMetaData('../../metadata/static/assets');
+        const allAssets = await listAssets();
+        const assets = allAssets
+          .data.map(asset => ({
+            iconCount: asset?.custom?.iconCount ?? undefined,
+            id: asset.id,
+            name: asset.name,
+            since: asset.since,
+            theme: (asset?.custom?.theme as string) ?? 'default',
+          }))
+          .toSorted((a, b) => a.name.localeCompare(b.name));
+        const groupedAssets = Object.groupBy(assets, asset => asset.theme);
+
+        return toContentArray([
+          aiRules ? aiRules?.content : undefined,
+          groupedAssets,
+        ]);
+      } catch (error) {
+        return {
+          content: [{
+            text: `Error fetching asset list: ${error instanceof Error ? error.message : String(error)}`,
             type: 'text',
-          },
-          {
-            text: JSON.stringify([
-              {
-                text: JSON.stringify(aiRules, null, 2),
-                type: 'text',
-              },
-              {
-                description: 'The original set of icons from the Synergy Design System. Use this for projects using Synergy Major Version 2.0.',
-                iconset: 'sick2018Icons',
-                title: 'Synergy 2018 Icons',
-              },
-              {
-                description: 'New icon set for the brand 2025 refresh. Use this for projects using Synergy Major Version 3.0.',
-                iconset: 'sick2025Icons',
-                title: 'Synergy 2025 Icons',
-              },
-            ], null, 2),
-            type: 'text',
-          },
-        ],
-      };
+          }],
+        };
+      }
     },
   );
 };

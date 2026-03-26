@@ -19,6 +19,33 @@ export type MetadataFile = {
 
 const defaultFilter: Filter = () => true;
 
+export type ToolResponse = {
+  content: {
+    text: string;
+    type: 'text';
+  }[]
+};
+
+/**
+ * Creates a content array from an array of unknown data.
+ * This is useful for converting raw data into a format that can be returned by MCP tools.
+ * @param data The original data to convert into a content array. Each entry will be converted to a string if it is not already a string.
+ * @returns Final content array
+ */
+export const toContentArray = (data: unknown[]): ToolResponse => {
+  // First, we want to make sure that all entries in the array are strings, as the content array expects text content.
+  const content = data
+    .filter(Boolean)
+    .map(entry => ({
+      text: typeof entry === 'string' ? entry : JSON.stringify(entry),
+      type: 'text' as const,
+    }));
+
+  return {
+    content,
+  };
+};
+
 /**
  * Get structured metadata for a specific metadata folder.
  * Will NOT crawl recursively, but will return all files in the metadata directory.

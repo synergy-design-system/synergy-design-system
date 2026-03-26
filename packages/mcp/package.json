@@ -9,6 +9,7 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",
     "@synergy-design-system/assets": "workspace:*",
+    "@synergy-design-system/metadata": "workspace:*",
     "globby": "^16.1.1",
     "zod": "^4.3.6"
   },
@@ -67,6 +68,7 @@
     "directory": "packages/mcp"
   },
   "scripts": {
+    "debug": "npx @modelcontextprotocol/inspector",
     "build": "pnpm run build:ts && pnpm run build:metadata && pnpm build:hash",
     "build:all": "pnpm run build && pnpm run build:storybook",
     "build:ts": "pnpm rimraf dist && tsc",

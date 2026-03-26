@@ -1,9 +1,13 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import {
+  type IconSearchResult,
+  searchIcons,
+} from '@synergy-design-system/metadata';
 import * as availableIconsets from '@synergy-design-system/assets';
 import {
-  getAssetsMetaData,
   getStructuredMetaData,
+  toContentArray,
 } from '../utilities/index.js';
 
 const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[]>> = {
@@ -26,8 +30,6 @@ const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[
   ],
 };
 
-const DEFAULT_LIMIT = 5;
-
 /**
  * Simple tool to list all available assets in the Synergy Design System.
  * This tool fetches the asset data from the Synergy package and formats it for display.
@@ -38,22 +40,27 @@ export const assetInfoTool = (server: McpServer) => {
   server.registerTool(
     'asset-info',
     {
+      annotations: {
+        destructiveHint: true,
+        idempotentHint: true,
+        readOnlyHint: true,
+      },
       description: 'Get information about available icons in the Synergy Design System. Will return the full list of icons in a set or just a subset',
       inputSchema: {
         filter: z
           .string()
           .optional()
-          .describe('A filter to apply to the icon names. If provided, only icons matching this filter will be returned. Supports multiple filters separated by "|" (e.g., "home|search|menu" to find icons containing any of these terms).'),
+          .describe('A filter to apply to the icon names. If provided, only icons matching this filter will be returned. Supports multiple filters separated by "," (e.g., "home,search,menu" to find icons containing any of these terms).'),
         iconset: z
           .enum([
-            'current', // Special key, maps to 2018 currently, should map to 2025 in the next major version
-            'default', // Alias for current
             'legacy', // Fallback to 2018
             'v2', // Fallback to 2018
             'synergy2018', // Fallback name of the set for 2018
             'brand2018', // Alternative name of the set for 2018
             'sick2018', // Official name for 2018 (Synergy V2)
 
+            'current', // Special key, maps to 2025.
+            'default', // Alias for current
             'brand2025', // Alternative name of the set for 2025
             'sick2025', // Official name for 2025 (Synergy V3)
             'synergy2025', // Alias for sick2025
@@ -66,9 +73,8 @@ export const assetInfoTool = (server: McpServer) => {
           .describe('The name of the icon set to retrieve icons from.'),
         limit: z
           .number()
-          .default(DEFAULT_LIMIT)
           .optional()
-          .describe(`The maximum number of icons to return. Defaults to ${DEFAULT_LIMIT}. When using multiple filters (pipe-separated), this limit applies per filter term.`),
+          .describe('The maximum number of icons to return. Defaults to unlimited. When using multiple filters (comma-separated), this limit applies per filter term.'),
       },
       title: 'Available Icons',
     },
@@ -76,7 +82,6 @@ export const assetInfoTool = (server: McpServer) => {
       filter,
       iconset,
       limit,
-    // eslint-disable-next-line complexity
     }) => {
       // Get the iconset that should be used by key/value of iconsetListAliases
       const setToUse: keyof typeof availableIconsets = iconset
@@ -85,84 +90,73 @@ export const assetInfoTool = (server: McpServer) => {
           .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'sick2025Icons'
         : 'sick2025Icons';
 
-      // eslint-disable-next-line no-constant-binary-expression, valid-typeof
-      const foundIconSet = typeof availableIconsets[setToUse] !== undefined
-        ? availableIconsets[setToUse]
-        : availableIconsets.sick2018Icons;
+      let newAvailableIcons: IconSearchResult[] = [];
 
-      // Filter the icons if a filter is provided
-      // Support pipe-separated filters (e.g., "icon1|icon2|icon3") for multiple icon matching
-      let availableIcons: string[];
+      // Create the tags filter
+      const tags = filter ? filter.toLowerCase().split(',').map(term => term.trim()) : [];
 
-      if (!filter) {
-        availableIcons = Object.keys(foundIconSet);
+      const iconSearchOptions = {
+        limit,
+      };
+
+      if (setToUse === 'sick2025Icons') {
+        const iconsFor2025Filled = await searchIcons(
+          {
+            assetId: 'sick2025-icons-filled',
+            tags,
+          },
+          iconSearchOptions,
+        );
+        const iconsFor2025Outlined = await searchIcons(
+          {
+            assetId: 'sick2025-icons-outline',
+            tags,
+          },
+          iconSearchOptions,
+        );
+        newAvailableIcons = [
+          ...iconsFor2025Filled.data,
+          ...iconsFor2025Outlined.data,
+        ];
       } else {
-        const lowerFilter = filter.toLowerCase();
-
-        // Check if filter contains pipe separator for multiple filters
-        if (lowerFilter.includes('|')) {
-          const filterTerms = lowerFilter.split('|').map(term => term.trim());
-          const iconsPerTerm: string[] = [];
-
-          // For each filter term, find matching icons and apply limit per term
-          filterTerms.forEach(term => {
-            const matchingIcons = Object
-              .keys(foundIconSet)
-              .filter(iconName => iconName.toLowerCase().includes(term))
-              .slice(0, limit ?? DEFAULT_LIMIT); // Apply limit per filter term
-
-            iconsPerTerm.push(...matchingIcons);
-          });
-
-          // Remove duplicates while preserving order
-          availableIcons = [...new Set(iconsPerTerm)];
-        } else {
-          // Original single filter behavior
-          availableIcons = Object
-            .keys(foundIconSet)
-            .filter(iconName => iconName.toLowerCase().includes(lowerFilter));
-        }
+        const iconsFor2018 = await searchIcons(
+          {
+            assetId: 'sick2018-icons',
+            tags,
+          },
+          iconSearchOptions,
+        );
+        newAvailableIcons = iconsFor2018.data;
       }
 
-      // For single filters or no filter, apply the limit normally
-      const limitedIcons = (!filter || !filter.includes('|')) && (limit ?? DEFAULT_LIMIT) > 0
-        ? availableIcons.slice(0, limit ?? DEFAULT_LIMIT)
-        : availableIcons;
+      // Final stripped down version of the icons to return, we only want to return the name, categories and variant for simplicity
+      const icons = newAvailableIcons.map(icon => ({
+        categories: icon.categories.length > 0 ? icon.categories : ['uncategorized'],
+        iconName: icon.iconName,
+        variant: icon.variant,
+      }));
 
-      const icons = limitedIcons.map(icon => `- ${icon}`).join('\n');
-      const content = [
-        {
-          text: `Available icons in iconset "${setToUse}":`,
-          type: 'text' as const,
-        },
-        {
-          text: `Showing ${limitedIcons.length} of ${availableIcons.length} icons`,
-          type: 'text' as const,
-        },
-        {
-          text: icons,
-          type: 'text' as const,
-        },
-      ];
+      // Group the icons by the first category found
+      const iconsByCategory = Object.groupBy(icons, icon => icon.categories.at(0) ?? 'uncategorized');
 
-      const aiRules = await getStructuredMetaData('../../metadata/static/assets');
-      const assetData = await getAssetsMetaData(
-        (fileName) => !fileName.toLowerCase().startsWith('changelog'),
+      // Remove the categories from the icons, we only want to return the name and variant at this point since we are grouping by category already
+      const finalIcons = Object.fromEntries(
+        Object.entries(iconsByCategory).map(([category, iconsInCategory]) => [
+          category,
+          iconsInCategory?.map(icon => ({
+            iconName: icon.iconName,
+            variant: icon.variant,
+          })),
+        ]),
       );
 
-      return {
-        content: [
-          {
-            text: JSON.stringify(aiRules, null, 2),
-            type: 'text',
-          },
-          {
-            text: JSON.stringify(assetData, null, 2),
-            type: 'text',
-          },
-          ...content,
-        ],
-      };
+      // Get the AI rules from the metadata files, we want to return this as well for better context in the response
+      const [aiRules] = await getStructuredMetaData('../../metadata/static/assets');
+
+      return toContentArray([
+        aiRules?.content,
+        finalIcons,
+      ]);
     },
   );
 };

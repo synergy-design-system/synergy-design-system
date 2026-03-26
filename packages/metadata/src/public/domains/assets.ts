@@ -112,6 +112,12 @@ const matchesIconQuery = (icon: IconSearchResult, query: IconSearchQuery): boole
   return true;
 };
 
+/**
+ * List all available asset entities, optionally filtered by status and/or tags.
+ * @param options The query options to filter and paginate the results.
+ * @param storeOptions Options for configuring the metadata store instance used to fetch the data.
+ * @returns A public response containing the list of asset entities matching the query, along with metadata about the request and any errors or warnings.
+ */
 export const listAssets = async (
   options: AssetQueryOptions = {},
   storeOptions: MetadataStoreOptions = {},
@@ -172,6 +178,13 @@ export const listAssets = async (
   };
 };
 
+/**
+ * Get metadata for a specific asset entity by its name or ID.
+ * @param nameOrId The name or ID of the asset entity to retrieve.
+ * @param options The query options to filter and paginate the results.
+ * @param storeOptions Options for configuring the metadata store instance used to fetch the data.
+ * @returns A public response containing the asset entity metadata, along with metadata about the request and any errors or warnings.
+ */
 export const getAssetMetadata = async (
   nameOrId: string,
   options: AssetQueryOptions = {},
@@ -255,6 +268,13 @@ export const getAssetMetadata = async (
   };
 };
 
+/**
+ * Search for icons across all available asset entities, optionally filtered by asset ID, name, category, or tags.
+ * @param query The query options to filter the icons.
+ * @param options The query options to filter and paginate the results.
+ * @param storeOptions Options for configuring the metadata store instance used to fetch the data.
+ * @returns A public response containing the list of icons matching the query, along with metadata about the request and any errors or warnings.
+ */
 export const searchIcons = async (
   query: IconSearchQuery,
   options: IconSearchOptions = {},

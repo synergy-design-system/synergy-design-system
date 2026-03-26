@@ -901,6 +901,9 @@ importers:
       '@synergy-design-system/assets':
         specifier: workspace:*
         version: link:../assets
+      '@synergy-design-system/metadata':
+        specifier: workspace:*
+        version: link:../metadata
       globby:
         specifier: ^16.1.1
         version: 16.1.1
@@ -975,12 +978,24 @@ importers:
         specifier: ^4.0.0
         version: 4.3.6
     devDependencies:
+      '@synergy-design-system/components':
+        specifier: workspace:*
+        version: link:../components
       '@synergy-design-system/docs':
         specifier: workspace:*
         version: link:../docs
       '@synergy-design-system/eslint-config-syn':
         specifier: workspace:^
         version: link:../_private/eslint-config-syn
+      '@synergy-design-system/fonts':
+        specifier: workspace:*
+        version: link:../fonts
+      '@synergy-design-system/styles':
+        specifier: workspace:*
+        version: link:../styles
+      '@synergy-design-system/tokens':
+        specifier: workspace:^
+        version: link:../tokens
       '@types/node':
         specifier: ^24.12.0
         version: 24.12.0

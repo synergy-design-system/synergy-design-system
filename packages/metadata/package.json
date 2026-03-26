@@ -10,8 +10,12 @@
   "devDependencies": {
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
+    "@synergy-design-system/components": "workspace:*",
     "@synergy-design-system/docs": "workspace:*",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
+    "@synergy-design-system/fonts": "workspace:*",
+    "@synergy-design-system/styles": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:^",
     "@types/node": "^24.12.0",
     "@types/serve-handler": "^6.1.4",
     "chai": "^5.2.0",

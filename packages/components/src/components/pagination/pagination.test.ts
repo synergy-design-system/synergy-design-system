@@ -102,7 +102,7 @@ describe('<syn-pagination>', () => {
         .join('')
         .trim();
       const pageSummary = pagination.shadowRoot?.querySelector('[part="page-item-summary"]');
-      const firstPageButton = pagination.shadowRoot?.querySelector('syn-icon-button[name="first_page"]');
+      const firstPageButton = getNavigationButton(pagination, 'first-page');
 
       expect(pageSizeSelectLabel).to.equal('Items per page');
       expect(pageSummary?.textContent?.trim()).to.equal('26-50 of 100 items');
@@ -151,8 +151,8 @@ describe('<syn-pagination>', () => {
         <syn-pagination total-items="0"></syn-pagination>
       `);
 
-      expect(getNavigationButton(pagination, 'first_page').hasAttribute('disabled')).to.equal(true);
-      expect(getNavigationButton(pagination, 'last_page').hasAttribute('disabled')).to.equal(true);
+      expect(getNavigationButton(pagination, 'first-page').hasAttribute('disabled')).to.equal(true);
+      expect(getNavigationButton(pagination, 'last-page').hasAttribute('disabled')).to.equal(true);
       expect(getPageInput(pagination).hasAttribute('disabled')).to.equal(true);
     });
 
@@ -166,7 +166,7 @@ describe('<syn-pagination>', () => {
         eventDetail = (event as CustomEvent<typeof eventDetail>).detail;
       });
 
-      getNavigationButton(pagination, 'chevron_right').click();
+      getNavigationButton(pagination, 'next-page').click();
       await pagination.updateComplete;
 
       expect(pagination.currentPage).to.equal(3);

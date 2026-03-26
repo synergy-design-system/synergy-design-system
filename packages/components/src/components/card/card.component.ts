@@ -6,7 +6,6 @@ import { html } from 'lit';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './card.styles.js';
-import customStyles from './card.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -32,7 +31,7 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --padding - The padding to use for the card's sections.
  */
 export default class SynCard extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');
 

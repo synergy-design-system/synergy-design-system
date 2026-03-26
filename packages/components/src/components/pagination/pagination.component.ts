@@ -280,7 +280,8 @@ export default class SynPagination extends SynergyElement {
               color="primary"
               ?disabled=${isFirstPage || isDisabled}
               label=${this.localize.term('paginationFirstPage')}
-              name="first_page"
+              library="system"
+              name="first-page"
               size=${this.size}
             ></syn-icon-button>
 
@@ -289,7 +290,8 @@ export default class SynPagination extends SynergyElement {
               color="primary"
               ?disabled=${isFirstPage || isDisabled}
               label=${this.localize.term('paginationPreviousPage')}
-              name="chevron_left"
+              library="system"
+              name="previous-page"
               size=${this.size}
             ></syn-icon-button>
           </section>
@@ -319,7 +321,8 @@ export default class SynPagination extends SynergyElement {
               color="primary"
               ?disabled=${isLastPage || isDisabled}
               label=${this.localize.term('paginationNextPage')}
-              name="chevron_right"
+              library="system"
+              name="next-page"
               size=${this.size}
             ></syn-icon-button>
             
@@ -328,7 +331,8 @@ export default class SynPagination extends SynergyElement {
               color="primary"
               ?disabled=${isLastPage || isDisabled}
               label=${this.localize.term('paginationLastPage')}
-              name="last_page"
+              library="system"
+              name="last-page"
               size=${this.size}
             ></syn-icon-button>
           </section>

@@ -13,16 +13,16 @@
     "@synergy-design-system/tokens": "workspace:*",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router-dom": "^7.13.1",
-    "typescript-eslint": "^8.56.1"
+    "react-router-dom": "^7.13.2",
+    "typescript-eslint": "^8.57.2"
   },
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@typescript-eslint/eslint-plugin": "^8.56.1",
-    "@typescript-eslint/parser": "^8.56.1",
-    "@vitejs/plugin-react": "^5.1.4",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
+    "@typescript-eslint/parser": "^8.57.2",
+    "@vitejs/plugin-react": "^5.2.0",
     "eslint": "^9.39.4",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
@@ -31,10 +31,10 @@
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
-    "html-validate": "^10.11.1",
+    "html-validate": "^10.11.2",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
-    "vite-plugin-static-copy": "^3.2.0"
+    "vite-plugin-static-copy": "^3.4.0"
   },
   "description": "Sample Demo Project for using the Synergy Design System React Wrappers",
   "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/_private/react-demo",

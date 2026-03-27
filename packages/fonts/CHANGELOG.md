@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.5
+
+### Patch Changes
+
+- [#1246](https://github.com/synergy-design-system/synergy-design-system/pull/1246) [`5f0eb58`](https://github.com/synergy-design-system/synergy-design-system/commit/5f0eb58996be36571edf1764a7314f78bac96dd9) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-27
+
+  fix: 🐛 dependency updates (#258)
+
 ## 1.0.4
 
 ### Patch Changes

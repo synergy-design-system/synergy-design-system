@@ -165,7 +165,7 @@
       }
     ]
   },
-  "name": "Badge",
+  "name": "syn-badge",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -183,6 +183,7 @@
   "status": "stable",
   "tags": [
     "angular",
+    "badge",
     "component",
     "react",
     "syn-badge",

@@ -222,7 +222,7 @@
       }
     ]
   },
-  "name": "Alert",
+  "name": "syn-alert",
   "package": "components",
   "relations": [
     {
@@ -243,6 +243,7 @@
   ],
   "status": "stable",
   "tags": [
+    "alert",
     "angular",
     "component",
     "react",

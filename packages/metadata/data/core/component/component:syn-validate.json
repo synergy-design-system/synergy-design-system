@@ -214,7 +214,7 @@
       }
     ]
   },
-  "name": "Validate",
+  "name": "syn-validate",
   "package": "components",
   "relations": [
     {
@@ -243,6 +243,7 @@
     "component",
     "react",
     "syn-validate",
+    "validate",
     "vue"
   ]
 }

@@ -323,7 +323,7 @@
       }
     ]
   },
-  "name": "Input",
+  "name": "syn-input",
   "package": "components",
   "relations": [
     {
@@ -353,6 +353,7 @@
   "tags": [
     "angular",
     "component",
+    "input",
     "react",
     "syn-input",
     "vue"

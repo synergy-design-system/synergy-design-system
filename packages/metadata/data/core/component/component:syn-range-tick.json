@@ -145,7 +145,7 @@
       }
     ]
   },
-  "name": "Range Tick",
+  "name": "syn-range-tick",
   "package": "components",
   "relations": [],
   "since": "unknown",
@@ -162,6 +162,7 @@
   "tags": [
     "angular",
     "component",
+    "range-tick",
     "react",
     "syn-range-tick",
     "vue"

@@ -168,7 +168,7 @@
       }
     ]
   },
-  "name": "Progress Ring",
+  "name": "syn-progress-ring",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -186,6 +186,7 @@
   "tags": [
     "angular",
     "component",
+    "progress-ring",
     "react",
     "syn-progress-ring",
     "vue"

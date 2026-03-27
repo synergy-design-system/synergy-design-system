@@ -1,3 +1,4 @@
+export * from './actions.js';
 export * from './checksum.js';
 export * from './components.js';
 export * from './config.js';

@@ -1,7 +1,9 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { listComponents } from '@synergy-design-system/metadata';
 import {
-  getAvailableComponents,
+  createToolAnnotations,
   getStructuredMetaData,
+  toContentArray,
 } from '../utilities/index.js';
 
 /**
@@ -13,42 +15,31 @@ export const componentListTool = (server: McpServer) => {
   server.registerTool(
     'component-list',
     {
+      annotations: createToolAnnotations(),
       description: 'Outputs a list of all available components in the Synergy Design System',
       inputSchema: {},
       title: 'List Synergy Components',
     },
     async () => {
-      // Get the package data for components
+      const content = [];
+
       try {
-        const components = await getAvailableComponents();
-        const componentNames = components.map(
-          filename => `- ${filename}`,
-        );
+        const [aiRules] = await getStructuredMetaData('../../metadata/static/component-list');
+        const components = await listComponents();
+        const componentNames = components.data
+          .map(c => c.name)
+          .toSorted();
 
-        const aiRules = await getStructuredMetaData('../../metadata/static/component-list');
-
-        return {
-          content: [
-            {
-              text: JSON.stringify(aiRules, null, 2),
-              type: 'text',
-            },
-            {
-              text: componentNames.join('\n'),
-              type: 'text',
-            },
-          ],
-        };
+        content.push(aiRules?.content);
+        content.push(componentNames);
       } catch (error) {
-        return {
-          content: [
-            {
-              text: `Error fetching components: ${(error as Error).message}`,
-              type: 'text',
-            },
-          ],
-        };
+        content.push({
+          text: `Error fetching component list: ${error instanceof Error ? error.message : String(error)}`,
+          type: 'text',
+        });
       }
+
+      return toContentArray(content);
     },
   );
 };

@@ -128,7 +128,7 @@
       }
     ]
   },
-  "name": "Prio Nav",
+  "name": "syn-prio-nav",
   "package": "components",
   "relations": [
     {
@@ -163,6 +163,7 @@
   "tags": [
     "angular",
     "component",
+    "prio-nav",
     "react",
     "syn-prio-nav",
     "vue"

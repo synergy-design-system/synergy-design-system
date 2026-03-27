@@ -306,7 +306,7 @@
       }
     ]
   },
-  "name": "Range",
+  "name": "syn-range",
   "package": "components",
   "relations": [
     {
@@ -329,6 +329,7 @@
   "tags": [
     "angular",
     "component",
+    "range",
     "react",
     "syn-range",
     "vue"

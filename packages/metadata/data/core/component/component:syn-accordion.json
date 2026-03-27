@@ -169,7 +169,7 @@
       }
     ]
   },
-  "name": "Accordion",
+  "name": "syn-accordion",
   "package": "components",
   "relations": [],
   "since": "1.23.0",
@@ -184,6 +184,7 @@
   ],
   "status": "stable",
   "tags": [
+    "accordion",
     "angular",
     "component",
     "react",

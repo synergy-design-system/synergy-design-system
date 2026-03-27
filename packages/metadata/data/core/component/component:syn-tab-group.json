@@ -207,7 +207,7 @@
       }
     ]
   },
-  "name": "Tab Group",
+  "name": "syn-tab-group",
   "package": "components",
   "relations": [
     {
@@ -233,6 +233,7 @@
     "component",
     "react",
     "syn-tab-group",
+    "tab-group",
     "vue"
   ]
 }

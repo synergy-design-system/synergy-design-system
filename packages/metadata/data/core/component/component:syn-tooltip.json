@@ -207,7 +207,7 @@
       }
     ]
   },
-  "name": "Tooltip",
+  "name": "syn-tooltip",
   "package": "components",
   "relations": [
     {
@@ -231,6 +231,7 @@
     "component",
     "react",
     "syn-tooltip",
+    "tooltip",
     "vue"
   ]
 }

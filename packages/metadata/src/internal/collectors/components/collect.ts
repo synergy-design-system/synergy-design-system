@@ -23,6 +23,7 @@ export interface ComponentRaw {
 
 export interface ComponentRawEntry {
   componentName: string;
+  componentNameWithoutPrefix: string;
   dependencies: string[];
   interfaceSnapshot: ComponentInterfaceSnapshot;
   since: string;
@@ -408,6 +409,7 @@ export const collect = async (
 
       return {
         componentName,
+        componentNameWithoutPrefix: tagNameWithoutPrefix,
         dependencies: getStringArrayField(item.declaration, 'dependencies'),
         interfaceSnapshot: buildInterfaceSnapshot(item.declaration, item.modulePath),
         since: getStringField(item.declaration, 'since') ?? 'unknown',

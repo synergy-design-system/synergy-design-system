@@ -6,12 +6,6 @@ import { type NormalizeError, createNormalizeError } from '../../core/errors.js'
 import { type CoreEntity } from '../../schemas/index.js';
 import { type ComponentRaw } from './collect.js';
 
-const toDisplayName = (tagName: string): string => tagName
-  .replace(/^syn-/, '')
-  .split('-')
-  .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
-  .join(' ');
-
 /**
  * Normalize raw component data to canonical CoreEntity format.
  */
@@ -28,7 +22,7 @@ export const normalize = (
       id: `component:${entry.componentName}`,
       kind: 'component',
       layers: {},
-      name: toDisplayName(entry.componentName),
+      name: entry.componentName,
       package: 'components',
       relations: entry.dependencies.map((dependency) => ({
         id: `component:${dependency}`,
@@ -37,7 +31,11 @@ export const normalize = (
       since: entry.since,
       sources: entry.sourceFiles,
       status: entry.status,
-      tags: [entry.componentName, 'component'],
+      tags: [
+        entry.componentName,
+        entry.componentNameWithoutPrefix,
+        'component',
+      ],
     }));
 
     return ok(entities);

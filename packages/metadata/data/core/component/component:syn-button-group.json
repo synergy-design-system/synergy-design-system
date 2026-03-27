@@ -182,7 +182,7 @@
       }
     ]
   },
-  "name": "Button Group",
+  "name": "syn-button-group",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -200,6 +200,7 @@
   "status": "stable",
   "tags": [
     "angular",
+    "button-group",
     "component",
     "react",
     "syn-button-group",

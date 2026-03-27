@@ -196,7 +196,7 @@
       }
     ]
   },
-  "name": "Side Nav",
+  "name": "syn-side-nav",
   "package": "components",
   "relations": [
     {
@@ -231,6 +231,7 @@
     "angular",
     "component",
     "react",
+    "side-nav",
     "syn-side-nav",
     "vue"
   ]

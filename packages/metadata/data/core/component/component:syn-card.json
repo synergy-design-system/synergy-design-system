@@ -183,7 +183,7 @@
       }
     ]
   },
-  "name": "Card",
+  "name": "syn-card",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -200,6 +200,7 @@
   "status": "stable",
   "tags": [
     "angular",
+    "card",
     "component",
     "react",
     "syn-card",

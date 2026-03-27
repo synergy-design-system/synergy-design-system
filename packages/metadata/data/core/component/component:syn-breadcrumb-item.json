@@ -117,7 +117,7 @@
       }
     ]
   },
-  "name": "Breadcrumb Item",
+  "name": "syn-breadcrumb-item",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -134,6 +134,7 @@
   "status": "stable",
   "tags": [
     "angular",
+    "breadcrumb-item",
     "component",
     "react",
     "syn-breadcrumb-item",

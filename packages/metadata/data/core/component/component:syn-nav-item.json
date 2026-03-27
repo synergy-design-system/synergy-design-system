@@ -229,7 +229,7 @@
       }
     ]
   },
-  "name": "Nav Item",
+  "name": "syn-nav-item",
   "package": "components",
   "relations": [
     {
@@ -255,6 +255,7 @@
   "tags": [
     "angular",
     "component",
+    "nav-item",
     "react",
     "syn-nav-item",
     "vue"

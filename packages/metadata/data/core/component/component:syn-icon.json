@@ -142,7 +142,7 @@
       }
     ]
   },
-  "name": "Icon",
+  "name": "syn-icon",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -167,6 +167,7 @@
   "tags": [
     "angular",
     "component",
+    "icon",
     "react",
     "syn-icon",
     "vue"

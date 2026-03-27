@@ -214,7 +214,7 @@
       }
     ]
   },
-  "name": "Header",
+  "name": "syn-header",
   "package": "components",
   "relations": [],
   "since": "1.10.0",
@@ -231,6 +231,7 @@
   "tags": [
     "angular",
     "component",
+    "header",
     "react",
     "syn-header",
     "vue"

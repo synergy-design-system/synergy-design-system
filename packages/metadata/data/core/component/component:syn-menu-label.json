@@ -113,7 +113,7 @@
       }
     ]
   },
-  "name": "Menu Label",
+  "name": "syn-menu-label",
   "package": "components",
   "relations": [
     {
@@ -135,6 +135,7 @@
   "tags": [
     "angular",
     "component",
+    "menu-label",
     "react",
     "syn-menu-label",
     "vue"

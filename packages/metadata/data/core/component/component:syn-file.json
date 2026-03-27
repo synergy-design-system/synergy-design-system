@@ -254,7 +254,7 @@
       }
     ]
   },
-  "name": "File",
+  "name": "syn-file",
   "package": "components",
   "relations": [
     {
@@ -280,6 +280,7 @@
   "tags": [
     "angular",
     "component",
+    "file",
     "react",
     "syn-file",
     "vue"

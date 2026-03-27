@@ -200,7 +200,7 @@
       }
     ]
   },
-  "name": "Details",
+  "name": "syn-details",
   "package": "components",
   "relations": [
     {
@@ -223,6 +223,7 @@
   "tags": [
     "angular",
     "component",
+    "details",
     "react",
     "syn-details",
     "vue"

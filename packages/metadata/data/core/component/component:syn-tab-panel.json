@@ -117,7 +117,7 @@
       }
     ]
   },
-  "name": "Tab Panel",
+  "name": "syn-tab-panel",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -137,6 +137,7 @@
     "component",
     "react",
     "syn-tab-panel",
+    "tab-panel",
     "vue"
   ]
 }

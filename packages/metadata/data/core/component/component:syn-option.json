@@ -158,7 +158,7 @@
       }
     ]
   },
-  "name": "Option",
+  "name": "syn-option",
   "package": "components",
   "relations": [
     {
@@ -183,6 +183,7 @@
   "tags": [
     "angular",
     "component",
+    "option",
     "react",
     "syn-option",
     "vue"

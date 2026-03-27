@@ -27,7 +27,7 @@
       }
     ]
   },
-  "name": "Resize Observer",
+  "name": "syn-resize-observer",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -38,6 +38,7 @@
   "status": "stable",
   "tags": [
     "syn-resize-observer",
+    "resize-observer",
     "component"
   ]
 }

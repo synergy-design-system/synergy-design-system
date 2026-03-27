@@ -233,7 +233,7 @@
       }
     ]
   },
-  "name": "Checkbox",
+  "name": "syn-checkbox",
   "package": "components",
   "relations": [
     {
@@ -254,6 +254,7 @@
   "status": "stable",
   "tags": [
     "angular",
+    "checkbox",
     "component",
     "react",
     "syn-checkbox",

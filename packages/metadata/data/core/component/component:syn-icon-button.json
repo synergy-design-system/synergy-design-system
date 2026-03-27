@@ -196,7 +196,7 @@
       }
     ]
   },
-  "name": "Icon Button",
+  "name": "syn-icon-button",
   "package": "components",
   "relations": [
     {
@@ -219,6 +219,7 @@
   "tags": [
     "angular",
     "component",
+    "icon-button",
     "react",
     "syn-icon-button",
     "vue"

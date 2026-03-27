@@ -246,7 +246,7 @@
       }
     ]
   },
-  "name": "Button",
+  "name": "syn-button",
   "package": "components",
   "relations": [
     {
@@ -273,6 +273,7 @@
   "status": "stable",
   "tags": [
     "angular",
+    "button",
     "component",
     "react",
     "syn-button",

@@ -236,7 +236,7 @@
       }
     ]
   },
-  "name": "Radio Group",
+  "name": "syn-radio-group",
   "package": "components",
   "relations": [
     {
@@ -258,6 +258,7 @@
   "tags": [
     "angular",
     "component",
+    "radio-group",
     "react",
     "syn-radio-group",
     "vue"

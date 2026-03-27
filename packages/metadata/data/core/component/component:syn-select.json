@@ -316,7 +316,7 @@
       }
     ]
   },
-  "name": "Select",
+  "name": "syn-select",
   "package": "components",
   "relations": [
     {
@@ -349,6 +349,7 @@
     "angular",
     "component",
     "react",
+    "select",
     "syn-select",
     "vue"
   ]

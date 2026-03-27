@@ -245,7 +245,7 @@
       }
     ]
   },
-  "name": "Drawer",
+  "name": "syn-drawer",
   "package": "components",
   "relations": [
     {
@@ -269,6 +269,7 @@
   "tags": [
     "angular",
     "component",
+    "drawer",
     "react",
     "syn-drawer",
     "vue"

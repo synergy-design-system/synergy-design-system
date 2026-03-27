@@ -147,7 +147,7 @@
       }
     ]
   },
-  "name": "Tag Group",
+  "name": "syn-tag-group",
   "package": "components",
   "relations": [],
   "since": "unknown",
@@ -166,6 +166,7 @@
     "component",
     "react",
     "syn-tag-group",
+    "tag-group",
     "vue"
   ]
 }

@@ -100,7 +100,7 @@
       }
     ]
   },
-  "name": "Optgroup",
+  "name": "syn-optgroup",
   "package": "components",
   "relations": [
     {
@@ -122,6 +122,7 @@
   "tags": [
     "angular",
     "component",
+    "optgroup",
     "react",
     "syn-optgroup",
     "vue"

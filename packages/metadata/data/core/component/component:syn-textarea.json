@@ -255,7 +255,7 @@
       }
     ]
   },
-  "name": "Textarea",
+  "name": "syn-textarea",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -274,6 +274,7 @@
     "component",
     "react",
     "syn-textarea",
+    "textarea",
     "vue"
   ]
 }

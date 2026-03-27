@@ -118,7 +118,7 @@
       }
     ]
   },
-  "name": "Popup",
+  "name": "syn-popup",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -135,6 +135,7 @@
   "tags": [
     "angular",
     "component",
+    "popup",
     "react",
     "syn-popup",
     "vue"

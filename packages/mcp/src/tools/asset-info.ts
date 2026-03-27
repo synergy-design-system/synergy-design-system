@@ -6,6 +6,7 @@ import {
 } from '@synergy-design-system/metadata';
 import * as availableIconsets from '@synergy-design-system/assets';
 import {
+  createToolAnnotations,
   getStructuredMetaData,
   toContentArray,
 } from '../utilities/index.js';
@@ -40,11 +41,7 @@ export const assetInfoTool = (server: McpServer) => {
   server.registerTool(
     'asset-info',
     {
-      annotations: {
-        destructiveHint: true,
-        idempotentHint: true,
-        readOnlyHint: true,
-      },
+      annotations: createToolAnnotations(),
       description: 'Get information about available icons in the Synergy Design System. Will return the full list of icons in a set or just a subset',
       inputSchema: {
         filter: z

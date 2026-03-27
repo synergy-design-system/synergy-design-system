@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-27T06:58:39.625Z",
+  "builtAt": "2026-03-27T10:10:59.824Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -116,10 +116,11 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Accordion",
+      "name": "syn-accordion",
       "search": [
         "component:syn-accordion",
-        "Accordion",
+        "syn-accordion",
+        "accordion",
         "angular",
         "component",
         "react",
@@ -136,10 +137,11 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Alert",
+      "name": "syn-alert",
       "search": [
         "component:syn-alert",
-        "Alert",
+        "syn-alert",
+        "alert",
         "angular",
         "component",
         "react",
@@ -156,11 +158,12 @@
         "full": 10,
         "interface": 2
       },
-      "name": "Badge",
+      "name": "syn-badge",
       "search": [
         "component:syn-badge",
-        "Badge",
+        "syn-badge",
         "angular",
+        "badge",
         "component",
         "react",
         "syn-badge",
@@ -176,11 +179,12 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Breadcrumb",
+      "name": "syn-breadcrumb",
       "search": [
         "component:syn-breadcrumb",
-        "Breadcrumb",
+        "syn-breadcrumb",
         "angular",
+        "breadcrumb",
         "component",
         "react",
         "syn-breadcrumb",
@@ -196,11 +200,12 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Breadcrumb Item",
+      "name": "syn-breadcrumb-item",
       "search": [
         "component:syn-breadcrumb-item",
-        "Breadcrumb Item",
+        "syn-breadcrumb-item",
         "angular",
+        "breadcrumb-item",
         "component",
         "react",
         "syn-breadcrumb-item",
@@ -216,11 +221,12 @@
         "full": 10,
         "interface": 2
       },
-      "name": "Button",
+      "name": "syn-button",
       "search": [
         "component:syn-button",
-        "Button",
+        "syn-button",
         "angular",
+        "button",
         "component",
         "react",
         "syn-button",
@@ -236,11 +242,12 @@
         "full": 10,
         "interface": 2
       },
-      "name": "Button Group",
+      "name": "syn-button-group",
       "search": [
         "component:syn-button-group",
-        "Button Group",
+        "syn-button-group",
         "angular",
+        "button-group",
         "component",
         "react",
         "syn-button-group",
@@ -256,11 +263,12 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Card",
+      "name": "syn-card",
       "search": [
         "component:syn-card",
-        "Card",
+        "syn-card",
         "angular",
+        "card",
         "component",
         "react",
         "syn-card",
@@ -276,11 +284,12 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Checkbox",
+      "name": "syn-checkbox",
       "search": [
         "component:syn-checkbox",
-        "Checkbox",
+        "syn-checkbox",
         "angular",
+        "checkbox",
         "component",
         "react",
         "syn-checkbox",
@@ -296,11 +305,12 @@
         "full": 11,
         "interface": 2
       },
-      "name": "Combobox",
+      "name": "syn-combobox",
       "search": [
         "component:syn-combobox",
-        "Combobox",
+        "syn-combobox",
         "angular",
+        "combobox",
         "component",
         "react",
         "syn-combobox",
@@ -316,12 +326,13 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Details",
+      "name": "syn-details",
       "search": [
         "component:syn-details",
-        "Details",
+        "syn-details",
         "angular",
         "component",
+        "details",
         "react",
         "syn-details",
         "vue"
@@ -336,12 +347,13 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Dialog",
+      "name": "syn-dialog",
       "search": [
         "component:syn-dialog",
-        "Dialog",
+        "syn-dialog",
         "angular",
         "component",
+        "dialog",
         "react",
         "syn-dialog",
         "vue"
@@ -356,12 +368,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Divider",
+      "name": "syn-divider",
       "search": [
         "component:syn-divider",
-        "Divider",
+        "syn-divider",
         "angular",
         "component",
+        "divider",
         "react",
         "syn-divider",
         "vue"
@@ -376,12 +389,13 @@
         "full": 10,
         "interface": 2
       },
-      "name": "Drawer",
+      "name": "syn-drawer",
       "search": [
         "component:syn-drawer",
-        "Drawer",
+        "syn-drawer",
         "angular",
         "component",
+        "drawer",
         "react",
         "syn-drawer",
         "vue"
@@ -396,12 +410,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Dropdown",
+      "name": "syn-dropdown",
       "search": [
         "component:syn-dropdown",
-        "Dropdown",
+        "syn-dropdown",
         "angular",
         "component",
+        "dropdown",
         "react",
         "syn-dropdown",
         "vue"
@@ -416,12 +431,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "File",
+      "name": "syn-file",
       "search": [
         "component:syn-file",
-        "File",
+        "syn-file",
         "angular",
         "component",
+        "file",
         "react",
         "syn-file",
         "vue"
@@ -436,12 +452,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Header",
+      "name": "syn-header",
       "search": [
         "component:syn-header",
-        "Header",
+        "syn-header",
         "angular",
         "component",
+        "header",
         "react",
         "syn-header",
         "vue"
@@ -456,12 +473,13 @@
         "full": 16,
         "interface": 2
       },
-      "name": "Icon",
+      "name": "syn-icon",
       "search": [
         "component:syn-icon",
-        "Icon",
+        "syn-icon",
         "angular",
         "component",
+        "icon",
         "react",
         "syn-icon",
         "vue"
@@ -476,12 +494,13 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Icon Button",
+      "name": "syn-icon-button",
       "search": [
         "component:syn-icon-button",
-        "Icon Button",
+        "syn-icon-button",
         "angular",
         "component",
+        "icon-button",
         "react",
         "syn-icon-button",
         "vue"
@@ -496,12 +515,13 @@
         "full": 12,
         "interface": 2
       },
-      "name": "Input",
+      "name": "syn-input",
       "search": [
         "component:syn-input",
-        "Input",
+        "syn-input",
         "angular",
         "component",
+        "input",
         "react",
         "syn-input",
         "vue"
@@ -516,12 +536,13 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Menu",
+      "name": "syn-menu",
       "search": [
         "component:syn-menu",
-        "Menu",
+        "syn-menu",
         "angular",
         "component",
+        "menu",
         "react",
         "syn-menu",
         "vue"
@@ -536,12 +557,13 @@
         "full": 10,
         "interface": 2
       },
-      "name": "Menu Item",
+      "name": "syn-menu-item",
       "search": [
         "component:syn-menu-item",
-        "Menu Item",
+        "syn-menu-item",
         "angular",
         "component",
+        "menu-item",
         "react",
         "syn-menu-item",
         "vue"
@@ -556,12 +578,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Menu Label",
+      "name": "syn-menu-label",
       "search": [
         "component:syn-menu-label",
-        "Menu Label",
+        "syn-menu-label",
         "angular",
         "component",
+        "menu-label",
         "react",
         "syn-menu-label",
         "vue"
@@ -576,12 +599,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Nav Item",
+      "name": "syn-nav-item",
       "search": [
         "component:syn-nav-item",
-        "Nav Item",
+        "syn-nav-item",
         "angular",
         "component",
+        "nav-item",
         "react",
         "syn-nav-item",
         "vue"
@@ -596,12 +620,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Optgroup",
+      "name": "syn-optgroup",
       "search": [
         "component:syn-optgroup",
-        "Optgroup",
+        "syn-optgroup",
         "angular",
         "component",
+        "optgroup",
         "react",
         "syn-optgroup",
         "vue"
@@ -616,12 +641,13 @@
         "full": 11,
         "interface": 2
       },
-      "name": "Option",
+      "name": "syn-option",
       "search": [
         "component:syn-option",
-        "Option",
+        "syn-option",
         "angular",
         "component",
+        "option",
         "react",
         "syn-option",
         "vue"
@@ -636,12 +662,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Popup",
+      "name": "syn-popup",
       "search": [
         "component:syn-popup",
-        "Popup",
+        "syn-popup",
         "angular",
         "component",
+        "popup",
         "react",
         "syn-popup",
         "vue"
@@ -656,12 +683,13 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Prio Nav",
+      "name": "syn-prio-nav",
       "search": [
         "component:syn-prio-nav",
-        "Prio Nav",
+        "syn-prio-nav",
         "angular",
         "component",
+        "prio-nav",
         "react",
         "syn-prio-nav",
         "vue"
@@ -676,12 +704,13 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Progress Bar",
+      "name": "syn-progress-bar",
       "search": [
         "component:syn-progress-bar",
-        "Progress Bar",
+        "syn-progress-bar",
         "angular",
         "component",
+        "progress-bar",
         "react",
         "syn-progress-bar",
         "vue"
@@ -696,12 +725,13 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Progress Ring",
+      "name": "syn-progress-ring",
       "search": [
         "component:syn-progress-ring",
-        "Progress Ring",
+        "syn-progress-ring",
         "angular",
         "component",
+        "progress-ring",
         "react",
         "syn-progress-ring",
         "vue"
@@ -716,12 +746,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Radio",
+      "name": "syn-radio",
       "search": [
         "component:syn-radio",
-        "Radio",
+        "syn-radio",
         "angular",
         "component",
+        "radio",
         "react",
         "syn-radio",
         "vue"
@@ -735,12 +766,13 @@
         "full": 7,
         "interface": 2
       },
-      "name": "Radio Button",
+      "name": "syn-radio-button",
       "search": [
         "component:syn-radio-button",
-        "Radio Button",
+        "syn-radio-button",
         "angular",
         "component",
+        "radio-button",
         "react",
         "syn-radio-button",
         "vue"
@@ -755,12 +787,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Radio Group",
+      "name": "syn-radio-group",
       "search": [
         "component:syn-radio-group",
-        "Radio Group",
+        "syn-radio-group",
         "angular",
         "component",
+        "radio-group",
         "react",
         "syn-radio-group",
         "vue"
@@ -775,12 +808,13 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Range",
+      "name": "syn-range",
       "search": [
         "component:syn-range",
-        "Range",
+        "syn-range",
         "angular",
         "component",
+        "range",
         "react",
         "syn-range",
         "vue"
@@ -795,12 +829,13 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Range Tick",
+      "name": "syn-range-tick",
       "search": [
         "component:syn-range-tick",
-        "Range Tick",
+        "syn-range-tick",
         "angular",
         "component",
+        "range-tick",
         "react",
         "syn-range-tick",
         "vue"
@@ -814,11 +849,12 @@
         "full": 2,
         "interface": 2
       },
-      "name": "Resize Observer",
+      "name": "syn-resize-observer",
       "search": [
         "component:syn-resize-observer",
-        "Resize Observer",
         "syn-resize-observer",
+        "syn-resize-observer",
+        "resize-observer",
         "component"
       ]
     },
@@ -831,13 +867,14 @@
         "full": 10,
         "interface": 2
       },
-      "name": "Select",
+      "name": "syn-select",
       "search": [
         "component:syn-select",
-        "Select",
+        "syn-select",
         "angular",
         "component",
         "react",
+        "select",
         "syn-select",
         "vue"
       ]
@@ -851,13 +888,14 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Side Nav",
+      "name": "syn-side-nav",
       "search": [
         "component:syn-side-nav",
-        "Side Nav",
+        "syn-side-nav",
         "angular",
         "component",
         "react",
+        "side-nav",
         "syn-side-nav",
         "vue"
       ]
@@ -871,13 +909,14 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Spinner",
+      "name": "syn-spinner",
       "search": [
         "component:syn-spinner",
-        "Spinner",
+        "syn-spinner",
         "angular",
         "component",
         "react",
+        "spinner",
         "syn-spinner",
         "vue"
       ]
@@ -891,13 +930,14 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Switch",
+      "name": "syn-switch",
       "search": [
         "component:syn-switch",
-        "Switch",
+        "syn-switch",
         "angular",
         "component",
         "react",
+        "switch",
         "syn-switch",
         "vue"
       ]
@@ -911,14 +951,15 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Tab",
+      "name": "syn-tab",
       "search": [
         "component:syn-tab",
-        "Tab",
+        "syn-tab",
         "angular",
         "component",
         "react",
         "syn-tab",
+        "tab",
         "vue"
       ]
     },
@@ -931,14 +972,15 @@
         "full": 10,
         "interface": 2
       },
-      "name": "Tab Group",
+      "name": "syn-tab-group",
       "search": [
         "component:syn-tab-group",
-        "Tab Group",
+        "syn-tab-group",
         "angular",
         "component",
         "react",
         "syn-tab-group",
+        "tab-group",
         "vue"
       ]
     },
@@ -951,14 +993,15 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Tab Panel",
+      "name": "syn-tab-panel",
       "search": [
         "component:syn-tab-panel",
-        "Tab Panel",
+        "syn-tab-panel",
         "angular",
         "component",
         "react",
         "syn-tab-panel",
+        "tab-panel",
         "vue"
       ]
     },
@@ -971,14 +1014,15 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Tag",
+      "name": "syn-tag",
       "search": [
         "component:syn-tag",
-        "Tag",
+        "syn-tag",
         "angular",
         "component",
         "react",
         "syn-tag",
+        "tag",
         "vue"
       ]
     },
@@ -991,14 +1035,15 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Tag Group",
+      "name": "syn-tag-group",
       "search": [
         "component:syn-tag-group",
-        "Tag Group",
+        "syn-tag-group",
         "angular",
         "component",
         "react",
         "syn-tag-group",
+        "tag-group",
         "vue"
       ]
     },
@@ -1011,14 +1056,15 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Textarea",
+      "name": "syn-textarea",
       "search": [
         "component:syn-textarea",
-        "Textarea",
+        "syn-textarea",
         "angular",
         "component",
         "react",
         "syn-textarea",
+        "textarea",
         "vue"
       ]
     },
@@ -1031,14 +1077,15 @@
         "full": 8,
         "interface": 2
       },
-      "name": "Tooltip",
+      "name": "syn-tooltip",
       "search": [
         "component:syn-tooltip",
-        "Tooltip",
+        "syn-tooltip",
         "angular",
         "component",
         "react",
         "syn-tooltip",
+        "tooltip",
         "vue"
       ]
     },
@@ -1051,14 +1098,15 @@
         "full": 9,
         "interface": 2
       },
-      "name": "Validate",
+      "name": "syn-validate",
       "search": [
         "component:syn-validate",
-        "Validate",
+        "syn-validate",
         "angular",
         "component",
         "react",
         "syn-validate",
+        "validate",
         "vue"
       ]
     },

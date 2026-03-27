@@ -144,7 +144,7 @@
       }
     ]
   },
-  "name": "Menu",
+  "name": "syn-menu",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -162,6 +162,7 @@
   "tags": [
     "angular",
     "component",
+    "menu",
     "react",
     "syn-menu",
     "vue"

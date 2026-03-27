@@ -389,7 +389,7 @@
       }
     ]
   },
-  "name": "Combobox",
+  "name": "syn-combobox",
   "package": "components",
   "relations": [
     {
@@ -421,6 +421,7 @@
   "status": "stable",
   "tags": [
     "angular",
+    "combobox",
     "component",
     "react",
     "syn-combobox",

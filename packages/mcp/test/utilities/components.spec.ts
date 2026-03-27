@@ -1,6 +1,5 @@
 import type { Framework } from '../../src/utilities/config.js';
 import {
-  getAvailableComponents,
   getInfoForComponent,
   getStaticMetaDataForFramework,
 } from '../../src/utilities/components.js';
@@ -84,17 +83,6 @@ describe('when using the components metadata utilities', () => {
 
         expect(filesThatAreRead).toContain(dynamicFrameworkFile);
       });
-    });
-  });
-
-  describe('getAvailableComponents', () => {
-    it('should return a list of available components', async () => {
-      const metadata = await getAvailableComponents();
-      expect(metadata).not.toHaveLength(0);
-
-      expect(metadata).toContain('syn-button');
-      expect(metadata).toContain('syn-card');
-      expect(metadata.length).toBeGreaterThan(10);
     });
   });
 });

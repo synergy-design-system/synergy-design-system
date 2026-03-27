@@ -1,6 +1,7 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { listAssets } from '@synergy-design-system/metadata';
 import {
+  createToolAnnotations,
   getStructuredMetaData,
   toContentArray,
 } from '../utilities/index.js';
@@ -13,11 +14,7 @@ export const assetListTool = (server: McpServer) => {
   server.registerTool(
     'asset-list',
     {
-      annotations: {
-        destructiveHint: true,
-        idempotentHint: true,
-        readOnlyHint: true,
-      },
+      annotations: createToolAnnotations(),
       description: 'Get the available iconsets in the Synergy Design System.',
       title: 'Available iconsets',
     },

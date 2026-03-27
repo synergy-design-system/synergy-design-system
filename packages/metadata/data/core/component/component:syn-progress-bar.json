@@ -161,7 +161,7 @@
       }
     ]
   },
-  "name": "Progress Bar",
+  "name": "syn-progress-bar",
   "package": "components",
   "relations": [],
   "since": "2.0",
@@ -179,6 +179,7 @@
   "tags": [
     "angular",
     "component",
+    "progress-bar",
     "react",
     "syn-progress-bar",
     "vue"

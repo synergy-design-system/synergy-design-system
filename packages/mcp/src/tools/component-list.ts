@@ -18,14 +18,17 @@ export const componentListTool = (server: McpServer) => {
       annotations: createToolAnnotations(),
       description: 'Outputs a list of all available components in the Synergy Design System',
       inputSchema: {},
-      title: 'List Synergy Components',
+      title: 'Component list',
     },
     async () => {
       const content = [];
 
       try {
         const [aiRules] = await getStructuredMetaData('../../metadata/static/component-list');
-        const components = await listComponents();
+        const components = await listComponents({
+          includeLayerRefs: false,
+          includeSources: false,
+        });
         const componentNames = components.data
           .map(c => c.name)
           .toSorted();

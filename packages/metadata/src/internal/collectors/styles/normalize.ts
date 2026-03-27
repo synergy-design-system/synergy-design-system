@@ -1,17 +1,11 @@
 /**
  * Normalizer: Transform raw styles setup data to canonical CoreEntity records.
  */
-
 import { basename } from 'node:path';
 import { type Result, ok } from '../../core/result.js';
 import { type NormalizeError, createNormalizeError } from '../../core/errors.js';
 import { type CoreEntity } from '../../schemas/index.js';
 import { type StylesRaw } from './collect.js';
-
-const toDisplayName = (moduleName: string): string => moduleName
-  .split('-')
-  .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
-  .join(' ');
 
 const toStyleIdName = (styleName: string): string => (styleName.startsWith('syn-') ? styleName : `syn-${styleName}`);
 
@@ -48,22 +42,29 @@ export const normalize = (raw: StylesRaw): Result<CoreEntity[], NormalizeError> 
 
     const styleEntities: CoreEntity[] = raw.moduleEntries.flatMap((moduleEntry) => moduleEntry.sourceFiles.map((sourcePath) => {
       const styleName = toStyleNameFromSource(sourcePath, moduleEntry.moduleName);
+      const name = toStyleIdName(styleName);
 
       return {
         custom: {
           moduleName: moduleEntry.moduleName,
-          styleName,
         },
-        id: `style:${toStyleIdName(styleName)}`,
+        id: `style:${name}`,
         kind: 'style',
         layers: {},
-        name: `${toDisplayName(styleName)} Styles`,
+        name,
         package: 'styles',
         relations: [],
         since: raw.packageVersion,
         sources: [sourcePath],
         status: 'stable',
-        tags: ['module', 'style', 'styles', moduleEntry.moduleName, styleName],
+        tags: [
+          'module',
+          'style',
+          'styles',
+          moduleEntry.moduleName,
+          styleName,
+          name,
+        ].sort(),
       };
     }));
 

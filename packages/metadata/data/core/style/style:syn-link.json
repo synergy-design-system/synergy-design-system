@@ -1,7 +1,6 @@
 {
   "custom": {
-    "moduleName": "link",
-    "styleName": "link"
+    "moduleName": "link"
   },
   "id": "style:syn-link",
   "kind": "style",
@@ -19,7 +18,7 @@
       }
     ]
   },
-  "name": "Link Styles",
+  "name": "syn-link",
   "package": "styles",
   "relations": [],
   "since": "2.0.2",
@@ -28,10 +27,11 @@
   ],
   "status": "stable",
   "tags": [
+    "link",
+    "link",
     "module",
     "style",
     "styles",
-    "link",
-    "link"
+    "syn-link"
   ]
 }

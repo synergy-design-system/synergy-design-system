@@ -77,6 +77,24 @@ export const listAssets = async (
 
 We would have to create those types during builds for all metadata types. 
 
+### Lack of using data from the layer level
+
+There are methods on the store to retrieve the layers associated to a given id, e.g. `const entity = await store.getLayerFiles('component:syn-header', 'full');`. However, this does only output the paths. What if I need the content?
+
+Also, I think we need more abstraction on top of what is already there. For example, I don´t want to reinvent a component list all the time:
+
+```typescript
+const components = await listComponents({
+  includeLayerRefs: false,
+  includeSources: false,
+});
+const componentNames = components.data
+  .map(c => c.name)
+  .toSorted();
+```
+
+I want to reuse this and not write the same boilerplace all the time. I think we need nicer tools for interaction.
+
 ## Assets
 
 ### Grouped filters

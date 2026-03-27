@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-03-27T10:10:59.824Z",
+  "builtAt": "2026-03-27T11:09:09.827Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -1311,15 +1311,16 @@
         "examples": 1,
         "full": 1
       },
-      "name": "Body Styles",
+      "name": "syn-body",
       "search": [
         "style:syn-body",
-        "Body Styles",
+        "syn-body",
+        "body",
         "module",
         "style",
         "styles",
-        "typography",
-        "body"
+        "syn-body",
+        "typography"
       ]
     },
     {
@@ -1330,15 +1331,16 @@
         "examples": 1,
         "full": 1
       },
-      "name": "Heading Styles",
+      "name": "syn-heading",
       "search": [
         "style:syn-heading",
-        "Heading Styles",
+        "syn-heading",
+        "heading",
         "module",
         "style",
         "styles",
-        "typography",
-        "heading"
+        "syn-heading",
+        "typography"
       ]
     },
     {
@@ -1349,15 +1351,16 @@
         "examples": 1,
         "full": 1
       },
-      "name": "Link Styles",
+      "name": "syn-link",
       "search": [
         "style:syn-link",
-        "Link Styles",
+        "syn-link",
+        "link",
+        "link",
         "module",
         "style",
         "styles",
-        "link",
-        "link"
+        "syn-link"
       ]
     },
     {
@@ -1368,15 +1371,16 @@
         "examples": 1,
         "full": 1
       },
-      "name": "Link List Styles",
+      "name": "syn-link-list",
       "search": [
         "style:syn-link-list",
-        "Link List Styles",
+        "syn-link-list",
+        "link-list",
+        "link-list",
         "module",
         "style",
         "styles",
-        "link-list",
-        "link-list"
+        "syn-link-list"
       ]
     },
     {
@@ -1387,15 +1391,16 @@
         "examples": 1,
         "full": 1
       },
-      "name": "Table Styles",
+      "name": "syn-table",
       "search": [
         "style:syn-table",
-        "Table Styles",
+        "syn-table",
         "module",
         "style",
         "styles",
-        "tables",
-        "table"
+        "syn-table",
+        "table",
+        "tables"
       ]
     },
     {
@@ -1406,15 +1411,16 @@
         "examples": 1,
         "full": 1
       },
-      "name": "Table Cell Styles",
+      "name": "syn-table-cell",
       "search": [
         "style:syn-table-cell",
-        "Table Cell Styles",
+        "syn-table-cell",
         "module",
         "style",
         "styles",
-        "tables",
-        "table-cell"
+        "syn-table-cell",
+        "table-cell",
+        "tables"
       ]
     },
     {
@@ -1425,13 +1431,14 @@
         "examples": 1,
         "full": 1
       },
-      "name": "Weight Styles",
+      "name": "syn-weight",
       "search": [
         "style:syn-weight",
-        "Weight Styles",
+        "syn-weight",
         "module",
         "style",
         "styles",
+        "syn-weight",
         "typography",
         "weight"
       ]

@@ -1,7 +1,6 @@
 {
   "custom": {
-    "moduleName": "typography",
-    "styleName": "heading"
+    "moduleName": "typography"
   },
   "id": "style:syn-heading",
   "kind": "style",
@@ -19,7 +18,7 @@
       }
     ]
   },
-  "name": "Heading Styles",
+  "name": "syn-heading",
   "package": "styles",
   "relations": [],
   "since": "2.0.2",
@@ -28,10 +27,11 @@
   ],
   "status": "stable",
   "tags": [
+    "heading",
     "module",
     "style",
     "styles",
-    "typography",
-    "heading"
+    "syn-heading",
+    "typography"
   ]
 }

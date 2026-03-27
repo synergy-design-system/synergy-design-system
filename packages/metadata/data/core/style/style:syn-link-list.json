@@ -1,7 +1,6 @@
 {
   "custom": {
-    "moduleName": "link-list",
-    "styleName": "link-list"
+    "moduleName": "link-list"
   },
   "id": "style:syn-link-list",
   "kind": "style",
@@ -19,7 +18,7 @@
       }
     ]
   },
-  "name": "Link List Styles",
+  "name": "syn-link-list",
   "package": "styles",
   "relations": [],
   "since": "2.0.2",
@@ -28,10 +27,11 @@
   ],
   "status": "stable",
   "tags": [
+    "link-list",
+    "link-list",
     "module",
     "style",
     "styles",
-    "link-list",
-    "link-list"
+    "syn-link-list"
   ]
 }

@@ -1,7 +1,9 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { listStyles } from '@synergy-design-system/metadata';
 import {
-  getAvailableStyles,
+  createToolAnnotations,
   getStructuredMetaData,
+  toContentArray,
 } from '../utilities/index.js';
 
 /**
@@ -13,42 +15,34 @@ export const stylesList = (server: McpServer) => {
   server.registerTool(
     'styles-list',
     {
-      description: 'Outputs a list of available styles in the Synergy Design System',
+      annotations: createToolAnnotations(),
+      description: 'Outputs a list of available css classes and styles in the Synergy Design System',
       inputSchema: {},
-      title: 'List Synergy Styles',
+      title: 'Styles list',
     },
     async () => {
-      // Get the package data for styles
+      const content = [];
+
       try {
-        const styles = await getAvailableStyles();
-        const styleNames = styles.map(
-          style => `- ${style}`,
-        );
+        const [aiRules] = await getStructuredMetaData('../../metadata/static/styles');
+        const styles = await listStyles({
+          includeLayerRefs: false,
+          includeSources: false,
+        });
+        const styleNames = styles.data
+          .map(c => c.name)
+          .toSorted();
 
-        const aiRules = await getStructuredMetaData('../../metadata/static/styles');
-
-        return {
-          content: [
-            {
-              text: JSON.stringify(aiRules, null, 2),
-              type: 'text',
-            },
-            {
-              text: styleNames.join('\n'),
-              type: 'text',
-            },
-          ],
-        };
+        content.push(aiRules?.content);
+        content.push(styleNames);
       } catch (error) {
-        return {
-          content: [
-            {
-              text: `Error fetching components: ${(error as Error).message}`,
-              type: 'text',
-            },
-          ],
-        };
+        content.push({
+          text: `Error fetching style list: ${error instanceof Error ? error.message : String(error)}`,
+          type: 'text',
+        });
       }
+
+      return toContentArray(content);
     },
   );
 };

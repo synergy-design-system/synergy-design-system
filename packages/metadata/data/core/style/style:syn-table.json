@@ -1,7 +1,6 @@
 {
   "custom": {
-    "moduleName": "tables",
-    "styleName": "table"
+    "moduleName": "tables"
   },
   "id": "style:syn-table",
   "kind": "style",
@@ -19,7 +18,7 @@
       }
     ]
   },
-  "name": "Table Styles",
+  "name": "syn-table",
   "package": "styles",
   "relations": [],
   "since": "2.0.2",
@@ -31,7 +30,8 @@
     "module",
     "style",
     "styles",
-    "tables",
-    "table"
+    "syn-table",
+    "table",
+    "tables"
   ]
 }

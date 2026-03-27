@@ -26,8 +26,8 @@ export const assetListTool = (server: McpServer) => {
         // Get the data from metadata files.
         const [aiRules] = await getStructuredMetaData('../../metadata/static/assets');
         const allAssets = await listAssets();
-        const assets = allAssets
-          .data.map(asset => ({
+        const assets = allAssets.data
+          .map(asset => ({
             iconCount: asset?.custom?.iconCount ?? undefined,
             id: asset.id,
             name: asset.name,

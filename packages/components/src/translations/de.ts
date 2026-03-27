@@ -1,4 +1,4 @@
-/* eslint-disable */
+/* eslint-disable sort-keys */
 import { registerTranslation } from '../utilities/localize.js';
 import type { Translation } from '../utilities/localize.js';
 
@@ -46,9 +46,9 @@ const translation: Translation = {
   noResults: 'Keine Ergebnisse gefunden',
   notification: 'Benachrichtigung',
   numFilesSelected: (num, dir) => {
-      if (num === 0) return `Keine ${dir ? 'Ordner' : 'Dateien'} ausgewählt`;
-      return `${num} Dateien`;
-    },
+    if (num === 0) return `Keine ${dir ? 'Ordner' : 'Dateien'} ausgewählt`;
+    return `${num} Dateien`;
+  },
   openMenu: 'Menü öffnen',
   rangeMax: 'Maximum',
   rangeMin: 'Minimum',

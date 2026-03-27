@@ -1,5 +1,5 @@
-/* eslint-disable */
-import { registerTranslation } from '@shoelace-style/localize';
+/* eslint-disable sort-keys */
+import { registerTranslation } from '../utilities/localize/core.js';
 import type { Translation } from '../utilities/localize.js';
 
 const translation: Translation = {
@@ -46,9 +46,9 @@ const translation: Translation = {
   noResults: 'No results found',
   notification: 'Notification',
   numFilesSelected: (num, dir) => {
-      if (num === 0) return `No ${dir ? 'folder' : 'files'} chosen`;
-      return `${num} files`;
-    },
+    if (num === 0) return `No ${dir ? 'folder' : 'files'} chosen`;
+    return `${num} files`;
+  },
   openMenu: 'Open menu',
   rangeMax: 'Maximum',
   rangeMin: 'Minimum',

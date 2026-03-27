@@ -8,6 +8,10 @@ When creating the first demos using the metadata store, I ran into a couple of i
 
 We are missing on DX for the public interface by not providing comments. I added those myself to the assets package.
 
+### Lots of duplicated code
+
+Each of the public interfaces defines some common stuff that we may group together, e.g. `sortEntityById`.
+
 ### Lack of fixed types from the model
 
 Maybe we should think about giving users strong types for custom `MetadataEntity` entities.

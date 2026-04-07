@@ -47,7 +47,7 @@ const translation: Translation = {
   notification: 'Benachrichtigung',
   numFilesSelected: (num, dir) => {
     if (num === 0) return `Keine ${dir ? 'Ordner' : 'Dateien'} ausgewählt`;
-    return `${num} Dateien`;
+    return `${num} ${dir ? 'Ordner' : 'Dateien'} ausgewählt`;
   },
   openMenu: 'Menü öffnen',
   rangeMax: 'Maximum',

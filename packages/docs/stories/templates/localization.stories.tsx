@@ -6,8 +6,7 @@ import {
   Subtitle,
   Title,
 } from '@storybook/addon-docs/blocks';
-import { type SynSelectEvent } from '@synergy-design-system/components';
-import { html, render } from 'lit';
+import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
@@ -43,7 +42,7 @@ const meta: Meta = {
         </>
       ),
       story: {
-        height: '550px',
+        height: '500px',
         inline: false,
       },
     },
@@ -53,6 +52,14 @@ const meta: Meta = {
 };
 export default meta;
 
+const availableLocalizations = Object.values(getAvailableLocalizations());
+const defaultLocale = availableLocalizations.find(locale => locale.$code === 'de') || availableLocalizations[0];
+const localizedValues = availableLocalizations.map(locale => ({
+  code: locale.$code,
+  dir: locale.$dir,
+  name: locale.$name,
+}));
+
 export const DynamicallySetLocalizations: StoryObj = {
   parameters: {
     docs: {
@@ -60,160 +67,139 @@ export const DynamicallySetLocalizations: StoryObj = {
         story: generateStoryDescription('localization', 'dynamicallySetLocalizations', 'templates'),
       },
     },
+    synergy: {
+      customImports: availableLocalizations
+        .filter(locale => locale.$code === 'en' || locale.$code === 'de') // @todo: Remove this filter once all translations are available, currently we only have English and German translations ready.
+        .map(locale => `https://esm.sh/@synergy-design-system/components@latest/dist/translations/${locale.$code}.js`),
+    },
   },
-  render: () => {
-    const availableLocalizations = Object.values(getAvailableLocalizations());
+  render: () => html`
+    <!-- .synergy-demo-application -->
+    <div id="localization-demo-story" class="synergy-demo-application">
+      <!-- header -->
+      <syn-header label="Localization Demo" sticky>
+        <!-- meta-navigation -->
+        <nav slot="meta-navigation">
+          <syn-dropdown>
+            <div slot="trigger">
+              <syn-tooltip content="Change language" placement="bottom">
+                <syn-icon-button
+                  color="neutral"
+                  name="language"
+                  label="Choose language"
+                ></syn-icon-button>
+              </syn-tooltip>
+            </div>
+            <syn-menu>
+              ${availableLocalizations.map(locale => html`
+                <syn-menu-item
+                  ?checked=${defaultLocale.$code === locale.$code}
+                  type="checkbox"
+                  value=${locale.$code}
+                >${locale.$name}</syn-menu-item>
+              `)}
+            </syn-menu>
+          </syn-dropdown>
+        </nav>
+        <!-- /meta-navigation -->
+      </syn-header>
+      <!-- /header -->
 
-    let state = {
-      availableLocalizations,
-      currentLocale: availableLocalizations.find(locale => locale.$code === 'de') || availableLocalizations[0],
-    };
-
-    // Action type definitions
-    type Actions = {
-      changeLanguage: (e: SynSelectEvent) => void;
-    };
-
-    // Pure view function that takes state and actions as parameters
-    const renderView = (currentState: typeof state, actions: Actions) => html`
-      <!-- .synergy-demo-application -->
-      <div class="synergy-demo-application" id="appshell-side-navigation">
-        <!-- header -->
-        <syn-header label="Localization Demo" sticky>
-          <!-- meta-navigation -->
-          <nav slot="meta-navigation">
-            <syn-dropdown>
-              <div slot="trigger">
-                <syn-tooltip content="Change language" placement="bottom">
-                  <syn-icon-button
-                    color="neutral"
-                    name="language"
-                    label="Choose language"
-                  ></syn-icon-button>
-                </syn-tooltip>
-              </div>
-              <syn-menu @syn-select=${actions.changeLanguage}>
-                ${currentState.availableLocalizations.map(locale => html`
-                  <syn-menu-item
-                    ?checked=${currentState.currentLocale.$code === locale.$code}
-                    type="checkbox"
-                    value=${locale.$code}
-                  >${locale.$name}</syn-menu-item>
-                `)}
-              </syn-menu>
-            </syn-dropdown>
-          </nav>
-          <!-- /meta-navigation -->
-        </syn-header>
-        <!-- /header -->
-
-        <!-- .synergy-demo-content -->
-        <div class="synergy-demo-content">
-          <main class="synergy-demo-main">
-            <syn-card shadow>
-              <h1 class="syn-heading--3x-large">
-                Current selected language:
-                ${currentState.currentLocale.$name}
-              </h1>
-              <p>
-                The following example demonstrates the usage of the <code>syn-file</code> component with different language settings.
-                The first two file inputs will adapt to the currently selected language, while the third one is fixed to English regardless of the selected language.
-              </p>
-              <p>
-                Try changing the language using the dropdown in the header to see how the first two file inputs update their translations accordingly.
-              </p>
-              <div class="form">
-                <syn-file droparea></syn-file>
-                <syn-file droparea webkitdirectory></syn-file>
-                <syn-file droparea lang="en"></syn-file>
-              </div>
-            </syn-card>
-          </main>
-          <!-- /.synergy-demo-main -->
-        </div>
-        <!-- /.synergy-demo-content -->
+      <!-- .synergy-demo-content -->
+      <div class="synergy-demo-content">
+        <main class="synergy-demo-main">
+          <syn-card shadow>
+            <h1 class="syn-heading--3x-large">
+              Current selected language:
+              <span data-current-language>${defaultLocale.$name}</span>
+            </h1>
+            <p>
+              The following example demonstrates the usage of the <code>&lt;syn-file&gt;</code> component with different language settings.
+              The first item will adapt to the currently selected language, while the second one uses a fixed <code>lang="en"</code> attribute, making it fixed to English regardless of the selected language.
+            </p>
+            <p>
+              Try changing the language using the dropdown in the header to see how the first file input updates its translations accordingly.
+            </p>
+            <div class="form">
+              <syn-file droparea></syn-file>
+              <syn-file droparea lang="en"></syn-file>
+            </div>
+          </syn-card>
+        </main>
+        <!-- /.synergy-demo-main -->
       </div>
-      <!-- /.synergy-demo-application -->
+      <!-- /.synergy-demo-content -->
+    </div>
+    <!-- /.synergy-demo-application -->
 
-      <style>
-        body {
-          margin: 0 !important;
-          padding: 0 !important;
+    <style>
+      body {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .synergy-demo-application {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .synergy-demo-content {
+        background: var(--syn-page-background-color-muted);
+      }
+
+      .synergy-demo-main {
+        display: flex;
+        flex-direction: column;
+        font: var(--syn-body-medium);
+        margin: var(--syn-spacing-medium);
+
+        h1 {
+          margin: 0 0 var(--syn-spacing-medium);
         }
 
-        .synergy-demo-application {
+        .form {
           display: flex;
-          flex-direction: column;
-        }
-
-        .synergy-demo-content {
-          background: var(--syn-page-background-color-muted);
-        }
-
-        .synergy-demo-main {
-          display: flex;
-          flex-direction: column;
-          font: var(--syn-body-medium);
-          margin: var(--syn-spacing-medium);
-
-          h1 {
-            margin: 0 0 var(--syn-spacing-medium);
-          }
-
-          .form {
-            display: flex;
-            flex-direction: column;
-            gap: var(--syn-spacing-medium);
+          flex-direction: row;
+          gap: var(--syn-spacing-medium);
+          
+          syn-file {
+            flex-basis: calc(50% - var(--syn-spacing-medium) / 2);
           }
         }
-      </style>
-    `;
+      }
+    </style>
 
-    // Create container
-    const container = document.createElement('div');
+    <script type="module">
+    const localizations = ${JSON.stringify(localizedValues, null, 2)};
+    const root = document.querySelector('#localization-demo-story');
+    const menu = root?.querySelector('#localization-demo-story syn-menu');
+    const languageLabel = root?.querySelector('[data-current-language]');
 
-    const createUpdateableView = () => {
-      let currentActions: Actions;
+    if (menu && languageLabel) {
+      const applyLocale = localeCode => {
+        const locale = localizations.find(({ code }) => code === localeCode);
+        if (!locale) {
+          return;
+        }
 
-      const rerender = () => {
-        render(renderView(state, currentActions), container);
+        document.documentElement.setAttribute('lang', locale.code);
+        document.documentElement.setAttribute('dir', locale.dir);
+        languageLabel.textContent = locale.name;
+
+        menu
+          .querySelectorAll('syn-menu-item')
+          .forEach(item => {
+            item.toggleAttribute('checked', item.getAttribute('value') === locale.code);
+          });
       };
 
-      const updateState = (newState: Partial<typeof state>) => {
-        state = { ...state, ...newState };
-        rerender();
-      };
+      applyLocale('${defaultLocale.$code}');
 
-      const actions: Actions = {
-        changeLanguage: (e: SynSelectEvent) => {
-          const { detail } = e;
-          const { item } = detail;
-
-          const selectedLocaleCode = item.getAttribute('value') || 'en';
-          const currentLocale = state.availableLocalizations.find(
-            locale => locale.$code === selectedLocaleCode,
-          );
-
-          document.documentElement.setAttribute('lang', selectedLocaleCode);
-          updateState({ currentLocale });
-        },
-      };
-
-      // Inject actions into the system
-      currentActions = actions;
-
-      // Initial render
-      document.documentElement.setAttribute('lang', state.currentLocale.$code);
-      rerender();
-
-      return {
-        actions,
-        rerender,
-      };
-    };
-
-    createUpdateableView();
-
-    return container;
-  },
+      menu.addEventListener('syn-select', event => {
+        const selectedLocaleCode = event.detail?.item?.getAttribute('value') || '${defaultLocale.$code}';
+        applyLocale(selectedLocaleCode);
+      });
+    }
+    </script>
+    `,
 };

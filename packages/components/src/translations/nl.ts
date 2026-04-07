@@ -7,32 +7,20 @@ const translation: Translation = {
   $name: 'Nederlands',
   $dir: 'ltr',
 
-  carousel: 'Draaideur',
   clearEntry: 'Invoer wissen',
   close: 'Sluiten',
-  copied: 'Gekopieerd',
-  copy: 'Kopiëren',
-  currentValue: 'Actuele waarde',
-  error: 'Fout',
-  goToSlide: (slide, count) => `Ga naar dia ${slide} van ${count}`,
   hidePassword: 'Wachtwoord verbergen',
   loading: 'Wordt geladen',
-  nextSlide: 'Volgende dia',
   numOptionsSelected: num => {
     if (num === 0) return 'Geen opties geselecteerd';
     if (num === 1) return '1 optie geselecteerd';
     return `${num} opties geselecteerd`;
   },
-  previousSlide: 'Vorige dia',
   progress: 'Vooruitgang',
   remove: 'Verwijderen',
-  resize: 'Grootte wijzigen',
   scrollToEnd: 'Naar het einde scrollen',
   scrollToStart: 'Naar het begin scrollen',
-  selectAColorFromTheScreen: 'Kleur selecteren op het scherm',
   showPassword: 'Wachtwoord weergeven',
-  slideNum: slide => `Dia ${slide}`,
-  toggleColorFormat: 'Kleurformaat wijzigen',
 
   // Synergy custom translations start
   closeMenu: 'Menu sluiten',

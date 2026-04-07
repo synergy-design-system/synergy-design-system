@@ -7,32 +7,20 @@ const translation: Translation = {
   $name: 'Italian',
   $dir: 'ltr',
 
-  carousel: 'Carosello',
   clearEntry: 'Cancella immissione',
   close: 'Chiudi',
-  copied: 'Copiato',
-  copy: 'Copia',
-  currentValue: 'Valore attuale',
-  error: 'Errore',
-  goToSlide: (slide, count) => `Vai a diapositiva ${slide} di ${count}`,
   hidePassword: 'Nascondi password',
   loading: 'Caricamento in corso',
-  nextSlide: 'Diapositiva successiva',
   numOptionsSelected: num => {
     if (num === 0) return 'Nessuna opzione selezionata';
     if (num === 1) return '1 opzione selezionata';
     return `${num} opzioni selezionate`;
   },
-  previousSlide: 'Diapositiva precedente',
   progress: 'Avanzamento',
   remove: 'Rimuovi',
-  resize: 'Cambia dimensione',
   scrollToEnd: 'Scorri alla fine',
   scrollToStart: 'Scorri all’inizio',
-  selectAColorFromTheScreen: 'Seleziona colore da schermo',
   showPassword: 'Mostra password',
-  slideNum: slide => `Diapositiva ${slide}`,
-  toggleColorFormat: 'Cambia formato colore',
 
   // Synergy custom translations start
   closeMenu: 'Chiudi menu',

@@ -7,32 +7,20 @@ const translation: Translation = {
   $name: 'Türkçe',
   $dir: 'ltr',
 
-  carousel: 'Döner kapı',
   clearEntry: 'Girişi sil',
   close: 'Kapat',
-  copied: 'Kopyalandı',
-  copy: 'Kopyala',
-  currentValue: 'Güncel değer',
-  error: 'Hata',
-  goToSlide: (slide, count) => `${slide} / ${count}. folyoya git`,
   hidePassword: 'Şifreyi gizle',
   loading: 'Yükleniyor',
-  nextSlide: 'Sonraki folyo',
   numOptionsSelected: num => {
     if (num === 0) return 'Hiçbir opsiyon seçilmedi';
     if (num === 1) return '1 opsiyon seçildi';
     return `${num} opsiyon seçildi`;
   },
-  previousSlide: 'Önceki folyo',
   progress: 'İlerleme',
   remove: 'Kaldır',
-  resize: 'Boyutu değiştir',
   scrollToEnd: 'Sona kaydır',
   scrollToStart: 'Başlangıca kaydır',
-  selectAColorFromTheScreen: 'Ekranın rengini seç',
   showPassword: 'Şifreyi göster',
-  slideNum: slide => `Folyo ${slide}`,
-  toggleColorFormat: 'Renk formatını değiştir',
 
   // Synergy custom translations start
   closeMenu: 'Menüyü kapat',

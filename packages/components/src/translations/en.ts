@@ -7,32 +7,20 @@ const translation: Translation = {
   $name: 'English',
   $dir: 'ltr',
 
-  carousel: 'Carousel',
   clearEntry: 'Clear entry',
   close: 'Close',
-  copied: 'Copied',
-  copy: 'Copy',
-  currentValue: 'Current value',
-  error: 'Error',
-  goToSlide: (slide, count) => `Go to slide ${slide} of ${count}`,
   hidePassword: 'Hide password',
   loading: 'Loading',
-  nextSlide: 'Next slide',
   numOptionsSelected: num => {
     if (num === 0) return 'No options selected';
     if (num === 1) return '1 option selected';
     return `${num} options selected`;
   },
-  previousSlide: 'Previous slide',
   progress: 'Progress',
   remove: 'Remove',
-  resize: 'Resize',
   scrollToEnd: 'Scroll to end',
   scrollToStart: 'Scroll to start',
-  selectAColorFromTheScreen: 'Select color from screen',
   showPassword: 'Show password',
-  slideNum: slide => `Slide ${slide}`,
-  toggleColorFormat: 'Switch color format',
 
   // Synergy custom translations start
   closeMenu: 'Close menu',

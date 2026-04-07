@@ -24,28 +24,16 @@ export interface Translation {
   sideNavShow: string;
   success: string;
   warning: string;
-  carousel: string;
   clearEntry: string;
   close: string;
-  copied: string;
-  copy: string;
-  currentValue: string;
-  error: string;
-  goToSlide: (slide: number, count: number) => string;
   hidePassword: string;
   loading: string;
-  nextSlide: string;
   numOptionsSelected: (num: number) => string;
-  previousSlide: string;
   progress: string;
   remove: string;
-  resize: string;
   scrollToEnd: string;
   scrollToStart: string;
-  selectAColorFromTheScreen: string;
   showPassword: string;
-  slideNum: (slide: number) => string;
-  toggleColorFormat: string;
 }
 
 export interface DefaultTranslation extends Translation {

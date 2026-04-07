@@ -7,32 +7,20 @@ const translation: Translation = {
   $name: 'Dansk',
   $dir: 'ltr',
 
-  carousel: 'Karrusel',
   clearEntry: 'Slet indtastning',
   close: 'Luk',
-  copied: 'Kopieret',
-  copy: 'Kopiér',
-  currentValue: 'Aktuel værdi',
-  error: 'Fejl',
-  goToSlide: (slide, count) => `Gå til folie ${slide} ud af ${count}`,
   hidePassword: 'Skjul adgangskode',
   loading: 'Indlæses',
-  nextSlide: 'Næste folie',
   numOptionsSelected: num => {
     if (num === 0) return 'Ingen muligheder valgt';
     if (num === 1) return '1 mulighed valgt';
     return `${num} muligheder valgt`;
   },
-  previousSlide: 'Forrige folie',
   progress: 'Fremskridt',
   remove: 'Ryd',
-  resize: 'Skift størrelse',
   scrollToEnd: 'Scroll til slutningen',
   scrollToStart: 'Scroll til starten',
-  selectAColorFromTheScreen: 'Vælg farve fra skærmen',
   showPassword: 'Vis adgangskode',
-  slideNum: slide => `Folie ${slide}`,
-  toggleColorFormat: 'Skift farveformat',
 
   // Synergy custom translations start
   closeMenu: 'Luk menu',

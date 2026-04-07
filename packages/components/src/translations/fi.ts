@@ -7,32 +7,20 @@ const translation: Translation = {
   $name: 'Suomi',
   $dir: 'ltr',
 
-  carousel: 'Karuselli',
   clearEntry: 'Poista syöttö',
   close: 'Sulje',
-  copied: 'Kopioitu',
-  copy: 'Kopio',
-  currentValue: 'Ajankohtainen arvo',
-  error: 'Vika',
-  goToSlide: (slide, count) => `Siirry kalvosta ${slide} kalvolle ${count}`,
   hidePassword: 'Piilota salasana',
   loading: 'Ladataan',
-  nextSlide: 'Seuraava kalvo',
   numOptionsSelected: num => {
     if (num === 0) return 'Ei valittu mitään optioita';
     if (num === 1) return '1 optio valittu';
     return `${num} optiota valittu`;
   },
-  previousSlide: 'Edellinen kalvo',
   progress: 'Eteneminen',
   remove: 'Poista',
-  resize: 'Muuta kokoa',
   scrollToEnd: 'Vieritä loppuun',
   scrollToStart: 'Vieritä alkuun',
-  selectAColorFromTheScreen: 'Valitse näytön väri',
   showPassword: 'Näytä salasana',
-  slideNum: slide => `Kalvo ${slide}`,
-  toggleColorFormat: 'Vaihda väriformaattia',
 
   // Synergy custom translations start
   closeMenu: 'Sulje valikko',

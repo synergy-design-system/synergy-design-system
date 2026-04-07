@@ -7,32 +7,20 @@ const translation: Translation = {
   $name: '日本語',
   $dir: 'ltr',
 
-  carousel: 'カルーセル',
   clearEntry: '入力を消去する',
   close: '終了',
-  copied: 'コピーしました',
-  copy: 'コピーする',
-  currentValue: '現在の値',
-  error: 'エラー',
-  goToSlide: (slide, count) => `スライド${slide}/${count}に移動する`,
   hidePassword: 'パスワードを隠す',
   loading: '読み込み中',
-  nextSlide: '次のスライド',
   numOptionsSelected: num => {
     if (num === 0) return '選択されているオプションなし';
     if (num === 1) return 'オプションが1つ選択されています';
     return `オプションが${num}つ選択されています`;
   },
-  previousSlide: '前のスライド',
   progress: '進捗状況',
   remove: '削除',
-  resize: 'サイズを変更する',
   scrollToEnd: '一番下にスクロール',
   scrollToStart: '一番上にスクロール',
-  selectAColorFromTheScreen: '画面の色を選択する',
   showPassword: 'パスワードを表示する',
-  slideNum: slide => `スライド${slide}`,
-  toggleColorFormat: '色形式を切り替える',
 
   // Synergy custom translations start
   closeMenu: 'メニューを閉じる',

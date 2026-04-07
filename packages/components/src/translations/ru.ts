@@ -7,32 +7,20 @@ const translation: Translation = {
   $name: 'Русский',
   $dir: 'ltr',
 
-  carousel: 'Карусель',
   clearEntry: 'Удалить введенные данные',
   close: 'Закрыть',
-  copied: 'Скопировано',
-  copy: 'Копировать',
-  currentValue: 'Текущее значение',
-  error: 'Ошибка',
-  goToSlide: (slide, count) => `Перейти к слайду ${slide} из ${count}`,
   hidePassword: 'Скрыть пароль',
   loading: 'Выполняется загрузка',
-  nextSlide: 'Следующий слайд',
   numOptionsSelected: num => {
     if (num === 0) return 'Опции не выбраны';
     if (num === 1) return 'Выбрана 1 опция';
     return `Выбрано ${num} опций`;
   },
-  previousSlide: 'Предыдущий слайд',
   progress: 'Прогресс',
   remove: 'Очистить',
-  resize: 'Изменить размер',
   scrollToEnd: 'Пролистать в конец',
   scrollToStart: 'Пролистать в начало',
-  selectAColorFromTheScreen: 'Выбрать цвет экрана',
   showPassword: 'Показать пароль',
-  slideNum: slide => `Слайд ${slide}`,
-  toggleColorFormat: 'Переключить формат цвета',
 
   // Synergy custom translations start
   closeMenu: 'Закрыть меню',

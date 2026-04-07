@@ -41,10 +41,6 @@ const meta: Meta = {
           <Stories title="" />
         </>
       ),
-      story: {
-        height: '500px',
-        inline: false,
-      },
     },
   },
   tags: ['i18n', 'localization', 'translations'],

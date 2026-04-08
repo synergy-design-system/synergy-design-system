@@ -98,6 +98,7 @@ export default css`
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     padding: var(--body-spacing);
+    will-change: transform; /* #1249: Fixes Chrome scroll issues when using multiple scrollable items as content */
   }
 
   .dialog__footer {

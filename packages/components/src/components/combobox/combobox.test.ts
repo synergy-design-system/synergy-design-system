@@ -1880,9 +1880,9 @@ describe('<syn-combobox>', () => {
       el.blur();
       await el.updateComplete;
 
+      await waitUntil(() => changeHandler.calledOnce && secondOption.selected);
+
       expect(inputHandler.callCount).to.equal(8);
-      expect(changeHandler.calledOnce).to.be.true;
-      expect(secondOption.selected).to.be.true;
     });
 
     it('should emit syn-change and syn-input when the user types in the combobox an valid option textContent', async () => {

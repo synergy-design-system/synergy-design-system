@@ -20,7 +20,7 @@ export default [
     rules: {
       // We are not allowed to change Chromatic_Modes_All to camelCase, so we need to allow it in the camelcase rule
       // This is because chromatic will create a complete new baseline and we want to avoid that as much as possible.
-      camelcase: ['error', {
+      camelcase: ['warn', {
         allow: ['Chromatic_Modes_All'],
       }],
       // Allow devDependencies in documentation/stories

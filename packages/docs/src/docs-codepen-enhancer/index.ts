@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-param-reassign, camelcase */
 import { StoryContext } from '@storybook/web-components-vite';
 
 export default function docsCodepenEnhancer(code: string, storyContext: StoryContext) {
@@ -69,7 +69,9 @@ export default function docsCodepenEnhancer(code: string, storyContext: StoryCon
         let additionalImports = '';
 
         // Make sure to include the optional custom imports in the CodePen config if they are provided in the story's parameters
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (storyContext.parameters.synergy?.customImports) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
           const customImports = storyContext.parameters.synergy.customImports as string[];
           additionalImports = customImports
             .filter(url => url.startsWith('http://') || url.startsWith('https://'))

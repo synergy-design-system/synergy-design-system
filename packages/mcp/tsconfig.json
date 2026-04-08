@@ -2,6 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "outDir": "dist",
+    "rootDir": "./src",
     "target": "ES2022",
     "lib": ["ES2022", "DOM"],
     "module": "nodenext",

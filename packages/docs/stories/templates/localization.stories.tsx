@@ -197,5 +197,5 @@ export const DynamicallySetLocalizations: StoryObj = {
       });
     }
     </script>
-    `,
+  `,
 };

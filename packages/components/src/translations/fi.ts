@@ -7,16 +7,16 @@ const translation: Translation = {
   $name: 'Suomi',
   $dir: 'ltr',
 
-  clearEntry: 'Poista syöttö',
+  clearEntry: 'Tyhjennä syöte',
   close: 'Sulje',
   hidePassword: 'Piilota salasana',
   loading: 'Ladataan',
   numOptionsSelected: num => {
-    if (num === 0) return 'Ei valittu mitään optioita';
-    if (num === 1) return '1 optio valittu';
-    return `${num} optiota valittu`;
+    if (num === 0) return 'Ei valittuja vaihtoehtoja';
+    if (num === 1) return '1 vaihtoehto valittu';
+    return `${num} vaihtoehtoa valittu`;
   },
-  progress: 'Eteneminen',
+  progress: 'Edistyminen',
   remove: 'Poista',
   scrollToEnd: 'Vieritä loppuun',
   scrollToStart: 'Vieritä alkuun',
@@ -27,15 +27,15 @@ const translation: Translation = {
   danger: 'Vaara',
   fileButtonText: 'Valitse tiedosto',
   fileButtonTextMultiple: 'Valitse tiedostot',
-  fileDragDrop: 'Lisää tai valitse tiedosto',
+  fileDragDrop: 'Vedä tai valitse tiedosto',
   folderButtonText: 'Valitse kansio',
-  folderDragDrop: 'Lisää tai valitse kansio',
+  folderDragDrop: 'Vedä tai valitse kansio',
   menu: 'Valikko',
   noResults: 'Tuloksia ei löytynyt',
   notification: 'Ilmoitus',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `Ei valittu ${dir ? 'kansioita' : 'tiedostoja'}`;
-    return `${num} ${dir ? 'kansioita' : 'tiedostoja'} valittu`;
+    if (num === 0) return `Ei valittuja ${dir ? 'kansioita' : 'tiedostoja'}`;
+    return `${num} ${dir ? 'kansiota' : 'tiedostoa'} valittu`;
   },
   openMenu: 'Avaa valikko',
   rangeMax: 'Enintään',
@@ -43,7 +43,7 @@ const translation: Translation = {
   sideNav: 'Sivunavigointi',
   sideNavHide: 'Piilota navigointi',
   sideNavShow: 'Näytä navigointi',
-  success: 'Tulos',
+  success: 'Onnistui',
   warning: 'Varoitus',
 };
 

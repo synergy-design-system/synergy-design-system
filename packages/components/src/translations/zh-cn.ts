@@ -7,7 +7,7 @@ const translation: Translation = {
   $name: '简体中文',
   $dir: 'ltr',
 
-  clearEntry: '删除输入内容',
+  clearEntry: '清除输入',
   close: '关闭',
   hidePassword: '隐藏密码',
   loading: '正在加载',
@@ -16,10 +16,10 @@ const translation: Translation = {
     if (num === 1) return '已选择 1 个选项';
     return `已选择 ${num} 个选项`;
   },
-  progress: '进展',
+  progress: '进度',
   remove: '删除',
-  scrollToEnd: '滚动至底部',
-  scrollToStart: '滚动至顶部',
+  scrollToEnd: '滚动到底部',
+  scrollToStart: '滚动到顶部',
   showPassword: '显示密码',
 
   // Synergy custom translations start
@@ -27,19 +27,19 @@ const translation: Translation = {
   danger: '危险',
   fileButtonText: '选择文件',
   fileButtonTextMultiple: '选择文件',
-  fileDragDrop: '保存或选择文件',
+  fileDragDrop: '拖拽或选择文件',
   folderButtonText: '选择文件夹',
-  folderDragDrop: '保存或选择文件夹',
+  folderDragDrop: '拖拽或选择文件夹',
   menu: '菜单',
   noResults: '未找到结果',
   notification: '通知',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `未选择${dir ? '文件夹' : '文件'}`;
-    return `${num} ${dir ? '文件夹' : '文件'} 已选择`;
+    if (num === 0) return `未选择任何${dir ? '文件夹' : '文件'}`;
+    return `已选择 ${num} 个${dir ? '文件夹' : '文件'}`;
   },
   openMenu: '打开菜单',
-  rangeMax: '最大值',
-  rangeMin: '最小值',
+  rangeMax: '最大',
+  rangeMin: '最小',
   sideNav: '页面导航',
   sideNavHide: '隐藏导航',
   sideNavShow: '显示导航',

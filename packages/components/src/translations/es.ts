@@ -19,7 +19,7 @@ const translation: Translation = {
   progress: 'Progreso',
   remove: 'Borrar',
   scrollToEnd: 'Desplazar hasta el final',
-  scrollToStart: 'Desplazar hasta el principio',
+  scrollToStart: 'Desplazar hasta el inicio',
   showPassword: 'Mostrar contraseña',
 
   // Synergy custom translations start
@@ -27,21 +27,21 @@ const translation: Translation = {
   danger: 'Peligro',
   fileButtonText: 'Seleccionar archivo',
   fileButtonTextMultiple: 'Seleccionar archivos',
-  fileDragDrop: 'Guardar o seleccionar archivo',
+  fileDragDrop: 'Arrastrar o seleccionar archivo',
   folderButtonText: 'Seleccionar carpeta',
-  folderDragDrop: 'Guardar o seleccionar carpeta',
+  folderDragDrop: 'Arrastrar o seleccionar carpeta',
   menu: 'Menú',
   noResults: 'No se han encontrado resultados',
   notification: 'Notificación',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `Ningún/ninguna ${dir ? 'carpeta' : 'archivo'} seleccionado/a`;
+    if (num === 0) return dir ? 'Ninguna carpeta seleccionada' : 'Ningún archivo seleccionado';
     return `${num} ${dir ? 'carpetas' : 'archivos'} seleccionados`;
   },
   openMenu: 'Abrir menú',
   rangeMax: 'Máximo',
   rangeMin: 'Mínimo',
-  sideNav: 'Navegación por páginas',
-  sideNavHide: 'Ocular navegación',
+  sideNav: 'Navegación de páginas',
+  sideNavHide: 'Ocultar navegación',
   sideNavShow: 'Mostrar navegación',
   success: 'Éxito',
   warning: 'Advertencia',

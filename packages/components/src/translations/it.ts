@@ -7,10 +7,10 @@ const translation: Translation = {
   $name: 'Italian',
   $dir: 'ltr',
 
-  clearEntry: 'Cancella immissione',
+  clearEntry: 'Cancella input',
   close: 'Chiudi',
   hidePassword: 'Nascondi password',
-  loading: 'Caricamento in corso',
+  loading: 'Caricamento',
   numOptionsSelected: num => {
     if (num === 0) return 'Nessuna opzione selezionata';
     if (num === 1) return '1 opzione selezionata';
@@ -27,23 +27,23 @@ const translation: Translation = {
   danger: 'Pericolo',
   fileButtonText: 'Seleziona file',
   fileButtonTextMultiple: 'Seleziona file',
-  fileDragDrop: 'Salva o seleziona file',
+  fileDragDrop: 'Trascina o seleziona file',
   folderButtonText: 'Seleziona cartella',
-  folderDragDrop: 'Salva o seleziona cartella',
+  folderDragDrop: 'Trascina o seleziona cartella',
   menu: 'Menu',
   noResults: 'Nessun risultato trovato',
-  notification: 'Messaggio',
+  notification: 'Notifica',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `Nessun/a ${dir ? 'cartella' : 'file'} selezionato/a`;
+    if (num === 0) return dir ? 'Nessuna cartella selezionata' : 'Nessun file selezionato';
     return `${num} ${dir ? 'cartelle' : 'file'} selezionati`;
   },
   openMenu: 'Apri menu',
   rangeMax: 'Massimo',
   rangeMin: 'Minimo',
-  sideNav: 'Navigazione del sito',
-  sideNavHide: 'Mostra navigazione',
-  sideNavShow: 'Nascondi navigazione',
-  success: 'Riuscito',
+  sideNav: 'Navigazione della pagina',
+  sideNavHide: 'Nascondi navigazione',
+  sideNavShow: 'Mostra navigazione',
+  success: 'Operazione completata',
   warning: 'Avviso',
 };
 

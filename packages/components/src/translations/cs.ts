@@ -13,8 +13,9 @@ const translation: Translation = {
   loading: 'Načítá se',
   numOptionsSelected: num => {
     if (num === 0) return 'Nejsou vybrány žádné možnosti';
-    if (num === 1) return 'Je zvolena 1 možnost';
-    return `Jsou vybrány ${num} možnosti`;
+    if (num === 1) return 'Je vybrána 1 možnost';
+    if (num >= 2 && num <= 4) return `Jsou vybrány ${num} možnosti`;
+    return `Je vybráno ${num} možností`;
   },
   progress: 'Průběh',
   remove: 'Vymazat',
@@ -27,20 +28,22 @@ const translation: Translation = {
   danger: 'Nebezpečí',
   fileButtonText: 'Vybrat soubor',
   fileButtonTextMultiple: 'Vybrat soubory',
-  fileDragDrop: 'Uložit nebo vybrat soubor',
+  fileDragDrop: 'Přetáhněte nebo vyberte soubor',
   folderButtonText: 'Vybrat složku',
-  folderDragDrop: 'Uložit nebo vybrat složku',
+  folderDragDrop: 'Přetáhněte nebo vyberte složku',
   menu: 'Nabídka',
   noResults: 'Nebyly nalezeny žádné výsledky',
   notification: 'Oznámení',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `Není vybrána žádná ${dir ? 'složka' : 'souborů'}`;
-    return `${num} ${dir ? 'složky' : 'souborů'}`;
+    if (num === 0) return dir ? 'Není vybrána žádná složka' : 'Není vybrán žádný soubor';
+    if (num === 1) return dir ? 'Je vybrána 1 složka' : 'Je vybrán 1 soubor';
+    if (num >= 2 && num <= 4) return dir ? `Jsou vybrány ${num} složky` : `Jsou vybrány ${num} soubory`;
+    return dir ? `Je vybráno ${num} složek` : `Je vybráno ${num} souborů`;
   },
   openMenu: 'Otevřít menu',
-  rangeMax: 'Maximum',
-  rangeMin: 'Minimum',
-  sideNav: 'Navigace stránek',
+  rangeMax: 'Maximální',
+  rangeMin: 'Minimální',
+  sideNav: 'Postranní navigace',
   sideNavHide: 'Skrýt navigaci',
   sideNavShow: 'Zobrazit navigaci',
   success: 'Úspěch',

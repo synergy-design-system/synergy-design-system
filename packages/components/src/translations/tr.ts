@@ -7,42 +7,42 @@ const translation: Translation = {
   $name: 'Türkçe',
   $dir: 'ltr',
 
-  clearEntry: 'Girişi sil',
+  clearEntry: 'Girişi temizle',
   close: 'Kapat',
   hidePassword: 'Şifreyi gizle',
   loading: 'Yükleniyor',
   numOptionsSelected: num => {
-    if (num === 0) return 'Hiçbir opsiyon seçilmedi';
-    if (num === 1) return '1 opsiyon seçildi';
-    return `${num} opsiyon seçildi`;
+    if (num === 0) return 'Hiçbir seçenek seçilmedi';
+    if (num === 1) return '1 seçenek seçildi';
+    return `${num} seçenek seçildi`;
   },
   progress: 'İlerleme',
   remove: 'Kaldır',
   scrollToEnd: 'Sona kaydır',
-  scrollToStart: 'Başlangıca kaydır',
+  scrollToStart: 'Başa kaydır',
   showPassword: 'Şifreyi göster',
 
   // Synergy custom translations start
   closeMenu: 'Menüyü kapat',
   danger: 'Tehlike',
   fileButtonText: 'Dosya seç',
-  fileButtonTextMultiple: 'Dosyalar seç',
-  fileDragDrop: 'Dosyayı oluştur veya seç',
+  fileButtonTextMultiple: 'Dosyaları seç',
+  fileDragDrop: 'Dosyayı sürükle veya seç',
   folderButtonText: 'Klasör seç',
-  folderDragDrop: 'Klasörü oluştur veya seç',
+  folderDragDrop: 'Klasörü sürükle veya seç',
   menu: 'Menü',
-  noResults: 'Hiçbir sonuç bulunamadı',
+  noResults: 'Sonuç bulunamadı',
   notification: 'Bildirim',
   numFilesSelected: (num, dir) => {
     if (num === 0) return `Hiçbir ${dir ? 'klasör' : 'dosya'} seçilmedi`;
-    return `${num} ${dir ? 'klasör' : 'dosya'}`;
+    return `${num} ${dir ? 'klasör' : 'dosya'} seçildi`;
   },
   openMenu: 'Menüyü aç',
   rangeMax: 'Maksimum',
   rangeMin: 'Minimum',
-  sideNav: 'Sayfada gezinme',
-  sideNavHide: 'Gezinme menüsünü gizle',
-  sideNavShow: 'Gezinme menüsünü göster',
+  sideNav: 'Sayfa gezintisi',
+  sideNavHide: 'Gezintiyi gizle',
+  sideNavShow: 'Gezintiyi göster',
   success: 'Başarılı',
   warning: 'Uyarı',
 };

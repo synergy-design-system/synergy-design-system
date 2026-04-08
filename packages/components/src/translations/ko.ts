@@ -7,19 +7,19 @@ const translation: Translation = {
   $name: '한국어',
   $dir: 'ltr',
 
-  clearEntry: '입력 삭제',
+  clearEntry: '입력 지우기',
   close: '닫기',
   hidePassword: '비밀번호 숨기기',
   loading: '로딩 중',
   numOptionsSelected: num => {
-    if (num === 0) return '옵션이 선택되지 않음';
-    if (num === 1) return '1개의 옵션이 선택';
-    return `${num} 옵션 선택`;
+    if (num === 0) return '선택된 옵션 없음';
+    if (num === 1) return '옵션 1개 선택됨';
+    return `옵션 ${num}개 선택됨`;
   },
-  progress: '진행',
+  progress: '진행 상황',
   remove: '제거',
-  scrollToEnd: '맨 아래로 스크롤',
-  scrollToStart: '맨 위로 스크롤',
+  scrollToEnd: '아래로 스크롤',
+  scrollToStart: '위로 스크롤',
   showPassword: '비밀번호 표시',
 
   // Synergy custom translations start
@@ -31,11 +31,11 @@ const translation: Translation = {
   folderButtonText: '폴더 선택',
   folderDragDrop: '폴더를 끌어다 놓거나 선택',
   menu: '메뉴',
-  noResults: '검색 결과 없음',
+  noResults: '검색 결과가 없습니다',
   notification: '알림',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `${dir ? '폴더' : '파일'} 선택되지 않음`;
-    return `${num} ${dir ? '폴더' : '파일'} 선택됨`;
+    if (num === 0) return `${dir ? '폴더' : '파일'} 선택 없음`;
+    return `${dir ? '폴더' : '파일'} ${num}개 선택됨`;
   },
   openMenu: '메뉴 열기',
   rangeMax: '최대',

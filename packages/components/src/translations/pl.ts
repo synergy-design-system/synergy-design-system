@@ -7,14 +7,15 @@ const translation: Translation = {
   $name: 'Polski',
   $dir: 'ltr',
 
-  clearEntry: 'Usuń wpis',
+  clearEntry: 'Wyczyść pole',
   close: 'Zamknij',
   hidePassword: 'Ukryj hasło',
-  loading: 'Trwa wczytywanie',
+  loading: 'Trwa ładowanie',
   numOptionsSelected: num => {
-    if (num === 0) return 'Nie wybrano żadnej opcji';
+    if (num === 0) return 'Nie wybrano żadnych opcji';
     if (num === 1) return 'Wybrano 1 opcję';
-    return `Wybrano ${num} opcje/opcji`;
+    if (num >= 2 && num <= 4) return `Wybrano ${num} opcje`;
+    return `Wybrano ${num} opcji`;
   },
   progress: 'Postęp',
   remove: 'Usuń',
@@ -27,20 +28,22 @@ const translation: Translation = {
   danger: 'Niebezpieczeństwo',
   fileButtonText: 'Wybierz plik',
   fileButtonTextMultiple: 'Wybierz pliki',
-  fileDragDrop: 'Upuść lub wybierz plik',
+  fileDragDrop: 'Przeciągnij lub wybierz plik',
   folderButtonText: 'Wybierz folder',
-  folderDragDrop: 'Upuść lub wybierz folder',
+  folderDragDrop: 'Przeciągnij lub wybierz folder',
   menu: 'Menu',
   noResults: 'Nie znaleziono wyników',
   notification: 'Powiadomienie',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `Nie wybrano ${dir ? 'folderu' : 'plików'}`;
-    return `${num} ${dir ? 'folderów' : 'plików'} wybrano`;
+    if (num === 0) return dir ? 'Nie wybrano żadnego folderu' : 'Nie wybrano żadnego pliku';
+    if (num === 1) return dir ? 'Wybrano 1 folder' : 'Wybrano 1 plik';
+    if (num >= 2 && num <= 4) return dir ? `Wybrano ${num} foldery` : `Wybrano ${num} pliki`;
+    return dir ? `Wybrano ${num} folderów` : `Wybrano ${num} plików`;
   },
   openMenu: 'Otwórz menu',
-  rangeMax: 'Maksimum',
-  rangeMin: 'Minimum',
-  sideNav: 'Nawigacja w obrębie strony',
+  rangeMax: 'Maksymalnie',
+  rangeMin: 'Minimalnie',
+  sideNav: 'Nawigacja strony',
   sideNavHide: 'Ukryj nawigację',
   sideNavShow: 'Pokaż nawigację',
   success: 'Sukces',

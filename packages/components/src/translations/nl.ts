@@ -10,13 +10,13 @@ const translation: Translation = {
   clearEntry: 'Invoer wissen',
   close: 'Sluiten',
   hidePassword: 'Wachtwoord verbergen',
-  loading: 'Wordt geladen',
+  loading: 'Bezig met laden',
   numOptionsSelected: num => {
     if (num === 0) return 'Geen opties geselecteerd';
     if (num === 1) return '1 optie geselecteerd';
     return `${num} opties geselecteerd`;
   },
-  progress: 'Vooruitgang',
+  progress: 'Voortgang',
   remove: 'Verwijderen',
   scrollToEnd: 'Naar het einde scrollen',
   scrollToStart: 'Naar het begin scrollen',
@@ -27,19 +27,19 @@ const translation: Translation = {
   danger: 'Gevaar',
   fileButtonText: 'Bestand selecteren',
   fileButtonTextMultiple: 'Bestanden selecteren',
-  fileDragDrop: 'Bestand opslaan of selecteren',
+  fileDragDrop: 'Bestand slepen of selecteren',
   folderButtonText: 'Map selecteren',
-  folderDragDrop: 'Map opslaan of selecteren',
+  folderDragDrop: 'Map slepen of selecteren',
   menu: 'Menu',
   noResults: 'Geen resultaten gevonden',
   notification: 'Melding',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `Er zijn geen ${dir ? 'mappen' : 'bestanden'} geselecteerd`;
+    if (num === 0) return `Geen ${dir ? 'mappen' : 'bestanden'} geselecteerd`;
     return `${num} ${dir ? 'mappen' : 'bestanden'} geselecteerd`;
   },
   openMenu: 'Menu openen',
-  rangeMax: 'Maximum',
-  rangeMin: 'Minimum',
+  rangeMax: 'Maximaal',
+  rangeMin: 'Minimaal',
   sideNav: 'Paginanavigatie',
   sideNavHide: 'Navigatie verbergen',
   sideNavShow: 'Navigatie weergeven',

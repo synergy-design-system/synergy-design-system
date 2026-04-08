@@ -7,19 +7,19 @@ const translation: Translation = {
   $name: 'Dansk',
   $dir: 'ltr',
 
-  clearEntry: 'Slet indtastning',
+  clearEntry: 'Ryd indtastning',
   close: 'Luk',
   hidePassword: 'Skjul adgangskode',
-  loading: 'Indlæses',
+  loading: 'Indlæser',
   numOptionsSelected: num => {
-    if (num === 0) return 'Ingen muligheder valgt';
-    if (num === 1) return '1 mulighed valgt';
-    return `${num} muligheder valgt`;
+    if (num === 0) return 'Ingen valgmuligheder valgt';
+    if (num === 1) return '1 valgmulighed valgt';
+    return `${num} valgmuligheder valgt`;
   },
   progress: 'Fremskridt',
-  remove: 'Ryd',
-  scrollToEnd: 'Scroll til slutningen',
-  scrollToStart: 'Scroll til starten',
+  remove: 'Fjern',
+  scrollToEnd: 'Rul til slutningen',
+  scrollToStart: 'Rul til starten',
   showPassword: 'Vis adgangskode',
 
   // Synergy custom translations start
@@ -27,23 +27,23 @@ const translation: Translation = {
   danger: 'Fare',
   fileButtonText: 'Vælg fil',
   fileButtonTextMultiple: 'Vælg filer',
-  fileDragDrop: 'Gem eller vælg fil',
+  fileDragDrop: 'Træk eller vælg en fil',
   folderButtonText: 'Vælg mappe',
-  folderDragDrop: 'Gem eller vælg mappe',
+  folderDragDrop: 'Træk eller vælg en mappe',
   menu: 'Menu',
-  noResults: 'Der blev ikke fundet nogen resultater',
-  notification: 'Besked',
+  noResults: 'Ingen resultater fundet',
+  notification: 'Notifikation',
   numFilesSelected: (num, dir) => {
     if (num === 0) return `Ingen ${dir ? 'mapper' : 'filer'} valgt`;
     return `${num} ${dir ? 'mapper' : 'filer'} valgt`;
   },
   openMenu: 'Åbn menu',
-  rangeMax: 'Maksimum',
-  rangeMin: 'Minimum',
+  rangeMax: 'Maksimal',
+  rangeMin: 'Minimal',
   sideNav: 'Sidenavigation',
   sideNavHide: 'Skjul navigation',
   sideNavShow: 'Vis navigation',
-  success: 'Gennemført',
+  success: 'Succes',
   warning: 'Advarsel',
 };
 

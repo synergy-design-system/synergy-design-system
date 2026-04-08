@@ -7,19 +7,19 @@ const translation: Translation = {
   $name: 'Svenska',
   $dir: 'ltr',
 
-  clearEntry: 'Radera inmatning',
+  clearEntry: 'Rensa inmatning',
   close: 'Stäng',
   hidePassword: 'Dölj lösenord',
-  loading: 'Laddas',
+  loading: 'Laddar',
   numOptionsSelected: num => {
-    if (num === 0) return 'Inga alternativ har valts';
-    if (num === 1) return '1 alternativ har valts';
-    return `${num} alternativ har valts`;
+    if (num === 0) return 'Inga alternativ valda';
+    if (num === 1) return '1 alternativ valt';
+    return `${num} alternativ valda`;
   },
-  progress: 'Framsteg',
+  progress: 'Förlopp',
   remove: 'Ta bort',
-  scrollToEnd: 'Bläddra till slutet',
-  scrollToStart: 'Bläddra till början',
+  scrollToEnd: 'Rulla till slutet',
+  scrollToStart: 'Rulla till början',
   showPassword: 'Visa lösenord',
 
   // Synergy custom translations start
@@ -27,19 +27,19 @@ const translation: Translation = {
   danger: 'Fara',
   fileButtonText: 'Välj fil',
   fileButtonTextMultiple: 'Välj filer',
-  fileDragDrop: 'Släpp eller välj fil',
+  fileDragDrop: 'Dra eller välj fil',
   folderButtonText: 'Välj mapp',
-  folderDragDrop: 'Släpp eller välj mapp',
+  folderDragDrop: 'Dra eller välj mapp',
   menu: 'Meny',
   noResults: 'Inga resultat hittades',
-  notification: 'Meddelande',
+  notification: 'Notis',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `Ingen ${dir ? 'mapp' : 'fil'} har valts`;
-    return `${num} ${dir ? 'mappar' : 'filer'} har valts`;
+    if (num === 0) return `Ingen ${dir ? 'mapp' : 'fil'} vald`;
+    return `${num} ${dir ? 'mappar' : 'filer'} valda`;
   },
   openMenu: 'Öppna meny',
-  rangeMax: 'Max.',
-  rangeMin: 'Min.',
+  rangeMax: 'Maximal',
+  rangeMin: 'Minimal',
   sideNav: 'Sidonavigering',
   sideNavHide: 'Dölj navigering',
   sideNavShow: 'Visa navigering',

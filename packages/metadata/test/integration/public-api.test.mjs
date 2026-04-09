@@ -205,6 +205,10 @@ describe('public metadata api', () => {
     expect(byModuleResponse.errors).to.equal(undefined);
     expect(byModuleResponse.data?.id).to.equal('style:syn-link-list');
 
+    const byUppercaseNameResponse = await getStyleMetadata('LINK-LIST');
+    expect(byUppercaseNameResponse.errors).to.equal(undefined);
+    expect(byUppercaseNameResponse.data?.id).to.equal('style:syn-link-list');
+
     const strictLayerErrorResponse = await getStyleMetadata('style:syn-link-list', {
       layer: 'interface',
       strictLayer: true,
@@ -251,6 +255,10 @@ describe('public metadata api', () => {
     const byTagNameResponse = await getComponentMetadata('syn-accordion');
     expect(byTagNameResponse.errors).to.equal(undefined);
     expect(byTagNameResponse.data?.id).to.equal('component:syn-accordion');
+
+    const byUppercaseTagNameResponse = await getComponentMetadata('SYN-ACCORDION');
+    expect(byUppercaseTagNameResponse.errors).to.equal(undefined);
+    expect(byUppercaseTagNameResponse.data?.id).to.equal('component:syn-accordion');
 
     const withSourcesResponse = await getComponentMetadata('syn-accordion', {
       includeLayerRefs: true,
@@ -354,6 +362,10 @@ describe('public metadata api', () => {
     expect(byShortIdResponse.errors).to.equal(undefined);
     expect(byShortIdResponse.data?.id).to.equal('utility:fonts-sick-intl');
 
+    const byUppercaseShortIdResponse = await getFontMetadata('FONTS-SICK-INTL');
+    expect(byUppercaseShortIdResponse.errors).to.equal(undefined);
+    expect(byUppercaseShortIdResponse.data?.id).to.equal('utility:fonts-sick-intl');
+
     const notFoundResponse = await getFontMetadata('this-does-not-exist');
     expect(notFoundResponse.data).to.equal(null);
     expect(notFoundResponse.errors).to.be.an('array').that.is.not.empty;
@@ -397,6 +409,10 @@ describe('public metadata api', () => {
     const byShortIdResponse = await getAssetMetadata('sick2025-icons-fill');
     expect(byShortIdResponse.errors).to.equal(undefined);
     expect(byShortIdResponse.data?.id).to.equal('asset:sick2025-icons-fill');
+
+    const byUppercaseShortIdResponse = await getAssetMetadata('SICK2025-ICONS-FILL');
+    expect(byUppercaseShortIdResponse.errors).to.equal(undefined);
+    expect(byUppercaseShortIdResponse.data?.id).to.equal('asset:sick2025-icons-fill');
 
     // Not found
     const notFoundResponse = await getAssetMetadata('this-does-not-exist');
@@ -443,5 +459,61 @@ describe('public metadata api', () => {
     expect(noMatchResponse.errors).to.equal(undefined);
     expect(noMatchResponse.data).to.deep.equal([]);
     expect(noMatchResponse.meta.total).to.equal(0);
+  });
+
+  it('exposes template helper queries with list and data retrieval', async () => {
+    const { listTemplates, getTemplateMetadata, getDataForTemplate } = await loadPublicApi();
+
+    // List all templates
+    const allTemplatesResponse = await listTemplates();
+    expect(allTemplatesResponse.errors).to.equal(undefined);
+    expect(allTemplatesResponse.meta.resolvedLayer).to.equal('examples');
+    expect(allTemplatesResponse.data.length).to.be.greaterThan(0);
+    expect(allTemplatesResponse.data.every((entity) => entity.kind === 'template')).to.equal(true);
+
+    // Pagination
+    const pagedResponse = await listTemplates({ limit: 2, offset: 0 });
+    expect(pagedResponse.data.length).to.be.at.most(2);
+    expect(pagedResponse.meta.total).to.equal(allTemplatesResponse.meta.total);
+
+    // Lookup by full entity id
+    const firstTemplateEntity = allTemplatesResponse.data[0];
+    const byIdResponse = await getTemplateMetadata(firstTemplateEntity.id);
+    expect(byIdResponse.errors).to.equal(undefined);
+    expect(byIdResponse.data?.id).to.equal(firstTemplateEntity.id);
+    expect(byIdResponse.data?.kind).to.equal('template');
+
+    // Lookup by short name (entity ID without 'template:' prefix)
+    const shortName = firstTemplateEntity.id.replace('template:', '');
+    const byNameResponse = await getTemplateMetadata(shortName);
+    expect(byNameResponse.errors).to.equal(undefined);
+    expect(byNameResponse.data?.id).to.equal(firstTemplateEntity.id);
+
+    const byUppercaseNameResponse = await getTemplateMetadata(shortName.toUpperCase());
+    expect(byUppercaseNameResponse.errors).to.equal(undefined);
+    expect(byUppercaseNameResponse.data?.id).to.equal(firstTemplateEntity.id);
+
+    // Not found
+    const notFoundResponse = await getTemplateMetadata('this-does-not-exist');
+    expect(notFoundResponse.data).to.equal(null);
+    expect(notFoundResponse.errors).to.be.an('array').that.is.not.empty;
+    expect(notFoundResponse.errors?.[0]?.code).to.equal('NOT_FOUND');
+
+    // getDataForTemplate: retrieve examples layer content
+    const dataResponse = await getDataForTemplate(shortName, { layer: 'examples' });
+    expect(dataResponse.errors).to.equal(undefined);
+    expect(dataResponse.data?.layer).to.equal('examples');
+    expect(dataResponse.data?.template).to.equal(firstTemplateEntity.id);
+    expect(dataResponse.data?.examples).to.be.an('array');
+
+    const uppercaseDataResponse = await getDataForTemplate(shortName.toUpperCase(), { layer: 'examples' });
+    expect(uppercaseDataResponse.errors).to.equal(undefined);
+    expect(uppercaseDataResponse.data?.template).to.equal(firstTemplateEntity.id);
+    
+    // Verify examples content is populated
+    if (dataResponse.data?.examples && dataResponse.data.examples.length > 0) {
+      expect(dataResponse.data.examples[0]).to.have.property('content').that.is.a('string');
+      expect(dataResponse.data.examples[0]).to.have.property('path').that.includes('.md');
+    }
   });
 });

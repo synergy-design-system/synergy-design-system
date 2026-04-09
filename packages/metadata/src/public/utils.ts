@@ -11,6 +11,52 @@ export type LayerFileContent = {
   ref: MetadataLayerRef;
 };
 
+export type EntityLookupOptions<T> = {
+  extraCandidates?: Array<string | undefined> | ((entity: MetadataEntity<T>) => Array<string | undefined>);
+  prefix: string;
+  prefixedCandidates?: (input: string) => string[];
+};
+
+/**
+ * Normalize user-provided lookup values to the canonical comparison format.
+ */
+export const normalizeLookupValue = (value: string): string => value.trim().toLowerCase();
+
+/**
+ * Match a user-provided name/id against a metadata entity using a shared normalization strategy.
+ */
+export const matchesEntityNameOrId = <T>(
+  entity: MetadataEntity<T>,
+  nameOrId: string,
+  options: EntityLookupOptions<T>,
+): boolean => {
+  const input = normalizeLookupValue(nameOrId);
+  const entityId = normalizeLookupValue(entity.id);
+  const shortId = entityId.startsWith(`${options.prefix}:`) ? entityId.slice(options.prefix.length + 1) : entityId;
+  const entityName = normalizeLookupValue(entity.name);
+  const extraCandidates = typeof options.extraCandidates === 'function'
+    ? options.extraCandidates(entity)
+    : (options.extraCandidates ?? []);
+  const normalizedCandidates = [
+    entityId,
+    shortId,
+    entityName,
+    ...extraCandidates
+      .filter((candidate): candidate is string => typeof candidate === 'string' && candidate.length > 0)
+      .map(normalizeLookupValue),
+  ];
+
+  if (normalizedCandidates.includes(input)) {
+    return true;
+  }
+
+  if (!input.includes(':') && `${options.prefix}:${input}` === entityId) {
+    return true;
+  }
+
+  return options.prefixedCandidates?.(input).includes(entityId) ?? false;
+};
+
 /**
  * Return a new array sorted by `entity.id` in ascending order.
  */

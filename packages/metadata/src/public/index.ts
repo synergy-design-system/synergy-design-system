@@ -4,6 +4,7 @@ export { getComponentMetadata, getDataForComponent, listComponents } from './dom
 export { getFontMetadata, listFonts } from './domains/fonts.js';
 export { getMigrations } from './domains/migrations.js';
 export { getStyleMetadata, listStyles } from './domains/styles.js';
+export { getTemplateMetadata, getDataForTemplate, listTemplates } from './domains/templates.js';
 export { getTokens } from './domains/tokens.js';
 export { collectLayerReferences, readLayerFilesForEntity } from './utils.js';
 
@@ -21,6 +22,13 @@ export type {
 export type { FontQueryOptions } from './domains/fonts.js';
 export type { MigrationQueryOptions } from './domains/migrations.js';
 export type { StyleQueryOptions } from './domains/styles.js';
+export type {
+  TemplateDataLayer,
+  TemplateDataPayload,
+  TemplateDataQueryOptions,
+  TemplateQueryOptions,
+  TemplateTextLayerContent,
+} from './domains/templates.js';
 export type { TokenQueryOptions } from './domains/tokens.js';
 
 export type {

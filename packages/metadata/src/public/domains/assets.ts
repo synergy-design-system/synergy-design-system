@@ -12,6 +12,7 @@ import {
 import {
   layerExistsForEntity,
   mapEntityForResponse,
+  matchesEntityNameOrId,
   paginate,
   sortByEntityId,
 } from '../utils.js';
@@ -27,20 +28,9 @@ export type IconSearchOptions = {
 };
 
 const matchesNameOrId = (entity: MetadataEntity<AssetCustom>, nameOrId: string): boolean => {
-  const input = nameOrId.trim().toLowerCase();
-  const entityId = entity.id.toLowerCase();
-  const shortId = entityId.startsWith('asset:') ? entityId.slice('asset:'.length) : entityId;
-  const entityName = entity.name.toLowerCase();
-
-  if (input === entityId || input === shortId || input === entityName) {
-    return true;
-  }
-
-  if (!input.includes(':') && `asset:${input}` === entityId) {
-    return true;
-  }
-
-  return false;
+  return matchesEntityNameOrId(entity, nameOrId, {
+    prefix: 'asset',
+  });
 };
 
 const extractIconsFromEntity = (entity: MetadataEntity<AssetCustom>): IconSearchResult[] => {

@@ -9,6 +9,7 @@ export const EntityKindSchema = z.enum([
   'component',
   'style',
   'setup',
+  'template',
   'token',
   'utility',
 ]);

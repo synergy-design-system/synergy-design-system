@@ -1,8 +1,10 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
-  getInfoForTemplate,
+  createToolAnnotations,
+  getDataForTemplate,
   getStructuredMetaData,
+  withErrorHandler,
 } from '../utilities/index.js';
 
 /**
@@ -13,6 +15,7 @@ export const templateInfoTool = (server: McpServer) => {
   server.registerTool(
     'template-info',
     {
+      annotations: createToolAnnotations(),
       description: 'Get a specific template in the Synergy Design System',
       inputSchema: {
         template: z.string().describe('The name of the template to get information about.'),
@@ -21,29 +24,28 @@ export const templateInfoTool = (server: McpServer) => {
     },
     async ({
       template,
-    }) => {
-      const data = await getInfoForTemplate(template);
-      const text = data && data.length > 0
-        ? JSON.stringify(data, null, 2)
-        : `No metadata found for template ${template}`;
+    }) => withErrorHandler(async () => {
+      const response = await getDataForTemplate(template, { layer: 'examples' });
 
-      const aiRules = await getStructuredMetaData(
+      if (!response.data) {
+        return [
+          `No template found: ${template}`,
+        ];
+      }
+
+      const [aiRules] = await getStructuredMetaData(
         '../../metadata/static/templates',
         file => file === 'index.md',
       );
 
-      return {
-        content: [
-          {
-            text: JSON.stringify(aiRules, null, 2),
-            type: 'text',
-          },
-          {
-            text,
-            type: 'text',
-          },
-        ],
-      };
-    },
+      const markdownContent = response.data.examples
+        ?.map((entry) => entry.content)
+        .join('\n\n') ?? '';
+
+      return [
+        aiRules?.content,
+        markdownContent,
+      ];
+    }),
   );
 };

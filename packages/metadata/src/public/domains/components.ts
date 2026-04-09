@@ -14,6 +14,7 @@ import {
 import {
   layerExistsForEntity,
   mapEntityForResponse,
+  matchesEntityNameOrId,
   paginate,
   readLayerFilesForEntity,
   sortByEntityId,
@@ -130,29 +131,11 @@ const getEntityTagName = (entity: MetadataEntity): string | undefined => {
 };
 
 const matchesNameOrId = (entity: MetadataEntity, nameOrId: string): boolean => {
-  const input = nameOrId.trim().toLowerCase();
-  const entityId = entity.id.toLowerCase();
-  const shortId = entityId.startsWith('component:') ? entityId.slice('component:'.length) : entityId;
-  const entityName = entity.name.toLowerCase();
-  const tagName = getEntityTagName(entity)?.toLowerCase();
-
-  if (input === entityId || input === shortId || input === entityName) {
-    return true;
-  }
-
-  if (tagName && input === tagName) {
-    return true;
-  }
-
-  if (!input.includes(':') && `component:${input}` === entityId) {
-    return true;
-  }
-
-  if (!input.startsWith('syn-') && `component:syn-${input}` === entityId) {
-    return true;
-  }
-
-  return false;
+  return matchesEntityNameOrId(entity, nameOrId, {
+    extraCandidates: [getEntityTagName(entity)],
+    prefix: 'component',
+    prefixedCandidates: (input) => !input.startsWith('syn-') ? [`component:syn-${input}`] : [],
+  });
 };
 
 export const listComponents = async (

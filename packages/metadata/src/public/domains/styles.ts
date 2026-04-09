@@ -10,6 +10,7 @@ import {
 import {
   layerExistsForEntity,
   mapEntityForResponse,
+  matchesEntityNameOrId,
   paginate,
   sortByEntityId,
 } from '../utils.js';
@@ -20,25 +21,11 @@ export type StyleQueryOptions = PublicRequestOptions & {
 };
 
 const matchesNameOrId = (entity: MetadataEntity, nameOrId: string): boolean => {
-  const input = nameOrId.trim().toLowerCase();
-  const entityId = entity.id.toLowerCase();
-  const shortId = entityId.startsWith('style:') ? entityId.slice('style:'.length) : entityId;
-  const entityName = entity.name.toLowerCase();
-  const moduleName = typeof entity.custom?.moduleName === 'string' ? entity.custom.moduleName.toLowerCase() : undefined;
-
-  if (input === entityId || input === shortId || input === entityName || input === moduleName) {
-    return true;
-  }
-
-  if (!input.includes(':') && `style:${input}` === entityId) {
-    return true;
-  }
-
-  if (!input.startsWith('syn-') && `style:syn-${input}` === entityId) {
-    return true;
-  }
-
-  return false;
+  return matchesEntityNameOrId(entity, nameOrId, {
+    extraCandidates: [typeof entity.custom?.moduleName === 'string' ? entity.custom.moduleName : undefined],
+    prefix: 'style',
+    prefixedCandidates: (input) => !input.startsWith('syn-') ? [`style:syn-${input}`] : [],
+  });
 };
 
 export const listStyles = async (

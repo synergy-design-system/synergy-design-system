@@ -9,6 +9,16 @@ export default [
     project: './tsconfig.json',
     tsconfigRootDir: import.meta.dirname,
   }),
+  {
+    files: [
+      'src/tools/*.ts',
+    ],
+    rules: {
+      complexity: ['error', {
+        max: 15,
+      }],
+    },
+  },
   // Build and utility scripts need relaxed rules
   {
     files: [
@@ -16,9 +26,6 @@ export default [
       'src/utilities/storybook/**/*.ts',
     ],
     rules: {
-      complexity: ['error', {
-        max: 15,
-      }],
       'import/no-extraneous-dependencies': 'off',
       'no-console': 'off',
     },

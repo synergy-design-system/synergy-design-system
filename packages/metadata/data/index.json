@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-04-09T10:56:35.983Z",
+  "builtAt": "2026-04-09T12:42:11.334Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -1441,6 +1441,90 @@
         "syn-weight",
         "typography",
         "weight"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:appshell.json",
+      "id": "template:appshell",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Appshell",
+      "search": [
+        "template:appshell",
+        "Appshell",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:breadcrumb.json",
+      "id": "template:breadcrumb",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Breadcrumb",
+      "search": [
+        "template:breadcrumb",
+        "Breadcrumb",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:footer.json",
+      "id": "template:footer",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Footer",
+      "search": [
+        "template:footer",
+        "Footer",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:forms.json",
+      "id": "template:forms",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Forms",
+      "search": [
+        "template:forms",
+        "Forms",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:table.json",
+      "id": "template:table",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Table",
+      "search": [
+        "template:table",
+        "Table",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:tag-group.json",
+      "id": "template:tag-group",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Tag Group",
+      "search": [
+        "template:tag-group",
+        "Tag Group",
+        "template"
       ]
     },
     {

@@ -18,6 +18,7 @@ import { createConsoleLogger } from '../core/context.js';
 import { type Context } from '../core/context.js';
 import { loadConfig } from '../../config/index.js';
 import { runStorybook } from '../collectors/storybook/build-docs.js';
+import { createTemplateEntities } from '../collectors/templates.js';
 import {
   assetsPipeline,
   componentsPipeline,
@@ -236,6 +237,14 @@ async function main() {
         layers: layerData,
       };
     });
+
+    // Generate template entities from discovered layer data
+    ctx.logger?.info('Step 7b: Generating template metadata');
+    const templateEntities = await createTemplateEntities(outputDir);
+    if (templateEntities.length > 0) {
+      ctx.logger?.info(`Generated ${templateEntities.length} template entities from layer data`);
+      entitiesWithLayers.push(...templateEntities);
+    }
 
     // Keep generated-only data in layers; do not persist it in core JSON.
     const entitiesForWrite: CoreEntity[] = entitiesWithLayers.map((entity) => {

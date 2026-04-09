@@ -1,0 +1,22 @@
+{
+  "custom": {},
+  "id": "template:appshell",
+  "kind": "template",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "data/layers/examples/template/template:appshell.md"
+      }
+    ]
+  },
+  "name": "Appshell",
+  "package": "docs",
+  "relations": [],
+  "since": "1.0.0",
+  "sources": [],
+  "status": "stable",
+  "tags": [
+    "template"
+  ]
+}

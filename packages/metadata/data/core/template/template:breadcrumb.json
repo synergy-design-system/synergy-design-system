@@ -1,0 +1,22 @@
+{
+  "custom": {},
+  "id": "template:breadcrumb",
+  "kind": "template",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "data/layers/examples/template/template:breadcrumb.md"
+      }
+    ]
+  },
+  "name": "Breadcrumb",
+  "package": "docs",
+  "relations": [],
+  "since": "1.0.0",
+  "sources": [],
+  "status": "stable",
+  "tags": [
+    "template"
+  ]
+}

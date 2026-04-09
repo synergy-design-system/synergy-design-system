@@ -27,15 +27,15 @@ const translation: Translation = {
   danger: 'Danger',
   fileButtonText: 'Select file',
   fileButtonTextMultiple: 'Select files',
-  fileDragDrop: 'Store or select file',
+  fileDragDrop: 'Drop or select file',
   folderButtonText: 'Select folder',
-  folderDragDrop: 'Store or select folder',
+  folderDragDrop: 'Drop or select folder',
   menu: 'Menu',
   noResults: 'No results found',
   notification: 'Notification',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `No ${dir ? 'folders' : 'files'} selected`;
-    return `${num} ${dir ? 'folders' : 'files'} selected`;
+    if (num === 0) return `No ${dir ? 'folders' : 'files'} chosen`;
+    return `${num} ${dir ? 'folders' : 'files'} chosen`;
   },
   openMenu: 'Open menu',
   rangeMax: 'Maximum',

@@ -149,7 +149,7 @@ This example shows how to dynamically set localizations for Synergy components. 
             aria-checked="false"
             aria-disabled="false"
             tabindex="-1"
-            >Português (Brazil)</syn-menu-item
+            >Português (Brasil)</syn-menu-item
           >
 
           <syn-menu-item

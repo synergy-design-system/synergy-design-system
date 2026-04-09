@@ -207,15 +207,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-drawer/components/drawer.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-drawer/components/drawer.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-drawer/components/drawer.test.ts"
       },
       {
         "layer": "full",
@@ -258,9 +250,7 @@
     "packages/angular/components/drawer/drawer.component.ts",
     "packages/components/src/components/drawer/drawer.component.ts",
     "packages/components/src/components/drawer/drawer.custom.styles.ts",
-    "packages/components/src/components/drawer/drawer.custom.test.ts",
     "packages/components/src/components/drawer/drawer.styles.ts",
-    "packages/components/src/components/drawer/drawer.test.ts",
     "packages/components/src/components/drawer/drawer.ts",
     "packages/react/src/components/drawer.ts",
     "packages/vue/src/components/SynVueDrawer.vue"

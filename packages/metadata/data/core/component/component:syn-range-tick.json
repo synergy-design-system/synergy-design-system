@@ -115,10 +115,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-range-tick/components/range-tick.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-range-tick/components/range-tick.ts"
       },
       {
@@ -153,7 +149,6 @@
     "packages/angular/components/range-tick/range-tick.component.ts",
     "packages/components/src/components/range-tick/range-tick.component.ts",
     "packages/components/src/components/range-tick/range-tick.styles.ts",
-    "packages/components/src/components/range-tick/range-tick.test.ts",
     "packages/components/src/components/range-tick/range-tick.ts",
     "packages/react/src/components/range-tick.ts",
     "packages/vue/src/components/SynVueRangeTick.vue"

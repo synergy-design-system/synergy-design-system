@@ -272,10 +272,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-range/components/range.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-range/components/range.ts"
       },
       {
@@ -319,7 +315,6 @@
     "packages/angular/components/range/range.component.ts",
     "packages/components/src/components/range/range.component.ts",
     "packages/components/src/components/range/range.styles.ts",
-    "packages/components/src/components/range/range.test.ts",
     "packages/components/src/components/range/range.ts",
     "packages/components/src/components/range/utility.ts",
     "packages/react/src/components/range.ts",

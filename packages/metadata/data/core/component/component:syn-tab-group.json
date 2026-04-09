@@ -169,15 +169,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tab-group/components/tab-group.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-tab-group/components/tab-group.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-tab-group/components/tab-group.test.ts"
       },
       {
         "layer": "full",
@@ -220,9 +212,7 @@
     "packages/angular/components/tab-group/tab-group.component.ts",
     "packages/components/src/components/tab-group/tab-group.component.ts",
     "packages/components/src/components/tab-group/tab-group.custom.styles.ts",
-    "packages/components/src/components/tab-group/tab-group.custom.test.ts",
     "packages/components/src/components/tab-group/tab-group.styles.ts",
-    "packages/components/src/components/tab-group/tab-group.test.ts",
     "packages/components/src/components/tab-group/tab-group.ts",
     "packages/react/src/components/tab-group.ts",
     "packages/vue/src/components/SynVueTabGroup.vue"

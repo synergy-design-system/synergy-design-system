@@ -184,10 +184,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-validate/components/validate.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-validate/components/validate.ts"
       },
       {
@@ -232,7 +228,6 @@
     "packages/components/src/components/validate/utility.ts",
     "packages/components/src/components/validate/validate.component.ts",
     "packages/components/src/components/validate/validate.styles.ts",
-    "packages/components/src/components/validate/validate.test.ts",
     "packages/components/src/components/validate/validate.ts",
     "packages/react/src/components/validate.ts",
     "packages/vue/src/components/SynVueValidate.vue"

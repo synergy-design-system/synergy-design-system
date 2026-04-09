@@ -87,10 +87,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.ts"
       },
       {
@@ -126,7 +122,6 @@
     "packages/components/src/components/tab-panel/tab-panel.component.ts",
     "packages/components/src/components/tab-panel/tab-panel.custom.styles.ts",
     "packages/components/src/components/tab-panel/tab-panel.styles.ts",
-    "packages/components/src/components/tab-panel/tab-panel.test.ts",
     "packages/components/src/components/tab-panel/tab-panel.ts",
     "packages/react/src/components/tab-panel.ts",
     "packages/vue/src/components/SynVueTabPanel.vue"

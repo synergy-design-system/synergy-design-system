@@ -145,15 +145,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-menu-item/components/menu-item.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-menu-item/components/menu-item.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-menu-item/components/menu-item.test.ts"
       },
       {
         "layer": "full",
@@ -207,9 +199,7 @@
   "sources": [
     "packages/angular/components/menu-item/menu-item.component.ts",
     "packages/components/src/components/menu-item/menu-item.component.ts",
-    "packages/components/src/components/menu-item/menu-item.custom.test.ts",
     "packages/components/src/components/menu-item/menu-item.styles.ts",
-    "packages/components/src/components/menu-item/menu-item.test.ts",
     "packages/components/src/components/menu-item/menu-item.ts",
     "packages/components/src/components/menu-item/submenu-controller.ts",
     "packages/react/src/components/menu-item.ts",

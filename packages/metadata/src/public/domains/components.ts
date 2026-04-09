@@ -1,6 +1,10 @@
 import { createMetadataStore } from '../store.js';
 import {
+  type ComponentAngularCustom,
   type ComponentCustom,
+  type ComponentReactJsxCustom,
+  type ComponentReactWrapperCustom,
+  type ComponentVueCustom,
   type LayerName,
   type MetadataEntity,
   type MetadataStoreOptions,
@@ -11,6 +15,7 @@ import {
   layerExistsForEntity,
   mapEntityForResponse,
   paginate,
+  readLayerFilesForEntity,
   sortByEntityId,
 } from '../utils.js';
 
@@ -18,6 +23,67 @@ export type ComponentQueryOptions = PublicRequestOptions & {
   includeInterfaceSnapshot?: boolean;
   status?: string;
   tags?: string[];
+};
+
+export type ComponentDataLayer = 'examples' | 'full' | 'interface';
+export type ComponentFramework = 'angular' | 'react' | 'vanilla' | 'vue';
+
+export type ComponentDataQueryOptions = {
+  framework?: ComponentFramework;
+  layer?: ComponentDataLayer;
+};
+
+export type ComponentFrameworkDetails =
+  | ComponentAngularCustom
+  | ComponentReactWrapperCustom
+  | ComponentReactJsxCustom
+  | ComponentVueCustom
+  | {
+    jsx?: ComponentReactJsxCustom;
+    wrapper?: ComponentReactWrapperCustom;
+  };
+
+export type ComponentLayerContent = {
+  content: string;
+  layer: LayerName;
+  path: string;
+};
+
+export type ComponentTextLayerContent = {
+  content: string;
+  path: string;
+};
+
+export type ComponentDataPayload = {
+  component: string;
+  framework: ComponentFramework;
+  interface?: ComponentTextLayerContent[];
+  layer: LayerName;
+  requestedFrameworkDetails?: ComponentFrameworkDetails;
+  relevantLayerCode?: ComponentLayerContent[];
+  examples?: ComponentTextLayerContent[];
+  warnings?: string[];
+};
+
+const isFrameworkLayerFile = (path: string, framework: ComponentFramework): boolean => {
+  if (framework === 'vanilla') {
+    return path.includes('/components/');
+  }
+
+  return path.includes(`/${framework}/`);
+};
+
+const isTestLayerFile = (path: string): boolean => {
+  const normalized = path.toLowerCase();
+  return normalized.includes('.test.') || normalized.includes('.spec.');
+};
+
+const isIncludedLayerFile = (path: string, framework: ComponentFramework): boolean => {
+  if (isTestLayerFile(path)) {
+    return false;
+  }
+
+  return path.includes('/components/') || isFrameworkLayerFile(path, framework);
 };
 
 const readInterfaceSnapshot = async (
@@ -233,5 +299,86 @@ export const getComponentMetadata = async (
         `Requested layer "${requestedLayer}" was unavailable; falling back to "full".`,
       ],
     },
+  };
+};
+
+/**
+ * High-level helper for component usage payloads grouped by layer semantics.
+ * - `full`: returns filtered source files (vanilla + requested framework)
+ * - `examples`: returns markdown files from the examples layer
+ * - `interface`: returns markdown files from the interface layer
+ */
+export const getDataForComponent = async (
+  nameOrId: string,
+  options: ComponentDataQueryOptions = {},
+  storeOptions: MetadataStoreOptions = {},
+): Promise<PublicResponse<ComponentDataPayload | null>> => {
+  const requestedLayer = options.layer ?? 'full';
+  const resolvedFramework = options.framework ?? 'vanilla';
+
+  const metadata = await getComponentMetadata(nameOrId, {
+    includeInterfaceSnapshot: requestedLayer === 'interface',
+    includeLayerRefs: true,
+    includeSources: false,
+    layer: requestedLayer,
+  }, storeOptions);
+
+  if (!metadata.data) {
+    return {
+      ...metadata,
+      data: null,
+    };
+  }
+
+  const store = createMetadataStore(storeOptions);
+  const layerFiles = await readLayerFilesForEntity(store, metadata.data, metadata.meta.resolvedLayer);
+
+  const textLayerContent = layerFiles
+    .filter(({ ref }) => ref.path.endsWith('.md'))
+    .map(({ content, ref }) => ({
+      content,
+      path: ref.path,
+    }))
+    .toSorted((a, b) => a.path.localeCompare(b.path));
+
+  const codeLayerContent = layerFiles
+    .filter(({ ref }) => isIncludedLayerFile(ref.path, resolvedFramework))
+    .map(({ content, ref }) => ({
+      content,
+      layer: ref.layer as LayerName,
+      path: ref.path,
+    }))
+    .toSorted((a, b) => a.path.localeCompare(b.path));
+
+  const frameworkDetails = resolvedFramework === 'vanilla'
+    ? undefined
+    : metadata.data.custom?.frameworks?.[resolvedFramework as 'angular' | 'react' | 'vue'];
+
+  const basePayload: ComponentDataPayload = {
+    component: metadata.data.id,
+    framework: resolvedFramework,
+    layer: metadata.meta.resolvedLayer,
+    requestedFrameworkDetails: frameworkDetails,
+    warnings: metadata.meta.warnings,
+  };
+
+  const data = metadata.meta.resolvedLayer === 'examples'
+    ? {
+      ...basePayload,
+      examples: textLayerContent,
+    }
+    : metadata.meta.resolvedLayer === 'interface'
+      ? {
+        ...basePayload,
+        interface: textLayerContent,
+      }
+      : {
+        ...basePayload,
+        relevantLayerCode: codeLayerContent,
+      };
+
+  return {
+    ...metadata,
+    data,
   };
 };

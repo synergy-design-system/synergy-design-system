@@ -16,6 +16,9 @@ export default [
       'src/utilities/storybook/**/*.ts',
     ],
     rules: {
+      complexity: ['error', {
+        max: 15,
+      }],
       'import/no-extraneous-dependencies': 'off',
       'no-console': 'off',
     },

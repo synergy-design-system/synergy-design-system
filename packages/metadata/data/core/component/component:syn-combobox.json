@@ -347,15 +347,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-combobox/components/combobox.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-combobox/components/combobox.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-combobox/components/option-renderer.test.ts"
       },
       {
         "layer": "full",
@@ -410,9 +402,7 @@
     "packages/angular/components/combobox/combobox.component.ts",
     "packages/components/src/components/combobox/combobox.component.ts",
     "packages/components/src/components/combobox/combobox.styles.ts",
-    "packages/components/src/components/combobox/combobox.test.ts",
     "packages/components/src/components/combobox/combobox.ts",
-    "packages/components/src/components/combobox/option-renderer.test.ts",
     "packages/components/src/components/combobox/option-renderer.ts",
     "packages/components/src/components/combobox/utils.ts",
     "packages/react/src/components/combobox.ts",

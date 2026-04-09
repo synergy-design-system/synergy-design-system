@@ -138,10 +138,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-progress-ring/components/progress-ring.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-progress-ring/components/progress-ring.ts"
       },
       {
@@ -177,7 +173,6 @@
     "packages/components/src/components/progress-ring/progress-ring.component.ts",
     "packages/components/src/components/progress-ring/progress-ring.custom.styles.ts",
     "packages/components/src/components/progress-ring/progress-ring.styles.ts",
-    "packages/components/src/components/progress-ring/progress-ring.test.ts",
     "packages/components/src/components/progress-ring/progress-ring.ts",
     "packages/react/src/components/progress-ring.ts",
     "packages/vue/src/components/SynVueProgressRing.vue"

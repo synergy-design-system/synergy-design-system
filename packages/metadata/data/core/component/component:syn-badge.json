@@ -127,15 +127,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-badge/components/badge.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-badge/components/badge.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-badge/components/badge.test.ts"
       },
       {
         "layer": "full",
@@ -173,9 +165,7 @@
     "packages/angular/components/badge/badge.component.ts",
     "packages/components/src/components/badge/badge.component.ts",
     "packages/components/src/components/badge/badge.custom.styles.ts",
-    "packages/components/src/components/badge/badge.custom.test.ts",
     "packages/components/src/components/badge/badge.styles.ts",
-    "packages/components/src/components/badge/badge.test.ts",
     "packages/components/src/components/badge/badge.ts",
     "packages/react/src/components/badge.ts",
     "packages/vue/src/components/SynVueBadge.vue"

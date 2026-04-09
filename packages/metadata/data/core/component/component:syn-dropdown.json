@@ -155,10 +155,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dropdown/components/dropdown.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-dropdown/components/dropdown.ts"
       },
       {
@@ -198,7 +194,6 @@
     "packages/angular/components/dropdown/dropdown.component.ts",
     "packages/components/src/components/dropdown/dropdown.component.ts",
     "packages/components/src/components/dropdown/dropdown.styles.ts",
-    "packages/components/src/components/dropdown/dropdown.test.ts",
     "packages/components/src/components/dropdown/dropdown.ts",
     "packages/react/src/components/dropdown.ts",
     "packages/vue/src/components/SynVueDropdown.vue"

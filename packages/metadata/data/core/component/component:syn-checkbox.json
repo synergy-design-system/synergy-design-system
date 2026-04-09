@@ -203,10 +203,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-checkbox/components/checkbox.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-checkbox/components/checkbox.ts"
       },
       {
@@ -246,7 +242,6 @@
     "packages/angular/components/checkbox/checkbox.component.ts",
     "packages/components/src/components/checkbox/checkbox.component.ts",
     "packages/components/src/components/checkbox/checkbox.styles.ts",
-    "packages/components/src/components/checkbox/checkbox.test.ts",
     "packages/components/src/components/checkbox/checkbox.ts",
     "packages/react/src/components/checkbox.ts",
     "packages/vue/src/components/SynVueCheckbox.vue"

@@ -225,10 +225,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-textarea/components/textarea.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-textarea/components/textarea.ts"
       },
       {
@@ -263,7 +259,6 @@
     "packages/angular/components/textarea/textarea.component.ts",
     "packages/components/src/components/textarea/textarea.component.ts",
     "packages/components/src/components/textarea/textarea.styles.ts",
-    "packages/components/src/components/textarea/textarea.test.ts",
     "packages/components/src/components/textarea/textarea.ts",
     "packages/react/src/components/textarea.ts",
     "packages/vue/src/components/SynVueTextarea.vue"

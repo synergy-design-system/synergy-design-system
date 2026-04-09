@@ -184,15 +184,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-alert/components/alert.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-alert/components/alert.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-alert/components/alert.test.ts"
       },
       {
         "layer": "full",
@@ -234,9 +226,7 @@
   "sources": [
     "packages/angular/components/alert/alert.component.ts",
     "packages/components/src/components/alert/alert.component.ts",
-    "packages/components/src/components/alert/alert.custom.test.ts",
     "packages/components/src/components/alert/alert.styles.ts",
-    "packages/components/src/components/alert/alert.test.ts",
     "packages/components/src/components/alert/alert.ts",
     "packages/react/src/components/alert.ts",
     "packages/vue/src/components/SynVueAlert.vue"

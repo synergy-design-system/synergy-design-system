@@ -158,10 +158,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-radio/components/radio.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-radio/components/radio.ts"
       },
       {
@@ -201,7 +197,6 @@
     "packages/angular/components/radio/radio.component.ts",
     "packages/components/src/components/radio/radio.component.ts",
     "packages/components/src/components/radio/radio.styles.ts",
-    "packages/components/src/components/radio/radio.test.ts",
     "packages/components/src/components/radio/radio.ts",
     "packages/react/src/components/radio.ts",
     "packages/vue/src/components/SynVueRadio.vue"

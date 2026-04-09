@@ -184,10 +184,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-header/components/header.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-header/components/header.ts"
       },
       {
@@ -222,7 +218,6 @@
     "packages/angular/components/header/header.component.ts",
     "packages/components/src/components/header/header.component.ts",
     "packages/components/src/components/header/header.styles.ts",
-    "packages/components/src/components/header/header.test.ts",
     "packages/components/src/components/header/header.ts",
     "packages/react/src/components/header.ts",
     "packages/vue/src/components/SynVueHeader.vue"

@@ -120,10 +120,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-spinner/components/spinner.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-spinner/components/spinner.ts"
       },
       {
@@ -159,7 +155,6 @@
     "packages/components/src/components/spinner/spinner.component.ts",
     "packages/components/src/components/spinner/spinner.custom.styles.ts",
     "packages/components/src/components/spinner/spinner.styles.ts",
-    "packages/components/src/components/spinner/spinner.test.ts",
     "packages/components/src/components/spinner/spinner.ts",
     "packages/react/src/components/spinner.ts",
     "packages/vue/src/components/SynVueSpinner.vue"

@@ -153,10 +153,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-card/components/card.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-card/components/card.ts"
       },
       {
@@ -192,7 +188,6 @@
     "packages/components/src/components/card/card.component.ts",
     "packages/components/src/components/card/card.custom.styles.ts",
     "packages/components/src/components/card/card.styles.ts",
-    "packages/components/src/components/card/card.test.ts",
     "packages/components/src/components/card/card.ts",
     "packages/react/src/components/card.ts",
     "packages/vue/src/components/SynVueCard.vue"

@@ -80,15 +80,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-icon/components/icon.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-icon/components/icon.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-icon/components/icon.test.ts"
       },
       {
         "layer": "full",
@@ -150,9 +142,7 @@
     "packages/angular/components/icon/icon.component.ts",
     "packages/components/src/components/icon/icon.component.ts",
     "packages/components/src/components/icon/icon.custom.styles.ts",
-    "packages/components/src/components/icon/icon.custom.test.ts",
     "packages/components/src/components/icon/icon.styles.ts",
-    "packages/components/src/components/icon/icon.test.ts",
     "packages/components/src/components/icon/icon.ts",
     "packages/components/src/components/icon/library.default.ts",
     "packages/components/src/components/icon/library.migration.ts",

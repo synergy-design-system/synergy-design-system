@@ -106,15 +106,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-menu/components/menu.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-menu/components/menu.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-menu/components/menu.test.ts"
       },
       {
         "layer": "full",
@@ -151,9 +143,7 @@
   "sources": [
     "packages/angular/components/menu/menu.component.ts",
     "packages/components/src/components/menu/menu.component.ts",
-    "packages/components/src/components/menu/menu.custom.test.ts",
     "packages/components/src/components/menu/menu.styles.ts",
-    "packages/components/src/components/menu/menu.test.ts",
     "packages/components/src/components/menu/menu.ts",
     "packages/react/src/components/menu.ts",
     "packages/vue/src/components/SynVueMenu.vue"

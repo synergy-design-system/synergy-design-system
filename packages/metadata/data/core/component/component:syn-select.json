@@ -274,15 +274,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-select/components/select.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-select/components/select.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-select/components/select.test.ts"
       },
       {
         "layer": "full",
@@ -336,9 +328,7 @@
   "sources": [
     "packages/angular/components/select/select.component.ts",
     "packages/components/src/components/select/select.component.ts",
-    "packages/components/src/components/select/select.custom.test.ts",
     "packages/components/src/components/select/select.styles.ts",
-    "packages/components/src/components/select/select.test.ts",
     "packages/components/src/components/select/select.ts",
     "packages/components/src/components/select/utility.ts",
     "packages/react/src/components/select.ts",

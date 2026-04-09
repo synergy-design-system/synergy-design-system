@@ -166,10 +166,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-side-nav/components/side-nav.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-side-nav/components/side-nav.ts"
       },
       {
@@ -221,7 +217,6 @@
     "packages/angular/components/side-nav/side-nav.component.ts",
     "packages/components/src/components/side-nav/side-nav.component.ts",
     "packages/components/src/components/side-nav/side-nav.styles.ts",
-    "packages/components/src/components/side-nav/side-nav.test.ts",
     "packages/components/src/components/side-nav/side-nav.ts",
     "packages/react/src/components/side-nav.ts",
     "packages/vue/src/components/SynVueSideNav.vue"

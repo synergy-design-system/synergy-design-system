@@ -88,10 +88,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-popup/components/popup.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-popup/components/popup.ts"
       },
       {
@@ -126,7 +122,6 @@
     "packages/angular/components/popup/popup.component.ts",
     "packages/components/src/components/popup/popup.component.ts",
     "packages/components/src/components/popup/popup.styles.ts",
-    "packages/components/src/components/popup/popup.test.ts",
     "packages/components/src/components/popup/popup.ts",
     "packages/react/src/components/popup.ts",
     "packages/vue/src/components/SynVuePopup.vue"

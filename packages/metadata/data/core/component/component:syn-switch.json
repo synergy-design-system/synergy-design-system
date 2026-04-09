@@ -181,10 +181,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-switch/components/switch.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-switch/components/switch.ts"
       },
       {
@@ -219,7 +215,6 @@
     "packages/angular/components/switch/switch.component.ts",
     "packages/components/src/components/switch/switch.component.ts",
     "packages/components/src/components/switch/switch.styles.ts",
-    "packages/components/src/components/switch/switch.test.ts",
     "packages/components/src/components/switch/switch.ts",
     "packages/react/src/components/switch.ts",
     "packages/vue/src/components/SynVueSwitch.vue"

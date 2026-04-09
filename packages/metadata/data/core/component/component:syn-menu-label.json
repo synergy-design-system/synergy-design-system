@@ -83,10 +83,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-menu-label/components/menu-label.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-menu-label/components/menu-label.ts"
       },
       {
@@ -126,7 +122,6 @@
     "packages/angular/components/menu-label/menu-label.component.ts",
     "packages/components/src/components/menu-label/menu-label.component.ts",
     "packages/components/src/components/menu-label/menu-label.styles.ts",
-    "packages/components/src/components/menu-label/menu-label.test.ts",
     "packages/components/src/components/menu-label/menu-label.ts",
     "packages/react/src/components/menu-label.ts",
     "packages/vue/src/components/SynVueMenuLabel.vue"

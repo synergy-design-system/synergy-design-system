@@ -281,15 +281,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-input/components/input.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-input/components/input.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-input/components/input.test.ts"
       },
       {
         "layer": "full",
@@ -341,9 +333,7 @@
     "packages/components/src/components/input/formatter.ts",
     "packages/components/src/components/input/input.component.ts",
     "packages/components/src/components/input/input.custom.styles.ts",
-    "packages/components/src/components/input/input.custom.test.ts",
     "packages/components/src/components/input/input.styles.ts",
-    "packages/components/src/components/input/input.test.ts",
     "packages/components/src/components/input/input.ts",
     "packages/components/src/components/input/strategies.ts",
     "packages/react/src/components/input.ts",

@@ -167,10 +167,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dialog/components/dialog.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-dialog/components/dialog.ts"
       },
       {
@@ -211,7 +207,6 @@
     "packages/components/src/components/dialog/dialog.component.ts",
     "packages/components/src/components/dialog/dialog.custom.styles.ts",
     "packages/components/src/components/dialog/dialog.styles.ts",
-    "packages/components/src/components/dialog/dialog.test.ts",
     "packages/components/src/components/dialog/dialog.ts",
     "packages/react/src/components/dialog.ts",
     "packages/vue/src/components/SynVueDialog.vue"

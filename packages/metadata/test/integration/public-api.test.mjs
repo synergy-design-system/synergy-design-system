@@ -220,7 +220,7 @@ describe('public metadata api', () => {
   });
 
   it('exposes component helper queries with pagination, id/name lookup, and layer handling', async () => {
-    const { getComponentMetadata, listComponents } = await loadPublicApi();
+    const { getComponentMetadata, getDataForComponent, listComponents } = await loadPublicApi();
 
     const allComponentsResponse = await listComponents();
     expect(allComponentsResponse.errors).to.equal(undefined);
@@ -267,6 +267,31 @@ describe('public metadata api', () => {
     expect(withInterfaceSnapshot.errors).to.equal(undefined);
     expect(withInterfaceSnapshot.data?.custom?.interfaceSnapshot).to.be.an('object');
     expect(withInterfaceSnapshot.data?.custom?.interfaceSnapshot?.tagName).to.equal('syn-accordion');
+
+    const fullLayerData = await getDataForComponent('syn-accordion', {
+      framework: 'react',
+      layer: 'full',
+    });
+    expect(fullLayerData.errors).to.equal(undefined);
+    expect(fullLayerData.data?.layer).to.equal('full');
+    expect(fullLayerData.data?.relevantLayerCode).to.be.an('array').that.is.not.empty;
+    expect(fullLayerData.data?.relevantLayerCode?.some((entry) => entry.path.includes('.test.'))).to.equal(false);
+
+    const interfaceLayerData = await getDataForComponent('syn-accordion', {
+      layer: 'interface',
+    });
+    expect(interfaceLayerData.errors).to.equal(undefined);
+    expect(interfaceLayerData.data?.layer).to.equal('interface');
+    expect(interfaceLayerData.data?.interface).to.be.an('array').that.is.not.empty;
+    expect(interfaceLayerData.data?.interface?.every((entry) => entry.path.endsWith('.md'))).to.equal(true);
+
+    const examplesLayerData = await getDataForComponent('syn-accordion', {
+      layer: 'examples',
+    });
+    expect(examplesLayerData.errors).to.equal(undefined);
+    expect(examplesLayerData.data?.layer).to.equal('examples');
+    expect(examplesLayerData.data?.examples).to.be.an('array').that.is.not.empty;
+    expect(examplesLayerData.data?.examples?.every((entry) => entry.path.endsWith('.md'))).to.equal(true);
 
     const fixture = await createComponentFixtureDataDir();
     try {

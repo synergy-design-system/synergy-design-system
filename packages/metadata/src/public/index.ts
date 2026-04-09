@@ -1,6 +1,6 @@
 export { createMetadataStore } from './store.js';
 export { getAssetMetadata, listAssets, searchIcons } from './domains/assets.js';
-export { getComponentMetadata, listComponents } from './domains/components.js';
+export { getComponentMetadata, getDataForComponent, listComponents } from './domains/components.js';
 export { getFontMetadata, listFonts } from './domains/fonts.js';
 export { getMigrations } from './domains/migrations.js';
 export { getStyleMetadata, listStyles } from './domains/styles.js';
@@ -8,7 +8,16 @@ export { getTokens } from './domains/tokens.js';
 export { collectLayerReferences, readLayerFilesForEntity } from './utils.js';
 
 export type { AssetQueryOptions, IconSearchOptions } from './domains/assets.js';
-export type { ComponentQueryOptions } from './domains/components.js';
+export type {
+  ComponentDataLayer,
+  ComponentDataPayload,
+  ComponentDataQueryOptions,
+  ComponentFramework,
+  ComponentFrameworkDetails,
+  ComponentLayerContent,
+  ComponentQueryOptions,
+  ComponentTextLayerContent,
+} from './domains/components.js';
 export type { FontQueryOptions } from './domains/fonts.js';
 export type { MigrationQueryOptions } from './domains/migrations.js';
 export type { StyleQueryOptions } from './domains/styles.js';

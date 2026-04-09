@@ -131,10 +131,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.ts"
       },
       {
@@ -170,7 +166,6 @@
     "packages/components/src/components/progress-bar/progress-bar.component.ts",
     "packages/components/src/components/progress-bar/progress-bar.custom.styles.ts",
     "packages/components/src/components/progress-bar/progress-bar.styles.ts",
-    "packages/components/src/components/progress-bar/progress-bar.test.ts",
     "packages/components/src/components/progress-bar/progress-bar.ts",
     "packages/react/src/components/progress-bar.ts",
     "packages/vue/src/components/SynVueProgressBar.vue"

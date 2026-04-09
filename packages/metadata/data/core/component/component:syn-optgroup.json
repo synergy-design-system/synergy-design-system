@@ -70,10 +70,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-optgroup/components/optgroup.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-optgroup/components/optgroup.ts"
       },
       {
@@ -113,7 +109,6 @@
     "packages/angular/components/optgroup/optgroup.component.ts",
     "packages/components/src/components/optgroup/optgroup.component.ts",
     "packages/components/src/components/optgroup/optgroup.styles.ts",
-    "packages/components/src/components/optgroup/optgroup.test.ts",
     "packages/components/src/components/optgroup/optgroup.ts",
     "packages/react/src/components/optgroup.ts",
     "packages/vue/src/components/SynVueOptgroup.vue"

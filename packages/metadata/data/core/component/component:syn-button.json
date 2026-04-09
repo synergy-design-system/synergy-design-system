@@ -208,15 +208,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button/components/button.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-button/components/button.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-button/components/button.test.ts"
       },
       {
         "layer": "full",
@@ -263,9 +255,7 @@
     "packages/angular/components/button/button.component.ts",
     "packages/components/src/components/button/button.component.ts",
     "packages/components/src/components/button/button.custom.styles.ts",
-    "packages/components/src/components/button/button.custom.test.ts",
     "packages/components/src/components/button/button.styles.ts",
-    "packages/components/src/components/button/button.test.ts",
     "packages/components/src/components/button/button.ts",
     "packages/react/src/components/button.ts",
     "packages/vue/src/components/SynVueButton.vue"

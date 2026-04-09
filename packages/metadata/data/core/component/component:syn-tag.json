@@ -116,10 +116,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tag/components/tag.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-tag/components/tag.ts"
       },
       {
@@ -160,7 +156,6 @@
     "packages/components/src/components/tag/tag.component.ts",
     "packages/components/src/components/tag/tag.custom.styles.ts",
     "packages/components/src/components/tag/tag.styles.ts",
-    "packages/components/src/components/tag/tag.test.ts",
     "packages/components/src/components/tag/tag.ts",
     "packages/react/src/components/tag.ts",
     "packages/vue/src/components/SynVueTag.vue"

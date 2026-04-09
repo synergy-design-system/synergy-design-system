@@ -162,15 +162,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-details/components/details.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-details/components/details.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-details/components/details.test.ts"
       },
       {
         "layer": "full",
@@ -212,9 +204,7 @@
   "sources": [
     "packages/angular/components/details/details.component.ts",
     "packages/components/src/components/details/details.component.ts",
-    "packages/components/src/components/details/details.custom.test.ts",
     "packages/components/src/components/details/details.styles.ts",
-    "packages/components/src/components/details/details.test.ts",
     "packages/components/src/components/details/details.ts",
     "packages/react/src/components/details.ts",
     "packages/vue/src/components/SynVueDetails.vue"

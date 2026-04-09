@@ -131,10 +131,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-breadcrumb/components/breadcrumb.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-breadcrumb/components/breadcrumb.ts"
       },
       {
@@ -175,7 +171,6 @@
     "packages/components/src/components/breadcrumb/breadcrumb.component.ts",
     "packages/components/src/components/breadcrumb/breadcrumb.custom.styles.ts",
     "packages/components/src/components/breadcrumb/breadcrumb.styles.ts",
-    "packages/components/src/components/breadcrumb/breadcrumb.test.ts",
     "packages/components/src/components/breadcrumb/breadcrumb.ts",
     "packages/react/src/components/breadcrumb.ts",
     "packages/vue/src/components/SynVueBreadcrumb.vue"

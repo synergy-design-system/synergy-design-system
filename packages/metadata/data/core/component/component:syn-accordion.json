@@ -139,10 +139,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-accordion/components/accordion.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-accordion/components/accordion.ts"
       },
       {
@@ -177,7 +173,6 @@
     "packages/angular/components/accordion/accordion.component.ts",
     "packages/components/src/components/accordion/accordion.component.ts",
     "packages/components/src/components/accordion/accordion.styles.ts",
-    "packages/components/src/components/accordion/accordion.test.ts",
     "packages/components/src/components/accordion/accordion.ts",
     "packages/react/src/components/accordion.ts",
     "packages/vue/src/components/SynVueAccordion.vue"

@@ -1,33 +1,13 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
-  createMetadataStore,
-  getComponentMetadata,
-  readLayerFilesForEntity,
+  getDataForComponent,
 } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
   getStructuredMetaData,
   withErrorHandler,
 } from '../utilities/index.js';
-
-const isFrameworkLayerFile = (path: string, framework: 'react' | 'vue' | 'angular' | 'vanilla'): boolean => {
-  if (framework === 'vanilla') {
-    return path.includes('/components/');
-  }
-
-  return path.includes(`/${framework}/`);
-};
-
-const isTestLayerFile = (path: string): boolean => path.toLowerCase().includes('.test.');
-
-const isIncludedLayerFile = (path: string, framework: 'react' | 'vue' | 'angular' | 'vanilla'): boolean => {
-  if (isTestLayerFile(path)) {
-    return false;
-  }
-
-  return path.includes('/components/') || isFrameworkLayerFile(path, framework);
-};
 
 /**
  * Simple tool to retrieve information about a given component in the Synergy Design System.
@@ -42,59 +22,44 @@ export const componentInfoTool = (server: McpServer) => {
       inputSchema: {
         component: z.string().startsWith('syn-').describe('The name of the component to get information about.'),
         framework: z.enum(['react', 'vue', 'angular', 'vanilla']).default('vanilla').optional().describe('The framework of the component, e.g., "react", "vue", etc.'),
+        layer: z.enum(['full', 'examples', 'interface']).default('full').optional().describe('Which metadata layer to return. full = filtered source files, examples = markdown examples, interface = markdown API overview.'),
       },
       title: 'Component info',
     },
     async ({
       component,
       framework,
+      layer,
     }) => withErrorHandler(async () => {
-      const resolvedFramework = framework ?? 'vanilla';
-
-      const metadata = await getComponentMetadata(component, {
-        includeInterfaceSnapshot: true,
-        includeLayerRefs: true,
-        includeSources: false,
-        layer: 'full',
+      const metadata = await getDataForComponent(component, {
+        framework,
+        layer,
       });
 
       const [aiRules] = await getStructuredMetaData('../../metadata/static/component-info');
 
       if (!metadata.data) {
         const notFoundMessage = metadata.errors?.[0]?.message ?? `No metadata found for component ${component}`;
-        return [
-          aiRules?.content,
-          notFoundMessage,
-        ];
+        return [notFoundMessage];
       }
 
-      const frameworks = metadata.data.custom?.frameworks;
-      const frameworkDetails = resolvedFramework === 'vanilla'
-        ? undefined
-        : frameworks?.[resolvedFramework];
+      let finalContent = [];
 
-      const store = createMetadataStore();
-      const fullLayerFiles = await readLayerFilesForEntity(store, metadata.data, metadata.meta.resolvedLayer);
+      switch (metadata.data.layer) {
+        case 'interface':
+          finalContent = metadata.data.interface?.map((entry) => entry.content) ?? [];
+          break;
+        case 'examples':
+          finalContent = metadata.data.examples?.map((entry) => entry.content) ?? [];
+          break;
+        default:
+          finalContent = [metadata.data];
+      }
 
-      const relevantLayerCode = fullLayerFiles
-        .filter(({ ref }) => isIncludedLayerFile(ref.path, resolvedFramework))
-        .map(({ content, ref }) => ({
-          content,
-          layer: ref.layer,
-          path: ref.path,
-        }))
-        .toSorted((a, b) => a.path.localeCompare(b.path));
-
-      return [
-        aiRules?.content,
-        {
-          component: metadata.data.id,
-          framework: resolvedFramework,
-          interfaceSnapshot: metadata.data.custom?.interfaceSnapshot,
-          relevantLayerCode,
-          requestedFrameworkDetails: frameworkDetails,
-        },
-      ];
+      const withRules = [aiRules?.content, ...finalContent];
+      return finalContent.length > 0
+        ? withRules
+        : [`No metadata content found for component ${component} in layer ${metadata.data.layer}`];
     }),
   );
 };

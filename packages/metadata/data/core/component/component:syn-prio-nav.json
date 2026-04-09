@@ -94,10 +94,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-prio-nav/components/prio-nav.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-prio-nav/components/prio-nav.ts"
       },
       {
@@ -153,7 +149,6 @@
     "packages/angular/components/prio-nav/prio-nav.component.ts",
     "packages/components/src/components/prio-nav/prio-nav.component.ts",
     "packages/components/src/components/prio-nav/prio-nav.styles.ts",
-    "packages/components/src/components/prio-nav/prio-nav.test.ts",
     "packages/components/src/components/prio-nav/prio-nav.ts",
     "packages/components/src/components/prio-nav/utils.ts",
     "packages/react/src/components/prio-nav.ts",

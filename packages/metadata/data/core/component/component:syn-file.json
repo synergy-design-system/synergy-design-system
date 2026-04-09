@@ -224,10 +224,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-file/components/file.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-file/components/file.ts"
       },
       {
@@ -271,7 +267,6 @@
     "packages/angular/components/file/file.component.ts",
     "packages/components/src/components/file/file.component.ts",
     "packages/components/src/components/file/file.styles.ts",
-    "packages/components/src/components/file/file.test.ts",
     "packages/components/src/components/file/file.ts",
     "packages/react/src/components/file.ts",
     "packages/vue/src/components/SynVueFile.vue"

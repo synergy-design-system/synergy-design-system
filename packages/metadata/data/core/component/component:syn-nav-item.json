@@ -199,10 +199,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-nav-item/components/nav-item.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-nav-item/components/nav-item.ts"
       },
       {
@@ -246,7 +242,6 @@
     "packages/angular/components/nav-item/nav-item.component.ts",
     "packages/components/src/components/nav-item/nav-item.component.ts",
     "packages/components/src/components/nav-item/nav-item.styles.ts",
-    "packages/components/src/components/nav-item/nav-item.test.ts",
     "packages/components/src/components/nav-item/nav-item.ts",
     "packages/react/src/components/nav-item.ts",
     "packages/vue/src/components/SynVueNavItem.vue"

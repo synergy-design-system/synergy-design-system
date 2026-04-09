@@ -92,10 +92,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tab/components/tab.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-tab/components/tab.ts"
       },
       {
@@ -136,7 +132,6 @@
     "packages/components/src/components/tab/tab.component.ts",
     "packages/components/src/components/tab/tab.custom.styles.ts",
     "packages/components/src/components/tab/tab.styles.ts",
-    "packages/components/src/components/tab/tab.test.ts",
     "packages/components/src/components/tab/tab.ts",
     "packages/react/src/components/tab.ts",
     "packages/vue/src/components/SynVueTab.vue"

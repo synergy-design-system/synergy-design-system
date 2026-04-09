@@ -166,10 +166,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-icon-button/components/icon-button.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-icon-button/components/icon-button.ts"
       },
       {
@@ -210,7 +206,6 @@
     "packages/components/src/components/icon-button/icon-button.component.ts",
     "packages/components/src/components/icon-button/icon-button.custom.styles.ts",
     "packages/components/src/components/icon-button/icon-button.styles.ts",
-    "packages/components/src/components/icon-button/icon-button.test.ts",
     "packages/components/src/components/icon-button/icon-button.ts",
     "packages/react/src/components/icon-button.ts",
     "packages/vue/src/components/SynVueIconButton.vue"

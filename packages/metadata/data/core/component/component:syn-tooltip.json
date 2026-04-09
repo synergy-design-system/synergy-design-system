@@ -177,10 +177,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-tooltip/components/tooltip.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-tooltip/components/tooltip.ts"
       },
       {
@@ -220,7 +216,6 @@
     "packages/angular/components/tooltip/tooltip.component.ts",
     "packages/components/src/components/tooltip/tooltip.component.ts",
     "packages/components/src/components/tooltip/tooltip.styles.ts",
-    "packages/components/src/components/tooltip/tooltip.test.ts",
     "packages/components/src/components/tooltip/tooltip.ts",
     "packages/react/src/components/tooltip.ts",
     "packages/vue/src/components/SynVueTooltip.vue"

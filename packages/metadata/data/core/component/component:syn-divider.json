@@ -127,10 +127,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-divider/components/divider.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-divider/components/divider.ts"
       },
       {
@@ -165,7 +161,6 @@
     "packages/angular/components/divider/divider.component.ts",
     "packages/components/src/components/divider/divider.component.ts",
     "packages/components/src/components/divider/divider.styles.ts",
-    "packages/components/src/components/divider/divider.test.ts",
     "packages/components/src/components/divider/divider.ts",
     "packages/react/src/components/divider.ts",
     "packages/vue/src/components/SynVueDivider.vue"

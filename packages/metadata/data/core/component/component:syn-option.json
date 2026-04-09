@@ -116,15 +116,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-option/components/option.custom.test.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-option/components/option.styles.ts"
-      },
-      {
-        "layer": "full",
-        "path": "layers/full/component/component:syn-option/components/option.test.ts"
       },
       {
         "layer": "full",
@@ -171,9 +163,7 @@
     "packages/angular/components/option/option.component.ts",
     "packages/components/src/components/option/option-size.styles.ts",
     "packages/components/src/components/option/option.component.ts",
-    "packages/components/src/components/option/option.custom.test.ts",
     "packages/components/src/components/option/option.styles.ts",
-    "packages/components/src/components/option/option.test.ts",
     "packages/components/src/components/option/option.ts",
     "packages/components/src/components/option/utility.ts",
     "packages/react/src/components/option.ts",

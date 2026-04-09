@@ -14,6 +14,8 @@ export type { StyleQueryOptions } from './domains/styles.js';
 export type { TokenQueryOptions } from './domains/tokens.js';
 
 export type {
+  AssetCustom,
+  AssetEntity,
   AssetIconData,
   AssetIconSetCustom,
   AssetIconSetEntity,

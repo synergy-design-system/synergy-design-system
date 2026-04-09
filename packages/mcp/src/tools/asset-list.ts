@@ -25,11 +25,11 @@ export const assetListTool = (server: McpServer) => {
         const allAssets = await listAssets();
         const assets = allAssets.data
           .map(asset => ({
-            iconCount: asset?.custom?.iconCount ?? undefined,
+            iconCount: asset.custom?.iconCount,
             id: asset.id,
             name: asset.name,
             since: asset.since,
-            theme: (asset?.custom?.theme as string) ?? 'default',
+            theme: asset.custom?.theme ?? 'default',
           }))
           .toSorted((a, b) => a.name.localeCompare(b.name));
         const groupedAssets = Object.groupBy(assets, asset => asset.theme);

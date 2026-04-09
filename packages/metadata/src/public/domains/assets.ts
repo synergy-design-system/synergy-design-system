@@ -1,5 +1,6 @@
 import { createMetadataStore } from '../store.js';
 import {
+  type AssetCustom,
   type IconSearchQuery,
   type IconSearchResult,
   type LayerName,
@@ -25,7 +26,7 @@ export type IconSearchOptions = {
   offset?: number;
 };
 
-const matchesNameOrId = (entity: MetadataEntity, nameOrId: string): boolean => {
+const matchesNameOrId = (entity: MetadataEntity<AssetCustom>, nameOrId: string): boolean => {
   const input = nameOrId.trim().toLowerCase();
   const entityId = entity.id.toLowerCase();
   const shortId = entityId.startsWith('asset:') ? entityId.slice('asset:'.length) : entityId;
@@ -42,7 +43,7 @@ const matchesNameOrId = (entity: MetadataEntity, nameOrId: string): boolean => {
   return false;
 };
 
-const extractIconsFromEntity = (entity: MetadataEntity): IconSearchResult[] => {
+const extractIconsFromEntity = (entity: MetadataEntity<AssetCustom>): IconSearchResult[] => {
   const iconsRaw = entity.custom?.icons;
   if (!iconsRaw || typeof iconsRaw !== 'object' || Array.isArray(iconsRaw)) {
     return [];
@@ -115,18 +116,18 @@ const matchesIconQuery = (icon: IconSearchResult, query: IconSearchQuery): boole
 export const listAssets = async (
   options: AssetQueryOptions = {},
   storeOptions: MetadataStoreOptions = {},
-): Promise<PublicResponse<MetadataEntity[]>> => {
+): Promise<PublicResponse<MetadataEntity<AssetCustom>[]>> => {
   const store = createMetadataStore(storeOptions);
   const index = await store.getIndex();
 
   const requestedLayer = options.layer ?? 'full';
   const requestedVerbosity = options.verbosity ?? 'readable';
 
-  const entities = await store.findEntities({
+  const entities = (await store.findEntities({
     kind: 'asset',
     status: options.status,
     tags: options.tags,
-  });
+  })) as MetadataEntity<AssetCustom>[];
 
   const sorted = sortByEntityId(entities);
   const hasRequestedLayer = sorted.every((entity) => layerExistsForEntity(entity, requestedLayer));
@@ -183,18 +184,18 @@ export const getAssetMetadata = async (
   nameOrId: string,
   options: AssetQueryOptions = {},
   storeOptions: MetadataStoreOptions = {},
-): Promise<PublicResponse<MetadataEntity | null>> => {
+): Promise<PublicResponse<MetadataEntity<AssetCustom> | null>> => {
   const store = createMetadataStore(storeOptions);
   const index = await store.getIndex();
 
   const requestedLayer = options.layer ?? 'full';
   const requestedVerbosity = options.verbosity ?? 'readable';
 
-  const entities = await store.findEntities({
+  const entities = (await store.findEntities({
     kind: 'asset',
     status: options.status,
     tags: options.tags,
-  });
+  })) as MetadataEntity<AssetCustom>[];
 
   const sorted = sortByEntityId(entities);
   const entity = sorted.find((candidate) => matchesNameOrId(candidate, nameOrId));
@@ -278,13 +279,13 @@ export const searchIcons = async (
   const index = await store.getIndex();
 
   // Load icon set entities (entities with custom.icons dict)
-  let iconSetEntities: MetadataEntity[];
+  let iconSetEntities: MetadataEntity<AssetCustom>[];
 
   if (query.assetId) {
     const assetIds = (Array.isArray(query.assetId) ? query.assetId : [query.assetId])
       .map((id) => id.startsWith('asset:') ? id : `asset:${id}`);
     const results = await Promise.all(assetIds.map((id) => store.getEntity(id)));
-    iconSetEntities = results.filter((e): e is MetadataEntity => e !== null);
+    iconSetEntities = results.filter((e): e is MetadataEntity<AssetCustom> => e !== null);
   } else {
     iconSetEntities = await store.findEntities({ kind: 'asset' });
     // Only entities that have an icons dict (icon sets, not logos/system-icons)

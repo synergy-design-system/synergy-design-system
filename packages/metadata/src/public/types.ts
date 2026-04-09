@@ -180,6 +180,22 @@ export type AssetSystemIconCustom = {
   theme: string;
 };
 
+/**
+ * Common, ergonomic custom shape for mixed asset entity results.
+ * Asset APIs can return icon sets, logos, system icons, and setup-like records.
+ * Optional fields allow consumers to access shared values (e.g. theme/iconCount)
+ * without narrow/cast gymnastics while still exposing richer fields when present.
+ */
+export type AssetCustom = {
+  category?: string;
+  exportName?: string;
+  files?: string[];
+  iconCount?: number;
+  icons?: Record<string, AssetIconData>;
+  theme?: string;
+  variant?: string;
+};
+
 export type PublicRequestOptions = {
   includeLayerRefs?: boolean;
   includeSources?: boolean;
@@ -252,6 +268,7 @@ export type MetadataEntity<TCustom = Record<string, unknown>> = {
 export type AssetIconSetEntity = MetadataEntity<AssetIconSetCustom>;
 export type AssetLogoEntity = MetadataEntity<AssetLogoCustom>;
 export type AssetSystemIconEntity = MetadataEntity<AssetSystemIconCustom>;
+export type AssetEntity = MetadataEntity<AssetCustom>;
 export type ComponentEntity = MetadataEntity<ComponentCustom>;
 export type FontEntity = MetadataEntity<FontCustom>;
 export type MigrationEntity = MetadataEntity<MigrationCustom>;

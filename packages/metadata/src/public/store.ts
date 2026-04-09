@@ -126,6 +126,10 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
       files: entity.layers?.[layer] ?? [],
     }));
   };
+  const readLayerFile = async (ref: MetadataLayerRef): Promise<string> => {
+    const filePath = join(dataDir, ref.path.replace(/^data\//, ''));
+    return readFile(filePath, 'utf8');
+  };
 
   return {
     findEntities,
@@ -134,5 +138,6 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
     getIndex,
     getLayerFiles,
     getPackageEntities,
+    readLayerFile,
   };
 };

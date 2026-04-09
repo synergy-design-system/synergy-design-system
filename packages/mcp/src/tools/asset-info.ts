@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
-  type IconSearchResult,
   searchIcons,
 } from '@synergy-design-system/metadata';
 import * as availableIconsets from '@synergy-design-system/assets';
@@ -87,47 +86,25 @@ export const assetInfoTool = (server: McpServer) => {
           .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'sick2025Icons'
         : 'sick2025Icons';
 
-      let newAvailableIcons: IconSearchResult[] = [];
-
       // Create the tags filter
       const tags = filter ? filter.toLowerCase().split(',').map(term => term.trim()) : [];
 
-      const iconSearchOptions = {
-        limit,
-      };
+      const assetId = setToUse === 'sick2025Icons'
+        ? ['sick2025-icons-fill', 'sick2025-icons-outline']
+        : 'sick2018-icons';
 
-      if (setToUse === 'sick2025Icons') {
-        const iconsFor2025Filled = await searchIcons(
-          {
-            assetId: 'sick2025-icons-filled',
-            tags,
-          },
-          iconSearchOptions,
-        );
-        const iconsFor2025Outlined = await searchIcons(
-          {
-            assetId: 'sick2025-icons-outline',
-            tags,
-          },
-          iconSearchOptions,
-        );
-        newAvailableIcons = [
-          ...iconsFor2025Filled.data,
-          ...iconsFor2025Outlined.data,
-        ];
-      } else {
-        const iconsFor2018 = await searchIcons(
-          {
-            assetId: 'sick2018-icons',
-            tags,
-          },
-          iconSearchOptions,
-        );
-        newAvailableIcons = iconsFor2018.data;
-      }
+      const newAvailableIcons = await searchIcons(
+        {
+          assetId,
+          tags,
+        },
+        {
+          limit,
+        },
+      );
 
       // Final stripped down version of the icons to return, we only want to return the name, categories and variant for simplicity
-      const icons = newAvailableIcons.map(icon => ({
+      const icons = newAvailableIcons.data.map(icon => ({
         categories: icon.categories.length > 0 ? icon.categories : ['uncategorized'],
         iconName: icon.iconName,
         variant: icon.variant,

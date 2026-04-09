@@ -6,6 +6,180 @@
 export type LayerName = 'full' | 'interface' | 'examples';
 export type Verbosity = 'readable' | 'compact' | 'minified';
 
+// ---------------------------------------------------------------------------
+// Component custom types
+// ---------------------------------------------------------------------------
+
+export type ComponentNamedDescription = {
+  description: string;
+  name: string;
+};
+
+export type ComponentInterfaceAttribute = {
+  default?: string;
+  description: string;
+  fieldName?: string;
+  name: string;
+  reflects: boolean;
+  type?: string;
+};
+
+export type ComponentInterfaceProperty = {
+  access: 'public' | 'readonly';
+  default?: string;
+  description: string;
+  name: string;
+  type?: string;
+};
+
+export type ComponentInterfaceMethod = {
+  description: string;
+  name: string;
+  parameters: Array<{ name: string; type?: string }>;
+  returnType?: string;
+};
+
+export type ComponentInterfaceEvent = {
+  description: string;
+  name: string;
+  type?: string;
+};
+
+export type ComponentInterfaceSnapshot = {
+  attributes: ComponentInterfaceAttribute[];
+  cssParts: ComponentNamedDescription[];
+  dependencies: string[];
+  documentation?: string;
+  events: ComponentInterfaceEvent[];
+  methods: ComponentInterfaceMethod[];
+  properties: ComponentInterfaceProperty[];
+  since: string;
+  slots: ComponentNamedDescription[];
+  sourceModulePath: string;
+  status: string;
+  summary: string;
+  tagName: string;
+};
+
+export type ComponentAngularCustom = {
+  componentName: string;
+  exportPath: string;
+  packageName: string;
+  selector: string;
+  sourcePath: string;
+};
+
+export type ComponentReactWrapperCustom = {
+  componentName: string;
+  exportPath: string;
+  packageName: string;
+  sourcePath: string;
+};
+
+export type ComponentReactJsxCustom = {
+  componentName: string;
+  documentation?: string;
+  events?: Array<{ name: string; type: string }>;
+  packageName: string;
+  since: string;
+  sourcePath: string;
+  status: string;
+  subpathExport: string;
+  typeName: string;
+};
+
+export type ComponentVueCustom = {
+  componentName: string;
+  exportPath: string;
+  packageName: string;
+  sourcePath: string;
+};
+
+export type ComponentCustom = {
+  clusters?: string[];
+  frameworks?: {
+    angular?: ComponentAngularCustom;
+    react?: {
+      jsx?: ComponentReactJsxCustom;
+      wrapper?: ComponentReactWrapperCustom;
+    };
+    vue?: ComponentVueCustom;
+  };
+  interfaceSnapshot?: ComponentInterfaceSnapshot;
+  override?: {
+    stories?: Array<{
+      description?: { type: string; value: string };
+      name: string;
+      title?: { type: string; value: string };
+    }>;
+    storySourcePath?: string;
+    storyTags?: string[];
+  };
+};
+
+// ---------------------------------------------------------------------------
+// Font custom types
+// ---------------------------------------------------------------------------
+
+export type FontCustom = {
+  artifactPath?: string;
+  artifactType?: string;
+};
+
+// ---------------------------------------------------------------------------
+// Style custom types
+// ---------------------------------------------------------------------------
+
+export type StyleCustom = {
+  moduleName?: string;
+};
+
+// ---------------------------------------------------------------------------
+// Token custom types
+// ---------------------------------------------------------------------------
+
+export type TokenCustom = {
+  artifactPath?: string;
+  sourceType?: string;
+};
+
+// ---------------------------------------------------------------------------
+// Migration custom types
+// ---------------------------------------------------------------------------
+
+export type MigrationCustom = {
+  migrationType?: string;
+  versions?: string[];
+};
+
+// ---------------------------------------------------------------------------
+// Asset custom types
+// ---------------------------------------------------------------------------
+
+export type AssetIconData = {
+  categories?: string[];
+  tags?: string[];
+};
+
+export type AssetIconSetCustom = {
+  exportName: string;
+  iconCount: number;
+  icons: Record<string, AssetIconData>;
+  theme: string;
+  variant: string;
+};
+
+export type AssetLogoCustom = {
+  category: string;
+  files: string[];
+  theme: string;
+};
+
+export type AssetSystemIconCustom = {
+  files: string[];
+  theme: string;
+};
+
 export type PublicRequestOptions = {
   includeLayerRefs?: boolean;
   includeSources?: boolean;
@@ -57,8 +231,8 @@ export type MetadataLayerRef = {
   path: string;
 };
 
-export type MetadataEntity = {
-  custom?: Record<string, unknown>;
+export type MetadataEntity<TCustom = Record<string, unknown>> = {
+  custom?: TCustom;
   id: string;
   kind: string;
   layers?: Record<string, MetadataLayerRef[]>;
@@ -70,6 +244,19 @@ export type MetadataEntity = {
   status: string;
   tags: string[];
 };
+
+// ---------------------------------------------------------------------------
+// Convenience entity type aliases
+// ---------------------------------------------------------------------------
+
+export type AssetIconSetEntity = MetadataEntity<AssetIconSetCustom>;
+export type AssetLogoEntity = MetadataEntity<AssetLogoCustom>;
+export type AssetSystemIconEntity = MetadataEntity<AssetSystemIconCustom>;
+export type ComponentEntity = MetadataEntity<ComponentCustom>;
+export type FontEntity = MetadataEntity<FontCustom>;
+export type MigrationEntity = MetadataEntity<MigrationCustom>;
+export type StyleEntity = MetadataEntity<StyleCustom>;
+export type TokenEntity = MetadataEntity<TokenCustom>;
 
 export type MetadataIndexEntry = {
   corePath: string;
@@ -99,14 +286,30 @@ export type MetadataStoreOptions = {
   dataDir?: string;
 };
 
+export type IconFilterMode = 'and' | 'or';
+
 export type IconSearchQuery = {
-  /** Scope to a specific asset entity, e.g. `'asset:sick2018-icons'` or `'sick2025-icons-fill'`. Searches all icon sets when omitted. */
-  assetId?: string;
+  /**
+   * Scope to one or more asset entities by ID, e.g. `'asset:sick2018-icons'` or
+   * `['sick2025-icons-fill', 'sick2025-icons-outline']`. Searches all icon sets when omitted.
+   */
+  assetId?: string | string[];
+  /**
+   * Filter by category. Accepts a single string or an array of strings.
+   * Each value is a case-insensitive partial match against any of the icon's categories.
+   * When multiple values are provided, `filterMode` controls whether the icon must match
+   * all categories (and) or at least one (or). Defaults to `'or'`.
+   */
+  category?: string | string[];
+  /**
+   * Controls how multiple `category` values and the combination of `category` + `tags` are
+   * evaluated. `'or'` (default): icon matches if any filter field matches.
+   * `'and'`: icon must match all provided filter fields.
+   */
+  filterMode?: IconFilterMode;
   /** Case-insensitive partial match on icon name. */
   name?: string;
-  /** Case-insensitive partial match on any of the icon's categories. */
-  category?: string;
-  /** Icon must match at least one of the supplied tags (case-insensitive partial match). */
+  /** Filter by tag. At least one tag value must match (case-insensitive partial match). */
   tags?: string[];
 };
 
@@ -126,4 +329,5 @@ export interface MetadataStore {
   getIndex: () => Promise<MetadataIndex>;
   getLayerFiles: (entityId: string, layer: LayerName) => Promise<MetadataLayerRef[]>;
   getPackageEntities: (packageName: string) => Promise<MetadataEntity[]>;
+  readLayerFile: (ref: MetadataLayerRef) => Promise<string>;
 }

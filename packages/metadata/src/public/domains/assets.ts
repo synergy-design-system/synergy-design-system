@@ -8,6 +8,12 @@ import {
   type PublicRequestOptions,
   type PublicResponse,
 } from '../types.js';
+import {
+  layerExistsForEntity,
+  mapEntityForResponse,
+  paginate,
+  sortByEntityId,
+} from '../utils.js';
 
 export type AssetQueryOptions = PublicRequestOptions & {
   status?: string;
@@ -17,36 +23,6 @@ export type AssetQueryOptions = PublicRequestOptions & {
 export type IconSearchOptions = {
   limit?: number;
   offset?: number;
-};
-
-const sortByEntityId = (entities: MetadataEntity[]): MetadataEntity[] => [...entities].sort((a, b) => a.id.localeCompare(b.id));
-
-const paginate = <T>(items: T[], limit?: number, offset?: number): T[] => {
-  const safeOffset = Math.max(0, offset ?? 0);
-  const safeLimit = limit !== undefined ? Math.max(0, limit) : undefined;
-
-  const sliced = items.slice(safeOffset);
-  if (safeLimit === undefined) {
-    return sliced;
-  }
-
-  return sliced.slice(0, safeLimit);
-};
-
-const layerExistsForEntity = (entity: MetadataEntity, layer: LayerName): boolean => !!entity.layers?.[layer] && entity.layers[layer].length > 0;
-
-const mapEntityForResponse = (
-  entity: MetadataEntity,
-  options: AssetQueryOptions,
-): MetadataEntity => {
-  const includeSources = options.includeSources ?? false;
-  const includeLayerRefs = options.includeLayerRefs ?? true;
-
-  return {
-    ...entity,
-    layers: includeLayerRefs ? entity.layers : undefined,
-    sources: includeSources ? entity.sources : [],
-  };
 };
 
 const matchesNameOrId = (entity: MetadataEntity, nameOrId: string): boolean => {
@@ -87,6 +63,9 @@ const extractIconsFromEntity = (entity: MetadataEntity): IconSearchResult[] => {
 };
 
 const matchesIconQuery = (icon: IconSearchResult, query: IconSearchQuery): boolean => {
+  const mode = query.filterMode ?? 'or';
+
+  // `name` always uses exact AND logic — it is an identifier filter, not a semantic search field
   if (query.name) {
     const needle = query.name.trim().toLowerCase();
     if (!icon.iconName.toLowerCase().includes(needle)) {
@@ -94,22 +73,37 @@ const matchesIconQuery = (icon: IconSearchResult, query: IconSearchQuery): boole
     }
   }
 
-  if (query.category) {
-    const needle = query.category.trim().toLowerCase();
-    if (!icon.categories.some((c) => c.toLowerCase().includes(needle))) {
-      return false;
-    }
+  const categories = query.category
+    ? (Array.isArray(query.category) ? query.category : [query.category]).map((c) => c.trim().toLowerCase())
+    : [];
+  const tags = query.tags && query.tags.length > 0
+    ? query.tags.map((t) => t.trim().toLowerCase())
+    : [];
+
+  if (categories.length === 0 && tags.length === 0) {
+    return true;
   }
 
-  if (query.tags && query.tags.length > 0) {
-    const needles = query.tags.map((t) => t.trim().toLowerCase());
-    const iconTagsLower = icon.tags.map((t) => t.toLowerCase());
-    if (!needles.some((needle) => iconTagsLower.some((t) => t.includes(needle)))) {
-      return false;
-    }
+  const iconCategoriesLower = icon.categories.map((c) => c.toLowerCase());
+  const iconTagsLower = icon.tags.map((t) => t.toLowerCase());
+
+  const categoryMatch = categories.length > 0
+    ? categories.some((needle) => iconCategoriesLower.some((c) => c.includes(needle)))
+    : null;
+  const tagMatch = tags.length > 0
+    ? tags.some((needle) => iconTagsLower.some((t) => t.includes(needle)))
+    : null;
+
+  if (mode === 'and') {
+    // All provided filter groups must match (null means the group was not provided — skip it)
+    if (categoryMatch === false) return false;
+    if (tagMatch === false) return false;
+    return true;
   }
 
-  return true;
+  // 'or': at least one provided filter group must match
+  if (categoryMatch === true || tagMatch === true) return true;
+  return false;
 };
 
 /**
@@ -287,8 +281,10 @@ export const searchIcons = async (
   let iconSetEntities: MetadataEntity[];
 
   if (query.assetId) {
-    const entity = await store.getEntity(query.assetId.startsWith('asset:') ? query.assetId : `asset:${query.assetId}`);
-    iconSetEntities = entity ? [entity] : [];
+    const assetIds = (Array.isArray(query.assetId) ? query.assetId : [query.assetId])
+      .map((id) => id.startsWith('asset:') ? id : `asset:${id}`);
+    const results = await Promise.all(assetIds.map((id) => store.getEntity(id)));
+    iconSetEntities = results.filter((e): e is MetadataEntity => e !== null);
   } else {
     iconSetEntities = await store.findEntities({ kind: 'asset' });
     // Only entities that have an icons dict (icon sets, not logos/system-icons)

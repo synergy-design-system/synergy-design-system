@@ -7,7 +7,7 @@ import * as availableIconsets from '@synergy-design-system/assets';
 import {
   createToolAnnotations,
   getStructuredMetaData,
-  toContentArray,
+  withErrorHandler,
 } from '../utilities/index.js';
 
 const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[]>> = {
@@ -78,7 +78,7 @@ export const assetInfoTool = (server: McpServer) => {
       filter,
       iconset,
       limit,
-    }) => {
+    }) => withErrorHandler(async () => {
       // Get the iconset that should be used by key/value of iconsetListAliases
       const setToUse: keyof typeof availableIconsets = iconset
         ? Object
@@ -86,21 +86,17 @@ export const assetInfoTool = (server: McpServer) => {
           .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'sick2025Icons'
         : 'sick2025Icons';
 
-      // Create the tags filter
-      const tags = filter ? filter.toLowerCase().split(',').map(term => term.trim()) : [];
-
+      // Decide which icon sets to use based on the provided iconset key, if no key is provided use the default which is currently sick2025Icons
       const assetId = setToUse === 'sick2025Icons'
         ? ['sick2025-icons-fill', 'sick2025-icons-outline']
         : 'sick2018-icons';
 
+      // Create the tags filter
+      const tags = filter ? filter.toLowerCase().split(',').map(term => term.trim()) : [];
+
       const newAvailableIcons = await searchIcons(
-        {
-          assetId,
-          tags,
-        },
-        {
-          limit,
-        },
+        { assetId, tags },
+        { limit },
       );
 
       // Final stripped down version of the icons to return, we only want to return the name, categories and variant for simplicity
@@ -127,10 +123,10 @@ export const assetInfoTool = (server: McpServer) => {
       // Get the AI rules from the metadata files, we want to return this as well for better context in the response
       const [aiRules] = await getStructuredMetaData('../../metadata/static/assets');
 
-      return toContentArray([
+      return [
         aiRules?.content,
         finalIcons,
-      ]);
-    },
+      ];
+    }),
   );
 };

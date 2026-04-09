@@ -3,7 +3,7 @@ import { listComponents } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
   getStructuredMetaData,
-  toContentArray,
+  withErrorHandler,
 } from '../utilities/index.js';
 
 /**
@@ -20,29 +20,20 @@ export const componentListTool = (server: McpServer) => {
       inputSchema: {},
       title: 'Component list',
     },
-    async () => {
-      const content = [];
+    async () => withErrorHandler(async () => {
+      const [aiRules] = await getStructuredMetaData('../../metadata/static/component-list');
+      const components = await listComponents({
+        includeLayerRefs: false,
+        includeSources: false,
+      });
+      const componentNames = components.data
+        .map(c => c.name)
+        .toSorted();
 
-      try {
-        const [aiRules] = await getStructuredMetaData('../../metadata/static/component-list');
-        const components = await listComponents({
-          includeLayerRefs: false,
-          includeSources: false,
-        });
-        const componentNames = components.data
-          .map(c => c.name)
-          .toSorted();
-
-        content.push(aiRules?.content);
-        content.push(componentNames);
-      } catch (error) {
-        content.push({
-          text: `Error fetching component list: ${error instanceof Error ? error.message : String(error)}`,
-          type: 'text',
-        });
-      }
-
-      return toContentArray(content);
-    },
+      return [
+        aiRules?.content,
+        componentNames,
+      ];
+    }),
   );
 };

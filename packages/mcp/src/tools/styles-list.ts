@@ -3,7 +3,7 @@ import { listStyles } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
   getStructuredMetaData,
-  toContentArray,
+  withErrorHandler,
 } from '../utilities/index.js';
 
 /**
@@ -20,29 +20,20 @@ export const stylesList = (server: McpServer) => {
       inputSchema: {},
       title: 'Styles list',
     },
-    async () => {
-      const content = [];
+    async () => withErrorHandler(async () => {
+      const [aiRules] = await getStructuredMetaData('../../metadata/static/styles');
+      const styles = await listStyles({
+        includeLayerRefs: false,
+        includeSources: false,
+      });
+      const styleNames = styles.data
+        .map(c => c.name)
+        .toSorted();
 
-      try {
-        const [aiRules] = await getStructuredMetaData('../../metadata/static/styles');
-        const styles = await listStyles({
-          includeLayerRefs: false,
-          includeSources: false,
-        });
-        const styleNames = styles.data
-          .map(c => c.name)
-          .toSorted();
-
-        content.push(aiRules?.content);
-        content.push(styleNames);
-      } catch (error) {
-        content.push({
-          text: `Error fetching style list: ${error instanceof Error ? error.message : String(error)}`,
-          type: 'text',
-        });
-      }
-
-      return toContentArray(content);
-    },
+      return [
+        aiRules?.content,
+        styleNames,
+      ];
+    }),
   );
 };

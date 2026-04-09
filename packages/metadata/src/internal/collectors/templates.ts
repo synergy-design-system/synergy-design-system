@@ -32,7 +32,7 @@ export const createTemplateEntities = async (
         layers: {
           examples: [{
             layer: 'examples',
-            path: `data/layers/examples/template/${file}`,
+            path: `layers/examples/template/${file}`,
           }],
         },
         name: templateName

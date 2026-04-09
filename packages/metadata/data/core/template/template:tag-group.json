@@ -6,7 +6,7 @@
     "examples": [
       {
         "layer": "examples",
-        "path": "data/layers/examples/template/template:tag-group.md"
+        "path": "layers/examples/template/template:tag-group.md"
       }
     ]
   },

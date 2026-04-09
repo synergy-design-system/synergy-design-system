@@ -6,7 +6,7 @@
     "examples": [
       {
         "layer": "examples",
-        "path": "data/layers/examples/template/template:footer.md"
+        "path": "layers/examples/template/template:footer.md"
       }
     ]
   },

@@ -1,4 +1,9 @@
 import {
+  type MetadataLayerRef,
+  createMetadataStore,
+  getComponentMetadata,
+} from '@synergy-design-system/metadata';
+import {
   type Framework,
   angularPath,
   componentStaticPath,
@@ -8,6 +13,7 @@ import {
 } from './config.js';
 import { getAbsolutePath } from './file.js';
 import {
+  type MetadataFile,
   getStructuredMetaData,
   getStructuredMetaDataForComponent,
 } from './metadata.js';
@@ -74,30 +80,46 @@ export const getInfoForComponent = async (
   component: string,
   framework: Framework = 'vanilla',
 ) => {
-  // Filter function to select specific files based on the framework
-  const namePatterns = [
+  const namePatterns = new Set([
     'component.ts',
     'component.styles.ts',
     'component.custom.styles.ts',
-  ];
+  ]);
 
-  switch (framework) {
-    case 'react':
-      namePatterns.push('component.react.ts');
-      break;
-    case 'vue':
-      namePatterns.push('component.vue');
-      break;
-    case 'angular':
-      namePatterns.push('component.angular.ts');
-      break;
-    default:
+  if (framework === 'react') {
+    namePatterns.add('component.react.ts');
   }
 
-  const finalPattern = namePatterns.map(pattern => pattern.toLowerCase());
-  const data = await getStructuredMetaDataForComponent(
-    component,
-    fileName => finalPattern.some(pattern => fileName.toLowerCase().includes(pattern)),
+  if (framework === 'vue') {
+    namePatterns.add('component.vue');
+  }
+
+  if (framework === 'angular') {
+    namePatterns.add('component.angular.ts');
+  }
+
+  const matchFileName = (ref: MetadataLayerRef): boolean => {
+    const fileName = ref.path.split('/').at(-1)?.toLowerCase() ?? '';
+    return [...namePatterns].some(pattern => fileName.includes(pattern));
+  };
+
+  const metadata = await getComponentMetadata(component, {
+    includeLayerRefs: true,
+    includeSources: false,
+    layer: 'full',
+  });
+
+  const entity = metadata.data;
+  const layerRefs = entity?.layers?.[metadata.meta.resolvedLayer] ?? [];
+
+  const store = createMetadataStore();
+  const data: MetadataFile[] = await Promise.all(
+    layerRefs
+      .filter(matchFileName)
+      .map(async (ref) => ({
+        content: await store.readLayerFile(ref),
+        filename: ref.path.split('/').at(-1) ?? ref.path,
+      })),
   );
 
   const additionalData = await getAdditionalInformationForComponent(component);

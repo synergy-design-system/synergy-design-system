@@ -58,10 +58,17 @@ const matchesQuery = (
 
 const buildCoreEntityPath = (dataDir: string, entry: MetadataIndexEntry): string => join(dataDir, entry.corePath.replace(/^data\//, ''));
 
+/**
+ * Create a metadata store that can query entities and read layer files.
+ * @param options Optional runtime configuration (for example a custom `dataDir`).
+ */
 export const createMetadataStore = (options: MetadataStoreOptions = {}): MetadataStore => {
   const dataDir = options.dataDir ?? defaultDataDir;
   let indexCache: MetadataIndex | null = null;
 
+  /**
+   * Load and cache `data/index.json` for this store instance.
+   */
   const getIndex = async (): Promise<MetadataIndex> => {
     if (!indexCache) {
       indexCache = await readJson<MetadataIndex>(join(dataDir, 'index.json'));
@@ -70,6 +77,9 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
     return indexCache;
   };
 
+  /**
+   * Get one entity by exact ID from the metadata index.
+   */
   const getEntity = async (id: string): Promise<MetadataEntity | null> => {
     const index = await getIndex();
     const entry = index.entities.find((candidate) => candidate.id === id);
@@ -80,6 +90,9 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
     return readJson<MetadataEntity>(buildCoreEntityPath(dataDir, entry));
   };
 
+  /**
+   * Find entities by query fields (`kind`, `package`, `status`, `tags`, `layer`, ...).
+   */
   const findEntities = async (query: MetadataQuery = {}): Promise<MetadataEntity[]> => {
     const index = await getIndex();
     const filteredEntries = index.entities.filter((entry) => {
@@ -101,6 +114,10 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
     return entities.filter((entity) => matchesQuery(entity, query));
   };
 
+  /**
+   * Return layer references for an entity and layer.
+   * Use `readLayerFile` to resolve each reference to file contents.
+   */
   const getLayerFiles = async (
     entityId: string,
     layer: LayerName,
@@ -115,6 +132,9 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
 
   const getPackageEntities = async (packageName: string): Promise<MetadataEntity[]> => findEntities({ package: packageName });
 
+  /**
+   * Return entity IDs and layer references for all entities in a package and layer.
+   */
   const getDataForLayer = async (
     packageName: string,
     layer: LayerName,
@@ -126,6 +146,10 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
       files: entity.layers?.[layer] ?? [],
     }));
   };
+
+  /**
+   * Read the UTF-8 content for a layer file reference.
+   */
   const readLayerFile = async (ref: MetadataLayerRef): Promise<string> => {
     const filePath = join(dataDir, ref.path.replace(/^data\//, ''));
     return readFile(filePath, 'utf8');

@@ -252,6 +252,22 @@ describe('public metadata api', () => {
     expect(byTagNameResponse.errors).to.equal(undefined);
     expect(byTagNameResponse.data?.id).to.equal('component:syn-accordion');
 
+    const withSourcesResponse = await getComponentMetadata('syn-accordion', {
+      includeLayerRefs: true,
+      includeSources: true,
+      layer: 'full',
+    });
+    expect(withSourcesResponse.errors).to.equal(undefined);
+    expect(withSourcesResponse.data?.sources.some((source) => source.includes('.test.'))).to.equal(false);
+    expect(withSourcesResponse.data?.layers?.full.some((ref) => ref.path.includes('.test.'))).to.equal(false);
+
+    const withInterfaceSnapshot = await getComponentMetadata('syn-accordion', {
+      includeInterfaceSnapshot: true,
+    });
+    expect(withInterfaceSnapshot.errors).to.equal(undefined);
+    expect(withInterfaceSnapshot.data?.custom?.interfaceSnapshot).to.be.an('object');
+    expect(withInterfaceSnapshot.data?.custom?.interfaceSnapshot?.tagName).to.equal('syn-accordion');
+
     const fixture = await createComponentFixtureDataDir();
     try {
       const strictLayerErrorResponse = await getComponentMetadata(

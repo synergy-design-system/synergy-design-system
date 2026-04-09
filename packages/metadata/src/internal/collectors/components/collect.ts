@@ -169,6 +169,11 @@ const sortByName = <T extends { name: string }>(items: T[]): T[] => [...items].s
 
 const sortStrings = (items: string[]): string[] => [...items].sort((a, b) => a.localeCompare(b));
 
+const isIgnoredComponentSourceFile = (fileName: string): boolean => {
+  const normalized = fileName.toLowerCase();
+  return normalized.includes('.test.') || normalized.includes('.spec.');
+};
+
 const buildInterfaceSnapshot = (
   declaration: SynCustomElementDeclaration,
   sourceModulePath: string,
@@ -403,7 +408,7 @@ export const collect = async (
       const files = await readdir(sourceDir, { withFileTypes: true });
 
       const sourceFiles = files
-        .filter((file) => file.isFile())
+        .filter((file) => file.isFile() && !isIgnoredComponentSourceFile(file.name))
         .map((file) => relative(repoRoot, join(sourceDir, file.name)))
         .sort();
 

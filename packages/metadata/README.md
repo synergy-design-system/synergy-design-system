@@ -15,6 +15,33 @@ const components = await store.getPackageEntities('components');
 const migrationFiles = await store.getDataForLayer('migrations', 'full');
 ```
 
+### Layer Content Workflow
+
+Layer APIs return file references first. Resolve file contents through `readLayerFile`.
+
+```ts
+import {
+	createMetadataStore,
+	getComponentMetadata,
+	readLayerFilesForEntity,
+} from '@synergy-design-system/metadata';
+
+const store = createMetadataStore();
+
+const component = await getComponentMetadata('syn-header', {
+	includeLayerRefs: true,
+	layer: 'full',
+});
+
+if (component.data) {
+	const files = await readLayerFilesForEntity(store, component.data, 'full');
+	const firstFile = files.at(0);
+	console.log(firstFile?.ref.path, firstFile?.content);
+}
+```
+
+Use this flow when you need real file content (for example framework wrappers, styles, or examples), not only layer file paths.
+
 ### Supported exports
 
 - `@synergy-design-system/metadata`

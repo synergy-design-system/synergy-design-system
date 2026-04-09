@@ -1,9 +1,33 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
-  getInfoForComponent,
+  createMetadataStore,
+  getComponentMetadata,
+  readLayerFilesForEntity,
+} from '@synergy-design-system/metadata';
+import {
+  createToolAnnotations,
   getStructuredMetaData,
+  withErrorHandler,
 } from '../utilities/index.js';
+
+const isFrameworkLayerFile = (path: string, framework: 'react' | 'vue' | 'angular' | 'vanilla'): boolean => {
+  if (framework === 'vanilla') {
+    return path.includes('/components/');
+  }
+
+  return path.includes(`/${framework}/`);
+};
+
+const isTestLayerFile = (path: string): boolean => path.toLowerCase().includes('.test.');
+
+const isIncludedLayerFile = (path: string, framework: 'react' | 'vue' | 'angular' | 'vanilla'): boolean => {
+  if (isTestLayerFile(path)) {
+    return false;
+  }
+
+  return path.includes('/components/') || isFrameworkLayerFile(path, framework);
+};
 
 /**
  * Simple tool to retrieve information about a given component in the Synergy Design System.
@@ -13,6 +37,7 @@ export const componentInfoTool = (server: McpServer) => {
   server.registerTool(
     'component-info',
     {
+      annotations: createToolAnnotations(),
       description: 'Get information about the usage of a specific component in the Synergy Design System',
       inputSchema: {
         component: z.string().startsWith('syn-').describe('The name of the component to get information about.'),
@@ -23,26 +48,53 @@ export const componentInfoTool = (server: McpServer) => {
     async ({
       component,
       framework,
-    }) => {
-      const data = await getInfoForComponent(component, framework);
-      const text = data && data.length > 0
-        ? JSON.stringify(data, null, 2)
-        : `No metadata found for component ${component}`;
+    }) => withErrorHandler(async () => {
+      const resolvedFramework = framework ?? 'vanilla';
 
-      const aiRules = await getStructuredMetaData('../../metadata/static/component-info');
+      const metadata = await getComponentMetadata(component, {
+        includeInterfaceSnapshot: true,
+        includeLayerRefs: true,
+        includeSources: false,
+        layer: 'full',
+      });
 
-      return {
-        content: [
-          {
-            text: JSON.stringify(aiRules, null, 2),
-            type: 'text',
-          },
-          {
-            text,
-            type: 'text',
-          },
-        ],
-      };
-    },
+      const [aiRules] = await getStructuredMetaData('../../metadata/static/component-info');
+
+      if (!metadata.data) {
+        const notFoundMessage = metadata.errors?.[0]?.message ?? `No metadata found for component ${component}`;
+        return [
+          aiRules?.content,
+          notFoundMessage,
+        ];
+      }
+
+      const frameworks = metadata.data.custom?.frameworks;
+      const frameworkDetails = resolvedFramework === 'vanilla'
+        ? undefined
+        : frameworks?.[resolvedFramework];
+
+      const store = createMetadataStore();
+      const fullLayerFiles = await readLayerFilesForEntity(store, metadata.data, metadata.meta.resolvedLayer);
+
+      const relevantLayerCode = fullLayerFiles
+        .filter(({ ref }) => isIncludedLayerFile(ref.path, resolvedFramework))
+        .map(({ content, ref }) => ({
+          content,
+          layer: ref.layer,
+          path: ref.path,
+        }))
+        .toSorted((a, b) => a.path.localeCompare(b.path));
+
+      return [
+        aiRules?.content,
+        {
+          component: metadata.data.id,
+          framework: resolvedFramework,
+          interfaceSnapshot: metadata.data.custom?.interfaceSnapshot,
+          relevantLayerCode,
+          requestedFrameworkDetails: frameworkDetails,
+        },
+      ];
+    }),
   );
 };

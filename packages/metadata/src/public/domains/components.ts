@@ -15,8 +15,45 @@ import {
 } from '../utils.js';
 
 export type ComponentQueryOptions = PublicRequestOptions & {
+  includeInterfaceSnapshot?: boolean;
   status?: string;
   tags?: string[];
+};
+
+const readInterfaceSnapshot = async (
+  store: ReturnType<typeof createMetadataStore>,
+  entity: MetadataEntity<ComponentCustom>,
+): Promise<ComponentCustom['interfaceSnapshot'] | undefined> => {
+  const interfaceRef = entity.layers?.interface?.find((ref) => ref.path.endsWith('.json'));
+  if (!interfaceRef) {
+    return undefined;
+  }
+
+  const content = await store.readLayerFile(interfaceRef);
+  return JSON.parse(content) as ComponentCustom['interfaceSnapshot'];
+};
+
+const hydrateInterfaceSnapshot = async (
+  store: ReturnType<typeof createMetadataStore>,
+  entity: MetadataEntity<ComponentCustom>,
+  options: ComponentQueryOptions,
+): Promise<MetadataEntity<ComponentCustom>> => {
+  if (!options.includeInterfaceSnapshot || entity.custom?.interfaceSnapshot) {
+    return entity;
+  }
+
+  const interfaceSnapshot = await readInterfaceSnapshot(store, entity);
+  if (!interfaceSnapshot) {
+    return entity;
+  }
+
+  return {
+    ...entity,
+    custom: {
+      ...entity.custom,
+      interfaceSnapshot,
+    },
+  };
 };
 
 const getEntityTagName = (entity: MetadataEntity): string | undefined => {
@@ -95,9 +132,12 @@ export const listComponents = async (
 
   const resolvedLayer: LayerName = hasRequestedLayer ? requestedLayer : 'full';
   const paged = paginate(sorted, options.limit, options.offset);
+  const hydrated = await Promise.all(
+    paged.map((entity) => hydrateInterfaceSnapshot(store, entity, options)),
+  );
 
   return {
-    data: paged.map((entity) => mapEntityForResponse(entity, options)),
+    data: hydrated.map((entity) => mapEntityForResponse(entity, options)),
     meta: {
       builtAt: index.builtAt,
       requestedLayer,
@@ -178,9 +218,10 @@ export const getComponentMetadata = async (
   }
 
   const resolvedLayer: LayerName = hasRequestedLayer ? requestedLayer : 'full';
+  const hydrated = await hydrateInterfaceSnapshot(store, entity, options);
 
   return {
-    data: mapEntityForResponse(entity, options),
+    data: mapEntityForResponse(hydrated, options),
     meta: {
       builtAt: index.builtAt,
       requestedLayer,

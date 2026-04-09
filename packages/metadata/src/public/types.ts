@@ -340,11 +340,18 @@ export type IconSearchResult = {
 };
 
 export interface MetadataStore {
+  /** Find entities by query filters. */
   findEntities: (query?: MetadataQuery) => Promise<MetadataEntity[]>;
+  /** List entity IDs and layer file refs for all entities in a package and layer. */
   getDataForLayer: (packageName: string, layer: LayerName) => Promise<Array<{ entityId: string; files: MetadataLayerRef[] }>>;
+  /** Get one entity by exact ID. Returns `null` when not found. */
   getEntity: (id: string) => Promise<MetadataEntity | null>;
+  /** Get metadata index data (`data/index.json`). */
   getIndex: () => Promise<MetadataIndex>;
+  /** Return only layer file references for one entity and layer. */
   getLayerFiles: (entityId: string, layer: LayerName) => Promise<MetadataLayerRef[]>;
+  /** Get all entities belonging to a package. */
   getPackageEntities: (packageName: string) => Promise<MetadataEntity[]>;
+  /** Read UTF-8 content for one layer file reference. */
   readLayerFile: (ref: MetadataLayerRef) => Promise<string>;
 }

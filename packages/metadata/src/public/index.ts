@@ -5,6 +5,7 @@ export { getFontMetadata, listFonts } from './domains/fonts.js';
 export { getMigrations } from './domains/migrations.js';
 export { getStyleMetadata, listStyles } from './domains/styles.js';
 export { getTokens } from './domains/tokens.js';
+export { collectLayerReferences, readLayerFilesForEntity } from './utils.js';
 
 export type { AssetQueryOptions, IconSearchOptions } from './domains/assets.js';
 export type { ComponentQueryOptions } from './domains/components.js';

@@ -1,7 +1,7 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   createToolAnnotations,
-  getStructuredMetaData,
+  getToolRule,
   listTemplates,
   withErrorHandler,
 } from '../utilities/index.js';
@@ -28,13 +28,10 @@ export const templateList = (server: McpServer) => {
         .map(name => `- ${name}`)
         .join('\n');
 
-      const [aiRules] = await getStructuredMetaData(
-        '../../metadata/static/templates',
-        file => file === 'index.md',
-      );
+      const aiRules = await getToolRule('template-list');
 
       return [
-        aiRules?.content,
+        aiRules,
         templateNames,
       ];
     }),

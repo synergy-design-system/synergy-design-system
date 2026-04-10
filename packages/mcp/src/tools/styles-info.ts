@@ -5,7 +5,7 @@ import {
 } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
-  getStructuredMetaData,
+  getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -35,17 +35,14 @@ export const stylesInfoTool = (server: McpServer) => {
         ];
       }
 
-      const [aiRules] = await getStructuredMetaData(
-        '../../metadata/static/styles',
-        file => file === 'index.md',
-      );
+      const aiRules = await getToolRule('styles-info');
 
       const markdownContent = response.data.examples
         ?.map((entry) => entry.content)
         .join('\n\n') ?? '';
 
       return [
-        aiRules?.content,
+        aiRules,
         markdownContent,
       ];
     }),

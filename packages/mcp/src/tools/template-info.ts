@@ -3,7 +3,7 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   createToolAnnotations,
   getDataForTemplate,
-  getStructuredMetaData,
+  getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -33,17 +33,14 @@ export const templateInfoTool = (server: McpServer) => {
         ];
       }
 
-      const [aiRules] = await getStructuredMetaData(
-        '../../metadata/static/templates',
-        file => file === 'index.md',
-      );
+      const aiRules = await getToolRule('template-info');
 
       const markdownContent = response.data.examples
         ?.map((entry) => entry.content)
         .join('\n\n') ?? '';
 
       return [
-        aiRules?.content,
+        aiRules,
         markdownContent,
       ];
     }),

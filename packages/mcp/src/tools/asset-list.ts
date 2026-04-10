@@ -2,7 +2,7 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { listAssets } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
-  getStructuredMetaData,
+  getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -19,8 +19,7 @@ export const assetListTool = (server: McpServer) => {
       title: 'Available iconsets',
     },
     async () => withErrorHandler(async () => {
-      // Get the data from metadata files.
-      const [aiRules] = await getStructuredMetaData('../../metadata/static/assets');
+      const aiRules = await getToolRule('asset-list');
       const allAssets = await listAssets();
       const assets = allAssets.data
         .map(asset => ({
@@ -34,7 +33,7 @@ export const assetListTool = (server: McpServer) => {
       const groupedAssets = Object.groupBy(assets, asset => asset.theme);
 
       return [
-        aiRules?.content,
+        aiRules,
         groupedAssets,
       ];
     }),

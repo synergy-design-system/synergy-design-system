@@ -6,6 +6,7 @@ export * from './file.js';
 export * from './fonts.js';
 export * from './migration.js';
 export * from './metadata.js';
+export * from './rules.js';
 export * from './stdio.js';
 export * from './templates.js';
 export * from './tokens.js';

@@ -6,7 +6,7 @@ import {
 import * as availableIconsets from '@synergy-design-system/assets';
 import {
   createToolAnnotations,
-  getStructuredMetaData,
+  getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -120,11 +120,11 @@ export const assetInfoTool = (server: McpServer) => {
         ]),
       );
 
-      // Get the AI rules from the metadata files, we want to return this as well for better context in the response
-      const [aiRules] = await getStructuredMetaData('../../metadata/static/assets');
+      // Get the AI rules for this tool, used as a preface for LLM output quality.
+      const aiRules = await getToolRule('asset-info');
 
       return [
-        aiRules?.content,
+        aiRules,
         finalIcons,
       ];
     }),

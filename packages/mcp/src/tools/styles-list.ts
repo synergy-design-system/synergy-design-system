@@ -2,7 +2,7 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { listStyles } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
-  getStructuredMetaData,
+  getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -21,7 +21,7 @@ export const stylesList = (server: McpServer) => {
       title: 'Styles list',
     },
     async () => withErrorHandler(async () => {
-      const [aiRules] = await getStructuredMetaData('../../metadata/static/styles');
+      const aiRules = await getToolRule('styles-list');
       const styles = await listStyles({
         includeLayerRefs: false,
         includeSources: false,
@@ -31,7 +31,7 @@ export const stylesList = (server: McpServer) => {
         .toSorted();
 
       return [
-        aiRules?.content,
+        aiRules,
         styleNames,
       ];
     }),

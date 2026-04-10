@@ -2,7 +2,7 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { listComponents } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
-  getStructuredMetaData,
+  getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -21,7 +21,7 @@ export const componentListTool = (server: McpServer) => {
       title: 'Component list',
     },
     async () => withErrorHandler(async () => {
-      const [aiRules] = await getStructuredMetaData('../../metadata/static/component-list');
+      const aiRules = await getToolRule('component-list');
       const components = await listComponents({
         includeLayerRefs: false,
         includeSources: false,
@@ -31,7 +31,7 @@ export const componentListTool = (server: McpServer) => {
         .toSorted();
 
       return [
-        aiRules?.content,
+        aiRules,
         componentNames,
       ];
     }),

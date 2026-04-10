@@ -5,7 +5,7 @@ import {
 } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
-  getStructuredMetaData,
+  getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -36,7 +36,7 @@ export const componentInfoTool = (server: McpServer) => {
         layer,
       });
 
-      const [aiRules] = await getStructuredMetaData('../../metadata/static/component-info');
+      const aiRules = await getToolRule('component-info');
 
       if (!metadata.data) {
         const notFoundMessage = metadata.errors?.[0]?.message ?? `No metadata found for component ${component}`;
@@ -56,7 +56,7 @@ export const componentInfoTool = (server: McpServer) => {
           finalContent = [metadata.data];
       }
 
-      const withRules = [aiRules?.content, ...finalContent];
+      const withRules = [aiRules, ...finalContent];
       return finalContent.length > 0
         ? withRules
         : [`No metadata content found for component ${component} in layer ${metadata.data.layer}`];

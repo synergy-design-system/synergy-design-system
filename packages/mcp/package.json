@@ -20,13 +20,9 @@
     "@synergy-design-system/fonts": "workspace:*",
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:^",
-    "@types/jest": "^30.0.0",
     "@types/node": "^24.12.0",
     "eslint": "^9.39.4",
-    "jest": "^30.3.0",
     "prettier": "^3.8.1",
-    "rimraf": "^6.1.3",
-    "ts-jest": "^29.4.6",
     "typescript": "^5.9.3"
   },
   "exports": {
@@ -62,8 +58,8 @@
   },
   "scripts": {
     "debug": "npx @modelcontextprotocol/inspector",
-    "build": "pnpm run build:ts",
-    "build:ts": "pnpm rimraf dist && tsc",
+    "build": "pnpm run clean && tsc",
+    "clean": "node src/bin/clean.js",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"

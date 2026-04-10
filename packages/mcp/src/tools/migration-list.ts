@@ -1,6 +1,10 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { getMigrationMetaData } from '../utilities/index.js';
+import {
+  createToolAnnotations,
+  getMigrationMetaData,
+  withErrorHandler,
+} from '../utilities/index.js';
 
 type SynergyMigrationPackage = 'assets' | 'components' | 'styles' | 'tokens';
 
@@ -106,6 +110,7 @@ export const migrationListTool = (server: McpServer) => {
   server.registerTool(
     'migration-list',
     {
+      annotations: createToolAnnotations(),
       description: 'List available migration documents for a Synergy package in a compact, token-efficient format.',
       inputSchema: {
         synergyPackage: z.enum([
@@ -117,14 +122,14 @@ export const migrationListTool = (server: McpServer) => {
       },
       title: 'Package Migration Document Index',
     },
-    async ({ synergyPackage }) => {
+    async ({ synergyPackage }) => withErrorHandler(async () => {
       const selectedPackage = (synergyPackage ?? 'components') as SynergyMigrationPackage;
       const metadata = await getMigrationMetaData(selectedPackage);
 
       const index = metadata
         .filter(Boolean)
         .map((file) => {
-          const { content, filename } = file!;
+          const { content, filename } = file;
 
           // Derive a simple kind for components to distinguish
           // between migration paths, overview, and package-level docs.
@@ -153,14 +158,7 @@ export const migrationListTool = (server: McpServer) => {
           };
         });
 
-      return {
-        content: [
-          {
-            text: JSON.stringify(index, null, 2),
-            type: 'text',
-          },
-        ],
-      };
-    },
+      return [JSON.stringify(index, null, 2)];
+    }),
   );
 };

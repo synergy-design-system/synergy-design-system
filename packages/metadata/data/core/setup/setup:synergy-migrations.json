@@ -17,6 +17,26 @@
       },
       {
         "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/migration/index.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/migration/v2-2018-to-v2-2025.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/migration/v2-2018-to-v3-2018.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/migration/v2-2018-to-v3-2025.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/migration/v2-2025-to-v3-2025.md"
+      },
+      {
+        "layer": "full",
         "path": "layers/full/setup/setup:synergy-migrations/davinci/components.md"
       }
     ]
@@ -27,6 +47,11 @@
   "since": "1.0.0",
   "sources": [
     "packages/components/BREAKING_CHANGES.md",
+    "packages/docs/src/static/migration/index.md",
+    "packages/docs/src/static/migration/v2-2018-to-v2-2025.md",
+    "packages/docs/src/static/migration/v2-2018-to-v3-2018.md",
+    "packages/docs/src/static/migration/v2-2018-to-v3-2025.md",
+    "packages/docs/src/static/migration/v2-2025-to-v3-2025.md",
     "packages/metadata/external-data/davinci-migrations/components.md"
   ],
   "status": "stable",

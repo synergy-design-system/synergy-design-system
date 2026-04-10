@@ -1,6 +1,10 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
-import { getMigrationMetaData } from '../utilities/index.js';
+import {
+  createToolAnnotations,
+  getMigrationMetaData,
+  withErrorHandler,
+} from '../utilities/index.js';
 
 type SynergyMigrationPackage = 'assets' | 'components' | 'styles' | 'tokens';
 
@@ -21,6 +25,7 @@ export const migrationInfoTool = (server: McpServer) => {
   server.registerTool(
     'migration-info',
     {
+      annotations: createToolAnnotations(),
       description: 'Get detailed migration documentation for a Synergy package. Use together with `migration-list` to fetch only the documents you need.',
       inputSchema: {
         filename: z.string().optional().describe('Optional filename of the migration document to return. Especially recommended for the components package to avoid fetching all guides at once.'),
@@ -36,7 +41,7 @@ export const migrationInfoTool = (server: McpServer) => {
     async ({
       filename,
       synergyPackage,
-    }) => {
+    }) => withErrorHandler(async () => {
       const selectedPackage = (synergyPackage ?? 'components') as SynergyMigrationPackage;
       const metadata = await getMigrationMetaData(selectedPackage);
 
@@ -46,24 +51,12 @@ export const migrationInfoTool = (server: McpServer) => {
         const match = metadata.find(file => file && file.filename === filename);
 
         if (!match) {
-          return {
-            content: [
-              {
-                text: `No migration document named "${filename}" found for package "${selectedPackage}". Call the 'migration-list' tool first to see the available filenames.",`,
-                type: 'text',
-              },
-            ],
-          };
+          return [
+            `No migration document named "${filename}" found for package "${selectedPackage}". Call the 'migration-list' tool first to see the available filenames.`,
+          ];
         }
 
-        return {
-          content: [
-            {
-              text: JSON.stringify(match, null, 2),
-              type: 'text',
-            },
-          ],
-        };
+        return [JSON.stringify(match, null, 2)];
       }
 
       // If no filename is given for components, return only the overview
@@ -81,27 +74,13 @@ export const migrationInfoTool = (server: McpServer) => {
           return isOverview || !isPathGuide;
         });
 
-        return {
-          content: [
-            {
-              text: JSON.stringify(filtered, null, 2),
-              type: 'text',
-            },
-          ],
-        };
+        return [JSON.stringify(filtered, null, 2)];
       }
 
       // For non‑components packages, or when a filename is not used,
       // fall back to returning all documents. These sets are small
       // (typically CHANGELOG + BREAKING_CHANGES).
-      return {
-        content: [
-          {
-            text: JSON.stringify(metadata, null, 2),
-            type: 'text',
-          },
-        ],
-      };
-    },
+      return [JSON.stringify(metadata, null, 2)];
+    }),
   );
 };

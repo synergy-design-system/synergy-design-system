@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-04-10T08:25:47.652Z",
+  "builtAt": "2026-04-10T08:49:21.249Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -1261,7 +1261,7 @@
       "id": "setup:synergy-migrations",
       "kind": "setup",
       "layers": {
-        "full": 2
+        "full": 7
       },
       "name": "Synergy Breaking Changes & Migrations",
       "search": [

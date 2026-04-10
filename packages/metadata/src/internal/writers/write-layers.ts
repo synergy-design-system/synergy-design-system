@@ -34,6 +34,11 @@ const getPackageLabel = (sourcePath: string): string => {
     return 'davinci';
   }
 
+  // Migration path guides from docs live under a dedicated subfolder.
+  if (sourcePath.includes('/docs/src/static/migration/')) {
+    return 'migration';
+  }
+
   return parts[0] === 'packages' && parts[1] ? parts[1] : '_other';
 };
 

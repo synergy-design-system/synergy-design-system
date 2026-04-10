@@ -619,14 +619,22 @@ const createMigrationsSetupEntity = (
     relative(repoRoot, join(componentRoot, 'BREAKING_CHANGES.md')),
   ];
 
-  // Try to include DaVinci migration if it exists
-  const davinciMigrationPath = join(repoRoot, 'packages', 'metadata', 'external-data', 'davinci-migrations', 'components.md');
-  try {
-    // We just add it - the layer writer will handle if file doesn't exist
-    sources.push(relative(repoRoot, davinciMigrationPath));
-  } catch {
-    // If path manipulation fails, just skip it
+  // Include version migration path guides from docs package (source of truth)
+  const docsMigrationRoot = join(repoRoot, 'packages', 'docs', 'src', 'static', 'migration');
+  const migrationGuides = [
+    'index.md',
+    'v2-2018-to-v2-2025.md',
+    'v2-2018-to-v3-2018.md',
+    'v2-2018-to-v3-2025.md',
+    'v2-2025-to-v3-2025.md',
+  ];
+  for (const guide of migrationGuides) {
+    sources.push(relative(repoRoot, join(docsMigrationRoot, guide)));
   }
+
+  // Include DaVinci migration guide from metadata external-data
+  const davinciMigrationPath = join(repoRoot, 'packages', 'metadata', 'external-data', 'davinci-migrations', 'components.md');
+  sources.push(relative(repoRoot, davinciMigrationPath));
 
   return {
     custom: {

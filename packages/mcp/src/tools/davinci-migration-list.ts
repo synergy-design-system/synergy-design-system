@@ -27,7 +27,7 @@ export const davinciMigrationListTool = (server: McpServer) => {
 
       return components.length > 0
         ? [components]
-        : [`No DaVinci component migrations found for package "${packageName}".`]
+        : [`No DaVinci component migrations found for package "${packageName}".`];
     }),
   );
 };

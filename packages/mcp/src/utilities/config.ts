@@ -81,11 +81,6 @@ export const templatesPath = join(currentDirname, '../../metadata/static/templat
 export const tokensPath = join(currentDirname, '../../metadata/packages/tokens');
 
 /**
- * Path to the davinci migration directory, relative to the MCP directory.
- */
-export const davinciMigrationPath = join(currentDirname, '../../metadata/davinci-migration');
-
-/**
  * Path to the static files directory, relative to the MCP directory.
  */
 export const staticPath = join(currentDirname, '../../metadata/static');

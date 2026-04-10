@@ -1,7 +1,9 @@
 {
   "custom": {
     "artifactPath": "figma-variables/sick2025-dark.json",
-    "sourceType": "figma-variables-output"
+    "format": "figma",
+    "sourceType": "figma-variables-output",
+    "theme": "sick2025-dark"
   },
   "id": "token:tokens-figma-variables-sick2025-dark-json",
   "kind": "token",

@@ -204,7 +204,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
   - `setup:synergy-migrations`
 - Migration setup sources currently include:
   - `packages/components/BREAKING_CHANGES.md`
-  - `packages/mcp/metadata/davinci-migration/migration-guide.md`
+  - `packages/metadata/external-data/davinci-migrations/components.md`
 - In layer output, the DaVinci migration guide is written to a `davinci/` folder under the migration setup entity.
 
 ### Tokens/Styles/Fonts/Assets Setup Collectors (Phase 2 setup scope)

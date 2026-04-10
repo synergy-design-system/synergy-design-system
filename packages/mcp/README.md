@@ -196,11 +196,13 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "Give me information about the dashboard template"
 - "How do I use the form template?"
 
-### 10. `davinci-migrate-list`
+### 10. `davinci-migration-list`
 
 **Description:** Get a list of all components that have migration information from DaVinci to Synergy.
 
-**Parameters:** None
+**Parameters:**
+
+- `package` (string, optional): Migration package (`components`, `charts`). Defaults to `components`. Currently only `components` is available.
 
 **Example prompts:**
 
@@ -208,12 +210,13 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "Show me all available migration guides"
 - "List components with migration information"
 
-### 11. `davinci-migrate-component`
+### 11. `davinci-migration-info`
 
 **Description:** Get information about the migration of a specific component from DaVinci to Synergy.
 
 **Parameters:**
 
+- `package` (string, optional): Migration package (`components`, `charts`). Defaults to `components`. Currently only `components` is available.
 - `component` (string, required): Name of the DaVinci component (must start with `davinci-`, e.g., `davinci-button`)
 
 **Example prompts:**
@@ -347,7 +350,6 @@ src/
     └── index.ts          # Utility exports
 metadata/                 # Generated and static metadata files
 ├── checksum.txt          # Metadata integrity checksum
-├── davinci-migration/    # DaVinci to Synergy migration guides
 ├── packages/             # Synergy package specific information
 └── static/               # Static metadata for tools
 ```
@@ -446,7 +448,7 @@ Metadata is stored in the `metadata/` directory and is built during the build pr
 
 - **Static metadata**: Hand-written files in `metadata/static/`
 - **Component metadata**: Generated from Synergy packages in `metadata/packages/`
-- **Migration guides**: DaVinci migration information in `metadata/davinci-migration/`
+- **Migration guides**: DaVinci migration information in `metadata/external-data/davinci-migrations/`
 - **Checksum validation**: `metadata/checksum.txt` ensures metadata integrity
 
 The `pnpm build:metadata` script processes source packages and generates structured metadata files using specialized builders:

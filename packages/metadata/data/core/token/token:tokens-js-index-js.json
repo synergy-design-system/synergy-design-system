@@ -1,6 +1,7 @@
 {
   "custom": {
     "artifactPath": "js/index.js",
+    "format": "javascript",
     "sourceType": "dist"
   },
   "id": "token:tokens-js-index-js",

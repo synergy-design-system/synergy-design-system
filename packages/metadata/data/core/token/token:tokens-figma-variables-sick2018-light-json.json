@@ -1,7 +1,9 @@
 {
   "custom": {
     "artifactPath": "figma-variables/sick2018-light.json",
-    "sourceType": "figma-variables-output"
+    "format": "figma",
+    "sourceType": "figma-variables-output",
+    "theme": "sick2018-light"
   },
   "id": "token:tokens-figma-variables-sick2018-light-json",
   "kind": "token",

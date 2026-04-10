@@ -1,6 +1,7 @@
 {
   "custom": {
     "artifactPath": "scss/_tokens.scss",
+    "format": "sass",
     "sourceType": "dist"
   },
   "id": "token:tokens-scss-tokens-scss",

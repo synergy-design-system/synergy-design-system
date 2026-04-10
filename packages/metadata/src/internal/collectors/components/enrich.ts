@@ -620,7 +620,7 @@ const createMigrationsSetupEntity = (
   ];
 
   // Try to include DaVinci migration if it exists
-  const davinciMigrationPath = join(repoRoot, 'packages', 'mcp', 'metadata', 'davinci-migration', 'migration-guide.md');
+  const davinciMigrationPath = join(repoRoot, 'packages', 'metadata', 'external-data', 'davinci-migrations', 'components.md');
   try {
     // We just add it - the layer writer will handle if file doesn't exist
     sources.push(relative(repoRoot, davinciMigrationPath));

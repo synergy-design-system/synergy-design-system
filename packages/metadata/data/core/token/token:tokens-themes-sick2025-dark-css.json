@@ -1,7 +1,9 @@
 {
   "custom": {
     "artifactPath": "themes/sick2025_dark.css",
-    "sourceType": "dist"
+    "format": "css",
+    "sourceType": "dist",
+    "theme": "sick2025-dark"
   },
   "id": "token:tokens-themes-sick2025-dark-css",
   "kind": "token",

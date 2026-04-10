@@ -1,7 +1,9 @@
 {
   "custom": {
     "artifactPath": "themes/sick2018_light.css",
-    "sourceType": "dist"
+    "format": "css",
+    "sourceType": "dist",
+    "theme": "sick2018-light"
   },
   "id": "token:tokens-themes-sick2018-light-css",
   "kind": "token",

@@ -2,6 +2,7 @@ export * from './actions.js';
 export * from './checksum.js';
 export * from './components.js';
 export * from './config.js';
+export * from './davinci.js';
 export * from './file.js';
 export * from './fonts.js';
 export * from './migration.js';

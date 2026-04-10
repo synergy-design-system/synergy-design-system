@@ -30,7 +30,7 @@ const getPackageLabel = (sourcePath: string): string => {
   const parts = sourcePath.split('/');
 
   // Keep migration guides grouped by concern instead of their source package.
-  if (sourcePath.includes('/davinci-migration/')) {
+  if (sourcePath.includes('/external-data/davinci-migrations/')) {
     return 'davinci';
   }
 

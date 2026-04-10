@@ -155,6 +155,24 @@ export type MigrationCustom = {
 };
 
 // ---------------------------------------------------------------------------
+// Setup custom types
+// ---------------------------------------------------------------------------
+
+export type SetupCustom = {
+  artifactGroups?: Record<string, string[]>;
+  exports?: string[];
+  framework?: 'angular' | 'react' | 'vue';
+  migrationType?: string;
+  moduleClass?: string;
+  packageName?: string;
+  packageVersion?: string;
+  subpathExports?: string[];
+  validators?: string[];
+  valueAccessors?: string[];
+  versions?: string[];
+};
+
+// ---------------------------------------------------------------------------
 // Asset custom types
 // ---------------------------------------------------------------------------
 
@@ -274,6 +292,7 @@ export type AssetEntity = MetadataEntity<AssetCustom>;
 export type ComponentEntity = MetadataEntity<ComponentCustom>;
 export type FontEntity = MetadataEntity<FontCustom>;
 export type MigrationEntity = MetadataEntity<MigrationCustom>;
+export type SetupEntity = MetadataEntity<SetupCustom>;
 export type StyleEntity = MetadataEntity<StyleCustom>;
 export type TokenEntity = MetadataEntity<TokenCustom>;
 

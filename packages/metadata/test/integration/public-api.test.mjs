@@ -206,6 +206,52 @@ describe('public metadata api', () => {
     expect(strictLayerErrorResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
   });
 
+  it('exposes setup helper queries with package/framework composition and changelog filtering', async () => {
+    const { getDataForSetup } = await loadPublicApi();
+
+    const componentsResponse = await getDataForSetup({
+      package: 'components',
+    });
+    expect(componentsResponse.errors).to.equal(undefined);
+    expect(componentsResponse.data).to.not.equal(null);
+    expect(componentsResponse.data?.setups.some((entry) => entry.id === 'setup:components-package')).to.equal(true);
+    expect(
+      componentsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('changelog.md')),
+    ).to.equal(false);
+    expect(
+      componentsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('breaking_changes.md')),
+    ).to.equal(false);
+    expect(
+      componentsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('package.json')),
+    ).to.equal(false);
+
+    const reactComponentsResponse = await getDataForSetup({
+      package: 'react',
+    });
+    expect(reactComponentsResponse.errors).to.equal(undefined);
+    expect(reactComponentsResponse.data).to.not.equal(null);
+    expect(reactComponentsResponse.data?.setups.some((entry) => entry.id === 'setup:components-package')).to.equal(true);
+    expect(reactComponentsResponse.data?.setups.some((entry) => entry.id === 'setup:react-package')).to.equal(true);
+
+    const angularResponse = await getDataForSetup({
+      package: 'angular',
+    });
+    expect(angularResponse.errors).to.equal(undefined);
+    expect(angularResponse.data).to.not.equal(null);
+    expect(angularResponse.data?.setups.length).to.equal(5); // components + 4 angular modules
+    expect(angularResponse.data?.setups.some((entry) => entry.id === 'setup:components-package')).to.equal(true);
+
+    const withoutLimitationsResponse = await getDataForSetup({
+      includeLimitations: false,
+      package: 'components',
+    });
+    expect(withoutLimitationsResponse.errors).to.equal(undefined);
+    expect(withoutLimitationsResponse.data).to.not.equal(null);
+    expect(
+      withoutLimitationsResponse.data?.setups.flatMap((entry) => entry.text).some((entry) => entry.path.toLowerCase().includes('limitations.md')),
+    ).to.equal(false);
+  });
+
   it('exposes style helper queries with pagination, id/name lookup, and layer handling', async () => {
     const { getDataForStyle, getStyleMetadata, listStyles } = await loadPublicApi();
 

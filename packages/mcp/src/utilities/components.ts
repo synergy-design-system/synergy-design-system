@@ -5,57 +5,11 @@ import {
 } from '@synergy-design-system/metadata';
 import {
   type Framework,
-  angularPath,
-  componentStaticPath,
-  reactPath,
-  staticPath,
-  vuePath,
 } from './config.js';
-import { getAbsolutePath } from './file.js';
 import {
   type MetadataFile,
-  getStructuredMetaData,
   getStructuredMetaDataForComponent,
 } from './metadata.js';
-
-/**
- * Get dynamic information about the usage of a specific framework in the Synergy Design System.
- * @param framework The framework to get information about
- * @returns List of structured metadata for the specified framework.
- */
-export const getDynamicMetaDataForFramework = async (
-  framework: Framework = 'vanilla',
-) => {
-  let frameworkPath;
-
-  switch (framework) {
-    case 'angular':
-      frameworkPath = angularPath;
-      break;
-    case 'react':
-      frameworkPath = reactPath;
-      break;
-    case 'vue':
-      frameworkPath = vuePath;
-      break;
-    default:
-      frameworkPath = componentStaticPath;
-  }
-
-  return getStructuredMetaData(frameworkPath);
-};
-
-/**
- * Get additional information about the usage of a specific framework in the Synergy Design System.
- * @param framework The framework to get information about
- * @returns List of structured metadata for the specified framework.
- */
-export const getStaticMetaDataForFramework = async (
-  framework: Framework = 'vanilla',
-) => {
-  const frameworkPath = framework === 'vanilla' ? 'components' : framework;
-  return getStructuredMetaData(getAbsolutePath(`${staticPath}/${frameworkPath}`));
-};
 
 /**
  * Get additional information for a specific component from the static metadata.

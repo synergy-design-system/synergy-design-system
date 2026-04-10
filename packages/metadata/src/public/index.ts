@@ -3,6 +3,7 @@ export { getAssetMetadata, listAssets, searchIcons } from './domains/assets.js';
 export { getComponentMetadata, getDataForComponent, listComponents } from './domains/components.js';
 export { getFontMetadata, listFonts } from './domains/fonts.js';
 export { getMigrations } from './domains/migrations.js';
+export { getDataForSetup } from './domains/setup.js';
 export { getDataForStyle, getStyleMetadata, listStyles } from './domains/styles.js';
 export { getTemplateMetadata, getDataForTemplate, listTemplates } from './domains/templates.js';
 export { getDataForTokens, getTokens } from './domains/tokens.js';
@@ -21,6 +22,13 @@ export type {
 } from './domains/components.js';
 export type { FontQueryOptions } from './domains/fonts.js';
 export type { MigrationQueryOptions } from './domains/migrations.js';
+export type {
+  SetupDataPayload,
+  SetupDataQueryOptions,
+  SetupEntry,
+  SetupPackage,
+  SetupTextLayerContent,
+} from './domains/setup.js';
 export type {
   StyleDataLayer,
   StyleDataPayload,
@@ -82,6 +90,8 @@ export type {
   MetadataStoreOptions,
   MigrationCustom,
   MigrationEntity,
+  SetupCustom,
+  SetupEntity,
   PublicError,
   PublicErrorCode,
   PublicRequestOptions,

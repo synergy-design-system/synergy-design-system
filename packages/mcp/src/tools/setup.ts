@@ -1,0 +1,62 @@
+import { z } from 'zod';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { getDataForSetup } from '@synergy-design-system/metadata';
+import {
+  createToolAnnotations,
+  getStructuredMetaData,
+  setupPath,
+  withErrorHandler,
+} from '../utilities/index.js';
+
+/**
+ * Setup entrypoint for Synergy packages and framework-specific setup guidance.
+ * @param server - The MCP server instance to register the tool on.
+ */
+export const setupTool = (server: McpServer) => {
+  server.registerTool(
+    'setup',
+    {
+      annotations: createToolAnnotations(),
+      description: 'Get setup information for a Synergy package. Framework packages (react, vue, angular) automatically include base components setup.',
+      inputSchema: {
+        includeLimitations: z.boolean().default(true).optional().describe('Add a list of known limitations and issues to the output.'),
+        package: z.enum(['components', 'react', 'vue', 'angular', 'tokens', 'styles', 'fonts', 'assets', 'migrations']).describe('Synergy package to retrieve setup instructions for.'),
+      },
+      title: 'Setup info',
+    },
+    async ({
+      includeLimitations,
+      package: packageName,
+    }) => withErrorHandler(async () => {
+      const response = await getDataForSetup({
+        includeLimitations,
+        package: packageName,
+      });
+
+      if (!response.data) {
+        return [response.errors?.[0]?.message ?? `No setup data found for package "${packageName}".`];
+      }
+
+      const setupContent = response.data.setups
+        .flatMap((entry) => entry.text)
+        .map((entry) => entry.content);
+
+      // Static setup docs (prerequisites, icon usage) are only relevant for framework packages
+      const isFrameworkPackage = ['components', 'react', 'vue', 'angular'].includes(packageName);
+      let staticSetupContent: string[] = [];
+
+      if (isFrameworkPackage) {
+        const staticSetupDocs = await getStructuredMetaData(setupPath, file => file.endsWith('.md'));
+        staticSetupContent = staticSetupDocs
+          .filter((entry): entry is { content: string; filename: string } => !!entry)
+          .toSorted((a, b) => a.filename.localeCompare(b.filename))
+          .map((entry) => entry.content);
+      }
+
+      return [
+        ...setupContent,
+        ...staticSetupContent,
+      ];
+    }),
+  );
+};

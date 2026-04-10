@@ -5,7 +5,7 @@ export { getFontMetadata, listFonts } from './domains/fonts.js';
 export { getMigrations } from './domains/migrations.js';
 export { getDataForStyle, getStyleMetadata, listStyles } from './domains/styles.js';
 export { getTemplateMetadata, getDataForTemplate, listTemplates } from './domains/templates.js';
-export { getTokens } from './domains/tokens.js';
+export { getDataForTokens, getTokens } from './domains/tokens.js';
 export { collectLayerReferences, readLayerFilesForEntity } from './utils.js';
 
 export type { AssetQueryOptions, IconSearchOptions } from './domains/assets.js';
@@ -35,7 +35,14 @@ export type {
   TemplateQueryOptions,
   TemplateTextLayerContent,
 } from './domains/templates.js';
-export type { TokenQueryOptions } from './domains/tokens.js';
+export type {
+  TokenDataContent,
+  TokenDataPayload,
+  TokenDataQueryOptions,
+  TokenFormat,
+  TokenQueryOptions,
+  TokenTheme,
+} from './domains/tokens.js';
 
 export type {
   AssetCustom,

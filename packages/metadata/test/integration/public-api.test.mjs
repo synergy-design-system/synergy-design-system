@@ -107,7 +107,7 @@ describe('public metadata api', () => {
   });
 
   it('exposes token helper queries with pagination and layer fallback metadata', async () => {
-    const { getTokens } = await loadPublicApi();
+    const { getDataForTokens, getTokens } = await loadPublicApi();
 
     const allTokensResponse = await getTokens();
     expect(allTokensResponse.errors).to.equal(undefined);
@@ -137,6 +137,40 @@ describe('public metadata api', () => {
     expect(strictLayerErrorResponse.data).to.deep.equal([]);
     expect(strictLayerErrorResponse.errors).to.be.an('array').that.is.not.empty;
     expect(strictLayerErrorResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+
+    const defaultDataResponse = await getDataForTokens();
+    expect(defaultDataResponse.errors).to.equal(undefined);
+    expect(defaultDataResponse.data.format).to.equal('css');
+    expect(defaultDataResponse.data.theme).to.equal('sick2025-light');
+    expect(defaultDataResponse.data.tokens.length).to.be.greaterThan(0);
+    expect(defaultDataResponse.data.tokens.every((entry) => entry.path.endsWith('.css'))).to.equal(true);
+
+    const cssThemeResponse = await getDataForTokens({
+      format: 'css',
+      theme: 'sick2018-dark',
+    });
+    expect(cssThemeResponse.errors).to.equal(undefined);
+    expect(cssThemeResponse.data.format).to.equal('css');
+    expect(cssThemeResponse.data.theme).to.equal('sick2018-dark');
+    expect(cssThemeResponse.data.tokens.every((entry) => entry.theme === 'sick2018-dark')).to.equal(true);
+
+    const javascriptResponse = await getDataForTokens({
+      format: 'javascript',
+      theme: 'sick2018-dark',
+    });
+    expect(javascriptResponse.errors).to.equal(undefined);
+    expect(javascriptResponse.data.format).to.equal('javascript');
+    expect(javascriptResponse.data.theme).to.equal(undefined);
+    expect(javascriptResponse.data.tokens.length).to.be.greaterThan(0);
+    expect(javascriptResponse.data.tokens.every((entry) => entry.path.endsWith('.js') || entry.path.endsWith('.d.ts'))).to.equal(true);
+
+    const sassResponse = await getDataForTokens({
+      format: 'sass',
+    });
+    expect(sassResponse.errors).to.equal(undefined);
+    expect(sassResponse.data.format).to.equal('sass');
+    expect(sassResponse.data.tokens.length).to.be.greaterThan(0);
+    expect(sassResponse.data.tokens.every((entry) => entry.path.endsWith('.scss'))).to.equal(true);
   });
 
   it('exposes migration helper queries with pagination and layer fallback metadata', async () => {

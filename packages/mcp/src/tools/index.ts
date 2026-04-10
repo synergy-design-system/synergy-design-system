@@ -11,4 +11,5 @@ export * from './styles-info.js';
 export * from './styles-list.js';
 export * from './template-list.js';
 export * from './template-info.js';
-export * from './tokens.js';
+export * from './tokens-list.js';
+export * from './token-info.js';

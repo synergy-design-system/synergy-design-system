@@ -140,7 +140,9 @@ export type StyleCustom = {
 
 export type TokenCustom = {
   artifactPath?: string;
+  format?: 'css' | 'javascript' | 'sass' | 'figma';
   sourceType?: string;
+  theme?: 'sick2025-light' | 'sick2025-dark' | 'sick2018-light' | 'sick2018-dark';
 };
 
 // ---------------------------------------------------------------------------

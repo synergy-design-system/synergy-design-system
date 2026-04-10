@@ -37,6 +37,52 @@ const toTokenEntityId = (sourcePath: string): string => {
   return `token:tokens-${normalized}`;
 };
 
+const toTokenFormat = (artifactPath: string): 'css' | 'figma' | 'javascript' | 'sass' | undefined => {
+  const normalized = artifactPath.toLowerCase();
+
+  if (normalized.includes('figma-variables/') && normalized.endsWith('.json')) {
+    return 'figma';
+  }
+
+  if (normalized.endsWith('.scss')) {
+    return 'sass';
+  }
+
+  if (normalized.endsWith('.js') || normalized.endsWith('.d.ts')) {
+    return 'javascript';
+  }
+
+  if (normalized.endsWith('.css')) {
+    return 'css';
+  }
+
+  return undefined;
+};
+
+const toTokenTheme = (artifactPath: string): 'sick2018-dark' | 'sick2018-light' | 'sick2025-dark' | 'sick2025-light' | undefined => {
+  const normalized = artifactPath
+    .toLowerCase()
+    .replace(/_/g, '-');
+
+  if (normalized.includes('sick2025') && normalized.includes('dark')) {
+    return 'sick2025-dark';
+  }
+
+  if (normalized.includes('sick2025') && normalized.includes('light')) {
+    return 'sick2025-light';
+  }
+
+  if (normalized.includes('sick2018') && normalized.includes('dark')) {
+    return 'sick2018-dark';
+  }
+
+  if (normalized.includes('sick2018') && normalized.includes('light')) {
+    return 'sick2018-light';
+  }
+
+  return undefined;
+};
+
 export const normalize = (raw: TokensRaw): Result<CoreEntity[], NormalizeError> => {
   try {
     const setupEntity: CoreEntity = {
@@ -65,11 +111,16 @@ export const normalize = (raw: TokensRaw): Result<CoreEntity[], NormalizeError> 
       .sort()
       .map((sourcePath): CoreEntity => {
         const sourceType = sourcePath.includes('/dist/') ? 'dist' : 'figma-variables-output';
+        const artifactPath = toCanonicalTokenArtifactPath(sourcePath);
+        const format = toTokenFormat(artifactPath);
+        const theme = toTokenTheme(artifactPath);
 
         return {
           custom: {
-            artifactPath: toCanonicalTokenArtifactPath(sourcePath),
+            artifactPath,
+            format,
             sourceType,
+            theme,
           },
           id: toTokenEntityId(sourcePath),
           kind: 'token',

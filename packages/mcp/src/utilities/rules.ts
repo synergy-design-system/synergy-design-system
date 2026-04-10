@@ -10,14 +10,15 @@ const ruleCache = new Map<string, string | undefined>();
 
 /**
  * Returns the markdown guidance preface for a tool.
- * Optionally appends framework suffix, e.g. getToolRule('component-info', 'react') -> component-info-react.md
  * Missing rule files are treated as optional and return undefined.
+ * @param toolName The name of the tool to get rules for. This should correspond to a markdown file in the rules directory (without the .md extension).
+ * @returns The content of the markdown file as a string, or undefined if the file does not exist.
+ * @throws Any errors encountered while reading the file, except for file not found errors which are handled gracefully.
  */
 export const getToolRule = async (
   toolName: string,
-  framework?: 'angular' | 'react' | 'vue',
 ): Promise<string | undefined> => {
-  const fileName = framework ? `${toolName}-${framework}` : toolName;
+  const fileName = toolName;
   if (ruleCache.has(fileName)) {
     return ruleCache.get(fileName);
   }

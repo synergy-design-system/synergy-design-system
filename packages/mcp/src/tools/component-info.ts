@@ -37,7 +37,7 @@ export const componentInfoTool = (server: McpServer) => {
       });
 
       const aiRules = await getToolRule('component-info');
-      const frameworkRules = framework && framework !== 'vanilla' ? await getToolRule('component-info', framework) : undefined;
+      const frameworkRules = framework && framework !== 'vanilla' ? await getToolRule(`component-info-${framework}`) : undefined;
 
       if (!metadata.data) {
         const notFoundMessage = metadata.errors?.[0]?.message ?? `No metadata found for component ${component}`;

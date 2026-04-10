@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const currentFilename = fileURLToPath(import.meta.url);
 const currentDirname = dirname(currentFilename);
-const rulesDir = join(currentDirname, '../rules');
+const rulesDir = join(currentDirname, '../../rules');
 
 const ruleCache = new Map<string, string | undefined>();
 

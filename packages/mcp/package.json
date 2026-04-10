@@ -41,7 +41,7 @@
     "README.md",
     "CHANGELOG.md",
     "dist",
-    "metadata"
+    "rules"
   ],
   "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/mcp",
   "keywords": [

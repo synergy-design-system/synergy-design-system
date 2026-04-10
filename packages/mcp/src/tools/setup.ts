@@ -3,8 +3,6 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { getDataForSetup } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
-  getStructuredMetaData,
-  setupPath,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -41,22 +39,7 @@ export const setupTool = (server: McpServer) => {
         .flatMap((entry) => entry.text)
         .map((entry) => entry.content);
 
-      // Static setup docs (prerequisites, icon usage) are only relevant for framework packages
-      const isFrameworkPackage = ['components', 'react', 'vue', 'angular'].includes(packageName);
-      let staticSetupContent: string[] = [];
-
-      if (isFrameworkPackage) {
-        const staticSetupDocs = await getStructuredMetaData(setupPath, file => file.endsWith('.md'));
-        staticSetupContent = staticSetupDocs
-          .filter((entry): entry is { content: string; filename: string } => !!entry)
-          .toSorted((a, b) => a.filename.localeCompare(b.filename))
-          .map((entry) => entry.content);
-      }
-
-      return [
-        ...setupContent,
-        ...staticSetupContent,
-      ];
+      return setupContent;
     }),
   );
 };

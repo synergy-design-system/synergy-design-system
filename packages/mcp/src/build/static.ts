@@ -4,25 +4,12 @@ import { basename, join } from 'node:path';
 import ora from 'ora';
 import {
   createPath,
-  getAbsolutePath,
-  setupPath,
 } from '../utilities/index.js';
 
 /**
  * List of static files that should be copied to the static metadata directory.
  */
-const staticFilesToCopy = [
-  // The icon usage documentation needs to be copied to the static metadata directory
-  [
-    getAbsolutePath('../../../../packages/docs/src/static/icon-usage.md'),
-    setupPath,
-  ],
-  // Copy prerequisites as it includes information about font setup
-  [
-    getAbsolutePath('../../../../packages/docs/src/static/prerequisites.md'),
-    setupPath,
-  ],
-];
+const staticFilesToCopy: [string, string][] = [];
 
 /**
  * Sets up all data from the components and framework packages and adds them to the static metadata.

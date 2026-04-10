@@ -26,6 +26,14 @@
       {
         "layer": "full",
         "path": "layers/full/setup/setup:components-package/components/package.json"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/docs/icon-usage.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/docs/prerequisites.md"
       }
     ]
   },
@@ -38,7 +46,9 @@
     "packages/components/CHANGELOG.md",
     "packages/components/BREAKING_CHANGES.md",
     "packages/components/LIMITATIONS.md",
-    "packages/components/package.json"
+    "packages/components/package.json",
+    "packages/docs/src/static/icon-usage.md",
+    "packages/docs/src/static/prerequisites.md"
   ],
   "status": "stable",
   "tags": [

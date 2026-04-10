@@ -582,6 +582,7 @@ const createComponentsSetupEntity = (
   packageInfo: FrameworkPackageInfo,
 ): CoreEntity => {
   const componentRoot = join(repoRoot, componentPackagePath);
+  const docsStaticRoot = join(repoRoot, 'packages', 'docs', 'src', 'static');
   const sources = [
     'README.md',
     'CHANGELOG.md',
@@ -589,6 +590,10 @@ const createComponentsSetupEntity = (
     'LIMITATIONS.md',
     'package.json',
   ].map((filePath) => relative(repoRoot, join(componentRoot, filePath)));
+
+  // Keep framework setup companion docs sourced from docs package via metadata layers.
+  sources.push(relative(repoRoot, join(docsStaticRoot, 'icon-usage.md')));
+  sources.push(relative(repoRoot, join(docsStaticRoot, 'prerequisites.md')));
 
   return {
     custom: {

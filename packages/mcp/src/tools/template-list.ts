@@ -1,8 +1,10 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
+  listTemplates,
+} from '@synergy-design-system/metadata';
+import {
   createToolAnnotations,
   getToolRule,
-  listTemplates,
   withErrorHandler,
 } from '../utilities/index.js';
 

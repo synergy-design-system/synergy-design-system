@@ -1,8 +1,10 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
-  createToolAnnotations,
   getDataForTemplate,
+} from '@synergy-design-system/metadata';
+import {
+  createToolAnnotations,
   getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';

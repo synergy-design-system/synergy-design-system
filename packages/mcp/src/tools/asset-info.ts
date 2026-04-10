@@ -3,14 +3,15 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   searchIcons,
 } from '@synergy-design-system/metadata';
-import * as availableIconsets from '@synergy-design-system/assets';
 import {
   createToolAnnotations,
   getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';
 
-const iconsetListAliases: Partial<Record<keyof typeof availableIconsets, string[]>> = {
+type AvailableIconset = 'sick2018Icons' | 'sick2025Icons';
+
+const iconsetListAliases: Record<AvailableIconset, string[]> = {
   sick2018Icons: [
     'legacy',
     'v2',
@@ -80,10 +81,10 @@ export const assetInfoTool = (server: McpServer) => {
       limit,
     }) => withErrorHandler(async () => {
       // Get the iconset that should be used by key/value of iconsetListAliases
-      const setToUse: keyof typeof availableIconsets = iconset
+      const setToUse: AvailableIconset = iconset
         ? Object
           .entries(iconsetListAliases)
-          .find(([, aliases]) => aliases.includes(iconset))?.[0] as keyof typeof availableIconsets || 'sick2025Icons'
+          .find(([, aliases]) => aliases.includes(iconset))?.[0] as AvailableIconset || 'sick2025Icons'
         : 'sick2025Icons';
 
       // Decide which icon sets to use based on the provided iconset key, if no key is provided use the default which is currently sick2025Icons

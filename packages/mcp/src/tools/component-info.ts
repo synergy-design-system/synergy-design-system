@@ -37,6 +37,7 @@ export const componentInfoTool = (server: McpServer) => {
       });
 
       const aiRules = await getToolRule('component-info');
+      const frameworkRules = framework && framework !== 'vanilla' ? await getToolRule('component-info', framework) : undefined;
 
       if (!metadata.data) {
         const notFoundMessage = metadata.errors?.[0]?.message ?? `No metadata found for component ${component}`;
@@ -56,7 +57,8 @@ export const componentInfoTool = (server: McpServer) => {
           finalContent = [metadata.data];
       }
 
-      const withRules = [aiRules, ...finalContent];
+      const rules = [aiRules, frameworkRules].filter(Boolean);
+      const withRules = [...rules, ...finalContent];
       return finalContent.length > 0
         ? withRules
         : [`No metadata content found for component ${component} in layer ${metadata.data.layer}`];

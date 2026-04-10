@@ -1,4 +1,21 @@
-import { getVersion } from './version.js';
+import { dirname, join } from 'path';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+
+/**
+ * Gets the current version of the MCP server.
+ * @returns The version string from package.json
+ */
+export const getVersion = () => {
+  const filename = fileURLToPath(import.meta.url);
+  const directoryName = dirname(filename);
+  const packageJsonPath = join(directoryName, '..', '..', 'package.json');
+  const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8')) as {
+    version: string;
+  };
+
+  return packageJson.version;
+};
 
 /**
  * Parses command line arguments and returns the action to take

@@ -132,9 +132,9 @@ jobs:
           HOME: /root
           TEST_FRAMEWORK: ${{ matrix.framework }}
 
-  # Check if the MCP server metadata is valid
-  mcp-metadata-check:
-    name: MCP metadata check
+  # Check generated metadata artifacts and the MCP server against them
+  metadata-check:
+    name: Metadata check
     runs-on: ubuntu-latest
     needs: [build-check, format-check, lint-check, component-test, e2e-test, tokens-test]
     container:
@@ -150,11 +150,17 @@ jobs:
       - run: git config --global --add safe.directory $PWD
 
       - name: Setup Node.js and pnpm
-        uses: ./.github/actions/setup-node-pnpm   
-      - name: MCP Unittests
-        run: pnpm -r --filter 'mcp' test
-      - name: Create full build of MCP metadata (including storybook)
-        run: pnpm -C packages/mcp build:all
+        uses: ./.github/actions/setup-node-pnpm
+      - name: Build workspace packages (except metadata and mcp)
+        run: pnpm -r --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/mcp' build
+      - name: Build metadata (full)
+        run: pnpm -C packages/metadata build:all
+      - name: Run tests (metadata)
+        run: pnpm -C packages/metadata test
+      - name: Build MCP server
+        run: pnpm -C packages/mcp build
+      - name: Run tests (mcp)
+        run: pnpm -C packages/mcp test
       - name: Check for uncommitted changes
         run: git diff --exit-code .
 

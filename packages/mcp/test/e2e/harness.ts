@@ -7,38 +7,35 @@ const currentFilename = fileURLToPath(import.meta.url);
 const currentDirname = dirname(currentFilename);
 const packageRoot = resolve(currentDirname, '../..');
 
-let client: Client | undefined;
-let transport: StdioClientTransport | undefined;
+export type ClientSession = {
+  client: Client;
+  close: () => Promise<void>;
+};
 
-export const startClient = async (): Promise<Client> => {
-  if (client) {
-    return client;
-  }
-
-  transport = new StdioClientTransport({
+/**
+ * Creates an isolated MCP client session by launching the MCP server as a child process
+ * and connecting to it via stdio transport.
+ * @returns A session containing the connected client and a teardown function.
+ */
+export const createClientSession = async (): Promise<ClientSession> => {
+  const transport = new StdioClientTransport({
     args: ['dist/bin/start.js'],
     command: process.execPath,
     cwd: packageRoot,
     stderr: 'pipe',
   });
 
-  client = new Client({
+  const client = new Client({
     name: 'synergy-mcp-e2e',
     version: '1.0.0',
   });
 
   await client.connect(transport);
-  return client;
-};
-
-export const stopClient = async (): Promise<void> => {
-  if (client) {
-    await client.close();
-    client = undefined;
-  }
-
-  if (transport) {
-    await transport.close();
-    transport = undefined;
-  }
+  return {
+    client,
+    close: async () => {
+      await client.close();
+      await transport.close();
+    },
+  };
 };

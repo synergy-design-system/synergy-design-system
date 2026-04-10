@@ -1,33 +1,41 @@
 import assert from 'node:assert/strict';
-import { after, before, test } from 'node:test';
-import { type Client } from '@modelcontextprotocol/sdk/client/index.js';
-import { startClient, stopClient } from './harness.ts';
+import {
+  after,
+  before,
+  describe,
+  test,
+} from 'node:test';
+import type { ToolResponse } from '../../src/utilities/metadata.ts';
+import { type ClientSession, createClientSession } from './harness.ts';
 
-let client: Client;
+let session: ClientSession;
 
-before(async () => {
-  client = await startClient();
-});
-
-after(async () => {
-  await stopClient();
-});
-
-test('styles-list returns rules and style names over stdio', async () => {
-  const response = await client.callTool({
-    name: 'styles-list',
-    arguments: {},
+describe('styles-list tool', () => {
+  before(async () => {
+    session = await createClientSession();
   });
 
-  assert.ok(Array.isArray(response.content));
-  assert.equal(response.content.length, 2);
+  after(async () => {
+    await session.close();
+  });
 
-  const [rulesContent, listContent] = response.content;
-  assert.equal(rulesContent.type, 'text');
-  assert.match(rulesContent.text, /Rules for chatbots and llms/i);
+  test('returns rules and style names over stdio', async () => {
+    const response = await session.client.callTool({
+      arguments: {},
+      name: 'styles-list',
+    });
+    const typedResponse = response as ToolResponse;
 
-  assert.equal(listContent.type, 'text');
-  const styleNames = JSON.parse(listContent.text) as string[];
-  assert.ok(Array.isArray(styleNames));
-  assert.ok(styleNames.includes('syn-body'));
+    assert.ok(Array.isArray(typedResponse.content), 'Response content should be an array');
+    assert.equal(typedResponse.content.length, 2, 'Response content should have length 2');
+
+    const [rulesContent, listContent] = typedResponse.content;
+    assert.equal(rulesContent.type, 'text', 'Rules content should be of type text');
+    assert.match(rulesContent.text, /Rules for chatbots and llms/i, 'Rules content text should match expected pattern');
+
+    assert.equal(listContent.type, 'text', 'List content should be of type text');
+    const styleNames = JSON.parse(listContent.text) as string[];
+    assert.ok(Array.isArray(styleNames), 'Style names should be an array');
+    assert.ok(styleNames.includes('syn-body'), 'Style names should include "syn-body"');
+  });
 });

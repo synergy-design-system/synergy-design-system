@@ -62,7 +62,7 @@
     "clean": "node src/bin/clean.js",
     "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
-    "test": "pnpm run build && node --experimental-strip-types --test test/e2e/*.test.ts"
+    "test": "node --experimental-strip-types --test test/e2e/*.test.ts"
   },
   "type": "module",
   "version": "2.13.4"

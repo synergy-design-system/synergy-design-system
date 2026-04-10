@@ -7,6 +7,14 @@ export default [
   }),
   {
     files: [
+      'test/**/*.ts',
+    ],
+    rules: {
+      '@typescript-eslint/no-floating-promises': 'off',
+    },
+  },
+  {
+    files: [
       'src/tools/*.ts',
     ],
     rules: {

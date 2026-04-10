@@ -21,7 +21,7 @@
   "name": "Angular Components Module",
   "package": "angular",
   "relations": [],
-  "since": "3.10.4",
+  "since": "3.10.5",
   "sources": [
     "packages/angular/modules/synergy/synergy.module.ts",
     "packages/angular/components/index.ts"

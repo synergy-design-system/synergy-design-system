@@ -9,7 +9,7 @@
       "./src/*"
     ],
     "packageName": "@synergy-design-system/fonts",
-    "packageVersion": "1.0.4"
+    "packageVersion": "1.0.5"
   },
   "id": "setup:fonts-package",
   "kind": "setup",
@@ -32,7 +32,7 @@
   "name": "Fonts Package",
   "package": "fonts",
   "relations": [],
-  "since": "1.0.4",
+  "since": "1.0.5",
   "sources": [
     "packages/fonts/README.md",
     "packages/fonts/CHANGELOG.md",

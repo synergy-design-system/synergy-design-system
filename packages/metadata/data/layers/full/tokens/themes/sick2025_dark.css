@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.10.4
+ * @synergy-design-system/tokens version 3.10.5
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -40,13 +40,13 @@
   --syn-border-radius-circle: 9999px;
   --syn-border-radius-large: 8px;
   --syn-border-radius-medium: 8px;
-  --syn-border-radius-none: 0px;
+  --syn-border-radius-none: 0;
   --syn-border-radius-pill: 9999px;
   --syn-border-radius-small: 4px;
   --syn-border-radius-x-large: 16px;
   --syn-border-width-large: 3px; /** Large */
   --syn-border-width-medium: 2px; /** Medium */
-  --syn-border-width-none: 0px; /** None */
+  --syn-border-width-none: 0; /** None */
   --syn-border-width-small: 1px; /** Small */
   --syn-border-width-x-large: 4px; /** X Large */
   --syn-breadcrumb-color: var(--syn-typography-color-text);
@@ -259,7 +259,7 @@
   --syn-input-disabled-opacity: 0.5;
   --syn-input-focus-ring-color: var(--syn-color-primary-700);
   --syn-input-focus-ring-error: var(--syn-color-error-600);
-  --syn-input-focus-ring-offset: 0px;
+  --syn-input-focus-ring-offset: 0;
   --syn-input-font-family: var(--syn-font-sans);
   --syn-input-font-size-large: var(--syn-font-size-large);
   --syn-input-font-size-medium: var(--syn-font-size-medium);

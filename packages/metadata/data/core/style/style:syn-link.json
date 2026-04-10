@@ -21,7 +21,7 @@
   "name": "syn-link",
   "package": "styles",
   "relations": [],
-  "since": "2.0.2",
+  "since": "2.0.3",
   "sources": [
     "packages/styles/src/link/index.css"
   ],

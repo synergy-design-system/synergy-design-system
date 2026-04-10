@@ -20,7 +20,7 @@
   "name": "SICK Intl Font Source",
   "package": "fonts",
   "relations": [],
-  "since": "1.0.4",
+  "since": "1.0.5",
   "sources": [
     "packages/fonts/src/sick-intl/font.css",
     "packages/fonts/src/sick-intl/LICENSE"

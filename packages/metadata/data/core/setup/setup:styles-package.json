@@ -6,7 +6,7 @@
       "./package.json"
     ],
     "packageName": "@synergy-design-system/styles",
-    "packageVersion": "2.0.2"
+    "packageVersion": "2.0.3"
   },
   "id": "setup:styles-package",
   "kind": "setup",
@@ -33,7 +33,7 @@
   "name": "Styles Package",
   "package": "styles",
   "relations": [],
-  "since": "2.0.2",
+  "since": "2.0.3",
   "sources": [
     "packages/styles/README.md",
     "packages/styles/CHANGELOG.md",

@@ -1,5 +1,4 @@
 export * from './actions.js';
-export * from './components.js';
 export * from './config.js';
 export * from './davinci.js';
 export * from './file.js';

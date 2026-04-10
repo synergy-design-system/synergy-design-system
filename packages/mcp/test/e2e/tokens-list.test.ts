@@ -8,14 +8,13 @@ import {
 import {
   type ClientSession,
   createClientSession,
-  expectRulesPreface,
   parseJsonContent,
   toToolResponse,
 } from '../utilities/index.ts';
 
 let session: ClientSession;
 
-describe('styles-list tool', () => {
+describe('tokens-list tool', () => {
   before(async () => {
     session = await createClientSession();
   });
@@ -24,18 +23,23 @@ describe('styles-list tool', () => {
     await session.close();
   });
 
-  it('returns rules and style names over stdio', async () => {
+  it('returns token types and themes', async () => {
     const response = await session.client.callTool({
       arguments: {},
-      name: 'styles-list',
+      name: 'tokens-list',
     });
     const typedResponse = toToolResponse(response);
 
-    assert.equal(typedResponse.content.length, 2);
+    assert.ok(Array.isArray(typedResponse.content));
+    assert.equal(typedResponse.content.length, 1);
 
-    expectRulesPreface(typedResponse);
-    const styleNames = parseJsonContent<string[]>(typedResponse, 1);
-    assert.ok(Array.isArray(styleNames));
-    assert.ok(styleNames.includes('syn-body'));
+    const payload = parseJsonContent<{
+      supportedTypes: string[];
+      themes: string[];
+    }>(typedResponse, 0);
+
+    assert.ok(Array.isArray(payload.supportedTypes));
+    assert.ok(payload.supportedTypes.includes('css'));
+    assert.ok(Array.isArray(payload.themes));
   });
 });

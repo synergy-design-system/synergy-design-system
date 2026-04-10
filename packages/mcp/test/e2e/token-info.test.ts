@@ -8,14 +8,12 @@ import {
 import {
   type ClientSession,
   createClientSession,
-  expectRulesPreface,
-  parseJsonContent,
   toToolResponse,
 } from '../utilities/index.ts';
 
 let session: ClientSession;
 
-describe('styles-list tool', () => {
+describe('token-info tool', () => {
   before(async () => {
     session = await createClientSession();
   });
@@ -24,18 +22,18 @@ describe('styles-list tool', () => {
     await session.close();
   });
 
-  it('returns rules and style names over stdio', async () => {
+  it('returns raw token file content', async () => {
     const response = await session.client.callTool({
-      arguments: {},
-      name: 'styles-list',
+      arguments: {
+        theme: 'sick2025-light',
+        type: 'css',
+      },
+      name: 'token-info',
     });
     const typedResponse = toToolResponse(response);
 
-    assert.equal(typedResponse.content.length, 2);
-
-    expectRulesPreface(typedResponse);
-    const styleNames = parseJsonContent<string[]>(typedResponse, 1);
-    assert.ok(Array.isArray(styleNames));
-    assert.ok(styleNames.includes('syn-body'));
+    assert.ok(Array.isArray(typedResponse.content));
+    assert.ok(typedResponse.content.length > 0);
+    assert.ok(typedResponse.content[0].text.length > 0);
   });
 });

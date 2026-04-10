@@ -8,14 +8,13 @@ import {
 import {
   type ClientSession,
   createClientSession,
-  expectRulesPreface,
   parseJsonContent,
   toToolResponse,
 } from '../utilities/index.ts';
 
 let session: ClientSession;
 
-describe('styles-list tool', () => {
+describe('migration-list tool', () => {
   before(async () => {
     session = await createClientSession();
   });
@@ -24,18 +23,20 @@ describe('styles-list tool', () => {
     await session.close();
   });
 
-  it('returns rules and style names over stdio', async () => {
+  it('returns migration document index', async () => {
     const response = await session.client.callTool({
-      arguments: {},
-      name: 'styles-list',
+      arguments: {
+        synergyPackage: 'components',
+      },
+      name: 'migration-list',
     });
     const typedResponse = toToolResponse(response);
 
-    assert.equal(typedResponse.content.length, 2);
+    assert.ok(Array.isArray(typedResponse.content));
+    assert.equal(typedResponse.content.length, 1);
 
-    expectRulesPreface(typedResponse);
-    const styleNames = parseJsonContent<string[]>(typedResponse, 1);
-    assert.ok(Array.isArray(styleNames));
-    assert.ok(styleNames.includes('syn-body'));
+    const entries = parseJsonContent<Array<{ filename: string }>>(typedResponse, 0);
+    assert.ok(Array.isArray(entries));
+    assert.ok(entries.some(entry => entry.filename === 'index.md'));
   });
 });

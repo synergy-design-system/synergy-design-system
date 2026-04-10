@@ -15,7 +15,7 @@ import {
 
 let session: ClientSession;
 
-describe('styles-list tool', () => {
+describe('component-list tool', () => {
   before(async () => {
     session = await createClientSession();
   });
@@ -24,18 +24,18 @@ describe('styles-list tool', () => {
     await session.close();
   });
 
-  it('returns rules and style names over stdio', async () => {
+  it('returns rules and component names', async () => {
     const response = await session.client.callTool({
       arguments: {},
-      name: 'styles-list',
+      name: 'component-list',
     });
     const typedResponse = toToolResponse(response);
 
     assert.equal(typedResponse.content.length, 2);
 
     expectRulesPreface(typedResponse);
-    const styleNames = parseJsonContent<string[]>(typedResponse, 1);
-    assert.ok(Array.isArray(styleNames));
-    assert.ok(styleNames.includes('syn-body'));
+    const componentNames = parseJsonContent<string[]>(typedResponse, 1);
+    assert.ok(Array.isArray(componentNames));
+    assert.ok(componentNames.includes('syn-button'));
   });
 });

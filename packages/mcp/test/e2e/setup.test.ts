@@ -8,14 +8,12 @@ import {
 import {
   type ClientSession,
   createClientSession,
-  expectRulesPreface,
-  parseJsonContent,
   toToolResponse,
 } from '../utilities/index.ts';
 
 let session: ClientSession;
 
-describe('styles-list tool', () => {
+describe('setup tool', () => {
   before(async () => {
     session = await createClientSession();
   });
@@ -24,18 +22,19 @@ describe('styles-list tool', () => {
     await session.close();
   });
 
-  it('returns rules and style names over stdio', async () => {
+  it('returns setup documentation for components package', async () => {
     const response = await session.client.callTool({
-      arguments: {},
-      name: 'styles-list',
+      arguments: {
+        package: 'components',
+      },
+      name: 'setup',
     });
     const typedResponse = toToolResponse(response);
 
-    assert.equal(typedResponse.content.length, 2);
+    assert.ok(Array.isArray(typedResponse.content));
+    assert.ok(typedResponse.content.length > 0);
 
-    expectRulesPreface(typedResponse);
-    const styleNames = parseJsonContent<string[]>(typedResponse, 1);
-    assert.ok(Array.isArray(styleNames));
-    assert.ok(styleNames.includes('syn-body'));
+    const combined = typedResponse.content.map(c => c.text).join('\n');
+    assert.match(combined, /Prerequisites|Icons|components/i);
   });
 });

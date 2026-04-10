@@ -8,14 +8,13 @@ import {
 import {
   type ClientSession,
   createClientSession,
-  expectRulesPreface,
   parseJsonContent,
   toToolResponse,
 } from '../utilities/index.ts';
 
 let session: ClientSession;
 
-describe('styles-list tool', () => {
+describe('davinci-migration-list tool', () => {
   before(async () => {
     session = await createClientSession();
   });
@@ -24,18 +23,20 @@ describe('styles-list tool', () => {
     await session.close();
   });
 
-  it('returns rules and style names over stdio', async () => {
+  it('returns list of DaVinci components with migration docs', async () => {
     const response = await session.client.callTool({
-      arguments: {},
-      name: 'styles-list',
+      arguments: {
+        package: 'components',
+      },
+      name: 'davinci-migration-list',
     });
     const typedResponse = toToolResponse(response);
 
-    assert.equal(typedResponse.content.length, 2);
+    assert.ok(Array.isArray(typedResponse.content));
+    assert.equal(typedResponse.content.length, 1);
 
-    expectRulesPreface(typedResponse);
-    const styleNames = parseJsonContent<string[]>(typedResponse, 1);
-    assert.ok(Array.isArray(styleNames));
-    assert.ok(styleNames.includes('syn-body'));
+    const components = parseJsonContent<string[]>(typedResponse, 0);
+    assert.ok(Array.isArray(components));
+    assert.ok(components.length > 0);
   });
 });

@@ -12,12 +12,31 @@ import {
   mapEntityForResponse,
   matchesEntityNameOrId,
   paginate,
+  readLayerFilesForEntity,
   sortByEntityId,
 } from '../utils.js';
 
 export type StyleQueryOptions = PublicRequestOptions & {
   status?: string;
   tags?: string[];
+};
+
+export type StyleDataLayer = 'examples';
+
+export type StyleDataQueryOptions = {
+  layer?: StyleDataLayer;
+};
+
+export type StyleTextLayerContent = {
+  content: string;
+  path: string;
+};
+
+export type StyleDataPayload = {
+  examples?: StyleTextLayerContent[];
+  layer: LayerName;
+  style: string;
+  warnings?: string[];
 };
 
 const matchesNameOrId = (entity: MetadataEntity, nameOrId: string): boolean => {
@@ -168,5 +187,53 @@ export const getStyleMetadata = async (
         `Requested layer "${requestedLayer}" was unavailable; falling back to "full".`,
       ],
     },
+  };
+};
+
+/**
+ * High-level helper for style usage payloads grouped by layer semantics.
+ * - `examples`: returns markdown files from the examples layer
+ */
+export const getDataForStyle = async (
+  nameOrId: string,
+  options: StyleDataQueryOptions = {},
+  storeOptions: MetadataStoreOptions = {},
+): Promise<PublicResponse<StyleDataPayload | null>> => {
+  const requestedLayer = options.layer ?? 'examples';
+
+  const metadata = await getStyleMetadata(nameOrId, {
+    includeLayerRefs: true,
+    includeSources: false,
+    layer: requestedLayer,
+  }, storeOptions);
+
+  if (!metadata.data) {
+    return {
+      ...metadata,
+      data: null,
+    };
+  }
+
+  const store = createMetadataStore(storeOptions);
+  const layerFiles = await readLayerFilesForEntity(store, metadata.data, metadata.meta.resolvedLayer);
+
+  const textLayerContent = layerFiles
+    .filter(({ ref }) => ref.path.endsWith('.md'))
+    .map(({ content, ref }) => ({
+      content,
+      path: ref.path,
+    }))
+    .toSorted((a, b) => a.path.localeCompare(b.path));
+
+  const data: StyleDataPayload = {
+    examples: textLayerContent,
+    layer: metadata.meta.resolvedLayer,
+    style: metadata.data.id,
+    warnings: metadata.meta.warnings,
+  };
+
+  return {
+    ...metadata,
+    data,
   };
 };

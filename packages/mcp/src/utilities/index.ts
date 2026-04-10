@@ -7,6 +7,5 @@ export * from './fonts.js';
 export * from './migration.js';
 export * from './metadata.js';
 export * from './stdio.js';
-export * from './styles.js';
 export * from './templates.js';
 export * from './tokens.js';

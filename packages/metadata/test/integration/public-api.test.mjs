@@ -173,7 +173,7 @@ describe('public metadata api', () => {
   });
 
   it('exposes style helper queries with pagination, id/name lookup, and layer handling', async () => {
-    const { getStyleMetadata, listStyles } = await loadPublicApi();
+    const { getDataForStyle, getStyleMetadata, listStyles } = await loadPublicApi();
 
     const allStylesResponse = await listStyles();
     expect(allStylesResponse.errors).to.equal(undefined);
@@ -208,6 +208,18 @@ describe('public metadata api', () => {
     const byUppercaseNameResponse = await getStyleMetadata('LINK-LIST');
     expect(byUppercaseNameResponse.errors).to.equal(undefined);
     expect(byUppercaseNameResponse.data?.id).to.equal('style:syn-link-list');
+
+    const dataResponse = await getDataForStyle('link-list', { layer: 'examples' });
+    expect(dataResponse.errors).to.equal(undefined);
+    expect(dataResponse.data).to.not.equal(null);
+    expect(dataResponse.data?.style).to.equal('style:syn-link-list');
+    expect(dataResponse.data?.layer).to.equal('examples');
+    expect(dataResponse.data?.examples).to.be.an('array');
+    expect(dataResponse.data?.examples?.[0]?.path).to.include('.md');
+
+    const uppercaseDataResponse = await getDataForStyle('LINK-LIST', { layer: 'examples' });
+    expect(uppercaseDataResponse.errors).to.equal(undefined);
+    expect(uppercaseDataResponse.data?.style).to.equal('style:syn-link-list');
 
     const strictLayerErrorResponse = await getStyleMetadata('style:syn-link-list', {
       layer: 'interface',

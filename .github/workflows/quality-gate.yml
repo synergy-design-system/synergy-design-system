@@ -17,7 +17,15 @@ jobs:
         with:
           install-command: 'PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm install'
       - name: Check for uncommitted changes
-        run: git diff --exit-code
+        run: |
+          git diff --exit-code -- . \
+            ':(exclude)packages/metadata/data/index.json' \
+            ':(exclude)packages/metadata/data/manifest.json'
+          if [ -f packages/metadata/data/index.json ] && [ -f packages/metadata/data/manifest.json ]; then
+            git diff -I '"builtAt":' --exit-code -- \
+              packages/metadata/data/index.json \
+              packages/metadata/data/manifest.json
+          fi
 
   # Check for formatting issues
   format-check:
@@ -162,7 +170,15 @@ jobs:
       - name: Run tests (mcp)
         run: pnpm -C packages/mcp test
       - name: Check for uncommitted changes
-        run: git diff --exit-code .
+        run: |
+          git diff --exit-code -- . \
+            ':(exclude)packages/metadata/data/index.json' \
+            ':(exclude)packages/metadata/data/manifest.json'
+          if [ -f packages/metadata/data/index.json ] && [ -f packages/metadata/data/manifest.json ]; then
+            git diff -I '"builtAt":' --exit-code -- \
+              packages/metadata/data/index.json \
+              packages/metadata/data/manifest.json
+          fi
 
   # Chromatic deployment
   chromatic-deploy:

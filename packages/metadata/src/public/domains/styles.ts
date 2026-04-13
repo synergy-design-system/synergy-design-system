@@ -39,13 +39,12 @@ export type StyleDataPayload = {
   warnings?: string[];
 };
 
-const matchesNameOrId = (entity: MetadataEntity, nameOrId: string): boolean => {
-  return matchesEntityNameOrId(entity, nameOrId, {
-    extraCandidates: [typeof entity.custom?.moduleName === 'string' ? entity.custom.moduleName : undefined],
-    prefix: 'style',
-    prefixedCandidates: (input) => !input.startsWith('syn-') ? [`style:syn-${input}`] : [],
-  });
-};
+const matchesNameOrId = (entity: MetadataEntity, nameOrId: string) => matchesEntityNameOrId(entity, nameOrId, {
+  extraCandidates: [typeof entity.custom?.moduleName === 'string' ? entity.custom.moduleName : undefined],
+  prefix: 'style',
+  // eslint-disable-next-line no-confusing-arrow
+  prefixedCandidates: (input) => !input.startsWith('syn-') ? [`style:syn-${input}`] : [],
+});
 
 export const listStyles = async (
   options: StyleQueryOptions = {},

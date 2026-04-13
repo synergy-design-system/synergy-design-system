@@ -27,11 +27,9 @@ export type IconSearchOptions = {
   offset?: number;
 };
 
-const matchesNameOrId = (entity: MetadataEntity<AssetCustom>, nameOrId: string): boolean => {
-  return matchesEntityNameOrId(entity, nameOrId, {
-    prefix: 'asset',
-  });
-};
+const matchesNameOrId = (entity: MetadataEntity<AssetCustom>, nameOrId: string) => matchesEntityNameOrId(entity, nameOrId, {
+  prefix: 'asset',
+});
 
 const extractIconsFromEntity = (entity: MetadataEntity<AssetCustom>): IconSearchResult[] => {
   const iconsRaw = entity.custom?.icons;
@@ -272,8 +270,9 @@ export const searchIcons = async (
   let iconSetEntities: MetadataEntity<AssetCustom>[];
 
   if (query.assetId) {
-    const assetIds = (Array.isArray(query.assetId) ? query.assetId : [query.assetId])
-      .map((id) => id.startsWith('asset:') ? id : `asset:${id}`);
+    const assetIdsToScan = Array.isArray(query.assetId) ? query.assetId : [query.assetId];
+    // eslint-disable-next-line no-confusing-arrow
+    const assetIds = assetIdsToScan.map(id => id.startsWith('asset:') ? id : `asset:${id}`);
     const results = await Promise.all(assetIds.map((id) => store.getEntity(id)));
     iconSetEntities = results.filter((e): e is MetadataEntity<AssetCustom> => e !== null);
   } else {

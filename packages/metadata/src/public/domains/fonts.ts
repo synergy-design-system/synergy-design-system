@@ -20,11 +20,9 @@ export type FontQueryOptions = PublicRequestOptions & {
   tags?: string[];
 };
 
-const matchesNameOrId = (entity: MetadataEntity, nameOrId: string): boolean => {
-  return matchesEntityNameOrId(entity, nameOrId, {
-    prefix: 'utility',
-  });
-};
+const matchesNameOrId = (entity: MetadataEntity, nameOrId: string) => matchesEntityNameOrId(entity, nameOrId, {
+  prefix: 'utility',
+});
 
 export const listFonts = async (
   options: FontQueryOptions = {},

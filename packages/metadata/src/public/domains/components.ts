@@ -130,13 +130,12 @@ const getEntityTagName = (entity: MetadataEntity): string | undefined => {
   return typeof tagName === 'string' ? tagName : undefined;
 };
 
-const matchesNameOrId = (entity: MetadataEntity, nameOrId: string): boolean => {
-  return matchesEntityNameOrId(entity, nameOrId, {
-    extraCandidates: [getEntityTagName(entity)],
-    prefix: 'component',
-    prefixedCandidates: (input) => !input.startsWith('syn-') ? [`component:syn-${input}`] : [],
-  });
-};
+const matchesNameOrId = (entity: MetadataEntity, nameOrId: string) => matchesEntityNameOrId(entity, nameOrId, {
+  extraCandidates: [getEntityTagName(entity)],
+  prefix: 'component',
+  // eslint-disable-next-line no-confusing-arrow
+  prefixedCandidates: (input) => !input.startsWith('syn-') ? [`component:syn-${input}`] : [],
+});
 
 export const listComponents = async (
   options: ComponentQueryOptions = {},
@@ -335,7 +334,7 @@ export const getDataForComponent = async (
 
   const frameworkDetails = resolvedFramework === 'vanilla'
     ? undefined
-    : metadata.data.custom?.frameworks?.[resolvedFramework as 'angular' | 'react' | 'vue'];
+    : metadata.data.custom?.frameworks?.[resolvedFramework];
 
   const basePayload: ComponentDataPayload = {
     component: metadata.data.id,
@@ -345,20 +344,28 @@ export const getDataForComponent = async (
     warnings: metadata.meta.warnings,
   };
 
-  const data = metadata.meta.resolvedLayer === 'examples'
-    ? {
-      ...basePayload,
-      examples: textLayerContent,
-    }
-    : metadata.meta.resolvedLayer === 'interface'
-      ? {
+  let data;
+
+  switch (metadata.meta.resolvedLayer) {
+    case 'examples':
+      data = {
+        ...basePayload,
+        examples: textLayerContent,
+      };
+      break;
+    case 'interface':
+      data = {
         ...basePayload,
         interface: textLayerContent,
-      }
-      : {
+      };
+      break;
+    default:
+      data = {
         ...basePayload,
         relevantLayerCode: codeLayerContent,
       };
+      break;
+  }
 
   return {
     ...metadata,

@@ -41,11 +41,9 @@ export type TemplateDataPayload = {
 const matchesNameOrId = (
   entity: MetadataEntity,
   nameOrId: string,
-): boolean => {
-  return matchesEntityNameOrId(entity, nameOrId, {
-    prefix: 'template',
-  });
-};
+) => matchesEntityNameOrId(entity, nameOrId, {
+  prefix: 'template',
+});
 
 export const listTemplates = async (
   options: TemplateQueryOptions = {},

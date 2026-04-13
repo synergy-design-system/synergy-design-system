@@ -1,0 +1,18 @@
+{
+  "includeAiRules": true,
+  "tools": {
+    "assetInfo": {
+      "iconset": "current"
+    },
+    "componentInfo": {
+      "framework": "vanilla",
+      "layer": "interface"
+    },
+    "setup": {
+      "includeLimitations": true
+    },
+    "tokenInfo": {
+      "type": "css"
+    }
+  }
+}

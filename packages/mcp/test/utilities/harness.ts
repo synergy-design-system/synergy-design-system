@@ -12,14 +12,23 @@ export type ClientSession = {
   close: () => Promise<void>;
 };
 
+export type ClientSessionOptions = {
+  configPath?: string;
+};
+
 /**
  * Creates an isolated MCP client session by launching the MCP server as a child process
  * and connecting to it via stdio transport.
+ * @param options Optional session options (e.g. configPath for a custom synergy-mcp.json).
  * @returns A session containing the connected client and a teardown function.
  */
-export const createClientSession = async (): Promise<ClientSession> => {
+export const createClientSession = async (options: ClientSessionOptions = {}): Promise<ClientSession> => {
+  const { configPath } = options;
   const transport = new StdioClientTransport({
-    args: ['dist/bin/start.js'],
+    args: [
+      'dist/bin/start.js',
+      ...(configPath ? ['--config', configPath] : []),
+    ],
     command: process.execPath,
     cwd: packageRoot,
     stderr: 'pipe',

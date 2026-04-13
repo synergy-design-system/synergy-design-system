@@ -3,6 +3,7 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   createToolAnnotations,
   getMigrationMetaData,
+  getRuntimeConfig,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -118,12 +119,12 @@ export const migrationListTool = (server: McpServer) => {
           'components',
           'styles',
           'tokens',
-        ]).default('components').optional().describe('The package to list migration documents for.'),
+        ]).optional().describe('The package to list migration documents for.'),
       },
       title: 'Package Migration Document Index',
     },
     async ({ synergyPackage }) => withErrorHandler(async () => {
-      const selectedPackage = (synergyPackage ?? 'components') as SynergyMigrationPackage;
+      const selectedPackage = (synergyPackage ?? getRuntimeConfig().tools.migrationList.synergyPackage) as SynergyMigrationPackage;
       const metadata = await getMigrationMetaData(selectedPackage);
 
       const index = metadata

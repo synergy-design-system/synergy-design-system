@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { getRuntimeConfig } from './config.js';
 
 const currentFilename = fileURLToPath(import.meta.url);
 const currentDirname = dirname(currentFilename);
@@ -18,6 +19,10 @@ const ruleCache = new Map<string, string | undefined>();
 export const getToolRule = async (
   toolName: string,
 ): Promise<string | undefined> => {
+  if (!getRuntimeConfig().includeAiRules) {
+    return undefined;
+  }
+
   const fileName = toolName;
   if (ruleCache.has(fileName)) {
     return ruleCache.get(fileName);

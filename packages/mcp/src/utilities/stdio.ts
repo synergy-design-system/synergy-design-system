@@ -29,7 +29,10 @@ export const parseCommandLineArgs = (args: string[] = process.argv.slice(2)) => 
     return { action: 'help' as const };
   }
 
-  return { action: 'continue' as const };
+  const configIndex = args.indexOf('--config');
+  const configPath = configIndex >= 0 ? args[configIndex + 1] : undefined;
+
+  return { action: 'continue' as const, configPath };
 };
 
 /**
@@ -57,13 +60,15 @@ DESCRIPTION:
     styles, and framework-specific guidance.
 
 OPTIONS:
-    -h, --help       Show this help message and exit
-    -v, --version    Show version information and exit
+    -h, --help            Show this help message and exit
+    -v, --version         Show version information and exit
+    --config <path>       Path to a synergy-mcp.json configuration file
 
 EXAMPLES:
-    syn-mcp                    # Start the MCP server
-    syn-mcp --version          # Show version
-    syn-mcp --help             # Show this help
+    syn-mcp                              # Start the MCP server
+    syn-mcp --version                    # Show version
+    syn-mcp --help                       # Show this help
+    syn-mcp --config ./synergy-mcp.json  # Start with a custom config
 
 ABOUT:
     This server provides the following tools for LLMs:

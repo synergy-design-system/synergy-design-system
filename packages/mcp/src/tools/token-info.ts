@@ -5,6 +5,7 @@ import {
 } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
+  getRuntimeConfig,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -21,7 +22,7 @@ export const tokenInfoTool = (server: McpServer) => {
       description: 'Get raw design token file contents from the Synergy Design System',
       inputSchema: {
         theme: z.enum(['sick2025-light', 'sick2025-dark', 'sick2018-light', 'sick2018-dark']).optional().describe('Theme variant for CSS tokens. Ignored for javascript and sass.'),
-        type: z.enum(['javascript', 'css', 'sass']).default('css').optional().describe('The type of token output to retrieve.'),
+        type: z.enum(['javascript', 'css', 'sass']).optional().describe('The type of token output to retrieve.'),
       },
       title: 'Token info',
     },
@@ -29,14 +30,15 @@ export const tokenInfoTool = (server: McpServer) => {
       theme,
       type,
     }) => withErrorHandler(async () => {
+      const resolvedType = type ?? getRuntimeConfig().tools.tokenInfo.type;
       const response = await getDataForTokens({
-        format: type,
+        format: resolvedType,
         theme,
       });
 
       if (response.data.tokens.length === 0) {
         return [
-          `No tokens found for type "${type}"${theme ? ` and theme "${theme}"` : ''}.`,
+          `No tokens found for type "${resolvedType}"${theme ? ` and theme "${theme}"` : ''}.`,
         ];
       }
 

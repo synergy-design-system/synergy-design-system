@@ -3,6 +3,7 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { getDataForSetup } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
+  getRuntimeConfig,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -17,7 +18,7 @@ export const setupTool = (server: McpServer) => {
       annotations: createToolAnnotations(),
       description: 'Get setup information for a Synergy package. Framework packages (react, vue, angular) automatically include base components setup.',
       inputSchema: {
-        includeLimitations: z.boolean().default(true).optional().describe('Add a list of known limitations and issues to the output.'),
+        includeLimitations: z.boolean().optional().describe('Add a list of known limitations and issues to the output.'),
         package: z.enum(['components', 'react', 'vue', 'angular', 'tokens', 'styles', 'fonts', 'assets', 'migrations']).describe('Synergy package to retrieve setup instructions for.'),
       },
       title: 'Setup info',
@@ -26,8 +27,9 @@ export const setupTool = (server: McpServer) => {
       includeLimitations,
       package: packageName,
     }) => withErrorHandler(async () => {
+      const resolvedIncludeLimitations = includeLimitations ?? getRuntimeConfig().tools.setup.includeLimitations;
       const response = await getDataForSetup({
-        includeLimitations,
+        includeLimitations: resolvedIncludeLimitations,
         package: packageName,
       });
 

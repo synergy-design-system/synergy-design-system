@@ -5,6 +5,7 @@ import {
 } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
+  getRuntimeConfig,
   getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';
@@ -21,8 +22,11 @@ export const componentInfoTool = (server: McpServer) => {
       description: 'Get information about the usage of a specific component in the Synergy Design System',
       inputSchema: {
         component: z.string().startsWith('syn-').describe('The name of the component to get information about.'),
-        framework: z.enum(['react', 'vue', 'angular', 'vanilla']).default('vanilla').optional().describe('The framework of the component, e.g., "react", "vue", etc.'),
-        layer: z.enum(['full', 'examples', 'interface']).default('full').optional().describe('Which metadata layer to return. full = filtered source files, examples = markdown examples, interface = markdown API overview.'),
+        framework: z.enum(['react', 'vue', 'angular', 'vanilla']).optional().describe('The framework of the component, e.g., "react", "vue", etc.'),
+        layer: z.enum(['full', 'examples', 'interface'])
+          .optional()
+          .describe('Defines which type of information to return. full = filtered source files, examples = markdown examples, interface = markdown API overview. Examples and interface are only available for vanilla components at the moment.')
+        ,
       },
       title: 'Component info',
     },
@@ -31,13 +35,17 @@ export const componentInfoTool = (server: McpServer) => {
       framework,
       layer,
     }) => withErrorHandler(async () => {
+      const { tools } = getRuntimeConfig();
+      const resolvedFramework = framework ?? tools.componentInfo.framework;
+      const resolvedLayer = layer ?? tools.componentInfo.layer;
+
       const metadata = await getDataForComponent(component, {
-        framework,
-        layer,
+        framework: resolvedFramework,
+        layer: resolvedLayer,
       });
 
       const aiRules = await getToolRule('component-info');
-      const frameworkRules = framework && framework !== 'vanilla' ? await getToolRule(`component-info-${framework}`) : undefined;
+      const frameworkRules = resolvedFramework !== 'vanilla' ? await getToolRule(`component-info-${resolvedFramework}`) : undefined;
 
       if (!metadata.data) {
         const notFoundMessage = metadata.errors?.[0]?.message ?? `No metadata found for component ${component}`;
@@ -61,7 +69,7 @@ export const componentInfoTool = (server: McpServer) => {
       const withRules = [...rules, ...finalContent];
       return finalContent.length > 0
         ? withRules
-        : [`No metadata content found for component ${component} in layer ${metadata.data.layer}`];
+        : [`No metadata content found for component ${component} in layer ${resolvedLayer}`];
     }),
   );
 };

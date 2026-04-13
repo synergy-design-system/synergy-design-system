@@ -5,6 +5,7 @@ import {
 } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
+  getRuntimeConfig,
   getToolRule,
   withErrorHandler,
 } from '../utilities/index.js';
@@ -65,7 +66,6 @@ export const assetInfoTool = (server: McpServer) => {
             'next', // Alias for sick2025
             'v3', // Done for completeness, maps to 2025
           ])
-          .default('current')
           .optional()
           .describe('The name of the icon set to retrieve icons from.'),
         limit: z
@@ -80,12 +80,11 @@ export const assetInfoTool = (server: McpServer) => {
       iconset,
       limit,
     }) => withErrorHandler(async () => {
+      const resolvedIconset = iconset ?? getRuntimeConfig().tools.assetInfo.iconset;
       // Get the iconset that should be used by key/value of iconsetListAliases
-      const setToUse: AvailableIconset = iconset
-        ? Object
-          .entries(iconsetListAliases)
-          .find(([, aliases]) => aliases.includes(iconset))?.[0] as AvailableIconset || 'sick2025Icons'
-        : 'sick2025Icons';
+      const setToUse: AvailableIconset = Object
+        .entries(iconsetListAliases)
+        .find(([, aliases]) => aliases.includes(resolvedIconset))?.[0] as AvailableIconset || 'sick2025Icons';
 
       // Decide which icon sets to use based on the provided iconset key, if no key is provided use the default which is currently sick2025Icons
       const assetId = setToUse === 'sick2025Icons'

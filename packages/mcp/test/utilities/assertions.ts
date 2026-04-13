@@ -24,6 +24,20 @@ export const expectRulesPreface = (response: ToolResponse): void => {
 };
 
 /**
+ * Asserts that the response does NOT contain a rules preface as its first item.
+ * Use this when testing with `includeAiRules: false` in the server config.
+ * @param response The ToolResponse to check.
+ */
+export const expectNoRulesPreface = (response: ToolResponse): void => {
+  if (response.content.length === 0) {
+    return;
+  }
+  const [first] = response.content;
+  assert.equal(first.type, 'text');
+  assert.doesNotMatch(first.text, /Rules for chatbots and llms/i);
+};
+
+/**
  * Parses the JSON content from a ToolResponse at the specified index.
  * @param response The ToolResponse to parse.
  * @param index The index of the content to parse.

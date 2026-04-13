@@ -5,6 +5,7 @@ import {
   createToolAnnotations,
   extractMigrationSection,
   getMigrationGuideContent,
+  getRuntimeConfig,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -16,20 +17,21 @@ export const davinciMigrationInfoTool = (server: McpServer) => {
       description: 'Get information about the migration of a specific component from DaVinci to Synergy.',
       inputSchema: {
         component: z.string().startsWith('davinci-').describe('The name of the davinci component to get migration information for.'),
-        package: z.enum(SUPPORTED_PACKAGES).default('components').optional().describe('Migration package to inspect. Currently only "components" is available.'),
+        package: z.enum(SUPPORTED_PACKAGES).optional().describe('Migration package to inspect. Currently only "components" is available.'),
       },
       title: 'DaVinci Migration Info',
     },
     async ({
       component,
-      package: packageName = 'components',
+      package: packageName,
     }) => withErrorHandler(async () => {
-      const migrationGuide = await getMigrationGuideContent(packageName);
+      const resolvedPackage = packageName ?? getRuntimeConfig().tools.davinciMigrationInfo.package;
+      const migrationGuide = await getMigrationGuideContent(resolvedPackage);
       const section = extractMigrationSection(migrationGuide, component);
 
       return section
         ? [section]
-        : [`No migration information found for component "${component}" in package "${packageName}".`];
+        : [`No migration information found for component "${component}" in package "${resolvedPackage}".`];
     }),
   );
 };

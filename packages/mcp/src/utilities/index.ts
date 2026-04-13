@@ -1,3 +1,4 @@
+export * from './config.js';
 export * from './davinci.js';
 export * from './migration.js';
 export * from './metadata.js';

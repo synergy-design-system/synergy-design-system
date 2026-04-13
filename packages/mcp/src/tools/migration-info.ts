@@ -3,6 +3,7 @@ import { z } from 'zod';
 import {
   createToolAnnotations,
   getMigrationMetaData,
+  getRuntimeConfig,
   withErrorHandler,
 } from '../utilities/index.js';
 
@@ -34,7 +35,7 @@ export const migrationInfoTool = (server: McpServer) => {
           'components',
           'styles',
           'tokens',
-        ]).default('components').optional().describe('The package to get migration information about.'),
+        ]).optional().describe('The package to get migration information about.'),
       },
       title: 'Package Migration Information',
     },
@@ -42,7 +43,7 @@ export const migrationInfoTool = (server: McpServer) => {
       filename,
       synergyPackage,
     }) => withErrorHandler(async () => {
-      const selectedPackage = (synergyPackage ?? 'components') as SynergyMigrationPackage;
+      const selectedPackage = (synergyPackage ?? getRuntimeConfig().tools.migrationInfo.synergyPackage) as SynergyMigrationPackage;
       const metadata = await getMigrationMetaData(selectedPackage);
 
       // For components, strongly prefer a specific filename so we do not

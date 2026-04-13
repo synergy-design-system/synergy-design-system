@@ -290,6 +290,14 @@ export type AssetLogoEntity = MetadataEntity<AssetLogoCustom>;
 export type AssetSystemIconEntity = MetadataEntity<AssetSystemIconCustom>;
 export type AssetEntity = MetadataEntity<AssetCustom>;
 export type ComponentEntity = MetadataEntity<ComponentCustom>;
+export type ComponentCluster = {
+  category?: string;
+  componentCount: number;
+  componentIds: string[];
+  description?: string;
+  id: string;
+  name: string;
+};
 export type FontEntity = MetadataEntity<FontCustom>;
 export type MigrationEntity = MetadataEntity<MigrationCustom>;
 export type SetupEntity = MetadataEntity<SetupCustom>;

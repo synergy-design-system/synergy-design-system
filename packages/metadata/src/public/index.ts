@@ -1,5 +1,6 @@
 export { createMetadataStore } from './store.js';
 export { getAssetMetadata, listAssets, searchIcons } from './domains/assets.js';
+export { listComponentClusters, listComponentsByCluster } from './domains/clusters.js';
 export { getComponentMetadata, getDataForComponent, listComponents } from './domains/components.js';
 export { getFontMetadata, listFonts } from './domains/fonts.js';
 export { getMigrations } from './domains/migrations.js';
@@ -10,6 +11,10 @@ export { getDataForTokens, getTokens } from './domains/tokens.js';
 export { collectLayerReferences, readLayerFilesForEntity } from './utils.js';
 
 export type { AssetQueryOptions, IconSearchOptions } from './domains/assets.js';
+export type {
+  ClusterComponentQueryOptions,
+  ClusterQueryOptions,
+} from './domains/clusters.js';
 export type {
   ComponentDataLayer,
   ComponentDataPayload,
@@ -63,6 +68,7 @@ export type {
   AssetSystemIconCustom,
   AssetSystemIconEntity,
   ComponentAngularCustom,
+  ComponentCluster,
   ComponentCustom,
   ComponentEntity,
   ComponentInterfaceAttribute,

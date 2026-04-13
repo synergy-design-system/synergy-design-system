@@ -1,5 +1,9 @@
+import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { listComponents } from '@synergy-design-system/metadata';
+import {
+  listComponentClusters,
+  listComponents,
+} from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
   getToolRule,
@@ -17,12 +21,35 @@ export const componentListTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Outputs a list of all available components in the Synergy Design System',
-      inputSchema: {},
+      inputSchema: {
+        cluster: z.string().optional().describe('Optional component cluster id to filter by, e.g. "components-by-tag/structure".'),
+      },
       title: 'Component list',
     },
-    async () => withErrorHandler(async () => {
+    async ({
+      cluster,
+    }) => withErrorHandler(async () => {
       const aiRules = await getToolRule('component-list');
+
+      const clusters = await listComponentClusters();
+      const clusterIds = clusters.data.map((entry) => entry.id);
+
+      if (cluster) {
+        const requestedCluster = cluster.trim().toLowerCase();
+        const clusterExists = clusterIds.some((id) => id.toLowerCase() === requestedCluster);
+        if (!clusterExists) {
+          return [
+            aiRules,
+            {
+              availableClusters: clusterIds,
+              error: `Unknown cluster '${cluster}'.`,
+            },
+          ];
+        }
+      }
+
       const components = await listComponents({
+        cluster,
         includeLayerRefs: false,
         includeSources: false,
       });

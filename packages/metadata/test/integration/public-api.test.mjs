@@ -317,7 +317,12 @@ describe('public metadata api', () => {
   });
 
   it('exposes component helper queries with pagination, id/name lookup, and layer handling', async () => {
-    const { getComponentMetadata, getDataForComponent, listComponents } = await loadPublicApi();
+    const {
+      getComponentMetadata,
+      getDataForComponent,
+      listComponentClusters,
+      listComponents,
+    } = await loadPublicApi();
 
     const allComponentsResponse = await listComponents();
     expect(allComponentsResponse.errors).to.equal(undefined);
@@ -331,6 +336,19 @@ describe('public metadata api', () => {
     });
     expect(pagedComponentsResponse.data.length).to.equal(2);
     expect(pagedComponentsResponse.meta.total).to.equal(allComponentsResponse.meta.total);
+
+    const clustersResponse = await listComponentClusters();
+    expect(clustersResponse.errors).to.equal(undefined);
+    expect(clustersResponse.data.length).to.be.greaterThan(0);
+
+    const clusterFilteredResponse = await listComponents({
+      cluster: clustersResponse.data[0].id,
+    });
+    expect(clusterFilteredResponse.errors).to.equal(undefined);
+    expect(clusterFilteredResponse.data.length).to.be.greaterThan(0);
+    expect(
+      clusterFilteredResponse.data.every((entity) => entity.custom?.clusters?.includes(clustersResponse.data[0].id)),
+    ).to.equal(true);
 
     const fallbackListResponse = await listComponents({
       layer: 'examples',
@@ -416,6 +434,42 @@ describe('public metadata api', () => {
 
     const notFoundResponse = await getComponentMetadata('this-does-not-exist');
     expect(notFoundResponse.data).to.equal(null);
+    expect(notFoundResponse.errors).to.be.an('array').that.is.not.empty;
+    expect(notFoundResponse.errors?.[0]?.code).to.equal('NOT_FOUND');
+  });
+
+  it('exposes cluster helper queries with listing and component membership lookup', async () => {
+    const { listComponentClusters, listComponentsByCluster } = await loadPublicApi();
+
+    const clustersResponse = await listComponentClusters();
+    expect(clustersResponse.errors).to.equal(undefined);
+    expect(clustersResponse.data).to.be.an('array').that.is.not.empty;
+    expect(clustersResponse.data[0]).to.have.property('id').that.is.a('string');
+    expect(clustersResponse.data[0]).to.have.property('name').that.is.a('string');
+    expect(clustersResponse.data[0]).to.have.property('componentCount').that.is.a('number');
+    expect(clustersResponse.data[0]).to.have.property('componentIds').that.is.an('array');
+
+    const firstCluster = clustersResponse.data[0];
+    const membersResponse = await listComponentsByCluster(firstCluster.id);
+    expect(membersResponse.errors).to.equal(undefined);
+    expect(membersResponse.data).to.be.an('array').that.is.not.empty;
+    expect(membersResponse.data.every((entity) => entity.kind === 'component')).to.equal(true);
+
+    const strictLayerResponse = await listComponentsByCluster(firstCluster.id, {
+      layer: 'examples',
+      strictLayer: true,
+    });
+    if (strictLayerResponse.errors?.length) {
+      expect(strictLayerResponse.data).to.deep.equal([]);
+      expect(strictLayerResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+    } else {
+      expect(strictLayerResponse.data).to.be.an('array');
+      expect(strictLayerResponse.data.every((entity) => entity.kind === 'component')).to.equal(true);
+      expect(strictLayerResponse.meta.resolvedLayer).to.equal('examples');
+    }
+
+    const notFoundResponse = await listComponentsByCluster('components-by-tag/does-not-exist');
+    expect(notFoundResponse.data).to.deep.equal([]);
     expect(notFoundResponse.errors).to.be.an('array').that.is.not.empty;
     expect(notFoundResponse.errors?.[0]?.code).to.equal('NOT_FOUND');
   });

@@ -116,21 +116,48 @@ This lets you change per-tool defaults without modifying the MCP server code.
 
 ## Available Tools
 
-The MCP server currently registers 15 tools.
+The MCP server currently registers 16 tools.
 
 ### 1. `component-list`
 
 **Description:** Outputs a list of all available components in the Synergy Design System.
 
-**Parameters:** None
+**Parameters:**
+
+- `cluster` (string, optional): Cluster id to filter by, for example `components-by-tag/structure`.
 
 **Example prompts:**
 
 - "Show me all available Synergy components"
+- "List all components in the structure cluster"
 - "What components are available in the Synergy Design System?"
 - "List all syn-* components"
 
-### 2. `component-info`
+### 2. `component-cluster-list`
+
+**Description:** Outputs all available component clusters in the Synergy Design System.
+
+**Parameters:** None
+
+**Example prompts:**
+
+- "What component clusters are available?"
+- "List all Synergy component clusters"
+- "Show me cluster ids I can use with component-list"
+
+#### Cluster-first workflow
+
+Use this two-step flow when you want to narrow component discovery to one group:
+
+1. Call `component-cluster-list` and pick one cluster id from the result (for example `components-by-tag/structure`).
+2. Call `component-list` with `cluster` set to that id.
+
+Example prompts:
+
+- "List component clusters, then show me components for `components-by-tag/structure`."
+- "Give me all components in the `components-by-tag/navigation` cluster."
+
+### 3. `component-info`
 
 **Description:** Get information about the usage of a specific component in the Synergy Design System.
 
@@ -146,7 +173,7 @@ The MCP server currently registers 15 tools.
 - "Show me the interface docs for syn-dialog"
 - "Give me examples for syn-card"
 
-### 3. `asset-list`
+### 4. `asset-list`
 
 **Description:** Get the available icon sets in the Synergy Design System.
 
@@ -158,7 +185,7 @@ The MCP server currently registers 15 tools.
 - "Show me all available icon libraries"
 - "List all Synergy icon sets"
 
-### 4. `asset-info`
+### 5. `asset-info`
 
 **Description:** Get information about available icons in the Synergy Design System.
 
@@ -174,7 +201,7 @@ The MCP server currently registers 15 tools.
 - "Find icons for close and cancel"
 - "List 10 icons from the current icon set"
 
-### 5. `token-info`
+### 6. `token-info`
 
 **Description:** Get raw design token file contents from the Synergy Design System.
 
@@ -189,7 +216,7 @@ The MCP server currently registers 15 tools.
 - "Give me the JavaScript token output"
 - "Show me the Sass design tokens"
 
-### 6. `tokens-list`
+### 7. `tokens-list`
 
 **Description:** Outputs a list of available token output types and CSS themes in the Synergy Design System.
 
@@ -201,7 +228,7 @@ The MCP server currently registers 15 tools.
 - "List the supported token themes"
 - "Show me which token outputs this server can provide"
 
-### 7. `styles-list`
+### 8. `styles-list`
 
 **Description:** Outputs a list of available CSS classes and styles in the Synergy Design System.
 
@@ -213,7 +240,7 @@ The MCP server currently registers 15 tools.
 - "Show me all available CSS utility classes"
 - "List all style modules"
 
-### 8. `styles-info`
+### 9. `styles-info`
 
 **Description:** Get information about CSS utilities available in the Synergy Design System.
 
@@ -227,7 +254,7 @@ The MCP server currently registers 15 tools.
 - "What does the spacing utility package contain?"
 - "Tell me about a specific Synergy style"
 
-### 9. `template-list`
+### 10. `template-list`
 
 **Description:** Outputs a list of available static templates built with the Synergy Design System.
 
@@ -239,7 +266,7 @@ The MCP server currently registers 15 tools.
 - "Show me all available static templates"
 - "List all templates"
 
-### 10. `template-info`
+### 11. `template-info`
 
 **Description:** Get a specific template in the Synergy Design System.
 
@@ -253,7 +280,7 @@ The MCP server currently registers 15 tools.
 - "Give me information about the dashboard template"
 - "How do I use the form template?"
 
-### 11. `davinci-migration-list`
+### 12. `davinci-migration-list`
 
 **Description:** Get a list of all components that have migration information from DaVinci to Synergy.
 
@@ -267,7 +294,7 @@ The MCP server currently registers 15 tools.
 - "Show me all available DaVinci migration entries"
 - "List components with migration information"
 
-### 12. `davinci-migration-info`
+### 13. `davinci-migration-info`
 
 **Description:** Get information about the migration of a specific component from DaVinci to Synergy.
 
@@ -282,7 +309,7 @@ The MCP server currently registers 15 tools.
 - "Show me the migration guide for davinci-input"
 - "What's the Synergy equivalent of davinci-auto-suggest?"
 
-### 13. `migration-list`
+### 14. `migration-list`
 
 **Description:** List available migration documents for a Synergy package in a compact, token-efficient format.
 
@@ -301,7 +328,7 @@ The MCP server currently registers 15 tools.
 - "Show me available migration docs for tokens"
 - "What migration paths exist from Synergy 2 to Synergy 3?"
 
-### 14. `migration-info`
+### 15. `migration-info`
 
 **Description:** Get detailed migration documentation for a Synergy package. Use together with `migration-list` to fetch only the documents you need.
 
@@ -322,7 +349,7 @@ The MCP server currently registers 15 tools.
 - "Show me the migration guide from Synergy 2 (SICK 2018) to Synergy 3 (SICK 2018)"
 - "Give me the breaking changes for the tokens package"
 
-### 15. `setup`
+### 16. `setup`
 
 **Description:** Get setup information for a Synergy package. Framework packages automatically include base components setup.
 
@@ -350,6 +377,7 @@ src/
 ├── tools/               # MCP tool implementations
 │   ├── asset-info.ts
 │   ├── asset-list.ts
+│   ├── component-cluster-list.ts
 │   ├── component-info.ts
 │   ├── component-list.ts
 │   ├── davinci-migration-info.ts

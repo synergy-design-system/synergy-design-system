@@ -15,6 +15,27 @@ const components = await store.getPackageEntities('components');
 const migrationFiles = await store.getDataForLayer('migrations', 'full');
 ```
 
+### Component Cluster Queries
+
+Component metadata can be grouped via cluster ids (for example `components-by-tag/structure`).
+You can list cluster groups and filter component queries by cluster.
+
+```ts
+import {
+	listComponentClusters,
+	listComponents,
+	listComponentsByCluster,
+} from '@synergy-design-system/metadata';
+
+const clusters = await listComponentClusters();
+const structureComponents = await listComponents({
+	cluster: 'components-by-tag/structure',
+});
+const sameResult = await listComponentsByCluster('components-by-tag/structure');
+```
+
+`cluster` accepts a single cluster id or an array of ids.
+
 ### Layer Content Workflow
 
 Layer APIs return file references first. Resolve file contents through `readLayerFile`.

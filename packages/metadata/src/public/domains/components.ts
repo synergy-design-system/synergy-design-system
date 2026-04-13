@@ -21,6 +21,7 @@ import {
 } from '../utils.js';
 
 export type ComponentQueryOptions = PublicRequestOptions & {
+  cluster?: string | string[];
   includeInterfaceSnapshot?: boolean;
   status?: string;
   tags?: string[];
@@ -137,6 +138,33 @@ const matchesNameOrId = (entity: MetadataEntity, nameOrId: string) => matchesEnt
   prefixedCandidates: (input) => !input.startsWith('syn-') ? [`component:syn-${input}`] : [],
 });
 
+const normalize = (value: string): string => value.trim().toLowerCase();
+
+const matchesCluster = (entity: MetadataEntity<ComponentCustom>, cluster?: string | string[]): boolean => {
+  if (!cluster) {
+    return true;
+  }
+
+  const requested = (Array.isArray(cluster) ? cluster : [cluster])
+    .map(normalize)
+    .filter(Boolean);
+
+  if (requested.length === 0) {
+    return true;
+  }
+
+  const clusters = entity.custom?.clusters;
+  if (!Array.isArray(clusters) || clusters.length === 0) {
+    return false;
+  }
+
+  const available = clusters
+    .filter((candidate): candidate is string => typeof candidate === 'string')
+    .map(normalize);
+
+  return requested.some((candidate) => available.includes(candidate));
+};
+
 /**
  * List components with optional filtering and pagination.
  * @param options Options for querying components, including filtering by status and tags, pagination, and layer/verbosity preferences.
@@ -159,7 +187,8 @@ export const listComponents = async (
     tags: options.tags,
   });
 
-  const sorted = sortByEntityId(entities);
+  const sorted = sortByEntityId(entities)
+    .filter((entity) => matchesCluster(entity as MetadataEntity<ComponentCustom>, options.cluster));
   const hasRequestedLayer = sorted.every((entity) => layerExistsForEntity(entity, requestedLayer));
 
   if (options.strictLayer && !hasRequestedLayer) {
@@ -230,7 +259,8 @@ export const getComponentMetadata = async (
     tags: options.tags,
   })) as MetadataEntity<ComponentCustom>[];
 
-  const sorted = sortByEntityId(entities);
+  const sorted = sortByEntityId(entities)
+    .filter((candidate) => matchesCluster(candidate, options.cluster));
   const entity = sorted.find((candidate) => matchesNameOrId(candidate, nameOrId));
 
   if (!entity) {

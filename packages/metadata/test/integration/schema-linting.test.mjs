@@ -4,6 +4,7 @@
  */
 import { readFile, readdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
 import { expect } from 'chai';
 

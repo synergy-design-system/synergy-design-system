@@ -1,6 +1,7 @@
 import { mkdir, mkdtemp, rm } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
+import { describe, it } from 'node:test';
 import { expect } from 'chai';
 import { collect } from '../../dist/internal/collectors/components/collect.js';
 

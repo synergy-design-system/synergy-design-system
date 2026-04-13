@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { describe, it } from 'node:test';
 import { expect } from 'chai';
 
 describe('storybook source configs', () => {

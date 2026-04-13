@@ -37,11 +37,11 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_RELEASE_TOKEN_CS}}
 
-      # This step creates a changeset for MCP if it is missing from changesets
-      # As the MCP package needs to be updated with the latest changelog metadata,
+      # This step creates a changeset for Metadata and MCP if it is missing from changesets
+      # As a package needs to be updated with the latest changelog metadata,
       # it always needs to be part of the release when other packages are released.
-      - name: Create MCP changeset if needed
-        run: pnpm --filter mcp build && git add ./packages/mcp/metadata && git diff --cached --quiet ./packages/mcp/metadata || node packages/_private/release-utils/src/ensure-mcp-changeset.js
+      - name: Create Metadata and MCP changeset if needed
+        run: pnpm --filter metadata --filter mcp build && git add ./packages/metadata/data && git diff --cached --quiet ./packages/metadata/data || node packages/_private/release-utils/src/ensure-mcp-changeset.js
 
       - name: Creating releases via Changesets
         env:
@@ -56,12 +56,12 @@ jobs:
           pnpm changeset version
 
           # Make sure to rebuild our sources as we may get errors otherwise
-          pnpm --filter components build
+          pnpm --filter components --filter tokens build
 
           # Build MCP with updated metadata after version changes
-          echo "Building MCP with updated metadata..."
-          if ! pnpm --filter mcp build; then
-            echo "❌ MCP build failed"
+          echo "Building Metadata and MCP with updated metadata..."
+          if ! pnpm --filter metadata --filter mcp build; then
+            echo "❌ Metadata and MCP build failed"
             exit 1
           fi
 

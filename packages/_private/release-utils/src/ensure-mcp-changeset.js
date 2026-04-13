@@ -4,8 +4,8 @@ import writeChangeset from '@changesets/write';
 import { BRANCH_COMMIT_ICONS } from './constants.js';
 
 /**
- * Ensures that the MCP package is included in changesets when other packages are being released.
- * This is necessary because MCP needs to be updated with the latest changelog metadata.
+ * Ensures that the metadata package is included in changesets when other packages are being released.
+ * This is necessary because metadata needs to be updated with the latest changelog metadata.
  */
 export async function ensureMcpChangeset() {
   try {
@@ -14,34 +14,42 @@ export async function ensureMcpChangeset() {
 
     // Check if MCP is already included in any changeset
     const mcpIncluded = changesets.some(
-      changeset => changeset.releases.some(release => release.name === '@synergy-design-system/mcp'),
+      changeset => changeset.releases.some(
+        release => release.name === '@synergy-design-system/metadata',
+      ),
     );
 
     if (mcpIncluded) {
-      console.log('MCP is already included in existing changesets');
+      console.log('Metadata are already included in existing changesets');
       return;
     }
 
-    console.log('MCP not found in changesets, creating automatic changeset...');
+    console.log('Metadata not found in changesets, creating automatic changeset...');
 
     /**
      * Created a changeset for MCP
      * @type {import('@changesets/types').Changeset}
      */
     const mcpChangeset = {
-      releases: [{
-        name: '@synergy-design-system/mcp',
-        type: 'minor',
-      }],
-      summary: `chore: ${BRANCH_COMMIT_ICONS.feat} Update MCP with latest metadata`,
+      releases: [
+        {
+          name: '@synergy-design-system/metadata',
+          type: 'minor',
+        },
+        {
+          name: '@synergy-design-system/mcp',
+          type: 'minor',
+        },
+      ],
+      summary: `chore: ${BRANCH_COMMIT_ICONS.feat} Update Metadata and MCP with latest metadata`,
     };
 
     // Write the changeset
     await writeChangeset(mcpChangeset, process.cwd());
 
-    console.log('✅ Created automatic changeset for MCP package');
+    console.log('✅ Created automatic changeset for Metadata and MCP packages');
   } catch (error) {
-    console.error('❌ Error ensuring MCP changeset:', error);
+    console.error('❌ Error ensuring Metadata and MCP changeset:', error);
     process.exit(1);
   }
 }

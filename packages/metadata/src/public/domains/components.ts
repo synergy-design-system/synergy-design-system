@@ -137,6 +137,12 @@ const matchesNameOrId = (entity: MetadataEntity, nameOrId: string) => matchesEnt
   prefixedCandidates: (input) => !input.startsWith('syn-') ? [`component:syn-${input}`] : [],
 });
 
+/**
+ * List components with optional filtering and pagination.
+ * @param options Options for querying components, including filtering by status and tags, pagination, and layer/verbosity preferences.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the list of components and metadata.
+ */
 export const listComponents = async (
   options: ComponentQueryOptions = {},
   storeOptions: MetadataStoreOptions = {},
@@ -200,6 +206,13 @@ export const listComponents = async (
   };
 };
 
+/**
+ * Get metadata for a specific component by name or ID, with options for layer inclusion and verbosity.
+ * @param nameOrId The name or ID of the component to retrieve metadata for.
+ * @param options Options for querying the component, including filtering by status and tags, layer/verbosity preferences, and whether to include the interface snapshot.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the component metadata and related information, or null if not found.
+ */
 export const getComponentMetadata = async (
   nameOrId: string,
   options: ComponentQueryOptions = {},

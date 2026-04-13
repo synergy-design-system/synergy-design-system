@@ -19,6 +19,13 @@ export type MigrationQueryOptions = PublicRequestOptions & {
   tags?: string[];
 };
 
+/**
+ * Get metadata for a specific migration by name or ID, with options for layer inclusion and verbosity.
+ * @param nameOrId The name or ID of the migration to retrieve metadata for.
+ * @param options Options for querying the migration, including filtering by status and tags, layer/verbosity preferences.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the migration metadata, or null if not found.
+ */
 export const getMigrations = async (
   options: MigrationQueryOptions = {},
   storeOptions: MetadataStoreOptions = {},

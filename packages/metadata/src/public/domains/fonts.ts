@@ -24,6 +24,12 @@ const matchesNameOrId = (entity: MetadataEntity, nameOrId: string) => matchesEnt
   prefix: 'utility',
 });
 
+/**
+ * List fonts with optional filtering and pagination.
+ * @param options Options for querying fonts, including filtering by status and tags, pagination, and layer/verbosity preferences.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the list of fonts and metadata.
+ */
 export const listFonts = async (
   options: FontQueryOptions = {},
   storeOptions: MetadataStoreOptions = {},
@@ -85,6 +91,13 @@ export const listFonts = async (
   };
 };
 
+/**
+ * Get metadata for a specific font by name or ID, with options for layer inclusion and verbosity.
+ * @param nameOrId The name or ID of the font to retrieve metadata for.
+ * @param options Options for querying the font, including filtering by status and tags, layer/verbosity preferences.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the font metadata, or null if not found.
+ */
 export const getFontMetadata = async (
   nameOrId: string,
   options: FontQueryOptions = {},

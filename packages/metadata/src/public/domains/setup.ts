@@ -109,6 +109,12 @@ const selectSetupEntities = (
   return entities.filter((entity) => entity.package === options.package);
 };
 
+/**
+ * Get setup data for a specific package, with options for layer inclusion and verbosity.
+ * @param options Options for querying setup data, including the package to query for, whether to include limitation documents, layer preferences, and strict layer enforcement.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the setup data for the specified package, or null if not found.
+ */
 export const getDataForSetup = async (
   options: SetupDataQueryOptions,
   storeOptions: MetadataStoreOptions = {},

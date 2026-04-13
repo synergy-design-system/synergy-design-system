@@ -46,6 +46,12 @@ const matchesNameOrId = (entity: MetadataEntity, nameOrId: string) => matchesEnt
   prefixedCandidates: (input) => !input.startsWith('syn-') ? [`style:syn-${input}`] : [],
 });
 
+/**
+ * List all styles, with options for filtering by status, tags, layer inclusion, and verbosity.
+ * @param options Options for querying styles, including filtering by status and tags, layer/verbosity preferences.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the list of styles.
+ */
 export const listStyles = async (
   options: StyleQueryOptions = {},
   storeOptions: MetadataStoreOptions = {},
@@ -106,6 +112,13 @@ export const listStyles = async (
   };
 };
 
+/**
+ * Get metadata for a specific style by name or ID, with options for layer inclusion and verbosity.
+ * @param nameOrId The name or ID of the style to retrieve metadata for.
+ * @param options Options for querying the style, including filtering by status and tags, layer/verbosity preferences.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the style metadata, or null if not found.
+ */
 export const getStyleMetadata = async (
   nameOrId: string,
   options: StyleQueryOptions = {},
@@ -191,7 +204,10 @@ export const getStyleMetadata = async (
 
 /**
  * High-level helper for style usage payloads grouped by layer semantics.
- * - `examples`: returns markdown files from the examples layer
+ * @param nameOrId The name or ID of the style to retrieve usage data for.
+ * @param options Options for querying the style usage data, including layer preferences.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the style usage data, or null if not found.
  */
 export const getDataForStyle = async (
   nameOrId: string,

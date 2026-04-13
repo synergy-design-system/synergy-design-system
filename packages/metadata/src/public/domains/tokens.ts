@@ -99,6 +99,12 @@ const deriveTokenTheme = (artifactPath?: string): TokenTheme | undefined => {
   return undefined;
 };
 
+/**
+ * List tokens with optional filtering and pagination.
+ * @param options Options for querying tokens, including filtering by status and tags, pagination, and layer/verbosity preferences.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the list of tokens and metadata.
+ */
 export const getTokens = async (
   options: TokenQueryOptions = {},
   storeOptions: MetadataStoreOptions = {},
@@ -159,6 +165,12 @@ export const getTokens = async (
   };
 };
 
+/**
+ * Get token data for a specific format and theme, with options for pagination.
+ * @param options Options for querying token data, including format, theme, pagination preferences.
+ * @param storeOptions Options for configuring the metadata store.
+ * @returns A promise that resolves to a public response containing the token data payload, or null if not found.
+ */
 export const getDataForTokens = async (
   options: TokenDataQueryOptions = {},
   storeOptions: MetadataStoreOptions = {},

@@ -1,10 +1,8 @@
 # @synergy-design-system/mcp
 
-Synergy MCP Server – Multi-Framework Component Metadata & Tooling
+The `@synergy-design-system/mcp` package provides a Model Context Protocol (MCP) server for the Synergy Design System. It exposes Synergy components, setup guidance, tokens, styles, templates, icons, and migration content to AI assistants over stdio.
 
----
-
-The `@synergy-design-system/mcp` package provides a Model Context Protocol (MCP) server for the Synergy Design System. It enables AI assistants and development tools to access structured information about Synergy components, design tokens, icons, and migration guides across multiple frameworks (Angular, React, Vue, and vanilla Web Components).
+Data is provided via the low level `@synergy-design-system/metadata` package.
 
 ## Quick Start
 
@@ -16,7 +14,7 @@ npm install --save-dev @synergy-design-system/mcp
 
 ### Running the Server
 
-The MCP server can be started using the `syn-mcp` binary:
+The package ships a `syn-mcp` binary:
 
 ```bash
 # Run directly
@@ -24,11 +22,20 @@ npx @synergy-design-system/mcp
 
 # Or if installed globally
 syn-mcp
+
+# Start with an explicit runtime config
+syn-mcp --config ./synergy-mcp.json
 ```
+
+Available CLI flags:
+
+- `--help`, `-h`: Show usage information
+- `--version`, `-v`: Print the package version
+- `--config <path>`: Load runtime defaults from a `synergy-mcp.json` file
 
 ### VS Code Integration
 
-To integrate with VS Code and AI assistants, add this configuration to your VS Code `settings.json` under the `mcp.servers` section:
+To integrate with VS Code and AI assistants, add this configuration to your `settings.json` under `mcp.servers`:
 
 ```jsonc
 {
@@ -37,16 +44,16 @@ To integrate with VS Code and AI assistants, add this configuration to your VS C
       "synergy": {
         "type": "stdio",
         "command": "npx",
-        "args": ["@synergy-design-system/mcp"],
-      },
-    },
-  },
+        "args": ["@synergy-design-system/mcp"]
+      }
+    }
+  }
 }
 ```
 
 ### Claude Desktop Integration
 
-For Claude Desktop, add this to your `claude_desktop_config.json`:
+For Claude Desktop, add this to `claude_desktop_config.json`:
 
 ```json
 {
@@ -59,21 +66,57 @@ For Claude Desktop, add this to your `claude_desktop_config.json`:
 }
 ```
 
+### Runtime Configuration
+
+The server can read optional runtime defaults from a `synergy-mcp.json` file passed via `--config`.
+
+Example:
+
+```jsonc
+{
+  // Include custom ai rules for each tool.
+  "includeAiRules": true,
+
+  // Default parameters for each endpoint can be overridden
+  "tools": {
+    "assetInfo": {
+      "iconset": "current"
+    },
+    "componentInfo": {
+      // Set to angular, react or vue, depending on your framework
+      "framework": "vanilla",
+      // Defines which type of information to return.
+      // full = filtered source files,
+      // examples = markdown examples,
+      // interface = markdown API overview.
+      // Note that examples and interface are only available
+      // for vanilla components at the moment.
+      "layer": "full"
+    },
+    "tokenInfo": {
+      // If you are preferring scss, use "sass" here
+      "type": "css"
+    }
+  }
+}
+```
+
+This lets you change per-tool defaults without modifying the MCP server code.
+
 ## Features
 
-- **Component Information**: Get detailed usage information for Synergy components across frameworks
-- **Icon Assets**: Search and discover available icons from multiple icon sets
-- **Design Tokens**: Access CSS and JavaScript design tokens
-- **Style Utilities**: Information about available CSS utility classes
-- **Templates**: Access static templates built with the Synergy Design System
-- **Migration Guides**: DaVinci to Synergy component migration assistance and Synergy version migrations
-- **Framework Support**: Specific documentation for Angular, React, Vue, and vanilla Web Components
-- **Version Information**: Get version and metadata about the MCP server
-- **MCP Protocol**: Standard Model Context Protocol interface for AI assistant integration
+- **Metadata-backed component docs**: Retrieve component data directly from `@synergy-design-system/metadata`.
+- **Setup guidance**: Return package setup instructions for components, framework adapters, tokens, styles, fonts, assets, and migrations.
+- **Asset and icon discovery**: Browse icon sets and search icons across the Synergy asset libraries.
+- **Token access**: Read CSS, JavaScript, and Sass token outputs.
+- **Styles and templates**: Retrieve CSS utility guidance and static template content.
+- **Migration guidance**: Access both DaVinci migration guides and Synergy package migration documents.
+- **AI response rules**: Optionally prepends package-local guidance files from `rules/` to selected tool responses.
+- **MCP stdio transport**: Ready for editor, assistant, and CLI integrations.
 
 ## Available Tools
 
-The MCP server provides the following tools that can be invoked by AI assistants:
+The MCP server currently registers 15 tools.
 
 ### 1. `component-list`
 
@@ -85,35 +128,35 @@ The MCP server provides the following tools that can be invoked by AI assistants
 
 - "Show me all available Synergy components"
 - "What components are available in the Synergy Design System?"
-- "List all syn-\* components"
+- "List all syn-* components"
 
 ### 2. `component-info`
 
-**Description:** Get detailed information about the usage of a specific component in the Synergy Design System.
+**Description:** Get information about the usage of a specific component in the Synergy Design System.
 
 **Parameters:**
 
-- `component` (string, required): The name of the component (must start with `syn-`, e.g., `syn-button`)
-- `framework` (string, optional): The framework (`react`, `vue`, `angular`, `vanilla`). Defaults to `vanilla`
+- `component` (string, required): The component name. Must start with `syn-`, for example `syn-button`.
+- `framework` (string, optional): `react`, `vue`, `angular`, or `vanilla`. Defaults to the runtime config value, which is `vanilla` by default.
+- `layer` (string, optional): `full`, `examples`, or `interface`. Defaults to the runtime config value, which is `full` by default. `examples` and `interface` are currently only available for vanilla components.
 
 **Example prompts:**
 
-- "How do I use the syn-button component in React?"
-- "Show me the syn-input component documentation"
-- "What props does syn-dialog support in Vue?"
-- "Give me an example of syn-card in Angular"
+- "How do I use syn-button in React?"
+- "Show me the interface docs for syn-dialog"
+- "Give me examples for syn-card"
 
 ### 3. `asset-list`
 
-**Description:** Get the available iconsets in the Synergy Design System.
+**Description:** Get the available icon sets in the Synergy Design System.
 
 **Parameters:** None
 
 **Example prompts:**
 
-- "What iconsets are available?"
+- "What icon sets are available?"
 - "Show me all available icon libraries"
-- "List all iconsets in Synergy"
+- "List all Synergy icon sets"
 
 ### 4. `asset-info`
 
@@ -121,34 +164,46 @@ The MCP server provides the following tools that can be invoked by AI assistants
 
 **Parameters:**
 
-- `filter` (string, optional): Filter icon names by substring match
-- `iconset` (string, optional): Icon set to search (`current`, `legacy`, `v2`, `synergy2018`, `brand2018`, `brand2025`, `synergy2025`, `new`, `next`). Defaults to `current`
-- `limit` (number, optional): Maximum number of icons to return. Defaults to 5
+- `filter` (string, optional): Filter icon names by substring. Supports comma-separated search terms such as `home,search,menu`.
+- `iconset` (string, optional): One of `legacy`, `v2`, `synergy2018`, `brand2018`, `sick2018`, `current`, `default`, `brand2025`, `sick2025`, `synergy2025`, `new`, `next`, or `v3`. Defaults to the runtime config value, which is `current` by default.
+- `limit` (number, optional): Maximum number of icons to return. When using multiple filters, the limit applies per filter term.
 
 **Example prompts:**
 
-- "Show me icons with 'add' in the name"
-- "What icons are available for cancel actions?"
-- "List 10 icons from the new iconset"
-- "Find icons related to 'close' in the current iconset"
+- "Show me icons with add in the name"
+- "Find icons for close and cancel"
+- "List 10 icons from the current icon set"
 
 ### 5. `token-info`
 
-**Description:** Get information about design tokens available in the Synergy Design System.
+**Description:** Get raw design token file contents from the Synergy Design System.
 
 **Parameters:**
 
-- `type` (string, optional): Token type (`javascript` or `css`). Defaults to `css`
+- `type` (string, optional): `javascript`, `css`, or `sass`. Defaults to the runtime config value, which is `css` by default.
+- `theme` (string, optional): `sick2025-light`, `sick2025-dark`, `sick2018-light`, or `sick2018-dark`. This is only relevant for CSS token output.
 
 **Example prompts:**
 
-- "Show me the available CSS design tokens"
-- "What JavaScript design tokens are available?"
-- "List all design tokens for styling"
+- "Show me the CSS tokens for sick2025-light"
+- "Give me the JavaScript token output"
+- "Show me the Sass design tokens"
 
-### 6. `styles-list`
+### 6. `tokens-list`
 
-**Description:** Outputs a list of available styles in the Synergy Design System.
+**Description:** Outputs a list of available token output types and CSS themes in the Synergy Design System.
+
+**Parameters:** None
+
+**Example prompts:**
+
+- "What token formats are available?"
+- "List the supported token themes"
+- "Show me which token outputs this server can provide"
+
+### 7. `styles-list`
+
+**Description:** Outputs a list of available CSS classes and styles in the Synergy Design System.
 
 **Parameters:** None
 
@@ -158,19 +213,21 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "Show me all available CSS utility classes"
 - "List all style modules"
 
-### 7. `styles-info`
+### 8. `styles-info`
 
 **Description:** Get information about CSS utilities available in the Synergy Design System.
 
-**Parameters:** None
+**Parameters:**
+
+- `style` (string, required): The style name to retrieve.
 
 **Example prompts:**
 
-- "Show me information about Synergy CSS utilities"
-- "What CSS utilities does Synergy provide?"
-- "Tell me about the styles package"
+- "Show me information about visually-hidden"
+- "What does the spacing utility package contain?"
+- "Tell me about a specific Synergy style"
 
-### 8. `template-list`
+### 9. `template-list`
 
 **Description:** Outputs a list of available static templates built with the Synergy Design System.
 
@@ -182,13 +239,13 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "Show me all available static templates"
 - "List all templates"
 
-### 9. `template-info`
+### 10. `template-info`
 
 **Description:** Get a specific template in the Synergy Design System.
 
 **Parameters:**
 
-- `template` (string, required): The name of the template to get information about.
+- `template` (string, required): The template name to retrieve.
 
 **Example prompts:**
 
@@ -196,28 +253,28 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "Give me information about the dashboard template"
 - "How do I use the form template?"
 
-### 10. `davinci-migration-list`
+### 11. `davinci-migration-list`
 
 **Description:** Get a list of all components that have migration information from DaVinci to Synergy.
 
 **Parameters:**
 
-- `package` (string, optional): Migration package (`components`, `charts`). Defaults to `components`. Currently only `components` is available.
+- `package` (string, optional): `components` or `charts`. Defaults to the runtime config value, which is `components` by default. Currently only `components` is available.
 
 **Example prompts:**
 
 - "What DaVinci components can be migrated to Synergy?"
-- "Show me all available migration guides"
+- "Show me all available DaVinci migration entries"
 - "List components with migration information"
 
-### 11. `davinci-migration-info`
+### 12. `davinci-migration-info`
 
 **Description:** Get information about the migration of a specific component from DaVinci to Synergy.
 
 **Parameters:**
 
-- `package` (string, optional): Migration package (`components`, `charts`). Defaults to `components`. Currently only `components` is available.
-- `component` (string, required): Name of the DaVinci component (must start with `davinci-`, e.g., `davinci-button`)
+- `component` (string, required): Name of the DaVinci component. Must start with `davinci-`, for example `davinci-button`.
+- `package` (string, optional): `components` or `charts`. Defaults to the runtime config value, which is `components` by default. Currently only `components` is available.
 
 **Example prompts:**
 
@@ -225,37 +282,18 @@ The MCP server provides the following tools that can be invoked by AI assistants
 - "Show me the migration guide for davinci-input"
 - "What's the Synergy equivalent of davinci-auto-suggest?"
 
-### 12. `framework-info`
-
-**Description:** Get information about a specific framework package that the Synergy Design System supports.
-
-**Parameters:**
-
-- `framework` (string, optional): Framework name (`react`, `vue`, `angular`, `vanilla`). Defaults to `vanilla`
-- `setupInstructions` (boolean, optional): Adds additional context to include setup instructions for all synergy applications. Defaults to `false`
-
-**Example prompts:**
-
-- "How do I set up Synergy with React?"
-- "Show me the Angular integration guide"
-- "What's needed to use Synergy with Vue?"
-- "How do I install Synergy for vanilla JavaScript?"
-
 ### 13. `migration-list`
 
-**Description:** List available migration documents for a specific Synergy package in a compact, token‑efficient format.
+**Description:** List available migration documents for a Synergy package in a compact, token-efficient format.
 
 **Parameters:**
 
-- `synergyPackage` (string, optional): The package to list migration documents for (`assets`, `components`, `styles`, `tokens`). Defaults to `components`.
+- `synergyPackage` (string, optional): `assets`, `components`, `styles`, or `tokens`. Defaults to the runtime config value, which is `components` by default.
 
-**Notes:**
+**Behavior:**
 
-- For the `components` package this returns an index of:
-  - High‑level overview docs (e.g. migration overview)
-  - Path‑specific guides (e.g. v2‑2018 → v3‑2018)
-  - Package‑level docs (e.g. `BREAKING_CHANGES.md`, `CHANGELOG.md`)
-- Each entry contains at least the filename and package name. For component paths, additional metadata such as `from`, `to`, `fromTheme`, `toTheme`, and a short `summary` is included where possible.
+- For `components`, this returns a compact index of the migration overview, path guides, and package-level docs.
+- For component path guides, the tool also derives metadata such as `from`, `to`, `fromTheme`, `toTheme`, `title`, and a short `summary` where possible.
 
 **Example prompts:**
 
@@ -265,243 +303,189 @@ The MCP server provides the following tools that can be invoked by AI assistants
 
 ### 14. `migration-info`
 
-**Description:** Get detailed migration documentation for a Synergy package. Use this together with `migration-list` to fetch only the documents you need.
+**Description:** Get detailed migration documentation for a Synergy package. Use together with `migration-list` to fetch only the documents you need.
 
 **Parameters:**
 
-- `filename` (string, optional): Specific migration document filename to return. Strongly recommended for the `components` package to avoid fetching all path guides at once.
-- `synergyPackage` (string, optional): The package to get migration information about (`assets`, `components`, `styles`, `tokens`). Defaults to `components`.
+- `filename` (string, optional): Specific migration document filename to return. Especially useful for the `components` package.
+- `synergyPackage` (string, optional): `assets`, `components`, `styles`, or `tokens`. Defaults to the runtime config value, which is `components` by default.
 
 **Behavior:**
 
-- For `components`:
-  - With `filename`: returns exactly that migration document (e.g. a specific v2‑to‑v3 path guide).
-  - Without `filename`: returns only the migration overview and high‑level package docs (such as `BREAKING_CHANGES` and `CHANGELOG`), **not** every path‑specific guide.
-- For other packages (`assets`, `styles`, `tokens`):
-  - Returns all migration‑related documents for the selected package (typically `BREAKING_CHANGES` and `CHANGELOG`).
+- For `components` with `filename`, returns exactly that document.
+- For `components` without `filename`, returns the overview and high-level package docs, not every path guide.
+- For `assets`, `styles`, and `tokens`, returns the available migration documents for the selected package.
 
 **Example prompts:**
 
-- "List the available Synergy component migrations" (first call `migration-list`)
+- "List the available Synergy component migrations"
 - "Show me the migration guide from Synergy 2 (SICK 2018) to Synergy 3 (SICK 2018)"
-- "Give me the breaking changes for the tokens package between major versions"
+- "Give me the breaking changes for the tokens package"
 
-### 15. `version`
+### 15. `setup`
 
-**Description:** Get version and basic information about the Synergy Design System MCP Server.
+**Description:** Get setup information for a Synergy package. Framework packages automatically include base components setup.
 
-**Parameters:** None
+**Parameters:**
+
+- `package` (string, required): `components`, `react`, `vue`, `angular`, `tokens`, `styles`, `fonts`, `assets`, or `migrations`.
+- `includeLimitations` (boolean, optional): Include known limitations and issues. Defaults to the runtime config value, which is `true` by default.
 
 **Example prompts:**
 
-- "What version of the MCP server is running?"
-- "Show me information about this Synergy MCP server"
-- "What's the current version?"
+- "How do I set up Synergy for React?"
+- "Show me the setup instructions for tokens"
+- "Give me the Synergy assets setup and limitations"
 
 ## Developer Documentation
 
 ### Project Structure
 
-```
+```text
 src/
 ├── bin/
-│   └── start.ts          # CLI entry point (syn-mcp command)
-├── build/                # Build scripts for metadata generation
-│   ├── assets.ts         # Asset metadata builder
-│   ├── build.ts          # Main build orchestrator
-│   ├── components.ts     # Component metadata builder
-│   ├── frameworks.ts     # Framework info builder
-│   ├── static.ts         # Static content builder
-│   ├── styles.ts         # Styles metadata builder
-│   └── tokens.ts         # Token metadata builder
-├── scripts/              # Build and utility scripts
-│   └── generate-checksum.ts # TypeScript checksum generator (replaces shell scripts)
-├── server.ts             # MCP server setup and tool registration
-├── tools/                # MCP tool implementations
-│   ├── asset-info.ts     # Icon search and information
-│   ├── asset-list.ts     # Available iconsets
-│   ├── component-info.ts # Individual component details
-│   ├── component-list.ts # List all components
-│   ├── davinci-migration.ts # Migration guides
-│   ├── font-info.ts      # Font and prerequisites information
-│   ├── framework-info.ts # Framework-specific information
-│   ├── migration-info.ts # Package migration documentation
-│   ├── migration-list.ts # Package migration index (filenames + metadata)
-│   ├── styles-info.ts    # CSS utilities information
-│   ├── styles-list.ts    # List all styles
-│   ├── template-info.ts  # Template details
-│   ├── template-list.ts  # List all templates
-│   ├── tokens.ts         # Design tokens
-│   ├── version.ts        # MCP server version info
-│   └── index.ts          # Tool exports
-└── utilities/            # Helper functions and metadata loaders
-    ├── assets.ts         # Asset utilities
-    ├── checksum.ts       # Folder checksum utilities (replaces shell scripts)
-    ├── components.ts     # Component utilities
-    ├── config.ts         # Configuration management
-    ├── file.ts           # File system utilities
-    ├── metadata.ts       # Metadata loading utilities
-    ├── stdio.ts          # Standard I/O utilities
-    ├── styles.ts         # Style utilities
-    ├── templates.ts      # Template utilities
-    ├── tokens.ts         # Token utilities
-    ├── version.ts        # Version utilities
-    ├── storybook/        # Storybook documentation utilities
-    └── index.ts          # Utility exports
-metadata/                 # Generated and static metadata files
-├── checksum.txt          # Metadata integrity checksum
-├── packages/             # Synergy package specific information
-└── static/               # Static metadata for tools
+│   ├── clean.js         # Removes dist/ before builds
+│   └── start.ts         # CLI entry point for syn-mcp
+├── server.ts            # MCP server creation and tool registration
+├── tools/               # MCP tool implementations
+│   ├── asset-info.ts
+│   ├── asset-list.ts
+│   ├── component-info.ts
+│   ├── component-list.ts
+│   ├── davinci-migration-info.ts
+│   ├── davinci-migration-list.ts
+│   ├── migration-info.ts
+│   ├── migration-list.ts
+│   ├── setup.ts
+│   ├── styles-info.ts
+│   ├── styles-list.ts
+│   ├── template-info.ts
+│   ├── template-list.ts
+│   ├── token-info.ts
+│   ├── tokens-list.ts
+│   └── index.ts
+└── utilities/           # Runtime config, metadata adapters, stdio helpers
+    ├── config.ts
+    ├── davinci.ts
+    ├── metadata.ts
+    ├── migration.ts
+    ├── server.ts
+    ├── stdio.ts
+    └── index.ts
+rules/                   # Markdown guidance files prepended to selected tool output
+test/
+├── e2e/                 # End-to-end MCP tests
+└── utilities/           # Test helpers
 ```
+
+There is no in-package metadata. This is now handeled via `@synergy-design-system/metadata`.
 
 ### Available Scripts
 
-The following npm scripts are available for development:
+The package currently exposes these development scripts:
 
 ```bash
-# Build the entire project (TypeScript + metadata + Storybook docs)
+# Compile TypeScript into dist/
 pnpm build
 
-# Build only TypeScript files
-pnpm build:ts
+# Remove dist/
+pnpm clean
 
-# Build metadata from source packages
-pnpm build:metadata
-
-# Generate metadata integrity checksum (uses TypeScript instead of shell script)
-pnpm build:hash
-
-# Build Storybook documentation
-pnpm build:storybook
-
-# Run linting
+# Run all lint tasks
 pnpm lint
+
+# Lint the source tree with ESLint
 pnpm lint:js
 
-# Run tests with coverage
+# Run the end-to-end test suite
 pnpm test
+
+# Run tests in watch mode
+pnpm test:watch
+
+# Launch the MCP inspector
+pnpm debug
 ```
 
 ### Development Workflow
 
-1. **Setup**: Install dependencies with `pnpm install`
-2. **Build**: Run `pnpm build` to compile TypeScript and generate metadata
-   - `pnpm build:ts` compiles TypeScript files
-   - `pnpm build:metadata` generates metadata from source packages
-   - `pnpm build:hash` creates integrity checksum for metadata using TypeScript utilities
-3. **Test**: Use `pnpm test` to run the test suite with coverage
-4. **Lint**: Run `pnpm lint` to check code quality
-5. **Run**: Start the server with `npx syn-mcp` or `node dist/bin/start.js`
+1. Install dependencies with `pnpm install`.
+2. Build the package with `pnpm build`.
+3. Start the server with `npx @synergy-design-system/mcp`, `node dist/bin/start.js`, or `syn-mcp --config ./synergy-mcp.json`.
+4. Run `pnpm test` for end-to-end verification.
+5. Run `pnpm lint` before shipping changes.
 
-The metadata build process runs multiple specialized builders in sequence:
+If the MCP server appears to be missing data, check the state of `@synergy-design-system/metadata` first. This package reads runtime content from the metadata package and does not generate component, token, style, or migration data itself.
 
-1. Assets (icons and iconsets)
-2. Components (from package manifests)
-3. Framework information (setup guides)
-4. Design tokens (CSS and JS tokens)
-5. Styles (utility classes)
-6. Static files (hand-written documentation)
+### Architecture
+
+The MCP server is intentionally small:
+
+- `src/bin/start.ts` parses CLI arguments, loads optional runtime config, and starts stdio transport.
+- `src/server.ts` creates the `McpServer` instance and registers all exported tools from `src/tools/index.ts`.
+- Tool implementations in `src/tools/` call the public APIs of `@synergy-design-system/metadata` to retrieve data.
+- Utilities in `src/utilities/` handle runtime config, MCP response shaping, DaVinci migration extraction, and package migration document loading.
+- Markdown files in `rules/` provide assistant-facing response guidance for selected tools and frameworks.
+
+### Data Sources
+
+Runtime data is resolved from `@synergy-design-system/metadata`:
+
+- Component docs and component lists come from metadata package component APIs.
+- Setup guidance comes from metadata setup entities.
+- DaVinci migrations are extracted from the setup content exposed by the metadata package.
+- Synergy package migration docs are resolved from metadata store layer files.
+- Tokens, styles, templates, and assets are all read from metadata package APIs at request time.
 
 ### Adding New Tools
 
 To add a new tool:
 
-1. Create a new file in `src/tools/` (e.g., `my-tool.ts`)
-2. Implement the tool following the MCP SDK patterns
-3. Export the tool from `src/tools/index.ts`
-4. Your tool will automatically be registered into the server.
+1. Create a file in `src/tools/`.
+2. Register the tool with `server.registerTool(...)`.
+3. Export it from `src/tools/index.ts`.
+4. If needed, add a matching guidance file under `rules/`.
+5. Update this README so the public tool inventory stays aligned with the code.
 
-Example tool structure:
+Example:
 
 ```typescript
-import { z } from "zod";
-import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { z } from 'zod';
+import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import {
+  createToolAnnotations,
+  getRuntimeConfig,
+  getToolRule,
+  withErrorHandler,
+} from '../utilities/index.js';
 
 export const myTool = (server: McpServer) => {
   server.registerTool(
-    "my-tool",
+    'my-tool',
     {
-      description: "Description of what the tool does",
+      annotations: createToolAnnotations(),
+      description: 'Description of what the tool does',
       inputSchema: {
-        param: z.string().describe("Parameter description"),
+        param: z.string().describe('Parameter description'),
       },
-      title: "My Tool",
+      title: 'My Tool',
     },
-    async ({ param }) => {
-      // Tool implementation
-      return {
-        content: [
-          {
-            text: `Result for ${param}`,
-            type: "text",
-          },
-        ],
-      };
-    },
+    async ({ param }) => withErrorHandler(async () => {
+      // Get the AI rules for this tool, used as a preface for LLM output quality.
+      const aiRules = await getToolRule('my-tool');
+      const content = `You provided ${param} as parameter`;
+      return [
+        aiRules,
+        content,
+      ];
+    }),
   );
 };
 ```
 
-### Metadata Management
-
-Metadata is stored in the `metadata/` directory and is built during the build process:
-
-- **Static metadata**: Hand-written files in `metadata/static/`
-- **Component metadata**: Generated from Synergy packages in `metadata/packages/`
-- **Migration guides**: DaVinci migration information in `metadata/external-data/davinci-migrations/`
-- **Checksum validation**: `metadata/checksum.txt` ensures metadata integrity
-
-The `pnpm build:metadata` script processes source packages and generates structured metadata files using specialized builders:
-
-- `build/assets.ts` - Processes icon and asset information
-- `build/components.ts` - Extracts component metadata from packages
-- `build/frameworks.ts` - Generates framework-specific documentation
-- `build/static.ts` - Processes static content files
-- `build/styles.ts` - Extracts CSS utility information
-- `build/tokens.ts` - Processes design token data
-- `build/build.ts` - Orchestrates the entire build process
-
-### Checksum Utilities
-
-The project includes TypeScript utilities for generating and verifying folder checksums, replacing shell scripts for cross-platform compatibility:
-
-**Key Features:**
-
-- **Cross-platform**: Works on Windows, macOS, and Linux
-- **Configurable**: Support for custom exclude patterns and hash algorithms (MD5, SHA1, SHA256)
-- **TypeScript native**: Full type safety and IDE support
-- **Shell script replacement**: Replaces `find | sort | xargs | md5` commands
-
-**Available Functions:**
-
-- `createFolderChecksum(path, options?)` - Generate checksum and optionally write to file
-- `verifyFolderChecksum(path, options?)` - Verify current contents match stored checksum
-- `getFolderChecksum(path, options?)` - Get checksum without writing to file
-
-**Usage Example:**
-
-```typescript
-import {
-  createFolderChecksum,
-  verifyFolderChecksum,
-} from "./utilities/checksum.js";
-
-// Generate checksum (equivalent to shell script)
-await createFolderChecksum("./metadata", {
-  excludePatterns: [".*", "checksum.txt"],
-  algorithm: "md5",
-  outputFile: "checksum.txt",
-});
-
-// Verify integrity
-const isValid = await verifyFolderChecksum("./metadata");
-```
-
-The build process uses `scripts/generate-checksum.ts` instead of shell commands for better cross-platform support and maintainability.
-
 ### Binary Distribution
 
-The package includes a `syn-mcp` binary that starts the MCP server via stdio transport. This is defined in `package.json`:
+The package exposes the `syn-mcp` binary via `package.json`:
 
 ```json
 {
@@ -519,57 +503,37 @@ The package includes a `syn-mcp` binary that starts the MCP server via stdio tra
 # Start the MCP server
 syn-mcp
 
-# The server will communicate via stdio and wait for MCP protocol messages
+# Start with custom defaults
+syn-mcp --config ./synergy-mcp.json
 ```
 
 ### Programmatic Usage
 
 ```typescript
-import { createServer } from "@synergy-design-system/mcp";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { createServer } from '@synergy-design-system/mcp';
+import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 
-// Create and start the server
 const server = createServer();
 const transport = new StdioServerTransport();
+
 await server.connect(transport);
 ```
 
-### AI Assistant Integration
+### AI Assistant Examples
 
-Once configured with an AI assistant, you can use natural language prompts like:
+Once connected to an AI assistant, you can use prompts like:
 
+```text
+Show me how to use syn-button in React
+Give me the interface docs for syn-select
+What token formats are available?
+How do I set up Synergy for Vue?
+Find icons related to search and filter
+How do I migrate from davinci-textarea to Synergy?
+What migration paths exist from Synergy 2 to Synergy 3?
+List all available Synergy templates
 ```
-"Show me how to use syn-button in React"
-"What icons are available for navigation?"
-"How do I migrate from davinci-textarea to Synergy?"
-"How do I migrate from Synergy v1 to v2?"
-"List all available Synergy components"
-"What CSS utilities does Synergy provide?"
-```
-
-The MCP server will interpret these prompts and call the appropriate tools to provide structured responses.
-
-## Architecture
-
-The MCP server is built using the Model Context Protocol SDK and provides a standardized interface for AI assistants to access Synergy Design System information.
-
-### Core Components
-
-- **Server**: MCP server instance that manages tool registration and request handling
-- **Tools**: Individual tool implementations that provide specific functionality
-- **Utilities**: Helper functions for metadata loading and processing
-- **Metadata**: Static and generated metadata files containing component and framework information
-
-### Data Flow
-
-1. AI assistant sends MCP request to the server
-2. Server routes request to appropriate tool
-3. Tool processes request and loads relevant metadata
-4. Tool returns structured response to AI assistant
-5. AI assistant processes response and provides user-friendly output
 
 ## License
 
 MIT
-
----

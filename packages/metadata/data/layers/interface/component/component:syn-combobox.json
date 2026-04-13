@@ -311,6 +311,7 @@
       "type": "SynShowEvent"
     }
   ],
+  "figmaComponentId": "42207-352063",
   "methods": [
     {
       "description": "Removes focus from the control.",

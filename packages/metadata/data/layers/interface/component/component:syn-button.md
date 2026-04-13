@@ -6,12 +6,12 @@ Buttons represent actions that are available to the user.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42076-167749)
 
 ## Class Information
 
 - **Import Example:** `import SynButton from '@synergy-design-system/components/components/button/button.js';`
-- **Module Path:** components/button/button.js
 - **Tag Name:** `syn-button`
 
 ## Usage Information

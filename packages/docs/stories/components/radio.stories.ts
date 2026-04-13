@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import '../../../components/src/components/radio/radio.js';
 import '../../../components/src/components/radio-group/radio-group.js';
 import '../../../components/src/components/button/button.js';
@@ -27,7 +24,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('1175-2494'),
+    design: generateFigmaPluginObject('41310-252390'),
     docs: {
       description: {
         component: generateStoryDescription('radio', 'default'),

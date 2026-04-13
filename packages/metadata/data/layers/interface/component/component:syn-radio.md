@@ -6,12 +6,12 @@ Radios allow the user to select a single option from a group.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-252390)
 
 ## Class Information
 
 - **Import Example:** `import SynRadio from '@synergy-design-system/components/components/radio/radio.js';`
-- **Module Path:** components/radio/radio.js
 - **Tag Name:** `syn-radio`
 
 ## Usage Information

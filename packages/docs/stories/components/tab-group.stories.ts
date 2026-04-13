@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/tab-group/tab-group.js';
 import '../../../components/src/components/tab/tab.js';
 import '../../../components/src/components/tab-panel/tab-panel.js';
@@ -90,7 +88,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('18021-1924779'),
+    design: generateFigmaPluginObject('42207-338578'),
     docs: {
       description: {
         component: generateStoryDescription('tab-group', 'default'),

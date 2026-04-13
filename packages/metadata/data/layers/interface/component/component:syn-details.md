@@ -6,12 +6,12 @@ Details show a brief summary and expand to show additional content.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41227-232486)
 
 ## Class Information
 
 - **Import Example:** `import SynDetails from '@synergy-design-system/components/components/details/details.js';`
-- **Module Path:** components/details/details.js
 - **Tag Name:** `syn-details`
 
 ## Usage Information

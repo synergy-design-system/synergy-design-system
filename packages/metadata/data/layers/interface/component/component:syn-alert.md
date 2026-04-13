@@ -6,12 +6,12 @@ Alerts are used to display important messages inline or as toast notifications.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41137-630160)
 
 ## Class Information
 
 - **Import Example:** `import SynAlert from '@synergy-design-system/components/components/alert/alert.js';`
-- **Module Path:** components/alert/alert.js
 - **Tag Name:** `syn-alert`
 
 ## Usage Information

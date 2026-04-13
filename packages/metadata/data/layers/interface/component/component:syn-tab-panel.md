@@ -6,12 +6,12 @@ Tab panels are used inside [tab groups](/components/tab-group) to display tabbed
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42207-340626)
 
 ## Class Information
 
 - **Import Example:** `import SynTabPanel from '@synergy-design-system/components/components/tab-panel/tab-panel.js';`
-- **Module Path:** components/tab-panel/tab-panel.js
 - **Tag Name:** `syn-tab-panel`
 
 ## Usage Information

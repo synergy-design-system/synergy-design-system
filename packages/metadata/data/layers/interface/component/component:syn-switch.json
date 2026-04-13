@@ -131,6 +131,7 @@
       "type": "SynInvalidEvent"
     }
   ],
+  "figmaComponentId": "41310-259132",
   "methods": [
     {
       "description": "Removes focus from the switch.",

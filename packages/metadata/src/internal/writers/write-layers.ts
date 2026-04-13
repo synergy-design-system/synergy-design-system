@@ -234,9 +234,6 @@ const renderInterfaceMarkdown = (
   if (importExample) {
     classInformationLines.push(`- **Import Example:** \`${importExample}\``);
   }
-  if (sourceModulePath) {
-    classInformationLines.push(`- **Module Path:** ${sourceModulePath}`);
-  }
   classInformationLines.push(`- **Tag Name:** \`${tagName}\``);
 
   const slotsContent = slots.length > 0
@@ -336,11 +333,25 @@ const renderInterfaceMarkdown = (
   }
   const usageContent = usageLines.length > 0 ? usageLines.join('\n') : undefined;
 
+  // Build the documentation section
+  const documentationLines: string[] = [];
+
+  if (documentation) {
+    documentationLines.push(`[Component Documentation](${documentation})`);
+  }
+
+  // Add figma link if available in enriched override
+  if (enrichedOverride?.figmaComponentId) {
+    documentationLines.push(`[Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=${enrichedOverride.figmaComponentId})`);
+  }
+
+  const finalDocumentation = documentationLines.length > 0 ? documentationLines.map(item => `- ${item}`).join('\n') : undefined;
+
   const sections: string[] = [
     renderMarkdownSection('Summary', summary.length > 0 ? summary : '-'),
     renderMarkdownSection(
       'Documentation',
-      documentation ? `[Component Documentation](${documentation})` : undefined,
+      finalDocumentation,
     ),
     renderMarkdownSection('Class Information', classInformationLines.join('\n')),
     renderMarkdownSection('Usage Information', usageContent),
@@ -502,6 +513,12 @@ export async function writeLayerAssets(
 
         // Get enriched override if config is available
         const enrichedOverride = ctx.config ? (getOverride(ctx.config, entity.id, true) ?? undefined) : undefined;
+
+        // Merge figmaComponentId from override into snapshot
+        if (enrichedOverride?.figmaComponentId) {
+          interfaceSnapshot.figmaComponentId = enrichedOverride.figmaComponentId;
+        }
+
         const interfaceMarkdown = await formatGeneratedMarkdown(
           renderInterfaceMarkdown(interfaceSnapshot, enrichedOverride),
         );

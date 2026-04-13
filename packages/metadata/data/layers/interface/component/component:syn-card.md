@@ -6,12 +6,12 @@ Cards can be used to group related subjects in a container.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42207-351610)
 
 ## Class Information
 
 - **Import Example:** `import SynCard from '@synergy-design-system/components/components/card/card.js';`
-- **Module Path:** components/card/card.js
 - **Tag Name:** `syn-card`
 
 ## Usage Information

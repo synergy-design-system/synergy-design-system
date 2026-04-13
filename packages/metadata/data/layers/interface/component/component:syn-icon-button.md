@@ -6,12 +6,12 @@ Icons buttons are simple, icon-only buttons that can be used for actions and in 
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-icon-button--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-icon-button--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41137-747935)
 
 ## Class Information
 
 - **Import Example:** `import SynIconButton from '@synergy-design-system/components/components/icon-button/icon-button.js';`
-- **Module Path:** components/icon-button/icon-button.js
 - **Tag Name:** `syn-icon-button`
 
 ## Usage Information

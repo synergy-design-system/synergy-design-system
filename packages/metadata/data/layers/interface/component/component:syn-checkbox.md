@@ -6,12 +6,12 @@ Checkboxes allow the user to toggle an option on or off.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-257927)
 
 ## Class Information
 
 - **Import Example:** `import SynCheckbox from '@synergy-design-system/components/components/checkbox/checkbox.js';`
-- **Module Path:** components/checkbox/checkbox.js
 - **Tag Name:** `syn-checkbox`
 
 ## Usage Information

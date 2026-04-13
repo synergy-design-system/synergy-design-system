@@ -82,6 +82,7 @@
   ],
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs",
   "events": [],
+  "figmaComponentId": "41203-369012",
   "methods": [
     {
       "description": "Returns a text label based on the contents of the menu item's default slot.",

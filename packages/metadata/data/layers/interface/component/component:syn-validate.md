@@ -8,12 +8,12 @@ and showing the validation message in a consistent, user defined way.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-284767)
 
 ## Class Information
 
 - **Import Example:** `import SynValidate from '@synergy-design-system/components/components/validate/validate.js';`
-- **Module Path:** components/validate/validate.js
 - **Tag Name:** `syn-validate`
 
 ## Usage Information

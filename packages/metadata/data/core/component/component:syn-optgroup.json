@@ -38,6 +38,7 @@
       }
     },
     "override": {
+      "figmaComponentId": "41325-324372",
       "storySourcePath": "components.optgroup",
       "storyTags": [
         "Form"

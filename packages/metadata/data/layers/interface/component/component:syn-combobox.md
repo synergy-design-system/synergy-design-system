@@ -7,12 +7,12 @@ allowing users to either select from predefined options or enter custom values (
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42207-352063)
 
 ## Class Information
 
 - **Import Example:** `import SynCombobox from '@synergy-design-system/components/components/combobox/combobox.js';`
-- **Module Path:** components/combobox/combobox.js
 - **Tag Name:** `syn-combobox`
 
 ## Usage Information

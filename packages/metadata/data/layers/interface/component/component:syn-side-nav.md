@@ -7,12 +7,12 @@ It can be used to group multiple navigation items (<syn-nav-item />s) together.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41227-327748)
 
 ## Class Information
 
 - **Import Example:** `import SynSideNav from '@synergy-design-system/components/components/side-nav/side-nav.js';`
-- **Module Path:** components/side-nav/side-nav.js
 - **Tag Name:** `syn-side-nav`
 
 ## Usage Information

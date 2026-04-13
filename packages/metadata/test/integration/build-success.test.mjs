@@ -255,6 +255,7 @@ describe('metadata build integration', () => {
       expect(accordionJson.sources).to.include('packages/angular/components/accordion/accordion.component.ts');
       expect(accordionInterfaceJson).to.have.property('tagName', 'syn-accordion');
       expect(accordionInterfaceJson).to.have.property('summary').that.is.a('string');
+      expect(accordionInterfaceJson).to.have.property('figmaComponentId', '41094-279501');
       expect(accordionInterfaceJson).to.have.property('slots').that.is.an('array');
       expect(accordionInterfaceJson).to.have.property('attributes').that.is.an('array');
       expect(accordionInterfaceJson).to.have.property('properties').that.is.an('array');

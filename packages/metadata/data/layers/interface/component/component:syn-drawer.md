@@ -6,12 +6,12 @@ Drawers slide in from a container to expose additional options and information.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41163-282330)
 
 ## Class Information
 
 - **Import Example:** `import SynDrawer from '@synergy-design-system/components/components/drawer/drawer.js';`
-- **Module Path:** components/drawer/drawer.js
 - **Tag Name:** `syn-drawer`
 
 ## Usage Information

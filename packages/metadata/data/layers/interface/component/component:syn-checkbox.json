@@ -153,6 +153,7 @@
       "type": "SynInvalidEvent"
     }
   ],
+  "figmaComponentId": "41310-257927",
   "methods": [
     {
       "description": "Removes focus from the checkbox.",

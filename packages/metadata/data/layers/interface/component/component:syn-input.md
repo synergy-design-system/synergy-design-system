@@ -6,12 +6,12 @@ Inputs collect data from the user.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41337-165221)
 
 ## Class Information
 
 - **Import Example:** `import SynInput from '@synergy-design-system/components/components/input/input.js';`
-- **Module Path:** components/input/input.js
 - **Tag Name:** `syn-input`
 
 ## Usage Information

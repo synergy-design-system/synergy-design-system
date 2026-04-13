@@ -6,12 +6,12 @@ Dropdowns expose additional content that "drops down" in a panel.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-dropdown--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-dropdown--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41203-538934)
 
 ## Class Information
 
 - **Import Example:** `import SynDropdown from '@synergy-design-system/components/components/dropdown/dropdown.js';`
-- **Module Path:** components/dropdown/dropdown.js
 - **Tag Name:** `syn-dropdown`
 
 ## Usage Information

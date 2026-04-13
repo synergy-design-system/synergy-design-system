@@ -343,6 +343,7 @@
       "type": "SynInvalidEvent"
     }
   ],
+  "figmaComponentId": "41337-165221",
   "methods": [
     {
       "description": "Removes focus from the input.",

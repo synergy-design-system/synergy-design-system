@@ -6,12 +6,11 @@ Popup is a utility that lets you declaratively anchor "popup" containers to anot
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs)
 
 ## Class Information
 
 - **Import Example:** `import SynPopup from '@synergy-design-system/components/components/popup/popup.js';`
-- **Module Path:** components/popup/popup.js
 - **Tag Name:** `syn-popup`
 
 ## Usage Information

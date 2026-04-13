@@ -6,12 +6,12 @@ Button groups can be used to group related buttons into sections.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=45597-333063)
 
 ## Class Information
 
 - **Import Example:** `import SynButtonGroup from '@synergy-design-system/components/components/button-group/button-group.js';`
-- **Module Path:** components/button-group/button-group.js
 - **Tag Name:** `syn-button-group`
 
 ## Usage Information

@@ -6,12 +6,12 @@ Menu items provide options for the user to pick from in a menu.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41203-369012)
 
 ## Class Information
 
 - **Import Example:** `import SynMenuItem from '@synergy-design-system/components/components/menu-item/menu-item.js';`
-- **Module Path:** components/menu-item/menu-item.js
 - **Tag Name:** `syn-menu-item`
 
 ## Usage Information

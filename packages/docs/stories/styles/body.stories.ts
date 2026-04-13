@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
@@ -26,7 +23,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-body',
   parameters: {
-    design: generateFigmaPluginObject('4415-2387'),
+    design: generateFigmaPluginObject('41127-558410'),
     docs: {
       description: {
         component: generateStoryDescription('styles', 'body'),

@@ -6,12 +6,12 @@ Textareas collect data from the user and allow multiple lines of text.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41337-204379)
 
 ## Class Information
 
 - **Import Example:** `import SynTextarea from '@synergy-design-system/components/components/textarea/textarea.js';`
-- **Module Path:** components/textarea/textarea.js
 - **Tag Name:** `syn-textarea`
 
 ## Usage Information

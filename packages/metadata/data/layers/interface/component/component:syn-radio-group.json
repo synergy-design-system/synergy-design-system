@@ -104,6 +104,7 @@
       "type": "SynInvalidEvent"
     }
   ],
+  "figmaComponentId": "41310-253349",
   "methods": [
     {
       "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",

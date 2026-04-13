@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/tooltip/tooltip.js';
@@ -43,7 +41,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('12852-79550'),
+    design: generateFigmaPluginObject('41337-203414'),
     docs: {
       description: {
         component: generateStoryDescription('tooltip', 'default'),

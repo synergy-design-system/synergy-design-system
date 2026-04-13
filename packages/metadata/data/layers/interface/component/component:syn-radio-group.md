@@ -6,12 +6,12 @@ Radio groups are used to group multiple [radios](/components/radio) or [radio bu
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-radio-group--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-radio-group--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-253349)
 
 ## Class Information
 
 - **Import Example:** `import SynRadioGroup from '@synergy-design-system/components/components/radio-group/radio-group.js';`
-- **Module Path:** components/radio-group/radio-group.js
 - **Tag Name:** `syn-radio-group`
 
 ## Usage Information

@@ -6,12 +6,12 @@ File controls allow selecting an arbitrary number of files for uploading.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-271865)
 
 ## Class Information
 
 - **Import Example:** `import SynFile from '@synergy-design-system/components/components/file/file.js';`
-- **Module Path:** components/file/file.js
 - **Tag Name:** `syn-file`
 
 ## Usage Information

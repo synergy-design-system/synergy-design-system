@@ -6,12 +6,12 @@ Tags are used as labels to organize things or to indicate a selection.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41163-156701)
 
 ## Class Information
 
 - **Import Example:** `import SynTag from '@synergy-design-system/components/components/tag/tag.js';`
-- **Module Path:** components/tag/tag.js
 - **Tag Name:** `syn-tag`
 
 ## Usage Information

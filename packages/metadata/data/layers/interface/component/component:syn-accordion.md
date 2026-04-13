@@ -6,12 +6,12 @@ Accordions provide the ability to group a list of `<syn-details>`.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41094-279501)
 
 ## Class Information
 
 - **Import Example:** `import SynAccordion from '@synergy-design-system/components/components/accordion/accordion.js';`
-- **Module Path:** components/accordion/accordion.js
 - **Tag Name:** `syn-accordion`
 
 ## Usage Information

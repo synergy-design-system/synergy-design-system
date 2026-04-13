@@ -6,12 +6,12 @@ Progress bars are used to show the status of an ongoing operation.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-progress-bar--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-progress-bar--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41203-297162)
 
 ## Class Information
 
 - **Import Example:** `import SynProgressBar from '@synergy-design-system/components/components/progress-bar/progress-bar.js';`
-- **Module Path:** components/progress-bar/progress-bar.js
 - **Tag Name:** `syn-progress-bar`
 
 ## Usage Information

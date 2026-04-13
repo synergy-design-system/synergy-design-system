@@ -6,12 +6,12 @@ Tabs are used inside [tab groups](/components/tab-group) to represent and activa
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-tab--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-tab--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42207-338162)
 
 ## Class Information
 
 - **Import Example:** `import SynTab from '@synergy-design-system/components/components/tab/tab.js';`
-- **Module Path:** components/tab/tab.js
 - **Tag Name:** `syn-tab`
 
 ## Usage Information

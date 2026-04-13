@@ -6,12 +6,12 @@ Options define the selectable items within various form controls such as [select
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41325-312743)
 
 ## Class Information
 
 - **Import Example:** `import SynOption from '@synergy-design-system/components/components/option/option.js';`
-- **Module Path:** components/option/option.js
 - **Tag Name:** `syn-option`
 
 ## Usage Information

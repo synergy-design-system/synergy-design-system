@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/breadcrumb/breadcrumb.js';
@@ -41,7 +39,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('15172-32035'),
+    design: generateFigmaPluginObject('41137-748938'),
     docs: {
       description: {
         component: generateStoryDescription('breadcrumb', 'default'),

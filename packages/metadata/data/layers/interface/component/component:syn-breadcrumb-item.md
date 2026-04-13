@@ -6,12 +6,12 @@ Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to repres
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41127-679600)
 
 ## Class Information
 
 - **Import Example:** `import SynBreadcrumbItem from '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-item.js';`
-- **Module Path:** components/breadcrumb-item/breadcrumb-item.js
 - **Tag Name:** `syn-breadcrumb-item`
 
 ## Usage Information

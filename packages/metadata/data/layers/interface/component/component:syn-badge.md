@@ -6,12 +6,12 @@ Badges are used to draw attention and display statuses or counts.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41137-656313)
 
 ## Class Information
 
 - **Import Example:** `import SynBadge from '@synergy-design-system/components/components/badge/badge.js';`
-- **Module Path:** components/badge/badge.js
 - **Tag Name:** `syn-badge`
 
 ## Usage Information

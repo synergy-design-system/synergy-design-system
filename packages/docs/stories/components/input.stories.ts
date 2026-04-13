@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { SynButton, SynInput } from '@synergy-design-system/components';
 import '../../../components/src/components/input/input.js';
 import '../../../components/src/components/icon/icon.js';
@@ -24,7 +23,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('14695-110120'),
+    design: generateFigmaPluginObject('41337-165221'),
     docs: {
       description: {
         component: generateStoryDescription('input', 'default'),

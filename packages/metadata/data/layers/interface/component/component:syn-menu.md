@@ -6,12 +6,12 @@ Menus provide a list of options for the user to choose from.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41203-442314)
 
 ## Class Information
 
 - **Import Example:** `import SynMenu from '@synergy-design-system/components/components/menu/menu.js';`
-- **Module Path:** components/menu/menu.js
 - **Tag Name:** `syn-menu`
 
 ## Usage Information

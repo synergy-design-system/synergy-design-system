@@ -7,12 +7,12 @@ that can be used to add applications name, toolbar and primary navigation.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-header--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-header--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41163-318668)
 
 ## Class Information
 
 - **Import Example:** `import SynHeader from '@synergy-design-system/components/components/header/header.js';`
-- **Module Path:** components/header/header.js
 - **Tag Name:** `syn-header`
 
 ## Usage Information

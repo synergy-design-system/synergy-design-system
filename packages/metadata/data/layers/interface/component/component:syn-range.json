@@ -205,6 +205,7 @@
       "type": "SynMoveEvent"
     }
   ],
+  "figmaComponentId": "41310-323916",
   "methods": [
     {
       "description": "Checks for validity but does not show a validation message.\nReturns `true` when valid and `false` when invalid.",

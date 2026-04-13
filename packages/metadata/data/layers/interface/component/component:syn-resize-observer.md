@@ -6,12 +6,11 @@ The Resize Observer component offers a thin, declarative interface to the [`Resi
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-resize-observer--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-resize-observer--docs)
 
 ## Class Information
 
 - **Import Example:** `import SynResizeObserver from '@synergy-design-system/components/components/resize-observer/resize-observer.js';`
-- **Module Path:** components/resize-observer/resize-observer.js
 - **Tag Name:** `syn-resize-observer`
 
 ## Usage Information

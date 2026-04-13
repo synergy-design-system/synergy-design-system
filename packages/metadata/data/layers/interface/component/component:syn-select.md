@@ -6,12 +6,12 @@ Selects allow you to choose items from a menu of predefined options.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41325-310740)
 
 ## Class Information
 
 - **Import Example:** `import SynSelect from '@synergy-design-system/components/components/select/select.js';`
-- **Module Path:** components/select/select.js
 - **Tag Name:** `syn-select`
 
 ## Usage Information

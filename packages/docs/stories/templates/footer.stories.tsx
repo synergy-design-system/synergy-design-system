@@ -24,7 +24,7 @@ const meta: Meta = {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
     },
-    design: generateFigmaPluginObject('25171-45729'),
+    design: generateFigmaPluginObject('16648-52486'),
     docs: {
       chromatic: {
         modes: Chromatic_Modes_All,

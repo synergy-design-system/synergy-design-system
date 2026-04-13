@@ -6,12 +6,12 @@ Ranges allow the user to select values within a given range using one or two thu
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-323916)
 
 ## Class Information
 
 - **Import Example:** `import SynRange from '@synergy-design-system/components/components/range/range.js';`
-- **Module Path:** components/range/range.js
 - **Tag Name:** `syn-range`
 
 ## Usage Information

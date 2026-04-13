@@ -6,12 +6,12 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41137-748938)
 
 ## Class Information
 
 - **Import Example:** `import SynBreadcrumb from '@synergy-design-system/components/components/breadcrumb/breadcrumb.js';`
-- **Module Path:** components/breadcrumb/breadcrumb.js
 - **Tag Name:** `syn-breadcrumb`
 
 ## Usage Information

@@ -9,12 +9,12 @@ priority menu.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41227-206412)
 
 ## Class Information
 
 - **Import Example:** `import SynPrioNav from '@synergy-design-system/components/components/prio-nav/prio-nav.js';`
-- **Module Path:** components/prio-nav/prio-nav.js
 - **Tag Name:** `syn-prio-nav`
 
 ## Usage Information

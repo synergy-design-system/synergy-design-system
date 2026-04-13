@@ -6,12 +6,12 @@ Icons are symbols that can be used to represent various options within an applic
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=1616-1512)
 
 ## Class Information
 
 - **Import Example:** `import SynIcon from '@synergy-design-system/components/components/icon/icon.js';`
-- **Module Path:** components/icon/icon.js
 - **Tag Name:** `syn-icon`
 
 ## Usage Information

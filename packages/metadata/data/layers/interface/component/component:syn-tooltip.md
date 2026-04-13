@@ -6,12 +6,12 @@ Tooltips display additional information based on a specific action.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-tooltip--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-tooltip--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41337-203414)
 
 ## Class Information
 
 - **Import Example:** `import SynTooltip from '@synergy-design-system/components/components/tooltip/tooltip.js';`
-- **Module Path:** components/tooltip/tooltip.js
 - **Tag Name:** `syn-tooltip`
 
 ## Usage Information

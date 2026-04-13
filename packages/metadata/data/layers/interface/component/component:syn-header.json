@@ -74,6 +74,7 @@
       "type": "SynBurgerMenuOpenEvent"
     }
   ],
+  "figmaComponentId": "41163-318668",
   "methods": [
     {
       "description": "Connect a `syn-side-nav` to add automatic interaction of the header with the side navigation\nlike showing the burger menu icon and open / close handling.\n\nIf no side navigation is connected, the header will use the first `syn-side-nav` element it\nfinds.",

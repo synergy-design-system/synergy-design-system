@@ -6,12 +6,12 @@ Switches allow the user to toggle an option on or off.
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-259132)
 
 ## Class Information
 
 - **Import Example:** `import SynSwitch from '@synergy-design-system/components/components/switch/switch.js';`
-- **Module Path:** components/switch/switch.js
 - **Tag Name:** `syn-switch`
 
 ## Usage Information

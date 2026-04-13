@@ -44,6 +44,7 @@
   ],
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs",
   "events": [],
+  "figmaComponentId": "41325-312743",
   "methods": [
     {
       "description": "Returns a plain text label based on the option's content.",

@@ -6,12 +6,12 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42207-348565)
 
 ## Class Information
 
 - **Import Example:** `import SynDialog from '@synergy-design-system/components/components/dialog/dialog.js';`
-- **Module Path:** components/dialog/dialog.js
 - **Tag Name:** `syn-dialog`
 
 ## Usage Information

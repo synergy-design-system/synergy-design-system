@@ -59,7 +59,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('24853-35456'),
+    design: generateFigmaPluginObject('41310-284767'),
     docs: {
       description: {
         component: generateStoryDescription('validate', 'default'),

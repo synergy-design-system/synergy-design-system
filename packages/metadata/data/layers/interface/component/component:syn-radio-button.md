@@ -6,12 +6,11 @@ Radios buttons allow the user to select a single option from a group using a but
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs)
 
 ## Class Information
 
 - **Import Example:** `import SynRadioButton from '@synergy-design-system/components/components/radio-button/radio-button.js';`
-- **Module Path:** components/radio-button/radio-button.js
 - **Tag Name:** `syn-radio-button`
 
 ## Usage Information

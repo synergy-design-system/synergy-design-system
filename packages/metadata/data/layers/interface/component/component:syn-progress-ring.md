@@ -6,12 +6,12 @@ Progress rings are used to show the progress of a determinate operation in a cir
 
 ## Documentation
 
-[Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs)
+- [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs)
+- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41203-296727)
 
 ## Class Information
 
 - **Import Example:** `import SynProgressRing from '@synergy-design-system/components/components/progress-ring/progress-ring.js';`
-- **Module Path:** components/progress-ring/progress-ring.js
 - **Tag Name:** `syn-progress-ring`
 
 ## Usage Information

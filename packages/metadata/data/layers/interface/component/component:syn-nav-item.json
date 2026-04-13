@@ -140,6 +140,7 @@
       "type": "SynShowEvent"
     }
   ],
+  "figmaComponentId": "41163-402744",
   "methods": [
     {
       "description": "Removes focus from the button.",

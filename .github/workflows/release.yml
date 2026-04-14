@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - "main"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Run release pipeline without pushing commits/tags or publishing'
+        required: false
+        default: true
+        type: boolean
 
 permissions:
   contents: read # for checkout
@@ -41,7 +48,33 @@ jobs:
       # As a package needs to be updated with the latest changelog metadata,
       # it always needs to be part of the release when other packages are released.
       - name: Create Metadata and MCP changeset if needed
-        run: pnpm --filter metadata --filter mcp build && git add ./packages/metadata/data && git diff --cached --quiet ./packages/metadata/data || node packages/_private/release-utils/src/ensure-mcp-changeset.js
+        run: |
+          set -euo pipefail
+
+          pnpm --filter metadata --filter mcp build
+          git add ./packages/metadata/data
+
+          metadata_changed=false
+
+          if ! git diff --cached --quiet -- . \
+            ':(exclude)packages/metadata/data/index.json' \
+            ':(exclude)packages/metadata/data/manifest.json'; then
+            metadata_changed=true
+          fi
+
+          if [ -f packages/metadata/data/index.json ] && [ -f packages/metadata/data/manifest.json ]; then
+            if ! git diff --cached -I '"builtAt":' --quiet -- \
+              packages/metadata/data/index.json \
+              packages/metadata/data/manifest.json; then
+              metadata_changed=true
+            fi
+          fi
+
+          if [ "${metadata_changed}" = "true" ]; then
+            node packages/_private/release-utils/src/ensure-mcp-changeset.js
+          else
+            echo "No metadata data changes (excluding builtAt) detected; skipping automatic changeset creation"
+          fi
 
       - name: Creating releases via Changesets
         env:
@@ -49,8 +82,15 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           GITHUB_TOKEN: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}
           NPM_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN_CS }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run == true }}
         run: |
+          set -euo pipefail
+
           # Final release process
+
+          if [ "${DRY_RUN}" = "true" ]; then
+            echo "⚠️ Running release workflow in DRY RUN mode"
+          fi
 
           # Creates changelogs and bumps versions
           pnpm changeset version
@@ -69,25 +109,29 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          
-          # Commit changes and store exit code
-          git commit -m "chore: 🚀 version packages [skip ci]"
-          COMMIT_EXIT_CODE=$?
-          
-          # Only proceed if there were changes to commit
-          if [ $COMMIT_EXIT_CODE -eq 0 ]; then
-            git push origin main
 
-            # Create the new tags we need
-            pnpm changeset tag
-
-            # Push tags to remote
-            git push --tags
-
-            # Finally, push to the registry
-            pnpm publish --recursive --access=public
-          else
+          # Only proceed if there are staged changes to commit
+          if git diff --cached --quiet; then
             echo "No changes to commit, skipping release process"
+          else
+            git commit -m "chore: 🚀 version packages [skip ci]"
+
+            if [ "${DRY_RUN}" = "true" ]; then
+              echo "Dry run active: skipping git push/tag push"
+              echo "Dry run active: running npm publish validation only"
+              pnpm publish --recursive --access=public --dry-run
+            else
+              git push origin main
+
+              # Create the new tags we need
+              pnpm changeset tag
+
+              # Push tags to remote
+              git push --tags
+
+              # Finally, push to the registry
+              pnpm publish --recursive --access=public
+            fi
           fi
 
       # This workflow triggers the Storybook deployment

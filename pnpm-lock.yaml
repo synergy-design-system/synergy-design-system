@@ -919,10 +919,6 @@ importers:
         version: 5.9.3
 
   packages/metadata:
-    dependencies:
-      zod:
-        specifier: ^4.3.6
-        version: 4.3.6
     devDependencies:
       '@synergy-design-system/components':
         specifier: workspace:*
@@ -981,6 +977,9 @@ importers:
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
+      zod:
+        specifier: ^4.3.6
+        version: 4.3.6
 
   packages/react:
     dependencies:

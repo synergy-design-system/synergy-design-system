@@ -66,8 +66,8 @@
     "directory": "packages/metadata"
   },
   "scripts": {
-    "build:all": "pnpm run build:ts && RUN_STORYBOOK_SCRAPER=true pnpm run build:data",
-    "build": "pnpm run build:ts && pnpm run build:data",
+    "build:all": "METADATA_LOG_LEVEL=info pnpm run build:ts && RUN_STORYBOOK_SCRAPER=true pnpm run build:data",
+    "build": "METADATA_LOG_LEVEL=info pnpm run build:ts && pnpm run build:data",
     "build:data": "node dist/internal/cli/build.js",
     "build:ts": "tsc",
     "clean": "rimraf dist && ( [ -d data ] && find data -type f ! -name '.gitkeep' -delete && find data -type d -empty -delete || true )",

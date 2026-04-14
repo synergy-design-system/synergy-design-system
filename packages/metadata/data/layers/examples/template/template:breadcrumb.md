@@ -61,8 +61,8 @@
   }
 
   /**
-      * Styling for medium 
-      **/
+  * Styling for medium
+  **/
   #breadcrumb-responsive .truncated syn-icon-button::part(base) {
     padding: 0;
   }
@@ -79,8 +79,8 @@
   }
 
   /**
-      * Styling for large
-      **/
+  * Styling for large
+  **/
   @container (min-width: 640px) {
     #breadcrumb-responsive .truncated {
       display: none;
@@ -88,8 +88,8 @@
   }
 
   /**
-      * Styling for large and medium 
-      **/
+  * Styling for large and medium
+  **/
   @container (min-width: 480px) {
     /* Hide the back icon for the medium and large size */
     #breadcrumb-responsive .back-icon {
@@ -102,8 +102,8 @@
   }
 
   /**
-      * Styling for small 
-      **/
+  * Styling for small
+  **/
   @container (max-width: 479px) {
     /* Hide the separator of the breadcrumb */
     #breadcrumb-responsive syn-breadcrumb-item::part(separator) {

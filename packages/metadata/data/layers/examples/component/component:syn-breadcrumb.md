@@ -4,42 +4,10 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
 
 ```html
 <syn-breadcrumb>
-  <syn-breadcrumb-item
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
-  <syn-breadcrumb-item
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
-  <syn-breadcrumb-item
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
-  <syn-breadcrumb-item aria-current="page"
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
+  <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
+  <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
+  <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
+  <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
 </syn-breadcrumb>
 ```
 
@@ -52,41 +20,17 @@ By default, breadcrumb items are rendered as buttons so you can use them to navi
 ```html
 <syn-breadcrumb>
   <syn-breadcrumb-item href="#" target="_blank"
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
+    >Breadcrumb Item</syn-breadcrumb-item
+  >
   <syn-breadcrumb-item href="#" target="_blank"
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
+    >Breadcrumb Item</syn-breadcrumb-item
+  >
   <syn-breadcrumb-item href="#" target="_blank"
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
-  <syn-breadcrumb-item href="#" target="_blank" aria-current="page"
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
+    >Breadcrumb Item</syn-breadcrumb-item
+  >
+  <syn-breadcrumb-item href="#" target="_blank"
+    >Breadcrumb Item</syn-breadcrumb-item
+  >
 </syn-breadcrumb>
 ```
 
@@ -99,39 +43,11 @@ Use the prefix slot to add content before any breadcrumb item.
 ```html
 <syn-breadcrumb>
   <syn-breadcrumb-item>
-    <syn-icon
-      slot="prefix"
-      name="home"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon slot="prefix" name="home"></syn-icon>
     Breadcrumb Item
-    <syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
-  <syn-breadcrumb-item
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
-  <syn-breadcrumb-item aria-current="page"
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
+  </syn-breadcrumb-item>
+  <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
+  <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
 </syn-breadcrumb>
 ```
 
@@ -143,40 +59,12 @@ Use the suffix slot to add content after any breadcrumb item.
 
 ```html
 <syn-breadcrumb>
-  <syn-breadcrumb-item
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
-  <syn-breadcrumb-item
-    >Breadcrumb Item<syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
-  <syn-breadcrumb-item aria-current="page">
+  <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
+  <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
+  <syn-breadcrumb-item>
     Breadcrumb Item
-    <syn-icon
-      slot="suffix"
-      name="security"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
-    <syn-icon
-      name="chevron-down"
-      library="system"
-      class="ltr"
-      slot="separator"
-      aria-hidden="true"
-    ></syn-icon
-  ></syn-breadcrumb-item>
+    <syn-icon slot="suffix" name="security"></syn-icon>
+  </syn-breadcrumb-item>
 </syn-breadcrumb>
 ```
 
@@ -190,64 +78,21 @@ Dropdown menus can be placed in a prefix or suffix slot to provide additional op
 <!-- This <div> is only here for positioning the dropdown in storybook -->
 <div style="position: relative">
   <syn-breadcrumb>
-    <syn-breadcrumb-item
-      >Breadcrumb Item<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
+    <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
     <syn-breadcrumb-item>
-      <syn-dropdown placement="bottom-start">
+      <syn-dropdown>
         <button slot="trigger" class="manual-trigger">
-          <syn-icon
-            label="More options"
-            name="more_horiz"
-            role="img"
-            aria-label="More options"
-            library="default"
-          ></syn-icon>
+          <syn-icon label="More options" name="more_horiz"></syn-icon>
         </button>
-        <syn-menu role="menu">
-          <syn-menu-item role="menuitem" aria-disabled="false" tabindex="0"
-            >Breadcrumb Item</syn-menu-item
-          >
-          <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-            >Breadcrumb Item</syn-menu-item
-          >
-          <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-            >Breadcrumb Item</syn-menu-item
-          >
+        <syn-menu>
+          <syn-menu-item>Breadcrumb Item</syn-menu-item>
+          <syn-menu-item>Breadcrumb Item</syn-menu-item>
+          <syn-menu-item>Breadcrumb Item</syn-menu-item>
         </syn-menu>
       </syn-dropdown>
-      <syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
-    <syn-breadcrumb-item
-      >Breadcrumb Item<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
-    <syn-breadcrumb-item aria-current="page"
-      >Breadcrumb Item<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
+    </syn-breadcrumb-item>
+    <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
+    <syn-breadcrumb-item>Breadcrumb Item</syn-breadcrumb-item>
   </syn-breadcrumb>
 </div>
 <style>

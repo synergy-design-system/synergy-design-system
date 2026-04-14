@@ -75,19 +75,9 @@ Use the prefix and suffix slots to add e. g. icons or tags. If available the pre
   }
 </style>
 <syn-nav-item>
-  <syn-icon
-    name="wallpaper"
-    slot="prefix"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
+  <syn-icon name="wallpaper" slot="prefix"></syn-icon>
   Item with icon slots
-  <syn-icon
-    name="wallpaper"
-    slot="suffix"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
+  <syn-icon name="wallpaper" slot="suffix"></syn-icon>
 </syn-nav-item>
 <br />
 <syn-nav-item>
@@ -107,18 +97,16 @@ Use the \*children attribute to indicate that a chevron should be shown. In deve
   <syn-nav-item>
     Children closed
     <nav slot="children">
-      <syn-nav-item style="--indentation: 1">Item 1</syn-nav-item>
-      <syn-nav-item style="--indentation: 1">Item 2</syn-nav-item>
+      <syn-nav-item>Item 1</syn-nav-item>
+      <syn-nav-item>Item 2</syn-nav-item>
     </nav>
   </syn-nav-item>
   <br />
   <syn-nav-item open="">
     Children open
     <nav slot="children">
-      <syn-nav-item href="javascript:void(0)" style="--indentation: 1"
-        >Item 1</syn-nav-item
-      >
-      <syn-nav-item style="--indentation: 1">Item 2</syn-nav-item>
+      <syn-nav-item href="javascript:void(0)">Item 1</syn-nav-item>
+      <syn-nav-item>Item 2</syn-nav-item>
     </nav>
   </syn-nav-item>
 </nav>

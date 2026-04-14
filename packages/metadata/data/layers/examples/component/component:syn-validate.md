@@ -4,23 +4,28 @@ Validate offers options for convenient error handling in form elements.
 
 ```html
 <form id="components-syn-validate--default-validate-demo-form">
-  <syn-validate variant="native" on="">
+  <syn-validate>
     <syn-input
       label="Invalid input"
       type="email"
       value="team(at)synergy.com"
-      title=""
-      size="medium"
-      form=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button type="submit" title="" variant="outline" size="medium"
-      >Submit</syn-button
-    >
+    <syn-button type="submit">Submit</syn-button>
   </p>
 </form>
+<script type="module">
+  customElements.whenDefined("syn-validate").then(() => {
+    const form = document.getElementById(
+      "components-syn-validate--default-validate-demo-form",
+    );
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
 ```
 
 ---
@@ -37,17 +42,22 @@ When the tooltip variant is chosen, validation errors are displayed in a <syn-to
       type="email"
       value="team(at)synergy.com"
       required=""
-      title=""
-      size="medium"
-      form=""
     ></syn-input>
   </syn-validate>
   <p>
-    <syn-button type="submit" title="" variant="outline" size="medium"
-      >Submit</syn-button
-    >
+    <syn-button type="submit">Submit</syn-button>
   </p>
 </form>
+<script type="module">
+  customElements.whenDefined("syn-validate").then(() => {
+    const form = document.getElementById(
+      "components-syn-validate--tooltip-variant-validate-demo-form",
+    );
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
 ```
 
 ---
@@ -58,23 +68,28 @@ Set the variant attribute to inline to show the invalid message below the select
 
 ```html
 <form id="components-syn-validate--inline-variant-validate-demo-form">
-  <syn-validate class="validation-inline" variant="inline" on="">
+  <syn-validate class="validation-inline" variant="inline">
     <syn-input
       label="Inline validation"
       type="email"
       value="team(at)synergy.com"
-      title=""
-      size="medium"
-      form=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button type="submit" title="" variant="outline" size="medium"
-      >Submit</syn-button
-    >
+    <syn-button type="submit">Submit</syn-button>
   </p>
 </form>
+<script type="module">
+  customElements.whenDefined("syn-validate").then(() => {
+    const form = document.getElementById(
+      "components-syn-validate--inline-variant-validate-demo-form",
+    );
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
 ```
 
 ---
@@ -85,28 +100,28 @@ Use hide-icon to hide the icon in inline style. This is especially useful when s
 
 ```html
 <form id="components-syn-validate--hide-icon-validate-demo-form">
-  <syn-validate
-    class="validation-hide-icon"
-    hide-icon=""
-    variant="inline"
-    on=""
-  >
+  <syn-validate class="validation-hide-icon" hide-icon="" variant="inline">
     <syn-input
       label="Hide icon"
       type="email"
       value="team(at)synergy.com"
-      title=""
-      size="medium"
-      form=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button type="submit" title="" variant="outline" size="medium"
-      >Submit</syn-button
-    >
+    <syn-button type="submit">Submit</syn-button>
   </p>
 </form>
+<script type="module">
+  customElements.whenDefined("syn-validate").then(() => {
+    const form = document.getElementById(
+      "components-syn-validate--hide-icon-validate-demo-form",
+    );
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
 ```
 
 ---
@@ -120,46 +135,48 @@ In development use the size attribute of the form element e.g. syn-input to set 
   <div
     style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
   >
-    <syn-validate eager="" variant="inline" on="">
+    <syn-validate eager="" variant="inline">
       <syn-input
         type="email"
         value="team(at)synergy.com"
         label="Size small"
         size="small"
-        title=""
-        form=""
       ></syn-input>
     </syn-validate>
 
-    <syn-validate eager="" variant="inline" on="">
+    <syn-validate eager="" variant="inline">
       <syn-input
         type="email"
         value="team(at)synergy.com"
         label="Size medium"
         size="medium"
-        title=""
-        form=""
       ></syn-input>
     </syn-validate>
 
-    <syn-validate eager="" variant="inline" on="">
+    <syn-validate eager="" variant="inline">
       <syn-input
         type="email"
         value="team(at)synergy.com"
         label="Size large"
         size="large"
-        title=""
-        form=""
       ></syn-input>
     </syn-validate>
   </div>
 
   <p>
-    <syn-button type="submit" title="" variant="outline" size="medium"
-      >Submit</syn-button
-    >
+    <syn-button type="submit">Submit</syn-button>
   </p>
 </form>
+<script type="module">
+  customElements.whenDefined("syn-validate").then(() => {
+    const form = document.getElementById(
+      "components-syn-validate--sizes-validate-demo-form",
+    );
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
 ```
 
 ---
@@ -175,18 +192,23 @@ Use the live value for the on attribute to validate on every input change (e. g.
       label="Invalid input"
       type="email"
       value="team(at)synergy.com"
-      title=""
-      size="medium"
-      form=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button type="submit" title="" variant="outline" size="medium"
-      >Submit</syn-button
-    >
+    <syn-button type="submit">Submit</syn-button>
   </p>
 </form>
+<script type="module">
+  customElements.whenDefined("syn-validate").then(() => {
+    const form = document.getElementById(
+      "components-syn-validate--live-validate-demo-form",
+    );
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
 ```
 
 ---
@@ -203,24 +225,28 @@ Use the custom-validation-message attribute to use whichever error you need as t
     class="validation-custom-validation"
     custom-validation-message='Include an "@" in the email address, otherwise you will never get our marvelous newsletter'
     variant="inline"
-    on=""
   >
     <syn-input
       label="Custom validation"
       type="email"
       value="team(at)synergy.com"
-      title=""
-      size="medium"
-      form=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button type="submit" title="" variant="outline" size="medium"
-      >Submit</syn-button
-    >
+    <syn-button type="submit">Submit</syn-button>
   </p>
 </form>
+<script type="module">
+  customElements.whenDefined("syn-validate").then(() => {
+    const form = document.getElementById(
+      "components-syn-validate--custom-validation-message-validate-demo-form",
+    );
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
 ```
 
 ---
@@ -237,11 +263,19 @@ Wrap the element around any other form field, that follows browser standards to 
   </syn-validate>
 
   <p>
-    <syn-button type="submit" title="" variant="outline" size="medium"
-      >Submit</syn-button
-    >
+    <syn-button type="submit">Submit</syn-button>
   </p>
 </form>
+<script type="module">
+  customElements.whenDefined("syn-validate").then(() => {
+    const form = document.getElementById(
+      "components-syn-validate--custom-form-field-validate-demo-form",
+    );
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
 ```
 
 ---
@@ -263,18 +297,23 @@ Use the on attribute to listen for one or many custom events. This may be useful
       label="Custom validation (triggered on hover and blur)"
       type="email"
       value="team(at)synergy.com"
-      title=""
-      size="medium"
-      form=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button type="submit" title="" variant="outline" size="medium"
-      >Submit</syn-button
-    >
+    <syn-button type="submit">Submit</syn-button>
   </p>
 </form>
+<script type="module">
+  customElements.whenDefined("syn-validate").then(() => {
+    const form = document.getElementById(
+      "components-syn-validate--binding-to-custom-event-names-validate-demo-form",
+    );
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
 ```
 
 ---
@@ -285,21 +324,26 @@ Use the eager attribute to validate the field when the component is mounted. Thi
 
 ```html
 <form id="components-syn-validate--eager-validate-demo-form">
-  <syn-validate eager="" variant="inline" on="">
+  <syn-validate eager="" variant="inline">
     <syn-input
       label="Eager validation (triggered on page load)"
       type="email"
       value="team(at)synergy.com"
-      title=""
-      size="medium"
-      form=""
     ></syn-input>
   </syn-validate>
 
   <p>
-    <syn-button type="submit" title="" variant="outline" size="medium"
-      >Submit</syn-button
-    >
+    <syn-button type="submit">Submit</syn-button>
   </p>
 </form>
+<script type="module">
+  customElements.whenDefined("syn-validate").then(() => {
+    const form = document.getElementById(
+      "components-syn-validate--eager-validate-demo-form",
+    );
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  });
+</script>
 ```

@@ -1,29 +1,9 @@
-## Subheadline
-
-```html
-<syn-details summary="Toggle Me" contained="" size="medium">
-  <h3
-    style="
-      margin: 0 0 var(--syn-spacing-x-small);
-      font: var(--syn-body-small-bold);
-    "
-  >
-    Subheadline
-  </h3>
-  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-  eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-  voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-</syn-details>
-```
-
----
-
 ## Default
 
 Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component.
 
 ```html
-<syn-details summary="Toggle Me" contained="" size="medium">
+<syn-details summary="Toggle Me" contained="">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);
@@ -45,7 +25,7 @@ Details show a brief summary and expand to show additional content. If you want 
 Details show a brief summary and expand to show additional content.
 
 ```html
-<syn-details summary="Toggle Me" open="" size="medium">
+<syn-details summary="Toggle Me" open="">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);
@@ -67,7 +47,7 @@ Details show a brief summary and expand to show additional content.
 To give content more structure, you can use the property contained.
 
 ```html
-<syn-details summary="Toggle Me" contained="" size="medium">
+<syn-details summary="Toggle Me" contained="">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);
@@ -81,7 +61,7 @@ To give content more structure, you can use the property contained.
   voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 </syn-details>
 <br />
-<syn-details summary="Toggle Me" open="" contained="" size="medium">
+<syn-details summary="Toggle Me" open="" contained="">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);
@@ -104,7 +84,7 @@ The focus event gives the user feedback that the detail has been focused by the 
 
 ```html
 <div style="padding: 5px">
-  <syn-details summary="Toggle Me" contained="" size="medium">
+  <syn-details summary="Toggle Me" contained="">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -127,7 +107,7 @@ The focus event gives the user feedback that the detail has been focused by the 
 Use the disable attribute to prevent the details from expanding.
 
 ```html
-<syn-details summary="Toggle Me" disabled="" contained="" size="medium">
+<syn-details summary="Toggle Me" disabled="">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);
@@ -204,13 +184,8 @@ Use the size attribute to change a detail’s size.
 Use the prefix Icon to prepend an icon to the details.
 
 ```html
-<syn-details open="" size="medium">
-  <syn-icon
-    name="home"
-    slot="summary"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
+<syn-details open="">
+  <syn-icon name="home" slot="summary"></syn-icon>
   <span slot="summary">Accordion Element</span>
   <h3
     style="

@@ -7,7 +7,6 @@ Icons buttons are simple, icon-only buttons that can be used for actions and in 
   name="wallpaper"
   label="Wallpaper"
   size="medium"
-  color="currentColor"
 ></syn-icon-button>
 ```
 

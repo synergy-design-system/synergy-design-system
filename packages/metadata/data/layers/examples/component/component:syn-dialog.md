@@ -6,24 +6,44 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
 <syn-dialog open="" label="Dialog">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <span slot="footer"> </span>
-  <syn-button
-    class="default-close-icon"
-    variant="filled"
-    slot="footer"
-    title=""
-    size="medium"
+  <syn-button class="default-close-icon" variant="filled" slot="footer"
     >Close</syn-button
   >
-  <span slot="footer"> </span> <span slot="footer"> </span>
+  <span slot="footer"> </span>
+  <script slot="footer">
+    [...document.querySelectorAll(".default-close-icon")].forEach((elm) => {
+      elm.addEventListener("click", (e) => {
+        const dialog = e.target.closest("syn-dialog");
+        dialog.label += " - Clicked";
+        dialog.hide();
+        dialog.modal.deactivateExternal();
+      });
+    });
+  </script>
+  <span slot="footer"> </span>
 </syn-dialog>
 
-<syn-button
-  class="dialog-default-story-opener"
-  title=""
-  variant="outline"
-  size="medium"
-  >Open Dialog</syn-button
->
+<syn-button class="dialog-default-story-opener">Open Dialog</syn-button>
+<script type="module">
+  const createOpener = (opener) => {
+    // Storybook only: When loading the docs page, all dialogs are applying a focus trap.
+    // Remove the initial trap and make sure to do the same when recreating the story.
+    const loadedDialog = opener.parentElement.querySelector("syn-dialog");
+    loadedDialog.modal.activateExternal();
+
+    opener.addEventListener("click", (e) => {
+      const currentDialog = e.target.parentElement.querySelector("syn-dialog");
+      currentDialog.show();
+      currentDialog.modal.activateExternal();
+    });
+  };
+
+  [...document.querySelectorAll(".dialog-default-story-opener")].forEach(
+    (i) => {
+      createOpener(i);
+    },
+  );
+</script>
 ```
 
 ---
@@ -36,23 +56,42 @@ Use the --width custom property to set the dialog’s width.
 <syn-dialog open="" label="Dialog" style="--width: 50vw">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-  <syn-button
-    class="dialog-custom-width"
-    variant="filled"
-    slot="footer"
-    title=""
-    size="medium"
+  <syn-button class="dialog-custom-width" variant="filled" slot="footer"
     >Close</syn-button
   >
+  <script>
+    [...document.querySelectorAll(".dialog-custom-width")].forEach((elm) => {
+      elm.addEventListener("click", (e) => {
+        const dialog = e.target.closest("syn-dialog");
+        dialog.label += " - Clicked";
+        dialog.hide();
+        dialog.modal.deactivateExternal();
+      });
+    });
+  </script>
 </syn-dialog>
 
-<syn-button
-  class="dialog-custom-width-story-opener"
-  title=""
-  variant="outline"
-  size="medium"
-  >Open Dialog</syn-button
->
+<syn-button class="dialog-custom-width-story-opener">Open Dialog</syn-button>
+<script type="module">
+  const createOpener = (opener) => {
+    // Storybook only: When loading the docs page, all dialogs are applying a focus trap.
+    // Remove the initial trap and make sure to do the same when recreating the story.
+    const loadedDialog = opener.parentElement.querySelector("syn-dialog");
+    loadedDialog.modal.activateExternal();
+
+    opener.addEventListener("click", (e) => {
+      const currentDialog = e.target.parentElement.querySelector("syn-dialog");
+      currentDialog.show();
+      currentDialog.modal.activateExternal();
+    });
+  };
+
+  [...document.querySelectorAll(".dialog-custom-width-story-opener")].forEach(
+    (i) => {
+      createOpener(i);
+    },
+  );
+</script>
 ```
 
 ---
@@ -98,23 +137,42 @@ By design, a dialog’s height will never exceed that of the viewport. As such, 
     </p>
   </div>
 
-  <syn-button
-    class="dialog-scrolling"
-    variant="filled"
-    slot="footer"
-    title=""
-    size="medium"
+  <syn-button class="dialog-scrolling" variant="filled" slot="footer"
     >Close</syn-button
   >
+  <script>
+    [...document.querySelectorAll(".dialog-scrolling")].forEach((elm) => {
+      elm.addEventListener("click", (e) => {
+        const dialog = e.target.closest("syn-dialog");
+        dialog.label += " - Clicked";
+        dialog.hide();
+        dialog.modal.deactivateExternal();
+      });
+    });
+  </script>
 </syn-dialog>
 
-<syn-button
-  class="dialog-scrolling-story-opener"
-  title=""
-  variant="outline"
-  size="medium"
-  >Open Dialog</syn-button
->
+<syn-button class="dialog-scrolling-story-opener">Open Dialog</syn-button>
+<script type="module">
+  const createOpener = (opener) => {
+    // Storybook only: When loading the docs page, all dialogs are applying a focus trap.
+    // Remove the initial trap and make sure to do the same when recreating the story.
+    const loadedDialog = opener.parentElement.querySelector("syn-dialog");
+    loadedDialog.modal.activateExternal();
+
+    opener.addEventListener("click", (e) => {
+      const currentDialog = e.target.parentElement.querySelector("syn-dialog");
+      currentDialog.show();
+      currentDialog.modal.activateExternal();
+    });
+  };
+
+  [...document.querySelectorAll(".dialog-scrolling-story-opener")].forEach(
+    (i) => {
+      createOpener(i);
+    },
+  );
+</script>
 ```
 
 ---
@@ -130,28 +188,50 @@ The header shows a functional close button by default. You can use the header-ac
     slot="header-actions"
     name="open_in_new"
     label="Open in new Tab"
-    size="inherit"
-    color="currentColor"
   ></syn-icon-button>
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-  <syn-button
-    class="dialog-header-actions"
-    variant="filled"
-    slot="footer"
-    title=""
-    size="medium"
+  <syn-button class="dialog-header-actions" variant="filled" slot="footer"
     >Close</syn-button
   >
+  <script>
+    [...document.querySelectorAll(".dialog-header-actions")].forEach((elm) => {
+      elm.addEventListener("click", (e) => {
+        const dialog = e.target.closest("syn-dialog");
+        dialog.label += " - Clicked";
+        dialog.hide();
+        dialog.modal.deactivateExternal();
+      });
+    });
+  </script>
 </syn-dialog>
+<script type="module">
+  document
+    .querySelector(".new-window")
+    .addEventListener("click", () => window.open(location.href));
+</script>
 
-<syn-button
-  class="dialog-header-actions-story-opener"
-  title=""
-  variant="outline"
-  size="medium"
-  >Open Dialog</syn-button
->
+<syn-button class="dialog-header-actions-story-opener">Open Dialog</syn-button>
+<script type="module">
+  const createOpener = (opener) => {
+    // Storybook only: When loading the docs page, all dialogs are applying a focus trap.
+    // Remove the initial trap and make sure to do the same when recreating the story.
+    const loadedDialog = opener.parentElement.querySelector("syn-dialog");
+    loadedDialog.modal.activateExternal();
+
+    opener.addEventListener("click", (e) => {
+      const currentDialog = e.target.parentElement.querySelector("syn-dialog");
+      currentDialog.show();
+      currentDialog.modal.activateExternal();
+    });
+  };
+
+  [...document.querySelectorAll(".dialog-header-actions-story-opener")].forEach(
+    (i) => {
+      createOpener(i);
+    },
+  );
+</script>
 ```
 
 ---
@@ -164,23 +244,52 @@ By default, dialogs will close when the user clicks the close button, clicks the
 <syn-dialog open="" label="Dialog" class="dialog-deny-close">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-  <syn-button
-    class="dialog-deny-close-actions"
-    variant="filled"
-    slot="footer"
-    title=""
-    size="medium"
+  <syn-button class="dialog-deny-close-actions" variant="filled" slot="footer"
     >Close</syn-button
   >
+  <script>
+    [...document.querySelectorAll(".dialog-deny-close-actions")].forEach(
+      (elm) => {
+        elm.addEventListener("click", (e) => {
+          const dialog = e.target.closest("syn-dialog");
+          dialog.label += " - Clicked";
+          dialog.hide();
+          dialog.modal.deactivateExternal();
+        });
+      },
+    );
+  </script>
 </syn-dialog>
+<script type="module">
+  const dialog = document.querySelector(".dialog-deny-close");
+  dialog.addEventListener("syn-request-close", (event) => {
+    if (event.detail.source === "overlay") {
+      event.preventDefault();
+    }
+  });
+</script>
 
-<syn-button
-  class="dialog-deny-close-story-opener"
-  title=""
-  variant="outline"
-  size="medium"
-  >Open Dialog</syn-button
->
+<syn-button class="dialog-deny-close-story-opener">Open Dialog</syn-button>
+<script type="module">
+  const createOpener = (opener) => {
+    // Storybook only: When loading the docs page, all dialogs are applying a focus trap.
+    // Remove the initial trap and make sure to do the same when recreating the story.
+    const loadedDialog = opener.parentElement.querySelector("syn-dialog");
+    loadedDialog.modal.activateExternal();
+
+    opener.addEventListener("click", (e) => {
+      const currentDialog = e.target.parentElement.querySelector("syn-dialog");
+      currentDialog.show();
+      currentDialog.modal.activateExternal();
+    });
+  };
+
+  [...document.querySelectorAll(".dialog-deny-close-story-opener")].forEach(
+    (i) => {
+      createOpener(i);
+    },
+  );
+</script>
 ```
 
 ---
@@ -194,27 +303,47 @@ By default, the dialog’s panel will gain focus when opened. This allows a subs
   <syn-input
     autofocus=""
     placeholder="I will have focus when the dialog is opened"
-    title=""
-    type="text"
-    size="medium"
-    form=""
   ></syn-input>
 
   <syn-button
     class="dialog-initial-focus-actions"
     variant="filled"
     slot="footer"
-    title=""
-    size="medium"
     >Close</syn-button
   >
+  <script>
+    [...document.querySelectorAll(".dialog-initial-focus-actions")].forEach(
+      (elm) => {
+        elm.addEventListener("click", (e) => {
+          const dialog = e.target.closest("syn-dialog");
+          dialog.label += " - Clicked";
+          dialog.hide();
+          dialog.modal.deactivateExternal();
+        });
+      },
+    );
+  </script>
 </syn-dialog>
 
-<syn-button
-  class="dialog-initial-focus-story-opener"
-  title=""
-  variant="outline"
-  size="medium"
-  >Open Dialog</syn-button
->
+<syn-button class="dialog-initial-focus-story-opener">Open Dialog</syn-button>
+<script type="module">
+  const createOpener = (opener) => {
+    // Storybook only: When loading the docs page, all dialogs are applying a focus trap.
+    // Remove the initial trap and make sure to do the same when recreating the story.
+    const loadedDialog = opener.parentElement.querySelector("syn-dialog");
+    loadedDialog.modal.activateExternal();
+
+    opener.addEventListener("click", (e) => {
+      const currentDialog = e.target.parentElement.querySelector("syn-dialog");
+      currentDialog.show();
+      currentDialog.modal.activateExternal();
+    });
+  };
+
+  [...document.querySelectorAll(".dialog-initial-focus-story-opener")].forEach(
+    (i) => {
+      createOpener(i);
+    },
+  );
+</script>
 ```

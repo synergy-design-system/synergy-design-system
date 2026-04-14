@@ -4,7 +4,7 @@ Popup is a utility that lets you declaratively anchor “popup” containers to 
 
 ```html
 <div class="popup-default">
-  <syn-popup active="" arrow-padding="10" placement="top">
+  <syn-popup active="" arrow-padding="10">
     <div class="box"></div>
     <span slot="anchor"></span>
   </syn-popup>
@@ -43,7 +43,7 @@ meaning you can have many idle popups on the page without affecting performance.
   </syn-popup>
 
   <br />
-  <syn-switch checked="" title="" size="medium" form="">Active</syn-switch>
+  <syn-switch checked="">Active</syn-switch>
 </div>
 
 <style>
@@ -62,6 +62,14 @@ meaning you can have many idle popups on the page without affecting performance.
     border-radius: var(--syn-border-radius-medium);
   }
 </style>
+
+<script type="module">
+  const container = document.querySelector(".popup-active");
+  const popup = container.querySelector("syn-popup");
+  const active = container.querySelector("syn-switch");
+
+  active.addEventListener("syn-change", () => (popup.active = active.checked));
+</script>
 ```
 
 ---
@@ -118,97 +126,19 @@ available space and it will be removed when the popup is deactivated.
     <div class="box"></div>
   </syn-popup>
 
-  <syn-select
-    label="Placement"
-    value="top"
-    size="medium"
-    placement="bottom"
-    form=""
-  >
-    <syn-option
-      value="top"
-      role="option"
-      aria-selected="true"
-      aria-disabled="false"
-      >top</syn-option
-    >
-    <syn-option
-      value="top-start"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >top-start</syn-option
-    >
-    <syn-option
-      value="top-end"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >top-end</syn-option
-    >
-    <syn-option
-      value="bottom"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >bottom</syn-option
-    >
-    <syn-option
-      value="bottom-start"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >bottom-start</syn-option
-    >
-    <syn-option
-      value="bottom-end"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >bottom-end</syn-option
-    >
-    <syn-option
-      value="right"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >right</syn-option
-    >
-    <syn-option
-      value="right-start"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >right-start</syn-option
-    >
-    <syn-option
-      value="right-end"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >right-end</syn-option
-    >
-    <syn-option
-      value="left"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >left</syn-option
-    >
-    <syn-option
-      value="left-start"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >left-start</syn-option
-    >
-    <syn-option
-      value="left-end"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >left-end</syn-option
-    >
+  <syn-select label="Placement" value="top">
+    <syn-option value="top">top</syn-option>
+    <syn-option value="top-start">top-start</syn-option>
+    <syn-option value="top-end">top-end</syn-option>
+    <syn-option value="bottom">bottom</syn-option>
+    <syn-option value="bottom-start">bottom-start</syn-option>
+    <syn-option value="bottom-end">bottom-end</syn-option>
+    <syn-option value="right">right</syn-option>
+    <syn-option value="right-start">right-start</syn-option>
+    <syn-option value="right-end">right-end</syn-option>
+    <syn-option value="left">left</syn-option>
+    <syn-option value="left-start">left-start</syn-option>
+    <syn-option value="left-end">left-end</syn-option>
   </syn-select>
 </div>
 
@@ -232,6 +162,14 @@ available space and it will be removed when the popup is deactivated.
     max-width: 280px;
   }
 </style>
+
+<script type="module">
+  const container = document.querySelector(".popup-placement");
+  const popup = container.querySelector("syn-popup");
+  const select = container.querySelector("syn-select");
+
+  select.addEventListener("syn-change", () => (popup.placement = select.value));
+</script>
 ```
 
 ---
@@ -248,15 +186,7 @@ A positive value will move the popup further away and a negative value will move
     <div class="box"></div>
   </syn-popup>
 
-  <syn-range
-    min="-50"
-    max="50"
-    step="1"
-    value="0"
-    label="Distance"
-    size="medium"
-    form=""
-  ></syn-range>
+  <syn-range min="-50" max="50" step="1" value="0" label="Distance"></syn-range>
 </div>
 
 <style>
@@ -279,6 +209,17 @@ A positive value will move the popup further away and a negative value will move
     max-width: 260px;
   }
 </style>
+
+<script type="module">
+  const container = document.querySelector(".popup-distance");
+  const popup = container.querySelector("syn-popup");
+  const distance = container.querySelector("syn-range");
+
+  distance.addEventListener(
+    "syn-input",
+    () => (popup.distance = distance.value),
+  );
+</script>
 ```
 
 ---
@@ -296,15 +237,7 @@ Both positive and negative values are allowed.
     <div class="box"></div>
   </syn-popup>
 
-  <syn-range
-    min="-50"
-    max="50"
-    step="1"
-    value="0"
-    label="Skidding"
-    size="medium"
-    form=""
-  ></syn-range>
+  <syn-range min="-50" max="50" step="1" value="0" label="Skidding"></syn-range>
 </div>
 
 <style>
@@ -327,6 +260,17 @@ Both positive and negative values are allowed.
     max-width: 260px;
   }
 </style>
+
+<script type="module">
+  const container = document.querySelector(".popup-skidding");
+  const popup = container.querySelector("syn-popup");
+  const skidding = container.querySelector("syn-range");
+
+  skidding.addEventListener(
+    "syn-input",
+    () => (popup.skidding = skidding.value),
+  );
+</script>
 ```
 
 ---
@@ -362,139 +306,31 @@ the arrow to align to the start, end, or center of the instead.
       name="placement"
       value="top"
       class="popup-overview-select"
-      size="medium"
-      placement="bottom"
-      form=""
     >
-      <syn-option
-        value="top"
-        role="option"
-        aria-selected="true"
-        aria-disabled="false"
-        >top</syn-option
-      >
-      <syn-option
-        value="top-start"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >top-start</syn-option
-      >
-      <syn-option
-        value="top-end"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >top-end</syn-option
-      >
-      <syn-option
-        value="bottom"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >bottom</syn-option
-      >
-      <syn-option
-        value="bottom-start"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >bottom-start</syn-option
-      >
-      <syn-option
-        value="bottom-end"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >bottom-end</syn-option
-      >
-      <syn-option
-        value="right"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >right</syn-option
-      >
-      <syn-option
-        value="right-start"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >right-start</syn-option
-      >
-      <syn-option
-        value="right-end"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >right-end</syn-option
-      >
-      <syn-option
-        value="left"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >left</syn-option
-      >
-      <syn-option
-        value="left-start"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >left-start</syn-option
-      >
-      <syn-option
-        value="left-end"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >left-end</syn-option
-      >
+      <syn-option value="top">top</syn-option>
+      <syn-option value="top-start">top-start</syn-option>
+      <syn-option value="top-end">top-end</syn-option>
+      <syn-option value="bottom">bottom</syn-option>
+      <syn-option value="bottom-start">bottom-start</syn-option>
+      <syn-option value="bottom-end">bottom-end</syn-option>
+      <syn-option value="right">right</syn-option>
+      <syn-option value="right-start">right-start</syn-option>
+      <syn-option value="right-end">right-end</syn-option>
+      <syn-option value="left">left</syn-option>
+      <syn-option value="left-start">left-start</syn-option>
+      <syn-option value="left-end">left-end</syn-option>
     </syn-select>
 
-    <syn-select
-      label="Arrow Placement"
-      name="arrow-placement"
-      value="anchor"
-      size="medium"
-      placement="bottom"
-      form=""
-    >
-      <syn-option
-        value="anchor"
-        role="option"
-        aria-selected="true"
-        aria-disabled="false"
-        >anchor</syn-option
-      >
-      <syn-option
-        value="start"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >start</syn-option
-      >
-      <syn-option
-        value="end"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >end</syn-option
-      >
-      <syn-option
-        value="center"
-        role="option"
-        aria-selected="false"
-        aria-disabled="false"
-        >center</syn-option
-      >
+    <syn-select label="Arrow Placement" name="arrow-placement" value="anchor">
+      <syn-option value="anchor">anchor</syn-option>
+      <syn-option value="start">start</syn-option>
+      <syn-option value="end">end</syn-option>
+      <syn-option value="center">center</syn-option>
     </syn-select>
   </div>
 
   <div class="popup-arrow-options">
-    <syn-switch name="arrow" checked="" title="" size="medium" form=""
-      >Arrow</syn-switch
-    >
+    <syn-switch name="arrow" checked="">Arrow</syn-switch>
   </div>
 
   <style>
@@ -532,6 +368,24 @@ the arrow to align to the start, end, or center of the instead.
       margin-top: 1rem;
     }
   </style>
+
+  <script type="module">
+    const container = document.querySelector(".popup-arrow");
+    const popup = container.querySelector("syn-popup");
+    const placement = container.querySelector('[name="placement"]');
+    const arrowPlacement = container.querySelector('[name="arrow-placement"]');
+    const arrow = container.querySelector('[name="arrow"]');
+
+    placement.addEventListener(
+      "syn-change",
+      () => (popup.placement = placement.value),
+    );
+    arrowPlacement.addEventListener(
+      "syn-change",
+      () => (popup.arrowPlacement = arrowPlacement.value),
+    );
+    arrow.addEventListener("syn-change", () => (popup.arrow = arrow.checked));
+  </script>
 </div>
 ```
 
@@ -549,41 +403,11 @@ This is useful for controls that need the popup to stay the same width or height
     <div class="box"></div>
   </syn-popup>
 
-  <syn-select
-    value="width"
-    label="Sync"
-    size="medium"
-    placement="bottom"
-    form=""
-  >
-    <syn-option
-      value="width"
-      role="option"
-      aria-selected="true"
-      aria-disabled="false"
-      >Width</syn-option
-    >
-    <syn-option
-      value="height"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Height</syn-option
-    >
-    <syn-option
-      value="both"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Both</syn-option
-    >
-    <syn-option
-      value=""
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >None</syn-option
-    >
+  <syn-select value="width" label="Sync">
+    <syn-option value="width">Width</syn-option>
+    <syn-option value="height">Height</syn-option>
+    <syn-option value="both">Both</syn-option>
+    <syn-option value="">None</syn-option>
   </syn-select>
 </div>
 
@@ -609,6 +433,15 @@ This is useful for controls that need the popup to stay the same width or height
     width: 160px;
   }
 </style>
+
+<script type="module">
+  const container = document.querySelector(".popup-sync");
+  const popup = container.querySelector("syn-popup");
+  const fixed = container.querySelector("syn-switch");
+  const sync = container.querySelector("syn-select");
+
+  sync.addEventListener("syn-change", () => (popup.sync = sync.value));
+</script>
 ```
 
 ---
@@ -632,7 +465,7 @@ Additional options are available to control the flip behavior's boundary and pad
   </div>
 
   <br />
-  <syn-switch checked="" title="" size="medium" form="">Flip</syn-switch>
+  <syn-switch checked="">Flip</syn-switch>
 </div>
 
 <style>
@@ -658,6 +491,14 @@ Additional options are available to control the flip behavior's boundary and pad
     border-radius: var(--syn-border-radius-medium);
   }
 </style>
+
+<script type="module">
+  const container = document.querySelector(".popup-flip");
+  const popup = container.querySelector("#popup-flip");
+  const flip = container.querySelector(".popup-flip syn-switch");
+
+  flip.addEventListener("syn-change", () => (popup.flip = flip.checked));
+</script>
 ```
 
 ---
@@ -736,7 +577,7 @@ Toggle the switch to see the difference.
     </syn-popup>
   </div>
 
-  <syn-switch checked="" title="" size="medium" form="">Shift</syn-switch>
+  <syn-switch checked="">Shift</syn-switch>
 </div>
 
 <style>
@@ -761,6 +602,14 @@ Toggle the switch to see the difference.
     border-radius: var(--syn-border-radius-medium);
   }
 </style>
+
+<script type="module">
+  const container = document.querySelector(".popup-shift");
+  const popup = container.querySelector("syn-popup");
+  const shift = container.querySelector("syn-switch");
+
+  shift.addEventListener("syn-change", () => (popup.shift = shift.checked));
+</script>
 ```
 
 ---
@@ -781,8 +630,52 @@ As such, a mouse is required to properly view it.
     <div class="circle"></div>
   </syn-popup>
 
-  <syn-switch title="" size="medium" form="">Highlight mouse cursor</syn-switch>
+  <syn-switch>Highlight mouse cursor</syn-switch>
 </div>
+
+<script type="module">
+  const container = document.querySelector(".popup-virtual-element");
+  const popup = container.querySelector("syn-popup");
+  const circle = container.querySelector(".circle");
+  const enabled = container.querySelector("syn-switch");
+  let clientX = 0;
+  let clientY = 0;
+
+  // Set the virtual element as a property
+  popup.anchor = {
+    getBoundingClientRect() {
+      return {
+        width: 0,
+        height: 0,
+        x: clientX,
+        y: clientY,
+        top: clientY,
+        left: clientX,
+        right: clientX,
+        bottom: clientY,
+      };
+    },
+  };
+
+  // Only activate the popup when the switch is checked
+  enabled.addEventListener("syn-change", () => {
+    popup.active = enabled.checked;
+  });
+
+  // Listen for the mouse to move
+  document.addEventListener("mousemove", handleMouseMove);
+
+  // Update the virtual element as the mouse moves
+  function handleMouseMove(event) {
+    clientX = event.clientX;
+    clientY = event.clientY;
+
+    // Reposition the popup when the virtual anchor moves
+    if (popup.active) {
+      popup.reposition();
+    }
+  }
+</script>
 
 <style>
   /* If you need to set a z-index, set it on the popup part like this */

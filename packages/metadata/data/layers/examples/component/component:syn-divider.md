@@ -3,7 +3,7 @@
 Dividers are used to visually separate or group elements.
 
 ```html
-<syn-divider role="separator" aria-orientation="horizontal"></syn-divider>
+<syn-divider></syn-divider>
 ```
 
 ---
@@ -13,11 +13,7 @@ Dividers are used to visually separate or group elements.
 Use the --width custom property to change the width of the divider.
 
 ```html
-<syn-divider
-  style="--width: var(--syn-spacing-x-small)"
-  role="separator"
-  aria-orientation="horizontal"
-></syn-divider>
+<syn-divider style="--width: var(--syn-spacing-x-small)"></syn-divider>
 ```
 
 ---
@@ -27,11 +23,7 @@ Use the --width custom property to change the width of the divider.
 Use the --color custom property to change the color of the divider.
 
 ```html
-<syn-divider
-  style="--color: var(--syn-color-primary-600)"
-  role="separator"
-  aria-orientation="horizontal"
-></syn-divider>
+<syn-divider style="--color: var(--syn-color-primary-600)"></syn-divider>
 ```
 
 ---
@@ -43,11 +35,7 @@ Use the --spacing custom property to change the amount of space between the divi
 ```html
 <div style="text-align: center">
   Above
-  <syn-divider
-    style="--spacing: var(--syn-spacing-large)"
-    role="separator"
-    aria-orientation="horizontal"
-  ></syn-divider>
+  <syn-divider style="--spacing: var(--syn-spacing-large)"></syn-divider>
   Below
 </div>
 ```
@@ -61,17 +49,9 @@ Add the vertical attribute to draw the divider in a vertical orientation. The di
 ```html
 <div style="display: flex; align-items: center; height: 2rem">
   First
-  <syn-divider
-    vertical=""
-    role="separator"
-    aria-orientation="vertical"
-  ></syn-divider>
+  <syn-divider vertical=""></syn-divider>
   Middle
-  <syn-divider
-    vertical=""
-    role="separator"
-    aria-orientation="vertical"
-  ></syn-divider>
+  <syn-divider vertical=""></syn-divider>
   Last
 </div>
 ```

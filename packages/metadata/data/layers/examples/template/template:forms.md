@@ -50,8 +50,8 @@
     gap: var(--syn-spacing-large) var(--syn-spacing-large);
 
     /* TODO: this two css properties can be removed, when this issue is fixed https://github.com/synergy-design-system/synergy-design-system/issues/612
-      * It is fixed for the newest chrome and firefox versions, but not for safari :( 
-      */
+    * It is fixed for the newest chrome and firefox versions, but not for safari :(
+    */
     position: relative;
     z-index: 1;
   }
@@ -67,10 +67,10 @@
   }
 
   /*
-     * The form control inputs are using a css grid to be displayed.
-     * We just let them flow automatically mobile and arrange them
-     * in two columns when space is wide enough
-     */
+   * The form control inputs are using a css grid to be displayed.
+   * We just let them flow automatically mobile and arrange them
+   * in two columns when space is wide enough
+   */
   #topics-wrapper {
     container-type: inline-size;
   }
@@ -105,73 +105,31 @@
     <fieldset id="topics-wrapper">
       <legend>Topic</legend>
       <div id="topics">
-        <syn-checkbox
-          name="topic[0]"
-          value="Inquiry/offer"
-          title=""
-          size="medium"
-          form=""
-        >
+        <syn-checkbox name="topic[0]" value="Inquiry/offer">
           Inquiry/offer
         </syn-checkbox>
 
-        <syn-checkbox
-          name="topic[1]"
-          value="Orders/invoices"
-          title=""
-          size="medium"
-          form=""
-        >
+        <syn-checkbox name="topic[1]" value="Orders/invoices">
           Orders/invoices
         </syn-checkbox>
 
-        <syn-checkbox
-          name="topic[2]"
-          value="Returns/complaint"
-          title=""
-          size="medium"
-          form=""
-        >
+        <syn-checkbox name="topic[2]" value="Returns/complaint">
           Returns/complaint
         </syn-checkbox>
 
-        <syn-checkbox
-          name="topic[3]"
-          value="Documentation/CAD"
-          title=""
-          size="medium"
-          form=""
-        >
+        <syn-checkbox name="topic[3]" value="Documentation/CAD">
           Documentation/CAD
         </syn-checkbox>
 
-        <syn-checkbox
-          name="topic[4]"
-          value="Accessories selection"
-          title=""
-          size="medium"
-          form=""
-        >
+        <syn-checkbox name="topic[4]" value="Accessories selection">
           Accessories selection
         </syn-checkbox>
 
-        <syn-checkbox
-          name="topic[5]"
-          value="Application review"
-          title=""
-          size="medium"
-          form=""
-        >
+        <syn-checkbox name="topic[5]" value="Application review">
           Application review
         </syn-checkbox>
 
-        <syn-checkbox
-          name="topic[6]"
-          value="Commissioning support"
-          title=""
-          size="medium"
-          form=""
-        >
+        <syn-checkbox name="topic[6]" value="Commissioning support">
           Commissioning support
         </syn-checkbox>
       </div>
@@ -186,165 +144,50 @@
         applicable.
       </p>
 
-      <syn-textarea
-        name="message"
-        required=""
-        label="Message"
-        title=""
-        size="medium"
-        form=""
-      ></syn-textarea>
+      <syn-textarea name="message" required="" label="Message"></syn-textarea>
     </fieldset>
 
     <fieldset>
       <legend>Contact Details</legend>
       <div class="fields">
-        <syn-input
-          name="customerNr"
-          label="Customer Number"
-          title=""
-          type="text"
-          size="medium"
-          form=""
-        ></syn-input>
+        <syn-input name="customerNr" label="Customer Number"></syn-input>
         <syn-input
           name="companyName"
           required=""
           label="Company name"
-          title=""
-          type="text"
-          size="medium"
-          form=""
         ></syn-input>
-        <syn-input
-          name="address"
-          required=""
-          label="Address"
-          title=""
-          type="text"
-          size="medium"
-          form=""
-        ></syn-input>
-        <syn-input
-          name="zip"
-          required=""
-          label="Postal Code"
-          title=""
-          type="text"
-          size="medium"
-          form=""
-        ></syn-input>
-        <syn-input
-          name="city"
-          required=""
-          label="City"
-          title=""
-          type="text"
-          size="medium"
-          form=""
-        ></syn-input>
+        <syn-input name="address" required="" label="Address"></syn-input>
+        <syn-input name="zip" required="" label="Postal Code"></syn-input>
+        <syn-input name="city" required="" label="City"></syn-input>
 
-        <syn-select
-          name="country"
-          required=""
-          label="Country"
-          size="medium"
-          placement="bottom"
-          form=""
-        >
-          <syn-option
-            value="0"
-            role="option"
-            aria-selected="false"
-            aria-disabled="false"
-            >Deutschland</syn-option
-          >
+        <syn-select name="country" required="" label="Country">
+          <syn-option value="0">Deutschland</syn-option>
 
-          <syn-option
-            value="1"
-            role="option"
-            aria-selected="false"
-            aria-disabled="false"
-            >USA</syn-option
-          >
+          <syn-option value="1">USA</syn-option>
 
-          <syn-option
-            value="2"
-            role="option"
-            aria-selected="false"
-            aria-disabled="false"
-            >China</syn-option
-          >
+          <syn-option value="2">China</syn-option>
         </syn-select>
 
         <syn-combobox
           name="salesPerson"
           required=""
           label="Your reference contact"
-          size="medium"
-          placement="bottom"
-          form=""
         >
-          <syn-option
-            role="option"
-            aria-selected="false"
-            aria-disabled="false"
-            value=""
-            id="syn-combobox-option-0"
-            >Max Mustermann</syn-option
-          >
-          <syn-option
-            role="option"
-            aria-selected="false"
-            aria-disabled="false"
-            value=""
-            id="syn-combobox-option-1"
-            >John Doe</syn-option
-          >
-          <syn-option
-            role="option"
-            aria-selected="false"
-            aria-disabled="false"
-            value=""
-            id="syn-combobox-option-2"
-            >Jane Row</syn-option
-          >
-          <syn-option
-            role="option"
-            aria-selected="false"
-            aria-disabled="false"
-            value=""
-            id="syn-combobox-option-3"
-            >Average Joe</syn-option
-          >
+          <syn-option>Max Mustermann</syn-option>
+          <syn-option>John Doe</syn-option>
+          <syn-option>Jane Row</syn-option>
+          <syn-option>Average Joe</syn-option>
         </syn-combobox>
-        <syn-input
-          type="tel"
-          name="phone"
-          label="Phone number"
-          title=""
-          size="medium"
-          form=""
-        ></syn-input>
-        <syn-input
-          type="tel"
-          name="fax"
-          label="Fax number"
-          title=""
-          size="medium"
-          form=""
-        ></syn-input>
+        <syn-input type="tel" name="phone" label="Phone number"></syn-input>
+        <syn-input type="tel" name="fax" label="Fax number"></syn-input>
         <syn-input
           type="email"
           name="mail"
           required=""
           label="E-Mail address"
-          title=""
-          size="medium"
-          form=""
         ></syn-input>
       </div>
-      <syn-checkbox name="subscribeNewsletter" title="" size="medium" form="">
+      <syn-checkbox name="subscribeNewsletter">
         Yes, I would like to receive up-to-date and interesting information on
         solutions with products, systems and services from SICK by email on a
         regular basis. I can withdraw my consent at any time. To withdraw my
@@ -354,9 +197,7 @@
     </fieldset>
 
     <div class="submit-actions">
-      <syn-button type="submit" variant="filled" title="" size="medium"
-        >Send</syn-button
-      >
+      <syn-button type="submit" variant="filled">Send</syn-button>
     </div>
 
     <em>
@@ -366,6 +207,44 @@
     </em>
   </form>
 </div>
+
+<script type="module">
+  const firstTopic = document.querySelector("syn-checkbox:first-child");
+  const firstTopicError = "Please select at least one topic";
+
+  customElements.whenDefined("syn-select").then(() => {
+    firstTopic.setCustomValidity(firstTopicError);
+  });
+
+  const setValidationForTopics = () => {
+    const hasCheckedElements =
+      document.querySelectorAll("#topics syn-checkbox[checked]").length > 0;
+    const validationMessage = hasCheckedElements ? "" : firstTopicError;
+    firstTopic.setCustomValidity(validationMessage);
+  };
+
+  document
+    .querySelector("form")
+    .addEventListener("input", setValidationForTopics);
+
+  document.querySelector("form").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const fd = new FormData(e.target);
+
+    const hasOneTopicChecked = Array.from(fd).some(
+      ([key, value]) => key.startsWith("topic[") && value,
+    );
+
+    // Set validation message for topics dependent if a topic was checked or not
+    const topicValidity = hasOneTopicChecked ? "" : firstTopicError;
+    firstTopic.setCustomValidity(topicValidity);
+
+    if (e.target.reportValidity()) {
+      console.log(...fd, hasOneTopicChecked);
+    }
+  });
+</script>
 ```
 
 ---
@@ -386,75 +265,13 @@
       multiple=""
       label="Select Files"
       help-text="Max file size is 500kb. Supported file types are .jgp, .png and .pdf"
-      size="medium"
-      form=""
     ></syn-file>
 
     <!-- File list: hidden until files are selected -->
-    <ul class="uploaded-files">
-      <li class="entry-uploading">
-        <em>image.png</em
-        ><span class="uploaded-files--status"><syn-spinner></syn-spinner></span
-        ><syn-divider
-          role="separator"
-          aria-orientation="horizontal"
-        ></syn-divider>
-      </li>
-      <li class="entry-success">
-        <em>file-name</em
-        ><span class="uploaded-files--status"
-          ><syn-icon-button
-            library="system"
-            size="medium"
-            name="status-success"
-            label="Upload successful"
-            tabindex="-1"
-            color="currentColor"
-          ></syn-icon-button></span
-        ><syn-divider
-          role="separator"
-          aria-orientation="horizontal"
-        ></syn-divider>
-      </li>
-      <li class="entry-queued">
-        <em>file-name</em
-        ><span class="uploaded-files--status"
-          ><syn-icon-button
-            library="system"
-            size="medium"
-            name="x-lg"
-            label="Cancel upload"
-            color="currentColor"
-          ></syn-icon-button></span
-        ><syn-divider
-          role="separator"
-          aria-orientation="horizontal"
-        ></syn-divider>
-      </li>
-      <li class="entry-queued">
-        <em
-          >file-name-large<span class="uploaded-files--help-text"
-            >File exceeds size limit.</span
-          ></em
-        ><span class="uploaded-files--status"
-          ><syn-icon-button
-            library="system"
-            size="medium"
-            name="x-lg"
-            label="Cancel upload"
-            color="currentColor"
-          ></syn-icon-button></span
-        ><syn-divider
-          role="separator"
-          aria-orientation="horizontal"
-        ></syn-divider>
-      </li>
-    </ul>
+    <ul class="uploaded-files" hidden=""></ul>
 
     <div class="submit-actions">
-      <syn-button type="submit" variant="filled" title="" size="medium"
-        >Upload</syn-button
-      >
+      <syn-button type="submit" variant="filled" disabled="">Upload</syn-button>
     </div>
   </form>
 </div>
@@ -555,4 +372,165 @@
     margin-top: var(--syn-spacing-2x-large);
   }
 </style>
+
+<script type="module">
+  let entries = [
+    {
+      error: null,
+      filename: "image.png",
+      id: 1,
+      state: "uploading",
+    },
+    {
+      error: null,
+      filename: "file-name",
+      id: 2,
+      state: "success",
+    },
+    {
+      error: null,
+      filename: "file-name",
+      id: 3,
+      state: "queued",
+    },
+    {
+      error: "File exceeds size limit.",
+      filename: "file-name-large",
+      id: 4,
+      state: "queued",
+    },
+  ];
+  let entryId = entries.at(-1).id + 1;
+
+  const formId = "#upload-multiple-form-" + "docs";
+  const form = document.querySelector(formId);
+  const fileInput = form.querySelector("syn-file");
+  const fileList = form.querySelector(".uploaded-files");
+  const submitButton = form.querySelector('syn-button[type="submit"]');
+
+  const render = () => {
+    fileList.innerHTML = "";
+    if (entries.length === 0) {
+      submitButton.setAttribute("disabled", "");
+      fileList.hidden = true;
+      return;
+    }
+    fileList.hidden = false;
+    submitButton.removeAttribute("disabled");
+
+    // If everything was uploaded, disable the upload button again to prevent confusion, as there are no more files to upload
+    const allUploaded = entries.every((entry) => entry.state === "success");
+    if (allUploaded) {
+      submitButton.setAttribute("disabled", "");
+    }
+
+    entries.forEach((entry) => {
+      const li = document.createElement("li");
+      li.className = "entry-" + entry.state;
+
+      const em = document.createElement("em");
+      em.textContent = entry.filename;
+
+      const divider = document.createElement("syn-divider");
+
+      if (entry.error) {
+        const helpSpan = document.createElement("span");
+        helpSpan.className = "uploaded-files--help-text";
+        helpSpan.textContent = entry.error;
+        em.appendChild(helpSpan);
+      }
+
+      const statusSpan = document.createElement("span");
+      statusSpan.className = "uploaded-files--status";
+
+      if (entry.state === "uploading") {
+        const spinner = document.createElement("syn-spinner");
+        statusSpan.appendChild(spinner);
+      } else {
+        const btn = document.createElement("syn-icon-button");
+        btn.setAttribute("library", "system");
+        btn.setAttribute("size", "medium");
+
+        if (entry.state === "success") {
+          btn.setAttribute("name", "status-success");
+          btn.setAttribute("label", "Upload successful");
+          btn.setAttribute("tabindex", "-1");
+          statusSpan.appendChild(btn);
+        } else {
+          // queued or error: show cancel / remove button
+          btn.setAttribute("name", "x-lg");
+          btn.setAttribute(
+            "label",
+            entry.state === "error" ? "Remove" : "Cancel upload",
+          );
+          btn.addEventListener("click", () => {
+            entries = entries.filter((e) => e.id !== entry.id);
+            console.log(entries);
+            render();
+          });
+        }
+
+        statusSpan.appendChild(btn);
+      }
+
+      li.appendChild(em);
+      li.appendChild(statusSpan);
+      li.appendChild(divider);
+      fileList.appendChild(li);
+    });
+  };
+
+  // Render first time
+  render();
+
+  // Populate list as "queued" whenever the user selects / drops files
+  fileInput.addEventListener("syn-change", () => {
+    const files = fileInput.files ? Array.from(fileInput.files) : [];
+    entries = files.map((file) => ({
+      error: null,
+      filename: file.name,
+      id: String(++entryId),
+      state: "queued",
+    }));
+    render();
+  });
+
+  // Upload button: start fake uploads for all queued entries
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const queued = entries.filter(
+      (entry) => entry.state !== "success" && entry.state !== "error",
+    );
+    if (queued.length === 0) return;
+
+    // Immediately switch all queued entries to uploading
+    queued.forEach((entry) => {
+      entry.state = "uploading";
+    });
+    render();
+
+    // Schedule outcomes:
+    // - All but the last file succeed, staggered by 1.5s each
+    // - The last file always fails after 3s (simulates a connection loss)
+    queued.forEach((entry, i) => {
+      const isLast = i === queued.length - 1;
+      const delay = isLast ? 3000 : (i + 1) * 1500;
+
+      setTimeout(() => {
+        const target = entries.find((e) => e.id === entry.id);
+        // Skip if the entry was removed (canceled) while uploading
+        if (!target || target.state !== "uploading") return;
+
+        if (isLast) {
+          target.state = "queued";
+          target.error = "Connection lost. Please try again.";
+        } else {
+          target.state = "success";
+        }
+        render();
+      }, delay);
+    });
+  });
+</script>
 ```

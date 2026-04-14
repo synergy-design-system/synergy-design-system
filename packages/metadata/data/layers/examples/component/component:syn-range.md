@@ -3,7 +3,7 @@
 Ranges allow the user to select values within a given range using a thumb.
 
 ```html
-<syn-range max="100" step="1" value="50" size="medium" form=""></syn-range>
+<syn-range max="100" step="1" value="50"></syn-range>
 ```
 
 ---
@@ -13,14 +13,7 @@ Ranges allow the user to select values within a given range using a thumb.
 Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead.
 
 ```html
-<syn-range
-  label="Label"
-  max="100"
-  min="0"
-  value="50"
-  size="medium"
-  form=""
-></syn-range>
+<syn-range label="Label" max="100" min="0" value="50"></syn-range>
 ```
 
 ---
@@ -36,8 +29,6 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   max="100"
   min="0"
   value="50"
-  size="medium"
-  form=""
 ></syn-range>
 ```
 
@@ -48,14 +39,7 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
 Use the disabled attribute to disable a range.
 
 ```html
-<syn-range
-  disabled=""
-  max="100"
-  min="0"
-  value="50"
-  size="medium"
-  form=""
-></syn-range>
+<syn-range disabled="" max="100" min="0" value="50"></syn-range>
 ```
 
 ---
@@ -72,15 +56,18 @@ The invalid status is used to warn the user that the input is invalid. As range 
     max="100"
     min="0"
     value="50"
-    size="medium"
-    form=""
   >
   </syn-range>
-  <syn-button type="submit" title="" variant="outline" size="medium"
-    >Submit</syn-button
-  >
+  <syn-button type="submit">Submit</syn-button>
 </form>
+<script type="module">
+  document.querySelector("form").addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
 
+  const range = document.querySelector("#range-invalid");
+  range.setCustomValidity("Please enter a valid value");
+</script>
 <style>
   .custom-validity {
     display: flex;
@@ -101,7 +88,7 @@ The focus event gives the user feedback that the Range has been focused by the k
 
 ```html
 <form>
-  <syn-range max="100" min="0" value="50" size="medium" form=""></syn-range>
+  <syn-range max="100" min="0" value="50"></syn-range>
 </form>
 ```
 
@@ -113,14 +100,7 @@ Add the readonly attribute to a range to draw it in a readonly state.
 
 ```html
 <form>
-  <syn-range
-    max="100"
-    min="0"
-    value="50"
-    readonly=""
-    size="medium"
-    form=""
-  ></syn-range>
+  <syn-range max="100" min="0" value="50" readonly=""></syn-range>
 </form>
 ```
 
@@ -138,7 +118,6 @@ Use the size attribute to change a range’s size.
     min="0"
     size="small"
     value="33"
-    form=""
   ></syn-range>
   <syn-range
     label="Medium"
@@ -146,7 +125,6 @@ Use the size attribute to change a range’s size.
     min="0"
     size="medium"
     value="66"
-    form=""
   ></syn-range>
   <syn-range
     label="Large"
@@ -154,7 +132,6 @@ Use the size attribute to change a range’s size.
     min="0"
     size="large"
     value="99"
-    form=""
   ></syn-range>
 </div>
 <style>
@@ -179,8 +156,6 @@ Add any element to the start and end of range items using the prefix and suffix 
   max="100"
   min="0"
   value="50"
-  size="medium"
-  form=""
 >
   <span slot="prefix">0</span>
   <span slot="suffix">100</span>
@@ -196,23 +171,12 @@ Add any element to the start and end of range items using the prefix and suffix 
   min="0"
   max="60"
   value="30"
-  size="medium"
-  form=""
 >
   <span slot="prefix">0</span>
   <span slot="suffix">
     <div class="suffix-input">
       60
-      <syn-input
-        value="30"
-        type="number"
-        no-spin-buttons=""
-        min="0"
-        max="60"
-        title=""
-        size="medium"
-        form=""
-      >
+      <syn-input value="30" type="number" no-spin-buttons="" min="0" max="60">
         <span slot="suffix">sec</span>
       </syn-input>
     </div>
@@ -230,6 +194,38 @@ Add any element to the start and end of range items using the prefix and suffix 
     }
   }
 </style>
+<script>
+  [...document.querySelectorAll(".suffix-input-field")].forEach((range) => {
+    const input = range.querySelector("syn-input");
+
+    range.addEventListener("syn-input", (e) => {
+      const { target } = e;
+      if (target.tagName !== "SYN-RANGE") return;
+      target.querySelector("syn-input").value = target.value;
+      range.setCustomValidity("");
+    });
+
+    input.addEventListener("syn-input", (e) => {
+      const { target } = e;
+      target.closest("syn-range").value = target.value;
+
+      const inputValidationMessage = target.validationMessage;
+
+      if (inputValidationMessage) {
+        range.setCustomValidity(inputValidationMessage);
+      } else {
+        range.setCustomValidity("");
+      }
+    });
+
+    input.addEventListener("syn-change", (e) => {
+      const { target } = e;
+      if (!target.checkValidity()) {
+        range.reportValidity();
+      }
+    });
+  });
+</script>
 ```
 
 ---
@@ -239,14 +235,7 @@ Add any element to the start and end of range items using the prefix and suffix 
 You can customize the active and inactive portions of the track using the --track-color-active and --track-color-inactive custom properties.
 
 ```html
-<syn-range
-  class="custom-track-color"
-  max="100"
-  min="0"
-  value="50"
-  size="medium"
-  form=""
-></syn-range>
+<syn-range class="custom-track-color" max="100" min="0" value="50"></syn-range>
 <style>
   .custom-track-color {
     --track-color-active: var(--syn-color-success-700);
@@ -266,8 +255,6 @@ You can customize the initial offset of the active track using the --track-activ
   max="50"
   min="-50"
   value="-15"
-  size="medium"
-  form=""
 ></syn-range>
 <style>
   .custom-track-offset {
@@ -283,7 +270,7 @@ You can customize the initial offset of the active track using the --track-activ
 You can add multiple range-thumbs to your range.
 
 ```html
-<syn-range max="100" min="0" value="30 70" size="medium" form=""></syn-range>
+<syn-range max="100" min="0" value="30 70"></syn-range>
 ```
 
 ---
@@ -300,8 +287,6 @@ Set the restrict-movement attribute to true to prevent the thumbs from overlappi
   max="100"
   restrict-movement=""
   step="1"
-  size="medium"
-  form=""
 ></syn-range>
 ```
 
@@ -319,8 +304,6 @@ Use the ticks slot to insert ticks or groups with ticks to improve positioning.
     min="0"
     value="50"
     label="Volume"
-    size="medium"
-    form=""
   >
     <nav slot="ticks">
       <syn-range-tick>0</syn-range-tick>
@@ -340,8 +323,6 @@ Use the ticks slot to insert ticks or groups with ticks to improve positioning.
     min="0"
     value="50"
     label="Volume"
-    size="medium"
-    form=""
   >
     <nav slot="ticks">
       <syn-range-tick>0</syn-range-tick>
@@ -380,14 +361,7 @@ Use the ticks slot to insert ticks or groups with ticks to improve positioning.
 By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the range.
 
 ```html
-<syn-range
-  tooltip-placement="bottom"
-  max="100"
-  min="0"
-  value="50"
-  size="medium"
-  form=""
-></syn-range>
+<syn-range tooltip-placement="bottom" max="100" min="0" value="50"></syn-range>
 ```
 
 ---
@@ -397,14 +371,7 @@ By default, the tooltip is shown on top. Set tooltip-placement to bottom to show
 To disable the tooltip, set tooltip-placement to none.
 
 ```html
-<syn-range
-  max="100"
-  min="0"
-  tooltip-placement="none"
-  value="50"
-  size="medium"
-  form=""
-></syn-range>
+<syn-range max="100" min="0" tooltip-placement="none" value="50"></syn-range>
 ```
 
 ---
@@ -414,14 +381,7 @@ To disable the tooltip, set tooltip-placement to none.
 You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument.
 
 ```html
-<syn-range
-  class="tooltip-formatter"
-  max="100"
-  min="0"
-  value="50"
-  size="medium"
-  form=""
->
+<syn-range class="tooltip-formatter" max="100" min="0" value="50">
   <nav slot="ticks">
     <syn-range-tick>0%</syn-range-tick>
     <syn-range-tick>50%</syn-range-tick>
@@ -435,4 +395,9 @@ You can change the tooltip’s content by setting the tooltipFormatter property 
     display: flex;
   }
 </style>
+<script>
+  document.querySelectorAll(".tooltip-formatter").forEach((tip) => {
+    tip.tooltipFormatter = (value) => value + "%";
+  });
+</script>
 ```

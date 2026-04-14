@@ -3,7 +3,7 @@
 Switches allow the user to toggle an option on or off.
 
 ```html
-<syn-switch title="" size="medium" form=""> Option </syn-switch>
+<syn-switch> Option </syn-switch>
 ```
 
 ---
@@ -13,7 +13,7 @@ Switches allow the user to toggle an option on or off.
 Use the checked attribute to activate the switch.
 
 ```html
-<syn-switch checked="" title="" size="medium" form="">Checked</syn-switch>
+<syn-switch checked="">Checked</syn-switch>
 ```
 
 ---
@@ -23,7 +23,7 @@ Use the checked attribute to activate the switch.
 The focus event gives the user feedback that the Switch has been focused by the keyboard interaction.
 
 ```html
-<syn-switch title="" size="medium" form="">Focused</syn-switch>
+<syn-switch>Focused</syn-switch>
 ```
 
 ---
@@ -33,7 +33,7 @@ The focus event gives the user feedback that the Switch has been focused by the 
 Use the disabled attribute to disable the switch.
 
 ```html
-<syn-switch disabled="" title="" size="medium" form="">Disabled</syn-switch>
+<syn-switch disabled="">Disabled</syn-switch>
 ```
 
 ---
@@ -51,10 +51,8 @@ Add the readonly attribute to draw a read-only switch.
     align-items: flex-start;
   "
 >
-  <syn-switch readonly="" title="" size="medium" form="">Unchecked</syn-switch>
-  <syn-switch checked="" readonly="" title="" size="medium" form=""
-    >Checked</syn-switch
-  >
+  <syn-switch readonly="">Unchecked</syn-switch>
+  <syn-switch checked="" readonly="">Checked</syn-switch>
 </div>
 ```
 
@@ -73,9 +71,9 @@ Use the size attribute to change a switch’s size.
     align-items: flex-start;
   "
 >
-  <syn-switch size="small" title="" form="">Small</syn-switch>
-  <syn-switch size="medium" title="" form="">Medium</syn-switch>
-  <syn-switch size="large" title="" form="">Large</syn-switch>
+  <syn-switch size="small">Small</syn-switch>
+  <syn-switch size="medium">Medium</syn-switch>
+  <syn-switch size="large">Large</syn-switch>
 </div>
 ```
 
@@ -86,11 +84,7 @@ Use the size attribute to change a switch’s size.
 Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.
 
 ```html
-<syn-switch
-  help-text="What should the user know about the switch?"
-  title=""
-  size="medium"
-  form=""
+<syn-switch help-text="What should the user know about the switch?"
   >Label</syn-switch
 >
 ```
@@ -103,10 +97,8 @@ The invalid status is used to warn the user that the Switch is invalid.
 
 ```html
 <form class="custom-validity">
-  <syn-switch required="" title="" size="medium" form="">Option</syn-switch>
-  <syn-button type="submit" variant="filled" title="" size="medium"
-    >Submit</syn-button
-  >
+  <syn-switch required="">Option</syn-switch>
+  <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
 <style>
   .custom-validity {

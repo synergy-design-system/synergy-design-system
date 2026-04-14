@@ -3,7 +3,7 @@
 File control is a component with which a user can select a local file. It shows the value of the selected file.
 
 ```html
-<syn-file size="medium" form=""></syn-file>
+<syn-file></syn-file>
 ```
 
 ---
@@ -13,7 +13,7 @@ File control is a component with which a user can select a local file. It shows 
 Use the label attribute to give the file selector an accessible label. For labels that contain HTML, use the label slot instead.
 
 ```html
-<syn-file label="This is a label" size="medium" form=""></syn-file>
+<syn-file label="This is a label"></syn-file>
 ```
 
 ---
@@ -23,12 +23,7 @@ Use the label attribute to give the file selector an accessible label. For label
 Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.
 
 ```html
-<syn-file
-  help-text="This is a help text."
-  label="This is a label"
-  size="medium"
-  form=""
-></syn-file>
+<syn-file help-text="This is a help text." label="This is a label"></syn-file>
 ```
 
 ---
@@ -38,12 +33,7 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
 Use the multiple attribute to allow the selection of multiple files.Figma only: Override the button/droparea and value text directly, to indicate that multiple files are selected (“file” -> “files”)
 
 ```html
-<syn-file
-  label="Multiple file input"
-  multiple=""
-  size="medium"
-  form=""
-></syn-file>
+<syn-file label="Multiple file input" multiple=""></syn-file>
 ```
 
 ---
@@ -53,12 +43,7 @@ Use the multiple attribute to allow the selection of multiple files.Figma only: 
 There might be situations, where you don’t want to show the selected value (e. g. when something is automatically uploading).
 
 ```html
-<syn-file
-  hide-value=""
-  label="This is a label"
-  size="medium"
-  form=""
-></syn-file>
+<syn-file hide-value="" label="This is a label"></syn-file>
 ```
 
 ---
@@ -73,8 +58,6 @@ The focus event gives the user feedback that the Dropzone has been focused by th
     label="This is a label"
     help-text="This is a help text"
     droparea=""
-    size="medium"
-    form=""
   ></syn-file>
 </div>
 ```
@@ -87,19 +70,8 @@ Use the disabled attribute to disable a file input.
 
 ```html
 <div style="display: flex; flex-direction: column; gap: 1rem">
-  <syn-file
-    disabled=""
-    label="This is a label"
-    size="medium"
-    form=""
-  ></syn-file>
-  <syn-file
-    disabled=""
-    droparea=""
-    label="This is a label"
-    size="medium"
-    form=""
-  ></syn-file>
+  <syn-file disabled="" label="This is a label"></syn-file>
+  <syn-file disabled="" droparea="" label="This is a label"></syn-file>
 </div>
 ```
 
@@ -111,19 +83,8 @@ Use the readonly attribute to set a file input to a readonly state.
 
 ```html
 <div style="display: flex; flex-direction: column; gap: 1rem">
-  <syn-file
-    readonly=""
-    label="This is a label"
-    size="medium"
-    form=""
-  ></syn-file>
-  <syn-file
-    readonly=""
-    droparea=""
-    label="This is a label"
-    size="medium"
-    form=""
-  ></syn-file>
+  <syn-file readonly="" label="This is a label"></syn-file>
+  <syn-file readonly="" droparea="" label="This is a label"></syn-file>
 </div>
 ```
 
@@ -137,9 +98,9 @@ Use the size attribute to change the component's size.
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-file size="small" label="Small" form=""></syn-file>
-  <syn-file size="medium" label="Medium" form=""></syn-file>
-  <syn-file size="large" label="Large" form=""></syn-file>
+  <syn-file size="small" label="Small"></syn-file>
+  <syn-file size="medium" label="Medium"></syn-file>
+  <syn-file size="large" label="Large"></syn-file>
 </div>
 ```
 
@@ -156,14 +117,15 @@ The invalid status is used to warn the user that the syn-file is invalid. For ex
     droparea=""
     help-text="This is an error text."
     label="This is a label"
-    size="medium"
-    form=""
   ></syn-file>
-  <syn-button type="submit" variant="filled" title="" size="medium"
-    >Submit</syn-button
-  >
+  <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
-
+<script type="module">
+  const files = document.querySelectorAll(".syn-file-invalid");
+  files.forEach((file) => {
+    file.setCustomValidity("This is an error text");
+  });
+</script>
 <style>
   .custom-validity {
     display: flex;
@@ -194,7 +156,6 @@ Use the droparea attribute to switch to a full-width button with a drop area.
     label="Small"
     multiple=""
     size="small"
-    form=""
   ></syn-file>
   <syn-file
     accept="text/plain,image/*"
@@ -203,7 +164,6 @@ Use the droparea attribute to switch to a full-width button with a drop area.
     label="Medium"
     multiple=""
     size="medium"
-    form=""
   ></syn-file>
   <syn-file
     accept="text/plain,image/*"
@@ -212,7 +172,6 @@ Use the droparea attribute to switch to a full-width button with a drop area.
     label="Large"
     multiple=""
     size="large"
-    form=""
   ></syn-file>
 </div>
 ```
@@ -227,13 +186,7 @@ The webkitdirectory setting allows users to select entire directories instead of
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-file label="Button" webkitdirectory="" size="medium" form=""></syn-file>
-  <syn-file
-    droparea=""
-    label="Droparea"
-    webkitdirectory=""
-    size="medium"
-    form=""
-  ></syn-file>
+  <syn-file label="Button" webkitdirectory=""></syn-file>
+  <syn-file droparea="" label="Droparea" webkitdirectory=""></syn-file>
 </div>
 ```

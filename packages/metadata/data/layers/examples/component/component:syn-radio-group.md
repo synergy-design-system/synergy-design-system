@@ -3,34 +3,10 @@
 Radio groups are used to group multiple radios or radio buttons so they function as a single form control.
 
 ```html
-<syn-radio-group label="This is a label" value="" size="medium" form="">
-  <syn-radio
-    value="1"
-    role="radio"
-    tabindex="0"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="2"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="3"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
+<syn-radio-group label="This is a label">
+  <syn-radio value="1">Option</syn-radio>
+  <syn-radio value="2">Option</syn-radio>
+  <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>
 ```
 
@@ -41,34 +17,10 @@ Radio groups are used to group multiple radios or radio buttons so they function
 Use the label attribute to give the radio-group an accessible label. For labels that contain HTML, use the label slot instead.
 
 ```html
-<syn-radio-group label="This is a label" value="" size="medium" form="">
-  <syn-radio
-    value="1"
-    role="radio"
-    tabindex="0"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="2"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="3"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
+<syn-radio-group label="This is a label">
+  <syn-radio value="1">Option</syn-radio>
+  <syn-radio value="2">Option</syn-radio>
+  <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>
 ```
 
@@ -84,36 +36,10 @@ To set the initial value and checked state, use the value attribute on the conta
   help-text="This is checked"
   name="a"
   value="2"
-  size="medium"
-  form=""
 >
-  <syn-radio
-    value="1"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="2"
-    role="radio"
-    tabindex="0"
-    aria-disabled="false"
-    aria-checked="true"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="3"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
+  <syn-radio value="1">Option</syn-radio>
+  <syn-radio value="2">Option</syn-radio>
+  <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>
 ```
 
@@ -128,37 +54,10 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
   label="This is a label"
   help-text="Choose the most appropriate option."
   name="a"
-  value=""
-  size="medium"
-  form=""
 >
-  <syn-radio
-    value="1"
-    role="radio"
-    tabindex="0"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="2"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="3"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
+  <syn-radio value="1">Option</syn-radio>
+  <syn-radio value="2">Option</syn-radio>
+  <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>
 ```
 
@@ -169,41 +68,10 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
 The focus event gives the user feedback that one of the radio buttons has been focused by the keyboard interaction.
 
 ```html
-<syn-radio-group
-  label="This is a label"
-  name="a"
-  value=""
-  size="medium"
-  form=""
->
-  <syn-radio
-    value="1"
-    disabled=""
-    role="radio"
-    tabindex="0"
-    aria-disabled="true"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="2"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="3"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
+<syn-radio-group label="This is a label" name="a">
+  <syn-radio value="1" disabled="">Option</syn-radio>
+  <syn-radio value="2">Option</syn-radio>
+  <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>
 ```
 
@@ -214,42 +82,10 @@ The focus event gives the user feedback that one of the radio buttons has been f
 Radios and radio buttons can be disabled by adding the disabled attribute to the respective options inside the radio group.
 
 ```html
-<syn-radio-group
-  label="This is a label"
-  help-text="This is disabled"
-  name="a"
-  value=""
-  size="medium"
-  form=""
->
-  <syn-radio
-    value="1"
-    role="radio"
-    tabindex="0"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="2"
-    disabled=""
-    role="radio"
-    tabindex="-1"
-    aria-disabled="true"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="3"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
+<syn-radio-group label="This is a label" help-text="This is disabled" name="a">
+  <syn-radio value="1">Option</syn-radio>
+  <syn-radio value="2" disabled="">Option</syn-radio>
+  <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>
 ```
 
@@ -265,37 +101,10 @@ Add the readonly attribute to a radio to draw it in a readonly state.
   help-text="This is readonly"
   name="a"
   value="2"
-  size="medium"
-  form=""
 >
-  <syn-radio
-    value="1"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="2"
-    readonly=""
-    role="radio"
-    tabindex="0"
-    aria-disabled="true"
-    aria-checked="true"
-    size="medium"
-    >Option</syn-radio
-  >
-  <syn-radio
-    value="3"
-    role="radio"
-    tabindex="-1"
-    aria-disabled="false"
-    aria-checked="false"
-    size="medium"
-    >Option</syn-radio
-  >
+  <syn-radio value="1">Option</syn-radio>
+  <syn-radio value="2" readonly="">Option</syn-radio>
+  <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>
 ```
 
@@ -309,65 +118,17 @@ The size of Radios and Radio Buttons will be determined by the Radio Group’s s
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-radio-group label="Small size" size="small" value="" form="">
-    <syn-radio
-      value="1"
-      role="radio"
-      tabindex="0"
-      aria-disabled="false"
-      aria-checked="false"
-      size="small"
-      >Option</syn-radio
-    >
-    <syn-radio
-      value="2"
-      role="radio"
-      tabindex="-1"
-      aria-disabled="false"
-      aria-checked="false"
-      size="small"
-      >Option</syn-radio
-    >
+  <syn-radio-group label="Small size" size="small">
+    <syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
   </syn-radio-group>
-  <syn-radio-group label="Medium size" size="medium" value="" form="">
-    <syn-radio
-      value="1"
-      role="radio"
-      tabindex="0"
-      aria-disabled="false"
-      aria-checked="false"
-      size="medium"
-      >Option</syn-radio
-    >
-    <syn-radio
-      value="2"
-      role="radio"
-      tabindex="-1"
-      aria-disabled="false"
-      aria-checked="false"
-      size="medium"
-      >Option</syn-radio
-    >
+  <syn-radio-group label="Medium size" size="medium">
+    <syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
   </syn-radio-group>
-  <syn-radio-group label="Large size" size="large" value="" form="">
-    <syn-radio
-      value="1"
-      role="radio"
-      tabindex="0"
-      aria-disabled="false"
-      aria-checked="false"
-      size="large"
-      >Option</syn-radio
-    >
-    <syn-radio
-      value="2"
-      role="radio"
-      tabindex="-1"
-      aria-disabled="false"
-      aria-checked="false"
-      size="large"
-      >Option</syn-radio
-    >
+  <syn-radio-group label="Large size" size="large">
+    <syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
   </syn-radio-group>
 </div>
 ```
@@ -385,41 +146,12 @@ The invalid status is used to warn the user that the Radio Group is invalid. For
     name="a"
     help-text="This is required"
     required=""
-    value=""
-    size="medium"
-    form=""
   >
-    <syn-radio
-      value="1"
-      role="radio"
-      tabindex="0"
-      aria-disabled="false"
-      aria-checked="false"
-      size="medium"
-      >Option 1</syn-radio
-    >
-    <syn-radio
-      value="2"
-      role="radio"
-      tabindex="-1"
-      aria-disabled="false"
-      aria-checked="false"
-      size="medium"
-      >Option 2</syn-radio
-    >
-    <syn-radio
-      value="3"
-      role="radio"
-      tabindex="-1"
-      aria-disabled="false"
-      aria-checked="false"
-      size="medium"
-      >Option 3</syn-radio
-    >
+    <syn-radio value="1">Option 1</syn-radio>
+    <syn-radio value="2">Option 2</syn-radio>
+    <syn-radio value="3">Option 3</syn-radio>
   </syn-radio-group>
-  <syn-button type="submit" variant="filled" title="" size="medium"
-    >Submit</syn-button
-  >
+  <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
 <style>
   .custom-validity {
@@ -441,44 +173,12 @@ Use the setCustomValidity() method to set a custom validation message. This will
 
 ```html
 <form>
-  <syn-radio-group
-    label="Select an option"
-    name="a"
-    value="1"
-    size="medium"
-    form=""
-  >
-    <syn-radio
-      value="1"
-      role="radio"
-      tabindex="0"
-      aria-disabled="false"
-      aria-checked="true"
-      size="medium"
-      >Not me</syn-radio
-    >
-    <syn-radio
-      value="2"
-      role="radio"
-      tabindex="-1"
-      aria-disabled="false"
-      aria-checked="false"
-      size="medium"
-      >Me neither</syn-radio
-    >
-    <syn-radio
-      value="3"
-      role="radio"
-      tabindex="-1"
-      aria-disabled="false"
-      aria-checked="false"
-      size="medium"
-      >Choose me</syn-radio
-    >
+  <syn-radio-group label="Select an option" name="a" value="1">
+    <syn-radio value="1">Not me</syn-radio>
+    <syn-radio value="2">Me neither</syn-radio>
+    <syn-radio value="3">Choose me</syn-radio>
   </syn-radio-group>
   <br />
-  <syn-button type="submit" variant="filled" title="" size="medium"
-    >Submit</syn-button
-  >
+  <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
 ```

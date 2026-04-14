@@ -1,58 +1,10 @@
-## Subheadline
-
-```html
-<syn-accordion size="medium">
-  <syn-details summary="First" open="" size="medium">
-    <h3
-      style="
-        margin: 0 0 var(--syn-spacing-x-small);
-        font: var(--syn-body-small-bold);
-      "
-    >
-      Subheadline
-    </h3>
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-  </syn-details>
-  <syn-details summary="Second" size="medium">
-    <h3
-      style="
-        margin: 0 0 var(--syn-spacing-x-small);
-        font: var(--syn-body-small-bold);
-      "
-    >
-      Subheadline
-    </h3>
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-  </syn-details>
-  <syn-details summary="Third" size="medium">
-    <h3
-      style="
-        margin: 0 0 var(--syn-spacing-x-small);
-        font: var(--syn-body-small-bold);
-      "
-    >
-      Subheadline
-    </h3>
-    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy
-    eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-    voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-  </syn-details>
-</syn-accordion>
-```
-
----
-
 ## Default
 
 Accordion is a group of syn-details to show a brief summary and expand to show additional content.
 
 ```html
-<syn-accordion size="medium">
-  <syn-details summary="First" open="" size="medium">
+<syn-accordion>
+  <syn-details summary="First" open="">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -65,7 +17,7 @@ Accordion is a group of syn-details to show a brief summary and expand to show a
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details summary="Second" size="medium">
+  <syn-details summary="Second">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -78,7 +30,7 @@ Accordion is a group of syn-details to show a brief summary and expand to show a
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details summary="Third" size="medium">
+  <syn-details summary="Third">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -101,8 +53,8 @@ Accordion is a group of syn-details to show a brief summary and expand to show a
 To give content more structure, you can use the property contained.
 
 ```html
-<syn-accordion contained="" size="medium">
-  <syn-details open="" size="medium" contained="">
+<syn-accordion contained="">
+  <syn-details open="">
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -116,7 +68,7 @@ To give content more structure, you can use the property contained.
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details size="medium" contained="">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -130,7 +82,7 @@ To give content more structure, you can use the property contained.
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details size="medium" contained="">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -154,8 +106,8 @@ To give content more structure, you can use the property contained.
 Set the close-others property to true to ensure only one detail is open at a time.
 
 ```html
-<syn-accordion close-others="" size="medium">
-  <syn-details summary="First" open="" size="medium">
+<syn-accordion close-others="">
+  <syn-details summary="First" open="">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -168,7 +120,7 @@ Set the close-others property to true to ensure only one detail is open at a tim
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details summary="Second" size="medium">
+  <syn-details summary="Second">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -181,7 +133,7 @@ Set the close-others property to true to ensure only one detail is open at a tim
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details summary="Third" size="medium">
+  <syn-details summary="Third">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -205,8 +157,8 @@ The focus event gives the user feedback that the detail has been focused by the 
 
 ```html
 <div style="padding: 5px">
-  <syn-accordion size="medium">
-    <syn-details summary="Accordion Element" size="medium">
+  <syn-accordion>
+    <syn-details summary="Accordion Element">
       <h3
         style="
           margin: 0 0 var(--syn-spacing-x-small);
@@ -219,7 +171,7 @@ The focus event gives the user feedback that the detail has been focused by the 
       eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
       voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>
-    <syn-details summary="Accordion Element" size="medium">
+    <syn-details summary="Accordion Element">
       <h3
         style="
           margin: 0 0 var(--syn-spacing-x-small);
@@ -232,7 +184,7 @@ The focus event gives the user feedback that the detail has been focused by the 
       eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
       voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
     </syn-details>
-    <syn-details summary="Accordion Element" size="medium">
+    <syn-details summary="Accordion Element">
       <h3
         style="
           margin: 0 0 var(--syn-spacing-x-small);
@@ -256,8 +208,8 @@ The focus event gives the user feedback that the detail has been focused by the 
 Use the disable attribute to prevent the details from expanding.
 
 ```html
-<syn-accordion size="medium">
-  <syn-details summary="Accordion Element" size="medium">
+<syn-accordion>
+  <syn-details summary="Accordion Element">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -270,7 +222,7 @@ Use the disable attribute to prevent the details from expanding.
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details summary="Accordion Element" disabled="" size="medium">
+  <syn-details summary="Accordion Element" disabled="">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -283,7 +235,7 @@ Use the disable attribute to prevent the details from expanding.
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details summary="Accordion Element" size="medium">
+  <syn-details summary="Accordion Element">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -307,7 +259,7 @@ Use the size attribute to change a detail’s size. The size attribute should no
 
 ```html
 <syn-accordion class="accordion-size" size="small">
-  <syn-details size="small">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -321,7 +273,7 @@ Use the size attribute to change a detail’s size. The size attribute should no
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details size="small">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -335,7 +287,7 @@ Use the size attribute to change a detail’s size. The size attribute should no
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details size="small">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -352,7 +304,7 @@ Use the size attribute to change a detail’s size. The size attribute should no
 </syn-accordion>
 
 <syn-accordion class="accordion-size" size="medium">
-  <syn-details size="medium">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -366,7 +318,7 @@ Use the size attribute to change a detail’s size. The size attribute should no
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details size="medium">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -380,7 +332,7 @@ Use the size attribute to change a detail’s size. The size attribute should no
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details size="medium">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -397,7 +349,7 @@ Use the size attribute to change a detail’s size. The size attribute should no
 </syn-accordion>
 
 <syn-accordion class="accordion-size" size="large">
-  <syn-details size="large">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -411,7 +363,7 @@ Use the size attribute to change a detail’s size. The size attribute should no
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details size="large">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -425,7 +377,7 @@ Use the size attribute to change a detail’s size. The size attribute should no
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details size="large">
+  <syn-details>
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -446,4 +398,13 @@ Use the size attribute to change a detail’s size. The size attribute should no
     margin-top: var(--syn-spacing-2x-large);
   }
 </style>
+
+<script type="module">
+  document.querySelectorAll(".accordion-size form").forEach((form) => {
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+    });
+  });
+</script>
 ```

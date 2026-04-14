@@ -19,15 +19,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -38,15 +34,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -57,15 +49,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -76,15 +64,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -95,15 +79,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -141,15 +121,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -160,15 +136,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -179,15 +151,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -198,15 +166,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -217,15 +181,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -263,15 +223,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -282,15 +238,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -301,15 +253,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -320,15 +268,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -339,15 +283,11 @@
       <td class="">Hamburg, Düsseldorf, Freiburg</td>
       <td class="">20.01.2023</td>
       <td class="buttons-cell">
-        <syn-button variant="text" size="small" title="">
-          <syn-icon name="edit" aria-hidden="true" library="default"></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="edit"></syn-icon>
         </syn-button>
-        <syn-button variant="text" size="small" title="">
-          <syn-icon
-            name="delete_outline"
-            aria-hidden="true"
-            library="default"
-          ></syn-icon>
+        <syn-button variant="text" size="small">
+          <syn-icon name="delete_outline"></syn-icon>
         </syn-button>
       </td>
     </tr>
@@ -374,11 +314,7 @@ property should be set to 'separate'. Otherwise the table will have some strange
   <table class="syn-table--default">
     <thead>
       <tr>
-        <th
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
-          Name
-        </th>
+        <th class="syn-table-cell--shadow-end shadow-cell">Name</th>
         <th class="">Customer</th>
         <th class="">Location</th>
         <th class="">Contract Start</th>
@@ -388,136 +324,76 @@ property should be set to 'separate'. Otherwise the table will have some strange
 
     <tbody>
       <tr>
-        <td
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
-          Max Mustermann
-        </td>
+        <td class="syn-table-cell--shadow-end shadow-cell">Max Mustermann</td>
         <td class="">Muster AG</td>
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
         <td class="buttons-cell">
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
 
       <tr>
-        <td
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
-          Max Mustermann
-        </td>
+        <td class="syn-table-cell--shadow-end shadow-cell">Max Mustermann</td>
         <td class="">Muster AG</td>
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
         <td class="buttons-cell">
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
 
       <tr>
-        <td
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
-          Max Mustermann
-        </td>
+        <td class="syn-table-cell--shadow-end shadow-cell">Max Mustermann</td>
         <td class="">Muster AG</td>
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
         <td class="buttons-cell">
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
 
       <tr>
-        <td
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
-          Max Mustermann
-        </td>
+        <td class="syn-table-cell--shadow-end shadow-cell">Max Mustermann</td>
         <td class="">Muster AG</td>
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
         <td class="buttons-cell">
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
 
       <tr>
-        <td
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
-          Max Mustermann
-        </td>
+        <td class="syn-table-cell--shadow-end shadow-cell">Max Mustermann</td>
         <td class="">Muster AG</td>
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
         <td class="buttons-cell">
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -551,6 +427,26 @@ property should be set to 'separate'. Otherwise the table will have some strange
     min-width: 76px;
   }
 </style>
+<script type="module">
+  const scrollableTable = document.getElementById(
+    "horizontal-scrollable-table",
+  );
+  const shadowCells = scrollableTable.querySelectorAll(
+    ".syn-table-cell--shadow-end",
+  );
+
+  scrollableTable.addEventListener("scroll", () => {
+    shadowCells.forEach((shadowCell) => {
+      if (scrollableTable.scrollLeft === 0) {
+        shadowCell.classList.remove("syn-table-cell--shadow-active");
+      } else {
+        shadowCell.classList.add("syn-table-cell--shadow-active");
+      }
+    });
+  });
+
+  scrollableTable.scrollLeft = 20;
+</script>
 ```
 
 ---
@@ -569,9 +465,7 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <th class="">Customer</th>
         <th class="">Location</th>
         <th class="">Contract Start</th>
-        <th
-          class="syn-table-cell--shadow-start shadow-cell syn-table-cell--shadow-active"
-        ></th>
+        <th class="syn-table-cell--shadow-start shadow-cell"></th>
       </tr>
     </thead>
 
@@ -581,22 +475,12 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <td class="">Muster AG</td>
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
-        <td
-          class="syn-table-cell--shadow-start shadow-cell buttons-cell syn-table-cell--shadow-active"
-        >
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+        <td class="syn-table-cell--shadow-start shadow-cell buttons-cell">
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -606,22 +490,12 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <td class="">Muster AG</td>
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
-        <td
-          class="syn-table-cell--shadow-start shadow-cell buttons-cell syn-table-cell--shadow-active"
-        >
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+        <td class="syn-table-cell--shadow-start shadow-cell buttons-cell">
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -631,22 +505,12 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <td class="">Muster AG</td>
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
-        <td
-          class="syn-table-cell--shadow-start shadow-cell buttons-cell syn-table-cell--shadow-active"
-        >
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+        <td class="syn-table-cell--shadow-start shadow-cell buttons-cell">
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -656,22 +520,12 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <td class="">Muster AG</td>
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
-        <td
-          class="syn-table-cell--shadow-start shadow-cell buttons-cell syn-table-cell--shadow-active"
-        >
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+        <td class="syn-table-cell--shadow-start shadow-cell buttons-cell">
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -681,22 +535,12 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <td class="">Muster AG</td>
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
-        <td
-          class="syn-table-cell--shadow-start shadow-cell buttons-cell syn-table-cell--shadow-active"
-        >
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+        <td class="syn-table-cell--shadow-start shadow-cell buttons-cell">
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -730,6 +574,30 @@ property should be set to 'separate'. Otherwise the table will have some strange
     min-width: 76px;
   }
 </style>
+<script type="module">
+  const scrollableTable = document.getElementById(
+    "horizontal-scrollable-table2",
+  );
+  const shadowCells = scrollableTable.querySelectorAll(
+    ".syn-table-cell--shadow-start",
+  );
+  const maxScrollX = scrollableTable.scrollWidth - scrollableTable.clientWidth;
+
+  const handleShadow = () => {
+    shadowCells.forEach((shadowCell) => {
+      if (scrollableTable.scrollLeft === maxScrollX) {
+        shadowCell.classList.remove("syn-table-cell--shadow-active");
+      } else {
+        shadowCell.classList.add("syn-table-cell--shadow-active");
+      }
+    });
+  };
+
+  // Initially set shadow on load
+  handleShadow();
+
+  scrollableTable.addEventListener("scroll", handleShadow);
+</script>
 ```
 
 ---
@@ -744,29 +612,13 @@ property should be set to 'separate'. Otherwise the table will have some strange
   <table class="syn-table--default">
     <thead>
       <tr>
-        <th
-          class="syn-table-cell--shadow-bottom shadow-cell syn-table-cell--shadow-active"
-        >
-          Name
-        </th>
-        <th
-          class="syn-table-cell--shadow-bottom shadow-cell syn-table-cell--shadow-active"
-        >
-          Customer
-        </th>
-        <th
-          class="syn-table-cell--shadow-bottom shadow-cell syn-table-cell--shadow-active"
-        >
-          Location
-        </th>
-        <th
-          class="syn-table-cell--shadow-bottom shadow-cell syn-table-cell--shadow-active"
-        >
+        <th class="syn-table-cell--shadow-bottom shadow-cell">Name</th>
+        <th class="syn-table-cell--shadow-bottom shadow-cell">Customer</th>
+        <th class="syn-table-cell--shadow-bottom shadow-cell">Location</th>
+        <th class="syn-table-cell--shadow-bottom shadow-cell">
           Contract Start
         </th>
-        <th
-          class="syn-table-cell--shadow-bottom shadow-cell syn-table-cell--shadow-active"
-        ></th>
+        <th class="syn-table-cell--shadow-bottom shadow-cell"></th>
       </tr>
     </thead>
 
@@ -777,19 +629,11 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
         <td class="buttons-cell">
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -800,19 +644,11 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
         <td class="buttons-cell">
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -823,19 +659,11 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
         <td class="buttons-cell">
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -846,19 +674,11 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
         <td class="buttons-cell">
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -869,19 +689,11 @@ property should be set to 'separate'. Otherwise the table will have some strange
         <td class="">Hamburg, Düsseldorf, Freiburg</td>
         <td class="">20.01.2023</td>
         <td class="buttons-cell">
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
       </tr>
@@ -912,6 +724,24 @@ property should be set to 'separate'. Otherwise the table will have some strange
     min-width: 76px;
   }
 </style>
+<script type="module">
+  const scrollableTable = document.getElementById("vertical-scrollable-table");
+  const shadowCells = scrollableTable.querySelectorAll(
+    ".syn-table-cell--shadow-bottom",
+  );
+
+  scrollableTable.addEventListener("scroll", () => {
+    shadowCells.forEach((shadowCell) => {
+      if (scrollableTable.scrollTop === 0) {
+        shadowCell.classList.remove("syn-table-cell--shadow-active");
+      } else {
+        shadowCell.classList.add("syn-table-cell--shadow-active");
+      }
+    });
+  });
+
+  scrollableTable.scrollTop = 20;
+</script>
 ```
 
 ---
@@ -923,11 +753,7 @@ property should be set to 'separate'. Otherwise the table will have some strange
   <table class="syn-table--default">
     <thead>
       <tr>
-        <th
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
-          Product
-        </th>
+        <th class="syn-table-cell--shadow-end shadow-cell">Product</th>
         <th>Availability</th>
         <th>Earliest delivery</th>
         <th></th>
@@ -939,9 +765,7 @@ property should be set to 'separate'. Otherwise the table will have some strange
     </thead>
     <tbody>
       <tr>
-        <td
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
+        <td class="syn-table-cell--shadow-end shadow-cell">
           <div class="product-cell">
             <img
               class="product-image"
@@ -957,12 +781,7 @@ property should be set to 'separate'. Otherwise the table will have some strange
         </td>
         <td>
           <div class="availability">
-            <syn-icon
-              class="check_icon"
-              name="check_circle_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+            <syn-icon class="check_icon" name="check_circle_outline"></syn-icon>
             available
           </div>
         </td>
@@ -986,47 +805,27 @@ property should be set to 'separate'. Otherwise the table will have some strange
           </div>
         </td>
         <td>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
         <td>
-          <syn-button variant="filled" size="small" title="">
-            <syn-icon
-              slot="prefix"
-              name="shopping_cart"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="filled" size="small">
+            <syn-icon slot="prefix" name="shopping_cart"></syn-icon>
             Add to cart
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              slot="suffix"
-              name="keyboard_arrow_right"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon slot="suffix" name="keyboard_arrow_right"></syn-icon>
             Request quote
           </syn-button>
         </td>
       </tr>
 
       <tr>
-        <td
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
+        <td class="syn-table-cell--shadow-end shadow-cell">
           <div class="product-cell">
             <img
               class="product-image"
@@ -1042,12 +841,7 @@ property should be set to 'separate'. Otherwise the table will have some strange
         </td>
         <td>
           <div class="availability">
-            <syn-icon
-              class="check_icon"
-              name="check_circle_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+            <syn-icon class="check_icon" name="check_circle_outline"></syn-icon>
             available
           </div>
         </td>
@@ -1071,47 +865,27 @@ property should be set to 'separate'. Otherwise the table will have some strange
           </div>
         </td>
         <td>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
         <td>
-          <syn-button variant="filled" size="small" title="">
-            <syn-icon
-              slot="prefix"
-              name="shopping_cart"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="filled" size="small">
+            <syn-icon slot="prefix" name="shopping_cart"></syn-icon>
             Add to cart
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              slot="suffix"
-              name="keyboard_arrow_right"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon slot="suffix" name="keyboard_arrow_right"></syn-icon>
             Request quote
           </syn-button>
         </td>
       </tr>
 
       <tr>
-        <td
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
+        <td class="syn-table-cell--shadow-end shadow-cell">
           <div class="product-cell">
             <img
               class="product-image"
@@ -1127,12 +901,7 @@ property should be set to 'separate'. Otherwise the table will have some strange
         </td>
         <td>
           <div class="availability">
-            <syn-icon
-              class="check_icon"
-              name="check_circle_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+            <syn-icon class="check_icon" name="check_circle_outline"></syn-icon>
             available
           </div>
         </td>
@@ -1156,47 +925,27 @@ property should be set to 'separate'. Otherwise the table will have some strange
           </div>
         </td>
         <td>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
         <td>
-          <syn-button variant="filled" size="small" title="">
-            <syn-icon
-              slot="prefix"
-              name="shopping_cart"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="filled" size="small">
+            <syn-icon slot="prefix" name="shopping_cart"></syn-icon>
             Add to cart
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              slot="suffix"
-              name="keyboard_arrow_right"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon slot="suffix" name="keyboard_arrow_right"></syn-icon>
             Request quote
           </syn-button>
         </td>
       </tr>
 
       <tr>
-        <td
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
+        <td class="syn-table-cell--shadow-end shadow-cell">
           <div class="product-cell">
             <img
               class="product-image"
@@ -1212,12 +961,7 @@ property should be set to 'separate'. Otherwise the table will have some strange
         </td>
         <td>
           <div class="availability">
-            <syn-icon
-              class="check_icon"
-              name="check_circle_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+            <syn-icon class="check_icon" name="check_circle_outline"></syn-icon>
             available
           </div>
         </td>
@@ -1241,47 +985,27 @@ property should be set to 'separate'. Otherwise the table will have some strange
           </div>
         </td>
         <td>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
         <td>
-          <syn-button variant="filled" size="small" title="">
-            <syn-icon
-              slot="prefix"
-              name="shopping_cart"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="filled" size="small">
+            <syn-icon slot="prefix" name="shopping_cart"></syn-icon>
             Add to cart
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              slot="suffix"
-              name="keyboard_arrow_right"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon slot="suffix" name="keyboard_arrow_right"></syn-icon>
             Request quote
           </syn-button>
         </td>
       </tr>
 
       <tr>
-        <td
-          class="syn-table-cell--shadow-end shadow-cell syn-table-cell--shadow-active"
-        >
+        <td class="syn-table-cell--shadow-end shadow-cell">
           <div class="product-cell">
             <img
               class="product-image"
@@ -1297,12 +1021,7 @@ property should be set to 'separate'. Otherwise the table will have some strange
         </td>
         <td>
           <div class="availability">
-            <syn-icon
-              class="check_icon"
-              name="check_circle_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+            <syn-icon class="check_icon" name="check_circle_outline"></syn-icon>
             available
           </div>
         </td>
@@ -1326,38 +1045,20 @@ property should be set to 'separate'. Otherwise the table will have some strange
           </div>
         </td>
         <td>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="edit"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="edit"></syn-icon>
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              name="delete_outline"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon name="delete_outline"></syn-icon>
           </syn-button>
         </td>
         <td>
-          <syn-button variant="filled" size="small" title="">
-            <syn-icon
-              slot="prefix"
-              name="shopping_cart"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="filled" size="small">
+            <syn-icon slot="prefix" name="shopping_cart"></syn-icon>
             Add to cart
           </syn-button>
-          <syn-button variant="text" size="small" title="">
-            <syn-icon
-              slot="suffix"
-              name="keyboard_arrow_right"
-              aria-hidden="true"
-              library="default"
-            ></syn-icon>
+          <syn-button variant="text" size="small">
+            <syn-icon slot="suffix" name="keyboard_arrow_right"></syn-icon>
             Request quote
           </syn-button>
         </td>
@@ -1365,7 +1066,24 @@ property should be set to 'separate'. Otherwise the table will have some strange
     </tbody>
   </table>
 </div>
+<script type="module">
+  const scrollableTable = document.getElementById("product-table");
+  const shadowCells = scrollableTable.querySelectorAll(
+    ".syn-table-cell--shadow-end",
+  );
 
+  scrollableTable.addEventListener("scroll", () => {
+    shadowCells.forEach((shadowCell) => {
+      if (scrollableTable.scrollLeft === 0) {
+        shadowCell.classList.remove("syn-table-cell--shadow-active");
+      } else {
+        shadowCell.classList.add("syn-table-cell--shadow-active");
+      }
+    });
+  });
+
+  scrollableTable.scrollLeft = 20;
+</script>
 <style>
   #product-table {
     overflow-y: auto;

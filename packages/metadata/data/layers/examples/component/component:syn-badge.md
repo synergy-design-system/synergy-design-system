@@ -3,7 +3,7 @@
 Badges are used to draw attention and display statuses or counts.
 
 ```html
-<syn-badge variant="primary"> Badge </syn-badge>
+<syn-badge> Badge </syn-badge>
 ```
 
 ---
@@ -30,17 +30,17 @@ One of the most common use cases for badges is attaching them to buttons. DEV: T
 
 ```html
 <div style="display: flex; gap: var(--syn-spacing-2x-large)">
-  <syn-button title="" variant="outline" size="medium">
+  <syn-button>
     Requests
-    <syn-badge pill="" variant="primary">30</syn-badge>
+    <syn-badge pill="">30</syn-badge>
   </syn-button>
 
-  <syn-button title="" variant="outline" size="medium">
+  <syn-button>
     Warnings
     <syn-badge variant="warning" pill="">8</syn-badge>
   </syn-button>
 
-  <syn-button title="" variant="outline" size="medium">
+  <syn-button>
     Errors
     <syn-badge variant="danger" pill="">6</syn-badge>
   </syn-button>
@@ -54,15 +54,15 @@ One of the most common use cases for badges is attaching them to buttons. DEV: T
 When including badges in menu items, use the suffix slot to make sure they’re aligned correctly.
 
 ```html
-<syn-menu style="max-width: 228px" role="menu">
+<syn-menu style="max-width: 228px">
   <syn-menu-label>Messages</syn-menu-label>
-  <syn-menu-item role="menuitem" aria-disabled="false" tabindex="0"
+  <syn-menu-item
     >Comments
     <syn-badge slot="suffix" variant="neutral" pill=""
       >4</syn-badge
     ></syn-menu-item
   >
-  <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
+  <syn-menu-item
     >Replies
     <syn-badge slot="suffix" variant="neutral" pill=""
       >12</syn-badge
@@ -86,10 +86,8 @@ Badges can be used without content to just show an status indicator.
       name="wallpaper"
       style="font-size: var(--syn-font-size-x-large)"
       slot="anchor"
-      aria-hidden="true"
-      library="default"
     ></syn-icon>
-    <syn-badge variant="primary"></syn-badge>
+    <syn-badge></syn-badge>
   </syn-popup>
 
   <syn-popup active="" distance="-8" placement="right-start" skidding="-10">
@@ -97,10 +95,8 @@ Badges can be used without content to just show an status indicator.
       name="wallpaper"
       style="font-size: var(--syn-font-size-x-large)"
       slot="anchor"
-      aria-hidden="true"
-      library="default"
     ></syn-icon>
-    <syn-badge variant="primary">12</syn-badge>
+    <syn-badge>12</syn-badge>
   </syn-popup>
 </div>
 ```

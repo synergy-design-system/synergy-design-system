@@ -3,28 +3,10 @@
 Selects allow you to choose items from a menu of predefined options.
 
 ```html
-<syn-select max-options-visible="3" size="medium" placement="bottom" form="">
-  <syn-option
-    value="Option_1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="Option_2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="Option_3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
+<syn-select max-options-visible="3">
+  <syn-option value="Option_1">Option 1</syn-option>
+  <syn-option value="Option_2">Option 2</syn-option>
+  <syn-option value="Option_3">Option 3</syn-option>
 </syn-select>
 ```
 
@@ -35,28 +17,10 @@ Selects allow you to choose items from a menu of predefined options.
 Use the label attribute to give the select an accessible label. For labels that contain HTML, use the label slot instead.
 
 ```html
-<syn-select label="Select one" size="medium" placement="bottom" form="">
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
+<syn-select label="Select one">
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
 </syn-select>
 ```
 
@@ -67,34 +31,10 @@ Use the label attribute to give the select an accessible label. For labels that 
 Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.
 
 ```html
-<syn-select
-  label="Experience"
-  help-text="Please tell us your skill level."
-  size="medium"
-  placement="bottom"
-  form=""
->
-  <syn-option
-    value="1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Novice</syn-option
-  >
-  <syn-option
-    value="2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Intermediate</syn-option
-  >
-  <syn-option
-    value="3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Advanced</syn-option
-  >
+<syn-select label="Experience" help-text="Please tell us your skill level.">
+  <syn-option value="1">Novice</syn-option>
+  <syn-option value="2">Intermediate</syn-option>
+  <syn-option value="3">Advanced</syn-option>
 </syn-select>
 ```
 
@@ -105,28 +45,10 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
 Use the placeholder attribute to add a placeholder.
 
 ```html
-<syn-select placeholder="Select one" size="medium" placement="bottom" form="">
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
+<syn-select placeholder="Select one">
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
 </syn-select>
 ```
 
@@ -137,34 +59,10 @@ Use the placeholder attribute to add a placeholder.
 Use the clearable attribute to make the control clearable. The clear button only appears when an option is selected.
 
 ```html
-<syn-select
-  clearable=""
-  value="option-1"
-  size="medium"
-  placement="bottom"
-  form=""
->
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="true"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
+<syn-select clearable="" value="option-1">
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
 </syn-select>
 ```
 
@@ -176,28 +74,10 @@ The focus event gives the user feedback that the Select has been focused by the 
 
 ```html
 <div style="padding: 5px">
-  <syn-select label="Select one" size="medium" placement="bottom" form="">
-    <syn-option
-      value="option-1"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option 1</syn-option
-    >
-    <syn-option
-      value="option-2"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option 2</syn-option
-    >
-    <syn-option
-      value="option-3"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option 3</syn-option
-    >
+  <syn-select label="Select one">
+    <syn-option value="option-1">Option 1</syn-option>
+    <syn-option value="option-2">Option 2</syn-option>
+    <syn-option value="option-3">Option 3</syn-option>
   </syn-select>
 </div>
 ```
@@ -209,34 +89,10 @@ The focus event gives the user feedback that the Select has been focused by the 
 Use the disabled attribute to disable a select.
 
 ```html
-<syn-select
-  placeholder="Disabled"
-  disabled=""
-  size="medium"
-  placement="bottom"
-  form=""
->
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
+<syn-select placeholder="Disabled" disabled="">
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
 </syn-select>
 ```
 
@@ -250,41 +106,11 @@ Add the readonly attribute to a select to draw it in a readonly state.
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-select
-    placeholder="Readonly"
-    value="option-1"
-    readonly=""
-    size="medium"
-    placement="bottom"
-    form=""
-  >
-    <syn-icon
-      name="wallpaper"
-      slot="prefix"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
-    <syn-option
-      value="option-1"
-      role="option"
-      aria-selected="true"
-      aria-disabled="false"
-      >Option 1</syn-option
-    >
-    <syn-option
-      value="option-2"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option 2</syn-option
-    >
-    <syn-option
-      value="option-3"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option 3</syn-option
-    >
+  <syn-select placeholder="Readonly" value="option-1" readonly="">
+    <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+    <syn-option value="option-1">Option 1</syn-option>
+    <syn-option value="option-2">Option 2</syn-option>
+    <syn-option value="option-3">Option 3</syn-option>
   </syn-select>
   <syn-select
     max-options-visible="2"
@@ -292,31 +118,10 @@ Add the readonly attribute to a select to draw it in a readonly state.
     placeholder="Readonly"
     value="option-1 option-2 option-3"
     readonly=""
-    size="medium"
-    placement="bottom"
-    form=""
   >
-    <syn-option
-      value="option-1"
-      role="option"
-      aria-selected="true"
-      aria-disabled="false"
-      >Option 1</syn-option
-    >
-    <syn-option
-      value="option-2"
-      role="option"
-      aria-selected="true"
-      aria-disabled="false"
-      >Option 2</syn-option
-    >
-    <syn-option
-      value="option-3"
-      role="option"
-      aria-selected="true"
-      aria-disabled="false"
-      >Option 3</syn-option
-    >
+    <syn-option value="option-1">Option 1</syn-option>
+    <syn-option value="option-2">Option 2</syn-option>
+    <syn-option value="option-3">Option 3</syn-option>
   </syn-select>
 </div>
 ```
@@ -333,52 +138,13 @@ To allow multiple options to be selected, use the multiple attribute. It’s a g
   value="Option_1 Option_2 Option_3"
   multiple=""
   clearable=""
-  size="medium"
-  placement="bottom"
-  form=""
 >
-  <syn-option
-    value="Option_1"
-    role="option"
-    aria-selected="true"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="Option_2"
-    role="option"
-    aria-selected="true"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="Option_3"
-    role="option"
-    aria-selected="true"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
-  <syn-option
-    value="Option_4"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 4</syn-option
-  >
-  <syn-option
-    value="Option_5"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 5</syn-option
-  >
-  <syn-option
-    value="Option_6"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 6</syn-option
-  >
+  <syn-option value="Option_1">Option 1</syn-option>
+  <syn-option value="Option_2">Option 2</syn-option>
+  <syn-option value="Option_3">Option 3</syn-option>
+  <syn-option value="Option_4">Option 4</syn-option>
+  <syn-option value="Option_5">Option 5</syn-option>
+  <syn-option value="Option_6">Option 6</syn-option>
 </syn-select>
 ```
 
@@ -394,39 +160,38 @@ Use the value attribute to set the initial selection.When using multiple, the va
   multiple=""
   clearable=""
   class="custom-tag"
-  size="medium"
-  placement="bottom"
-  form=""
 >
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="true"
-    aria-disabled="false"
-    >Option</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="true"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="true"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-4"
-    role="option"
-    aria-selected="true"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
+  <syn-option value="option-1">Option</syn-option>
+  <syn-option value="option-2">Option 1</syn-option>
+  <syn-option value="option-3">Option 2</syn-option>
+  <syn-option value="option-4">Option 3</syn-option>
 </syn-select>
+<script type="module">
+  const select = document.querySelector(".custom-tag");
+
+  select.getTag = (option, index) => {
+    // Use the same icon used in the <syn-option>
+    const optionElement = option.querySelector('syn-icon[slot="prefix"]');
+
+    if (!optionElement) {
+      return `
+      <syn-tag removable>
+      ${option.getTextLabel()}
+      </syn-tag>
+      `;
+    }
+
+    const { name } = optionElement;
+
+    // You can return a string, a Lit Template, or an HTMLElement here
+    return `
+      <syn-tag removable>
+        <syn-icon name="${name}"></syn-icon>
+        ${option.getTextLabel()}
+      </syn-tag>
+    `;
+  };
+</script>
 ```
 
 ---
@@ -436,43 +201,14 @@ Use the value attribute to set the initial selection.When using multiple, the va
 Use <syn-optgroup> to group listbox items visually.
 
 ```html
-<syn-select
-  placeholder="This is a value"
-  size="medium"
-  placement="bottom"
-  form=""
->
+<syn-select placeholder="This is a value">
   <syn-optgroup label="Section 1">
-    <syn-option
-      value="1"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option</syn-option
-    >
-    <syn-option
-      value="2"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option</syn-option
-    >
+    <syn-option value="1">Option</syn-option>
+    <syn-option value="2">Option</syn-option>
   </syn-optgroup>
   <syn-optgroup label="Section 2">
-    <syn-option
-      value="3"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option</syn-option
-    >
-    <syn-option
-      value="4"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option</syn-option
-    >
+    <syn-option value="3">Option</syn-option>
+    <syn-option value="4">Option</syn-option>
   </syn-optgroup>
 </syn-select>
 ```
@@ -484,80 +220,26 @@ Use <syn-optgroup> to group listbox items visually.
 Use the size attribute to change a select’s size. Note that size does not apply to listbox options.
 
 ```html
-<syn-select placeholder="Small" size="small" placement="bottom" form="">
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
+<syn-select placeholder="Small" size="small">
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
 </syn-select>
 
 <br />
 
-<syn-select placeholder="Medium" size="medium" placement="bottom" form="">
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
+<syn-select placeholder="Medium" size="medium">
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
 </syn-select>
 
 <br />
 
-<syn-select placeholder="Large" size="large" placement="bottom" form="">
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
+<syn-select placeholder="Large" size="large">
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
 </syn-select>
 ```
 
@@ -569,38 +251,12 @@ The invalid status is used to warn the user that the Select is invalid. For exam
 
 ```html
 <form class="custom-validity">
-  <syn-select
-    label="Select one"
-    required=""
-    size="medium"
-    placement="bottom"
-    form=""
-  >
-    <syn-option
-      value="option-1"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option 1</syn-option
-    >
-    <syn-option
-      value="option-2"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option 2</syn-option
-    >
-    <syn-option
-      value="option-3"
-      role="option"
-      aria-selected="false"
-      aria-disabled="false"
-      >Option 3</syn-option
-    >
+  <syn-select label="Select one" required="">
+    <syn-option value="option-1">Option 1</syn-option>
+    <syn-option value="option-2">Option 2</syn-option>
+    <syn-option value="option-3">Option 3</syn-option>
   </syn-select>
-  <syn-button type="submit" variant="filled" title="" size="medium"
-    >Submit</syn-button
-  >
+  <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
 <style>
   .custom-validity {
@@ -621,130 +277,28 @@ The invalid status is used to warn the user that the Select is invalid. For exam
 Use the prefix and suffix slots to add text and icons.
 
 ```html
-<syn-select
-  placeholder="Small"
-  size="small"
-  clearable=""
-  placement="bottom"
-  form=""
->
-  <syn-icon
-    name="wallpaper"
-    slot="prefix"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
-  <syn-icon
-    name="wallpaper"
-    slot="suffix"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
+<syn-select placeholder="Small" size="small" clearable="">
+  <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
+  <syn-icon name="wallpaper" slot="suffix"></syn-icon>
 </syn-select>
 <br />
-<syn-select
-  placeholder="Medium"
-  size="medium"
-  clearable=""
-  placement="bottom"
-  form=""
->
-  <syn-icon
-    name="wallpaper"
-    slot="prefix"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
-  <syn-icon
-    name="wallpaper"
-    slot="suffix"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
+<syn-select placeholder="Medium" size="medium" clearable="">
+  <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
+  <syn-icon name="wallpaper" slot="suffix"></syn-icon>
 </syn-select>
 <br />
-<syn-select
-  placeholder="Large"
-  size="large"
-  clearable=""
-  placement="bottom"
-  form=""
->
-  <syn-icon
-    name="wallpaper"
-    slot="prefix"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
-  <syn-option
-    value="option-1"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 1</syn-option
-  >
-  <syn-option
-    value="option-2"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 2</syn-option
-  >
-  <syn-option
-    value="option-3"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-    >Option 3</syn-option
-  >
-  <syn-icon
-    name="wallpaper"
-    slot="suffix"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
+<syn-select placeholder="Large" size="large" clearable="">
+  <syn-icon name="wallpaper" slot="prefix"></syn-icon>
+  <syn-option value="option-1">Option 1</syn-option>
+  <syn-option value="option-2">Option 2</syn-option>
+  <syn-option value="option-3">Option 3</syn-option>
+  <syn-icon name="wallpaper" slot="suffix"></syn-icon>
 </syn-select>
 ```
 
@@ -761,51 +315,45 @@ When multiple options can be selected, you can provide custom tags by passing a 
   multiple=""
   placeholder="Select one"
   value="phone email"
-  size="medium"
-  placement="bottom"
-  form=""
 >
-  <syn-option
-    value="email"
-    role="option"
-    aria-selected="true"
-    aria-disabled="false"
-  >
-    <syn-icon
-      slot="prefix"
-      name="mail_outline"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+  <syn-option value="email">
+    <syn-icon slot="prefix" name="mail_outline"></syn-icon>
     Email
   </syn-option>
-  <syn-option
-    value="phone"
-    role="option"
-    aria-selected="true"
-    aria-disabled="false"
-  >
-    <syn-icon
-      slot="prefix"
-      name="phone"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+  <syn-option value="phone">
+    <syn-icon slot="prefix" name="phone"></syn-icon>
     Phone
   </syn-option>
-  <syn-option
-    value="chat"
-    role="option"
-    aria-selected="false"
-    aria-disabled="false"
-  >
-    <syn-icon
-      slot="prefix"
-      name="chat_bubble_outline"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+  <syn-option value="chat">
+    <syn-icon slot="prefix" name="chat_bubble_outline"></syn-icon>
     Chat
   </syn-option>
 </syn-select>
+
+<script type="module">
+  const select = document.querySelector("#custom-tags-story");
+
+  select.getTag = (option, index) => {
+    // Use the same icon used in the <syn-option>
+    const optionElement = option.querySelector('syn-icon[slot="prefix"]');
+
+    if (!optionElement) {
+      return `
+      <syn-tag removable>
+      ${option.getTextLabel()}
+      </syn-tag>
+      `;
+    }
+
+    const { name } = optionElement;
+
+    // You can return a string, a Lit Template, or an HTMLElement here
+    return `
+      <syn-tag removable>
+        <syn-icon name="${name}"></syn-icon>
+        ${option.getTextLabel()}
+      </syn-tag>
+    `;
+  };
+</script>
 ```

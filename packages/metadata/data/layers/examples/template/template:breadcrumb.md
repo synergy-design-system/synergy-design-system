@@ -2,88 +2,31 @@
 
 ```html
 <div id="breadcrumb-responsive" class="synergy-demo-application">
-  <syn-header label="Synergy" burger-menu="hidden"></syn-header>
+  <syn-header label="Synergy"></syn-header>
   <syn-breadcrumb>
-    <syn-breadcrumb-item
-      >Home<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
+    <syn-breadcrumb-item>Home</syn-breadcrumb-item>
     <syn-breadcrumb-item class="truncated">
-      <syn-dropdown placement="bottom-start">
+      <syn-dropdown>
         <syn-icon-button
           slot="trigger"
           size="small"
           label="More options"
           name="more_horiz"
-          color="currentColor"
         >
         </syn-icon-button>
-        <syn-menu role="menu">
-          <syn-menu-item role="menuitem" aria-disabled="false" tabindex="0"
-            >Service and support</syn-menu-item
-          >
-          <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-            >Service category</syn-menu-item
-          >
+        <syn-menu>
+          <syn-menu-item>Service and support</syn-menu-item>
+          <syn-menu-item>Service category</syn-menu-item>
         </syn-menu>
       </syn-dropdown>
-      <syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
-    <syn-breadcrumb-item
-      >Service and support<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
-    <syn-breadcrumb-item
-      >Service category<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
+    </syn-breadcrumb-item>
+    <syn-breadcrumb-item>Service and support</syn-breadcrumb-item>
+    <syn-breadcrumb-item>Service category</syn-breadcrumb-item>
     <syn-breadcrumb-item>
-      <syn-icon
-        class="back-icon"
-        name="arrow_back"
-        slot="prefix"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+      <syn-icon class="back-icon" name="arrow_back" slot="prefix"></syn-icon>
       Service
-      <syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
-    <syn-breadcrumb-item aria-current="page"
-      >Current service page<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
+    </syn-breadcrumb-item>
+    <syn-breadcrumb-item>Current service page</syn-breadcrumb-item>
   </syn-breadcrumb>
 </div>
 
@@ -181,63 +124,26 @@
 
 ```html
 <div id="breadcrumb-truncated" class="synergy-demo-application">
-  <syn-header label="Synergy" burger-menu="hidden"></syn-header>
+  <syn-header label="Synergy"></syn-header>
   <syn-breadcrumb>
-    <syn-breadcrumb-item
-      >Home<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
+    <syn-breadcrumb-item>Home</syn-breadcrumb-item>
     <syn-breadcrumb-item class="truncated">
-      <syn-dropdown placement="bottom-start">
+      <syn-dropdown>
         <syn-icon-button
           slot="trigger"
           size="small"
           label="More options"
           name="more_horiz"
-          color="currentColor"
         >
         </syn-icon-button>
-        <syn-menu role="menu">
-          <syn-menu-item role="menuitem" aria-disabled="false" tabindex="0"
-            >Service and support</syn-menu-item
-          >
-          <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-            >Service category</syn-menu-item
-          >
+        <syn-menu>
+          <syn-menu-item>Service and support</syn-menu-item>
+          <syn-menu-item>Service category</syn-menu-item>
         </syn-menu>
       </syn-dropdown>
-      <syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
-    <syn-breadcrumb-item>
-      Service
-      <syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
-    <syn-breadcrumb-item aria-current="page"
-      >Current service page<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
+    </syn-breadcrumb-item>
+    <syn-breadcrumb-item> Service </syn-breadcrumb-item>
+    <syn-breadcrumb-item>Current service page</syn-breadcrumb-item>
   </syn-breadcrumb>
 </div>
 
@@ -282,61 +188,16 @@
 
 ```html
 <div id="breadcrumb-short" class="synergy-demo-application">
-  <syn-header label="Synergy" burger-menu="hidden"></syn-header>
+  <syn-header label="Synergy"></syn-header>
   <syn-breadcrumb>
-    <syn-breadcrumb-item
-      >Home<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
-    <syn-breadcrumb-item
-      >Service and support<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
-    <syn-breadcrumb-item
-      >Service category<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
+    <syn-breadcrumb-item>Home</syn-breadcrumb-item>
+    <syn-breadcrumb-item>Service and support</syn-breadcrumb-item>
+    <syn-breadcrumb-item>Service category</syn-breadcrumb-item>
     <syn-breadcrumb-item>
-      <syn-icon
-        class="back-icon"
-        name="arrow_back"
-        slot="prefix"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+      <syn-icon class="back-icon" name="arrow_back" slot="prefix"></syn-icon>
       Service
-      <syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
-    <syn-breadcrumb-item aria-current="page"
-      >Current service page<syn-icon
-        name="chevron-down"
-        library="system"
-        class="ltr"
-        slot="separator"
-        aria-hidden="true"
-      ></syn-icon
-    ></syn-breadcrumb-item>
+    </syn-breadcrumb-item>
+    <syn-breadcrumb-item>Current service page</syn-breadcrumb-item>
   </syn-breadcrumb>
 </div>
 

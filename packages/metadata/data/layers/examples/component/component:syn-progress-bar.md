@@ -44,26 +44,36 @@ Use the default slot to show a value.
   >
 
   <div style="display: flex; gap: var(--syn-spacing-x-small)">
-    <syn-button variant="outline" size="small" title="">
+    <syn-button variant="outline" size="small">
       <syn-icon
         name="indeterminate"
         library="system"
         label="Decrease"
-        role="img"
-        aria-label="Decrease"
       ></syn-icon>
     </syn-button>
-    <syn-button variant="outline" size="small" title="">
-      <syn-icon
-        name="add"
-        library="system"
-        label="Increase"
-        role="img"
-        aria-label="Increase"
-      ></syn-icon>
+    <syn-button variant="outline" size="small">
+      <syn-icon name="add" library="system" label="Increase"></syn-icon>
     </syn-button>
   </div>
 </div>
+
+<script type="module">
+  const progressBar = document.querySelector(".progress-bar-values");
+  const subtractButton = progressBar.nextElementSibling.firstElementChild;
+  const addButton = subtractButton.nextElementSibling;
+
+  addButton.addEventListener("click", () => {
+    const value = Math.min(100, progressBar.value + 10);
+    progressBar.value = value;
+    progressBar.textContent = value + "%";
+  });
+
+  subtractButton.addEventListener("click", () => {
+    const value = Math.max(0, progressBar.value - 10);
+    progressBar.value = value;
+    progressBar.textContent = value + "%";
+  });
+</script>
 ```
 
 ---
@@ -73,5 +83,5 @@ Use the default slot to show a value.
 The indeterminate attribute can be used to inform the user that the operation is pending, but its status cannot currently be determined. In this state, value is ignored and the label, if present, will not be shown.
 
 ```html
-<syn-progress-bar indeterminate="" value="0"></syn-progress-bar>
+<syn-progress-bar indeterminate=""></syn-progress-bar>
 ```

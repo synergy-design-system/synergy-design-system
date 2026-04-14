@@ -4,75 +4,22 @@ Tab panels are used inside tab groups to display tabbed content.
 
 ```html
 <syn-tab-group>
-  <syn-tab
-    slot="nav"
-    panel="tab1"
-    role="tab"
-    aria-disabled="false"
-    aria-selected="false"
-    id="syn-tab-13"
-    tabindex="0"
-    >Tab Item</syn-tab
-  >
-  <syn-tab
-    slot="nav"
-    panel="tab2"
-    role="tab"
-    aria-disabled="false"
-    aria-selected="false"
-    id="syn-tab-14"
-    tabindex="0"
-    >Tab Item</syn-tab
-  >
-  <syn-tab
-    slot="nav"
-    panel="tab3"
-    role="tab"
-    aria-disabled="false"
-    aria-selected="false"
-    id="syn-tab-15"
-    tabindex="0"
-    >Tab Item</syn-tab
-  >
-  <syn-tab
-    slot="nav"
-    panel="tab4"
-    role="tab"
-    aria-disabled="false"
-    aria-selected="false"
-    id="syn-tab-16"
-    tabindex="0"
-    >Tab Item</syn-tab
-  >
+  <syn-tab slot="nav" panel="tab1">Tab Item</syn-tab>
+  <syn-tab slot="nav" panel="tab2">Tab Item</syn-tab>
+  <syn-tab slot="nav" panel="tab3">Tab Item</syn-tab>
+  <syn-tab slot="nav" panel="tab4">Tab Item</syn-tab>
 
-  <syn-tab-panel
-    name="tab1"
-    id="syn-tab-panel-16"
-    role="tabpanel"
-    aria-hidden="true"
-  >
+  <syn-tab-panel name="tab1">
     <main class="synergy-replace">Replace this slot</main>
   </syn-tab-panel>
 
-  <syn-tab-panel
-    name="tab2"
-    id="syn-tab-panel-13"
-    role="tabpanel"
-    aria-hidden="true"
+  <syn-tab-panel name="tab2"
     ><main class="synergy-replace">Replace this slot</main></syn-tab-panel
   >
-  <syn-tab-panel
-    name="tab3"
-    id="syn-tab-panel-14"
-    role="tabpanel"
-    aria-hidden="true"
+  <syn-tab-panel name="tab3"
     ><main class="synergy-replace">Replace this slot</main></syn-tab-panel
   >
-  <syn-tab-panel
-    name="tab4"
-    id="syn-tab-panel-15"
-    role="tabpanel"
-    aria-hidden="true"
+  <syn-tab-panel name="tab4"
     ><main class="synergy-replace">Replace this slot</main></syn-tab-panel
   >
 </syn-tab-group>

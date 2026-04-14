@@ -4,55 +4,23 @@ Dropdowns expose additional content that “drops down” in a panel.Dropdowns c
 
 ```html
 <div style="position: relative">
-  <syn-dropdown placement="bottom-start">
-    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
-      >Dropdown</syn-button
-    >
-    <syn-menu style="min-width: 240px" role="menu">
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="0"
-        >Dropdown Item 1</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Dropdown Item 2</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Dropdown Item 3</syn-menu-item
-      >
-      <syn-divider role="separator" aria-orientation="horizontal"></syn-divider>
-      <syn-menu-item
-        type="checkbox"
-        checked=""
-        role="menuitemcheckbox"
-        aria-checked="true"
-        aria-disabled="false"
-        tabindex="-1"
-        >Checkbox</syn-menu-item
-      >
-      <syn-menu-item
-        disabled=""
-        role="menuitem"
-        aria-disabled="true"
-        tabindex="-1"
-        >Disabled</syn-menu-item
-      >
-      <syn-divider role="separator" aria-orientation="horizontal"></syn-divider>
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1">
+  <syn-dropdown>
+    <syn-button slot="trigger" caret="">Dropdown</syn-button>
+    <syn-menu style="min-width: 240px">
+      <syn-menu-item>Dropdown Item 1</syn-menu-item>
+      <syn-menu-item>Dropdown Item 2</syn-menu-item>
+      <syn-menu-item>Dropdown Item 3</syn-menu-item>
+      <syn-divider></syn-divider>
+      <syn-menu-item type="checkbox" checked="">Checkbox</syn-menu-item>
+      <syn-menu-item disabled="">Disabled</syn-menu-item>
+      <syn-divider></syn-divider>
+      <syn-menu-item>
         Prefix
-        <syn-icon
-          slot="prefix"
-          name="wallpaper"
-          aria-hidden="true"
-          library="default"
-        ></syn-icon>
+        <syn-icon slot="prefix" name="wallpaper"></syn-icon>
       </syn-menu-item>
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1">
+      <syn-menu-item>
         Suffix Icon
-        <syn-icon
-          slot="suffix"
-          name="wallpaper"
-          aria-hidden="true"
-          library="default"
-        ></syn-icon>
+        <syn-icon slot="suffix" name="wallpaper"></syn-icon>
       </syn-menu-item>
     </syn-menu>
   </syn-dropdown>
@@ -68,41 +36,26 @@ When dropdowns are used with menus, you can listen for the syn-select event t
 ```html
 <div style="position: relative">
   <div class="dropdown-selection">
-    <syn-dropdown placement="bottom-start">
-      <syn-button
-        slot="trigger"
-        caret=""
-        title=""
-        variant="outline"
-        size="medium"
-        >Edit</syn-button
-      >
-      <syn-menu style="min-width: 240px" role="menu">
-        <syn-menu-item
-          value="cut"
-          role="menuitem"
-          aria-disabled="false"
-          tabindex="0"
-          >Cut</syn-menu-item
-        >
-        <syn-menu-item
-          value="copy"
-          role="menuitem"
-          aria-disabled="false"
-          tabindex="-1"
-          >Copy</syn-menu-item
-        >
-        <syn-menu-item
-          value="paste"
-          role="menuitem"
-          aria-disabled="false"
-          tabindex="-1"
-          >Paste</syn-menu-item
-        >
+    <syn-dropdown>
+      <syn-button slot="trigger" caret="">Edit</syn-button>
+      <syn-menu style="min-width: 240px">
+        <syn-menu-item value="cut">Cut</syn-menu-item>
+        <syn-menu-item value="copy">Copy</syn-menu-item>
+        <syn-menu-item value="paste">Paste</syn-menu-item>
       </syn-menu>
     </syn-dropdown>
   </div>
 </div>
+
+<script type="module">
+  const container = document.querySelector(".dropdown-selection");
+  const dropdown = container.querySelector("syn-dropdown");
+
+  dropdown.addEventListener("syn-select", (event) => {
+    const selectedItem = event.detail.item;
+    console.log(selectedItem.value);
+  });
+</script>
 ```
 
 ---
@@ -114,26 +67,14 @@ The preferred placement of the dropdown can be set with the placement attribut
 ```html
 <div style="position: relative">
   <syn-dropdown placement="right-start">
-    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
-      >Edit</syn-button
-    >
-    <syn-menu style="min-width: 240px" role="menu">
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="0"
-        >Cut</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Copy</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Paste</syn-menu-item
-      >
-      <syn-divider role="separator" aria-orientation="horizontal"></syn-divider>
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Find</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Replace</syn-menu-item
-      >
+    <syn-button slot="trigger" caret="">Edit</syn-button>
+    <syn-menu style="min-width: 240px">
+      <syn-menu-item>Cut</syn-menu-item>
+      <syn-menu-item>Copy</syn-menu-item>
+      <syn-menu-item>Paste</syn-menu-item>
+      <syn-divider></syn-divider>
+      <syn-menu-item>Find</syn-menu-item>
+      <syn-menu-item>Replace</syn-menu-item>
     </syn-menu>
   </syn-dropdown>
 </div>
@@ -147,27 +88,15 @@ The distance from the panel to the trigger can be customized using the distance
 
 ```html
 <div style="position: relative">
-  <syn-dropdown distance="30" placement="bottom-start">
-    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
-      >Edit</syn-button
-    >
-    <syn-menu style="min-width: 240px" role="menu">
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="0"
-        >Cut</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Copy</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Paste</syn-menu-item
-      >
-      <syn-divider role="separator" aria-orientation="horizontal"></syn-divider>
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Find</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Replace</syn-menu-item
-      >
+  <syn-dropdown distance="30">
+    <syn-button slot="trigger" caret="">Edit</syn-button>
+    <syn-menu style="min-width: 240px">
+      <syn-menu-item>Cut</syn-menu-item>
+      <syn-menu-item>Copy</syn-menu-item>
+      <syn-menu-item>Paste</syn-menu-item>
+      <syn-divider></syn-divider>
+      <syn-menu-item>Find</syn-menu-item>
+      <syn-menu-item>Replace</syn-menu-item>
     </syn-menu>
   </syn-dropdown>
 </div>
@@ -181,27 +110,15 @@ The offset of the panel along the trigger can be customized using the skidding�
 
 ```html
 <div style="position: relative">
-  <syn-dropdown skidding="30" placement="bottom-start">
-    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
-      >Edit</syn-button
-    >
-    <syn-menu style="min-width: 240px" role="menu">
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="0"
-        >Cut</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Copy</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Paste</syn-menu-item
-      >
-      <syn-divider role="separator" aria-orientation="horizontal"></syn-divider>
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Find</syn-menu-item
-      >
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1"
-        >Replace</syn-menu-item
-      >
+  <syn-dropdown skidding="30">
+    <syn-button slot="trigger" caret="">Edit</syn-button>
+    <syn-menu style="min-width: 240px">
+      <syn-menu-item>Cut</syn-menu-item>
+      <syn-menu-item>Copy</syn-menu-item>
+      <syn-menu-item>Paste</syn-menu-item>
+      <syn-divider></syn-divider>
+      <syn-menu-item>Find</syn-menu-item>
+      <syn-menu-item>Replace</syn-menu-item>
     </syn-menu>
   </syn-dropdown>
 </div>
@@ -215,99 +132,31 @@ To create a submenu, nest an <syn-menu slot="submenu"> element in a menu item
 
 ```html
 <div style="position: relative">
-  <syn-dropdown placement="bottom-start">
-    <syn-button slot="trigger" caret="" title="" variant="outline" size="medium"
-      >Edit</syn-button
-    >
+  <syn-dropdown>
+    <syn-button slot="trigger" caret="">Edit</syn-button>
 
-    <syn-menu style="min-width: 240px" role="menu">
-      <syn-menu-item
-        value="undo"
-        role="menuitem"
-        aria-disabled="false"
-        tabindex="0"
-        >Undo</syn-menu-item
-      >
-      <syn-menu-item
-        value="redo"
-        role="menuitem"
-        aria-disabled="false"
-        tabindex="-1"
-        >Redo</syn-menu-item
-      >
-      <syn-divider role="separator" aria-orientation="horizontal"></syn-divider>
-      <syn-menu-item
-        value="cut"
-        role="menuitem"
-        aria-disabled="false"
-        tabindex="-1"
-        >Cut</syn-menu-item
-      >
-      <syn-menu-item
-        value="copy"
-        role="menuitem"
-        aria-disabled="false"
-        tabindex="-1"
-        >Copy</syn-menu-item
-      >
-      <syn-menu-item
-        value="paste"
-        role="menuitem"
-        aria-disabled="false"
-        tabindex="-1"
-        >Paste</syn-menu-item
-      >
-      <syn-divider role="separator" aria-orientation="horizontal"></syn-divider>
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1">
+    <syn-menu style="min-width: 240px">
+      <syn-menu-item value="undo">Undo</syn-menu-item>
+      <syn-menu-item value="redo">Redo</syn-menu-item>
+      <syn-divider></syn-divider>
+      <syn-menu-item value="cut">Cut</syn-menu-item>
+      <syn-menu-item value="copy">Copy</syn-menu-item>
+      <syn-menu-item value="paste">Paste</syn-menu-item>
+      <syn-divider></syn-divider>
+      <syn-menu-item>
         Find
-        <syn-menu slot="submenu" role="menu">
-          <syn-menu-item
-            value="find"
-            role="menuitem"
-            aria-disabled="false"
-            tabindex="0"
-            >Find…</syn-menu-item
-          >
-          <syn-menu-item
-            value="find-previous"
-            role="menuitem"
-            aria-disabled="false"
-            tabindex="-1"
-            >Find Next</syn-menu-item
-          >
-          <syn-menu-item
-            value="find-next"
-            role="menuitem"
-            aria-disabled="false"
-            tabindex="-1"
-            >Find Previous</syn-menu-item
-          >
+        <syn-menu slot="submenu">
+          <syn-menu-item value="find">Find…</syn-menu-item>
+          <syn-menu-item value="find-previous">Find Next</syn-menu-item>
+          <syn-menu-item value="find-next">Find Previous</syn-menu-item>
         </syn-menu>
       </syn-menu-item>
-      <syn-menu-item role="menuitem" aria-disabled="false" tabindex="-1">
+      <syn-menu-item>
         Transformations
-        <syn-menu slot="submenu" role="menu">
-          <syn-menu-item
-            value="uppercase"
-            role="menuitem"
-            aria-disabled="false"
-            tabindex="0"
-            >Make uppercase</syn-menu-item
-          >
-          <syn-menu-item
-            value="lowercase"
-            role="menuitem"
-            aria-disabled="false"
-            tabindex="-1"
-            >Make lowercase</syn-menu-item
-          >
-          <syn-menu-item
-            value="capitalize"
-            role="menuitem"
-            aria-disabled="false"
-            tabindex="-1"
-            >Capitalize</syn-menu-item
-          >
+        <syn-menu slot="submenu">
+          <syn-menu-item value="uppercase">Make uppercase</syn-menu-item>
+          <syn-menu-item value="lowercase">Make lowercase</syn-menu-item>
+          <syn-menu-item value="capitalize">Capitalize</syn-menu-item>
         </syn-menu>
       </syn-menu-item>
     </syn-menu>

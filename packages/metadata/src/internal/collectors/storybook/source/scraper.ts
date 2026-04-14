@@ -1,4 +1,5 @@
 import { Browser, chromium } from 'playwright';
+import type { Page } from 'playwright';
 import prettier from 'prettier';
 import storybookOutput from '@synergy-design-system/docs/dist/index.json' with { type: 'json' };
 import { createConsoleLogger } from '../../../core/context.js';
@@ -23,6 +24,23 @@ function shouldSkipStory(storyId: string): boolean {
   return storyEntry?.tags?.includes('skip_mcp') || false;
 }
 
+function isDefaultOrScreenshotOnlyDocsStory(docsStoryId: string): boolean {
+  const entries = storybookOutput.entries as Record<string, StorybookEntry>;
+  const componentPrefix = docsStoryId.replace('--docs', '');
+
+  const relatedStoryIds = Object.keys(entries)
+    .filter((id) => id.startsWith(`${componentPrefix}--`) && !id.endsWith('--docs'));
+
+  if (relatedStoryIds.length === 0) {
+    return false;
+  }
+
+  return relatedStoryIds.every((id) => {
+    const storySlug = id.slice(componentPrefix.length + 2).toLowerCase();
+    return storySlug === 'default' || storySlug === 'screenshot';
+  });
+}
+
 /**
  * Check if a story heading should be skipped by finding the corresponding story ID
  * @param docsStoryId The docs story ID (e.g., "components-syn-combobox--docs")
@@ -41,6 +59,44 @@ function shouldSkipStoryByHeading(docsStoryId: string, heading: string): boolean
 
   // Check if this potential story ID exists and should be skipped
   return shouldSkipStory(potentialStoryId);
+}
+
+async function waitForHiddenSources(page: Page): Promise<void> {
+  try {
+    await page.waitForFunction(() => {
+      const anchors = Array.from(document.querySelectorAll('.sb-anchor'));
+      if (anchors.length === 0) {
+        return false;
+      }
+
+      return anchors.every((story) => {
+        const hasCodeToggle = !!story.querySelector('.docblock-code-toggle');
+        const hiddenSources = Array.from(story.querySelectorAll('.syn-story-source'));
+        const hasNonEmptyHiddenSource = hiddenSources.some((node) => (node.textContent || '').trim().length > 0);
+
+        return !hasCodeToggle || hasNonEmptyHiddenSource;
+      });
+    }, {
+      timeout: 5000,
+    });
+  } catch {
+    // Best effort only. Some docs stories intentionally do not expose source.
+  }
+}
+
+async function formatExample(example: string): Promise<string> {
+  const trimmed = example.trim();
+  if (!trimmed) {
+    return '';
+  }
+
+  try {
+    return await prettier.format(trimmed, {
+      parser: 'html',
+    });
+  } catch {
+    return `${trimmed}\n`;
+  }
 }
 
 export class StorybookScraper {
@@ -63,19 +119,21 @@ export class StorybookScraper {
       headless: true,
     });
 
-    const page = await browserInstance.newPage({
+    const context = await browserInstance.newContext({
       viewport: {
         height: 768,
         width: 1024,
       },
     });
 
+    const page = await context.newPage();
+
     const scrapingReport = {
       error: null as Error | null,
       foundStories: 0,
       processedStories: 0,
       status: 'pending' as 'success' | 'error' | 'pending',
-      storyDetails: [] as Array<{ heading: string; status: 'success' | 'error'; error?: string }>,
+      storyDetails: [] as Array<{ heading: string; status: 'success' | 'error'; error?: string; }>,
       storyId,
     };
 
@@ -85,96 +143,51 @@ export class StorybookScraper {
 
       // Wait for the content to load
       await page.waitForSelector('.sb-anchor');
+      await waitForHiddenSources(page);
 
       // Extract the stories metadata first
-      // We get basic info and identify stories that need iframe content
-      const rawStoryMetadata = await page.evaluate(() => Array.from(
-        document.querySelectorAll('.sb-anchor'),
-      )
-
+      // Read hidden sources directly from the DOM snapshot. This is more reliable than
+      // per-story Playwright locator reads on long docs pages.
+      const rawStoryMetadata = await page.evaluate(() => Array
+        .from(document.querySelectorAll('.sb-anchor'))
         .map((story, index) => {
           const description = story.querySelector(':scope > p')?.textContent || '';
-          const heading = story.querySelector('h3')?.textContent || '';
-          const hasIframe = !!story.querySelector('.sb-story iframe');
-
-          let exampleSource = '';
-
-          if (!hasIframe) {
-            // #1152: The example source is usually in the #root-inner element.
-            // However, for at least one story (tag-group-template), the #root-inner container is missing.
-            // I am not sure why, but I think a fallback would be just to check the first element for the time being.
-            const exampleWithRoot = story.querySelector('.sb-story #root-inner')?.innerHTML || '';
-            const exampleWithoutRoot = story.querySelector('.sb-story > div')?.innerHTML || '';
-            exampleSource = exampleWithRoot || exampleWithoutRoot;
-          }
+          const heading = story.querySelector(':scope > h3')?.textContent || '';
+          const exampleSource = story.querySelector('.syn-story-source')?.textContent?.trim() || '';
 
           return {
             description,
             exampleSource,
-            hasIframe,
             heading,
             index,
           };
-        })
-        .filter(x => x.heading));
+        }));
 
       // Filter out stories that should be skipped based on their tags
       const storyMetadata = rawStoryMetadata.filter(story => {
         const shouldSkip = shouldSkipStoryByHeading(storyId, story.heading);
         if (shouldSkip) {
-          logger.info(`Skipping story "${story.heading}" due to skip_mcp tag`);
+          logger.warn(`Skipping story "${story.heading}" due to skip_mcp tag`);
         }
         return !shouldSkip;
       });
 
-      // Process each story and handle iframe content if needed
-      const results = await Promise.all(
-        storyMetadata.map(async (storyMeta) => {
-          let { exampleSource } = storyMeta;
-
-          // If no inline content and there's an iframe, try to get content from iframe
-          if (!exampleSource && storyMeta.hasIframe) {
-            try {
-              const storySection = page.locator('.sb-anchor').nth(storyMeta.index);
-
-              // Storybook uses lazy loading, so the iframe may not be loaded until we scroll it into view
-              await storySection.scrollIntoViewIfNeeded();
-              await page.waitForTimeout(1000);
-
-              const frame = storySection.frameLocator('iframe');
-
-              const frameContent = await frame.locator('#root-inner').innerHTML();
-              exampleSource = frameContent || '';
-            } catch (error) {
-              // If iframe content extraction fails, continue with empty content
-              logger.warn(`Failed to extract iframe content for story "${storyMeta.heading}"`, { error: String(error) });
-            }
+      const results = storyMetadata
+        .filter(story => !!story.heading && !!story.exampleSource)
+        .map((storyMeta) => {
+          if (!storyMeta.exampleSource) {
+            logger.warn(`No hidden source found for story "${storyMeta.heading}" in ${storyId}`);
           }
-
-          // Replace all lit internal comments
-          // Lit comments look like this: <!----> or <!--?lit$SOMENUMBER$-->
-          const example = exampleSource
-            // Remove comments that start with ?lit (with any content after)
-            .replace(/<!--\?lit\$[^>]*-->/g, '')
-            // Remove empty comments
-            .replace(/<!--\s*-->/g, '')
-            // Clean up any resulting multiple consecutive whitespace/newlines
-            .replace(/\n\s*\n\s*\n/g, '\n\n')
-            // Remove all data attributes as they may be dynamic data
-            .replace(/ data-[^=]+="[^"]*"/g, '')
-            // Trim leading/trailing whitespace
-            .trim();
 
           return {
             description: storyMeta.description,
-            example,
+            example: storyMeta.exampleSource.trim(),
             heading: storyMeta.heading,
           };
-        }),
-      );
+        });
 
       // Filter out stories without examples
-      const validResults = results.filter(x => x.heading && x.example);
+      const validResults = results.filter(x => x.example);
 
       scrapingReport.foundStories = validResults.length;
 
@@ -184,9 +197,7 @@ export class StorybookScraper {
 
       const processedStories = await Promise.all(validResults.map(async (story, index) => {
         try {
-          const formattedExample = await prettier.format(story.example, {
-            parser: 'html',
-          });
+          const formattedExample = await formatExample(story.example);
 
           scrapingReport.storyDetails.push({
             heading: story.heading,
@@ -212,6 +223,7 @@ export class StorybookScraper {
       }));
 
       scrapingReport.status = 'success';
+      logger.info(`Scraped ${storyId}`);
       return processedStories;
     } catch (error) {
       scrapingReport.error = error instanceof Error ? error : new Error(String(error));
@@ -219,6 +231,7 @@ export class StorybookScraper {
       return [];
     } finally {
       await page.close();
+      await context.close();
 
       if (shouldCloseBrowser) {
         await browserInstance.close();
@@ -250,28 +263,61 @@ export class StorybookScraper {
     });
 
     try {
-      const scrapedPages = await Promise.all(
-        items.map(async item => {
-          const storyId = this.config.generateStoryId(item);
-          const stories = await StorybookScraper.scrapeStoryDocs(storyId, baseUrl, browser);
-          return {
-            item,
-            stories,
-          };
-        }),
-      );
+      const scrapedPages = await Promise.all(items.map(async (item) => {
+        const storyId = this.config.generateStoryId(item);
+        const stories = await StorybookScraper.scrapeStoryDocs(storyId, baseUrl, browser);
+        return {
+          item,
+          stories,
+        };
+      }));
 
-      const failedPages = scrapedPages.filter(({ stories }) => stories.length === 0);
+      const ignorableEmptyPages = scrapedPages.filter(({ item, stories }) => {
+        if (stories.length > 0) {
+          return false;
+        }
+
+        const docsStoryId = this.config.generateStoryId(item);
+        return isDefaultOrScreenshotOnlyDocsStory(docsStoryId);
+      });
+
+      const failedPages = scrapedPages.filter(({ item, stories }) => {
+        if (stories.length > 0) {
+          return false;
+        }
+
+        const docsStoryId = this.config.generateStoryId(item);
+        return !isDefaultOrScreenshotOnlyDocsStory(docsStoryId);
+      });
+
+      if (ignorableEmptyPages.length > 0) {
+        logger.warn('Skipping examples for default/screenshot-only docs pages', {
+          affectedEntities: ignorableEmptyPages
+            .map(({ item }) => this.config.generateEntityId(item))
+            .sort(),
+        });
+      }
+
       if (failedPages.length > 0) {
         const failedIds = failedPages
           .map(({ item }) => this.config.generateEntityId(item))
           .sort();
-        throw new Error(`Failed to scrape storybook examples for ${failedIds.join(', ')}`);
+
+        if (this.config.kind === 'component') {
+          throw new Error(`Failed to scrape storybook examples for ${failedIds.join(', ')}`);
+        }
+
+        logger.warn('Skipping docs pages without hidden-source examples', {
+          affectedEntities: failedIds,
+          kind: this.config.kind,
+        });
       }
 
-      logger.info(`Collected ${scrapedPages.length} documentation artifacts`);
+      const successfulPages = scrapedPages.filter(({ stories }) => stories.length > 0);
 
-      return scrapedPages.map(({ item, stories }) => ({
+      logger.info(`Collected ${successfulPages.length} documentation artifacts`);
+
+      return successfulPages.map(({ item, stories }) => ({
         entityId: this.config.generateEntityId(item),
         item,
         kind: this.config.kind,

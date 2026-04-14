@@ -3,7 +3,7 @@
 Buttons represent actions that are available to the user.
 
 ```html
-<syn-button title="" variant="outline" size="medium"> Default </syn-button>
+<syn-button> Default </syn-button>
 ```
 
 ---
@@ -14,9 +14,9 @@ Use the variant attribute to set the button’s variant. Variants can be Filled,
 
 ```html
 <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)">
-  <syn-button variant="filled" title="" size="medium">Filled</syn-button>
-  <syn-button variant="outline" title="" size="medium">Outline</syn-button>
-  <syn-button variant="text" title="" size="medium">Text</syn-button>
+  <syn-button variant="filled">Filled</syn-button>
+  <syn-button variant="outline">Outline</syn-button>
+  <syn-button variant="text">Text</syn-button>
 </div>
 ```
 
@@ -35,9 +35,9 @@ Use the size attribute to change a button’s size.
     gap: var(--syn-spacing-large);
   "
 >
-  <syn-button size="small" title="" variant="outline">Small</syn-button>
-  <syn-button size="medium" title="" variant="outline">Medium</syn-button>
-  <syn-button size="large" title="" variant="outline">Large</syn-button>
+  <syn-button size="small">Small</syn-button>
+  <syn-button size="medium">Medium</syn-button>
+  <syn-button size="large">Large</syn-button>
 </div>
 ```
 
@@ -49,7 +49,7 @@ The focus event gives the user feedback that the Button has been focused by the 
 
 ```html
 <div style="padding: 5px">
-  <syn-button title="" variant="outline" size="medium">Default</syn-button>
+  <syn-button>Default</syn-button>
 </div>
 ```
 
@@ -61,37 +61,14 @@ It’s often helpful to have a button that works like a link. This is possible b
 
 ```html
 <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)">
-  <syn-button
-    href="https://example.com/"
-    title=""
-    variant="outline"
-    size="medium"
-    >Link</syn-button
-  >
-  <syn-button
-    href="https://example.com/"
-    target="_blank"
-    title=""
-    variant="outline"
-    size="medium"
+  <syn-button href="https://example.com/">Link</syn-button>
+  <syn-button href="https://example.com/" target="_blank"
     >New Window</syn-button
   >
-  <syn-button
-    href="/assets/images/wordmark.svg"
-    download="synergy.svg"
-    title=""
-    variant="outline"
-    size="medium"
+  <syn-button href="/assets/images/wordmark.svg" download="synergy.svg"
     >Download</syn-button
   >
-  <syn-button
-    href="https://example.com/"
-    disabled=""
-    title=""
-    variant="outline"
-    size="medium"
-    >Disabled</syn-button
-  >
+  <syn-button href="https://example.com/" disabled="">Disabled</syn-button>
 </div>
 ```
 
@@ -105,15 +82,9 @@ As expected, buttons can be given a custom width by setting the width attribute.
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-button size="small" style="width: 100%" title="" variant="outline"
-    >Small</syn-button
-  >
-  <syn-button size="medium" style="width: 100%" title="" variant="outline"
-    >Medium</syn-button
-  >
-  <syn-button size="large" style="width: 100%" title="" variant="outline"
-    >Large</syn-button
-  >
+  <syn-button size="small" style="width: 100%">Small</syn-button>
+  <syn-button size="medium" style="width: 100%">Medium</syn-button>
+  <syn-button size="large" style="width: 100%">Large</syn-button>
 </div>
 ```
 
@@ -132,32 +103,14 @@ Insert just a single icon to use the same button style.
     margin-bottom: var(--syn-spacing-small);
   "
 >
-  <syn-button size="small" variant="filled" title="">
-    <syn-icon
-      name="settings"
-      label="Settings"
-      role="img"
-      aria-label="Settings"
-      library="default"
-    ></syn-icon>
+  <syn-button size="small" variant="filled">
+    <syn-icon name="settings" label="Settings"></syn-icon>
   </syn-button>
-  <syn-button size="small" title="" variant="outline">
-    <syn-icon
-      name="settings"
-      label="Settings"
-      role="img"
-      aria-label="Settings"
-      library="default"
-    ></syn-icon>
+  <syn-button size="small">
+    <syn-icon name="settings" label="Settings"></syn-icon>
   </syn-button>
-  <syn-button size="small" variant="text" title="">
-    <syn-icon
-      name="settings"
-      label="Settings"
-      role="img"
-      aria-label="Settings"
-      library="default"
-    ></syn-icon>
+  <syn-button size="small" variant="text">
+    <syn-icon name="settings" label="Settings"></syn-icon>
   </syn-button>
 </div>
 
@@ -169,32 +122,14 @@ Insert just a single icon to use the same button style.
     margin-bottom: var(--syn-spacing-small);
   "
 >
-  <syn-button size="medium" variant="filled" title="">
-    <syn-icon
-      name="settings"
-      label="Settings"
-      role="img"
-      aria-label="Settings"
-      library="default"
-    ></syn-icon>
+  <syn-button size="medium" variant="filled">
+    <syn-icon name="settings" label="Settings"></syn-icon>
   </syn-button>
-  <syn-button size="medium" title="" variant="outline">
-    <syn-icon
-      name="settings"
-      label="Settings"
-      role="img"
-      aria-label="Settings"
-      library="default"
-    ></syn-icon>
+  <syn-button size="medium">
+    <syn-icon name="settings" label="Settings"></syn-icon>
   </syn-button>
-  <syn-button size="medium" variant="text" title="">
-    <syn-icon
-      name="settings"
-      label="Settings"
-      role="img"
-      aria-label="Settings"
-      library="default"
-    ></syn-icon>
+  <syn-button size="medium" variant="text">
+    <syn-icon name="settings" label="Settings"></syn-icon>
   </syn-button>
 </div>
 
@@ -206,32 +141,14 @@ Insert just a single icon to use the same button style.
     margin-bottom: var(--syn-spacing-small);
   "
 >
-  <syn-button size="large" variant="filled" title="">
-    <syn-icon
-      name="settings"
-      label="Settings"
-      role="img"
-      aria-label="Settings"
-      library="default"
-    ></syn-icon>
+  <syn-button size="large" variant="filled">
+    <syn-icon name="settings" label="Settings"></syn-icon>
   </syn-button>
-  <syn-button size="large" title="" variant="outline">
-    <syn-icon
-      name="settings"
-      label="Settings"
-      role="img"
-      aria-label="Settings"
-      library="default"
-    ></syn-icon>
+  <syn-button size="large">
+    <syn-icon name="settings" label="Settings"></syn-icon>
   </syn-button>
-  <syn-button size="large" variant="text" title="">
-    <syn-icon
-      name="settings"
-      label="Settings"
-      role="img"
-      aria-label="Settings"
-      library="default"
-    ></syn-icon>
+  <syn-button size="large" variant="text">
+    <syn-icon name="settings" label="Settings"></syn-icon>
   </syn-button>
 </div>
 ```
@@ -249,39 +166,19 @@ Use the prefix and suffix slots to add icons.
   <div
     style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)"
   >
-    <syn-button size="small" title="" variant="outline">
-      <syn-icon
-        slot="prefix"
-        name="settings"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-button size="small">
+      <syn-icon slot="prefix" name="settings"></syn-icon>
       Settings
     </syn-button>
 
-    <syn-button size="small" title="" variant="outline">
-      <syn-icon
-        slot="suffix"
-        name="refresh"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-button size="small">
+      <syn-icon slot="suffix" name="refresh"></syn-icon>
       Refresh
     </syn-button>
 
-    <syn-button size="small" title="" variant="outline">
-      <syn-icon
-        slot="prefix"
-        name="link"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
-      <syn-icon
-        slot="suffix"
-        name="launch"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-button size="small">
+      <syn-icon slot="prefix" name="link"></syn-icon>
+      <syn-icon slot="suffix" name="launch"></syn-icon>
       Open
     </syn-button>
   </div>
@@ -289,39 +186,19 @@ Use the prefix and suffix slots to add icons.
   <div
     style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)"
   >
-    <syn-button title="" variant="outline" size="medium">
-      <syn-icon
-        slot="prefix"
-        name="settings"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-button>
+      <syn-icon slot="prefix" name="settings"></syn-icon>
       Settings
     </syn-button>
 
-    <syn-button title="" variant="outline" size="medium">
-      <syn-icon
-        slot="suffix"
-        name="refresh"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-button>
+      <syn-icon slot="suffix" name="refresh"></syn-icon>
       Refresh
     </syn-button>
 
-    <syn-button title="" variant="outline" size="medium">
-      <syn-icon
-        slot="prefix"
-        name="link"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
-      <syn-icon
-        slot="suffix"
-        name="launch"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-button>
+      <syn-icon slot="prefix" name="link"></syn-icon>
+      <syn-icon slot="suffix" name="launch"></syn-icon>
       Open
     </syn-button>
   </div>
@@ -329,39 +206,19 @@ Use the prefix and suffix slots to add icons.
   <div
     style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)"
   >
-    <syn-button size="large" title="" variant="outline">
-      <syn-icon
-        slot="prefix"
-        name="settings"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-button size="large">
+      <syn-icon slot="prefix" name="settings"></syn-icon>
       Settings
     </syn-button>
 
-    <syn-button size="large" title="" variant="outline">
-      <syn-icon
-        slot="suffix"
-        name="refresh"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-button size="large">
+      <syn-icon slot="suffix" name="refresh"></syn-icon>
       Refresh
     </syn-button>
 
-    <syn-button size="large" title="" variant="outline">
-      <syn-icon
-        slot="prefix"
-        name="link"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
-      <syn-icon
-        slot="suffix"
-        name="launch"
-        aria-hidden="true"
-        library="default"
-      ></syn-icon>
+    <syn-button size="large">
+      <syn-icon slot="prefix" name="link"></syn-icon>
+      <syn-icon slot="suffix" name="launch"></syn-icon>
       Open
     </syn-button>
   </div>
@@ -383,15 +240,9 @@ Use the caret attribute to add a dropdown indicator when a button will trigger a
     gap: var(--syn-spacing-large);
   "
 >
-  <syn-button size="small" caret="" title="" variant="outline"
-    >Small</syn-button
-  >
-  <syn-button size="medium" caret="" title="" variant="outline"
-    >Medium</syn-button
-  >
-  <syn-button size="large" caret="" title="" variant="outline"
-    >Large</syn-button
-  >
+  <syn-button size="small" caret="">Small</syn-button>
+  <syn-button size="medium" caret="">Medium</syn-button>
+  <syn-button size="large" caret="">Large</syn-button>
 </div>
 ```
 
@@ -403,13 +254,9 @@ Use the loading attribute to make a button busy. The width will remain the same 
 
 ```html
 <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)">
-  <syn-button variant="filled" loading="" title="" size="medium"
-    >Filled</syn-button
-  >
-  <syn-button variant="outline" loading="" title="" size="medium"
-    >Outline</syn-button
-  >
-  <syn-button variant="text" loading="" title="" size="medium">Text</syn-button>
+  <syn-button variant="filled" loading="">Filled</syn-button>
+  <syn-button variant="outline" loading="">Outline</syn-button>
+  <syn-button variant="text" loading="">Text</syn-button>
 </div>
 ```
 
@@ -421,52 +268,22 @@ Use the disabled attribute to disable a button.
 
 ```html
 <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)">
-  <syn-button variant="filled" disabled="" title="" size="medium">
-    <syn-icon
-      name="wallpaper"
-      slot="prefix"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+  <syn-button variant="filled" disabled="">
+    <syn-icon name="wallpaper" slot="prefix"></syn-icon>
     Button
-    <syn-icon
-      name="wallpaper"
-      slot="suffix"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="wallpaper" slot="suffix"></syn-icon>
   </syn-button>
 
-  <syn-button variant="outline" disabled="" title="" size="medium">
-    <syn-icon
-      name="wallpaper"
-      slot="prefix"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+  <syn-button variant="outline" disabled="">
+    <syn-icon name="wallpaper" slot="prefix"></syn-icon>
     Button
-    <syn-icon
-      name="wallpaper"
-      slot="suffix"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="wallpaper" slot="suffix"></syn-icon>
   </syn-button>
 
-  <syn-button variant="text" disabled="" title="" size="medium">
-    <syn-icon
-      name="wallpaper"
-      slot="prefix"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+  <syn-button variant="text" disabled="">
+    <syn-icon name="wallpaper" slot="prefix"></syn-icon>
     Button
-    <syn-icon
-      name="wallpaper"
-      slot="suffix"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="wallpaper" slot="suffix"></syn-icon>
   </syn-button>
 </div>
 ```

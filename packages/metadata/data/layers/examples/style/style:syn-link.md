@@ -30,32 +30,16 @@ Use the prefix and suffix slots to add icons.
 <nav class="storybook-demo-syn-link">
   <a href="javascript:void(0)" class="syn-link syn-link--medium">
     Open link in new window
-    <syn-icon
-      name="arrow_outward"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="arrow_outward"></syn-icon>
   </a>
   <a href="javascript:void(0)" class="syn-link syn-link--medium">
-    <syn-icon
-      name="picture_as_pdf"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="picture_as_pdf"></syn-icon>
     Download PDF
   </a>
   <a href="javascript:void(0)" class="syn-link syn-link--medium">
-    <syn-icon
-      name="picture_as_pdf"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="picture_as_pdf"></syn-icon>
     Open PDF in new window
-    <syn-icon
-      name="arrow_outward"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="arrow_outward"></syn-icon>
   </a>
 </nav>
 <style>
@@ -75,11 +59,7 @@ Use the Quiet attribute to have a low emphasis variant of a Link. This can be us
 
 ```html
 <a href="javascript:void(0)" class="syn-link syn-link--quiet">
-  <syn-icon
-    name="keyboard_arrow_right"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
+  <syn-icon name="keyboard_arrow_right"></syn-icon>
   Silence is gold
 </a>
 ```
@@ -92,11 +72,7 @@ Use the disabled attribute to disable a Link.
 
 ```html
 <a class="syn-link syn-link--disabled">
-  <syn-icon
-    name="keyboard_arrow_right"
-    aria-hidden="true"
-    library="default"
-  ></syn-icon>
+  <syn-icon name="keyboard_arrow_right"></syn-icon>
   Disabled
 </a>
 ```
@@ -110,11 +86,7 @@ The focus event gives the user feedback that the Link has been focused by the ke
 ```html
 <div style="padding: 5px">
   <a href="javascript:void(0)" class="syn-link syn-link--medium">
-    <syn-icon
-      name="keyboard_arrow_right"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="keyboard_arrow_right"></syn-icon>
     Link
   </a>
 </div>
@@ -129,27 +101,15 @@ Use the size attribute to change the Link size.
 ```html
 <div style="display: flex; gap: var(--syn-spacing-large)">
   <a href="javascript:void(0)" class="syn-link syn-link--small">
-    <syn-icon
-      name="keyboard_arrow_right"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="keyboard_arrow_right"></syn-icon>
     Small
   </a>
   <a href="javascript:void(0)" class="syn-link syn-link--medium">
-    <syn-icon
-      name="keyboard_arrow_right"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="keyboard_arrow_right"></syn-icon>
     Medium
   </a>
   <a href="javascript:void(0)" class="syn-link syn-link--large">
-    <syn-icon
-      name="keyboard_arrow_right"
-      aria-hidden="true"
-      library="default"
-    ></syn-icon>
+    <syn-icon name="keyboard_arrow_right"></syn-icon>
     Large
   </a>
 </div>

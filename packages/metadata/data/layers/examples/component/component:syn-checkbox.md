@@ -3,7 +3,7 @@
 Checkboxes allow the user to toggle an option on or off.
 
 ```html
-<syn-checkbox title="" size="medium" form=""> Checkbox </syn-checkbox>
+<syn-checkbox> Checkbox </syn-checkbox>
 ```
 
 ---
@@ -13,7 +13,7 @@ Checkboxes allow the user to toggle an option on or off.
 Use the checked attribute to activate the checkbox.
 
 ```html
-<syn-checkbox checked="" title="" size="medium" form="">Checked</syn-checkbox>
+<syn-checkbox checked="">Checked</syn-checkbox>
 ```
 
 ---
@@ -23,11 +23,7 @@ Use the checked attribute to activate the checkbox.
 Add descriptive help text to a checkbox with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.The help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.
 
 ```html
-<syn-checkbox
-  help-text="What should the user know about the checkbox?"
-  title=""
-  size="medium"
-  form=""
+<syn-checkbox help-text="What should the user know about the checkbox?"
   >Label</syn-checkbox
 >
 ```
@@ -39,9 +35,7 @@ Add descriptive help text to a checkbox with the help-text attribute. For help t
 Use the indeterminate attribute to make the checkbox indeterminate.
 
 ```html
-<syn-checkbox indeterminate="" title="" size="medium" form=""
-  >Indeterminate</syn-checkbox
->
+<syn-checkbox indeterminate="">Indeterminate</syn-checkbox>
 ```
 
 ---
@@ -51,7 +45,7 @@ Use the indeterminate attribute to make the checkbox indeterminate.
 The focus event gives the user feedback that the Checkbox has been focused by the keyboard interaction.
 
 ```html
-<syn-checkbox title="" size="medium" form="">Focused</syn-checkbox>
+<syn-checkbox>Focused</syn-checkbox>
 ```
 
 ---
@@ -61,7 +55,7 @@ The focus event gives the user feedback that the Checkbox has been focused by th
 Use the disabled attribute to disable the checkbox.
 
 ```html
-<syn-checkbox disabled="" title="" size="medium" form="">Disabled</syn-checkbox>
+<syn-checkbox disabled="">Disabled</syn-checkbox>
 ```
 
 ---
@@ -74,27 +68,11 @@ Add the readonly attribute to draw a read-only checkbox.
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-checkbox name="a" value="a" readonly="" title="" size="medium" form=""
-    >Read only content</syn-checkbox
-  >
-  <syn-checkbox
-    name="b"
-    value="b"
-    readonly=""
-    indeterminate=""
-    title=""
-    size="medium"
-    form=""
+  <syn-checkbox name="a" value="a" readonly="">Read only content</syn-checkbox>
+  <syn-checkbox name="b" value="b" readonly="" indeterminate=""
     >Read only content (indet)</syn-checkbox
   >
-  <syn-checkbox
-    name="c"
-    value="c"
-    readonly=""
-    checked=""
-    title=""
-    size="medium"
-    form=""
+  <syn-checkbox name="c" value="c" readonly="" checked=""
     >Read only content (checked)</syn-checkbox
   >
 </div>
@@ -110,9 +88,9 @@ Use the size attribute to change a checkbox’s size.
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-checkbox size="small" title="" form="">Small</syn-checkbox>
-  <syn-checkbox size="medium" title="" form="">Medium</syn-checkbox>
-  <syn-checkbox size="large" title="" form="">Large</syn-checkbox>
+  <syn-checkbox size="small">Small</syn-checkbox>
+  <syn-checkbox size="medium">Medium</syn-checkbox>
+  <syn-checkbox size="large">Large</syn-checkbox>
 </div>
 ```
 
@@ -125,19 +103,11 @@ The invalid status is used to warn the user that the Checkbox is invalid. For ex
 ```html
 <form class="custom-validity">
   <div class="custom-validity">
-    <syn-checkbox required="" title="" size="medium" form=""
-      >Invalid</syn-checkbox
-    >
-    <syn-checkbox required="" indeterminate="" title="" size="medium" form=""
-      >Invalid</syn-checkbox
-    >
-    <syn-checkbox required="" checked="" title="" size="medium" form=""
-      >Invalid</syn-checkbox
-    >
+    <syn-checkbox required="">Invalid</syn-checkbox>
+    <syn-checkbox required="" indeterminate="">Invalid</syn-checkbox>
+    <syn-checkbox required="" checked="">Invalid</syn-checkbox>
   </div>
-  <syn-button type="submit" variant="filled" title="" size="medium"
-    >Submit</syn-button
-  >
+  <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
 <style>
   .custom-validity {
@@ -159,12 +129,8 @@ Use the setCustomValidity() method to set a custom validation message. This will
 
 ```html
 <form class="custom-validity">
-  <syn-checkbox name="checked" value="on" title="" size="medium" form=""
-    >Check me</syn-checkbox
-  >
-  <syn-button type="submit" variant="filled" title="" size="medium"
-    >Submit</syn-button
-  >
+  <syn-checkbox name="checked" value="on">Check me</syn-checkbox>
+  <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
 <style>
   .custom-validity {
@@ -173,4 +139,21 @@ Use the setCustomValidity() method to set a custom validation message. This will
     gap: 1rem;
   }
 </style>
+
+<script type="module">
+  const form = document.querySelector(".custom-validity");
+  const checkbox = form.querySelector("syn-checkbox");
+  const errorMessage = "Don't forget to check me!";
+
+  // Update validity on change
+  checkbox.addEventListener("syn-change", () => {
+    checkbox.setCustomValidity(checkbox.checked ? "" : errorMessage);
+  });
+
+  // Handle submit
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    alert("All fields are valid!");
+  });
+</script>
 ```

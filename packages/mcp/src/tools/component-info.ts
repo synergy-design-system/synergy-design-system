@@ -25,7 +25,7 @@ export const componentInfoTool = (server: McpServer) => {
         framework: z.enum(['react', 'vue', 'angular', 'vanilla']).optional().describe('The framework of the component, e.g., "react", "vue", etc.'),
         layer: z.enum(['full', 'examples', 'interface'])
           .optional()
-          .describe('Defines which type of information to return. full = filtered source files, examples = markdown examples, interface = markdown API overview. Examples and interface are only available for vanilla components at the moment.')
+          .describe('Defines which type of information to return. full = filtered source files (useful for debugging), examples = markdown examples, interface = markdown API overview. Examples and interface are only available for vanilla components at the moment.')
         ,
       },
       title: 'Component info',

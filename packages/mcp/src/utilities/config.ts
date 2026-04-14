@@ -38,10 +38,10 @@ export const McpRuntimeConfigSchema = z.object({
       framework: z.enum(['react', 'vue', 'angular', 'vanilla']).default('vanilla'),
       /**
        * Default metadata layer when no layer is provided by the caller.
-       * @default 'full'
+       * @default 'interface'
        */
-      layer: z.enum(['full', 'examples', 'interface']).default('full'),
-    }).default({ framework: 'vanilla', layer: 'full' }),
+      layer: z.enum(['full', 'examples', 'interface']).default('interface'),
+    }).default({ framework: 'vanilla', layer: 'interface' }),
 
     davinciMigrationInfo: z.object({
       /**

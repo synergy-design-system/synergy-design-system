@@ -4,7 +4,7 @@
     "url": "https://www.sick.com"
   },
   "name": "@synergy-design-system/components",
-  "version": "3.10.5",
+  "version": "3.11.0",
   "description": "",
   "repository": {
     "type": "git",
@@ -115,8 +115,6 @@
   },
   "dependencies": {
     "@floating-ui/dom": "^1.7.6",
-    "@shoelace-style/animations": "^1.2.0",
-    "@shoelace-style/localize": "^3.2.1",
     "composed-offset-position": "^0.0.6",
     "lit": "^3.3.2"
   },

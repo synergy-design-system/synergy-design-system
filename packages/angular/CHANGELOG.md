@@ -1,5 +1,13 @@
 # @synergy-design-system/angular
 
+## 3.11.0
+
+### Patch Changes
+
+- Updated dependencies [[`b3ab501`](https://github.com/synergy-design-system/synergy-design-system/commit/b3ab50132ec4ab770b79fa32b1334a1054c60746)]:
+  - @synergy-design-system/components@3.11.0
+  - @synergy-design-system/tokens@3.11.0
+
 ## 3.10.5
 
 ### Patch Changes

@@ -4314,6 +4314,28 @@
         }
       }
     },
+    "localization": {
+      "default": {
+        "title": {
+          "value": "Translations",
+          "type": "text"
+        },
+        "description": {
+          "value": "Components can be localized by importing the appropriate translation file and setting the desired `lang` attribute and/or dir attribute on the `<html>` element. Please note the default language is English (en) and the default text direction is left-to-right (ltr).",
+          "type": "text"
+        }
+      },
+      "dynamicallySetLocalizations": {
+        "title": {
+          "value": "Dynamically Set Localizations",
+          "type": "text"
+        },
+        "description": {
+          "value": "This example shows how to dynamically set localizations for Synergy components. This can be useful if you want to allow users to change the language of your application on the fly.",
+          "type": "text"
+        }
+      }
+    },
     "footer": {
       "default": {
         "title": {

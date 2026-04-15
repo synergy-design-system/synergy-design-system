@@ -8,11 +8,11 @@ This package publishes a stable runtime query API and metadata artifacts.
 Internal collector/pipeline/CLI modules are intentionally not part of the public contract.
 
 ```ts
-import { createMetadataStore } from '@synergy-design-system/metadata';
+import { createMetadataStore } from "@synergy-design-system/metadata";
 
 const store = createMetadataStore();
-const components = await store.getPackageEntities('components');
-const migrationFiles = await store.getDataForLayer('migrations', 'full');
+const components = await store.getPackageEntities("components");
+const migrationFiles = await store.getDataForLayer("migrations", "full");
 ```
 
 ### Component Cluster Queries
@@ -22,16 +22,16 @@ You can list cluster groups and filter component queries by cluster.
 
 ```ts
 import {
-	listComponentClusters,
-	listComponents,
-	listComponentsByCluster,
-} from '@synergy-design-system/metadata';
+  listComponentClusters,
+  listComponents,
+  listComponentsByCluster,
+} from "@synergy-design-system/metadata";
 
 const clusters = await listComponentClusters();
 const structureComponents = await listComponents({
-	cluster: 'components-by-tag/structure',
+  cluster: "components-by-tag/structure",
 });
-const sameResult = await listComponentsByCluster('components-by-tag/structure');
+const sameResult = await listComponentsByCluster("components-by-tag/structure");
 ```
 
 `cluster` accepts a single cluster id or an array of ids.
@@ -42,22 +42,22 @@ Layer APIs return file references first. Resolve file contents through `readLaye
 
 ```ts
 import {
-	createMetadataStore,
-	getComponentMetadata,
-	readLayerFilesForEntity,
-} from '@synergy-design-system/metadata';
+  createMetadataStore,
+  getComponentMetadata,
+  readLayerFilesForEntity,
+} from "@synergy-design-system/metadata";
 
 const store = createMetadataStore();
 
-const component = await getComponentMetadata('syn-header', {
-	includeLayerRefs: true,
-	layer: 'full',
+const component = await getComponentMetadata("syn-header", {
+  includeLayerRefs: true,
+  layer: "full",
 });
 
 if (component.data) {
-	const files = await readLayerFilesForEntity(store, component.data, 'full');
-	const firstFile = files.at(0);
-	console.log(firstFile?.ref.path, firstFile?.content);
+  const files = await readLayerFilesForEntity(store, component.data, "full");
+  const firstFile = files.at(0);
+  console.log(firstFile?.ref.path, firstFile?.content);
 }
 ```
 

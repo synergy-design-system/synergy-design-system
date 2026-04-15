@@ -44,10 +44,10 @@ To integrate with VS Code and AI assistants, add this configuration to your `set
       "synergy": {
         "type": "stdio",
         "command": "npx",
-        "args": ["@synergy-design-system/mcp"]
-      }
-    }
-  }
+        "args": ["@synergy-design-system/mcp"],
+      },
+    },
+  },
 }
 ```
 
@@ -80,7 +80,7 @@ Example:
   // Default parameters for each endpoint can be overridden
   "tools": {
     "assetInfo": {
-      "iconset": "current"
+      "iconset": "current",
     },
     "componentInfo": {
       // Set to angular, react or vue, depending on your framework
@@ -91,13 +91,13 @@ Example:
       // interface = markdown API overview.
       // Note that examples and interface are only available
       // for vanilla components at the moment.
-      "layer": "full"
+      "layer": "full",
     },
     "tokenInfo": {
       // If you are preferring scss, use "sass" here
-      "type": "css"
-    }
-  }
+      "type": "css",
+    },
+  },
 }
 ```
 
@@ -131,7 +131,7 @@ The MCP server currently registers 16 tools.
 - "Show me all available Synergy components"
 - "List all components in the structure cluster"
 - "What components are available in the Synergy Design System?"
-- "List all syn-* components"
+- "List all syn-\* components"
 
 ### 2. `component-cluster-list`
 
@@ -510,35 +510,33 @@ To add a new tool:
 Example:
 
 ```typescript
-import { z } from 'zod';
-import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from "zod";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import {
   createToolAnnotations,
   getRuntimeConfig,
   getToolRule,
   withErrorHandler,
-} from '../utilities/index.js';
+} from "../utilities/index.js";
 
 export const myTool = (server: McpServer) => {
   server.registerTool(
-    'my-tool',
+    "my-tool",
     {
       annotations: createToolAnnotations(),
-      description: 'Description of what the tool does',
+      description: "Description of what the tool does",
       inputSchema: {
-        param: z.string().describe('Parameter description'),
+        param: z.string().describe("Parameter description"),
       },
-      title: 'My Tool',
+      title: "My Tool",
     },
-    async ({ param }) => withErrorHandler(async () => {
-      // Get the AI rules for this tool, used as a preface for LLM output quality.
-      const aiRules = await getToolRule('my-tool');
-      const content = `You provided ${param} as parameter`;
-      return [
-        aiRules,
-        content,
-      ];
-    }),
+    async ({ param }) =>
+      withErrorHandler(async () => {
+        // Get the AI rules for this tool, used as a preface for LLM output quality.
+        const aiRules = await getToolRule("my-tool");
+        const content = `You provided ${param} as parameter`;
+        return [aiRules, content];
+      }),
   );
 };
 ```
@@ -570,8 +568,8 @@ syn-mcp --config ./synergy-mcp.json
 ### Programmatic Usage
 
 ```typescript
-import { createServer } from '@synergy-design-system/mcp';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { createServer } from "@synergy-design-system/mcp";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
 const server = createServer();
 const transport = new StdioServerTransport();

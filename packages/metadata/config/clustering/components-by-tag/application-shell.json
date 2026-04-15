@@ -1,8 +1,5 @@
 {
   "name": "Application Shell Components",
   "description": "Components for building the top-level application shell and layout",
-  "entities": [
-    "component:syn-header",
-    "component:syn-side-nav"
-  ]
+  "entities": ["component:syn-header", "component:syn-side-nav"]
 }

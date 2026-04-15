@@ -1,8 +1,5 @@
 {
   "name": "Icon Components",
   "description": "Components for displaying icons",
-  "entities": [
-    "component:syn-icon",
-    "component:syn-icon-button"
-  ]
+  "entities": ["component:syn-icon", "component:syn-icon-button"]
 }

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-04-15T09:41:55.947Z",
+  "builtAt": "2026-04-15T10:54:55.430Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -1496,6 +1496,20 @@
       "search": [
         "template:forms",
         "Forms",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:localization.json",
+      "id": "template:localization",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Localization",
+      "search": [
+        "template:localization",
+        "Localization",
         "template"
       ]
     },

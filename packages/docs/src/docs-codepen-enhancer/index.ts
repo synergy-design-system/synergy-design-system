@@ -1,4 +1,4 @@
-/* eslint-disable no-param-reassign */
+/* eslint-disable no-param-reassign, camelcase */
 import { StoryContext } from '@storybook/web-components-vite';
 
 export default function docsCodepenEnhancer(code: string, storyContext: StoryContext) {
@@ -66,6 +66,31 @@ export default function docsCodepenEnhancer(code: string, storyContext: StoryCon
         form.method = 'POST';
         form.target = '_blank';
 
+        // This allows us to include additional imports in the CodePen config, which can be useful for some stories that rely on external libraries.
+        // The imports can be specified in the story's parameters under `synergy.customImports` as an array of URLs.
+        // @example
+        // export const MyStory: StoryObj = {
+        //   parameters: {
+        //     synergy: {
+        //       customImports: [
+        //         'https://cdn.jsdelivr.net/npm/some-library@1.0.0/dist/some-library.min.js',
+        //       ],
+        //     },
+        //   },
+        // };
+        let additionalImports = '';
+
+        // Make sure to include the optional custom imports in the CodePen config if they are provided in the story's parameters
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        if (storyContext.parameters.synergy?.customImports) {
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          const customImports = storyContext.parameters.synergy.customImports as string[];
+          additionalImports = customImports
+            .filter(url => url.startsWith('http://') || url.startsWith('https://'))
+            .map(url => `import "${url}";`)
+            .join('\n');
+        }
+
         // Docs: https://blog.codepen.io/documentation/prefill/
         const data = {
           css: `/* Import theme */
@@ -93,7 +118,11 @@ const { registerIconLibrary } = components;
 registerIconLibrary("default", {
 resolver: (name) =>
 \`https://esm.sh/@synergy-design-system/assets@${packageVersions['@synergy-design-system/assets']}/src/sick2025/icons/outline/\${name}.svg\`
-});`,
+});
+
+// Additional scripts
+${additionalImports}
+`,
           js_external: '',
           js_module: true,
           js_pre_processor: 'none',

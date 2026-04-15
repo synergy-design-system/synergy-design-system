@@ -17,7 +17,7 @@
   "name": "index.js",
   "package": "tokens",
   "relations": [],
-  "since": "3.10.5",
+  "since": "3.11.0",
   "sources": [
     "packages/tokens/dist/js/index.js"
   ],

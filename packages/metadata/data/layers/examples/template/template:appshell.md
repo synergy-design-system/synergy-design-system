@@ -496,9 +496,9 @@ The side navigation opens when the user clicks on the burger menu. As the side n
 <style>
   #appshell-shrink {
     /**
-     * Set this variable to the wanted size of the side-nav
-     * Make sure the value stays in sync, otherwise the parts may overlap
-     */
+         * Set this variable to the wanted size of the side-nav
+         * Make sure the value stays in sync, otherwise the parts may overlap
+         */
     --appshell-shrink-nav-open-width: 320px;
 
     syn-side-nav::part(overlay) {
@@ -507,15 +507,15 @@ The side navigation opens when the user clicks on the burger menu. As the side n
 
     .synergy-demo-content-inner {
       /**
-       * Set the initial margin left. Needed because we
-       * create the page with the side-bar open
-       */
+           * Set the initial margin left. Needed because we
+           * create the page with the side-bar open
+           */
       margin-left: var(--appshell-shrink-nav-open-width);
     }
 
     /**
-     * Show a transition effect for users that do not have reduced motion enabled
-     */
+         * Show a transition effect for users that do not have reduced motion enabled
+         */
     @media (prefers-reduced-motion: no-preference) {
       .synergy-demo-content-inner {
         transition: margin-left 250ms;

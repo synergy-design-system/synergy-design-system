@@ -130,7 +130,7 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
         with:
           # Make sure to exclude unneeded packages to speed up the build.
-          build-command: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/mcp' build
+          build-command: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/mcp' build
 
       - name: Run tests
         run: pnpm test.${{ matrix.framework }} --project=${{ matrix.browser }}

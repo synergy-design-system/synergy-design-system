@@ -1,49 +1,69 @@
-
-/* eslint-disable */
+/* eslint-disable import/no-extraneous-dependencies */
 import { esbuildPlugin } from '@web/dev-server-esbuild';
 import { globbySync } from 'globby';
 import { playwrightLauncher } from '@web/test-runner-playwright';
 import synTestPlugins from './scripts/tests/index.js';
 
+// Always use concurrency of 1 in CI for all browsers to avoid issues
+// @see https://github.com/modernweb-dev/web/issues/2374
+const allBrowsers = [
+  // @see https://github.com/modernweb-dev/web/issues/2374
+  playwrightLauncher({
+    concurrency: process.env.CI ? 1 : undefined,
+    product: 'chromium',
+  }),
+
+  // 2 processes seems to work fine locally.
+  playwrightLauncher({
+    concurrency: process.env.CI ? 1 : 2,
+    product: 'firefox',
+  }),
+
+  playwrightLauncher({
+    concurrency: process.env.CI ? 1 : undefined,
+    product: 'webkit',
+  }),
+];
+
+const browsersToUse = process.env.BROWSERS
+  ? process.env.BROWSERS.split(',').map(b => b.trim())
+  : allBrowsers.map(b => b.product);
+
+const browsers = process.env.BROWSERS
+  ? allBrowsers.filter(b => browsersToUse.includes(b.product))
+  : allBrowsers;
+
 export default {
-  rootDir: '.',
-  testsFinishTimeout: 180000, // 3 minutes
-  files: 'src/**/*.test.ts', // "default" group
+  browsers,
   concurrentBrowsers: 3,
+  files: 'src/**/*.test.ts', // "default" group
+  // Create a named group for every test file to enable running single tests. If a test file is `split-panel.test.ts`
+  // then you can run `npm run test -- --group split-panel` to run only that component's tests.
+  groups: globbySync('src/**/*.test.ts').map(path => {
+    const groupName = path.match(/^.*\/(?<fileName>.*)\.test\.ts/).groups.fileName;
+    return {
+      files: path,
+      name: groupName,
+    };
+  }),
   nodeResolve: {
-    exportConditions: ['production', 'default']
-  },
-  testFramework: {
-    config: {
-      timeout: 3000,
-      forbidOnly: !!process.env.CI,
-      retries: 1
-    }
+    exportConditions: ['production', 'default'],
   },
   plugins: [
     ...synTestPlugins.plugins,
     esbuildPlugin({
+      target: 'es2020',
       ts: true,
-      target: 'es2020'
-    })
+    }),
   ],
-  browsers: [
-    
-    // Use concurrency of 1 for webkit. It seems to happen the same problem like with firefox in the CI
-    // @see https://github.com/modernweb-dev/web/issues/2374
-    playwrightLauncher({ product: 'chromium', concurrency: process.env.CI ? 1 : undefined }),
-
-    
-    // Enable firefox, but use concurrency of 1
-    // @see https://github.com/modernweb-dev/web/issues/2374
-    playwrightLauncher({ product: 'firefox', concurrency: 1 }),
-
-    
-    // Use concurrency of 1 for webkit. It seems to happen the same problem like with firefox in the CI
-    // @see https://github.com/modernweb-dev/web/issues/2374
-    playwrightLauncher({ product: 'webkit', concurrency: process.env.CI ? 1 : undefined }),
-
-  ],
+  rootDir: '.',
+  testFramework: {
+    config: {
+      forbidOnly: !!process.env.CI,
+      retries: 1,
+      timeout: 3000,
+    },
+  },
   testRunnerHtml: testFramework => `
     <!DOCTYPE html><html lang="en-US">
       <head></head>
@@ -57,13 +77,5 @@ export default {
       </body>
     </html>
   `,
-  // Create a named group for every test file to enable running single tests. If a test file is `split-panel.test.ts`
-  // then you can run `npm run test -- --group split-panel` to run only that component's tests.
-  groups: globbySync('src/**/*.test.ts').map(path => {
-    const groupName = path.match(/^.*\/(?<fileName>.*)\.test\.ts/).groups.fileName;
-    return {
-      name: groupName,
-      files: path
-    };
-  })
+  testsFinishTimeout: 180000, // 3 minutes
 };

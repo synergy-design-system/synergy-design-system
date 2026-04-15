@@ -115,10 +115,8 @@ describe('<syn-select>', () => {
     const submitHandler = sinon.spy();
 
     el.addEventListener('syn-focus', submitHandler);
-    (label as HTMLLabelElement).click();
+    await clickOnElement(label);
     await waitUntil(() => submitHandler.calledOnce);
-
-    expect(submitHandler).to.have.been.calledOnce;
   });
 
   describe('when the value changes', () => {
@@ -163,7 +161,7 @@ describe('<syn-select>', () => {
       el.focus();
       await el.updateComplete;
       await sendKeys({ press: ' ' }); // open the dropdown
-      await aTimeout(500); // wait for the dropdown to open
+      await waitUntil(() => el.open === true);
       await sendKeys({ press: 'ArrowDown' }); // move selection to the second option
       await el.updateComplete;
       await sendKeys({ press: 'ArrowDown' }); // move selection to the third option
@@ -212,7 +210,7 @@ describe('<syn-select>', () => {
       el.addEventListener('syn-input', handler);
 
       await clickOnElement(el);
-      await aTimeout(500);
+      await waitUntil(() => el.open === true);
       await clickOnElement(option2);
       await el.updateComplete;
 
@@ -519,7 +517,7 @@ describe('<syn-select>', () => {
 
     option.textContent = 'updated';
 
-    await aTimeout(250);
+    await waitUntil(() => displayInput.value === 'updated');
     await option.updateComplete;
     await el.updateComplete;
 

@@ -16,6 +16,7 @@
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@types/node": "^24.12.0",
     "eslint": "^9.39.4",
+    "tiktoken": "^1.0.22",
     "typescript": "^5.9.3"
   },
   "exports": {
@@ -54,8 +55,11 @@
     "build": "pnpm run clean && tsc",
     "clean": "node src/bin/clean.js",
     "lint:js": "eslint src",
+    "lint:watermark": "node --experimental-strip-types test/watermarks/run.ts --fail-on-regression",
     "lint": "pnpm run /^lint:.*/",
     "test": "node --experimental-strip-types --test test/e2e/*.test.ts",
+    "watermark:report": "node --experimental-strip-types test/watermarks/run.ts",
+    "watermark:baseline": "node --experimental-strip-types test/watermarks/run.ts --write-baseline",
     "test:watch": "node --experimental-strip-types --test --watch test/e2e/*.test.ts"
   },
   "type": "module",

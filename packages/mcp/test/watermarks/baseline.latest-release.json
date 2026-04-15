@@ -1,0 +1,52 @@
+{
+  "encoding": "o200k_base",
+  "generatedAt": "2026-04-15T12:53:01.878Z",
+  "source": "current-worktree",
+  "version": 1,
+  "watermarks": [
+    {
+      "id": "component-info:interface:syn-button",
+      "tokens": 1507
+    },
+    {
+      "id": "component-info:examples:syn-button",
+      "tokens": 1925
+    },
+    {
+      "id": "component-info:full:syn-button",
+      "tokens": 8205
+    },
+    {
+      "id": "component-info:interface:syn-divider",
+      "tokens": 187
+    },
+    {
+      "id": "component-info:interface:syn-input",
+      "tokens": 2981
+    },
+    {
+      "id": "component-info:interface:syn-combobox",
+      "tokens": 2386
+    },
+    {
+      "id": "styles-info:syn-body",
+      "tokens": 26
+    },
+    {
+      "id": "template-info:appshell",
+      "tokens": 15421
+    },
+    {
+      "id": "migration-info:components:index.md",
+      "tokens": 915
+    },
+    {
+      "id": "asset-info:current:home",
+      "tokens": 255
+    },
+    {
+      "id": "token-info:css:sick2025-light",
+      "tokens": 8292
+    }
+  ]
+}

@@ -14,6 +14,8 @@ export type ClientSession = {
 
 export type ClientSessionOptions = {
   configPath?: string;
+  cwd?: string;
+  entryPoint?: string;
 };
 
 /**
@@ -23,14 +25,22 @@ export type ClientSessionOptions = {
  * @returns A session containing the connected client and a teardown function.
  */
 export const createClientSession = async (options: ClientSessionOptions = {}): Promise<ClientSession> => {
-  const { configPath } = options;
+  const {
+    configPath,
+    cwd,
+    entryPoint,
+  } = options;
+
+  const serverCwd = cwd ?? packageRoot;
+  const serverEntryPoint = entryPoint ?? 'dist/bin/start.js';
+
   const transport = new StdioClientTransport({
     args: [
-      'dist/bin/start.js',
+      serverEntryPoint,
       ...(configPath ? ['--config', configPath] : []),
     ],
     command: process.execPath,
-    cwd: packageRoot,
+    cwd: serverCwd,
     stderr: 'pipe',
   });
 

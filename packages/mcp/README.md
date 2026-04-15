@@ -403,10 +403,11 @@ src/
 rules/                   # Markdown guidance files prepended to selected tool output
 test/
 ├── e2e/                 # End-to-end MCP tests
-└── utilities/           # Test helpers
+├── utilities/           # Test helpers
+└── watermarks/          # Token watermark scenarios, baseline, and runner
 ```
 
-There is no in-package metadata. This is now handeled via `@synergy-design-system/metadata`.
+There is no in-package metadata. This is now handled via `@synergy-design-system/metadata`.
 
 ### Available Scripts
 
@@ -428,6 +429,15 @@ pnpm lint:js
 # Run the end-to-end test suite
 pnpm test
 
+# Run watermark measurements (report-only)
+pnpm watermark:report
+
+# Write/update local watermark baseline file
+pnpm watermark:baseline
+
+# Enforce watermark budgets and baseline regressions
+pnpm lint:watermark
+
 # Run tests in watch mode
 pnpm test:watch
 
@@ -435,13 +445,35 @@ pnpm test:watch
 pnpm debug
 ```
 
+### Token Watermarks
+
+The MCP package includes token watermark verification for AI-facing tool responses.
+
+- Scenarios are defined in `test/watermarks/scenarios.ts`.
+- The runner is `test/watermarks/run.ts`.
+- Baseline data is stored in `test/watermarks/baseline.latest-release.json`.
+- The baseline records `encoding`, `generatedAt`, `source`, and per-scenario token counts.
+
+Current tokenizer configuration:
+
+- The runner uses a fixed tokenizer encoding: `o200k_base`.
+- This keeps token measurements deterministic across runs.
+- Baseline `encoding` is persisted to make provenance explicit and support future validation or migrations.
+
+Recommended workflow:
+
+1. Run `pnpm watermark:report` to generate a report.
+2. Run `pnpm watermark:baseline` when intentionally refreshing baseline values.
+3. Run `pnpm lint:watermark` in CI or pregate checks to enforce budgets.
+
 ### Development Workflow
 
 1. Install dependencies with `pnpm install`.
 2. Build the package with `pnpm build`.
 3. Start the server with `npx @synergy-design-system/mcp`, `node dist/bin/start.js`, or `syn-mcp --config ./synergy-mcp.json`.
 4. Run `pnpm test` for end-to-end verification.
-5. Run `pnpm lint` before shipping changes.
+5. Run `pnpm watermark:report` to review token watermark report output.
+6. Run `pnpm lint` before shipping changes.
 
 If the MCP server appears to be missing data, check the state of `@synergy-design-system/metadata` first. This package reads runtime content from the metadata package and does not generate component, token, style, or migration data itself.
 

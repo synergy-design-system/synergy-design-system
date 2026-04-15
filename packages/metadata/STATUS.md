@@ -63,11 +63,11 @@ All 14 MCP tools have been migrated to the new public API:
 
 ## What Is Still Lacking ❌
 
-### 1. ADR Schema Fields Not Implemented
+### 1. ADR Summary Fields Deferred From v1.0.0
 
-`shortDescription`, `llmHint`, and `usageHints` were specified in the ADR as AI-optimized summary fields but are **not present** in `src/internal/schemas/core-entity.ts` or any public type. CONTEXT.md flags these as "decide before first npm publish."
+`shortDescription`, `llmHint`, and `usageHints` were specified in the ADR as future AI-optimized summary fields, but they are intentionally **deferred from `1.0.0`** and are not part of the current schema or public types.
 
-**Risk:** If these fields are needed before the package is published, they require coordinated schema + collector + writer + public type changes.
+**Release note:** This is now a scope decision rather than a blocker for the first publish.
 
 ### 2. Interface Layer Size Budget Exceeded — No CI Guards
 
@@ -84,9 +84,11 @@ The ADR target is `interface` ≤ 6 KB per component. Current measurements:
 
 ADR target: `examples` ≤ 8 KB per component. No measurements have been taken; no enforcement exists.
 
-### 4. Storybook Scraper Failure Does Not Abort Build
+### 4. Token-Aware Layer Size Verification Still Needs Design
 
-In `src/internal/cli/build.ts` Step 6, a failed Storybook scrape logs a warning and the build continues. CONTEXT.md (ADR decision) says this should abort the build or support a `--fail-on-scrape-error` flag. The current behavior means `pnpm run build:all` can silently produce a build with stale or missing examples without failing CI.
+The current ADR budgets (`interface` ≤ 6 KB, `examples` ≤ 8 KB) still have no CI enforcement, and the next planning step should decide whether these checks stay byte-based or move to token-based validation.
+
+**Next planning direction:** investigate tokenizer-backed verification using a library such as `tiktoken` so the size guardrails match actual LLM consumption costs rather than only filesystem size.
 
 ### 5. Config Domain Helpers Not Exposed in Public API
 
@@ -163,9 +165,13 @@ The clustering system in `config/clustering/components-by-tag/` only has meaning
 | CONFIG_SYSTEM.md next steps | ⚠️ 4/5 done — public API helpers missing |
 | MCP migration (14 tools) | ✅ Complete |
 | Storybook facade refactor | ✅ Complete |
-| ADR schema fields (`shortDescription`, `llmHint`, `usageHints`) | ❌ Not implemented — decide before npm publish |
+| ADR schema fields (`shortDescription`, `llmHint`, `usageHints`) | ✅ Deferred from `1.0.0` scope |
 | Interface layer size budget (≤ 6 KB) | ⚠️ Over budget for complex components — no CI guard |
 | Examples layer size budget (≤ 8 KB) | ⚠️ Not measured — no CI guard |
-| Storybook failure handling | ⚠️ Warns only — should abort `build:all` |
+| Storybook failure handling | ✅ `build:all` fails on scrape errors |
 | Unit tests | ❌ None — integration-only test suite |
 | Build-time size metrics | ❌ Not implemented |
+
+## Next Planning Focus
+
+The next substantial release-hardening task is layer size verification. The current package needs an explicit plan for how to measure and enforce `interface` and `examples` budgets, and a tokenizer-backed approach using a package such as `tiktoken` is a strong candidate because it tracks model-facing token cost more directly than bytes alone.

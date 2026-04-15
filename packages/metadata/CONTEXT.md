@@ -28,7 +28,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - Verbosity model (for MCP and all future consumers): `interface | examples | full`. Default to `interface` to minimize token usage.
 - Token efficiency target (ADR benchmark): `syn-checkbox` through current full MCP response ≈ 22 KB → `interface` layer target ≈ 5 KB (~77% reduction). Use as acceptance benchmark for Phase 2.
 - Size budgets (ADR targets, enforced by CI guards once implemented): `interface` ≤ 6 KB, `examples` ≤ 8 KB per component. Tune thresholds after initial generation.
-- Future entity fields specified in ADR but not yet in schema: `shortDescription`, `llmHint`, `usageHints` — short, AI-optimized summary fields for constrained contexts. Decide before first npm publish.
+- Future entity fields specified in ADR but not yet in schema: `shortDescription`, `llmHint`, `usageHints` — short, AI-optimized summary fields for constrained contexts. These are intentionally deferred from `1.0.0` and are not part of the current published contract.
 - Framework wrappers are being attached to canonical `component:*` entities instead of being modeled as separate per-framework component entities.
 - Layer asset paths are package-namespaced and shallow per entity (`components|react|vue|angular`) to avoid filename collisions across packages.
 - Migration artifacts are grouped by concern where needed (DaVinci migration is grouped under `davinci/` in layer output).
@@ -401,7 +401,7 @@ Build a standalone metadata package that replaces MCP-coupled metadata generatio
 - **Storybook sync hardening — partial:**
   - ✅ `pruneStaleArtifacts()` in `write.ts` prunes stale `.md` files not present in the current scrape set on successful runs.
   - ✅ `write.ts` throws if content is empty (`Refusing to write empty storybook artifact`), preventing blank replacements.
-  - ❌ **Gap remaining:** Step 6 in `build.ts` only issues a `warn` on scrape failure and continues the pipeline. It should abort (or be configurable to abort) to prevent a successful `build:all` run that silently drops all examples.
+  - ✅ Step 6 in `build.ts` now aborts `build:all` on scrape failure, preventing successful full builds with stale or missing examples.
 
 ### Previous Hardening and Config Work
 - Clustering config was generated from Storybook tags and expanded with concrete group files under `config/clustering/components-by-tag/`.
@@ -623,12 +623,12 @@ The metadata package implements the [ADR 2026-03-13: Proposed Synergy AI Strateg
   - Keep MCP migration concerns out of metadata implementation details (handled in MCP vNext).
 
 ## Suggested Next Steps
-1. **[Phase 2 — current priority]** Fix Storybook scrape failure path in `build.ts` Step 6: change `warn + continue` to `error + exit(1)` (or add a `--fail-on-scrape-error` flag) so a failed scrape never produces a `build:all` artefact that silently drops all examples.
+1. **[Phase 2 — current priority]** Plan token-aware layer size verification for `interface` and `examples` layers. Prefer a tokenizer-based measurement strategy (for example `tiktoken`) so future CI guardrails track model-facing token cost rather than only filesystem bytes.
 2. **[Phase 2]** Finish the remaining public API parity helpers: assets, templates, frameworks, fonts, version.
 3. **[Phase 2]** Add representative size-budget verification across components/examples to keep current gains stable and visible in CI output.
 4. **[Phase 2]** Add CI size budget guards (fail on `interface` > 6 KB, `examples` > 8 KB per entity).
 5. Templates are intentionally deferred for now; when resumed, wire them from the existing Storybook/source pipeline rather than introducing a separate collector.
-6. Decide whether to add `shortDescription`/`llmHint`/`usageHints` fields to `CoreEntity` schema before first npm publish.
+6. `shortDescription`/`llmHint`/`usageHints` are explicitly deferred from `1.0.0`; revisit them after the first publish alongside token-efficiency validation work.
 7. Decide whether to model Angular validators/value-accessors as additional structured metadata in `custom.frameworks.angular` beyond setup entities.
 8. **[Phase 3]** Migrate MCP to consume from this package; publish to npm; create `llms.txt`; enable MCP HTTP transport.
 

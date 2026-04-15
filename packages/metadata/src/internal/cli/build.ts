@@ -206,10 +206,11 @@ async function main() {
       ctx.logger?.info('Step 6: Running storybook scraper');
       const storybookSuccess = await runStorybook('all', ctx);
       if (!storybookSuccess) {
-        ctx.logger?.warn(
-          'Storybook scraper failed or docs not built yet. Examples will not be included. '
-          + 'Run `pnpm -C ../docs build` first if you want examples in the metadata build.',
+        ctx.logger?.error(
+          'Storybook scraper failed or docs are not built. '
+          + 'Run `pnpm -C ../docs build` first, then retry `pnpm run build:all`.',
         );
+        process.exit(1);
       }
     } else {
       ctx.logger?.info(

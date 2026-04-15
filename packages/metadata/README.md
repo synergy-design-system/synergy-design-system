@@ -76,6 +76,11 @@ Use this flow when you need real file content (for example framework wrappers, s
 - `data/manifest.json`
 - `data/schemas/**`
 
+## Release Scope
+
+For `1.0.0`, the published contract is the stable runtime query API plus the generated metadata artifacts listed above.
+The ADR-proposed summary fields `shortDescription`, `llmHint`, and `usageHints` are intentionally deferred from `1.0.0` and are not part of the current schema or public types.
+
 ## Internal Modules
 
 Collectors, writers, pipeline orchestration, schemas, core helpers, and CLI build logic live under `src/internal/` and are internal runtime behavior that may change without notice.

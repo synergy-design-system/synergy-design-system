@@ -11,8 +11,8 @@ Cards can be used to group related subjects in a container.
 
 ## Class Information
 
-- **Import Example:** `import SynCard from '@synergy-design-system/components/components/card/card.js';`
 - **Tag Name:** `syn-card`
+- **Import Example:** `import SynCard from '@synergy-design-system/components/components/card/card.js';`
 
 ## Usage Information
 
@@ -21,26 +21,35 @@ Cards can be used to group related subjects in a container.
 
 ## Available Slots
 
-| Name      | Description                                           |
-| --------- | ----------------------------------------------------- |
-| (default) | The card's main content.                              |
-| header    | An optional header for the card.                      |
-| footer    | An optional footer for the card.                      |
-| image     | An optional image to render at the start of the card. |
+- `(default)`: The card's main content.
+- `header`: An optional header for the card.
+- `footer`: An optional footer for the card.
+- `image`: An optional image to render at the start of the card.
 
 ## Available Properties
 
-| Property | Attribute | Reflects | Type      | Default | Description                                                                                                   |
-| -------- | --------- | :------: | --------- | ------- | ------------------------------------------------------------------------------------------------------------- |
-| shadow   | `shadow`  |    ✓     | `boolean` | `false` | Draws the card with a shadow. Can be used when the card has to stand out visually, for example in dashboards. |
-| sharp    | `sharp`   |    ✓     | `boolean` | `false` | Draws the card with sharp edges. Can be used e.g. when nesting multiple syn-cards to create hierarchy.        |
+### shadow
+
+attribute: `shadow`
+reflects: yes
+type: `boolean`
+default: `false`
+
+Draws the card with a shadow. Can be used when the card has to stand out visually, for example in dashboards.
+
+### sharp
+
+attribute: `sharp`
+reflects: yes
+type: `boolean`
+default: `false`
+
+Draws the card with sharp edges. Can be used e.g. when nesting multiple syn-cards to create hierarchy.
 
 ## Available CSS Parts
 
-| Name   | Description                                       |
-| ------ | ------------------------------------------------- |
-| base   | The component's base wrapper.                     |
-| body   | The container that wraps the card's main content. |
-| footer | The container that wraps the card's footer.       |
-| header | The container that wraps the card's header.       |
-| image  | The container that wraps the card's image.        |
+- `base`: The component's base wrapper.
+- `body`: The container that wraps the card's main content.
+- `footer`: The container that wraps the card's footer.
+- `header`: The container that wraps the card's header.
+- `image`: The container that wraps the card's image.

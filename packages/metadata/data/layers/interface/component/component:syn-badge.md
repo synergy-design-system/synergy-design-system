@@ -11,8 +11,8 @@ Badges are used to draw attention and display statuses or counts.
 
 ## Class Information
 
-- **Import Example:** `import SynBadge from '@synergy-design-system/components/components/badge/badge.js';`
 - **Tag Name:** `syn-badge`
+- **Import Example:** `import SynBadge from '@synergy-design-system/components/components/badge/badge.js';`
 
 ## Usage Information
 
@@ -21,18 +21,19 @@ Badges are used to draw attention and display statuses or counts.
 
 ## Available Slots
 
-| Name      | Description          |
-| --------- | -------------------- |
-| (default) | The badge's content. |
+- `(default)`: The badge's content.
 
 ## Available Properties
 
-| Property | Attribute | Reflects | Type                                                           | Default     | Description                |
-| -------- | --------- | :------: | -------------------------------------------------------------- | ----------- | -------------------------- |
-| variant  | `variant` |    ✓     | `'primary' \| 'success' \| 'neutral' \| 'warning' \| 'danger'` | `'primary'` | The badge's theme variant. |
+### variant
+
+attribute: `variant`
+reflects: yes
+type: `'primary' | 'success' | 'neutral' | 'warning' | 'danger'`
+default: `'primary'`
+
+The badge's theme variant.
 
 ## Available CSS Parts
 
-| Name | Description                   |
-| ---- | ----------------------------- |
-| base | The component's base wrapper. |
+- `base`: The component's base wrapper.

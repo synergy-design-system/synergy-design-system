@@ -179,8 +179,6 @@ const formatCell = (value: string | undefined): string => {
   return value.replace(/\|/g, '\\|').replace(/\n/g, ' ');
 };
 
-const slotDisplayName = (name: string): string => (name.length === 0 ? '(default)' : name);
-
 const renderAttributeCell = (attribute: InterfaceAttribute | undefined): string => {
   if (!attribute) {
     return '-';
@@ -194,7 +192,7 @@ const renderReflectsCell = (attribute: InterfaceAttribute | undefined): string =
     return '-';
   }
 
-  return attribute.reflects ? '✓' : '-';
+  return attribute.reflects ? 'yes' : 'no';
 };
 
 const renderMarkdownSection = (title: string, content: string | undefined): string => {
@@ -213,7 +211,7 @@ const renderInterfaceMarkdown = (
 
   const tagName = snapshot.tagName ?? 'unknown-component';
   const summary = snapshot.summary ?? '';
-  const {documentation} = snapshot;
+  const { documentation } = snapshot;
   const sourceModulePath = snapshot.sourceModulePath?.trim();
   const status = snapshot.status?.trim();
   const since = snapshot.since?.trim();
@@ -225,24 +223,22 @@ const renderInterfaceMarkdown = (
   const events = snapshot.events ?? [];
   const dependencies = snapshot.dependencies ?? [];
 
+  const classInformationLines: string[] = [
+    `- **Tag Name:** \`${tagName}\``,
+  ];
+
   // Build import example from module path
   const importExample = sourceModulePath
     ? `import ${tagName.charAt(0).toUpperCase() + tagName.slice(1).replace(/-./g, (x) => x[1].toUpperCase())} from '@synergy-design-system/components/${sourceModulePath.replace(/\.js$/, '')}.js';`
     : undefined;
 
-  const classInformationLines: string[] = [];
   if (importExample) {
     classInformationLines.push(`- **Import Example:** \`${importExample}\``);
   }
-  classInformationLines.push(`- **Tag Name:** \`${tagName}\``);
 
-  const slotsContent = slots.length > 0
-    ? [
-      '| Name | Description |',
-      '|------|-------------|',
-      ...slots.map((slot) => `| ${formatCell(slotDisplayName(slot.name))} | ${formatCell(slot.description)} |`),
-    ].join('\n')
-    : undefined;
+  const slotsContent = slots
+    .map(slot => `- \`${slot.name.length === 0 ? '(default)' : slot.name}\`: ${formatCell(slot.description)}`)
+    .join('\n');
 
   // Filter properties to only include public ones with descriptions.
   const publicProperties = properties.filter((p) => p.access === 'public' && p.description && p.description.trim().length > 0);
@@ -258,71 +254,86 @@ const renderInterfaceMarkdown = (
     }
   }
 
-  const propertiesContent = publicProperties.length > 0
-    ? [
-      '| Property | Attribute | Reflects | Type | Default | Description |',
-      '|----------|-----------|:--------:|------|---------|-------------|',
-      ...publicProperties.map((property) => {
-        const defaultValue = formatCell(property.default);
-        const formattedDefault = defaultValue === '-' ? '-' : `\`${defaultValue}\``;
-        const mappedAttribute = attributeByPropertyName.get(property.name);
-        return `| ${formatCell(property.name)} | ${renderAttributeCell(mappedAttribute)} | ${renderReflectsCell(mappedAttribute)} | \`${formatCell(property.type)}\` | ${formattedDefault} | ${formatCell(property.description)} |`;
-      }),
-    ].join('\n')
-    : undefined;
+  const propertiesContent = publicProperties
+    .map(prop => {
+      const defaultValue = formatCell(prop.default);
+      const formattedDefault = defaultValue === '-' ? 'none' : `\`${defaultValue}\``;
+      const mappedAttribute = attributeByPropertyName.get(prop.name);
+
+      return `
+### ${prop.name}
+
+attribute: ${renderAttributeCell(mappedAttribute)}
+reflects: ${renderReflectsCell(mappedAttribute)}
+type: \`${prop.type}\`
+default: ${formattedDefault}
+
+${formatCell(prop.description)}
+      `.trim();
+    })
+    .join('\n');
 
   const publicPropertyNames = new Set(publicProperties.map((p) => p.name));
   const attributeOnlyMembers = attributes.filter(
     (attribute) => !attribute.fieldName || !publicPropertyNames.has(attribute.fieldName),
   );
-  const attributesContent = attributeOnlyMembers.length > 0
-    ? [
-      '| Name | Type | Default | Description |',
-      '|------|------|---------|-------------|',
-      ...attributeOnlyMembers.map((attribute) => {
-        const defaultValue = formatCell(attribute.default);
-        const formattedDefault = defaultValue === '-' ? '-' : `\`${defaultValue}\``;
-        return `| ${formatCell(attribute.name)} | \`${formatCell(attribute.type)}\` | ${formattedDefault} | ${formatCell(attribute.description)} |`;
-      }),
-    ].join('\n')
+
+  const attributesProperties = attributeOnlyMembers.map(attr => {
+    const defaultValue = formatCell(attr.default);
+    const formattedDefault = defaultValue === '-' ? 'none' : `\`${defaultValue}\``;
+    return `
+### ${attr.name}
+
+reflects: ${renderReflectsCell(attr)}
+type: \`${attr.type}\`
+default: ${formattedDefault}
+
+${formatCell(attr.description)}
+    `.trim();
+  }).join('\n');
+
+  const attributesContent = attributesProperties.length > 0
+    ? `These attributes are reflected but not exposed as component properties.\n\n${attributesProperties}`
     : undefined;
 
   // Filter methods to only include those with descriptions, and format parameters
   const publicMethods = methods.filter((m) => m.description && m.description.trim().length > 0);
-  const methodsContent = publicMethods.length > 0
-    ? [
-      '| Name | Parameters | Return Type | Description |',
-      '|------|------------|-------------|-------------|',
-      ...publicMethods.map((method) => {
-        const parameters = method.parameters.length > 0
-          ? method.parameters.map((parameter) => (parameter.type ? `\`${parameter.name}: ${parameter.type}\`` : `\`${parameter.name}\``)).join(', ')
-          : '-';
-        return `| \`${method.name}()\` | ${formatCell(parameters)} | ${formatCell(method.returnType)} | ${formatCell(method.description)} |`;
-      }),
-    ].join('\n')
-    : undefined;
 
-  const cssPartsContent = cssParts.length > 0
-    ? [
-      '| Name | Description |',
-      '|------|-------------|',
-      ...cssParts.map((part) => `| ${formatCell(part.name)} | ${formatCell(part.description)} |`),
-    ].join('\n')
-    : undefined;
+  const methodsContent = publicMethods
+    .map(method => {
+      const parameters = method.parameters.length > 0
+        ? method.parameters.map((parameter) => (parameter.type ? `\`${parameter.name}: ${parameter.type}\`` : `\`${parameter.name}\``)).join(', ')
+        : '-';
+      return `
+### ${method.name}()
+
+parameters: ${parameters}
+returns: \`${method.returnType ?? 'void'}\`
+
+${method.description}
+      `.trim();
+    })
+    .join('\n');
+
+  const cssPartsContent = cssParts
+    .map(part => `- \`${part.name}\`: ${part.description}`)
+    .join('\n');
 
   // Format event types with backticks
-  const eventsContent = events.length > 0
-    ? [
-      '| Name | Event Type | Description |',
-      '|------|------------|-------------|',
-      ...events.map((event) => `| ${formatCell(event.name)} | ${formatCell(event.type ? `\`${event.type}\`` : '-')} | ${formatCell(event.description)} |`),
-    ].join('\n')
-    : undefined;
+  const eventsContent = events
+    .map(event => `
+### ${event.name}
+
+type: ${event.type ? `\`${event.type}\`` : '-'}
+
+${event.description}
+    `.trim())
+    .join('\n');
 
   // Format dependency names with backticks
-  const dependenciesContent = dependencies.length > 0
-    ? dependencies.map((dependency) => `- \`${dependency}\``).join('\n')
-    : undefined;
+  const dependenciesContent = dependencies
+    .map((dependency) => `- \`${dependency}\``)
+    .join('\n');
 
   const usageLines: string[] = [];
   if (status) {
@@ -345,14 +356,13 @@ const renderInterfaceMarkdown = (
     documentationLines.push(`[Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=${enrichedOverride.figmaComponentId})`);
   }
 
-  const finalDocumentation = documentationLines.length > 0 ? documentationLines.map(item => `- ${item}`).join('\n') : undefined;
+  const finalDocumentation = documentationLines
+    .map(item => `- ${item}`)
+    .join('\n');
 
   const sections: string[] = [
     renderMarkdownSection('Summary', summary.length > 0 ? summary : '-'),
-    renderMarkdownSection(
-      'Documentation',
-      finalDocumentation,
-    ),
+    renderMarkdownSection('Documentation', finalDocumentation),
     renderMarkdownSection('Class Information', classInformationLines.join('\n')),
     renderMarkdownSection('Usage Information', usageContent),
     renderMarkdownSection('Available Slots', slotsContent),

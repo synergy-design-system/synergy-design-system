@@ -13,8 +13,8 @@ Tags can be removable, icon‑based, or purely textual.
 
 ## Class Information
 
-- **Import Example:** `import SynTagGroup from '@synergy-design-system/components/components/tag-group/tag-group.js';`
 - **Tag Name:** `syn-tag-group`
+- **Import Example:** `import SynTagGroup from '@synergy-design-system/components/components/tag-group/tag-group.js';`
 
 ## Usage Information
 
@@ -23,22 +23,39 @@ Tags can be removable, icon‑based, or purely textual.
 
 ## Available Slots
 
-| Name      | Description                                                              |
-| --------- | ------------------------------------------------------------------------ |
-| (default) | The tag group's main content. Must be `<syn-tag />` elements.            |
-| label     | The tag group's label. Alternatively, you can use the `label` attribute. |
+- `(default)`: The tag group's main content. Must be `<syn-tag />` elements.
+- `label`: The tag group's label. Alternatively, you can use the `label` attribute.
 
 ## Available Properties
 
-| Property      | Attribute        | Reflects | Type                             | Default    | Description                                                                                                                     |
-| ------------- | ---------------- | :------: | -------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| label         | `label`          |    -     | `string`                         | `''`       | The tag group's label. If you need to display HTML, use the `label` slot instead.                                               |
-| labelPosition | `label-position` |    ✓     | `'top' \| 'start'`               | `'top'`    | Controls the label position. Use 'top' to place the label above the tags, or 'start' to place it to the begin of the tag group. |
-| size          | `size`           |    ✓     | `'small' \| 'medium' \| 'large'` | `'medium'` | The size that should be applied to all slotted `<syn-tag>` elements                                                             |
+### label
+
+attribute: `label`
+reflects: no
+type: `string`
+default: `''`
+
+The tag group's label. If you need to display HTML, use the `label` slot instead.
+
+### labelPosition
+
+attribute: `label-position`
+reflects: yes
+type: `'top' | 'start'`
+default: `'top'`
+
+Controls the label position. Use 'top' to place the label above the tags, or 'start' to place it to the begin of the tag group.
+
+### size
+
+attribute: `size`
+reflects: yes
+type: `'small' | 'medium' | 'large'`
+default: `'medium'`
+
+The size that should be applied to all slotted `<syn-tag>` elements
 
 ## Available CSS Parts
 
-| Name      | Description                   |
-| --------- | ----------------------------- |
-| base      | The component's base wrapper. |
-| tag-label | The tag group's label.        |
+- `base`: The component's base wrapper.
+- `tag-label`: The tag group's label.

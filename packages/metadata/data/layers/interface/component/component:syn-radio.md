@@ -11,8 +11,8 @@ Radios allow the user to select a single option from a group.
 
 ## Class Information
 
-- **Import Example:** `import SynRadio from '@synergy-design-system/components/components/radio/radio.js';`
 - **Tag Name:** `syn-radio`
+- **Import Example:** `import SynRadio from '@synergy-design-system/components/components/radio/radio.js';`
 
 ## Usage Information
 
@@ -21,35 +21,67 @@ Radios allow the user to select a single option from a group.
 
 ## Available Slots
 
-| Name      | Description        |
-| --------- | ------------------ |
-| (default) | The radio's label. |
+- `(default)`: The radio's label.
 
 ## Available Properties
 
-| Property | Attribute  | Reflects | Type                             | Default    | Description                                                                                                                                         |
-| -------- | ---------- | :------: | -------------------------------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| disabled | `disabled` |    ✓     | `boolean`                        | `false`    | Disables the radio.                                                                                                                                 |
-| readonly | `readonly` |    ✓     | `boolean`                        | `false`    | Sets the radio to a readonly state.                                                                                                                 |
-| size     | `size`     |    ✓     | `'small' \| 'medium' \| 'large'` | `'medium'` | The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this attribute can typically be omitted. |
-| value    | `value`    |    -     | `string \| number`               | -          | The radio's value. When selected, the radio group will receive this value.                                                                          |
+### disabled
+
+attribute: `disabled`
+reflects: yes
+type: `boolean`
+default: `false`
+
+Disables the radio.
+
+### readonly
+
+attribute: `readonly`
+reflects: yes
+type: `boolean`
+default: `false`
+
+Sets the radio to a readonly state.
+
+### size
+
+attribute: `size`
+reflects: yes
+type: `'small' | 'medium' | 'large'`
+default: `'medium'`
+
+The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this attribute can typically be omitted.
+
+### value
+
+attribute: `value`
+reflects: no
+type: `string | number`
+default: none
+
+The radio's value. When selected, the radio group will receive this value.
 
 ## Available CSS Parts
 
-| Name             | Description                                                  |
-| ---------------- | ------------------------------------------------------------ |
-| base             | The component's base wrapper.                                |
-| checked-icon     | The checked icon, an `<syn-icon>` element.                   |
-| control          | The circular container that wraps the radio's checked state. |
-| control--checked | The radio control when the radio is checked.                 |
-| label            | The container that wraps the radio's label.                  |
+- `base`: The component's base wrapper.
+- `checked-icon`: The checked icon, an `<syn-icon>` element.
+- `control`: The circular container that wraps the radio's checked state.
+- `control--checked`: The radio control when the radio is checked.
+- `label`: The container that wraps the radio's label.
 
 ## Available Events
 
-| Name      | Event Type      | Description                           |
-| --------- | --------------- | ------------------------------------- |
-| syn-blur  | `SynBlurEvent`  | Emitted when the control loses focus. |
-| syn-focus | `SynFocusEvent` | Emitted when the control gains focus. |
+### syn-blur
+
+type: `SynBlurEvent`
+
+Emitted when the control loses focus.
+
+### syn-focus
+
+type: `SynFocusEvent`
+
+Emitted when the control gains focus.
 
 ## Dependencies
 

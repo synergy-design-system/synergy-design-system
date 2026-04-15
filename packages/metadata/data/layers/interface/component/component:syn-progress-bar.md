@@ -11,8 +11,8 @@ Progress bars are used to show the status of an ongoing operation.
 
 ## Class Information
 
-- **Import Example:** `import SynProgressBar from '@synergy-design-system/components/components/progress-bar/progress-bar.js';`
 - **Tag Name:** `syn-progress-bar`
+- **Import Example:** `import SynProgressBar from '@synergy-design-system/components/components/progress-bar/progress-bar.js';`
 
 ## Usage Information
 
@@ -21,22 +21,39 @@ Progress bars are used to show the status of an ongoing operation.
 
 ## Available Slots
 
-| Name      | Description                                    |
-| --------- | ---------------------------------------------- |
-| (default) | A label to show inside the progress indicator. |
+- `(default)`: A label to show inside the progress indicator.
 
 ## Available Properties
 
-| Property      | Attribute       | Reflects | Type      | Default | Description                                                                                                     |
-| ------------- | --------------- | :------: | --------- | ------- | --------------------------------------------------------------------------------------------------------------- |
-| indeterminate | `indeterminate` |    ✓     | `boolean` | `false` | When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state. |
-| label         | `label`         |    -     | `string`  | `''`    | A custom label for assistive devices.                                                                           |
-| value         | `value`         |    ✓     | `number`  | `0`     | The current progress as a percentage, 0 to 100.                                                                 |
+### indeterminate
+
+attribute: `indeterminate`
+reflects: yes
+type: `boolean`
+default: `false`
+
+When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state.
+
+### label
+
+attribute: `label`
+reflects: no
+type: `string`
+default: `''`
+
+A custom label for assistive devices.
+
+### value
+
+attribute: `value`
+reflects: yes
+type: `number`
+default: `0`
+
+The current progress as a percentage, 0 to 100.
 
 ## Available CSS Parts
 
-| Name      | Description                   |
-| --------- | ----------------------------- |
-| base      | The component's base wrapper. |
-| indicator | The progress bar's indicator. |
-| label     | The progress bar's label.     |
+- `base`: The component's base wrapper.
+- `indicator`: The progress bar's indicator.
+- `label`: The progress bar's label.

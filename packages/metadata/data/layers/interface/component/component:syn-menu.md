@@ -11,8 +11,8 @@ Menus provide a list of options for the user to choose from.
 
 ## Class Information
 
-- **Import Example:** `import SynMenu from '@synergy-design-system/components/components/menu/menu.js';`
 - **Tag Name:** `syn-menu`
+- **Import Example:** `import SynMenu from '@synergy-design-system/components/components/menu/menu.js';`
 
 ## Usage Information
 
@@ -21,12 +21,12 @@ Menus provide a list of options for the user to choose from.
 
 ## Available Slots
 
-| Name      | Description                                                          |
-| --------- | -------------------------------------------------------------------- |
-| (default) | The menu's content, including menu items, menu labels, and dividers. |
+- `(default)`: The menu's content, including menu items, menu labels, and dividers.
 
 ## Available Events
 
-| Name       | Event Type       | Description                           |
-| ---------- | ---------------- | ------------------------------------- |
-| syn-select | `SynSelectEvent` | Emitted when a menu item is selected. |
+### syn-select
+
+type: `SynSelectEvent`
+
+Emitted when a menu item is selected.

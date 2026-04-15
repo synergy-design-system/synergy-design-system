@@ -11,8 +11,8 @@ Tab panels are used inside [tab groups](/components/tab-group) to display tabbed
 
 ## Class Information
 
-- **Import Example:** `import SynTabPanel from '@synergy-design-system/components/components/tab-panel/tab-panel.js';`
 - **Tag Name:** `syn-tab-panel`
+- **Import Example:** `import SynTabPanel from '@synergy-design-system/components/components/tab-panel/tab-panel.js';`
 
 ## Usage Information
 
@@ -21,19 +21,28 @@ Tab panels are used inside [tab groups](/components/tab-group) to display tabbed
 
 ## Available Slots
 
-| Name      | Description              |
-| --------- | ------------------------ |
-| (default) | The tab panel's content. |
+- `(default)`: The tab panel's content.
 
 ## Available Properties
 
-| Property | Attribute | Reflects | Type      | Default | Description                             |
-| -------- | --------- | :------: | --------- | ------- | --------------------------------------- |
-| active   | `active`  |    ✓     | `boolean` | `false` | When true, the tab panel will be shown. |
-| name     | `name`    |    ✓     | `string`  | `''`    | The tab panel's name.                   |
+### active
+
+attribute: `active`
+reflects: yes
+type: `boolean`
+default: `false`
+
+When true, the tab panel will be shown.
+
+### name
+
+attribute: `name`
+reflects: yes
+type: `string`
+default: `''`
+
+The tab panel's name.
 
 ## Available CSS Parts
 
-| Name | Description                   |
-| ---- | ----------------------------- |
-| base | The component's base wrapper. |
+- `base`: The component's base wrapper.

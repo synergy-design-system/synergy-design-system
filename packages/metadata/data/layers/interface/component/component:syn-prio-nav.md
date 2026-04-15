@@ -14,8 +14,8 @@ priority menu.
 
 ## Class Information
 
-- **Import Example:** `import SynPrioNav from '@synergy-design-system/components/components/prio-nav/prio-nav.js';`
 - **Tag Name:** `syn-prio-nav`
+- **Import Example:** `import SynPrioNav from '@synergy-design-system/components/components/prio-nav/prio-nav.js';`
 
 ## Usage Information
 
@@ -24,20 +24,16 @@ priority menu.
 
 ## Available Slots
 
-| Name      | Description                                                                                   |
-| --------- | --------------------------------------------------------------------------------------------- |
-| (default) | The given navigation items. Must be horizontal `<syn-nav-item>`s or have a role of "menuitem" |
+- `(default)`: The given navigation items. Must be horizontal `<syn-nav-item>`s or have a role of "menuitem"
 
 ## Available CSS Parts
 
-| Name                    | Description                                                                   |
-| ----------------------- | ----------------------------------------------------------------------------- |
-| base                    | The component's base wrapper.                                                 |
-| priority-menu           | The wrapper around the priority menu                                          |
-| priority-menu-container | The container for the shifted navigation items, if there is not enough space. |
-| priority-menu-icon      | The icon for the priority menu                                                |
-| priority-menu-label     | The label for the priority menu                                               |
-| priority-menu-nav-item  | The navigation item for the priority menu                                     |
+- `base`: The component's base wrapper.
+- `priority-menu`: The wrapper around the priority menu
+- `priority-menu-container`: The container for the shifted navigation items, if there is not enough space.
+- `priority-menu-icon`: The icon for the priority menu
+- `priority-menu-label`: The label for the priority menu
+- `priority-menu-nav-item`: The navigation item for the priority menu
 
 ## Dependencies
 

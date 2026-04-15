@@ -11,8 +11,8 @@ Spinners are used to show the progress of an indeterminate operation.
 
 ## Class Information
 
-- **Import Example:** `import SynSpinner from '@synergy-design-system/components/components/spinner/spinner.js';`
 - **Tag Name:** `syn-spinner`
+- **Import Example:** `import SynSpinner from '@synergy-design-system/components/components/spinner/spinner.js';`
 
 ## Usage Information
 
@@ -21,6 +21,4 @@ Spinners are used to show the progress of an indeterminate operation.
 
 ## Available CSS Parts
 
-| Name | Description                   |
-| ---- | ----------------------------- |
-| base | The component's base wrapper. |
+- `base`: The component's base wrapper.

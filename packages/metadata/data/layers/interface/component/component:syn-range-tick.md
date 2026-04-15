@@ -11,8 +11,8 @@ Ticks visually improve positioning on range sliders.
 
 ## Class Information
 
-- **Import Example:** `import SynRangeTick from '@synergy-design-system/components/components/range-tick/range-tick.js';`
 - **Tag Name:** `syn-range-tick`
+- **Import Example:** `import SynRangeTick from '@synergy-design-system/components/components/range-tick/range-tick.js';`
 
 ## Usage Information
 
@@ -21,20 +21,21 @@ Ticks visually improve positioning on range sliders.
 
 ## Available Slots
 
-| Name      | Description      |
-| --------- | ---------------- |
-| (default) | The tick's label |
+- `(default)`: The tick's label
 
 ## Available Properties
 
-| Property    | Attribute     | Reflects | Type      | Default | Description                                        |
-| ----------- | ------------- | :------: | --------- | ------- | -------------------------------------------------- |
-| subdivision | `subdivision` |    ✓     | `boolean` | `false` | Whether the tick should be shown as a subdivision. |
+### subdivision
+
+attribute: `subdivision`
+reflects: yes
+type: `boolean`
+default: `false`
+
+Whether the tick should be shown as a subdivision.
 
 ## Available CSS Parts
 
-| Name  | Description                   |
-| ----- | ----------------------------- |
-| base  | The component's base wrapper. |
-| label | The component's label.        |
-| line  | The component's tick line.    |
+- `base`: The component's base wrapper.
+- `label`: The component's label.
+- `line`: The component's tick line.

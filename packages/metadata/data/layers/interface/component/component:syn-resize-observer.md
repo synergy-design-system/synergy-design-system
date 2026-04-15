@@ -10,8 +10,8 @@ The Resize Observer component offers a thin, declarative interface to the [`Resi
 
 ## Class Information
 
-- **Import Example:** `import SynResizeObserver from '@synergy-design-system/components/components/resize-observer/resize-observer.js';`
 - **Tag Name:** `syn-resize-observer`
+- **Import Example:** `import SynResizeObserver from '@synergy-design-system/components/components/resize-observer/resize-observer.js';`
 
 ## Usage Information
 
@@ -20,18 +20,23 @@ The Resize Observer component offers a thin, declarative interface to the [`Resi
 
 ## Available Slots
 
-| Name      | Description                                 |
-| --------- | ------------------------------------------- |
-| (default) | One or more elements to watch for resizing. |
+- `(default)`: One or more elements to watch for resizing.
 
 ## Available Properties
 
-| Property | Attribute  | Reflects | Type      | Default | Description            |
-| -------- | ---------- | :------: | --------- | ------- | ---------------------- |
-| disabled | `disabled` |    ✓     | `boolean` | `false` | Disables the observer. |
+### disabled
+
+attribute: `disabled`
+reflects: yes
+type: `boolean`
+default: `false`
+
+Disables the observer.
 
 ## Available Events
 
-| Name       | Event Type       | Description                          |
-| ---------- | ---------------- | ------------------------------------ |
-| syn-resize | `SynResizeEvent` | Emitted when the element is resized. |
+### syn-resize
+
+type: `SynResizeEvent`
+
+Emitted when the element is resized.

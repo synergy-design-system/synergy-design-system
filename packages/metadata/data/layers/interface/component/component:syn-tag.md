@@ -11,8 +11,8 @@ Tags are used as labels to organize things or to indicate a selection.
 
 ## Class Information
 
-- **Import Example:** `import SynTag from '@synergy-design-system/components/components/tag/tag.js';`
 - **Tag Name:** `syn-tag`
+- **Import Example:** `import SynTag from '@synergy-design-system/components/components/tag/tag.js';`
 
 ## Usage Information
 
@@ -21,31 +21,42 @@ Tags are used as labels to organize things or to indicate a selection.
 
 ## Available Slots
 
-| Name      | Description        |
-| --------- | ------------------ |
-| (default) | The tag's content. |
+- `(default)`: The tag's content.
 
 ## Available Properties
 
-| Property  | Attribute   | Reflects | Type                             | Default    | Description                                        |
-| --------- | ----------- | :------: | -------------------------------- | ---------- | -------------------------------------------------- |
-| removable | `removable` |    -     | `boolean`                        | `false`    | Makes the tag removable and shows a remove button. |
-| size      | `size`      |    ✓     | `'small' \| 'medium' \| 'large'` | `'medium'` | The tag's size.                                    |
+### removable
+
+attribute: `removable`
+reflects: no
+type: `boolean`
+default: `false`
+
+Makes the tag removable and shows a remove button.
+
+### size
+
+attribute: `size`
+reflects: yes
+type: `'small' | 'medium' | 'large'`
+default: `'medium'`
+
+The tag's size.
 
 ## Available CSS Parts
 
-| Name                  | Description                                      |
-| --------------------- | ------------------------------------------------ |
-| base                  | The component's base wrapper.                    |
-| content               | The tag's content.                               |
-| remove-button         | The tag's remove button, an `<syn-icon-button>`. |
-| remove-button\_\_base | The remove button's exported `base` part.        |
+- `base`: The component's base wrapper.
+- `content`: The tag's content.
+- `remove-button`: The tag's remove button, an `<syn-icon-button>`.
+- `remove-button__base`: The remove button's exported `base` part.
 
 ## Available Events
 
-| Name       | Event Type       | Description                                  |
-| ---------- | ---------------- | -------------------------------------------- |
-| syn-remove | `SynRemoveEvent` | Emitted when the remove button is activated. |
+### syn-remove
+
+type: `SynRemoveEvent`
+
+Emitted when the remove button is activated.
 
 ## Dependencies
 

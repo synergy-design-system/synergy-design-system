@@ -11,8 +11,8 @@ Menu labels are used to describe a group of menu items.
 
 ## Class Information
 
-- **Import Example:** `import SynMenuLabel from '@synergy-design-system/components/components/menu-label/menu-label.js';`
 - **Tag Name:** `syn-menu-label`
+- **Import Example:** `import SynMenuLabel from '@synergy-design-system/components/components/menu-label/menu-label.js';`
 
 ## Usage Information
 
@@ -21,17 +21,13 @@ Menu labels are used to describe a group of menu items.
 
 ## Available Slots
 
-| Name      | Description               |
-| --------- | ------------------------- |
-| (default) | The menu label's content. |
+- `(default)`: The menu label's content.
 
 ## Available CSS Parts
 
-| Name    | Description                                     |
-| ------- | ----------------------------------------------- |
-| base    | The component's base wrapper.                   |
-| divider | The divider that is displayed above the content |
-| label   | The label that is displayed below the divider   |
+- `base`: The component's base wrapper.
+- `divider`: The divider that is displayed above the content
+- `label`: The label that is displayed below the divider
 
 ## Dependencies
 

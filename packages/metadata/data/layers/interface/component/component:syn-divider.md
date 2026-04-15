@@ -11,8 +11,8 @@ Dividers are used to visually separate or group elements.
 
 ## Class Information
 
-- **Import Example:** `import SynDivider from '@synergy-design-system/components/components/divider/divider.js';`
 - **Tag Name:** `syn-divider`
+- **Import Example:** `import SynDivider from '@synergy-design-system/components/components/divider/divider.js';`
 
 ## Usage Information
 
@@ -21,6 +21,11 @@ Dividers are used to visually separate or group elements.
 
 ## Available Properties
 
-| Property | Attribute  | Reflects | Type      | Default | Description                                  |
-| -------- | ---------- | :------: | --------- | ------- | -------------------------------------------- |
-| vertical | `vertical` |    ✓     | `boolean` | `false` | Draws the divider in a vertical orientation. |
+### vertical
+
+attribute: `vertical`
+reflects: yes
+type: `boolean`
+default: `false`
+
+Draws the divider in a vertical orientation.

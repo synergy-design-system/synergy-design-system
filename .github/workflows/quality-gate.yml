@@ -159,6 +159,8 @@ jobs:
 
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
+        with:
+          with-build: 'false'
       - name: Build workspace packages (except metadata and mcp)
         run: pnpm -r --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/mcp' build
       - name: Build metadata (full)

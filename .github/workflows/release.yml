@@ -105,6 +105,9 @@ jobs:
             exit 1
           fi
 
+          # Update the watermark file with the new version
+          pnpm -C packages/mcp run watermark:baseline
+
           # Save the changes to git
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

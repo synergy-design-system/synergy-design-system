@@ -68,23 +68,29 @@ export class DocsScraper {
     try {
       this.logger.info(`Using Storybook server at ${this.baseUrl}`);
 
+      const scraper = new StorybookScraper(componentScrapingConfig);
+      const allResults: StorybookCollectedDocument[] = [];
+
       // Scrape components
       this.logger.info('Scraping component documentation...');
-      const componentScraper = new StorybookScraper(componentScrapingConfig);
-      const components = await componentScraper.scrapeAll(this.baseUrl);
+      const components = await scraper.scrapeAll(this.baseUrl);
+      allResults.push(...components);
 
       // Scrape styles
       this.logger.info('Scraping styles documentation...');
-      const stylesScraper = new StorybookScraper(stylesScrapingConfig);
-      const styles = await stylesScraper.scrapeAll(this.baseUrl);
+      scraper.setConfig(stylesScrapingConfig);
+      const styles = await scraper.scrapeAll(this.baseUrl);
+      allResults.push(...styles);
 
       // Scrape templates
       this.logger.info('Scraping templates documentation...');
-      const templatesScraper = new StorybookScraper(templateScrapingConfig);
-      const templates = await templatesScraper.scrapeAll(this.baseUrl);
+      scraper.setConfig(templateScrapingConfig);
+      const templates = await scraper.scrapeAll(this.baseUrl);
+      allResults.push(...templates);
 
       this.logger.info('All documentation scraping completed successfully!');
-      return [...components, ...styles, ...templates];
+      await scraper.close();
+      return allResults;
     } catch (error) {
       this.logger.error('Error during comprehensive scraping process', { error: String(error) });
       throw error;

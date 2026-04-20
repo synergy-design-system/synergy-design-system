@@ -66,6 +66,9 @@ createTestCases(({ name, port }) => {
       // Same goes for experience, which should be set to "a little"
       expect(await getInputValue(form.experience)).toBe(1);
 
+      // Test the value of preferred contact, which should be set to "email"
+      expect(await getInputValue(form.preferredContact)).toBe('email');
+
       expect(await form.form.evaluate((f) => (f as HTMLFormElement).checkValidity())).toBe(true);
     });
 

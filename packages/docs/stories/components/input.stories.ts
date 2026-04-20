@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import type { SynButton, SynInput } from '@synergy-design-system/components';
 import '../../../components/src/components/input/input.js';
 import '../../../components/src/components/icon/icon.js';
@@ -7,6 +6,7 @@ import '../../../components/src/components/textarea/textarea.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { userEvent } from 'storybook/test';
+import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
@@ -173,6 +173,7 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
+  decorators: [FormSubmitDecorator],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -203,20 +204,7 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-    <form class="custom-validity">
-      <syn-input help-text="This input is required." label="Label" placeholder="Insert text here..." required></syn-input>
-      <syn-button type="submit" variant="filled">Submit</syn-button>
-    </form>
-    <style>
-    .custom-validity {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    syn-button {
-      align-self: flex-start;
-    }
-    </style>
+    <syn-input help-text="This input is required." label="Label" placeholder="Insert text here..." required></syn-input>
   `,
 };
 

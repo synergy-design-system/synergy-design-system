@@ -9,6 +9,7 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { userEvent } from 'storybook/test';
 import { highlightOptionRenderer } from '../../../components/src/components/combobox/option-renderer.js';
+import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -348,6 +349,7 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
+  decorators: [FormSubmitDecorator],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -373,22 +375,9 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-    <form class="custom-validity">
-      <syn-combobox required placeholder="Type something" help-text="This is required">
-        ${createColorOptionsHtml()}
-      </syn-combobox>
-      <syn-button type="submit" variant="filled">Submit</syn-button>
-    </form>
-    <style>
-    .custom-validity {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    syn-button {
-      align-self: flex-start;
-    }
-    </style>
+    <syn-combobox required placeholder="Type something" help-text="This is required">
+      ${createColorOptionsHtml()}
+    </syn-combobox>
   `,
 };
 

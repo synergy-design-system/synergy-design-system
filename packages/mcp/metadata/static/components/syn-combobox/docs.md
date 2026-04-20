@@ -1094,7 +1094,13 @@ Use the size attribute to change a combobox size.
 The invalid status is used to warn the user that the combobox is invalid. For example, if the entry is mandatory.
 
 ```html
-<form class="custom-validity">
+<form
+  onsubmit="
+    event.preventDefault();
+    event.stopPropagation();
+  "
+  id="components-syn-combobox--invalid"
+>
   <syn-combobox
     required=""
     placeholder="Type something"
@@ -1208,15 +1214,16 @@ The invalid status is used to warn the user that the combobox is invalid. For ex
       >Yellow</syn-option
     >
   </syn-combobox>
+
   <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>
 <style>
-  .custom-validity {
+  #components-syn-combobox--invalid {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--syn-spacing-large);
   }
   syn-button {
     align-self: flex-start;

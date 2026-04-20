@@ -337,6 +337,16 @@ const SynRadio = {
 /**
  * @type {import('html-validate').MetaElement}
  */
+const SynRadioButton = {
+  focusable: true,
+  formAssociated,
+  interactive: true,
+  phrasing: true,
+};
+
+/**
+ * @type {import('html-validate').MetaElement}
+ */
 const SynRangeTick = {
   flow: true,
   phrasing: true,
@@ -507,6 +517,7 @@ export const rules = {
   SynProgressBar,
   SynProgressRing,
   SynRadio,
+  SynRadioButton,
   SynRadioGroup,
   SynRange,
   SynRangeTick,

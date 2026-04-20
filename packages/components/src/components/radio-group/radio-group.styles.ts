@@ -28,6 +28,16 @@ export default css`
     padding: 0;
   }
 
+  .form-control-input {
+    display: flex;
+    flex-direction: column;
+    gap: var(--syn-spacing-x-small);
+  }
+
+  .form-control--has-help-text.form-control--radio-group .form-control__help-text {
+    margin-top: var(--syn-spacing-x-small);
+  }
+
   .radio-group--required .radio-group__label::after {
     content: var(--syn-input-required-content);
     margin-inline-start: var(--syn-input-required-content-offset);
@@ -46,13 +56,48 @@ export default css`
     width: 1px;
   }
 
-  .form-control-input {
-    display: flex;
-    flex-direction: column;
-    gap: var(--syn-spacing-x-small);
+  /**
+   * #1140:
+   * Apply custom styling when we are using syn-radio-button.
+   * This is needed because syn-radio-button is displayed with space between the items
+   * and should not adhere to the default styling needed for regular button groups.
+   */
+  .form-control--has-button-group .form-control-input {
+    max-width: 100%; /* Fallback for older browsers, do not remove */
   }
 
-  .form-control--has-help-text.form-control--radio-group .form-control__help-text {
-    margin-top: var(--syn-spacing-x-small);
+  @supports (max-width: fit-content) {
+    .form-control--has-button-group .form-control-input {
+      /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+      max-width: fit-content;
+    }
+  }
+
+  .form-control--has-button-group syn-button-group::part(base) {
+    --radiogroup-padding: calc(var(--syn-spacing-x-small) - 1px);
+
+    border: 1px solid var(--syn-input-border-color);
+    border-radius: var(--syn-input-border-radius-large);
+    gap: var(--radiogroup-padding);
+    padding: var(--radiogroup-padding);
+  }
+
+  .form-control--has-button-group syn-button-group[readonly]::part(base) {
+    background: var(--syn-readonly-background-color);
+    border-color: var(--syn-readonly-background-color);
+  }
+
+  .form-control--has-button-group syn-button-group[size="small"]::part(base) {
+    --radiogroup-padding: calc(var(--syn-spacing-2x-small) + var(--syn-input-width));
+  }
+
+  /**
+   * #1140: This statement overrides the children selectors that are used for showing readonly fields
+   * We are not able to easily forward them to the radio button, so we need to override them here.
+   */
+  .form-control--has-button-group syn-button-group[readonly] ::slotted(syn-radio-button) {
+    --syn-readonly-indicator-color: var(--syn-readonly-background-color);
+    --syn-readonly-border-color: transparent;
+    --syn-color-neutral-0: var(--syn-readonly-color-text);
   }
 `;

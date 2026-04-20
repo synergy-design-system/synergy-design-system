@@ -89,6 +89,7 @@ export const afterRenderDefaultForm = async () => {
   await Promise.allSettled([
     customElements.whenDefined('syn-button'),
     customElements.whenDefined('syn-range'),
+    customElements.whenDefined('syn-radio-button'),
   ]);
 
   // Add a custom formatter for the donation field
@@ -104,6 +105,10 @@ export const afterRenderDefaultForm = async () => {
       // eslint-disable-next-line no-param-reassign
       radio.value = index;
     });
+
+  const contactMethodRadioGroup = document.querySelector<SynRadioGroup>('#preferred-contact-method')!;
+  contactMethodRadioGroup.value = mockedInitialData.preferredContactMethod;
+
   // Fake the defaultValue. As this is typed as string, we need to fake cast it.
   // Without this line, the defaultValue would be set nothing and form reset will fail :(.
   experienceRadioGroup.defaultValue = (mockedInitialData.experience as unknown as string);

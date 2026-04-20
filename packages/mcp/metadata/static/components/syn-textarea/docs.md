@@ -163,7 +163,13 @@ Use the size attribute to change a textarea’s size.
 The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format.
 
 ```html
-<form class="custom-validity">
+<form
+  onsubmit="
+    event.preventDefault();
+    event.stopPropagation();
+  "
+  id="components-syn-textarea--invalid"
+>
   <syn-textarea
     placeholder="Type something"
     help-text="This textarea is required."
@@ -172,15 +178,16 @@ The invalid status is used to warn the user that the input is invalid. For examp
     size="medium"
     form=""
   ></syn-textarea>
+
   <syn-button type="submit" variant="filled" title="" size="medium"
     >Submit</syn-button
   >
 </form>
 <style>
-  .custom-validity {
+  #components-syn-textarea--invalid {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--syn-spacing-large);
   }
   syn-button {
     align-self: flex-start;

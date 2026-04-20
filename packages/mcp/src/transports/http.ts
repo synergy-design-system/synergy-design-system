@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { randomUUID } from 'node:crypto';
 import {
@@ -11,6 +12,7 @@ import {
 import { readFileSync } from 'node:fs';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { getMetadataInfo } from '@synergy-design-system/metadata';
 import type { McpRuntimeConfig } from '../utilities/config.js';
 import type { TransportInstance } from './index.js';
 
@@ -26,13 +28,23 @@ type NodeServer = HttpServer | HttpsServer;
  * @param config The runtime configuration with interface, port, and optional TLS settings
  * @returns A transport instance
  */
-// eslint-disable-next-line @typescript-eslint/require-await
 export async function createHttpTransport(
   serverFactory: () => McpServer,
   config: McpRuntimeConfig,
 ): Promise<TransportInstance> {
   const { host, port, tls } = config;
   const hasValidTls = tls?.keyPath && tls?.certPath;
+
+  // Resolve metadata version info once at startup for use in response headers
+  let metadataVersion: string | undefined;
+  let metadataBuildDate: string | undefined;
+  try {
+    const info = await getMetadataInfo();
+    metadataVersion = info.version;
+    metadataBuildDate = info.builtAt;
+  } catch {
+    process.stderr.write('[synergy-mcp] Warning: could not read metadata version info\n');
+  }
 
   // Read TLS files if HTTPS is enabled
   let keyContent: Buffer | undefined;
@@ -75,6 +87,14 @@ export async function createHttpTransport(
       res.setHeader('Content-Type', 'text/plain');
       res.end('Not Found\n');
       return;
+    }
+
+    // Expose metadata version info on every /mcp response
+    if (metadataVersion !== undefined) {
+      res.setHeader('x-synergy-metadata-version', metadataVersion);
+    }
+    if (metadataBuildDate !== undefined) {
+      res.setHeader('x-synergy-metadata-build-date', metadataBuildDate);
     }
 
     try {

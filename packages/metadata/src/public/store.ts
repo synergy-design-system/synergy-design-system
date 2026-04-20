@@ -19,6 +19,15 @@ const readJson = async <T>(filePath: string): Promise<T> => {
   return JSON.parse(raw) as T;
 };
 
+/**
+ * Returns the version and build date from the metadata package's index.json.
+ * Useful for exposing metadata version information in HTTP response headers.
+ */
+export const getMetadataInfo = async (): Promise<{ builtAt: string; version: string }> => {
+  const index = await readJson<MetadataIndex>(join(defaultDataDir, 'index.json'));
+  return { builtAt: index.builtAt, version: index.version };
+};
+
 const normalize = (value: string): string => value.trim().toLowerCase();
 
 const matchesQuery = (

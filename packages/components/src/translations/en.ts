@@ -1,53 +1,41 @@
 /* eslint-disable sort-keys */
-import { registerTranslation } from '@shoelace-style/localize';
+import { registerTranslation } from '../utilities/localize/core.js';
 import type { Translation } from '../utilities/localize.js';
 
 const translation: Translation = {
   $code: 'en',
-  $dir: 'ltr',
   $name: 'English',
+  $dir: 'ltr',
 
-  carousel: 'Carousel',
   clearEntry: 'Clear entry',
   close: 'Close',
-  copied: 'Copied',
-  copy: 'Copy',
-  currentValue: 'Current value',
-  error: 'Error',
-  goToSlide: (slide, count) => `Go to slide ${slide} of ${count}`,
   hidePassword: 'Hide password',
   loading: 'Loading',
-  nextSlide: 'Next slide',
   numOptionsSelected: num => {
     if (num === 0) return 'No options selected';
     if (num === 1) return '1 option selected';
     return `${num} options selected`;
   },
-  previousSlide: 'Previous slide',
   progress: 'Progress',
   remove: 'Remove',
-  resize: 'Resize',
   scrollToEnd: 'Scroll to end',
   scrollToStart: 'Scroll to start',
-  selectAColorFromTheScreen: 'Select a color from the screen',
   showPassword: 'Show password',
-  slideNum: slide => `Slide ${slide}`,
-  toggleColorFormat: 'Toggle color format',
 
   // Synergy custom translations start
   closeMenu: 'Close menu',
   danger: 'Danger',
-  fileButtonText: 'Choose file',
-  fileButtonTextMultiple: 'Choose files',
-  fileDragDrop: 'Drop or choose file',
-  folderButtonText: 'Choose folder',
-  folderDragDrop: 'Drop or choose folder',
+  fileButtonText: 'Select file',
+  fileButtonTextMultiple: 'Select files',
+  fileDragDrop: 'Drop or select file',
+  folderButtonText: 'Select folder',
+  folderDragDrop: 'Drop or select folder',
   menu: 'Menu',
   noResults: 'No results found',
   notification: 'Notification',
   numFilesSelected: (num, dir) => {
-    if (num === 0) return `No ${dir ? 'folder' : 'files'} chosen`;
-    return `${num} files`;
+    if (num === 0) return `No ${dir ? 'folders' : 'files'} chosen`;
+    return `${num} ${dir ? 'folders' : 'files'} chosen`;
   },
   openMenu: 'Open menu',
   paginationFirstPage: 'First page',
@@ -60,7 +48,7 @@ const translation: Translation = {
   paginationPreviousPage: 'Previous page',
   rangeMax: 'Maximum',
   rangeMin: 'Minimum',
-  sideNav: 'Side navigation',
+  sideNav: 'Page navigation',
   sideNavHide: 'Hide navigation',
   sideNavShow: 'Show navigation',
   success: 'Success',

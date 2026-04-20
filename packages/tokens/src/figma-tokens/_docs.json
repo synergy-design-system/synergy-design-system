@@ -1911,7 +1911,7 @@
     "radio-button": {
       "default": {
         "description": {
-          "value": "Radios buttons allow the user to select a single option from a group using a button-like control.\n\nRadio buttons are designed to be used with radio groups. When a radio button has focus, the arrow keys can be used to change the selected option just like standard radio controls.",
+          "value": "Radio buttons allow the user to select a single option from a group using a button-like control.\n\nRadio buttons are designed to be used with radio groups. When a radio button has focus, the arrow keys can be used to change the selected option just like standard radio controls.",
           "type": "text"
         },
         "title": {
@@ -4382,6 +4382,28 @@
         },
         "description": {
           "value": "These examples demonstrate the usage of the syn-table-cell component in various contexts. The examples are intended solely for illustrating how syn-table-cell can be used to style tables.",
+          "type": "text"
+        }
+      }
+    },
+    "localization": {
+      "default": {
+        "title": {
+          "value": "Translations",
+          "type": "text"
+        },
+        "description": {
+          "value": "Components can be localized by importing the appropriate translation file and setting the desired `lang` attribute and/or dir attribute on the `<html>` element. Please note the default language is English (en) and the default text direction is left-to-right (ltr).",
+          "type": "text"
+        }
+      },
+      "dynamicallySetLocalizations": {
+        "title": {
+          "value": "Dynamically Set Localizations",
+          "type": "text"
+        },
+        "description": {
+          "value": "This example shows how to dynamically set localizations for Synergy components. This can be useful if you want to allow users to change the language of your application on the fly.",
           "type": "text"
         }
       }

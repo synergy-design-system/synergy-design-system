@@ -1,39 +1,35 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
   :host {
     --width: 31rem;
-    --header-spacing: var(--syn-spacing-large);
-    --body-spacing: var(--syn-spacing-large);
-    --footer-spacing: var(--syn-spacing-large);
+    --header-spacing: var(--syn-spacing-large) var(--syn-spacing-x-small) var(--syn-spacing-large) var(--syn-spacing-large);
+    --body-spacing: var(--syn-spacing-medium) var(--syn-spacing-large);
+    --footer-spacing: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-large) var(--syn-spacing-medium);
 
     display: contents;
   }
 
   .dialog {
-    display: flex;
     align-items: center;
+    display: flex;
+    inset: 0;
     justify-content: center;
     position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     z-index: var(--syn-z-index-dialog);
   }
 
   .dialog__panel {
+    background-color: var(--syn-panel-background-color);
+    border: var(--syn-spacing-4x-small) solid var(--syn-panel-border-color);
+    border-radius: var(--syn-border-radius-none);
+    box-shadow: var(--syn-shadow-large);
     display: flex;
     flex-direction: column;
-    z-index: 2;
-    width: var(--width);
-    max-width: calc(100% - var(--syn-spacing-2x-large));
     max-height: calc(100% - var(--syn-spacing-2x-large));
-    background-color: var(--syn-panel-background-color);
-    border-radius: var(--syn-border-radius-medium);
-    box-shadow: var(--syn-shadow-x-large);
+    max-width: calc(100% - var(--syn-spacing-2x-large));
+    width: var(--width);
+    z-index: 2;
   }
 
   .dialog__panel:focus {
@@ -41,7 +37,7 @@ export default css`
   }
 
   /* Ensure there's enough vertical padding for phones that don't update vh when chrome appears (e.g. iPhone) */
-  @media screen and (max-width: 420px) {
+  @media screen and (width <= 420px) {
     .dialog__panel {
       max-height: 80vh;
     }
@@ -53,48 +49,62 @@ export default css`
   }
 
   .dialog__header {
-    flex: 0 0 auto;
     display: flex;
+    flex: 0 0 auto;
   }
 
   .dialog__title {
     flex: 1 1 auto;
     font: inherit;
-    font-size: var(--syn-font-size-large);
-    line-height: var(--syn-line-height-dense);
-    padding: var(--header-spacing);
+    font-family: var(--syn-font-sans);
+    font-size: var(--syn-font-size-x-large);
+    font-weight: var(--syn-font-weight-bold);
+    line-height: var(--syn-line-height-normal);
     margin: 0;
+    padding: var(--header-spacing);
   }
 
   .dialog__header-actions {
-    flex-shrink: 0;
+    align-items: flex-start;
     display: flex;
+    flex-shrink: 0;
     flex-wrap: wrap;
+    gap: var(--syn-spacing-x-small);
     justify-content: end;
-    gap: var(--syn-spacing-2x-small);
-    padding: 0 var(--header-spacing);
+    padding: var(--syn-spacing-large) var(--syn-spacing-small) var(--syn-spacing-large) 0;
+  }
+
+  /**
+   * We need this to make sure we are big enough as defined in the layout
+   * When omitting this statement, we will get rounding problems via line-height
+   */
+  .dialog__title,
+  .dialog__header-actions {
+    min-height: 88px;
   }
 
   .dialog__header-actions syn-icon-button,
   .dialog__header-actions ::slotted(syn-icon-button) {
-    flex: 0 0 auto;
-    display: flex;
     align-items: center;
-    font-size: var(--syn-font-size-medium);
+    color: var(--syn-color-neutral-950);
+    display: flex;
+    flex: 0 0 auto;
+    font-size: var(--syn-font-size-x-large);
   }
 
   .dialog__body {
-    flex: 1 1 auto;
     display: block;
-    padding: var(--body-spacing);
+    flex: 1 1 auto;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+    padding: var(--body-spacing);
+    will-change: transform; /* #1249: Fixes Chrome scroll issues when using multiple scrollable items as content */
   }
 
   .dialog__footer {
     flex: 0 0 auto;
-    text-align: right;
     padding: var(--footer-spacing);
+    text-align: right;
   }
 
   .dialog__footer ::slotted(syn-button:not(:first-of-type)) {
@@ -106,12 +116,10 @@ export default css`
   }
 
   .dialog__overlay {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    backdrop-filter: blur(var(--syn-overlay-background-blur)); /* #946: Add background blur for sick 2025 */
     background-color: var(--syn-overlay-background-color);
+    inset: 0;
+    position: fixed;
   }
 
   @media (forced-colors: active) {

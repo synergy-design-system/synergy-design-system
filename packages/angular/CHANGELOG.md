@@ -1,5 +1,33 @@
 # @synergy-design-system/angular
 
+## 3.11.1
+
+### Patch Changes
+
+- Updated dependencies [[`9d36167`](https://github.com/synergy-design-system/synergy-design-system/commit/9d36167d35ebbdd43820d520140d6823e1331ea1)]:
+  - @synergy-design-system/components@3.11.1
+  - @synergy-design-system/tokens@3.11.1
+
+## 3.11.0
+
+### Patch Changes
+
+- Updated dependencies [[`b3ab501`](https://github.com/synergy-design-system/synergy-design-system/commit/b3ab50132ec4ab770b79fa32b1334a1054c60746)]:
+  - @synergy-design-system/components@3.11.0
+  - @synergy-design-system/tokens@3.11.0
+
+## 3.10.5
+
+### Patch Changes
+
+- [#1246](https://github.com/synergy-design-system/synergy-design-system/pull/1246) [`5f0eb58`](https://github.com/synergy-design-system/synergy-design-system/commit/5f0eb58996be36571edf1764a7314f78bac96dd9) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-27
+
+  fix: 🐛 dependency updates (#258)
+
+- Updated dependencies [[`5f0eb58`](https://github.com/synergy-design-system/synergy-design-system/commit/5f0eb58996be36571edf1764a7314f78bac96dd9)]:
+  - @synergy-design-system/components@3.10.5
+  - @synergy-design-system/tokens@3.10.5
+
 ## 3.10.4
 
 ### Patch Changes

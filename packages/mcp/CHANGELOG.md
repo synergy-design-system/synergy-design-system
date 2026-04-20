@@ -1,5 +1,37 @@
 # Changelog
 
+## 2.14.1
+
+### Patch Changes
+
+- [#1252](https://github.com/synergy-design-system/synergy-design-system/pull/1252) [`9d36167`](https://github.com/synergy-design-system/synergy-design-system/commit/9d36167d35ebbdd43820d520140d6823e1331ea1) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-20
+
+  fix: 🐛 syn-dialog has broken scrolling when slotting scrollable children (#1249)
+
+## 2.14.0
+
+### Minor Changes
+
+- [#1247](https://github.com/synergy-design-system/synergy-design-system/pull/1247) [`b3ab501`](https://github.com/synergy-design-system/synergy-design-system/commit/b3ab50132ec4ab770b79fa32b1334a1054c60746) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-15
+
+  feat: ✨ Updates to the Synergy translation System (#452, #1242, #1248)
+
+  This release adds translations for all officially supported languages, as well as documentation about how to use Synergies translation system.
+  It also removes unneeded dependencies from the components package:
+  - `@shoelace-style/translate` has reached end of live. We forked the original code to make sure it receives updates in Synergy if needed.
+  - `@shoelace-style/animation` was never used internally.
+
+## 2.13.4
+
+### Patch Changes
+
+- [#1246](https://github.com/synergy-design-system/synergy-design-system/pull/1246) [`5f0eb58`](https://github.com/synergy-design-system/synergy-design-system/commit/5f0eb58996be36571edf1764a7314f78bac96dd9) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-27
+
+  fix: 🐛 dependency updates (#258)
+
+- Updated dependencies [[`5f0eb58`](https://github.com/synergy-design-system/synergy-design-system/commit/5f0eb58996be36571edf1764a7314f78bac96dd9)]:
+  - @synergy-design-system/assets@2.0.3
+
 ## 2.13.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import * as tools from './tools/index.js';
-import { getVersion } from './utilities/stdio.js';
+import { getVersion } from './utilities/cli.js';
 
 /**
  * Creates a new instance of the MCP server configured for the Synergy Design System.

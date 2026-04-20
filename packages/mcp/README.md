@@ -17,7 +17,7 @@ npm install --save-dev @synergy-design-system/mcp
 The package ships a `syn-mcp` binary:
 
 ```bash
-# Run directly
+# Run via stdio (default, for editor integration)
 npx @synergy-design-system/mcp
 
 # Or if installed globally
@@ -25,6 +25,15 @@ syn-mcp
 
 # Start with an explicit runtime config
 syn-mcp --config ./synergy-mcp.json
+
+# Start HTTP server on default port 9119
+syn-mcp --interface http
+
+# Start HTTP server on a custom port
+syn-mcp --interface http --port 3000
+
+# Start HTTPS server with TLS certificates
+syn-mcp --interface http --tls-key ./server.key --tls-cert ./server.crt
 ```
 
 Available CLI flags:
@@ -32,6 +41,10 @@ Available CLI flags:
 - `--help`, `-h`: Show usage information
 - `--version`, `-v`: Print the package version
 - `--config <path>`: Load runtime defaults from a `synergy-mcp.json` file
+- `--interface <stdio|http>`: Server interface (default: `stdio`)
+- `--port <number>`: HTTP server port (default: `9119`, only used with `--interface http`)
+- `--tls-key <path>`: Path to TLS private key file (enables HTTPS)
+- `--tls-cert <path>`: Path to TLS certificate file (enables HTTPS)
 
 ### VS Code Integration
 
@@ -70,10 +83,32 @@ For Claude Desktop, add this to `claude_desktop_config.json`:
 
 The server can read optional runtime defaults from a `synergy-mcp.json` file passed via `--config`.
 
+#### Server Interface
+
+You can run the server in two modes:
+
+- **stdio** (default): Communicate via stdin/stdout with the parent process. This is the recommended mode for editor and CLI integrations.
+- **http**: Run as an HTTP/HTTPS server listening on a specified port. This enables standalone deployments.
+
+#### Configuration File
+
 Example:
 
 ```jsonc
 {
+  // Server interface mode: "stdio" (default) or "http"
+  "interface": "http",
+
+  // HTTP server port (only used when interface is "http")
+  "port": 3000,
+
+  // TLS configuration (optional, enables HTTPS)
+  // Both keyPath and certPath must be provided together
+  "tls": {
+    "keyPath": "./server.key",
+    "certPath": "./server.crt",
+  },
+
   // Include custom ai rules for each tool.
   "includeAiRules": true,
 
@@ -100,6 +135,27 @@ Example:
   },
 }
 ```
+
+#### CLI Override Precedence
+
+CLI flags take precedence over configuration file values:
+
+```bash
+# Config file specifies port 3000, but CLI overrides it to 8080
+syn-mcp --config ./synergy-mcp.json --port 8080
+```
+
+#### HTTP Server Endpoint
+
+When running in HTTP mode, the MCP protocol is served at the `/mcp` path:
+
+```
+http://localhost:9119/mcp
+https://localhost:3000/mcp
+```
+
+Non-`/mcp` paths return HTTP 404.
+}
 
 This lets you change per-tool defaults without modifying the MCP server code.
 
@@ -392,17 +448,24 @@ src/
 │   ├── token-info.ts
 │   ├── tokens-list.ts
 │   └── index.ts
-└── utilities/           # Runtime config, metadata adapters, stdio helpers
-    ├── config.ts
-    ├── davinci.ts
-    ├── metadata.ts
-    ├── migration.ts
-    ├── server.ts
-    ├── stdio.ts
-    └── index.ts
+├── transports/          # Transport factory and implementations
+│   ├── http.ts
+│   ├── stdio.ts
+│   └── index.ts
+└── utilities/           # Runtime config, metadata adapters, and CLI helpers
+  ├── cli.ts
+  ├── config.ts
+  ├── davinci.ts
+  ├── metadata.ts
+  ├── migration.ts
+  ├── rules.ts
+  ├── server.ts
+  └── index.ts
 rules/                   # Markdown guidance files prepended to selected tool output
 test/
 ├── e2e/                 # End-to-end MCP tests
+├── fixtures/            # Self-signed TLS test certificates
+├── unit/                # Unit tests
 ├── utilities/           # Test helpers
 └── watermarks/          # Token watermark scenarios, baseline, and runner
 ```
@@ -481,7 +544,8 @@ If the MCP server appears to be missing data, check the state of `@synergy-desig
 
 The MCP server is intentionally small:
 
-- `src/bin/start.ts` parses CLI arguments, loads optional runtime config, and starts stdio transport.
+- `src/bin/start.ts` parses CLI arguments, loads optional runtime config, resolves overrides, and starts the selected transport.
+- `src/transports/` contains the transport factory and runtime implementations for stdio and HTTP/HTTPS.
 - `src/server.ts` creates the `McpServer` instance and registers all exported tools from `src/tools/index.ts`.
 - Tool implementations in `src/tools/` call the public APIs of `@synergy-design-system/metadata` to retrieve data.
 - Utilities in `src/utilities/` handle runtime config, MCP response shaping, DaVinci migration extraction, and package migration document loading.
@@ -567,6 +631,8 @@ syn-mcp --config ./synergy-mcp.json
 
 ### Programmatic Usage
 
+StdIO transport:
+
 ```typescript
 import { createServer } from "@synergy-design-system/mcp";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
@@ -575,6 +641,66 @@ const server = createServer();
 const transport = new StdioServerTransport();
 
 await server.connect(transport);
+```
+
+HTTP transport (session-aware):
+
+```typescript
+import { randomUUID } from "node:crypto";
+import { createServer as createHttpServer } from "node:http";
+import { createServer } from "@synergy-design-system/mcp";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+
+const sessions = new Map<string, StreamableHTTPServerTransport>();
+const nodeServer = createHttpServer();
+
+nodeServer.on("request", async (req, res) => {
+  if (!(req.url || "/").startsWith("/mcp")) {
+    res.statusCode = 404;
+    res.end("Not Found\n");
+    return;
+  }
+
+  const sessionId = req.headers["mcp-session-id"] as string | undefined;
+
+  if (sessionId) {
+    const existing = sessions.get(sessionId);
+    if (!existing) {
+      res.statusCode = 400;
+      res.setHeader("Content-Type", "application/json");
+      res.end(
+        JSON.stringify({
+          jsonrpc: "2.0",
+          id: null,
+          error: { code: -32000, message: "Unknown session ID" },
+        }),
+      );
+      return;
+    }
+
+    await existing.handleRequest(req, res);
+    return;
+  }
+
+  const server = createServer();
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: () => randomUUID(),
+    onsessioninitialized: sid => {
+      sessions.set(sid, transport);
+    },
+  });
+
+  transport.onclose = () => {
+    if (transport.sessionId) {
+      sessions.delete(transport.sessionId);
+    }
+  };
+
+  await server.connect(transport);
+  await transport.handleRequest(req, res);
+});
+
+nodeServer.listen(9119, "localhost");
 ```
 
 ### AI Assistant Examples

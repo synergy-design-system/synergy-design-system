@@ -14,6 +14,53 @@ export const McpRuntimeConfigSchema = z.object({
   includeAiRules: z.boolean().default(true),
 
   /**
+   * Server interface/transport mode.
+   * 'stdio': Run over stdin/stdout (default, for editor/CLI integration)
+   * 'http': Run as HTTP/HTTPS server (requires --port or config.port)
+   * @default 'stdio'
+   */
+  interface: z.enum(['stdio', 'http']).default('stdio'),
+
+  /**
+   * HTTP server port when interface is 'http'.
+   * Must be between 1 and 65535.
+   * @default 9119
+   */
+  port: z
+    .number()
+    .int()
+    .min(1)
+    .max(65535)
+    .default(9119),
+
+  /**
+   * TLS configuration for HTTPS mode.
+   * Both keyPath and certPath must be provided together to enable HTTPS.
+   * If provided, the HTTP server will use HTTPS instead.
+   */
+  tls: z.object({
+    /**
+     * Path to the TLS certificate file (PEM format).
+     */
+    certPath: z.string().optional(),
+    /**
+     * Path to the TLS private key file (PEM format).
+     */
+    keyPath: z.string().optional(),
+  }).default({}).refine(
+    val => {
+      // Both must be present or both must be absent
+      const hasKey = val.keyPath !== undefined;
+      const hasCert = val.certPath !== undefined;
+      return hasKey === hasCert;
+    },
+    {
+      message: 'Both tls.keyPath and tls.certPath must be provided together',
+      path: ['tls'],
+    },
+  ),
+
+  /**
    * Per-tool default overrides.
    * Each key corresponds to a tool and contains the subset of that tool's
    * parameters that have configurable defaults.

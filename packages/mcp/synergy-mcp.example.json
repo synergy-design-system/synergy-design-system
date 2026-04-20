@@ -1,4 +1,6 @@
 {
+  "interface": "stdio",
+  "port": 9119,
   "includeAiRules": true,
   "tools": {
     "assetInfo": {

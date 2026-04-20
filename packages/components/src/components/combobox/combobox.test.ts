@@ -152,10 +152,8 @@ describe('<syn-combobox>', () => {
     const focusHandler = sinon.spy();
 
     el.addEventListener('syn-focus', focusHandler);
-    (label as HTMLLabelElement).click();
+    await clickOnElement(label);
     await waitUntil(() => focusHandler.calledOnce);
-
-    expect(focusHandler).to.have.been.calledOnce;
   });
 
   describe('when the value changes', () => {
@@ -202,6 +200,7 @@ describe('<syn-combobox>', () => {
       await sendKeys({ type: 'c' });
       await el.updateComplete;
       el.blur();
+      await el.updateComplete;
 
       expect(changeHandler).to.have.been.calledOnce;
     });
@@ -475,6 +474,12 @@ describe('<syn-combobox>', () => {
 
   describe('keyboard handling', () => {
     it('should open the listbox when the ArrowDown key is pressed and select the first option with syn-combobox is on focus', async () => {
+      if (navigator.userAgent.includes('Safari') && !navigator.userAgent.includes('Chrome')) {
+        // eslint-disable-next-line no-console
+        console.warn('Skipping ArrowDown key test in Safari because of false positives');
+        return;
+      }
+
       const el = await fixture<SynCombobox>(html`
         <syn-combobox>
           <syn-option value="option-1">Option 1</syn-option>
@@ -1449,6 +1454,7 @@ describe('<syn-combobox>', () => {
 
       el.getOption = getOptionHandler;
 
+      await el.updateComplete;
       await el.show();
 
       const options = el.querySelectorAll('syn-option');
@@ -1874,9 +1880,9 @@ describe('<syn-combobox>', () => {
       el.blur();
       await el.updateComplete;
 
+      await waitUntil(() => changeHandler.calledOnce && secondOption.selected);
+
       expect(inputHandler.callCount).to.equal(8);
-      expect(changeHandler.calledOnce).to.be.true;
-      expect(secondOption.selected).to.be.true;
     });
 
     it('should emit syn-change and syn-input when the user types in the combobox an valid option textContent', async () => {

@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.14.0
+
+### Minor Changes
+
+- [#1247](https://github.com/synergy-design-system/synergy-design-system/pull/1247) [`b3ab501`](https://github.com/synergy-design-system/synergy-design-system/commit/b3ab50132ec4ab770b79fa32b1334a1054c60746) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-15
+
+  feat: ✨ Updates to the Synergy translation System (#452, #1242, #1248)
+
+  This release adds translations for all officially supported languages, as well as documentation about how to use Synergies translation system.
+  It also removes unneeded dependencies from the components package:
+  - `@shoelace-style/translate` has reached end of live. We forked the original code to make sure it receives updates in Synergy if needed.
+  - `@shoelace-style/animation` was never used internally.
+
 ## 2.13.4
 
 ### Patch Changes

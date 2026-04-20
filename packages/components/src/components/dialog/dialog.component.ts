@@ -1,14 +1,15 @@
-/* eslint-disable */
-import { animateTo, stopAnimations } from '../../internal/animate.js';
-import { blurActiveElement } from '../../internal/closeActiveElement.js';
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { classMap } from 'lit/directives/class-map.js';
-import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
-import { HasSlotController } from '../../internal/slot.js';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { property, query } from 'lit/decorators.js';
+import type { CSSResultGroup } from 'lit';
+import { animateTo, stopAnimations } from '../../internal/animate.js';
+import { blurActiveElement } from '../../internal/closeActiveElement.js';
+import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
+import { HasSlotController } from '../../internal/slot.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { lockBodyScrolling, unlockBodyScrolling } from '../../internal/scroll.js';
-import { property, query } from 'lit/decorators.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
@@ -16,8 +17,6 @@ import Modal from '../../internal/modal.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './dialog.styles.js';
-import customStyles from './dialog.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
@@ -70,26 +69,33 @@ import type { CSSResultGroup } from 'lit';
  *   the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Synergy's focus trapping.
  */
 export default class SynDialog extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
+
   static dependencies = {
-    'syn-icon-button': SynIconButton
+    'syn-icon-button': SynIconButton,
   };
 
   private readonly hasSlotController = new HasSlotController(this, 'footer');
+
   private readonly localize = new LocalizeController(this);
+
   private originalTrigger: HTMLElement | null;
+
   public modal = new Modal(this);
+
   private closeWatcher: CloseWatcher | null;
 
   @query('.dialog') dialog: HTMLElement;
+
   @query('.dialog__panel') panel: HTMLElement;
+
   @query('.dialog__overlay') overlay: HTMLElement;
 
   /**
    * Indicates whether or not the dialog is open. You can toggle this attribute to show and hide the dialog, or you can
    * use the `show()` and `hide()` methods and this attribute will reflect the dialog's open state.
    */
-  @property({ type: Boolean, reflect: true }) open = false;
+  @property({ reflect: true, type: Boolean }) open = false;
 
   /**
    * The dialog's label as displayed in the header. You should always include a relevant label even when using
@@ -101,7 +107,7 @@ export default class SynDialog extends SynergyElement {
    * Disables the header. This will also remove the default close button, so please ensure you provide an easy,
    * accessible way for users to dismiss the dialog.
    */
-  @property({ attribute: 'no-header', type: Boolean, reflect: true }) noHeader = false;
+  @property({ attribute: 'no-header', reflect: true, type: Boolean }) noHeader = false;
 
   firstUpdated() {
     this.dialog.hidden = !this.open;
@@ -123,7 +129,7 @@ export default class SynDialog extends SynergyElement {
   private requestClose(source: 'close-button' | 'keyboard' | 'overlay') {
     const slRequestClose = this.emit('syn-request-close', {
       cancelable: true,
-      detail: { source }
+      detail: { source },
     });
 
     if (slRequestClose.defaultPrevented) {
@@ -205,7 +211,7 @@ export default class SynDialog extends SynergyElement {
       const overlayAnimation = getAnimation(this, 'dialog.overlay.show', { dir: this.localize.dir() });
       await Promise.all([
         animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options),
-        animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
+        animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options),
       ]);
 
       this.emit('syn-after-show');
@@ -229,7 +235,7 @@ export default class SynDialog extends SynergyElement {
         }),
         animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options).then(() => {
           this.panel.hidden = true;
-        })
+        }),
       ]);
 
       this.dialog.hidden = true;
@@ -271,13 +277,14 @@ export default class SynDialog extends SynergyElement {
   }
 
   render() {
+    /* eslint-disable lit-a11y/click-events-have-key-events */
     return html`
       <div
         part="base"
         class=${classMap({
           dialog: true,
+          'dialog--has-footer': this.hasSlotController.test('footer'),
           'dialog--open': this.open,
-          'dialog--has-footer': this.hasSlotController.test('footer')
         })}
       >
         <div part="overlay" class="dialog__overlay" @click=${() => this.requestClose('overlay')} tabindex="-1"></div>
@@ -324,36 +331,37 @@ export default class SynDialog extends SynergyElement {
         </div>
       </div>
     `;
+    /* eslint-enable lit-a11y/click-events-have-key-events */
   }
 }
 
 setDefaultAnimation('dialog.show', {
   keyframes: [
     { opacity: 0, scale: 0.8 },
-    { opacity: 1, scale: 1 }
+    { opacity: 1, scale: 1 },
   ],
-  options: { duration: 250, easing: 'ease' }
+  options: { duration: 250, easing: 'ease' },
 });
 
 setDefaultAnimation('dialog.hide', {
   keyframes: [
     { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.8 }
+    { opacity: 0, scale: 0.8 },
   ],
-  options: { duration: 250, easing: 'ease' }
+  options: { duration: 250, easing: 'ease' },
 });
 
 setDefaultAnimation('dialog.denyClose', {
   keyframes: [{ scale: 1 }, { scale: 1.02 }, { scale: 1 }],
-  options: { duration: 250 }
+  options: { duration: 250 },
 });
 
 setDefaultAnimation('dialog.overlay.show', {
   keyframes: [{ opacity: 0 }, { opacity: 1 }],
-  options: { duration: 250 }
+  options: { duration: 250 },
 });
 
 setDefaultAnimation('dialog.overlay.hide', {
   keyframes: [{ opacity: 1 }, { opacity: 0 }],
-  options: { duration: 250 }
+  options: { duration: 250 },
 });

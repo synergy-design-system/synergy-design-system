@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.14.1
+
+### Patch Changes
+
+- [#1252](https://github.com/synergy-design-system/synergy-design-system/pull/1252) [`9d36167`](https://github.com/synergy-design-system/synergy-design-system/commit/9d36167d35ebbdd43820d520140d6823e1331ea1) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-20
+
+  fix: 🐛 syn-dialog has broken scrolling when slotting scrollable children (#1249)
+
 ## 2.14.0
 
 ### Minor Changes

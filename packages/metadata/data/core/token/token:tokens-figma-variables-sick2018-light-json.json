@@ -18,7 +18,7 @@
   "name": "sick2018-light.json",
   "package": "tokens",
   "relations": [],
-  "since": "3.11.0",
+  "since": "3.11.1",
   "sources": [
     "packages/tokens/src/figma-variables/output/sick2018-light.json"
   ],

@@ -160,10 +160,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-dialog/components/dialog.custom.styles.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-dialog/components/dialog.styles.ts"
       },
       {
@@ -206,7 +202,6 @@
   "sources": [
     "packages/angular/components/dialog/dialog.component.ts",
     "packages/components/src/components/dialog/dialog.component.ts",
-    "packages/components/src/components/dialog/dialog.custom.styles.ts",
     "packages/components/src/components/dialog/dialog.styles.ts",
     "packages/components/src/components/dialog/dialog.ts",
     "packages/react/src/components/dialog.ts",

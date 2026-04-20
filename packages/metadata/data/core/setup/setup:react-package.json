@@ -2,7 +2,7 @@
   "custom": {
     "framework": "react",
     "packageName": "@synergy-design-system/react",
-    "packageVersion": "3.11.0",
+    "packageVersion": "3.11.1",
     "subpathExports": [
       ".",
       "./components/*",
@@ -42,7 +42,7 @@
   "name": "React Framework Package",
   "package": "react",
   "relations": [],
-  "since": "3.11.0",
+  "since": "3.11.1",
   "sources": [
     "packages/react/README.md",
     "packages/react/CHANGELOG.md",

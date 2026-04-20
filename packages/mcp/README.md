@@ -32,6 +32,9 @@ syn-mcp --interface http
 # Start HTTP server on a custom port
 syn-mcp --interface http --port 3000
 
+# Listen on all IPv4 interfaces for container/cloud deployment
+syn-mcp --interface http --host 0.0.0.0
+
 # Start HTTPS server with TLS certificates
 syn-mcp --interface http --tls-key ./server.key --tls-cert ./server.crt
 ```
@@ -43,6 +46,7 @@ Available CLI flags:
 - `--config <path>`: Load runtime defaults from a `synergy-mcp.json` file
 - `--interface <stdio|http>`: Server interface (default: `stdio`)
 - `--port <number>`: HTTP server port (default: `9119`, only used with `--interface http`)
+- `--host <address>`: HTTP bind address (default: `127.0.0.1`)
 - `--tls-key <path>`: Path to TLS private key file (enables HTTPS)
 - `--tls-cert <path>`: Path to TLS certificate file (enables HTTPS)
 
@@ -102,6 +106,10 @@ Example:
   // HTTP server port (only used when interface is "http")
   "port": 3000,
 
+  // HTTP bind address.
+  // Use 127.0.0.1 for local-only access or 0.0.0.0 for container/cloud deployments.
+  "host": "127.0.0.1",
+
   // TLS configuration (optional, enables HTTPS)
   // Both keyPath and certPath must be provided together
   "tls": {
@@ -143,6 +151,9 @@ CLI flags take precedence over configuration file values:
 ```bash
 # Config file specifies port 3000, but CLI overrides it to 8080
 syn-mcp --config ./synergy-mcp.json --port 8080
+
+# Config file specifies a local-only bind, but CLI overrides it for deployment
+syn-mcp --config ./synergy-mcp.json --host 0.0.0.0
 ```
 
 #### HTTP Server Endpoint
@@ -150,12 +161,33 @@ syn-mcp --config ./synergy-mcp.json --port 8080
 When running in HTTP mode, the MCP protocol is served at the `/mcp` path:
 
 ```
-http://localhost:9119/mcp
-https://localhost:3000/mcp
+http://127.0.0.1:9119/mcp
+https://127.0.0.1:3000/mcp
 ```
 
 Non-`/mcp` paths return HTTP 404.
-}
+
+For public or containerized deployments, bind to all interfaces explicitly:
+
+```bash
+syn-mcp --interface http --host 0.0.0.0
+```
+
+Example deployment patterns:
+
+```bash
+# Docker / Kubernetes: listen on all interfaces inside the container
+syn-mcp --interface http --host 0.0.0.0 --port 3000
+
+# Reverse proxy / load balancer forwards external traffic to the MCP endpoint
+# https://mcp.example.com/mcp  ->  http://127.0.0.1:3000/mcp
+syn-mcp --interface http --host 127.0.0.1 --port 3000
+```
+
+In general:
+
+- Use `127.0.0.1` when the server should only be reachable through the local machine or a reverse proxy on the same host.
+- Use `0.0.0.0` when the runtime environment needs the process to accept traffic from outside its own network namespace, such as Docker, Kubernetes, ECS, or EC2.
 
 This lets you change per-tool defaults without modifying the MCP server code.
 
@@ -420,6 +452,107 @@ Example prompts:
 - "Show me the setup instructions for tokens"
 - "Give me the Synergy assets setup and limitations"
 
+## Usage Examples
+
+### Command Line Interface
+
+```bash
+# Start the MCP server
+syn-mcp
+
+# Start with custom defaults
+syn-mcp --config ./synergy-mcp.json
+```
+
+### Programmatic Usage
+
+StdIO transport:
+
+```typescript
+import { createServer } from "@synergy-design-system/mcp";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+
+const server = createServer();
+const transport = new StdioServerTransport();
+
+await server.connect(transport);
+```
+
+HTTP transport (session-aware):
+
+```typescript
+import { randomUUID } from "node:crypto";
+import { createServer as createHttpServer } from "node:http";
+import { createServer } from "@synergy-design-system/mcp";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+
+const sessions = new Map<string, StreamableHTTPServerTransport>();
+const nodeServer = createHttpServer();
+
+nodeServer.on("request", async (req, res) => {
+  if (!(req.url || "/").startsWith("/mcp")) {
+    res.statusCode = 404;
+    res.end("Not Found\\n");
+    return;
+  }
+
+  const sessionId = req.headers["mcp-session-id"] as string | undefined;
+
+  if (sessionId) {
+    const existing = sessions.get(sessionId);
+    if (!existing) {
+      res.statusCode = 400;
+      res.setHeader("Content-Type", "application/json");
+      res.end(
+        JSON.stringify({
+          jsonrpc: "2.0",
+          id: null,
+          error: { code: -32000, message: "Unknown session ID" },
+        }),
+      );
+      return;
+    }
+
+    await existing.handleRequest(req, res);
+    return;
+  }
+
+  const server = createServer();
+  const transport = new StreamableHTTPServerTransport({
+    sessionIdGenerator: () => randomUUID(),
+    onsessioninitialized: sid => {
+      sessions.set(sid, transport);
+    },
+  });
+
+  transport.onclose = () => {
+    if (transport.sessionId) {
+      sessions.delete(transport.sessionId);
+    }
+  };
+
+  await server.connect(transport);
+  await transport.handleRequest(req, res);
+});
+
+nodeServer.listen(9119, "127.0.0.1");
+```
+
+### AI Assistant Examples
+
+Once connected to an AI assistant, you can use prompts like:
+
+```text
+Show me how to use syn-button in React
+Give me the interface docs for syn-select
+What token formats are available?
+How do I set up Synergy for Vue?
+Find icons related to search and filter
+How do I migrate from davinci-textarea to Synergy?
+What migration paths exist from Synergy 2 to Synergy 3?
+List all available Synergy templates
+```
+
 ## Developer Documentation
 
 ### Project Structure
@@ -615,107 +748,6 @@ The package exposes the `syn-mcp` binary via `package.json`:
     "syn-mcp": "./dist/bin/start.js"
   }
 }
-```
-
-## Usage Examples
-
-### Command Line Interface
-
-```bash
-# Start the MCP server
-syn-mcp
-
-# Start with custom defaults
-syn-mcp --config ./synergy-mcp.json
-```
-
-### Programmatic Usage
-
-StdIO transport:
-
-```typescript
-import { createServer } from "@synergy-design-system/mcp";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-
-const server = createServer();
-const transport = new StdioServerTransport();
-
-await server.connect(transport);
-```
-
-HTTP transport (session-aware):
-
-```typescript
-import { randomUUID } from "node:crypto";
-import { createServer as createHttpServer } from "node:http";
-import { createServer } from "@synergy-design-system/mcp";
-import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-
-const sessions = new Map<string, StreamableHTTPServerTransport>();
-const nodeServer = createHttpServer();
-
-nodeServer.on("request", async (req, res) => {
-  if (!(req.url || "/").startsWith("/mcp")) {
-    res.statusCode = 404;
-    res.end("Not Found\n");
-    return;
-  }
-
-  const sessionId = req.headers["mcp-session-id"] as string | undefined;
-
-  if (sessionId) {
-    const existing = sessions.get(sessionId);
-    if (!existing) {
-      res.statusCode = 400;
-      res.setHeader("Content-Type", "application/json");
-      res.end(
-        JSON.stringify({
-          jsonrpc: "2.0",
-          id: null,
-          error: { code: -32000, message: "Unknown session ID" },
-        }),
-      );
-      return;
-    }
-
-    await existing.handleRequest(req, res);
-    return;
-  }
-
-  const server = createServer();
-  const transport = new StreamableHTTPServerTransport({
-    sessionIdGenerator: () => randomUUID(),
-    onsessioninitialized: sid => {
-      sessions.set(sid, transport);
-    },
-  });
-
-  transport.onclose = () => {
-    if (transport.sessionId) {
-      sessions.delete(transport.sessionId);
-    }
-  };
-
-  await server.connect(transport);
-  await transport.handleRequest(req, res);
-});
-
-nodeServer.listen(9119, "localhost");
-```
-
-### AI Assistant Examples
-
-Once connected to an AI assistant, you can use prompts like:
-
-```text
-Show me how to use syn-button in React
-Give me the interface docs for syn-select
-What token formats are available?
-How do I set up Synergy for Vue?
-Find icons related to search and filter
-How do I migrate from davinci-textarea to Synergy?
-What migration paths exist from Synergy 2 to Synergy 3?
-List all available Synergy templates
 ```
 
 ## License

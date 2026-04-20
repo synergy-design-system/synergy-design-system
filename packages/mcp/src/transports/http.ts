@@ -31,7 +31,7 @@ export async function createHttpTransport(
   serverFactory: () => McpServer,
   config: McpRuntimeConfig,
 ): Promise<TransportInstance> {
-  const { port, tls } = config;
+  const { host, port, tls } = config;
   const hasValidTls = tls?.keyPath && tls?.certPath;
 
   // Read TLS files if HTTPS is enabled
@@ -140,7 +140,6 @@ export async function createHttpTransport(
       });
 
       nodeServer.on('listening', () => {
-        const host = 'localhost';
         process.stdout.write(
           `[synergy-mcp] ✓ ${protocol.toUpperCase()} server started at ${protocol}://${host}:${port}\n`,
         );
@@ -148,7 +147,7 @@ export async function createHttpTransport(
         resolve();
       });
 
-      nodeServer.listen(port, 'localhost');
+      nodeServer.listen(port, host);
     }),
 
     stop: async () => new Promise((resolve, reject) => {

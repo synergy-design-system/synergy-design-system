@@ -78,6 +78,7 @@ export type HttpClientSession = {
 
 export type HttpServerOptions = {
   port?: number;
+  host?: string;
   configPath?: string;
   tlsKeyPath?: string;
   tlsCertPath?: string;
@@ -89,7 +90,13 @@ export type HttpServerOptions = {
  * function to kill the process.
  */
 export const startHttpServer = async (options: HttpServerOptions = {}): Promise<HttpServerHandle> => {
-  const { port = 9120, configPath, tlsKeyPath, tlsCertPath } = options;
+  const {
+    port = 9120,
+    host = '127.0.0.1',
+    configPath,
+    tlsKeyPath,
+    tlsCertPath,
+  } = options;
   const isHttps = !!(tlsKeyPath && tlsCertPath);
   const protocol = isHttps ? 'https' : 'http';
 
@@ -97,6 +104,7 @@ export const startHttpServer = async (options: HttpServerOptions = {}): Promise<
     resolve(packageRoot, 'dist/bin/start.js'),
     '--interface', 'http',
     '--port', String(port),
+    '--host', host,
     ...(configPath ? ['--config', configPath] : []),
     ...(tlsKeyPath ? ['--tls-key', tlsKeyPath] : []),
     ...(tlsCertPath ? ['--tls-cert', tlsCertPath] : []),
@@ -114,9 +122,9 @@ export const startHttpServer = async (options: HttpServerOptions = {}): Promise<
     }, 5000);
 
     const stderrChunks: Buffer[] = [];
-    child.stderr!.on('data', (chunk: Buffer) => stderrChunks.push(chunk));
+    child.stderr.on('data', (chunk: Buffer) => stderrChunks.push(chunk));
 
-    child.stdout!.on('data', (chunk: Buffer) => {
+    child.stdout.on('data', (chunk: Buffer) => {
       if (String(chunk).includes('server started')) {
         clearTimeout(timeout);
         resolveReady();
@@ -151,7 +159,7 @@ export const startHttpServer = async (options: HttpServerOptions = {}): Promise<
 
 /**
  * Creates an MCP client connected to an already-running HTTP/HTTPS server.
- * For HTTPS with self-signed certs, pass `rejectUnauthorized: false`.
+ * Uses Node's built-in fetch via the MCP SDK transport.
  */
 export const createHttpMcpClient = async (
   url: URL,
@@ -159,15 +167,11 @@ export const createHttpMcpClient = async (
 ): Promise<HttpClientSession> => {
   const { rejectUnauthorized = true } = options;
 
-  let fetchOption: typeof fetch | undefined;
   if (!rejectUnauthorized) {
-    const { fetch: undiciFetch, Agent } = await import('undici');
-    const agent = new Agent({ connect: { rejectUnauthorized: false } });
-    fetchOption = (input, init) => undiciFetch(input, { ...init, dispatcher: agent }) as Promise<Response>;
+    throw new Error('createHttpMcpClient does not support rejectUnauthorized=false without a custom fetch dispatcher. Use raw node:https requests for self-signed TLS tests.');
   }
 
   const transport = new StreamableHTTPClientTransport(url, {
-    ...(fetchOption ? { fetch: fetchOption } : {}),
   });
 
   const client = new Client({ name: 'synergy-mcp-http-e2e', version: '1.0.0' });

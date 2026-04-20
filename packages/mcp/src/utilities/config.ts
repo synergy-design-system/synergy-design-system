@@ -7,6 +7,16 @@ import { z } from 'zod';
  */
 export const McpRuntimeConfigSchema = z.object({
   /**
+   * HTTP server host/interface when interface is 'http'.
+   * Use 127.0.0.1 for local-only access or 0.0.0.0 to listen on all IPv4 interfaces.
+   * @default '127.0.0.1'
+   */
+  host: z
+    .string()
+    .min(1)
+    .default('127.0.0.1'),
+
+  /**
    * Whether to prepend AI guidance rules to tool responses.
    * Set to false to strip the rules preface from all tool outputs.
    * @default true

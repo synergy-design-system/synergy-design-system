@@ -23,6 +23,7 @@ export const getVersion = () => {
 export interface ParsedArgs {
   action: 'version' | 'help' | 'continue';
   configPath?: string;
+  host?: string;
   interface?: 'stdio' | 'http';
   port?: number;
   tlsKeyPath?: string;
@@ -69,6 +70,15 @@ export const parseCommandLineArgs = (args: string[] = process.argv.slice(2)): Pa
     result.port = port;
   }
 
+  const hostIndex = args.indexOf('--host');
+  if (hostIndex >= 0 && hostIndex + 1 < args.length) {
+    const hostValue = args[hostIndex + 1]?.trim();
+    if (!hostValue) {
+      throw new Error('Invalid --host value. Must be a non-empty host or IP address.');
+    }
+    result.host = hostValue;
+  }
+
   const tlsKeyIndex = args.indexOf('--tls-key');
   if (tlsKeyIndex >= 0 && tlsKeyIndex + 1 < args.length) {
     result.tlsKeyPath = args[tlsKeyIndex + 1];
@@ -111,6 +121,7 @@ OPTIONS:
     -v, --version           Show version information and exit
     --config <path>         Path to a synergy-mcp.json configuration file
     --interface <type>      Server interface: stdio (default) or http
+    --host <address>        HTTP bind address (default: 127.0.0.1)
     --port <number>         HTTP server port (default: 9119, used with --interface http)
     --tls-key <path>        Path to TLS private key file (enables HTTPS)
     --tls-cert <path>       Path to TLS certificate file (enables HTTPS)
@@ -122,14 +133,16 @@ EXAMPLES:
     syn-mcp --config ./synergy-mcp.json  # Start with a custom config
     syn-mcp --interface http             # Start HTTP server on port 9119
     syn-mcp --interface http --port 3000 # Start HTTP server on port 3000
+    syn-mcp --interface http --host 0.0.0.0  # Listen on all IPv4 interfaces
     syn-mcp --interface http --tls-key ./key.pem --tls-cert ./cert.pem  # Start HTTPS server
 
 CONFIGURATION FILE:
-    A synergy-mcp.json file can specify interface, port, and TLS settings:
+    A synergy-mcp.json file can specify interface, port, host, and TLS settings:
 
     {
       "interface": "http",
       "port": 3000,
+      "host": "0.0.0.0",
       "tls": {
         "keyPath": "./key.pem",
         "certPath": "./cert.pem"

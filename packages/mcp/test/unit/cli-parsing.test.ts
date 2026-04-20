@@ -110,6 +110,23 @@ describe('parseCommandLineArgs', () => {
     });
   });
 
+  describe('host flag', () => {
+    it('parses valid --host', () => {
+      const result = parseCommandLineArgs(['--host', '0.0.0.0']);
+      assert.equal(result.host, '0.0.0.0');
+    });
+
+    it('parses hostname values for --host', () => {
+      const result = parseCommandLineArgs(['--host', 'mcp.internal']);
+      assert.equal(result.host, 'mcp.internal');
+    });
+
+    it('ignores --host flag when no value provided', () => {
+      const result = parseCommandLineArgs(['--host']);
+      assert.equal(result.host, undefined);
+    });
+  });
+
   describe('TLS flags', () => {
     it('parses --tls-key flag', () => {
       const result = parseCommandLineArgs(['--tls-key', './server.key']);
@@ -144,6 +161,7 @@ describe('parseCommandLineArgs', () => {
         '--config', './synergy-mcp.json',
         '--interface', 'http',
         '--port', '8080',
+        '--host', '0.0.0.0',
         '--tls-key', './server.key',
         '--tls-cert', './server.crt',
       ]);
@@ -151,6 +169,7 @@ describe('parseCommandLineArgs', () => {
       assert.equal(result.configPath, './synergy-mcp.json');
       assert.equal(result.interface, 'http');
       assert.equal(result.port, 8080);
+      assert.equal(result.host, '0.0.0.0');
       assert.equal(result.tlsKeyPath, './server.key');
       assert.equal(result.tlsCertPath, './server.crt');
     });
@@ -161,6 +180,7 @@ describe('parseCommandLineArgs', () => {
       assert.equal(result.configPath, undefined);
       assert.equal(result.interface, undefined);
       assert.equal(result.port, undefined);
+      assert.equal(result.host, undefined);
       assert.equal(result.tlsKeyPath, undefined);
       assert.equal(result.tlsCertPath, undefined);
     });

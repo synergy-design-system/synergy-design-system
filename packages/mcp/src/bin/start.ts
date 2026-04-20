@@ -24,6 +24,9 @@ try {
   if (parsedArgs.port !== undefined) {
     config = { ...config, port: parsedArgs.port };
   }
+  if (parsedArgs.host !== undefined) {
+    config = { ...config, host: parsedArgs.host };
+  }
   if (parsedArgs.tlsKeyPath !== undefined || parsedArgs.tlsCertPath !== undefined) {
     config = {
       ...config,

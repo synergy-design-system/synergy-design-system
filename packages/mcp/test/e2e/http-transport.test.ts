@@ -36,7 +36,7 @@ describe('http transport', () => {
     let session: HttpClientSession;
 
     before(async () => {
-      session = await createHttpMcpClient(new URL('http://localhost:9120/mcp'));
+      session = await createHttpMcpClient(new URL('http://127.0.0.1:9120/mcp'));
     });
 
     after(async () => {
@@ -60,12 +60,12 @@ describe('http transport', () => {
 
   describe('routing', () => {
     it('GET /health returns 404', async () => {
-      const res = await fetch('http://localhost:9120/health');
+      const res = await fetch('http://127.0.0.1:9120/health');
       assert.equal(res.status, 404);
     });
 
     it('GET / returns 404', async () => {
-      const res = await fetch('http://localhost:9120/');
+      const res = await fetch('http://127.0.0.1:9120/');
       assert.equal(res.status, 404);
     });
   });
@@ -77,8 +77,8 @@ describe('http transport', () => {
     before(async () => {
       // Two separate clients connect to the same server — each gets its own session
       [sessionA, sessionB] = await Promise.all([
-        createHttpMcpClient(new URL('http://localhost:9120/mcp')),
-        createHttpMcpClient(new URL('http://localhost:9120/mcp')),
+        createHttpMcpClient(new URL('http://127.0.0.1:9120/mcp')),
+        createHttpMcpClient(new URL('http://127.0.0.1:9120/mcp')),
       ]);
     });
 
@@ -100,6 +100,30 @@ describe('http transport', () => {
         'both clients should see the same tool set',
       );
     });
+  });
+});
+
+describe('http transport host override', () => {
+  let httpServer: HttpServerHandle;
+
+  before(async () => {
+    httpServer = await startHttpServer({ host: '0.0.0.0', port: 9122 });
+  });
+
+  after(async () => {
+    await httpServer.stop();
+  });
+
+  it('accepts connections when bound to all IPv4 interfaces', async () => {
+    const session = await createHttpMcpClient(new URL('http://127.0.0.1:9122/mcp'));
+
+    try {
+      const result = await session.client.listTools();
+      assert.ok(Array.isArray(result.tools), 'listTools should return an array');
+      assert.ok(result.tools.length > 0, 'server should expose at least one tool');
+    } finally {
+      await session.close();
+    }
   });
 });
 
@@ -147,7 +171,7 @@ describe('https transport', () => {
               'Content-Length': Buffer.byteLength(body),
               'Content-Type': 'application/json',
             },
-            hostname: 'localhost',
+            hostname: '127.0.0.1',
             method: 'POST',
             path: '/mcp',
             port: httpsPort,
@@ -185,7 +209,7 @@ describe('https transport', () => {
       const body = await new Promise<string>((resolveBody, rejectBody) => {
         const req = httpsRequest(
           {
-            hostname: 'localhost',
+            hostname: '127.0.0.1',
             method: 'GET',
             path: '/mcp',
             port: httpsPort,

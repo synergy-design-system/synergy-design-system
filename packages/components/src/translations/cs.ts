@@ -18,7 +18,7 @@ const translation: Translation = {
     return `Je vybráno ${num} možností`;
   },
   paginationFirstPage: 'První stránka',
-  paginationInputLabel: 'Přejít na požadované číslo stránky',
+  paginationInputLabel: 'Vybrat stránku',
   paginationItemsPerPage: 'Položky na stránku',
   paginationItemSummary: (start, end, total) => `${start}-${end} z ${total} položek`,
   paginationLastPage: 'Poslední stránka',

@@ -39,7 +39,7 @@ const translation: Translation = {
   },
   openMenu: 'Open menu',
   paginationFirstPage: 'First page',
-  paginationInputLabel: 'Switch to desired page number',
+  paginationInputLabel: 'Select page',
   paginationItemsPerPage: 'Items per page',
   paginationItemSummary: (start, end, total) => `${start}-${end} of ${total} items`,
   paginationLastPage: 'Last page',

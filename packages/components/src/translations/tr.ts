@@ -39,7 +39,7 @@ const translation: Translation = {
   },
   openMenu: 'Menüyü aç',
   paginationFirstPage: 'İlk sayfa',
-  paginationInputLabel: 'İstenen sayfa numarasına geç',
+  paginationInputLabel: 'Sayfa seç',
   paginationItemsPerPage: 'Sayfa başına öğe',
   paginationItemSummary: (start, end, total) => `${start}-${end} / ${total} öğe`,
   paginationLastPage: 'Son sayfa',

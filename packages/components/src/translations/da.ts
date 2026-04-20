@@ -17,7 +17,7 @@ const translation: Translation = {
     return `${num} valgmuligheder valgt`;
   },
   paginationFirstPage: 'Første side',
-  paginationInputLabel: 'Skift til ønsket sidetal',
+  paginationInputLabel: 'Vælg side',
   paginationItemsPerPage: 'Elementer pr. side',
   paginationItemSummary: (start, end, total) => `${start}-${end} af ${total} elementer`,
   paginationLastPage: 'Sidste side',

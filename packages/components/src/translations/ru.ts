@@ -42,7 +42,7 @@ const translation: Translation = {
   },
   openMenu: 'Открыть меню',
   paginationFirstPage: 'Первая страница',
-  paginationInputLabel: 'Перейти к выбранному номеру страницы',
+  paginationInputLabel: 'Выбрать страницу',
   paginationItemsPerPage: 'Элементы на страницу',
   paginationItemSummary: (start, end, total) => `${start}-${end} из ${total} элементов`,
   paginationLastPage: 'Последняя страница',

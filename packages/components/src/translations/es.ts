@@ -17,7 +17,7 @@ const translation: Translation = {
     return `${num} opciones seleccionadas`;
   },
   paginationFirstPage: 'Primera página',
-  paginationInputLabel: 'Ir al número de página deseado',
+  paginationInputLabel: 'Seleccionar página',
   paginationItemsPerPage: 'Elementos por página',
   paginationItemSummary: (start, end, total) => `${start}-${end} de ${total} elementos`,
   paginationLastPage: 'Última página',

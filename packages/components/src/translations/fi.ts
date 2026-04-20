@@ -39,7 +39,7 @@ const translation: Translation = {
   },
   openMenu: 'Avaa valikko',
   paginationFirstPage: 'Ensimmäinen sivu',
-  paginationInputLabel: 'Siirry haluttuun sivunumeroon',
+  paginationInputLabel: 'Valitse sivu',
   paginationItemsPerPage: 'Kohteet per sivu',
   paginationItemSummary: (start, end, total) => `${start}-${end} / ${total} kohdetta`,
   paginationLastPage: 'Viimeinen sivu',

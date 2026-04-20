@@ -39,7 +39,7 @@ const translation: Translation = {
   },
   openMenu: '메뉴 열기',
   paginationFirstPage: '첫 페이지',
-  paginationInputLabel: '원하는 페이지 번호로 이동',
+  paginationInputLabel: '페이지 선택',
   paginationItemsPerPage: '페이지당 항목 수',
   paginationItemSummary: (start, end, total) => `${start}-${end} / ${total} 항목`,
   paginationLastPage: '마지막 페이지',

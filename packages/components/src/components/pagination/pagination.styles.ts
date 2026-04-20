@@ -32,7 +32,16 @@ export default css`
 
   /* Divider */
   syn-divider {
-    --spacing: 0 auto var(--syn-spacing-small);
+    --divider-spacing: var(--syn-spacing-small); 
+    --spacing: 0 auto var(--divider-spacing);
+  }
+
+  :host([size="small"]) syn-divider {
+    --divider-spacing: var(--syn-spacing-x-small); 
+  }
+
+  :host([size="large"]) syn-divider {
+    --divider-spacing: var(--syn-spacing-medium);
   }
 
   /* Select */

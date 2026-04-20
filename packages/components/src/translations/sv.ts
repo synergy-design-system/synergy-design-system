@@ -39,7 +39,7 @@ const translation: Translation = {
   },
   openMenu: 'Öppna meny',
   paginationFirstPage: 'Första sidan',
-  paginationInputLabel: 'Gå till önskat sidnummer',
+  paginationInputLabel: 'Välj sida',
   paginationItemsPerPage: 'Objekt per sida',
   paginationItemSummary: (start, end, total) => `${start}-${end} av ${total} objekt`,
   paginationLastPage: 'Sista sidan',

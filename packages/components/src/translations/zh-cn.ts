@@ -39,7 +39,7 @@ const translation: Translation = {
   },
   openMenu: '打开菜单',
   paginationFirstPage: '第一页',
-  paginationInputLabel: '跳转到指定页码',
+  paginationInputLabel: '选择页码',
   paginationItemsPerPage: '每页条目数',
   paginationItemSummary: (start, end, total) => `${start}-${end} / ${total} 条目`,
   paginationLastPage: '最后一页',

@@ -14,9 +14,89 @@ import {
 
 const defaultDataDir = fileURLToPath(new URL('../../data', import.meta.url));
 
+const indexCacheByDataDir = new Map<string, MetadataIndex>();
+const indexInflightByDataDir = new Map<string, Promise<MetadataIndex>>();
+const entityCacheByPath = new Map<string, MetadataEntity>();
+const entityInflightByPath = new Map<string, Promise<MetadataEntity>>();
+const layerContentCacheByPath = new Map<string, string>();
+const layerContentInflightByPath = new Map<string, Promise<string>>();
+
 const readJson = async <T>(filePath: string): Promise<T> => {
   const raw = await readFile(filePath, 'utf8');
   return JSON.parse(raw) as T;
+};
+
+const clone = <T>(value: T): T => structuredClone(value);
+
+const getCachedJson = async <T>(
+  cache: Map<string, T>,
+  inflight: Map<string, Promise<T>>,
+  key: string,
+  loader: () => Promise<T>,
+): Promise<T> => {
+  const cached = cache.get(key);
+  if (cached !== undefined) {
+    return clone(cached);
+  }
+
+  const existingInflight = inflight.get(key);
+  if (existingInflight) {
+    return clone(await existingInflight);
+  }
+
+  const loadPromise = loader()
+    .then((loaded) => {
+      cache.set(key, loaded);
+      return loaded;
+    })
+    .finally(() => {
+      inflight.delete(key);
+    });
+
+  inflight.set(key, loadPromise);
+  return clone(await loadPromise);
+};
+
+const getCachedText = async (
+  cache: Map<string, string>,
+  inflight: Map<string, Promise<string>>,
+  key: string,
+  loader: () => Promise<string>,
+): Promise<string> => {
+  const cached = cache.get(key);
+  if (cached !== undefined) {
+    return cached;
+  }
+
+  const existingInflight = inflight.get(key);
+  if (existingInflight) {
+    return existingInflight;
+  }
+
+  const loadPromise = loader()
+    .then((loaded) => {
+      cache.set(key, loaded);
+      return loaded;
+    })
+    .finally(() => {
+      inflight.delete(key);
+    });
+
+  inflight.set(key, loadPromise);
+  return loadPromise;
+};
+
+/**
+ * Clears all process-local metadata store caches.
+ * Useful for tests and explicit cache lifecycle control.
+ */
+export const clearMetadataStoreCache = (): void => {
+  indexCacheByDataDir.clear();
+  indexInflightByDataDir.clear();
+  entityCacheByPath.clear();
+  entityInflightByPath.clear();
+  layerContentCacheByPath.clear();
+  layerContentInflightByPath.clear();
 };
 
 /**
@@ -24,7 +104,13 @@ const readJson = async <T>(filePath: string): Promise<T> => {
  * Useful for exposing metadata version information in HTTP response headers.
  */
 export const getMetadataInfo = async (): Promise<{ builtAt: string; version: string }> => {
-  const index = await readJson<MetadataIndex>(join(defaultDataDir, 'index.json'));
+  const indexPath = join(defaultDataDir, 'index.json');
+  const index = await getCachedJson(
+    indexCacheByDataDir,
+    indexInflightByDataDir,
+    indexPath,
+    () => readJson<MetadataIndex>(indexPath),
+  );
   return { builtAt: index.builtAt, version: index.version };
 };
 
@@ -73,17 +159,25 @@ const buildCoreEntityPath = (dataDir: string, entry: MetadataIndexEntry): string
  */
 export const createMetadataStore = (options: MetadataStoreOptions = {}): MetadataStore => {
   const dataDir = options.dataDir ?? defaultDataDir;
-  let indexCache: MetadataIndex | null = null;
 
   /**
-   * Load and cache `data/index.json` for this store instance.
+   * Load and cache `data/index.json` at process level, scoped by dataDir.
    */
-  const getIndex = async (): Promise<MetadataIndex> => {
-    if (!indexCache) {
-      indexCache = await readJson<MetadataIndex>(join(dataDir, 'index.json'));
-    }
+  const getIndex = async (): Promise<MetadataIndex> => getCachedJson(
+    indexCacheByDataDir,
+    indexInflightByDataDir,
+    join(dataDir, 'index.json'),
+    () => readJson<MetadataIndex>(join(dataDir, 'index.json')),
+  );
 
-    return indexCache;
+  const getEntityFromEntry = async (entry: MetadataIndexEntry): Promise<MetadataEntity> => {
+    const entityPath = buildCoreEntityPath(dataDir, entry);
+    return getCachedJson(
+      entityCacheByPath,
+      entityInflightByPath,
+      entityPath,
+      () => readJson<MetadataEntity>(entityPath),
+    );
   };
 
   /**
@@ -96,7 +190,7 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
       return null;
     }
 
-    return readJson<MetadataEntity>(buildCoreEntityPath(dataDir, entry));
+    return getEntityFromEntry(entry);
   };
 
   /**
@@ -116,9 +210,7 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
       return true;
     });
 
-    const entities = await Promise.all(
-      filteredEntries.map((entry) => readJson<MetadataEntity>(buildCoreEntityPath(dataDir, entry))),
-    );
+    const entities = await Promise.all(filteredEntries.map((entry) => getEntityFromEntry(entry)));
 
     return entities.filter((entity) => matchesQuery(entity, query));
   };
@@ -161,7 +253,12 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
    */
   const readLayerFile = async (ref: MetadataLayerRef): Promise<string> => {
     const filePath = join(dataDir, ref.path.replace(/^data\//, ''));
-    return readFile(filePath, 'utf8');
+    return getCachedText(
+      layerContentCacheByPath,
+      layerContentInflightByPath,
+      filePath,
+      () => readFile(filePath, 'utf8'),
+    );
   };
 
   return {

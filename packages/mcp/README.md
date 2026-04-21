@@ -167,6 +167,14 @@ https://127.0.0.1:3000/mcp
 
 Non-`/mcp` paths return HTTP 404.
 
+#### Metadata cache behavior in HTTP mode
+
+The MCP server reads data via `@synergy-design-system/metadata`, which now uses a process-local cache for index, entity, and layer file reads.
+In HTTP mode this reduces repeated filesystem reads across requests and sessions inside the same process.
+
+Operationally, treat metadata as immutable for the process lifetime and roll out updates via restart/redeploy.
+If you run multiple replicas, each replica maintains its own in-memory cache.
+
 For public or containerized deployments, bind to all interfaces explicitly:
 
 ```bash

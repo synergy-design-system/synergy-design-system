@@ -18,6 +18,7 @@ import {
   sortByEntityId,
 } from '../utils.js';
 
+/** Query options for listing discovered component clusters. */
 export type ClusterQueryOptions = {
   limit?: number;
   offset?: number;
@@ -25,6 +26,7 @@ export type ClusterQueryOptions = {
   tags?: string[];
 };
 
+/** Query options for listing components within one cluster. */
 export type ClusterComponentQueryOptions = PublicRequestOptions & {
   status?: string;
   tags?: string[];

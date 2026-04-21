@@ -3,18 +3,22 @@
  * These types intentionally avoid coupling to internal collector/pipeline modules.
  */
 
+/** Logical metadata layer names used for query and response shaping. */
 export type LayerName = 'full' | 'interface' | 'examples';
+/** Verbosity levels for response formatting in public query helpers. */
 export type Verbosity = 'readable' | 'compact' | 'minified';
 
 // ---------------------------------------------------------------------------
 // Component custom types
 // ---------------------------------------------------------------------------
 
+/** Named documentation item with free-text description. */
 export type ComponentNamedDescription = {
   description: string;
   name: string;
 };
 
+/** Component interface attribute metadata extracted from docs/source. */
 export type ComponentInterfaceAttribute = {
   default?: string;
   description: string;
@@ -24,6 +28,7 @@ export type ComponentInterfaceAttribute = {
   type?: string;
 };
 
+/** Component interface property metadata extracted from docs/source. */
 export type ComponentInterfaceProperty = {
   access: 'public' | 'readonly';
   default?: string;
@@ -32,6 +37,7 @@ export type ComponentInterfaceProperty = {
   type?: string;
 };
 
+/** Component method metadata extracted from docs/source. */
 export type ComponentInterfaceMethod = {
   description: string;
   name: string;
@@ -39,12 +45,14 @@ export type ComponentInterfaceMethod = {
   returnType?: string;
 };
 
+/** Component custom event metadata extracted from docs/source. */
 export type ComponentInterfaceEvent = {
   description: string;
   name: string;
   type?: string;
 };
 
+/** Normalized interface snapshot for one web component. */
 export type ComponentInterfaceSnapshot = {
   attributes: ComponentInterfaceAttribute[];
   cssParts: ComponentNamedDescription[];
@@ -61,6 +69,7 @@ export type ComponentInterfaceSnapshot = {
   tagName: string;
 };
 
+/** Angular-specific component integration metadata. */
 export type ComponentAngularCustom = {
   componentName: string;
   exportPath: string;
@@ -69,6 +78,7 @@ export type ComponentAngularCustom = {
   sourcePath: string;
 };
 
+/** React wrapper component integration metadata. */
 export type ComponentReactWrapperCustom = {
   componentName: string;
   exportPath: string;
@@ -76,6 +86,7 @@ export type ComponentReactWrapperCustom = {
   sourcePath: string;
 };
 
+/** React JSX type integration metadata. */
 export type ComponentReactJsxCustom = {
   componentName: string;
   documentation?: string;
@@ -88,6 +99,7 @@ export type ComponentReactJsxCustom = {
   typeName: string;
 };
 
+/** Vue-specific component integration metadata. */
 export type ComponentVueCustom = {
   componentName: string;
   exportPath: string;
@@ -95,6 +107,7 @@ export type ComponentVueCustom = {
   sourcePath: string;
 };
 
+/** Component-specific custom metadata payload. */
 export type ComponentCustom = {
   clusters?: string[];
   frameworks?: {
@@ -121,6 +134,7 @@ export type ComponentCustom = {
 // Font custom types
 // ---------------------------------------------------------------------------
 
+/** Font artifact metadata. */
 export type FontCustom = {
   artifactPath?: string;
   artifactType?: string;
@@ -130,6 +144,7 @@ export type FontCustom = {
 // Style custom types
 // ---------------------------------------------------------------------------
 
+/** Style entity custom metadata. */
 export type StyleCustom = {
   moduleName?: string;
 };
@@ -138,6 +153,7 @@ export type StyleCustom = {
 // Token custom types
 // ---------------------------------------------------------------------------
 
+/** Token entity custom metadata. */
 export type TokenCustom = {
   artifactPath?: string;
   format?: 'css' | 'javascript' | 'sass' | 'figma';
@@ -149,6 +165,7 @@ export type TokenCustom = {
 // Migration custom types
 // ---------------------------------------------------------------------------
 
+/** Migration entity custom metadata. */
 export type MigrationCustom = {
   migrationType?: string;
   versions?: string[];
@@ -158,6 +175,7 @@ export type MigrationCustom = {
 // Setup custom types
 // ---------------------------------------------------------------------------
 
+/** Setup entity custom metadata. */
 export type SetupCustom = {
   artifactGroups?: Record<string, string[]>;
   exports?: string[];
@@ -176,11 +194,13 @@ export type SetupCustom = {
 // Asset custom types
 // ---------------------------------------------------------------------------
 
+/** Metadata for one icon inside an icon-set asset. */
 export type AssetIconData = {
   categories?: string[];
   tags?: string[];
 };
 
+/** Icon-set asset custom metadata. */
 export type AssetIconSetCustom = {
   exportName: string;
   iconCount: number;
@@ -189,12 +209,14 @@ export type AssetIconSetCustom = {
   variant: string;
 };
 
+/** Logo asset custom metadata. */
 export type AssetLogoCustom = {
   category: string;
   files: string[];
   theme: string;
 };
 
+/** System-icon asset custom metadata. */
 export type AssetSystemIconCustom = {
   files: string[];
   theme: string;
@@ -216,6 +238,7 @@ export type AssetCustom = {
   variant?: string;
 };
 
+/** Common request options shared by public domain query helpers. */
 export type PublicRequestOptions = {
   includeLayerRefs?: boolean;
   includeSources?: boolean;
@@ -226,6 +249,7 @@ export type PublicRequestOptions = {
   verbosity?: Verbosity;
 };
 
+/** Standardized public error code set for metadata APIs. */
 export type PublicErrorCode =
   | 'DATA_NOT_READY'
   | 'INTERNAL_ERROR'
@@ -235,12 +259,14 @@ export type PublicErrorCode =
   | 'LAYER_NOT_AVAILABLE'
   | 'NOT_FOUND';
 
+/** Public error payload returned by metadata APIs. */
 export type PublicError = {
   code: PublicErrorCode;
   details?: Record<string, unknown>;
   message: string;
 };
 
+/** Shared response metadata envelope returned by metadata APIs. */
 export type PublicResponseMeta = {
   builtAt: string;
   requestedLayer: LayerName;
@@ -251,22 +277,26 @@ export type PublicResponseMeta = {
   warnings?: string[];
 };
 
+/** Generic public response wrapper used by metadata APIs. */
 export type PublicResponse<T> = {
   data: T;
   errors?: PublicError[];
   meta: PublicResponseMeta;
 };
 
+/** Relation reference from one entity to another. */
 export type MetadataRelationRef = {
   id: string;
   kind: string;
 };
 
+/** Reference to one generated layer file. */
 export type MetadataLayerRef = {
   layer: string;
   path: string;
 };
 
+/** Canonical metadata entity shape used across public APIs. */
 export type MetadataEntity<TCustom = Record<string, unknown>> = {
   custom?: TCustom;
   id: string;
@@ -285,11 +315,17 @@ export type MetadataEntity<TCustom = Record<string, unknown>> = {
 // Convenience entity type aliases
 // ---------------------------------------------------------------------------
 
+/** Entity alias for icon-set assets. */
 export type AssetIconSetEntity = MetadataEntity<AssetIconSetCustom>;
+/** Entity alias for logo assets. */
 export type AssetLogoEntity = MetadataEntity<AssetLogoCustom>;
+/** Entity alias for system-icon assets. */
 export type AssetSystemIconEntity = MetadataEntity<AssetSystemIconCustom>;
+/** Entity alias for mixed asset payloads. */
 export type AssetEntity = MetadataEntity<AssetCustom>;
+/** Entity alias for component payloads. */
 export type ComponentEntity = MetadataEntity<ComponentCustom>;
+/** Aggregated component cluster entry returned by cluster APIs. */
 export type ComponentCluster = {
   category?: string;
   componentCount: number;
@@ -298,12 +334,18 @@ export type ComponentCluster = {
   id: string;
   name: string;
 };
+/** Entity alias for font payloads. */
 export type FontEntity = MetadataEntity<FontCustom>;
+/** Entity alias for migration payloads. */
 export type MigrationEntity = MetadataEntity<MigrationCustom>;
+/** Entity alias for setup payloads. */
 export type SetupEntity = MetadataEntity<SetupCustom>;
+/** Entity alias for style payloads. */
 export type StyleEntity = MetadataEntity<StyleCustom>;
+/** Entity alias for token payloads. */
 export type TokenEntity = MetadataEntity<TokenCustom>;
 
+/** One index entry describing how to locate and search an entity. */
 export type MetadataIndexEntry = {
   corePath: string;
   id: string;
@@ -313,12 +355,14 @@ export type MetadataIndexEntry = {
   search: string[];
 };
 
+/** Root metadata index structure stored in data/index.json. */
 export type MetadataIndex = {
   entities: MetadataIndexEntry[];
   builtAt: string;
   version: string;
 };
 
+/** Filter options for low-level metadata store queries. */
 export type MetadataQuery = {
   id?: string;
   kind?: string;
@@ -328,12 +372,15 @@ export type MetadataQuery = {
   tags?: string[];
 };
 
+/** Runtime options for constructing a metadata store. */
 export type MetadataStoreOptions = {
   dataDir?: string;
 };
 
+/** Matching mode used by icon search filter groups. */
 export type IconFilterMode = 'and' | 'or';
 
+/** Query object for searching icons across one or more icon-set assets. */
 export type IconSearchQuery = {
   /**
    * Scope to one or more asset entities by ID, e.g. `'asset:sick2018-icons'` or
@@ -359,6 +406,7 @@ export type IconSearchQuery = {
   tags?: string[];
 };
 
+/** One icon search hit with icon-set and categorization context. */
 export type IconSearchResult = {
   assetId: string;
   iconName: string;
@@ -368,6 +416,7 @@ export type IconSearchResult = {
   variant?: string;
 };
 
+/** Public low-level metadata store interface for entity and layer access. */
 export interface MetadataStore {
   /** Find entities by query filters. */
   findEntities: (query?: MetadataQuery) => Promise<MetadataEntity[]>;

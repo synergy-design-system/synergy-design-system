@@ -12,6 +12,7 @@ import {
   sortByEntityId,
 } from '../utils.js';
 
+/** Setup package identifiers supported by setup retrieval helpers. */
 export type SetupPackage =
   | 'angular'
   | 'assets'
@@ -23,6 +24,7 @@ export type SetupPackage =
   | 'tokens'
   | 'vue';
 
+/** Options for retrieving setup documentation content for a target package. */
 export type SetupDataQueryOptions = {
   includeLimitations?: boolean;
   layer?: 'full';
@@ -30,11 +32,13 @@ export type SetupDataQueryOptions = {
   strictLayer?: boolean;
 };
 
+/** One text setup layer file with its path and file content. */
 export type SetupTextLayerContent = {
   content: string;
   path: string;
 };
 
+/** Setup entry combining entity metadata and extracted text files. */
 export type SetupEntry = {
   custom?: SetupCustom;
   id: string;
@@ -45,6 +49,7 @@ export type SetupEntry = {
   text: SetupTextLayerContent[];
 };
 
+/** Setup response payload for the selected package and resolved layer. */
 export type SetupDataPayload = {
   layer: LayerName;
   package: SetupPackage;

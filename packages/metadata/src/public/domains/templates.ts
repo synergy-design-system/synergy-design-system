@@ -15,22 +15,27 @@ import {
   sortByEntityId,
 } from '../utils.js';
 
+/** Query options for listing or resolving template entities. */
 export type TemplateQueryOptions = PublicRequestOptions & {
   status?: string;
   tags?: string[];
 };
 
+/** Supported template data layer selector. */
 export type TemplateDataLayer = 'examples';
 
+/** Options for retrieving template data payloads. */
 export type TemplateDataQueryOptions = {
   layer?: TemplateDataLayer;
 };
 
+/** One textual template example file with source path. */
 export type TemplateTextLayerContent = {
   content: string;
   path: string;
 };
 
+/** High-level template data payload returned by getDataForTemplate. */
 export type TemplateDataPayload = {
   examples?: TemplateTextLayerContent[];
   layer: LayerName;

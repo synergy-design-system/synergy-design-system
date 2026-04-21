@@ -1,4 +1,4 @@
-export { createMetadataStore, getMetadataInfo } from './store.js';
+export { clearMetadataStoreCache, createMetadataStore, getMetadataInfo } from './store.js';
 export { getAssetMetadata, listAssets, searchIcons } from './domains/assets.js';
 export { listComponentClusters, listComponentsByCluster } from './domains/clusters.js';
 export { getComponentMetadata, getDataForComponent, listComponents } from './domains/components.js';

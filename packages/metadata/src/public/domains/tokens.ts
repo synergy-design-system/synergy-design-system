@@ -15,14 +15,18 @@ import {
   sortByEntityId,
 } from '../utils.js';
 
+/** Query options for listing token entities. */
 export type TokenQueryOptions = PublicRequestOptions & {
   status?: string;
   tags?: string[];
 };
 
+/** Supported output formats for token artifacts. */
 export type TokenFormat = 'css' | 'figma' | 'javascript' | 'sass';
+/** Supported theme variants for CSS token artifacts. */
 export type TokenTheme = 'sick2018-dark' | 'sick2018-light' | 'sick2025-dark' | 'sick2025-light';
 
+/** Query options for retrieving concrete token file contents. */
 export type TokenDataQueryOptions = {
   format?: TokenFormat;
   limit?: number;
@@ -30,6 +34,7 @@ export type TokenDataQueryOptions = {
   theme?: TokenTheme;
 };
 
+/** One resolved token artifact file plus metadata context. */
 export type TokenDataContent = {
   content: string;
   format?: TokenFormat;
@@ -38,6 +43,7 @@ export type TokenDataContent = {
   token: string;
 };
 
+/** High-level token payload returned by getDataForTokens. */
 export type TokenDataPayload = {
   format: TokenFormat;
   theme?: TokenTheme;

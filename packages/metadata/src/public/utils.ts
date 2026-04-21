@@ -6,11 +6,13 @@ import type {
   PublicRequestOptions,
 } from './types.js';
 
+/** Resolved content for one referenced metadata layer file. */
 export type LayerFileContent = {
   content: string;
   ref: MetadataLayerRef;
 };
 
+/** Matching configuration for user-input-to-entity lookup helpers. */
 export type EntityLookupOptions<T> = {
   extraCandidates?: Array<string | undefined> | ((entity: MetadataEntity<T>) => Array<string | undefined>);
   prefix: string;

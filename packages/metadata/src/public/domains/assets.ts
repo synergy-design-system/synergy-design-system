@@ -17,11 +17,13 @@ import {
   sortByEntityId,
 } from '../utils.js';
 
+/** Query options for listing or resolving asset entities. */
 export type AssetQueryOptions = PublicRequestOptions & {
   status?: string;
   tags?: string[];
 };
 
+/** Pagination controls for icon search results. */
 export type IconSearchOptions = {
   limit?: number;
   offset?: number;
@@ -252,11 +254,11 @@ export const getAssetMetadata = async (
 };
 
 /**
- * Search for icons across all available asset entities, optionally filtered by asset ID, name, category, or tags.
- * @param query The query options to filter the icons.
- * @param options The query options to filter and paginate the results.
- * @param storeOptions Options for configuring the metadata store instance used to fetch the data.
- * @returns A public response containing the list of icons matching the query, along with metadata about the request and any errors or warnings.
+ * Search icons across asset icon sets using name/category/tag filters.
+ * @param query Filter criteria for icon names, categories, tags, and optional icon-set scope.
+ * @param options Pagination controls for result slicing.
+ * @param storeOptions Optional metadata store configuration.
+ * @returns Matching icons and standard response metadata.
  */
 export const searchIcons = async (
   query: IconSearchQuery,

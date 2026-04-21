@@ -8,12 +8,31 @@ This package publishes a stable runtime query API and metadata artifacts.
 Internal collector/pipeline/CLI modules are intentionally not part of the public contract.
 
 ```ts
-import { createMetadataStore } from "@synergy-design-system/metadata";
+import {
+  clearMetadataStoreCache,
+  createMetadataStore,
+} from "@synergy-design-system/metadata";
 
 const store = createMetadataStore();
 const components = await store.getPackageEntities("components");
 const migrationFiles = await store.getDataForLayer("migrations", "full");
+
+// Optional: explicitly clear process-local caches (for tests or controlled refresh flows)
+clearMetadataStoreCache();
 ```
+
+### Cache Behavior
+
+`createMetadataStore()` now uses a process-local read-through cache for:
+
+- `data/index.json`
+- core entity JSON files under `data/core/**`
+- layer file content reads via `readLayerFile`
+
+Cache entries are scoped by `dataDir` and are shared across store instances in the same Node.js process.
+For production, this means metadata behaves as an immutable snapshot per deploy/process lifetime.
+
+Use `clearMetadataStoreCache()` when you need to force a refresh without restarting the process (for example in tests).
 
 ### Component Cluster Queries
 

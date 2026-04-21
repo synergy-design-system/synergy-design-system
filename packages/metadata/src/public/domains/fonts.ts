@@ -15,6 +15,7 @@ import {
   sortByEntityId,
 } from '../utils.js';
 
+/** Query options for listing or resolving font metadata entities. */
 export type FontQueryOptions = PublicRequestOptions & {
   status?: string;
   tags?: string[];

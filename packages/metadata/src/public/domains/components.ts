@@ -20,6 +20,7 @@ import {
   sortByEntityId,
 } from '../utils.js';
 
+/** Query options for listing or resolving component entities. */
 export type ComponentQueryOptions = PublicRequestOptions & {
   cluster?: string | string[];
   includeInterfaceSnapshot?: boolean;
@@ -27,14 +28,18 @@ export type ComponentQueryOptions = PublicRequestOptions & {
   tags?: string[];
 };
 
+/** Layer selector for component data payloads. */
 export type ComponentDataLayer = 'examples' | 'full' | 'interface';
+/** Framework selector for component data payloads. */
 export type ComponentFramework = 'angular' | 'react' | 'vanilla' | 'vue';
 
+/** Options for retrieving high-level component data content. */
 export type ComponentDataQueryOptions = {
   framework?: ComponentFramework;
   layer?: ComponentDataLayer;
 };
 
+/** Framework-specific metadata details from a component entity. */
 export type ComponentFrameworkDetails =
   | ComponentAngularCustom
   | ComponentReactWrapperCustom
@@ -45,17 +50,20 @@ export type ComponentFrameworkDetails =
     wrapper?: ComponentReactWrapperCustom;
   };
 
+/** One code-oriented layer file entry with content and source path. */
 export type ComponentLayerContent = {
   content: string;
   layer: LayerName;
   path: string;
 };
 
+/** Textual layer content (typically markdown) with source path. */
 export type ComponentTextLayerContent = {
   content: string;
   path: string;
 };
 
+/** High-level component usage payload grouped by requested/resolved layer semantics. */
 export type ComponentDataPayload = {
   component: string;
   framework: ComponentFramework;

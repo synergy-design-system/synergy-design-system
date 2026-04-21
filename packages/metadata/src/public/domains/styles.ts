@@ -16,22 +16,27 @@ import {
   sortByEntityId,
 } from '../utils.js';
 
+/** Query options for listing or resolving style entities. */
 export type StyleQueryOptions = PublicRequestOptions & {
   status?: string;
   tags?: string[];
 };
 
+/** Supported style data layer selector. */
 export type StyleDataLayer = 'examples';
 
+/** Options for retrieving style data payloads. */
 export type StyleDataQueryOptions = {
   layer?: StyleDataLayer;
 };
 
+/** One textual style example file with source path. */
 export type StyleTextLayerContent = {
   content: string;
   path: string;
 };
 
+/** High-level style data payload returned by getDataForStyle. */
 export type StyleDataPayload = {
   examples?: StyleTextLayerContent[];
   layer: LayerName;

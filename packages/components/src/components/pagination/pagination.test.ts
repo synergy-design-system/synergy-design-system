@@ -8,8 +8,11 @@ import {
   calculateTotalPages,
   clampPage,
   getMaxOptionCharCount,
+  getPreviousOrDefault,
   getTotalPages,
   getTotalPagesCharCount,
+  isValidNonNegativeInteger,
+  isValidPositiveInteger,
   sanitizePageSizeOptions,
 } from './utility.js';
 
@@ -57,6 +60,59 @@ describe('<syn-pagination>', () => {
       expect(clampPage(-5, 5)).to.equal(1);
       expect(clampPage(99, 5)).to.equal(5);
       expect(clampPage(2, 0)).to.equal(1);
+    });
+
+    it('should validate positive integers', () => {
+      expect(isValidPositiveInteger(1)).to.equal(true);
+      expect(isValidPositiveInteger(0)).to.equal(false);
+      expect(isValidPositiveInteger(-1)).to.equal(false);
+      expect(isValidPositiveInteger(25)).to.equal(true);
+      expect(isValidPositiveInteger(Number.NaN)).to.equal(false);
+      expect(isValidPositiveInteger(1.5)).to.equal(false);
+      expect(isValidPositiveInteger('1')).to.equal(false);
+      expect(isValidPositiveInteger(null)).to.equal(false);
+      expect(isValidPositiveInteger(undefined)).to.equal(false);
+    });
+
+    it('should validate non-negative integers', () => {
+      expect(isValidNonNegativeInteger(0)).to.equal(true);
+      expect(isValidNonNegativeInteger(1)).to.equal(true);
+      expect(isValidNonNegativeInteger(-1)).to.equal(false);
+      expect(isValidNonNegativeInteger(100)).to.equal(true);
+      expect(isValidNonNegativeInteger(Number.NaN)).to.equal(false);
+      expect(isValidNonNegativeInteger(1.5)).to.equal(false);
+      expect(isValidNonNegativeInteger('0')).to.equal(false);
+      expect(isValidNonNegativeInteger(null)).to.equal(false);
+      expect(isValidNonNegativeInteger(undefined)).to.equal(false);
+    });
+
+    it('should return previous value when valid, otherwise fallback', () => {
+      const changed = new Map<PropertyKey, unknown>([
+        ['pageSize', 50],
+        ['currentPage', 5],
+        ['totalItems', 200],
+      ]);
+
+      // Valid previous values should be returned
+      expect(getPreviousOrDefault(changed, 'pageSize', 25, isValidPositiveInteger)).to.equal(50);
+      expect(getPreviousOrDefault(changed, 'currentPage', 1, isValidPositiveInteger)).to.equal(5);
+      expect(getPreviousOrDefault(changed, 'totalItems', 0, isValidNonNegativeInteger)).to.equal(200);
+
+      // Invalid previous values should use fallback
+      const invalidChanged = new Map<PropertyKey, unknown>([
+        ['pageSize', Number.NaN],
+        ['currentPage', -5],
+        ['totalItems', -1],
+      ]);
+
+      expect(getPreviousOrDefault(invalidChanged, 'pageSize', 25, isValidPositiveInteger)).to.equal(25);
+      expect(getPreviousOrDefault(invalidChanged, 'currentPage', 1, isValidPositiveInteger)).to.equal(1);
+      expect(getPreviousOrDefault(invalidChanged, 'totalItems', 0, isValidNonNegativeInteger)).to.equal(0);
+
+      // Missing keys should use fallback
+      const emptyChanged = new Map<PropertyKey, unknown>();
+      expect(getPreviousOrDefault(emptyChanged, 'pageSize', 25, isValidPositiveInteger)).to.equal(25);
+      expect(getPreviousOrDefault(emptyChanged, 'currentPage', 1, isValidPositiveInteger)).to.equal(1);
     });
 
     it('should return safe total pages for non-positive page sizes and item counts', () => {
@@ -244,6 +300,43 @@ describe('<syn-pagination>', () => {
       await pagination.updateComplete;
 
       expect(pagination.currentPage).to.equal(2);
+    });
+
+    it('should recover from invalid numeric attributes set dynamically', async () => {
+      const pagination = await fixture<SynPagination>(html`
+        <syn-pagination current-page="2" page-size="20" total-items="100"></syn-pagination>
+      `);
+
+      pagination.setAttribute('page-size', 'abc');
+      pagination.setAttribute('current-page', 'foo');
+      pagination.setAttribute('total-items', 'bar');
+      await pagination.updateComplete;
+
+      expect(pagination.pageSize).to.equal(20);
+      expect(pagination.currentPage).to.equal(2);
+      expect(pagination.totalItems).to.equal(100);
+      expect(getPageInput(pagination).getAttribute('value')).to.equal('2');
+    });
+
+    it('should ignore invalid page input values', async () => {
+      const pagination = await fixture<SynPagination>(html`
+        <syn-pagination current-page="3" page-size="25" total-items="100"></syn-pagination>
+      `);
+
+      let eventFired = false;
+      pagination.addEventListener('syn-pagination-page-changed', () => {
+        eventFired = true;
+      });
+
+      (pagination as unknown as { pageChangedViaUserInput: (e: Event) => void }).pageChangedViaUserInput({
+        target: {
+          valueAsNumber: Number.NaN,
+        },
+      } as unknown as Event);
+      await pagination.updateComplete;
+
+      expect(eventFired).to.equal(false);
+      expect(pagination.currentPage).to.equal(3);
     });
   });
 });

@@ -1933,6 +1933,7 @@ describe('<syn-combobox>', () => {
 
     it('should emit syn-change and syn-input when the value is changed with the keyboard', async () => {
       if (navigator.userAgent.includes('Firefox')) {
+        // eslint-disable-next-line no-console
         console.warn('I have no idea why, but this test has a callCount of 2 for the inputHandler in Firefox. Skipping it for now.');
         return;
       }

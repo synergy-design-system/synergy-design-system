@@ -18,23 +18,29 @@ import type { SynPaginationPageSizeChangedEvent } from '@synergy-design-system/c
 import '@synergy-design-system/components/components/pagination/pagination.js';
 
 /**
- * @summary <syn-pagination /> is a component that provides a data-heavy views, combining page navigation, direct page input, and configurable page-size selection in one control.
+ * @summary <syn-pagination /> provides page navigation, direct page input, and page-size selection for large data sets.
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-pagination--docs
  * @status stable
- * @since 3.0.0
+ * @since 3.12.0
  *
  * @event syn-pagination-page-changed - Emitted when the current page changes
  * @event syn-pagination-page-size-changed - Emitted when the page size changes
  *
  * @csspart base - The component's base wrapper.
- * @csspart divider - The divider element separating the page navigation and page size selector.
+ * @csspart divider - The divider element displayed at the top of the pagination component.
  * @csspart page-size-select-wrapper - The wrapper element containing the page size select and page item summary.
  * @csspart page-size-select - The page size select element.
  * @csspart page-item-summary - The text element displaying the current page item range and total items.
  * @csspart page-input-section - The section containing the page number input and total pages display.
  * @csspart page-input - The page number input element.
  * @csspart navigation - The pagination navigation element.
+ * @csspart navigation-action - The individual navigation action buttons (first, previous, next, last).
+ *
+ * @accessibility
+ * The entire component is wrapped in a semantic `<nav>` landmark with an `aria-label` for screen reader accessibility.
+ * Use the `aria-label` attribute to provide a unique, descriptive label when multiple pagination controls exist on the page.
+ * Example: `<syn-pagination aria-label="Search results pagination"></syn-pagination>`
  */
 @Component({
   selector: 'syn-pagination',
@@ -63,7 +69,7 @@ export class SynPaginationComponent {
   }
 
   /**
-   * When true, a divider is displayed between the page navigation controls and the rows-per-page selector.
+   * When true, a divider is displayed at the top of the pagination component.
    */
   @Input()
   set divider(v: '' | SynPagination['divider']) {
@@ -102,7 +108,7 @@ export class SynPaginationComponent {
   /**
 * The current page number.
 * The default value is 1.
-The component will emit a "page-change" event whenever the page changes, allowing you to respond to page changes in your application.
+The component will emit a `syn-pagination-page-changed` event whenever the page changes, allowing you to respond to page changes in your application.
  */
   @Input()
   set currentPage(v: SynPagination['currentPage']) {
@@ -115,7 +121,7 @@ The component will emit a "page-change" event whenever the page changes, allowin
   /**
 * The number of items to display per page.
 * The default value is 25.
-The component will emit a "page-size-change" event whenever the page size changes, allowing you to respond to page size changes in your application.
+The component will emit a `syn-pagination-page-size-changed` event whenever the page size changes, allowing you to respond to page size changes in your application.
  */
   @Input()
   set pageSize(v: SynPagination['pageSize']) {
@@ -164,6 +170,20 @@ The default value is "full".
   }
   get variant(): SynPagination['variant'] {
     return this.nativeElement.variant;
+  }
+
+  /**
+   * An accessible label for the navigation landmark.
+   * Customize for multiple paginations on a page.
+   */
+  @Input()
+  set navigationLabel(v: SynPagination['navigationLabel']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.navigationLabel = v),
+    );
+  }
+  get navigationLabel(): SynPagination['navigationLabel'] {
+    return this.nativeElement.navigationLabel;
   }
 
   /**

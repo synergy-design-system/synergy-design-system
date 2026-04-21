@@ -20,34 +20,50 @@ import {
   calculateTotalPages,
   clampPage,
   getMaxOptionCharCount,
+  getPreviousOrDefault,
   getTotalPages,
   getTotalPagesCharCount,
+  isValidNonNegativeInteger,
+  isValidPositiveInteger,
+  sanitizePageSizeOptions,
 } from './utility.js';
 import type { SynInputEvent } from '../../events/events.js';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
- * @summary <syn-pagination /> is a component that provides a data-heavy views, combining page navigation, direct page input, and configurable page-size selection in one control.
+ * @summary <syn-pagination /> provides page navigation, direct page input, and page-size selection for large data sets.
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-pagination--docs
  * @status stable
- * @since 3.0.0
+ * @since 3.12.0
  *
  * @event syn-pagination-page-changed - Emitted when the current page changes
  * @event syn-pagination-page-size-changed - Emitted when the page size changes
  *
  * @csspart base - The component's base wrapper.
- * @csspart divider - The divider element separating the page navigation and page size selector.
+ * @csspart divider - The divider element displayed at the top of the pagination component.
  * @csspart page-size-select-wrapper - The wrapper element containing the page size select and page item summary.
  * @csspart page-size-select - The page size select element.
  * @csspart page-item-summary - The text element displaying the current page item range and total items.
  * @csspart page-input-section - The section containing the page number input and total pages display.
  * @csspart page-input - The page number input element.
  * @csspart navigation - The pagination navigation element.
+ * @csspart navigation-action - The individual navigation action buttons (first, previous, next, last).
+ *
+ * @accessibility
+ * The entire component is wrapped in a semantic `<nav>` landmark with an `aria-label` for screen reader accessibility.
+ * Use the `aria-label` attribute to provide a unique, descriptive label when multiple pagination controls exist on the page.
+ * Example: `<syn-pagination aria-label="Search results pagination"></syn-pagination>`
  */
 @enableDefaultSettings('SynPagination')
 export default class SynPagination extends SynergyElement {
-  private readonly baseRef = createRef<HTMLDivElement>();
+  private static readonly DEFAULT_PAGE_SIZE = 25;
+
+  private static readonly DEFAULT_CURRENT_PAGE = 1;
+
+  private static readonly DEFAULT_TOTAL_ITEMS = 0;
+
+  private readonly baseRef = createRef<HTMLElement>();
 
   private readonly localize = new LocalizeController(this);
 
@@ -65,7 +81,7 @@ export default class SynPagination extends SynergyElement {
   };
 
   /**
-   * When true, a divider is displayed between the page navigation controls and the rows-per-page selector.
+   * When true, a divider is displayed at the top of the pagination component.
    */
   @property({ type: Boolean }) divider = false;
 
@@ -81,13 +97,13 @@ export default class SynPagination extends SynergyElement {
 
   /**
    * The current page number. The default value is 1.
-   * The component will emit a "page-change" event whenever the page changes, allowing you to respond to page changes in your application.
+   * The component will emit a `syn-pagination-page-changed` event whenever the page changes, allowing you to respond to page changes in your application.
    */
   @property({ attribute: 'current-page', reflect: true, type: Number }) currentPage = 1;
 
   /**
    * The number of items to display per page. The default value is 25.
-   * The component will emit a "page-size-change" event whenever the page size changes, allowing you to respond to page size changes in your application.
+   * The component will emit a `syn-pagination-page-size-changed` event whenever the page size changes, allowing you to respond to page size changes in your application.
    */
   @property({ attribute: 'page-size', reflect: true, type: Number }) pageSize = 25;
 
@@ -121,8 +137,63 @@ export default class SynPagination extends SynergyElement {
    */
   @property({ attribute: 'variant', reflect: true }) variant: 'full' | 'compact' = 'full';
 
+  /**
+   * An accessible label for the navigation landmark. Customize for multiple paginations on a page.
+   */
+  @property({ attribute: 'aria-label' }) navigationLabel = 'Pagination';
+
   private pageChangedViaUserInput(e: SynInputEvent) {
-    this.updateCurrentPage((e.target as SynInput).valueAsNumber);
+    const newPage = (e.target as SynInput).valueAsNumber;
+    // Ignore invalid page inputs
+    if (!isValidPositiveInteger(newPage)) {
+      return;
+    }
+    this.updateCurrentPage(newPage);
+  }
+
+  private navigationClicked(event: MouseEvent, newPage: number) {
+    // Blur first so icon-button focus state settles before this render cycle disables it.
+    (event.currentTarget as SynIconButton | null)?.blur();
+    this.updateCurrentPage(newPage);
+  }
+
+  private sanitizeInvalidPropertyValues(changed: PropertyValues<this>) {
+    if (changed.has('pageSize') && !isValidPositiveInteger(this.pageSize)) {
+      this.pageSize = getPreviousOrDefault(
+        changed,
+        'pageSize',
+        SynPagination.DEFAULT_PAGE_SIZE,
+        isValidPositiveInteger,
+      );
+    }
+
+    if (changed.has('currentPage') && !isValidPositiveInteger(this.currentPage)) {
+      this.currentPage = getPreviousOrDefault(
+        changed,
+        'currentPage',
+        SynPagination.DEFAULT_CURRENT_PAGE,
+        isValidPositiveInteger,
+      );
+    }
+
+    if (changed.has('totalItems') && !isValidNonNegativeInteger(this.totalItems)) {
+      this.totalItems = getPreviousOrDefault(
+        changed,
+        'totalItems',
+        SynPagination.DEFAULT_TOTAL_ITEMS,
+        isValidNonNegativeInteger,
+      );
+    }
+
+    if (changed.has('pageSizeOptions')) {
+      const sanitizedPageSizeOptions = sanitizePageSizeOptions(this.pageSizeOptions);
+      const hasChanged = this.pageSizeOptions.length !== sanitizedPageSizeOptions.length
+        || this.pageSizeOptions.some((option, index) => option !== sanitizedPageSizeOptions[index]);
+
+      if (hasChanged) {
+        this.pageSizeOptions = sanitizedPageSizeOptions;
+      }
+    }
   }
 
   /**
@@ -130,20 +201,27 @@ export default class SynPagination extends SynergyElement {
     * This method is called when the page number is changed via the page input or the navigation buttons.
    */
   private updateCurrentPage(newPage: number) {
+    const totalPages = getTotalPages(this.pageSize, this.totalItems);
+    const safeNewPage = clampPage(newPage, totalPages);
     const { currentPage } = this;
+
+    if (safeNewPage === currentPage) {
+      return;
+    }
+
     this.emit('syn-pagination-page-changed', {
       detail: {
-        currentPage: newPage,
+        currentPage: safeNewPage,
         previousPage: currentPage,
       },
     });
 
-    this.currentPage = newPage;
+    this.currentPage = safeNewPage;
   }
 
   /**
-   * Called when the page size is changed via the page size input.
-   * Emits a "syn-pagination-page-size-changed" event with the new and previous page sizes.
+   * Called when the page size is changed via the page size select.
+   * Emits a `syn-pagination-page-size-changed` event with the new and previous page sizes.
    */
   private pageSizeChanged(e: SynInputEvent) {
     const { currentPage, pageSize } = this;
@@ -187,8 +265,11 @@ export default class SynPagination extends SynergyElement {
   protected willUpdate(changed: PropertyValues<this>) {
     super.willUpdate(changed);
 
+    this.sanitizeInvalidPropertyValues(changed);
+
     if (changed.has('currentPage') || changed.has('pageSize') || changed.has('totalItems')) {
-      // If the current page exceeds the total number of pages based on the new page size or total items, we need to adjust it to ensure it remains within valid bounds.
+      // If the current page exceeds the total number of pages based on the new page size or total items,
+      // we need to adjust it to ensure it remains within valid bounds.
       const totalPages = getTotalPages(this.pageSize, this.totalItems);
       const clamped = clampPage(this.currentPage, totalPages);
       if (clamped !== this.currentPage) {
@@ -240,7 +321,12 @@ export default class SynPagination extends SynergyElement {
     /* eslint-disable @typescript-eslint/unbound-method */
     return html`
       ${this.divider ? html`<syn-divider part="divider"></syn-divider>` : nothing}
-      <div class="pagination" part="base" ${ref(this.baseRef)}>
+      <nav
+        aria-label=${this.navigationLabel}
+        class="pagination"
+        part="base"
+        ${ref(this.baseRef)}
+      >
         ${!isCompact ? html`
           <div class="pagination__page-size-select-wrapper" part="page-size-select-wrapper">
             <syn-select
@@ -276,22 +362,24 @@ export default class SynPagination extends SynergyElement {
         <div class="pagination__navigation" part="navigation">
           <section>
             <syn-icon-button
-              @click=${() => this.updateCurrentPage(1)}
+              @click=${(e: MouseEvent) => this.navigationClicked(e, 1)}
               color="primary"
               ?disabled=${isFirstPage || isDisabled}
               label=${this.localize.term('paginationFirstPage')}
               library="system"
               name="first-page"
+              part="navigation-action"
               size=${this.size}
             ></syn-icon-button>
 
             <syn-icon-button
-              @click=${() => this.updateCurrentPage(this.currentPage - 1)}
+              @click=${(e: MouseEvent) => this.navigationClicked(e, this.currentPage - 1)}
               color="primary"
               ?disabled=${isFirstPage || isDisabled}
               label=${this.localize.term('paginationPreviousPage')}
               library="system"
               name="previous-page"
+              part="navigation-action"
               size=${this.size}
             ></syn-icon-button>
           </section>
@@ -317,28 +405,30 @@ export default class SynPagination extends SynergyElement {
 
           <section>
             <syn-icon-button
-              @click=${() => this.updateCurrentPage(this.currentPage + 1)}
+              @click=${(e: MouseEvent) => this.navigationClicked(e, this.currentPage + 1)}
               color="primary"
               ?disabled=${isLastPage || isDisabled}
               label=${this.localize.term('paginationNextPage')}
               library="system"
               name="next-page"
+              part="navigation-action"
               size=${this.size}
             ></syn-icon-button>
-            
+
             <syn-icon-button
-              @click=${() => this.updateCurrentPage(totalPages)}
+              @click=${(e: MouseEvent) => this.navigationClicked(e, totalPages)}
               color="primary"
               ?disabled=${isLastPage || isDisabled}
               label=${this.localize.term('paginationLastPage')}
               library="system"
               name="last-page"
+              part="navigation-action"
               size=${this.size}
             ></syn-icon-button>
           </section>
         </div>
         <!-- /.pagination__navigation -->
-      </div>
+      </nav>
     `;
     /* eslint-enable @typescript-eslint/unbound-method */
   }

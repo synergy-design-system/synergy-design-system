@@ -10,13 +10,13 @@ import { writeJsonAtomic } from './fs-utils.js';
 
 /**
  * Write core entities to data/core/{kind}/{id}.json
- * (Stub: currently just validates and returns ok)
+ * Returns the set of entity IDs that were written (used for cleanup).
  */
 export async function writeCoreEntities(
   entities: CoreEntity[],
   outputDir: string,
   ctx: Context,
-): Promise<Result<void, WriteError>> {
+): Promise<Result<Set<string>, WriteError>> {
   ctx.logger?.info(`Writing ${entities.length} core entities`);
 
   // Validate all entities before writing
@@ -41,10 +41,13 @@ export async function writeCoreEntities(
     return a.id.localeCompare(b.id);
   });
 
+  const writtenEntityIds = new Set<string>();
+
   try {
     for (const entity of sortedEntities) {
       const filePath = join(outputDir, 'core', entity.kind, `${entity.id}.json`);
       await writeJsonAtomic(filePath, entity);
+      writtenEntityIds.add(entity.id);
     }
   } catch (cause) {
     return err({
@@ -55,5 +58,5 @@ export async function writeCoreEntities(
     });
   }
 
-  return ok(undefined);
+  return ok(writtenEntityIds);
 }

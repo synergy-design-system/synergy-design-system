@@ -11,6 +11,7 @@
  * 7. Process and write layer assets (before core entities)
  * 8. Write core entities with layer data
  * 9. Write supporting artifacts (index, manifest)
+ * 9.5. Cleanup orphaned files from previous builds
  * 10. Generate JSON schemas
  */
 import { resolve } from 'node:path';
@@ -35,6 +36,9 @@ import {
   validateManifestData,
 } from '../pipeline/index.js';
 import {
+  type CleanupOptions,
+  type EntityLayers,
+  cleanupOrphanedFiles,
   writeCoreEntities,
   writeIndex,
   writeLayerAssets,
@@ -357,6 +361,34 @@ async function main() {
     );
     if (!manifestWriteResult.ok) {
       ctx.logger?.error('Writing manifest failed', manifestWriteResult.error);
+      process.exit(1);
+    }
+
+    // Step 9.5: Cleanup orphaned files
+    // Merge layer refs from template entities (created in Step 7b, after writeLayerAssets)
+    // into the layers map so cleanup doesn't treat their files as orphaned.
+    const allEntityLayers: EntityLayers = { ...layersResult.value };
+    for (const entity of entitiesWithLayers) {
+      if (entity.layers && !allEntityLayers[entity.id]) {
+        allEntityLayers[entity.id] = entity.layers;
+      }
+    }
+
+    const cleanupOptions: CleanupOptions = {
+      // When the Storybook scraper didn't run, skip examples/ so previously
+      // generated examples files from build:all are not treated as orphaned.
+      excludeLayers: runStorybookScraper ? [] : ['examples'],
+    };
+
+    const cleanupResult = await cleanupOrphanedFiles(
+      allEntityLayers,
+      coreResult.value,
+      outputDir,
+      ctx,
+      cleanupOptions,
+    );
+    if (!cleanupResult.ok) {
+      ctx.logger?.error('Cleanup failed', cleanupResult.error);
       process.exit(1);
     }
 

@@ -3,7 +3,7 @@ import { listAssets } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
   getToolRule,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -18,7 +18,7 @@ export const assetListTool = (server: McpServer) => {
       description: 'Get the available iconsets in the Synergy Design System.',
       title: 'Available iconsets',
     },
-    async () => withErrorHandler(async () => {
+    toolHandler('asset-list', async () => {
       const aiRules = await getToolRule('asset-list');
       const allAssets = await listAssets();
       const assets = allAssets.data

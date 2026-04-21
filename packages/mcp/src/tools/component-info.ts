@@ -7,7 +7,7 @@ import {
   createToolAnnotations,
   getRuntimeConfig,
   getToolRule,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -30,11 +30,11 @@ export const componentInfoTool = (server: McpServer) => {
       },
       title: 'Component info',
     },
-    async ({
+    toolHandler('component-info', async ({
       component,
       framework,
       layer,
-    }) => withErrorHandler(async () => {
+    }) => {
       const { tools } = getRuntimeConfig();
       const resolvedFramework = framework ?? tools.componentInfo.framework;
       const resolvedLayer = layer ?? tools.componentInfo.layer;

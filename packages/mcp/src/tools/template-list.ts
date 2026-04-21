@@ -5,7 +5,7 @@ import {
 import {
   createToolAnnotations,
   getToolRule,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -22,7 +22,7 @@ export const templateList = (server: McpServer) => {
       inputSchema: {},
       title: 'List Synergy Templates',
     },
-    async () => withErrorHandler(async () => {
+    toolHandler('template-list', async () => {
       const response = await listTemplates();
       const templateNames = response.data
         .map(template => template.name)

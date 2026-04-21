@@ -37,6 +37,12 @@ syn-mcp --interface http --host 0.0.0.0
 
 # Start HTTPS server with TLS certificates
 syn-mcp --interface http --tls-key ./server.key --tls-cert ./server.crt
+
+# Enable local tool-call logging to a directory
+syn-mcp --log ./logs
+
+# Explicitly disable logging (also disabled when omitted)
+syn-mcp --log false
 ```
 
 Available CLI flags:
@@ -47,6 +53,7 @@ Available CLI flags:
 - `--interface <stdio|http>`: Server interface (default: `stdio`)
 - `--port <number>`: HTTP server port (default: `9119`, only used with `--interface http`)
 - `--host <address>`: HTTP bind address (default: `127.0.0.1`)
+- `--log <value>`: Local tool-call log directory path, or `false` / `null` to disable
 - `--tls-key <path>`: Path to TLS private key file (enables HTTPS)
 - `--tls-cert <path>`: Path to TLS certificate file (enables HTTPS)
 
@@ -120,6 +127,15 @@ Example:
   // Include custom ai rules for each tool.
   "includeAiRules": true,
 
+  // Optional logging providers
+  "logging": {
+    "localFile": {
+      // Base folder for logs (YY-MM-DD/SESSION.json)
+      // Set to null to disable local file logging
+      "path": "./logs",
+    },
+  },
+
   // Default parameters for each endpoint can be overridden
   "tools": {
     "assetInfo": {
@@ -154,7 +170,32 @@ syn-mcp --config ./synergy-mcp.json --port 8080
 
 # Config file specifies a local-only bind, but CLI overrides it for deployment
 syn-mcp --config ./synergy-mcp.json --host 0.0.0.0
+
+# Config enables logging, but CLI disables it for this run
+syn-mcp --config ./synergy-mcp.json --log false
 ```
+
+#### Tool-call logging
+
+Tool-call logging is provider-based. The built-in local file provider writes one JSON entry per line to:
+
+- `YY-MM-DD/SESSION.json`
+
+Each entry includes:
+
+- `timestamp`
+- `toolName`
+- `parameters`
+- `durationMs`
+- `sessionId` (`stdio` when no session id exists)
+- `transport` (`stdio` or `http`)
+- `success` and optional `errorMessage`
+
+Notes:
+
+- Logging is disabled by default.
+- Use `--log <path>` or set `logging.localFile.path` in config to enable.
+- `--log false` and `--log null` explicitly disable local file logging.
 
 #### HTTP Server Endpoint
 

@@ -3,7 +3,7 @@ import { listStyles } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
   getToolRule,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -20,7 +20,7 @@ export const stylesList = (server: McpServer) => {
       inputSchema: {},
       title: 'Styles list',
     },
-    async () => withErrorHandler(async () => {
+    toolHandler('styles-list', async () => {
       const aiRules = await getToolRule('styles-list');
       const styles = await listStyles({
         includeLayerRefs: false,

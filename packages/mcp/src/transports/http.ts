@@ -13,6 +13,7 @@ import { readFileSync } from 'node:fs';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { getMetadataInfo } from '@synergy-design-system/metadata';
+import { runWithLoggingContext } from '../utilities/logging-context.js';
 import type { McpRuntimeConfig } from '../utilities/config.js';
 import type { TransportInstance } from './index.js';
 
@@ -113,7 +114,13 @@ export async function createHttpTransport(
           }));
           return;
         }
-        await existing.handleRequest(req, res);
+        await runWithLoggingContext(
+          {
+            sessionId,
+            transport: 'http',
+          },
+          async () => existing.handleRequest(req, res),
+        );
         return;
       }
 
@@ -133,7 +140,13 @@ export async function createHttpTransport(
       };
 
       await newServer.connect(transport);
-      await transport.handleRequest(req, res);
+      await runWithLoggingContext(
+        {
+          sessionId: transport.sessionId ?? 'pending-http',
+          transport: 'http',
+        },
+        async () => transport.handleRequest(req, res),
+      );
     } catch (error) {
       // Only write error response if headers haven't been sent yet
       if (!res.headersSent) {

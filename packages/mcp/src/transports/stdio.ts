@@ -1,5 +1,6 @@
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { runWithLoggingContext } from '../utilities/logging-context.js';
 import type { TransportInstance } from './index.js';
 
 /**
@@ -15,7 +16,13 @@ export async function createStdioTransport(server: McpServer): Promise<Transport
 
   return {
     start: async () => {
-      await server.connect(transport);
+      await runWithLoggingContext(
+        {
+          sessionId: 'stdio',
+          transport: 'stdio',
+        },
+        async () => server.connect(transport),
+      );
     },
   };
 }

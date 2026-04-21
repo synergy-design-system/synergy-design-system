@@ -25,6 +25,7 @@ export interface ParsedArgs {
   configPath?: string;
   host?: string;
   interface?: 'stdio' | 'http';
+  logPath?: string | null;
   port?: number;
   tlsKeyPath?: string;
   tlsCertPath?: string;
@@ -79,6 +80,19 @@ export const parseCommandLineArgs = (args: string[] = process.argv.slice(2)): Pa
     result.host = hostValue;
   }
 
+  const logIndex = args.indexOf('--log');
+  if (logIndex >= 0 && logIndex + 1 < args.length) {
+    const rawValue = args[logIndex + 1]?.trim();
+    if (!rawValue) {
+      throw new Error('Invalid --log value. Must be a non-empty directory path, "false" or "null".');
+    }
+
+    const normalized = rawValue.toLowerCase();
+    result.logPath = normalized === 'false' || normalized === 'null'
+      ? null
+      : rawValue;
+  }
+
   const tlsKeyIndex = args.indexOf('--tls-key');
   if (tlsKeyIndex >= 0 && tlsKeyIndex + 1 < args.length) {
     result.tlsKeyPath = args[tlsKeyIndex + 1];
@@ -123,6 +137,7 @@ OPTIONS:
     --interface <type>      Server interface: stdio (default) or http
     --host <address>        HTTP bind address (default: 127.0.0.1)
     --port <number>         HTTP server port (default: 9119, used with --interface http)
+    --log <value>           Tool-call logs directory path, or "false"/"null" to disable
     --tls-key <path>        Path to TLS private key file (enables HTTPS)
     --tls-cert <path>       Path to TLS certificate file (enables HTTPS)
 
@@ -134,6 +149,8 @@ EXAMPLES:
     syn-mcp --interface http             # Start HTTP server on port 9119
     syn-mcp --interface http --port 3000 # Start HTTP server on port 3000
     syn-mcp --interface http --host 0.0.0.0  # Listen on all IPv4 interfaces
+    syn-mcp --log ./logs                  # Write tool-call logs to ./logs
+    syn-mcp --log false                   # Disable tool-call logging
     syn-mcp --interface http --tls-key ./key.pem --tls-cert ./cert.pem  # Start HTTPS server
 
 CONFIGURATION FILE:
@@ -143,6 +160,11 @@ CONFIGURATION FILE:
       "interface": "http",
       "port": 3000,
       "host": "0.0.0.0",
+      "logging": {
+        "localFile": {
+          "path": "./logs"
+        }
+      },
       "tls": {
         "keyPath": "./key.pem",
         "certPath": "./cert.pem"

@@ -6,7 +6,7 @@ import {
 import {
   createToolAnnotations,
   getRuntimeConfig,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -26,10 +26,10 @@ export const tokenInfoTool = (server: McpServer) => {
       },
       title: 'Token info',
     },
-    async ({
+    toolHandler('token-info', async ({
       theme,
       type,
-    }) => withErrorHandler(async () => {
+    }) => {
       const resolvedType = type ?? getRuntimeConfig().tools.tokenInfo.type;
       const response = await getDataForTokens({
         format: resolvedType,

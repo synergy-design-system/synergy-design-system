@@ -7,7 +7,7 @@ import {
 import {
   createToolAnnotations,
   getToolRule,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -26,9 +26,9 @@ export const componentListTool = (server: McpServer) => {
       },
       title: 'Component list',
     },
-    async ({
+    toolHandler('component-list', async ({
       cluster,
-    }) => withErrorHandler(async () => {
+    }) => {
       const aiRules = await getToolRule('component-list');
 
       const clusters = await listComponentClusters();

@@ -4,7 +4,7 @@ import {
   createToolAnnotations,
   getMigrationMetaData,
   getRuntimeConfig,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 type SynergyMigrationPackage = 'assets' | 'components' | 'styles' | 'tokens';
@@ -39,10 +39,10 @@ export const migrationInfoTool = (server: McpServer) => {
       },
       title: 'Package Migration Information',
     },
-    async ({
+    toolHandler('migration-info', async ({
       filename,
       synergyPackage,
-    }) => withErrorHandler(async () => {
+    }) => {
       const selectedPackage = (synergyPackage ?? getRuntimeConfig().tools.migrationInfo.synergyPackage) as SynergyMigrationPackage;
       const metadata = await getMigrationMetaData(selectedPackage);
 

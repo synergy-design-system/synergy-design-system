@@ -4,7 +4,7 @@ import { getDataForSetup } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
   getRuntimeConfig,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -23,10 +23,10 @@ export const setupTool = (server: McpServer) => {
       },
       title: 'Setup info',
     },
-    async ({
+    toolHandler('setup', async ({
       includeLimitations,
       package: packageName,
-    }) => withErrorHandler(async () => {
+    }) => {
       const resolvedIncludeLimitations = includeLimitations ?? getRuntimeConfig().tools.setup.includeLimitations;
       const response = await getDataForSetup({
         includeLimitations: resolvedIncludeLimitations,

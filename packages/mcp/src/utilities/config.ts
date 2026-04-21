@@ -32,6 +32,23 @@ export const McpRuntimeConfigSchema = z.object({
   interface: z.enum(['stdio', 'http']).default('stdio'),
 
   /**
+   * Logging configuration.
+   * Providers are opt-in; by default no provider is enabled.
+   */
+  logging: z.object({
+    localFile: z.object({
+      /**
+       * Base directory for local tool call logs.
+       * If null, local file logging is disabled.
+       * @default null
+       */
+      path: z.string().min(1).nullable().default(null),
+    }).default({ path: null }),
+  }).default({
+    localFile: { path: null },
+  }),
+
+  /**
    * HTTP server port when interface is 'http'.
    * Must be between 1 and 65535.
    * @default 9119

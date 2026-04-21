@@ -4,6 +4,7 @@ import { createTransport } from '../transports/index.js';
 import { getRuntimeConfig, initializeRuntimeConfig } from '../utilities/config.js';
 import {
   handleCommandLineArgs,
+  initializeLogger,
   parseCommandLineArgs,
 } from '../utilities/index.js';
 
@@ -36,6 +37,21 @@ try {
       },
     };
   }
+
+  if (parsedArgs.logPath !== undefined) {
+    config = {
+      ...config,
+      logging: {
+        ...config.logging,
+        localFile: {
+          ...config.logging.localFile,
+          path: parsedArgs.logPath,
+        },
+      },
+    };
+  }
+
+  initializeLogger(config);
 
   const transport = await createTransport(createServer, config);
   await transport.start();

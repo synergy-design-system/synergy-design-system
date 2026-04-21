@@ -6,7 +6,7 @@ import {
   extractMigrationSection,
   getMigrationGuideContent,
   getRuntimeConfig,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 export const davinciMigrationInfoTool = (server: McpServer) => {
@@ -21,10 +21,10 @@ export const davinciMigrationInfoTool = (server: McpServer) => {
       },
       title: 'DaVinci Migration Info',
     },
-    async ({
+    toolHandler('davinci-migration-info', async ({
       component,
       package: packageName,
-    }) => withErrorHandler(async () => {
+    }) => {
       const resolvedPackage = packageName ?? getRuntimeConfig().tools.davinciMigrationInfo.package;
       const migrationGuide = await getMigrationGuideContent(resolvedPackage);
       const section = extractMigrationSection(migrationGuide, component);

@@ -6,7 +6,7 @@ import {
 import {
   createToolAnnotations,
   getToolRule,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -24,9 +24,9 @@ export const templateInfoTool = (server: McpServer) => {
       },
       title: 'Template info',
     },
-    async ({
+    toolHandler('template-info', async ({
       template,
-    }) => withErrorHandler(async () => {
+    }) => {
       const response = await getDataForTemplate(template, { layer: 'examples' });
 
       if (!response.data) {

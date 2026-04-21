@@ -7,7 +7,7 @@ import {
   createToolAnnotations,
   getRuntimeConfig,
   getToolRule,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 type AvailableIconset = 'sick2018Icons' | 'sick2025Icons';
@@ -75,11 +75,11 @@ export const assetInfoTool = (server: McpServer) => {
       },
       title: 'Available Icons',
     },
-    async ({
+    toolHandler('asset-info', async ({
       filter,
       iconset,
       limit,
-    }) => withErrorHandler(async () => {
+    }) => {
       const resolvedIconset = iconset ?? getRuntimeConfig().tools.assetInfo.iconset;
       // Get the iconset that should be used by key/value of iconsetListAliases
       const setToUse: AvailableIconset = Object

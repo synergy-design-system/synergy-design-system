@@ -155,6 +155,35 @@ describe('parseCommandLineArgs', () => {
     });
   });
 
+  describe('log flag', () => {
+    it('parses --log path', () => {
+      const result = parseCommandLineArgs(['--log', './logs']);
+      assert.equal(result.logPath, './logs');
+    });
+
+    it('parses --log false as disabled', () => {
+      const result = parseCommandLineArgs(['--log', 'false']);
+      assert.equal(result.logPath, null);
+    });
+
+    it('parses --log null as disabled', () => {
+      const result = parseCommandLineArgs(['--log', 'null']);
+      assert.equal(result.logPath, null);
+    });
+
+    it('throws for empty --log value', () => {
+      assert.throws(
+        () => parseCommandLineArgs(['--log', '']),
+        /Invalid --log value/,
+      );
+    });
+
+    it('ignores --log flag when no value provided', () => {
+      const result = parseCommandLineArgs(['--log']);
+      assert.equal(result.logPath, undefined);
+    });
+  });
+
   describe('combined flags', () => {
     it('parses all flags together', () => {
       const result = parseCommandLineArgs([
@@ -162,6 +191,7 @@ describe('parseCommandLineArgs', () => {
         '--interface', 'http',
         '--port', '8080',
         '--host', '0.0.0.0',
+        '--log', './logs',
         '--tls-key', './server.key',
         '--tls-cert', './server.crt',
       ]);
@@ -170,6 +200,7 @@ describe('parseCommandLineArgs', () => {
       assert.equal(result.interface, 'http');
       assert.equal(result.port, 8080);
       assert.equal(result.host, '0.0.0.0');
+      assert.equal(result.logPath, './logs');
       assert.equal(result.tlsKeyPath, './server.key');
       assert.equal(result.tlsCertPath, './server.crt');
     });
@@ -181,6 +212,7 @@ describe('parseCommandLineArgs', () => {
       assert.equal(result.interface, undefined);
       assert.equal(result.port, undefined);
       assert.equal(result.host, undefined);
+      assert.equal(result.logPath, undefined);
       assert.equal(result.tlsKeyPath, undefined);
       assert.equal(result.tlsCertPath, undefined);
     });

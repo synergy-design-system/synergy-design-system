@@ -4,7 +4,7 @@ import {
 } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 type TokenTheme = 'sick2018-dark' | 'sick2018-light' | 'sick2025-dark' | 'sick2025-light';
@@ -22,7 +22,7 @@ export const tokenListTool = (server: McpServer) => {
       inputSchema: {},
       title: 'Tokens list',
     },
-    async () => withErrorHandler(async () => {
+    toolHandler('tokens-list', async () => {
       const cssCandidates: TokenTheme[] = ['sick2018-dark', 'sick2018-light', 'sick2025-dark', 'sick2025-light'];
       const cssChecks = await Promise.all(cssCandidates.map(async (theme) => {
         const result = await getDataForTokens({

@@ -6,7 +6,7 @@ import {
 import {
   createToolAnnotations,
   getToolRule,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -24,9 +24,9 @@ export const stylesInfoTool = (server: McpServer) => {
       },
       title: 'Styles info',
     },
-    async ({
+    toolHandler('styles-info', async ({
       style,
-    }) => withErrorHandler(async () => {
+    }) => {
       const response = await getDataForStyle(style, { layer: 'examples' });
 
       if (!response.data) {

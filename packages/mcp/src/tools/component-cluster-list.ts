@@ -3,7 +3,7 @@ import { listComponentClusters } from '@synergy-design-system/metadata';
 import {
   createToolAnnotations,
   getToolRule,
-  withErrorHandler,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -19,7 +19,7 @@ export const componentClusterListTool = (server: McpServer) => {
       inputSchema: {},
       title: 'Component cluster list',
     },
-    async () => withErrorHandler(async () => {
+    toolHandler('component-cluster-list', async () => {
       const aiRules = await getToolRule('component-cluster-list');
       const clusters = await listComponentClusters();
 

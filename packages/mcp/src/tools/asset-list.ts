@@ -16,6 +16,7 @@ export const assetListTool = (server: McpServer) => {
     {
       annotations: createToolAnnotations(),
       description: 'Get the available iconsets in the Synergy Design System.',
+      inputSchema: {},
       title: 'Available iconsets',
     },
     toolHandler('asset-list', async () => {

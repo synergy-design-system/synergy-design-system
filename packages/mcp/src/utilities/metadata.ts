@@ -113,10 +113,22 @@ const withToolLoggingMiddleware = <TArgs extends Record<string, unknown>>(
   } finally {
     const durationMs = Number(process.hrtime.bigint() - startedAt) / 1_000_000;
 
+    // MCP SDK may add internal context properties to the args object
+    // (requestId, signal, requestInfo, sessionId). Create a new object
+    // with only the non-internal properties for logging.
+    const internalProps = new Set(['requestId', 'signal', 'requestInfo', 'sessionId']);
+    const loggableParameters: Record<string, unknown> = {};
+    
+    for (const key in args) {
+      if (!internalProps.has(key) && args.hasOwnProperty(key)) {
+        loggableParameters[key] = (args as Record<string, unknown>)[key];
+      }
+    }
+
     await logToolCall({
       durationMs,
       errorMessage,
-      parameters: args,
+      parameters: loggableParameters,
       success,
       toolName: context.toolName,
     });

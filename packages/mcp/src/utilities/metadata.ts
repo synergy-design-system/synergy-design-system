@@ -118,12 +118,12 @@ const withToolLoggingMiddleware = <TArgs extends Record<string, unknown>>(
     // with only the non-internal properties for logging.
     const internalProps = new Set(['requestId', 'signal', 'requestInfo', 'sessionId']);
     const loggableParameters: Record<string, unknown> = {};
-    
-    for (const key in args) {
-      if (!internalProps.has(key) && args.hasOwnProperty(key)) {
-        loggableParameters[key] = (args as Record<string, unknown>)[key];
+
+    Object.entries(args).forEach(([key, value]) => {
+      if (!internalProps.has(key)) {
+        loggableParameters[key] = value;
       }
-    }
+    });
 
     await logToolCall({
       durationMs,

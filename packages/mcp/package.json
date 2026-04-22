@@ -66,5 +66,5 @@
     "test:watch": "node --experimental-strip-types --test --watch test/e2e/*.test.ts"
   },
   "type": "module",
-  "version": "2.14.1"
+  "version": "2.15.0"
 }

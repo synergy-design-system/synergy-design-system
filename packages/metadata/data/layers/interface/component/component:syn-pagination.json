@@ -1,0 +1,200 @@
+{
+  "attributes": [
+    {
+      "default": "'Pagination'",
+      "description": "An accessible label for the navigation landmark. Customize for multiple paginations on a page.",
+      "fieldName": "ariaLabel",
+      "name": "aria-label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "1",
+      "description": "The current page number. The default value is 1.\nThe component will emit a `syn-pagination-page-changed` event whenever the page changes, allowing you to respond to page changes in your application.",
+      "fieldName": "currentPage",
+      "name": "current-page",
+      "reflects": true,
+      "type": "number"
+    },
+    {
+      "default": "false",
+      "description": "When true, the pagination controls are disabled and non-interactive.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "When true, a divider is displayed at the top of the pagination component.",
+      "fieldName": "divider",
+      "name": "divider",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "25",
+      "description": "The number of items to display per page. The default value is 25.\nThe component will emit a `syn-pagination-page-size-changed` event whenever the page size changes, allowing you to respond to page size changes in your application.",
+      "fieldName": "pageSize",
+      "name": "page-size",
+      "reflects": true,
+      "type": "number"
+    },
+    {
+      "default": "[10, 25, 50, 100]",
+      "description": "An array of numbers representing the available options for the number of items to display per page. The default value is [10, 25, 50, 100].\nThe component will use this array to populate the rows-per-page selector, allowing users to choose from the specified options.",
+      "fieldName": "pageSizeOptions",
+      "name": "page-size-options",
+      "reflects": false,
+      "type": "number[]"
+    },
+    {
+      "default": "'medium'",
+      "description": "The size of the pagination controls.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "default": "0",
+      "description": "Total amount of items. The component will use this value to calculate the total number of pages based on the selected rows per page.",
+      "fieldName": "totalItems",
+      "name": "total-items",
+      "reflects": true,
+      "type": "number"
+    },
+    {
+      "default": "'full'",
+      "description": "The pagination variant to use. The \"full\" variant includes comprehensive controls for navigating between pages and adjusting the number of displayed rows,\nwhile the \"compact\" variant offers a streamlined interface with essential navigation controls.\nThe default value is \"full\".",
+      "fieldName": "variant",
+      "name": "variant",
+      "reflects": true,
+      "type": "'full' | 'compact'"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The divider element displayed at the top of the pagination component.",
+      "name": "divider"
+    },
+    {
+      "description": "The pagination navigation element.",
+      "name": "navigation"
+    },
+    {
+      "description": "The individual navigation action buttons (first, previous, next, last).",
+      "name": "navigation-action"
+    },
+    {
+      "description": "The page number input element.",
+      "name": "page-input"
+    },
+    {
+      "description": "The section containing the page number input and total pages display.",
+      "name": "page-input-section"
+    },
+    {
+      "description": "The text element displaying the current page item range and total items.",
+      "name": "page-item-summary"
+    },
+    {
+      "description": "The page size select element.",
+      "name": "page-size-select"
+    },
+    {
+      "description": "The wrapper element containing the page size select and page item summary.",
+      "name": "page-size-select-wrapper"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-pagination--docs",
+  "events": [
+    {
+      "description": "Emitted when the current page changes",
+      "name": "syn-pagination-page-changed",
+      "type": "SynPaginationPageChangedEvent"
+    },
+    {
+      "description": "Emitted when the page size changes",
+      "name": "syn-pagination-page-size-changed",
+      "type": "SynPaginationPageSizeChangedEvent"
+    }
+  ],
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "default": "'Pagination'",
+      "description": "An accessible label for the navigation landmark. Customize for multiple paginations on a page.",
+      "name": "ariaLabel",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "1",
+      "description": "The current page number. The default value is 1.\nThe component will emit a `syn-pagination-page-changed` event whenever the page changes, allowing you to respond to page changes in your application.",
+      "name": "currentPage",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "When true, the pagination controls are disabled and non-interactive.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "When true, a divider is displayed at the top of the pagination component.",
+      "name": "divider",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "25",
+      "description": "The number of items to display per page. The default value is 25.\nThe component will emit a `syn-pagination-page-size-changed` event whenever the page size changes, allowing you to respond to page size changes in your application.",
+      "name": "pageSize",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "[10, 25, 50, 100]",
+      "description": "An array of numbers representing the available options for the number of items to display per page. The default value is [10, 25, 50, 100].\nThe component will use this array to populate the rows-per-page selector, allowing users to choose from the specified options.",
+      "name": "pageSizeOptions",
+      "type": "number[]"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The size of the pagination controls.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "default": "0",
+      "description": "Total amount of items. The component will use this value to calculate the total number of pages based on the selected rows per page.",
+      "name": "totalItems",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "'full'",
+      "description": "The pagination variant to use. The \"full\" variant includes comprehensive controls for navigating between pages and adjusting the number of displayed rows,\nwhile the \"compact\" variant offers a streamlined interface with essential navigation controls.\nThe default value is \"full\".",
+      "name": "variant",
+      "type": "'full' | 'compact'"
+    }
+  ],
+  "since": "3.12.0",
+  "slots": [],
+  "sourceModulePath": "components/pagination/pagination.js",
+  "status": "stable",
+  "summary": "<syn-pagination /> provides page navigation, direct page input, and page-size selection for large data sets.",
+  "tagName": "syn-pagination"
+}

@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.12.0
+
+### Minor Changes
+
+- [#1240](https://github.com/synergy-design-system/synergy-design-system/pull/1240) [`06c29d4`](https://github.com/synergy-design-system/synergy-design-system/commit/06c29d4be7b9297d34919646cfd71394abdc6f88) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-22
+
+  feat: ✨ Add new component `<syn-pagination>` (#684)
+
+  Adds a new component `<syn-pagination>` that may be used to paginate large datasets.
+
 ## 3.11.1
 
 ## 3.11.0

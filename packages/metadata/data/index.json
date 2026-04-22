@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-04-21T05:59:59.879Z",
+  "builtAt": "2026-04-22T11:13:09.400Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -650,6 +650,27 @@
         "option",
         "react",
         "syn-option",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-pagination.json",
+      "id": "component:syn-pagination",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-pagination",
+      "search": [
+        "component:syn-pagination",
+        "syn-pagination",
+        "angular",
+        "component",
+        "pagination",
+        "react",
+        "syn-pagination",
         "vue"
       ]
     },

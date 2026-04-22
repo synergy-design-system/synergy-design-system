@@ -26,6 +26,8 @@ import type {
   SynLoadEvent,
   SynClampEvent,
   SynSelectEvent,
+  SynPaginationPageChangedEvent,
+  SynPaginationPageSizeChangedEvent,
   SynRepositionEvent,
   SynMoveEvent,
   SynCloseEvent,
@@ -58,6 +60,7 @@ import type {
   SynNavItem,
   SynOptgroup,
   SynOption,
+  SynPagination,
   SynPopup,
   SynPrioNav,
   SynProgressBar,
@@ -914,6 +917,37 @@ export type SynCustomElement<
  * @csspart prefix - The container that wraps the prefix.
  * @csspart suffix - The container that wraps the suffix.
  */ export type SynOptionJSXElement = SynCustomElement<SynOption, []>;
+/**
+ * @summary <syn-pagination /> provides page navigation, direct page input, and page-size selection for large data sets.
+ *
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-pagination--docs
+ * @status stable
+ * @since 3.12.0
+ *
+ * @event syn-pagination-page-changed - Emitted when the current page changes
+ * @event syn-pagination-page-size-changed - Emitted when the page size changes
+ *
+ * @csspart base - The component's base wrapper.
+ * @csspart divider - The divider element displayed at the top of the pagination component.
+ * @csspart page-size-select-wrapper - The wrapper element containing the page size select and page item summary.
+ * @csspart page-size-select - The page size select element.
+ * @csspart page-item-summary - The text element displaying the current page item range and total items.
+ * @csspart page-input-section - The section containing the page number input and total pages display.
+ * @csspart page-input - The page number input element.
+ * @csspart navigation - The pagination navigation element.
+ * @csspart navigation-action - The individual navigation action buttons (first, previous, next, last).
+ *
+ * @accessibility
+ * The entire component is wrapped in a semantic `<nav>` landmark with an `aria-label` for screen reader accessibility.
+ * Use the `aria-label` attribute to provide a unique, descriptive label when multiple pagination controls exist on the page.
+ * Example: `<syn-pagination aria-label="Search results pagination"></syn-pagination>`
+ */ export type SynPaginationJSXElement = SynCustomElement<
+  SynPagination,
+  [
+    ['syn-pagination-page-changed', SynPaginationPageChangedEvent],
+    ['syn-pagination-page-size-changed', SynPaginationPageSizeChangedEvent],
+  ]
+>;
 /**
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs
@@ -2230,6 +2264,31 @@ declare module 'react' {
        * @csspart prefix - The container that wraps the prefix.
        * @csspart suffix - The container that wraps the suffix.
        */ 'syn-option': SynOptionJSXElement;
+      /**
+       * @summary <syn-pagination /> provides page navigation, direct page input, and page-size selection for large data sets.
+       *
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-pagination--docs
+       * @status stable
+       * @since 3.12.0
+       *
+       * @event syn-pagination-page-changed - Emitted when the current page changes
+       * @event syn-pagination-page-size-changed - Emitted when the page size changes
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart divider - The divider element displayed at the top of the pagination component.
+       * @csspart page-size-select-wrapper - The wrapper element containing the page size select and page item summary.
+       * @csspart page-size-select - The page size select element.
+       * @csspart page-item-summary - The text element displaying the current page item range and total items.
+       * @csspart page-input-section - The section containing the page number input and total pages display.
+       * @csspart page-input - The page number input element.
+       * @csspart navigation - The pagination navigation element.
+       * @csspart navigation-action - The individual navigation action buttons (first, previous, next, last).
+       *
+       * @accessibility
+       * The entire component is wrapped in a semantic `<nav>` landmark with an `aria-label` for screen reader accessibility.
+       * Use the `aria-label` attribute to provide a unique, descriptive label when multiple pagination controls exist on the page.
+       * Example: `<syn-pagination aria-label="Search results pagination"></syn-pagination>`
+       */ 'syn-pagination': SynPaginationJSXElement;
       /**
        * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs

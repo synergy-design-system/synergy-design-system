@@ -6,7 +6,7 @@ import SynergyElement from '../../internal/synergy-element.js';
 import { HasSlotController } from '../../internal/slot.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './header.styles.js';
-import SynIcon from '../icon/icon.js';
+import SynIcon from '../icon/icon.component.js';
 import type SynSideNav from '../side-nav/side-nav.component.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import { watch } from '../../internal/watch.js';

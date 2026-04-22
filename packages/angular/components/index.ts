@@ -29,6 +29,7 @@ export { SynMenuLabelComponent } from '@synergy-design-system/angular/components
 export { SynNavItemComponent } from '@synergy-design-system/angular/components/nav-item';
 export { SynOptgroupComponent } from '@synergy-design-system/angular/components/optgroup';
 export { SynOptionComponent } from '@synergy-design-system/angular/components/option';
+export { SynPaginationComponent } from '@synergy-design-system/angular/components/pagination';
 export { SynPopupComponent } from '@synergy-design-system/angular/components/popup';
 export { SynPrioNavComponent } from '@synergy-design-system/angular/components/prio-nav';
 export { SynProgressBarComponent } from '@synergy-design-system/angular/components/progress-bar';

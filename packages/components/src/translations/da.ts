@@ -16,6 +16,14 @@ const translation: Translation = {
     if (num === 1) return '1 valgmulighed valgt';
     return `${num} valgmuligheder valgt`;
   },
+  paginationFirstPage: 'Første side',
+  paginationInputLabel: 'Vælg side',
+  paginationItemsPerPage: 'Elementer pr. side',
+  paginationItemSummary: (start, end, total) => `${start}-${end} af ${total} elementer`,
+  paginationLastPage: 'Sidste side',
+  paginationNextPage: 'Næste side',
+  paginationOfTotalPages: totalPages => `af ${totalPages}`,
+  paginationPreviousPage: 'Forrige side',
   progress: 'Fremskridt',
   remove: 'Fjern',
   scrollToEnd: 'Rul til slutningen',

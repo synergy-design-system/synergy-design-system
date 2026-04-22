@@ -1,0 +1,13 @@
+/* stylelint-disable plugin/no-unsupported-browser-features */
+.demo-tab-group {
+  height: 100%;
+
+  &::part(base) {
+    height: 100%;
+  }
+
+  &::part(nav) {
+    min-width: 20%;
+    overflow-y: auto;
+  }
+}

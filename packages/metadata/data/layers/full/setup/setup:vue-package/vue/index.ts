@@ -29,6 +29,7 @@ export { default as SynVueMenuLabel } from './components/SynVueMenuLabel.vue';
 export { default as SynVueNavItem } from './components/SynVueNavItem.vue';
 export { default as SynVueOptgroup } from './components/SynVueOptgroup.vue';
 export { default as SynVueOption } from './components/SynVueOption.vue';
+export { default as SynVuePagination } from './components/SynVuePagination.vue';
 export { default as SynVuePopup } from './components/SynVuePopup.vue';
 export { default as SynVuePrioNav } from './components/SynVuePrioNav.vue';
 export { default as SynVueProgressBar } from './components/SynVueProgressBar.vue';

@@ -19,6 +19,9 @@
     "tiktoken": "^1.0.22",
     "typescript": "^5.9.3"
   },
+  "optionalDependencies": {
+    "tiktoken": "^1.0.22"
+  },
   "exports": {
     ".": {
       "import": "./dist/server.js",

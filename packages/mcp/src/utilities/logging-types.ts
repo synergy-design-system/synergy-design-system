@@ -7,6 +7,7 @@ export type ToolLogEvent = {
   sessionId: string;
   success: boolean;
   timestamp: string;
+  tokenCount?: number;
   toolName: string;
   transport: LoggingTransport;
 };

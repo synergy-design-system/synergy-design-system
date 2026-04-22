@@ -1,4 +1,8 @@
 import { logToolCall } from './logger.js';
+import {
+  countTextTokens,
+  toTextPayload,
+} from './token-counter.js';
 
 /**
  * MetadataFile type representing a structured metadata file.
@@ -8,11 +12,13 @@ export type MetadataFile = {
   filename: string;
 };
 
+export type ToolResponseContentEntry = {
+  text: string;
+  type: 'text';
+};
+
 export type ToolResponse = {
-  content: {
-    text: string;
-    type: 'text';
-  }[]
+  content: ToolResponseContentEntry[]
 };
 
 export type WithErrorHandlerOptions = {
@@ -102,10 +108,15 @@ const withToolLoggingMiddleware = <TArgs extends Record<string, unknown>>(
   const startedAt = process.hrtime.bigint();
   let success = false;
   let errorMessage: string | undefined;
+  let tokenCount: number | undefined;
 
   try {
     const content = await next(args);
     success = true;
+
+    const textPayload = toTextPayload(toContentArray(content).content);
+    tokenCount = await countTextTokens(textPayload);
+
     return content;
   } catch (error) {
     errorMessage = error instanceof Error ? error.message : String(error);
@@ -130,6 +141,7 @@ const withToolLoggingMiddleware = <TArgs extends Record<string, unknown>>(
       errorMessage,
       parameters: loggableParameters,
       success,
+      tokenCount,
       toolName: context.toolName,
     });
   }

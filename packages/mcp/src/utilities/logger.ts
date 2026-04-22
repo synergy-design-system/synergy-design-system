@@ -22,6 +22,7 @@ type LogToolCallInput = {
   errorMessage?: string;
   parameters: Record<string, unknown>;
   success: boolean;
+  tokenCount?: number;
   toolName: string;
 };
 
@@ -38,6 +39,7 @@ export const logToolCall = async (input: LogToolCallInput): Promise<void> => {
     sessionId: context.sessionId,
     success: input.success,
     timestamp: new Date().toISOString(),
+    tokenCount: input.tokenCount,
     toolName: input.toolName,
     transport: context.transport,
   };

@@ -8,9 +8,10 @@ import { tmpdir } from 'node:os';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
-  type TiktokenEncoding,
-  get_encoding as getEncoding,
-} from 'tiktoken';
+  TOKEN_ENCODING,
+  countTextTokens,
+  toTextPayload,
+} from '../../src/utilities/token-counter.ts';
 import { createClientSession } from '../utilities/harness.ts';
 import { toToolResponse } from '../utilities/assertions.ts';
 import type { WatermarkScenario } from './scenarios.ts';
@@ -49,7 +50,6 @@ const currentDir = dirname(filename);
 const packageRoot = resolve(currentDir, '../..');
 
 const DEFAULT_BASELINE_PATH = resolve(packageRoot, 'test/watermarks/baseline.latest-release.json');
-const ENCODING: TiktokenEncoding = 'o200k_base';
 
 const parseArgs = (argv: string[]): CliOptions => {
   const baselineIndex = argv.indexOf('--baseline');
@@ -87,7 +87,6 @@ const createRuntimeConfig = async (): Promise<string> => {
 
 const executeScenario = async (
   scenario: WatermarkScenario,
-  encode: (value: string) => number,
   configPath: string,
 ): Promise<ScenarioResult> => {
   const session = await createClientSession({ configPath });
@@ -99,15 +98,17 @@ const executeScenario = async (
     });
 
     const typed = toToolResponse(response);
-    const textPayload = typed.content
-      .filter((entry) => entry.type === 'text')
-      .map((entry) => entry.text)
-      .join('\n\n');
+    const textPayload = toTextPayload(typed.content);
+    const tokenCount = await countTextTokens(textPayload);
+
+    if (tokenCount === undefined) {
+      throw new Error('Failed to count tokens for watermark run. Ensure optional dependency "tiktoken" is installed.');
+    }
 
     return {
       chars: textPayload.length,
       id: scenario.id,
-      tokens: encode(textPayload),
+      tokens: tokenCount,
       toolName: scenario.toolName,
     };
   } finally {
@@ -148,7 +149,7 @@ const exceedsBudget = (
 
 const writeBaseline = async (baselinePath: string, results: ScenarioResult[]) => {
   const payload: BaselineFile = {
-    encoding: ENCODING,
+    encoding: TOKEN_ENCODING,
     generatedAt: new Date().toISOString(),
     source: 'current-worktree',
     version: 1,
@@ -181,17 +182,15 @@ const main = async () => {
   const options = parseArgs(process.argv.slice(2));
   const baseline = await loadBaseline(options.baselinePath);
   const configPath = await createRuntimeConfig();
-  const encoding = getEncoding(ENCODING);
 
   try {
-    const encode = (value: string) => encoding.encode(value).length;
     const results: ScenarioResult[] = [];
     const failures: Array<{ id: string; reason: string }> = [];
 
     // eslint-disable-next-line no-restricted-syntax
     for (const scenario of WATERMARK_SCENARIOS) {
       // eslint-disable-next-line no-await-in-loop
-      const result = await executeScenario(scenario, encode, configPath);
+      const result = await executeScenario(scenario, configPath);
       const baselineTokens = baseline?.get(scenario.id);
       const deltaPct = baselineTokens && baselineTokens > 0
         ? ((result.tokens - baselineTokens) / baselineTokens) * 100
@@ -235,7 +234,6 @@ const main = async () => {
       process.exit(1);
     }
   } finally {
-    encoding.free();
     await rm(dirname(configPath), { force: true, recursive: true });
   }
 };

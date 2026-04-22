@@ -190,12 +190,51 @@ Each entry includes:
 - `sessionId` (`stdio` when no session id exists)
 - `transport` (`stdio` or `http`)
 - `success` and optional `errorMessage`
+- `tokenCount` (optional, populated when tiktoken is available)
+
+##### Optional Token Counting
+
+The MCP server can automatically count output tokens for each tool call when the optional `tiktoken` dependency is available.
+
+**Installation:**
+
+Token counting is an optional feature. To enable it, install tiktoken:
+
+```bash
+npm install tiktoken
+# or
+pnpm add tiktoken
+```
+
+The MCP package declares tiktoken as both a dev dependency (for build/test) and optional dependency (for runtime). When installed, token counts are automatically computed and logged for every successful tool call.
+
+**Behavior:**
+
+- If tiktoken is installed, `tokenCount` is populated with the output token count for the tool response using the `o200k_base` encoding.
+- If tiktoken is not available, `tokenCount` will be omitted from log entries.
+- Token counting failure does not fail the tool call; it only results in `tokenCount` being absent from the log entry.
+
+**Example log entry with tokenCount:**
+
+```json
+{
+  "durationMs": 187.69,
+  "parameters": {},
+  "sessionId": "stdio",
+  "success": true,
+  "timestamp": "2026-04-22T09:21:47.533Z",
+  "tokenCount": 421,
+  "toolName": "asset-list",
+  "transport": "stdio"
+}
+```
 
 Notes:
 
 - Logging is disabled by default.
 - Use `--log <path>` or set `logging.localFile.path` in config to enable.
 - `--log false` and `--log null` explicitly disable local file logging.
+- Token counting is always optional and non-blocking; the server runs fine without it.
 
 #### HTTP Server Endpoint
 
@@ -721,6 +760,26 @@ Recommended workflow:
 6. Run `pnpm lint` before shipping changes.
 
 If the MCP server appears to be missing data, check the state of `@synergy-design-system/metadata` first. This package reads runtime content from the metadata package and does not generate component, token, style, or migration data itself.
+
+### Setting up the MCP Inspector for local debugging
+
+You may start the [mcp inspector](https://github.com/modelcontextprotocol/inspector) by issuing the command `pnpm debug`. This will automatically install the MCP inspector and launch it once downloaded. You can use the following configuration for the available transports:
+
+#### STDIO transport
+
+To test the STDIO transport, use the following values:
+
+1. **Transport Type**: `STDIO`
+2. **Command**: `node`
+3. **Arguments**: PATH_TO_MCP_DOWNLOAD/dist/bin/start.js
+
+#### HTTP transport
+
+To test the http transport, use the following values:
+
+1. Start the http mcp server (`node PATH_TO_MCP_DOWNLOAD/dist/bin/start.js --interface http`)
+2. **Transport Type**: `Streamable HTTP`
+3. **URL**: `http://localhost:9119/mcp`
 
 ### Architecture
 

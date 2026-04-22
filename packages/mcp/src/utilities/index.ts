@@ -7,6 +7,7 @@ export * from './logging-types.js';
 export * from './local-file-logger.js';
 export * from './migration.js';
 export * from './metadata.js';
+export * from './token-counter.js';
 export * from './rules.js';
 export * from './server.js';
 export * from './cli.js';

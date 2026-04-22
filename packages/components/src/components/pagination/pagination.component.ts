@@ -140,7 +140,7 @@ export default class SynPagination extends SynergyElement {
   /**
    * An accessible label for the navigation landmark. Customize for multiple paginations on a page.
    */
-  @property({ attribute: 'aria-label' }) navigationLabel = 'Pagination';
+  @property({ attribute: 'aria-label' }) ariaLabel = 'Pagination';
 
   private pageChangedViaUserInput(e: SynInputEvent) {
     const newPage = (e.target as SynInput).valueAsNumber;
@@ -267,6 +267,23 @@ export default class SynPagination extends SynergyElement {
 
     this.sanitizeInvalidPropertyValues(changed);
 
+    const previousPageSizeOptions = changed.get('pageSizeOptions');
+    const hasPreviousPageSizeOptions = Array.isArray(previousPageSizeOptions);
+
+    if (hasPreviousPageSizeOptions && !this.pageSizeOptions.includes(this.pageSize)) {
+      const nextPageSize = this.pageSizeOptions[0];
+      const oldStartIndex = (this.currentPage - 1) * this.pageSize + 1;
+      const nextTotalPages = getTotalPages(nextPageSize, this.totalItems);
+
+      const nextPage = clampPage(
+        Math.floor((oldStartIndex - 1) / nextPageSize) + 1,
+        nextTotalPages,
+      );
+
+      this.pageSize = nextPageSize;
+      this.currentPage = nextPage;
+    }
+
     if (changed.has('currentPage') || changed.has('pageSize') || changed.has('totalItems')) {
       // If the current page exceeds the total number of pages based on the new page size or total items,
       // we need to adjust it to ensure it remains within valid bounds.
@@ -322,7 +339,7 @@ export default class SynPagination extends SynergyElement {
     return html`
       ${this.divider ? html`<syn-divider part="divider"></syn-divider>` : nothing}
       <nav
-        aria-label=${this.navigationLabel}
+        aria-label=${this.ariaLabel}
         class="pagination"
         part="base"
         ${ref(this.baseRef)}

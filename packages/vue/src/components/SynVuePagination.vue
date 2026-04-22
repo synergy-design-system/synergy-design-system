@@ -100,7 +100,7 @@ The default value is "full".
    * An accessible label for the navigation landmark.
    * Customize for multiple paginations on a page.
    */
-  navigationLabel?: SynPagination['navigationLabel'];
+  ariaLabel?: SynPagination['ariaLabel'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

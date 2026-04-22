@@ -302,6 +302,25 @@ describe('<syn-pagination>', () => {
       expect(pagination.currentPage).to.equal(2);
     });
 
+    it('should auto-update page size and current page when page size options change', async () => {
+      const pagination = await fixture<SynPagination>(html`
+        <syn-pagination
+          current-page="3"
+          page-size="25"
+          .pageSizeOptions=${[10, 25, 50, 100]}
+          total-items="500"
+        ></syn-pagination>
+      `);
+
+      pagination.pageSizeOptions = [5, 10, 50, 100];
+      await pagination.updateComplete;
+
+      expect(pagination.pageSize).to.equal(5);
+      expect(pagination.currentPage).to.equal(11);
+      expect(getPageSizeSelect(pagination).value).to.equal('5');
+      expect(getPageInput(pagination).getAttribute('value')).to.equal('11');
+    });
+
     it('should recover from invalid numeric attributes set dynamically', async () => {
       const pagination = await fixture<SynPagination>(html`
         <syn-pagination current-page="2" page-size="20" total-items="100"></syn-pagination>

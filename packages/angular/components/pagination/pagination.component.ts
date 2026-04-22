@@ -177,13 +177,11 @@ The default value is "full".
    * Customize for multiple paginations on a page.
    */
   @Input()
-  set navigationLabel(v: SynPagination['navigationLabel']) {
-    this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.navigationLabel = v),
-    );
+  set ariaLabel(v: SynPagination['ariaLabel']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.ariaLabel = v));
   }
-  get navigationLabel(): SynPagination['navigationLabel'] {
-    return this.nativeElement.navigationLabel;
+  get ariaLabel(): SynPagination['ariaLabel'] {
+    return this.nativeElement.ariaLabel;
   }
 
   /**

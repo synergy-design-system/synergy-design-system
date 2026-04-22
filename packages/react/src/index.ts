@@ -29,6 +29,7 @@ export { SynMenuLabel } from './components/menu-label.js';
 export { SynNavItem } from './components/nav-item.js';
 export { SynOptgroup } from './components/optgroup.js';
 export { SynOption } from './components/option.js';
+export { SynPagination } from './components/pagination.js';
 export { SynPopup } from './components/popup.js';
 export { SynPrioNav } from './components/prio-nav.js';
 export { SynProgressBar } from './components/progress-bar.js';

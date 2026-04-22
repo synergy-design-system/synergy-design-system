@@ -17,6 +17,14 @@ export interface Translation {
   notification: string;
   numFilesSelected: (num: number, dir: boolean) => string;
   openMenu: string;
+  paginationFirstPage: string;
+  paginationInputLabel: string;
+  paginationItemsPerPage: string;
+  paginationItemSummary: (start: number, end: number, total: number) => string;
+  paginationLastPage: string;
+  paginationNextPage: string;
+  paginationOfTotalPages: (totalPages: number) => string;
+  paginationPreviousPage: string;
   rangeMax: string;
   rangeMin: string;
   sideNav: string;

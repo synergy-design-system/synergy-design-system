@@ -18,6 +18,8 @@ describe('GlobalSettings', () => {
     setGlobalDefaultSettings(INITIAL_DEFAULT_SETTINGS);
   });
 
+  // False positive safety check to ensure the settings are actually being reset between tests
+  // eslint-disable-next-line playwright/no-duplicate-hooks
   afterEach(() => {
     enableSettingEmitEvents(false);
   });

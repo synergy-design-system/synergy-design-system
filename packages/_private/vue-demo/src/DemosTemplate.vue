@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { SynVueTab, SynVueTabGroup, SynVueTabPanel } from '@synergy-design-system/vue';
+import { SynVueDivider, SynVueTab, SynVueTabGroup, SynVueTabPanel } from '@synergy-design-system/vue';
 import type { SynTabShowEvent } from '@synergy-design-system/components';
 import { type Component } from 'vue';
 
@@ -25,7 +25,12 @@ const showTab = (e: SynTabShowEvent) => {
     There are no demos available.
   </span>
 
-  <SynVueTabGroup @syn-tab-show="showTab" v-else>
+  <SynVueTabGroup
+    class="demo-tab-group"
+    @syn-tab-show="showTab"
+    placement="end"
+    v-else
+  >
     <template
       v-for="([name, Component]) in demos"
       :key="name"
@@ -43,6 +48,8 @@ const showTab = (e: SynTabShowEvent) => {
         :name="name as string"
       >
         <div :id="`tab-content-${name}`" style="display: 'contents';">
+          <h1 className="syn-heading--3x-large">{{name}}</h1>
+          <SynVueDivider />
           <component :is="Component" />
         </div>
       </SynVueTabPanel>

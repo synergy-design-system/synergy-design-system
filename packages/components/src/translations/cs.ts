@@ -17,6 +17,14 @@ const translation: Translation = {
     if (num >= 2 && num <= 4) return `Jsou vybrány ${num} možnosti`;
     return `Je vybráno ${num} možností`;
   },
+  paginationFirstPage: 'První stránka',
+  paginationInputLabel: 'Vybrat stránku',
+  paginationItemsPerPage: 'Položky na stránku',
+  paginationItemSummary: (start, end, total) => `${start}-${end} z ${total} položek`,
+  paginationLastPage: 'Poslední stránka',
+  paginationNextPage: 'Další stránka',
+  paginationOfTotalPages: totalPages => `z ${totalPages}`,
+  paginationPreviousPage: 'Předchozí stránka',
   progress: 'Průběh',
   remove: 'Vymazat',
   scrollToEnd: 'Přejít na konec',

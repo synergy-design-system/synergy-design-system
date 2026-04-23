@@ -39,4 +39,66 @@ describe('davinci-migration-list tool', () => {
     assert.ok(Array.isArray(components));
     assert.ok(components.length > 0);
   });
+
+  it('resolves alias "components" to "basic-elements" with identical results', async () => {
+    // Get list using alias "components"
+    const responseWithAlias = await session.client.callTool({
+      arguments: {
+        package: 'components',
+      },
+      name: 'davinci-migration-list',
+    });
+
+    // Get list using official name "basic-elements"
+    const responseWithOfficialName = await session.client.callTool({
+      arguments: {
+        package: 'basic-elements',
+      },
+      name: 'davinci-migration-list',
+    });
+
+    const typedResponseAlias = toToolResponse(responseWithAlias);
+    const typedResponseOfficial = toToolResponse(responseWithOfficialName);
+
+    const componentsAlias = parseJsonContent<string[]>(typedResponseAlias, 0);
+    const componentsOfficial = parseJsonContent<string[]>(typedResponseOfficial, 0);
+
+    // Both should return the same components
+    assert.deepEqual(
+      componentsAlias,
+      componentsOfficial,
+      'Both alias and official name should return identical component lists',
+    );
+  });
+
+  it('resolves alias "charts" to "dashboard-elements"', async () => {
+    // Get list using alias "charts"
+    const responseWithAlias = await session.client.callTool({
+      arguments: {
+        package: 'charts',
+      },
+      name: 'davinci-migration-list',
+    });
+
+    // Get list using official name "dashboard-elements"
+    const responseWithOfficialName = await session.client.callTool({
+      arguments: {
+        package: 'dashboard-elements',
+      },
+      name: 'davinci-migration-list',
+    });
+
+    const typedResponseAlias = toToolResponse(responseWithAlias);
+    const typedResponseOfficial = toToolResponse(responseWithOfficialName);
+
+    const chartsAlias = parseJsonContent<string[]>(typedResponseAlias, 0);
+    const chartsOfficial = parseJsonContent<string[]>(typedResponseOfficial, 0);
+
+    // Both should return the same results
+    assert.deepEqual(
+      chartsAlias,
+      chartsOfficial,
+      'Both "charts" alias and "dashboard-elements" should return identical results',
+    );
+  });
 });

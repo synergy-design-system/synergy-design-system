@@ -120,18 +120,18 @@ export const McpRuntimeConfigSchema = z.object({
     davinciMigrationInfo: z.object({
       /**
        * Default migration package when none is provided by the caller.
-       * @default 'components'
+       * @default 'basic-elements'
        */
-      package: z.enum(['components', 'charts']).default('components'),
-    }).default({ package: 'components' }),
+      package: z.enum(['basic-elements', 'dashboard-elements']).default('basic-elements'),
+    }).default({ package: 'basic-elements' }),
 
     davinciMigrationList: z.object({
       /**
        * Default migration package when none is provided by the caller.
-       * @default 'components'
+       * @default 'basic-elements'
        */
-      package: z.enum(['components', 'charts']).default('components'),
-    }).default({ package: 'components' }),
+      package: z.enum(['basic-elements', 'dashboard-elements']).default('basic-elements'),
+    }).default({ package: 'basic-elements' }),
 
     migrationInfo: z.object({
       /**
@@ -167,8 +167,8 @@ export const McpRuntimeConfigSchema = z.object({
   }).default({
     assetInfo: { iconset: 'current' },
     componentInfo: { framework: 'vanilla', layer: 'full' },
-    davinciMigrationInfo: { package: 'components' },
-    davinciMigrationList: { package: 'components' },
+    davinciMigrationInfo: { package: 'basic-elements' },
+    davinciMigrationList: { package: 'basic-elements' },
     migrationInfo: { synergyPackage: 'components' },
     migrationList: { synergyPackage: 'components' },
     setup: { includeLimitations: true },

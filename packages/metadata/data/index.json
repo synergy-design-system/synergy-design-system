@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-04-22T11:13:09.400Z",
+  "builtAt": "2026-04-23T09:40:59.418Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -860,23 +860,6 @@
         "react",
         "syn-range-tick",
         "vue"
-      ]
-    },
-    {
-      "corePath": "data/core/component/component:syn-resize-observer.json",
-      "id": "component:syn-resize-observer",
-      "kind": "component",
-      "layers": {
-        "full": 2,
-        "interface": 2
-      },
-      "name": "syn-resize-observer",
-      "search": [
-        "component:syn-resize-observer",
-        "syn-resize-observer",
-        "syn-resize-observer",
-        "resize-observer",
-        "component"
       ]
     },
     {

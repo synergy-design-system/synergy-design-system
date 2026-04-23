@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import {
   mkdir,
   mkdtemp,
@@ -656,7 +657,7 @@ describe('public metadata api', () => {
     const uppercaseDataResponse = await getDataForTemplate(shortName.toUpperCase(), { layer: 'examples' });
     expect(uppercaseDataResponse.errors).to.equal(undefined);
     expect(uppercaseDataResponse.data?.template).to.equal(firstTemplateEntity.id);
-    
+
     // Verify examples content is populated
     if (dataResponse.data?.examples && dataResponse.data.examples.length > 0) {
       expect(dataResponse.data.examples[0]).to.have.property('content').that.is.a('string');

@@ -613,10 +613,10 @@ const createComponentsSetupEntity = (
   };
 };
 
-const createMigrationsSetupEntity = (
+const createMigrationsSetupEntity = async (
   repoRoot: string,
   componentPackagePath: string,
-): CoreEntity => {
+): Promise<CoreEntity> => {
   const componentRoot = join(repoRoot, componentPackagePath);
 
   // Always include BREAKING_CHANGES.md from components
@@ -637,9 +637,18 @@ const createMigrationsSetupEntity = (
     sources.push(relative(repoRoot, join(docsMigrationRoot, guide)));
   }
 
-  // Include DaVinci migration guide from metadata external-data
-  const davinciMigrationPath = join(repoRoot, 'packages', 'metadata', 'external-data', 'davinci-migrations', 'components.md');
-  sources.push(relative(repoRoot, davinciMigrationPath));
+  // Include all DaVinci migration guides from metadata external-data
+  const davinciMigrationsRoot = join(repoRoot, 'packages', 'metadata', 'external-data', 'davinci-migrations');
+  try {
+    const davinciMigrationFiles = await readdir(davinciMigrationsRoot, { withFileTypes: true });
+    const migrationSources = davinciMigrationFiles
+      .filter((entry) => entry.isFile())
+      .map((entry) => relative(repoRoot, join(davinciMigrationsRoot, entry.name)))
+      .sort((a, b) => a.localeCompare(b));
+    sources.push(...migrationSources);
+  } catch {
+    // If directory is missing, keep migration setup entity with available sources.
+  }
 
   return {
     custom: {
@@ -685,7 +694,7 @@ export const enrich = async (
         const packageJson = JSON.parse(await readFile(packageJsonPath, 'utf8')) as FrameworkPackageJson;
         const packageInfo = toFrameworkPackageInfo(packageJson, '@synergy-design-system/components');
         setupEntities.push(createComponentsSetupEntity(repoRoot, packagePath, packageInfo));
-        setupEntities.push(createMigrationsSetupEntity(repoRoot, packagePath));
+        setupEntities.push(await createMigrationsSetupEntity(repoRoot, packagePath));
       } catch {
         // If we can't read package.json, skip setup entities
       }

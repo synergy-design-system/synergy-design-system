@@ -1,15 +1,45 @@
 import { getDataForSetup } from '@synergy-design-system/metadata';
 
-export const SUPPORTED_PACKAGES = ['components', 'charts'] as const;
+export const SUPPORTED_PACKAGES = ['basic-elements', 'dashboard-elements'] as const;
 export type DavinciMigrationPackage = (typeof SUPPORTED_PACKAGES)[number];
+
+/**
+ * Alias mapping for DaVinci migration packages.
+ * Maps user-friendly names to official package names.
+ */
+const davinciPackageAliases: Record<DavinciMigrationPackage, string[]> = {
+  'basic-elements': [
+    'basic-elements',
+    'components',
+  ],
+  'dashboard-elements': [
+    'dashboard-elements',
+    'charts',
+  ],
+};
+
+/**
+ * Resolves a package alias to its official DaVinci migration package name.
+ * @param alias The user-provided package alias or official name.
+ * @returns The resolved official package name.
+ * @throws Error if the alias is not recognized.
+ */
+export const resolveDavinciPackageAlias = (alias: string): DavinciMigrationPackage => {
+  const resolved = Object
+    .entries(davinciPackageAliases)
+    .find(([, aliases]) => aliases.includes(alias.toLowerCase()))?.[0] as DavinciMigrationPackage | undefined;
+
+  if (!resolved) {
+    const validOptions = Object.keys(davinciPackageAliases).join(', ');
+    throw new Error(`Unknown DaVinci package "${alias}". Valid options: ${validOptions}`);
+  }
+
+  return resolved;
+};
 
 const getGuidePathSuffix = (packageName: DavinciMigrationPackage) => `/davinci/${packageName}.md`;
 
 export const getMigrationGuideContent = async (packageName: DavinciMigrationPackage): Promise<string> => {
-  if (packageName !== 'components') {
-    throw new Error(`DaVinci migration package "${packageName}" is not available yet.`);
-  }
-
   const response = await getDataForSetup({
     package: 'migrations',
   });

@@ -155,6 +155,60 @@ const getStringArrayField = (value: unknown, key: string): string[] => {
   return field.filter((item): item is string => typeof item === 'string');
 };
 
+const toSourceFilePathFromDeclarationModule = (
+  componentsRoot: string,
+  declarationModulePath: string,
+): string => {
+  const normalizedModulePath = declarationModulePath.startsWith('/')
+    ? declarationModulePath.slice(1)
+    : declarationModulePath;
+
+  return join(
+    componentsRoot,
+    'src',
+    normalizedModulePath.replace(/\.js$/u, '.ts'),
+  );
+};
+
+const getDeclarationExportModules = (module: Module): string[] => {
+  const exportsList = Array.isArray(module.exports) ? module.exports : [];
+
+  return exportsList
+    .map((exportItem): string | undefined => {
+      if (!isObjectRecord(exportItem)) {
+        return undefined;
+      }
+
+      const { declaration } = exportItem;
+      if (!isObjectRecord(declaration)) {
+        return undefined;
+      }
+
+      return getStringField(declaration, 'module');
+    })
+    .filter((item): item is string => item !== undefined);
+};
+
+const hasExistingDeclarationExportSource = async (
+  module: Module,
+  componentsRoot: string,
+): Promise<boolean> => {
+  const declarationExportModules = getDeclarationExportModules(module);
+
+  for (const declarationModulePath of declarationExportModules) {
+    const sourcePath = toSourceFilePathFromDeclarationModule(componentsRoot, declarationModulePath);
+
+    try {
+      await access(sourcePath);
+      return true;
+    } catch {
+      // Keep checking other declaration exports for this module.
+    }
+  }
+
+  return false;
+};
+
 const toStatus = (
   value: string | undefined,
 ): 'stable' | 'beta' | 'experimental' | 'deprecated' => {
@@ -381,19 +435,29 @@ export const collect = async (
     const manifestRaw = await readFile(manifestPath, 'utf8');
     const manifest = JSON.parse(manifestRaw) as ComponentsManifest;
 
-    const componentDeclarations = (manifest.modules ?? [])
-      .flatMap((module) => {
-        const modulePath = module.path ?? '';
+    const declarationBatches = await Promise.all((manifest.modules ?? []).map(async (module) => {
+      // We only include modules that have at least one declaration export source that exists in the components source directory.
+      // This is needed because some Synergy Web Components are internal only (e.g. syn-resize-observer) and we don´t want them
+      // to bleed into the metadata if they are included in the manifest with a declaration export but without a source file.
+      const hasExistingExportSource = await hasExistingDeclarationExportSource(module, componentsRoot);
+      if (!hasExistingExportSource) {
+        return [];
+      }
 
-        return (module.declarations ?? [])
-          .filter(
-            (declaration): declaration is SynCustomElementDeclaration => isSynCustomElementDeclaration(declaration),
-          )
-          .map((declaration) => ({
-            declaration,
-            modulePath,
-          }));
-      })
+      const modulePath = module.path ?? '';
+
+      return (module.declarations ?? [])
+        .filter(
+          (declaration): declaration is SynCustomElementDeclaration => isSynCustomElementDeclaration(declaration),
+        )
+        .map((declaration) => ({
+          declaration,
+          modulePath,
+        }));
+    }));
+
+    const componentDeclarations = declarationBatches
+      .flat()
       .sort((a, b) => a.declaration.tagName.localeCompare(b.declaration.tagName));
 
     const entries = await Promise.all(componentDeclarations.map(async (item): Promise<ComponentRawEntry> => {

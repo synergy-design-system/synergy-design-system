@@ -1,11 +1,11 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
-  SUPPORTED_PACKAGES,
   createToolAnnotations,
   extractMigrationSection,
   getMigrationGuideContent,
   getRuntimeConfig,
+  resolveDavinciPackageAlias,
   toolHandler,
 } from '../utilities/index.js';
 
@@ -17,7 +17,7 @@ export const davinciMigrationInfoTool = (server: McpServer) => {
       description: 'Get information about the migration of a specific component from DaVinci to Synergy.',
       inputSchema: {
         component: z.string().startsWith('davinci-').describe('The name of the davinci component to get migration information for.'),
-        package: z.enum(SUPPORTED_PACKAGES).optional().describe('Migration package to inspect. Currently only "components" is available.'),
+        package: z.string().optional().describe('Migration package to inspect. Can be "basic-elements", "components", "dashboard-elements", or "charts".'),
       },
       title: 'DaVinci Migration Info',
     },
@@ -25,7 +25,8 @@ export const davinciMigrationInfoTool = (server: McpServer) => {
       component,
       package: packageName,
     }) => {
-      const resolvedPackage = packageName ?? getRuntimeConfig().tools.davinciMigrationInfo.package;
+      const packageInput = packageName ?? getRuntimeConfig().tools.davinciMigrationInfo.package;
+      const resolvedPackage = resolveDavinciPackageAlias(packageInput);
       const migrationGuide = await getMigrationGuideContent(resolvedPackage);
       const section = extractMigrationSection(migrationGuide, component);
 

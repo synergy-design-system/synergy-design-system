@@ -1,6 +1,6 @@
 # @synergy-design-system/mcp
 
-The `@synergy-design-system/mcp` package provides a Model Context Protocol (MCP) server for the Synergy Design System. It exposes Synergy components, setup guidance, tokens, styles, templates, icons, and migration content to AI assistants over stdio.
+The `@synergy-design-system/mcp` package provides a Model Context Protocol (MCP) server for the Synergy Design System. It exposes Synergy components, setup guidance, tokens, styles, templates, icons, and migration content to AI assistants over stdio or http.
 
 Data is provided via the low level `@synergy-design-system/metadata` package.
 

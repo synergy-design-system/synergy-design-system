@@ -168,6 +168,40 @@ describe('tool call logging (local file provider)', () => {
     assert.ok(event.durationMs >= 0);
   });
 
+  it('writes HTTP tool calls when logging is enabled through CLI --log', async () => {
+    const logDir = await mkdtemp(join(tmpdir(), 'synergy-mcp-http-cli-logs-'));
+    temporaryPaths.push(logDir);
+
+    const port = 9200 + Math.floor(Math.random() * 300);
+    const server = await startHttpServer({
+      logPath: logDir,
+      port,
+    });
+
+    try {
+      const url = new URL(`${server.protocol}://127.0.0.1:${server.port}/mcp`);
+      const clientSession = await createHttpMcpClient(url);
+      try {
+        const response = await clientSession.client.callTool({
+          arguments: {},
+          name: 'asset-list',
+        });
+        toToolResponse(response);
+      } finally {
+        await clientSession.close();
+      }
+    } finally {
+      await server.stop();
+    }
+
+    const entries = await readLoggedEvents(logDir);
+    const event = entries.find(entry => entry.toolName === 'asset-list' && entry.transport === 'http');
+
+    assert.ok(event);
+    assert.notEqual(event.sessionId, 'stdio');
+    assert.equal(event.success, true);
+  });
+
   it('does not write logs when local file logging is disabled', async () => {
     const baseDir = await mkdtemp(join(tmpdir(), 'synergy-mcp-disabled-'));
     const logDir = join(baseDir, 'logs');

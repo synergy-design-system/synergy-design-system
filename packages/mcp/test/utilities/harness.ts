@@ -80,6 +80,7 @@ export type HttpServerOptions = {
   port?: number;
   host?: string;
   configPath?: string;
+  logPath?: string;
   tlsKeyPath?: string;
   tlsCertPath?: string;
 };
@@ -94,6 +95,7 @@ export const startHttpServer = async (options: HttpServerOptions = {}): Promise<
     port = 9120,
     host = '127.0.0.1',
     configPath,
+    logPath,
     tlsKeyPath,
     tlsCertPath,
   } = options;
@@ -106,6 +108,7 @@ export const startHttpServer = async (options: HttpServerOptions = {}): Promise<
     '--port', String(port),
     '--host', host,
     ...(configPath ? ['--config', configPath] : []),
+    ...(logPath !== undefined ? ['--log', logPath] : []),
     ...(tlsKeyPath ? ['--tls-key', tlsKeyPath] : []),
     ...(tlsCertPath ? ['--tls-cert', tlsCertPath] : []),
   ];

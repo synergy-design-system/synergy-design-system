@@ -1,7 +1,11 @@
 #!/usr/bin/env node
 import { createServer } from '../server.js';
 import { createTransport } from '../transports/index.js';
-import { getRuntimeConfig, initializeRuntimeConfig } from '../utilities/config.js';
+import {
+  getRuntimeConfig,
+  initializeRuntimeConfig,
+  setRuntimeConfig,
+} from '../utilities/config.js';
 import {
   handleCommandLineArgs,
   initializeLogger,
@@ -57,6 +61,9 @@ try {
       compression: parsedArgs.compression,
     };
   }
+
+  // Persist the final resolved config (including CLI overrides) for middleware/tool runtime.
+  setRuntimeConfig(config);
 
   initializeLogger(config);
 

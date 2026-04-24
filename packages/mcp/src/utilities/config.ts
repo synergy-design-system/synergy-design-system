@@ -194,6 +194,16 @@ const DEFAULT_CONFIG: McpRuntimeConfig = McpRuntimeConfigSchema.parse({});
 let resolvedConfig: McpRuntimeConfig = DEFAULT_CONFIG;
 
 /**
+ * Replaces the in-memory runtime configuration.
+ * Useful when startup code applies CLI overrides after file/default resolution.
+ *
+ * @param config The fully resolved runtime configuration to use globally.
+ */
+export const setRuntimeConfig = (config: McpRuntimeConfig): void => {
+  resolvedConfig = config;
+};
+
+/**
  * Loads the runtime configuration from a JSON file at the given path, validates
  * it against the schema, and caches the result.  Each configured field is
  * deep-merged with built-in defaults so partial configs are always safe.

@@ -28,7 +28,7 @@ describe('tool contract', () => {
     const expected = [
       'asset-info',
       'asset-list',
-      'component-cluster-list',
+      'component-category-list',
       'component-info',
       'component-list',
       'davinci-migration-info',

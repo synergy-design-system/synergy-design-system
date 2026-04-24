@@ -39,11 +39,11 @@ describe('component-list tool', () => {
     assert.ok(componentNames.includes('syn-button'));
   });
 
-  it('can filter by cluster', async () => {
+  it('can filter by category', async () => {
     const clustersResponse = await session.client.callTool({
       arguments: {
       },
-      name: 'component-cluster-list',
+      name: 'component-category-list',
     });
 
     const typedClustersResponse = toToolResponse(clustersResponse);
@@ -74,7 +74,7 @@ describe('component-list tool', () => {
   it('returns available clusters when an unknown cluster is requested', async () => {
     const response = await session.client.callTool({
       arguments: {
-        cluster: 'components-by-tag/does-not-exist',
+        category: 'components-by-tag/does-not-exist',
       },
       name: 'component-list',
     });

@@ -14,7 +14,7 @@ import {
 
 let session: ClientSession;
 
-describe('component-cluster-list tool', () => {
+describe('component-category-list tool', () => {
   before(async () => {
     session = await createClientSession();
   });
@@ -23,25 +23,25 @@ describe('component-cluster-list tool', () => {
     await session.close();
   });
 
-  it('returns available component clusters', async () => {
+  it('returns available component categories', async () => {
     const response = await session.client.callTool({
       arguments: {},
-      name: 'component-cluster-list',
+      name: 'component-category-list',
     });
 
     const typedResponse = toToolResponse(response);
-    const clusters = parseJsonContent<Array<{
+    const categories = parseJsonContent<Array<{
       description?: string;
       id: string;
       name: string;
     }>>(typedResponse, typedResponse.content.length - 1);
 
-    assert.ok(Array.isArray(clusters));
-    assert.ok(clusters.length > 0);
-    assert.ok(typeof clusters[0]?.id === 'string');
-    assert.ok(typeof clusters[0]?.name === 'string');
-    if (clusters[0]?.description !== undefined) {
-      assert.ok(typeof clusters[0].description === 'string');
+    assert.ok(Array.isArray(categories));
+    assert.ok(categories.length > 0);
+    assert.ok(typeof categories[0]?.id === 'string');
+    assert.ok(typeof categories[0]?.name === 'string');
+    if (categories[0]?.description !== undefined) {
+      assert.ok(typeof categories[0].description === 'string');
     }
   });
 });

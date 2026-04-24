@@ -39,6 +39,9 @@ packages/docs/src/materialSymbolsMetadata.json
 # Metadata is generated and should not be formatted
 packages/metadata/data
 
+# Locally generated mcp logs
+packages/mcp/logs
+
 # Do not format tokens!
 packages/tokens/src/**/*.json
 

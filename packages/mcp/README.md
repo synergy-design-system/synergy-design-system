@@ -651,6 +651,12 @@ src/
 │   ├── clean.js         # Removes dist/ before builds
 │   └── start.ts         # CLI entry point for syn-mcp
 ├── server.ts            # MCP server creation and tool registration
+├── middleware/          # Tool execution middleware pipeline
+│   ├── compose.ts       # composeMiddlewares (reduceRight composition)
+│   ├── error-handler.ts # withErrorHandlingMiddleware
+│   ├── logging.ts       # withToolLoggingMiddleware
+│   ├── types.ts         # ToolMiddleware, ToolMiddlewareContext, RawToolHandler, WithErrorHandlerOptions
+│   └── index.ts         # Middleware module entrypoint
 ├── tools/               # MCP tool implementations
 │   ├── asset-info.ts
 │   ├── asset-list.ts
@@ -673,6 +679,8 @@ src/
 │   ├── http.ts
 │   ├── stdio.ts
 │   └── index.ts
+├── types/               # Shared type definitions
+│   └── tool-response.ts
 └── utilities/           # Runtime config, metadata adapters, and CLI helpers
   ├── cli.ts
   ├── config.ts
@@ -791,6 +799,36 @@ The MCP server is intentionally small:
 - Tool implementations in `src/tools/` call the public APIs of `@synergy-design-system/metadata` to retrieve data.
 - Utilities in `src/utilities/` handle runtime config, MCP response shaping, DaVinci migration extraction, and package migration document loading.
 - Markdown files in `rules/` provide assistant-facing response guidance for selected tools and frameworks.
+
+#### Middleware Pipeline
+
+Every tool call passes through a composed middleware stack defined in `src/middleware/`. Middlewares are applied with `composeMiddlewares` using `reduceRight`, meaning execution order is **left-to-right** (first entry in the array wraps outermost, last entry wraps closest to the handler).
+
+Current stack (in declaration order):
+
+1. `withErrorHandlingMiddleware` — outermost; catches any uncaught error and returns a structured error response.
+2. `withToolLoggingMiddleware` — inner; records duration, token count, and success/failure metadata. Exits early (skipping token counting) when logging is disabled via config.
+
+All middlewares share the `ToolMiddleware<TArgs>` type from `src/middleware/types.ts`:
+
+```typescript
+type ToolMiddleware<TArgs extends Record<string, unknown>> = (
+  next: RawToolHandler<TArgs>,
+  context: ToolMiddlewareContext,
+) => RawToolHandler<TArgs>;
+```
+
+The `ToolMiddlewareContext` carries the **full runtime config** (`McpRuntimeConfig`), so any middleware can read its own config key without additional plumbing:
+
+```typescript
+type ToolMiddlewareContext = {
+  config: McpRuntimeConfig; // e.g. context.config.logging, context.config.compression
+  options: WithErrorHandlerOptions;
+  toolName: string;
+};
+```
+
+To add a new middleware (e.g., compression), create `src/middleware/compression.ts`, export it from `src/middleware/index.ts`, and add it to the `middlewareStack` in `src/utilities/metadata.ts`.
 
 ### Data Sources
 

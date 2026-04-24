@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import type { ToolResponse } from '../../src/utilities/metadata.ts';
+import type { ToolResponse } from '../../src/types/tool-response.js';
 
 /**
  * Converts an unknown response to a typed ToolResponse.

@@ -2,7 +2,7 @@ import {
   type Tiktoken,
   type TiktokenEncoding,
 } from 'tiktoken';
-import type { ToolResponseContentEntry } from './metadata.js';
+import type { ToolResponseContentEntry } from '../types/tool-response.js';
 
 type TiktokenModule = typeof import('tiktoken');
 type TokenEncoder = Tiktoken;

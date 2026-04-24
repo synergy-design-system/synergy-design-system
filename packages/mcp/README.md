@@ -56,6 +56,7 @@ Available CLI flags:
 - `--log <value>`: Local tool-call log directory path, or `false` / `null` to disable
 - `--tls-key <path>`: Path to TLS private key file (enables HTTPS)
 - `--tls-cert <path>`: Path to TLS certificate file (enables HTTPS)
+- `--compression <none|toon>`: Response compression mode (default: `none`; experimental)
 
 ### VS Code Integration
 
@@ -73,6 +74,9 @@ To integrate with VS Code and AI assistants, add this configuration to your `set
     },
   },
 }
+
+# Enable experimental toon format compression for responses
+syn-mcp --compression toon
 ```
 
 ### Claude Desktop Integration
@@ -135,6 +139,11 @@ Example:
       "path": "./logs",
     },
   },
+
+  // Response compression mode (experimental!)
+  // "none" (default): No compression
+  // "toon": Encode structured data to compact toon text format
+  "compression": "none",
 
   // Default parameters for each endpoint can be overridden
   "tools": {
@@ -653,6 +662,7 @@ src/
 ├── server.ts            # MCP server creation and tool registration
 ├── middleware/          # Tool execution middleware pipeline
 │   ├── compose.ts       # composeMiddlewares (reduceRight composition)
+@@│   ├── compression.ts   # withCompressionMiddleware (experimental)
 │   ├── error-handler.ts # withErrorHandlingMiddleware
 │   ├── logging.ts       # withToolLoggingMiddleware
 │   ├── types.ts         # ToolMiddleware, ToolMiddlewareContext, RawToolHandler, WithErrorHandlerOptions
@@ -807,7 +817,10 @@ Every tool call passes through a composed middleware stack defined in `src/middl
 Current stack (in declaration order):
 
 1. `withErrorHandlingMiddleware` — outermost; catches any uncaught error and returns a structured error response.
-2. `withToolLoggingMiddleware` — inner; records duration, token count, and success/failure metadata. Exits early (skipping token counting) when logging is disabled via config.
+2. `withToolLoggingMiddleware` — records duration, token count, and success/failure metadata. Exits early (skipping token counting) when logging is disabled via config.
+3. `withCompressionMiddleware` — innermost; encodes structured data to toon text format when compression is `toon`. Disabled by default.
+
+**Note:** Compression runs before logging so token counts reflect the compressed payload size.
 
 All middlewares share the `ToolMiddleware<TArgs>` type from `src/middleware/types.ts`:
 
@@ -829,6 +842,34 @@ type ToolMiddlewareContext = {
 ```
 
 To add a new middleware (e.g., compression), create `src/middleware/compression.ts`, export it from `src/middleware/index.ts`, and add it to the `middlewareStack` in `src/utilities/metadata.ts`.
+
+#### Response Compression (Experimental)
+
+The MCP server can compress tool response payloads using the optional `@toon-format/toon` library. Compression encodes structured data into a compact text format while leaving string entries unchanged.
+
+**Installation:**
+
+```bash
+npm install @toon-format/toon
+```
+
+**Usage:**
+
+```bash
+syn-mcp --compression toon
+```
+
+**Behavior:**
+
+- `compression: 'none'` (default): No compression
+- `compression: 'toon'`: Non-string entries encoded to toon format; strings pass through unchanged
+- If toon library not installed: gracefully disabled (non-fatal)
+- Token counts reflect compressed payload size when logging enabled
+
+**Notes:**
+
+- Experimental feature; may be subject to changes
+- Disabled by default; explicitly enable via `--compression toon`
 
 ### Data Sources
 

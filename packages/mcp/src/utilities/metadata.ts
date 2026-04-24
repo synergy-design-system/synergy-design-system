@@ -3,6 +3,7 @@ import {
   type ToolMiddleware,
   type WithErrorHandlerOptions,
   composeMiddlewares,
+  withCompressionMiddleware,
   withErrorHandlingMiddleware,
   withToolLoggingMiddleware,
 } from '../middleware/index.js';
@@ -48,9 +49,12 @@ export const toolHandler = <TArgs extends Record<string, unknown>>(
   const middlewareStack: ToolMiddleware<Record<string, unknown>>[] = [
     withErrorHandlingMiddleware,
     withToolLoggingMiddleware,
+    withCompressionMiddleware,
   ];
 
   // Middlewares treat args opaquely as Record<string, unknown>; cast at the boundary.
+  // Execution order (via reduceRight composition): error → logging → compression → handler
+  // This ensures logging observes the compressed payload returned by compression middleware.
   const rawHandler = composeMiddlewares(
     async (rawArgs) => handler(rawArgs as TArgs),
     middlewareStack,

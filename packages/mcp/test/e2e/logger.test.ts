@@ -21,6 +21,10 @@ import {
   startHttpServer,
   toToolResponse,
 } from '../utilities/index.ts';
+import {
+  countTextTokens,
+  toTextPayload,
+} from '../../src/utilities/token-counter.ts';
 
 type LoggedEvent = {
   durationMs: number;
@@ -28,6 +32,7 @@ type LoggedEvent = {
   sessionId: string;
   success: boolean;
   timestamp: string;
+  tokenCount?: number;
   toolName: string;
   transport: 'http' | 'stdio';
 };
@@ -189,5 +194,44 @@ describe('tool call logging (local file provider)', () => {
     }
 
     await assert.rejects(async () => access(logDir));
+  });
+
+  it('logs token counts for the compressed payload when compression is enabled', async () => {
+    const logDir = await mkdtemp(join(tmpdir(), 'synergy-mcp-compression-logs-'));
+    temporaryPaths.push(logDir);
+
+    const configPath = await writeTempConfig({
+      compression: 'toon',
+      includeAiRules: false,
+      logging: {
+        localFile: {
+          path: logDir,
+        },
+      },
+    });
+    temporaryPaths.push(configPath);
+
+    const session = await createClientSession({ configPath });
+    let responsePayload = '';
+
+    try {
+      const response = await session.client.callTool({
+        arguments: {},
+        name: 'asset-list',
+      });
+
+      const toolResponse = toToolResponse(response);
+      responsePayload = toTextPayload(toolResponse.content);
+    } finally {
+      await session.close();
+    }
+
+    const expectedTokenCount = await countTextTokens(responsePayload);
+    const entries = await readLoggedEvents(logDir);
+    const event = entries.find(entry => entry.toolName === 'asset-list');
+
+    assert.ok(event);
+    assert.equal(event.success, true);
+    assert.equal(event.tokenCount, expectedTokenCount);
   });
 });

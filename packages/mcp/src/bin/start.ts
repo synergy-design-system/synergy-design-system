@@ -51,6 +51,13 @@ try {
     };
   }
 
+  if (parsedArgs.compression !== undefined) {
+    config = {
+      ...config,
+      compression: parsedArgs.compression,
+    };
+  }
+
   initializeLogger(config);
 
   const transport = await createTransport(createServer, config);

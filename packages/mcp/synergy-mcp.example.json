@@ -3,6 +3,7 @@
   "port": 9119,
   "host": "127.0.0.1",
   "includeAiRules": true,
+  "compression": "none",
   "logging": {
     "localFile": {
       "path": "./logs"

@@ -22,6 +22,7 @@ export const getVersion = () => {
  */
 export interface ParsedArgs {
   action: 'version' | 'help' | 'continue';
+  compression?: 'none' | 'toon';
   configPath?: string;
   host?: string;
   interface?: 'stdio' | 'http';
@@ -103,6 +104,16 @@ export const parseCommandLineArgs = (args: string[] = process.argv.slice(2)): Pa
     result.tlsCertPath = args[tlsCertIndex + 1];
   }
 
+  const compressionIndex = args.indexOf('--compression');
+  if (compressionIndex >= 0 && compressionIndex + 1 < args.length) {
+    const value = args[compressionIndex + 1];
+    if (value === 'none' || value === 'toon') {
+      result.compression = value;
+    } else {
+      throw new Error(`Invalid --compression value: "${value}". Must be "none" or "toon".`);
+    }
+  }
+
   return result;
 };
 
@@ -140,6 +151,7 @@ OPTIONS:
     --log <value>           Tool-call logs directory path, or "false"/"null" to disable
     --tls-key <path>        Path to TLS private key file (enables HTTPS)
     --tls-cert <path>       Path to TLS certificate file (enables HTTPS)
+    --compression <mode>    Response compression: none (default) or toon
 
 EXAMPLES:
     syn-mcp                              # Start the MCP server via stdio (default)

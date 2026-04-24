@@ -7,6 +7,14 @@ import { z } from 'zod';
  */
 export const McpRuntimeConfigSchema = z.object({
   /**
+   * Compression mode for tool response payloads.
+   * 'none': No compression (default)
+   * 'toon': Use toon format encoding for structured data
+   * @default 'none'
+   */
+  compression: z.enum(['none', 'toon']).default('none'),
+
+  /**
    * HTTP server host/interface when interface is 'http'.
    * Use 127.0.0.1 for local-only access or 0.0.0.0 to listen on all IPv4 interfaces.
    * @default '127.0.0.1'

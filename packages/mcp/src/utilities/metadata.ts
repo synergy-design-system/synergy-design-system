@@ -21,7 +21,7 @@ export type ToolResponse = {
   content: ToolResponseContentEntry[]
 };
 
-export type WithErrorHandlerOptions = {
+type WithErrorHandlerOptions = {
   context?: string;
   onError?: (error: unknown, context?: string) => unknown[] | Promise<unknown[]>;
 };
@@ -34,7 +34,7 @@ type RawToolHandler<TArgs extends Record<string, unknown>> = (args: TArgs) => Pr
  * @param data The original data to convert into a content array. Each entry will be converted to a string if it is not already a string.
  * @returns Final content array
  */
-export const toContentArray = (data: unknown[]): ToolResponse => {
+const toContentArray = (data: unknown[]): ToolResponse => {
   // First, we want to make sure that all entries in the array are strings, as the content array expects text content.
   const content = data
     .filter(Boolean)
@@ -86,11 +86,6 @@ export const withErrorHandler = <TArgs extends Record<string, unknown>>(
   }
 };
 
-type WithToolCallLoggingInput = {
-  parameters?: Record<string, unknown>;
-  toolName: string;
-};
-
 type ToolMiddlewareContext = {
   options: WithErrorHandlerOptions;
   toolName: string;
@@ -114,6 +109,8 @@ const withToolLoggingMiddleware = <TArgs extends Record<string, unknown>>(
     const content = await next(args);
     success = true;
 
+    // Normalize to ToolResponse content before token counting so metrics match the final response shape.
+    // This keeps logging robust even if middleware order changes later.
     const textPayload = toTextPayload(toContentArray(content).content);
     tokenCount = await countTextTokens(textPayload);
 
@@ -158,32 +155,6 @@ const composeMiddlewares = <TArgs extends Record<string, unknown>>(
   context: ToolMiddlewareContext,
 ): RawToolHandler<TArgs> => middlewares
   .reduceRight((next, middleware) => middleware(next, context), handler);
-
-/**
- * Wraps tool execution with unified error handling plus structured logging.
- * Use this wrapper in tool handlers so all tool calls emit consistent logs.
- */
-export const withToolCallLogging = async (
-  input: WithToolCallLoggingInput,
-  fn: () => Promise<unknown[]>,
-  options: WithErrorHandlerOptions = {},
-): Promise<ToolResponse> => {
-  const middlewareStack: ToolMiddleware<Record<string, unknown>>[] = [
-    withErrorHandlingMiddleware,
-    withToolLoggingMiddleware,
-  ];
-
-  const rawHandler = composeMiddlewares(
-    async () => fn(),
-    middlewareStack,
-    {
-      options,
-      toolName: input.toolName,
-    },
-  );
-
-  return toContentArray(await rawHandler(input.parameters ?? {}));
-};
 
 /**
  * Creates a transparent tool handler that keeps tool bodies focused on

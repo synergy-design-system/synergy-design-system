@@ -102,7 +102,7 @@ export const assetInfoTool = (server: McpServer) => {
       // Final stripped down version of the icons to return, we only want to return the name, categories and variant for simplicity
       const icons = newAvailableIcons.data.map(icon => ({
         categories: icon.categories.length > 0 ? icon.categories : ['uncategorized'],
-        iconName: icon.iconName,
+        icon: icon.iconName,
         variant: icon.variant,
       }));
 
@@ -113,9 +113,9 @@ export const assetInfoTool = (server: McpServer) => {
       const finalIcons = Object.fromEntries(
         Object.entries(iconsByCategory).map(([category, iconsInCategory]) => [
           category,
-          iconsInCategory?.map(icon => ({
-            iconName: icon.iconName,
-            variant: icon.variant,
+          iconsInCategory?.map(({ icon, variant }) => ({
+            icon,
+            variant,
           })),
         ]),
       );

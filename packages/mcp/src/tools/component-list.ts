@@ -22,34 +22,34 @@ export const componentListTool = (server: McpServer) => {
       annotations: createToolAnnotations(),
       description: 'Outputs a list of all available components in the Synergy Design System',
       inputSchema: {
-        category: z.string().optional().describe('Optional component cluster id to filter by, e.g. "components-by-tag/structure".'),
+        cluster: z.string().optional().describe('Optional component cluster id to filter by, e.g. "components-by-tag/structure".'),
       },
       title: 'Component list',
     },
     toolHandler('component-list', async ({
-      category,
+      cluster,
     }) => {
       const aiRules = await getToolRule('component-list');
 
       const clusters = await listComponentClusters();
       const clusterIds = clusters.data.map((entry) => entry.id);
 
-      if (category) {
-        const requestedCluster = category.trim().toLowerCase();
+      if (cluster) {
+        const requestedCluster = cluster.trim().toLowerCase();
         const clusterExists = clusterIds.some((id) => id.toLowerCase() === requestedCluster);
         if (!clusterExists) {
           return [
             aiRules,
             {
               availableClusters: clusterIds,
-              error: `Unknown cluster '${category}'.`,
+              error: `Unknown cluster '${cluster}'.`,
             },
           ];
         }
       }
 
       const components = await listComponents({
-        cluster: category,
+        cluster,
         includeLayerRefs: false,
         includeSources: false,
       });

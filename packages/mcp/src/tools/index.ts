@@ -1,6 +1,6 @@
 export * from './asset-info.js';
 export * from './asset-list.js';
-export * from './component-category-list.js';
+export * from './component-cluster-list.js';
 export * from './component-info.js';
 export * from './component-list.js';
 export * from './davinci-migration-info.js';

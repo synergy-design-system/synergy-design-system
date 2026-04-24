@@ -299,6 +299,104 @@ This lets you change per-tool defaults without modifying the MCP server code.
 - **AI response rules**: Optionally prepends package-local guidance files from `rules/` to selected tool responses.
 - **MCP stdio transport**: Ready for editor, assistant, and CLI integrations.
 
+## Available Resources
+
+The MCP server currently registers 5 resources. Resources expose static, read-only data that does not change during server runtime. Clients that support MCP resources can read them directly without calling a tool.
+
+Resource identifier reference (exact values used by the server):
+
+- `synergy://components/list` → name: `component-list`
+- `synergy://assets/list` → name: `asset-list`
+- `synergy://component-clusters/list` → name: `component-clusters-list`
+- `synergy://styles/list` → name: `styles-list`
+- `synergy://templates/list` → name: `templates-list`
+
+### 1. `synergy://components/list`
+
+**Name:** `component-list`
+
+**MIME type:** `application/json`
+
+**Description:** A sorted JSON array of all available component names in the Synergy Design System.
+
+**Example:**
+
+```json
+["syn-button", "syn-checkbox", "syn-dialog", ...]
+```
+
+### 2. `synergy://assets/list`
+
+**Name:** `asset-list`
+
+**MIME type:** `application/json`
+
+**Description:** All available icon sets in the Synergy Design System, grouped by theme. Each entry includes `id`, `name`, `since`, `theme`, and `iconCount`.
+
+**Example:**
+
+```json
+{
+  "default": [
+    {
+      "iconCount": 512,
+      "id": "current",
+      "name": "Current",
+      "since": "1.0.0",
+      "theme": "default"
+    }
+  ]
+}
+```
+
+### 3. `synergy://component-clusters/list`
+
+**Name:** `component-clusters-list`
+
+**MIME type:** `application/json`
+
+**Description:** All available component clusters in the Synergy Design System. Each entry includes `id`, `name`, and `description`.
+
+**Example:**
+
+```json
+[
+  {
+    "id": "components-by-tag/structure",
+    "name": "Structure",
+    "description": "Layout and structure components"
+  }
+]
+```
+
+### 4. `synergy://styles/list`
+
+**Name:** `styles-list`
+
+**MIME type:** `application/json`
+
+**Description:** A sorted JSON array of all available style names in the Synergy Design System.
+
+**Example:**
+
+```json
+["animation", "breakpoints", "spacing", ...]
+```
+
+### 5. `synergy://templates/list`
+
+**Name:** `templates-list`
+
+**MIME type:** `application/json`
+
+**Description:** A sorted JSON array of all available template names in the Synergy Design System.
+
+**Example:**
+
+```json
+["app-shell", "dashboard", "form", ...]
+```
+
 ## Available Tools
 
 The MCP server currently registers 16 tools.
@@ -321,6 +419,8 @@ The MCP server currently registers 16 tools.
 ### 2. `component-cluster-list`
 
 **Description:** Outputs all available component clusters in the Synergy Design System.
+
+**Note:** The corresponding MCP resource uses the pluralized name `component-clusters-list` at URI `synergy://component-clusters/list`.
 
 **Parameters:** None
 
@@ -659,14 +759,21 @@ src/
 ├── bin/
 │   ├── clean.js         # Removes dist/ before builds
 │   └── start.ts         # CLI entry point for syn-mcp
-├── server.ts            # MCP server creation and tool registration
+├── server.ts            # MCP server creation, tool and resource registration
 ├── middleware/          # Tool execution middleware pipeline
 │   ├── compose.ts       # composeMiddlewares (reduceRight composition)
-@@│   ├── compression.ts   # withCompressionMiddleware (experimental)
+│   ├── compression.ts   # withCompressionMiddleware (experimental)
 │   ├── error-handler.ts # withErrorHandlingMiddleware
 │   ├── logging.ts       # withToolLoggingMiddleware
 │   ├── types.ts         # ToolMiddleware, ToolMiddlewareContext, RawToolHandler, WithErrorHandlerOptions
 │   └── index.ts         # Middleware module entrypoint
+├── resources/           # MCP resource implementations (static, read-only data)
+│   ├── component-list.ts
+│   ├── asset-list.ts
+│   ├── component-cluster-list.ts
+│   ├── styles-list.ts
+│   ├── templates-list.ts
+│   └── index.ts
 ├── tools/               # MCP tool implementations
 │   ├── asset-info.ts
 │   ├── asset-list.ts
@@ -805,8 +912,9 @@ The MCP server is intentionally small:
 
 - `src/bin/start.ts` parses CLI arguments, loads optional runtime config, resolves overrides, and starts the selected transport.
 - `src/transports/` contains the transport factory and runtime implementations for stdio and HTTP/HTTPS.
-- `src/server.ts` creates the `McpServer` instance and registers all exported tools from `src/tools/index.ts`.
+- `src/server.ts` creates the `McpServer` instance and registers all exported tools from `src/tools/index.ts` and all exported resources from `src/resources/index.ts`.
 - Tool implementations in `src/tools/` call the public APIs of `@synergy-design-system/metadata` to retrieve data.
+- Resource implementations in `src/resources/` expose static, read-only data that does not change during server runtime. Resources bypass the tool middleware pipeline entirely — no compression, logging, or error wrapping is applied.
 - Utilities in `src/utilities/` handle runtime config, MCP response shaping, DaVinci migration extraction, and package migration document loading.
 - Markdown files in `rules/` provide assistant-facing response guidance for selected tools and frameworks.
 
@@ -880,6 +988,52 @@ Runtime data is resolved from `@synergy-design-system/metadata`:
 - DaVinci migrations are extracted from the setup content exposed by the metadata package.
 - Synergy package migration docs are resolved from metadata store layer files.
 - Tokens, styles, templates, and assets are all read from metadata package APIs at request time.
+
+### Adding New Resources
+
+To add a new resource:
+
+1. Create a file in `src/resources/`.
+2. Register the resource with `server.registerResource(...)` using a `synergy://` URI.
+3. Export it from `src/resources/index.ts`.
+4. Update this README so the public resource inventory stays aligned with the code.
+
+Example:
+
+```typescript
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { listThings } from "@synergy-design-system/metadata";
+
+const RESOURCE_URI = "synergy://things/list";
+
+export const thingsListResource = (server: McpServer) => {
+  server.registerResource(
+    "things-list",
+    RESOURCE_URI,
+    {
+      description:
+        "A list of all available things in the Synergy Design System.",
+      mimeType: "application/json",
+      title: "Things list",
+    },
+    async _uri => {
+      const things = await listThings();
+      const names = things.data.map(t => t.name).toSorted();
+      return {
+        contents: [
+          {
+            mimeType: "application/json",
+            text: JSON.stringify(names, null, 2),
+            uri: RESOURCE_URI,
+          },
+        ],
+      };
+    },
+  );
+};
+```
+
+**Note:** Resource callbacks receive the request URI and return a `ReadResourceResult` directly. They do **not** go through the tool middleware pipeline (no compression, logging, or error wrapping).
 
 ### Adding New Tools
 

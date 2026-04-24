@@ -43,7 +43,7 @@ describe('component-list tool', () => {
     const clustersResponse = await session.client.callTool({
       arguments: {
       },
-      name: 'component-category-list',
+      name: 'component-cluster-list',
     });
 
     const typedClustersResponse = toToolResponse(clustersResponse);
@@ -74,7 +74,7 @@ describe('component-list tool', () => {
   it('returns available clusters when an unknown cluster is requested', async () => {
     const response = await session.client.callTool({
       arguments: {
-        category: 'components-by-tag/does-not-exist',
+        cluster: 'components-by-tag/does-not-exist',
       },
       name: 'component-list',
     });

@@ -1,0 +1,166 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/icons"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynIconComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-icon",
+        "sourcePath": "packages/angular/components/icon/icon.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynIcon",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs",
+          "events": [
+            {
+              "name": "syn-load",
+              "type": "SynLoadEvent"
+            },
+            {
+              "name": "syn-error",
+              "type": "SynErrorEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynIconJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynIcon",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/icon.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueIcon",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueIcon.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "1616-1512",
+      "stories": [],
+      "storySourcePath": "components.icon",
+      "storyTags": [
+        "Icons"
+      ]
+    },
+    "sourceModulePath": "components/icon/icon.js",
+    "summary": "Icons are symbols that can be used to represent various options within an application."
+  },
+  "id": "component:syn-icon",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-icon.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/angular/icon.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/components/icon.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/components/icon.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/components/icon.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/components/icon.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/components/library.default.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/components/library.migration.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/components/library.system.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/components/library.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/components/sick2018-system-icons.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/components/sick2025-system-icons.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/react/icon.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/vue/SynVueIcon.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon/react/SynIconJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-icon.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-icon.md"
+      }
+    ]
+  },
+  "name": "syn-icon",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/icon/icon.component.ts",
+    "packages/components/src/components/icon/icon.component.ts",
+    "packages/components/src/components/icon/icon.custom.styles.ts",
+    "packages/components/src/components/icon/icon.styles.ts",
+    "packages/components/src/components/icon/icon.ts",
+    "packages/components/src/components/icon/library.default.ts",
+    "packages/components/src/components/icon/library.migration.ts",
+    "packages/components/src/components/icon/library.system.ts",
+    "packages/components/src/components/icon/library.ts",
+    "packages/components/src/components/icon/sick2018-system-icons.ts",
+    "packages/components/src/components/icon/sick2025-system-icons.ts",
+    "packages/react/src/components/icon.ts",
+    "packages/vue/src/components/SynVueIcon.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "icon",
+    "react",
+    "syn-icon",
+    "vue"
+  ]
+}

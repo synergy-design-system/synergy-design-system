@@ -1,0 +1,50 @@
+{
+  "custom": {
+    "framework": "vue",
+    "packageName": "@synergy-design-system/vue",
+    "packageVersion": "3.12.0"
+  },
+  "id": "setup:vue-package",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:vue-package/vue/README.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:vue-package/vue/CHANGELOG.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:vue-package/vue/LIMITATIONS.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:vue-package/vue/package.json"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:vue-package/vue/index.ts"
+      }
+    ]
+  },
+  "name": "Vue Framework Package",
+  "package": "vue",
+  "relations": [],
+  "since": "3.12.0",
+  "sources": [
+    "packages/vue/README.md",
+    "packages/vue/CHANGELOG.md",
+    "packages/vue/LIMITATIONS.md",
+    "packages/vue/package.json",
+    "packages/vue/src/index.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "framework",
+    "setup",
+    "vue"
+  ]
+}

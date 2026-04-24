@@ -1,0 +1,138 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/structure"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynPopupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-popup",
+        "sourcePath": "packages/angular/components/popup/popup.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynPopup",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs",
+          "events": [
+            {
+              "name": "syn-reposition",
+              "type": "SynRepositionEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynPopupJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynPopup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/popup.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVuePopup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVuePopup.vue"
+      }
+    },
+    "override": {
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Popup is a utility that lets you declaratively anchor “popup” containers to another element.\nThis component’s name is inspired by `<popup>`. It uses Floating UI under the hood to provide a well-tested, lightweight, and fully declarative positioning utility for tooltips, dropdowns, and more.\n\nPopup doesn’t provide any styles — just positioning! The popup’s preferred placement, distance, and skidding (offset) can be configured using attributes. An arrow that points to the anchor can be shown and customized to your liking. Additional positioning options are available and described in more detail below."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Popup"
+          }
+        }
+      ],
+      "storySourcePath": "components.popup",
+      "storyTags": [
+        "Structure"
+      ]
+    },
+    "sourceModulePath": "components/popup/popup.js",
+    "summary": "Popup is a utility that lets you declaratively anchor \"popup\" containers to another element."
+  },
+  "id": "component:syn-popup",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-popup.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/angular/popup.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/components/popup.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/components/popup.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/components/popup.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/react/popup.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/vue/SynVuePopup.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-popup/react/SynPopupJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-popup.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-popup.md"
+      }
+    ]
+  },
+  "name": "syn-popup",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/popup/popup.component.ts",
+    "packages/components/src/components/popup/popup.component.ts",
+    "packages/components/src/components/popup/popup.styles.ts",
+    "packages/components/src/components/popup/popup.ts",
+    "packages/react/src/components/popup.ts",
+    "packages/vue/src/components/SynVuePopup.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "popup",
+    "react",
+    "syn-popup",
+    "vue"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Feedback Components",
+  "description": "Components for providing user feedback and status information",
+  "entities": [
+    "component:syn-alert",
+    "component:syn-badge",
+    "component:syn-progress-bar",
+    "component:syn-progress-ring",
+    "component:syn-spinner",
+    "component:syn-tag",
+    "component:syn-tag-group",
+    "component:syn-tooltip"
+  ]
+}

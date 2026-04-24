@@ -1,0 +1,37 @@
+{
+  "custom": {
+    "moduleName": "link"
+  },
+  "id": "style:syn-link",
+  "kind": "style",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style:syn-link.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/styles/link/index.css"
+      }
+    ]
+  },
+  "name": "syn-link",
+  "package": "styles",
+  "relations": [],
+  "since": "2.0.3",
+  "sources": [
+    "packages/styles/src/link/index.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "link",
+    "link",
+    "module",
+    "style",
+    "styles",
+    "syn-link"
+  ]
+}

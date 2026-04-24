@@ -1,0 +1,125 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "name": "@synergy-design-system/components",
+  "version": "3.12.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/components"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/synergy.d.ts",
+      "import": "./dist/synergy.js",
+      "default": "./dist/synergy.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    },
+    "./custom-elements.json": "./dist/custom-elements.json",
+    "./synergy.js": "./dist/synergy.js",
+    "./synergy-autoloader.js": "./dist/synergy-autoloader.js",
+    "./components/*": "./dist/components/*",
+    "./utilities/*": "./dist/utilities/*",
+    "./styles/*": "./dist/styles/*",
+    "./themes/utility.css": "./dist/styles/utility.css",
+    "./themes/*": "./dist/themes/*",
+    "./translations/*": "./dist/translations/*",
+    "./index.css": "./dist/styles/index.css",
+    "./html-validate.js": "./code-quality/html-validate/.htmlvalidate.js",
+    "./html-validate/*": "./code-quality/html-validate/*"
+  },
+  "files": [
+    "code-quality",
+    "dist"
+  ],
+  "scripts": {
+    "figma-export": "pnpm run /^figma-export:.*/",
+    "figma-export:components": "pnpm exec figma connect publish -c ./code-connect/figma.config.components.json",
+    "figma-export:icons-2018": "pnpm exec figma connect publish -c ./code-connect/figma.config.icons.2018.json --batch-size 100",
+    "figma-export:icons-2025-filled": "pnpm exec figma connect publish -c ./code-connect/figma.config.icons.2025-filled.json --batch-size 100",
+    "figma-export:icons-2025-outline": "pnpm exec figma connect publish -c ./code-connect/figma.config.icons.2025-outline.json --batch-size 100",
+    "report-bundle-size": "pnpm exec size-limit --json",
+    "build": "node scripts/build.js",
+    "test": "web-test-runner --group default --config ./web-test-runner.config.js",
+    "test.watch": "pnpm test --watch",
+    "lint:css": "stylelint \"src/**/*.{css}\" \"src/**/*.styles.ts\"",
+    "lint:html": "html-validate -c ./code-quality/html-validate/.htmlvalidate.js ./demos",
+    "lint:js": "eslint src",
+    "lint": "pnpm run /^lint:.*/",
+    "format.eslint": "pnpm lint:js --fix"
+  },
+  "type": "module",
+  "types": "./dist/synergy.d.ts",
+  "homepage": "https://synergy-design-system.github.io",
+  "keywords": [
+    "Web Components",
+    "LIT Components",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.11.0",
+    "@figma/code-connect": "^1.4.2",
+    "@open-wc/testing": "^4.0.0",
+    "@playwright/test": "^1.58.2",
+    "@size-limit/esbuild": "^12.0.1",
+    "@size-limit/file": "^12.0.1",
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/stylelint-config-syn": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*",
+    "@types/mocha": "^10.0.10",
+    "@types/sinon": "^21.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.57.2",
+    "@typescript-eslint/parser": "^8.57.2",
+    "@web/dev-server-esbuild": "^1.0.5",
+    "@web/test-runner": "^0.20.2",
+    "@web/test-runner-commands": "^0.9.0",
+    "@web/test-runner-playwright": "^0.11.1",
+    "chalk": "^5.6.2",
+    "change-case": "^5.4.4",
+    "command-line-args": "^6.0.2",
+    "comment-parser": "^1.4.5",
+    "custom-element-vs-code-integration": "^1.5.0",
+    "del": "^8.0.1",
+    "esbuild": "^0.27.4",
+    "esbuild-plugin-replace": "^1.4.0",
+    "eslint": "^9.39.4",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^18.0.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jest": "^29.15.1",
+    "eslint-plugin-lit": "^2.2.1",
+    "eslint-plugin-lit-a11y": "^5.1.1",
+    "eslint-plugin-playwright": "^2.10.1",
+    "eslint-plugin-wc": "^3.1.0",
+    "globby": "^16.1.1",
+    "html-validate": "^10.11.2",
+    "ora": "^9.3.0",
+    "postcss": "^8.5.8",
+    "postcss-header": "^3.0.3",
+    "postcss-import": "^16.1.1",
+    "prettier": "^3.8.1",
+    "sinon": "^21.0.3",
+    "size-limit": "^12.0.1",
+    "stylelint": "^17.5.0",
+    "typescript": "~5.9.3"
+  },
+  "dependencies": {
+    "@floating-ui/dom": "^1.7.6",
+    "composed-offset-position": "^0.0.6",
+    "lit": "^3.3.2"
+  },
+  "peerDependencies": {
+    "@synergy-design-system/tokens": "workspace:*"
+  },
+  "customElements": "dist/custom-elements.json"
+}

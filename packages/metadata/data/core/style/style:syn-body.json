@@ -1,0 +1,37 @@
+{
+  "custom": {
+    "moduleName": "typography"
+  },
+  "id": "style:syn-body",
+  "kind": "style",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style:syn-body.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/styles/typography/body.css"
+      }
+    ]
+  },
+  "name": "syn-body",
+  "package": "styles",
+  "relations": [],
+  "since": "2.0.3",
+  "sources": [
+    "packages/styles/src/typography/body.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "body",
+    "module",
+    "style",
+    "styles",
+    "syn-body",
+    "typography"
+  ]
+}

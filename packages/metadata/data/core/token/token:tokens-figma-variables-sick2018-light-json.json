@@ -1,0 +1,32 @@
+{
+  "custom": {
+    "artifactPath": "figma-variables/sick2018-light.json",
+    "format": "figma",
+    "sourceType": "figma-variables-output",
+    "theme": "sick2018-light"
+  },
+  "id": "token:tokens-figma-variables-sick2018-light-json",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/figma-variables/sick2018-light.json"
+      }
+    ]
+  },
+  "name": "sick2018-light.json",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.12.0",
+  "sources": [
+    "packages/tokens/src/figma-variables/output/sick2018-light.json"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "figma-variables-output"
+  ]
+}

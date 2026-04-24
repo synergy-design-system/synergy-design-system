@@ -1,0 +1,347 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynSelectComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-select",
+        "sourcePath": "packages/angular/components/select/select.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynSelect",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs",
+          "events": [
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-clear",
+              "type": "SynClearEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynSelectJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynSelect",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/select.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueSelect",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSelect.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41325-310740",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Selects allow you to choose items from a menu of predefined options."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Select"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label attribute to give the select an accessible label. For labels that contain HTML, use the label slot instead."
+          },
+          "name": "labels",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
+          },
+          "name": "help-text",
+          "title": {
+            "type": "text",
+            "value": "Help Text"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the clearable attribute to make the control clearable. The clear button only appears when an option is selected."
+          },
+          "name": "clearable",
+          "title": {
+            "type": "text",
+            "value": "Clearable"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable a select."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the readonly attribute to a select to draw it in a readonly state."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Read-only"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To allow multiple options to be selected, use the multiple attribute. It’s a good practice to use clearable when this option is enabled. To set multiple values at once, set value to a space-delimited list of values."
+          },
+          "name": "multiple",
+          "title": {
+            "type": "text",
+            "value": "Multiple"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the value attribute to set the initial selection.\n\nWhen using multiple, the value attribute uses space-delimited values to select more than one option. Because of this, <syn-option> values cannot contain spaces. If you’re accessing the value property through Javascript, it will be an array."
+          },
+          "name": "initialvalue",
+          "title": {
+            "type": "text",
+            "value": "Setting Initial Values"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use <syn-optgroup> to group listbox items visually."
+          },
+          "name": "group",
+          "title": {
+            "type": "text",
+            "value": "Grouping Options"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a select’s size. Note that size does not apply to listbox options."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the prefix and suffix slots to add text and icons."
+          },
+          "name": "prefix-suffix",
+          "title": {
+            "type": "text",
+            "value": "Prefix and Suffix Icons"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "When multiple options can be selected, you can provide custom tags by passing a function to the getTag property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getTag() function will be called for each option. The first argument is an <syn-option> element and the second argument is the tag’s index (its position in the tag list).\n\nRemember that custom tags are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector."
+          },
+          "name": "gettag",
+          "title": {
+            "type": "text",
+            "value": "Custom Tags"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the placeholder attribute to add a placeholder."
+          },
+          "name": "placeholder",
+          "title": {
+            "type": "text",
+            "value": "Placeholder"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Select has been focused by the keyboard interaction or active click from the user.."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus / Active"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the Select is invalid. For example, if the entry of text is mandatory and nothing has been entered."
+          },
+          "name": "invalid",
+          "title": {
+            "type": "text",
+            "value": "Invalid"
+          }
+        }
+      ],
+      "storySourcePath": "components.select",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "sourceModulePath": "components/select/select.js",
+    "summary": "Selects allow you to choose items from a menu of predefined options."
+  },
+  "id": "component:syn-select",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-select.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/angular/select.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/components/select.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/components/select.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/components/select.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/components/utility.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/react/select.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/vue/SynVueSelect.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-select/react/SynSelectJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-select.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-select.md"
+      }
+    ]
+  },
+  "name": "syn-select",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-popup",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-tag",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/select/select.component.ts",
+    "packages/components/src/components/select/select.component.ts",
+    "packages/components/src/components/select/select.styles.ts",
+    "packages/components/src/components/select/select.ts",
+    "packages/components/src/components/select/utility.ts",
+    "packages/react/src/components/select.ts",
+    "packages/vue/src/components/SynVueSelect.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "select",
+    "syn-select",
+    "vue"
+  ]
+}

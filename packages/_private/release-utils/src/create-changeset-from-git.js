@@ -39,7 +39,11 @@ const getChangedPackages = (
 
   try {
     // Get changed files between current branch and origin/main
-    const changedFiles = execSync('git diff --name-only origin/main...HEAD', { encoding: 'utf8' })
+    // Note that we exclude changes to metadata files as they should not trigger a release and would otherwise always cause a changeset to be created when metadata files are changed.
+    const changedFiles = execSync(
+      "git diff --name-only origin/main...HEAD -- . ':(exclude)packages/metadata/data/index.json' ':(exclude)packages/metadata/data/manifest.json'",
+      { encoding: 'utf8' },
+    )
       .trim()
       .split('\n')
       .filter(Boolean);

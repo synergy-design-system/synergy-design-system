@@ -1,0 +1,52 @@
+{
+  "custom": {
+    "category": "system-icons",
+    "files": [
+      "add.svg",
+      "check.svg",
+      "chevron-down.svg",
+      "chevron-right.svg",
+      "details-close.svg",
+      "details-open.svg",
+      "eye-slash.svg",
+      "eye.svg",
+      "first-page.svg",
+      "indeterminate.svg",
+      "last-page.svg",
+      "logo-color.svg",
+      "menu.svg",
+      "more-vert.svg",
+      "more.svg",
+      "next-page.svg",
+      "placeholder.svg",
+      "previous-page.svg",
+      "radio.svg",
+      "status-error.svg",
+      "status-informative.svg",
+      "status-neutral.svg",
+      "status-success.svg",
+      "status-warning.svg",
+      "sticky_sidebar.svg",
+      "tabs-left.svg",
+      "tabs-right.svg",
+      "upload-file.svg",
+      "x-circle-fill.svg",
+      "x-lg.svg"
+    ],
+    "theme": "sick2025"
+  },
+  "id": "asset:sick2025-system-icons",
+  "kind": "asset",
+  "layers": {},
+  "name": "sick2025 System Icons",
+  "package": "assets",
+  "relations": [],
+  "since": "2.1.0",
+  "sources": [],
+  "status": "stable",
+  "tags": [
+    "asset",
+    "sick2025",
+    "system-icons"
+  ]
+}

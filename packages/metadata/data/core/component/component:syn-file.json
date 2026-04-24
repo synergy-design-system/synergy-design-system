@@ -1,0 +1,284 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynFileComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-file",
+        "sourcePath": "packages/angular/components/file/file.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynFile",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-error",
+              "type": "SynErrorEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynFileJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynFile",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/file.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueFile",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueFile.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41310-271865",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "File control is a component with which a user can select a local file. It shows the value of the selected file."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "File"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label attribute to give the file selector an accessible label. For labels that contain HTML, use the label slot instead."
+          },
+          "name": "label",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
+          },
+          "name": "help-text",
+          "title": {
+            "type": "text",
+            "value": "Help Text"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the multiple attribute to allow the selection of multiple files.\n\nFigma only: Override the button/droparea and value text directly, to indicate that multiple files are selected (“file” -> “files”)"
+          },
+          "name": "multiple",
+          "title": {
+            "type": "text",
+            "value": "Multiple"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "There might be situations, where you don’t want to show the selected value (e. g. when something is automatically uploading)."
+          },
+          "name": "hide-value",
+          "title": {
+            "type": "text",
+            "value": "Hide Value"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable a file input."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the readonly attribute to set a file input to a readonly state."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Readonly"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change the component's size."
+          },
+          "name": "sizes",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the droparea attribute to switch to a full-width button with a drop area."
+          },
+          "name": "droparea",
+          "title": {
+            "type": "text",
+            "value": "Droparea"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Dropzone has been focused by the keyboard interaction and that the syn-file component is ready for use."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus / Active"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the syn-file is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format."
+          },
+          "name": "invalid",
+          "title": {
+            "type": "text",
+            "value": "Invalid"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The webkitdirectory setting allows users to select entire directories instead of individual files. When a directory is chosen, all files inside (including those in sub-directories) are selected. Although this feature is not part of the official HTML specification, it is widely supported across major browsers."
+          },
+          "name": "directory",
+          "title": {
+            "type": "text",
+            "value": "Directory"
+          }
+        }
+      ],
+      "storySourcePath": "components.file",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "sourceModulePath": "components/file/file.js",
+    "summary": "File controls allow selecting an arbitrary number of files for uploading."
+  },
+  "id": "component:syn-file",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-file.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/angular/file.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/components/file.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/components/file.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/components/file.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/react/file.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/vue/SynVueFile.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-file/react/SynFileJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-file.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-file.md"
+      }
+    ]
+  },
+  "name": "syn-file",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-button",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "unknown",
+  "sources": [
+    "packages/angular/components/file/file.component.ts",
+    "packages/components/src/components/file/file.component.ts",
+    "packages/components/src/components/file/file.styles.ts",
+    "packages/components/src/components/file/file.ts",
+    "packages/react/src/components/file.ts",
+    "packages/vue/src/components/SynVueFile.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "file",
+    "react",
+    "syn-file",
+    "vue"
+  ]
+}

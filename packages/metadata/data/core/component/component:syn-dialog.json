@@ -1,0 +1,219 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/structure"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynDialogComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-dialog",
+        "sourcePath": "packages/angular/components/dialog/dialog.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynDialog",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            },
+            {
+              "name": "syn-initial-focus",
+              "type": "SynInitialFocusEvent"
+            },
+            {
+              "name": "syn-request-close",
+              "type": "SynRequestCloseEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynDialogJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynDialog",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/dialog.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueDialog",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDialog.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "42207-348565",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Dialog"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the --width custom property to set the dialog’s width."
+          },
+          "name": "custom-width",
+          "title": {
+            "type": "text",
+            "value": "Custom Width"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By design, a dialog’s height will never exceed that of the viewport. As such, dialogs will not scroll with the page ensuring the header and footer are always accessible to the user."
+          },
+          "name": "scrolling",
+          "title": {
+            "type": "text",
+            "value": "Scrolling"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The header shows a functional close button by default. You can use the header-actions slot to add additional icon buttons if needed."
+          },
+          "name": "header-actions",
+          "title": {
+            "type": "text",
+            "value": "Header Actions"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, dialogs will close when the user clicks the close button, clicks the overlay, or presses the Escape key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.\n\nTo keep the dialog open in such cases, you can cancel the syn-request-close event. When canceled, the dialog will remain open and pulse briefly to draw the user’s attention to it.\n\nYou can use event.detail.source to determine what triggered the request to close. This example prevents the dialog from closing when the overlay is clicked, but allows the close button or Escape to dismiss it."
+          },
+          "name": "prevent-closing",
+          "title": {
+            "type": "text",
+            "value": "Preventing the Dialog from Closing"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, the dialog’s panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the dialog. If you want a different element to have focus, add the autofocus attribute to it as shown below."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Customizing Initial Focus"
+          }
+        }
+      ],
+      "storySourcePath": "components.dialog",
+      "storyTags": [
+        "Structure"
+      ]
+    },
+    "sourceModulePath": "components/dialog/dialog.js",
+    "summary": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention."
+  },
+  "id": "component:syn-dialog",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-dialog.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/angular/dialog.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/components/dialog.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/components/dialog.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/components/dialog.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/react/dialog.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/vue/SynVueDialog.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-dialog/react/SynDialogJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-dialog.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-dialog.md"
+      }
+    ]
+  },
+  "name": "syn-dialog",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/dialog/dialog.component.ts",
+    "packages/components/src/components/dialog/dialog.component.ts",
+    "packages/components/src/components/dialog/dialog.styles.ts",
+    "packages/components/src/components/dialog/dialog.ts",
+    "packages/react/src/components/dialog.ts",
+    "packages/vue/src/components/SynVueDialog.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "dialog",
+    "react",
+    "syn-dialog",
+    "vue"
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynTextareaComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-textarea",
+        "sourcePath": "packages/angular/components/textarea/textarea.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynTextarea",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTextareaJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTextarea",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/textarea.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueTextarea",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTextarea.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41337-204379",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Textareas collect data from the user and allow multiple lines of text."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Textarea"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label attribute to give the textarea an accessible label. For labels that contain HTML, use the label slot instead."
+          },
+          "name": "labels",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
+          },
+          "name": "help-text",
+          "title": {
+            "type": "text",
+            "value": "Help Text"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the rows attribute to change the number of text rows that get shown."
+          },
+          "name": "rows",
+          "title": {
+            "type": "text",
+            "value": "Rows"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the placeholder attribute to add a placeholder."
+          },
+          "name": "placeholder",
+          "title": {
+            "type": "text",
+            "value": "Placeholders"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the readonly attribute to draw a read-only textarea."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Read-only Textareas"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable a textarea."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a textarea’s size."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, textareas can be resized vertically by the user. To prevent resizing, set the resize attribute to none."
+          },
+          "name": "resize",
+          "title": {
+            "type": "text",
+            "value": "Prevent Resizing"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Textareas will automatically resize to expand to fit their content when resize is set to auto."
+          },
+          "name": "resize-auto",
+          "title": {
+            "type": "text",
+            "value": "Expand with Content"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Textarea has been focused by the keyboard interaction and that the Textarea component is ready for use."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus / Active"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format."
+          },
+          "name": "invalid",
+          "title": {
+            "type": "text",
+            "value": "Invalid"
+          }
+        }
+      ],
+      "storySourcePath": "components.textarea",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "sourceModulePath": "components/textarea/textarea.js",
+    "summary": "Textareas collect data from the user and allow multiple lines of text."
+  },
+  "id": "component:syn-textarea",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-textarea.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/angular/textarea.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/components/textarea.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/components/textarea.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/components/textarea.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/react/textarea.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/vue/SynVueTextarea.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-textarea/react/SynTextareaJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-textarea.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-textarea.md"
+      }
+    ]
+  },
+  "name": "syn-textarea",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/textarea/textarea.component.ts",
+    "packages/components/src/components/textarea/textarea.component.ts",
+    "packages/components/src/components/textarea/textarea.styles.ts",
+    "packages/components/src/components/textarea/textarea.ts",
+    "packages/react/src/components/textarea.ts",
+    "packages/vue/src/components/SynVueTextarea.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "syn-textarea",
+    "textarea",
+    "vue"
+  ]
+}

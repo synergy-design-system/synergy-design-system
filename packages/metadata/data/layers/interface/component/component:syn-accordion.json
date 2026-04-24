@@ -1,0 +1,95 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Indicates whether or not multiple `<syn-detail>` elements can be open at the same time.",
+      "fieldName": "closeOthers",
+      "name": "close-others",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Draws the accordion and the slotted `<syn-details>` as contained elements.",
+      "fieldName": "contained",
+      "name": "contained",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The size that should be applied to all slotted `<syn-details>` elements",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs",
+  "events": [],
+  "figmaComponentId": "41094-279501",
+  "methods": [
+    {
+      "description": "",
+      "name": "handleContainedChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleSizeChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleSlotChange",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not multiple `<syn-detail>` elements can be open at the same time.",
+      "name": "closeOthers",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the accordion and the slotted `<syn-details>` as contained elements.",
+      "name": "contained",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "detailsInDefaultSlot",
+      "type": "SynDetails[]"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The size that should be applied to all slotted `<syn-details>` elements",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    }
+  ],
+  "since": "1.23.0",
+  "slots": [
+    {
+      "description": "The accordion's main content. Must be `<syn-details />` elements.",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/accordion/accordion.js",
+  "status": "stable",
+  "summary": "Accordions provide the ability to group a list of `<syn-details>`.",
+  "tagName": "syn-accordion"
+}

@@ -1,0 +1,758 @@
+{
+  "attributes": [
+    {
+      "description": "Controls whether and how text input is automatically capitalized as it is entered by the user.",
+      "fieldName": "autocapitalize",
+      "name": "autocapitalize",
+      "reflects": false,
+      "type": "'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'"
+    },
+    {
+      "description": "Specifies what permission the browser has to provide assistance in filling out form field values. Refer to\n[this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.",
+      "fieldName": "autocomplete",
+      "name": "autocomplete",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "description": "Indicates whether the browser's autocorrect feature is on or off.",
+      "fieldName": "autocorrect",
+      "name": "autocorrect",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "description": "Indicates that the input should receive focus on page load.",
+      "fieldName": "autofocus",
+      "name": "autofocus",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Adds a clear button when the input is not empty.",
+      "fieldName": "clearable",
+      "name": "clearable",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Disables the input.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "description": "Used to customize the label or icon of the Enter key on virtual keyboards.",
+      "fieldName": "enterkeyhint",
+      "name": "enterkeyhint",
+      "reflects": false,
+      "type": "'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'"
+    },
+    {
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "fieldName": "form",
+      "name": "form",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The input's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "fieldName": "helpText",
+      "name": "help-text",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "description": "Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual\nkeyboard on supportive devices.",
+      "fieldName": "inputmode",
+      "name": "inputmode",
+      "reflects": false,
+      "type": "'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'"
+    },
+    {
+      "default": "''",
+      "description": "The input's label. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "description": "The input's maximum value. Only applies to date and number input types.",
+      "fieldName": "max",
+      "name": "max",
+      "reflects": false,
+      "type": "number | string"
+    },
+    {
+      "description": "The maximal amount of fraction digits to use for numeric values.\nUsed to format the number when the input type is `number`.",
+      "fieldName": "maxFractionDigits",
+      "name": "max-fraction-digits",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "description": "The maximum length of input that will be considered valid.",
+      "fieldName": "maxlength",
+      "name": "maxlength",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "description": "The input's minimum value. Only applies to date and number input types.",
+      "fieldName": "min",
+      "name": "min",
+      "reflects": false,
+      "type": "number | string"
+    },
+    {
+      "description": "The minimal amount of fraction digits to use for numeric values.\nUsed to format the number when the input type is `number`.",
+      "fieldName": "minFractionDigits",
+      "name": "min-fraction-digits",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "description": "The minimum length of input that will be considered valid.",
+      "fieldName": "minlength",
+      "name": "minlength",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "default": "''",
+      "description": "The name of the input, submitted as a name/value pair with form data.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Hides the increment/decrement spin buttons for number inputs.",
+      "fieldName": "noSpinButtons",
+      "name": "no-spin-buttons",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "modernNumericStrategy",
+      "description": "Defines the strategy for handling numbers in the numeric input.\nThis is used to determine how the input behaves when the user interacts with it.\n\nIncludes the following configuration options:\n\n- **autoClamp**: If true, the input will clamp the value to the min and max attributes.\n- **noStepAlign**: If true, the input will not align the value to the step attribute.\n- **noStepValidation**: If true, the input will not validate the value against the step attribute.\n\nYou may provide this as one of the following values:\n\n- 'native': Uses the native browser implementation.\n- 'modern': Uses a more intuitive implementation:\n  - Values are clamped to the nearest min or max value.\n  - Stepping is inclusive to the provided min and max values.\n  - Provided stepping is no longer used in validation.\n- An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`!",
+      "fieldName": "numericStrategy",
+      "name": "numeric-strategy",
+      "reflects": false,
+      "type": "'native' | 'modern' | Partial<NumericStrategy>"
+    },
+    {
+      "default": "false",
+      "description": "Adds a button to toggle the password's visibility. Only applies to password types.",
+      "fieldName": "passwordToggle",
+      "name": "password-toggle",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Determines whether or not the password is currently visible. Only applies to password input types.",
+      "fieldName": "passwordVisible",
+      "name": "password-visible",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "description": "A regular expression pattern to validate input against.",
+      "fieldName": "pattern",
+      "name": "pattern",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "Placeholder text to show as a hint when the input is empty.",
+      "fieldName": "placeholder",
+      "name": "placeholder",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Makes the input readonly.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Makes the input a required field.",
+      "fieldName": "required",
+      "name": "required",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The input's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "default": "true",
+      "description": "Enables spell checking on the input.",
+      "fieldName": "spellcheck",
+      "name": "spellcheck",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "description": "Specifies the granularity that the value must adhere to, or the special value `any` which means no stepping is\nimplied, allowing any numeric value. Only applies to date and number input types.",
+      "fieldName": "step",
+      "name": "step",
+      "reflects": false,
+      "type": "number | 'any'"
+    },
+    {
+      "default": "''",
+      "description": "",
+      "fieldName": "title",
+      "name": "title",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "'text'",
+      "description": "The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults\nto `text`.",
+      "fieldName": "type",
+      "name": "type",
+      "reflects": true,
+      "type": "| 'date'\n    | 'datetime-local'\n    | 'email'\n    | 'number'\n    | 'password'\n    | 'search'\n    | 'tel'\n    | 'text'\n    | 'time'\n    | 'url'"
+    },
+    {
+      "default": "''",
+      "description": "The current value of the input, submitted as a name/value pair with form data.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The clear button.",
+      "name": "clear-button"
+    },
+    {
+      "description": "The decrement number stepper button.",
+      "name": "decrement-number-stepper"
+    },
+    {
+      "description": "The divider between the increment and decrement number stepper buttons.",
+      "name": "divider"
+    },
+    {
+      "description": "The form control that wraps the label, input, and help text.",
+      "name": "form-control"
+    },
+    {
+      "description": "The help text's wrapper.",
+      "name": "form-control-help-text"
+    },
+    {
+      "description": "The input's wrapper.",
+      "name": "form-control-input"
+    },
+    {
+      "description": "The label's wrapper.",
+      "name": "form-control-label"
+    },
+    {
+      "description": "The increment number stepper button.",
+      "name": "increment-number-stepper"
+    },
+    {
+      "description": "The internal `<input>` control.",
+      "name": "input"
+    },
+    {
+      "description": "The password toggle button.",
+      "name": "password-toggle-button"
+    },
+    {
+      "description": "The container that wraps the prefix.",
+      "name": "prefix"
+    },
+    {
+      "description": "The container that wraps the number stepper.",
+      "name": "stepper"
+    },
+    {
+      "description": "The container that wraps the suffix.",
+      "name": "suffix"
+    }
+  ],
+  "dependencies": [
+    "syn-divider",
+    "syn-icon"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs",
+  "events": [
+    {
+      "description": "Emitted when the control loses focus.",
+      "name": "syn-blur",
+      "type": "SynBlurEvent"
+    },
+    {
+      "description": "Emitted when an alteration to the control's value is committed by the user.",
+      "name": "syn-change",
+      "type": "SynChangeEvent"
+    },
+    {
+      "description": "Emitted if the numeric strategy allows autoClamp and the value is clamped to the min or max attribute.",
+      "name": "syn-clamp",
+      "type": "SynClampEvent"
+    },
+    {
+      "description": "Emitted when the clear button is activated.",
+      "name": "syn-clear",
+      "type": "SynClearEvent"
+    },
+    {
+      "description": "Emitted when the control gains focus.",
+      "name": "syn-focus",
+      "type": "SynFocusEvent"
+    },
+    {
+      "description": "Emitted when the control receives input.",
+      "name": "syn-input",
+      "type": "SynInputEvent"
+    },
+    {
+      "description": "Emitted when the form control has been checked for validity and its constraints aren't satisfied.",
+      "name": "syn-invalid",
+      "type": "SynInvalidEvent"
+    }
+  ],
+  "figmaComponentId": "41337-165221",
+  "methods": [
+    {
+      "description": "Removes focus from the input.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
+      "name": "checkValidity",
+      "parameters": []
+    },
+    {
+      "description": "Sets focus on the input.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    },
+    {
+      "description": "Gets the associated form, if one exists.",
+      "name": "getForm",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleStepChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleValueChange",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
+      "name": "reportValidity",
+      "parameters": []
+    },
+    {
+      "description": "Selects all the text in the input.",
+      "name": "select",
+      "parameters": []
+    },
+    {
+      "description": "Sets a custom validation message. Pass an empty string to restore validity.",
+      "name": "setCustomValidity",
+      "parameters": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "description": "Replaces a range of text with a new string.",
+      "name": "setRangeText",
+      "parameters": [
+        {
+          "name": "replacement",
+          "type": "string"
+        },
+        {
+          "name": "start",
+          "type": "number"
+        },
+        {
+          "name": "end",
+          "type": "number"
+        },
+        {
+          "name": "selectMode",
+          "type": "'select' | 'start' | 'end' | 'preserve'"
+        }
+      ]
+    },
+    {
+      "description": "Sets the start and end positions of the text selection (0-based).",
+      "name": "setSelectionRange",
+      "parameters": [
+        {
+          "name": "selectionStart",
+          "type": "number"
+        },
+        {
+          "name": "selectionEnd",
+          "type": "number"
+        },
+        {
+          "name": "selectionDirection",
+          "type": "'forward' | 'backward' | 'none'"
+        }
+      ]
+    },
+    {
+      "description": "Displays the browser picker for an input element (only works if the browser supports it for the input type).",
+      "name": "showPicker",
+      "parameters": []
+    },
+    {
+      "description": "Decrements the value of a numeric input type by the value of the step attribute.",
+      "name": "stepDown",
+      "parameters": []
+    },
+    {
+      "description": "Increments the value of a numeric input type by the value of the step attribute.",
+      "name": "stepUp",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "Controls whether and how text input is automatically capitalized as it is entered by the user.",
+      "name": "autocapitalize",
+      "type": "'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'"
+    },
+    {
+      "access": "public",
+      "description": "Specifies what permission the browser has to provide assistance in filling out form field values. Refer to\n[this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.",
+      "name": "autocomplete",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "Indicates whether the browser's autocorrect feature is on or off.",
+      "name": "autocorrect",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "Indicates that the input should receive focus on page load.",
+      "name": "autofocus",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Adds a clear button when the input is not empty.",
+      "name": "clearable",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The default value of the form control. Primarily used for resetting the form control.",
+      "name": "defaultValue",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the input.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "Used to customize the label or icon of the Enter key on virtual keyboards.",
+      "name": "enterkeyhint",
+      "type": "'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "name": "form",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The input's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "name": "helpText",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "input",
+      "type": "HTMLInputElement"
+    },
+    {
+      "access": "public",
+      "description": "Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual\nkeyboard on supportive devices.",
+      "name": "inputmode",
+      "type": "'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The input's label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "The input's maximum value. Only applies to date and number input types.",
+      "name": "max",
+      "type": "number | string"
+    },
+    {
+      "access": "public",
+      "description": "The maximal amount of fraction digits to use for numeric values.\nUsed to format the number when the input type is `number`.",
+      "name": "maxFractionDigits",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "description": "The maximum length of input that will be considered valid.",
+      "name": "maxlength",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "description": "The input's minimum value. Only applies to date and number input types.",
+      "name": "min",
+      "type": "number | string"
+    },
+    {
+      "access": "public",
+      "description": "The minimal amount of fraction digits to use for numeric values.\nUsed to format the number when the input type is `number`.",
+      "name": "minFractionDigits",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "description": "The minimum length of input that will be considered valid.",
+      "name": "minlength",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the input, submitted as a name/value pair with form data.",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Hides the increment/decrement spin buttons for number inputs.",
+      "name": "noSpinButtons",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "Optional options that should be passed to the `NumberFormatter` when formatting the value.\nThis is used to format the number when the input type is `number`.\nNote this can only be set via `property`, not as an `attribute`!",
+      "name": "numberFormatterOptions",
+      "type": "Intl.NumberFormatOptions"
+    },
+    {
+      "access": "public",
+      "default": "modernNumericStrategy",
+      "description": "Defines the strategy for handling numbers in the numeric input.\nThis is used to determine how the input behaves when the user interacts with it.\n\nIncludes the following configuration options:\n\n- **autoClamp**: If true, the input will clamp the value to the min and max attributes.\n- **noStepAlign**: If true, the input will not align the value to the step attribute.\n- **noStepValidation**: If true, the input will not validate the value against the step attribute.\n\nYou may provide this as one of the following values:\n\n- 'native': Uses the native browser implementation.\n- 'modern': Uses a more intuitive implementation:\n  - Values are clamped to the nearest min or max value.\n  - Stepping is inclusive to the provided min and max values.\n  - Provided stepping is no longer used in validation.\n- An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`!",
+      "name": "numericStrategy",
+      "type": "'native' | 'modern' | Partial<NumericStrategy>"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Adds a button to toggle the password's visibility. Only applies to password types.",
+      "name": "passwordToggle",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Determines whether or not the password is currently visible. Only applies to password input types.",
+      "name": "passwordVisible",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "A regular expression pattern to validate input against.",
+      "name": "pattern",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "Placeholder text to show as a hint when the input is empty.",
+      "name": "placeholder",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Makes the input readonly.",
+      "name": "readonly",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Makes the input a required field.",
+      "name": "required",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The input's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "default": "true",
+      "description": "Enables spell checking on the input.",
+      "name": "spellcheck",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "Specifies the granularity that the value must adhere to, or the special value `any` which means no stepping is\nimplied, allowing any numeric value. Only applies to date and number input types.",
+      "name": "step",
+      "type": "number | 'any'"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "",
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'text'",
+      "description": "The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults\nto `text`.",
+      "name": "type",
+      "type": "| 'date'\n    | 'datetime-local'\n    | 'email'\n    | 'number'\n    | 'password'\n    | 'search'\n    | 'tel'\n    | 'text'\n    | 'time'\n    | 'url'"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validation message",
+      "name": "validationMessage"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validity state object",
+      "name": "validity"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The current value of the input, submitted as a name/value pair with form data.",
+      "name": "value",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "Gets or sets the current value as a `Date` object. Returns `null` if the value can't be converted. This will use the native `<input type=\"{{type}}\">` implementation and may result in an error.",
+      "name": "valueAsDate"
+    },
+    {
+      "access": "public",
+      "description": "Gets or sets the current value as a number. Returns `NaN` if the value can't be converted.",
+      "name": "valueAsNumber"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The input's label. Alternatively, you can use the `label` attribute.",
+      "name": "label"
+    },
+    {
+      "description": "Used to prepend a presentational icon or similar element to the input.",
+      "name": "prefix"
+    },
+    {
+      "description": "Used to append a presentational icon or similar element to the input.",
+      "name": "suffix"
+    },
+    {
+      "description": "An icon to use in lieu of the default clear icon.",
+      "name": "clear-icon"
+    },
+    {
+      "description": "An icon to use in lieu of the default show password icon.",
+      "name": "show-password-icon"
+    },
+    {
+      "description": "An icon to use in lieu of the default hide password icon.",
+      "name": "hide-password-icon"
+    },
+    {
+      "description": "Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.",
+      "name": "help-text"
+    },
+    {
+      "description": "An icon to use in lieu of the default increment number stepper icon.",
+      "name": "increment-number-stepper"
+    },
+    {
+      "description": "An icon to use in lieu of the default decrement number stepper icon.",
+      "name": "decrement-number-stepper"
+    }
+  ],
+  "sourceModulePath": "components/input/input.js",
+  "status": "stable",
+  "summary": "Inputs collect data from the user.",
+  "tagName": "syn-input"
+}

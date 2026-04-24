@@ -1,0 +1,23 @@
+{
+  "name": "Form Components",
+  "description": "Components for building forms and collecting user input",
+  "entities": [
+    "component:syn-button",
+    "component:syn-checkbox",
+    "component:syn-combobox",
+    "component:syn-dropdown",
+    "component:syn-file",
+    "component:syn-icon-button",
+    "component:syn-input",
+    "component:syn-optgroup",
+    "component:syn-option",
+    "component:syn-radio",
+    "component:syn-radio-group",
+    "component:syn-range",
+    "component:syn-range-tick",
+    "component:syn-select",
+    "component:syn-switch",
+    "component:syn-textarea",
+    "component:syn-validate"
+  ]
+}

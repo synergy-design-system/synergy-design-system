@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI_JOB_NUMBER: 1
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - uses: actions/checkout@v4
 
@@ -21,11 +22,14 @@ jobs:
 
       - name: Install Node.js
         uses: actions/setup-node@v6
+        with:
+          node-version: 24
 
       - uses: andresz1/size-limit-action@v1.8.0
         name: Size Check
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          # @todo: update this to build:size when available on main
           build_script: build
           script: >
             sh -c "export PATH=$(npm bin -g):$PATH; pnpm run --silent --filter components --if-present report-bundle-size | tee /tmp/out; if [ ! -s /tmp/out ]; then echo '[]'; fi"

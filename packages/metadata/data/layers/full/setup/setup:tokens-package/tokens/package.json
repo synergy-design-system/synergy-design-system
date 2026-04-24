@@ -1,0 +1,81 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "Design tokens for Synergy, the SICK Design System",
+  "devDependencies": {
+    "@dotenvx/dotenvx": "^1.57.2",
+    "@figma-export/cli": "^6.4.0",
+    "@figma-export/types": "^6.4.0",
+    "@figma/rest-api-spec": "^0.36.0",
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@synergy-design-system/stylelint-config-syn": "workspace:*",
+    "@tamtamchik/json-deep-sort": "^1.4.1",
+    "@tokens-studio/sd-transforms": "^2.0.3",
+    "@types/node": "^24.12.0",
+    "chalk": "^5.6.2",
+    "change-case": "^5.4.4",
+    "eslint": "^9.39.4",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "rimraf": "^6.1.3",
+    "style-dictionary": "^5.4.0",
+    "stylelint": "^17.5.0",
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/js/index.d.ts",
+      "import": "./dist/js/index.js",
+      "default": "./dist/js/index.js"
+    },
+    "./package.json": {
+      "default": "./package.json"
+    },
+    "./themes/*": "./dist/themes/*",
+    "./scss/*": "./dist/scss/*"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "src/figma-tokens",
+    "src/figma-variables/output"
+  ],
+  "homepage": "https://synergy-design-system.github.io",
+  "keywords": [
+    "SDS",
+    "SICK",
+    "Synergy Design System",
+    "Design Tokens"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/tokens",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/tokens"
+  },
+  "scripts": {
+    "build": "pnpm clean && node scripts/build.js",
+    "build:all": "dotenvx -q run pnpm build:_all",
+    "build:_all": "pnpm clean && pnpm fetch:figma && pnpm build:figma && pnpm build",
+    "build:figma": "pnpm run build:variables && pnpm run build:styles",
+    "build:variables": "node scripts/figma/transform-tokens.js",
+    "build:styles": "node scripts/figma/transform-styles.js",
+    "fetch:figma": "pnpm run fetch:variables && pnpm run fetch:styles",
+    "fetch:styles": "figma-export use-config",
+    "fetch:variables": "node scripts/figma/fetch-variables.js",
+    "clean": "rimraf dist",
+    "lint:css": "stylelint \"dist/**/*.css\"",
+    "lint:js": "eslint scripts dist/js",
+    "lint:types": "tsc --noEmit",
+    "lint": "pnpm run /^lint:.*/",
+    "format.eslint": "pnpm lint:js --fix",
+    "start": "pnpm build",
+    "compare": "pnpm build && node test/test-css-variables.js",
+    "test": "pnpm compare"
+  },
+  "type": "module",
+  "types": "./dist/js/index.d.ts",
+  "version": "3.12.0"
+}

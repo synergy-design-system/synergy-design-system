@@ -19,6 +19,7 @@
     "packages/components",
     "packages/docs",
     "packages/fonts",
+    "packages/metadata",
     "packages/mcp",
     "packages/angular",
     "packages/react",

@@ -1,57 +1,51 @@
-import {
-  assetsPath,
-  componentBasePath,
-  componentMigrationPath,
-  staticMigrationPath,
-  stylesPath,
-  tokensPath,
-} from './config.js';
-import {
-  getStructuredMetaData,
-} from './metadata.js';
+import { createMetadataStore } from '@synergy-design-system/metadata';
+import type { MetadataFile } from './metadata.js';
 
 type AvailablePackages = 'assets' | 'components' | 'tokens' | 'styles';
 
-/**
- * Low level utility to get migration metadata for a specific package.
- * @param path The path to retreive the information from
- * @param fileList A list of filenames that should be included
- */
-const getBaseMigrationMetaData = async (
-  path: string,
-  fileList: string[] = [
-    'CHANGELOG.md',
-    'BREAKING_CHANGES.md',
-  ],
-) => getStructuredMetaData(
-  path,
-  item => fileList.includes(item),
-);
+// For non-components packages, return only breaking changes docs.
+// For components, also include the migration path guides from the migration/ layer subfolder.
+const isMigrationFile = (path: string, pkg: AvailablePackages): boolean => {
+  const filename = path.split('/').at(-1) ?? '';
+  if (filename === 'BREAKING_CHANGES.md' || filename === 'CHANGELOG.md') {
+    return true;
+  }
 
-const getAssetsMigrationMetaData = async () => getBaseMigrationMetaData(assetsPath);
+  if (pkg === 'components' && path.includes('/migration/')) {
+    return true;
+  }
 
-const getStylesMigrationMetaData = async () => getBaseMigrationMetaData(stylesPath);
+  return false;
+};
 
-const getTokensMigrationMetaData = async () => getBaseMigrationMetaData(tokensPath);
+const setupEntityByPackage: Record<AvailablePackages, string> = {
+  assets: 'setup:assets-package',
+  components: 'setup:synergy-migrations',
+  styles: 'setup:styles-package',
+  tokens: 'setup:tokens-package',
+};
 
-const getComponentsMigrationMetaData = async () => {
-  const data = await getStructuredMetaData(componentMigrationPath);
-  const additionalData = await getStructuredMetaData(staticMigrationPath);
-  const changelog = await getStructuredMetaData(componentBasePath, item => ['CHANGELOG.md'].includes(item));
+const getMigrationMetaDataFromSetupEntity = async (entityId: string, pkg: AvailablePackages): Promise<MetadataFile[]> => {
+  const store = createMetadataStore();
+  const refs = await store.getLayerFiles(entityId, 'full');
 
-  return [
-    ...data,
-    ...additionalData,
-    ...changelog,
-  ];
+  const migrationRefs = refs.filter((ref) => isMigrationFile(ref.path, pkg));
+
+  const files = await Promise.all(
+    migrationRefs.map(async (ref) => {
+      const filename = ref.path.split('/').at(-1) ?? ref.path;
+
+      return {
+        content: await store.readLayerFile(ref),
+        filename,
+      };
+    }),
+  );
+
+  return files.toSorted((a, b) => a.filename.localeCompare(b.filename));
 };
 
 export const getMigrationMetaData = async (requestedPackage: AvailablePackages = 'components') => {
-  switch (requestedPackage) {
-    case 'assets': return getAssetsMigrationMetaData();
-    case 'tokens': return getTokensMigrationMetaData();
-    case 'styles': return getStylesMigrationMetaData();
-    case 'components':
-    default: return getComponentsMigrationMetaData();
-  }
+  const entityId = setupEntityByPackage[requestedPackage] ?? setupEntityByPackage.components;
+  return getMigrationMetaDataFromSetupEntity(entityId, requestedPackage);
 };

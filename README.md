@@ -27,6 +27,8 @@ This repository is comprised of several sub-packages.
 | assets     | icons and logos                                                                                                                                                        |
 | components | user interface components based on custom elements and lit                                                                                                             |
 | docs       | storybook documentation showing all components and their properties in an interative environment                                                                       |
+| fonts      | Font files for Synergy Themes.                                                                                                                                         |
+| metadata   | Metadata gathered from all Synergy packages.                                                                                                                           |
 | mcp        | Source for the synergy MCP server                                                                                                                                      |
 | react      | react wrappers for better DX in React (auto generated)                                                                                                                 |
 | styles     | CSS Helper classes                                                                                                                                                     |

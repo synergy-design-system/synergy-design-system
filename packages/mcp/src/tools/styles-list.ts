@@ -1,7 +1,9 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { listStyles } from '@synergy-design-system/metadata';
 import {
-  getAvailableStyles,
-  getStructuredMetaData,
+  createToolAnnotations,
+  getToolRule,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -13,42 +15,25 @@ export const stylesList = (server: McpServer) => {
   server.registerTool(
     'styles-list',
     {
-      description: 'Outputs a list of available styles in the Synergy Design System',
+      annotations: createToolAnnotations(),
+      description: 'Outputs a list of available css classes and styles in the Synergy Design System',
       inputSchema: {},
-      title: 'List Synergy Styles',
+      title: 'Styles list',
     },
-    async () => {
-      // Get the package data for styles
-      try {
-        const styles = await getAvailableStyles();
-        const styleNames = styles.map(
-          style => `- ${style}`,
-        );
+    toolHandler('styles-list', async () => {
+      const aiRules = await getToolRule('styles-list');
+      const styles = await listStyles({
+        includeLayerRefs: false,
+        includeSources: false,
+      });
+      const styleNames = styles.data
+        .map(c => c.name)
+        .toSorted();
 
-        const aiRules = await getStructuredMetaData('../../metadata/static/styles');
-
-        return {
-          content: [
-            {
-              text: JSON.stringify(aiRules, null, 2),
-              type: 'text',
-            },
-            {
-              text: styleNames.join('\n'),
-              type: 'text',
-            },
-          ],
-        };
-      } catch (error) {
-        return {
-          content: [
-            {
-              text: `Error fetching components: ${(error as Error).message}`,
-              type: 'text',
-            },
-          ],
-        };
-      }
-    },
+      return [
+        aiRules,
+        styleNames,
+      ];
+    }),
   );
 };

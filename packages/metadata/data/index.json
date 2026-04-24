@@ -1,0 +1,1754 @@
+{
+  "builtAt": "2026-04-24T06:57:35.564Z",
+  "entities": [
+    {
+      "corePath": "data/core/asset/asset:sick2018-icons.json",
+      "id": "asset:sick2018-icons",
+      "kind": "asset",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2018 Icons",
+      "search": [
+        "asset:sick2018-icons",
+        "sick2018 Icons",
+        "asset",
+        "icons",
+        "sick2018"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2018-logos.json",
+      "id": "asset:sick2018-logos",
+      "kind": "asset",
+      "layers": {},
+      "name": "sick2018 Logos",
+      "search": [
+        "asset:sick2018-logos",
+        "sick2018 Logos",
+        "asset",
+        "logos",
+        "sick2018"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2018-system-icons.json",
+      "id": "asset:sick2018-system-icons",
+      "kind": "asset",
+      "layers": {},
+      "name": "sick2018 System Icons",
+      "search": [
+        "asset:sick2018-system-icons",
+        "sick2018 System Icons",
+        "asset",
+        "sick2018",
+        "system-icons"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2025-icons-fill.json",
+      "id": "asset:sick2025-icons-fill",
+      "kind": "asset",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025 Icons (Fill)",
+      "search": [
+        "asset:sick2025-icons-fill",
+        "sick2025 Icons (Fill)",
+        "asset",
+        "fill",
+        "icons",
+        "sick2025"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2025-icons-outline.json",
+      "id": "asset:sick2025-icons-outline",
+      "kind": "asset",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025 Icons (Outline)",
+      "search": [
+        "asset:sick2025-icons-outline",
+        "sick2025 Icons (Outline)",
+        "asset",
+        "icons",
+        "outline",
+        "sick2025"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2025-logos.json",
+      "id": "asset:sick2025-logos",
+      "kind": "asset",
+      "layers": {},
+      "name": "sick2025 Logos",
+      "search": [
+        "asset:sick2025-logos",
+        "sick2025 Logos",
+        "asset",
+        "logos",
+        "sick2025"
+      ]
+    },
+    {
+      "corePath": "data/core/asset/asset:sick2025-system-icons.json",
+      "id": "asset:sick2025-system-icons",
+      "kind": "asset",
+      "layers": {},
+      "name": "sick2025 System Icons",
+      "search": [
+        "asset:sick2025-system-icons",
+        "sick2025 System Icons",
+        "asset",
+        "sick2025",
+        "system-icons"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-accordion.json",
+      "id": "component:syn-accordion",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-accordion",
+      "search": [
+        "component:syn-accordion",
+        "syn-accordion",
+        "accordion",
+        "angular",
+        "component",
+        "react",
+        "syn-accordion",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-alert.json",
+      "id": "component:syn-alert",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-alert",
+      "search": [
+        "component:syn-alert",
+        "syn-alert",
+        "alert",
+        "angular",
+        "component",
+        "react",
+        "syn-alert",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-badge.json",
+      "id": "component:syn-badge",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-badge",
+      "search": [
+        "component:syn-badge",
+        "syn-badge",
+        "angular",
+        "badge",
+        "component",
+        "react",
+        "syn-badge",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-breadcrumb.json",
+      "id": "component:syn-breadcrumb",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-breadcrumb",
+      "search": [
+        "component:syn-breadcrumb",
+        "syn-breadcrumb",
+        "angular",
+        "breadcrumb",
+        "component",
+        "react",
+        "syn-breadcrumb",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-breadcrumb-item.json",
+      "id": "component:syn-breadcrumb-item",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-breadcrumb-item",
+      "search": [
+        "component:syn-breadcrumb-item",
+        "syn-breadcrumb-item",
+        "angular",
+        "breadcrumb-item",
+        "component",
+        "react",
+        "syn-breadcrumb-item",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-button.json",
+      "id": "component:syn-button",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-button",
+      "search": [
+        "component:syn-button",
+        "syn-button",
+        "angular",
+        "button",
+        "component",
+        "react",
+        "syn-button",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-button-group.json",
+      "id": "component:syn-button-group",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-button-group",
+      "search": [
+        "component:syn-button-group",
+        "syn-button-group",
+        "angular",
+        "button-group",
+        "component",
+        "react",
+        "syn-button-group",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-card.json",
+      "id": "component:syn-card",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-card",
+      "search": [
+        "component:syn-card",
+        "syn-card",
+        "angular",
+        "card",
+        "component",
+        "react",
+        "syn-card",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-checkbox.json",
+      "id": "component:syn-checkbox",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-checkbox",
+      "search": [
+        "component:syn-checkbox",
+        "syn-checkbox",
+        "angular",
+        "checkbox",
+        "component",
+        "react",
+        "syn-checkbox",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-combobox.json",
+      "id": "component:syn-combobox",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 9,
+        "interface": 2
+      },
+      "name": "syn-combobox",
+      "search": [
+        "component:syn-combobox",
+        "syn-combobox",
+        "angular",
+        "combobox",
+        "component",
+        "react",
+        "syn-combobox",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-details.json",
+      "id": "component:syn-details",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-details",
+      "search": [
+        "component:syn-details",
+        "syn-details",
+        "angular",
+        "component",
+        "details",
+        "react",
+        "syn-details",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-dialog.json",
+      "id": "component:syn-dialog",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-dialog",
+      "search": [
+        "component:syn-dialog",
+        "syn-dialog",
+        "angular",
+        "component",
+        "dialog",
+        "react",
+        "syn-dialog",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-divider.json",
+      "id": "component:syn-divider",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-divider",
+      "search": [
+        "component:syn-divider",
+        "syn-divider",
+        "angular",
+        "component",
+        "divider",
+        "react",
+        "syn-divider",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-drawer.json",
+      "id": "component:syn-drawer",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-drawer",
+      "search": [
+        "component:syn-drawer",
+        "syn-drawer",
+        "angular",
+        "component",
+        "drawer",
+        "react",
+        "syn-drawer",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-dropdown.json",
+      "id": "component:syn-dropdown",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-dropdown",
+      "search": [
+        "component:syn-dropdown",
+        "syn-dropdown",
+        "angular",
+        "component",
+        "dropdown",
+        "react",
+        "syn-dropdown",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-file.json",
+      "id": "component:syn-file",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-file",
+      "search": [
+        "component:syn-file",
+        "syn-file",
+        "angular",
+        "component",
+        "file",
+        "react",
+        "syn-file",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-header.json",
+      "id": "component:syn-header",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-header",
+      "search": [
+        "component:syn-header",
+        "syn-header",
+        "angular",
+        "component",
+        "header",
+        "react",
+        "syn-header",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-icon.json",
+      "id": "component:syn-icon",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 14,
+        "interface": 2
+      },
+      "name": "syn-icon",
+      "search": [
+        "component:syn-icon",
+        "syn-icon",
+        "angular",
+        "component",
+        "icon",
+        "react",
+        "syn-icon",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-icon-button.json",
+      "id": "component:syn-icon-button",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-icon-button",
+      "search": [
+        "component:syn-icon-button",
+        "syn-icon-button",
+        "angular",
+        "component",
+        "icon-button",
+        "react",
+        "syn-icon-button",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-input.json",
+      "id": "component:syn-input",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 10,
+        "interface": 2
+      },
+      "name": "syn-input",
+      "search": [
+        "component:syn-input",
+        "syn-input",
+        "angular",
+        "component",
+        "input",
+        "react",
+        "syn-input",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-menu.json",
+      "id": "component:syn-menu",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-menu",
+      "search": [
+        "component:syn-menu",
+        "syn-menu",
+        "angular",
+        "component",
+        "menu",
+        "react",
+        "syn-menu",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-menu-item.json",
+      "id": "component:syn-menu-item",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-menu-item",
+      "search": [
+        "component:syn-menu-item",
+        "syn-menu-item",
+        "angular",
+        "component",
+        "menu-item",
+        "react",
+        "syn-menu-item",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-menu-label.json",
+      "id": "component:syn-menu-label",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-menu-label",
+      "search": [
+        "component:syn-menu-label",
+        "syn-menu-label",
+        "angular",
+        "component",
+        "menu-label",
+        "react",
+        "syn-menu-label",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-nav-item.json",
+      "id": "component:syn-nav-item",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-nav-item",
+      "search": [
+        "component:syn-nav-item",
+        "syn-nav-item",
+        "angular",
+        "component",
+        "nav-item",
+        "react",
+        "syn-nav-item",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-optgroup.json",
+      "id": "component:syn-optgroup",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-optgroup",
+      "search": [
+        "component:syn-optgroup",
+        "syn-optgroup",
+        "angular",
+        "component",
+        "optgroup",
+        "react",
+        "syn-optgroup",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-option.json",
+      "id": "component:syn-option",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 9,
+        "interface": 2
+      },
+      "name": "syn-option",
+      "search": [
+        "component:syn-option",
+        "syn-option",
+        "angular",
+        "component",
+        "option",
+        "react",
+        "syn-option",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-pagination.json",
+      "id": "component:syn-pagination",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-pagination",
+      "search": [
+        "component:syn-pagination",
+        "syn-pagination",
+        "angular",
+        "component",
+        "pagination",
+        "react",
+        "syn-pagination",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-popup.json",
+      "id": "component:syn-popup",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-popup",
+      "search": [
+        "component:syn-popup",
+        "syn-popup",
+        "angular",
+        "component",
+        "popup",
+        "react",
+        "syn-popup",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-prio-nav.json",
+      "id": "component:syn-prio-nav",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-prio-nav",
+      "search": [
+        "component:syn-prio-nav",
+        "syn-prio-nav",
+        "angular",
+        "component",
+        "prio-nav",
+        "react",
+        "syn-prio-nav",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-progress-bar.json",
+      "id": "component:syn-progress-bar",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-progress-bar",
+      "search": [
+        "component:syn-progress-bar",
+        "syn-progress-bar",
+        "angular",
+        "component",
+        "progress-bar",
+        "react",
+        "syn-progress-bar",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-progress-ring.json",
+      "id": "component:syn-progress-ring",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-progress-ring",
+      "search": [
+        "component:syn-progress-ring",
+        "syn-progress-ring",
+        "angular",
+        "component",
+        "progress-ring",
+        "react",
+        "syn-progress-ring",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-radio.json",
+      "id": "component:syn-radio",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-radio",
+      "search": [
+        "component:syn-radio",
+        "syn-radio",
+        "angular",
+        "component",
+        "radio",
+        "react",
+        "syn-radio",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-radio-button.json",
+      "id": "component:syn-radio-button",
+      "kind": "component",
+      "layers": {
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-radio-button",
+      "search": [
+        "component:syn-radio-button",
+        "syn-radio-button",
+        "angular",
+        "component",
+        "radio-button",
+        "react",
+        "syn-radio-button",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-radio-group.json",
+      "id": "component:syn-radio-group",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-radio-group",
+      "search": [
+        "component:syn-radio-group",
+        "syn-radio-group",
+        "angular",
+        "component",
+        "radio-group",
+        "react",
+        "syn-radio-group",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-range.json",
+      "id": "component:syn-range",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-range",
+      "search": [
+        "component:syn-range",
+        "syn-range",
+        "angular",
+        "component",
+        "range",
+        "react",
+        "syn-range",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-range-tick.json",
+      "id": "component:syn-range-tick",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-range-tick",
+      "search": [
+        "component:syn-range-tick",
+        "syn-range-tick",
+        "angular",
+        "component",
+        "range-tick",
+        "react",
+        "syn-range-tick",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-select.json",
+      "id": "component:syn-select",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-select",
+      "search": [
+        "component:syn-select",
+        "syn-select",
+        "angular",
+        "component",
+        "react",
+        "select",
+        "syn-select",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-side-nav.json",
+      "id": "component:syn-side-nav",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-side-nav",
+      "search": [
+        "component:syn-side-nav",
+        "syn-side-nav",
+        "angular",
+        "component",
+        "react",
+        "side-nav",
+        "syn-side-nav",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-spinner.json",
+      "id": "component:syn-spinner",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-spinner",
+      "search": [
+        "component:syn-spinner",
+        "syn-spinner",
+        "angular",
+        "component",
+        "react",
+        "spinner",
+        "syn-spinner",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-switch.json",
+      "id": "component:syn-switch",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-switch",
+      "search": [
+        "component:syn-switch",
+        "syn-switch",
+        "angular",
+        "component",
+        "react",
+        "switch",
+        "syn-switch",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tab.json",
+      "id": "component:syn-tab",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-tab",
+      "search": [
+        "component:syn-tab",
+        "syn-tab",
+        "angular",
+        "component",
+        "react",
+        "syn-tab",
+        "tab",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tab-group.json",
+      "id": "component:syn-tab-group",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-tab-group",
+      "search": [
+        "component:syn-tab-group",
+        "syn-tab-group",
+        "angular",
+        "component",
+        "react",
+        "syn-tab-group",
+        "tab-group",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tab-panel.json",
+      "id": "component:syn-tab-panel",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-tab-panel",
+      "search": [
+        "component:syn-tab-panel",
+        "syn-tab-panel",
+        "angular",
+        "component",
+        "react",
+        "syn-tab-panel",
+        "tab-panel",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tag.json",
+      "id": "component:syn-tag",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-tag",
+      "search": [
+        "component:syn-tag",
+        "syn-tag",
+        "angular",
+        "component",
+        "react",
+        "syn-tag",
+        "tag",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tag-group.json",
+      "id": "component:syn-tag-group",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-tag-group",
+      "search": [
+        "component:syn-tag-group",
+        "syn-tag-group",
+        "angular",
+        "component",
+        "react",
+        "syn-tag-group",
+        "tag-group",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-textarea.json",
+      "id": "component:syn-textarea",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-textarea",
+      "search": [
+        "component:syn-textarea",
+        "syn-textarea",
+        "angular",
+        "component",
+        "react",
+        "syn-textarea",
+        "textarea",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-tooltip.json",
+      "id": "component:syn-tooltip",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-tooltip",
+      "search": [
+        "component:syn-tooltip",
+        "syn-tooltip",
+        "angular",
+        "component",
+        "react",
+        "syn-tooltip",
+        "tooltip",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-validate.json",
+      "id": "component:syn-validate",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2
+      },
+      "name": "syn-validate",
+      "search": [
+        "component:syn-validate",
+        "syn-validate",
+        "angular",
+        "component",
+        "react",
+        "syn-validate",
+        "validate",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:angular-components-module.json",
+      "id": "setup:angular-components-module",
+      "kind": "setup",
+      "layers": {
+        "full": 2
+      },
+      "name": "Angular Components Module",
+      "search": [
+        "setup:angular-components-module",
+        "Angular Components Module",
+        "angular",
+        "framework",
+        "module",
+        "setup"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:angular-forms-module.json",
+      "id": "setup:angular-forms-module",
+      "kind": "setup",
+      "layers": {
+        "full": 1
+      },
+      "name": "Angular Forms Module",
+      "search": [
+        "setup:angular-forms-module",
+        "Angular Forms Module",
+        "angular",
+        "forms",
+        "framework",
+        "module",
+        "setup"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:angular-package.json",
+      "id": "setup:angular-package",
+      "kind": "setup",
+      "layers": {
+        "full": 5
+      },
+      "name": "Angular Framework Package",
+      "search": [
+        "setup:angular-package",
+        "Angular Framework Package",
+        "angular",
+        "framework",
+        "setup"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:angular-validators-module.json",
+      "id": "setup:angular-validators-module",
+      "kind": "setup",
+      "layers": {
+        "full": 1
+      },
+      "name": "Angular Validators Module",
+      "search": [
+        "setup:angular-validators-module",
+        "Angular Validators Module",
+        "angular",
+        "framework",
+        "module",
+        "setup",
+        "validators"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:assets-package.json",
+      "id": "setup:assets-package",
+      "kind": "setup",
+      "layers": {
+        "full": 4
+      },
+      "name": "Assets Package",
+      "search": [
+        "setup:assets-package",
+        "Assets Package",
+        "assets",
+        "setup"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:components-package.json",
+      "id": "setup:components-package",
+      "kind": "setup",
+      "layers": {
+        "full": 7
+      },
+      "name": "Components Package",
+      "search": [
+        "setup:components-package",
+        "Components Package",
+        "components",
+        "setup",
+        "web-components"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:fonts-package.json",
+      "id": "setup:fonts-package",
+      "kind": "setup",
+      "layers": {
+        "full": 3
+      },
+      "name": "Fonts Package",
+      "search": [
+        "setup:fonts-package",
+        "Fonts Package",
+        "fonts",
+        "setup"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:react-package.json",
+      "id": "setup:react-package",
+      "kind": "setup",
+      "layers": {
+        "full": 6
+      },
+      "name": "React Framework Package",
+      "search": [
+        "setup:react-package",
+        "React Framework Package",
+        "framework",
+        "react",
+        "setup"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:styles-package.json",
+      "id": "setup:styles-package",
+      "kind": "setup",
+      "layers": {
+        "full": 4
+      },
+      "name": "Styles Package",
+      "search": [
+        "setup:styles-package",
+        "Styles Package",
+        "setup",
+        "styles"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:synergy-migrations.json",
+      "id": "setup:synergy-migrations",
+      "kind": "setup",
+      "layers": {
+        "full": 7
+      },
+      "name": "Synergy Breaking Changes & Migrations",
+      "search": [
+        "setup:synergy-migrations",
+        "Synergy Breaking Changes & Migrations",
+        "breaking-changes",
+        "migrations",
+        "setup"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:tokens-package.json",
+      "id": "setup:tokens-package",
+      "kind": "setup",
+      "layers": {
+        "full": 4
+      },
+      "name": "Tokens Package",
+      "search": [
+        "setup:tokens-package",
+        "Tokens Package",
+        "setup",
+        "tokens"
+      ]
+    },
+    {
+      "corePath": "data/core/setup/setup:vue-package.json",
+      "id": "setup:vue-package",
+      "kind": "setup",
+      "layers": {
+        "full": 5
+      },
+      "name": "Vue Framework Package",
+      "search": [
+        "setup:vue-package",
+        "Vue Framework Package",
+        "framework",
+        "setup",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:syn-body.json",
+      "id": "style:syn-body",
+      "kind": "style",
+      "layers": {
+        "examples": 1,
+        "full": 1
+      },
+      "name": "syn-body",
+      "search": [
+        "style:syn-body",
+        "syn-body",
+        "body",
+        "module",
+        "style",
+        "styles",
+        "syn-body",
+        "typography"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:syn-heading.json",
+      "id": "style:syn-heading",
+      "kind": "style",
+      "layers": {
+        "examples": 1,
+        "full": 1
+      },
+      "name": "syn-heading",
+      "search": [
+        "style:syn-heading",
+        "syn-heading",
+        "heading",
+        "module",
+        "style",
+        "styles",
+        "syn-heading",
+        "typography"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:syn-link.json",
+      "id": "style:syn-link",
+      "kind": "style",
+      "layers": {
+        "examples": 1,
+        "full": 1
+      },
+      "name": "syn-link",
+      "search": [
+        "style:syn-link",
+        "syn-link",
+        "link",
+        "link",
+        "module",
+        "style",
+        "styles",
+        "syn-link"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:syn-link-list.json",
+      "id": "style:syn-link-list",
+      "kind": "style",
+      "layers": {
+        "examples": 1,
+        "full": 1
+      },
+      "name": "syn-link-list",
+      "search": [
+        "style:syn-link-list",
+        "syn-link-list",
+        "link-list",
+        "link-list",
+        "module",
+        "style",
+        "styles",
+        "syn-link-list"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:syn-table.json",
+      "id": "style:syn-table",
+      "kind": "style",
+      "layers": {
+        "examples": 1,
+        "full": 1
+      },
+      "name": "syn-table",
+      "search": [
+        "style:syn-table",
+        "syn-table",
+        "module",
+        "style",
+        "styles",
+        "syn-table",
+        "table",
+        "tables"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:syn-table-cell.json",
+      "id": "style:syn-table-cell",
+      "kind": "style",
+      "layers": {
+        "examples": 1,
+        "full": 1
+      },
+      "name": "syn-table-cell",
+      "search": [
+        "style:syn-table-cell",
+        "syn-table-cell",
+        "module",
+        "style",
+        "styles",
+        "syn-table-cell",
+        "table-cell",
+        "tables"
+      ]
+    },
+    {
+      "corePath": "data/core/style/style:syn-weight.json",
+      "id": "style:syn-weight",
+      "kind": "style",
+      "layers": {
+        "examples": 1,
+        "full": 1
+      },
+      "name": "syn-weight",
+      "search": [
+        "style:syn-weight",
+        "syn-weight",
+        "module",
+        "style",
+        "styles",
+        "syn-weight",
+        "typography",
+        "weight"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:appshell.json",
+      "id": "template:appshell",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Appshell",
+      "search": [
+        "template:appshell",
+        "Appshell",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:breadcrumb.json",
+      "id": "template:breadcrumb",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Breadcrumb",
+      "search": [
+        "template:breadcrumb",
+        "Breadcrumb",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:footer.json",
+      "id": "template:footer",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Footer",
+      "search": [
+        "template:footer",
+        "Footer",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:forms.json",
+      "id": "template:forms",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Forms",
+      "search": [
+        "template:forms",
+        "Forms",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:localization.json",
+      "id": "template:localization",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Localization",
+      "search": [
+        "template:localization",
+        "Localization",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:table.json",
+      "id": "template:table",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Table",
+      "search": [
+        "template:table",
+        "Table",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:tag-group.json",
+      "id": "template:tag-group",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Tag Group",
+      "search": [
+        "template:tag-group",
+        "Tag Group",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-figma-variables-sick2018-dark-json.json",
+      "id": "token:tokens-figma-variables-sick2018-dark-json",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2018-dark.json",
+      "search": [
+        "token:tokens-figma-variables-sick2018-dark-json",
+        "sick2018-dark.json",
+        "artifact",
+        "token",
+        "tokens",
+        "figma-variables-output"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-figma-variables-sick2018-light-json.json",
+      "id": "token:tokens-figma-variables-sick2018-light-json",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2018-light.json",
+      "search": [
+        "token:tokens-figma-variables-sick2018-light-json",
+        "sick2018-light.json",
+        "artifact",
+        "token",
+        "tokens",
+        "figma-variables-output"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-figma-variables-sick2025-dark-json.json",
+      "id": "token:tokens-figma-variables-sick2025-dark-json",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025-dark.json",
+      "search": [
+        "token:tokens-figma-variables-sick2025-dark-json",
+        "sick2025-dark.json",
+        "artifact",
+        "token",
+        "tokens",
+        "figma-variables-output"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-figma-variables-sick2025-light-json.json",
+      "id": "token:tokens-figma-variables-sick2025-light-json",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025-light.json",
+      "search": [
+        "token:tokens-figma-variables-sick2025-light-json",
+        "sick2025-light.json",
+        "artifact",
+        "token",
+        "tokens",
+        "figma-variables-output"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-js-index-d-ts.json",
+      "id": "token:tokens-js-index-d-ts",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "index.d.ts",
+      "search": [
+        "token:tokens-js-index-d-ts",
+        "index.d.ts",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-js-index-js.json",
+      "id": "token:tokens-js-index-js",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "index.js",
+      "search": [
+        "token:tokens-js-index-js",
+        "index.js",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-scss-tokens-scss.json",
+      "id": "token:tokens-scss-tokens-scss",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "_tokens.scss",
+      "search": [
+        "token:tokens-scss-tokens-scss",
+        "_tokens.scss",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-themes-sick2018-dark-css.json",
+      "id": "token:tokens-themes-sick2018-dark-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2018_dark.css",
+      "search": [
+        "token:tokens-themes-sick2018-dark-css",
+        "sick2018_dark.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-themes-sick2018-light-css.json",
+      "id": "token:tokens-themes-sick2018-light-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2018_light.css",
+      "search": [
+        "token:tokens-themes-sick2018-light-css",
+        "sick2018_light.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-themes-sick2025-dark-css.json",
+      "id": "token:tokens-themes-sick2025-dark-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025_dark.css",
+      "search": [
+        "token:tokens-themes-sick2025-dark-css",
+        "sick2025_dark.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-themes-sick2025-light-css.json",
+      "id": "token:tokens-themes-sick2025-light-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025_light.css",
+      "search": [
+        "token:tokens-themes-sick2025-light-css",
+        "sick2025_light.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/utility/utility:fonts-sick-intl.json",
+      "id": "utility:fonts-sick-intl",
+      "kind": "utility",
+      "layers": {
+        "full": 2
+      },
+      "name": "SICK Intl Font Source",
+      "search": [
+        "utility:fonts-sick-intl",
+        "SICK Intl Font Source",
+        "font",
+        "fonts",
+        "metadata",
+        "utility"
+      ]
+    }
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,51 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Whether the tick should be shown as a subdivision.",
+      "fieldName": "subdivision",
+      "name": "subdivision",
+      "reflects": true,
+      "type": "boolean"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The component's label.",
+      "name": "label"
+    },
+    {
+      "description": "The component's tick line.",
+      "name": "line"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-range-tick--docs",
+  "events": [],
+  "figmaComponentId": "41310-326049",
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Whether the tick should be shown as a subdivision.",
+      "name": "subdivision",
+      "type": "boolean"
+    }
+  ],
+  "since": "unknown",
+  "slots": [
+    {
+      "description": "The tick's label",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/range-tick/range-tick.js",
+  "status": "stable",
+  "summary": "Ticks visually improve positioning on range sliders.",
+  "tagName": "syn-range-tick"
+}

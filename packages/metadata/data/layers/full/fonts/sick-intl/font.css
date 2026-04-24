@@ -1,0 +1,17 @@
+/* Regular */
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./SICKIntl-Regular.woff2") format("woff2");
+}
+
+/* Semi Bold */
+@font-face {
+  font-display: swap;
+  font-family: "SICK Intl";
+  font-style: normal;
+  font-weight: 600;
+  src: url("./SICKIntl-Semibold.woff2") format("woff2");
+}

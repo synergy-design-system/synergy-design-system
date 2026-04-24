@@ -1,0 +1,259 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynNavItemComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-nav-item",
+        "sourcePath": "packages/angular/components/nav-item/nav-item.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynNavItem",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-nav-item--docs\nTakes one of 3 forms:\n- button (default),\n- link (overrides button if a 'href' is provided),\n- or accordion (overrides all other if 'children' slot is defined).",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.14.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynNavItemJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynNavItem",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/nav-item.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueNavItem",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueNavItem.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41163-402744",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "The navigation item is used to trigger page switches."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Navigation Item"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label attribute to change the content of a navigation item."
+          },
+          "name": "labels",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The current attribute provides the user feedback about which of the navigation elements is currently selected."
+          },
+          "name": "current",
+          "title": {
+            "type": "text",
+            "value": "Current"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Navigation Item has been focused by the keyboard interaction or active click from the user."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation. (The example shows it in combination with the current attribute, to indicate the difference.)"
+          },
+          "name": "nav-horizontal",
+          "title": {
+            "type": "text",
+            "value": "Horizontal Navigation"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the prefix and suffix slots to add e. g. icons or tags. If available the prefix slot will be shown in the rail navigation."
+          },
+          "name": "prefix-suffix",
+          "title": {
+            "type": "text",
+            "value": "Prefix and suffix Slot"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the *children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.\n\nNote:\nSince there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided."
+          },
+          "name": "children",
+          "title": {
+            "type": "text",
+            "value": "Children closed / open (vertical only)"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the divider attribute to add a border at the top. This should be used for first level elements in vertical navigations."
+          },
+          "name": "divider",
+          "title": {
+            "type": "text",
+            "value": "Divider"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Vertical navigation elements can be indented to indicate deeper navigation levels."
+          },
+          "name": "indentation",
+          "title": {
+            "type": "text",
+            "value": "Indentation"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable a navigation-item."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        }
+      ],
+      "storySourcePath": "components.nav-item",
+      "storyTags": [
+        "Navigation"
+      ]
+    },
+    "sourceModulePath": "components/nav-item/nav-item.js",
+    "summary": "Flexible button / link component that can be used to quickly build navigations."
+  },
+  "id": "component:syn-nav-item",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-nav-item.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/angular/nav-item.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/components/nav-item.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/components/nav-item.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/components/nav-item.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/react/nav-item.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/vue/SynVueNavItem.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-nav-item/react/SynNavItemJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-nav-item.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-nav-item.md"
+      }
+    ]
+  },
+  "name": "syn-nav-item",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-divider",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "1.14.0",
+  "sources": [
+    "packages/angular/components/nav-item/nav-item.component.ts",
+    "packages/components/src/components/nav-item/nav-item.component.ts",
+    "packages/components/src/components/nav-item/nav-item.styles.ts",
+    "packages/components/src/components/nav-item/nav-item.ts",
+    "packages/react/src/components/nav-item.ts",
+    "packages/vue/src/components/SynVueNavItem.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "nav-item",
+    "react",
+    "syn-nav-item",
+    "vue"
+  ]
+}

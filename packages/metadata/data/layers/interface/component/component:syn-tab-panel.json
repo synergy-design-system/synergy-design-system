@@ -1,0 +1,64 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "When true, the tab panel will be shown.",
+      "fieldName": "active",
+      "name": "active",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The tab panel's name.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": true,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs",
+  "events": [],
+  "figmaComponentId": "42207-340626",
+  "methods": [
+    {
+      "description": "",
+      "name": "handleActiveChange",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "When true, the tab panel will be shown.",
+      "name": "active",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The tab panel's name.",
+      "name": "name",
+      "type": "string"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The tab panel's content.",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/tab-panel/tab-panel.js",
+  "status": "stable",
+  "summary": "Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.",
+  "tagName": "syn-tab-panel"
+}

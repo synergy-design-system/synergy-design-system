@@ -1,0 +1,114 @@
+{
+  "attributes": [
+    {
+      "description": "Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered\ninternally. When unset, a button will be rendered instead.",
+      "fieldName": "href",
+      "name": "href",
+      "reflects": false,
+      "type": "string | undefined"
+    },
+    {
+      "default": "'noreferrer noopener'",
+      "description": "The `rel` attribute to use on the link. Only used when `href` is set.",
+      "fieldName": "rel",
+      "name": "rel",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "description": "Tells the browser where to open the link. Only used when `href` is set.",
+      "fieldName": "target",
+      "name": "target",
+      "reflects": false,
+      "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The breadcrumb item's label.",
+      "name": "label"
+    },
+    {
+      "description": "The container that wraps the prefix.",
+      "name": "prefix"
+    },
+    {
+      "description": "The container that wraps the separator.",
+      "name": "separator"
+    },
+    {
+      "description": "The container that wraps the suffix.",
+      "name": "suffix"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs",
+  "events": [],
+  "figmaComponentId": "41127-679600",
+  "methods": [
+    {
+      "description": "",
+      "name": "handleSlotChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "hrefChanged",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "description": "Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered\ninternally. When unset, a button will be rendered instead.",
+      "name": "href",
+      "type": "string | undefined"
+    },
+    {
+      "access": "public",
+      "default": "'noreferrer noopener'",
+      "description": "The `rel` attribute to use on the link. Only used when `href` is set.",
+      "name": "rel",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "Tells the browser where to open the link. Only used when `href` is set.",
+      "name": "target",
+      "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The breadcrumb item's label.",
+      "name": ""
+    },
+    {
+      "description": "An optional prefix, usually an icon or icon button.",
+      "name": "prefix"
+    },
+    {
+      "description": "An optional suffix, usually an icon or icon button.",
+      "name": "suffix"
+    },
+    {
+      "description": "The separator to use for the breadcrumb item. This will only change the separator for this item. If you want to change it for all items in the group, set the separator on `<syn-breadcrumb>` instead.",
+      "name": "separator"
+    }
+  ],
+  "sourceModulePath": "components/breadcrumb-item/breadcrumb-item.js",
+  "status": "stable",
+  "summary": "Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.",
+  "tagName": "syn-breadcrumb-item"
+}

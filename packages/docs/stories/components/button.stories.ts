@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
@@ -29,7 +26,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('1055-22957'),
+    design: generateFigmaPluginObject('42076-167749'),
     docs: {
       description: {
         component: generateStoryDescription('button', 'default'),

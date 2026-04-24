@@ -1,0 +1,232 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynSwitchComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-switch",
+        "sourcePath": "packages/angular/components/switch/switch.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynSwitch",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynSwitchJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynSwitch",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/switch.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueSwitch",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSwitch.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41310-259132",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Switches allow the user to toggle an option on or off."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Switch"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the checked attribute to activate the switch."
+          },
+          "name": "checked",
+          "title": {
+            "type": "text",
+            "value": "Checked"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable the switch."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the readonly attribute to draw a read-only switch."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Read-only"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a switch’s size."
+          },
+          "name": "sizes",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Switch has been focused by the keyboard interaction."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the Switch is invalid."
+          },
+          "name": "invalid",
+          "title": {
+            "type": "text",
+            "value": "Invalid"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
+          },
+          "name": "help-text",
+          "title": {
+            "type": "text",
+            "value": "Help Text"
+          }
+        }
+      ],
+      "storySourcePath": "components.switch",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "sourceModulePath": "components/switch/switch.js",
+    "summary": "Switches allow the user to toggle an option on or off."
+  },
+  "id": "component:syn-switch",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-switch.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/angular/switch.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/components/switch.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/components/switch.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/components/switch.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/react/switch.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/vue/SynVueSwitch.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-switch/react/SynSwitchJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-switch.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-switch.md"
+      }
+    ]
+  },
+  "name": "syn-switch",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/switch/switch.component.ts",
+    "packages/components/src/components/switch/switch.component.ts",
+    "packages/components/src/components/switch/switch.styles.ts",
+    "packages/components/src/components/switch/switch.ts",
+    "packages/react/src/components/switch.ts",
+    "packages/vue/src/components/SynVueSwitch.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "switch",
+    "syn-switch",
+    "vue"
+  ]
+}

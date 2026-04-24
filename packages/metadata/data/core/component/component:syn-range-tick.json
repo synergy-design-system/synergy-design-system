@@ -1,0 +1,166 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynRangeTickComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-range-tick",
+        "sourcePath": "packages/angular/components/range-tick/range-tick.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynRangeTick",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-range-tick--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynRangeTickJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynRangeTick",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/range-tick.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueRangeTick",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueRangeTick.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41310-326049",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the ticks slot to insert ticks or groups with ticks to improve positioning."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Ticks"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the default slot to give the tick a label."
+          },
+          "name": "label",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Grouping multiple ticks can be used as a scale. This can be used for uneven distributions as well."
+          },
+          "name": "grouping",
+          "title": {
+            "type": "text",
+            "value": "Grouping"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "It is possible to divide the space between major ticks for finer scale readings."
+          },
+          "name": "subdivision",
+          "title": {
+            "type": "text",
+            "value": "Subdivision Ticks"
+          }
+        }
+      ],
+      "storySourcePath": "components.range-tick",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "sourceModulePath": "components/range-tick/range-tick.js",
+    "summary": "Ticks visually improve positioning on range sliders."
+  },
+  "id": "component:syn-range-tick",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-range-tick.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/angular/range-tick.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/components/range-tick.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/components/range-tick.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/components/range-tick.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/react/range-tick.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/vue/SynVueRangeTick.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range-tick/react/SynRangeTickJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-range-tick.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-range-tick.md"
+      }
+    ]
+  },
+  "name": "syn-range-tick",
+  "package": "components",
+  "relations": [],
+  "since": "unknown",
+  "sources": [
+    "packages/angular/components/range-tick/range-tick.component.ts",
+    "packages/components/src/components/range-tick/range-tick.component.ts",
+    "packages/components/src/components/range-tick/range-tick.styles.ts",
+    "packages/components/src/components/range-tick/range-tick.ts",
+    "packages/react/src/components/range-tick.ts",
+    "packages/vue/src/components/SynVueRangeTick.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "range-tick",
+    "react",
+    "syn-range-tick",
+    "vue"
+  ]
+}

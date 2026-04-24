@@ -1,0 +1,36 @@
+{
+  "attributes": [],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The divider that is displayed above the content",
+      "name": "divider"
+    },
+    {
+      "description": "The label that is displayed below the divider",
+      "name": "label"
+    }
+  ],
+  "dependencies": [
+    "syn-divider"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs",
+  "events": [],
+  "figmaComponentId": "41203-427127",
+  "methods": [],
+  "properties": [],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The menu label's content.",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/menu-label/menu-label.js",
+  "status": "stable",
+  "summary": "Menu labels are used to describe a group of menu items.",
+  "tagName": "syn-menu-label"
+}

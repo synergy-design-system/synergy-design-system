@@ -1,0 +1,1 @@
+export type SynOptionJSXElement = SynCustomElement<SynOption, []>;

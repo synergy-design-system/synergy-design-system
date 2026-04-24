@@ -1,0 +1,230 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynTabGroupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tab-group",
+        "sourcePath": "packages/angular/components/tab-group/tab-group.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynTabGroup",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab-group--docs",
+          "events": [
+            {
+              "name": "syn-tab-show",
+              "type": "SynTabShowEvent"
+            },
+            {
+              "name": "syn-tab-hide",
+              "type": "SynTabHideEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTabGroupJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTabGroup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tab-group.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueTabGroup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTabGroup.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "42207-338578",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Tab groups organize content into a container that shows one section at a time. Tab groups make use of tabs and tab panels. Each tab must be slotted into the nav slot and its panel must refer to a tab panel of the same name."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Tab Group"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Tabs can be shown on the starting side by setting placement to start."
+          },
+          "name": "start",
+          "title": {
+            "type": "text",
+            "value": "Tabs on Start"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Tabs can be shown on the ending side by setting placement to end."
+          },
+          "name": "end",
+          "title": {
+            "type": "text",
+            "value": "Tabs on End"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the closable attribute to a tab to show a close button. This example shows how you can dynamically remove tabs from the DOM when the close button is activated."
+          },
+          "name": "closable",
+          "title": {
+            "type": "text",
+            "value": "Closable Tabs"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "When there are more tabs than horizontal space allows, the nav will be scrollable."
+          },
+          "name": "scrolling",
+          "title": {
+            "type": "text",
+            "value": "Scrolling Tabs"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "When focused, keyboard users can press Left or Right to select the desired tab. By default, the corresponding tab panel will be shown immediately (automatic activation). You can change this behavior by setting activation=\"manual\" which will require the user to press Space or Enter before showing the tab panel (manual activation)."
+          },
+          "name": "manuel",
+          "title": {
+            "type": "text",
+            "value": "Manual Activation"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To structure the Page, you can use different tab styles."
+          },
+          "name": "hierachy",
+          "title": {
+            "type": "text",
+            "value": "Visual Hierarchy"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "It is also possible to a Add icon to the Tabs."
+          },
+          "name": "icon",
+          "title": {
+            "type": "text",
+            "value": "Icons"
+          }
+        }
+      ],
+      "storySourcePath": "components.tab-group",
+      "storyTags": [
+        "Navigation"
+      ]
+    },
+    "sourceModulePath": "components/tab-group/tab-group.js",
+    "summary": "Tab groups organize content into a container that shows one section at a time."
+  },
+  "id": "component:syn-tab-group",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-tab-group.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-group/angular/tab-group.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-group/components/tab-group.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-group/components/tab-group.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-group/components/tab-group.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-group/components/tab-group.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-group/react/tab-group.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-group/vue/SynVueTabGroup.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-group/react/SynTabGroupJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tab-group.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tab-group.md"
+      }
+    ]
+  },
+  "name": "syn-tab-group",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/tab-group/tab-group.component.ts",
+    "packages/components/src/components/tab-group/tab-group.component.ts",
+    "packages/components/src/components/tab-group/tab-group.custom.styles.ts",
+    "packages/components/src/components/tab-group/tab-group.styles.ts",
+    "packages/components/src/components/tab-group/tab-group.ts",
+    "packages/react/src/components/tab-group.ts",
+    "packages/vue/src/components/SynVueTabGroup.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "syn-tab-group",
+    "tab-group",
+    "vue"
+  ]
+}

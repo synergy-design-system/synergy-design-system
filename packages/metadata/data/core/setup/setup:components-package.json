@@ -1,0 +1,59 @@
+{
+  "custom": {
+    "packageName": "@synergy-design-system/components",
+    "packageVersion": "3.12.0"
+  },
+  "id": "setup:components-package",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/components/README.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/components/CHANGELOG.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/components/BREAKING_CHANGES.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/components/LIMITATIONS.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/components/package.json"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/docs/icon-usage.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:components-package/docs/prerequisites.md"
+      }
+    ]
+  },
+  "name": "Components Package",
+  "package": "components",
+  "relations": [],
+  "since": "3.12.0",
+  "sources": [
+    "packages/components/README.md",
+    "packages/components/CHANGELOG.md",
+    "packages/components/BREAKING_CHANGES.md",
+    "packages/components/LIMITATIONS.md",
+    "packages/components/package.json",
+    "packages/docs/src/static/icon-usage.md",
+    "packages/docs/src/static/prerequisites.md"
+  ],
+  "status": "stable",
+  "tags": [
+    "components",
+    "setup",
+    "web-components"
+  ]
+}

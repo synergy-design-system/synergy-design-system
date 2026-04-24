@@ -1,0 +1,43 @@
+{
+  "attributes": [
+    {
+      "default": "'primary'",
+      "description": "The badge's theme variant.",
+      "fieldName": "variant",
+      "name": "variant",
+      "reflects": true,
+      "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs",
+  "events": [],
+  "figmaComponentId": "41137-656313",
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "default": "'primary'",
+      "description": "The badge's theme variant.",
+      "name": "variant",
+      "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The badge's content.",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/badge/badge.js",
+  "status": "stable",
+  "summary": "Badges are used to draw attention and display statuses or counts.",
+  "tagName": "syn-badge"
+}

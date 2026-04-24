@@ -1,0 +1,421 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynComboboxComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-combobox",
+        "sourcePath": "packages/angular/components/combobox/combobox.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynCombobox",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs",
+          "events": [
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-clear",
+              "type": "SynClearEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            },
+            {
+              "name": "syn-error",
+              "type": "SynErrorEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynComboboxJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynCombobox",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/combobox.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueCombobox",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueCombobox.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "42207-352063",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "The combobox suggests items based on the user input."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Combobox"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label attribute to give the combobox an accessible label. For labels that contain HTML, use the label slot instead."
+          },
+          "name": "label",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
+          },
+          "name": "help-text",
+          "title": {
+            "type": "text",
+            "value": "Help Text"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the placeholder attribute to add a placeholder."
+          },
+          "name": "placeholder",
+          "title": {
+            "type": "text",
+            "value": "Placeholder"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus attribute provides feedback to the users, informing them that the combobox component is ready for use."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus / Active"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "A simple suggestions list shows the user a filtered list."
+          },
+          "name": "simple",
+          "title": {
+            "type": "text",
+            "value": "Simple suggests"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The filtered options shown in the list can be customized by passing a function to the getOption property. Your function can return a string of HTML, a Lit Template, or an HTMLElement. The getOption() function will be called for each option. The first argument is an <syn-option> element and the second argument is the query string.\n\nRemember that the options are rendered in a shadow root. To style them, you can use the style attribute in your template or you can add your own parts and target them with the ::part() selector.\n\n **Note:** Be sure you trust the content you are outputting! Passing unsanitized user input to getOption() can result in XSS vulnerabilities."
+          },
+          "name": "highlight",
+          "title": {
+            "type": "text",
+            "value": "Highlight Query"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use <syn-optgroup> to group <syn-option>`s visually."
+          },
+          "name": "grouping",
+          "title": {
+            "type": "text",
+            "value": "Grouping Query"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The height of the filtered options list can be customized by setting the `max-height` on the `listbox` part of the combobox."
+          },
+          "name": "container-height",
+          "title": {
+            "type": "text",
+            "value": "Suggestion Container Height"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the clearable attribute to add a clear button when the combobox has content."
+          },
+          "name": "clearable",
+          "title": {
+            "type": "text",
+            "value": "Clearable"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable a combobox."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the readonly attribute to draw a read-only combobox."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Read-only"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To allow multiple options to be selected, use the multiple attribute. It’s a good practice to use clearable when this option is enabled. To set multiple values at once, set value to a space-delimited list of values. \n\nUse the max-options-visible attribute to define the maximum number of selected options that will be visible. After the maximum, \"+n\" will be shown to indicate the number of additional items that are selected."
+          },
+          "name": "multiple",
+          "title": {
+            "type": "text",
+            "value": "Multiple"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the value attribute to set the initial selection.\n\nWhen using multiple, the value attribute uses space-delimited values to select more than one option. Because of this, <syn-option> values cannot contain spaces. If you’re accessing the value property through Javascript, it will be an array."
+          },
+          "name": "initial-values",
+          "title": {
+            "type": "text",
+            "value": "Setting initial values"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "This restricts the combobox to only allow selections from the available options. Users cannot enter custom values that are not in the list."
+          },
+          "name": "restrict-options",
+          "title": {
+            "type": "text",
+            "value": "Restrict options"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "A “No results found” message is displayed, when the search term doesn’t match the options."
+          },
+          "name": "no-results",
+          "title": {
+            "type": "text",
+            "value": "No results found"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a combobox size."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the combobox is invalid. For example, if the entry is mandatory."
+          },
+          "name": "invalid",
+          "title": {
+            "type": "text",
+            "value": "Invalid"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the prefix and suffix slots to add text and icons."
+          },
+          "name": "preffix-sufffix",
+          "title": {
+            "type": "text",
+            "value": "Prefix Suffix Text and Icons"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "It is possible to add options dynamically to the combobox e.g. if the option values need to be fetched asynchronously from a remote server or API."
+          },
+          "name": "async-options",
+          "title": {
+            "type": "text",
+            "value": "Async Options"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "A custom filter can be applied by passing a filter function to the `filter` property. This filter() function will be called for each option. The first argument is an <syn-option> element and the second argument is the query string."
+          },
+          "name": "custom-filter",
+          "title": {
+            "type": "text",
+            "value": "Custom filter"
+          }
+        }
+      ],
+      "storySourcePath": "components.combobox",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "sourceModulePath": "components/combobox/combobox.js",
+    "summary": "A combobox component that combines the functionality of a text input with a dropdown listbox,\nallowing users to either select from predefined options or enter custom values (when not restricted)."
+  },
+  "id": "component:syn-combobox",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-combobox.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/angular/combobox.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/components/combobox.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/components/combobox.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/components/combobox.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/components/option-renderer.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/components/utils.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/react/combobox.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/vue/SynVueCombobox.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-combobox/react/SynComboboxJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-combobox.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-combobox.md"
+      }
+    ]
+  },
+  "name": "syn-combobox",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-popup",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-tag",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "unknown",
+  "sources": [
+    "packages/angular/components/combobox/combobox.component.ts",
+    "packages/components/src/components/combobox/combobox.component.ts",
+    "packages/components/src/components/combobox/combobox.styles.ts",
+    "packages/components/src/components/combobox/combobox.ts",
+    "packages/components/src/components/combobox/option-renderer.ts",
+    "packages/components/src/components/combobox/utils.ts",
+    "packages/react/src/components/combobox.ts",
+    "packages/vue/src/components/SynVueCombobox.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "combobox",
+    "component",
+    "react",
+    "syn-combobox",
+    "vue"
+  ]
+}

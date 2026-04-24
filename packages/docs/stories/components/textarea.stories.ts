@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/textarea/textarea.js';
 import '../../../components/src/components/button/button.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
@@ -21,7 +20,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('1101-1576'),
+    design: generateFigmaPluginObject('41337-204379'),
     docs: {
       description: {
         component: generateStoryDescription('textarea', 'default'),

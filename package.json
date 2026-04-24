@@ -19,6 +19,7 @@
   },
   "scripts": {
     "build": "pnpm --recursive --if-present build",
+    "build:size": "pnpm --filter @synergy-design-system/components... --if-present build",
     "clean": "rm -rf node_modules && find . -name dist -type d | xargs rm -rf && find . -name node_modules -type d | xargs rm -rf && pnpm install && pnpm build",
     "lint": "pnpm --recursive --if-present lint",
     "format": "pnpm run /^format..*/",

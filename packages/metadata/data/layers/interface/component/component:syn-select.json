@@ -1,0 +1,580 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Adds a clear button when the select is not empty.",
+      "fieldName": "clearable",
+      "name": "clearable",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "' '",
+      "description": "The delimiter to use when setting the value when `multiple` is enabled.\nThe default is a space, but you can set it to a comma or other character.",
+      "fieldName": "delimiter",
+      "name": "delimiter",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Disables the select control.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "fieldName": "form",
+      "name": "form",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "description": "A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second\nis the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at\nthe specified value.",
+      "fieldName": "getTag",
+      "name": "getTag",
+      "reflects": false,
+      "type": "(option: SynOption, index: number) => TemplateResult | string | HTMLElement"
+    },
+    {
+      "default": "''",
+      "description": "The select's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "fieldName": "helpText",
+      "name": "help-text",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The select's label. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "3",
+      "description": "The maximum number of selected options to show when `multiple` is true. After the maximum, \"+n\" will be shown to\nindicate the number of additional items that are selected. Set to 0 to remove the limit.",
+      "fieldName": "maxOptionsVisible",
+      "name": "max-options-visible",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "default": "false",
+      "description": "Allows more than one option to be selected.",
+      "fieldName": "multiple",
+      "name": "multiple",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The name of the select, submitted as a name/value pair with form data.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Indicates whether or not the select is open. You can toggle this attribute to show and hide the menu, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the select's open state.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "Placeholder text to show as a hint when the select is empty.",
+      "fieldName": "placeholder",
+      "name": "placeholder",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'bottom'",
+      "description": "The preferred placement of the select's menu. Note that the actual placement may vary as needed to keep the listbox\ninside of the viewport.",
+      "fieldName": "placement",
+      "name": "placement",
+      "reflects": true,
+      "type": "'top' | 'bottom'"
+    },
+    {
+      "default": "false",
+      "description": "Sets the select to a readonly state.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "The select's required attribute.",
+      "fieldName": "required",
+      "name": "required",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The select's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "default": "''",
+      "description": "The current value of the select, submitted as a name/value pair with form data. When `multiple` is enabled, the\nvalue attribute will be a space-delimited list of values based on the options selected, and the value property will\nbe an array. **For this reason, values must not contain spaces.**",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string | number | Array<string | number>"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The clear button.",
+      "name": "clear-button"
+    },
+    {
+      "description": "The container the wraps the prefix, suffix, combobox, clear icon, and expand button.",
+      "name": "combobox"
+    },
+    {
+      "description": "The element that displays the selected option's label, an `<input>` element.",
+      "name": "display-input"
+    },
+    {
+      "description": "The container that wraps the expand icon.",
+      "name": "expand-icon"
+    },
+    {
+      "description": "The form control that wraps the label, input, and help text.",
+      "name": "form-control"
+    },
+    {
+      "description": "The help text's wrapper.",
+      "name": "form-control-help-text"
+    },
+    {
+      "description": "The select's wrapper.",
+      "name": "form-control-input"
+    },
+    {
+      "description": "The label's wrapper.",
+      "name": "form-control-label"
+    },
+    {
+      "description": "The listbox container where options are slotted.",
+      "name": "listbox"
+    },
+    {
+      "description": "The popup's exported `popup` part. Use this to target the tooltip's popup container.",
+      "name": "popup"
+    },
+    {
+      "description": "The container that wraps the prefix slot.",
+      "name": "prefix"
+    },
+    {
+      "description": "The container that wraps the suffix slot.",
+      "name": "suffix"
+    },
+    {
+      "description": "The individual tags that represent each multiselect option.",
+      "name": "tag"
+    },
+    {
+      "description": "The tag's base part.",
+      "name": "tag__base"
+    },
+    {
+      "description": "The tag's content part.",
+      "name": "tag__content"
+    },
+    {
+      "description": "The tag's remove button.",
+      "name": "tag__remove-button"
+    },
+    {
+      "description": "The tag's remove button base part.",
+      "name": "tag__remove-button__base"
+    },
+    {
+      "description": "The container that houses option tags when `multiselect` is used.",
+      "name": "tags"
+    }
+  ],
+  "dependencies": [
+    "syn-icon",
+    "syn-popup",
+    "syn-tag"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs",
+  "events": [
+    {
+      "description": "Emitted after the select's menu closes and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
+    },
+    {
+      "description": "Emitted after the select's menu opens and all animations are complete.",
+      "name": "syn-after-show",
+      "type": "SynAfterShowEvent"
+    },
+    {
+      "description": "Emitted when the control loses focus.",
+      "name": "syn-blur",
+      "type": "SynBlurEvent"
+    },
+    {
+      "description": "Emitted when the control's value changes.",
+      "name": "syn-change",
+      "type": "SynChangeEvent"
+    },
+    {
+      "description": "Emitted when the control's value is cleared.",
+      "name": "syn-clear",
+      "type": "SynClearEvent"
+    },
+    {
+      "description": "Emitted when the control gains focus.",
+      "name": "syn-focus",
+      "type": "SynFocusEvent"
+    },
+    {
+      "description": "Emitted when the select's menu closes.",
+      "name": "syn-hide",
+      "type": "SynHideEvent"
+    },
+    {
+      "description": "Emitted when the control receives input.",
+      "name": "syn-input",
+      "type": "SynInputEvent"
+    },
+    {
+      "description": "Emitted when the form control has been checked for validity and its constraints aren't satisfied.",
+      "name": "syn-invalid",
+      "type": "SynInvalidEvent"
+    },
+    {
+      "description": "Emitted when the select's menu opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
+    }
+  ],
+  "figmaComponentId": "41325-310740",
+  "methods": [
+    {
+      "description": "Removes focus from the control.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity but does not show a validation message. Returns `true` when valid and `false` when invalid.",
+      "name": "checkValidity",
+      "parameters": []
+    },
+    {
+      "description": "Sets focus on the control.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    },
+    {
+      "description": "Gets the associated form, if one exists.",
+      "name": "getForm",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDefaultSlotChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDelimiterChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleOpenChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleValueChange",
+      "parameters": []
+    },
+    {
+      "description": "Hides the listbox.",
+      "name": "hide",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
+      "name": "reportValidity",
+      "parameters": []
+    },
+    {
+      "description": "Sets a custom validation message. Pass an empty string to restore validity.",
+      "name": "setCustomValidity",
+      "parameters": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "description": "Shows the listbox.",
+      "name": "show",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Adds a clear button when the select is not empty.",
+      "name": "clearable",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "combobox",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "currentOption",
+      "type": "SynOption"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The default value of the form control. Primarily used for resetting the form control.",
+      "name": "defaultValue",
+      "type": "string | number | Array<string | number>"
+    },
+    {
+      "access": "public",
+      "default": "' '",
+      "description": "The delimiter to use when setting the value when `multiple` is enabled.\nThe default is a space, but you can set it to a comma or other character.",
+      "name": "delimiter",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the select control.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "displayInput",
+      "type": "HTMLInputElement"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "",
+      "name": "displayLabel",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "name": "form",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second\nis the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at\nthe specified value.",
+      "name": "getTag",
+      "type": "(option: SynOption, index: number) => TemplateResult | string | HTMLElement"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The select's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "name": "helpText",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The select's label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "listbox",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "default": "3",
+      "description": "The maximum number of selected options to show when `multiple` is true. After the maximum, \"+n\" will be shown to\nindicate the number of additional items that are selected. Set to 0 to remove the limit.",
+      "name": "maxOptionsVisible",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Allows more than one option to be selected.",
+      "name": "multiple",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the select, submitted as a name/value pair with form data.",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not the select is open. You can toggle this attribute to show and hide the menu, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the select's open state.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "Placeholder text to show as a hint when the select is empty.",
+      "name": "placeholder",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'bottom'",
+      "description": "The preferred placement of the select's menu. Note that the actual placement may vary as needed to keep the listbox\ninside of the viewport.",
+      "name": "placement",
+      "type": "'top' | 'bottom'"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "popup",
+      "type": "SynPopup"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Sets the select to a readonly state.",
+      "name": "readonly",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "The select's required attribute.",
+      "name": "required",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "[]",
+      "description": "",
+      "name": "selectedOptions",
+      "type": "SynOption[]"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The select's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "tagContainer",
+      "type": "HTMLDivElement"
+    },
+    {
+      "access": "readonly",
+      "description": "",
+      "name": "tags"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validation message",
+      "name": "validationMessage"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validity state object",
+      "name": "validity"
+    },
+    {
+      "access": "public",
+      "description": "The current value of the select, submitted as a name/value pair with form data. When `multiple` is enabled, the\nvalue attribute will be a space-delimited list of values based on the options selected, and the value property will\nbe an array. **For this reason, values must not contain spaces.**",
+      "name": "value"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "valueInput",
+      "type": "HTMLInputElement"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The listbox options. Must be `<syn-option>` elements. You can use `<syn-divider>` to group items visually.",
+      "name": ""
+    },
+    {
+      "description": "The input's label. Alternatively, you can use the `label` attribute.",
+      "name": "label"
+    },
+    {
+      "description": "Used to prepend a presentational icon or similar element to the combobox.",
+      "name": "prefix"
+    },
+    {
+      "description": "Used to append a presentational icon or similar element to the combobox.",
+      "name": "suffix"
+    },
+    {
+      "description": "An icon to use in lieu of the default clear icon.",
+      "name": "clear-icon"
+    },
+    {
+      "description": "The icon to show when the control is expanded and collapsed. Rotates on open and close.",
+      "name": "expand-icon"
+    },
+    {
+      "description": "Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.",
+      "name": "help-text"
+    }
+  ],
+  "sourceModulePath": "components/select/select.js",
+  "status": "stable",
+  "summary": "Selects allow you to choose items from a menu of predefined options.",
+  "tagName": "syn-select"
+}

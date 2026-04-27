@@ -3,7 +3,6 @@
 /** @type {import('../../src/config/types.js').ComponentRules} */
 export default {
   accessibility: [
-    'To ensure screenreader compatibility, consider including a statement such as "Fields marked with an asterisk (\\*) are required" at the start of the form.',
     'A visible label may be omitted for search input fields within a combobox if an associated button-complete with a clear search icon and an appropriate accessible name (e.g., aria-label="Search")-is provided.',
     'Be aware that group labels will be neglected by most assistive devices.',
     'Use the "visually disabled" attribute to keep disabled elements focusable, hoverable, and able to show tooltips, as they\'re otherwise removed from the tab order and inaccessible to screen readers.',

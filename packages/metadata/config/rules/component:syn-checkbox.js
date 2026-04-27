@@ -6,8 +6,6 @@ export default {
     'Checkboxes should always look like checkboxes to meet user\'s expectations.',
     'Nesting other interactive elements like links inside labels should be avoided.',
     'An error-text with a warning icon should be placed underneath an invalid checkbox or, if used in a group, underneath the checkbox group. Error messages should always provide hints for solutions.',
-    'Use the "visually disabled" attribute to keep disabled elements focusable, hoverable, and able to show tooltips, as they\'re otherwise removed from the tab order and inaccessible to screen readers.',
-    'In Figma use an asterisk with a blank before ( \\*) at the end of its label when designing a mandatory checkbox. In code use the "required" boolean.',
   ],
   component: 'syn-checkbox',
   related: {

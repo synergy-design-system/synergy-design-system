@@ -5,7 +5,6 @@ export default {
   accessibility: [
     'Ensure that the group label is short and concise as it may be read out when users enter the group.',
     'Ensure radios are easily tappable on touch devices.',
-    'Use the "visually disabled" attribute to keep disabled elements focusable, hoverable, and able to show tooltips, as they\'re otherwise removed from the tab order and inaccessible to screen readers.',
   ],
   component: 'syn-radio-group',
   related: {

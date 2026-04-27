@@ -5,11 +5,12 @@ export default {
   accessibility: [
     'Refrain from injecting non-navigation or unrelated content (like dynamic elements) into the header container to avoid distracting or confusing assistive technology.',
     'Provide a unique ID on the header container for skip links, ensuring keyboard users can quickly bypass navigation if desired.',
-    'When placing a logo in the header, the alt text should describe its target (e.g., \'Union Investment Homepage\') rather than the image itself (e.g., \'Union Investment Logo\'), and it should either match the visual label or at least start with the same words.',
+    'When placing a logo in the header, the alt text should describe its target (e.g., \'Start Page\') rather than the image itself (e.g., \'SICK Logo\'), and it should either match the visual label or at least start with the same words.',
   ],
   component: 'syn-header',
   related: {
     components: [
+      'syn-prio-nav',
       'syn-nav-item',
     ],
     templates: [

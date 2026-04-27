@@ -5,7 +5,6 @@ Machine-readable metadata for the Synergy Design System.
 ## Public API
 
 This package publishes a stable runtime query API and metadata artifacts.
-Internal collector/pipeline/CLI modules are intentionally not part of the public contract.
 
 ```ts
 import {
@@ -23,7 +22,7 @@ clearMetadataStoreCache();
 
 ### Cache Behavior
 
-`createMetadataStore()` now uses a process-local read-through cache for:
+`createMetadataStore()` uses a process-local read-through cache for:
 
 - `data/index.json`
 - core entity JSON files under `data/core/**`
@@ -82,11 +81,6 @@ if (component.data) {
 
 Use this flow when you need real file content (for example framework wrappers, styles, or examples), not only layer file paths.
 
-### Supported exports
-
-- `@synergy-design-system/metadata`
-- `@synergy-design-system/metadata/public`
-
 ### Public data artifacts
 
 - `data/index.json`
@@ -94,11 +88,6 @@ Use this flow when you need real file content (for example framework wrappers, s
 - `data/layers/**`
 - `data/manifest.json`
 - `data/schemas/**`
-
-## Release Scope
-
-For `1.0.0`, the published contract is the stable runtime query API plus the generated metadata artifacts listed above.
-The ADR-proposed summary fields `shortDescription`, `llmHint`, and `usageHints` are intentionally deferred from `1.0.0` and are not part of the current schema or public types.
 
 ## Internal Modules
 

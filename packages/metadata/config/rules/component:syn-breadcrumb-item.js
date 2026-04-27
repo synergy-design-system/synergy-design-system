@@ -24,6 +24,6 @@ export default {
     ],
   },
   useCases: [
-    'Populate an < syn-link href="/?path=/docs/components- syn-breadcrumb--docs"> syn-breadcrumb</ syn-link> navigation helping users easily access different pages.',
+    'Populate a syn-breadcrumb navigation helping users easily access different pages.',
   ],
 };

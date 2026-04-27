@@ -8,7 +8,6 @@ export default {
     'Be aware that button\'s height may change based on the user\'s preferred font size set system-wide.',
     'For icon-only: Include an ARIA label describing its function (e.g., "Expand section") to ensure the button is accessible to screen readers.',
     'Prefer keeping the button enabled by default by relying on default values or by validating on submit.',
-    'Use the "visually disabled" attribute to keep disabled elements focusable, hoverable, and able to show tooltips, as they\'re otherwise removed from the tab order and inaccessible to screen readers.',
   ],
   component: 'syn-button',
   related: {

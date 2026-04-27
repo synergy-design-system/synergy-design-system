@@ -10,7 +10,7 @@ export default {
   knownIssues: [
     {
       browser: 'Safari',
-      description: 'The \' syn-spinner\' component may experience spinner animation issues in Safari, causing them to appear wobbly.',
+      description: 'The spinner component may experience animation issues in Safari, causing it to appear wobbly.',
     },
   ],
   usageGuidelines: {

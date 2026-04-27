@@ -30,7 +30,7 @@ export default {
       'Use breadcrumbs primarily in structured, multi-level navigation contexts. Avoid implementing them for non-hierarchical or dynamically generated paths, where they may confuse rather than assist users.',
     ],
     responsiveness: [
-      'On mobile devices breadcrumb is shortened to only provide a link to the higher-level page.',
+      'On mobile devices breadcrumb must be shortened to only provide a link to the higher-level page.',
     ],
   },
   useCases: [

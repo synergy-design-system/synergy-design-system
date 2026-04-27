@@ -12,6 +12,7 @@ export default {
     components: [
       'syn-select',
       'syn-combobox',
+      'syn-optgroup',
     ],
     templates: [
       'Forms',

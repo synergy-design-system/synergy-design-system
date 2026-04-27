@@ -29,7 +29,7 @@ export default {
       'Refrain from using dialogs for complex forms or large amounts of information.',
     ],
     slots: [
-      'Use the "headline" slot to add a headline.',
+      'Use the "label" slot to add a headline.',
       'Add main content on the "default" slot. The "default" slot is always scrollable.',
       'Use the "footer" slot to add action elements. The "footer" slot is always fixed.',
     ],

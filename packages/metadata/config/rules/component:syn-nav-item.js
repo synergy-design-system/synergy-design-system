@@ -11,6 +11,7 @@ export default {
     components: [
       'syn-header',
       'syn-side-nav',
+      'syn-prio-nav',
     ],
     templates: [
       'Application Shell',
@@ -26,18 +27,14 @@ export default {
       'Use icons and labels together to enhance comprehension.',
     ],
     spacing: [
-      'Use relaxed for extra spacing on vertical desktop viewports.',
       'Use indented for nested navigation items in vertical desktop or mobile viewports and in horizontal mobile menus.',
     ],
     text_styles_and_descriptions: [
-      'The default style is "book", but text can be bolded if desired.',
-      'Bold text for current / parent as well as first level navigation.',
-      'Override with "text.black" for non-clickable second level items.',
       'Be consistent in the use of descriptions: Include them for all items at the same level and keep them similar in length.',
     ],
   },
   useCases: [
     'Populate an syn-header navigation bar at the top of a page, helping users easily access different sections.',
-    'Implement navigation items in a sidebar for a more detailed and hierarchical navigation structure.',
+    'Implement navigation items in a syn-side-nav for a more detailed and hierarchical navigation structure.',
   ],
 };

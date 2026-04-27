@@ -9,7 +9,6 @@ export default {
       'syn-tab-group',
     ],
     templates: [
-      'Tab Group',
     ],
   },
 };

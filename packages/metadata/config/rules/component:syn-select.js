@@ -5,7 +5,6 @@ export default {
   accessibility: [
     'If multiple options can be selected, clearly announce this capability to screenreader users and offer a way to view all chosen items.',
     'Be aware that group labels in select components will be neglected by most assistive devices.',
-    'Use the "visually disabled" attribute to keep disabled elements focusable, hoverable, and able to show tooltips, as they\'re otherwise removed from the tab order and inaccessible to screen readers.',
   ],
   component: 'syn-select',
   related: {

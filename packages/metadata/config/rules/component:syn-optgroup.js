@@ -10,6 +10,7 @@ export default {
     components: [
       'syn-select',
       'syn-combobox',
+      'syn-option',
     ],
     templates: [
       'Forms',
@@ -17,7 +18,6 @@ export default {
   },
   usageGuidelines: {
     behavior: [
-      'Use the "checkbox" variant for multi-select and the "default" variant for single-select choices.',
       'Provide a reason or alternative if some choice is disabled.',
     ],
     content: [

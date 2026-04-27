@@ -24,10 +24,6 @@ export default {
       'syn-status-badge',
     ],
     templates: [
-      'Badge',
-      'Tab Group with Badge',
-      'Tab Group with Icon and Badge',
-      'Status Badge',
     ],
   },
   usageGuidelines: {

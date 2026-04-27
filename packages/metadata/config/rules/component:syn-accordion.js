@@ -20,9 +20,6 @@ export default {
       'Ensure the content is focused and necessary. If the information can be splitted into different meaningful units, consider using syn-accordion-group.',
       'Avoid using collapsible sections for information that must always be visible.',
     ],
-    expandable_vs_accordion: [
-      'The use of syn-accordion is generally recommended over the use of syn-expandable: the former gives the user a quick scan header to decide if the content is relevant to them, offers a cleaner layout and is more accessible as a result.',
-    ],
     header_summary: [
       'Make sure the header summary clearly describes the content inside.',
       'Keep header summaries concise to prevent them from wrapping onto multiple lines.',

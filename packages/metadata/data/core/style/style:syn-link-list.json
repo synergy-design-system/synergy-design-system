@@ -1,0 +1,37 @@
+{
+  "custom": {
+    "moduleName": "link-list"
+  },
+  "id": "style:syn-link-list",
+  "kind": "style",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style:syn-link-list.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/styles/link-list/index.css"
+      }
+    ]
+  },
+  "name": "syn-link-list",
+  "package": "styles",
+  "relations": [],
+  "since": "2.0.3",
+  "sources": [
+    "packages/styles/src/link-list/index.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "link-list",
+    "link-list",
+    "module",
+    "style",
+    "styles",
+    "syn-link-list"
+  ]
+}

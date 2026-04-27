@@ -1,0 +1,616 @@
+# @synergy-design-system/angular
+
+## 3.12.0
+
+### Minor Changes
+
+- [#1240](https://github.com/synergy-design-system/synergy-design-system/pull/1240) [`06c29d4`](https://github.com/synergy-design-system/synergy-design-system/commit/06c29d4be7b9297d34919646cfd71394abdc6f88) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-22
+
+  feat: ✨ Add new component `<syn-pagination>` (#684)
+
+  Adds a new component `<syn-pagination>` that may be used to paginate large datasets.
+
+### Patch Changes
+
+- Updated dependencies [[`06c29d4`](https://github.com/synergy-design-system/synergy-design-system/commit/06c29d4be7b9297d34919646cfd71394abdc6f88)]:
+  - @synergy-design-system/components@3.12.0
+  - @synergy-design-system/tokens@3.12.0
+
+## 3.11.1
+
+### Patch Changes
+
+- Updated dependencies [[`9d36167`](https://github.com/synergy-design-system/synergy-design-system/commit/9d36167d35ebbdd43820d520140d6823e1331ea1)]:
+  - @synergy-design-system/components@3.11.1
+  - @synergy-design-system/tokens@3.11.1
+
+## 3.11.0
+
+### Patch Changes
+
+- Updated dependencies [[`b3ab501`](https://github.com/synergy-design-system/synergy-design-system/commit/b3ab50132ec4ab770b79fa32b1334a1054c60746)]:
+  - @synergy-design-system/components@3.11.0
+  - @synergy-design-system/tokens@3.11.0
+
+## 3.10.5
+
+### Patch Changes
+
+- [#1246](https://github.com/synergy-design-system/synergy-design-system/pull/1246) [`5f0eb58`](https://github.com/synergy-design-system/synergy-design-system/commit/5f0eb58996be36571edf1764a7314f78bac96dd9) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-27
+
+  fix: 🐛 dependency updates (#258)
+
+- Updated dependencies [[`5f0eb58`](https://github.com/synergy-design-system/synergy-design-system/commit/5f0eb58996be36571edf1764a7314f78bac96dd9)]:
+  - @synergy-design-system/components@3.10.5
+  - @synergy-design-system/tokens@3.10.5
+
+## 3.10.4
+
+### Patch Changes
+
+- Updated dependencies [[`0c5d176`](https://github.com/synergy-design-system/synergy-design-system/commit/0c5d1761ca6ef9d60714ec4010cd47665c2f7731)]:
+  - @synergy-design-system/components@3.10.4
+  - @synergy-design-system/tokens@3.10.4
+
+## 3.10.3
+
+### Patch Changes
+
+- Updated dependencies [[`c827385`](https://github.com/synergy-design-system/synergy-design-system/commit/c82738594731dc3c2a5041695741f099393068de)]:
+  - @synergy-design-system/components@3.10.3
+  - @synergy-design-system/tokens@3.10.3
+
+## 3.10.2
+
+### Patch Changes
+
+- Updated dependencies [[`7defd03`](https://github.com/synergy-design-system/synergy-design-system/commit/7defd0349dc50d4f9549eda59c4b6bcc96c4612c)]:
+  - @synergy-design-system/components@3.10.2
+  - @synergy-design-system/tokens@3.10.2
+
+## 3.10.1
+
+### Patch Changes
+
+- [#1223](https://github.com/synergy-design-system/synergy-design-system/pull/1223) [`60b2845`](https://github.com/synergy-design-system/synergy-design-system/commit/60b2845fc089c2508f7e4a2b068b359fad166288) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  fix: 🐛 dependency updates (#258)
+
+- Updated dependencies [[`60b2845`](https://github.com/synergy-design-system/synergy-design-system/commit/60b2845fc089c2508f7e4a2b068b359fad166288)]:
+  - @synergy-design-system/components@3.10.1
+  - @synergy-design-system/tokens@3.10.1
+
+## 3.10.0
+
+### Minor Changes
+
+- [#1209](https://github.com/synergy-design-system/synergy-design-system/pull/1209) [`5704a96`](https://github.com/synergy-design-system/synergy-design-system/commit/5704a96fbe2d0481822a30ce171a01df960c82f1) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-09
+
+  feat: ✨ Allow `<syn-divider>` as a separator in meta-navigation of `<syn-header>` (#1130)
+
+  This release adds the possiblity to use `<syn-divider>` as a separator between items in the `<syn-header>` metanavigation.
+  It will automatically set the correct `height` on vertically aligned `<syn-dividers>`.
+
+  You may use it via:
+
+  ```html
+  <syn-header label="App Name">
+    <nav slot="meta-navigation">
+      <syn-icon-button
+        name="settings_outline"
+        label="Settings"
+      ></syn-icon-button>
+      <syn-icon-button
+        name="insert_chart_outlined"
+        label="Analytics"
+      ></syn-icon-button>
+      <syn-divider vertical></syn-divider>
+      <syn-icon-button name="dark_mode" label="Dark Mode"></syn-icon-button>
+      <syn-divider vertical></syn-divider>
+      <syn-icon-button name="language" label="Language"></syn-icon-button>
+      <syn-icon-button name="login" label="Login"></syn-icon-button>
+    </nav>
+  </syn-header>
+  ```
+
+  or via directly slotting the `<syn-divider>` via
+
+  ```html
+  <syn-header label="App Name">
+    <syn-icon-button
+      slot="meta-navigation"
+      name="settings_outline"
+      label="Settings"
+    ></syn-icon-button>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="insert_chart_outlined"
+      label="Analytics"
+    ></syn-icon-button>
+    <syn-divider vertical slot="meta-navigation"></syn-divider>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="dark_mode"
+      label="Dark Mode"
+    ></syn-icon-button>
+    <syn-divider vertical slot="meta-navigation"></syn-divider>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="language"
+      label="Language"
+    ></syn-icon-button>
+    <syn-icon-button
+      slot="meta-navigation"
+      name="login"
+      label="Login"
+    ></syn-icon-button>
+  </syn-header>
+  ```
+
+  `<syn-header>` now also exposes a new `cssproperty` `--metanavigation-item-size` that can be used to define the size of rendered `<syn-icon-buttons>`, as well as the height of `<syn-divider>`
+
+### Patch Changes
+
+- Updated dependencies [[`5704a96`](https://github.com/synergy-design-system/synergy-design-system/commit/5704a96fbe2d0481822a30ce171a01df960c82f1)]:
+  - @synergy-design-system/components@3.10.0
+  - @synergy-design-system/tokens@3.10.0
+
+## 3.9.0
+
+### Patch Changes
+
+- Updated dependencies [[`8d3e2a7`](https://github.com/synergy-design-system/synergy-design-system/commit/8d3e2a712619cb94938083620168caafc091323f)]:
+  - @synergy-design-system/tokens@3.9.0
+  - @synergy-design-system/components@3.9.0
+
+## 3.8.0
+
+### Minor Changes
+
+- [#1216](https://github.com/synergy-design-system/synergy-design-system/pull/1216) [`fa7ebf8`](https://github.com/synergy-design-system/synergy-design-system/commit/fa7ebf8ca9aef4e246f75688711c7dbb24cb25cb) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ `<syn-combobox>` should support `maxlength` attribute (#1184)
+
+  This release adds the ability to set a maximal input length for `<syn-combobox>` via `<syn-combobox maxlength="5">`.
+  This provides the ability to set the maximal amount of free text input for the comboboxes input field.
+  It still allows to use options from the list of available options and works as a restriction for free text only.
+
+### Patch Changes
+
+- Updated dependencies [[`fa7ebf8`](https://github.com/synergy-design-system/synergy-design-system/commit/fa7ebf8ca9aef4e246f75688711c7dbb24cb25cb)]:
+  - @synergy-design-system/components@3.8.0
+  - @synergy-design-system/tokens@3.8.0
+
+## 3.7.0
+
+### Minor Changes
+
+- [#1193](https://github.com/synergy-design-system/synergy-design-system/pull/1193) [`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-06
+
+  feat: ✨ Add new component `<syn-tag-group>` (#1152)
+
+  Adds a new component `<syn-tag-group>`, including templates how to use this component.
+
+### Patch Changes
+
+- Updated dependencies [[`c7f6a8b`](https://github.com/synergy-design-system/synergy-design-system/commit/c7f6a8bc8ed2eb76c5f9510c1d499f6feca5d302)]:
+  - @synergy-design-system/components@3.7.0
+  - @synergy-design-system/tokens@3.7.0
+
+## 3.6.2
+
+### Patch Changes
+
+- Updated dependencies [[`01c5e9c`](https://github.com/synergy-design-system/synergy-design-system/commit/01c5e9cc231c6bcc260cedc2f5d5713cf71ea254)]:
+  - @synergy-design-system/components@3.6.2
+  - @synergy-design-system/tokens@3.6.2
+
+## 3.6.1
+
+### Patch Changes
+
+- Updated dependencies [[`49c9d1c`](https://github.com/synergy-design-system/synergy-design-system/commit/49c9d1c30d777384024134ec983d183aed109421)]:
+  - @synergy-design-system/components@3.6.1
+  - @synergy-design-system/tokens@3.6.1
+
+## 3.6.0
+
+### Minor Changes
+
+- [#1192](https://github.com/synergy-design-system/synergy-design-system/pull/1192) [`31c54c0`](https://github.com/synergy-design-system/synergy-design-system/commit/31c54c04a651a14e20bc5f4b2aff1bd92ad26bc0) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-03-02
+
+  feat: ✨ New variant `tooltip` for `<syn-validate>` (#664)
+
+  `<syn-validate>` received the option to show validation errors using `<syn-tooltip>`.
+  To use this feature, set the `variant` property to `tooltip`.
+
+### Patch Changes
+
+- Updated dependencies [[`31c54c0`](https://github.com/synergy-design-system/synergy-design-system/commit/31c54c04a651a14e20bc5f4b2aff1bd92ad26bc0)]:
+  - @synergy-design-system/components@3.6.0
+  - @synergy-design-system/tokens@3.6.0
+
+## 3.5.0
+
+### Minor Changes
+
+- [#1189](https://github.com/synergy-design-system/synergy-design-system/pull/1189) [`a4f49ac`](https://github.com/synergy-design-system/synergy-design-system/commit/a4f49ac79a660ef5b8d1b380fe9fcd2159dc9b78) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-26
+
+  feat: ✨ Added readonly for various form fields (#1171, #1172, #1173, #1174, #1175, #1176, #1177, #1178)
+
+  Applies to:
+  - `<syn-checkbox>`
+  - `<syn-combobox>`
+  - `<syn-file>`
+  - `<syn-radio>`
+  - `<syn-radio-group>`
+  - `<syn-range>`
+  - `<syn-select>`
+  - `<syn-switch>`
+
+  Form elements now support being displayed as `readonly` fields.
+
+  Field marked `readonly` may receive focus, but their value cannot be changed by customer inputs.
+
+### Patch Changes
+
+- Updated dependencies [[`a4f49ac`](https://github.com/synergy-design-system/synergy-design-system/commit/a4f49ac79a660ef5b8d1b380fe9fcd2159dc9b78)]:
+  - @synergy-design-system/components@3.5.0
+  - @synergy-design-system/tokens@3.5.0
+
+## 3.4.1
+
+### Patch Changes
+
+- Updated dependencies [[`6a9b934`](https://github.com/synergy-design-system/synergy-design-system/commit/6a9b9349f6404a638fadd842e3f2fd8216fd81cd)]:
+  - @synergy-design-system/components@3.4.1
+  - @synergy-design-system/tokens@3.4.1
+
+## 3.4.0
+
+### Minor Changes
+
+- [#1188](https://github.com/synergy-design-system/synergy-design-system/pull/1188) [`c60deb9`](https://github.com/synergy-design-system/synergy-design-system/commit/c60deb9da1175404ddaa25b2c19ce9e182205cd2) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-19
+
+  feat: ✨ `<syn-header>` sticky behavior (#529)
+
+  `<syn-header>` now has a new `sticky` boolean property that can be used when a sticky header is needed, e.g. `<syn-header sticky></syn-header>`.
+  This adds `position: sticky`, as well as a small shadow that indicates that the header is stuck.
+  You can configure the `top` position via the new `--sticky-position` css property (defaults to `0` to make it stick to the top).
+
+### Patch Changes
+
+- Updated dependencies [[`c60deb9`](https://github.com/synergy-design-system/synergy-design-system/commit/c60deb9da1175404ddaa25b2c19ce9e182205cd2)]:
+  - @synergy-design-system/components@3.4.0
+  - @synergy-design-system/tokens@3.4.0
+
+## 3.3.0
+
+### Patch Changes
+
+- Updated dependencies [[`30f3b74`](https://github.com/synergy-design-system/synergy-design-system/commit/30f3b74891cf693735a792a901c5b23b016c71b8)]:
+  - @synergy-design-system/components@3.3.0
+  - @synergy-design-system/tokens@3.3.0
+
+## 3.2.1
+
+### Patch Changes
+
+- [#1182](https://github.com/synergy-design-system/synergy-design-system/pull/1182) [`460f8c2`](https://github.com/synergy-design-system/synergy-design-system/commit/460f8c22dfdc305d3990ba0af4b4aefc451fa8ea) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-02-19
+
+  fix: 🐛 Dependency updates (#258)
+
+- Updated dependencies [[`460f8c2`](https://github.com/synergy-design-system/synergy-design-system/commit/460f8c22dfdc305d3990ba0af4b4aefc451fa8ea)]:
+  - @synergy-design-system/components@3.2.1
+  - @synergy-design-system/tokens@3.2.1
+
+## 3.2.0
+
+### Minor Changes
+
+- [#1164](https://github.com/synergy-design-system/synergy-design-system/pull/1164) [`c9fb440`](https://github.com/synergy-design-system/synergy-design-system/commit/c9fb4405c0a1eb3499e4753447ac643ae632ff56) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-02-05
+
+  feat: ✨ syn-combobox multiple (#627)
+
+  Adds multiple selection functionality to the `syn-combobox` component, enabling users to select multiple options simultaneously.
+
+  **Properties Added:**
+  - `multiple`: Enables multiple selection mode
+  - `delimiter`: Customizable value separator (default: ` ` (space))
+  - `max-options-visible`: Controls visible tag limit with overflow handling
+  - `getTag`: Custom tag rendering function
+
+### Patch Changes
+
+- Updated dependencies [[`c9fb440`](https://github.com/synergy-design-system/synergy-design-system/commit/c9fb4405c0a1eb3499e4753447ac643ae632ff56)]:
+  - @synergy-design-system/components@3.2.0
+  - @synergy-design-system/tokens@3.2.0
+
+## 3.1.0
+
+### Minor Changes
+
+- [#1141](https://github.com/synergy-design-system/synergy-design-system/pull/1141) [`96dff2e`](https://github.com/synergy-design-system/synergy-design-system/commit/96dff2ebb47cee901f72773664ee864db5653219) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-02
+
+  feat: ✨ `<syn-button-group>` (#392)
+
+  We added a new component `<syn-button-group>` that you can use to group a list of buttons.
+
+  It will automatically apply its `size` and `variant` properties to all nested buttons.
+
+### Patch Changes
+
+- Updated dependencies [[`96dff2e`](https://github.com/synergy-design-system/synergy-design-system/commit/96dff2ebb47cee901f72773664ee864db5653219)]:
+  - @synergy-design-system/components@3.1.0
+  - @synergy-design-system/tokens@3.1.0
+
+## 3.0.0
+
+### Major Changes
+
+- [#1160](https://github.com/synergy-design-system/synergy-design-system/pull/1160) [`669cbcb`](https://github.com/synergy-design-system/synergy-design-system/commit/669cbcb9cccce72134beac99ac12a2591f3e3c74) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-02-02
+
+  feat: 💥 Component updates and deprecations for Synergy 3.0
+
+  This release removes deprecated attributes, updates defaults, and improves bundle size by removing fallback variables.
+
+  **Key Changes:**
+  - **Breaking:** Removed `hoist` attribute from `<syn-combobox>`, `<syn-dropdown>`, `<syn-select>`, and `<syn-tooltip>` (no longer needed with Popover API support)
+  - **Breaking:** Removed `strategy` attribute from `<syn-popup>` (no longer needed with Popover API support)
+  - **Breaking:** Removed `rail` attribute from `<syn-side-nav>` (use `variant="rail"` instead)
+  - **Breaking:** Changed default for `<syn-input>` `numeric-strategy` from "native" to "modern"
+  - **Breaking:** Variable fallbacks removed - all CSS custom property fallbacks have been eliminated to reduce bundle size
+  - **Breaking:** Token package alignment - components now has a `peerDependency` on `@synergy-design-system/tokens@^3.0.0`
+  - **Breaking:** Angular support - removed support for Angular 16 and 17 (no longer actively maintained)
+  - **Deprecation Notice:** Icon migration utilities (`migrateIconName`, `migrateIconNameFilled`, `migrationLibrary`) are now deprecated
+  - **Deprecation Notice:** `enableExperimentalSettingEmitEvents` is now deprecated in favor of `enableSettingEmitEvents`
+
+  **Migration Steps:**
+  - Remove all `hoist` and `strategy` attributes from affected components
+  - Update `<syn-side-nav rail>` to `<syn-side-nav variant="rail">`
+  - Remove `numeric-strategy="modern"` from `<syn-input>` as it's now the default
+  - Update Angular projects to version 18 or higher
+  - Replace `enableExperimentalSettingEmitEvents` with `enableSettingEmitEvents`
+  - Ensure matching versions of components and tokens packages
+
+  For detailed migration instructions, please refer to the [breaking changes documentation](https://synergy-design-system.github.io/?path=/docs/packages-components-breaking-changes--docs).
+
+### Patch Changes
+
+- Updated dependencies [[`669cbcb`](https://github.com/synergy-design-system/synergy-design-system/commit/669cbcb9cccce72134beac99ac12a2591f3e3c74), [`669cbcb`](https://github.com/synergy-design-system/synergy-design-system/commit/669cbcb9cccce72134beac99ac12a2591f3e3c74)]:
+  - @synergy-design-system/components@3.0.0
+  - @synergy-design-system/tokens@3.0.0
+
+## 2.77.1
+
+### Patch Changes
+
+- Updated dependencies [[`73b7011`](https://github.com/synergy-design-system/synergy-design-system/commit/73b70118ae21bc58c83cbfeb9e2e8447873803a6)]:
+  - @synergy-design-system/components@2.77.1
+  - @synergy-design-system/tokens@2.48.2
+
+## 2.77.0
+
+### Minor Changes
+
+- [#1132](https://github.com/synergy-design-system/synergy-design-system/pull/1132) [`13f6b25`](https://github.com/synergy-design-system/synergy-design-system/commit/13f6b259af388a0fbafc7c963443d08e61c4e99f) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-18
+
+  feat: ✨ support angular 21 (#1094)
+
+  Enables the possibility to use `angular@21`.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/components@2.77.0
+
+## 2.76.0
+
+### Patch Changes
+
+- Updated dependencies [[`dc56e6f`](https://github.com/synergy-design-system/synergy-design-system/commit/dc56e6f0ebc08e44b23bdbdaa6fffa03abc26e9e)]:
+  - @synergy-design-system/components@2.76.0
+  - @synergy-design-system/tokens@2.48.0
+
+## 2.75.0
+
+### Patch Changes
+
+- Updated dependencies [[`6b4b7e2`](https://github.com/synergy-design-system/synergy-design-system/commit/6b4b7e2940b5c87e44d5da6030354ec0e21f2f38)]:
+  - @synergy-design-system/components@2.75.0
+  - @synergy-design-system/tokens@2.47.0
+
+## 2.74.4
+
+### Patch Changes
+
+- Updated dependencies [[`53bd655`](https://github.com/synergy-design-system/synergy-design-system/commit/53bd655f465b76c2aa7d57449750b99e8fcfb500)]:
+  - @synergy-design-system/components@2.74.4
+
+## 2.74.3
+
+### Patch Changes
+
+- Updated dependencies [[`6cc7376`](https://github.com/synergy-design-system/synergy-design-system/commit/6cc737681f2b137702f3e95b0a666ae6f28b5039)]:
+  - @synergy-design-system/components@2.74.3
+
+## 2.74.2
+
+### Patch Changes
+
+- Updated dependencies [[`212b5bd`](https://github.com/synergy-design-system/synergy-design-system/commit/212b5bd29087b10d1fe0e6bbb94c97090b7b4f74)]:
+  - @synergy-design-system/components@2.74.2
+
+## 2.74.1
+
+### Patch Changes
+
+- Updated dependencies [[`82ea066`](https://github.com/synergy-design-system/synergy-design-system/commit/82ea066fa18e35831d94f22c7ac620135bc8c334)]:
+  - @synergy-design-system/components@2.74.1
+
+## 2.74.0
+
+### Minor Changes
+
+- [#1129](https://github.com/synergy-design-system/synergy-design-system/pull/1129) [`102e650`](https://github.com/synergy-design-system/synergy-design-system/commit/102e6503af3a72d0d2529ed216ce6053a07b9607) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-12
+
+  feat: ✨ syn alert add sizes (#1119)
+
+  We have added a new property `size` to `<syn-alert>` that can be set to `small`, `medium` (the default) and `large`.
+  The property can also be used with Synergy `defaultSettings`.
+
+  We also adjusted `<syn-validate>` to draw the `size` attribute of its `slotted` `HTMLInputElement`. If a `size` property is found on the rendered input, it will be forwarded to the rendered `<syn-alert>` if you use `variant="inline"`.
+
+### Patch Changes
+
+- Updated dependencies [[`102e650`](https://github.com/synergy-design-system/synergy-design-system/commit/102e6503af3a72d0d2529ed216ce6053a07b9607)]:
+  - @synergy-design-system/components@2.74.0
+
+## 2.73.0
+
+### Patch Changes
+
+- Updated dependencies [[`740816b`](https://github.com/synergy-design-system/synergy-design-system/commit/740816b1a86768e7f2fed5516241bdb3a9df4ef7)]:
+  - @synergy-design-system/components@2.73.0
+  - @synergy-design-system/tokens@2.46.0
+
+## 2.72.0
+
+### Minor Changes
+
+- [#1128](https://github.com/synergy-design-system/synergy-design-system/pull/1128) [`7de2441`](https://github.com/synergy-design-system/synergy-design-system/commit/7de244110cf55bb3788e26f65704194bfc861412) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-12-09
+
+  feat: ✨ Add a new `shadow` propertry to `<syn-card>` (#1107)
+
+  Using `<syn-card shadow></syn-card>` will draw the card with a shadow. This can be used when the card has to stand out visually, for example in dashboards.
+
+### Patch Changes
+
+- Updated dependencies [[`7de2441`](https://github.com/synergy-design-system/synergy-design-system/commit/7de244110cf55bb3788e26f65704194bfc861412)]:
+  - @synergy-design-system/components@2.72.0
+
+## 2.71.0
+
+### Patch Changes
+
+- Updated dependencies [[`ab15da3`](https://github.com/synergy-design-system/synergy-design-system/commit/ab15da3bf8956f1d523ca3115a466205474e071f)]:
+  - @synergy-design-system/components@2.71.0
+
+## 2.70.0
+
+### Patch Changes
+
+- Updated dependencies [[`d414abe`](https://github.com/synergy-design-system/synergy-design-system/commit/d414abe26eaee05928a8f1914748de1866837804)]:
+  - @synergy-design-system/components@2.70.0
+
+## 2.69.0
+
+### Patch Changes
+
+- Updated dependencies [[`f9f544f`](https://github.com/synergy-design-system/synergy-design-system/commit/f9f544feb2adb3edef95bd1b50a303440e0c8385)]:
+  - @synergy-design-system/components@2.69.0
+
+## 2.68.0
+
+### Patch Changes
+
+- Updated dependencies [[`7c97c2e`](https://github.com/synergy-design-system/synergy-design-system/commit/7c97c2eed665902484eb07d7dc23534bf2064f08)]:
+  - @synergy-design-system/components@2.68.0
+
+## 2.67.0
+
+### Patch Changes
+
+- Updated dependencies [[`b82f1d9`](https://github.com/synergy-design-system/synergy-design-system/commit/b82f1d961aa4c2898f41b7c55eb3b7d43220878c)]:
+  - @synergy-design-system/components@2.67.0
+  - @synergy-design-system/tokens@2.45.0
+
+## 2.66.0
+
+### Patch Changes
+
+- Updated dependencies [[`27adaae`](https://github.com/synergy-design-system/synergy-design-system/commit/27adaaeab60487ca4c92be8fd15b09eb4f09fdc6)]:
+  - @synergy-design-system/components@2.66.0
+
+## 2.65.0
+
+### Patch Changes
+
+- Updated dependencies [[`e27f95b`](https://github.com/synergy-design-system/synergy-design-system/commit/e27f95ba3e5bd1f494db80ad51d0c1957b8d2204)]:
+  - @synergy-design-system/components@2.65.0
+
+## 2.64.1
+
+### Patch Changes
+
+- [#1098](https://github.com/synergy-design-system/synergy-design-system/pull/1098) [`92973ed`](https://github.com/synergy-design-system/synergy-design-system/commit/92973ed0242ceb836dfe662cbe8e81b7a5364c2e) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2025-11-27
+
+  fix: 🐛 angular validator api fix (#1097)
+
+  Validators do not use the internal `_enabled` property anymore.
+
+- Updated dependencies [[`92973ed`](https://github.com/synergy-design-system/synergy-design-system/commit/92973ed0242ceb836dfe662cbe8e81b7a5364c2e)]:
+  - @synergy-design-system/components@2.64.1
+
+## 2.64.0
+
+### Patch Changes
+
+- Updated dependencies [[`ac24e63`](https://github.com/synergy-design-system/synergy-design-system/commit/ac24e6379862c7e60b5d5293614f0d804eeb7388)]:
+  - @synergy-design-system/components@2.64.0
+  - @synergy-design-system/tokens@2.44.0
+
+## 2.63.0
+
+### Patch Changes
+
+- Updated dependencies [[`3f893f9`](https://github.com/synergy-design-system/synergy-design-system/commit/3f893f9d9d04cbfa3ae530bf8e3ecbcfe7be022f)]:
+  - @synergy-design-system/components@2.63.0
+
+## 2.62.0
+
+### Patch Changes
+
+- Updated dependencies [[`515226c`](https://github.com/synergy-design-system/synergy-design-system/commit/515226c44f8bba7b2b4b80cdd0f21f3237f0670d)]:
+  - @synergy-design-system/components@2.62.0
+  - @synergy-design-system/tokens@2.43.0
+
+## 2.61.0
+
+### Patch Changes
+
+- Updated dependencies [[`1392ed2`](https://github.com/synergy-design-system/synergy-design-system/commit/1392ed23aba2b628344356adba0a78e1e8beff84)]:
+  - @synergy-design-system/components@2.61.0
+  - @synergy-design-system/tokens@2.42.0
+
+## 2.60.0
+
+### Patch Changes
+
+- Updated dependencies [[`6e616f5`](https://github.com/synergy-design-system/synergy-design-system/commit/6e616f51007ebde567eeb33190518159becc7c32)]:
+  - @synergy-design-system/components@2.60.0
+  - @synergy-design-system/tokens@2.41.0
+
+## 2.59.0
+
+### Patch Changes
+
+- Updated dependencies [[`81dae1e`](https://github.com/synergy-design-system/synergy-design-system/commit/81dae1e912bcbdefb4346b4a3bbc245f7fac9f12)]:
+  - @synergy-design-system/components@2.59.0
+  - @synergy-design-system/tokens@2.40.0
+
+## 2.58.0
+
+### Patch Changes
+
+- Updated dependencies [[`0ae632c`](https://github.com/synergy-design-system/synergy-design-system/commit/0ae632c5331f0583ba652add18755df01766cbf5)]:
+  - @synergy-design-system/components@2.58.0
+  - @synergy-design-system/tokens@2.39.0
+
+## 2.57.0
+
+### Patch Changes
+
+- Updated dependencies [[`bc0bc63`](https://github.com/synergy-design-system/synergy-design-system/commit/bc0bc639a996fc75c57194244596d5733097389d)]:
+  - @synergy-design-system/components@2.57.0
+  - @synergy-design-system/tokens@2.38.0

@@ -1,0 +1,56 @@
+{
+  "custom": {
+    "exports": [
+      ".",
+      "./createSpritesheet.js",
+      "./default-icons-2018.js",
+      "./default-icons-2025.js",
+      "./default-icons.js",
+      "./sick2018.js",
+      "./sick2018/*",
+      "./sick2025.js",
+      "./sick2025/*",
+      "./src/sick2018/*",
+      "./src/sick2025/*"
+    ],
+    "packageName": "@synergy-design-system/assets",
+    "packageVersion": "2.1.0"
+  },
+  "id": "setup:assets-package",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:assets-package/assets/README.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:assets-package/assets/CHANGELOG.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:assets-package/assets/BREAKING_CHANGES.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:assets-package/assets/package.json"
+      }
+    ]
+  },
+  "name": "Assets Package",
+  "package": "assets",
+  "relations": [],
+  "since": "2.1.0",
+  "sources": [
+    "packages/assets/README.md",
+    "packages/assets/CHANGELOG.md",
+    "packages/assets/BREAKING_CHANGES.md",
+    "packages/assets/package.json"
+  ],
+  "status": "stable",
+  "tags": [
+    "assets",
+    "setup"
+  ]
+}

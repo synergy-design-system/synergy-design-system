@@ -1,0 +1,183 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynProgressBarComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-progress-bar",
+        "sourcePath": "packages/angular/components/progress-bar/progress-bar.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynProgressBar",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-progress-bar--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynProgressBarJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynProgressBar",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/progress-bar.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueProgressBar",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueProgressBar.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41203-297162",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Progress bars are used to show the status of an ongoing operation."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Progress Bar"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the `label` attribute to label the progress bar and tell assistive devices how to announce it."
+          },
+          "name": "labels",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the --height custom property to set the progress bar’s height."
+          },
+          "name": "custom-height",
+          "title": {
+            "type": "text",
+            "value": "Custom Height"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the default slot to show a value."
+          },
+          "name": "showing-values",
+          "title": {
+            "type": "text",
+            "value": "Showing Values"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The indeterminate attribute can be used to inform the user that the operation is pending, but its status cannot currently be determined. In this state, value is ignored and the label, if present, will not be shown."
+          },
+          "name": "indeterminate",
+          "title": {
+            "type": "text",
+            "value": "Indeterminate"
+          }
+        }
+      ],
+      "storySourcePath": "components.progress-bar",
+      "storyTags": [
+        "Feedback"
+      ]
+    },
+    "sourceModulePath": "components/progress-bar/progress-bar.js",
+    "summary": "Progress bars are used to show the status of an ongoing operation."
+  },
+  "id": "component:syn-progress-bar",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-progress-bar.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/angular/progress-bar.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/components/progress-bar.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/react/progress-bar.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/vue/SynVueProgressBar.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-progress-bar/react/SynProgressBarJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-progress-bar.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-progress-bar.md"
+      }
+    ]
+  },
+  "name": "syn-progress-bar",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/progress-bar/progress-bar.component.ts",
+    "packages/components/src/components/progress-bar/progress-bar.component.ts",
+    "packages/components/src/components/progress-bar/progress-bar.custom.styles.ts",
+    "packages/components/src/components/progress-bar/progress-bar.styles.ts",
+    "packages/components/src/components/progress-bar/progress-bar.ts",
+    "packages/react/src/components/progress-bar.ts",
+    "packages/vue/src/components/SynVueProgressBar.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "progress-bar",
+    "react",
+    "syn-progress-bar",
+    "vue"
+  ]
+}

@@ -1,6 +1,9 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { listAssets } from '@synergy-design-system/metadata';
 import {
-  getStructuredMetaData,
+  createToolAnnotations,
+  getToolRule,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -11,38 +14,29 @@ export const assetListTool = (server: McpServer) => {
   server.registerTool(
     'asset-list',
     {
+      annotations: createToolAnnotations(),
       description: 'Get the available iconsets in the Synergy Design System.',
+      inputSchema: {},
       title: 'Available iconsets',
     },
-    async () => {
-      const aiRules = await getStructuredMetaData('../../metadata/static/assets');
-      return {
-        content: [
-          {
-            text: 'Available iconsets in the Synergy Design System:',
-            type: 'text',
-          },
-          {
-            text: JSON.stringify([
-              {
-                text: JSON.stringify(aiRules, null, 2),
-                type: 'text',
-              },
-              {
-                description: 'The original set of icons from the Synergy Design System. Use this for projects using Synergy Major Version 2.0.',
-                iconset: 'sick2018Icons',
-                title: 'Synergy 2018 Icons',
-              },
-              {
-                description: 'New icon set for the brand 2025 refresh. Use this for projects using Synergy Major Version 3.0.',
-                iconset: 'sick2025Icons',
-                title: 'Synergy 2025 Icons',
-              },
-            ], null, 2),
-            type: 'text',
-          },
-        ],
-      };
-    },
+    toolHandler('asset-list', async () => {
+      const aiRules = await getToolRule('asset-list');
+      const allAssets = await listAssets();
+      const assets = allAssets.data
+        .map(asset => ({
+          iconCount: asset.custom?.iconCount,
+          id: asset.id,
+          name: asset.name,
+          since: asset.since,
+          theme: asset.custom?.theme ?? 'default',
+        }))
+        .toSorted((a, b) => a.name.localeCompare(b.name));
+      const groupedAssets = Object.groupBy(assets, asset => asset.theme);
+
+      return [
+        aiRules,
+        groupedAssets,
+      ];
+    }),
   );
 };

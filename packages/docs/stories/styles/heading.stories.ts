@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import {
@@ -20,13 +17,13 @@ const meta: Meta = {
     {
       name: 'default',
       type: 'slot',
-      value: 'This is a default body text',
+      value: 'This is a default heading text',
     },
   ], defaultArgs),
   argTypes,
   component: 'syn-heading',
   parameters: {
-    design: generateFigmaPluginObject('4420-3048'),
+    design: generateFigmaPluginObject('41127-558410'),
     docs: {
       description: {
         component: generateStoryDescription('styles', 'headings'),

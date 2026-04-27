@@ -1,7 +1,13 @@
+import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
-  getAvailableComponents,
-  getStructuredMetaData,
+  listComponentClusters,
+  listComponents,
+} from '@synergy-design-system/metadata';
+import {
+  createToolAnnotations,
+  getToolRule,
+  toolHandler,
 } from '../utilities/index.js';
 
 /**
@@ -13,42 +19,48 @@ export const componentListTool = (server: McpServer) => {
   server.registerTool(
     'component-list',
     {
+      annotations: createToolAnnotations(),
       description: 'Outputs a list of all available components in the Synergy Design System',
-      inputSchema: {},
-      title: 'List Synergy Components',
+      inputSchema: {
+        cluster: z.string().optional().describe('Optional component cluster id to filter by, e.g. "components-by-tag/structure".'),
+      },
+      title: 'Component list',
     },
-    async () => {
-      // Get the package data for components
-      try {
-        const components = await getAvailableComponents();
-        const componentNames = components.map(
-          filename => `- ${filename}`,
-        );
+    toolHandler('component-list', async ({
+      cluster,
+    }) => {
+      const aiRules = await getToolRule('component-list');
 
-        const aiRules = await getStructuredMetaData('../../metadata/static/component-list');
+      const clusters = await listComponentClusters();
+      const clusterIds = clusters.data.map((entry) => entry.id);
 
-        return {
-          content: [
+      if (cluster) {
+        const requestedCluster = cluster.trim().toLowerCase();
+        const clusterExists = clusterIds.some((id) => id.toLowerCase() === requestedCluster);
+        if (!clusterExists) {
+          return [
+            aiRules,
             {
-              text: JSON.stringify(aiRules, null, 2),
-              type: 'text',
+              availableClusters: clusterIds,
+              error: `Unknown cluster '${cluster}'.`,
             },
-            {
-              text: componentNames.join('\n'),
-              type: 'text',
-            },
-          ],
-        };
-      } catch (error) {
-        return {
-          content: [
-            {
-              text: `Error fetching components: ${(error as Error).message}`,
-              type: 'text',
-            },
-          ],
-        };
+          ];
+        }
       }
-    },
+
+      const components = await listComponents({
+        cluster,
+        includeLayerRefs: false,
+        includeSources: false,
+      });
+      const componentNames = components.data
+        .map(c => c.name)
+        .toSorted();
+
+      return [
+        aiRules,
+        componentNames,
+      ];
+    }),
   );
 };

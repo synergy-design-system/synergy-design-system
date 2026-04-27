@@ -1,0 +1,272 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Disables the dropdown so the panel will not open.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "0",
+      "description": "The distance in pixels from which to offset the panel away from its trigger.",
+      "fieldName": "distance",
+      "name": "distance",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "default": "false",
+      "description": "Indicates whether or not the dropdown is open. You can toggle this attribute to show and hide the dropdown, or you\ncan use the `show()` and `hide()` methods and this attribute will reflect the dropdown's open state.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'bottom-start'",
+      "description": "The preferred placement of the dropdown panel. Note that the actual placement may vary as needed to keep the panel\ninside of the viewport.",
+      "fieldName": "placement",
+      "name": "placement",
+      "reflects": true,
+      "type": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+    },
+    {
+      "default": "0",
+      "description": "The distance in pixels from which to offset the panel along its trigger.",
+      "fieldName": "skidding",
+      "name": "skidding",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "default": "false",
+      "description": "By default, the dropdown is closed when an item is selected. This attribute will keep it open instead. Useful for\ndropdowns that allow for multiple interactions.",
+      "fieldName": "stayOpenOnSelect",
+      "name": "stay-open-on-select",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "undefined",
+      "description": "Syncs the popup width or height to that of the trigger element.",
+      "fieldName": "sync",
+      "name": "sync",
+      "reflects": true,
+      "type": "'width' | 'height' | 'both' | undefined"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper, an `<syn-popup>` element.",
+      "name": "base"
+    },
+    {
+      "description": "The popup's exported `popup` part. Use this to target the tooltip's popup container.",
+      "name": "base__popup"
+    },
+    {
+      "description": "The panel that gets shown when the dropdown is open.",
+      "name": "panel"
+    },
+    {
+      "description": "The container that wraps the trigger.",
+      "name": "trigger"
+    }
+  ],
+  "dependencies": [
+    "syn-popup"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-dropdown--docs",
+  "events": [
+    {
+      "description": "Emitted after the dropdown closes and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
+    },
+    {
+      "description": "Emitted after the dropdown opens and all animations are complete.",
+      "name": "syn-after-show",
+      "type": "SynAfterShowEvent"
+    },
+    {
+      "description": "Emitted when the dropdown closes.",
+      "name": "syn-hide",
+      "type": "SynHideEvent"
+    },
+    {
+      "description": "Emitted when the dropdown opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
+    }
+  ],
+  "figmaComponentId": "41203-538934",
+  "methods": [
+    {
+      "description": "",
+      "name": "addOpenListeners",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "focusOnTrigger",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "getMenu",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleOpenChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleTriggerClick",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleTriggerKeyDown",
+      "parameters": [
+        {
+          "name": "event",
+          "type": "KeyboardEvent"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "name": "handleTriggerKeyUp",
+      "parameters": [
+        {
+          "name": "event",
+          "type": "KeyboardEvent"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "name": "handleTriggerSlotChange",
+      "parameters": []
+    },
+    {
+      "description": "Hides the dropdown panel",
+      "name": "hide",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "removeOpenListeners",
+      "parameters": []
+    },
+    {
+      "description": "Instructs the dropdown menu to reposition. Useful when the position or size of the trigger changes when the menu\nis activated.",
+      "name": "reposition",
+      "parameters": []
+    },
+    {
+      "description": "Shows the dropdown panel.",
+      "name": "show",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "updateAccessibleTrigger",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "The dropdown will close when the user interacts outside of this element (e.g. clicking). Useful for composing other\ncomponents that use a dropdown internally.",
+      "name": "containingElement",
+      "type": "HTMLElement | undefined"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the dropdown so the panel will not open.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "0",
+      "description": "The distance in pixels from which to offset the panel away from its trigger.",
+      "name": "distance",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not the dropdown is open. You can toggle this attribute to show and hide the dropdown, or you\ncan use the `show()` and `hide()` methods and this attribute will reflect the dropdown's open state.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "panel",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "default": "'bottom-start'",
+      "description": "The preferred placement of the dropdown panel. Note that the actual placement may vary as needed to keep the panel\ninside of the viewport.",
+      "name": "placement",
+      "type": "| 'top'\n    | 'top-start'\n    | 'top-end'\n    | 'bottom'\n    | 'bottom-start'\n    | 'bottom-end'\n    | 'right'\n    | 'right-start'\n    | 'right-end'\n    | 'left'\n    | 'left-start'\n    | 'left-end'"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "popup",
+      "type": "SynPopup"
+    },
+    {
+      "access": "public",
+      "default": "0",
+      "description": "The distance in pixels from which to offset the panel along its trigger.",
+      "name": "skidding",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "By default, the dropdown is closed when an item is selected. This attribute will keep it open instead. Useful for\ndropdowns that allow for multiple interactions.",
+      "name": "stayOpenOnSelect",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "undefined",
+      "description": "Syncs the popup width or height to that of the trigger element.",
+      "name": "sync",
+      "type": "'width' | 'height' | 'both' | undefined"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "trigger",
+      "type": "HTMLSlotElement"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The dropdown's main content.",
+      "name": ""
+    },
+    {
+      "description": "The dropdown's trigger, usually a `<syn-button>` element.",
+      "name": "trigger"
+    }
+  ],
+  "sourceModulePath": "components/dropdown/dropdown.js",
+  "status": "stable",
+  "summary": "Dropdowns expose additional content that \"drops down\" in a panel.",
+  "tagName": "syn-dropdown"
+}

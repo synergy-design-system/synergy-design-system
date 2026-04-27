@@ -1,0 +1,18 @@
+{
+  "name": "Navigation Components",
+  "description": "Components for building navigation patterns and menus",
+  "entities": [
+    "component:syn-breadcrumb",
+    "component:syn-breadcrumb-item",
+    "component:syn-button",
+    "component:syn-icon-button",
+    "component:syn-menu",
+    "component:syn-menu-item",
+    "component:syn-menu-label",
+    "component:syn-nav-item",
+    "component:syn-prio-nav",
+    "component:syn-tab",
+    "component:syn-tab-group",
+    "component:syn-tab-panel"
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/structure"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynDetailsComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-details",
+        "sourcePath": "packages/angular/components/details/details.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynDetails",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynDetailsJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynDetails",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/details.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueDetails",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDetails.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41227-232486",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Details"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disable attribute to prevent the details from expanding."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a detail’s size."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Details show a brief summary and expand to show additional content."
+          },
+          "name": "open",
+          "title": {
+            "type": "text",
+            "value": "Open"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the detail has been focused by the keyboard interaction."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To give content more structure, you can use the property contained."
+          },
+          "name": "contained",
+          "title": {
+            "type": "text",
+            "value": "Contained"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the prefix Icon to prepend an icon to the details."
+          },
+          "name": "icon",
+          "title": {
+            "type": "text",
+            "value": "Prefix Icons"
+          }
+        }
+      ],
+      "storySourcePath": "components.details",
+      "storyTags": [
+        "Structure"
+      ]
+    },
+    "sourceModulePath": "components/details/details.js",
+    "summary": "Details show a brief summary and expand to show additional content."
+  },
+  "id": "component:syn-details",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-details.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/angular/details.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/components/details.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/components/details.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/components/details.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/react/details.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/vue/SynVueDetails.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-details/react/SynDetailsJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-details.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-details.md"
+      }
+    ]
+  },
+  "name": "syn-details",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/details/details.component.ts",
+    "packages/components/src/components/details/details.component.ts",
+    "packages/components/src/components/details/details.styles.ts",
+    "packages/components/src/components/details/details.ts",
+    "packages/react/src/components/details.ts",
+    "packages/vue/src/components/SynVueDetails.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "details",
+    "react",
+    "syn-details",
+    "vue"
+  ]
+}

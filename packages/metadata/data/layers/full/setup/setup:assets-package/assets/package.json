@@ -1,0 +1,98 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "bin": {
+    "syn-create-spritesheet": "./dist/createSpritesheetCli.js"
+  },
+  "description": "Assets for the Synergy Design System",
+  "devDependencies": {
+    "@dotenvx/dotenvx": "^1.57.2",
+    "@figma-export/cli": "^6.4.0",
+    "@figma-export/core": "^6.4.0",
+    "@figma-export/output-components-as-svg": "^6.4.0",
+    "@figma-export/transform-svg-with-svgo": "^6.4.0",
+    "@figma-export/types": "^6.4.0",
+    "@figma/rest-api-spec": "^0.36.0",
+    "@synergy-design-system/eslint-config-syn": "workspace:*",
+    "@types/node": "^24.12.0",
+    "cheerio": "^1.2.0",
+    "eslint": "^9.39.4",
+    "rimraf": "^6.1.3",
+    "svgo": "^4.0.1",
+    "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./createSpritesheet.js": {
+      "types": "./dist/createSpritesheet.d.ts",
+      "import": "./dist/createSpritesheet.js"
+    },
+    "./default-icons.js": {
+      "types": "./dist/sick2025/js/outline.d.ts",
+      "import": "./dist/sick2025/js/outline.js"
+    },
+    "./default-icons-2018.js": {
+      "types": "./dist/sick2018/js/index.d.ts",
+      "import": "./dist/sick2018/js/index.js"
+    },
+    "./default-icons-2025.js": {
+      "types": "./dist/sick2025/js/outline.d.ts",
+      "import": "./dist/sick2025/js/outline.js"
+    },
+    "./sick2018/*": "./src/sick2018/*",
+    "./src/sick2018/*": "./src/sick2018/*",
+    "./sick2025/*": "./src/sick2025/*",
+    "./src/sick2025/*": "./src/sick2025/*",
+    "./sick2018.js": {
+      "types": "./dist/sick2018/js/index.d.ts",
+      "import": "./dist/sick2018/js/index.js"
+    },
+    "./sick2025.js": {
+      "types": "./dist/sick2025/js/outline.d.ts",
+      "import": "./dist/sick2025/js/outline.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src/sick2018",
+    "src/sick2025",
+    "CHANGELOG.md",
+    "NOTICE"
+  ],
+  "homepage": "https://synergy-design-system.github.io",
+  "keywords": [
+    "Static Assets",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System",
+    "SICK Icons",
+    "SICK Logos"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/assets",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/assets"
+  },
+  "scripts": {
+    "build": "rimraf dist && tsc -b",
+    "build:all": "pnpm clean && pnpm fetch-assets && pnpm create-default-icon-exports && pnpm build && pnpm create-licenses && pnpm create-migration-iconset",
+    "create-migration-iconset": "node ./scripts/createSynMigrationIconLibrary.js",
+    "create-licenses": "node ./scripts/createLicenses.js",
+    "create-default-icon-exports": "node ./scripts/createDefaultIconExports.js",
+    "clean": "node ./scripts/clean.js",
+    "fetch-assets": "dotenvx -q run -- pnpm exec figma-export use-config",
+    "lint": "eslint .",
+    "format.eslint": "pnpm lint --fix"
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "version": "2.1.0"
+}

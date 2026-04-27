@@ -1,0 +1,149 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynTabComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tab",
+        "sourcePath": "packages/angular/components/tab/tab.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynTab",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab--docs",
+          "events": [
+            {
+              "name": "syn-close",
+              "type": "SynCloseEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTabJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTab",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tab.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueTab",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTab.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "42207-338162",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Tabs are used inside tab groups to represent and activate tab panels."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Tab"
+          }
+        }
+      ],
+      "storySourcePath": "components.tab",
+      "storyTags": [
+        "Navigation"
+      ]
+    },
+    "sourceModulePath": "components/tab/tab.js",
+    "summary": "Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel)."
+  },
+  "id": "component:syn-tab",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-tab.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/angular/tab.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/components/tab.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/components/tab.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/components/tab.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/components/tab.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/react/tab.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/vue/SynVueTab.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab/react/SynTabJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tab.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tab.md"
+      }
+    ]
+  },
+  "name": "syn-tab",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/tab/tab.component.ts",
+    "packages/components/src/components/tab/tab.component.ts",
+    "packages/components/src/components/tab/tab.custom.styles.ts",
+    "packages/components/src/components/tab/tab.styles.ts",
+    "packages/components/src/components/tab/tab.ts",
+    "packages/react/src/components/tab.ts",
+    "packages/vue/src/components/SynVueTab.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "syn-tab",
+    "tab",
+    "vue"
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynBadgeComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-badge",
+        "sourcePath": "packages/angular/components/badge/badge.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynBadge",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynBadgeJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynBadge",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/badge.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueBadge",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueBadge.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41137-656313",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Badges are used to draw attention and display statuses or counts."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Badge"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Set the variant attribute to change the badge’s variant."
+          },
+          "name": "variants",
+          "title": {
+            "type": "text",
+            "value": "Variants"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "One of the most common use cases for badges is attaching them to buttons. \n\nDEV: To make this easier, badges will be automatically positioned at the top-right when they’re a child of a button."
+          },
+          "name": "withButton",
+          "title": {
+            "type": "text",
+            "value": "With Buttons"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "When including badges in menu items, use the suffix slot to make sure they’re aligned correctly."
+          },
+          "name": "menu",
+          "title": {
+            "type": "text",
+            "value": "With Menu Items"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Badges can be used without content to just show an status indicator."
+          },
+          "name": "withEmptyContent",
+          "title": {
+            "type": "text",
+            "value": "With empty content"
+          }
+        }
+      ],
+      "storySourcePath": "components.badge",
+      "storyTags": [
+        "Feedback"
+      ]
+    },
+    "sourceModulePath": "components/badge/badge.js",
+    "summary": "Badges are used to draw attention and display statuses or counts."
+  },
+  "id": "component:syn-badge",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-badge.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/angular/badge.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/components/badge.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/components/badge.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/components/badge.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/components/badge.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/react/badge.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/vue/SynVueBadge.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-badge/react/SynBadgeJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-badge.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-badge.md"
+      }
+    ]
+  },
+  "name": "syn-badge",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/badge/badge.component.ts",
+    "packages/components/src/components/badge/badge.component.ts",
+    "packages/components/src/components/badge/badge.custom.styles.ts",
+    "packages/components/src/components/badge/badge.styles.ts",
+    "packages/components/src/components/badge/badge.ts",
+    "packages/react/src/components/badge.ts",
+    "packages/vue/src/components/SynVueBadge.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "badge",
+    "component",
+    "react",
+    "syn-badge",
+    "vue"
+  ]
+}

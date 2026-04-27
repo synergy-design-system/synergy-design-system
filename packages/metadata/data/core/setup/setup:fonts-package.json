@@ -1,0 +1,46 @@
+{
+  "custom": {
+    "exports": [
+      ".",
+      "./dist/*",
+      "./package.json",
+      "./sick-intl-inline.css",
+      "./sick-intl.css",
+      "./src/*"
+    ],
+    "packageName": "@synergy-design-system/fonts",
+    "packageVersion": "1.0.5"
+  },
+  "id": "setup:fonts-package",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:fonts-package/fonts/README.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:fonts-package/fonts/CHANGELOG.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:fonts-package/fonts/package.json"
+      }
+    ]
+  },
+  "name": "Fonts Package",
+  "package": "fonts",
+  "relations": [],
+  "since": "1.0.5",
+  "sources": [
+    "packages/fonts/README.md",
+    "packages/fonts/CHANGELOG.md",
+    "packages/fonts/package.json"
+  ],
+  "status": "stable",
+  "tags": [
+    "fonts",
+    "setup"
+  ]
+}

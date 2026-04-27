@@ -1,0 +1,36 @@
+{
+  "custom": {
+    "framework": "angular",
+    "moduleClass": "SynergyComponentsModule",
+    "packageName": "@synergy-design-system/angular"
+  },
+  "id": "setup:angular-components-module",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:angular-components-module/angular/synergy.module.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:angular-components-module/angular/index.ts"
+      }
+    ]
+  },
+  "name": "Angular Components Module",
+  "package": "angular",
+  "relations": [],
+  "since": "3.12.0",
+  "sources": [
+    "packages/angular/modules/synergy/synergy.module.ts",
+    "packages/angular/components/index.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "framework",
+    "module",
+    "setup"
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynSpinnerComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-spinner",
+        "sourcePath": "packages/angular/components/spinner/spinner.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynSpinner",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-spinner--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynSpinnerJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynSpinner",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/spinner.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueSpinner",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSpinner.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41227-223775",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Spinners are used to show the progress of an indeterminate operation."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Spinner"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Spinners are sized based on the current font size. To change their size, set the font-size property on the spinner itself or on a parent element as shown below."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Size"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The width of the spinner’s track can be changed by setting the --track-width custom property."
+          },
+          "name": "track-width",
+          "title": {
+            "type": "text",
+            "value": "Track Width"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The spinner’s colors can be changed by setting the --indicator-color and --track-color custom properties."
+          },
+          "name": "color",
+          "title": {
+            "type": "text",
+            "value": "Color"
+          }
+        }
+      ],
+      "storySourcePath": "components.spinner",
+      "storyTags": [
+        "Feedback"
+      ]
+    },
+    "sourceModulePath": "components/spinner/spinner.js",
+    "summary": "Spinners are used to show the progress of an indeterminate operation."
+  },
+  "id": "component:syn-spinner",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-spinner.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/angular/spinner.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/components/spinner.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/components/spinner.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/components/spinner.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/components/spinner.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/react/spinner.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/vue/SynVueSpinner.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-spinner/react/SynSpinnerJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-spinner.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-spinner.md"
+      }
+    ]
+  },
+  "name": "syn-spinner",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/spinner/spinner.component.ts",
+    "packages/components/src/components/spinner/spinner.component.ts",
+    "packages/components/src/components/spinner/spinner.custom.styles.ts",
+    "packages/components/src/components/spinner/spinner.styles.ts",
+    "packages/components/src/components/spinner/spinner.ts",
+    "packages/react/src/components/spinner.ts",
+    "packages/vue/src/components/SynVueSpinner.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "spinner",
+    "syn-spinner",
+    "vue"
+  ]
+}

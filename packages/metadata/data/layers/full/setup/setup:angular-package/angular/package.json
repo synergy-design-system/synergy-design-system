@@ -1,0 +1,64 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "description": "Angular wrappers for the Synergy Design System",
+  "homepage": "https://synergy-design-system.github.io",
+  "keywords": [
+    "Angular Web Component Wrapper",
+    "Angular Components",
+    "Angular Design System",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/angular",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy-design-system.git",
+    "directory": "packages/angular"
+  },
+  "version": "3.12.0",
+  "scripts": {
+    "_build": "pnpm _clean && ng-packagr -c tsconfig.lib.json && pnpm _after-build",
+    "_clean": "rm -rf ../_private/angular-demo/.angular",
+    "_after-build": "rm -f dist/.npmignore",
+    "_start": "pnpm _build && pnpm run -C ../_private/angular-demo start"
+  },
+  "peerDependencies": {
+    "@angular/core": "^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0",
+    "@angular/forms": "^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0",
+    "@synergy-design-system/components": "workspace:*",
+    "@synergy-design-system/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@angular/core": "^21.2.5",
+    "@angular/forms": "^21.2.5",
+    "@synergy-design-system/components": "workspace:*",
+    "ng-packagr": "^21.2.1",
+    "tslib": "^2.8.1",
+    "typescript": "~5.9.3"
+  },
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "exports": {
+    "./components/*": {
+      "types": "./types/synergy-design-system-angular-components-*.d.ts",
+      "default": "./fesm2022/synergy-design-system-angular-components-*.mjs"
+    },
+    "./modules/*": {
+      "types": "./types/synergy-design-system-angular-modules-*.d.ts",
+      "default": "./fesm2022/synergy-design-system-angular-modules-*.mjs"
+    },
+    "./directives/*": {
+      "types": "./types/synergy-design-system-angular-directives-*.d.ts",
+      "default": "./fesm2022/synergy-design-system-angular-directives-*.mjs"
+    }
+  },
+  "sideEffects": false
+}

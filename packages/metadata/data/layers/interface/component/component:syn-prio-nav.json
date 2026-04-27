@@ -1,0 +1,51 @@
+{
+  "attributes": [],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The wrapper around the priority menu",
+      "name": "priority-menu"
+    },
+    {
+      "description": "The container for the shifted navigation items, if there is not enough space.",
+      "name": "priority-menu-container"
+    },
+    {
+      "description": "The icon for the priority menu",
+      "name": "priority-menu-icon"
+    },
+    {
+      "description": "The label for the priority menu",
+      "name": "priority-menu-label"
+    },
+    {
+      "description": "The navigation item for the priority menu",
+      "name": "priority-menu-nav-item"
+    }
+  ],
+  "dependencies": [
+    "syn-dropdown",
+    "syn-icon",
+    "syn-menu",
+    "syn-nav-item"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs",
+  "events": [],
+  "figmaComponentId": "41227-206412",
+  "methods": [],
+  "properties": [],
+  "since": "1.14.0",
+  "slots": [
+    {
+      "description": "The given navigation items. Must be horizontal `<syn-nav-item>`s or have a role of \"menuitem\"",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/prio-nav/prio-nav.js",
+  "status": "stable",
+  "summary": "The `<syn-prio-nav />` element provides a generic navigation bar\nthat can be used to group multiple navigation items  (usually horizontal `<syn-nav-item />`s)\ntogether. It will automatically group all items not visible in the viewport into a custom\npriority menu.",
+  "tagName": "syn-prio-nav"
+}

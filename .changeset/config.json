@@ -13,6 +13,10 @@
       "@synergy-design-system/react",
       "@synergy-design-system/vue",
       "@synergy-design-system/tokens"
+    ],
+    [
+      "@synergy-design-system/metadata",
+      "@synergy-design-system/mcp"
     ]
   ],
   "linked": [],

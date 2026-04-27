@@ -1,0 +1,333 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynRangeComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-range",
+        "sourcePath": "packages/angular/components/range/range.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynRange",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            },
+            {
+              "name": "syn-move",
+              "type": "SynMoveEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynRangeJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynRange",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/range.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueRange",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueRange.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41310-323916",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Ranges allow the user to select values within a given range using a thumb."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Range"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label attribute to give the range an accessible label. For labels that contain HTML, use the label slot instead."
+          },
+          "name": "labels",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
+          },
+          "name": "help-text",
+          "title": {
+            "type": "text",
+            "value": "Help Text"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Range has been focused by the keyboard interaction or active click from the user."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus / Active"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the readonly attribute to a range to draw it in a readonly state."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Read-only"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a range’s size."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the input is invalid. As range validation is not supported by the browser, you will need to implement your own validation logic."
+          },
+          "name": "invalid",
+          "title": {
+            "type": "text",
+            "value": "Invalid"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable a range."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add any element to the start and end of range items using the prefix and suffix slots."
+          },
+          "name": "prefix-suffix",
+          "title": {
+            "type": "text",
+            "value": "Prefix and Suffix"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "You can customize the active and inactive portions of the track using the --track-color-active and --track-color-inactive custom properties."
+          },
+          "name": "custom-track-colors",
+          "title": {
+            "type": "text",
+            "value": "Custom Track Colors"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "You can customize the initial offset of the active track using the --track-active-offset custom property."
+          },
+          "name": "custom-track-offset",
+          "title": {
+            "type": "text",
+            "value": "Custom Track Offset"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "You can add multiple range-thumbs to your range."
+          },
+          "name": "multi-knob",
+          "title": {
+            "type": "text",
+            "value": "Multi thumb"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Set the restrict-movement attribute to true to prevent the thumbs from overlapping."
+          },
+          "name": "multi-knob-restrict-movement",
+          "title": {
+            "type": "text",
+            "value": "Multi thumb with restricted movement"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, the tooltip is shown on top. Set tooltip-placement to bottom to show it below the range."
+          },
+          "name": "tooltip-placement",
+          "title": {
+            "type": "text",
+            "value": "Tooltip Placement"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To disable the tooltip, set tooltip-placement to none."
+          },
+          "name": "tooltip-disabled",
+          "title": {
+            "type": "text",
+            "value": "Disable the Tooltip"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "You can change the tooltip’s content by setting the tooltipFormatter property to a function that accepts the range’s value as an argument."
+          },
+          "name": "tooltip-formatter",
+          "title": {
+            "type": "text",
+            "value": "Custom Tooltip Formatter"
+          }
+        }
+      ],
+      "storySourcePath": "components.range",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "sourceModulePath": "components/range/range.js",
+    "summary": "Ranges allow the user to select values within a given range using one or two thumbs."
+  },
+  "id": "component:syn-range",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-range.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/angular/range.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/components/range.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/components/range.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/components/range.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/components/utility.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/react/range.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/vue/SynVueRange.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-range/react/SynRangeJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-range.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-range.md"
+      }
+    ]
+  },
+  "name": "syn-range",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-tooltip",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "unknown",
+  "sources": [
+    "packages/angular/components/range/range.component.ts",
+    "packages/components/src/components/range/range.component.ts",
+    "packages/components/src/components/range/range.styles.ts",
+    "packages/components/src/components/range/range.ts",
+    "packages/components/src/components/range/utility.ts",
+    "packages/react/src/components/range.ts",
+    "packages/vue/src/components/SynVueRange.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "range",
+    "react",
+    "syn-range",
+    "vue"
+  ]
+}

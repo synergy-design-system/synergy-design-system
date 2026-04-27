@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/tag/tag.js';
 import '../../../components/src/components/icon/icon.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
@@ -29,7 +26,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('2898-58777'),
+    design: generateFigmaPluginObject('41163-156701'),
     docs: {
       description: {
         component: generateStoryDescription('tag', 'default'),

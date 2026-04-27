@@ -1,0 +1,352 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynInputComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-input",
+        "sourcePath": "packages/angular/components/input/input.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynInput",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-clear",
+              "type": "SynClearEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            },
+            {
+              "name": "syn-clamp",
+              "type": "SynClampEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynInputJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynInput",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/input.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueInput",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueInput.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41337-165221",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Inputs collect data from the user."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Input"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label attribute to give the input an accessible label. For labels that contain HTML, use the label slot instead."
+          },
+          "name": "label",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
+          },
+          "name": "help-text",
+          "title": {
+            "type": "text",
+            "value": "help-text"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the placeholder attribute to add a placeholder."
+          },
+          "name": "placeholder",
+          "title": {
+            "type": "text",
+            "value": "Placeholder"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the clearable attribute to add a clear button when the input has content."
+          },
+          "name": "clearable",
+          "title": {
+            "type": "text",
+            "value": "Clearable"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the password-toggle attribute to add a toggle button that will show the password when activated."
+          },
+          "name": "password-toggle",
+          "title": {
+            "type": "text",
+            "value": "Toggle Password"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the readonly attribute to draw a read-only input."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Read-only Inputs"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable an input."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change an input's size."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the prefix and suffix slots to add text and icons."
+          },
+          "name": "prefix-suffix",
+          "title": {
+            "type": "text",
+            "value": "Prefix Suffix Text and Icons"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus attribute provides feedback to the users, informing them that the input component is ready for use."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus / Active"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the input is invalid. For example, if the entry of text is mandatory and nothing has been entered or if a text has been entered that does not have the correct format."
+          },
+          "name": "invalid",
+          "title": {
+            "type": "text",
+            "value": "Invalid"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The Stepper (Input type number) attribute has additional step buttons at the right side for incrementing and decrementing values. It is ideal for situations where users need to adjust quantities or settings within a range."
+          },
+          "name": "stepper",
+          "title": {
+            "type": "text",
+            "value": "Stepper"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The `numeric-strategy` property defines how numeric input is handled during user interaction. It lets you select between the browsers native control and Synergy’s enhanced number-input logic.\n\nnative: Uses the browser’s built-in number control. Values are not auto-clamped, and stepping/validation can vary across browsers.\n\nmodern: Provides a more intuitive and predictable behavior by automatically clamping values to the nearest min/max value, including those bounds when stepping, and ignoring the step attribute during validation."
+          },
+          "name": "stepper-input-handling",
+          "title": {
+            "type": "text",
+            "value": "Stepper Input Handling"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The type attribute controls the type of input the browser renders."
+          },
+          "name": "types",
+          "title": {
+            "type": "text",
+            "value": "Input Types"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use to customize the way form controls are drawn. This example uses CSS grid to position the label to the left of the control, but the possible orientations are nearly endless. The same technique works for inputs, textareas, radio groups, and similar form controls."
+          },
+          "name": "label-position",
+          "title": {
+            "type": "text",
+            "value": "Customizing Label Position"
+          }
+        }
+      ],
+      "storySourcePath": "components.input",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "sourceModulePath": "components/input/input.js",
+    "summary": "Inputs collect data from the user."
+  },
+  "id": "component:syn-input",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-input.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/angular/input.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/components/formatter.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/components/input.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/components/input.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/components/input.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/components/input.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/components/strategies.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/react/input.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/vue/SynVueInput.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-input/react/SynInputJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-input.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-input.md"
+      }
+    ]
+  },
+  "name": "syn-input",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-divider",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/input/input.component.ts",
+    "packages/components/src/components/input/formatter.ts",
+    "packages/components/src/components/input/input.component.ts",
+    "packages/components/src/components/input/input.custom.styles.ts",
+    "packages/components/src/components/input/input.styles.ts",
+    "packages/components/src/components/input/input.ts",
+    "packages/components/src/components/input/strategies.ts",
+    "packages/react/src/components/input.ts",
+    "packages/vue/src/components/SynVueInput.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "input",
+    "react",
+    "syn-input",
+    "vue"
+  ]
+}

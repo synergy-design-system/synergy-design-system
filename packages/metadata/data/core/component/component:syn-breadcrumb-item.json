@@ -1,0 +1,139 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynBreadcrumbItemComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-breadcrumb-item",
+        "sourcePath": "packages/angular/components/breadcrumb-item/breadcrumb-item.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynBreadcrumbItem",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynBreadcrumbItemJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynBreadcrumbItem",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/breadcrumb-item.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueBreadcrumbItem",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueBreadcrumbItem.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41127-679600",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Breadcrumb Items are used inside breadcrumbs to represent different links."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Breadcrumb Item"
+          }
+        }
+      ],
+      "storySourcePath": "components.breadcrumb-item",
+      "storyTags": [
+        "Navigation"
+      ]
+    },
+    "sourceModulePath": "components/breadcrumb-item/breadcrumb-item.js",
+    "summary": "Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links."
+  },
+  "id": "component:syn-breadcrumb-item",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-breadcrumb-item.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/angular/breadcrumb-item.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/components/breadcrumb-item.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/components/breadcrumb-item.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/components/breadcrumb-item.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/components/breadcrumb-item.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/react/breadcrumb-item.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/vue/SynVueBreadcrumbItem.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-breadcrumb-item/react/SynBreadcrumbItemJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-breadcrumb-item.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-breadcrumb-item.md"
+      }
+    ]
+  },
+  "name": "syn-breadcrumb-item",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/breadcrumb-item/breadcrumb-item.component.ts",
+    "packages/components/src/components/breadcrumb-item/breadcrumb-item.component.ts",
+    "packages/components/src/components/breadcrumb-item/breadcrumb-item.custom.styles.ts",
+    "packages/components/src/components/breadcrumb-item/breadcrumb-item.styles.ts",
+    "packages/components/src/components/breadcrumb-item/breadcrumb-item.ts",
+    "packages/react/src/components/breadcrumb-item.ts",
+    "packages/vue/src/components/SynVueBreadcrumbItem.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "breadcrumb-item",
+    "component",
+    "react",
+    "syn-breadcrumb-item",
+    "vue"
+  ]
+}

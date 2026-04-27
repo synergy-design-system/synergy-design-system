@@ -1,0 +1,139 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynMenuLabelComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-menu-label",
+        "sourcePath": "packages/angular/components/menu-label/menu-label.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynMenuLabel",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynMenuLabelJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynMenuLabel",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/menu-label.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueMenuLabel",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueMenuLabel.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41203-427127",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Menu labels are used to describe a group of menu items."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Menu Label"
+          }
+        }
+      ],
+      "storySourcePath": "components.menu-label",
+      "storyTags": [
+        "Navigation"
+      ]
+    },
+    "sourceModulePath": "components/menu-label/menu-label.js",
+    "summary": "Menu labels are used to describe a group of menu items."
+  },
+  "id": "component:syn-menu-label",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-menu-label.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/angular/menu-label.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/components/menu-label.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/components/menu-label.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/components/menu-label.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/react/menu-label.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/vue/SynVueMenuLabel.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-label/react/SynMenuLabelJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-menu-label.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-menu-label.md"
+      }
+    ]
+  },
+  "name": "syn-menu-label",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-divider",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/menu-label/menu-label.component.ts",
+    "packages/components/src/components/menu-label/menu-label.component.ts",
+    "packages/components/src/components/menu-label/menu-label.styles.ts",
+    "packages/components/src/components/menu-label/menu-label.ts",
+    "packages/react/src/components/menu-label.ts",
+    "packages/vue/src/components/SynVueMenuLabel.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "menu-label",
+    "react",
+    "syn-menu-label",
+    "vue"
+  ]
+}

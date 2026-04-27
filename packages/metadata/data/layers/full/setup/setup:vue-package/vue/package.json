@@ -1,0 +1,58 @@
+{
+  "author": {
+    "name": "SICK Global UX Foundation",
+    "url": "https://www.sick.com"
+  },
+  "dependencies": {
+    "@synergy-design-system/components": "workspace:*"
+  },
+  "description": "Vue3 wrappers for the Synergy Design System",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./components/*": "./dist/components/*"
+  },
+  "scripts": {
+    "_build": "vite build"
+  },
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "homepage": "https://synergy-design-system.github.io",
+  "keywords": [
+    "Vue Web Component Wrapper",
+    "Vue Components",
+    "Vue Design System",
+    "Design System",
+    "SDS",
+    "Synergy Design System",
+    "SICK",
+    "SICK Design System"
+  ],
+  "license": "MIT",
+  "name": "@synergy-design-system/vue",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/synergy-design-system/synergy.git",
+    "directory": "packages/vue"
+  },
+  "type": "module",
+  "version": "3.12.0",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.5",
+    "@vue/tsconfig": "^0.8.1",
+    "rollup-plugin-node-externals": "^8.1.2",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vue": "^3.5.30"
+  },
+  "peerDependencies": {
+    "@synergy-design-system/tokens": "workspace:*"
+  }
+}

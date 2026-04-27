@@ -1,0 +1,194 @@
+{
+  "attributes": [
+    {
+      "default": "''",
+      "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+      "fieldName": "noHeader",
+      "name": "no-header",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Indicates whether or not the dialog is open. You can toggle this attribute to show and hide the dialog, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the dialog's open state.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The dialog's body.",
+      "name": "body"
+    },
+    {
+      "description": "The close button, an `<syn-icon-button>`.",
+      "name": "close-button"
+    },
+    {
+      "description": "The close button's exported `base` part.",
+      "name": "close-button__base"
+    },
+    {
+      "description": "The dialog's footer.",
+      "name": "footer"
+    },
+    {
+      "description": "The dialog's header. This element wraps the title and header actions.",
+      "name": "header"
+    },
+    {
+      "description": "Optional actions to add to the header. Works best with `<syn-icon-button>`.",
+      "name": "header-actions"
+    },
+    {
+      "description": "The overlay that covers the screen behind the dialog.",
+      "name": "overlay"
+    },
+    {
+      "description": "The dialog's panel (where the dialog and its content are rendered).",
+      "name": "panel"
+    },
+    {
+      "description": "The dialog's title.",
+      "name": "title"
+    }
+  ],
+  "dependencies": [
+    "syn-icon-button"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs",
+  "events": [
+    {
+      "description": "Emitted after the dialog closes and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
+    },
+    {
+      "description": "Emitted after the dialog opens and all animations are complete.",
+      "name": "syn-after-show",
+      "type": "SynAfterShowEvent"
+    },
+    {
+      "description": "Emitted when the dialog closes.",
+      "name": "syn-hide",
+      "type": "SynHideEvent"
+    },
+    {
+      "description": "Emitted when the dialog opens and is ready to receive focus. Calling `event.preventDefault()` will prevent focusing and allow you to set it on a different element, such as an input.",
+      "name": "syn-initial-focus",
+      "type": "SynInitialFocusEvent"
+    },
+    {
+      "description": "Emitted when the user attempts to close the dialog by clicking the close button, clicking the overlay, or pressing escape. Calling `event.preventDefault()` will keep the dialog open. Avoid using this unless closing the dialog will result in destructive behavior such as data loss.",
+      "name": "syn-request-close",
+      "type": "SynRequestCloseEvent"
+    },
+    {
+      "description": "Emitted when the dialog opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
+    }
+  ],
+  "figmaComponentId": "42207-348565",
+  "methods": [
+    {
+      "description": "",
+      "name": "handleOpenChange",
+      "parameters": []
+    },
+    {
+      "description": "Hides the dialog",
+      "name": "hide",
+      "parameters": []
+    },
+    {
+      "description": "Shows the dialog.",
+      "name": "show",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "dialog",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The dialog's label as displayed in the header. You should always include a relevant label even when using\n`no-header`, as it is required for proper accessibility. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "new Modal(this)",
+      "description": "Exposes the internal modal utility that controls focus trapping. To temporarily disable focus trapping and allow third-party modals spawned from an active Synergy modal, call `modal.activateExternal()` when the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Synergy's focus trapping.",
+      "name": "modal"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the header. This will also remove the default close button, so please ensure you provide an easy,\naccessible way for users to dismiss the dialog.",
+      "name": "noHeader",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not the dialog is open. You can toggle this attribute to show and hide the dialog, or you can\nuse the `show()` and `hide()` methods and this attribute will reflect the dialog's open state.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "overlay",
+      "type": "HTMLElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "panel",
+      "type": "HTMLElement"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The dialog's main content.",
+      "name": ""
+    },
+    {
+      "description": "The dialog's label. Alternatively, you can use the `label` attribute.",
+      "name": "label"
+    },
+    {
+      "description": "Optional actions to add to the header. Works best with `<syn-icon-button>`.",
+      "name": "header-actions"
+    },
+    {
+      "description": "The dialog's footer, usually one or more buttons representing various options.",
+      "name": "footer"
+    }
+  ],
+  "sourceModulePath": "components/dialog/dialog.js",
+  "status": "stable",
+  "summary": "Dialogs, sometimes called \"modals\", appear above the page and require the user's immediate attention.",
+  "tagName": "syn-dialog"
+}

@@ -1,0 +1,16 @@
+/**
+ * Typographic weight classes
+ * @variant {normal | semibold | bold} syn-weight The font weight to apply
+ */
+
+.syn-weight--normal {
+  font-weight: var(--syn-font-weight-normal);
+}
+
+.syn-weight--semibold {
+  font-weight: var(--syn-font-weight-semibold);
+}
+
+.syn-weight--bold {
+  font-weight: var(--syn-font-weight-bold);
+}

@@ -1,0 +1,22 @@
+{
+  "custom": {},
+  "id": "template:localization",
+  "kind": "template",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template:localization.md"
+      }
+    ]
+  },
+  "name": "Localization",
+  "package": "docs",
+  "relations": [],
+  "since": "1.0.0",
+  "sources": [],
+  "status": "stable",
+  "tags": [
+    "template"
+  ]
+}

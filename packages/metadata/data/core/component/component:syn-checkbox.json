@@ -1,0 +1,259 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynCheckboxComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-checkbox",
+        "sourcePath": "packages/angular/components/checkbox/checkbox.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynCheckbox",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-change",
+              "type": "SynChangeEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            },
+            {
+              "name": "syn-input",
+              "type": "SynInputEvent"
+            },
+            {
+              "name": "syn-invalid",
+              "type": "SynInvalidEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynCheckboxJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynCheckbox",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/checkbox.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueCheckbox",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueCheckbox.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41310-257927",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Checkboxes allow the user to toggle an option on or off."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Checkbox"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the checked attribute to activate the checkbox."
+          },
+          "name": "checked",
+          "title": {
+            "type": "text",
+            "value": "Checked"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the indeterminate attribute to make the checkbox indeterminate."
+          },
+          "name": "indeterminate",
+          "title": {
+            "type": "text",
+            "value": "Indeterminate"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Checkbox has been focused by the keyboard interaction."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable the checkbox."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the readonly attribute to draw a read-only checkbox."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Read-only"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a checkbox’s size."
+          },
+          "name": "sizes",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the Checkbox is invalid. For example, if the check is mandatory and nothing has been checked."
+          },
+          "name": "invalid",
+          "title": {
+            "type": "text",
+            "value": "Invalid"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the setCustomValidity() method to set a custom validation message. This will prevent the form from submitting and make the browser display the error message you provide. To clear the error, call this function with an empty string."
+          },
+          "name": "validity",
+          "title": {
+            "type": "text",
+            "value": "Custom Validity"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add descriptive help text to a checkbox with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
+          },
+          "name": "help-text",
+          "title": {
+            "type": "text",
+            "value": "Help Text"
+          }
+        }
+      ],
+      "storySourcePath": "components.checkbox",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "sourceModulePath": "components/checkbox/checkbox.js",
+    "summary": "Checkboxes allow the user to toggle an option on or off."
+  },
+  "id": "component:syn-checkbox",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-checkbox.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/angular/checkbox.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/components/checkbox.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/components/checkbox.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/components/checkbox.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/react/checkbox.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/vue/SynVueCheckbox.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox/react/SynCheckboxJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-checkbox.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-checkbox.md"
+      }
+    ]
+  },
+  "name": "syn-checkbox",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/checkbox/checkbox.component.ts",
+    "packages/components/src/components/checkbox/checkbox.component.ts",
+    "packages/components/src/components/checkbox/checkbox.styles.ts",
+    "packages/components/src/components/checkbox/checkbox.ts",
+    "packages/react/src/components/checkbox.ts",
+    "packages/vue/src/components/SynVueCheckbox.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "checkbox",
+    "component",
+    "react",
+    "syn-checkbox",
+    "vue"
+  ]
+}

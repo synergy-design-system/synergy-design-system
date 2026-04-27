@@ -1,0 +1,41 @@
+{
+  "attributes": [],
+  "cssParts": [],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs",
+  "events": [
+    {
+      "description": "Emitted when a menu item is selected.",
+      "name": "syn-select",
+      "type": "SynSelectEvent"
+    }
+  ],
+  "figmaComponentId": "41203-442314",
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "",
+      "name": "hasMenuItemsWithCheckmarks",
+      "type": "boolean"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The menu's content, including menu items, menu labels, and dividers.",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/menu/menu.js",
+  "status": "stable",
+  "summary": "Menus provide a list of options for the user to choose from.",
+  "tagName": "syn-menu"
+}

@@ -1,0 +1,1 @@
+export type SynAccordionJSXElement = SynCustomElement<SynAccordion, []>;

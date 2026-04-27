@@ -1,0 +1,125 @@
+{
+  "custom": {
+    "frameworks": {
+      "angular": {
+        "componentName": "SynPaginationComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-pagination",
+        "sourcePath": "packages/angular/components/pagination/pagination.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynPagination",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-pagination--docs",
+          "events": [
+            {
+              "name": "syn-pagination-page-changed",
+              "type": "SynPaginationPageChangedEvent"
+            },
+            {
+              "name": "syn-pagination-page-size-changed",
+              "type": "SynPaginationPageSizeChangedEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "3.12.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynPaginationJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynPagination",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/pagination.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVuePagination",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVuePagination.vue"
+      }
+    },
+    "sourceModulePath": "components/pagination/pagination.js",
+    "summary": "<syn-pagination /> provides page navigation, direct page input, and page-size selection for large data sets."
+  },
+  "id": "component:syn-pagination",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-pagination.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-pagination/angular/pagination.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-pagination/components/pagination.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-pagination/components/pagination.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-pagination/components/pagination.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-pagination/components/utility.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-pagination/react/pagination.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-pagination/vue/SynVuePagination.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-pagination/react/SynPaginationJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-pagination.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-pagination.md"
+      }
+    ]
+  },
+  "name": "syn-pagination",
+  "package": "components",
+  "relations": [],
+  "since": "3.12.0",
+  "sources": [
+    "packages/angular/components/pagination/pagination.component.ts",
+    "packages/components/src/components/pagination/pagination.component.ts",
+    "packages/components/src/components/pagination/pagination.styles.ts",
+    "packages/components/src/components/pagination/pagination.ts",
+    "packages/components/src/components/pagination/utility.ts",
+    "packages/react/src/components/pagination.ts",
+    "packages/vue/src/components/SynVuePagination.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "pagination",
+    "react",
+    "syn-pagination",
+    "vue"
+  ]
+}

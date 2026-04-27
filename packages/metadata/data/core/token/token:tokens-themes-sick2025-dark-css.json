@@ -1,0 +1,32 @@
+{
+  "custom": {
+    "artifactPath": "themes/sick2025_dark.css",
+    "format": "css",
+    "sourceType": "dist",
+    "theme": "sick2025-dark"
+  },
+  "id": "token:tokens-themes-sick2025-dark-css",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/themes/sick2025_dark.css"
+      }
+    ]
+  },
+  "name": "sick2025_dark.css",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.12.0",
+  "sources": [
+    "packages/tokens/dist/themes/sick2025_dark.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "dist"
+  ]
+}

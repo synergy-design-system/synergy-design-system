@@ -1,0 +1,233 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynTooltipComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tooltip",
+        "sourcePath": "packages/angular/components/tooltip/tooltip.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynTooltip",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tooltip--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTooltipJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTooltip",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tooltip.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueTooltip",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTooltip.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41337-203414",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Tooltips display additional information based on a specific action.\n\nA tooltip’s target is its first child element, so you should only wrap one element inside of the tooltip. If you need the tooltip to show up for multiple elements, nest them inside a container first.\n\nTooltips use display: contents so they won’t interfere with how elements are positioned in a flex or grid layout."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Tooltip"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the placement attribute to set the preferred placement of the tooltip."
+          },
+          "name": "placement",
+          "title": {
+            "type": "text",
+            "value": "Placement"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Set the trigger attribute to click to toggle the tooltip on click instead of hover."
+          },
+          "name": "onclick",
+          "title": {
+            "type": "text",
+            "value": "Click Trigger"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Tooltips can be controlled programmatically by setting the trigger attribute to manual. Use the open attribute to control when the tooltip is shown."
+          },
+          "name": "manuel",
+          "title": {
+            "type": "text",
+            "value": "Manual Trigger"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "You can control the size of tooltip arrows by overriding the --syn-tooltip-arrow-size design token. To remove them, set the value to 0 as shown below."
+          },
+          "name": "removingarrows",
+          "title": {
+            "type": "text",
+            "value": "Removing Arrows"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the content slot to create tooltips with HTML content. Tooltips are designed only for text and presentational elements. Avoid placing interactive content, such as buttons, links, and form controls, in a tooltip."
+          },
+          "name": "htmltooltip",
+          "title": {
+            "type": "text",
+            "value": "HTML in Tooltips"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the --max-width custom property to change the width the tooltip can grow to before wrapping occurs."
+          },
+          "name": "maxwith",
+          "title": {
+            "type": "text",
+            "value": "Setting a Maximum Width"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Tooltips will be clipped if they’re inside a container that has overflow: auto|hidden|scroll. The hoist attribute forces the tooltip to use a fixed positioning strategy, allowing it to break out of the container. In this case, the tooltip will be positioned relative to its containing block, which is usually the viewport unless an ancestor uses a transform, perspective, or filter."
+          },
+          "name": "hoisting",
+          "title": {
+            "type": "text",
+            "value": "Hoisting"
+          }
+        }
+      ],
+      "storySourcePath": "components.tooltip",
+      "storyTags": [
+        "Feedback"
+      ]
+    },
+    "sourceModulePath": "components/tooltip/tooltip.js",
+    "summary": "Tooltips display additional information based on a specific action."
+  },
+  "id": "component:syn-tooltip",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-tooltip.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/angular/tooltip.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/components/tooltip.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/components/tooltip.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/components/tooltip.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/react/tooltip.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/vue/SynVueTooltip.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tooltip/react/SynTooltipJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tooltip.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tooltip.md"
+      }
+    ]
+  },
+  "name": "syn-tooltip",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-popup",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/tooltip/tooltip.component.ts",
+    "packages/components/src/components/tooltip/tooltip.component.ts",
+    "packages/components/src/components/tooltip/tooltip.styles.ts",
+    "packages/components/src/components/tooltip/tooltip.ts",
+    "packages/react/src/components/tooltip.ts",
+    "packages/vue/src/components/SynVueTooltip.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "syn-tooltip",
+    "tooltip",
+    "vue"
+  ]
+}

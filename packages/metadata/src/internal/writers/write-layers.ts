@@ -386,7 +386,7 @@ ${event.description}
   // Add custom sections if provided through override
   if (enrichedOverride?.customSections) {
     for (const [, section] of Object.entries(enrichedOverride.customSections)) {
-      const sectionData = section as { title: string; content: string };
+      const sectionData = section;
       sections.push(renderMarkdownSection(sectionData.title, sectionData.content));
     }
   }

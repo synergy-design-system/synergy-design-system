@@ -492,20 +492,20 @@ The filtered options shown in the list can be customized by passing a function t
   // import { highlightOptionRenderer } from '@synergy-design-system/components';
 
   // preview-ignore:start
-  const highlightOptionRenderer = (t, e) => {
-    if (!e) return t;
-    const o = t.cloneNode(!0),
-      s = o.getTextLabel();
-    o.selected = t.selected;
-    const n = s.toLowerCase().indexOf(e.toLowerCase()),
-      l = o.innerHTML.indexOf(s),
-      h = document.createElement("mark");
-    ((h.textContent = s.slice(n, n + e.length)),
-      h.classList.add("syn-highlight-style"));
-    const c = s.replace(new RegExp(e, "i"), h.outerHTML),
-      f = o.innerHTML.slice(0, l),
-      T = o.innerHTML.slice(l + s.length);
-    return ((o.innerHTML = f.concat(c, T)), o);
+  const highlightOptionRenderer = (e, t) => {
+    if (!t) return e;
+    let n = e.cloneNode(!0),
+      r = n.getTextLabel();
+    n.selected = e.selected;
+    let i = r.toLowerCase().indexOf(t.toLowerCase()),
+      a = n.innerHTML.indexOf(r),
+      o = document.createElement(`mark`);
+    ((o.textContent = r.slice(i, i + t.length)),
+      o.classList.add(`syn-highlight-style`));
+    let s = r.replace(new RegExp(t, `i`), o.outerHTML),
+      c = n.innerHTML.slice(0, a),
+      l = n.innerHTML.slice(a + r.length);
+    return ((n.innerHTML = c.concat(s, l)), n);
   };
   // preview-ignore:end
 

@@ -566,7 +566,7 @@ export default class SynValidate extends SynergyElement {
     const slotContent = this.variant === 'tooltip'
       ? html`
         <syn-tooltip
-          .anchor=${getActualInputElement(this.getInput()) as Element ?? undefined}
+          .anchor=${getActualInputElement(this.getInput()) ?? undefined}
           exportparts="base:tooltip__base,base__popup:tooltip__popup,base__arrow:tooltip__arrow,body:tooltip__body"
           .open=${this.eager ? !this.isValid && this.getDisplayValidationMessage().length > 0 : false}
           part="tooltip"

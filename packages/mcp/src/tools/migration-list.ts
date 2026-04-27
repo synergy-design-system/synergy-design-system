@@ -7,8 +7,6 @@ import {
   toolHandler,
 } from '../utilities/index.js';
 
-type SynergyMigrationPackage = 'assets' | 'components' | 'styles' | 'tokens';
-
 type MigrationIndexMetadata = {
   from?: string;
   fromTheme?: string;
@@ -124,7 +122,7 @@ export const migrationListTool = (server: McpServer) => {
       title: 'Package Migration Document Index',
     },
     toolHandler('migration-list', async ({ synergyPackage }) => {
-      const selectedPackage = (synergyPackage ?? getRuntimeConfig().tools.migrationList.synergyPackage) as SynergyMigrationPackage;
+      const selectedPackage = (synergyPackage ?? getRuntimeConfig().tools.migrationList.synergyPackage);
       const metadata = await getMigrationMetaData(selectedPackage);
 
       const index = metadata

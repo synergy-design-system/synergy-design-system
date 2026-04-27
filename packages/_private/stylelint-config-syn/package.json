@@ -8,14 +8,14 @@
     "postcss-lit": "^1.4.1",
     "stylelint-config-standard": "^40.0.0",
     "stylelint-no-unsupported-browser-features": "^8.1.1",
-    "stylelint-order": "^7.0.1"
+    "stylelint-order": "^8.1.1"
   },
   "description": "Stylelint core rules used in the Synergy Design System",
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "eslint": "^9.39.4",
     "lit": "^3.3.2",
-    "stylelint": "^17.5.0"
+    "stylelint": "^17.9.0"
   },
   "exports": {
     ".": "./index.js"

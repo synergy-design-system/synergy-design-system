@@ -4354,6 +4354,38 @@
         }
       }
     },
+    "loading-screen": {
+      "default": {
+        "title": {
+          "value": "Loading Screen",
+          "type": "text"
+        },
+        "description": {
+          "value": "The loading screen is displayed while content is being loaded or processed. It provides visual feedback to the user, indicating that the system is working and preventing confusion or frustration during wait times.",
+          "type": "text"
+        }
+      },
+      "light-mode": {
+        "title": {
+          "value": "Light Mode",
+          "type": "text"
+        },
+        "description": {
+          "value": "The loading screen can be displayed in light mode, which is the default theme for all applications.",
+          "type": "text"
+        }
+      },
+      "dark-mode": {
+        "title": {
+          "value": "Dark Mode",
+          "type": "text"
+        },
+        "description": {
+          "value": "The loading screen can be displayed in dark mode, which is suitable for low-light environments or user preferences.",
+          "type": "text"
+        }
+      }
+    },
     "table": {
       "default": {
         "title": {

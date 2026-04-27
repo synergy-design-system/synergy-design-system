@@ -13,7 +13,9 @@ import { type Context } from '../core/context.js';
 import { type WriteError } from '../core/errors.js';
 import { type CoreEntity } from '../schemas/index.js';
 import { type LayerRef } from '../schemas/layer-ref.js';
-import { type EnrichedOverride, getOverride } from '../../config/index.js';
+import {
+  type EnrichedOverride, getOverride,
+} from '../../config/index.js';
 import { formatGeneratedMarkdown } from '../core/markdown.js';
 import { ensureDir, writeJsonAtomic } from './fs-utils.js';
 
@@ -207,6 +209,13 @@ const renderInterfaceMarkdown = (
   rawSnapshot: Record<string, unknown>,
   enrichedOverride?: EnrichedOverride,
 ): string => {
+  // @todo Re-enable component rules in interface markdown by restoring the
+  // rules parameter and appending the rules-driven sections below.
+  // const renderInterfaceMarkdown = (
+  //   rawSnapshot: Record<string, unknown>,
+  //   enrichedOverride?: EnrichedOverride,
+  //   rules?: ComponentRules,
+  // ): string => {
   const snapshot = rawSnapshot as InterfaceSnapshot;
 
   const tagName = snapshot.tagName ?? 'unknown-component';
@@ -382,6 +391,52 @@ ${event.description}
     }
   }
 
+  // if (rules) {
+  //   if (rules.useCases && rules.useCases.length > 0) {
+  //     sections.push(renderMarkdownSection(
+  //       'Common Use Cases',
+  //       rules.useCases.map(uc => `- ${uc}`).join('\n'),
+  //     ));
+  //   }
+  //
+  //   if (rules.usageGuidelines && Object.keys(rules.usageGuidelines).length > 0) {
+  //     const guidelinesContent = Object.entries(rules.usageGuidelines)
+  //       .map(([key, items]) => {
+  //         const heading = key.charAt(0).toUpperCase() + key.slice(1);
+  //         return `### ${heading}\n\n${items.map(item => `- ${item}`).join('\n')}`;
+  //       })
+  //       .join('\n\n');
+  //     sections.push(renderMarkdownSection('Usage Guidelines', guidelinesContent));
+  //   }
+  //
+  //   if (rules.accessibility && rules.accessibility.length > 0) {
+  //     sections.push(renderMarkdownSection(
+  //       'Accessibility',
+  //       rules.accessibility.map(item => `- ${item}`).join('\n'),
+  //     ));
+  //   }
+  //
+  //   if (rules.knownIssues && rules.knownIssues.length > 0) {
+  //     sections.push(renderMarkdownSection(
+  //       'Known Issues',
+  //       rules.knownIssues.map(issue => `- **${issue.browser}**: ${issue.description}`).join('\n'),
+  //     ));
+  //   }
+  //
+  //   const relatedComponents = rules.related?.components ?? [];
+  //   const relatedTemplates = rules.related?.templates ?? [];
+  //   if (relatedComponents.length > 0 || relatedTemplates.length > 0) {
+  //     const parts: string[] = [];
+  //     if (relatedComponents.length > 0) {
+  //       parts.push(`### Components\n\n${relatedComponents.map(c => `- \`${c}\``).join('\n')}`);
+  //     }
+  //     if (relatedTemplates.length > 0) {
+  //       parts.push(`### Templates\n\n${relatedTemplates.map(t => `- ${t}`).join('\n')}`);
+  //     }
+  //     sections.push(renderMarkdownSection('Related', parts.join('\n\n')));
+  //   }
+  // }
+
   const nonEmptySections = sections.filter((section) => section.length > 0);
   return `# ${tagName}\n\n${nonEmptySections.join('\n\n')}\n`;
 };
@@ -524,13 +579,23 @@ export async function writeLayerAssets(
         // Get enriched override if config is available
         const enrichedOverride = ctx.config ? (getOverride(ctx.config, entity.id, true) ?? undefined) : undefined;
 
+        // @todo Re-enable component rules in generated interface artifacts by
+        // restoring getRules() here, merging rules into interfaceSnapshot JSON,
+        // and passing rules into renderInterfaceMarkdown().
+        // const rules = ctx.config ? (getRules(ctx.config, entity.id) ?? undefined) : undefined;
+
         // Merge figmaComponentId from override into snapshot
         if (enrichedOverride?.figmaComponentId) {
           interfaceSnapshot.figmaComponentId = enrichedOverride.figmaComponentId;
         }
 
+        // if (rules) {
+        //   interfaceSnapshot.rules = rules;
+        // }
+
         const interfaceMarkdown = await formatGeneratedMarkdown(
           renderInterfaceMarkdown(interfaceSnapshot, enrichedOverride),
+          // renderInterfaceMarkdown(interfaceSnapshot, enrichedOverride, rules),
         );
 
         await writeJsonAtomic(interfacePath, interfaceSnapshot);

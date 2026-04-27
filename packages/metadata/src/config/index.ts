@@ -2,17 +2,19 @@ export type {
   ArtifactType,
   Cluster,
   ComponentOverride,
+  ComponentRules,
   ConfigContext,
   EnrichedOverride,
   StorybookArtifact,
 } from './types.js';
 
 export {
-  ComponentOverrideSchema,
   ClusterSchema,
+  ComponentOverrideSchema,
+  ComponentRulesSchema,
   StorybookArtifactSchema,
 } from './types.js';
 
 export {
-  enrichOverride, getClustersForEntity, getOverride, loadConfig,
+  enrichOverride, getClustersForEntity, getOverride, getRules, loadConfig,
 } from './loader.js';

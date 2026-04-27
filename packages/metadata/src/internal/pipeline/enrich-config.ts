@@ -14,8 +14,8 @@ import {
 
 export interface EnrichedEntity extends CoreEntity {
   custom: CoreEntity['custom'] & {
-    override?: EnrichedOverride;
     clusters?: string[];
+    override?: EnrichedOverride;
   };
 }
 
@@ -41,6 +41,14 @@ export function enrichEntitiesWithConfig(
   const enrichedEntities = entities.map((entity) => {
     const custom = (entity.custom as Record<string, unknown>) ?? {};
     const enriched: Record<string, unknown> = { ...custom };
+
+    // @todo Re-enable component rules in metadata output by importing getRules()
+    // and attaching enriched.rules here before writing entities.
+    // const rules = getRules(ctx.config as any, entity.id);
+    // if (rules) {
+    //   enriched.rules = rules;
+    //   enrichedCount += 1;
+    // }
 
     // Attach override if one exists for this entity
     // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-argument

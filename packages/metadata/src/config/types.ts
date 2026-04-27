@@ -15,24 +15,48 @@ export type StorybookArtifact = z.infer<typeof StorybookArtifactSchema>;
 /**
  * Component override schema
  */
-export const ComponentOverrideSchema = z
+export const ComponentOverrideSchema = z.object({
+  customSections: z.record(
+    z.string(),
+    z.object({
+      content: z.string(),
+      title: z.string(),
+    }),
+  ).optional(),
+  figmaComponentId: z.string().optional(),
+  storySourcePath: z.string().optional(),
+  storyTags: z.array(z.string()).optional(),
+}).strict();
+
+export type ComponentOverride = z.infer<typeof ComponentOverrideSchema>;
+
+/**
+ * Component rules schema — authored design guidance per component.
+ */
+export const ComponentRulesSchema = z
   .object({
-    customSections: z
-      .record(
-        z.string(),
+    accessibility: z.array(z.string()).optional(),
+    component: z.string(),
+    knownIssues: z
+      .array(
         z.object({
-          content: z.string(),
-          title: z.string(),
+          browser: z.string(),
+          description: z.string(),
         }),
       )
       .optional(),
-    figmaComponentId: z.string().optional(),
-    storySourcePath: z.string().optional(),
-    storyTags: z.array(z.string()).optional(),
+    related: z
+      .object({
+        components: z.array(z.string()).optional(),
+        templates: z.array(z.string()).optional(),
+      })
+      .optional(),
+    usageGuidelines: z.record(z.string(), z.array(z.string())).optional(),
+    useCases: z.array(z.string()).optional(),
   })
   .strict();
 
-export type ComponentOverride = z.infer<typeof ComponentOverrideSchema>;
+export type ComponentRules = z.infer<typeof ComponentRulesSchema>;
 
 /**
  * Clustering schema
@@ -54,8 +78,9 @@ export interface ConfigContext {
   artifacts: {
     storybook?: StorybookArtifact;
   };
-  overrides: Map<string, ComponentOverride>;
   clustering: Map<string, Cluster>;
+  overrides: Map<string, ComponentOverride>;
+  rules: Map<string, ComponentRules>;
 }
 
 /**

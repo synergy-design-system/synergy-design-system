@@ -3,6 +3,8 @@
  * These types intentionally avoid coupling to internal collector/pipeline modules.
  */
 
+import type { ComponentRules } from '../config/types.js';
+
 /** Logical metadata layer names used for query and response shaping. */
 export type LayerName = 'full' | 'interface' | 'examples';
 /** Verbosity levels for response formatting in public query helpers. */
@@ -128,6 +130,7 @@ export type ComponentCustom = {
     storySourcePath?: string;
     storyTags?: string[];
   };
+  rules?: ComponentRules;
 };
 
 // ---------------------------------------------------------------------------

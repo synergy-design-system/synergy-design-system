@@ -1,9 +1,12 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import {
   type Cluster,
   ClusterSchema,
   ComponentOverrideSchema,
+  type ComponentRules,
+  ComponentRulesSchema,
   type ConfigContext,
   type EnrichedOverride,
   type StorybookArtifact,
@@ -13,6 +16,41 @@ import {
 const parseJsonUnknown = (content: string): unknown => JSON.parse(content) as unknown;
 
 /**
+ * Load component rules from package config/rules.
+ */
+async function loadRules(configDir: string): Promise<Map<string, ComponentRules>> {
+  const rules = new Map<string, ComponentRules>();
+  const rulesDir = resolve(configDir, 'rules');
+
+  try {
+    const files = await readdir(rulesDir);
+    for (const file of files) {
+      if (!file.endsWith('.js')) continue;
+      const filePath = join(rulesDir, file);
+      const fileUrl = pathToFileURL(filePath).href;
+      const mod = await import(fileUrl) as { default: unknown };
+      const parsed = ComponentRulesSchema.parse(mod.default);
+      const entityId = file.replace('.js', '');
+      rules.set(entityId, parsed);
+    }
+  } catch {
+    // Rules directory is optional
+  }
+
+  return rules;
+}
+
+/**
+ * Get rules for an entity.
+ */
+export function getRules(
+  context: ConfigContext,
+  entityId: string,
+): ComponentRules | null {
+  return context.rules.get(entityId) ?? null;
+}
+
+/**
  * Load configuration from metadata package config directory
  */
 export async function loadConfig(configDir: string): Promise<ConfigContext> {
@@ -20,7 +58,11 @@ export async function loadConfig(configDir: string): Promise<ConfigContext> {
     artifacts: {},
     clustering: new Map(),
     overrides: new Map(),
+    rules: new Map(),
   };
+
+  // Load rules
+  context.rules = await loadRules(configDir);
 
   // Load artifacts
   const artifactsDir = resolve(configDir, '..', 'external-data');

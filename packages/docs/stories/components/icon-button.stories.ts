@@ -66,9 +66,11 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="small"></syn-icon-button>
-    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
-    <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="large"></syn-icon-button>
+    <div style="align-items: end; display: flex; gap: var(--syn-spacing-large);">
+      <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="small"></syn-icon-button>
+      <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
+      <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="large"></syn-icon-button>
+    </div>
   `,
 };
 
@@ -80,8 +82,12 @@ export const Colors: Story = {
       },
     },
   },
-  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
-    <syn-icon-button name="wallpaper" label="Wallpaper" color="primary" size="medium"></syn-icon-button>`,
+  render: () => html`
+    <div style="align-items: center; display: flex; gap: var(--syn-spacing-large);">
+      <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
+      <syn-icon-button name="wallpaper" label="Wallpaper" color="primary" size="medium"></syn-icon-button>
+    </div>
+  `,
 };
 
 export const LinkButton: Story = {
@@ -95,16 +101,6 @@ export const LinkButton: Story = {
   render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" href="https://example.com" target="_blank" size="medium"></syn-icon-button>`,
 };
 
-// TODO: uncomment this story as soon as the syn-tooltip is available
-/**
- * Wrap a tooltip around an icon button to provide contextual information to the user.
- */
-// export const IconButtonWithTooltip: Story = {
-//   render: () => html`<syn-tooltip content="Settings">
-//   <syn-icon-button name="gear" label="Settings"></syn-icon-button>
-// </syn-tooltip>`,
-// };
-
 export const Disabled: Story = {
   parameters: {
     docs: {
@@ -113,7 +109,12 @@ export const Disabled: Story = {
       },
     },
   },
-  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" disabled size="medium"></syn-icon-button>`,
+  render: () => html`
+    <div style="align-items: center; display: flex; gap: var(--syn-spacing-large);">
+      <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" disabled size="medium"></syn-icon-button>
+      <syn-icon-button name="wallpaper" label="Wallpaper" color="primary" disabled size="medium"></syn-icon-button>
+    </div>
+  `,
 };
 
 export const Focus: Story = {
@@ -134,7 +135,13 @@ export const Focus: Story = {
       iconButton.focus();
     }
   },
-  render: () => html`<syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>`,
+  render: () => html`
+    <div style="align-items: center; display: flex; gap: var(--syn-spacing-large);">
+      <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="small"></syn-icon-button>
+      <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="medium"></syn-icon-button>
+      <syn-icon-button name="wallpaper" label="Wallpaper" color="neutral" size="large"></syn-icon-button>
+    </div>
+  `,
 };
 
 export const Label: Story = {

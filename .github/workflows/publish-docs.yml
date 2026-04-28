@@ -26,6 +26,9 @@ jobs:
       # We cannot use our own action as it interferes with the checkout paths
       - name: Set up Node
         uses: actions/setup-node@v6
+        with:
+          node-version: 'lts/Krypton'
+          cache: 'pnpm'
 
       - name: Install pnpm
         uses: pnpm/action-setup@v4

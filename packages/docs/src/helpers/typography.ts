@@ -1,4 +1,4 @@
-import { getTokensByCategory, sortTokens } from './tokens.js';
+import { getComponentTokensByCategory, sortTokens } from './tokens.js';
 
 export const exampleText = 'The quick brown fox jumps over the lazy dog.';
 
@@ -9,7 +9,7 @@ export const exampleText = 'The quick brown fox jumps over the lazy dog.';
  */
 export const getFontFamily = (useFullTokenName = false) => {
   const fonts = ['fontsans', 'fontmono'].map((category) => {
-    const fontTokens = getTokensByCategory(category, useFullTokenName);
+    const fontTokens = getComponentTokensByCategory(category, useFullTokenName);
     return Object.fromEntries(fontTokens);
   });
   return {
@@ -23,7 +23,7 @@ export const getFontFamily = (useFullTokenName = false) => {
  * @param useFullTokenName Optionally preserve the token name
  * @returns Returns the complete font-size tokens
  */
-export const getFontSize = (useFullTokenName = false) => Object.fromEntries(getTokensByCategory('fontsize', useFullTokenName)
+export const getFontSize = (useFullTokenName = false) => Object.fromEntries(getComponentTokensByCategory('fontsize', useFullTokenName)
   .sort((a, b) => sortTokens(a, b, { extractSizeFor: 'SynFontSize', sortType: 'size' })));
 
 /**
@@ -31,7 +31,7 @@ export const getFontSize = (useFullTokenName = false) => Object.fromEntries(getT
  * @param useFullTokenName Optionally preserve the token name
  * @returns Returns the complete font-weight tokens
  */
-export const getFontWeight = (useFullTokenName = false) => Object.fromEntries(getTokensByCategory('fontweight', useFullTokenName)
+export const getFontWeight = (useFullTokenName = false) => Object.fromEntries(getComponentTokensByCategory('fontweight', useFullTokenName)
   .sort((a, b) => sortTokens(a, b, {
     orderArray: [
       'normal',
@@ -47,7 +47,7 @@ export const getFontWeight = (useFullTokenName = false) => Object.fromEntries(ge
  * @param useFullTokenName Optionally preserve the token name
  * @returns Returns the complete line-height tokens
  */
-export const getLineHeight = (useFullTokenName = false) => Object.fromEntries(getTokensByCategory('lineheight', useFullTokenName)
+export const getLineHeight = (useFullTokenName = false) => Object.fromEntries(getComponentTokensByCategory('lineheight', useFullTokenName)
   .sort((a, b) => sortTokens(a, b, {
     orderArray: [
       'denser',

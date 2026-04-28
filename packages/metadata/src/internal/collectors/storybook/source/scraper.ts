@@ -46,6 +46,8 @@ const parseStorySettleDelayMs = (): number => {
 
 const STORY_SETTLE_DELAY_MS = parseStorySettleDelayMs();
 
+logger.debug(`Storybook scraper initialized with STORY_SETTLE_DELAY_MS=${STORY_SETTLE_DELAY_MS}ms (CI=${process.env.CI ?? 'undefined'})`);
+
 interface HiddenSourceStatus {
   hasCodeToggle: boolean;
   hasNonEmptyHiddenSource: boolean;
@@ -114,12 +116,15 @@ async function scrollAnchorsIntoView(page: Page): Promise<void> {
   const anchors = page.locator('.sb-anchor');
   const anchorCount = await anchors.count();
 
+  logger.debug(`scrollAnchorsIntoView: found ${anchorCount} anchors, STORY_SETTLE_DELAY_MS=${STORY_SETTLE_DELAY_MS}ms`);
+
   for (let i = 0; i < anchorCount; i += 1) {
     const anchor = anchors.nth(i);
     await anchor.scrollIntoViewIfNeeded();
 
     // Wait before each story anchor snapshot to reduce CI timing flakiness.
     if (STORY_SETTLE_DELAY_MS > 0) {
+      logger.debug(`scrollAnchorsIntoView: waiting ${STORY_SETTLE_DELAY_MS}ms before anchor ${i + 1}/${anchorCount}`);
       await page.waitForTimeout(STORY_SETTLE_DELAY_MS);
     }
 
@@ -345,7 +350,7 @@ export class StorybookScraper {
       }));
 
       scrapingReport.status = 'success';
-      logger.info(`Scraped ${storyId}`);
+      logger.info(`Scraped ${storyId} with settle delay ${STORY_SETTLE_DELAY_MS}ms`);
       return processedStories;
     } catch (error) {
       scrapingReport.error = error instanceof Error ? error : new Error(String(error));

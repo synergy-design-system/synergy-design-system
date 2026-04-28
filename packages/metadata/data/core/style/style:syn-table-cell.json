@@ -21,7 +21,7 @@
   "name": "syn-table-cell",
   "package": "styles",
   "relations": [],
-  "since": "2.0.3",
+  "since": "2.0.4",
   "sources": [
     "packages/styles/src/tables/table-cell.css"
   ],

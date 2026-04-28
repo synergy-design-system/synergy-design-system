@@ -152200,7 +152200,7 @@
   "name": "sick2025 Icons (Fill)",
   "package": "assets",
   "relations": [],
-  "since": "2.1.0",
+  "since": "2.1.1",
   "sources": [
     "packages/assets/src/sick2025/js/filled.ts"
   ],

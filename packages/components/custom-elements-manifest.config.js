@@ -29,6 +29,15 @@ function replace(string, terms) {
   return string;
 }
 
+function getTagValue(tag) {
+  // comment-parser may split values containing '=' into name + default.
+  if (typeof tag.default === 'string' && tag.default.length > 0) {
+    return `${tag.name}=${tag.default}`;
+  }
+
+  return tag.name;
+}
+
 export default {
   // @see https://github.com/synergy-design-system/synergy-design-system/pull/1035#discussion_r2429463349
   // We already added the key to package.json, but our test script will also run cem and will update the key
@@ -126,7 +135,7 @@ export default {
                 case 'since':
                 case 'status':
                 case 'title':
-                  classDoc[t.tag] = t.name;
+                  classDoc[t.tag] = getTagValue(t);
                   break;
 
                 // All other tags

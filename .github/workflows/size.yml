@@ -29,8 +29,7 @@ jobs:
         name: Size Check
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # @todo: update this to build:size when available on main
-          build_script: build
+          build_script: build:size
           script: >
             sh -c "export PATH=$(npm bin -g):$PATH; pnpm run --silent --filter components --if-present report-bundle-size | tee /tmp/out; if [ ! -s /tmp/out ]; then echo '[]'; fi"
           package_manager: pnpm

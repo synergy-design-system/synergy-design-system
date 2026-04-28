@@ -198,9 +198,9 @@ export const getDataForTokens = async (
   }
 
   const filteredEntities = metadata.data.filter((entity) => {
-    const format = (entity.custom?.format as TokenFormat | undefined)
+    const format = (entity.custom?.format)
       ?? deriveTokenFormat(entity.custom?.artifactPath);
-    const theme = (entity.custom?.theme as TokenTheme | undefined)
+    const theme = (entity.custom?.theme)
       ?? deriveTokenTheme(entity.custom?.artifactPath);
 
     if (format !== requestedFormat) {
@@ -220,9 +220,9 @@ export const getDataForTokens = async (
   const tokenEntries = (await Promise.all(
     pagedEntities.map(async (entity) => {
       const files = await readLayerFilesForEntity(store, entity, 'full');
-      const format = (entity.custom?.format as TokenFormat | undefined)
+      const format = (entity.custom?.format)
         ?? deriveTokenFormat(entity.custom?.artifactPath);
-      const theme = (entity.custom?.theme as TokenTheme | undefined)
+      const theme = (entity.custom?.theme)
         ?? deriveTokenTheme(entity.custom?.artifactPath);
 
       return files.map(({ content, ref }) => ({

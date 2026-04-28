@@ -802,7 +802,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
         }
       }
 
-      /* eslint-disable @typescript-eslint/unbound-method */
+      /* eslint-disable @typescript-eslint/unbound-method, @typescript-eslint/no-unnecessary-type-assertion */
       return html`
         <syn-tooltip
           exportparts="base:tooltip__base, base__arrow:tooltip__arrow, base__popup:tooltip__popup, body:tooltip__body"
@@ -834,7 +834,7 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
           ></div>
         </syn-tooltip>
       `;
-      /* eslint-enable @typescript-eslint/unbound-method */
+      /* eslint-enable @typescript-eslint/unbound-method, @typescript-eslint/no-unnecessary-type-assertion */
     });
   }
 

@@ -86,10 +86,7 @@ export const storybookHelpers = (customElementTag: string) => ({
 
     const { argTypes } = storybookDefaults(customElementTag);
 
-    // Add an explicit index signature to help TypeScript with key access
-    const typedArgTypes = argTypes as unknown as Record<string, InputType>;
-
-    return typedArgTypes[usedAttribute]?.options;
+    return argTypes[usedAttribute]?.options;
   },
 
   /**

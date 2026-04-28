@@ -10,6 +10,9 @@ export default defineConfig({
       targets: [
         {
           dest: './assets/icons/',
+          rename: {
+            stripBase: true,
+          },
           src: './node_modules/@synergy-design-system/assets/src/sick2025/icons/outline/*',
         },
       ],

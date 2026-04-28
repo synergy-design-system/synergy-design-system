@@ -1,7 +1,7 @@
 /**
  * @typedef {import('../types.js').OutputVariableChangeList} OutputVariableChangeList
  */
-import chalk from 'chalk';
+import { styleText } from 'node:util';
 
 /**
  * Get the changed value for a specific variable token.
@@ -46,7 +46,7 @@ export const changeOutputValues = {
     if (nextValue !== null) {
       if (config.log?.verbosity === 'verbose') {
         const message = `⚠️ Changing value of ${token.name} from ${token.value} to ${nextValue}. Have a look at the OUTPUT_VARIABLE_CHANGES map in config.js for more information.`;
-        console.log(chalk.yellow(message));
+        console.log(styleText('yellow', message));
       }
       return nextValue;
     }

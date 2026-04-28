@@ -3,7 +3,7 @@
  * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse['meta']} VariablesAndCollections
  */
 import { existsSync, mkdirSync } from 'node:fs';
-import chalk from 'chalk';
+import { styleText } from 'node:util';
 import { FIGMA_TOKENS_PREFIXES } from '../config.js';
 
 /**
@@ -214,7 +214,7 @@ export const getAvailableThemes = (variablesData, collectionName) => {
     .filter(({ name }) => !name.includes('exploration'));
   if (themes.length === 0) {
     console.error(
-      chalk.red('No themes found in Figma variables. Please check the variable collections.'),
+      styleText('red', 'No themes found in Figma variables. Please check the variable collections.'),
     );
   }
   return themes;

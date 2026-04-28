@@ -1,8 +1,8 @@
 import { join } from 'node:path';
 import { copyFileSync, readdirSync } from 'node:fs';
+import { styleText } from 'node:util';
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
-import chalk from 'chalk';
 import { cssVariableFormatter } from './formats/index.js';
 import { createJS, createSCSS } from './outputs/index.js';
 import {
@@ -83,10 +83,10 @@ export const copyDefaultThemeAliases = (themesDir, defaultThemeName) => {
     const destFile = join(themesDir, `${mode}.css`);
     try {
       copyFileSync(srcFile, destFile);
-      console.log(chalk.green(`✔︎ Copied ${srcFile} → ${destFile}`));
+      console.log(styleText('green', `✔︎ Copied ${srcFile} → ${destFile}`));
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
-      console.warn(chalk.yellow(`⚠ Could not copy ${srcFile}: ${msg}`));
+      console.warn(styleText('yellow', `⚠ Could not copy ${srcFile}: ${msg}`));
     }
   });
 };

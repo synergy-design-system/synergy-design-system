@@ -1,6 +1,6 @@
-import fs from 'fs';
+import fs from 'node:fs';
+import { styleText } from 'node:util';
 import { pascalCase } from 'change-case';
-import chalk from 'chalk';
 import { createFolder, createHeaderComment } from '../helpers.js';
 
 /**
@@ -37,5 +37,5 @@ ${foundItems}
   fs.writeFileSync(outputFile, `${output}\n`, {
     encoding: 'utf-8',
   });
-  console.log(chalk.green('✔︎ Created SCSS exports'));
+  console.log(styleText('green', '✔︎ Created SCSS exports'));
 };

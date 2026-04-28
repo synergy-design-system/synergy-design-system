@@ -1,6 +1,6 @@
-import fs from 'fs';
+import fs from 'node:fs';
+import { styleText } from 'node:util';
 import { pascalCase } from 'change-case';
-import chalk from 'chalk';
 import { createFolder, createHeaderComment } from '../helpers.js';
 
 /**
@@ -40,7 +40,7 @@ ${jsExports.join('\n')}
   fs.writeFileSync(outputFile, `${jsOutput}\n`, {
     encoding: 'utf-8',
   });
-  console.log(chalk.green('✔︎ Created javascript exports'));
+  console.log(styleText('green', '✔︎ Created javascript exports'));
 
   // Create the typescript files
   const tsFile = outputFile.replace(/\.js$/, '.d.ts');
@@ -58,5 +58,5 @@ ${tsExports.join('\n')}
   fs.writeFileSync(tsFile, `${tsOutput}\n`, {
     encoding: 'utf-8',
   });
-  console.log(chalk.green('✔︎ Created typescript types'));
+  console.log(styleText('green', '✔︎ Created typescript types'));
 };

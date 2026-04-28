@@ -14,7 +14,6 @@
     "@tamtamchik/json-deep-sort": "^1.5.0",
     "@tokens-studio/sd-transforms": "^2.0.3",
     "@types/node": "^24.12.2",
-    "chalk": "^5.6.2",
     "change-case": "^5.4.4",
     "eslint": "^9.39.4",
     "eslint-import-resolver-typescript": "^4.4.4",
@@ -33,7 +32,14 @@
       "default": "./package.json"
     },
     "./themes/*": "./dist/themes/*",
-    "./scss/*": "./dist/scss/*"
+    "./scss/*": "./dist/scss/*",
+    "./charts/themes/*": "./dist/charts/themes/*",
+    "./charts/scss/*": "./dist/charts/scss/*",
+    "./charts": {
+      "types": "./dist/charts/js/index.d.ts",
+      "import": "./dist/charts/js/index.js",
+      "default": "./dist/charts/js/index.js"
+    }
   },
   "files": [
     "dist",

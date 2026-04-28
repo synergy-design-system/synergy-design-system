@@ -24,6 +24,9 @@
     },
     "exports": [
       ".",
+      "./charts",
+      "./charts/scss/*",
+      "./charts/themes/*",
       "./package.json",
       "./scss/*",
       "./themes/*"

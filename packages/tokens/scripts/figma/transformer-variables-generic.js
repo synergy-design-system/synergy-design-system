@@ -108,6 +108,7 @@ const mapModeId = (variablesData, sourceModeId, targetVariableCollectionId) => {
  * @param {string} modeId - The mode (theme) for which to resolve the value.
  * @returns {unknown | undefined} The concrete value (e.g. a hex string or number), or `undefined` if unresolvable.
  */
+// eslint-disable-next-line complexity
 const resolveAliasToConcreteValue = (variablesData, aliasId, modeId) => {
   const aliasVar = findVariableById(variablesData, aliasId);
 

@@ -1,5 +1,5 @@
 import { mkdir, writeFile } from 'fs/promises';
-import { join } from 'path';
+import { join, resolve } from 'path';
 import { execSync } from 'child_process';
 import type { Plugin } from 'vite';
 import type { Config } from './types.js';
@@ -21,6 +21,7 @@ export default function vitePluginSynergyStyles(
 ): Plugin {
   const config = { ...defaultOptions, ...userConfig };
   const { endPoint, outputFileName, srcDir } = config;
+  const srcDirAbs = resolve(process.cwd(), srcDir);
 
   // Set up vite virtual module to make it possible to import the manifest
   const virtualModuleId = 'virtual:vite-plugin-synergy-styles/custom-elements-manifest';
@@ -59,13 +60,31 @@ export default function vitePluginSynergyStyles(
       await mkdir(dir, { recursive: true });
       await writeFile(outputPath, JSON.stringify(manifest));
     },
-    async handleHotUpdate({ server }) {
-      const mod = await server.moduleGraph.getModuleByUrl(resolvedVirtualModuleId);
+    async handleHotUpdate({ file, server }) {
+      const isCssSourceChange = file.startsWith(srcDirAbs) && file.endsWith('.css');
 
-      if (!mod) {
+      if (!isCssSourceChange) {
+        server.config.logger.info(
+          `[vite-plugin-synergy-styles] skip hot update for ${file}`,
+          { timestamp: true },
+        );
         return;
       }
 
+      const mod = await server.moduleGraph.getModuleByUrl(resolvedVirtualModuleId);
+
+      if (!mod) {
+        server.config.logger.info(
+          '[vite-plugin-synergy-styles] virtual module not found, skipping reload',
+          { timestamp: true },
+        );
+        return;
+      }
+
+      server.config.logger.info(
+        `[vite-plugin-synergy-styles] reloading styles manifest due to ${file}`,
+        { timestamp: true },
+      );
       await server.reloadModule(mod);
     },
     async load(id) {

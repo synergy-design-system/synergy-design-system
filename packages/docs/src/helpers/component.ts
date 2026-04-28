@@ -143,12 +143,10 @@ export const storybookTemplate = (customElementTag: string) => ({
   }) => getStorybookHelpers(customElementTag).template(data.args),
 });
 
-type Component = keyof typeof docsTokens.components | keyof typeof docsTokens.templates;
-type Attribute<T extends Component> = T extends keyof typeof docsTokens.components
-  ? keyof typeof docsTokens.components[T]
-  : T extends keyof typeof docsTokens.templates
-    ? keyof typeof docsTokens.templates[T]
-    : never;
+type ComponentPath = 'components' | 'templates';
+type Component<TPath extends ComponentPath> = keyof (typeof docsTokens)[TPath];
+type Attribute<TPath extends ComponentPath, TComponent extends Component<TPath>> =
+  keyof (typeof docsTokens)[TPath][TComponent];
 
 /**
  * Returns the story description to the corresponding component and attribute
@@ -157,19 +155,30 @@ type Attribute<T extends Component> = T extends keyof typeof docsTokens.componen
  * @param {Attribute<T>} attribute - The attribute name
  * @returns {string} The story description
  */
-export const generateStoryDescription = <T extends Component>(
-  component: T,
-  attribute: Attribute<T>,
-  path: 'components' | 'templates' = 'components',
-) => {
+export function generateStoryDescription<TComponent extends Component<'components'>>(
+  component: TComponent,
+  attribute: Attribute<'components', TComponent>,
+  path?: 'components',
+): string;
+export function generateStoryDescription<TComponent extends Component<'templates'>>(
+  component: TComponent,
+  attribute: Attribute<'templates', TComponent>,
+  path: 'templates',
+): string;
+export function generateStoryDescription(
+  component: keyof typeof docsTokens.components | keyof typeof docsTokens.templates,
+  attribute: PropertyKey,
+  path: ComponentPath = 'components',
+): string {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
   const objectToUse: Record<string, any> = (docsTokens[path] as any)[component] ?? {};
+  const attributeKey = String(attribute);
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const description: string = objectToUse[attribute]?.description?.value ?? 'No Description';
+  const description: string = objectToUse[attributeKey]?.description?.value ?? 'No Description';
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const hint: string = objectToUse[attribute]?.note?.value ?? '';
+  const hint: string = objectToUse[attributeKey]?.note?.value ?? '';
 
   const formatText = (text: string) => text.replace(/\n/g, '<br/>');
 
@@ -177,7 +186,7 @@ export const generateStoryDescription = <T extends Component>(
   const finalHint = hint ? `<br/><br/><strong>👨‍💻 Additional developer Information:</strong><br>${formatText(hint)}` : '';
 
   return `${finalDescription}${finalHint}`;
-};
+}
 
 /**
  * Parameters for the generateScreenshotStory function

@@ -14,7 +14,7 @@
       "./src/sick2025/*"
     ],
     "packageName": "@synergy-design-system/assets",
-    "packageVersion": "2.1.0"
+    "packageVersion": "2.1.1"
   },
   "id": "setup:assets-package",
   "kind": "setup",
@@ -41,7 +41,7 @@
   "name": "Assets Package",
   "package": "assets",
   "relations": [],
-  "since": "2.1.0",
+  "since": "2.1.1",
   "sources": [
     "packages/assets/README.md",
     "packages/assets/CHANGELOG.md",

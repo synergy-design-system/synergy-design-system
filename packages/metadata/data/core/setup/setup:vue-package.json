@@ -2,7 +2,7 @@
   "custom": {
     "framework": "vue",
     "packageName": "@synergy-design-system/vue",
-    "packageVersion": "3.12.0"
+    "packageVersion": "3.12.1"
   },
   "id": "setup:vue-package",
   "kind": "setup",
@@ -33,7 +33,7 @@
   "name": "Vue Framework Package",
   "package": "vue",
   "relations": [],
-  "since": "3.12.0",
+  "since": "3.12.1",
   "sources": [
     "packages/vue/README.md",
     "packages/vue/CHANGELOG.md",

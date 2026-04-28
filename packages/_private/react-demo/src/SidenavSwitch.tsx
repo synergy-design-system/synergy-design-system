@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { type SideNavTypes } from '@synergy-design-system/demo-utilities';
-import { type SynSideNav } from '@synergy-design-system/components';
 
 export const SidenavSwitch = () => {
   const [type, setType] = useState<SideNavTypes>('rail');
@@ -8,7 +7,7 @@ export const SidenavSwitch = () => {
   useEffect(() => {
     const sideNav = document.querySelector('syn-side-nav');
     if (sideNav) {
-      sideNav.variant = (type as SynSideNav['variant']);
+      sideNav.variant = type;
     }
   }, [type]);
 

@@ -100,7 +100,7 @@ export const DemoFormValidate = () => {
         e.preventDefault();
         e.stopPropagation();
 
-        const formElement = e.target as HTMLFormElement;
+        const formElement = e.target;
         const isValid = formElement.checkValidity();
 
         setFormStatus(isValid ? statusSuccess : statusError);

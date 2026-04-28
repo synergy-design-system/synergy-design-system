@@ -196,7 +196,7 @@ export const listComponents = async (
   });
 
   const sorted = sortByEntityId(entities)
-    .filter((entity) => matchesCluster(entity as MetadataEntity<ComponentCustom>, options.cluster));
+    .filter((entity) => matchesCluster(entity, options.cluster));
   const hasRequestedLayer = sorted.every((entity) => layerExistsForEntity(entity, requestedLayer));
 
   if (options.strictLayer && !hasRequestedLayer) {

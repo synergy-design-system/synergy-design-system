@@ -21,7 +21,7 @@
   "name": "syn-weight",
   "package": "styles",
   "relations": [],
-  "since": "2.0.3",
+  "since": "2.0.4",
   "sources": [
     "packages/styles/src/typography/weight.css"
   ],

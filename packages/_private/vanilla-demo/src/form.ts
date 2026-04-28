@@ -106,7 +106,7 @@ export const afterRenderDefaultForm = async () => {
     });
   // Fake the defaultValue. As this is typed as string, we need to fake cast it.
   // Without this line, the defaultValue would be set nothing and form reset will fail :(.
-  experienceRadioGroup.defaultValue = (mockedInitialData.experience as unknown as string);
+  experienceRadioGroup.defaultValue = mockedInitialData.experience;
   experienceRadioGroup.value = mockedInitialData.experience;
 
   // Add custom highlighter for the combobox

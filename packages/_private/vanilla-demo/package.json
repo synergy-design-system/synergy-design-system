@@ -19,11 +19,11 @@
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",
     "eslint": "^9.39.4",
-    "html-validate": "^10.11.2",
-    "stylelint": "^17.5.0",
+    "html-validate": "^10.13.1",
+    "stylelint": "^17.9.0",
     "typescript": "^5.9.3",
-    "vite": "^7.3.1",
-    "vite-plugin-static-copy": "^3.4.0"
+    "vite": "^8.0.10",
+    "vite-plugin-static-copy": "^4.1.0"
   },
   "dependencies": {
     "@synergy-design-system/components": "workspace:*",

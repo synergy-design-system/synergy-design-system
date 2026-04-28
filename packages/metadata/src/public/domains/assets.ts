@@ -39,7 +39,7 @@ const extractIconsFromEntity = (entity: MetadataEntity<AssetCustom>): IconSearch
     return [];
   }
 
-  const icons = iconsRaw as Record<string, { categories?: string[]; tags?: string[] }>;
+  const icons = iconsRaw;
   const theme = typeof entity.custom?.theme === 'string' ? entity.custom.theme : undefined;
   const variant = typeof entity.custom?.variant === 'string' ? entity.custom.variant : undefined;
 

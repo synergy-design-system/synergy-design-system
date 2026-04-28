@@ -81,7 +81,7 @@ export function enrichEntitiesWithConfig(
     return {
       ...entity,
       custom: enriched,
-    } as EnrichedEntity;
+    };
   });
 
   ctx.logger?.info(

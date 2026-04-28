@@ -37,6 +37,7 @@
       "esbuild",
       "lmdb",
       "msgpackr-extract",
+      "rs-module-lexer",
       "style-dictionary",
       "unrs-resolver"
     ],
@@ -49,8 +50,8 @@
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.2",
-    "@changesets/cli": "^2.30.0",
-    "prettier": "^3.8.1",
+    "@changesets/cli": "^2.31.0",
+    "prettier": "^3.8.3",
     "update-browserslist-db": "^1.2.3"
   },
   "packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a"

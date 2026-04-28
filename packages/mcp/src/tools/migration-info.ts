@@ -7,8 +7,6 @@ import {
   toolHandler,
 } from '../utilities/index.js';
 
-type SynergyMigrationPackage = 'assets' | 'components' | 'styles' | 'tokens';
-
 /**
  * Tool to retrieve concrete migration documentation for a given package.
  *
@@ -43,7 +41,7 @@ export const migrationInfoTool = (server: McpServer) => {
       filename,
       synergyPackage,
     }) => {
-      const selectedPackage = (synergyPackage ?? getRuntimeConfig().tools.migrationInfo.synergyPackage) as SynergyMigrationPackage;
+      const selectedPackage = (synergyPackage ?? getRuntimeConfig().tools.migrationInfo.synergyPackage);
       const metadata = await getMigrationMetaData(selectedPackage);
 
       // For components, strongly prefer a specific filename so we do not

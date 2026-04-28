@@ -11,7 +11,7 @@ const DEFAULT_HIDDEN_SOURCE_WAIT_TIMEOUT_MS = 15000;
 
 // In CI we have to wait a bit longer for stories to render and inject hidden sources, otherwise we get unstyled stories into the index.
 // This is true for the current playwright version as time of writing (v1.59.1).
-const DEFAULT_STORY_SETTLE_DELAY_MS = process.env.CI ? 750 : 100;
+const DEFAULT_STORY_SETTLE_DELAY_MS = process.env.CI ? 2000 : 100;
 
 const parseHiddenSourceWaitTimeout = (): number => {
   const rawValue = process.env.SYNERGY_METADATA_HIDDEN_SOURCE_TIMEOUT_MS;

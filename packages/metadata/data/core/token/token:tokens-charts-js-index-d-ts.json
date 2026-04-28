@@ -1,0 +1,31 @@
+{
+  "custom": {
+    "artifactPath": "charts/js/index.d.ts",
+    "format": "javascript",
+    "sourceType": "dist"
+  },
+  "id": "token:tokens-charts-js-index-d-ts",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/charts/js/index.d.ts"
+      }
+    ]
+  },
+  "name": "index.d.ts",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.12.1",
+  "sources": [
+    "packages/tokens/dist/charts/js/index.d.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "dist"
+  ]
+}

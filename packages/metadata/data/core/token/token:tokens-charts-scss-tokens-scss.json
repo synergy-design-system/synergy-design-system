@@ -1,0 +1,31 @@
+{
+  "custom": {
+    "artifactPath": "charts/scss/_tokens.scss",
+    "format": "sass",
+    "sourceType": "dist"
+  },
+  "id": "token:tokens-charts-scss-tokens-scss",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/charts/scss/_tokens.scss"
+      }
+    ]
+  },
+  "name": "_tokens.scss",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.12.1",
+  "sources": [
+    "packages/tokens/dist/charts/scss/_tokens.scss"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "dist"
+  ]
+}

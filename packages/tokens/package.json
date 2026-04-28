@@ -33,7 +33,14 @@
       "default": "./package.json"
     },
     "./themes/*": "./dist/themes/*",
-    "./scss/*": "./dist/scss/*"
+    "./scss/*": "./dist/scss/*",
+    "./charts/themes/*": "./dist/charts/themes/*",
+    "./charts/scss/*": "./dist/charts/scss/*",
+    "./charts": {
+      "types": "./dist/charts/js/index.d.ts",
+      "import": "./dist/charts/js/index.js",
+      "default": "./dist/charts/js/index.js"
+    }
   },
   "files": [
     "dist",
@@ -56,11 +63,11 @@
     "directory": "packages/tokens"
   },
   "scripts": {
-    "build": "pnpm clean && node scripts/build.js",
+    "build": "pnpm clean && node scripts/build-components.js && node scripts/build-charts.js",
     "build:all": "dotenvx -q run pnpm build:_all",
     "build:_all": "pnpm clean && pnpm fetch:figma && pnpm build:figma && pnpm build",
     "build:figma": "pnpm run build:variables && pnpm run build:styles",
-    "build:variables": "node scripts/figma/transform-tokens.js",
+    "build:variables": "node scripts/figma/transform-variables.js",
     "build:styles": "node scripts/figma/transform-styles.js",
     "fetch:figma": "pnpm run fetch:variables && pnpm run fetch:styles",
     "fetch:styles": "figma-export use-config",

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-04-28T09:14:39.905Z",
+  "builtAt": "2026-04-28T12:26:23.385Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -1543,6 +1543,91 @@
         "template:tag-group",
         "Tag Group",
         "template"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-js-index-d-ts.json",
+      "id": "token:tokens-charts-js-index-d-ts",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "index.d.ts",
+      "search": [
+        "token:tokens-charts-js-index-d-ts",
+        "index.d.ts",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-js-index-js.json",
+      "id": "token:tokens-charts-js-index-js",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "index.js",
+      "search": [
+        "token:tokens-charts-js-index-js",
+        "index.js",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-scss-tokens-scss.json",
+      "id": "token:tokens-charts-scss-tokens-scss",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "_tokens.scss",
+      "search": [
+        "token:tokens-charts-scss-tokens-scss",
+        "_tokens.scss",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-themes-sick2025-dark-css.json",
+      "id": "token:tokens-charts-themes-sick2025-dark-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025_dark.css",
+      "search": [
+        "token:tokens-charts-themes-sick2025-dark-css",
+        "sick2025_dark.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-themes-sick2025-light-css.json",
+      "id": "token:tokens-charts-themes-sick2025-light-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025_light.css",
+      "search": [
+        "token:tokens-charts-themes-sick2025-light-css",
+        "sick2025_light.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
       ]
     },
     {

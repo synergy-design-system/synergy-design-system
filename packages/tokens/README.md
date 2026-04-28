@@ -5,6 +5,11 @@ It provides exports for colors, spacings, shadows, sizings, typography and more 
 
 The source of the tokens can be found at [Figma](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=104-235&mode=design&t=GPu4VVd9yffLLAaS-0)
 
+In addition, it ships dedicated color palettes that can be used for charts components.
+The source of the chart tokens can be found at [Figma](https://www.figma.com/design/9IpXnDH4GFziUH9sOpnK8V/Chart-Library?node-id=15-221&p=f&t=rVC9uEQgFFNLGUcL-0)
+
+
+
 ---
 
 ## Installation
@@ -188,6 +193,61 @@ Currently the raw .json tokens files are exported under `/src/figma-tokens/*/`.
 
 ---
 
+### Using chart tokens
+
+The tokens package also ships a dedicated set of **chart tokens** for data-visualization use cases (e.g. for the `syn-chart` component). They follow the same theme/mode structure as the component tokens.
+
+Chart tokens are served from a separate output path: `dist/charts/themes/`. Like the component tokens, they provide theme-specific files as well as generic `light.css` and `dark.css` aliases pointing to the current default theme (`sick2025`).
+
+#### Available chart token files
+
+| Theme    | Mode  | Stylesheet to use                              | Corresponding classNames                                    |
+| :------- | :---- | :--------------------------------------------- | :---------------------------------------------------------- |
+| sick2025 | light | `tokens/dist/charts/themes/sick2025_light.css` | `syn-theme-light`, `syn-sick2025-light`                     |
+| sick2025 | dark  | `tokens/dist/charts/themes/sick2025_dark.css`  | `syn-theme-dark`, `syn-sick2025-dark`                       |
+
+The generic aliases always point to the current default theme:
+
+| Alias       | Points to                             |
+| :---------- | :------------------------------------ |
+| `light.css` | `dist/charts/themes/sick2025_light.css` |
+| `dark.css`  | `dist/charts/themes/sick2025_dark.css`  |
+
+#### Loading chart tokens
+
+Chart tokens **must be loaded in addition to the regular component tokens**, as they reference CSS variables defined there.
+
+```html
+<!DOCTYPE html>
+  <head>
+    <!-- 1. Load component tokens first (required base) -->
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/themes/light.css" />
+
+    <!-- 2. Load chart tokens on top -->
+    <link rel="stylesheet" href="/node_modules/@synergy-design-system/tokens/dist/charts/themes/light.css" />
+  </head>
+</html>
+```
+
+```javascript
+// When using a bundler
+import "@synergy-design-system/tokens/themes/light.css";
+import "@synergy-design-system/tokens/charts/themes/light.css";
+```
+
+Chart tokens expose CSS custom properties with the `--syn-` prefix, for example:
+
+```css
+/* Categorical color series (01–12) */
+--syn-categorical-01: var(--syn-color-primary-400);
+--syn-categorical-02: var(--syn-color-accent-700);
+/* … */
+
+/* Sequential and diverging palette tokens are also provided */
+```
+
+---
+
 ## Optional: Configuring tokens in VSCode
 
 Using VSCode?
@@ -206,8 +266,10 @@ Just make sure to add a valid path to the light theme in the `.vscode/settings.j
 
 ### Architecture and Data Flow
 
+#### Component tokens
+
 ```
-Figma
+Figma (main file: bZFqk9urD3NlghGUKrkKCR)
     ↓
 Figma REST API
     ↓
@@ -215,11 +277,29 @@ Raw JSON Files (src/figma-variables/variableTokens.json + styleTokens.json)
     ↓
 Transform Scripts (scripts/figma/)
     ↓
-Style Dictionary compliant JSON Files (src/figma-variables/output/)
+Style Dictionary-compatible JSON Files (src/figma-variables/output/)
     ↓
-Style Dictionary Processing (scripts/build.js)
+Style Dictionary Processing (scripts/build-components.js)
     ↓
-Build Output (dist/)
+Build Output (dist/themes/, dist/js/, dist/scss/)
+```
+
+#### Chart tokens
+
+```
+Figma (chart file: 9IpXnDH4GFziUH9sOpnK8V)
+    ↓
+Figma REST API
+    ↓
+Raw JSON File (src/figma-charts/chartTokens.json)
+    ↓
+Transform Script (scripts/figma/transformer-variables-generic.js)
+    ↓
+Style Dictionary-compatible JSON Files (src/figma-charts/output/)
+    ↓
+Style Dictionary Processing (scripts/build-charts.js)
+    ↓
+Build Output (dist/charts/themes/, dist/charts/js/, dist/charts/scss/)
 ```
 
 ### Building the tokens
@@ -233,31 +313,34 @@ This scripts needs the figma access token and optionally the figma file id, so i
 # Required: Figma Personal Access Token
 export FIGMA_TOKEN="your_figma_token_here"
 
-# Optional: Specific Figma File/Branch ID (Default: Main Branch)
+# Optional: Specific Figma File/Branch ID for component tokens (Default: Main Branch)
 export FIGMA_FILE_ID="your_figma_file_id"
+
+# Optional: Specific Figma File/Branch ID for chart tokens (Default: Chart file)
+export FIGMA_CHARTING_FILE_ID="your_figma_charting_file_id"
 ```
 
 ```bash
-# Fetch all Figma data (Variables + Styles)
+# Fetch all Figma data (component variables, chart variables + styles)
 pnpm fetch:figma
 
-# Only fetch variables and transform into Style Dictionary format
+# Only fetch component + chart variables and transform into Style Dictionary format
 pnpm fetch:variables
 
 # Only fetch styles and transform into Style Dictionary format
 pnpm fetch:styles
 
-# Transform already fetched variables into Style Dictionary format
+# Transform already fetched component variables into Style Dictionary format
 pnpm build:variables
 
 # Transform already fetched styles into Style Dictionary format
 pnpm build:styles
 
-# Process transformed tokens with Style Dictionary (build final output)
+# Build component and chart tokens (final CSS/JS/SCSS output in dist/)
 pnpm build
 
 # Or do it all at once
-FIGMA_FILE_ID="FILE_ID" FIGMA_TOKEN="FIGMA_TOKEN" pnpm build:all
+FIGMA_FILE_ID="FILE_ID" FIGMA_CHARTING_FILE_ID="CHART_FILE_ID" FIGMA_TOKEN="FIGMA_TOKEN" pnpm build:all
 ```
 
 #### Figma variables
@@ -295,13 +378,28 @@ You can trigger a build using `pnpm build` in the `tokens` package root. This wi
   - `sick2025-light.json`: Light Theme Tokens for SICK 2025
   - `sick2025-dark.json`: Dark Theme Tokens for SICK 2025
 
+#### `/src/figma-charts/`
+
+- **`chartTokens.json`**: Raw data of Figma Chart Variables, directly fetched from the charting Figma file
+- **`output/`**: Transformed chart token files in Style Dictionary-compatible formats
+  - `sick2025-light.json`: Light Chart Tokens for SICK 2025
+  - `sick2025-dark.json`: Dark Chart Tokens for SICK 2025
+
 #### `/scripts/figma/`
 
-- **`fetch-variables.js`**: Downloads Figma Variables via the REST API
+- **`fetch-variables.js`**: Downloads Figma Variables (component **and** chart tokens) via the REST API
 - **`style-dict-outputter.js`**: Custom outputter for Figma Styles export
-- **`transform-tokens.js`**: Transforms Figma Variables into Style Dictionary format
+- **`transformer-variables-generic.js`**: Transforms Figma Variables into Style Dictionary format (shared by component and chart pipelines)
 - **`transform-styles.js`**: Transforms Figma Styles into Style Dictionary format
 - **`helpers.js`**: Utility functions
+
+#### `/scripts/build-components.js`
+
+Runs the Style Dictionary pipeline for component tokens and writes output to `dist/themes/`, `dist/js/`, and `dist/scss/`.
+
+#### `/scripts/build-charts.js`
+
+Runs the Style Dictionary pipeline for chart tokens and writes output to `dist/charts/themes/`, `dist/charts/js/`, and `dist/charts/scss/`. Chart tokens reference component token variables for resolution but only emit chart-specific CSS custom properties in the final output.
 
 #### `/scripts/add-missing-tokens.js`
 
@@ -314,9 +412,9 @@ This script is designed to inspect and append missing CSS variables based on a g
 
 **Key Functions**:
 
-- `extractVariables(data, prefix)`: Extracts variables from the provided data based on the prefix.
-- `compareAndAppendVariables(sourceFilePath, targetFilePath, prefix)`: Compares source and target files for missing variables and appends them.
-- `addMissingTokens(prefix)`: Main function that loops through target files and checks for missing variables.
+- `extractVariables(data)`: Extracts CSS variable declarations from the provided CSS string.
+- `appendVariables(targetFilePath, variables)`: Appends missing variables to the target CSS file, skipping any that already exist.
+- `addMissingTokens(targetDir)`: Main function that iterates over all CSS files in the target directory and appends any missing variables.
 
 ### Github Action
 
@@ -377,9 +475,10 @@ When adding new tokens or changing existing token values, the test reference fil
 
 The token package includes a test system that validates the consistency between the built token files and reference files:
 
-- **`test/light.css`**: Reference file containing expected CSS variables for the light theme
-- **`test/dark.css`**: Reference file containing expected CSS variables for the dark theme
-- **`test/test-css-variables.js`**: Test script that compares built files against reference files
+- **`test/sick2018_light.css`** / **`test/sick2018_dark.css`**: Reference files for the SICK 2018 component themes
+- **`test/sick2025_light.css`** / **`test/sick2025_dark.css`**: Reference files for the SICK 2025 component themes
+- **`test/sick2025_light_charts.css`** / **`test/sick2025_dark_charts.css`**: Reference files for the SICK 2025 chart themes
+- **`test/test-css-variables.js`**: Test script that compares built files against all reference files
 
 #### When to Update Test Files
 
@@ -409,8 +508,11 @@ After the new / updated tokens are fetched and build:
 3. **Update reference files**: If the changes are intentional, copy the built files to the test directory or update the files manually with the changes
 
    ```bash
-   # Copy the newly built files to serve as new reference files
+   # Copy the newly built component theme files to serve as new reference files
    cp dist/themes/sick*.css test
+
+   # Copy the newly built chart theme files to serve as new reference files
+   cp dist/charts/themes/sick*.css test
    ```
 
 4. **Verify the update**: Run the test again to ensure everything matches

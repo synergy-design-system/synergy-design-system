@@ -235,7 +235,7 @@
   --syn-font-weight-light: 400; /** Shoelace compatibility DO NOT USE */
   --syn-font-weight-normal: 400;
   --syn-font-weight-semibold: 600;
-  --syn-header-border-color: #e6e1dc;
+  --syn-header-border-color: var(--syn-color-muted-300);
   --syn-icon-button-focus-ring-border-radius: var(--syn-border-radius-pill);
   --syn-input-background-color: var(--syn-color-neutral-0);
   --syn-input-background-color-disabled: var(--syn-input-background-color);
@@ -297,8 +297,8 @@
   --syn-input-spacing-medium: var(--syn-spacing-medium);
   --syn-input-spacing-small: var(--syn-spacing-small);
   --syn-input-width: var(--syn-border-width-small);
-  --syn-interactive-background-color-active: #e6e1dc;
-  --syn-interactive-background-color-hover: #f2f0ed;
+  --syn-interactive-background-color-active: var(--syn-color-muted-300);
+  --syn-interactive-background-color-hover: var(--syn-color-muted-100);
   --syn-interactive-emphasis-color: var(--syn-color-primary-700);
   --syn-interactive-emphasis-color-active: var(--syn-color-primary-1000);
   --syn-interactive-emphasis-color-hover: var(--syn-color-primary-950);
@@ -331,8 +331,8 @@
   --syn-namur-icon-color: var(--syn-color-neutral-950);
   --syn-namur-info-color: var(--syn-color-info-400);
   --syn-namur-info-color-background: var(--syn-color-info-100);
-  --syn-namur-neutral-color: #d5ccc5;
-  --syn-namur-neutral-color-background: #e6e1dc;
+  --syn-namur-neutral-color: var(--syn-color-muted-400);
+  --syn-namur-neutral-color-background: var(--syn-color-muted-300);
   --syn-namur-success-color: var(--syn-color-success-500);
   --syn-namur-success-color-background: var(--syn-color-success-100);
   --syn-namur-warning-color: var(--syn-color-warning-500);
@@ -353,9 +353,9 @@
   --syn-overlay-background-color: rgba(0, 5, 26, 0.3);
   --syn-page-background: var(--syn-page-background-color); /** Will be DEPRECATED */
   --syn-page-background-color: var(--syn-color-neutral-0);
-  --syn-page-background-color-muted: #f8f7f6;
+  --syn-page-background-color-muted: var(--syn-color-muted-50);
   --syn-panel-background-color: var(--syn-color-neutral-0);
-  --syn-panel-border-color: #e6e1dc;
+  --syn-panel-border-color: var(--syn-color-muted-300);
   --syn-panel-border-radius: var(--syn-border-radius-medium);
   --syn-panel-border-width: var(--syn-border-width-small);
   --syn-progress-indicator-color: var(--syn-color-primary-700);
@@ -364,7 +364,7 @@
   --syn-range-error-color: var(--syn-color-error-600);
   --syn-range-tick-color: var(--syn-color-neutral-500);
   --syn-range-track-color-active: var(--syn-interactive-emphasis-color);
-  --syn-readonly-background-color: #e6e1dc;
+  --syn-readonly-background-color: var(--syn-color-muted-300);
   --syn-readonly-border-color: var(--syn-typography-color-text);
   --syn-readonly-color-text: var(--syn-color-neutral-400);
   --syn-readonly-icon-color: var(--syn-color-neutral-400);
@@ -403,9 +403,9 @@
   --syn-switch-width-medium: var(--syn-spacing-1-5x-large);
   --syn-switch-width-small: var(--syn-spacing-x-large);
   --syn-table-background-color: var(--syn-panel-background-color);
-  --syn-table-background-color-alternating: #f8f7f6;
-  --syn-table-background-color-header: #f2f0ed;
-  --syn-table-border-color: #e6e1dc;
+  --syn-table-background-color-alternating: var(--syn-color-muted-50);
+  --syn-table-background-color-header: var(--syn-color-muted-100);
+  --syn-table-border-color: var(--syn-color-muted-300);
   --syn-table-shadow-end: rgba(13, 13, 13, 0);
   --syn-table-shadow-start: rgba(13, 13, 13, 0.16);
   --syn-text-decoration-default: none;

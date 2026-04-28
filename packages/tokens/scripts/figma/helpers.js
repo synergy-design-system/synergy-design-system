@@ -1,15 +1,10 @@
 /**
  * @typedef {import('@figma/rest-api-spec').RGBA | import('@figma/rest-api-spec').RGB} Color
+ * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse['meta']} VariablesAndCollections
  */
-import { existsSync, mkdirSync } from 'fs';
+import { existsSync, mkdirSync } from 'node:fs';
 import chalk from 'chalk';
-import variablesJson from '../../src/figma-variables/variableTokens.json' with { type: 'json' };
 import { FIGMA_TOKENS_PREFIXES } from '../config.js';
-
-/**
- * The fetching result of the Figma API for local variables.
- */
-export const figmaVariables = variablesJson;
 
 /**
  * Create a directory if it does not exist.
@@ -68,11 +63,12 @@ export const getTypeForFloatVariable = (name) => {
 
 /**
  * Resolves a variable alias by its ID.
+ * @param {VariablesAndCollections} variablesData The fetched Figma variables data
  * @param {string} id The ID of the variable
  * @returns {{ value: string, type: string } | null} The resolved value and type of the variable, or null if not found.
  */
-export const resolveAlias = (id) => {
-  const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === id);
+export const resolveAlias = (variablesData, id) => {
+  const aliasVar = Object.values(variablesData.variables).find(v => v.id === id);
   if (!aliasVar) return null;
   const aliasName = aliasVar.name.toLowerCase();
 
@@ -89,12 +85,13 @@ export const resolveAlias = (id) => {
 
 /**
  * Gets the value of an alias variable in a specific mode.
+ * @param {VariablesAndCollections} variablesData The fetched Figma variables data
  * @param { string } aliasId Id of the alias variable
  * @param { string } modeId Id of the mode
  * @returns {unknown | undefined} The value of the alias variable, or undefined if not found.
  */
-export const getAliasValue = (aliasId, modeId) => {
-  const aliasVar = Object.values(figmaVariables.variables).find(v => v.id === aliasId);
+export const getAliasValue = (variablesData, aliasId, modeId) => {
+  const aliasVar = Object.values(variablesData.variables).find(v => v.id === aliasId);
   /** @type {Record<string, unknown> | undefined} */
   const valuesByMode = aliasVar?.valuesByMode;
   /** @type {unknown} */
@@ -104,7 +101,7 @@ export const getAliasValue = (aliasId, modeId) => {
     newValue && typeof newValue === 'object' && 'type' in newValue
     && newValue.type === 'VARIABLE_ALIAS' && 'id' in newValue
   ) {
-    return getAliasValue(/** @type {string} */(newValue.id), modeId);
+    return getAliasValue(variablesData, /** @type {string} */(newValue.id), modeId);
   }
   return newValue;
 };
@@ -115,8 +112,11 @@ export const getAliasValue = (aliasId, modeId) => {
 const DESIGN_ONLY_VARIABLES_REGEX = [
   /**
    * Figma-only internal stuff
+   *
+   * starting with a underscore or containing "utilities" are only used for better organization in figma and are not needed in dev
    */
-  /_internal/,
+  /^_/,
+  /utilities/,
 
   /**
    * Design-only needed shadow tokens, which build together the whole shadow style for dev
@@ -197,12 +197,14 @@ export const formatColor = (color) => {
 };
 
 /**
- * Gets the available themes from the Figma variables collection "Synergy Themes".
+ * Gets the available themes from the given Figma variables collection.
+ * @param {VariablesAndCollections} variablesData The fetched Figma variables data
+ * @param {string} collectionName The name of the Figma variable collection to read modes from
  * @returns {Array<{ id: string, name: string }>} An array of available themes with their IDs and names.
  */
-export const getAvailableThemes = () => {
-  const themes = Object.values(figmaVariables.variableCollections)
-    .filter(({ name }) => name === 'Synergy Themes')
+export const getAvailableThemes = (variablesData, collectionName) => {
+  const themes = Object.values(variablesData.variableCollections)
+    .filter(({ name }) => name === collectionName)
     .map(({ modes }) => Object.values(modes).map(({ modeId, name }) => ({
       id: modeId,
       name,

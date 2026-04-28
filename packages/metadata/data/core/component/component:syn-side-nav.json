@@ -1,0 +1,234 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/application-shell"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynSideNavComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-side-nav",
+        "sourcePath": "packages/angular/components/side-nav/side-nav.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynSideNav",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.14.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynSideNavJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynSideNav",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/side-nav.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueSideNav",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueSideNav.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41227-327748",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Side navigation lets the user navigate through the entire content of a product. It supports single or nested navigation levels."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Side Navigation"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Set the variant attribute to rail to only show a small navigation stripe at the left side using only the prefix-icons of the navigation items. This will open on hover on the rail navigation, therefore the header doesn't have an burger-menu-icon.\nOn touch devices the navigation opens on click and shows an overlay to be closable.\n\nNote: The Rail is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation."
+          },
+          "name": "rail",
+          "title": {
+            "type": "text",
+            "value": "Rail"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the sticky variant when you need a persistent, toggleable side navigation that alternates between a compact “rail” (icon‐only) state and a full‐width state. \n\nNote: This pattern is only possible for flat navigation structures (no nesting) where every first‐level item has an icon."
+          },
+          "name": "sticky",
+          "title": {
+            "type": "text",
+            "value": "Sticky"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The Side navigation can have an optional bottom navigation \"slot\" to split up the navigation entries.\n\nPlease avoid having to many navigation entries (at the bottom) as it can massively influence the user experience."
+          },
+          "name": "footer",
+          "title": {
+            "type": "text",
+            "value": "Footer"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Per default, the side navigation shows an overlay. This should always be the case, if the content of the app is not shrinking. This makes especially sense for applications, where you navigate to a place and stay there for a longer time."
+          },
+          "name": "fixed",
+          "title": {
+            "type": "text",
+            "value": "Fixed Content"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "For specific cases it might make sense to have the navigation open while still being able to interact with the app. This especially makes sense for cases where you switch a lot between areas to interact with an app.\n\nYou can decide yourself depending on your app and screen size, when it makes sense to omit the overlay and shrink the content.\n\nThis should never be used in combination with a Rail navigation, as this would lead to too much friction on hover."
+          },
+          "name": "shrinking",
+          "title": {
+            "type": "text",
+            "value": "Shrinking Content"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The different levels of navigation can be organized using the indention. The current status of a page shows the user directly which page they are browsing."
+          },
+          "name": "indentation",
+          "title": {
+            "type": "text",
+            "value": "Indentation"
+          }
+        }
+      ],
+      "storySourcePath": "components.side-nav",
+      "storyTags": [
+        "Application Shell"
+      ]
+    },
+    "sourceModulePath": "components/side-nav/side-nav.js",
+    "summary": "The <syn-side-nav /> element contains secondary navigation and fits below the header.\nIt can be used to group multiple navigation items (<syn-nav-item />s) together."
+  },
+  "id": "component:syn-side-nav",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-side-nav.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/angular/side-nav.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/components/side-nav.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/components/side-nav.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/components/side-nav.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/react/side-nav.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/vue/SynVueSideNav.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-side-nav/react/SynSideNavJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-side-nav.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-side-nav.md"
+      }
+    ]
+  },
+  "name": "syn-side-nav",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-divider",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-drawer",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-nav-item",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "1.14.0",
+  "sources": [
+    "packages/angular/components/side-nav/side-nav.component.ts",
+    "packages/components/src/components/side-nav/side-nav.component.ts",
+    "packages/components/src/components/side-nav/side-nav.styles.ts",
+    "packages/components/src/components/side-nav/side-nav.ts",
+    "packages/react/src/components/side-nav.ts",
+    "packages/vue/src/components/SynVueSideNav.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "side-nav",
+    "syn-side-nav",
+    "vue"
+  ]
+}

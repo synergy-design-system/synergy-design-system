@@ -1,0 +1,1 @@
+export type SynDividerJSXElement = SynCustomElement<SynDivider, []>;

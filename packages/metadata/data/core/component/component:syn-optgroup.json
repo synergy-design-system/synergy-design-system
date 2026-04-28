@@ -1,0 +1,126 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynOptgroupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-optgroup",
+        "sourcePath": "packages/angular/components/optgroup/optgroup.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynOptgroup",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.3.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynOptgroupJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynOptgroup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/optgroup.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueOptgroup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueOptgroup.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41325-324372",
+      "storySourcePath": "components.optgroup",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "sourceModulePath": "components/optgroup/optgroup.js",
+    "summary": "The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>."
+  },
+  "id": "component:syn-optgroup",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-optgroup.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/angular/optgroup.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/components/optgroup.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/components/optgroup.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/components/optgroup.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/react/optgroup.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/vue/SynVueOptgroup.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-optgroup/react/SynOptgroupJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-optgroup.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-optgroup.md"
+      }
+    ]
+  },
+  "name": "syn-optgroup",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-divider",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "1.3.0",
+  "sources": [
+    "packages/angular/components/optgroup/optgroup.component.ts",
+    "packages/components/src/components/optgroup/optgroup.component.ts",
+    "packages/components/src/components/optgroup/optgroup.styles.ts",
+    "packages/components/src/components/optgroup/optgroup.ts",
+    "packages/react/src/components/optgroup.ts",
+    "packages/vue/src/components/SynVueOptgroup.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "optgroup",
+    "react",
+    "syn-optgroup",
+    "vue"
+  ]
+}

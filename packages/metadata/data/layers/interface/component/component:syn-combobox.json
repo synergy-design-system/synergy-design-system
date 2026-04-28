@@ -1,0 +1,667 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Adds a clear button when the combobox is not empty.",
+      "fieldName": "clearable",
+      "name": "clearable",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "' '",
+      "description": "The delimiter to use when setting the value when `multiple` is enabled.\nThe default is a space ' ', but you can set it to a comma or other character(s).",
+      "fieldName": "delimiter",
+      "name": "delimiter",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Disables the combobox control.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "description": "A function used to filter options in the combobox component.\nThe default filter method is a case- and diacritic-insensitive string comparison.",
+      "fieldName": "filter",
+      "name": "filter",
+      "reflects": false,
+      "type": "(option: SynOption, queryString: string) => boolean"
+    },
+    {
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element.\nThis attribute allows you to place the form control outside of a form and associate it\nwith the form that has this `id`.\nThe form must be in the same document or shadow root for this to work.",
+      "fieldName": "form",
+      "name": "form",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "defaultOptionRenderer",
+      "description": "A function that customizes the rendered option. The first argument is the option, the second\nis the query string, which is typed into the combobox.\nThe function should return either a Lit TemplateResult or a string containing trusted HTML\nto render in the shown list of filtered options.\nIf the query string should be highlighted use the `highlightOptionRenderer` function.",
+      "fieldName": "getOption",
+      "name": "getOption",
+      "reflects": false,
+      "type": "OptionRenderer"
+    },
+    {
+      "description": "A function that customizes the tags to be rendered when `multiple` is true. The first argument is the option, the second\nis the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at\nthe specified value.",
+      "fieldName": "getTag",
+      "name": "getTag",
+      "reflects": false,
+      "type": "(option: SynOption, index: number) => TemplateResult | string | HTMLElement"
+    },
+    {
+      "default": "''",
+      "description": "The combobox's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "fieldName": "helpText",
+      "name": "help-text",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The combobox's label. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "3",
+      "description": "The maximum number of selected options to show when `multiple` is true. After the maximum, \"+n\" will be shown to\nindicate the number of additional items that are selected. Set to 0 to remove the limit.",
+      "fieldName": "maxOptionsVisible",
+      "name": "max-options-visible",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "description": "The maximum length of input that will be considered valid.",
+      "fieldName": "maxlength",
+      "name": "maxlength",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "default": "false",
+      "description": "Allows more than one option to be selected.\nIf `multiple` is set, the combobox will always be `restricted` to the available options",
+      "fieldName": "multiple",
+      "name": "multiple",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The name of the combobox, submitted as a name/value pair with form data.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Indicates whether or not the combobox is open.\nYou can toggle this attribute to show and hide the listbox, or you can use the `show()`\nand `hide()` methods and this attribute will reflect the combobox's open state.",
+      "fieldName": "open",
+      "name": "open",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "Placeholder text to show as a hint when the combobox is empty.",
+      "fieldName": "placeholder",
+      "name": "placeholder",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "'bottom'",
+      "description": "The preferred placement of the combobox's menu.\nNote that the actual placement may vary as needed to keep the listbox inside of the viewport.",
+      "fieldName": "placement",
+      "name": "placement",
+      "reflects": true,
+      "type": "'top' | 'bottom'"
+    },
+    {
+      "default": "false",
+      "description": "Sets the combobox to a readonly state.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "The combobox's required attribute.",
+      "fieldName": "required",
+      "name": "required",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "When set to `true`, restricts the combobox to only allow selection from the available options.\nUsers will not be able to enter custom values that are not present in the list.\nThis will always be true, if `multiple` is active.",
+      "fieldName": "restricted",
+      "name": "restricted",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The combobox's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "default": "''",
+      "description": "The current value of the combobox, submitted as a name/value pair with form data. When `multiple` is enabled, the\nvalue attribute will be a list of values  separated by the delimiter, based on the options selected, and the value property will\nbe an array. **For this reason, values must not contain the delimiter character.**",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string | number | Array<string | number>"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The clear button.",
+      "name": "clear-button"
+    },
+    {
+      "description": "The container that wraps the prefix, combobox, clear icon, and expand button.",
+      "name": "combobox"
+    },
+    {
+      "description": "The element that displays the selected option's label, an `<input>` element.",
+      "name": "display-input"
+    },
+    {
+      "description": "The container that wraps the expand icon.",
+      "name": "expand-icon"
+    },
+    {
+      "description": "The container that wraps the filtered options.",
+      "name": "filtered-listbox"
+    },
+    {
+      "description": "The form control that wraps the label, combobox, and help text.",
+      "name": "form-control"
+    },
+    {
+      "description": "The help text's wrapper.",
+      "name": "form-control-help-text"
+    },
+    {
+      "description": "The combobox's wrapper.",
+      "name": "form-control-input"
+    },
+    {
+      "description": "The label's wrapper.",
+      "name": "form-control-label"
+    },
+    {
+      "description": "The listbox container where the options are slotted and the filtered options list exists.",
+      "name": "listbox"
+    },
+    {
+      "description": "The container that wraps the \"no results\" message.",
+      "name": "no-results"
+    },
+    {
+      "description": "The popup's exported `popup` part. Use this to target the tooltip's popup container.",
+      "name": "popup"
+    },
+    {
+      "description": "The container that wraps the prefix slot.",
+      "name": "prefix"
+    },
+    {
+      "description": "The container that wraps the suffix slot.",
+      "name": "suffix"
+    },
+    {
+      "description": "The individual tags that represent each selected option in `multiple`.",
+      "name": "tag"
+    },
+    {
+      "description": "The tag's base part.",
+      "name": "tag__base"
+    },
+    {
+      "description": "The tag's content part.",
+      "name": "tag__content"
+    },
+    {
+      "description": "The tag's remove button.",
+      "name": "tag__remove-button"
+    },
+    {
+      "description": "The tag's remove button base part.",
+      "name": "tag__remove-button__base"
+    },
+    {
+      "description": "The container that houses option tags when `multiple` is used.",
+      "name": "tags"
+    }
+  ],
+  "dependencies": [
+    "syn-icon",
+    "syn-popup",
+    "syn-tag"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs",
+  "events": [
+    {
+      "description": "Emitted after the combobox's menu closes and all animations are complete.",
+      "name": "syn-after-hide",
+      "type": "SynAfterHideEvent"
+    },
+    {
+      "description": "Emitted after the combobox's menu opens and all animations are complete.",
+      "name": "syn-after-show",
+      "type": "SynAfterShowEvent"
+    },
+    {
+      "description": "Emitted when the control loses focus.",
+      "name": "syn-blur",
+      "type": "SynBlurEvent"
+    },
+    {
+      "description": "Emitted when the control's value changes.",
+      "name": "syn-change",
+      "type": "SynChangeEvent"
+    },
+    {
+      "description": "Emitted when the control's value is cleared.",
+      "name": "syn-clear",
+      "type": "SynClearEvent"
+    },
+    {
+      "description": "Emitted when the combobox menu fails to open.",
+      "name": "syn-error",
+      "type": "SynErrorEvent"
+    },
+    {
+      "description": "Emitted when the control gains focus.",
+      "name": "syn-focus",
+      "type": "SynFocusEvent"
+    },
+    {
+      "description": "Emitted when the combobox's menu closes.",
+      "name": "syn-hide",
+      "type": "SynHideEvent"
+    },
+    {
+      "description": "Emitted when the control receives input.",
+      "name": "syn-input",
+      "type": "SynInputEvent"
+    },
+    {
+      "description": "Emitted when the form control has been checked for validity and its constraints aren't satisfied.",
+      "name": "syn-invalid",
+      "type": "SynInvalidEvent"
+    },
+    {
+      "description": "Emitted when the combobox's menu opens.",
+      "name": "syn-show",
+      "type": "SynShowEvent"
+    }
+  ],
+  "figmaComponentId": "42207-352063",
+  "methods": [
+    {
+      "description": "Removes focus from the control.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity but does not show a validation message.\nReturns `true` when valid and `false` when invalid.",
+      "name": "checkValidity",
+      "parameters": []
+    },
+    {
+      "description": "Sets focus on the control.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    },
+    {
+      "description": "Gets the associated form, if one exists.",
+      "name": "getForm",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDefaultSlotChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDelimiterChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisplayInputValueChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleOpenChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handlePropertiesChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleValueChange",
+      "parameters": []
+    },
+    {
+      "description": "Hides the listbox.",
+      "name": "hide",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
+      "name": "reportValidity",
+      "parameters": []
+    },
+    {
+      "description": "Sets a custom validation message. Pass an empty string to restore validity.",
+      "name": "setCustomValidity",
+      "parameters": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "description": "Shows the listbox. If it is not possible to open the listbox, because there are no\nappropriate filtered options, a syn-error is emitted and the listbox stays closed.",
+      "name": "show",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "[]",
+      "description": "",
+      "name": "cachedOptions",
+      "type": "SynOption[]"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Adds a clear button when the combobox is not empty.",
+      "name": "clearable",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "combobox",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The default value of the form control. Primarily used for resetting the form control.",
+      "name": "defaultValue",
+      "type": "string | number | Array<string | number>"
+    },
+    {
+      "access": "public",
+      "default": "' '",
+      "description": "The delimiter to use when setting the value when `multiple` is enabled.\nThe default is a space ' ', but you can set it to a comma or other character(s).",
+      "name": "delimiter",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the combobox control.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "displayInput",
+      "type": "HTMLInputElement"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "",
+      "name": "displayLabel",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "A function used to filter options in the combobox component.\nThe default filter method is a case- and diacritic-insensitive string comparison.",
+      "name": "filter",
+      "type": "(option: SynOption, queryString: string) => boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element.\nThis attribute allows you to place the form control outside of a form and associate it\nwith the form that has this `id`.\nThe form must be in the same document or shadow root for this to work.",
+      "name": "form",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "defaultOptionRenderer",
+      "description": "A function that customizes the rendered option. The first argument is the option, the second\nis the query string, which is typed into the combobox.\nThe function should return either a Lit TemplateResult or a string containing trusted HTML\nto render in the shown list of filtered options.\nIf the query string should be highlighted use the `highlightOptionRenderer` function.",
+      "name": "getOption",
+      "type": "OptionRenderer"
+    },
+    {
+      "access": "public",
+      "description": "A function that customizes the tags to be rendered when `multiple` is true. The first argument is the option, the second\nis the current tag's index.  The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at\nthe specified value.",
+      "name": "getTag",
+      "type": "(option: SynOption, index: number) => TemplateResult | string | HTMLElement"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The combobox's help text. If you need to display HTML, use the `help-text` slot instead.",
+      "name": "helpText",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The combobox's label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "listbox",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "description": "The maximum length of input that will be considered valid.",
+      "name": "maxlength",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "3",
+      "description": "The maximum number of selected options to show when `multiple` is true. After the maximum, \"+n\" will be shown to\nindicate the number of additional items that are selected. Set to 0 to remove the limit.",
+      "name": "maxOptionsVisible",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Allows more than one option to be selected.\nIf `multiple` is set, the combobox will always be `restricted` to the available options",
+      "name": "multiple",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the combobox, submitted as a name/value pair with form data.",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "0",
+      "description": "",
+      "name": "numberFilteredOptions",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Indicates whether or not the combobox is open.\nYou can toggle this attribute to show and hide the listbox, or you can use the `show()`\nand `hide()` methods and this attribute will reflect the combobox's open state.",
+      "name": "open",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "Placeholder text to show as a hint when the combobox is empty.",
+      "name": "placeholder",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'bottom'",
+      "description": "The preferred placement of the combobox's menu.\nNote that the actual placement may vary as needed to keep the listbox inside of the viewport.",
+      "name": "placement",
+      "type": "'top' | 'bottom'"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "popup",
+      "type": "SynPopup"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Sets the combobox to a readonly state.",
+      "name": "readonly",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "The combobox's required attribute.",
+      "name": "required",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "When set to `true`, restricts the combobox to only allow selection from the available options.\nUsers will not be able to enter custom values that are not present in the list.\nThis will always be true, if `multiple` is active.",
+      "name": "restricted",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "[]",
+      "description": "",
+      "name": "selectedOptions",
+      "type": "SynOption[]"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The combobox's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "tagContainer",
+      "type": "HTMLDivElement"
+    },
+    {
+      "access": "readonly",
+      "description": "",
+      "name": "tags"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validation message",
+      "name": "validationMessage"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validity state object",
+      "name": "validity"
+    },
+    {
+      "access": "public",
+      "description": "The current value of the combobox, submitted as a name/value pair with form data. When `multiple` is enabled, the\nvalue attribute will be a list of values  separated by the delimiter, based on the options selected, and the value property will\nbe an array. **For this reason, values must not contain the delimiter character.**",
+      "name": "value"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "valueInput",
+      "type": "HTMLInputElement"
+    }
+  ],
+  "since": "unknown",
+  "slots": [
+    {
+      "description": "The listbox options. Must be `<syn-option>` elements. You can use `<syn-optgroup>`'s to group items visually.",
+      "name": ""
+    },
+    {
+      "description": "The combobox's label. Alternatively, you can use the `label` attribute.",
+      "name": "label"
+    },
+    {
+      "description": "Used to prepend a presentational icon or similar element to the combobox.",
+      "name": "prefix"
+    },
+    {
+      "description": "Used to append a presentational icon or similar element to the combobox.",
+      "name": "suffix"
+    },
+    {
+      "description": "An icon to use in lieu of the default clear icon.",
+      "name": "clear-icon"
+    },
+    {
+      "description": "The icon to show when the control is expanded and collapsed. Rotates on open and close.",
+      "name": "expand-icon"
+    },
+    {
+      "description": "Text that describes how to use the combobox. Alternatively, you can use the `help-text` attribute.",
+      "name": "help-text"
+    }
+  ],
+  "sourceModulePath": "components/combobox/combobox.js",
+  "status": "stable",
+  "summary": "A combobox component that combines the functionality of a text input with a dropdown listbox,\nallowing users to either select from predefined options or enter custom values (when not restricted).",
+  "tagName": "syn-combobox"
+}

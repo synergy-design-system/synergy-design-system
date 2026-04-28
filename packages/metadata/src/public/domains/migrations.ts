@@ -1,0 +1,88 @@
+import { createMetadataStore } from '../store.js';
+import {
+  type LayerName,
+  type MetadataEntity,
+  type MetadataStoreOptions,
+  type MigrationCustom,
+  type PublicRequestOptions,
+  type PublicResponse,
+} from '../types.js';
+import {
+  layerExistsForEntity,
+  mapEntityForResponse,
+  paginate,
+  sortByEntityId,
+} from '../utils.js';
+
+/** Query options for listing migration setup entities. */
+export type MigrationQueryOptions = PublicRequestOptions & {
+  status?: string;
+  tags?: string[];
+};
+
+/**
+ * List migration setup entities with optional filtering, pagination, and layer controls.
+ * @param options Query options for filtering by status/tags and shaping layer response behavior.
+ * @param storeOptions Optional metadata store configuration.
+ * @returns A public response containing matching migration entities.
+ */
+export const getMigrations = async (
+  options: MigrationQueryOptions = {},
+  storeOptions: MetadataStoreOptions = {},
+): Promise<PublicResponse<MetadataEntity<MigrationCustom>[]>> => {
+  const store = createMetadataStore(storeOptions);
+  const index = await store.getIndex();
+
+  const requestedLayer = options.layer ?? 'full';
+  const requestedVerbosity = options.verbosity ?? 'readable';
+
+  const entities = (await store.findEntities({
+    kind: 'setup',
+    package: 'migrations',
+    status: options.status,
+    tags: options.tags,
+  })) as MetadataEntity<MigrationCustom>[];
+
+  const sorted = sortByEntityId(entities);
+  const hasRequestedLayer = sorted.every((entity) => layerExistsForEntity(entity, requestedLayer));
+
+  if (options.strictLayer && !hasRequestedLayer) {
+    return {
+      data: [],
+      errors: [{
+        code: 'LAYER_NOT_AVAILABLE',
+        details: {
+          requestedLayer,
+        },
+        message: `Requested layer "${requestedLayer}" is not available for all migration entities.`,
+      }],
+      meta: {
+        builtAt: index.builtAt,
+        requestedLayer,
+        requestedVerbosity,
+        resolvedLayer: requestedLayer,
+        schemaVersion: index.version,
+        total: sorted.length,
+        warnings: ['strictLayer=true and requested layer is unavailable for part of result set'],
+      },
+    };
+  }
+
+  const resolvedLayer: LayerName = hasRequestedLayer ? requestedLayer : 'full';
+  const paged = paginate(sorted, options.limit, options.offset);
+
+  return {
+    data: paged.map((entity) => mapEntityForResponse(entity, options)),
+    meta: {
+      builtAt: index.builtAt,
+      requestedLayer,
+      requestedVerbosity,
+      resolvedLayer,
+      schemaVersion: index.version,
+      total: sorted.length,
+      warnings: hasRequestedLayer ? undefined : [
+        `Requested layer "${requestedLayer}" was unavailable; falling back to "full".`,
+      ],
+    },
+  };
+};

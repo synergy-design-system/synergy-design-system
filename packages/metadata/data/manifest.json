@@ -1,0 +1,47 @@
+{
+  "builtAt": "2026-04-28T07:30:11.616Z",
+  "sources": [
+    {
+      "entityCount": 4,
+      "source": "angular",
+      "status": "success"
+    },
+    {
+      "entityCount": 8,
+      "source": "assets",
+      "status": "success"
+    },
+    {
+      "entityCount": 56,
+      "source": "components",
+      "status": "success"
+    },
+    {
+      "entityCount": 2,
+      "source": "fonts",
+      "status": "success"
+    },
+    {
+      "entityCount": 1,
+      "source": "react",
+      "status": "success"
+    },
+    {
+      "entityCount": 8,
+      "source": "styles",
+      "status": "success"
+    },
+    {
+      "entityCount": 12,
+      "source": "tokens",
+      "status": "success"
+    },
+    {
+      "entityCount": 1,
+      "source": "vue",
+      "status": "success"
+    }
+  ],
+  "synergyVersion": "local",
+  "version": "1.0.0"
+}

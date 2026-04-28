@@ -1,0 +1,78 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Makes the tag removable and shows a remove button.",
+      "fieldName": "removable",
+      "name": "removable",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The tag's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The tag's content.",
+      "name": "content"
+    },
+    {
+      "description": "The tag's remove button, an `<syn-icon-button>`.",
+      "name": "remove-button"
+    },
+    {
+      "description": "The remove button's exported `base` part.",
+      "name": "remove-button__base"
+    }
+  ],
+  "dependencies": [
+    "syn-icon-button"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs",
+  "events": [
+    {
+      "description": "Emitted when the remove button is activated.",
+      "name": "syn-remove",
+      "type": "SynRemoveEvent"
+    }
+  ],
+  "figmaComponentId": "41163-156701",
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Makes the tag removable and shows a remove button.",
+      "name": "removable",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The tag's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The tag's content.",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/tag/tag.js",
+  "status": "stable",
+  "summary": "Tags are used as labels to organize things or to indicate a selection.",
+  "tagName": "syn-tag"
+}

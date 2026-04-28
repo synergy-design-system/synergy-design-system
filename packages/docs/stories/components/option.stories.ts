@@ -1,8 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable arrow-body-style */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/select/select.js';
 import '../../../components/src/components/icon/icon.js';
@@ -31,7 +26,7 @@ const meta: Meta = {
   argTypes,
   component: 'syn-option',
   parameters: {
-    design: generateFigmaPluginObject('5548-17028'),
+    design: generateFigmaPluginObject('41325-312743'),
     docs: {
       chromatic: {
         modes: Chromatic_Modes_All,

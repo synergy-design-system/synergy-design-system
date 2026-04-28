@@ -1,0 +1,39 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Draws the divider in a vertical orientation.",
+      "fieldName": "vertical",
+      "name": "vertical",
+      "reflects": true,
+      "type": "boolean"
+    }
+  ],
+  "cssParts": [],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-divider--docs",
+  "events": [],
+  "figmaComponentId": "41227-216341",
+  "methods": [
+    {
+      "description": "",
+      "name": "handleVerticalChange",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the divider in a vertical orientation.",
+      "name": "vertical",
+      "type": "boolean"
+    }
+  ],
+  "since": "2.0",
+  "slots": [],
+  "sourceModulePath": "components/divider/divider.js",
+  "status": "stable",
+  "summary": "Dividers are used to visually separate or group elements.",
+  "tagName": "syn-divider"
+}

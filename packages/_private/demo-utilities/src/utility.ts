@@ -104,6 +104,7 @@ export const setGlobalSize = (size: AllowedSizes) => {
       SynFile: size,
       SynIconButton: size,
       SynInput: size,
+      SynPagination: size,
       SynRadio: size,
       SynRadioGroup: size,
       SynRange: size,

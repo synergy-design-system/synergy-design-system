@@ -1,0 +1,205 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/structure"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynCardComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-card",
+        "sourcePath": "packages/angular/components/card/card.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynCard",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynCardJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynCard",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/card.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueCard",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueCard.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "42207-351610",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Cards can be used to group related subjects in a container."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Card"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Basic cards aren’t very exciting, but they can display any content you want them to."
+          },
+          "name": "basic-card",
+          "title": {
+            "type": "text",
+            "value": "Basic Card"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Headers can be used to display titles and more."
+          },
+          "name": "with-header",
+          "title": {
+            "type": "text",
+            "value": "Card with Header"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Footers can be used to display actions, summaries, or other relevant content."
+          },
+          "name": "with-footer",
+          "title": {
+            "type": "text",
+            "value": "Card with Footer"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Cards accept an image slot. The image is displayed atop the card and stretches to fit."
+          },
+          "name": "images",
+          "title": {
+            "type": "text",
+            "value": "Images"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the sharp variant attribute for the Card to Use a different style."
+          },
+          "name": "sharp",
+          "title": {
+            "type": "text",
+            "value": "Sharp Card"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the shadow attribute to add a shadow."
+          },
+          "name": "shadow",
+          "title": {
+            "type": "text",
+            "value": "Card with shadow"
+          }
+        }
+      ],
+      "storySourcePath": "components.card",
+      "storyTags": [
+        "Structure"
+      ]
+    },
+    "sourceModulePath": "components/card/card.js",
+    "summary": "Cards can be used to group related subjects in a container."
+  },
+  "id": "component:syn-card",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-card.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/angular/card.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/components/card.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/components/card.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/components/card.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/components/card.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/react/card.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/vue/SynVueCard.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-card/react/SynCardJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-card.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-card.md"
+      }
+    ]
+  },
+  "name": "syn-card",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/card/card.component.ts",
+    "packages/components/src/components/card/card.component.ts",
+    "packages/components/src/components/card/card.custom.styles.ts",
+    "packages/components/src/components/card/card.styles.ts",
+    "packages/components/src/components/card/card.ts",
+    "packages/react/src/components/card.ts",
+    "packages/vue/src/components/SynVueCard.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "card",
+    "component",
+    "react",
+    "syn-card",
+    "vue"
+  ]
+}

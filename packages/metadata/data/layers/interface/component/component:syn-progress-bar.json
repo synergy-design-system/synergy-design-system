@@ -1,0 +1,81 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state.",
+      "fieldName": "indeterminate",
+      "name": "indeterminate",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "A custom label for assistive devices.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "0",
+      "description": "The current progress as a percentage, 0 to 100.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": true,
+      "type": "number"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The progress bar's indicator.",
+      "name": "indicator"
+    },
+    {
+      "description": "The progress bar's label.",
+      "name": "label"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-progress-bar--docs",
+  "events": [],
+  "figmaComponentId": "41203-297162",
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state.",
+      "name": "indeterminate",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "A custom label for assistive devices.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "0",
+      "description": "The current progress as a percentage, 0 to 100.",
+      "name": "value",
+      "type": "number"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "A label to show inside the progress indicator.",
+      "name": ""
+    }
+  ],
+  "sourceModulePath": "components/progress-bar/progress-bar.js",
+  "status": "stable",
+  "summary": "Progress bars are used to show the status of an ongoing operation.",
+  "tagName": "syn-progress-bar"
+}

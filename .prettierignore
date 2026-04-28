@@ -7,6 +7,7 @@ pnpm-lock.yaml
 *.ts
 *.tsx
 *.cjs
+*.mjs
 *.js
 *.jsx
 *.html
@@ -35,8 +36,11 @@ packages/docs/storybook-static
 # Dont check material metadata, its too heavy
 packages/docs/src/materialSymbolsMetadata.json
 
-# MCP does not need to be checked for formatting issues
-packages/mcp/metadata
+# Metadata is generated and should not be formatted
+packages/metadata/data
+
+# Locally generated mcp logs
+packages/mcp/logs
 
 # Do not format tokens!
 packages/tokens/src/**/*.json

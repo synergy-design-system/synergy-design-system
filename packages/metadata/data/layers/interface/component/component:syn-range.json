@@ -1,0 +1,429 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Disables the range.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element.\nThis attribute allows you to place the form control outside of a form\nand associate it with the form that has this `id`.\nThe form must be in the same document or shadow root for this to work.",
+      "fieldName": "form",
+      "name": "form",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The range's help text. If you need to display HTML, use the help-text slot instead.",
+      "fieldName": "helpText",
+      "name": "help-text",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "''",
+      "description": "The range's label. If you need to display HTML, use the `label` slot instead.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "100",
+      "description": "The maximum acceptable value of the range.",
+      "fieldName": "max",
+      "name": "max",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "default": "0",
+      "description": "The minimum acceptable value of the range.",
+      "fieldName": "min",
+      "name": "min",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "default": "''",
+      "description": "The name of the range, submitted as a name/value pair with form data.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Sets the range to a readonly state.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Set to true to restrict the movement of a thumb to its next and previous thumb.\nThis only affects multi range components",
+      "fieldName": "restrictMovement",
+      "name": "restrict-movement",
+      "reflects": false,
+      "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The range's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "default": "1",
+      "description": "The interval at which the range will increase and decrease.",
+      "fieldName": "step",
+      "name": "step",
+      "reflects": false,
+      "type": "number"
+    },
+    {
+      "default": "'top'",
+      "description": "The preferred placement of the range's tooltip. Use \"none\" to disable the tooltip",
+      "fieldName": "tooltipPlacement",
+      "name": "tooltip-placement",
+      "reflects": false,
+      "type": "'top' | 'bottom' | 'none'"
+    },
+    {
+      "description": "The current values of the input (in ascending order) as a string of space separated values",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The active track.",
+      "name": "active-track"
+    },
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The form control that wraps the label, input, and help text.",
+      "name": "form-control"
+    },
+    {
+      "description": "The help text's wrapper.",
+      "name": "form-control-help-text"
+    },
+    {
+      "description": "The label's wrapper.",
+      "name": "form-control-label"
+    },
+    {
+      "description": "The container that wraps the input track and ticks.",
+      "name": "input-wrapper"
+    },
+    {
+      "description": "The container that wraps the prefix.",
+      "name": "prefix"
+    },
+    {
+      "description": "The container that wraps the suffix.",
+      "name": "suffix"
+    },
+    {
+      "description": "The thumb(s) that the user can drag to change the range.",
+      "name": "thumb"
+    },
+    {
+      "description": "The container that wraps the tick marks.",
+      "name": "ticks"
+    },
+    {
+      "description": "The arrow of the tooltip",
+      "name": "tooltip__arrow"
+    },
+    {
+      "description": "The base of the tooltip",
+      "name": "tooltip__base"
+    },
+    {
+      "description": "The body of the tooltip",
+      "name": "tooltip__body"
+    },
+    {
+      "description": "The popup of the tooltip",
+      "name": "tooltip__popup"
+    },
+    {
+      "description": "The inactive track.",
+      "name": "track"
+    },
+    {
+      "description": "The wrapper for the track.",
+      "name": "track-wrapper"
+    }
+  ],
+  "dependencies": [
+    "syn-tooltip"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs",
+  "events": [
+    {
+      "description": "Emitted when the control loses focus.",
+      "name": "syn-blur",
+      "type": "SynBlurEvent"
+    },
+    {
+      "description": "Emitted when an alteration to the control's value is committed by the user.",
+      "name": "syn-change",
+      "type": "SynChangeEvent"
+    },
+    {
+      "description": "Emitted when the control gains focus.",
+      "name": "syn-focus",
+      "type": "SynFocusEvent"
+    },
+    {
+      "description": "Emitted when the control receives input.",
+      "name": "syn-input",
+      "type": "SynInputEvent"
+    },
+    {
+      "description": "Emitted when the form control has been checked for validity and its constraints aren't satisfied.",
+      "name": "syn-invalid",
+      "type": "SynInvalidEvent"
+    },
+    {
+      "description": "Emitted when the user moves a thumb, either via touch or keyboard. Use `Event.preventDefault()` to prevent movement.",
+      "name": "syn-move",
+      "type": "SynMoveEvent"
+    }
+  ],
+  "figmaComponentId": "41310-323916",
+  "methods": [
+    {
+      "description": "Checks for validity but does not show a validation message.\nReturns `true` when valid and `false` when invalid.",
+      "name": "checkValidity",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    },
+    {
+      "description": "Gets the associated form, if one exists.",
+      "name": "getForm",
+      "parameters": []
+    },
+    {
+      "description": "Checks for validity and shows the browser's validation message if the control is invalid.",
+      "name": "reportValidity",
+      "parameters": []
+    },
+    {
+      "description": "Sets a custom validation message. Pass an empty string to restore validity.",
+      "name": "setCustomValidity",
+      "parameters": [
+        {
+          "name": "message",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "activeTrack",
+      "type": "HTMLDivElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "baseControl",
+      "type": "HTMLDivElement"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "baseDiv",
+      "type": "HTMLDivElement"
+    },
+    {
+      "access": "public",
+      "default": "'0'",
+      "description": "The default value of the form control. Primarily used for resetting the form control.",
+      "name": "defaultValue",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the range.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element.\nThis attribute allows you to place the form control outside of a form\nand associate it with the form that has this `id`.\nThe form must be in the same document or shadow root for this to work.",
+      "name": "form",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The range's help text. If you need to display HTML, use the help-text slot instead.",
+      "name": "helpText",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The range's label. If you need to display HTML, use the `label` slot instead.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "100",
+      "description": "The maximum acceptable value of the range.",
+      "name": "max",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "0",
+      "description": "The minimum acceptable value of the range.",
+      "name": "min",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The name of the range, submitted as a name/value pair with form data.",
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Sets the range to a readonly state.",
+      "name": "readonly",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Set to true to restrict the movement of a thumb to its next and previous thumb.\nThis only affects multi range components",
+      "name": "restrictMovement",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The range's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "default": "1",
+      "description": "The interval at which the range will increase and decrease.",
+      "name": "step",
+      "type": "number"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "thumbs",
+      "type": "NodeListOf<HTMLDivElement>"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "ticks",
+      "type": "HTMLDivElement"
+    },
+    {
+      "access": "public",
+      "description": "A function used to format the tooltip's value.\nThe value of the thumb is passed as the only argument.\nThe function should return a string to display in the tooltip.",
+      "name": "tooltipFormatter",
+      "type": "(value: number) => string"
+    },
+    {
+      "access": "public",
+      "default": "'top'",
+      "description": "The preferred placement of the range's tooltip. Use \"none\" to disable the tooltip",
+      "name": "tooltipPlacement",
+      "type": "'top' | 'bottom' | 'none'"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "validationInput",
+      "type": "HTMLInputElement"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validation message",
+      "name": "validationMessage"
+    },
+    {
+      "access": "readonly",
+      "description": "Gets the validity state object",
+      "name": "validity",
+      "type": "ValidityState"
+    },
+    {
+      "access": "public",
+      "description": "The current values of the input (in ascending order) as a string of space separated values",
+      "name": "value"
+    },
+    {
+      "access": "public",
+      "description": "Gets or sets the current values of the range as an array of numbers",
+      "name": "valueAsArray"
+    }
+  ],
+  "since": "unknown",
+  "slots": [
+    {
+      "description": "The range's label. Alternatively, you can use the `label` attribute.",
+      "name": "label"
+    },
+    {
+      "description": "Used to prepend a presentational icon or similar element to the range.",
+      "name": "prefix"
+    },
+    {
+      "description": "Used to append a presentational icon or similar element to the range.",
+      "name": "suffix"
+    },
+    {
+      "description": "Text that describes how to use the range. Alternatively, you can use the `help-text` attribute.",
+      "name": "help-text"
+    },
+    {
+      "description": "Used to display tick marks at specific intervals along the range.",
+      "name": "ticks"
+    }
+  ],
+  "sourceModulePath": "components/range/range.js",
+  "status": "stable",
+  "summary": "Ranges allow the user to select values within a given range using one or two thumbs.",
+  "tagName": "syn-range"
+}

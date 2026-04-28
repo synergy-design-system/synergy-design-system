@@ -1,0 +1,175 @@
+import type { CSSResultGroup } from 'lit';
+import { html } from 'lit';
+import { property, query, state } from 'lit/decorators.js';
+import componentStyles from '../../styles/component.styles.js';
+import SynergyElement from '../../internal/synergy-element.js';
+import styles from './button-group.styles.js';
+import type SynButton from '../button/button.component.js';
+import type SynRadioButton from '../radio-button/radio-button.component.js';
+import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
+
+function findButton(el: HTMLElement) {
+  const selector = 'syn-button, syn-radio-button';
+
+  // The button could be the target element or a child of it (e.g. a dropdown or tooltip anchor)
+  return el.closest(selector) ?? el.querySelector(selector);
+}
+
+/**
+ * @summary Button groups can be used to group related buttons into sections.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs
+ * @status stable
+ * @since 2.0
+ *
+ * @slot - One or more `<syn-button>` elements to display in the button group.
+ *
+ * @csspart base - The component's base wrapper.
+ */
+@enableDefaultSettings('SynButtonGroup')
+export default class SynButtonGroup extends SynergyElement {
+  static styles: CSSResultGroup = [componentStyles, styles];
+
+  @query('slot') defaultSlot: HTMLSlotElement;
+
+  @state() disableRole = false;
+
+  /**
+   * A label to use for the button group. This won't be displayed on the screen, but it will be announced by assistive
+   * devices when interacting with the control and is strongly recommended.
+   */
+  @property() label = '';
+
+  /** The button-groups size. This affects all buttons within the group. */
+  @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
+
+  /** The button-group's theme variant. This affects all buttons within the group. */
+  @property({ reflect: true }) variant: 'filled' | 'outline' = 'outline';
+
+  private mutationObserver: MutationObserver;
+
+  // eslint-disable-next-line class-methods-use-this
+  private handleFocus(event: Event) {
+    const button = findButton(event.target as HTMLElement);
+    button?.toggleAttribute('data-syn-button-group__button--focus', true);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  private handleBlur(event: Event) {
+    const button = findButton(event.target as HTMLElement);
+    button?.toggleAttribute('data-syn-button-group__button--focus', false);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  private handleMouseOver(event: Event) {
+    const button = findButton(event.target as HTMLElement);
+    button?.toggleAttribute('data-syn-button-group__button--hover', true);
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  private handleMouseOut(event: Event) {
+    const button = findButton(event.target as HTMLElement);
+    button?.toggleAttribute('data-syn-button-group__button--hover', false);
+  }
+
+  private handleSlotChange() {
+    const slottedElements = [...this.defaultSlot.assignedElements({ flatten: true })] as HTMLElement[];
+
+    slottedElements.forEach(el => {
+      const index = slottedElements.indexOf(el);
+      const button = findButton(el) as SynButton | SynRadioButton;
+
+      if (button) {
+        button.size = this.size;
+
+        if (button.tagName.toLowerCase() === 'syn-button') {
+          (button as SynButton).variant = this.variant;
+        }
+
+        button.toggleAttribute('data-syn-button-group__button', true);
+        button.toggleAttribute('data-syn-button-group__button--first', index === 0);
+        button.toggleAttribute('data-syn-button-group__button--inner', index > 0 && index < slottedElements.length - 1);
+        button.toggleAttribute('data-syn-button-group__button--last', index === slottedElements.length - 1);
+        button.toggleAttribute(
+          'data-syn-button-group__button--radio',
+          button.tagName.toLowerCase() === 'syn-radio-button',
+        );
+      }
+    });
+  }
+
+  firstUpdated() {
+    const startObserving = () => {
+      this.mutationObserver.observe(this, {
+        attributeFilter: ['size', 'variant'],
+        attributes: true,
+        subtree: true,
+      });
+    };
+
+    this.mutationObserver = new MutationObserver((entries) => {
+      // Temporarily disconnect to prevent infinite loop
+      this.mutationObserver.disconnect();
+
+      // Check if the button-group itself changed or its children
+      const buttonGroupChanged = entries.some(entry => entry.target === this);
+      const childrenChanged = entries.some(entry => entry.target !== this);
+
+      if (childrenChanged) {
+        // Handle child button changes (existing logic)
+        entries
+          .filter(entry => entry.target !== this)
+          .forEach(entry => {
+            const target = entry.target as HTMLElement;
+            const button = findButton(target) as SynButton | SynRadioButton;
+
+            if (button) {
+              // Unset the size property to allow button-group to control it
+              button.size = undefined as never;
+
+              // Also unset variant for syn-buttons
+              if (button.tagName.toLowerCase() === 'syn-button') {
+                (button as SynButton).variant = undefined as never;
+              }
+            }
+          });
+      }
+
+      // Handle both cases: button-group changes and child changes
+      if (buttonGroupChanged || childrenChanged) {
+        this.handleSlotChange();
+      }
+
+      // Reconnect observer after changes are done
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+      this.updateComplete.then(() => {
+        startObserving();
+      });
+    });
+
+    startObserving();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.mutationObserver?.disconnect();
+  }
+
+  render() {
+    /* eslint-disable @typescript-eslint/unbound-method, lit-a11y/mouse-events-have-key-events */
+    return html`
+      <div
+        part="base"
+        class="button-group"
+        role="${this.disableRole ? 'presentation' : 'group'}"
+        aria-label=${this.label}
+        @focusout=${this.handleBlur}
+        @focusin=${this.handleFocus}
+        @mouseover=${this.handleMouseOver}
+        @mouseout=${this.handleMouseOut}
+      >
+        <slot @slotchange=${this.handleSlotChange}></slot>
+      </div>
+    `;
+    /* eslint-enable @typescript-eslint/unbound-method, lit-a11y/mouse-events-have-key-events */
+  }
+}

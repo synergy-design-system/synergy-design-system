@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/progress-bar/progress-bar.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
@@ -31,7 +29,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('15533-15734'),
+    design: generateFigmaPluginObject('41203-297162'),
     docs: {
       description: {
         component: generateStoryDescription('progress-bar', 'default'),

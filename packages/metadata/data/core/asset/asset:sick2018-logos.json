@@ -1,0 +1,28 @@
+{
+  "custom": {
+    "category": "logos",
+    "files": [
+      "logo-black.svg",
+      "logo-claim-black.svg",
+      "logo-claim-color.svg",
+      "logo-claim-white.svg",
+      "logo-color.svg",
+      "logo-white.svg"
+    ],
+    "theme": "sick2018"
+  },
+  "id": "asset:sick2018-logos",
+  "kind": "asset",
+  "layers": {},
+  "name": "sick2018 Logos",
+  "package": "assets",
+  "relations": [],
+  "since": "2.1.0",
+  "sources": [],
+  "status": "stable",
+  "tags": [
+    "asset",
+    "logos",
+    "sick2018"
+  ]
+}

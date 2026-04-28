@@ -1,5 +1,11 @@
-import { LitElement, TemplateResult, html } from 'lit';
+import {
+  LitElement,
+  type TemplateResult,
+  html,
+  unsafeCSS,
+} from 'lit';
 import { property } from 'lit/decorators.js';
+import demoTemplateCss from '@synergy-design-system/demo-utilities/styles/demo-template.css?inline';
 import type { RegressionFns, Regressions } from './all-components-regressions.js';
 
 /**
@@ -7,6 +13,8 @@ import type { RegressionFns, Regressions } from './all-components-regressions.js
  * It will render all the components in the package into a tab group.
  */
 class DemoTemplate extends LitElement {
+  static styles = [unsafeCSS(demoTemplateCss)];
+
   @property({ attribute: false })
   demos: Array<[string, (args: RegressionFns) => TemplateResult<1>]> = [];
 
@@ -16,9 +24,12 @@ class DemoTemplate extends LitElement {
   render() {
     const activeDemo = this.demos[0]?.[0] || '';
 
+    if (this.demos.length === 0) {
+      return html`<span> There are no demos available.</span>`;
+    }
+
     return html`
-    ${this.demos.length === 0 ? html`<span> There are no demos available.</span>` : html`
-     <syn-tab-group>
+     <syn-tab-group class="demo-tab-group" placement="end">
         ${this.demos.map(([name, Component]) => html`
           <syn-tab
             ?active=${name === activeDemo}
@@ -33,12 +44,13 @@ class DemoTemplate extends LitElement {
             name=${name}
           >
             <div id="tab-content-${name}">
+              <h1 class="syn-heading--3x-large">${name}</h1>
+              <syn-divider></syn-divider>
               ${html`${Component((this.regressions && this.regressions.has(name)) ? (this.regressions.get(name) || []) : [])}`}
             </div>
           </syn-tab-panel>
         `)}
       </syn-tab-group>
-    `}
     `;
   }
 }

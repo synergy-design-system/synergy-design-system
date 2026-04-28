@@ -1,6 +1,11 @@
 import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { getMigrationMetaData } from '../utilities/index.js';
+import {
+  createToolAnnotations,
+  getMigrationMetaData,
+  getRuntimeConfig,
+  toolHandler,
+} from '../utilities/index.js';
 
 type SynergyMigrationPackage = 'assets' | 'components' | 'styles' | 'tokens';
 
@@ -106,6 +111,7 @@ export const migrationListTool = (server: McpServer) => {
   server.registerTool(
     'migration-list',
     {
+      annotations: createToolAnnotations(),
       description: 'List available migration documents for a Synergy package in a compact, token-efficient format.',
       inputSchema: {
         synergyPackage: z.enum([
@@ -113,18 +119,18 @@ export const migrationListTool = (server: McpServer) => {
           'components',
           'styles',
           'tokens',
-        ]).default('components').optional().describe('The package to list migration documents for.'),
+        ]).optional().describe('The package to list migration documents for.'),
       },
       title: 'Package Migration Document Index',
     },
-    async ({ synergyPackage }) => {
-      const selectedPackage = (synergyPackage ?? 'components') as SynergyMigrationPackage;
+    toolHandler('migration-list', async ({ synergyPackage }) => {
+      const selectedPackage = (synergyPackage ?? getRuntimeConfig().tools.migrationList.synergyPackage) as SynergyMigrationPackage;
       const metadata = await getMigrationMetaData(selectedPackage);
 
       const index = metadata
         .filter(Boolean)
         .map((file) => {
-          const { content, filename } = file!;
+          const { content, filename } = file;
 
           // Derive a simple kind for components to distinguish
           // between migration paths, overview, and package-level docs.
@@ -153,14 +159,7 @@ export const migrationListTool = (server: McpServer) => {
           };
         });
 
-      return {
-        content: [
-          {
-            text: JSON.stringify(index, null, 2),
-            type: 'text',
-          },
-        ],
-      };
-    },
+      return [JSON.stringify(index, null, 2)];
+    }),
   );
 };

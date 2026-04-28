@@ -17,7 +17,7 @@ export const ThemeSwitch = () => {
       }}
       placeholder="Select theme to use"
       size="small"
-      value="2018-light"
+      value="2025-light"
     >
       <syn-icon name={currentMode} slot="prefix" style={{ color: 'var(--syn-color-warning-500)' }} />
 

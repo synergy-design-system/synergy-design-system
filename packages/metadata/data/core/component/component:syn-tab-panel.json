@@ -1,0 +1,139 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynTabPanelComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tab-panel",
+        "sourcePath": "packages/angular/components/tab-panel/tab-panel.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynTabPanel",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTabPanelJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTabPanel",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tab-panel.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueTabPanel",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTabPanel.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "42207-340626",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Tab panels are used inside tab groups to display tabbed content."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Tab Panel"
+          }
+        }
+      ],
+      "storySourcePath": "components.tab-panel",
+      "storyTags": [
+        "Navigation"
+      ]
+    },
+    "sourceModulePath": "components/tab-panel/tab-panel.js",
+    "summary": "Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content."
+  },
+  "id": "component:syn-tab-panel",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-tab-panel.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/angular/tab-panel.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/components/tab-panel.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/react/tab-panel.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/vue/SynVueTabPanel.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-tab-panel/react/SynTabPanelJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tab-panel.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-tab-panel.md"
+      }
+    ]
+  },
+  "name": "syn-tab-panel",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/tab-panel/tab-panel.component.ts",
+    "packages/components/src/components/tab-panel/tab-panel.component.ts",
+    "packages/components/src/components/tab-panel/tab-panel.custom.styles.ts",
+    "packages/components/src/components/tab-panel/tab-panel.styles.ts",
+    "packages/components/src/components/tab-panel/tab-panel.ts",
+    "packages/react/src/components/tab-panel.ts",
+    "packages/vue/src/components/SynVueTabPanel.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "syn-tab-panel",
+    "tab-panel",
+    "vue"
+  ]
+}

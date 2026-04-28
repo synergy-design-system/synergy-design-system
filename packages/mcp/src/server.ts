@@ -1,6 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import * as resources from './resources/index.js';
 import * as tools from './tools/index.js';
-import { getVersion } from './utilities/version.js';
+import { getVersion } from './utilities/cli.js';
 
 /**
  * Creates a new instance of the MCP server configured for the Synergy Design System.
@@ -17,6 +18,10 @@ export const createServer = () => {
 
   Object.values(tools).forEach(tool => {
     tool(server);
+  });
+
+  Object.values(resources).forEach(resource => {
+    resource(server);
   });
 
   return server;

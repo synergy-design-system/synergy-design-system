@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/nav-item/nav-item.js';
 import '../../../components/src/components/icon/icon.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
@@ -33,7 +31,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('12362-10775'),
+    design: generateFigmaPluginObject('41163-402744'),
     docs: {
       description: {
         component: generateStoryDescription('nav-item', 'default'),

@@ -1,0 +1,164 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Disables the radio button.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Sets the radio button to a readonly state.",
+      "fieldName": "readonly",
+      "name": "readonly",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'medium'",
+      "description": "The radio button's size. When used inside a radio group, the size will be determined by the radio group's size so\nthis attribute can typically be omitted.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "description": "The radio's value. When selected, the radio group will receive this value.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": false,
+      "type": "string | number"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The internal `<button>` element.",
+      "name": "button"
+    },
+    {
+      "description": "The internal button element when the radio button is checked.",
+      "name": "button--checked"
+    },
+    {
+      "description": "The container that wraps the radio button's label.",
+      "name": "label"
+    },
+    {
+      "description": "The container that wraps the prefix.",
+      "name": "prefix"
+    },
+    {
+      "description": "The container that wraps the suffix.",
+      "name": "suffix"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs",
+  "events": [
+    {
+      "description": "Emitted when the button loses focus.",
+      "name": "syn-blur",
+      "type": "SynBlurEvent"
+    },
+    {
+      "description": "Emitted when the button gains focus.",
+      "name": "syn-focus",
+      "type": "SynFocusEvent"
+    }
+  ],
+  "methods": [
+    {
+      "description": "Removes focus from the radio button.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
+      "description": "Sets focus on the radio button.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the radio button.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "",
+      "name": "hasFocus",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "input",
+      "type": "HTMLInputElement"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Sets the radio button to a readonly state.",
+      "name": "readonly",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'medium'",
+      "description": "The radio button's size. When used inside a radio group, the size will be determined by the radio group's size so\nthis attribute can typically be omitted.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large'"
+    },
+    {
+      "access": "public",
+      "description": "The radio's value. When selected, the radio group will receive this value.",
+      "name": "value",
+      "type": "string | number"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The radio button's label.",
+      "name": ""
+    },
+    {
+      "description": "A presentational prefix icon or similar element.",
+      "name": "prefix"
+    },
+    {
+      "description": "A presentational suffix icon or similar element.",
+      "name": "suffix"
+    }
+  ],
+  "sourceModulePath": "components/radio-button/radio-button.js",
+  "status": "stable",
+  "summary": "Radios buttons allow the user to select a single option from a group using a button-like control.",
+  "tagName": "syn-radio-button"
+}

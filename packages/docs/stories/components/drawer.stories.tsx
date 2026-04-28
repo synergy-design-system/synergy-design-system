@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/drawer/drawer.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon-button/icon-button.js';
@@ -30,7 +27,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('9983-7882'),
+    design: generateFigmaPluginObject('41163-282330'),
     docs: {
       container: DisableFocusTrap,
       description: {

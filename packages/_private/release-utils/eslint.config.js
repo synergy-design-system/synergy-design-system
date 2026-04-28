@@ -1,15 +1,10 @@
-import synergyConfig from '@synergy-design-system/eslint-config-syn/ts';
+import { createCustomConfig } from '@synergy-design-system/eslint-config-syn/ts';
 
 export default [
-  ...synergyConfig,
-  {
-    languageOptions: {
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
-      },
-    },
-  },
+  ...createCustomConfig({
+    project: './tsconfig.json',
+    tsconfigRootDir: import.meta.dirname,
+  }),
   // Release utilities need console access for CLI output
   {
     rules: {

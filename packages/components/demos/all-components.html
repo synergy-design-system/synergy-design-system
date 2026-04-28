@@ -1095,6 +1095,37 @@
 
             <syn-tab
               slot="nav"
+              id="tab-Pagination"
+              panel="Pagination"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-39"
+            >
+              Pagination
+            </syn-tab>
+            <syn-tab-panel
+              name="Pagination"
+              id="syn-tab-panel-39"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Pagination"
+            >
+              <div style="display: contents" id="tab-content-Pagination">
+                <syn-pagination
+                  hoist
+                  current-page="2"
+                  page-size="25"
+                  total-items="500"
+                  size="medium"
+                  variant="full"
+                ></syn-pagination>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
               id="tab-PrioNav"
               panel="PrioNav"
               role="tab"

@@ -1,0 +1,37 @@
+{
+  "custom": {
+    "moduleName": "typography"
+  },
+  "id": "style:syn-weight",
+  "kind": "style",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/style/style:syn-weight.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/styles/typography/weight.css"
+      }
+    ]
+  },
+  "name": "syn-weight",
+  "package": "styles",
+  "relations": [],
+  "since": "2.0.3",
+  "sources": [
+    "packages/styles/src/typography/weight.css"
+  ],
+  "status": "stable",
+  "tags": [
+    "module",
+    "style",
+    "styles",
+    "syn-weight",
+    "typography",
+    "weight"
+  ]
+}

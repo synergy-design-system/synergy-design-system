@@ -1,0 +1,63 @@
+{
+  "custom": {
+    "migrationType": "breaking",
+    "versions": [
+      "3.0",
+      "2.0",
+      "1.0"
+    ]
+  },
+  "id": "setup:synergy-migrations",
+  "kind": "setup",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/components/BREAKING_CHANGES.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/migration/index.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/migration/v2-2018-to-v2-2025.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/migration/v2-2018-to-v3-2018.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/migration/v2-2018-to-v3-2025.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/migration/v2-2025-to-v3-2025.md"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/setup/setup:synergy-migrations/davinci/basic-elements.md"
+      }
+    ]
+  },
+  "name": "Synergy Breaking Changes & Migrations",
+  "package": "migrations",
+  "relations": [],
+  "since": "1.0.0",
+  "sources": [
+    "packages/components/BREAKING_CHANGES.md",
+    "packages/docs/src/static/migration/index.md",
+    "packages/docs/src/static/migration/v2-2018-to-v2-2025.md",
+    "packages/docs/src/static/migration/v2-2018-to-v3-2018.md",
+    "packages/docs/src/static/migration/v2-2018-to-v3-2025.md",
+    "packages/docs/src/static/migration/v2-2025-to-v3-2025.md",
+    "packages/metadata/external-data/davinci-migrations/basic-elements.md"
+  ],
+  "status": "stable",
+  "tags": [
+    "breaking-changes",
+    "migrations",
+    "setup"
+  ]
+}

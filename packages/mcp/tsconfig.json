@@ -3,15 +3,15 @@
     "declaration": true,
     "outDir": "dist",
     "rootDir": "./src",
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM"],
+    "target": "ES2024",
+    "lib": ["ES2024", "DOM"],
     "module": "nodenext",
     "moduleResolution": "NodeNext",
     "strict": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "types": ["node", "jest"]
+    "types": ["node"]
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist", "metadata", "test"]
+  "exclude": ["node_modules", "dist", "test"]
 }

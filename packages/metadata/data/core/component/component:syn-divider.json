@@ -1,0 +1,178 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/structure"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynDividerComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-divider",
+        "sourcePath": "packages/angular/components/divider/divider.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynDivider",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-divider--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynDividerJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynDivider",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/divider.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueDivider",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDivider.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41227-216341",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Dividers are used to visually separate or group elements."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Divider"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the --width custom property to change the width of the divider."
+          },
+          "name": "width",
+          "title": {
+            "type": "text",
+            "value": "Width"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the --color custom property to change the color of the divider."
+          },
+          "name": "color",
+          "title": {
+            "type": "text",
+            "value": "Color"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the --spacing custom property to change the amount of space between the divider and it’s neighboring elements."
+          },
+          "name": "spacing",
+          "title": {
+            "type": "text",
+            "value": "Spacing"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the vertical attribute to draw the divider in a vertical orientation. The divider will span the full height of its container. Vertical dividers work especially well inside of a flex container."
+          },
+          "name": "vertical",
+          "title": {
+            "type": "text",
+            "value": "Vertical"
+          }
+        }
+      ],
+      "storySourcePath": "components.divider",
+      "storyTags": [
+        "Structure"
+      ]
+    },
+    "sourceModulePath": "components/divider/divider.js",
+    "summary": "Dividers are used to visually separate or group elements."
+  },
+  "id": "component:syn-divider",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-divider.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/angular/divider.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/components/divider.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/components/divider.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/components/divider.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/react/divider.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/vue/SynVueDivider.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-divider/react/SynDividerJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-divider.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-divider.md"
+      }
+    ]
+  },
+  "name": "syn-divider",
+  "package": "components",
+  "relations": [],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/divider/divider.component.ts",
+    "packages/components/src/components/divider/divider.component.ts",
+    "packages/components/src/components/divider/divider.styles.ts",
+    "packages/components/src/components/divider/divider.ts",
+    "packages/react/src/components/divider.ts",
+    "packages/vue/src/components/SynVueDivider.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "divider",
+    "react",
+    "syn-divider",
+    "vue"
+  ]
+}

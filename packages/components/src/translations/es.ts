@@ -16,6 +16,14 @@ const translation: Translation = {
     if (num === 1) return '1 opción seleccionada';
     return `${num} opciones seleccionadas`;
   },
+  paginationFirstPage: 'Primera página',
+  paginationInputLabel: 'Seleccionar página',
+  paginationItemsPerPage: 'Elementos por página',
+  paginationItemSummary: (start, end, total) => `${start}-${end} de ${total} elementos`,
+  paginationLastPage: 'Última página',
+  paginationNextPage: 'Página siguiente',
+  paginationOfTotalPages: totalPages => `de ${totalPages}`,
+  paginationPreviousPage: 'Página anterior',
   progress: 'Progreso',
   remove: 'Borrar',
   scrollToEnd: 'Desplazar hasta el final',

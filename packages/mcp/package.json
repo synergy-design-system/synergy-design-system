@@ -8,32 +8,21 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.27.1",
-    "@synergy-design-system/assets": "workspace:*",
-    "globby": "^16.1.1",
+    "@synergy-design-system/metadata": "workspace:*",
     "zod": "^4.3.6"
   },
   "description": "MCP Server for the Synergy Design System",
   "devDependencies": {
-    "@synergy-design-system/components": "workspace:*",
-    "@synergy-design-system/docs": "workspace:*",
     "@synergy-design-system/eslint-config-syn": "workspace:^",
-    "@synergy-design-system/fonts": "workspace:*",
-    "@synergy-design-system/styles": "workspace:*",
-    "@synergy-design-system/tokens": "workspace:^",
-    "@types/jest": "^30.0.0",
+    "@toon-format/toon": "^1.4.0",
     "@types/node": "^24.12.0",
-    "@types/serve-handler": "^6.1.4",
-    "change-case": "^5.4.4",
-    "custom-elements-manifest": "^2.1.0",
     "eslint": "^9.39.4",
-    "jest": "^30.3.0",
-    "ora": "^9.3.0",
-    "playwright": "^1.58.2",
-    "prettier": "^3.8.1",
-    "rimraf": "^6.1.3",
-    "serve-handler": "^6.1.7",
-    "ts-jest": "^29.4.6",
+    "tiktoken": "^1.0.22",
     "typescript": "^5.9.3"
+  },
+  "optionalDependencies": {
+    "@toon-format/toon": "^1.4.0",
+    "tiktoken": "^1.0.22"
   },
   "exports": {
     ".": {
@@ -47,7 +36,7 @@
     "README.md",
     "CHANGELOG.md",
     "dist",
-    "metadata"
+    "rules"
   ],
   "homepage": "https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/mcp",
   "keywords": [
@@ -67,16 +56,17 @@
     "directory": "packages/mcp"
   },
   "scripts": {
-    "build": "pnpm run build:ts && pnpm run build:metadata && pnpm build:hash",
-    "build:all": "pnpm run build && pnpm run build:storybook",
-    "build:ts": "pnpm rimraf dist && tsc",
-    "build:metadata": "node dist/build/build.js",
-    "build:storybook": "pnpm -C ../docs build && node ./dist/utilities/storybook/build-docs.js && pnpm build:hash",
-    "build:hash": "node ./dist/bin/create-checksum.js",
+    "debug": "npx @modelcontextprotocol/inspector",
+    "build": "pnpm run clean && tsc",
+    "clean": "node src/bin/clean.js",
     "lint:js": "eslint src",
+    "lint:watermark": "node --experimental-strip-types test/watermarks/run.ts --fail-on-regression",
     "lint": "pnpm run /^lint:.*/",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
+    "test": "node --experimental-strip-types --test test/e2e/*.test.ts",
+    "watermark:report": "node --experimental-strip-types test/watermarks/run.ts",
+    "watermark:baseline": "node --experimental-strip-types test/watermarks/run.ts --write-baseline",
+    "test:watch": "node --experimental-strip-types --test --watch test/e2e/*.test.ts"
   },
   "type": "module",
-  "version": "2.14.1"
+  "version": "3.0.0"
 }

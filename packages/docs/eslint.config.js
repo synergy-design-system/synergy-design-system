@@ -18,8 +18,9 @@ export default [
   // Documentation-specific rule overrides
   {
     rules: {
-      // camel case should be enforced, but we have to allow Chromatic_Modes_Sick_2025 values
-      camelcase: ['error', {
+      // We are not allowed to change Chromatic_Modes_All to camelCase, so we need to allow it in the camelcase rule
+      // This is because chromatic will create a complete new baseline and we want to avoid that as much as possible.
+      camelcase: ['warn', {
         allow: [
           'Chromatic_Modes_All',
           'Chromatic_Modes_Sick_2018',

@@ -1,0 +1,149 @@
+{
+  "attributes": [
+    {
+      "default": "false",
+      "description": "Draws the option in a disabled state, preventing selection.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "''",
+      "description": "The option's value. When selected, the containing form control will receive this value. The value must be unique\nfrom other options in the same group. Values may not contain spaces, as spaces are used as delimiters when listing\nmultiple values.",
+      "fieldName": "value",
+      "name": "value",
+      "reflects": true,
+      "type": "string | number"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The checked icon, an `<syn-icon>` element.",
+      "name": "checked-icon"
+    },
+    {
+      "description": "The option's label.",
+      "name": "label"
+    },
+    {
+      "description": "The container that wraps the prefix.",
+      "name": "prefix"
+    },
+    {
+      "description": "The container that wraps the suffix.",
+      "name": "suffix"
+    }
+  ],
+  "dependencies": [
+    "syn-icon"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs",
+  "events": [],
+  "figmaComponentId": "41325-312743",
+  "methods": [
+    {
+      "description": "Returns a plain text label based on the option's content.",
+      "name": "getTextLabel",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDelimiterChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleDisabledChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleSelectedChange",
+      "parameters": []
+    },
+    {
+      "description": "",
+      "name": "handleValueChange",
+      "parameters": []
+    },
+    {
+      "description": "Replaces any occurrences of the delimiter in the option's original value with underscores.",
+      "name": "sanitizeValueForDelimiter",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "false",
+      "description": "",
+      "name": "current",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
+      "default": "' '",
+      "description": "",
+      "name": "delimiter",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Draws the option in a disabled state, preventing selection.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "",
+      "name": "hasHover",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "",
+      "name": "selected",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The option's value. When selected, the containing form control will receive this value. The value must be unique\nfrom other options in the same group. Values may not contain spaces, as spaces are used as delimiters when listing\nmultiple values.",
+      "name": "value",
+      "type": "string | number"
+    }
+  ],
+  "since": "2.0",
+  "slots": [
+    {
+      "description": "The option's label.",
+      "name": ""
+    },
+    {
+      "description": "Used to prepend an icon or similar element to the menu item.",
+      "name": "prefix"
+    },
+    {
+      "description": "Used to append an icon or similar element to the menu item.",
+      "name": "suffix"
+    }
+  ],
+  "sourceModulePath": "components/option/option.js",
+  "status": "stable",
+  "summary": "Options define the selectable items within various form controls such as [select](/components/select).",
+  "tagName": "syn-option"
+}

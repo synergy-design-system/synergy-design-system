@@ -19,6 +19,7 @@ import DemoMenu from "./DemoMenu.vue";
 import DemoNavItem from "./DemoNavItem.vue";
 import DemoOptGroup from "./DemoOptGroup.vue";
 import DemoOption from "./DemoOption.vue";
+import DemoPagination from "./DemoPagination.vue";
 import DemoPrioNav from "./DemoPrioNav.vue";
 import DemoProgressBar from "./DemoProgressBar.vue";
 import DemoProgressRing from "./DemoProgressRing.vue";
@@ -57,6 +58,7 @@ export {
   DemoNavItem,
   DemoOptGroup,
   DemoOption,
+  DemoPagination,
   DemoPrioNav,
   DemoProgressBar,
   DemoProgressRing,

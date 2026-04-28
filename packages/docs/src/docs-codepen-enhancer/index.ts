@@ -47,6 +47,18 @@ export default function docsCodepenEnhancer(code: string, storyContext: StoryCon
         story.querySelector<HTMLElement>('.docblock-codepen-button:last-of-type')!.style.display = 'none';
       }
 
+      // Keep only one hidden source element per story action area.
+      const actionContainer = showCodeButton.parentElement!;
+      actionContainer.querySelectorAll('.syn-story-source').forEach((el) => {
+        el.remove();
+      });
+
+      const hiddenSourceElement = document.createElement('div');
+      hiddenSourceElement.className = 'syn-story-source';
+      hiddenSourceElement.style.display = 'none';
+      hiddenSourceElement.textContent = code;
+      actionContainer.appendChild(hiddenSourceElement);
+
       // Finally add the event listener to the button
       editCodeButton.addEventListener('click', () => {
         const form = document.createElement('form');

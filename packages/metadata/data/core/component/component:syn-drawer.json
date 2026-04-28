@@ -1,0 +1,268 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/structure"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynDrawerComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-drawer",
+        "sourcePath": "packages/angular/components/drawer/drawer.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynDrawer",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs",
+          "events": [
+            {
+              "name": "syn-show",
+              "type": "SynShowEvent"
+            },
+            {
+              "name": "syn-after-show",
+              "type": "SynAfterShowEvent"
+            },
+            {
+              "name": "syn-hide",
+              "type": "SynHideEvent"
+            },
+            {
+              "name": "syn-after-hide",
+              "type": "SynAfterHideEvent"
+            },
+            {
+              "name": "syn-initial-focus",
+              "type": "SynInitialFocusEvent"
+            },
+            {
+              "name": "syn-request-close",
+              "type": "SynRequestCloseEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynDrawerJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynDrawer",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/drawer.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueDrawer",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueDrawer.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41163-282330",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Drawers slide in from a container to expose additional options and information."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Drawer"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, drawers slide in from the end. To make the drawer slide in from the start, set the placement attribute to start."
+          },
+          "name": "start",
+          "title": {
+            "type": "text",
+            "value": "Slide in From Start"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To make the drawer slide in from the top, set the placement attribute to top."
+          },
+          "name": "top",
+          "title": {
+            "type": "text",
+            "value": "Slide in From Top"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To make the drawer slide in from the bottom, set the placement attribute to bottom."
+          },
+          "name": "bottom",
+          "title": {
+            "type": "text",
+            "value": "Slide in From Bottom"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, drawers slide out of their containing block, which is usually the viewport. To make a drawer slide out of a parent element, add the contained attribute to the drawer and apply position: relative to its parent.\n\nUnlike normal drawers, contained drawers are not modal. This means they do not show an overlay, they do not trap focus, and they are not dismissible with Escape. This is intentional to allow users to interact with elements outside of the drawer."
+          },
+          "name": "contained",
+          "title": {
+            "type": "text",
+            "value": "Contained to an Element"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the --size custom property to set the drawer’s size. This will be applied to the drawer’s width or height depending on its placement."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Custom Size"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By design, a drawer’s height will never exceed 100% of its container. As such, drawers will not scroll with the page to ensure the header and footer are always accessible to the user."
+          },
+          "name": "scrolling",
+          "title": {
+            "type": "text",
+            "value": "Scrolling"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The header shows a functional close button by default. You can use the header-actions slot to add additional icon buttons if needed."
+          },
+          "name": "action",
+          "title": {
+            "type": "text",
+            "value": "Header Actions"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, drawers will close when the user clicks the close button, clicks the overlay, or presses the Escape key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.\n\nTo keep the drawer open in such cases, you can cancel the syn-request-close event. When canceled, the drawer will remain open and pulse briefly to draw the user’s attention to it.\n\nYou can use event.detail.source to determine what triggered the request to close. This example prevents the drawer from closing when the overlay is clicked, but allows the close button or Escape to dismiss it."
+          },
+          "name": "closing",
+          "title": {
+            "type": "text",
+            "value": "Preventing the Drawer from Closing"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, the drawer’s panel will gain focus when opened. This allows a subsequent tab press to focus on the first tabbable element in the drawer. If you want a different element to have focus, add the autofocus attribute to it as shown below."
+          },
+          "name": "fokus",
+          "title": {
+            "type": "text",
+            "value": "Customizing Initial Focus"
+          }
+        }
+      ],
+      "storySourcePath": "components.drawer",
+      "storyTags": [
+        "Structure"
+      ]
+    },
+    "sourceModulePath": "components/drawer/drawer.js",
+    "summary": "Drawers slide in from a container to expose additional options and information."
+  },
+  "id": "component:syn-drawer",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-drawer.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/angular/drawer.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/components/drawer.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/components/drawer.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/components/drawer.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/components/drawer.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/react/drawer.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/vue/SynVueDrawer.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-drawer/react/SynDrawerJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-drawer.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-drawer.md"
+      }
+    ]
+  },
+  "name": "syn-drawer",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/drawer/drawer.component.ts",
+    "packages/components/src/components/drawer/drawer.component.ts",
+    "packages/components/src/components/drawer/drawer.custom.styles.ts",
+    "packages/components/src/components/drawer/drawer.styles.ts",
+    "packages/components/src/components/drawer/drawer.ts",
+    "packages/react/src/components/drawer.ts",
+    "packages/vue/src/components/SynVueDrawer.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "drawer",
+    "react",
+    "syn-drawer",
+    "vue"
+  ]
+}

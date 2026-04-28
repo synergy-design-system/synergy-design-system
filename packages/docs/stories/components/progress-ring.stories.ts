@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/progress-ring/progress-ring.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
@@ -38,7 +36,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('14207-8709'),
+    design: generateFigmaPluginObject('41203-296727'),
     docs: {
       description: {
         component: generateStoryDescription('progress-ring', 'default'),

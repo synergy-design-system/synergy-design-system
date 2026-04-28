@@ -1,13 +1,13 @@
-import fs from 'node:fs/promises';
-import { existsSync, statSync } from 'node:fs';
-import { basename, join } from 'node:path';
-import { componentPath, staticComponentPath } from './config.js';
-import { getAbsolutePath } from './file.js';
-
-/**
- * Filter function type for filtering metadata files.
- */
-export type Filter = (fileName: string) => boolean;
+import type { ToolResponse } from '../types/tool-response.js';
+import {
+  type ToolMiddleware,
+  type WithErrorHandlerOptions,
+  composeMiddlewares,
+  withCompressionMiddleware,
+  withErrorHandlingMiddleware,
+  withToolLoggingMiddleware,
+} from '../middleware/index.js';
+import { getRuntimeConfig } from './config.js';
 
 /**
  * MetadataFile type representing a structured metadata file.
@@ -17,73 +17,53 @@ export type MetadataFile = {
   filename: string;
 };
 
-const defaultFilter: Filter = () => true;
-
 /**
- * Get structured metadata for a specific metadata folder.
- * Will NOT crawl recursively, but will return all files in the metadata directory.
- * @param folder - The name of the folder to get metadata for.
- * @param filter - Optional filter function to apply to the filenames.
- *                 If provided, only files that pass the filter will be included in the result.
+ * Creates a content array from an array of unknown data.
+ * This is useful for converting raw data into a format that can be returned by MCP tools.
+ * @param data The original data to convert into a content array. Each entry will be converted to a string if it is not already a string.
+ * @returns Final content array
  */
-export const getStructuredMetaData = async (
-  folder: string,
-  filter: Filter = defaultFilter,
-) => {
-  const absolutePath = getAbsolutePath(folder);
+export const toContentArray = (data: unknown[]): ToolResponse => {
+  // First, we want to make sure that all entries in the array are strings, as the content array expects text content.
+  const content = data
+    .filter(Boolean)
+    .map(entry => ({
+      text: typeof entry === 'string' ? entry : JSON.stringify(entry),
+      type: 'text' as const,
+    }));
 
-  // If the directory does not exist, return an empty array
-  if (!existsSync(absolutePath)) {
-    return [];
-  }
-
-  const files = await fs.readdir(absolutePath);
-  const metadata = await Promise.all(
-    files
-      .filter(file => {
-        // We only allow entries that are
-        // 1. are files
-        // 2. pass the filter function
-        const stats = statSync(join(absolutePath, file));
-        return stats.isFile() && filter(file);
-      })
-      .map(async (file) => {
-        const filename = basename(file);
-        const exists = await fs.stat(`${absolutePath}/${file}`);
-        if (!exists.isFile()) {
-          return null;
-        }
-
-        const content = await fs.readFile(`${absolutePath}/${file}`, 'utf-8');
-        return {
-          content,
-          filename,
-        } as MetadataFile;
-      })
-      // Makes sure we only return valid metadata files
-      .filter(Boolean),
-  );
-
-  return metadata;
+  return {
+    content,
+  };
 };
 
 /**
- * Get structured metadata for a specific component.
- * Will NOT crawl recursively, but will return all files in the component's metadata directory.
- * @param componentName - The name of the component to get metadata for.
- * @param filter - Optional filter function to apply to the filenames.
- *                 If provided, only files that pass the filter will be included in the result.
- * @param source - The source of the metadata, either 'package' or 'static'.
+ * Creates a transparent tool handler that keeps tool bodies focused on
+ * business logic while applying logging and error handling consistently.
  */
-export const getStructuredMetaDataForComponent = (
-  componentName: string,
-  filter: Filter = defaultFilter,
-  source: 'package' | 'static' = 'package',
-) => {
-  const root = source === 'static' ? staticComponentPath : componentPath;
-  const absolutePath = getAbsolutePath(`${root}/${componentName}`);
-  return getStructuredMetaData(
-    absolutePath,
-    filter,
+export const toolHandler = <TArgs extends Record<string, unknown>>(
+  toolName: string,
+  handler: (args: TArgs) => Promise<unknown[]>,
+  options: WithErrorHandlerOptions = {},
+) => async (args: TArgs): Promise<ToolResponse> => {
+  const middlewareStack: ToolMiddleware<Record<string, unknown>>[] = [
+    withErrorHandlingMiddleware,
+    withToolLoggingMiddleware,
+    withCompressionMiddleware,
+  ];
+
+  // Middlewares treat args opaquely as Record<string, unknown>; cast at the boundary.
+  // Execution order (via reduceRight composition): error → logging → compression → handler
+  // This ensures logging observes the compressed payload returned by compression middleware.
+  const rawHandler = composeMiddlewares(
+    async (rawArgs) => handler(rawArgs as TArgs),
+    middlewareStack,
+    {
+      config: getRuntimeConfig(),
+      options,
+      toolName,
+    },
   );
+
+  return toContentArray(await rawHandler(args));
 };

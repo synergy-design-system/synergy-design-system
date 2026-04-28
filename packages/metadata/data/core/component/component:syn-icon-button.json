@@ -1,0 +1,218 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form",
+      "components-by-tag/icons",
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynIconButtonComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-icon-button",
+        "sourcePath": "packages/angular/components/icon-button/icon-button.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynIconButton",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-icon-button--docs",
+          "events": [
+            {
+              "name": "syn-blur",
+              "type": "SynBlurEvent"
+            },
+            {
+              "name": "syn-focus",
+              "type": "SynFocusEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynIconButtonJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynIconButton",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/icon-button.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueIconButton",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueIconButton.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41137-747935",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.\n\nFor a full list of icons that come bundled with Synergy, refer to the Assets.\n\n**Note:** To make the icon-button work in development, have a look at the icon documentation for how to set up the assets package."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Icon Button"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a icon-button size."
+          },
+          "name": "sizes",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable the icon button."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the icon-button has been focused by the keyboard interaction."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The Icon button can have two color variants, Primary or Neutral Color."
+          },
+          "name": "color",
+          "title": {
+            "type": "text",
+            "value": "Color"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "A description that gets read by assistive devices. For optimal accessibility, you have to include a label that describes what the icon button does."
+          },
+          "name": "label",
+          "title": {
+            "type": "text",
+            "value": "Accessibility Label"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "It’s often helpful to have a button that works like a link. This is possible by setting the href attribute, which will make the component render an <a> under the hood. This gives you all the default link behavior the browser provides (e.g. CMD/CTRL/SHIFT + CLICK) and exposes the target and download attributes."
+          },
+          "name": "link",
+          "title": {
+            "type": "text",
+            "value": "Link Buttons"
+          }
+        }
+      ],
+      "storySourcePath": "components.icon-button",
+      "storyTags": [
+        "Form",
+        "Navigation",
+        "Icons"
+      ]
+    },
+    "sourceModulePath": "components/icon-button/icon-button.js",
+    "summary": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars."
+  },
+  "id": "component:syn-icon-button",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-icon-button.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/angular/icon-button.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/components/icon-button.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/components/icon-button.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/components/icon-button.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/react/icon-button.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/vue/SynVueIconButton.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-icon-button/react/SynIconButtonJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-icon-button.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-icon-button.md"
+      }
+    ]
+  },
+  "name": "syn-icon-button",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/icon-button/icon-button.component.ts",
+    "packages/components/src/components/icon-button/icon-button.component.ts",
+    "packages/components/src/components/icon-button/icon-button.styles.ts",
+    "packages/components/src/components/icon-button/icon-button.ts",
+    "packages/react/src/components/icon-button.ts",
+    "packages/vue/src/components/SynVueIconButton.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "icon-button",
+    "react",
+    "syn-icon-button",
+    "vue"
+  ]
+}

@@ -34,7 +34,7 @@ const meta: Meta = {
       disableSnapshot: false,
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('8462-8334'),
+    design: generateFigmaPluginObject('16648-52486'),
     docs: {
       description: {
         component: generateStoryDescription('contact-form', 'default', 'templates'),

@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/optgroup/optgroup.js';
 import '../../../components/src/components/select/select.js';
 import '../../../components/src/components/option/option.js';
@@ -45,7 +42,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('5619-21837'),
+    design: generateFigmaPluginObject('41325-324372'),
     docs: {
       description: {
         component: generateStoryDescription('optiongroup', 'default'),

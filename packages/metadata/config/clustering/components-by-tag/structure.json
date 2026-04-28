@@ -1,0 +1,13 @@
+{
+  "name": "Structure Components",
+  "description": "Components for organizing and structuring page layouts",
+  "entities": [
+    "component:syn-accordion",
+    "component:syn-card",
+    "component:syn-details",
+    "component:syn-dialog",
+    "component:syn-divider",
+    "component:syn-drawer",
+    "component:syn-popup"
+  ]
+}

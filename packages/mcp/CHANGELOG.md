@@ -1,5 +1,33 @@
 # Changelog
 
+## 3.0.0
+
+### Major Changes
+
+- [#1255](https://github.com/synergy-design-system/synergy-design-system/pull/1255) [`6160660`](https://github.com/synergy-design-system/synergy-design-system/commit/6160660f497e0a791ea6794cd3ffeb657418b46c) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-27
+
+  major: 💥 metadata package (#1241)
+
+### Patch Changes
+
+- Updated dependencies [[`6160660`](https://github.com/synergy-design-system/synergy-design-system/commit/6160660f497e0a791ea6794cd3ffeb657418b46c)]:
+  - @synergy-design-system/metadata@3.0.0
+
+## 2.15.0
+
+### Minor Changes
+
+- [#1240](https://github.com/synergy-design-system/synergy-design-system/pull/1240) [`06c29d4`](https://github.com/synergy-design-system/synergy-design-system/commit/06c29d4be7b9297d34919646cfd71394abdc6f88) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-22
+
+  feat: ✨ Add new component `<syn-pagination>` (#684)
+
+  Adds a new component `<syn-pagination>` that may be used to paginate large datasets.
+
+### Patch Changes
+
+- Updated dependencies [[`06c29d4`](https://github.com/synergy-design-system/synergy-design-system/commit/06c29d4be7b9297d34919646cfd71394abdc6f88)]:
+  - @synergy-design-system/assets@2.1.0
+
 ## 2.14.1
 
 ### Patch Changes

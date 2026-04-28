@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable import/no-relative-packages */
 import '../../../components/src/components/nav-item/nav-item.js';
 import '../../../components/src/components/prio-nav/prio-nav.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
@@ -37,7 +34,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('12362-10968'),
+    design: generateFigmaPluginObject('41227-206412'),
     docs: {
       description: {
         component: generateStoryDescription('prio-nav', 'default'),

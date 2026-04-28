@@ -30,6 +30,7 @@ export { default as SynMenu } from './components/menu/menu.js';
 export { default as SynNavItem } from './components/nav-item/nav-item.js';
 export { default as SynOptgroup } from './components/optgroup/optgroup.js';
 export { default as SynOption } from './components/option/option.js';
+export { default as SynPagination } from './components/pagination/pagination.js';
 export { default as SynPopup } from './components/popup/popup.js';
 export { default as SynPrioNav } from './components/prio-nav/prio-nav.js';
 export { default as SynProgressBar } from './components/progress-bar/progress-bar.js';

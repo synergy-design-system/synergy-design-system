@@ -21,6 +21,7 @@ import type SynFile from "../../components/file/file.js";
 import type SynIconButton from "../../components/icon-button/icon-button.js";
 import type SynInput from "../../components/input/input.js";
 import type SynOption from "../../components/option/option.js";
+import type SynPagination from "../../components/pagination/pagination.js";
 import type SynRadioButton from "../../components/radio-button/radio-button.js";
 import type SynRadioGroup from "../../components/radio-group/radio-group.js";
 import type SynRadio from "../../components/radio/radio.js";
@@ -80,6 +81,7 @@ export type ComponentNamesWithDefaultValues =
   | "SynIconButton"
   | "SynInput"
   | "SynOption"
+  | "SynPagination"
   | "SynRadio"
   | "SynRadioButton"
   | "SynRadioGroup"
@@ -124,6 +126,7 @@ export type SynDefaultSettings = {
     SynFile?: AllowedValueForDefaultSetting<SynFile, "size">;
     SynIconButton?: AllowedValueForDefaultSetting<SynIconButton, "size">;
     SynInput?: AllowedValueForDefaultSetting<SynInput, "size">;
+    SynPagination?: AllowedValueForDefaultSetting<SynPagination, "size">;
     SynRadio?: AllowedValueForDefaultSetting<SynRadio, "size">;
     SynRadioButton?: AllowedValueForDefaultSetting<SynRadioButton, "size">;
     SynRadioGroup?: AllowedValueForDefaultSetting<SynRadioGroup, "size">;
@@ -139,6 +142,7 @@ export type SynDefaultSettings = {
     SynBadge?: AllowedValueForDefaultSetting<SynBadge, "variant">;
     SynButton?: AllowedValueForDefaultSetting<SynButton, "variant">;
     SynButtonGroup?: AllowedValueForDefaultSetting<SynButtonGroup, "variant">;
+    SynPagination?: AllowedValueForDefaultSetting<SynPagination, "variant">;
     SynSideNav?: AllowedValueForDefaultSetting<SynSideNav, "variant">;
     SynValidate?: AllowedValueForDefaultSetting<SynValidate, "variant">;
   };
@@ -169,6 +173,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynFile: "medium",
     SynIconButton: "inherit",
     SynInput: "medium",
+    SynPagination: "medium",
     SynRadio: "medium",
     SynRadioButton: "medium",
     SynRadioGroup: "medium",
@@ -184,6 +189,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynBadge: "primary",
     SynButton: "outline",
     SynButtonGroup: "outline",
+    SynPagination: "full",
     SynSideNav: "default",
     SynValidate: "native",
   },
@@ -212,6 +218,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynFile: "medium",
     SynIconButton: "inherit",
     SynInput: "medium",
+    SynPagination: "medium",
     SynRadio: "medium",
     SynRadioButton: "medium",
     SynRadioGroup: "medium",
@@ -227,6 +234,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynBadge: "primary",
     SynButton: "outline",
     SynButtonGroup: "outline",
+    SynPagination: "full",
     SynSideNav: "default",
     SynValidate: "native",
   },

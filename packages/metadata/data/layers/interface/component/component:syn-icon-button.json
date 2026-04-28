@@ -1,0 +1,201 @@
+{
+  "attributes": [
+    {
+      "default": "'currentColor'",
+      "description": "The color of the icon button.\nThe default \"currentColor\" makes it possible to easily style the icon button from outside without any CSS variables.",
+      "fieldName": "color",
+      "name": "color",
+      "reflects": true,
+      "type": "'currentColor' | 'primary' | 'neutral'"
+    },
+    {
+      "default": "false",
+      "description": "Disables the button.",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "description": "Tells the browser to download the linked file as this filename. Only used when `href` is set.",
+      "fieldName": "download",
+      "name": "download",
+      "reflects": false,
+      "type": "string | undefined"
+    },
+    {
+      "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
+      "fieldName": "href",
+      "name": "href",
+      "reflects": false,
+      "type": "string | undefined"
+    },
+    {
+      "default": "''",
+      "description": "A description that gets read by assistive devices. For optimal accessibility, you should always include a label\nthat describes what the icon button does.",
+      "fieldName": "label",
+      "name": "label",
+      "reflects": false,
+      "type": "string"
+    },
+    {
+      "description": "The name of a registered custom icon library.",
+      "fieldName": "library",
+      "name": "library",
+      "reflects": false,
+      "type": "string | undefined"
+    },
+    {
+      "description": "The name of the icon to draw. Available names depend on the icon library being used.",
+      "fieldName": "name",
+      "name": "name",
+      "reflects": false,
+      "type": "string | undefined"
+    },
+    {
+      "default": "'inherit'",
+      "description": "The icon button's size.",
+      "fieldName": "size",
+      "name": "size",
+      "reflects": true,
+      "type": "'small' | 'medium' | 'large' | 'inherit'"
+    },
+    {
+      "description": "An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and\ncan result in XSS attacks.",
+      "fieldName": "src",
+      "name": "src",
+      "reflects": false,
+      "type": "string | undefined"
+    },
+    {
+      "description": "Tells the browser where to open the link. Only used when `href` is set.",
+      "fieldName": "target",
+      "name": "target",
+      "reflects": false,
+      "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    }
+  ],
+  "dependencies": [
+    "syn-icon"
+  ],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-icon-button--docs",
+  "events": [
+    {
+      "description": "Emitted when the icon button loses focus.",
+      "name": "syn-blur",
+      "type": "SynBlurEvent"
+    },
+    {
+      "description": "Emitted when the icon button gains focus.",
+      "name": "syn-focus",
+      "type": "SynFocusEvent"
+    }
+  ],
+  "figmaComponentId": "41137-747935",
+  "methods": [
+    {
+      "description": "Removes focus from the icon button.",
+      "name": "blur",
+      "parameters": []
+    },
+    {
+      "description": "Simulates a click on the icon button.",
+      "name": "click",
+      "parameters": []
+    },
+    {
+      "description": "Sets focus on the icon button.",
+      "name": "focus",
+      "parameters": [
+        {
+          "name": "options",
+          "type": "FocusOptions"
+        }
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "description": "",
+      "name": "button",
+      "type": "HTMLButtonElement | HTMLLinkElement"
+    },
+    {
+      "access": "public",
+      "default": "'currentColor'",
+      "description": "The color of the icon button.\nThe default \"currentColor\" makes it possible to easily style the icon button from outside without any CSS variables.",
+      "name": "color",
+      "type": "'currentColor' | 'primary' | 'neutral'"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables the button.",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "description": "Tells the browser to download the linked file as this filename. Only used when `href` is set.",
+      "name": "download",
+      "type": "string | undefined"
+    },
+    {
+      "access": "public",
+      "description": "When set, the underlying button will be rendered as an `<a>` with this `href` instead of a `<button>`.",
+      "name": "href",
+      "type": "string | undefined"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "A description that gets read by assistive devices. For optimal accessibility, you should always include a label\nthat describes what the icon button does.",
+      "name": "label",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "description": "The name of a registered custom icon library.",
+      "name": "library",
+      "type": "string | undefined"
+    },
+    {
+      "access": "public",
+      "description": "The name of the icon to draw. Available names depend on the icon library being used.",
+      "name": "name",
+      "type": "string | undefined"
+    },
+    {
+      "access": "public",
+      "default": "'inherit'",
+      "description": "The icon button's size.",
+      "name": "size",
+      "type": "'small' | 'medium' | 'large' | 'inherit'"
+    },
+    {
+      "access": "public",
+      "description": "An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and\ncan result in XSS attacks.",
+      "name": "src",
+      "type": "string | undefined"
+    },
+    {
+      "access": "public",
+      "description": "Tells the browser where to open the link. Only used when `href` is set.",
+      "name": "target",
+      "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
+    }
+  ],
+  "since": "2.0",
+  "slots": [],
+  "sourceModulePath": "components/icon-button/icon-button.js",
+  "status": "stable",
+  "summary": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.",
+  "tagName": "syn-icon-button"
+}

@@ -1,0 +1,218 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynMenuItemComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-menu-item",
+        "sourcePath": "packages/angular/components/menu-item/menu-item.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynMenuItem",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynMenuItemJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynMenuItem",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/menu-item.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueMenuItem",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueMenuItem.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "41203-369012",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that the Menu Item has been focused by the keyboard interaction from the user."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Menu items provide options for the user to pick from in a menu."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Menu Item"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add content to the start and end of menu items using the prefix and suffix slots."
+          },
+          "name": "prefixsuffix",
+          "title": {
+            "type": "text",
+            "value": "Prefix and Suffix"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable an option and prevent it from being selected."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the loading attribute to indicate that a menu item is busy. Like a disabled menu item, clicks will be suppressed until the loading state is removed."
+          },
+          "name": "loading",
+          "title": {
+            "type": "text",
+            "value": "Loading"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Set the type attribute to checkbox to create a menu item that will toggle on and off when selected. You can use the checked attribute to set the initial state.\n\nCheckbox menu items are visually indistinguishable from regular menu items. Their ability to be toggled is primarily inferred from context, much like you’d find in the menu of a native app."
+          },
+          "name": "checkbox",
+          "title": {
+            "type": "text",
+            "value": "Checkbox Menu Items"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The value attribute can be used to assign a hidden value, such as a unique identifier, to a menu item. When an item is selected, the syn-select event will be emitted and a reference to the item will be available at event.detail.item. You can use this reference to access the selected item’s value, its checked state, and more."
+          },
+          "name": "selection",
+          "title": {
+            "type": "text",
+            "value": "Value & Selection"
+          }
+        }
+      ],
+      "storySourcePath": "components.menu-item",
+      "storyTags": [
+        "Navigation"
+      ]
+    },
+    "sourceModulePath": "components/menu-item/menu-item.js",
+    "summary": "Menu items provide options for the user to pick from in a menu."
+  },
+  "id": "component:syn-menu-item",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-menu-item.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/angular/menu-item.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/components/menu-item.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/components/menu-item.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/components/menu-item.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/components/submenu-controller.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/react/menu-item.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/vue/SynVueMenuItem.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-menu-item/react/SynMenuItemJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-menu-item.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-menu-item.md"
+      }
+    ]
+  },
+  "name": "syn-menu-item",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-popup",
+      "type": "dependsOn"
+    },
+    {
+      "id": "component:syn-spinner",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.0",
+  "sources": [
+    "packages/angular/components/menu-item/menu-item.component.ts",
+    "packages/components/src/components/menu-item/menu-item.component.ts",
+    "packages/components/src/components/menu-item/menu-item.styles.ts",
+    "packages/components/src/components/menu-item/menu-item.ts",
+    "packages/components/src/components/menu-item/submenu-controller.ts",
+    "packages/react/src/components/menu-item.ts",
+    "packages/vue/src/components/SynVueMenuItem.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "menu-item",
+    "react",
+    "syn-menu-item",
+    "vue"
+  ]
+}

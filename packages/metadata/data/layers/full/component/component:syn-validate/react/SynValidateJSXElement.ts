@@ -1,0 +1,1 @@
+export type SynValidateJSXElement = SynCustomElement<SynValidate, []>;

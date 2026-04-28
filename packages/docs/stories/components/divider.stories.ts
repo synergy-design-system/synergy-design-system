@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import '../../../components/src/components/divider/divider.js';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
@@ -20,7 +18,7 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('5521-515898'),
+    design: generateFigmaPluginObject('41227-216341'),
     docs: {
       description: {
         component: generateStoryDescription('divider', 'default'),

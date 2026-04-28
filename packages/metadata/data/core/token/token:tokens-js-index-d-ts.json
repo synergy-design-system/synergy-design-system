@@ -1,0 +1,31 @@
+{
+  "custom": {
+    "artifactPath": "js/index.d.ts",
+    "format": "javascript",
+    "sourceType": "dist"
+  },
+  "id": "token:tokens-js-index-d-ts",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/js/index.d.ts"
+      }
+    ]
+  },
+  "name": "index.d.ts",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.12.0",
+  "sources": [
+    "packages/tokens/dist/js/index.d.ts"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "dist"
+  ]
+}

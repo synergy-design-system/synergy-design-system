@@ -49,6 +49,12 @@
   "id": "component:syn-radio-button",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-radio-button.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

@@ -22,7 +22,7 @@ import '../src/docs.css';
 
 import { stopAnimation } from '../src/decorators/StopAnimation.js';
 import {
-  Chromatic_Modes_Sick_2018,
+  Chromatic_Modes_Sick_2025,
   DARK_THEME,
   LIGHT_THEME,
   SICK_2018_DARK_CLASS,
@@ -111,7 +111,7 @@ const preview: Preview = {
       diffThreshold: 0.063, // Original value is set to 0.063
       disableSnapshot: true,
       // @see https://www.chromatic.com/docs/themes/
-      modes: Chromatic_Modes_Sick_2018,
+      modes: Chromatic_Modes_Sick_2025,
     },
     controls: {
       disable: true,

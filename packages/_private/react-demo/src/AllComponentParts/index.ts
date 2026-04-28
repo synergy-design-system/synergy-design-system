@@ -23,6 +23,7 @@ export * from './Pagination.js';
 export * from './PrioNav.js';
 export * from './ProgressBar.js';
 export * from './ProgressRing.js';
+export * from './RadioButton.js';
 export * from './RadioGroup.js';
 export * from './Range.js';
 export * from './Select.js';

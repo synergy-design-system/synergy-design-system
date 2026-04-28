@@ -10,9 +10,9 @@
     },
     {
       "default": "false",
-      "description": "Draws a pill-style radio button with rounded edges.",
-      "fieldName": "pill",
-      "name": "pill",
+      "description": "Sets the radio button to a readonly state.",
+      "fieldName": "readonly",
+      "name": "readonly",
       "reflects": true,
       "type": "boolean"
     },
@@ -97,6 +97,12 @@
   "properties": [
     {
       "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
       "default": "false",
       "description": "Disables the radio button.",
       "name": "disabled",
@@ -112,20 +118,14 @@
     {
       "access": "public",
       "description": "",
-      "name": "hiddenInput",
-      "type": "HTMLInputElement"
-    },
-    {
-      "access": "public",
-      "description": "",
       "name": "input",
       "type": "HTMLInputElement"
     },
     {
       "access": "public",
       "default": "false",
-      "description": "Draws a pill-style radio button with rounded edges.",
-      "name": "pill",
+      "description": "Sets the radio button to a readonly state.",
+      "name": "readonly",
       "type": "boolean"
     },
     {

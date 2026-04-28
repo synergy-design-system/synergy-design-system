@@ -1961,13 +1961,85 @@
       }
     },
     "radio-button": {
-      "description": {
-        "value": "Radios buttons allow the user to select a single option from a group using a button-like control.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Radio buttons allow the user to select a single option from a group using a button-like control.\n\nRadio buttons are designed to be used with radio groups. When a radio button has focus, the arrow keys can be used to change the selected option just like standard radio controls.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Radio Button",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Radio Button",
-        "type": "text"
+      "checked": {
+        "description": {
+          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Checked",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "description": {
+          "value": "Use the disabled attribute to disable a radio button.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "description": {
+          "value": "Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Readonly",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio-button is mandatory and nothing has been checked.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "description": {
+          "value": "Use the size attribute to change a radio button’s size.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        }
+      },
+      "prefix-suffix": {
+        "description": {
+          "value": "Use the prefix and suffix slots to add icons.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Prefix and Suffix Icons",
+          "type": "text"
+        }
+      },
+      "buttons-with-icons": {
+        "description": {
+          "value": "You can omit button labels and use icons instead. Make sure to set a label attribute on each icon so screen readers will announce each option correctly.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Buttons with Icons",
+          "type": "text"
+        }
       }
     },
     "radio-group": {

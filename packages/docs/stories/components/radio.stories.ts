@@ -1,10 +1,10 @@
 import '../../../components/src/components/radio/radio.js';
 import '../../../components/src/components/radio-group/radio-group.js';
 import '../../../components/src/components/button/button.js';
-import { type SynRadioGroup } from '@synergy-design-system/components';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { userEvent } from 'storybook/test';
+import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory,
   generateStoryDescription, storybookDefaults, storybookHelpers, storybookTemplate,
@@ -133,6 +133,7 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
+  decorators: [FormSubmitDecorator],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -146,11 +147,9 @@ export const Invalid: Story = {
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     try {
       const form = canvasElement.querySelector('form');
-      const radioGroup = canvasElement.querySelector<SynRadioGroup>('syn-radio-group');
       const button = form?.querySelector('syn-button');
 
-      if (button && form && radioGroup) {
-        radioGroup.setCustomValidity('Invalid');
+      if (button && form) {
         await userEvent.click(button);
         button.click();
 
@@ -161,23 +160,10 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-    <form class="custom-validity">
-      <syn-radio-group required value="2">
-        <syn-radio value="1">Invalid</syn-radio>
-        <syn-radio value="2">Invalid</syn-radio>
-      </syn-radio-group>
-      <syn-button type="submit" variant="filled">Submit</syn-button>
-    </form>
-    <style>
-    .custom-validity {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    syn-button {
-      align-self: flex-start;
-    }
-    </style>
+    <syn-radio-group required>
+      <syn-radio value="1">Invalid</syn-radio>
+      <syn-radio value="">Invalid</syn-radio>
+    </syn-radio-group>
   `,
 };
 

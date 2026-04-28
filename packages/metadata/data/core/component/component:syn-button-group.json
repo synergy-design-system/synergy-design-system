@@ -141,10 +141,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-button-group/components/button-group.custom.styles.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-button-group/components/button-group.styles.ts"
       },
       {
@@ -182,7 +178,6 @@
   "sources": [
     "packages/angular/components/button-group/button-group.component.ts",
     "packages/components/src/components/button-group/button-group.component.ts",
-    "packages/components/src/components/button-group/button-group.custom.styles.ts",
     "packages/components/src/components/button-group/button-group.styles.ts",
     "packages/components/src/components/button-group/button-group.ts",
     "packages/react/src/components/button-group.ts",

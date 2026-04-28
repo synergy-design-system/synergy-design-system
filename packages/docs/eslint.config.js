@@ -27,6 +27,7 @@ export default [
           'Chromatic_Modes_Sick_2025',
         ],
       }],
+
       // Allow devDependencies in documentation/stories
       'import/no-extraneous-dependencies': 'off',
       // Allow relative package imports for examples

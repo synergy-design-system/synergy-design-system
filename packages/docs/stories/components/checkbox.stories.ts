@@ -4,6 +4,7 @@ import { type SynCheckbox } from '@synergy-design-system/components';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import { userEvent } from 'storybook/test';
+import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -157,6 +158,7 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
+  decorators: [FormSubmitDecorator],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -188,23 +190,17 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-    <form class="custom-validity">
-      <div class="custom-validity">
-        <syn-checkbox required>Invalid</syn-checkbox>
-        <syn-checkbox required indeterminate>Invalid</syn-checkbox>
-        <syn-checkbox required checked>Invalid</syn-checkbox>
-      </div>
-      <syn-button type="submit" variant="filled">Submit</syn-button>
-    </form>
+    <div class="custom-validity">
+      <syn-checkbox required>Invalid</syn-checkbox>
+      <syn-checkbox required indeterminate>Invalid</syn-checkbox>
+      <syn-checkbox required checked>Invalid</syn-checkbox>
+    </div>
     <style>
-    .custom-validity {
-      display: flex;
-      flex-direction: column;
-      gap: var(--syn-spacing-large);
-    }
-    syn-button {
-      align-self: flex-start;
-    }
+      .custom-validity {
+        display: flex;
+        flex-direction: column;
+        gap: var(--syn-spacing-large);
+      }
     </style>
   `,
 };

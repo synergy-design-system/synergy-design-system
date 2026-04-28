@@ -96,15 +96,22 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
 The invalid status is used to warn the user that the Switch is invalid.
 
 ```html
-<form class="custom-validity">
+<form
+  onsubmit="
+    event.preventDefault();
+    event.stopPropagation();
+  "
+  id="components-syn-switch--invalid"
+>
   <syn-switch required="">Option</syn-switch>
+
   <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
 <style>
-  .custom-validity {
+  #components-syn-switch--invalid {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--syn-spacing-large);
   }
   syn-button {
     align-self: flex-start;

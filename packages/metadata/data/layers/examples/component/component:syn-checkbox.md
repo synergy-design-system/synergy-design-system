@@ -101,16 +101,30 @@ Use the size attribute to change a checkbox’s size.
 The invalid status is used to warn the user that the Checkbox is invalid. For example, if the check is mandatory and nothing has been checked.
 
 ```html
-<form class="custom-validity">
+<form
+  onsubmit="
+    event.preventDefault();
+    event.stopPropagation();
+  "
+  id="components-syn-checkbox--invalid"
+>
   <div class="custom-validity">
     <syn-checkbox required="">Invalid</syn-checkbox>
     <syn-checkbox required="" indeterminate="">Invalid</syn-checkbox>
     <syn-checkbox required="" checked="">Invalid</syn-checkbox>
   </div>
+  <style>
+    .custom-validity {
+      display: flex;
+      flex-direction: column;
+      gap: var(--syn-spacing-large);
+    }
+  </style>
+
   <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
 <style>
-  .custom-validity {
+  #components-syn-checkbox--invalid {
     display: flex;
     flex-direction: column;
     gap: var(--syn-spacing-large);

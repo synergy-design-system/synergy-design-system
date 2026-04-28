@@ -35,14 +35,14 @@ default: `false`
 
 Disables the radio button.
 
-### pill
+### readonly
 
-attribute: `pill`
+attribute: `readonly`
 reflects: yes
 type: `boolean`
 default: `false`
 
-Draws a pill-style radio button with rounded edges.
+Sets the radio button to a readonly state.
 
 ### size
 

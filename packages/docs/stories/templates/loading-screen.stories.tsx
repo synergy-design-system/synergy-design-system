@@ -20,66 +20,78 @@ const SICK_LOGO_PATH = 'M0.153685 70.3263H54.2782C62.1961 68.7465 61.3146 58.759
 
 /**
  * Creates a loading screen with an animated spinner and the SICK logo in the middle.
- * @param backgroundColor The background color to use
- * @param primaryColor The primary color the items are using
+ * @param args The arguments to customize the loading screen
+ * @param args.animationDuration The total animation cycle duration in milliseconds (default: 1500)
+ * @param args.backgroundColor The background color to use (default: '#fff')
+ * @param args.primaryColor The primary color the items are using (default: '#005aff')
  * @returns The final loading screen
  */
-const createLoadingScreen = (
-  backgroundColor = '#fff',
-  primaryColor = '#005aff',
-) => html`
-  <!-- Begin of loading screen -->
-  <div
-    aria-busy="true"
-    aria-live="polite"
-    role="status"
-    style="
-      align-items: center;
-      background: ${backgroundColor};
-      display: flex;
-      inset: 0;
-      justify-content: center;
-      position: absolute;
-      will-change: transform;
-      z-index: calc(infinity);
-    "
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 360 360"
-      width="360"
-      height="360"
-      aria-label="Loading"
-      role="img"
+const createLoadingScreen = (args: {
+  animationDuration?: number;
+  backgroundColor?: string;
+  primaryColor?: string;
+} = {}) => {
+  const {
+    animationDuration = 1500,
+    backgroundColor = '#fff',
+    primaryColor = '#005aff',
+  } = args;
+  const durS = `${animationDuration / 1000}s`;
+  // Each circle's begin offset is a multiple of dur/32, starting at multiplier 2
+  const step = animationDuration / 1000 / 32;
+  const b = Array.from({ length: 15 }, (_, i) => `${+((i + 2) * step).toFixed(6)}s`);
+  return html`
+    <!-- Begin of loading screen -->
+    <div
+      aria-busy="true"
+      role="status"
+      style="
+        align-items: center;
+        background: ${backgroundColor};
+        display: flex;
+        inset: 0;
+        justify-content: center;
+        position: absolute;
+        will-change: transform;
+        z-index: calc(infinity);
+      "
     >
-      <title>Loading</title>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 360 360"
+        width="360"
+        height="360"
+        aria-label="Loading"
+        role="img"
+      >
+        <title>Loading</title>
+        <g transform="translate(180 180)" fill="${primaryColor}">
+          <circle cx="0" cy="-171" r="5" opacity="1" />
+          <circle cx="65" cy="-158" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[0]}" /></circle>
+          <circle cx="121" cy="-121" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[1]}" /></circle>
+          <circle cx="158" cy="-65" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[2]}" /></circle>
+          <circle cx="171" cy="0" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[3]}" /></circle>
+          <circle cx="158" cy="65" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[4]}" /></circle>
+          <circle cx="121" cy="121" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[5]}" /></circle>
+          <circle cx="65" cy="158" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[6]}" /></circle>
+          <circle cx="0" cy="171" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[7]}" /></circle>
+          <circle cx="-65" cy="158" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[8]}" /></circle>
+          <circle cx="-121" cy="121" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[9]}" /></circle>
+          <circle cx="-158" cy="65" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[10]}" /></circle>
+          <circle cx="-171" cy="0" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[11]}" /></circle>
+          <circle cx="-158" cy="-65" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[12]}" /></circle>
+          <circle cx="-121" cy="-121" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[13]}" /></circle>
+          <circle cx="-65" cy="-158" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="${durS}" repeatCount="indefinite" begin="${b[14]}" /></circle>
+        </g>
 
-      <g transform="translate(180 180)" fill="${primaryColor}">
-        <circle cx="0" cy="-171" r="5" opacity="1" />
-        <circle cx="65" cy="-158" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.09375s" /></circle>
-        <circle cx="121" cy="-121" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.140625s" /></circle>
-        <circle cx="158" cy="-65" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.1875s" /></circle>
-        <circle cx="171" cy="0" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.234375s" /></circle>
-        <circle cx="158" cy="65" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.28125s" /></circle>
-        <circle cx="121" cy="121" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.328125s" /></circle>
-        <circle cx="65" cy="158" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.375s" /></circle>
-        <circle cx="0" cy="171" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.421875s" /></circle>
-        <circle cx="-65" cy="158" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.46875s" /></circle>
-        <circle cx="-121" cy="121" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.515625s" /></circle>
-        <circle cx="-158" cy="65" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.5625s" /></circle>
-        <circle cx="-171" cy="0" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.609375s" /></circle>
-        <circle cx="-158" cy="-65" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.65625s" /></circle>
-        <circle cx="-121" cy="-121" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.703125s" /></circle>
-        <circle cx="-65" cy="-158" r="5" opacity="0"><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="1.5s" repeatCount="indefinite" begin="0.75s" /></circle>
-      </g>
-
-      <g transform="translate(180 180) scale(0.58) translate(-147.5 -74)">
-        <path d="${SICK_LOGO_PATH}" fill="${primaryColor}" />
-      </g>
-    </svg>
-  </div>
-  <!-- End of loading screen -->
-`;
+        <g transform="translate(180 180) scale(0.58) translate(-147.5 -74)">
+          <path d="${SICK_LOGO_PATH}" fill="${primaryColor}" />
+        </g>
+      </svg>
+    </div>
+    <!-- End of loading screen -->
+  `;
+};
 
 const meta: Meta = {
   parameters: {
@@ -146,6 +158,9 @@ export const LoadingScreenDarkTheme: Story = {
   },
   render: () => html`
     <div style="height: 400px;">Content Placeholder</div>
-    ${createLoadingScreen('#000206')}
+    ${createLoadingScreen({
+      animationDuration: 2500,
+      backgroundColor: '#000206',
+    })}
   `,
 };

@@ -8,7 +8,6 @@ The loading screen can be displayed in light mode, which is the default theme fo
 <!-- Begin of loading screen -->
 <div
   aria-busy="true"
-  aria-live="polite"
   role="status"
   style="
     align-items: center;
@@ -30,7 +29,6 @@ The loading screen can be displayed in light mode, which is the default theme fo
     role="img"
   >
     <title>Loading</title>
-
     <g transform="translate(180 180)" fill="#005aff">
       <circle cx="0" cy="-171" r="5" opacity="1"></circle>
       <circle cx="65" cy="-158" r="5" opacity="0">
@@ -38,8 +36,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.09375s"
         ></animate>
       </circle>
@@ -48,8 +46,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.140625s"
         ></animate>
       </circle>
@@ -58,8 +56,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.1875s"
         ></animate>
       </circle>
@@ -68,8 +66,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.234375s"
         ></animate>
       </circle>
@@ -78,8 +76,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.28125s"
         ></animate>
       </circle>
@@ -88,8 +86,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.328125s"
         ></animate>
       </circle>
@@ -98,8 +96,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.375s"
         ></animate>
       </circle>
@@ -108,8 +106,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.421875s"
         ></animate>
       </circle>
@@ -118,8 +116,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.46875s"
         ></animate>
       </circle>
@@ -128,8 +126,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.515625s"
         ></animate>
       </circle>
@@ -138,8 +136,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.5625s"
         ></animate>
       </circle>
@@ -148,8 +146,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.609375s"
         ></animate>
       </circle>
@@ -158,8 +156,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.65625s"
         ></animate>
       </circle>
@@ -168,8 +166,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.703125s"
         ></animate>
       </circle>
@@ -178,8 +176,8 @@ The loading screen can be displayed in light mode, which is the default theme fo
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
+          dur="1.5s"
           begin="0.75s"
         ></animate>
       </circle>
@@ -208,7 +206,6 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
 <!-- Begin of loading screen -->
 <div
   aria-busy="true"
-  aria-live="polite"
   role="status"
   style="
     align-items: center;
@@ -230,7 +227,6 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
     role="img"
   >
     <title>Loading</title>
-
     <g transform="translate(180 180)" fill="#005aff">
       <circle cx="0" cy="-171" r="5" opacity="1"></circle>
       <circle cx="65" cy="-158" r="5" opacity="0">
@@ -238,9 +234,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.09375s"
+          dur="2.5s"
+          begin="0.15625s"
         ></animate>
       </circle>
       <circle cx="121" cy="-121" r="5" opacity="0">
@@ -248,9 +244,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.140625s"
+          dur="2.5s"
+          begin="0.234375s"
         ></animate>
       </circle>
       <circle cx="158" cy="-65" r="5" opacity="0">
@@ -258,9 +254,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.1875s"
+          dur="2.5s"
+          begin="0.3125s"
         ></animate>
       </circle>
       <circle cx="171" cy="0" r="5" opacity="0">
@@ -268,9 +264,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.234375s"
+          dur="2.5s"
+          begin="0.390625s"
         ></animate>
       </circle>
       <circle cx="158" cy="65" r="5" opacity="0">
@@ -278,9 +274,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.28125s"
+          dur="2.5s"
+          begin="0.46875s"
         ></animate>
       </circle>
       <circle cx="121" cy="121" r="5" opacity="0">
@@ -288,9 +284,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.328125s"
+          dur="2.5s"
+          begin="0.546875s"
         ></animate>
       </circle>
       <circle cx="65" cy="158" r="5" opacity="0">
@@ -298,9 +294,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.375s"
+          dur="2.5s"
+          begin="0.625s"
         ></animate>
       </circle>
       <circle cx="0" cy="171" r="5" opacity="0">
@@ -308,9 +304,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.421875s"
+          dur="2.5s"
+          begin="0.703125s"
         ></animate>
       </circle>
       <circle cx="-65" cy="158" r="5" opacity="0">
@@ -318,9 +314,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.46875s"
+          dur="2.5s"
+          begin="0.78125s"
         ></animate>
       </circle>
       <circle cx="-121" cy="121" r="5" opacity="0">
@@ -328,9 +324,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.515625s"
+          dur="2.5s"
+          begin="0.859375s"
         ></animate>
       </circle>
       <circle cx="-158" cy="65" r="5" opacity="0">
@@ -338,9 +334,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.5625s"
+          dur="2.5s"
+          begin="0.9375s"
         ></animate>
       </circle>
       <circle cx="-171" cy="0" r="5" opacity="0">
@@ -348,9 +344,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.609375s"
+          dur="2.5s"
+          begin="1.015625s"
         ></animate>
       </circle>
       <circle cx="-158" cy="-65" r="5" opacity="0">
@@ -358,9 +354,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.65625s"
+          dur="2.5s"
+          begin="1.09375s"
         ></animate>
       </circle>
       <circle cx="-121" cy="-121" r="5" opacity="0">
@@ -368,9 +364,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.703125s"
+          dur="2.5s"
+          begin="1.171875s"
         ></animate>
       </circle>
       <circle cx="-65" cy="-158" r="5" opacity="0">
@@ -378,9 +374,9 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           attributeName="opacity"
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
-          dur="1.5s"
           repeatCount="indefinite"
-          begin="0.75s"
+          dur="2.5s"
+          begin="1.25s"
         ></animate>
       </circle>
     </g>

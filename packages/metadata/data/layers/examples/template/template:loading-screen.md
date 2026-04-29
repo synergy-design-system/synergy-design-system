@@ -235,8 +235,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.15625s"
+          dur="1.5s"
+          begin="0.09375s"
         ></animate>
       </circle>
       <circle cx="121" cy="-121" r="5" opacity="0">
@@ -245,8 +245,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.234375s"
+          dur="1.5s"
+          begin="0.140625s"
         ></animate>
       </circle>
       <circle cx="158" cy="-65" r="5" opacity="0">
@@ -255,8 +255,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.3125s"
+          dur="1.5s"
+          begin="0.1875s"
         ></animate>
       </circle>
       <circle cx="171" cy="0" r="5" opacity="0">
@@ -265,8 +265,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.390625s"
+          dur="1.5s"
+          begin="0.234375s"
         ></animate>
       </circle>
       <circle cx="158" cy="65" r="5" opacity="0">
@@ -275,8 +275,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.46875s"
+          dur="1.5s"
+          begin="0.28125s"
         ></animate>
       </circle>
       <circle cx="121" cy="121" r="5" opacity="0">
@@ -285,8 +285,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.546875s"
+          dur="1.5s"
+          begin="0.328125s"
         ></animate>
       </circle>
       <circle cx="65" cy="158" r="5" opacity="0">
@@ -295,8 +295,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.625s"
+          dur="1.5s"
+          begin="0.375s"
         ></animate>
       </circle>
       <circle cx="0" cy="171" r="5" opacity="0">
@@ -305,8 +305,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.703125s"
+          dur="1.5s"
+          begin="0.421875s"
         ></animate>
       </circle>
       <circle cx="-65" cy="158" r="5" opacity="0">
@@ -315,8 +315,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.78125s"
+          dur="1.5s"
+          begin="0.46875s"
         ></animate>
       </circle>
       <circle cx="-121" cy="121" r="5" opacity="0">
@@ -325,8 +325,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.859375s"
+          dur="1.5s"
+          begin="0.515625s"
         ></animate>
       </circle>
       <circle cx="-158" cy="65" r="5" opacity="0">
@@ -335,8 +335,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="0.9375s"
+          dur="1.5s"
+          begin="0.5625s"
         ></animate>
       </circle>
       <circle cx="-171" cy="0" r="5" opacity="0">
@@ -345,8 +345,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="1.015625s"
+          dur="1.5s"
+          begin="0.609375s"
         ></animate>
       </circle>
       <circle cx="-158" cy="-65" r="5" opacity="0">
@@ -355,8 +355,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="1.09375s"
+          dur="1.5s"
+          begin="0.65625s"
         ></animate>
       </circle>
       <circle cx="-121" cy="-121" r="5" opacity="0">
@@ -365,8 +365,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="1.171875s"
+          dur="1.5s"
+          begin="0.703125s"
         ></animate>
       </circle>
       <circle cx="-65" cy="-158" r="5" opacity="0">
@@ -375,8 +375,8 @@ The loading screen can be displayed in dark mode, which is suitable for low-ligh
           values="1;1;0;0"
           keyTimes="0;0.5;0.5;1"
           repeatCount="indefinite"
-          dur="2.5s"
-          begin="1.25s"
+          dur="1.5s"
+          begin="0.75s"
         ></animate>
       </circle>
     </g>

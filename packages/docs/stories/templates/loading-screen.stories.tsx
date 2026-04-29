@@ -159,7 +159,7 @@ export const LoadingScreenDarkTheme: Story = {
   render: () => html`
     <div style="height: 400px;">Content Placeholder</div>
     ${createLoadingScreen({
-      animationDuration: 2500,
+      // animationDuration: 2500,
       backgroundColor: '#000206',
     })}
   `,

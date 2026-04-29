@@ -1,6 +1,6 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-04-28T09:14:49.091Z",
+  "generatedAt": "2026-04-29T12:24:12.617Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
@@ -30,7 +30,7 @@
     },
     {
       "id": "styles-info:syn-body",
-      "tokens": 26
+      "tokens": 210
     },
     {
       "id": "template-info:appshell",
@@ -46,7 +46,7 @@
     },
     {
       "id": "token-info:css:sick2025-light",
-      "tokens": 8292
+      "tokens": 8474
     }
   ]
 }

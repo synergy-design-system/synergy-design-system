@@ -66,357 +66,352 @@ export const SynCategorical09 = 'var(--syn-categorical-09)';
 /**
  * @type {string}
  */
-export const SynCategorical10Hover = 'var(--syn-categorical-10-hover)';
+export const SynSequential01_10 = 'var(--syn-sequential-01-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential0110 = 'var(--syn-sequential-01-10)';
+export const SynSequential01_20 = 'var(--syn-sequential-01-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential0120 = 'var(--syn-sequential-01-20)';
+export const SynSequential01_30 = 'var(--syn-sequential-01-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential0130 = 'var(--syn-sequential-01-30)';
+export const SynSequential01_40 = 'var(--syn-sequential-01-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential0140 = 'var(--syn-sequential-01-40)';
+export const SynSequential01_50 = 'var(--syn-sequential-01-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential0150 = 'var(--syn-sequential-01-50)';
+export const SynSequential01_60 = 'var(--syn-sequential-01-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential0160 = 'var(--syn-sequential-01-60)';
+export const SynSequential01_70 = 'var(--syn-sequential-01-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential0170 = 'var(--syn-sequential-01-70)';
+export const SynSequential01_80 = 'var(--syn-sequential-01-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential0180 = 'var(--syn-sequential-01-80)';
+export const SynSequential01_90 = 'var(--syn-sequential-01-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential0190 = 'var(--syn-sequential-01-90)';
+export const SynSequential01_100 = 'var(--syn-sequential-01-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential01100 = 'var(--syn-sequential-01-100)';
+export const SynSequential02_10 = 'var(--syn-sequential-02-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential0210 = 'var(--syn-sequential-02-10)';
+export const SynSequential02_20 = 'var(--syn-sequential-02-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential0220 = 'var(--syn-sequential-02-20)';
+export const SynSequential02_30 = 'var(--syn-sequential-02-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential0230 = 'var(--syn-sequential-02-30)';
+export const SynSequential02_40 = 'var(--syn-sequential-02-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential0240 = 'var(--syn-sequential-02-40)';
+export const SynSequential02_50 = 'var(--syn-sequential-02-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential0250 = 'var(--syn-sequential-02-50)';
+export const SynSequential02_60 = 'var(--syn-sequential-02-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential0260 = 'var(--syn-sequential-02-60)';
+export const SynSequential02_70 = 'var(--syn-sequential-02-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential0270 = 'var(--syn-sequential-02-70)';
+export const SynSequential02_80 = 'var(--syn-sequential-02-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential0280 = 'var(--syn-sequential-02-80)';
+export const SynSequential02_90 = 'var(--syn-sequential-02-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential0290 = 'var(--syn-sequential-02-90)';
+export const SynSequential02_100 = 'var(--syn-sequential-02-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential02100 = 'var(--syn-sequential-02-100)';
+export const SynSequential03_10 = 'var(--syn-sequential-03-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential0310 = 'var(--syn-sequential-03-10)';
+export const SynSequential03_20 = 'var(--syn-sequential-03-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential0320 = 'var(--syn-sequential-03-20)';
+export const SynSequential03_30 = 'var(--syn-sequential-03-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential0330 = 'var(--syn-sequential-03-30)';
+export const SynSequential03_40 = 'var(--syn-sequential-03-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential0340 = 'var(--syn-sequential-03-40)';
+export const SynSequential03_50 = 'var(--syn-sequential-03-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential0350 = 'var(--syn-sequential-03-50)';
+export const SynSequential03_60 = 'var(--syn-sequential-03-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential0360 = 'var(--syn-sequential-03-60)';
+export const SynSequential03_70 = 'var(--syn-sequential-03-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential0370 = 'var(--syn-sequential-03-70)';
+export const SynSequential03_80 = 'var(--syn-sequential-03-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential0380 = 'var(--syn-sequential-03-80)';
+export const SynSequential03_90 = 'var(--syn-sequential-03-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential0390 = 'var(--syn-sequential-03-90)';
+export const SynSequential03_100 = 'var(--syn-sequential-03-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential03100 = 'var(--syn-sequential-03-100)';
+export const SynSequential04_10 = 'var(--syn-sequential-04-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential0410 = 'var(--syn-sequential-04-10)';
+export const SynSequential04_20 = 'var(--syn-sequential-04-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential0420 = 'var(--syn-sequential-04-20)';
+export const SynSequential04_30 = 'var(--syn-sequential-04-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential0430 = 'var(--syn-sequential-04-30)';
+export const SynSequential04_40 = 'var(--syn-sequential-04-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential0440 = 'var(--syn-sequential-04-40)';
+export const SynSequential04_50 = 'var(--syn-sequential-04-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential0450 = 'var(--syn-sequential-04-50)';
+export const SynSequential04_60 = 'var(--syn-sequential-04-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential0460 = 'var(--syn-sequential-04-60)';
+export const SynSequential04_70 = 'var(--syn-sequential-04-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential0470 = 'var(--syn-sequential-04-70)';
+export const SynSequential04_80 = 'var(--syn-sequential-04-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential0480 = 'var(--syn-sequential-04-80)';
+export const SynSequential04_90 = 'var(--syn-sequential-04-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential0490 = 'var(--syn-sequential-04-90)';
+export const SynSequential04_100 = 'var(--syn-sequential-04-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential04100 = 'var(--syn-sequential-04-100)';
+export const SynSequential05_10 = 'var(--syn-sequential-05-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential0510 = 'var(--syn-sequential-05-10)';
+export const SynSequential05_20 = 'var(--syn-sequential-05-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential0520 = 'var(--syn-sequential-05-20)';
+export const SynSequential05_30 = 'var(--syn-sequential-05-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential0530 = 'var(--syn-sequential-05-30)';
+export const SynSequential05_40 = 'var(--syn-sequential-05-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential0540 = 'var(--syn-sequential-05-40)';
+export const SynSequential05_50 = 'var(--syn-sequential-05-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential0550 = 'var(--syn-sequential-05-50)';
+export const SynSequential05_60 = 'var(--syn-sequential-05-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential0560 = 'var(--syn-sequential-05-60)';
+export const SynSequential05_70 = 'var(--syn-sequential-05-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential0570 = 'var(--syn-sequential-05-70)';
+export const SynSequential05_80 = 'var(--syn-sequential-05-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential0580 = 'var(--syn-sequential-05-80)';
+export const SynSequential05_90 = 'var(--syn-sequential-05-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential0590 = 'var(--syn-sequential-05-90)';
+export const SynSequential05_100 = 'var(--syn-sequential-05-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential05100 = 'var(--syn-sequential-05-100)';
+export const SynSequential06_10 = 'var(--syn-sequential-06-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential0610 = 'var(--syn-sequential-06-10)';
+export const SynSequential06_20 = 'var(--syn-sequential-06-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential0620 = 'var(--syn-sequential-06-20)';
+export const SynSequential06_30 = 'var(--syn-sequential-06-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential0630 = 'var(--syn-sequential-06-30)';
+export const SynSequential06_40 = 'var(--syn-sequential-06-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential0640 = 'var(--syn-sequential-06-40)';
+export const SynSequential06_50 = 'var(--syn-sequential-06-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential0650 = 'var(--syn-sequential-06-50)';
+export const SynSequential06_60 = 'var(--syn-sequential-06-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential0660 = 'var(--syn-sequential-06-60)';
+export const SynSequential06_70 = 'var(--syn-sequential-06-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential0670 = 'var(--syn-sequential-06-70)';
+export const SynSequential06_80 = 'var(--syn-sequential-06-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential0680 = 'var(--syn-sequential-06-80)';
+export const SynSequential06_90 = 'var(--syn-sequential-06-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential0690 = 'var(--syn-sequential-06-90)';
+export const SynSequential06_100 = 'var(--syn-sequential-06-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential06100 = 'var(--syn-sequential-06-100)';
+export const SynSequential07_10 = 'var(--syn-sequential-07-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential0710 = 'var(--syn-sequential-07-10)';
+export const SynSequential07_20 = 'var(--syn-sequential-07-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential0720 = 'var(--syn-sequential-07-20)';
+export const SynSequential07_30 = 'var(--syn-sequential-07-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential0730 = 'var(--syn-sequential-07-30)';
+export const SynSequential07_40 = 'var(--syn-sequential-07-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential0740 = 'var(--syn-sequential-07-40)';
+export const SynSequential07_50 = 'var(--syn-sequential-07-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential0750 = 'var(--syn-sequential-07-50)';
+export const SynSequential07_60 = 'var(--syn-sequential-07-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential0760 = 'var(--syn-sequential-07-60)';
+export const SynSequential07_70 = 'var(--syn-sequential-07-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential0770 = 'var(--syn-sequential-07-70)';
+export const SynSequential07_80 = 'var(--syn-sequential-07-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential0780 = 'var(--syn-sequential-07-80)';
+export const SynSequential07_90 = 'var(--syn-sequential-07-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential0790 = 'var(--syn-sequential-07-90)';
-
-/**
- * @type {string}
- */
-export const SynSequential07100 = 'var(--syn-sequential-07-100)';
+export const SynSequential07_100 = 'var(--syn-sequential-07-100)';
 
 /**
  * @type {string}

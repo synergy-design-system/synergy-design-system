@@ -50,6 +50,7 @@ const initStyleDictionary = async () => {
  * @property {string} sourceDir - Directory containing the theme JSON files
  * @property {string} buildPath - Output base path (e.g. "./dist/")
  * @property {string} prefix - CSS variable prefix (e.g. "syn-")
+ * @property {Array<string>} [transforms] - Additional Style Dictionary transforms to register
  * @property {Filter} [filter] - Optional filter function to exclude tokens from CSS output (e.g. for charting tokens need the component tokens for resolving, but don't want to output them in the CSS)
  * @property {(theme: string, mode: string) => ThemeInfo} getThemeInformation - Returns theme metadata
  * @property {(themesDir: string) => void} [postProcess] - Optional post-processing step (e.g. addMissingTokens)
@@ -107,6 +108,7 @@ export const runBuildPipeline = async (config) => {
     postProcess,
     prefix,
     sourceDir,
+    transforms = [],
   } = config;
 
   await initStyleDictionary();
@@ -164,12 +166,7 @@ export const runBuildPipeline = async (config) => {
             'ts/color/css/hexrgba',
             'ts/color/modifiers',
             'shadow/css/shorthand',
-
-            'syn/add-fallback-fonts',
-            'syn/add-missing-quotes-for-strings',
-            'syn/change-output-values',
-            'syn/convert-letter-spacing-to-normal',
-            'syn/fix-figma-background-blur',
+            ...transforms,
           ],
         },
       },

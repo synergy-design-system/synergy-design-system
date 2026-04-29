@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import { styleText } from 'node:util';
-import { pascalCase } from 'change-case';
-import { createFolder, createHeaderComment } from '../helpers.js';
+import { pascalCase, split } from 'change-case';
+import { createFolder, createHeaderComment, joinConsecutiveNumbers } from '../helpers.js';
 
 /**
  * Creates JavaScript exports from the provided css file
@@ -20,6 +20,7 @@ export const createJS = (header, inputFile, outputFile) => {
       return [
         pascalCase(varName, {
           mergeAmbiguousCharacters: true,
+          split:  (value) => joinConsecutiveNumbers(split(value)),
         }),
         cssVar.replace(':', ''),
       ];

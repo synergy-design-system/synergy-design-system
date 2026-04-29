@@ -47,10 +47,6 @@
     "09": {
       "type": "color",
       "value": "{color.data.teal.500}"
-    },
-    "10-hover": {
-      "type": "color",
-      "value": "{color.data.purple.600}"
     }
   },
   "sequential": {

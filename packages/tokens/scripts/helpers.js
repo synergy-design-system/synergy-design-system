@@ -138,3 +138,30 @@ export const getCssSelectors = (theme, mode) => {
   }
   return selectors;
 };
+
+/**
+ * Merges two or more consecutive items of an array, if they are from type number into one array entry.
+ * The merged value is created by joining the consecutive numbers with a delimiter (default is '_').
+ *
+ * @example
+ * mergeConsecutiveNumbersWithDelimiter([ 'syn', 'color', 'accent', '100' ])   // => [ 'syn', 'color', 'accent', '100' ]
+ * mergeConsecutiveNumbersWithDelimiter([ 'syn', 'sequential', '04', '100' ])   // => [ 'syn', 'sequential', '04_100' ]
+ *
+ * @param {string[]} value  The array of segments to merge
+ * @param {string} [delimiter='_']
+ * @returns {string[]}
+ */
+export function joinConsecutiveNumbers(value, delimiter = '_') {
+  return value.reduce((/** @type {string[]} */ result, segment) => {
+    if (result.length === 0) {
+      return [segment];
+    }
+    const last = (result[result.length - 1]);
+    const isNumeric = /^\d+$/.test(segment);
+    const prevIsNumeric = /^\d+$/.test(last);
+    if (isNumeric && prevIsNumeric) {
+      return [...result.slice(0, -1), `${last}${delimiter}${segment}`];
+    }
+    return [...result, segment];
+  }, []);
+}

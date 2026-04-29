@@ -64,359 +64,354 @@ export const SynCategorical08: string;
 export const SynCategorical09: string;
 
 /**
- * Maps to the css variable `--syn-categorical-10-hover`
- */
-export const SynCategorical10Hover: string;
-
-/**
  * Maps to the css variable `--syn-sequential-01-10`
  */
-export const SynSequential0110: string;
+export const SynSequential01_10: string;
 
 /**
  * Maps to the css variable `--syn-sequential-01-20`
  */
-export const SynSequential0120: string;
+export const SynSequential01_20: string;
 
 /**
  * Maps to the css variable `--syn-sequential-01-30`
  */
-export const SynSequential0130: string;
+export const SynSequential01_30: string;
 
 /**
  * Maps to the css variable `--syn-sequential-01-40`
  */
-export const SynSequential0140: string;
+export const SynSequential01_40: string;
 
 /**
  * Maps to the css variable `--syn-sequential-01-50`
  */
-export const SynSequential0150: string;
+export const SynSequential01_50: string;
 
 /**
  * Maps to the css variable `--syn-sequential-01-60`
  */
-export const SynSequential0160: string;
+export const SynSequential01_60: string;
 
 /**
  * Maps to the css variable `--syn-sequential-01-70`
  */
-export const SynSequential0170: string;
+export const SynSequential01_70: string;
 
 /**
  * Maps to the css variable `--syn-sequential-01-80`
  */
-export const SynSequential0180: string;
+export const SynSequential01_80: string;
 
 /**
  * Maps to the css variable `--syn-sequential-01-90`
  */
-export const SynSequential0190: string;
+export const SynSequential01_90: string;
 
 /**
  * Maps to the css variable `--syn-sequential-01-100`
  */
-export const SynSequential01100: string;
+export const SynSequential01_100: string;
 
 /**
  * Maps to the css variable `--syn-sequential-02-10`
  */
-export const SynSequential0210: string;
+export const SynSequential02_10: string;
 
 /**
  * Maps to the css variable `--syn-sequential-02-20`
  */
-export const SynSequential0220: string;
+export const SynSequential02_20: string;
 
 /**
  * Maps to the css variable `--syn-sequential-02-30`
  */
-export const SynSequential0230: string;
+export const SynSequential02_30: string;
 
 /**
  * Maps to the css variable `--syn-sequential-02-40`
  */
-export const SynSequential0240: string;
+export const SynSequential02_40: string;
 
 /**
  * Maps to the css variable `--syn-sequential-02-50`
  */
-export const SynSequential0250: string;
+export const SynSequential02_50: string;
 
 /**
  * Maps to the css variable `--syn-sequential-02-60`
  */
-export const SynSequential0260: string;
+export const SynSequential02_60: string;
 
 /**
  * Maps to the css variable `--syn-sequential-02-70`
  */
-export const SynSequential0270: string;
+export const SynSequential02_70: string;
 
 /**
  * Maps to the css variable `--syn-sequential-02-80`
  */
-export const SynSequential0280: string;
+export const SynSequential02_80: string;
 
 /**
  * Maps to the css variable `--syn-sequential-02-90`
  */
-export const SynSequential0290: string;
+export const SynSequential02_90: string;
 
 /**
  * Maps to the css variable `--syn-sequential-02-100`
  */
-export const SynSequential02100: string;
+export const SynSequential02_100: string;
 
 /**
  * Maps to the css variable `--syn-sequential-03-10`
  */
-export const SynSequential0310: string;
+export const SynSequential03_10: string;
 
 /**
  * Maps to the css variable `--syn-sequential-03-20`
  */
-export const SynSequential0320: string;
+export const SynSequential03_20: string;
 
 /**
  * Maps to the css variable `--syn-sequential-03-30`
  */
-export const SynSequential0330: string;
+export const SynSequential03_30: string;
 
 /**
  * Maps to the css variable `--syn-sequential-03-40`
  */
-export const SynSequential0340: string;
+export const SynSequential03_40: string;
 
 /**
  * Maps to the css variable `--syn-sequential-03-50`
  */
-export const SynSequential0350: string;
+export const SynSequential03_50: string;
 
 /**
  * Maps to the css variable `--syn-sequential-03-60`
  */
-export const SynSequential0360: string;
+export const SynSequential03_60: string;
 
 /**
  * Maps to the css variable `--syn-sequential-03-70`
  */
-export const SynSequential0370: string;
+export const SynSequential03_70: string;
 
 /**
  * Maps to the css variable `--syn-sequential-03-80`
  */
-export const SynSequential0380: string;
+export const SynSequential03_80: string;
 
 /**
  * Maps to the css variable `--syn-sequential-03-90`
  */
-export const SynSequential0390: string;
+export const SynSequential03_90: string;
 
 /**
  * Maps to the css variable `--syn-sequential-03-100`
  */
-export const SynSequential03100: string;
+export const SynSequential03_100: string;
 
 /**
  * Maps to the css variable `--syn-sequential-04-10`
  */
-export const SynSequential0410: string;
+export const SynSequential04_10: string;
 
 /**
  * Maps to the css variable `--syn-sequential-04-20`
  */
-export const SynSequential0420: string;
+export const SynSequential04_20: string;
 
 /**
  * Maps to the css variable `--syn-sequential-04-30`
  */
-export const SynSequential0430: string;
+export const SynSequential04_30: string;
 
 /**
  * Maps to the css variable `--syn-sequential-04-40`
  */
-export const SynSequential0440: string;
+export const SynSequential04_40: string;
 
 /**
  * Maps to the css variable `--syn-sequential-04-50`
  */
-export const SynSequential0450: string;
+export const SynSequential04_50: string;
 
 /**
  * Maps to the css variable `--syn-sequential-04-60`
  */
-export const SynSequential0460: string;
+export const SynSequential04_60: string;
 
 /**
  * Maps to the css variable `--syn-sequential-04-70`
  */
-export const SynSequential0470: string;
+export const SynSequential04_70: string;
 
 /**
  * Maps to the css variable `--syn-sequential-04-80`
  */
-export const SynSequential0480: string;
+export const SynSequential04_80: string;
 
 /**
  * Maps to the css variable `--syn-sequential-04-90`
  */
-export const SynSequential0490: string;
+export const SynSequential04_90: string;
 
 /**
  * Maps to the css variable `--syn-sequential-04-100`
  */
-export const SynSequential04100: string;
+export const SynSequential04_100: string;
 
 /**
  * Maps to the css variable `--syn-sequential-05-10`
  */
-export const SynSequential0510: string;
+export const SynSequential05_10: string;
 
 /**
  * Maps to the css variable `--syn-sequential-05-20`
  */
-export const SynSequential0520: string;
+export const SynSequential05_20: string;
 
 /**
  * Maps to the css variable `--syn-sequential-05-30`
  */
-export const SynSequential0530: string;
+export const SynSequential05_30: string;
 
 /**
  * Maps to the css variable `--syn-sequential-05-40`
  */
-export const SynSequential0540: string;
+export const SynSequential05_40: string;
 
 /**
  * Maps to the css variable `--syn-sequential-05-50`
  */
-export const SynSequential0550: string;
+export const SynSequential05_50: string;
 
 /**
  * Maps to the css variable `--syn-sequential-05-60`
  */
-export const SynSequential0560: string;
+export const SynSequential05_60: string;
 
 /**
  * Maps to the css variable `--syn-sequential-05-70`
  */
-export const SynSequential0570: string;
+export const SynSequential05_70: string;
 
 /**
  * Maps to the css variable `--syn-sequential-05-80`
  */
-export const SynSequential0580: string;
+export const SynSequential05_80: string;
 
 /**
  * Maps to the css variable `--syn-sequential-05-90`
  */
-export const SynSequential0590: string;
+export const SynSequential05_90: string;
 
 /**
  * Maps to the css variable `--syn-sequential-05-100`
  */
-export const SynSequential05100: string;
+export const SynSequential05_100: string;
 
 /**
  * Maps to the css variable `--syn-sequential-06-10`
  */
-export const SynSequential0610: string;
+export const SynSequential06_10: string;
 
 /**
  * Maps to the css variable `--syn-sequential-06-20`
  */
-export const SynSequential0620: string;
+export const SynSequential06_20: string;
 
 /**
  * Maps to the css variable `--syn-sequential-06-30`
  */
-export const SynSequential0630: string;
+export const SynSequential06_30: string;
 
 /**
  * Maps to the css variable `--syn-sequential-06-40`
  */
-export const SynSequential0640: string;
+export const SynSequential06_40: string;
 
 /**
  * Maps to the css variable `--syn-sequential-06-50`
  */
-export const SynSequential0650: string;
+export const SynSequential06_50: string;
 
 /**
  * Maps to the css variable `--syn-sequential-06-60`
  */
-export const SynSequential0660: string;
+export const SynSequential06_60: string;
 
 /**
  * Maps to the css variable `--syn-sequential-06-70`
  */
-export const SynSequential0670: string;
+export const SynSequential06_70: string;
 
 /**
  * Maps to the css variable `--syn-sequential-06-80`
  */
-export const SynSequential0680: string;
+export const SynSequential06_80: string;
 
 /**
  * Maps to the css variable `--syn-sequential-06-90`
  */
-export const SynSequential0690: string;
+export const SynSequential06_90: string;
 
 /**
  * Maps to the css variable `--syn-sequential-06-100`
  */
-export const SynSequential06100: string;
+export const SynSequential06_100: string;
 
 /**
  * Maps to the css variable `--syn-sequential-07-10`
  */
-export const SynSequential0710: string;
+export const SynSequential07_10: string;
 
 /**
  * Maps to the css variable `--syn-sequential-07-20`
  */
-export const SynSequential0720: string;
+export const SynSequential07_20: string;
 
 /**
  * Maps to the css variable `--syn-sequential-07-30`
  */
-export const SynSequential0730: string;
+export const SynSequential07_30: string;
 
 /**
  * Maps to the css variable `--syn-sequential-07-40`
  */
-export const SynSequential0740: string;
+export const SynSequential07_40: string;
 
 /**
  * Maps to the css variable `--syn-sequential-07-50`
  */
-export const SynSequential0750: string;
+export const SynSequential07_50: string;
 
 /**
  * Maps to the css variable `--syn-sequential-07-60`
  */
-export const SynSequential0760: string;
+export const SynSequential07_60: string;
 
 /**
  * Maps to the css variable `--syn-sequential-07-70`
  */
-export const SynSequential0770: string;
+export const SynSequential07_70: string;
 
 /**
  * Maps to the css variable `--syn-sequential-07-80`
  */
-export const SynSequential0780: string;
+export const SynSequential07_80: string;
 
 /**
  * Maps to the css variable `--syn-sequential-07-90`
  */
-export const SynSequential0790: string;
+export const SynSequential07_90: string;
 
 /**
  * Maps to the css variable `--syn-sequential-07-100`
  */
-export const SynSequential07100: string;
+export const SynSequential07_100: string;
 
 /**
  * Maps to the css variable `--syn-sequential-status-critical-10`

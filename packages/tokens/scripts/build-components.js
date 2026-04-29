@@ -33,4 +33,11 @@ await runBuildPipeline({
   postProcess: (themesDir) => addMissingTokens(join(themesDir)),
   prefix: 'syn-',
   sourceDir: COMPONENTS_OUTPUT_DIR,
+  transforms: [
+    'syn/fix-figma-background-blur',
+    'syn/add-fallback-fonts',
+    'syn/add-missing-quotes-for-strings',
+    'syn/change-output-values',
+    'syn/convert-letter-spacing-to-normal',
+  ],
 });

@@ -8,6 +8,7 @@ import {
 } from '../../src/helpers/component.js';
 import { type RenderArgs, renderStyles } from '../../src/helpers/styles.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-body');
 const { overrideArgs } = storybookHelpers('syn-body');
@@ -23,6 +24,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-body',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('41127-558410'),
     docs: {
       description: {

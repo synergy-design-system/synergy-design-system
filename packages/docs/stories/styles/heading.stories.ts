@@ -8,6 +8,7 @@ import {
 } from '../../src/helpers/component.js';
 import { type RenderArgs, renderStyles } from '../../src/helpers/styles.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-heading');
 const { overrideArgs } = storybookHelpers('syn-heading');
@@ -23,6 +24,9 @@ const meta: Meta = {
   argTypes,
   component: 'syn-heading',
   parameters: {
+    chromatic: {
+      modes: Chromatic_Modes_All,
+    },
     design: generateFigmaPluginObject('41127-558410'),
     docs: {
       description: {
@@ -44,15 +48,30 @@ export const Default: StoryObj = {
   render: (args: unknown) => renderStyles(args as RenderArgs),
 };
 
-const Heading: StoryObj = {
+export const AvailableHeadings: StoryObj = {
   render: () => html`
-    <p class="syn-heading--large">syn-heading--large</p>
-    <p class="syn-heading--x-large">syn-heading--x-large</p>
-    <p class="syn-heading--2x-large">syn-heading--2x-large</p>
-    <p class="syn-heading--3x-large">syn-heading--3x-large</p>
+    <section class="heading-stories-list">
+      <h6 class="syn-heading--medium">The quick brown fox jumped over the lazy dog.</h6>
+      <h5 class="syn-heading--large">The quick brown fox jumped over the lazy dog.</h5>
+      <h4 class="syn-heading--x-large">The quick brown fox jumped over the lazy dog.</h4>
+      <h3 class="syn-heading--2x-large">The quick brown fox jumped over the lazy dog.</h3>
+      <h2 class="syn-heading--3x-large">The quick brown fox jumped over the lazy dog.</h2>
+      <h1 class="syn-heading--4x-large">The quick brown fox jumped over the lazy dog.</h1>
+    </section>
+    <style>
+    section.heading-stories-list {
+      display: flex;
+      gap: var(--syn-spacing-medium);
+      flex-direction: column;
+
+      h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+      }
+    }
+    </style>
   `,
 };
 
 export const Screenshot: StoryObj = generateScreenshotStory({
-  Heading,
+  AvailableHeadings,
 });

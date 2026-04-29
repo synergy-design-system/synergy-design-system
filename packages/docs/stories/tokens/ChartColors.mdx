@@ -1,0 +1,91 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import {
+  getChartColorAsPalette,
+} from '../../src/helpers';
+import {
+  TokenPalette,
+} from '../../src/shared-components/TokenPalette.tsx';
+
+<Meta title="Tokens/Chart Colors" tags={['Design Tokens', 'Colors', 'Charts']} />
+
+# Color Palettes
+
+{[
+  {
+    title: 'Categorical Palette',
+    palettes: [{tokens: getChartColorAsPalette('categorical', true)}],
+    description:
+      `The Categorical Palette is used to visually distinguish discrete data categories in charts such as bar, line, or pie charts.
+      To ensure consistency and recognition across applications, colors must be applied in a fixed sequence and should not be rearranged.
+      \n\nAccessibility note:\n\n
+      For accessibility, the colors in this palette meet the minimum contrast ratio of 3:1 only when used on the chart-background token.\n\n
+      Using these colors on other background colors may result in insufficient contrast. Following these guidelines ensures that charts remain both
+      visually effective and inclusive across themes.`
+  },
+  {
+    title: 'Sequential Palettes',
+    palettes: ['1', '2', '3', '4', '5', '6', '7'].map(num => ({
+      subtitle: `Sequential Palette ${num}`,
+      tokens: getChartColorAsPalette(`sequential0${num}`, true)
+    })),
+    description:
+      `Sequential color palettes use a single color that progress from light to dark. They are ideal for visualizing ordered data that increases or decreases in magnitude, making it easy to see relative intensity or quantity at a glance.
+
+Sequential palettes are particularly effective for showing continuous ranges, for example:
+Low to high values
+Small to large populations
+Light to heavy usage or intensity
+Early to late time spans
+
+Unlike categorical or diverging palettes, sequential palettes emphasise a smooth progression within one direction rather than contrasting two ends. This makes them well-suited for heatmaps, choropleth maps, distribution charts, and any visual where “more vs. less” is the key message.
+
+
+Accessibility note: 
+
+Because sequential palettes rely on gradual changes in luminance and saturation, adjacent steps can be hard to distinguish—especially at the very light or very dark ends, and for users with colour vision deficiencies. 
+
+In other words, some shades don’t meet the 3:1 minimum contrast ratio.
+
+To address this:
+Don’t rely on color alone to convey meaning. Add a second cue (e.g., labels, icons, line styles) so the message is still clear if colours aren’t easily distinguishable.
+Highlight important thresholds or ranges with extra guidance, such as:
+Data labels or short annotations
+Contour lines, gridlines, or shaded bands to mark ranges
+Subtle patterns or thin outlines on areas/bars (where it makes sense)
+`
+},
+{
+  title: 'Sequential Status Palettes',
+  palettes: ['error', 'success', 'critical', 'warning',  'info'].map(status => ({
+    subtitle: `Sequential Status ${status.charAt(0).toUpperCase() + status.slice(1)} Palette`,
+    tokens: getChartColorAsPalette(`sequentialstatus${status}`, true)
+  })),
+  description: `Status sequential palettes use lighter to darker versions of a single status color (such as success, warning, error, info, or critical). They help show how strong or severe a status is, not just which status it belongs to. Lighter shades represent low impact or early stages, while darker shades show higher impact or urgency.
+
+These palettes are useful when a status changes in intensity over time or across data points—for example in heatmaps, timelines, or charts that compare different levels of risk or confidence.
+
+
+
+
+Accessibility note: 
+
+Because sequential palettes rely on gradual changes in luminance and saturation, adjacent steps can be hard to distinguish—especially at the very light or very dark ends, and for users with colour vision deficiencies. 
+In other words, some shades don’t meet the 3:1 minimum contrast ratio.
+
+To address this:
+Don’t rely on colour alone to convey meaning. Add a second cue (e.g., labels, icons, line styles) so the message is still clear if colours aren’t easily distinguishable.
+Highlight important thresholds or ranges with extra guidance, such as:
+Data labels or short annotations
+Contour lines, gridlines, or shaded bands to mark ranges
+Subtle patterns or thin outlines on areas/bars (where it makes sense)`
+}
+
+].map(({ title, palettes, description }) => (
+  <TokenPalette
+    key={title}
+    paletteTitle={title}
+    palettes={palettes}
+    description={description}
+  />
+))}
+

@@ -2,6 +2,11 @@
   "custom": {
     "artifactGroups": {
       "dist": [
+        "packages/tokens/dist/charts/js/index.d.ts",
+        "packages/tokens/dist/charts/js/index.js",
+        "packages/tokens/dist/charts/scss/_tokens.scss",
+        "packages/tokens/dist/charts/themes/sick2025_dark.css",
+        "packages/tokens/dist/charts/themes/sick2025_light.css",
         "packages/tokens/dist/js/index.d.ts",
         "packages/tokens/dist/js/index.js",
         "packages/tokens/dist/scss/_tokens.scss",
@@ -19,6 +24,9 @@
     },
     "exports": [
       ".",
+      "./charts",
+      "./charts/scss/*",
+      "./charts/themes/*",
       "./package.json",
       "./scss/*",
       "./themes/*"

@@ -1,99 +1,65 @@
 /**
- * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse} GetLocalVariablesResponse
- * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse['meta']} VariablesAndCollections
- * @typedef {import('@figma/rest-api-spec').ErrorResponsePayloadWithErrorBoolean} ErrorResponsePayloadWithErrorBoolean
- * @typedef {VariablesAndCollections['variables']} Variables
- * @typedef {VariablesAndCollections['variableCollections']} VariableCollections
+ * @description Entry-point script for fetching Figma variables.
+ *
+ * Run this script to download the latest variable tokens from Figma and write
+ * them as raw JSON files into the local `src/` directories. These JSON files
+ * are later consumed by `transform.js` to build Style-Dictionary-compatible
+ * token files.
+ *
+ * Usage (via package.json script):
+ *   FIGMA_TOKEN=<token> pnpm fetch:variables
+ *
+ * Environment variables:
+ *   FIGMA_TOKEN      (required) Personal access token for the Figma REST API.
+ *   FIGMA_FILE_ID    (optional) Override the default Figma file ID for component tokens.
  */
+
 import {
-  existsSync, mkdirSync, rmSync, writeFileSync,
-} from 'fs';
-import { sort } from '@tamtamchik/json-deep-sort';
-import { FIGMA_FETCHED_VARIABLES_PATH, FIGMA_VARIABLES_DIR } from '../config.js';
+  FIGMA_CHARTS_DIR,
+  FIGMA_FETCHED_CHARTING_VARIABLES_PATH,
+  FIGMA_FETCHED_VARIABLES_PATH,
+  FIGMA_VARIABLES_DIR,
+} from '../config.js';
+import { fetchFigmaVariables } from './figma-client.js';
 
-/**
- * Validates environment variables and returns branch ID and headers
- */
-const getApiConfig = () => {
-  // Use FIGMA_FILE_ID from environment variables or default from main branch
-  const branchId = process.env.FIGMA_FILE_ID || 'bZFqk9urD3NlghGUKrkKCR';
-  if (!process.env.FIGMA_FILE_ID) {
-    console.log('No FIGMA_FILE_ID provided, using default branch ID:', branchId);
-  }
+if (!process.env.FIGMA_TOKEN) {
+  throw new Error('FIGMA_TOKEN environment variable is not set');
+}
 
-  if (!process.env.FIGMA_TOKEN) {
-    throw new Error('FIGMA_TOKEN environment variable is not set');
-  }
+const figmaToken = process.env.FIGMA_TOKEN;
 
-  const headers = { 'X-Figma-Token': process.env.FIGMA_TOKEN };
-  return { branchId, headers };
-};
+// ---------------------------------------------------------------------------
+// Component tokens (main Figma file)
+// ---------------------------------------------------------------------------
 
-/**
- * Filters out hidden variable collections and their associated variables
- * @param {VariableCollections} variableCollections - Variable collections object
- * @param {Variables} variables - Variables object
- */
-const filterHiddenCollections = (variableCollections, variables) => {
-  // Filter out variable collections that are hidden from publishing
-  Object.entries(variableCollections).forEach(([collectionId, collection]) => {
-    if (collection.hiddenFromPublishing === true) {
-      delete variableCollections[collectionId];
-    }
-  });
+const DEFAULT_COMPONENT_FILE_ID = 'bZFqk9urD3NlghGUKrkKCR';
+const componentFileId = process.env.FIGMA_FILE_ID || DEFAULT_COMPONENT_FILE_ID;
 
-  // Filter out variables that used collections that are hidden from publishing
-  Object.entries(variables).forEach(([variableId, variable]) => {
-    if (variableCollections[variable.variableCollectionId] === undefined) {
-      delete variables[variableId];
-    }
-  });
+if (!process.env.FIGMA_FILE_ID) {
+  console.log('No FIGMA_FILE_ID provided, using default branch ID:', componentFileId);
+}
 
-  return { variableCollections, variables };
-};
+fetchFigmaVariables({
+  figmaFileId: componentFileId,
+  figmaToken,
+  outputDir: FIGMA_VARIABLES_DIR,
+  outputPath: FIGMA_FETCHED_VARIABLES_PATH,
+}).catch(console.error);
 
-/**
- * Validates the API response
- * @param {GetLocalVariablesResponse | ErrorResponsePayloadWithErrorBoolean} variablesResponse - The API response
- */
-const validateApiResponse = (variablesResponse) => {
-  if (variablesResponse.error || !variablesResponse.meta) {
-    const errorMessage = variablesResponse.error
-      ? `Error ${variablesResponse.status} while fetching. Message: ${variablesResponse?.message || ''}`
-      : 'No metadata found in response';
-    throw new Error(`Failed to fetch variables: ${errorMessage}`);
-  }
-};
+// ---------------------------------------------------------------------------
+// Charting tokens (separate Figma file)
+// ---------------------------------------------------------------------------
 
-// Clean up the output directory if it exists
-const cleanUp = () => {
-  if (existsSync(FIGMA_VARIABLES_DIR)) {
-    rmSync(FIGMA_VARIABLES_DIR, { recursive: true });
-    mkdirSync(FIGMA_VARIABLES_DIR, { recursive: true });
-  }
-};
+const DEFAULT_CHARTING_FILE_ID = '9IpXnDH4GFziUH9sOpnK8V';
+const chartingFileId = process.env.FIGMA_CHARTING_FILE_ID || DEFAULT_CHARTING_FILE_ID;
 
-/**
- * Fetches local variables from Figma API and saves them to a JSON file.
- */
-const fetchFigmaVariables = async () => {
-  cleanUp();
-  const { branchId, headers } = getApiConfig();
+if (!process.env.FIGMA_CHARTING_FILE_ID) {
+  console.log('No FIGMA_CHARTING_FILE_ID provided, using default branch ID:', chartingFileId);
+}
 
-  const variablesFetch = await fetch(
-    `https://api.figma.com/v1/files/${branchId}/variables/local`,
-    { headers },
-  );
-
-  const response = /** @type {GetLocalVariablesResponse} */ (await variablesFetch.json());
-
-  validateApiResponse(response);
-  const variableCollections = response.meta.variableCollections || {};
-  const variables = response.meta.variables || {};
-
-  const filteredData = filterHiddenCollections(variableCollections, variables);
-
-  writeFileSync(FIGMA_FETCHED_VARIABLES_PATH, JSON.stringify(sort(filteredData), null, 2));
-};
-
-fetchFigmaVariables().catch(console.error);
+fetchFigmaVariables({
+  figmaFileId: chartingFileId,
+  figmaToken,
+  outputDir: FIGMA_CHARTS_DIR,
+  outputPath: FIGMA_FETCHED_CHARTING_VARIABLES_PATH,
+}).catch(console.error);

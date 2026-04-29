@@ -1,87 +1,33 @@
-import { Markdown, Meta } from "@storybook/addon-docs/blocks";
-import React from 'react';
-import { CopyToClipBoard } from '../../src/shared-components/Clipboard.tsx';
-import { CopyRawHexValue } from '../../src/shared-components/RawColorValue.tsx';
-import { ColorSwatch, MultiLineDescription } from '../../src/shared-components/TokenHelpers.tsx';
+import { Meta } from "@storybook/addon-docs/blocks";
+import { TokenPalette } from '../../src/shared-components/TokenPalette.tsx';
 import docsTokens from '../../../tokens/src/figma-tokens/_docs.json';
 
 import {
   getAccentColorPalette,
   getCriticalColorPalette,
-  getCSSToken,
   getColorAsPalette,
   getNeutralColorPalette,
   getPrimaryColorPalette,
-  getSASSToken,
 } from '../../src/helpers';
-import {
-  getThemesForComponent,
-  TokensForThemes,
-} from '../../src/shared-components/TokensForThemes.tsx';
 
 <Meta title="Tokens/Colors" tags={['Design Tokens', 'Colors']} />
 
-# Colors
-
-<MultiLineDescription value={docsTokens?.tokens?.color?.description?.value} />
-
-<TokensForThemes
-  themes={getThemesForComponent(['2025-light', '2025-dark', '2018-light', '2018-dark'], () => (
-    <table>
-      <tbody>
-        {[
-          ['Neutral', getNeutralColorPalette(true)],
-          ['Primary', getPrimaryColorPalette(true)],
-          ['Muted', getColorAsPalette('muted', true)],
-          ['Accent', getAccentColorPalette(true)],
-          ['Error', getColorAsPalette('error', true)],
-          ['Critical', getCriticalColorPalette(true)],
-          ['Warning', getColorAsPalette('warning', true)],
-          ['Success', getColorAsPalette('success', true)],
-          ['Info', getColorAsPalette('info', true)],
-          ['Data/Magenta', getColorAsPalette('dataMagenta', true)],
-          ['Data/Teal', getColorAsPalette('dataTeal', true)],
-          ['Data/Purple', getColorAsPalette('dataPurple', true)],
-        ].map(([title, palette]) => (
-          <React.Fragment key={title}>
-            <tr key={`${title}-header`}>
-              <th colSpan="5">{title}</th>
-            </tr>
-            <tr key={`${title}-others`}>
-              <th>Color</th>
-              <th>Raw Value</th>
-              <th>CSS Token</th>
-              <th>SCSS Token</th>
-              <th>JS Token</th>
-            </tr>
-            {Object.entries(palette).map(([token, value]) => (
-              <tr key={`${title}-row-${token}`}>
-                <td>
-                  <ColorSwatch value={value} />
-                </td>
-                <td>
-                  <CopyRawHexValue value={getCSSToken(token)}>{value}</CopyRawHexValue>
-                </td>
-                <td>
-                  <CopyToClipBoard value={getCSSToken(token)}>
-                    {getCSSToken(token)}
-                  </CopyToClipBoard>
-                </td>
-                <td>
-                  <CopyToClipBoard value={getSASSToken(token)}>
-                    {getSASSToken(token)}
-                  </CopyToClipBoard>
-                </td>
-                <td>
-                  <CopyToClipBoard value={token}>
-                    {token}
-                  </CopyToClipBoard>
-                </td>
-              </tr>
-            ))}
-          </React.Fragment>
-        ))}
-      </tbody>
-    </table>
-  ))}
+<TokenPalette
+  description={docsTokens?.tokens?.color?.description?.value}
+  paletteTitle="Colors"
+  palettes={[
+    { subtitle: 'Neutral', tokens: getNeutralColorPalette(true) },
+    { subtitle: 'Primary', tokens: getPrimaryColorPalette(true) },
+    { subtitle: 'Muted', tokens: getColorAsPalette('muted', true) },
+    { subtitle: 'Accent', tokens: getAccentColorPalette(true) },
+    { subtitle: 'Error', tokens: getColorAsPalette('error', true) },
+    { subtitle: 'Critical', tokens: getCriticalColorPalette(true) },
+    { subtitle: 'Warning', tokens: getColorAsPalette('warning', true) },
+    { subtitle: 'Success', tokens: getColorAsPalette('success', true) },
+    { subtitle: 'Info', tokens: getColorAsPalette('info', true) },
+    { subtitle: 'Data/Magenta', tokens: getColorAsPalette('dataMagenta', true) },
+    { subtitle: 'Data/Teal', tokens: getColorAsPalette('dataTeal', true) },
+    { subtitle: 'Data/Purple', tokens: getColorAsPalette('dataPurple', true) },
+  ]}
+  themes={['2025-light', '2025-dark', '2018-light', '2018-dark']}
 />

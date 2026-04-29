@@ -1,5 +1,5 @@
 import {
-  existsSync, mkdirSync, readFileSync, readdirSync,
+  existsSync, mkdirSync, readFileSync,
 } from 'node:fs';
 import { dirname } from 'node:path';
 import { OUTPUT_VARIABLE_CHANGES } from './config.js';
@@ -70,22 +70,6 @@ export const getPackageInformation = () => {
 };
 
 /**
- * Get the list of available themes and modes
- * from the src/figma-variables/output folder.
- * To make this work, make sure to have the following folder structure:
- * src/figma-variables/output (The themes to use, e.g. sick2018-light, sick2018-dark, sick2025-light, sick2025-dark)
- * @returns {Array<{mode: string, theme: string}>} The list of available themes and modes
- */
-export const getAvailableThemes = () => {
-  const themes = readdirSync('./src/figma-variables/output');
-
-  return themes.flatMap(theme => ({
-    mode: theme.includes('light') ? 'light' : 'dark',
-    theme: theme.replace('.json', ''),
-  }));
-};
-
-/**
  * Get the default theme that should be used,
  * depending on the package.json major version
  */
@@ -137,4 +121,20 @@ export const getInformationForTheme = (theme, mode) => {
     mode,
     theme,
   };
+};
+
+/**
+ * Returns CSS selectors for a given base-component theme.
+ * @param {string} theme - e.g. "sick2025-light"
+ * @param {string} mode - e.g. "light"
+ * @returns {string[]}
+ */
+export const getCssSelectors = (theme, mode) => {
+  const selectors = [':root', `.syn-${theme}`];
+  const defaultTheme = getDefaultTheme();
+
+  if (theme.includes(defaultTheme)) {
+    selectors.push(`.syn-theme-${mode}`);
+  }
+  return selectors;
 };

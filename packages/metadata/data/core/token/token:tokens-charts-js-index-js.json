@@ -1,0 +1,31 @@
+{
+  "custom": {
+    "artifactPath": "charts/js/index.js",
+    "format": "javascript",
+    "sourceType": "dist"
+  },
+  "id": "token:tokens-charts-js-index-js",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/charts/js/index.js"
+      }
+    ]
+  },
+  "name": "index.js",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.12.1",
+  "sources": [
+    "packages/tokens/dist/charts/js/index.js"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "dist"
+  ]
+}

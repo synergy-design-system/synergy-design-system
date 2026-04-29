@@ -1,13 +1,25 @@
-import { getTokensByCategory, sortTokens } from './tokens.js';
+import {getChartTokensByCategory, getComponentTokensByCategory, sortTokens } from './tokens.js';
 
 /**
- * Get all colors from a palette as object
+ * Get all colors from a palette as object from the components tokens
  * @param palette The palette to search for
  * @param useFullTokenName Optionally preserve the token name
  * @returns Returns the complete color palette
  */
-export const getColorAsPalette = (palette: string, useFullTokenName = false) => Object.fromEntries(getTokensByCategory(`color${palette}`, useFullTokenName)
+export const getColorAsPalette = (palette: string, useFullTokenName = false) => Object.fromEntries(getComponentTokensByCategory(`color${palette}`, useFullTokenName)
   .sort((a, b) => sortTokens(a, b, { replaceString: `syncolor${palette.toLowerCase()}` })));
+
+/**
+ * Get all colors from a palette as object from the chart tokens
+ * @param palette The palette to search for
+ * @param useFullTokenName Optionally preserve the token name
+ * @returns Returns the complete color palette
+ */
+export const getChartColorAsPalette = (
+  palette: string,
+  useFullTokenName = false,
+) => Object.fromEntries(getChartTokensByCategory(palette, useFullTokenName)
+  .sort((a, b) => sortTokens(a, b, { replaceString: `syn${palette.toLowerCase()}` })));
 
 /**
  * Get all palette members between a given weight

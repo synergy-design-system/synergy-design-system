@@ -1,50 +1,97 @@
 ## Single Instance
 
-This example demonstrates the usage of a single instance of the <syn-tooltip> component. The tooltip is triggered by hovering over the info icon.
+This example demonstrates the usage of a single instance of the <syn-tooltip> component. Tooltips are shared across multiple elements, allowing for more efficient management and consistent behavior.
 
 ```html
-<section>
-  <article>
-    <h2>Single instance tooltips</h2>
-    <p>
-      By default, you will have to wrap each element that needs a tooltip with a
-      separate
-      <code data-tooltip="something is in there">&lt;syn-tooltip&gt;</code>
-      component. However, you may want to use a single tooltip instance for
-      multiple elements. You can do so by using the <code>anchor</code> private
-      attribute on any element that should trigger a tooltip and setup event
-      listeners to update the tooltip content and anchor based on user
-      interactions. The content of the tooltip will be taken from the value of
-      the
-      <code
-        data-tooltip="This is just an example. You may draw the content from any attribute or property of the element."
-        >data-tooltip</code
-      >
-      attribute. Have a look at this stories source code for an example of how
-      to set this up. This can be added to any element, including those added
-      dynamically after the initial setup.
-    </p>
+<div id="tooltip-single-instance-story">
+  <syn-header label="Single Instance Tooltips">
+    <nav slot="meta-navigation">
+      <syn-button-group label="Download and save">
+        <syn-button data-tooltip="Save">
+          <syn-icon name="save" label="Save"></syn-icon>
+        </syn-button>
+        <syn-button data-tooltip="Download">
+          <syn-icon name="save_alt" label="Download"></syn-icon>
+        </syn-button>
+      </syn-button-group>
 
-    <div style="display: flex; gap: 16px; flex-wrap: wrap">
+      <syn-button-group label="Misc">
+        <syn-button data-tooltip="Edit">
+          <syn-icon name="edit" label="Edit"></syn-icon>
+        </syn-button>
+        <syn-button data-tooltip="Settings">
+          <syn-icon name="settings" label="Settings"></syn-icon>
+        </syn-button>
+        <syn-button data-tooltip="Preview">
+          <syn-icon name="wallpaper" label="Preview"></syn-icon>
+        </syn-button>
+      </syn-button-group>
+    </nav>
+  </syn-header>
+
+  <!-- Content Area -->
+  <section>
+    <article>
+      <h2>Single instance tooltips</h2>
+      <p>
+        By default, you will have to wrap each element that needs a tooltip with
+        a separate
+        <code data-tooltip="&lt;syn-tooltip&gt;My Content&lt;/syn-tooltip&gt;"
+          >&lt;syn-tooltip&gt;</code
+        >
+        component. If you want to share a single instance of
+        <code>&lt;syn-tooltip&gt;</code> across an application, you can do so by
+        using the
+        <code
+          data-tooltip="anchor is a property on the SynTooltip class. It allows you to specify the element the tooltip should be anchored to."
+          >anchor</code
+        >
+        attribute to manually control which element the tooltip is anchored to.
+        This example will show how you can set up a single tooltip instance that
+        will work for all elements with a <code>data-tooltip</code> attribute,
+        even if those elements are added dynamically after the initial setup.
+      </p>
+
+      <p>
+        This approach is useful for cases where you have a large number of
+        tooltip triggers or dynamically generated content, as it avoids the
+        overhead of multiple tooltip instances and allows for more flexible
+        tooltip management. However, it also comes with some caveats, such as
+        the need to manage tooltip state and transitions to avoid issues like
+        flickering or incorrect positioning when rapidly switching between
+        triggers. This example also currently only works on hover.
+      </p>
+
       <syn-button
-        data-tooltip="This will add a new button to the story. The new button will have a dynamically generated Tooltip"
-        >Add a new button dynamically</syn-button
+        data-tooltip="Dynamically adds or removes the toolbar custom section"
+        id="add-section-button"
+        variant="filled"
       >
-      <syn-input
-        data-tooltip="Custom Tooltip"
-        placeholder="Hover me too"
-      ></syn-input>
-    </div>
-  </article>
-</section>
+        Toggle custom section
+      </syn-button>
+    </article>
+  </section>
+</div>
 
 <!-- Global Tooltip instance. Make sure that it has trigger="manual" set. -->
 <syn-tooltip id="global-tooltip" trigger="manual"></syn-tooltip>
 
 <style>
-  [data-tooltip] {
-    cursor: help;
-    text-decoration: underline dotted;
+  #tooltip-single-instance-story {
+    section {
+      background: var(--syn-page-background);
+    }
+    section [data-tooltip]:not(syn-button) {
+      cursor: help;
+      text-decoration: underline dotted;
+    }
+
+    article {
+      padding: var(--syn-spacing-medium);
+      h2 {
+        margin: 0 0 var(--syn-spacing-medium) 0;
+      }
+    }
   }
 </style>
 
@@ -226,25 +273,31 @@ This example demonstrates the usage of a single instance of the <syn-tooltip> co
     });
   }
 
-  // Demo-only dynamic content. This is intentionally outside setupTooltip.
-  let cnt = 0;
+  const addSectionButton = document.getElementById("add-section-button");
 
-  const demoButton = document.querySelector("syn-button");
-  const demoContainer = document.querySelector("article");
-  if (
-    demoButton instanceof HTMLElement &&
-    demoContainer instanceof HTMLElement
-  ) {
-    demoButton.addEventListener("click", () => {
-      cnt = cnt + 1;
-      const newElement = document.createElement("syn-button");
-      newElement.textContent = "Dynamic Button#" + cnt;
-      newElement.setAttribute(
+  addSectionButton?.addEventListener("click", () => {
+    const root = document.querySelector(
+      "#tooltip-single-instance-story syn-header nav",
+    );
+    const hasCustomSection = root?.querySelector(".custom-section");
+
+    if (root && !hasCustomSection) {
+      const newSection = document.createElement("syn-button-group");
+      newSection.classList.add("custom-section");
+      newSection.setAttribute("label", "Custom Section");
+
+      const newButton = document.createElement("syn-button");
+      newButton.setAttribute(
         "data-tooltip",
-        "Tooltip for dynamic button#" + cnt,
+        "I am a dynamically added button with a tooltip!",
       );
-      demoContainer.appendChild(newElement);
-    });
-  }
+      newButton.innerHTML = '<syn-icon name="star" label="Star"></syn-icon>';
+
+      newSection.appendChild(newButton);
+      root.appendChild(newSection);
+    } else if (hasCustomSection) {
+      hasCustomSection.remove();
+    }
+  });
 </script>
 ```

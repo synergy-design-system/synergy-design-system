@@ -4415,7 +4415,7 @@
           "type": "text"
         },
         "description": {
-          "value": "This example demonstrates the usage of a single instance of the `<syn-tooltip>` component. The tooltip is triggered by hovering over the info icon.",
+          "value": "This example demonstrates the usage of a single instance of the `<syn-tooltip>` component. Tooltips are shared across multiple elements, allowing for more efficient management and consistent behavior.",
           "type": "text"
         }
       }

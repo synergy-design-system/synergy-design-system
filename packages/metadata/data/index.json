@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-04-29T07:51:30.229Z",
+  "builtAt": "2026-04-29T09:43:52.428Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -1500,6 +1500,20 @@
       "search": [
         "template:forms",
         "Forms",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:loading-screen.json",
+      "id": "template:loading-screen",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Loading Screen",
+      "search": [
+        "template:loading-screen",
+        "Loading Screen",
         "template"
       ]
     },

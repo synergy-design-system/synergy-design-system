@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.2.0
+
+### Patch Changes
+
+- [#1267](https://github.com/synergy-design-system/synergy-design-system/pull/1267) [`2444517`](https://github.com/synergy-design-system/synergy-design-system/commit/2444517aaedc22b115d9572dd14d47c43189ec5d) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-29
+
+  fix: 🐛 `<syn-icon-button>` is not visible when `disabled` in dark mode ([#1257](https://github.com/synergy-design-system/synergy-design-system/issues/1257))
+
+  This release fixes an issue where disabled `<syn-icon-button>` components were appearing too light in dark mode, making them difficult to see. The disabled state styling now properly contrasts with the dark background.
+
 ## 3.1.0
 
 ### Minor Changes

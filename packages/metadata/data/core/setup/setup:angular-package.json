@@ -2,7 +2,7 @@
   "custom": {
     "framework": "angular",
     "packageName": "@synergy-design-system/angular",
-    "packageVersion": "3.13.0",
+    "packageVersion": "3.13.1",
     "subpathExports": [
       ".",
       "./components/*",
@@ -39,7 +39,7 @@
   "name": "Angular Framework Package",
   "package": "angular",
   "relations": [],
-  "since": "3.13.0",
+  "since": "3.13.1",
   "sources": [
     "packages/angular/README.md",
     "packages/angular/CHANGELOG.md",

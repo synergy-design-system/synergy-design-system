@@ -1,0 +1,22 @@
+{
+  "custom": {},
+  "id": "template:loading-screen",
+  "kind": "template",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template:loading-screen.md"
+      }
+    ]
+  },
+  "name": "Loading Screen",
+  "package": "docs",
+  "relations": [],
+  "since": "1.0.0",
+  "sources": [],
+  "status": "stable",
+  "tags": [
+    "template"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-04-29T13:20:40.658Z",
+  "builtAt": "2026-04-29T13:25:02.954Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -1556,6 +1556,20 @@
       "search": [
         "template:tag-group",
         "Tag Group",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:tooltip.json",
+      "id": "template:tooltip",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Tooltip",
+      "search": [
+        "template:tooltip",
+        "Tooltip",
         "template"
       ]
     },

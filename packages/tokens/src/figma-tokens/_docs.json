@@ -4398,6 +4398,28 @@
         }
       }
     },
+    "tooltip": {
+      "default": {
+        "title": {
+          "value": "Tooltips",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of the `<syn-tooltip>` component in various contexts.",
+          "type": "text"
+        }
+      },
+      "single-instance": {
+        "title": {
+          "value": "Single Instance",
+          "type": "text"
+        },
+        "description": {
+          "value": "This example demonstrates the usage of a single instance of the `<syn-tooltip>` component. Tooltips are shared across multiple elements, allowing for more efficient management and consistent behavior.",
+          "type": "text"
+        }
+      }
+    },
     "localization": {
       "default": {
         "title": {

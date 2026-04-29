@@ -22,7 +22,7 @@
   "name": "Angular Forms Module",
   "package": "angular",
   "relations": [],
-  "since": "3.12.1",
+  "since": "3.13.0",
   "sources": [
     "packages/angular/modules/forms/forms.module.ts"
   ],

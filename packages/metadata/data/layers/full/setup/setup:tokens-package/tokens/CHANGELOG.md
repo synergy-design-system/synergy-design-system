@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.13.1
+
+## 3.13.0
+
+### Minor Changes
+
+- [#1273](https://github.com/synergy-design-system/synergy-design-system/pull/1273) [`930328a`](https://github.com/synergy-design-system/synergy-design-system/commit/930328af3af87ba91738b89984ad7b11edd78ec5) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-29
+
+  feat: ✨ add new headline styles ([#1268](https://github.com/synergy-design-system/synergy-design-system/issues/1268))
+
+  This Release adds missing typographic classes:
+  - `.syn-heading--medium`
+  - `.syn-heading--4x-large`
+  - `.syn-body--2x-small`
+
 ## 3.12.1
 
 ### Patch Changes

@@ -44,37 +44,10 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_RELEASE_TOKEN_CS}}
 
-      # This step creates a changeset for Metadata and MCP if it is missing from changesets
-      # As a package needs to be updated with the latest changelog metadata,
-      # it always needs to be part of the release when other packages are released.
-      - name: Create Metadata and MCP changeset if needed
-        run: |
-          set -euo pipefail
-
-          pnpm --filter metadata --filter mcp build
-          git add ./packages/metadata/data
-
-          metadata_changed=false
-
-          if ! git diff --cached --quiet -- . \
-            ':(exclude)packages/metadata/data/index.json' \
-            ':(exclude)packages/metadata/data/manifest.json'; then
-            metadata_changed=true
-          fi
-
-          if [ -f packages/metadata/data/index.json ] && [ -f packages/metadata/data/manifest.json ]; then
-            if ! git diff --cached -I '"builtAt":' --quiet -- \
-              packages/metadata/data/index.json \
-              packages/metadata/data/manifest.json; then
-              metadata_changed=true
-            fi
-          fi
-
-          if [ "${metadata_changed}" = "true" ]; then
-            node packages/_private/release-utils/src/ensure-mcp-changeset.js
-          else
-            echo "No metadata data changes (excluding builtAt) detected; skipping automatic changeset creation"
-          fi
+      # Always ensure Metadata and MCP are part of the pending release.
+      # Script is idempotent and only writes a changeset when required packages are missing.
+      - name: Ensure Metadata and MCP changeset
+        run: node packages/_private/release-utils/src/ensure-mcp-changeset.js
 
       - name: Creating releases via Changesets
         env:
@@ -96,7 +69,7 @@ jobs:
           pnpm changeset version
 
           # Make sure to rebuild our sources as we may get errors otherwise
-          pnpm --filter components --filter tokens build
+          pnpm --filter components --filter tokens --filter styles build
 
           # Build MCP with updated metadata after version changes
           echo "Building Metadata and MCP with updated metadata..."
@@ -113,28 +86,23 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .
 
-          # Only proceed if there are staged changes to commit
-          if git diff --cached --quiet; then
-            echo "No changes to commit, skipping release process"
+          git commit -m "chore: 🚀 version packages [skip ci]"
+
+          if [ "${DRY_RUN}" = "true" ]; then
+            echo "Dry run active: skipping git push/tag push"
+            echo "Dry run active: running npm publish validation only"
+            pnpm publish --recursive --access=public --dry-run
           else
-            git commit -m "chore: 🚀 version packages [skip ci]"
+            git push origin main
 
-            if [ "${DRY_RUN}" = "true" ]; then
-              echo "Dry run active: skipping git push/tag push"
-              echo "Dry run active: running npm publish validation only"
-              pnpm publish --recursive --access=public --dry-run
-            else
-              git push origin main
+            # Create the new tags we need
+            pnpm changeset tag
 
-              # Create the new tags we need
-              pnpm changeset tag
+            # Push tags to remote
+            git push --tags
 
-              # Push tags to remote
-              git push --tags
-
-              # Finally, push to the registry
-              pnpm publish --recursive --access=public
-            fi
+            # Finally, push to the registry
+            pnpm publish --recursive --access=public
           fi
 
       # This workflow triggers the Storybook deployment

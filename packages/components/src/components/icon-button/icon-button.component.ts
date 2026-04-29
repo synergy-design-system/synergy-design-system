@@ -1,4 +1,4 @@
-/* eslint-disable */
+import type { CSSResultGroup } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { html, literal } from 'lit/static-html.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -7,8 +7,6 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIcon from '../icon/icon.component.js';
 import styles from './icon-button.styles.js';
-import customStyles from './icon-button.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -26,7 +24,8 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynIconButton')
 export default class SynIconButton extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
+
   static dependencies = { 'syn-icon': SynIcon };
 
   @query('.icon-button') button: HTMLButtonElement | HTMLLinkElement;
@@ -67,10 +66,10 @@ export default class SynIconButton extends SynergyElement {
   * The color of the icon button.
   * The default "currentColor" makes it possible to easily style the icon button from outside without any CSS variables.
   */
-  @property({ reflect: true }) color: 'currentColor' | 'primary' | 'neutral'  = 'currentColor';
+  @property({ reflect: true }) color: 'currentColor' | 'primary' | 'neutral' = 'currentColor';
 
   /** Disables the button. */
-  @property({ type: Boolean, reflect: true }) disabled = false;
+  @property({ reflect: true, type: Boolean }) disabled = false;
 
   private handleBlur() {
     this.hasFocus = false;
@@ -104,11 +103,12 @@ export default class SynIconButton extends SynergyElement {
     this.button.blur();
   }
 
+  // eslint-disable-next-line complexity
   render() {
-    const isLink = this.href ? true : false;
+    const isLink = !!this.href;
     const tag = isLink ? literal`a` : literal`button`;
 
-    /* eslint-disable lit/binding-positions, lit/no-invalid-html */
+    /* eslint-disable lit/binding-positions, lit/no-invalid-html, @typescript-eslint/unbound-method */
     return html`
       <${tag}
         part="base"
@@ -116,9 +116,9 @@ export default class SynIconButton extends SynergyElement {
           'icon-button': true,
           'icon-button--disabled': !isLink && this.disabled,
           'icon-button--focused': this.hasFocus,
-          'icon-button--small': this.size === 'small',
-          'icon-button--medium': this.size === 'medium',
           'icon-button--large': this.size === 'large',
+          'icon-button--medium': this.size === 'medium',
+          'icon-button--small': this.size === 'small',
         })}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         type=${ifDefined(isLink ? undefined : 'button')}

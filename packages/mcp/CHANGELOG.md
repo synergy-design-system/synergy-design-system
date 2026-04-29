@@ -1,5 +1,36 @@
 # Changelog
 
+## 3.2.0
+
+### Minor Changes
+
+- Released on: 2026-04-29
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`2444517`](https://github.com/synergy-design-system/synergy-design-system/commit/2444517aaedc22b115d9572dd14d47c43189ec5d)]:
+  - @synergy-design-system/metadata@3.2.0
+
+## 3.1.0
+
+### Minor Changes
+
+- [#1273](https://github.com/synergy-design-system/synergy-design-system/pull/1273) [`930328a`](https://github.com/synergy-design-system/synergy-design-system/commit/930328af3af87ba91738b89984ad7b11edd78ec5) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-29
+
+  feat: ✨ add new headline styles ([#1268](https://github.com/synergy-design-system/synergy-design-system/issues/1268))
+
+  This Release adds missing typographic classes:
+  - `.syn-heading--medium`
+  - `.syn-heading--4x-large`
+  - `.syn-body--2x-small`
+
+### Patch Changes
+
+- Updated dependencies [[`930328a`](https://github.com/synergy-design-system/synergy-design-system/commit/930328af3af87ba91738b89984ad7b11edd78ec5)]:
+  - @synergy-design-system/metadata@3.1.0
+
 ## 3.0.1
 
 ### Patch Changes

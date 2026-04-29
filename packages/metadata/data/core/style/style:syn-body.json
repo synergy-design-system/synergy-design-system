@@ -21,7 +21,7 @@
   "name": "syn-body",
   "package": "styles",
   "relations": [],
-  "since": "2.0.4",
+  "since": "2.1.0",
   "sources": [
     "packages/styles/src/typography/body.css"
   ],

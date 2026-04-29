@@ -17,24 +17,26 @@ Icons buttons are simple, icon-only buttons that can be used for actions and in 
 Use the size attribute to change a icon-button size.
 
 ```html
-<syn-icon-button
-  name="wallpaper"
-  label="Wallpaper"
-  color="neutral"
-  size="small"
-></syn-icon-button>
-<syn-icon-button
-  name="wallpaper"
-  label="Wallpaper"
-  color="neutral"
-  size="medium"
-></syn-icon-button>
-<syn-icon-button
-  name="wallpaper"
-  label="Wallpaper"
-  color="neutral"
-  size="large"
-></syn-icon-button>
+<div style="align-items: end; display: flex; gap: var(--syn-spacing-large)">
+  <syn-icon-button
+    name="wallpaper"
+    label="Wallpaper"
+    color="neutral"
+    size="small"
+  ></syn-icon-button>
+  <syn-icon-button
+    name="wallpaper"
+    label="Wallpaper"
+    color="neutral"
+    size="medium"
+  ></syn-icon-button>
+  <syn-icon-button
+    name="wallpaper"
+    label="Wallpaper"
+    color="neutral"
+    size="large"
+  ></syn-icon-button>
+</div>
 ```
 
 ---
@@ -44,18 +46,20 @@ Use the size attribute to change a icon-button size.
 The Icon button can have two color variants, Primary or Neutral Color.
 
 ```html
-<syn-icon-button
-  name="wallpaper"
-  label="Wallpaper"
-  color="neutral"
-  size="medium"
-></syn-icon-button>
-<syn-icon-button
-  name="wallpaper"
-  label="Wallpaper"
-  color="primary"
-  size="medium"
-></syn-icon-button>
+<div style="align-items: center; display: flex; gap: var(--syn-spacing-large)">
+  <syn-icon-button
+    name="wallpaper"
+    label="Wallpaper"
+    color="neutral"
+    size="medium"
+  ></syn-icon-button>
+  <syn-icon-button
+    name="wallpaper"
+    label="Wallpaper"
+    color="primary"
+    size="medium"
+  ></syn-icon-button>
+</div>
 ```
 
 ---
@@ -82,13 +86,22 @@ It’s often helpful to have a button that works like a link. This is possible b
 Use the disabled attribute to disable the icon button.
 
 ```html
-<syn-icon-button
-  name="wallpaper"
-  label="Wallpaper"
-  color="neutral"
-  disabled=""
-  size="medium"
-></syn-icon-button>
+<div style="align-items: center; display: flex; gap: var(--syn-spacing-large)">
+  <syn-icon-button
+    name="wallpaper"
+    label="Wallpaper"
+    color="neutral"
+    disabled=""
+    size="medium"
+  ></syn-icon-button>
+  <syn-icon-button
+    name="wallpaper"
+    label="Wallpaper"
+    color="primary"
+    disabled=""
+    size="medium"
+  ></syn-icon-button>
+</div>
 ```
 
 ---
@@ -99,12 +112,28 @@ The focus event gives the user feedback that the icon-button has been focused by
 
 ```html
 <div style="padding: 5px">
-  <syn-icon-button
-    name="wallpaper"
-    label="Wallpaper"
-    color="neutral"
-    size="medium"
-  ></syn-icon-button>
+  <div
+    style="align-items: center; display: flex; gap: var(--syn-spacing-large)"
+  >
+    <syn-icon-button
+      name="wallpaper"
+      label="Wallpaper"
+      color="neutral"
+      size="small"
+    ></syn-icon-button>
+    <syn-icon-button
+      name="wallpaper"
+      label="Wallpaper"
+      color="neutral"
+      size="medium"
+    ></syn-icon-button>
+    <syn-icon-button
+      name="wallpaper"
+      label="Wallpaper"
+      color="neutral"
+      size="large"
+    ></syn-icon-button>
+  </div>
 </div>
 ```
 

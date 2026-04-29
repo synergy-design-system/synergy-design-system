@@ -2,4 +2,5 @@ storybook-static/
 dist/
 chromatic.log
 build-storybook.log
+debug-storybook.log
 .env

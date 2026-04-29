@@ -1,5 +1,11 @@
 import { mkdir, writeFile } from 'fs/promises';
-import { join } from 'path';
+import {
+  isAbsolute,
+  join,
+  normalize,
+  resolve,
+  sep,
+} from 'path';
 import { execSync } from 'child_process';
 import type { Plugin } from 'vite';
 import type { Config } from './types.js';
@@ -21,6 +27,8 @@ export default function vitePluginSynergyStyles(
 ): Plugin {
   const config = { ...defaultOptions, ...userConfig };
   const { endPoint, outputFileName, srcDir } = config;
+  const srcDirAbs = normalize(resolve(process.cwd(), srcDir));
+  const srcDirAbsWithSep = `${srcDirAbs}${sep}`;
 
   // Set up vite virtual module to make it possible to import the manifest
   const virtualModuleId = 'virtual:vite-plugin-synergy-styles/custom-elements-manifest';
@@ -29,13 +37,13 @@ export default function vitePluginSynergyStyles(
   return {
     configureServer(server) {
       // Make sure to hot reload when something in the srcdir changes
-      server.watcher.add(srcDir);
+      server.watcher.add(srcDirAbs);
 
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       server.middlewares.use(endPoint, async (_, res) => {
         try {
           runStylesBuild();
-          const structure = await getStructure(srcDir);
+          const structure = await getStructure(srcDirAbs);
           const manifest = toCem(structure);
           res.end(JSON.stringify(manifest, null, 2));
         } catch (e) {
@@ -53,19 +61,42 @@ export default function vitePluginSynergyStyles(
 
       runStylesBuild();
       const outputPath = join(dir, outputFileName);
-      const structure = await getStructure(srcDir);
+      const structure = await getStructure(srcDirAbs);
       const manifest = toCem(structure);
 
       await mkdir(dir, { recursive: true });
       await writeFile(outputPath, JSON.stringify(manifest));
     },
-    async handleHotUpdate({ server }) {
-      const mod = await server.moduleGraph.getModuleByUrl(resolvedVirtualModuleId);
+    async handleHotUpdate({ file, server }) {
+      const fileAbs = normalize(isAbsolute(file) ? file : resolve(process.cwd(), file));
+      const isCssSourceChange = (
+        (fileAbs === srcDirAbs || fileAbs.startsWith(srcDirAbsWithSep))
+        && fileAbs.endsWith('.css')
+      );
 
-      if (!mod) {
+      if (!isCssSourceChange) {
+        server.config.logger.info(
+          `[vite-plugin-synergy-styles] skip hot update for ${fileAbs}`,
+          { timestamp: true },
+        );
         return;
       }
 
+      const mod = server.moduleGraph.getModuleById(resolvedVirtualModuleId)
+        ?? await server.moduleGraph.getModuleByUrl(resolvedVirtualModuleId);
+
+      if (!mod) {
+        server.config.logger.info(
+          '[vite-plugin-synergy-styles] virtual module not found, skipping reload',
+          { timestamp: true },
+        );
+        return;
+      }
+
+      server.config.logger.info(
+        `[vite-plugin-synergy-styles] reloading styles manifest due to ${file}`,
+        { timestamp: true },
+      );
       await server.reloadModule(mod);
     },
     async load(id) {
@@ -74,7 +105,7 @@ export default function vitePluginSynergyStyles(
       }
 
       runStylesBuild();
-      const structure = await getStructure(srcDir);
+      const structure = await getStructure(srcDirAbs);
       const manifest = toCem(structure);
       return `export default ${JSON.stringify(manifest)}`;
     },

@@ -210,7 +210,8 @@
       "type": "SynInputEvent"
     }
   ],
-  "figmaComponentId": "41310-271865",
+  "figmaComponentId": "21709-47500",
+  "figmaDocsId": "41310-271865",
   "methods": [
     {
       "description": "Removes focus from the button or droparea.",

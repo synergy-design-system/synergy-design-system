@@ -24,6 +24,7 @@ export const ComponentOverrideSchema = z.object({
     }),
   ).optional(),
   figmaComponentId: z.string().optional(),
+  figmaDocsId: z.string().optional(),
   storySourcePath: z.string().optional(),
   storyTags: z.array(z.string()).optional(),
 }).strict();

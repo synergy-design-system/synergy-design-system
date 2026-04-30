@@ -97,7 +97,8 @@
       "type": "SynFocusEvent"
     }
   ],
-  "figmaComponentId": "41137-747935",
+  "figmaComponentId": "3173-8459",
+  "figmaDocsId": "41137-747935",
   "methods": [
     {
       "description": "Removes focus from the icon button.",

@@ -1,5 +1,10 @@
 {
-  "figmaComponentId": "41137-747935",
-  "storyTags": ["Form", "Navigation", "Icons"],
-  "storySourcePath": "components.icon-button"
+  "figmaComponentId": "3173-8459",
+  "figmaDocsId": "41137-747935",
+  "storySourcePath": "components.icon-button",
+  "storyTags": [
+    "Form",
+    "Navigation",
+    "Icons"
+  ]
 }

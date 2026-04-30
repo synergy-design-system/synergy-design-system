@@ -61,6 +61,8 @@ export type ComponentInterfaceSnapshot = {
   dependencies: string[];
   documentation?: string;
   events: ComponentInterfaceEvent[];
+  figmaComponentId?: string;
+  figmaDocsId?: string;
   methods: ComponentInterfaceMethod[];
   properties: ComponentInterfaceProperty[];
   since: string;
@@ -122,6 +124,8 @@ export type ComponentCustom = {
   };
   interfaceSnapshot?: ComponentInterfaceSnapshot;
   override?: {
+    figmaComponentId?: string;
+    figmaDocsId?: string;
     stories?: Array<{
       description?: { type: string; value: string };
       name: string;

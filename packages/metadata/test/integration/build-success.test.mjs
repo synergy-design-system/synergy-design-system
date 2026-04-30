@@ -256,7 +256,8 @@ describe('metadata build integration', () => {
       expect(accordionJson.sources).to.include('packages/angular/components/accordion/accordion.component.ts');
       expect(accordionInterfaceJson).to.have.property('tagName', 'syn-accordion');
       expect(accordionInterfaceJson).to.have.property('summary').that.is.a('string');
-      expect(accordionInterfaceJson).to.have.property('figmaComponentId', '41094-279501');
+      expect(accordionInterfaceJson).to.have.property('figmaComponentId', '20877-88547');
+      expect(accordionInterfaceJson).to.have.property('figmaDocsId', '41094-279501');
       expect(accordionInterfaceJson).to.have.property('slots').that.is.an('array');
       expect(accordionInterfaceJson).to.have.property('attributes').that.is.an('array');
       expect(accordionInterfaceJson).to.have.property('properties').that.is.an('array');
@@ -264,6 +265,8 @@ describe('metadata build integration', () => {
       expect(accordionInterfaceJson).to.have.property('events').that.is.an('array');
       expect(accordionInterfaceJson).to.have.property('cssParts').that.is.an('array');
       expect(accordionInterfaceMarkdown).to.include('# syn-accordion');
+      expect(accordionInterfaceMarkdown).to.include('[Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41094-279501)');
+      expect(accordionInterfaceMarkdown).to.include('[Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=20877-88547)');
       expect(accordionInterfaceMarkdown).to.include('## Available Properties');
       expect(accordionInterfaceMarkdown).to.include('## Available CSS Parts');
       expect(alertJson.custom).to.have.nested.property('frameworks.react.jsx.typeName', 'SynAlertJSXElement');

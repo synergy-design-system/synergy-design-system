@@ -1,5 +1,9 @@
 {
-  "figmaComponentId": "42076-167749",
-  "storyTags": ["Form", "Navigation"],
-  "storySourcePath": "components.button"
+  "figmaComponentId": "1080-6566",
+  "figmaDocsId": "42076-167749",
+  "storySourcePath": "components.button",
+  "storyTags": [
+    "Form",
+    "Navigation"
+  ]
 }

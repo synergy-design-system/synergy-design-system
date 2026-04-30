@@ -16,6 +16,7 @@ import { type LayerRef } from '../schemas/layer-ref.js';
 import {
   type EnrichedOverride, getOverride,
 } from '../../config/index.js';
+import { buildFigmaComponentUrl, buildFigmaDocsUrl } from '../../config/figma.js';
 import { formatGeneratedMarkdown } from '../core/markdown.js';
 import { ensureDir, writeJsonAtomic } from './fs-utils.js';
 
@@ -163,6 +164,8 @@ type InterfaceSnapshot = {
   dependencies?: string[];
   documentation?: string;
   events?: InterfaceEvent[];
+  figmaComponentId?: string;
+  figmaDocsId?: string;
   methods?: InterfaceMethod[];
   properties?: InterfaceProperty[];
   since?: string;
@@ -360,9 +363,14 @@ ${event.description}
     documentationLines.push(`[Component Documentation](${documentation})`);
   }
 
-  // Add figma link if available in enriched override
-  if (enrichedOverride?.figmaComponentId) {
-    documentationLines.push(`[Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=${enrichedOverride.figmaComponentId})`);
+  const figmaDocsUrl = buildFigmaDocsUrl(enrichedOverride?.figmaDocsId);
+  if (figmaDocsUrl) {
+    documentationLines.push(`[Figma Examples](${figmaDocsUrl})`);
+  }
+
+  const figmaComponentUrl = buildFigmaComponentUrl(enrichedOverride?.figmaComponentId);
+  if (figmaComponentUrl) {
+    documentationLines.push(`[Figma Component](${figmaComponentUrl})`);
   }
 
   const finalDocumentation = documentationLines
@@ -584,9 +592,12 @@ export async function writeLayerAssets(
         // and passing rules into renderInterfaceMarkdown().
         // const rules = ctx.config ? (getRules(ctx.config, entity.id) ?? undefined) : undefined;
 
-        // Merge figmaComponentId from override into snapshot
+        // Merge Figma references from override into snapshot
         if (enrichedOverride?.figmaComponentId) {
           interfaceSnapshot.figmaComponentId = enrichedOverride.figmaComponentId;
+        }
+        if (enrichedOverride?.figmaDocsId) {
+          interfaceSnapshot.figmaDocsId = enrichedOverride.figmaDocsId;
         }
 
         // if (rules) {

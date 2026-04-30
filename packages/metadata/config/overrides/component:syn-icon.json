@@ -1,5 +1,7 @@
 {
-  "figmaComponentId": "1616-1512",
-  "storyTags": ["Icons"],
-  "storySourcePath": "components.icon"
+  "figmaDocsId": "1616-1512",
+  "storySourcePath": "components.icon",
+  "storyTags": [
+    "Icons"
+  ]
 }

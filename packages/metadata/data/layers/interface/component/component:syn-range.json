@@ -399,7 +399,7 @@
       "name": "valueAsArray"
     }
   ],
-  "since": "unknown",
+  "since": "2.6.0",
   "slots": [
     {
       "description": "The range's label. Alternatively, you can use the `label` attribute.",

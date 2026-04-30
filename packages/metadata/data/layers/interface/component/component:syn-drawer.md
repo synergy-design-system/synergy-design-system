@@ -17,7 +17,7 @@ Drawers slide in from a container to expose additional options and information.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.8.0
 
 ## Available Slots
 

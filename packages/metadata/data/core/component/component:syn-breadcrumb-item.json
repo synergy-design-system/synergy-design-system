@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.26.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -117,7 +117,7 @@
   "name": "syn-breadcrumb-item",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.26.0",
   "sources": [
     "packages/angular/components/breadcrumb-item/breadcrumb-item.component.ts",
     "packages/components/src/components/breadcrumb-item/breadcrumb-item.component.ts",

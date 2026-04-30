@@ -21,7 +21,7 @@ Component.define('syn-switch');
  * @summary Switches allow the user to toggle an option on or off.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @slot - The switch's label.
  * @slot help-text - Text that describes how to use the switch. Alternatively, you can use the `help-text` attribute.

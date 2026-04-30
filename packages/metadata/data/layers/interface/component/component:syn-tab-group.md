@@ -17,7 +17,7 @@ Tab groups organize content into a container that shows one section at a time.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 2.1.0
 
 ## Available Slots
 

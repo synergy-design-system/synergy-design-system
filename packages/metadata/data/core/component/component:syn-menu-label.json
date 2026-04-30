@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.12.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -118,7 +118,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.12.0",
   "sources": [
     "packages/angular/components/menu-label/menu-label.component.ts",
     "packages/components/src/components/menu-label/menu-label.component.ts",

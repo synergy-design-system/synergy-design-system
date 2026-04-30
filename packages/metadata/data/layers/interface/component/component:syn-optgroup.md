@@ -17,7 +17,7 @@ The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-se
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 1.3.0
+- **Since:** 1.5.0
 
 ## Available Slots
 

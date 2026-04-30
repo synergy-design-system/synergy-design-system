@@ -72,7 +72,7 @@
       "type": "string"
     }
   ],
-  "since": "1.3.0",
+  "since": "1.5.0",
   "slots": [
     {
       "description": "The given options. Must be `<syn-option>` elements.",

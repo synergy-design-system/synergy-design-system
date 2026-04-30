@@ -17,7 +17,7 @@ Details show a brief summary and expand to show additional content.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 2.3.0
 
 ## Available Slots
 

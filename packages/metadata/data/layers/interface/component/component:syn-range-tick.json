@@ -37,7 +37,7 @@
       "type": "boolean"
     }
   ],
-  "since": "unknown",
+  "since": "2.6.0",
   "slots": [
     {
       "description": "The tick's label",

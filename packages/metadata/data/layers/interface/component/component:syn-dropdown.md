@@ -17,7 +17,7 @@ Dropdowns expose additional content that "drops down" in a panel.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.12.0
 
 ## Available Slots
 

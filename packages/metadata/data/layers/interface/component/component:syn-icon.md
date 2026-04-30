@@ -17,7 +17,7 @@ Icons are symbols that can be used to represent various options within an applic
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.0.0
 
 ## Available Properties
 

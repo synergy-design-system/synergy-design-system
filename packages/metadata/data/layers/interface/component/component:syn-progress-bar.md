@@ -17,7 +17,7 @@ Progress bars are used to show the status of an ongoing operation.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.19.0
 
 ## Available Slots
 

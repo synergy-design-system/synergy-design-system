@@ -17,7 +17,7 @@ Selects allow you to choose items from a menu of predefined options.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.5.0
 
 ## Available Slots
 

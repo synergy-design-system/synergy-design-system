@@ -17,7 +17,9 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
+          "since": "2.12.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
           "subpathExport": "./types/latest",
           "typeName": "SynValidateJSXElement"
         },
@@ -223,7 +225,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "unknown",
+  "since": "2.12.0",
   "sources": [
     "packages/angular/components/validate/validate.component.ts",
     "packages/components/src/components/validate/utility.ts",

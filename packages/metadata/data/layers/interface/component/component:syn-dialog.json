@@ -168,7 +168,7 @@
       "type": "HTMLElement"
     }
   ],
-  "since": "2.0",
+  "since": "1.23.0",
   "slots": [
     {
       "description": "The dialog's main content.",

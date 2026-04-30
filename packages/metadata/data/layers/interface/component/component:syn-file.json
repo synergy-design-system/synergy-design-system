@@ -419,7 +419,7 @@
       "type": "boolean"
     }
   ],
-  "since": "unknown",
+  "since": "2.5.0",
   "slots": [
     {
       "description": "The file control's label. Alternatively, you can use the `label` attribute.",

@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.5.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -159,7 +159,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.5.0",
   "sources": [
     "packages/angular/components/option/option.component.ts",
     "packages/components/src/components/option/option-size.styles.ts",

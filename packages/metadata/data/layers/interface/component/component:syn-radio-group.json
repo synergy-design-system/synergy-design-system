@@ -237,7 +237,7 @@
       "type": "string | number"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "slots": [
     {
       "description": "The default slot where `<syn-radio>` or `<syn-radio-button>` elements are placed.",

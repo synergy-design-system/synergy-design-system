@@ -25,6 +25,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @summary Ranges allow the user to select values within a given range using one or two thumbs.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
  * @status stable
+ * @since 2.6.0
  *
  * @dependency syn-tooltip
  *

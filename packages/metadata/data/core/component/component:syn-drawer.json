@@ -42,7 +42,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.8.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -246,7 +246,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.8.0",
   "sources": [
     "packages/angular/components/drawer/drawer.component.ts",
     "packages/components/src/components/drawer/drawer.component.ts",

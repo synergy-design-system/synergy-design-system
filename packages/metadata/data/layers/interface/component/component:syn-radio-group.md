@@ -17,7 +17,7 @@ Radio groups are used to group multiple [radios](/components/radio) or [radio bu
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.0.0
 
 ## Available Slots
 

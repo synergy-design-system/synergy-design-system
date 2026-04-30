@@ -17,7 +17,7 @@ Button groups can be used to group related buttons into sections.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 3.1.0
 
 ## Available Slots
 

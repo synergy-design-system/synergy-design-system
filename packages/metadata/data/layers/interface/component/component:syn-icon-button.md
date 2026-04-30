@@ -17,7 +17,7 @@ Icons buttons are simple, icon-only buttons that can be used for actions and in 
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.1.0
 
 ## Available Properties
 

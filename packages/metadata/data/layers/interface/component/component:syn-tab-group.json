@@ -216,7 +216,7 @@
       "type": "SynTab[]"
     }
   ],
-  "since": "2.0",
+  "since": "2.1.0",
   "slots": [
     {
       "description": "Used for grouping tab panels in the tab group. Must be `<syn-tab-panel>` elements.",

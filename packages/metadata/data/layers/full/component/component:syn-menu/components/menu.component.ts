@@ -18,7 +18,7 @@ export interface MenuSelectEventDetail {
  * @summary Menus provide a list of options for the user to choose from.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @slot - The menu's content, including menu items, menu labels, and dividers.
  *

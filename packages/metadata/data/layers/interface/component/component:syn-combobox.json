@@ -629,7 +629,7 @@
       "type": "HTMLInputElement"
     }
   ],
-  "since": "unknown",
+  "since": "2.8.0",
   "slots": [
     {
       "description": "The listbox options. Must be `<syn-option>` elements. You can use `<syn-optgroup>`'s to group items visually.",

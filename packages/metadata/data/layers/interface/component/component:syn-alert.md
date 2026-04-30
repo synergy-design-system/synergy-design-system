@@ -17,7 +17,7 @@ Alerts are used to display important messages inline or as toast notifications.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.20.0
 
 ## Available Slots
 

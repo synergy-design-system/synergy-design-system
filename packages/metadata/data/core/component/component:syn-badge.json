@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.14.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -161,7 +161,7 @@
   "name": "syn-badge",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.14.0",
   "sources": [
     "packages/angular/components/badge/badge.component.ts",
     "packages/components/src/components/badge/badge.component.ts",

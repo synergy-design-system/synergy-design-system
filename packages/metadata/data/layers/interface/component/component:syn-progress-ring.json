@@ -60,7 +60,7 @@
       "type": "number"
     }
   ],
-  "since": "2.0",
+  "since": "1.18.0",
   "slots": [
     {
       "description": "A label to show inside the ring.",

@@ -17,7 +17,7 @@ Ranges allow the user to select values within a given range using one or two thu
 ## Usage Information
 
 - **Status:** stable
-- **Since:** unknown
+- **Since:** 2.6.0
 
 ## Available Slots
 

@@ -46,7 +46,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.0.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -328,7 +328,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "sources": [
     "packages/angular/components/input/input.component.ts",
     "packages/components/src/components/input/formatter.ts",

@@ -19,7 +19,7 @@ Tags can be removable, icon‑based, or purely textual.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** unknown
+- **Since:** 3.7.0
 
 ## Available Slots
 

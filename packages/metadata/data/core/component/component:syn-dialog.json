@@ -42,7 +42,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.23.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -198,7 +198,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.23.0",
   "sources": [
     "packages/angular/components/dialog/dialog.component.ts",
     "packages/components/src/components/dialog/dialog.component.ts",

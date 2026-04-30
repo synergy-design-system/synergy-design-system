@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "1.14.0",
+          "since": "1.15.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -145,7 +145,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "1.14.0",
+  "since": "1.15.0",
   "sources": [
     "packages/angular/components/prio-nav/prio-nav.component.ts",
     "packages/components/src/components/prio-nav/prio-nav.component.ts",

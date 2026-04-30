@@ -42,6 +42,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
+          "since": "2.6.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -311,7 +312,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "unknown",
+  "since": "2.6.0",
   "sources": [
     "packages/angular/components/range/range.component.ts",
     "packages/components/src/components/range/range.component.ts",

@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "2.1.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -117,7 +117,7 @@
   "name": "syn-tab-panel",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "2.1.0",
   "sources": [
     "packages/angular/components/tab-panel/tab-panel.component.ts",
     "packages/components/src/components/tab-panel/tab-panel.component.ts",

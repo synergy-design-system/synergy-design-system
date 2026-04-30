@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-divider--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.4.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -157,7 +157,7 @@
   "name": "syn-divider",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.4.0",
   "sources": [
     "packages/angular/components/divider/divider.component.ts",
     "packages/components/src/components/divider/divider.component.ts",

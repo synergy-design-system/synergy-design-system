@@ -38,6 +38,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
+          "since": "2.5.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -263,7 +264,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "unknown",
+  "since": "2.5.0",
   "sources": [
     "packages/angular/components/file/file.component.ts",
     "packages/components/src/components/file/file.component.ts",

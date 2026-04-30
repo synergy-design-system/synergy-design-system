@@ -18,7 +18,7 @@ allowing users to either select from predefined options or enter custom values (
 ## Usage Information
 
 - **Status:** stable
-- **Since:** unknown
+- **Since:** 2.8.0
 
 ## Available Slots
 

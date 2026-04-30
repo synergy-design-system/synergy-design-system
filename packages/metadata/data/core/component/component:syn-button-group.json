@@ -14,7 +14,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "3.1.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -178,7 +178,7 @@
   "name": "syn-button-group",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "3.1.0",
   "sources": [
     "packages/angular/components/button-group/button-group.component.ts",
     "packages/components/src/components/button-group/button-group.component.ts",

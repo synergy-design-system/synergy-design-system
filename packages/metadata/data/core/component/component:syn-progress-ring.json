@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.18.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -168,7 +168,7 @@
   "name": "syn-progress-ring",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.18.0",
   "sources": [
     "packages/angular/components/progress-ring/progress-ring.component.ts",
     "packages/components/src/components/progress-ring/progress-ring.component.ts",

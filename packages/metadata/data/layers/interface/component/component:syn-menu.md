@@ -17,7 +17,7 @@ Menus provide a list of options for the user to choose from.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.12.0
 
 ## Available Slots
 

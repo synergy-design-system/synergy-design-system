@@ -17,7 +17,7 @@ Progress rings are used to show the progress of a determinate operation in a cir
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.18.0
 
 ## Available Slots
 

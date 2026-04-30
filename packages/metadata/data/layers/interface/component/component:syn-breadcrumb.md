@@ -17,7 +17,7 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.26.0
 
 ## Available Slots
 

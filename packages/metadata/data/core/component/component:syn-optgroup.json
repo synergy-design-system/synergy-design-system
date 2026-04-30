@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "1.3.0",
+          "since": "1.5.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -105,7 +105,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "1.3.0",
+  "since": "1.5.0",
   "sources": [
     "packages/angular/components/optgroup/optgroup.component.ts",
     "packages/components/src/components/optgroup/optgroup.component.ts",

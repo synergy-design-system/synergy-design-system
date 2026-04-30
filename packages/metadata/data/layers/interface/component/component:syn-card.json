@@ -60,7 +60,7 @@
       "type": "boolean"
     }
   ],
-  "since": "2.0",
+  "since": "1.25.0",
   "slots": [
     {
       "description": "The card's main content.",

@@ -712,7 +712,7 @@
       "name": "valueAsNumber"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "slots": [
     {
       "description": "The input's label. Alternatively, you can use the `label` attribute.",

@@ -37,7 +37,7 @@
   "figmaComponentId": "41227-206412",
   "methods": [],
   "properties": [],
-  "since": "1.14.0",
+  "since": "1.15.0",
   "slots": [
     {
       "description": "The given navigation items. Must be horizontal `<syn-nav-item>`s or have a role of \"menuitem\"",

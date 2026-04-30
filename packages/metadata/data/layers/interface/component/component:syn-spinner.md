@@ -17,7 +17,7 @@ Spinners are used to show the progress of an indeterminate operation.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.22.0
 
 ## Available CSS Parts
 

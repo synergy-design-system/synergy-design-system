@@ -17,7 +17,7 @@ Inputs collect data from the user.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.0.0
 
 ## Available Slots
 

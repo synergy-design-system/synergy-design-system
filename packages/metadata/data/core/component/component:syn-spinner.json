@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-spinner--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.22.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -150,7 +150,7 @@
   "name": "syn-spinner",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.22.0",
   "sources": [
     "packages/angular/components/spinner/spinner.component.ts",
     "packages/components/src/components/spinner/spinner.component.ts",

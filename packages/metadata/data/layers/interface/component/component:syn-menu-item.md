@@ -17,7 +17,7 @@ Menu items provide options for the user to pick from in a menu.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.12.0
 
 ## Available Slots
 

@@ -243,7 +243,7 @@
       "type": "'_blank' | '_parent' | '_self' | '_top'"
     }
   ],
-  "since": "1.14.0",
+  "since": "1.15.0",
   "slots": [
     {
       "description": "The navigation item's label.",

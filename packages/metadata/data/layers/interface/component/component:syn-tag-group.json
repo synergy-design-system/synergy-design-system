@@ -80,7 +80,7 @@
       "type": "SynTag[]"
     }
   ],
-  "since": "unknown",
+  "since": "3.7.0",
   "slots": [
     {
       "description": "The tag group's main content. Must be `<syn-tag />` elements.",

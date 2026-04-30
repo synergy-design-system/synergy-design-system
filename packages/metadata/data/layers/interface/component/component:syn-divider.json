@@ -30,7 +30,7 @@
       "type": "boolean"
     }
   ],
-  "since": "2.0",
+  "since": "1.4.0",
   "slots": [],
   "sourceModulePath": "components/divider/divider.js",
   "status": "stable",

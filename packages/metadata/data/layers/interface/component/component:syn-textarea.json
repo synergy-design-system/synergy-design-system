@@ -514,7 +514,7 @@
       "type": "string"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "slots": [
     {
       "description": "The textarea's label. Alternatively, you can use the `label` attribute.",

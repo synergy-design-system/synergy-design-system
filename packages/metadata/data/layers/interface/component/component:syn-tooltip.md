@@ -17,7 +17,7 @@ Tooltips display additional information based on a specific action.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.21.0
 
 ## Available Slots
 

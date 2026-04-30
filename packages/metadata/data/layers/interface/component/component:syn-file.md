@@ -17,7 +17,7 @@ File controls allow selecting an arbitrary number of files for uploading.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** unknown
+- **Since:** 2.5.0
 
 ## Available Slots
 

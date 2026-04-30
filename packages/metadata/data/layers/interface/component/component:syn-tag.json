@@ -64,7 +64,7 @@
       "type": "'small' | 'medium' | 'large'"
     }
   ],
-  "since": "2.0",
+  "since": "1.2.0",
   "slots": [
     {
       "description": "The tag's content.",

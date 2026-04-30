@@ -17,7 +17,7 @@ Badges are used to draw attention and display statuses or counts.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.14.0
 
 ## Available Slots
 

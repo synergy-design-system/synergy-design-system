@@ -38,7 +38,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.0.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -211,7 +211,7 @@
   "name": "syn-switch",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.0.0",
   "sources": [
     "packages/angular/components/switch/switch.component.ts",
     "packages/components/src/components/switch/switch.component.ts",

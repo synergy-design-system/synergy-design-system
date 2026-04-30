@@ -17,7 +17,7 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.23.0
 
 ## Available Slots
 

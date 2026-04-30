@@ -29,7 +29,7 @@
       "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
     }
   ],
-  "since": "2.0",
+  "since": "1.14.0",
   "slots": [
     {
       "description": "The badge's content.",

@@ -17,7 +17,7 @@ Accordions provide the ability to group a list of `<syn-details>`.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 1.23.0
+- **Since:** 2.3.0
 
 ## Available Slots
 

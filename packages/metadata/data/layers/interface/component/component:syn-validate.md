@@ -19,7 +19,7 @@ and showing the validation message in a consistent, user defined way.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** unknown
+- **Since:** 2.12.0
 
 ## Available Slots
 

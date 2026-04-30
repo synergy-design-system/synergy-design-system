@@ -17,7 +17,7 @@ Options define the selectable items within various form controls such as [select
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.5.0
 
 ## Available Slots
 

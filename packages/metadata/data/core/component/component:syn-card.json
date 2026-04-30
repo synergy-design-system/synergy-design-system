@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.25.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -183,7 +183,7 @@
   "name": "syn-card",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.25.0",
   "sources": [
     "packages/angular/components/card/card.component.ts",
     "packages/components/src/components/card/card.component.ts",

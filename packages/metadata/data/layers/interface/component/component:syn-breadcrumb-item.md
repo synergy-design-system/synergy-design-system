@@ -17,7 +17,7 @@ Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to repres
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.26.0
 
 ## Available Slots
 

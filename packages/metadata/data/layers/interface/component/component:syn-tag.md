@@ -17,7 +17,7 @@ Tags are used as labels to organize things or to indicate a selection.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.2.0
 
 ## Available Slots
 

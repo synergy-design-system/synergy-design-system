@@ -18,7 +18,7 @@ It can be used to group multiple navigation items (<syn-nav-item />s) together.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 1.14.0
+- **Since:** 1.15.0
 
 ## Available Slots
 

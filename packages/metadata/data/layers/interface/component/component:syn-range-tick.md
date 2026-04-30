@@ -17,7 +17,7 @@ Ticks visually improve positioning on range sliders.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** unknown
+- **Since:** 2.6.0
 
 ## Available Slots
 

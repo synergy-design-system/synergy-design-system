@@ -17,7 +17,7 @@ Dividers are used to visually separate or group elements.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.4.0
 
 ## Available Properties
 

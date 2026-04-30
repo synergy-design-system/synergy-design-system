@@ -17,7 +17,7 @@ Textareas collect data from the user and allow multiple lines of text.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.0.0
 
 ## Available Slots
 

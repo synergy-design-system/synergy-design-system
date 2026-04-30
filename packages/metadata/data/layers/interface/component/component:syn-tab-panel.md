@@ -17,7 +17,7 @@ Tab panels are used inside [tab groups](/components/tab-group) to display tabbed
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 2.1.0
 
 ## Available Slots
 

@@ -12,7 +12,7 @@
   "figmaComponentId": "41227-223775",
   "methods": [],
   "properties": [],
-  "since": "2.0",
+  "since": "1.22.0",
   "slots": [],
   "sourceModulePath": "components/spinner/spinner.js",
   "status": "stable",

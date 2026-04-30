@@ -17,7 +17,7 @@ Flexible button / link component that can be used to quickly build navigations.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 1.14.0
+- **Since:** 1.15.0
 
 ## Available Slots
 

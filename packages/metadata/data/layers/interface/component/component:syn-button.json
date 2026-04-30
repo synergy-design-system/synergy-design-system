@@ -402,7 +402,7 @@
       "type": "'filled' | 'outline' | 'text'"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "slots": [
     {
       "description": "The button's label.",

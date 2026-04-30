@@ -17,7 +17,7 @@ Menu labels are used to describe a group of menu items.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.12.0
 
 ## Available Slots
 

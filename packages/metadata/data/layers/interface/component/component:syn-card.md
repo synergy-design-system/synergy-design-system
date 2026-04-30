@@ -17,7 +17,7 @@ Cards can be used to group related subjects in a container.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.25.0
 
 ## Available Slots
 

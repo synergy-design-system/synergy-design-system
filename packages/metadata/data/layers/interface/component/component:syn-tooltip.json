@@ -198,7 +198,7 @@
       "type": "string"
     }
   ],
-  "since": "2.0",
+  "since": "1.21.0",
   "slots": [
     {
       "description": "The tooltip's target element. Avoid slotting in more than one element, as subsequent ones will be ignored.",

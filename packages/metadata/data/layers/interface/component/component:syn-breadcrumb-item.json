@@ -88,7 +88,7 @@
       "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
     }
   ],
-  "since": "2.0",
+  "since": "1.26.0",
   "slots": [
     {
       "description": "The breadcrumb item's label.",

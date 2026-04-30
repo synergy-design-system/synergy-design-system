@@ -176,7 +176,7 @@
       "type": "string"
     }
   ],
-  "since": "2.0",
+  "since": "2.3.0",
   "slots": [
     {
       "description": "The details' main content.",

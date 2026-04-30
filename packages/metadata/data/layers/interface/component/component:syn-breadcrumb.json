@@ -43,7 +43,7 @@
       "type": "HTMLSlotElement"
     }
   ],
-  "since": "2.0",
+  "since": "1.26.0",
   "slots": [
     {
       "description": "One or more breadcrumb items to display.",

@@ -17,7 +17,7 @@ Checkboxes allow the user to toggle an option on or off.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.0.0
 
 ## Available Slots
 

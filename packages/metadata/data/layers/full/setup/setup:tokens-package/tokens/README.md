@@ -8,8 +8,6 @@ The source of the tokens can be found at [Figma](https://www.figma.com/file/bZFq
 In addition, it ships dedicated color palettes that can be used for charts components.
 The source of the chart tokens can be found at [Figma](https://www.figma.com/design/9IpXnDH4GFziUH9sOpnK8V/Chart-Library?node-id=15-221&p=f&t=rVC9uEQgFFNLGUcL-0)
 
-
-
 ---
 
 ## Installation
@@ -201,15 +199,15 @@ Chart tokens are served from a separate output path: `dist/charts/themes/`. Like
 
 #### Available chart token files
 
-| Theme    | Mode  | Stylesheet to use                              | Corresponding classNames                                    |
-| :------- | :---- | :--------------------------------------------- | :---------------------------------------------------------- |
-| sick2025 | light | `tokens/dist/charts/themes/sick2025_light.css` | `syn-theme-light`, `syn-sick2025-light`                     |
-| sick2025 | dark  | `tokens/dist/charts/themes/sick2025_dark.css`  | `syn-theme-dark`, `syn-sick2025-dark`                       |
+| Theme    | Mode  | Stylesheet to use                              | Corresponding classNames                |
+| :------- | :---- | :--------------------------------------------- | :-------------------------------------- |
+| sick2025 | light | `tokens/dist/charts/themes/sick2025_light.css` | `syn-theme-light`, `syn-sick2025-light` |
+| sick2025 | dark  | `tokens/dist/charts/themes/sick2025_dark.css`  | `syn-theme-dark`, `syn-sick2025-dark`   |
 
 The generic aliases always point to the current default theme:
 
-| Alias       | Points to                             |
-| :---------- | :------------------------------------ |
+| Alias       | Points to                               |
+| :---------- | :-------------------------------------- |
 | `light.css` | `dist/charts/themes/sick2025_light.css` |
 | `dark.css`  | `dist/charts/themes/sick2025_dark.css`  |
 

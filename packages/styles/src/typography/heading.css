@@ -1,7 +1,11 @@
 /**
  * Typographic headline classes
- * @variant {3x-large | 2x-large | x-large | large} syn-heading The size of the headline
+ * @variant {4x-large | 3x-large | 2x-large | x-large | large | medium} syn-heading The size of the headline
  */
+.syn-heading--medium {
+  font: var(--syn-heading-medium);
+}
+
 .syn-heading--large {
   font: var(--syn-heading-large);
 }
@@ -16,4 +20,8 @@
 
 .syn-heading--3x-large {
   font: var(--syn-heading-3x-large);
+}
+
+.syn-heading--4x-large {
+  font: var(--syn-heading-4x-large);
 }

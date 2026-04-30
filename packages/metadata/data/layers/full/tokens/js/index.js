@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.12.1
+ * @synergy-design-system/tokens version 3.13.1
  * SICK Global UX Foundation
  */
 
@@ -2201,6 +2201,11 @@ export const SynBodyLargeBold = 'var(--syn-body-large-bold)';
 /**
  * @type {string}
  */
+export const SynBody2xSmallRegular = 'var(--syn-body-2x-small-regular)';
+
+/**
+ * @type {string}
+ */
 export const SynHeadingLarge = 'var(--syn-heading-large)';
 
 /**
@@ -2217,6 +2222,16 @@ export const SynHeading2xLarge = 'var(--syn-heading-2x-large)';
  * @type {string}
  */
 export const SynHeading3xLarge = 'var(--syn-heading-3x-large)';
+
+/**
+ * @type {string}
+ */
+export const SynHeadingMedium = 'var(--syn-heading-medium)';
+
+/**
+ * @type {string}
+ */
+export const SynHeading4xLarge = 'var(--syn-heading-4x-large)';
 
 /**
  * @type {string}

@@ -71,10 +71,9 @@ export const cssVariableFormatter = {
       'progress-track-readonly-color',
 
       // Font Style tokens are needed later
-      'body-2x-small-regular',
+      // 'body-2x-small-regular',
       'body-2x-small-semibold',
       'body-2x-small-bold',
-      'heading-4x-large',
 
       // Internal color tests
       'background-color-1',
@@ -116,7 +115,6 @@ export const cssVariableFormatter = {
       'font-size-1x-large',
       'font-size-2-5x-large',
       'font-size-medium-large',
-      'heading-medium',
 
       // toggle buttons are not part of brand 2025
       'toggle-button-border-radius',

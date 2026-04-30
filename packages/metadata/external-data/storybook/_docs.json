@@ -1764,6 +1764,58 @@
         }
       }
     },
+    "pagination": {
+      "default": {
+        "description": {
+          "value": "The default pagination offers the most comprehensive controls and is optimized for tables, lists, and complex data views. It is intended for use cases where users need to adjust both the number of displayed rows and the active page. The navigation controls allow switching between pages as well as jumping directly to the first or last page.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Pagination",
+          "type": "text"
+        }
+      },
+      "with-divider": {
+        "description": {
+          "value": "An optional divider can be shown to provide visual separation depending on the layout needs.",
+          "type": "text"
+        },
+        "title": {
+          "value": "With Divider",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "description": {
+          "value": "Use the disabled attribute to disable all interactive elements like syn-select, syn-input, and the previous and next syn-icon-buttons. This can be useful if you want to prevent the user from entering something again immediately after an entry before the first entry has been processed.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        }
+      },
+      "compact": {
+        "description": {
+          "value": "The compact variant focuses on essential pagination controls and fits tight layouts or mobile environments. Use this variant when space is limited or page size stays fixed.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Compact Pagination",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "description": {
+          "value": "Use the size attribute to change the pagination size.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        }
+      }
+    },
     "popup": {
       "default": {
         "description": {
@@ -4302,6 +4354,38 @@
         }
       }
     },
+    "loading-screen": {
+      "default": {
+        "title": {
+          "value": "Loading Screen",
+          "type": "text"
+        },
+        "description": {
+          "value": "The loading screen is displayed while content is being loaded or processed. It provides visual feedback to the user, indicating that the system is working and preventing confusion or frustration during wait times.",
+          "type": "text"
+        }
+      },
+      "light-mode": {
+        "title": {
+          "value": "Light Mode",
+          "type": "text"
+        },
+        "description": {
+          "value": "The loading screen can be displayed in light mode, which is the default theme for all applications.",
+          "type": "text"
+        }
+      },
+      "dark-mode": {
+        "title": {
+          "value": "Dark Mode",
+          "type": "text"
+        },
+        "description": {
+          "value": "The loading screen can be displayed in dark mode, which is suitable for low-light environments or user preferences.",
+          "type": "text"
+        }
+      }
+    },
     "table": {
       "default": {
         "title": {
@@ -4310,6 +4394,28 @@
         },
         "description": {
           "value": "These examples demonstrate the usage of the syn-table-cell component in various contexts. The examples are intended solely for illustrating how syn-table-cell can be used to style tables.",
+          "type": "text"
+        }
+      }
+    },
+    "localization": {
+      "default": {
+        "title": {
+          "value": "Translations",
+          "type": "text"
+        },
+        "description": {
+          "value": "Components can be localized by importing the appropriate translation file and setting the desired `lang` attribute and/or dir attribute on the `<html>` element. Please note the default language is English (en) and the default text direction is left-to-right (ltr).",
+          "type": "text"
+        }
+      },
+      "dynamicallySetLocalizations": {
+        "title": {
+          "value": "Dynamically Set Localizations",
+          "type": "text"
+        },
+        "description": {
+          "value": "This example shows how to dynamically set localizations for Synergy components. This can be useful if you want to allow users to change the language of your application on the fly.",
           "type": "text"
         }
       }

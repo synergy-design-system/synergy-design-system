@@ -159,10 +159,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-icon-button/components/icon-button.custom.styles.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-icon-button/components/icon-button.styles.ts"
       },
       {
@@ -205,7 +201,6 @@
   "sources": [
     "packages/angular/components/icon-button/icon-button.component.ts",
     "packages/components/src/components/icon-button/icon-button.component.ts",
-    "packages/components/src/components/icon-button/icon-button.custom.styles.ts",
     "packages/components/src/components/icon-button/icon-button.styles.ts",
     "packages/components/src/components/icon-button/icon-button.ts",
     "packages/react/src/components/icon-button.ts",

@@ -1,4 +1,3 @@
-/* eslint-disable */
 import SynIconButton from './icon-button.component.js';
 
 export * from './icon-button.component.js';

@@ -1,13 +1,17 @@
-/* eslint-disable */
 import '../../../dist/synergy.js';
-import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import {
+  expect,
+  fixture,
+  html,
+  waitUntil,
+} from '@open-wc/testing';
 import sinon from 'sinon';
 import type SynIconButton from './icon-button.js';
 
 type LinkTarget = '_self' | '_blank' | '_parent' | '_top';
 
 describe('<syn-icon-button>', () => {
-  describe('defaults ', () => {
+  describe('defaults', () => {
     it('default properties', async () => {
       const el = await fixture<SynIconButton>(html` <syn-icon-button></syn-icon-button> `);
 
@@ -77,9 +81,9 @@ describe('<syn-icon-button>', () => {
       expect(el.shadowRoot?.querySelector('button')).not.to.exist;
     });
 
-    it(`the anchor rel is not present`, async () => {
+    it('the anchor rel is not present', async () => {
       const el = await fixture<SynIconButton>(html` <syn-icon-button href="some/path"></syn-icon-button> `);
-      expect(el.shadowRoot?.querySelector(`a[rel]`)).not.to.exist;
+      expect(el.shadowRoot?.querySelector('a[rel]')).not.to.exist;
     });
 
     describe('and target is present', () => {
@@ -91,17 +95,17 @@ describe('<syn-icon-button>', () => {
           expect(el.shadowRoot?.querySelector(`a[target="${target}"]`)).to.exist;
         });
 
-        it(`the anchor rel is set to 'noreferrer noopener'`, async () => {
+        it('the anchor rel is set to "noreferrer noopener"', async () => {
           const el = await fixture<SynIconButton>(html`
             <syn-icon-button href="some/path" target="${target}"></syn-icon-button>
           `);
-          expect(el.shadowRoot?.querySelector(`a[rel="noreferrer noopener"]`)).to.exist;
+          expect(el.shadowRoot?.querySelector('a[rel="noreferrer noopener"]')).to.exist;
         });
       });
     });
 
     describe('and download is present', () => {
-      it(`the anchor download attribute is the provided download`, async () => {
+      it('the anchor download attribute is the provided download', async () => {
         const fakeDownload = 'some/path';
         const el = await fixture<SynIconButton>(html`
           <syn-icon-button href="some/path" download="${fakeDownload}"></syn-icon-button>
@@ -131,12 +135,12 @@ describe('<syn-icon-button>', () => {
   describe('when disabled is present', () => {
     it('the internal button has a disabled attribute when rendering a button', async () => {
       const el = await fixture<SynIconButton>(html` <syn-icon-button disabled></syn-icon-button> `);
-      expect(el.shadowRoot?.querySelector(`button[disabled]`)).to.exist;
+      expect(el.shadowRoot?.querySelector('button[disabled]')).to.exist;
     });
 
     it('the internal anchor has an aria-disabled attribute when rendering an anchor', async () => {
       const el = await fixture<SynIconButton>(html` <syn-icon-button href="some/path" disabled></syn-icon-button> `);
-      expect(el.shadowRoot?.querySelector(`a[aria-disabled="true"]`)).to.exist;
+      expect(el.shadowRoot?.querySelector('a[aria-disabled="true"]')).to.exist;
     });
   });
 

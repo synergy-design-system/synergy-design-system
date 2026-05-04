@@ -12,7 +12,6 @@ export default {
     components: [
       'syn-nav-item',
       'syn-header',
-      'syn-prio-nav',
     ],
     templates: [
       'AppShell',

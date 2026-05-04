@@ -10,10 +10,8 @@ export default {
   component: 'syn-card',
   related: {
     components: [
-      'syn-button',
     ],
     templates: [
-      'Application-Shell',
     ],
   },
   usageGuidelines: [

@@ -10,7 +10,6 @@ export default {
   component: 'syn-checkbox',
   related: {
     components: [
-      'syn-checkbox-group',
     ],
     templates: [
       'Forms',

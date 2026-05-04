@@ -14,7 +14,7 @@ export default {
       'syn-prio-nav',
     ],
     templates: [
-      'Application Shell',
+      'AppShell',
     ],
   },
   usageGuidelines: [

@@ -80,7 +80,6 @@ export default {
       content: [
         'Each button in the group retains its individual click handlers and states.',
         'Button states (focus, hover, active) are automatically managed by the component.',
-        'Use data attributes like data-syn-button-group__button for custom styling if needed.',
         'The component handles size and variant propagation to all child buttons.',
       ],
       id: 'behavior',

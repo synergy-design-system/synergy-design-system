@@ -8,6 +8,9 @@ export default {
   ],
   component: 'syn-switch',
   related: {
+    components: [
+      'syn-checkbox',
+    ],
     templates: [
       'Forms',
     ],

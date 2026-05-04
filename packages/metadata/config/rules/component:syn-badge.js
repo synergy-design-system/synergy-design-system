@@ -21,7 +21,6 @@ export default {
   ],
   related: {
     components: [
-      'syn-status-badge',
     ],
     templates: [
     ],

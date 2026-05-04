@@ -4,6 +4,9 @@
 export default {
   component: 'syn-tag',
   related: {
+    components: [
+      'syn-tag-group',
+    ],
     templates: [
       'Tag Group',
     ],

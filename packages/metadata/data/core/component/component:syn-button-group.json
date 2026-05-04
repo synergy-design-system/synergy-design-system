@@ -1,5 +1,8 @@
 {
   "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
     "frameworks": {
       "angular": {
         "componentName": "SynButtonGroupComponent",

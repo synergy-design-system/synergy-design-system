@@ -3,10 +3,16 @@
 /** @type {import('../../src/config/types.js').ComponentRules} */
 export default {
   accessibility: [
+    'Don\'t use alerts for trivial updates that don\'t require user awareness.',
+    'Ensure the alert content is concise and clear, focusing on the most critical information.',
+    'Use simple language that users can quickly understand without additional context.',
+    'Include action items or next steps when appropriate (e.g., "Your session ended. Please login again").',
+    'Avoid redundant information — don\'t repeat the title in the body text.',
   ],
   component: 'syn-alert',
   related: {
     components: [
+      'syn-validate',
     ],
   },
   usageGuidelines: [
@@ -63,8 +69,8 @@ export default {
     },
     {
       content: [
-        'For inline alerts: Place alerts near the relevant content (above forms, near inputs with errors).',
-        'For toast notifications: Use the toast() method to display temporary notifications in a stack.',
+        'For inline alerts: Place alerts near the relevant content (above forms, near inputs with errors). You may also use `syn-validate` for inline validation messages where appropriate.',
+        'For toast notifications: Use the `toast()` method to display temporary notifications in a stack.',
         'Place success/confirmation alerts above affected content so users see confirmation after action.',
         'Place error alerts prominently and ensure they don\'t disappear automatically.',
       ],
@@ -75,7 +81,6 @@ export default {
       content: [
         'Never use alerts for decorative purposes or non-essential information.',
         'Avoid stacking more than 3-4 alerts simultaneously to prevent cognitive overload.',
-        'Don\'t use alerts for trivial updates that don\'t require user awareness.',
         'Reserve alerts for messages that meaningfully impact the user\'s current task or workflow.',
       ],
       id: 'avoidance',

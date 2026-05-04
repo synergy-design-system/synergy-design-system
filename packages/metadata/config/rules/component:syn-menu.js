@@ -18,7 +18,7 @@ export default {
       'syn-dropdown',
     ],
     templates: [
-      'Application Shell',
+      'AppShell',
     ],
   },
   usageGuidelines: [

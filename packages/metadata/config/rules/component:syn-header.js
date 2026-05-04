@@ -14,7 +14,7 @@ export default {
       'syn-nav-item',
     ],
     templates: [
-      'Application Shell',
+      'AppShell',
     ],
   },
   usageGuidelines: [

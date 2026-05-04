@@ -8,7 +8,7 @@ export default {
       'syn-menu',
     ],
     templates: [
-      'Application Shell',
+      'AppShell',
     ],
   },
 };

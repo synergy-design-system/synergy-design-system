@@ -11,7 +11,6 @@ export default {
   related: {
     components: [
       'syn-validate',
-      'syn-input',
     ],
     templates: [
       'Forms',

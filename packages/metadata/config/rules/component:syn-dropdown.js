@@ -8,7 +8,7 @@ export default {
   component: 'syn-dropdown',
   related: {
     templates: [
-      'Application Shell',
+      'AppShell',
     ],
   },
   usageGuidelines: [

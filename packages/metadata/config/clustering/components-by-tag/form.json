@@ -3,6 +3,7 @@
   "description": "Components for building forms and collecting user input",
   "entities": [
     "component:syn-button",
+    "component:syn-button-group",
     "component:syn-checkbox",
     "component:syn-combobox",
     "component:syn-dropdown",

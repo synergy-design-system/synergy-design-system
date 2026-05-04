@@ -83,6 +83,8 @@ const AllComponentSelectors = {
   select1036Delimiter: '#tab-content-Select syn-select[data-testid="select-1036-subsequently-changed-delimiter"]',
   select1056DelimiterAsyncPreValue: '#tab-content-Select syn-select[data-testid="select-1056-async-delimiter-change-with-async-pre-value"]',
   select1056DelimiterPreValue: '#tab-content-Select syn-select[data-testid="select-1056-async-delimiter-change-with-pre-value"]',
+  select1265DynamicOptionChangeButton: '#tab-content-Select syn-button[data-testid="select-1265-dynamic-option-button"]',
+  select1265DynamicOptionChanges: '#tab-content-Select syn-select[data-testid="select-1265-dynamic-option-changes"]',
   selectContent: '#tab-content-Select',
   selectForm: '#tab-content-Select syn-select[data-testid="select-form-813"]',
   selectFormOptions: '#tab-content-Select syn-select[data-testid="select-form-813"] syn-option',

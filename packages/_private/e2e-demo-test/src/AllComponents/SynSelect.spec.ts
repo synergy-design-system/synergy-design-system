@@ -266,5 +266,29 @@ test.describe('<SynSelect />', () => {
         expect(secondValue).toEqual('Option 2');
       });
     }); // regression#1056
+
+    test.describe(`Regression#1265: ${name}`, () => {
+      test('should update the selected option text when options are changed dynamically', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('selectLink');
+
+        await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+        const select = await AllComponents.getLocator('select1265DynamicOptionChanges');
+        const button = await AllComponents.getLocator('select1265DynamicOptionChangeButton');
+
+        const initialValue = await select.evaluate((ele: SynSelect) => ele.value);
+        expect(initialValue).toEqual('option-2');
+
+        await button.click();
+
+        const updatedValue = await select.evaluate((ele: SynSelect) => ele.value);
+        expect(updatedValue).toEqual('option-2');
+
+        const displayedValue = await select.evaluate((ele: SynSelect) => ele.displayLabel);
+        expect(displayedValue).toEqual('Changed Option 2');
+      });
+    }); // regression#1265
   }); // End frameworks
 }); // </syn-select>

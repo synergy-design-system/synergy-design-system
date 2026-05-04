@@ -1,4 +1,5 @@
 import { html } from 'lit';
+import { updateSelectRegressions1265 } from '@synergy-design-system/demo-utilities';
 import type { RegressionFns } from '../all-components-regressions';
 
 export const Select = (regressions: RegressionFns = []) => {
@@ -100,5 +101,22 @@ export const Select = (regressions: RegressionFns = []) => {
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
     </syn-select>
+
+    <syn-select
+      data-testid="select-1265-dynamic-option-changes"
+      label="Dynamic Option Changes"
+      value="option-2"
+    >
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 2</syn-option>
+    </syn-select>
+
+    <syn-button
+      data-testid="select-1265-dynamic-option-button"
+      @click=${updateSelectRegressions1265}
+    >
+      Dynamically change option 2 to "Changed Option 2"
+    </syn-button>
   `;
 };

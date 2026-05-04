@@ -88,6 +88,18 @@ export const setThemeFromOptionString = (optionString: string) => {
 };
 
 /**
+ * Updates the select component with the test id "select-1265-dynamic-option-changes" to change the text of the second option to "Changed Option 2".
+ */
+export const updateSelectRegressions1265 = (e: unknown) => {
+  const button = (e as Event).currentTarget as HTMLButtonElement;
+  const parent = button.parentElement;
+  const root = parent?.querySelector('[data-testid="select-1265-dynamic-option-changes"]');
+  if (root) {
+    root.querySelector<HTMLElement>('syn-option:nth-child(2)')!.innerText = 'Changed Option 2';
+  }
+};
+
+/**
  * Set the global size for all components
  * @param size The size that should be set
  */

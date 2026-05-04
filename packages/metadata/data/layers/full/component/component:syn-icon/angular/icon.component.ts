@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynIcon } from '@synergy-design-system/components';
+import type SynIcon from '@synergy-design-system/components/components/icon/icon.component.js';
 import type { SynLoadEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/icon/icon.js';

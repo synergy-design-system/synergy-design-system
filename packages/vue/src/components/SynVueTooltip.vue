@@ -40,7 +40,7 @@ import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
-import type { SynTooltip } from '@synergy-design-system/components';
+import type SynTooltip from '@synergy-design-system/components/components/tooltip/tooltip.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTooltip>();

@@ -35,7 +35,7 @@ import '@synergy-design-system/components/components/pagination/pagination.js';
 
 import type { SynPaginationPageChangedEvent } from '@synergy-design-system/components';
 import type { SynPaginationPageSizeChangedEvent } from '@synergy-design-system/components';
-import type { SynPagination } from '@synergy-design-system/components';
+import type SynPagination from '@synergy-design-system/components/components/pagination/pagination.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynPagination>();

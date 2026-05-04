@@ -66,7 +66,7 @@ import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
-import type { SynSelect } from '@synergy-design-system/components';
+import type SynSelect from '@synergy-design-system/components/components/select/select.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynSelect>();

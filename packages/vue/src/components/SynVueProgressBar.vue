@@ -26,7 +26,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/progress-bar/progress-bar.js';
 
-import type { SynProgressBar } from '@synergy-design-system/components';
+import type SynProgressBar from '@synergy-design-system/components/components/progress-bar/progress-bar.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynProgressBar>();

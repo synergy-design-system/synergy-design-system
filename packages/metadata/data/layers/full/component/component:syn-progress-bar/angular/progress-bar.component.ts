@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynProgressBar } from '@synergy-design-system/components';
+import type SynProgressBar from '@synergy-design-system/components/components/progress-bar/progress-bar.component.js';
 
 import '@synergy-design-system/components/components/progress-bar/progress-bar.js';
 

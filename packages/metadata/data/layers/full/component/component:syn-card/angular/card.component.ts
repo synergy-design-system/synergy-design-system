@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynCard } from '@synergy-design-system/components';
+import type SynCard from '@synergy-design-system/components/components/card/card.component.js';
 
 import '@synergy-design-system/components/components/card/card.js';
 

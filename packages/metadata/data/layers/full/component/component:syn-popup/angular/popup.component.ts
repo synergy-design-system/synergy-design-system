@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynPopup } from '@synergy-design-system/components';
+import type SynPopup from '@synergy-design-system/components/components/popup/popup.component.js';
 import type { SynRepositionEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/popup/popup.js';
 

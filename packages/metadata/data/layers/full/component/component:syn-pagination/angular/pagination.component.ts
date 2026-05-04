@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynPagination } from '@synergy-design-system/components';
+import type SynPagination from '@synergy-design-system/components/components/pagination/pagination.component.js';
 import type { SynPaginationPageChangedEvent } from '@synergy-design-system/components';
 import type { SynPaginationPageSizeChangedEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/pagination/pagination.js';

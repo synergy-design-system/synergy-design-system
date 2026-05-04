@@ -35,7 +35,7 @@ import '@synergy-design-system/components/components/radio-group/radio-group.js'
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
-import type { SynRadioGroup } from '@synergy-design-system/components';
+import type SynRadioGroup from '@synergy-design-system/components/components/radio-group/radio-group.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynRadioGroup>();

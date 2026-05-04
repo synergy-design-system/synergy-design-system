@@ -10,19 +10,13 @@ import {
   getAllComponents,
   getControlAttributeForTwoWayBinding,
   getEventAttributeForTwoWayBinding,
+  getEventExports,
+  getEventImports,
   getIsTwoWayBindingEnabledFor,
   job,
 } from '../shared.js';
 
 const headerComment = createHeader('vue');
-
-const getEventImports = (events = []) => events
-  .map(event => `import type { ${event.eventName} } from '@synergy-design-system/components';`)
-  .join('\n');
-
-const getEventExports = (events = []) => events
-  .map(event => `export type { ${event.eventName} } from '@synergy-design-system/components';`)
-  .join('\n');
 
 /**
  * Get all emits for the vue component
@@ -207,6 +201,7 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
     ].join('-'));
     const componentFile = path.join(componentDir, `${vueComponentName}.vue`);
     const importPath = `@synergy-design-system/components/${component.path}`;
+    const componentImportPath = `@synergy-design-system/components/${component.componentPath}`;
 
     const eventImports = getEventImports(component.events);
     const eventExports = getEventExports(component.events);
@@ -252,7 +247,7 @@ import { computed, ref } from 'vue';
 import '${importPath}';
 
 ${eventImports}
-import type { ${component.name} } from '@synergy-design-system/components';
+import type ${component.name} from '${componentImportPath}';
 
 // DOM Reference to the element
 const nativeElement = ref<${component.name}>();
@@ -279,10 +274,13 @@ ${exports}
 </template>
 `.trim();
 
-    index.push({
-      name: vueComponentName,
-      outputPath: `./components/${vueComponentName}.vue`,
-    });
+    // Remove chart component from the index, as it should not be part of the default exports
+    if (component.tagNameWithoutPrefix !== 'chart') {
+      index.push({
+        name: vueComponentName,
+        outputPath: `./components/${vueComponentName}.vue`,
+      });
+    }
 
     fs.writeFileSync(componentFile, `${source}\n`, 'utf8');
   });

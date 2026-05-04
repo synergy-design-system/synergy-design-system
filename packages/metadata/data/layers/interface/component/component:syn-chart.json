@@ -1,0 +1,20 @@
+{
+  "attributes": [],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-chart--docs",
+  "events": [],
+  "methods": [],
+  "properties": [],
+  "since": "0.0.0",
+  "slots": [],
+  "sourceModulePath": "components/chart/chart.js",
+  "status": "experimental",
+  "summary": "The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts.",
+  "tagName": "syn-chart"
+}

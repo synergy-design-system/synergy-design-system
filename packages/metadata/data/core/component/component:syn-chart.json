@@ -1,0 +1,105 @@
+{
+  "custom": {
+    "frameworks": {
+      "angular": {
+        "componentName": "SynChartComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-chart",
+        "sourcePath": "packages/angular/components/chart/chart.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynChart",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-chart--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "0.0.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "experimental",
+          "subpathExport": "./types/latest",
+          "typeName": "SynChartJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynChart",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/chart.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueChart",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueChart.vue"
+      }
+    },
+    "sourceModulePath": "components/chart/chart.js",
+    "summary": "The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts."
+  },
+  "id": "component:syn-chart",
+  "kind": "component",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-chart/angular/chart.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-chart/components/chart.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-chart/components/chart.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-chart/components/chart.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-chart/react/chart.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-chart/vue/SynVueChart.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-chart/react/SynChartJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-chart.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-chart.md"
+      }
+    ]
+  },
+  "name": "syn-chart",
+  "package": "components",
+  "relations": [],
+  "since": "0.0.0",
+  "sources": [
+    "packages/angular/components/chart/chart.component.ts",
+    "packages/components/src/components/chart/chart.component.ts",
+    "packages/components/src/components/chart/chart.styles.ts",
+    "packages/components/src/components/chart/chart.ts",
+    "packages/react/src/components/chart.ts",
+    "packages/vue/src/components/SynVueChart.vue"
+  ],
+  "status": "experimental",
+  "tags": [
+    "angular",
+    "chart",
+    "component",
+    "react",
+    "syn-chart",
+    "vue"
+  ]
+}

@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynTabGroup } from '@synergy-design-system/components';
+import type SynTabGroup from '@synergy-design-system/components/components/tab-group/tab-group.component.js';
 import type { SynTabShowEvent } from '@synergy-design-system/components';
 import type { SynTabHideEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tab-group/tab-group.js';

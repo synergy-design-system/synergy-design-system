@@ -170,13 +170,34 @@ export const createHeader = (framework = '') => {
 };
 
 /**
- * Get the complete list of exports from the file system
- * @param {boolean} warn Show warning messages when skipping an entry?
+ * Generate import statements for component event types.
+ * @param {object[]} [events=[]] The component's event list from the manifest
+ * @returns {string} Newline-separated import type statements
  */
-export const getExportsListFromFileSystem = async (warn = false) => {
+export const getEventImports = (events = []) => events
+  .map(e => `import type { ${e.eventName} } from '@synergy-design-system/components';`)
+  .join('\n');
+
+/**
+ * Generate re-export statements for component event types.
+ * @param {object[]} [events=[]] The component's event list from the manifest
+ * @returns {string} Newline-separated export type statements
+ */
+export const getEventExports = (events = []) => events
+  .map(e => `export type { ${e.eventName} } from '@synergy-design-system/components';`)
+  .join('\n');
+
+/**
+ * Get the complete list of exports from the file system.
+ * @param {object} [options={}] Options
+ * @param {boolean} [options.warn=false] Show warning messages when skipping an entry. Default: false
+ * @param {boolean} [options.withChart=true] Include chart component in the export list. Default: true
+ * @returns {Promise<Array>} List of exported components with their name and path
+ */
+export const getExportsListFromFileSystem = async ({ warn = false, withChart = true } = {}) => {
   // Make sure to use the cache when calling the function again
   if (EXPORTED_COMPONENTS) {
-    return EXPORTED_COMPONENTS;
+    return EXPORTED_COMPONENTS.filter(c => withChart || c.componentName !== 'chart');
   }
 
   const componentsDir = getPath('../src/components');
@@ -210,23 +231,24 @@ export const getExportsListFromFileSystem = async (warn = false) => {
       return available;
     });
 
-  return EXPORTED_COMPONENTS;
+  return EXPORTED_COMPONENTS.filter(c => withChart || c.componentName !== 'chart');
 };
 
 /**
  * Get all available components out of the metadata
  * @param {object} metadata Metadata, usually from components.json
+ * @param {boolean} [withChart=true] Include chart component in the export list? Default: true
  * @returns {array} List of components
  */
-export const getAllComponents = async (metadata) => {
+export const getAllComponents = async (metadata, withChart = true) => {
   // Make sure to use the cache when calling the function again
   if (ALL_COMPONENTS) {
-    return ALL_COMPONENTS;
+    return ALL_COMPONENTS.filter(c => withChart || c.tagNameWithoutPrefix !== 'chart');
   }
 
   const allComponents = [];
 
-  const exportedComponents = await getExportsListFromFileSystem(false);
+  const exportedComponents = await getExportsListFromFileSystem();
   const exportedComponentsWithoutPrefix = exportedComponents.map(c => c.componentName);
 
   metadata.modules.forEach(module => {
@@ -235,6 +257,7 @@ export const getAllComponents = async (metadata) => {
         const component = declaration;
         if (component && exportedComponentsWithoutPrefix.includes(component.tagNameWithoutPrefix)) {
           allComponents.push(Object.assign(component, {
+            componentPath: module.path.replace(/\.js$/, '.component.js'),
             path: module.path,
           }));
         }
@@ -245,7 +268,7 @@ export const getAllComponents = async (metadata) => {
   // Make sure to always sort alphabetically as this will otherwise trigger bad effects
   ALL_COMPONENTS = [...allComponents].sort(sortByComponentName);
 
-  return ALL_COMPONENTS;
+  return ALL_COMPONENTS.filter(c => withChart || c.tagNameWithoutPrefix !== 'chart');
 };
 
 /**

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-05-04T08:48:26.417Z",
+  "builtAt": "2026-05-04T14:07:35.501Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -272,6 +272,26 @@
         "component",
         "react",
         "syn-card",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-chart.json",
+      "id": "component:syn-chart",
+      "kind": "component",
+      "layers": {
+        "full": 7,
+        "interface": 2
+      },
+      "name": "syn-chart",
+      "search": [
+        "component:syn-chart",
+        "syn-chart",
+        "angular",
+        "chart",
+        "component",
+        "react",
+        "syn-chart",
         "vue"
       ]
     },

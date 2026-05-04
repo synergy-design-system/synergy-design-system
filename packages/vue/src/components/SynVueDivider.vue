@@ -18,7 +18,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/divider/divider.js';
 
-import type { SynDivider } from '@synergy-design-system/components';
+import type SynDivider from '@synergy-design-system/components/components/divider/divider.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDivider>();

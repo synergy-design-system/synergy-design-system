@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynFile } from '@synergy-design-system/components';
+import type SynFile from '@synergy-design-system/components/components/file/file.component.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';

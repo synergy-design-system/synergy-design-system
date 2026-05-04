@@ -38,6 +38,7 @@ packages/docs/src/materialSymbolsMetadata.json
 
 # Metadata is generated and should not be formatted
 packages/metadata/data
+packages/metadata/config
 
 # Locally generated mcp logs
 packages/mcp/logs

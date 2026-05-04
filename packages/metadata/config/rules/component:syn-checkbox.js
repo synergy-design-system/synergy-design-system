@@ -16,17 +16,25 @@ export default {
       'Forms',
     ],
   },
-  usageGuidelines: {
-    content: [
-      'Provide a clear, descriptive label for each selection to avoid confusion.',
-      'Frame labels positively, such as "Enable notifications" instead of "Disable notifications."',
-    ],
-    interaction_and_usage: [
-      'Ensure each selection operates independently unless used for bulk actions.',
-      'List selections in a logical order, such as alphabetical or numerical.',
-      'Refrain from using a single checkbox when the action should take effect immediately - use syn-switch instead.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Provide a clear, descriptive label for each selection to avoid confusion.',
+        'Frame labels positively, such as "Enable notifications" instead of "Disable notifications."',
+      ],
+      id: 'content',
+      name: 'Content',
+    },
+    {
+      content: [
+        'Ensure each selection operates independently unless used for bulk actions.',
+        'List selections in a logical order, such as alphabetical or numerical.',
+        'Refrain from using a single checkbox when the action should take effect immediately - use syn-switch instead.',
+      ],
+      id: 'interaction_and_usage',
+      name: 'Interaction and Usage',
+    },
+  ],
   useCases: [
     'Used for selections that don\'t immediately activate.',
     'Selecting an option like "Agree to Terms and Conditions" before submitting a registration form.',

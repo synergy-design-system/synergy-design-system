@@ -15,14 +15,22 @@ export default {
       'Breadcrumb',
     ],
   },
-  usageGuidelines: {
-    background: [
-      'Use light background options like white, neutral-100 or primary-100.',
-    ],
-    content_and_labeling: [
-      'Use clear and descriptive labels that accurately represent each page or section in the navigation path.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Use light background options like white, neutral-100 or primary-100.',
+      ],
+      id: 'background',
+      name: 'Background',
+    },
+    {
+      content: [
+        'Use clear and descriptive labels that accurately represent each page or section in the navigation path.',
+      ],
+      id: 'content_and_labeling',
+      name: 'Content and Labeling',
+    },
+  ],
   useCases: [
     'Populate a syn-breadcrumb navigation helping users easily access different pages.',
   ],

@@ -4,6 +4,7 @@
 export default {
   accessibility: [
     'Use only for non-critical information. Hiding content can become a potential barrier, making content more challenging to discover.',
+    'Use “close-others” attribute to keep only one item from the group open at a time, reducing the amount of information displayed at once and therefore reducing the cognitive load on the user.',
     'For purely decorative images, ALT-tags should be left empty so that screen readers can bypass them and concentrate on conveying meaningful content.',
   ],
   component: 'syn-accordion',
@@ -12,26 +13,28 @@ export default {
       'syn-details',
     ],
   },
-  usageGuidelines: {
-    background: [
-      'Use light background options like white, neutral-100 or primary-100.',
-    ],
-    content: [
-      'Ensure the content is focused and necessary. If the information can be splitted into different meaningful units, consider using syn-accordion-group.',
-      'Avoid using collapsible sections for information that must always be visible.',
-    ],
-    header_summary: [
-      'Make sure the header summary clearly describes the content inside.',
-      'Keep header summaries concise to prevent them from wrapping onto multiple lines.',
-    ],
-    slots: [
-      'Use the "summary" slot to add text to the header.',
-      'Use the "default" slot to add content.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Keep only one section open at a time to prevent information overload, unless multiple open sections are necessary.',
+        'Avoid nesting collapsible sections within each other to prevent a confusing user experience.',
+      ],
+      id: 'Behavior',
+      name: 'Behavior',
+    },
+    {
+      content: [
+        'Ensure the content is relevant and necessary; avoid including unrelated information.',
+        'Avoid using collapsible sections for content that needs to be always visible or is critical for immediate user attention.',
+      ],
+      id: 'content',
+      name: 'Content',
+    },
+  ],
   useCases: [
-    'Revealing additional content, such as a detailed description, specifications, or additional options without overwhelming the user with too much content at once.',
-    'Interactive elements like a single FAQ item, where the user can expand to see the answer.',
-    'Useful in forms to hide optional sections that the user can expand if needed, keeping the form clean and concise.',
+    'Organise content into collapsible sections to save space.',
+    'Display FAQs where each question can be expanded to reveal its answer.',
+    'Structure lengthy content into manageable expandable sections.',
+    'Create navigational menus where each section can be expanded to show sub-items, mainly for small viewports.',
   ],
 };

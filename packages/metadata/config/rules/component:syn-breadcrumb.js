@@ -16,23 +16,39 @@ export default {
       'Breadcrumb',
     ],
   },
-  usageGuidelines: {
-    background: [
-      'Use light background options like white, neutral-100 or primary-100.',
-    ],
-    content_and_labeling: [
-      'Use clear and descriptive labels that accurately represent each page or section in the navigation path.',
-      'Keep breadcrumb trails short and easy to read to avoid overwhelming users.',
-      'The final breadcrumb item should be non-clickable, as it represents the current page or location.',
-    ],
-    placement_and_consistency: [
-      'Ensure breadcrumbs are placed consistently across pages to align with user expectations.',
-      'Use breadcrumbs primarily in structured, multi-level navigation contexts. Avoid implementing them for non-hierarchical or dynamically generated paths, where they may confuse rather than assist users.',
-    ],
-    responsiveness: [
-      'On mobile devices breadcrumb must be shortened to only provide a link to the higher-level page.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Use light background options like white, neutral-100 or primary-100.',
+      ],
+      id: 'background',
+      name: 'Background',
+    },
+    {
+      content: [
+        'Use clear and descriptive labels that accurately represent each page or section in the navigation path.',
+        'Keep breadcrumb trails short and easy to read to avoid overwhelming users.',
+        'The final breadcrumb item should be non-clickable, as it represents the current page or location.',
+      ],
+      id: 'content_and_labeling',
+      name: 'Content and Labeling',
+    },
+    {
+      content: [
+        'Ensure breadcrumbs are placed consistently across pages to align with user expectations.',
+        'Use breadcrumbs primarily in structured, multi-level navigation contexts. Avoid implementing them for non-hierarchical or dynamically generated paths, where they may confuse rather than assist users.',
+      ],
+      id: 'placement_and_consistency',
+      name: 'Placement and Consistency',
+    },
+    {
+      content: [
+        'On mobile devices breadcrumb must be shortened to only provide a link to the higher-level page.',
+      ],
+      id: 'responsiveness',
+      name: 'Responsiveness',
+    },
+  ],
   useCases: [
     'Clarify user location within the website or app hierarchy, improving orientation.',
     'Allow easy navigation back to previous pages or higher-level sections.',

@@ -17,23 +17,35 @@ export default {
       'Application Shell',
     ],
   },
-  usageGuidelines: {
-    layout: [
-      'Place navigation items to the left, the logo at the top left, and meta navigation on the right in wider viewports to keep consistency across products.',
-      'In smaller viewports, place an expandable menu on the right to host navigation items while keeping the logo consistently on the left across all viewport sizes.',
-      'Keep the navigation fixed at the top of the website when scrolling back to the top.',
-    ],
-    navigation_structure_and_content: [
-      'Include the logo, main navigation, and, if applicable, sub-brand logos and meta navigation.',
-      'Use the number of navigation items that best suits the content, always ensuring categories are clearly labeled and mutually exclusive.',
-      'Regularly update the navigation links to reflect current content and structure.',
-    ],
-    visual_style_and_branding: [
-      'Provide clear visual indicators for active or selected navigation items.',
-      'Refrain from customizing elements in ways that deviate from the brand identity.',
-      'Include the company logo prominently; do not use a header without the corresponding logo.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Place navigation items to the left, the logo at the top left, and meta navigation on the right in wider viewports to keep consistency across products.',
+        'In smaller viewports, place an expandable menu on the right to host navigation items while keeping the logo consistently on the left across all viewport sizes.',
+        'Keep the navigation fixed at the top of the website when scrolling back to the top.',
+      ],
+      id: 'layout',
+      name: 'Layout',
+    },
+    {
+      content: [
+        'Include the logo, main navigation, and, if applicable, sub-brand logos and meta navigation.',
+        'Use the number of navigation items that best suits the content, always ensuring categories are clearly labeled and mutually exclusive.',
+        'Regularly update the navigation links to reflect current content and structure.',
+      ],
+      id: 'navigation_structure_and_content',
+      name: 'Navigation Structure and Content',
+    },
+    {
+      content: [
+        'Provide clear visual indicators for active or selected navigation items.',
+        'Refrain from customizing elements in ways that deviate from the brand identity.',
+        'Include the company logo prominently; do not use a header without the corresponding logo.',
+      ],
+      id: 'visual_style_and_branding',
+      name: 'Visual Style and Branding',
+    },
+  ],
   useCases: [
     'Display primary navigation links for easy access to different sections of the website.',
     'Showcase the company logo prominently to reinforce brand identity.',

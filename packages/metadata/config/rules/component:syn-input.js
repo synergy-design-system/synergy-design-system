@@ -17,28 +17,48 @@ export default {
       'Forms',
     ],
   },
-  usageGuidelines: {
-    input_types: [
-      'Use appropriate field types for the given purpose (e.g., "email", "password", "number"). For custom autocomplete functionalities (e.g., search fields) use syn-combobox.',
-      'Use for brief text input only. For longer inputs, such as comments or user feedback, use syn-textarea instead.',
-    ],
-    labels_and_placeholders: [
-      'Use descriptive and concise labels.',
-      'Avoid using placeholder text as a substitute for labels.',
-    ],
-    user_guidance: [
-      'Provide instructions within helper text for completing the field, such as password or character count (e.g., "maxlength" and "minlength"...).',
-      'Offer additional guidance with tooltips or help text to guide users on the expected input format and prevent unclear or ambiguous interpretation.',
-    ],
-    validation_and_formatting: [
-      'Use dynamic formatting to automatically format user input as they type.',
-      'Validate user entries in real-time to provide immediate feedback whenever possible.',
-      'Avoid using fields for actions that require immediate feedback; use buttons instead.',
-    ],
-    variant_consistency: [
-      'Do not mix the two variants (default / floating label) within the same product, flow or form. Read the use cases above to know when to use each type.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Use appropriate field types for the given purpose (e.g., "email", "password", "number"). For custom autocomplete functionalities (e.g., search fields) use syn-combobox.',
+        'Use for brief text input only. For longer inputs, such as comments or user feedback, use syn-textarea instead.',
+      ],
+      id: 'input_types',
+      name: 'Input Types',
+    },
+    {
+      content: [
+        'Use descriptive and concise labels.',
+        'Avoid using placeholder text as a substitute for labels.',
+      ],
+      id: 'labels_and_placeholders',
+      name: 'Labels and Placeholders',
+    },
+    {
+      content: [
+        'Provide instructions within helper text for completing the field, such as password or character count (e.g., "maxlength" and "minlength"...).',
+        'Offer additional guidance with tooltips or help text to guide users on the expected input format and prevent unclear or ambiguous interpretation.',
+      ],
+      id: 'user_guidance',
+      name: 'User Guidance',
+    },
+    {
+      content: [
+        'Use dynamic formatting to automatically format user input as they type.',
+        'Validate user entries in real-time to provide immediate feedback whenever possible.',
+        'Avoid using fields for actions that require immediate feedback; use buttons instead.',
+      ],
+      id: 'validation_and_formatting',
+      name: 'Validation and Formatting',
+    },
+    {
+      content: [
+        'Do not mix the two variants (default / floating label) within the same product, flow or form. Read the use cases above to know when to use each type.',
+      ],
+      id: 'variant_consistency',
+      name: 'Variant Consistency',
+    },
+  ],
   useCases: [
     'Collect user data in forms, including names, emails, dates, and passwords.',
     'Allow users to enter numerical values like quantities or prices.',

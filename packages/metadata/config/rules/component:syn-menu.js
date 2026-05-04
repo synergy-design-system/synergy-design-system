@@ -21,23 +21,35 @@ export default {
       'Application Shell',
     ],
   },
-  usageGuidelines: {
-    behavior: [
-      'Ensure the menu is easy to access and appears consistently across the platform.',
-      'Provide visual feedback (e.g., hover, active state) to indicate interactivity.',
-      'Ensure the menu is responsive and adapts well to different screen sizes and devices.',
-    ],
-    labels_and_value_display: [
-      'Use clear, descriptive labels to ensure users know what to expect.',
-      'Use icons alongside text for better visual identification of actions.',
-      'Avoid overwhelming users with too many menu items. Keep it concise and focused.',
-    ],
-    structure_and_organization: [
-      'Organize menu items in a logical, hierarchical order to enhance navigation.',
-      'Prioritize frequently used functions at the top of the menu for quicker access.',
-      'Don\'t use multiple menus with similar content on the same screen. Keep the navigation consistent and clear.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Ensure the menu is easy to access and appears consistently across the platform.',
+        'Provide visual feedback (e.g., hover, active state) to indicate interactivity.',
+        'Ensure the menu is responsive and adapts well to different screen sizes and devices.',
+      ],
+      id: 'behavior',
+      name: 'Behavior',
+    },
+    {
+      content: [
+        'Use clear, descriptive labels to ensure users know what to expect.',
+        'Use icons alongside text for better visual identification of actions.',
+        'Avoid overwhelming users with too many menu items. Keep it concise and focused.',
+      ],
+      id: 'labels_and_value_display',
+      name: 'Labels and Value Display',
+    },
+    {
+      content: [
+        'Organize menu items in a logical, hierarchical order to enhance navigation.',
+        'Prioritize frequently used functions at the top of the menu for quicker access.',
+        'Don\'t use multiple menus with similar content on the same screen. Keep the navigation consistent and clear.',
+      ],
+      id: 'structure_and_organization',
+      name: 'Structure and Organization',
+    },
+  ],
   useCases: [
     'Navigate between different sections or pages.',
     'Access various functions or features quickly.',

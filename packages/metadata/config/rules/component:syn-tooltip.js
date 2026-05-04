@@ -13,29 +13,49 @@ export default {
     templates: [
     ],
   },
-  usageGuidelines: {
-    background: [
-      'Use with light background options of white, neutral-100 and primary-100.',
-    ],
-    behavior_and_placement: [
-      'Place the tooltip where the floating element does not obscure important content related to the subject.',
-      'Ensure it disappears when the user interacts with other elements.',
-      'Avoid tooltips being cropped by other elements of the interface; use appropriate placement for this purpose.',
-    ],
-    content: [
-      'Use short, descriptive text; if a longer explanation is required, consider non-interactive means to convey this information.',
-      'Avoid jargon or highly technical language; aim to solve questions, not trigger more.',
-      'Do not use for critical or unique information.',
-      'Do not place links, buttons, or other interactive elements within the content.',
-    ],
-    styling: [
-      'Display a headline by bolding the text if it makes the content easier to understand.',
-      'Emphasize key information by bolding parts of the text.',
-    ],
-    trigger_element: [
-      'Use any interactive element as a tooltip trigger by placing it in the provided slot; the default trigger (info-i) can be replaced based on context or preference.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Use with light background options of white, neutral-100 and primary-100.',
+      ],
+      id: 'background',
+      name: 'Background',
+    },
+    {
+      content: [
+        'Place the tooltip where the floating element does not obscure important content related to the subject.',
+        'Ensure it disappears when the user interacts with other elements.',
+        'Avoid tooltips being cropped by other elements of the interface; use appropriate placement for this purpose.',
+      ],
+      id: 'behavior_and_placement',
+      name: 'Behavior and Placement',
+    },
+    {
+      content: [
+        'Use short, descriptive text; if a longer explanation is required, consider non-interactive means to convey this information.',
+        'Avoid jargon or highly technical language; aim to solve questions, not trigger more.',
+        'Do not use for critical or unique information.',
+        'Do not place links, buttons, or other interactive elements within the content.',
+      ],
+      id: 'content',
+      name: 'Content',
+    },
+    {
+      content: [
+        'Display a headline by bolding the text if it makes the content easier to understand.',
+        'Emphasize key information by bolding parts of the text.',
+      ],
+      id: 'styling',
+      name: 'Styling',
+    },
+    {
+      content: [
+        'Use any interactive element as a tooltip trigger by placing it in the provided slot; the default trigger (info-i) can be replaced based on context or preference.',
+      ],
+      id: 'trigger_element',
+      name: 'Trigger Element',
+    },
+  ],
   useCases: [
     'Provide additional, useful, and non-essential information about form fields.',
     'Expand abbreviations or acronyms that might be unfamiliar to users.',

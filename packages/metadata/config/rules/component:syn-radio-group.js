@@ -16,20 +16,32 @@ export default {
       'Forms',
     ],
   },
-  usageGuidelines: {
-    background: [
-      'Use with light background options such as white, neutral-100, or primary-100.',
-    ],
-    grouping_and_labels: [
-      'Group related options together using fieldsets and legends for better context and accessibility.',
-      'Provide a group label that states the category or describes the actions to take.',
-    ],
-    selection_behavior: [
-      'Provide a default selected option; never display options without a default selection.',
-      'Do not disable all choices in a group; if a selection is not applicable, consider hiding the group instead.',
-      'Use only when users need to select one option; for multiple selections, use checkboxes instead.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Use with light background options such as white, neutral-100, or primary-100.',
+      ],
+      id: 'background',
+      name: 'Background',
+    },
+    {
+      content: [
+        'Group related options together using fieldsets and legends for better context and accessibility.',
+        'Provide a group label that states the category or describes the actions to take.',
+      ],
+      id: 'grouping_and_labels',
+      name: 'Grouping and Labels',
+    },
+    {
+      content: [
+        'Provide a default selected option; never display options without a default selection.',
+        'Do not disable all choices in a group; if a selection is not applicable, consider hiding the group instead.',
+        'Use only when users need to select one option; for multiple selections, use checkboxes instead.',
+      ],
+      id: 'selection_behavior',
+      name: 'Selection Behavior',
+    },
+  ],
   useCases: [
     'Present options in forms where only one selection is allowed (e.g., gender selection, payment methods).',
     'Provide clear and concise choices in settings or configuration panels.',

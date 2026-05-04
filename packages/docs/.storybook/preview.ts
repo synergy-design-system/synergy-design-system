@@ -60,7 +60,7 @@ const manifest = {
     ...componentsManifestFiltered.modules,
     ...stylesManifestFiltered.modules,
   ],
-} as Package;
+};
 
 setCustomElementsManifest(manifest);
 
@@ -151,6 +151,30 @@ const preview: Preview = {
           '.synergy-changelog h5',
         ].join(', '),
       },
+    },
+    options: {
+      /* eslint-disable */
+      // @ts-expect-error StorySortFunction is not recognized by TypeScript
+      storySort: (a, b) => {
+        const aTitle = a.title || '';
+        const bTitle = b.title || '';
+        const aOverview = aTitle.endsWith('/Overview');
+        const bOverview = bTitle.endsWith('/Overview');
+
+        const aBase = aTitle.replace(/\/Overview$/, '');
+        const bBase = bTitle.replace(/\/Overview$/, '');
+
+        // If both entries belong to the same component group, keep Overview first.
+        if (aBase === bBase && aOverview !== bOverview) {
+          return aOverview ? -1 : 1;
+        }
+
+        return aTitle.localeCompare(bTitle, undefined, {
+          numeric: true,
+          sensitivity: 'base',
+        });
+      },
+      /* eslint-enable */
     },
     // Configures the viewports addon to make sure
     // that we have a valid default viewport.

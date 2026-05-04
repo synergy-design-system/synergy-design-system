@@ -63,6 +63,7 @@ const config: StorybookConfig = {
     '../stories/components/**/*.@(mdx|stories.*)',
     '../stories/styles/**/*.@(mdx|stories.*)',
     '../stories/templates/**/*.@(mdx|stories.*)',
+    '../stories/overview/**/*.mdx',
     // "../src/**/*.mdx",
     // "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],

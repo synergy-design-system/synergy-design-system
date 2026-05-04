@@ -17,28 +17,44 @@ export default {
     templates: [
     ],
   },
-  usageGuidelines: {
-    actions: [
-      'Ensure a clear user journey by using a single primary button for the main action and secondary buttons for less important actions.',
-      'Provide an action to close the interaction if a close button is not present in the top-right corner.',
-      'Avoid having multiple primary action buttons within the same dialog.',
-    ],
-    headline_and_content: [
-      'Use clear and concise headlines that describe the purpose.',
-      'Avoid displaying content unrelated to the current workflow.',
-      'Refrain from using dialogs for complex forms or large amounts of information.',
-    ],
-    slots: [
-      'Use the "label" slot to add a headline.',
-      'Add main content on the "default" slot. The "default" slot is always scrollable.',
-      'Use the "footer" slot to add action elements. The "footer" slot is always fixed.',
-    ],
-    user_interaction: [
-      'Require users to take an action before they can continue interacting with the rest of the interface.',
-      'Provide multiple ways to close the dialog, such as an "X" button, a cancel button, or clicking outside the dialog.',
-      'Avoid excessive use of dialogs, as they can be disruptive to the user experience.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Ensure a clear user journey by using a single primary button for the main action and secondary buttons for less important actions.',
+        'Provide an action to close the interaction if a close button is not present in the top-right corner.',
+        'Avoid having multiple primary action buttons within the same dialog.',
+      ],
+      id: 'actions',
+      name: 'Actions',
+    },
+    {
+      content: [
+        'Use clear and concise headlines that describe the purpose.',
+        'Avoid displaying content unrelated to the current workflow.',
+        'Refrain from using dialogs for complex forms or large amounts of information.',
+      ],
+      id: 'headline_and_content',
+      name: 'Headline and Content',
+    },
+    {
+      content: [
+        'Use the "label" slot to add a headline.',
+        'Add main content on the "default" slot. The "default" slot is always scrollable.',
+        'Use the "footer" slot to add action elements. The "footer" slot is always fixed.',
+      ],
+      id: 'slots',
+      name: 'Slots',
+    },
+    {
+      content: [
+        'Require users to take an action before they can continue interacting with the rest of the interface.',
+        'Provide multiple ways to close the dialog, such as an "X" button, a cancel button, or clicking outside the dialog.',
+        'Avoid excessive use of dialogs, as they can be disruptive to the user experience.',
+      ],
+      id: 'user_interaction',
+      name: 'User Interaction',
+    },
+  ],
   useCases: [
     'Confirm an action which can have significant consequences and explicit user approval or input is needed (e.g. deleting a file).',
     'Present important information that must be seen and acknowledged before proceeding (e.g., session expired and renewed login required).',

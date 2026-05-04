@@ -143,7 +143,7 @@ export const storybookTemplate = (customElementTag: string) => ({
   }) => getStorybookHelpers(customElementTag).template(data.args),
 });
 
-type Component = keyof typeof docsTokens.components | keyof typeof docsTokens.templates;
+export type Component = keyof typeof docsTokens.components | keyof typeof docsTokens.templates;
 type Attribute<T extends Component> = T extends keyof typeof docsTokens.components
   ? keyof typeof docsTokens.components[T]
   : T extends keyof typeof docsTokens.templates

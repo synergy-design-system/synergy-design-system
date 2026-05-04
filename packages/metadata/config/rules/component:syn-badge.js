@@ -26,27 +26,43 @@ export default {
     templates: [
     ],
   },
-  usageGuidelines: {
-    background: [
-      'Use light backgrounds: white, neutral-100, primary-100',
-      'Use primary background when inverted',
-    ],
-    color: [
-      'Consistently apply one color choice for a cohesive look',
-      'Use default variants for standard notifications',
-      'Blue = neutral integration, green = more attention, red = maximum emphasis',
-      'Do not associate color variants with success or error states',
-    ],
-    content: [
-      'Use only numbers as content',
-      'Use "+" for overflow values set by the application',
-    ],
-    placement: [
-      'Place where it preserves relation to the assigned element',
-      'Do not obscure any informative element or text',
-      'Do not alter the number formatting',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Use light backgrounds: white, neutral-100, primary-100',
+        'Use primary background when inverted',
+      ],
+      id: 'background',
+      name: 'Background',
+    },
+    {
+      content: [
+        'Consistently apply one color choice for a cohesive look',
+        'Use default variants for standard notifications',
+        'Blue = neutral integration, green = more attention, red = maximum emphasis',
+        'Do not associate color variants with success or error states',
+      ],
+      id: 'color',
+      name: 'Color',
+    },
+    {
+      content: [
+        'Use only numbers as content',
+        'Use "+" for overflow values set by the application',
+      ],
+      id: 'content',
+      name: 'Content',
+    },
+    {
+      content: [
+        'Place where it preserves relation to the assigned element',
+        'Do not obscure any informative element or text',
+        'Do not alter the number formatting',
+      ],
+      id: 'placement',
+      name: 'Placement',
+    },
+  ],
   useCases: [
     'Indicate the number of items selected, such as when using a filter',
     'Show the count of newly added items',

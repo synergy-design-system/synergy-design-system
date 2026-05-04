@@ -13,31 +13,51 @@ export default {
     templates: [
     ],
   },
-  usageGuidelines: {
-    background: [
-      'Use background options of white, neutral-100, or primary-100.',
-    ],
-    behavior: [
-      'Maintain a consistent tab order across different pages or sections to reduce confusion and enhance user familiarity.',
-      'Limit the number of tabs (typically no more than six) to avoid overwhelming users; for more options, consider using side navigation.',
-      'Do not nest tabs within other tab containers.',
-    ],
-    content: [
-      'Choose labels that are concise and use no more than two words.',
-      'Ensure the first tab is the most relevant for the user.',
-      'Place related tabs next to each other for logical grouping.',
-      'Avoid overloading each tabs content with too much information; keep it manageable and focused.',
-      'Avoid using tabs for content that needs to be read in a specific order; use syn-step-group instead.',
-    ],
-    styling: [
-      'Bold labels if desired, keeping this decision consistent across the group.',
-      'Customize to suit user requirements by changing label alignment or deleting the separator between group and content.',
-    ],
-    tab_panel: [
-      'Use syn-tab-panel optionally when applying the "default" tab group variant.',
-      'When applying the "container" tab group variant, syn-tab-panel is mandatory.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Use background options of white, neutral-100, or primary-100.',
+      ],
+      id: 'background',
+      name: 'Background',
+    },
+    {
+      content: [
+        'Maintain a consistent tab order across different pages or sections to reduce confusion and enhance user familiarity.',
+        'Limit the number of tabs (typically no more than six) to avoid overwhelming users; for more options, consider using side navigation.',
+        'Do not nest tabs within other tab containers.',
+      ],
+      id: 'behavior',
+      name: 'Behavior',
+    },
+    {
+      content: [
+        'Choose labels that are concise and use no more than two words.',
+        'Ensure the first tab is the most relevant for the user.',
+        'Place related tabs next to each other for logical grouping.',
+        'Avoid overloading each tabs content with too much information; keep it manageable and focused.',
+        'Avoid using tabs for content that needs to be read in a specific order; use syn-step-group instead.',
+      ],
+      id: 'content',
+      name: 'Content',
+    },
+    {
+      content: [
+        'Bold labels if desired, keeping this decision consistent across the group.',
+        'Customize to suit user requirements by changing label alignment or deleting the separator between group and content.',
+      ],
+      id: 'styling',
+      name: 'Styling',
+    },
+    {
+      content: [
+        'Use syn-tab-panel optionally when applying the "default" tab group variant.',
+        'When applying the "container" tab group variant, syn-tab-panel is mandatory.',
+      ],
+      id: 'tab_panel',
+      name: 'Tab Panel',
+    },
+  ],
   useCases: [
     'Organize content into different sections, allowing users to switch between them without leaving the page.',
     'Implement in dashboards where users need to access different data views or widgets.',

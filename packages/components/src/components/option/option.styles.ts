@@ -139,14 +139,14 @@ export default css`
     font-size: var(--option-icon-size, var(--syn-spacing-large));
   }
 
-  .option--hover .option__prefix::slotted(syn-icon),
-  .option--hover .option__suffix::slotted(syn-icon) {
-    color: var(--syn-option-icon-color-hover);
-  }
-
   .option--current .option__prefix::slotted(syn-icon),
   .option--current .option__suffix::slotted(syn-icon) {
     color: var(--syn-option-icon-color-active);
+  }
+
+  .option--hover:not(.option--disabled) .option__prefix::slotted(syn-icon),
+  .option--hover:not(.option--disabled) .option__suffix::slotted(syn-icon) {
+    color: var(--syn-option-icon-color-hover);
   }
 
   /* This is needed for the highlight styling of the options in syn-combobox */

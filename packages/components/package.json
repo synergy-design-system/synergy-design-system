@@ -118,5 +118,8 @@
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:*"
   },
-  "customElements": "dist/custom-elements.json"
+  "customElements": "dist/custom-elements.json",
+  "optionalDependencies": {
+    "echarts": "^6.0.0"
+  }
 }

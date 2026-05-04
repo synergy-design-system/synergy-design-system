@@ -5,23 +5,47 @@ import {
   generateStoryDescription,
 } from './component.js';
 import '../../../components/src/components/alert/alert.js';
+import '../../../components/src/components/badge/badge.js';
 import '../../../components/src/components/card/card.js';
 import '../../../components/src/components/divider/divider.js';
 import '../../../components/src/components/icon-button/icon-button.js';
 import '../../../components/src/components/spinner/spinner.js';
 import '../../../components/src/components/tooltip/tooltip.js';
-import {
-  type ComponentOverride,
-  type ComponentRules,
-} from '../../../metadata/src/config/types.js';
+
+type UsageGuideline = {
+  content: string[];
+  id: string;
+  name: string;
+};
+
+type ComponentRules = {
+  accessibility?: string[];
+  component: string;
+  related?: {
+    components?: string[];
+    templates?: string[];
+  };
+  usageGuidelines?: UsageGuideline[];
+  useCases?: string[];
+};
 
 type RuleModule = { default?: ComponentRules };
 type RuleModuleLoader = () => Promise<RuleModule>;
-type OverrideModule = { default?: ComponentOverride };
-type OverrideModuleLoader = () => Promise<OverrideModule>;
+type CoreComponentMetadata = {
+  custom?: {
+    override?: {
+      figmaComponentId?: string;
+      figmaDocsId?: string;
+    };
+  };
+  since?: string;
+  status?: string;
+};
+type CoreComponentModule = { default?: CoreComponentMetadata };
+type CoreComponentModuleLoader = () => Promise<CoreComponentModule>;
 
 const ruleModules = import.meta.glob<RuleModule>('../../../metadata/config/rules/*.js');
-const overrideModules = import.meta.glob<OverrideModule>('../../../metadata/config/overrides/*.json');
+const coreComponentModules = import.meta.glob<CoreComponentModule>('../../../metadata/data/core/component/*.json');
 
 const ruleModulesByItem = Object.entries(ruleModules).reduce(
   (acc, [fullPath, loader]) => {
@@ -37,7 +61,7 @@ const ruleModulesByItem = Object.entries(ruleModules).reduce(
   {} as Record<string, RuleModuleLoader>,
 );
 
-const overrideModulesByItem = Object.entries(overrideModules).reduce(
+const coreComponentModulesByItem = Object.entries(coreComponentModules).reduce(
   (acc, [fullPath, loader]) => {
     const fileName = fullPath.split('/').pop();
     const itemKey = fileName?.replace(/\.json$/, '');
@@ -48,12 +72,12 @@ const overrideModulesByItem = Object.entries(overrideModules).reduce(
 
     return acc;
   },
-  {} as Record<string, OverrideModuleLoader>,
+  {} as Record<string, CoreComponentModuleLoader>,
 );
 
 type RulesState = {
   content: ComponentRules | null;
-  override: ComponentOverride | null;
+  coreMetadata: CoreComponentMetadata | null;
   status: 'loading' | 'loaded' | 'error';
 };
 
@@ -105,6 +129,13 @@ const styles = `
   h1 {
     margin: 0 !important;
   }
+
+  nav {
+    align-items: center;
+    display: flex;
+    gap: var(--syn-spacing-small);
+    justify-content: center;
+  }
 }
 `;
 
@@ -132,35 +163,35 @@ const RulesBlock: React.FC<RulesBlockProps> = ({
 export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) => {
   const [{
     content,
-    override,
+    coreMetadata,
     status,
   }, setRuleData] = useState<RulesState>({
     content: null,
-    override: null,
+    coreMetadata: null,
     status: 'loading',
   });
 
   useEffect(() => {
     const loadRule = ruleModulesByItem[forItem];
-    const loadOverride = overrideModulesByItem[forItem];
+    const loadCoreComponent = coreComponentModulesByItem[forItem];
 
     if (!loadRule) {
-      setRuleData({ content: null, override: null, status: 'error' });
+      setRuleData({ content: null, coreMetadata: null, status: 'error' });
       return;
     }
 
     Promise.all([
       loadRule(),
-      loadOverride ? loadOverride().catch(() => null) : Promise.resolve(null),
+      loadCoreComponent ? loadCoreComponent().catch(() => null) : Promise.resolve(null),
     ])
-      .then(([ruleModule, overrideModule]) => {
+      .then(([ruleModule, coreComponentModule]) => {
         setRuleData({
           content: ruleModule.default || null,
-          override: overrideModule?.default || null,
+          coreMetadata: coreComponentModule?.default || null,
           status: 'loaded',
         });
       })
-      .catch(() => setRuleData({ content: null, override: null, status: 'error' }));
+      .catch(() => setRuleData({ content: null, coreMetadata: null, status: 'error' }));
   }, [forItem]);
 
   if (status === 'loading') {
@@ -183,6 +214,7 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
 
   const componentWithoutPrefix = content.component.replace('syn-', '');
   const description = generateStoryDescription(componentWithoutPrefix as ComponentHelperType, 'default');
+  const figmaDocsId = coreMetadata?.custom?.override?.figmaDocsId;
 
   // Final output
   return (
@@ -196,6 +228,20 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
           <Markdown>{`# ${content.component}`}</Markdown>
 
           <nav>
+            {coreMetadata?.status && (
+              <syn-tooltip content="Current development status">
+                <syn-badge variant={coreMetadata.status === 'stable' ? 'success' : 'warning'}>
+                  {coreMetadata.status}
+                </syn-badge>
+              </syn-tooltip>
+            )}
+            {coreMetadata?.since && (
+              <syn-tooltip content="Available since this version">
+                <syn-badge variant="neutral">
+                  {coreMetadata.since}
+                </syn-badge>
+              </syn-tooltip>
+            )}
             <syn-tooltip content="View Storybook documentation">
               <syn-icon-button
                 href={`/?path=/docs/components-${content.component.toLowerCase()}--docs`}
@@ -205,10 +251,10 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
               />
             </syn-tooltip>
 
-            {override?.figmaDocsId && (
+            {figmaDocsId && (
               <syn-tooltip content="View Figma documentation">
                 <syn-icon-button
-                  href={`https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=${override.figmaDocsId}`}
+                  href={`https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=${figmaDocsId}`}
                   src="/figma-logo.svg"
                   label="Figma"
                   size="large"
@@ -238,7 +284,7 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
               <ul>
                 {content.related.components.map((comp) => (
                   <li key={comp}>
-                    <a className="syn-link" href={`/?path=/docs/components--${comp.toLowerCase()}-overview--docs`}>{comp}</a>
+                    <a className="syn-link" href={`/?path=/docs/components-${comp.toLowerCase()}-overview--docs`}>{comp}</a>
                   </li>
                 ))}
               </ul>
@@ -266,13 +312,6 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
             />
           )}
 
-          {content.accessibility && content.accessibility.length > 0 && (
-            <RulesBlock
-              heading="Accessibility"
-              rules={content.accessibility}
-            />
-          )}
-
           <Markdown>## Usage guidelines</Markdown>
 
           {(content.usageGuidelines || []).map(({
@@ -287,6 +326,16 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
               rules={rules}
             />
           ))}
+
+          {content.accessibility && content.accessibility.length > 0 && (
+            <>
+              <syn-divider />
+              <RulesBlock
+                heading="Accessibility"
+                rules={content.accessibility}
+              />
+            </>
+          )}
         </div>
       </syn-card>
       <style>{styles}</style>

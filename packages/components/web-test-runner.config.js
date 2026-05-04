@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
+import { globSync } from 'node:fs';
 import { esbuildPlugin } from '@web/dev-server-esbuild';
-import { globbySync } from 'globby';
 import { playwrightLauncher } from '@web/test-runner-playwright';
 import synTestPlugins from './scripts/tests/index.js';
 
@@ -39,7 +39,7 @@ export default {
   files: 'src/**/*.test.ts', // "default" group
   // Create a named group for every test file to enable running single tests. If a test file is `split-panel.test.ts`
   // then you can run `npm run test -- --group split-panel` to run only that component's tests.
-  groups: globbySync('src/**/*.test.ts').map(path => {
+  groups: globSync('src/**/*.test.ts').map(path => {
     const groupName = path.match(/^.*\/(?<fileName>.*)\.test\.ts/).groups.fileName;
     return {
       files: path,

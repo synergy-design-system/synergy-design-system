@@ -4,11 +4,8 @@ import fsSync from 'fs';
 import path from 'path';
 import url from 'url';
 import { exec } from 'child_process';
-import util from 'util';
+import { promisify, styleText } from 'util';
 import prettier from 'prettier';
-import { deleteAsync } from 'del';
-import { globby } from 'globby';
-import chalk from 'chalk';
 import ora from 'ora';
 import { pascalCase } from 'change-case';
 
@@ -72,7 +69,7 @@ export const job = (label, action) => async (...args) => {
 /**
  * Creates an async version of exec
  */
-export const execPromise = util.promisify(exec);
+export const execPromise = promisify(exec);
 
 /**
  * Get the absolute path of one to many path parts,
@@ -133,7 +130,7 @@ export const getPackageJSONAsObject = () => JSON.parse(fsSync.readFileSync(getPa
 export const createRunPrepare = (label) => job(label, async (...dirs) => {
   // Remove all directories
   await Promise.all(
-    dirs.map(dir => deleteAsync(dir, { force: true })),
+    dirs.map(dir => fs.rm(dir, { force: true, recursive: true })),
   );
 
   // Create all directories
@@ -186,7 +183,7 @@ export const getExportsListFromFileSystem = async (warn = false) => {
   const optimizedPath = optimizePathForWindows(componentsDir);
 
   // Only treat components as available if there is a COMPONENTNAME.component.ts!
-  const foundComponents = await globby(`${optimizedPath}/**/*.component.ts`);
+  const foundComponents = await Array.fromAsync(fs.glob(`${optimizedPath}/**/*.component.ts`));
 
   EXPORTED_COMPONENTS = foundComponents
     .sort()
@@ -207,7 +204,7 @@ export const getExportsListFromFileSystem = async (warn = false) => {
 
       // Make sure to warn user if it seems we missed an export
       if (!available && warn) {
-        console.warn(`\n${chalk.yellow('⚠')} Warning: Not exporting component <${c.componentClass} /> as there is no export file found. Please create ${c.componentAbsolutePath} to export this file`);
+        console.warn(`\n${styleText('yellow','⚠')} Warning: Not exporting component <${c.componentClass} /> as there is no export file found. Please create ${c.componentAbsolutePath} to export this file`);
       }
 
       return available;
@@ -334,13 +331,13 @@ export const getIsTwoWayBindingEnabledFor = (componentName) => TWOWAY_BINDING_EN
  */
 export const getControlAttributeForTwoWayBinding = (componentName) => {
   switch (componentName) {
-  case 'checkbox':
-  case 'switch':
-    return 'checked';
-  case 'file':
-    return 'files';
-  default:
-    return 'value';
+    case 'checkbox':
+    case 'switch':
+      return 'checked';
+    case 'file':
+      return 'files';
+    default:
+      return 'value';
   }
 };
 
@@ -352,8 +349,8 @@ export const getControlAttributeForTwoWayBinding = (componentName) => {
 export const getEventAttributeForTwoWayBinding = (componentName) => {
   switch (componentName) {
   // #729: Syn-Range should emit on change as it may be too fast to use it with syn-input
-  case 'range': return 'syn-change';
-  default: return 'syn-input';
+    case 'range': return 'syn-change';
+    default: return 'syn-input';
   }
 };
 

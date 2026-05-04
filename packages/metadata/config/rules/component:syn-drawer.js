@@ -9,7 +9,7 @@ export default {
   component: 'syn-drawer',
   related: {
     templates: [
-      'Application Shell',
+      'AppShell',
     ],
   },
   usageGuidelines: [

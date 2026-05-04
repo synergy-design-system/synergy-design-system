@@ -96,6 +96,11 @@ type RulesBlockProps = {
  * Helper css for the rules helper component. This is kept separate from the component itself for easier maintenance and to avoid issues with dynamic content rendering.
  */
 const styles = `
+.rules-helper {
+  width: 100%;
+  max-width: 100%; /* Needed for custom overrides in stories like syn-card -> footer */
+}
+
 .rules-helper-content {
   font: var(--syn-font-sans);
   font-size: var(--syn-font-size-medium);
@@ -278,7 +283,7 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
             </>
           )}
 
-          {content?.related?.components && (
+          {content?.related?.components && content?.related?.components.length > 0 && (
             <>
               <Markdown>## Related components</Markdown>
               <ul>
@@ -291,7 +296,7 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
             </>
           )}
 
-          {content?.related?.templates && (
+          {content?.related?.templates && content?.related?.templates.length > 0 && (
             <>
               <Markdown>## Related templates</Markdown>
               <ul>

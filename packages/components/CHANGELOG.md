@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.13.2
+
+### Patch Changes
+
+- [#1278](https://github.com/synergy-design-system/synergy-design-system/pull/1278) [`e84b97a`](https://github.com/synergy-design-system/synergy-design-system/commit/e84b97ae70affae71afcc85725e56b3f690a445e) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-05-04
+
+  fix: 🐛 `<syn-option>` slotted icons not visible on hover ([#1277](https://github.com/synergy-design-system/synergy-design-system/issues/1277))
+
+  This release fixes a bug that accidentally set the color of slotted elements in `<syn-option>` to white which lead to the icons appear to be invisible.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.13.2
+
 ## 3.13.1
 
 ### Patch Changes

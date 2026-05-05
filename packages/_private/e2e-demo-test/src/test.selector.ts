@@ -38,6 +38,8 @@ const AllComponentSelectors = {
   combobox1036Delimiter: '#tab-content-Combobox syn-combobox[data-testid="combobox-1036-subsequently-changed-delimiter"]',
   combobox1056DelimiterAsyncPreValue: '#tab-content-Combobox syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"]',
   combobox1056DelimiterPreValue: '#tab-content-Combobox syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-pre-value"]',
+  combobox1265DynamicOptionChangeButton: '#tab-content-Combobox syn-button[data-testid="combobox-1265-dynamic-option-button"]',
+  combobox1265DynamicOptionChanges: '#tab-content-Combobox syn-combobox[data-testid="combobox-1265-dynamic-option-changes"]',
   comboboxContent: '#tab-content-Combobox',
   comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',

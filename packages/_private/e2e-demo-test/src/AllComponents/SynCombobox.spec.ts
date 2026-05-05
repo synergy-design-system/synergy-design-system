@@ -376,6 +376,30 @@ test.describe('<SynCombobox />', () => {
       });
     }); // regression#1056
 
+    test.describe(`Regression#1265: ${name}`, () => {
+      test('should update the selected option text when options are changed dynamically', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox1265DynamicOptionChanges');
+        const button = await AllComponents.getLocator('combobox1265DynamicOptionChangeButton');
+
+        const initialValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        expect(initialValue).toEqual('option-2');
+
+        await button.click();
+
+        const updatedValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        expect(updatedValue).toEqual('option-2');
+
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+        expect(displayedValue).toEqual('Changed Option 2');
+      });
+    }); // regression#1265
+
     test.describe(`Feature#627: ${name}`, () => {
       test('should select the given options when the delimiter is set', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);

@@ -18,7 +18,7 @@ jobs:
     if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: "main"
           path: "synergy-design-system"
@@ -30,7 +30,7 @@ jobs:
           node-version: 'lts/Krypton'
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v4
+        uses: pnpm/action-setup@v6
         with:
           version: 10
 
@@ -40,7 +40,7 @@ jobs:
 
       # Clone the other repository
       - name: Checkout documentation Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: "synergy-design-system/synergy-design-system.github.io"
           token: ${{ secrets.GH_RELEASE_BUILDUSERSICKAG }}

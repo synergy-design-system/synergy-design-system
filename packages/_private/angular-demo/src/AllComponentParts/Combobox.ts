@@ -3,7 +3,12 @@ import type { SynChangeEvent, SynCombobox } from '@synergy-design-system/compone
 import { SynComboboxComponent } from '@synergy-design-system/angular/components/combobox';
 import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
 import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
-import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
+import {
+  type SelectItem,
+  mockAsyncData,
+  mockData,
+  updateComboboxRegressions1265 as updateComboboxRegressions1265Utility,
+} from '@synergy-design-system/demo-utilities';
 
 @Component({
   selector: 'demo-combobox',
@@ -173,6 +178,21 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
     </syn-combobox>
+
+    <syn-combobox
+      data-testid="combobox-1265-dynamic-option-changes"
+      label="Dynamic Option Changes"
+      restricted
+      value="option-2"
+    >
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 2</syn-option>
+    </syn-combobox>
+
+    <syn-button data-testid="combobox-1265-dynamic-option-button" (click)="updateComboboxRegressions1265($event)">
+      Dynamically change option 2 to "Changed Option 2"
+    </syn-button>
   `,
 })
 export class Combobox implements OnInit {
@@ -187,6 +207,10 @@ export class Combobox implements OnInit {
   setcb632Value(e: SynChangeEvent) {
     this.cb632Value = (e.target as SynCombobox).value as string;
   };
+
+  updateComboboxRegressions1265(e: Event): void {
+    updateComboboxRegressions1265Utility(e);
+  }
 
   ngOnInit(): void {
     mockAsyncData('selectItems').then((items) => {

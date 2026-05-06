@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
+import {
+  type SelectItem,
+  mockAsyncData,
+  mockData,
+  updateSelectRegressions1265,
+} from '@synergy-design-system/demo-utilities';
 
 const numericItems = mockData('selectItemsMixedValue');
 const delimiterItems = mockData('selectItemsWithSpace');
@@ -7,6 +12,7 @@ const delimiterItems = mockData('selectItemsWithSpace');
 export const Select = () => {
   const [levels, setLevels] = useState<SelectItem[]>([]);
   const [asyncValue, setAsyncValue] = useState<string>('');
+
   useEffect(() => {
     const fetchLevels = async () => {
       const items = await mockAsyncData('selectItems');
@@ -159,6 +165,22 @@ export const Select = () => {
         <syn-option value="option-2">Option 2</syn-option>
         <syn-option value="option-3">Option 3</syn-option>
       </syn-select>
+
+      <syn-select
+        data-testid="select-1265-dynamic-option-changes"
+        label="Dynamic Option Changes"
+        value="option-2"
+      >
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 2</syn-option>
+      </syn-select>
+      <syn-button
+        data-testid="select-1265-dynamic-option-button"
+        onClick={updateSelectRegressions1265}
+      >
+        Dynamically change option 2 to "Changed Option 2"
+      </syn-button>
     </>
   );
 };

@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react';
 import type { SynCombobox } from '@synergy-design-system/components';
-import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
+import {
+  type SelectItem,
+  mockAsyncData,
+  mockData,
+  updateComboboxRegressions1265,
+} from '@synergy-design-system/demo-utilities';
 
 const delimiterItems = mockData('selectItemsWithSpace');
 const numericItems = mockData('selectItemsMixedValue');
@@ -204,6 +209,24 @@ export const Combobox = () => {
         <syn-option value="option-2">Option 2</syn-option>
         <syn-option value="option-3">Option 3</syn-option>
       </syn-combobox>
+
+      <syn-combobox
+        data-testid="combobox-1265-dynamic-option-changes"
+        label="Dynamic Option Changes"
+        restricted
+        value="option-2"
+      >
+        <syn-option value="option-1">Option 1</syn-option>
+        <syn-option value="option-2">Option 2</syn-option>
+        <syn-option value="option-3">Option 2</syn-option>
+      </syn-combobox>
+
+      <syn-button
+        data-testid="combobox-1265-dynamic-option-button"
+        onClick={updateComboboxRegressions1265}
+      >
+        Dynamically change option 2 to "Changed Option 2"
+      </syn-button>
 
     </>
   );

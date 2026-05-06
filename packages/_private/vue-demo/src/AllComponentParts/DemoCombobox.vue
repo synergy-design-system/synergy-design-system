@@ -2,7 +2,12 @@
 import { SynVueButton, SynVueCombobox, SynVueOption } from '@synergy-design-system/vue';
 import type { SynCombobox } from '@synergy-design-system/components';
 import { onMounted, ref } from 'vue';
-import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
+import {
+  type SelectItem,
+  mockAsyncData,
+  mockData,
+  updateComboboxRegressions1265,
+} from '@synergy-design-system/demo-utilities';
 
 const levels = ref<SelectItem[]>([]);
 const numericItems = mockData('selectItemsMixedValue');
@@ -116,4 +121,19 @@ onMounted(async () => {
     <SynVueOption value="option-2">Option 2</SynVueOption>
     <SynVueOption value="option-3">Option 3</SynVueOption>
   </SynVueCombobox>
+
+  <SynVueCombobox
+    data-testid="combobox-1265-dynamic-option-changes"
+    label="Dynamic Option Changes"
+    restricted
+    value="option-2"
+  >
+    <SynVueOption value="option-1">Option 1</SynVueOption>
+    <SynVueOption value="option-2">Option 2</SynVueOption>
+    <SynVueOption value="option-3">Option 2</SynVueOption>
+  </SynVueCombobox>
+
+  <SynVueButton data-testid="combobox-1265-dynamic-option-button" @click="updateComboboxRegressions1265">
+    Dynamically change option 2 to "Changed Option 2"
+  </SynVueButton>
 </template>

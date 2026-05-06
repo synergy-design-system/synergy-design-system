@@ -63,6 +63,15 @@
         "Navigation"
       ]
     },
+    "rules": {
+      "component": "syn-tab",
+      "related": {
+        "components": [
+          "syn-tab-group",
+          "syn-tab-panel"
+        ]
+      }
+    },
     "sourceModulePath": "components/tab/tab.js",
     "summary": "Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel)."
   },

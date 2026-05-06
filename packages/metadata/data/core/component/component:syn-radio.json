@@ -133,6 +133,17 @@
         "Form"
       ]
     },
+    "rules": {
+      "component": "syn-radio",
+      "related": {
+        "components": [
+          "syn-radio-group"
+        ],
+        "templates": [
+          "Forms"
+        ]
+      }
+    },
     "sourceModulePath": "components/radio/radio.js",
     "summary": "Radios allow the user to select a single option from a group."
   },

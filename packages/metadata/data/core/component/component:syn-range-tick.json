@@ -91,6 +91,17 @@
         "Form"
       ]
     },
+    "rules": {
+      "component": "syn-range-tick",
+      "related": {
+        "components": [
+          "syn-range"
+        ],
+        "templates": [
+          "Forms"
+        ]
+      }
+    },
     "sourceModulePath": "components/range-tick/range-tick.js",
     "summary": "Ticks visually improve positioning on range sliders."
   },

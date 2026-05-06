@@ -124,6 +124,17 @@
         "Navigation"
       ]
     },
+    "rules": {
+      "component": "syn-menu-item",
+      "related": {
+        "components": [
+          "syn-menu"
+        ],
+        "templates": [
+          "AppShell"
+        ]
+      }
+    },
     "sourceModulePath": "components/menu-item/menu-item.js",
     "summary": "Menu items provide options for the user to pick from in a menu."
   },

@@ -58,6 +58,16 @@
         "Navigation"
       ]
     },
+    "rules": {
+      "component": "syn-tab-panel",
+      "related": {
+        "components": [
+          "syn-tab",
+          "syn-tab-group"
+        ],
+        "templates": []
+      }
+    },
     "sourceModulePath": "components/tab-panel/tab-panel.js",
     "summary": "Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content."
   },

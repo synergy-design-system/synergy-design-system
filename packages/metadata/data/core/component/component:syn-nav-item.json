@@ -174,6 +174,59 @@
         "Navigation"
       ]
     },
+    "rules": {
+      "accessibility": [
+        "Provide a logical tab order that follows the visual sequence of navigation items and their different levels.",
+        "Use aria-current=\"page\" or aria-current=\"location\" on the active navigation item to communicate the user's current location."
+      ],
+      "component": "syn-nav-item",
+      "related": {
+        "components": [
+          "syn-header",
+          "syn-side-nav",
+          "syn-prio-nav"
+        ],
+        "templates": [
+          "AppShell"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use with background options of white, neutral-100, and primary-100."
+          ],
+          "id": "background_options",
+          "name": "Background Options"
+        },
+        {
+          "content": [
+            "Use clear, concise labels for navigation items.",
+            "Don't use icons alone unless they are universally understood.",
+            "Use icons and labels together to enhance comprehension."
+          ],
+          "id": "labels_and_icons",
+          "name": "Labels and Icons"
+        },
+        {
+          "content": [
+            "Use indented for nested navigation items in vertical desktop or mobile viewports and in horizontal mobile menus."
+          ],
+          "id": "spacing",
+          "name": "Spacing"
+        },
+        {
+          "content": [
+            "Be consistent in the use of descriptions: Include them for all items at the same level and keep them similar in length."
+          ],
+          "id": "text_styles_and_descriptions",
+          "name": "Text Styles and Descriptions"
+        }
+      ],
+      "useCases": [
+        "Populate an syn-header navigation bar at the top of a page, helping users easily access different sections.",
+        "Implement navigation items in a syn-side-nav for a more detailed and hierarchical navigation structure."
+      ]
+    },
     "sourceModulePath": "components/nav-item/nav-item.js",
     "summary": "Flexible button / link component that can be used to quickly build navigations."
   },

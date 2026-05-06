@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { SynSelectComponent } from '@synergy-design-system/angular/components/select';
 import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
 import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
-import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
+import {
+  type SelectItem,
+  mockAsyncData,
+  mockData,
+  updateSelectRegressions1265 as updateSelectRegressions1265Utility,
+} from '@synergy-design-system/demo-utilities';
 
 @Component({
   selector: 'demo-select',
@@ -133,6 +138,20 @@ import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system
       <syn-option value="option-2">Option 2</syn-option>
       <syn-option value="option-3">Option 3</syn-option>
     </syn-select>
+
+    <syn-select
+      data-testid="select-1265-dynamic-option-changes"
+      label="Dynamic Option Changes"
+      value="option-2"
+    >
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 2</syn-option>
+    </syn-select>
+
+    <syn-button data-testid="select-1265-dynamic-option-button" (click)="updateSelectRegressions1265($event)">
+      Dynamically change option 2 to "Changed Option 2"
+    </syn-button>
   `
 })
 export class Select implements OnInit {
@@ -150,5 +169,9 @@ export class Select implements OnInit {
     mockAsyncData('valueWithSpace').then((value) => {
       this.asyncValue = value;
     });
+  }
+
+  updateSelectRegressions1265(e: Event): void {
+    updateSelectRegressions1265Utility(e);
   }
 }

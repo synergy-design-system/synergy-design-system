@@ -389,8 +389,28 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         return entry.oldValue !== currentValue && !!currentValue;
       });
 
+      const hasRelevantSelectedLabelChange = (this.restricted || this.multiple) && entries.some(entry => {
+        if (entry.type !== 'characterData' && entry.type !== 'childList') {
+          return false;
+        }
+
+        return this.selectedOptions.some(option => option === entry.target || option.contains(entry.target));
+      });
+
       if (hasRelevantValueChange) {
         this.handleSlotContentChange();
+      }
+
+      if (hasRelevantSelectedLabelChange) {
+        if (this.multiple) {
+          if (this.readonly) {
+            this.displayLabel = this.selectedOptions.map(option => option.getTextLabel()).join(', ');
+          } else {
+            this.requestUpdate();
+          }
+        } else {
+          this.displayLabel = this.selectedOptions[0]?.getTextLabel?.() ?? this.displayLabel;
+        }
       }
     });
 
@@ -398,6 +418,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       attributeFilter: ['value'],
       attributeOldValue: true,
       attributes: true,
+      characterData: true,
       childList: true,
       subtree: true,
     });

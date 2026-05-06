@@ -22,7 +22,7 @@
   "name": "Angular Validators Module",
   "package": "angular",
   "relations": [],
-  "since": "3.13.2",
+  "since": "3.13.3",
   "sources": [
     "packages/angular/directives/validators/validators.ts"
   ],

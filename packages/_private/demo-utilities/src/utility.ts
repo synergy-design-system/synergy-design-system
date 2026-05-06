@@ -103,6 +103,30 @@ export const range1272ChangeValueButton = (e: unknown) => {
 };
 
 /**
+ * Factory function to create the regression update functions for both select and combobox, since they do the same thing just on different test ids
+ * @param selector The selector to use
+ * @returns A function that can be used as an event handler to update the regression test cases for select and combobox
+ */
+const updateRegression1265 = (selector: string) => (e: unknown) => {
+  const button = (e as Event).currentTarget as HTMLButtonElement;
+  const parent = button.parentElement;
+  const root = parent?.querySelector(`[data-testid="${selector}"]`);
+  if (root) {
+    root.querySelector<HTMLElement>('syn-option:nth-child(2)')!.innerText = 'Changed Option 2';
+  }
+};
+
+/**
+ * Updates the select component with the test id "select-1265-dynamic-option-changes" to change the text of the second option to "Changed Option 2".
+ */
+export const updateSelectRegressions1265 = updateRegression1265('select-1265-dynamic-option-changes');
+
+/**
+ * Updates the combobox component with the test id "combobox-1265-dynamic-option-changes" to change the text of the second option to "Changed Option 2".
+ */
+export const updateComboboxRegressions1265 = updateRegression1265('combobox-1265-dynamic-option-changes');
+
+/**
  * Set the global size for all components
  * @param size The size that should be set
  */

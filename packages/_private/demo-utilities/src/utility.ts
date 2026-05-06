@@ -1,4 +1,7 @@
-import { setGlobalDefaultSettings } from '@synergy-design-system/components';
+import {
+  type SynRange,
+  setGlobalDefaultSettings,
+} from '@synergy-design-system/components';
 import type {
   AllowedModes,
   AllowedSizes,
@@ -85,6 +88,18 @@ export const setThemeFromOptionString = (optionString: string) => {
   }
 
   setTheme(theme, mode);
+};
+
+/**
+ * Dynamically change the value of the range with data-testid "range-1272-programatic-value-change" to 80 when the button is clicked
+ * @param e The event that is triggered when the button is clicked
+ */
+export const range1272ChangeValueButton = (e: unknown) => {
+  const button = (e as Event).currentTarget as HTMLButtonElement;
+  const range = button.parentElement?.querySelector('[data-testid="range-1272-programatic-value-change"]') as SynRange | null;
+  if (range) {
+    range.value = '80';
+  }
 };
 
 /**

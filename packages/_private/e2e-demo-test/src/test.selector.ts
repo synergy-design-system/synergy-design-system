@@ -78,6 +78,10 @@ const AllComponentSelectors = {
   optgroupThirdEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3) syn-option:not([disabled])',
   optgroupThirdItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3)',
 
+  // Range
+  range1272ChangeValueButton: '#tab-content-Range syn-button[data-testid="range-1272-change-value-button"]',
+  range1272ProgramaticValueChange: '#tab-content-Range syn-range[data-testid="range-1272-programatic-value-change"]',
+
   // Select
   select847Multiple: '#tab-content-Select syn-select[data-testid="select-847-multiple"]',
   select885ValueZeroNumber: '#tab-content-Select syn-select[data-testid="select-885-value-zero-number"]',

@@ -120,6 +120,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
     this.#value = value
       ? value.split(' ').map(Number).sort(numericSort)
       : [];
+    // #1272:  Keep the change baseline in sync with externally assigned values.
+    // This ensures the next user interaction compares against the latest
+    // programmatic state instead of an outdated one.
+    this.#lastChangeValue = Array.from(this.#value);
   }
 
   get value() {
@@ -136,6 +140,10 @@ export default class SynRange extends SynergyElement implements SynergyFormContr
   set valueAsArray(value: readonly number[] | null) {
     const oldValue = this.#value;
     this.#value = Array.isArray(value) ? value.slice().sort(numericSort) : value || [];
+
+    // #1272:  Keep the change baseline in sync with externally assigned values.
+    this.#lastChangeValue = Array.from(this.#value);
+
     if (arraysDiffer(oldValue, this.#value)) {
       this.requestUpdate('value', oldValue.join(' '));
     }

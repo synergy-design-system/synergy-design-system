@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.6.0
+
+### Patch Changes
+
+- [#1281](https://github.com/synergy-design-system/synergy-design-system/pull/1281) [`a4b0e11`](https://github.com/synergy-design-system/synergy-design-system/commit/a4b0e1139dfc644d5607b7bfd08fd20158ace570) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-05-06
+
+  fix: 🐛 syn-range now emits syn-change after programmatic value updates ([#1272](https://github.com/synergy-design-system/synergy-design-system/issues/1272))
+
+  This release fixes an issue where `syn-change` events where not fired for subsequent user interactions after a value was set in code.
+
 ## 3.5.0
 
 ### Patch Changes

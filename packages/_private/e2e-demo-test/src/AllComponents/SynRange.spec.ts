@@ -22,12 +22,13 @@ const dragRangeToRatio = async (range: Locator, ratio: number) => {
   if (!box) {
     throw new Error('Could not determine range dimensions for drag action.');
   }
+  const thumb = range.locator('.thumb');
 
   const clampedRatio = Math.max(0, Math.min(1, ratio));
   const targetX = Math.max(1, Math.min(box.width - 1, box.width * clampedRatio));
   const targetY = box.height / 2;
 
-  await range.dragTo(range, {
+  await thumb.dragTo(range, {
     targetPosition: {
       x: targetX,
       y: targetY,
@@ -58,41 +59,25 @@ test.describe('<SynRange />', () => {
           });
         });
 
-        // 3. Trigger a programmatic value change via the demo button and use it as baseline.
-        await button.click();
-        await expect(range).toHaveJSProperty('value', '80');
-
-        const baselineValue = await range.evaluate((el: SynRange) => Number(el.value));
-        const synChangeCountAfterProgrammaticSet = await getSynChangeCount(range);
-
-        expect(baselineValue, 'Baseline value should be 80').toEqual(80);
-        expect(synChangeCountAfterProgrammaticSet, 'Programmatic changes should not fire syn-change').toBe(0);
-
-        // 4. Drag to a different value.
+        // 3. Drag thumb to a new value.
         await dragRangeToRatio(range, 0.15);
-
-        const valueAfterFirstDrag = await range.evaluate((el: SynRange) => Number(el.value));
+        await expect(range).toHaveJSProperty('value', '14');
         const synChangeCountAfterFirstDrag = await getSynChangeCount(range);
+        expect(synChangeCountAfterFirstDrag, 'Drag should fire syn-change').toBe(1);
 
-        expect(valueAfterFirstDrag).not.toEqual(baselineValue);
+        // 4. Click the button to programmatically change the value.
+        await button.click();
+        const synChangeCountAfterProgrammatic = await getSynChangeCount(range);
 
-        // 5. Ensure syn-change fired for the drag interaction.
-        expect(synChangeCountAfterFirstDrag).toBeGreaterThan(synChangeCountAfterProgrammaticSet);
+        // 5. Ensure syn-change does not fire for programmatic value changes.
+        expect(synChangeCountAfterProgrammatic, 'Programmatic value change should not fire syn-change').toBe(synChangeCountAfterFirstDrag);
 
-        // 6. Drag back to the original baseline location and ensure syn-change fires again.
-        const baselineRatio = await range.evaluate((el: SynRange, baseline: number) => {
-          const { max, min } = el;
-
-          if (max <= min) return 0;
-          return (baseline - min) / (max - min);
-        }, baselineValue);
-
-        await dragRangeToRatio(range, baselineRatio);
-
+        // 6. Drag back to the first dragged value and ensure syn-change fires again.
+        await dragRangeToRatio(range, 0.15);
         const valueAfterSecondDrag = await range.evaluate((el: SynRange) => Number(el.value));
         const synChangeCountAfterSecondDrag = await getSynChangeCount(range);
-
-        expect(Math.abs(valueAfterSecondDrag - baselineValue)).toBeLessThanOrEqual(1);
+        expect(valueAfterSecondDrag).toBe(14);
+        expect(synChangeCountAfterSecondDrag).toBe(2);
         expect(synChangeCountAfterSecondDrag).toBeGreaterThan(synChangeCountAfterFirstDrag);
       }); // Test syn-change emission
     }); // Regression#1272

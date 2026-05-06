@@ -268,7 +268,7 @@ test.describe('<SynSelect />', () => {
     }); // regression#1056
 
     test.describe(`Regression#1265: ${name}`, () => {
-      test('should update the selected option text when options are changed dynamically', async ({ page }) => {
+      test('should update the selected option text when options are changed dynamically and restricted is true', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
         await AllComponents.activateItem('selectLink');
@@ -287,6 +287,40 @@ test.describe('<SynSelect />', () => {
         expect(updatedValue).toEqual('option-2');
 
         const displayedValue = await select.evaluate((ele: SynSelect) => ele.displayLabel);
+        expect(displayedValue).toEqual('Changed Option 2');
+      });
+
+      test('should update the selected option text when options are changed dynamically and multiple is true', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('selectLink');
+
+        await expect(AllComponents.getLocator('selectContent')).toBeVisible();
+
+        const select = await AllComponents.getLocator('select1265DynamicOptionChanges');
+        const button = await AllComponents.getLocator('select1265DynamicOptionChangeButton');
+
+        // Remove restricted and add multiple attribute to the combobox
+        await select.evaluate(async (ele: SynSelect) => {
+          ele.multiple = true;
+          ele.value = ['option-2'];
+          await ele.updateComplete;
+        });
+
+        const initialValue = await select.evaluate((ele: SynSelect) => ele.value);
+        expect(initialValue).toEqual(['option-2']);
+
+        await button.click();
+
+        const updatedValue = await select.evaluate((ele: SynSelect) => ele.value);
+        expect(updatedValue).toEqual(['option-2']);
+
+        const displayedValue = await select.evaluate((ele: SynSelect) => {
+          const tagText = Array.from(ele.shadowRoot?.querySelectorAll('syn-tag') || [])
+            .map(tag => tag.textContent?.trim() || '')
+            .join(' ');
+          return tagText || ele.displayLabel;
+        });
         expect(displayedValue).toEqual('Changed Option 2');
       });
     }); // regression#1265

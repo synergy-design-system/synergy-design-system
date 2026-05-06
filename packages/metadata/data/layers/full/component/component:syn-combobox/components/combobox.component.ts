@@ -389,7 +389,7 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         return entry.oldValue !== currentValue && !!currentValue;
       });
 
-      const hasRelevantSelectedLabelChange = this.restricted && entries.some(entry => {
+      const hasRelevantSelectedLabelChange = (this.restricted || this.multiple) && entries.some(entry => {
         if (entry.type !== 'characterData' && entry.type !== 'childList') {
           return false;
         }

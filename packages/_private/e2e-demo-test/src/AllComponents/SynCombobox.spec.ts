@@ -377,7 +377,7 @@ test.describe('<SynCombobox />', () => {
     }); // regression#1056
 
     test.describe(`Regression#1265: ${name}`, () => {
-      test('should update the selected option text when options are changed dynamically', async ({ page }) => {
+      test('should update the selected option text when options are changed dynamically and restricted is true', async ({ page }) => {
         const AllComponents = new AllComponentsPage(page, port);
         await AllComponents.loadInitialPage();
         await AllComponents.activateItem('comboboxLink');
@@ -396,6 +396,40 @@ test.describe('<SynCombobox />', () => {
         expect(updatedValue).toEqual('option-2');
 
         const displayedValue = await combobox.evaluate((ele: SynCombobox) => ele.displayLabel);
+        expect(displayedValue).toEqual('Changed Option 2');
+      });
+
+      test('should update the selected option text when options are changed dynamically and multiple is true', async ({ page }) => {
+        const AllComponents = new AllComponentsPage(page, port);
+        await AllComponents.loadInitialPage();
+        await AllComponents.activateItem('comboboxLink');
+
+        await expect(AllComponents.getLocator('comboboxContent')).toBeVisible();
+
+        const combobox = await AllComponents.getLocator('combobox1265DynamicOptionChanges');
+        const button = await AllComponents.getLocator('combobox1265DynamicOptionChangeButton');
+
+        // Remove restricted and add multiple attribute to the combobox
+        await combobox.evaluate(async (ele: SynCombobox) => {
+          ele.multiple = true;
+          ele.restricted = false;
+          await ele.updateComplete;
+        });
+
+        const initialValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        expect(initialValue).toEqual(['option-2']);
+
+        await button.click();
+
+        const updatedValue = await combobox.evaluate((ele: SynCombobox) => ele.value);
+        expect(updatedValue).toEqual(['option-2']);
+
+        const displayedValue = await combobox.evaluate((ele: SynCombobox) => {
+          const tagText = Array.from(ele.shadowRoot?.querySelectorAll('syn-tag') || [])
+            .map(tag => tag.textContent?.trim() || '')
+            .join(' ');
+          return tagText || ele.displayLabel;
+        });
         expect(displayedValue).toEqual('Changed Option 2');
       });
     }); // regression#1265

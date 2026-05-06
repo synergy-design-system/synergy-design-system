@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.4.0
+
+### Minor Changes
+
+- Released on: 2026-05-05
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@3.4.0
+
 ## 3.3.0
 
 ### Minor Changes

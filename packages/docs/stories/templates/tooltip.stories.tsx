@@ -53,8 +53,12 @@ export const SingleInstance = {
   },
   render: () => html`
     <div id="tooltip-single-instance-story">
-      <syn-header label="Single Instance Tooltips">
-        <nav slot="meta-navigation">
+      <syn-header label="Single Instance Tooltips"></syn-header>
+
+      <!-- Content Area -->
+      <section>
+        <!-- Dynamic Toolbar Section -->
+        <nav class="toolbar">
           <syn-button-group label="Download and save">
             <syn-button data-tooltip="Save">
               <syn-icon name="save" label="Save"></syn-icon>
@@ -76,10 +80,7 @@ export const SingleInstance = {
             </syn-button>
           </syn-button-group>
         </nav>
-      </syn-header>
 
-      <!-- Content Area -->
-      <section>
         <article>
           <h2>Single instance tooltips</h2>
           <p>
@@ -110,6 +111,12 @@ export const SingleInstance = {
 
     <style>
     #tooltip-single-instance-story {
+      .toolbar {
+        display: flex;
+        padding: var(--syn-spacing-medium);
+        gap: var(--syn-spacing-medium);
+      }
+
       section {
         background: var(--syn-page-background);
       }
@@ -292,7 +299,7 @@ export const SingleInstance = {
     const addSectionButton = document.getElementById('add-section-button');
 
     addSectionButton?.addEventListener('click', () => {
-      const root = document.querySelector('#tooltip-single-instance-story syn-header nav');
+      const root = document.querySelector('#tooltip-single-instance-story .toolbar');
       const hasCustomSection = root?.querySelector('.custom-section');
 
       if (root && !hasCustomSection) {

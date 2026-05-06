@@ -4,8 +4,12 @@ This example demonstrates the usage of a single instance of the <syn-tooltip> co
 
 ```html
 <div id="tooltip-single-instance-story">
-  <syn-header label="Single Instance Tooltips">
-    <nav slot="meta-navigation">
+  <syn-header label="Single Instance Tooltips"></syn-header>
+
+  <!-- Content Area -->
+  <section>
+    <!-- Dynamic Toolbar Section -->
+    <nav class="toolbar">
       <syn-button-group label="Download and save">
         <syn-button data-tooltip="Save">
           <syn-icon name="save" label="Save"></syn-icon>
@@ -27,10 +31,7 @@ This example demonstrates the usage of a single instance of the <syn-tooltip> co
         </syn-button>
       </syn-button-group>
     </nav>
-  </syn-header>
 
-  <!-- Content Area -->
-  <section>
     <article>
       <h2>Single instance tooltips</h2>
       <p>
@@ -78,6 +79,12 @@ This example demonstrates the usage of a single instance of the <syn-tooltip> co
 
 <style>
   #tooltip-single-instance-story {
+    .toolbar {
+      display: flex;
+      padding: var(--syn-spacing-medium);
+      gap: var(--syn-spacing-medium);
+    }
+
     section {
       background: var(--syn-page-background);
     }
@@ -277,7 +284,7 @@ This example demonstrates the usage of a single instance of the <syn-tooltip> co
 
   addSectionButton?.addEventListener("click", () => {
     const root = document.querySelector(
-      "#tooltip-single-instance-story syn-header nav",
+      "#tooltip-single-instance-story .toolbar",
     );
     const hasCustomSection = root?.querySelector(".custom-section");
 

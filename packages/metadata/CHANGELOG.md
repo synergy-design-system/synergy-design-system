@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.5.0
+
+### Patch Changes
+
+- [#1279](https://github.com/synergy-design-system/synergy-design-system/pull/1279) [`de1f21e`](https://github.com/synergy-design-system/synergy-design-system/commit/de1f21e46ac3092e8bd3a1911e1284936b3354cf) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-05-06
+
+  fix: 🐛 `<syn-select>` and `<syn-combobox>` have invalid selected value if the selected option changes ([#1265](https://github.com/synergy-design-system/synergy-design-system/issues/1265))
+
+  This release ensures `<syn-select>` and `<syn-combobox>` always show the current selected option text.
+  If a selected option name changes, the field now updates right away instead of showing outdated text.
+
 ## 3.4.0
 
 ### Minor Changes

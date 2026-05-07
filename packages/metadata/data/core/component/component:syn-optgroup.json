@@ -135,6 +135,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-optgroup.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-optgroup.md"
+      }
     ]
   },
   "name": "syn-optgroup",

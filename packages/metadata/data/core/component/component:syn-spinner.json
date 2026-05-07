@@ -198,6 +198,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-spinner.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-spinner.md"
+      }
     ]
   },
   "name": "syn-spinner",

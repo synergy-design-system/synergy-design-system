@@ -225,6 +225,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-card.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-card.md"
+      }
     ]
   },
   "name": "syn-card",

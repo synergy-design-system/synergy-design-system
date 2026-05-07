@@ -147,6 +147,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-breadcrumb-item.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-breadcrumb-item.md"
+      }
     ]
   },
   "name": "syn-breadcrumb-item",

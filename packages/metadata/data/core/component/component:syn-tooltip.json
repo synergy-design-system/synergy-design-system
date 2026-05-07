@@ -264,6 +264,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tooltip.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-tooltip.md"
+      }
     ]
   },
   "name": "syn-tooltip",

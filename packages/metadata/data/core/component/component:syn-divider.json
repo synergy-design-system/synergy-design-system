@@ -188,6 +188,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-divider.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-divider.md"
+      }
     ]
   },
   "name": "syn-divider",

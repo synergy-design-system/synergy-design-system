@@ -212,6 +212,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-breadcrumb.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-breadcrumb.md"
+      }
     ]
   },
   "name": "syn-breadcrumb",

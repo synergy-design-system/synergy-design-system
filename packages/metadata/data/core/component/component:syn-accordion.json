@@ -201,6 +201,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-accordion.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-accordion.md"
+      }
     ]
   },
   "name": "syn-accordion",

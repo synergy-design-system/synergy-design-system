@@ -195,6 +195,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-radio.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-radio.md"
+      }
     ]
   },
   "name": "syn-radio",

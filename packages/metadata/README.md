@@ -81,6 +81,32 @@ if (component.data) {
 
 Use this flow when you need real file content (for example framework wrappers, styles, or examples), not only layer file paths.
 
+### Rules Layer
+
+Component usage guidance is published as a dedicated `rules` layer.
+Use it when you need authored guidance such as common use cases, usage guidelines, accessibility notes, related components, and known issues.
+
+```ts
+import {
+  getDataForComponent,
+  getRulesForComponent,
+} from "@synergy-design-system/metadata";
+
+const genericRulesLayer = await getDataForComponent("syn-accordion", {
+  layer: "rules",
+});
+
+const focusedRules = await getRulesForComponent("syn-accordion");
+
+console.log(genericRulesLayer.data?.rules?.[0]?.path);
+console.log(focusedRules.data?.rules?.[0]?.content);
+```
+
+Use `getDataForComponent(..., { layer: "rules" })` when you want to stay inside the generic layer-based component API.
+Use `getRulesForComponent()` when you want a narrower helper that requires the `rules` layer and never falls back to `full`.
+
+Generated rules markdown is stored under `data/layers/rules/component/` and referenced from each component entity through `layers.rules`.
+
 ### Public data artifacts
 
 - `data/index.json`

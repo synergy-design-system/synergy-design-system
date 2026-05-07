@@ -190,6 +190,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-menu-item.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-menu-item.md"
+      }
     ]
   },
   "name": "syn-menu-item",

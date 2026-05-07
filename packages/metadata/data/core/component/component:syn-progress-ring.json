@@ -212,6 +212,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-progress-ring.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-progress-ring.md"
+      }
     ]
   },
   "name": "syn-progress-ring",

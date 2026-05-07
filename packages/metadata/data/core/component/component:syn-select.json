@@ -365,6 +365,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-select.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-select.md"
+      }
     ]
   },
   "name": "syn-select",

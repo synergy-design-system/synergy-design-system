@@ -249,6 +249,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-dialog.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-dialog.md"
+      }
     ]
   },
   "name": "syn-dialog",

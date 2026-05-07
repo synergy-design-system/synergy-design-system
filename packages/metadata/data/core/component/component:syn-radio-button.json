@@ -145,6 +145,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-radio-button.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-radio-button.md"
+      }
     ]
   },
   "name": "syn-radio-button",

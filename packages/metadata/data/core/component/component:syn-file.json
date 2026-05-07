@@ -301,6 +301,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-file.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-file.md"
+      }
     ]
   },
   "name": "syn-file",

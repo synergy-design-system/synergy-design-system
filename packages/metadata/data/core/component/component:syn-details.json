@@ -242,6 +242,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-details.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-details.md"
+      }
     ]
   },
   "name": "syn-details",

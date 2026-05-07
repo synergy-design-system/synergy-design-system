@@ -127,6 +127,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tab.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-tab.md"
+      }
     ]
   },
   "name": "syn-tab",

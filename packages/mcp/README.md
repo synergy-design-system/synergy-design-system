@@ -156,7 +156,8 @@ Example:
       // Defines which type of information to return.
       // full = filtered source files,
       // examples = markdown examples,
-      // interface = markdown API overview.
+      // interface = markdown API overview,
+      // rules = markdown usage, design, and accessibility guidance.
       // Note that examples and interface are only available
       // for vanilla components at the moment.
       "layer": "full",
@@ -450,13 +451,14 @@ Example prompts:
 
 - `component` (string, required): The component name. Must start with `syn-`, for example `syn-button`.
 - `framework` (string, optional): `react`, `vue`, `angular`, or `vanilla`. Defaults to the runtime config value, which is `vanilla` by default.
-- `layer` (string, optional): `full`, `examples`, or `interface`. Defaults to the runtime config value, which is `full` by default. `examples` and `interface` are currently only available for vanilla components.
+- `layer` (string, optional): `full`, `examples`, `interface`, or `rules`. Defaults to the runtime config value, which is `full` by default. `examples` and `interface` are currently only available for vanilla components. `rules` returns component usage, design, and accessibility guidance.
 
 **Example prompts:**
 
 - "How do I use syn-button in React?"
 - "Show me the interface docs for syn-dialog"
 - "Give me examples for syn-card"
+- "Show me the rules for syn-accordion"
 
 ### 4. `asset-list`
 
@@ -649,6 +651,24 @@ Example prompts:
 - "Show me the setup instructions for tokens"
 - "Give me the Synergy assets setup and limitations"
 
+## Available Prompts
+
+The MCP server currently registers 1 prompt.
+
+### 1. `explain-component-rules`
+
+**Description:** Explains the usage rules, design guidelines, and accessibility considerations for a Synergy component.
+
+**Parameters:**
+
+- `component` (string, required): The component name. Must start with `syn-`, for example `syn-button`.
+
+**Example prompts:**
+
+- "Explain the rules for syn-button"
+- "What are the design and accessibility guidelines for syn-dialog?"
+- "Give me the usage guidance for syn-accordion"
+
 ## Usage Examples
 
 ### Command Line Interface
@@ -741,6 +761,7 @@ Once connected to an AI assistant, you can use prompts like:
 
 ```text
 Show me how to use syn-button in React
+Explain the rules for syn-accordion
 Give me the interface docs for syn-select
 What token formats are available?
 How do I set up Synergy for Vue?

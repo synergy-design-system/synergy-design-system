@@ -1,5 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import * as resources from './resources/index.js';
+import * as prompts from './prompts/index.js';
 import * as tools from './tools/index.js';
 import { getVersion } from './utilities/cli.js';
 
@@ -14,6 +15,10 @@ export const createServer = () => {
     name: 'synergy design system',
     title: 'Synergy Design System MCP Server',
     version,
+  });
+
+  Object.values(prompts).forEach(prompt => {
+    prompt(server);
   });
 
   Object.values(tools).forEach(tool => {

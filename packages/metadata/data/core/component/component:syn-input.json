@@ -384,6 +384,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-input.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-input.md"
+      }
     ]
   },
   "name": "syn-input",

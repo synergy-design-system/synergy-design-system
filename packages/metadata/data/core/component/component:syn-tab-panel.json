@@ -123,6 +123,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tab-panel.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-tab-panel.md"
+      }
     ]
   },
   "name": "syn-tab-panel",

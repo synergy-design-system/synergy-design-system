@@ -248,6 +248,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-switch.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-switch.md"
+      }
     ]
   },
   "name": "syn-switch",

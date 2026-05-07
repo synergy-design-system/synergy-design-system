@@ -181,6 +181,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-icon.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-icon.md"
+      }
     ]
   },
   "name": "syn-icon",

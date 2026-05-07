@@ -205,6 +205,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-progress-bar.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-progress-bar.md"
+      }
     ]
   },
   "name": "syn-progress-bar",

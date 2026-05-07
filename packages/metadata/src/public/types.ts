@@ -6,7 +6,7 @@
 import type { ComponentRules } from '../config/types.js';
 
 /** Logical metadata layer names used for query and response shaping. */
-export type LayerName = 'full' | 'interface' | 'examples';
+export type LayerName = 'full' | 'interface' | 'examples' | 'rules';
 /** Verbosity levels for response formatting in public query helpers. */
 export type Verbosity = 'readable' | 'compact' | 'minified';
 

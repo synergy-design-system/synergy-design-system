@@ -122,7 +122,7 @@ export const McpRuntimeConfigSchema = z.object({
        * Default metadata layer when no layer is provided by the caller.
        * @default 'interface'
        */
-      layer: z.enum(['full', 'examples', 'interface']).default('interface'),
+      layer: z.enum(['full', 'examples', 'interface', 'rules']).default('interface'),
     }).default({ framework: 'vanilla', layer: 'interface' }),
 
     davinciMigrationInfo: z.object({

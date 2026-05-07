@@ -278,6 +278,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-nav-item.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-nav-item.md"
+      }
     ]
   },
   "name": "syn-nav-item",

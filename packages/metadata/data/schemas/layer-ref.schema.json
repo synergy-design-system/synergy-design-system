@@ -6,6 +6,7 @@
       "enum": [
         "examples",
         "interface",
+        "rules",
         "full"
       ],
       "type": "string"

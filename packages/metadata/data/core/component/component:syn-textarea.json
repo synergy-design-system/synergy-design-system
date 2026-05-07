@@ -299,6 +299,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-textarea.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-textarea.md"
+      }
     ]
   },
   "name": "syn-textarea",

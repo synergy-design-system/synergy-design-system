@@ -302,6 +302,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-alert.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-alert.md"
+      }
     ]
   },
   "name": "syn-alert",

@@ -146,6 +146,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-pagination.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-pagination.md"
+      }
     ]
   },
   "name": "syn-pagination",

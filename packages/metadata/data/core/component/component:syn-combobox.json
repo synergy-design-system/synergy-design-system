@@ -438,6 +438,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-combobox.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-combobox.md"
+      }
     ]
   },
   "name": "syn-combobox",

@@ -311,6 +311,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-button.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-button.md"
+      }
     ]
   },
   "name": "syn-button",

@@ -243,6 +243,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-side-nav.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-side-nav.md"
+      }
     ]
   },
   "name": "syn-side-nav",

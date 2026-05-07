@@ -158,6 +158,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-menu-label.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-menu-label.md"
+      }
     ]
   },
   "name": "syn-menu-label",

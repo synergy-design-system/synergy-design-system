@@ -191,6 +191,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-option.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-option.md"
+      }
     ]
   },
   "name": "syn-option",

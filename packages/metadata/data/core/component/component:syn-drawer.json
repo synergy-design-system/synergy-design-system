@@ -291,6 +291,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-drawer.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-drawer.md"
+      }
     ]
   },
   "name": "syn-drawer",

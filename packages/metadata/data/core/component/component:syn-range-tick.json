@@ -153,6 +153,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-range-tick.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-range-tick.md"
+      }
     ]
   },
   "name": "syn-range-tick",

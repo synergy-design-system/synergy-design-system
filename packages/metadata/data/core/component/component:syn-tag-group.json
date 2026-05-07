@@ -193,6 +193,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tag-group.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-tag-group.md"
+      }
     ]
   },
   "name": "syn-tag-group",

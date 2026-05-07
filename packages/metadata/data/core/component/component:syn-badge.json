@@ -223,6 +223,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-badge.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-badge.md"
+      }
     ]
   },
   "name": "syn-badge",

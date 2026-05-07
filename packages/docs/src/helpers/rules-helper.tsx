@@ -239,8 +239,8 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
                   <strong>Current development status.</strong>
                   <ul>
                     <li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Stable:</strong> fully released and ready for production use.</li>
-                    <li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Deprecated:</strong> use with caution as this component will be removed in the future.</li>  
-                    <li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Experimental:</strong> use with caution as it is in early access and potentially gets changes in the future.</li>  
+                    <li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Deprecated:</strong> use with caution as this component will be removed in the future.</li>
+                    <li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Experimental:</strong> use with caution as it is in early access and potentially gets changes in the future.</li>
                   </ul>
                 </div>
                 <syn-badge variant={coreMetadata.status === 'stable' ? 'success' : 'warning'}>

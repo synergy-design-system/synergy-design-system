@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.13.4
+
+### Patch Changes
+
+- [#1281](https://github.com/synergy-design-system/synergy-design-system/pull/1281) [`a4b0e11`](https://github.com/synergy-design-system/synergy-design-system/commit/a4b0e1139dfc644d5607b7bfd08fd20158ace570) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-05-06
+
+  fix: 🐛 syn-range now emits syn-change after programmatic value updates ([#1272](https://github.com/synergy-design-system/synergy-design-system/issues/1272))
+
+  This release fixes an issue where `syn-change` events where not fired for subsequent user interactions after a value was set in code.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.13.4
+
+## 3.13.3
+
+### Patch Changes
+
+- [#1279](https://github.com/synergy-design-system/synergy-design-system/pull/1279) [`de1f21e`](https://github.com/synergy-design-system/synergy-design-system/commit/de1f21e46ac3092e8bd3a1911e1284936b3354cf) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-05-06
+
+  fix: 🐛 `<syn-select>` and `<syn-combobox>` have invalid selected value if the selected option changes ([#1265](https://github.com/synergy-design-system/synergy-design-system/issues/1265))
+
+  This release ensures `<syn-select>` and `<syn-combobox>` always show the current selected option text.
+  If a selected option name changes, the field now updates right away instead of showing outdated text.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.13.3
+
 ## 3.13.2
 
 ### Patch Changes

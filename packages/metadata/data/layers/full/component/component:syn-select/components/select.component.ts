@@ -91,6 +91,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private typeToSelectTimeout: number;
   private closeWatcher: CloseWatcher | null;
   private resizeObserver: ResizeObserver;
+  private selectedOptionObserver: MutationObserver;
   private isUserInput: boolean = false;
 
   @query('.select') popup: SynPopup;
@@ -248,6 +249,20 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   connectedCallback() {
     super.connectedCallback();
 
+    // #1265: When updating the content of the selected syn-option, the select needs to update the display label.
+    // To do this, we use a MutationObserver to watch for changes in the selected options.
+    this.selectedOptionObserver = new MutationObserver(() => {
+      if (this.multiple) {
+        if (this.readonly) {
+          this.displayLabel = this.selectedOptions.map(option => option.getTextLabel()).join(', ');
+        } else {
+          this.requestUpdate();
+        }
+      } else {
+        this.displayLabel = this.selectedOptions[0]?.getTextLabel?.() ?? '';
+      }
+    });
+
     setTimeout(() => {
       this.handleDefaultSlotChange();
     });
@@ -260,6 +275,19 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   disconnectedCallback() {
     super.disconnectedCallback();
     this.resizeObserver?.disconnect();
+    this.selectedOptionObserver?.disconnect();
+  }
+
+  private observeSelectedOptions() {
+    this.selectedOptionObserver?.disconnect();
+
+    this.selectedOptions.forEach(option => {
+      this.selectedOptionObserver.observe(option, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+    });
   }
 
   private addOpenListeners() {
@@ -653,6 +681,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const options = this.getAllOptions();
     // Update selected options cache
     this.selectedOptions = options.filter(el => el.selected);
+    this.observeSelectedOptions();
 
     // Keep a reference to the previous `valueHasChanged`. Changes made here don't count has changing the value.
     const cachedValueHasChanged = this.valueHasChanged;

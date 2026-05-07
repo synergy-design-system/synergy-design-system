@@ -1,5 +1,21 @@
 # @synergy-design-system/vue
 
+## 3.13.4
+
+### Patch Changes
+
+- Updated dependencies [[`a4b0e11`](https://github.com/synergy-design-system/synergy-design-system/commit/a4b0e1139dfc644d5607b7bfd08fd20158ace570)]:
+  - @synergy-design-system/components@3.13.4
+  - @synergy-design-system/tokens@3.13.4
+
+## 3.13.3
+
+### Patch Changes
+
+- Updated dependencies [[`de1f21e`](https://github.com/synergy-design-system/synergy-design-system/commit/de1f21e46ac3092e8bd3a1911e1284936b3354cf)]:
+  - @synergy-design-system/components@3.13.3
+  - @synergy-design-system/tokens@3.13.3
+
 ## 3.13.2
 
 ### Patch Changes

@@ -5,7 +5,6 @@ export default {
   accessibility: [
     'A visible label may be omitted for search input fields within a combobox if an associated button-complete with a clear search icon and an appropriate accessible name (e.g., aria-label="Search")-is provided.',
     'Be aware that group labels will be neglected by most assistive devices.',
-    'Use the "visually disabled" attribute to keep disabled elements focusable, hoverable, and able to show tooltips, as they\'re otherwise removed from the tab order and inaccessible to screen readers.',
   ],
   component: 'syn-combobox',
   related: {
@@ -51,9 +50,6 @@ export default {
     'Implement in search fields or filter panels when users may not recall the exact option name but can approximate it.',
     'Long or descriptive labels, helper text, or units are needed.',
     'Forms with many fields that users must scan quickly.',
-    'Complex fields with adornments, counters, or tooltips.',
     'Compact layouts and simple fields.',
-    'Short labels (1-3 words); minimal helper text.',
-    'You want a clean look without duplicate placeholder text.',
   ],
 };

@@ -27,7 +27,6 @@ Badges are used to draw attention and display statuses or counts.
 
 ### Content
 
-- Use only numbers as content
 - Use "+" for overflow values set by the application
 
 ### Placement

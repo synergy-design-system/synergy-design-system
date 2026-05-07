@@ -36,7 +36,6 @@ export default {
         'Ensure the first tab is the most relevant for the user.',
         'Place related tabs next to each other for logical grouping.',
         'Avoid overloading each tabs content with too much information; keep it manageable and focused.',
-        'Avoid using tabs for content that needs to be read in a specific order; use syn-step-group instead.',
       ],
       id: 'content',
       name: 'Content',
@@ -48,14 +47,6 @@ export default {
       ],
       id: 'styling',
       name: 'Styling',
-    },
-    {
-      content: [
-        'Use syn-tab-panel optionally when applying the "default" tab group variant.',
-        'When applying the "container" tab group variant, syn-tab-panel is mandatory.',
-      ],
-      id: 'tab_panel',
-      name: 'Tab Panel',
     },
   ],
   useCases: [

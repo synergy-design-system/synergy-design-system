@@ -12,7 +12,6 @@ export default {
       'syn-breadcrumb-item',
     ],
     templates: [
-      'AppShell',
       'Breadcrumb',
     ],
   },

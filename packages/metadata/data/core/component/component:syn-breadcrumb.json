@@ -113,7 +113,6 @@
           "syn-breadcrumb-item"
         ],
         "templates": [
-          "AppShell",
           "Breadcrumb"
         ]
       },

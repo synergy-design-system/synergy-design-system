@@ -220,7 +220,6 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
   const componentWithoutPrefix = content.component.replace('syn-', '');
   const description = generateStoryDescription(componentWithoutPrefix as ComponentHelperType, 'default');
   const figmaDocsId = coreMetadata?.custom?.override?.figmaDocsId;
-  const figmaComponentId = coreMetadata?.custom?.override?.figmaComponentId;
 
   // Final output
   return (
@@ -237,10 +236,11 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
             {coreMetadata?.status && (
               <syn-tooltip>
                 <div slot="content">
-                  Current development status.
+                  <strong>Current development status.</strong>
                   <ul>
                     <li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Stable:</strong> fully released and ready for production use.</li>
-                    <li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Warning:</strong> use with caution, may have breaking changes or be in early access.</li>
+                    <li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Deprecated:</strong> use with caution as this component will be removed in the future.</li>  
+                    <li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Experimental:</strong> use with caution as it is in early access and potentially gets changes in the future.</li>  
                   </ul>
                 </div>
                 <syn-badge variant={coreMetadata.status === 'stable' ? 'success' : 'warning'}>
@@ -258,9 +258,9 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
             <syn-tooltip content="View Storybook documentation">
               <syn-icon-button
                 href={`/?path=/docs/components-${content.component.toLowerCase()}--docs`}
-                src="/storybook-logo.svg"
                 label="Storybook Documentation"
                 size="large"
+                src="/storybook-logo.svg"
               />
             </syn-tooltip>
 
@@ -268,20 +268,10 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
               <syn-tooltip content="View Figma documentation">
                 <syn-icon-button
                   href={`https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=${figmaDocsId}`}
-                  src="/figma-logo.svg"
                   label="Figma"
                   size="large"
-                />
-              </syn-tooltip>
-            )}
-
-            {figmaComponentId && (
-              <syn-tooltip content="View Figma component">
-                <syn-icon-button
-                  href={`https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=${figmaComponentId}`}
                   src="/figma-logo.svg"
-                  label="Figma Component"
-                  size="large"
+                  target="_blank"
                 />
               </syn-tooltip>
             )}

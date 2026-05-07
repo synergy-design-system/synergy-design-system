@@ -10,12 +10,6 @@ Textareas collect data from the user and allow multiple lines of text.
 - Enable users to write comprehensive reviews of products or services.
 - Gather extensive information about issues or requests.
 - Capture detailed responses in surveys or questionnaires.
-- Long or descriptive labels, helper text, or units are needed.
-- Forms with many fields that users must scan quickly.
-- Complex fields with adornments, counters, or tooltips.
-- Compact layouts and simple fields.
-- Short labels (1-3 words); minimal helper text.
-- You want a clean look without duplicate placeholder text.
 
 ## Usage Guidelines
 

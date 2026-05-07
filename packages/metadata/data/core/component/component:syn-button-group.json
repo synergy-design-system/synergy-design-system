@@ -137,16 +137,6 @@
       "usageGuidelines": [
         {
           "content": [
-            "Group related buttons that serve a common purpose or function together.",
-            "Use for actions that are logically connected (e.g., text formatting: bold, italic, underline).",
-            "Group buttons that control related settings or options within the same UI context.",
-            "Avoid grouping buttons that are unrelated or have conflicting purposes."
-          ],
-          "id": "grouping",
-          "name": "When to Group Buttons"
-        },
-        {
-          "content": [
             "Use outline variant (default) for secondary or neutral button groups.",
             "Use filled variant for primary actions or emphasized button groups.",
             "Keep variant consistent within a single button group for visual cohesion.",
@@ -154,16 +144,6 @@
           ],
           "id": "variants",
           "name": "Variants"
-        },
-        {
-          "content": [
-            "Small: Use for compact spaces, toolbars in tight layouts, or mobile interfaces.",
-            "Medium (default): Use for standard UI contexts and most common use cases.",
-            "Large: Use for prominent button groups that need extra visibility or accessibility.",
-            "Match button group size to the visual hierarchy and context of your page."
-          ],
-          "id": "sizing",
-          "name": "Sizing"
         },
         {
           "content": [
@@ -177,19 +157,6 @@
         },
         {
           "content": [
-            "Use for toolbars with icon buttons and tooltip hints.",
-            "Use for segmented controls with radio buttons in a group.",
-            "Use for text formatting controls (bold, italic, underline, etc.).",
-            "Use for pagination or navigation controls with multiple related actions.",
-            "Use for filter or view controls with related options."
-          ],
-          "id": "patterns",
-          "name": "Common Patterns"
-        },
-        {
-          "content": [
-            "Maintain visual consistency: all buttons in a group should have similar styling.",
-            "Don't mix different button variants within a single button group.",
             "Ensure adequate spacing between button groups and other UI elements.",
             "Keep the number of buttons in a group manageable (typically 2-5 buttons)."
           ],
@@ -206,7 +173,17 @@
           "name": "Component Behavior"
         }
       ],
-      "useCases": []
+      "useCases": [
+        "Group related buttons that serve a common purpose or function together.",
+        "Use for actions that are logically connected (e.g., text formatting: bold, italic, underline).",
+        "Group buttons that control related settings or options within the same UI context.",
+        "Avoid grouping buttons that are unrelated or have conflicting purposes.",
+        "Use for toolbars with icon buttons and tooltip hints.",
+        "Use for segmented controls with radio buttons in a group.",
+        "Use for text formatting controls (bold, italic, underline, etc.).",
+        "Use for pagination or navigation controls with multiple related actions.",
+        "Use for filter or view controls with related options."
+      ]
     },
     "sourceModulePath": "components/button-group/button-group.js",
     "summary": "Button groups can be used to group related buttons into sections."

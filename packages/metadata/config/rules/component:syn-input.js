@@ -8,7 +8,6 @@ export default {
     'Ensure input fields are usable on all screen sizes. On smaller screens, consider using larger touch targets for input fields.',
     'Placeholder text should offer a hint of what the user should write and must always go together with a label.',
     'Prefer keeping the input enabled by default by relying on default values or by validating on submit.',
-    'Use the "visually disabled" attribute to keep disabled elements focusable, hoverable, and able to show tooltips, as they\'re otherwise removed from the tab order and inaccessible to screen readers.',
     'Use "autocomplete" attribute to enable automated browser assistance when filling out forms.',
   ],
   component: 'syn-input',
@@ -51,13 +50,6 @@ export default {
       id: 'validation_and_formatting',
       name: 'Validation and Formatting',
     },
-    {
-      content: [
-        'Do not mix the two variants (default / floating label) within the same product, flow or form. Read the use cases above to know when to use each type.',
-      ],
-      id: 'variant_consistency',
-      name: 'Variant Consistency',
-    },
   ],
   useCases: [
     'Collect user data in forms, including names, emails, dates, and passwords.',
@@ -66,7 +58,5 @@ export default {
     'Forms with many fields that users must scan quickly.',
     'Complex fields with adornments, counters, or tooltips.',
     'Compact layouts and simple fields.',
-    'Short labels (1-3 words); minimal helper text.',
-    'You want a clean look without duplicate placeholder text.',
   ],
 };

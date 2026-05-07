@@ -37,7 +37,7 @@ Tooltips display additional information based on a specific action.
 
 ### Trigger Element
 
-- Use any interactive element as a tooltip trigger by placing it in the provided slot; the default trigger (info-i) can be replaced based on context or preference.
+- Use any interactive element as a tooltip trigger by placing it in the provided slot. The tooltip will open when the user hovers over or focuses on the trigger element.
 
 ## Accessibility
 

@@ -6,8 +6,8 @@ Flexible button / link component that can be used to quickly build navigations.
 
 ## Common Use Cases
 
-- Populate an syn-header navigation bar at the top of a page, helping users easily access different sections.
-- Implement navigation items in a syn-side-nav for a more detailed and hierarchical navigation structure.
+- Populate an `<syn-prio-nav>` within a `<syn-header>` navigation bar at the top of a page, helping users easily access different sections.
+- Implement navigation items in a `<syn-side-nav>` for a more detailed and hierarchical navigation structure.
 
 ## Usage Guidelines
 

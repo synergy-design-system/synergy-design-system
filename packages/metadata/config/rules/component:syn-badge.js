@@ -46,7 +46,6 @@ export default {
     },
     {
       content: [
-        'Use only numbers as content',
         'Use "+" for overflow values set by the application',
       ],
       id: 'content',

@@ -111,14 +111,6 @@
       "usageGuidelines": [
         {
           "content": [
-            "Use the \"checkbox\" variant for multi-select and the \"default\" variant for single-select choices.",
-            "Provide a reason or alternative if some choice is disabled."
-          ],
-          "id": "behavior",
-          "name": "Behavior"
-        },
-        {
-          "content": [
             "Make sure all items in the list are mutually exclusive and unambiguous to help users understand what they are selecting.",
             "Provide a default choice where applicable to guide users."
           ],

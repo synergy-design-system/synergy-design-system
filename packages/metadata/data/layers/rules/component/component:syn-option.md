@@ -12,11 +12,6 @@ Options define the selectable items within various form controls such as [select
 
 ## Usage Guidelines
 
-### Behavior
-
-- Use the "checkbox" variant for multi-select and the "default" variant for single-select choices.
-- Provide a reason or alternative if some choice is disabled.
-
 ### Content
 
 - Make sure all items in the list are mutually exclusive and unambiguous to help users understand what they are selecting.

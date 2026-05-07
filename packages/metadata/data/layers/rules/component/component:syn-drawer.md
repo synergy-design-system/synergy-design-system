@@ -15,7 +15,7 @@ Drawers slide in from a container to expose additional options and information.
 
 ### Content
 
-- Ensure the content is supplementary and does not include critical information that users must see immediately such as notifications or alerts; instead, use syn-notification or syn-dialog for those purposes.
+- Ensure the content is supplementary and does not include critical information that users must see immediately such as notifications or alerts; instead, use syn-alert or syn-dialog for those purposes.
 - Check that the drawer content is fully visible and readable, even at larger font sizes.
 
 ### Interaction and Behavior
@@ -31,8 +31,8 @@ Drawers slide in from a container to expose additional options and information.
 
 ### Slots
 
-- Use the "header" slot to add navigation and/or action elements if desired.
-- Use the "default" slot to add main content. The "default" slot is always scrollable. For simplicity, syn-scrollable is integrated into the component as a wrapper for the slot in Figma, but will need to be used in code if desired.
+- Use the "header-actions" slot to add navigation and/or action elements if desired.
+- Use the "default" slot to add main content. The "default" slot is always scrollable.
 - Use the "footer" slot to add action elements if desired. The "footer" slot is always fixed.
 
 ## Accessibility

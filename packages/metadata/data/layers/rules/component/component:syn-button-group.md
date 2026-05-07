@@ -4,14 +4,19 @@
 
 Button groups can be used to group related buttons into sections.
 
-## Usage Guidelines
-
-### When to Group Buttons
+## Common Use Cases
 
 - Group related buttons that serve a common purpose or function together.
 - Use for actions that are logically connected (e.g., text formatting: bold, italic, underline).
 - Group buttons that control related settings or options within the same UI context.
 - Avoid grouping buttons that are unrelated or have conflicting purposes.
+- Use for toolbars with icon buttons and tooltip hints.
+- Use for segmented controls with radio buttons in a group.
+- Use for text formatting controls (bold, italic, underline, etc.).
+- Use for pagination or navigation controls with multiple related actions.
+- Use for filter or view controls with related options.
+
+## Usage Guidelines
 
 ### Variants
 
@@ -20,13 +25,6 @@ Button groups can be used to group related buttons into sections.
 - Keep variant consistent within a single button group for visual cohesion.
 - Choose variant based on the importance and prominence needed in the layout.
 
-### Sizing
-
-- Small: Use for compact spaces, toolbars in tight layouts, or mobile interfaces.
-- Medium (default): Use for standard UI contexts and most common use cases.
-- Large: Use for prominent button groups that need extra visibility or accessibility.
-- Match button group size to the visual hierarchy and context of your page.
-
 ### Composition & Related Elements
 
 - Combine with syn-icon for icon-only toolbar-style button groups.
@@ -34,18 +32,8 @@ Button groups can be used to group related buttons into sections.
 - Use with syn-dropdown for split-button or menu patterns within groups.
 - Place all related interactive elements inside the button group slot.
 
-### Common Patterns
-
-- Use for toolbars with icon buttons and tooltip hints.
-- Use for segmented controls with radio buttons in a group.
-- Use for text formatting controls (bold, italic, underline, etc.).
-- Use for pagination or navigation controls with multiple related actions.
-- Use for filter or view controls with related options.
-
 ### Visual Consistency
 
-- Maintain visual consistency: all buttons in a group should have similar styling.
-- Don't mix different button variants within a single button group.
 - Ensure adequate spacing between button groups and other UI elements.
 - Keep the number of buttons in a group manageable (typically 2-5 buttons).
 

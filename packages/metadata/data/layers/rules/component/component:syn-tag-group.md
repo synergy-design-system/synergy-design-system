@@ -36,7 +36,6 @@ Tags can be removable, icon‑based, or purely textual.
 
 - Ensure each tag has clear readable text and a meaningful remove action when removable.
 - Expose group labeling context when tags represent selected filters or categories.
-- Keep keyboard interaction predictable for tag focus and removal.
 
 ## Related Components
 

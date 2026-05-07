@@ -37,7 +37,7 @@ export default {
     {
       content: [
         'Use for lists with more than five options; for fewer options, consider using syn-radio for single selection or syn-checkbox for multiple selection.',
-        'Apply the "multiple" attribute when multiple selections are allowed, and pair it with "checkbox" for corresponding nested options.',
+        'Apply the "multiple" attribute when multiple selections are allowed.',
         'By default, the number of selected options is displayed after the text.',
         'Display selected options as tags within the field to help users track their selections.',
         'Consider limiting the maximum number of displayed selectable options to avoid overwhelming users. We recommend displaying 6-8 (with scrolling for additional results).',
@@ -50,11 +50,5 @@ export default {
     'Enable users to select one or more options from a list of predefined choices in forms.',
     'Implement in filter panels to allow users to refine search results or data views.',
     'Provide options in settings pages where users need to choose preferences from a list.',
-    'Long or descriptive labels, helper text, or units are needed.',
-    'Forms with many fields that users must scan quickly.',
-    'Complex fields with adornments, counters, or tooltips.',
-    'Compact layouts and simple fields.',
-    'Short labels (1-3 words); minimal helper text.',
-    'You want a clean look without duplicate placeholder text.',
   ],
 };

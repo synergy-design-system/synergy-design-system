@@ -30,17 +30,11 @@ Tab groups organize content into a container that shows one section at a time.
 - Ensure the first tab is the most relevant for the user.
 - Place related tabs next to each other for logical grouping.
 - Avoid overloading each tabs content with too much information; keep it manageable and focused.
-- Avoid using tabs for content that needs to be read in a specific order; use syn-step-group instead.
 
 ### Styling
 
 - Bold labels if desired, keeping this decision consistent across the group.
 - Customize to suit user requirements by changing label alignment or deleting the separator between group and content.
-
-### Tab Panel
-
-- Use syn-tab-panel optionally when applying the "default" tab group variant.
-- When applying the "container" tab group variant, syn-tab-panel is mandatory.
 
 ## Accessibility
 

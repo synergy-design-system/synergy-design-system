@@ -16,8 +16,8 @@ that can be used to add applications name, toolbar and primary navigation.
 
 ### Layout
 
-- Place navigation items to the left, the logo at the top left, and meta navigation on the right in wider viewports to keep consistency across products.
-- In smaller viewports, place an expandable menu on the right to host navigation items while keeping the logo consistently on the left across all viewport sizes.
+- Place navigation items in the navigation slot, the logo at the left, and meta navigation on the right in wider viewports to keep consistency across products.
+- In smaller viewports, place an expandable menu on the left to host navigation items while keeping the logo consistently on the left across all viewport sizes.
 - Keep the navigation fixed at the top of the website when scrolling back to the top.
 
 ### Navigation Structure and Content

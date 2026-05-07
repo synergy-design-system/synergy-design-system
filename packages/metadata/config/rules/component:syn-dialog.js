@@ -59,6 +59,6 @@ export default {
     'Confirm an action which can have significant consequences and explicit user approval or input is needed (e.g. deleting a file).',
     'Present important information that must be seen and acknowledged before proceeding (e.g., session expired and renewed login required).',
     'Require users to enter information or select from multiple options before continuing.',
-    'For non-critical content or information that doesn\'t require immediate user input, please use syn-notification to avoid workflow disruption.',
+    'For non-critical content or information that doesn\'t require immediate user input, please use syn-alert to avoid workflow disruption.',
   ],
 };

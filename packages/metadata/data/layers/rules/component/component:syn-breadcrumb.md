@@ -43,5 +43,4 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
 
 ## Related Templates
 
-- AppShell
 - Breadcrumb

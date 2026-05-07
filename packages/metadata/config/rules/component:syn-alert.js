@@ -18,6 +18,28 @@ export default {
   usageGuidelines: [
     {
       content: [
+        'Integrated into the area where the user is already focused to avoid disrupting the user\'s workflow.',
+        'Provide feedback on user actions, such as errors, warnings, or confirmations (e.g. "Unable to save changes. Check your internet connection and try again.", "You have unsaved changes. Are you sure you want to leave this page?" or "Payment completed. Thank you for your purchase!").',
+        'Announce important updates or changes within the application (e.g. "New feature alert! You can now schedule posts directly from the dashboard.", "Maintenance scheduled for January 30th, 2:00 AM - 4:00 AM. The application will be unavailable during this time.").',
+        'Highlight critical information or display system messages that require user attention(e.g. "System update required. Please restart your application to apply the latest updates." or "Your account has been temporarily suspended due to suspicious activity. Contact support for assistance.").',
+        'May contain interactive elements such as links and buttons.',
+      ],
+      id: 'choose-notification-type-inline',
+      name: 'When to choose inline notifications',
+    },
+    {
+      content: [
+        'Take the user\'s attention temporarily away from their current task by appearing on the screen with animations to ensure they are noticed.',
+        'Provide feedback on user actions, such as errors, warnings, or confirmations. (e.g., "Failed to load data", "Your message has been sent", "Your settings have been saved").',
+        'Announce updates, reminders, or confirmations (e.g., "Your settings have been saved").',
+        'May contain interactive elements such as links and buttons.',
+        'They can serve as supplementary information for content available on other pages (e.g., a toast notification "Item has been added to the cart" alongside a shopping cart page).',
+      ],
+      id: 'choose-notification-type-toast',
+      name: 'When to choose toast notifications',
+    },
+    {
+      content: [
         'Keep alert messages concise and clear, focusing on the most critical information.',
         'Use simple language that users can quickly understand without additional context.',
         'Include action items or next steps when appropriate (e.g., "Your session ended. Please login again").',
@@ -40,7 +62,7 @@ export default {
     {
       content: [
         'Always include an appropriate icon that reinforces the message tone and helps with quick visual scanning.',
-        'Use system icons for consistency (info, check_circle, warning, status-error, settings).',
+        'Use icons for consistency (info, check_circle, warning, status-error, settings).',
         'Ensure the icon clearly represents the alert type — don\'t use confusing or misleading icons.',
         'Icons are optional but highly recommended for accessibility and visual clarity.',
       ],
@@ -88,5 +110,7 @@ export default {
     },
   ],
   useCases: [
+    'Inline notifications can provide contextual feedback to users. They are directly embedded within the content of a page or form.',
+    'Toast notifications provide brief, unobtrusive messages to users through toast notifications that overlay the interface and do not necessarily need attention.',
   ],
 };

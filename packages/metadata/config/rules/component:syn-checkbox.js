@@ -5,7 +5,7 @@ export default {
   accessibility: [
     'Checkboxes should always look like checkboxes to meet user\'s expectations.',
     'Nesting other interactive elements like links inside labels should be avoided.',
-    'An error-text with a warning icon should be placed underneath an invalid checkbox or, if used in a group, underneath the checkbox group. Error messages should always provide hints for solutions.',
+    'An error-text with a warning icon should be placed underneath an invalid checkbox. Error messages should always provide hints for solutions.',
   ],
   component: 'syn-checkbox',
   related: {
@@ -38,6 +38,5 @@ export default {
     'Used for selections that don\'t immediately activate.',
     'Selecting an option like "Agree to Terms and Conditions" before submitting a registration form.',
     'Opt-in/Opt-out of notifications or subscriptions.',
-    'Check syn-checkbox-group for group use cases and usage guidelines.',
   ],
 };

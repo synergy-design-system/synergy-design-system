@@ -134,7 +134,7 @@ const formatDate = (dateString: string) => {
 								);
 							})}
 							{component.custom!.rules.related.templates?.map(relatedTemplate => {
-								const slug = relatedTemplate.replace(/^template:/, '');
+								const slug = relatedTemplate.replace(/^template:/, '').toLowerCase();
 								return (
 									<li>
 										<a class="syn-link" href={`/template/${slug}`}>

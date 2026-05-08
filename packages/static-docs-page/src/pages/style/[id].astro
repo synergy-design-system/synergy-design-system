@@ -1,0 +1,157 @@
+---
+import {
+	getDataForStyle,
+	getStyleMetadata,
+	listStyles,
+} from '@synergy-design-system/metadata';
+import Layout from '../../layouts/Layout.astro';
+import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
+
+export async function getStaticPaths() {
+	const result = await listStyles({}, metadataStoreOptions);
+
+	return result.data.map(style => ({
+		params: { id: style.id.replace(/^style:/, '') },
+		props: { styleId: style.id }
+	}));
+}
+
+const routeId = Astro.params.id;
+const { styleId } = Astro.props;
+
+if (!routeId) {
+	throw new Error('Missing style route parameter.');
+}
+
+if (!styleId) {
+	throw new Error('Missing style metadata id for route.');
+}
+
+const { data: style, meta: styleMeta } = await getStyleMetadata(styleId, {}, metadataStoreOptions);
+const { data: styleData } = await getDataForStyle(styleId, {}, metadataStoreOptions);
+
+type StyleCodeSample = {
+	code: string;
+	language: string;
+	sourcePath: string;
+	title: string;
+};
+
+const parseStyleCodeSamples = (
+	content: string,
+	sourcePath: string,
+): StyleCodeSample[] => {
+	const samples: StyleCodeSample[] = [];
+	const lines = content.split('\n');
+
+	let sectionTitle = 'Example';
+	let sampleCount = 0;
+	let inCodeBlock = false;
+	let codeLanguage = 'text';
+	let codeLines: string[] = [];
+
+	for (const line of lines) {
+		if (!inCodeBlock) {
+			const headingMatch = line.match(/^#{2,6}\s+(.+)$/);
+			if (headingMatch) {
+				sectionTitle = headingMatch[1].trim();
+				continue;
+			}
+
+			const codeStartMatch = line.match(/^```([\w-]*)\s*$/);
+			if (codeStartMatch) {
+				inCodeBlock = true;
+				codeLanguage = codeStartMatch[1] || 'text';
+				codeLines = [];
+			}
+			continue;
+		}
+
+		if (line.startsWith('```')) {
+			inCodeBlock = false;
+			sampleCount += 1;
+			samples.push({
+				code: codeLines.join('\n').trimEnd(),
+				language: codeLanguage,
+				sourcePath,
+				title: sampleCount === 1 ? sectionTitle : `${sectionTitle} (${sampleCount})`,
+			});
+			continue;
+		}
+
+		codeLines.push(line);
+	}
+
+	return samples;
+};
+
+const examples = styleData?.examples ?? [];
+const codeSamples = examples.flatMap((entry) => parseStyleCodeSamples(entry.content, entry.path));
+
+const dateFormatter = new Intl.DateTimeFormat('de-DE', {
+	day: '2-digit',
+	hour: 'numeric',
+	hour12: false,
+	minute: '2-digit',
+	month: '2-digit',
+	timeZone: 'UTC',
+	year: 'numeric',
+});
+
+const formatDate = (dateString: string) => {
+	const date = new Date(dateString);
+	return dateFormatter.format(date);
+};
+---
+
+<Layout>
+	{style ? (
+		<syn-card shadow>
+			<h1 class="syn-heading--3x-large" slot="header">
+				{style.name}
+				<nav>
+					{style.status && (
+						<syn-badge variant={style.status === 'stable' ? 'success' : 'warning'}>
+							{style.status}
+						</syn-badge>
+					)}
+					{style.since && (
+						<syn-tooltip content={`Available since version ${style.since}.`}>
+							<syn-badge variant="neutral">
+								{style.since}
+							</syn-badge>
+						</syn-tooltip>
+					)}
+				</nav>
+			</h1>
+
+			<section>
+				<h2 class="syn-heading--2x-large">Code Samples</h2>
+				{codeSamples.length > 0 ? (
+					<syn-accordion contained>
+						{codeSamples.map((sample) => (
+							<syn-details summary={`${sample.title} [${sample.language}]`}>
+								<article>
+									<p><strong>Source:</strong> {sample.sourcePath}</p>
+									<pre><code>{sample.code}</code></pre>
+								</article>
+							</syn-details>
+						))}
+					</syn-accordion>
+				) : (
+					<p>No code samples were found in the style examples layer.</p>
+				)}
+			</section>
+
+			<footer slot="footer">
+				<syn-divider />
+				Data created at {formatDate(styleMeta.builtAt)}
+			</footer>
+		</syn-card>
+	) : (
+		<syn-card>
+			<h1>Style not found</h1>
+			<p>No metadata entry exists for route: {routeId}</p>
+		</syn-card>
+	)}
+</Layout>

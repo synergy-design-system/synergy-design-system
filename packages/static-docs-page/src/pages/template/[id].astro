@@ -1,0 +1,157 @@
+---
+import {
+	getDataForTemplate,
+	getTemplateMetadata,
+	listTemplates,
+} from '@synergy-design-system/metadata';
+import Layout from '../../layouts/Layout.astro';
+import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
+
+export async function getStaticPaths() {
+	const result = await listTemplates({}, metadataStoreOptions);
+
+	return result.data.map(template => ({
+		params: { id: template.id.replace(/^template:/, '') },
+		props: { templateId: template.id }
+	}));
+}
+
+const routeId = Astro.params.id;
+const { templateId } = Astro.props;
+
+if (!routeId) {
+	throw new Error('Missing template route parameter.');
+}
+
+if (!templateId) {
+	throw new Error('Missing template metadata id for route.');
+}
+
+const { data: template, meta: templateMeta } = await getTemplateMetadata(templateId, {}, metadataStoreOptions);
+const { data: templateData } = await getDataForTemplate(templateId, {}, metadataStoreOptions);
+
+type TemplateCodeSample = {
+	code: string;
+	language: string;
+	sourcePath: string;
+	title: string;
+};
+
+const parseTemplateCodeSamples = (
+	content: string,
+	sourcePath: string,
+): TemplateCodeSample[] => {
+	const samples: TemplateCodeSample[] = [];
+	const lines = content.split('\n');
+
+	let sectionTitle = 'Example';
+	let sampleCount = 0;
+	let inCodeBlock = false;
+	let codeLanguage = 'text';
+	let codeLines: string[] = [];
+
+	for (const line of lines) {
+		if (!inCodeBlock) {
+			const headingMatch = line.match(/^#{2,6}\s+(.+)$/);
+			if (headingMatch) {
+				sectionTitle = headingMatch[1].trim();
+				continue;
+			}
+
+			const codeStartMatch = line.match(/^```([\w-]*)\s*$/);
+			if (codeStartMatch) {
+				inCodeBlock = true;
+				codeLanguage = codeStartMatch[1] || 'text';
+				codeLines = [];
+			}
+			continue;
+		}
+
+		if (line.startsWith('```')) {
+			inCodeBlock = false;
+			sampleCount += 1;
+			samples.push({
+				code: codeLines.join('\n').trimEnd(),
+				language: codeLanguage,
+				sourcePath,
+				title: sampleCount === 1 ? sectionTitle : `${sectionTitle} (${sampleCount})`,
+			});
+			continue;
+		}
+
+		codeLines.push(line);
+	}
+
+	return samples;
+};
+
+const examples = templateData?.examples ?? [];
+const codeSamples = examples.flatMap((entry) => parseTemplateCodeSamples(entry.content, entry.path));
+
+const dateFormatter = new Intl.DateTimeFormat('de-DE', {
+	day: '2-digit',
+	hour: 'numeric',
+	hour12: false,
+	minute: '2-digit',
+	month: '2-digit',
+	timeZone: 'UTC',
+	year: 'numeric',
+});
+
+const formatDate = (dateString: string) => {
+	const date = new Date(dateString);
+	return dateFormatter.format(date);
+};
+---
+
+<Layout>
+	{template ? (
+		<syn-card shadow>
+			<h1 class="syn-heading--3x-large" slot="header">
+				{template.name}
+				<nav>
+					{template.status && (
+						<syn-badge variant={template.status === 'stable' ? 'success' : 'warning'}>
+							{template.status}
+						</syn-badge>
+					)}
+					{template.since && (
+						<syn-tooltip content={`Available since version ${template.since}.`}>
+							<syn-badge variant="neutral">
+								{template.since}
+							</syn-badge>
+						</syn-tooltip>
+					)}
+				</nav>
+			</h1>
+
+			<section>
+				<h2 class="syn-heading--2x-large">Code Samples</h2>
+				{codeSamples.length > 0 ? (
+					<syn-accordion contained>
+						{codeSamples.map((sample) => (
+							<syn-details summary={`${sample.title} [${sample.language}]`}>
+								<article>
+									<p><strong>Source:</strong> {sample.sourcePath}</p>
+									<pre><code>{sample.code}</code></pre>
+								</article>
+							</syn-details>
+						))}
+					</syn-accordion>
+				) : (
+					<p>No code samples were found in the template examples layer.</p>
+				)}
+			</section>
+
+			<footer slot="footer">
+				<syn-divider />
+				Data created at {formatDate(templateMeta.builtAt)}
+			</footer>
+		</syn-card>
+	) : (
+		<syn-card>
+			<h1>Template not found</h1>
+			<p>No metadata entry exists for route: {routeId}</p>
+		</syn-card>
+	)}
+</Layout>

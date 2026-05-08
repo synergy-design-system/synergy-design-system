@@ -30,29 +30,41 @@ export default function Navigation({ currentPath }: NavigationProps) {
 					);
 				})}
 			</syn-nav-item>
-			<syn-nav-item>
+			<syn-nav-item open={currentPath.includes('/template/')}>
 				Templates
-				{templates.data.map(t => (
-					<syn-nav-item
-						disabled
-						slot="children"
-						key={t.id}
-					>
-						{t.name}
-					</syn-nav-item>
-				))}
+				{templates.data.map(t => {
+					const href = `/template/${t.id.replace(/^template:/, '')}`;
+					const currentProps: Record<string, string> = currentPath === href ? { current: '' } : {};
+
+					return (
+						<syn-nav-item
+							{...currentProps}
+							href={href}
+							slot="children"
+							key={t.id}
+						>
+							{t.name}
+						</syn-nav-item>
+					);
+				})}
 			</syn-nav-item>
-			<syn-nav-item>
+			<syn-nav-item open={currentPath.includes('/style/')}>
 				Styles
-				{styles.data.map(s => (
-					<syn-nav-item
-						disabled
-						slot="children"
-						key={s.id}
-					>
-						{s.name}
-					</syn-nav-item>
-				))}
+				{styles.data.map(s => {
+					const href = `/style/${s.id.replace(/^style:/, '')}`;
+					const currentProps: Record<string, string> = currentPath === href ? { current: '' } : {};
+
+					return (
+						<syn-nav-item
+							{...currentProps}
+							href={href}
+							slot="children"
+							key={s.id}
+						>
+							{s.name}
+						</syn-nav-item>
+					);
+				})}
 			</syn-nav-item>
 		</syn-side-nav>
 	);

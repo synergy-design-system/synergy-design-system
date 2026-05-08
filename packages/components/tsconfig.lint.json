@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["src", "scripts", "code-connect"]
+  "include": ["src", "scripts", "code-connect", "echarts.d.ts"],
 }

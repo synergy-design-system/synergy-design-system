@@ -7,7 +7,7 @@ import litA11y from 'eslint-plugin-lit-a11y';
 
 export default [
   {
-    ignores: ['dist/', 'dist/**/*', 'code-connect/icons/**/*'],
+    ignores: ['dist/', 'dist/**/*', 'code-connect/icons/**/*', 'echarts.d.ts'],
   },
   ...createCustomConfig({
     project: './tsconfig.lint.json',
@@ -34,6 +34,7 @@ export default [
       reportUnusedDisableDirectives: 'off',
     },
     rules: {
+      'import/no-extraneous-dependencies': ['error', { optionalDependencies: true }],
       'no-unused-disable-directive': 'off',
     },
   },

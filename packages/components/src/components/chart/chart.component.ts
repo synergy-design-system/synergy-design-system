@@ -18,7 +18,7 @@ import styles from './chart.styles.js';
 // Scoped option type — only includes the components and chart types registered via use()
 type ECOption = ComposeOption<LineSeriesOption>;
 
-// TODO: Check, should we dynamically import these, so bundle size is optimized for users for only the things they use?
+// TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
   CanvasRenderer,
   LineChart,
@@ -29,7 +29,7 @@ use([
 ]);
 
 /**
- * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts.
+ * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-chart--docs
  * @status experimental
@@ -103,6 +103,32 @@ export default class SynChart extends SynergyElement {
     super.disconnectedCallback();
     this.resizeObserver?.disconnect();
     this.chartInstance?.dispose();
+  }
+
+  /**
+   * Returns the underlying ECharts instance, giving direct access to the full
+   * [ECharts API](https://echarts.apache.org/en/api.html#echartsInstance).
+   *
+   * Use this when the `option` property alone is not sufficient — for example to
+   * imperatively call `setOption()` with custom merge flags, listen to ECharts events,
+   * trigger actions, or retrieve chart data.
+   *
+   * Returns `undefined` if called before the component has been connected to the DOM
+   * (i.e. before `firstUpdated` has run).
+   *
+   * @example
+   * ```js
+   * const instance = chart.getInstance();
+   *
+   * // Listen to ECharts events
+   * instance?.on('click', params => console.log(params));
+   *
+   * // Partial update without replacing the full option
+   * instance?.setOption({ series: [{ data: [1, 2, 3] }] }, { replaceMerge: 'series' });
+   * ```
+   */
+  getInstance(): EChartsType | undefined {
+    return this.chartInstance;
   }
 
   // eslint-disable-next-line class-methods-use-this

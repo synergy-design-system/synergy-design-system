@@ -780,7 +780,7 @@ src/
 ├── bin/
 │   ├── clean.js         # Removes dist/ before builds
 │   └── start.ts         # CLI entry point for syn-mcp
-├── server.ts            # MCP server creation, tool and resource registration
+├── server.ts            # MCP server creation, tool, prompt and resource registration
 ├── middleware/          # Tool execution middleware pipeline
 │   ├── compose.ts       # composeMiddlewares (reduceRight composition)
 │   ├── compression.ts   # withCompressionMiddleware (experimental)
@@ -788,6 +788,9 @@ src/
 │   ├── logging.ts       # withToolLoggingMiddleware
 │   ├── types.ts         # ToolMiddleware, ToolMiddlewareContext, RawToolHandler, WithErrorHandlerOptions
 │   └── index.ts         # Middleware module entrypoint
+├── prompts/             # MCP prompt implementations
+│   ├── component-rules.ts
+│   └── index.ts
 ├── resources/           # MCP resource implementations (static, read-only data)
 │   ├── component-list.ts
 │   ├── asset-list.ts
@@ -814,20 +817,8 @@ src/
 │   ├── tokens-list.ts
 │   └── index.ts
 ├── transports/          # Transport factory and implementations
-│   ├── http.ts
-│   ├── stdio.ts
-│   └── index.ts
 ├── types/               # Shared type definitions
-│   └── tool-response.ts
 └── utilities/           # Runtime config, metadata adapters, and CLI helpers
-  ├── cli.ts
-  ├── config.ts
-  ├── davinci.ts
-  ├── metadata.ts
-  ├── migration.ts
-  ├── rules.ts
-  ├── server.ts
-  └── index.ts
 rules/                   # Markdown guidance files prepended to selected tool output
 test/
 ├── e2e/                 # End-to-end MCP tests

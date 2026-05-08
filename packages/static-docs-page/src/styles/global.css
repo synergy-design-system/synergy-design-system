@@ -2,8 +2,6 @@ html,
 body {
 	margin: 0;
 	padding: 0;
-	width: 100%;
-	height: 100%;
 }
 
 body {
@@ -29,6 +27,38 @@ main {
     h1 {
       margin: 0;
       padding: 0;
+    }
+
+    h2 {
+      margin: 0 0 var(--syn-spacing-large);
+    }
+
+    h3,
+    p,
+    ul {
+      margin: 0 0 var(--syn-spacing-medium);
+    }
+
+    li {
+      margin: 0 0 var(--syn-spacing-x-small);
+    }
+  }
+}
+
+/* Components */
+.component-view {
+  table {
+    width: 100%;
+  }
+
+  .component-header {
+    justify-content: space-between;
+    display: flex;
+
+    nav {
+      align-items: center;
+      display: flex;
+      gap: var(--syn-spacing-small);
     }
   }
 }

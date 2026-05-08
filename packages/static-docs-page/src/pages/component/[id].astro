@@ -50,9 +50,12 @@ const formatDate = (dateString: string) => {
 
 <Layout>
 	{component ? (
-		<syn-card shadow>
-			<h1 class="syn-heading--3x-large" slot="header">
-				{component.name}
+		<syn-card class="component-view" shadow>
+			{/* Header */}
+			<header class="component-header" slot="header">
+				<h1 class="syn-heading--3x-large" slot="header">
+					{component.name}
+				</h1>
 				<nav>
 					{component.status && (
 						<syn-tooltip>
@@ -103,7 +106,8 @@ const formatDate = (dateString: string) => {
 						</syn-tooltip>
 					)}
 				</nav>
-			</h1>
+			</header>
+			{/* /Header */}
 
 			{/* Description */}
 			<section>
@@ -214,15 +218,13 @@ const formatDate = (dateString: string) => {
 											<tr>
 												<th>Name</th>
 												<th>Description</th>
-												<th>Default</th>
 											</tr>
 										</thead>
 										<tbody>
 											{data.custom.interfaceSnapshot.slots.map(slot => (
 												<tr>
-													<td>{slot.name}</td>
+													<td>{slot.name || 'none (default)'}</td>
 													<td>{slot.description}</td>
-													<td><code>{slot.name === '' ? '-' : slot.name}</code></td>
 												</tr>
 											))}
 										</tbody>
@@ -349,6 +351,7 @@ const formatDate = (dateString: string) => {
 			<footer slot="footer">
 				<syn-divider />
 				Data created at {formatDate(meta.builtAt)}
+				Generated from the canonical metadata for component:syn-button.
 			</footer>
 		</syn-card>
 	) : (

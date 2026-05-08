@@ -31,6 +31,8 @@ const { data, meta } = await getComponentMetadata(componentId, {
 }, metadataStoreOptions);
 
 const component = data;
+const basePath = import.meta.env.BASE_URL;
+const toAppHref = (path: string) => `${basePath}${path.replace(/^\//, '')}`;
 
 const dateFormatter = new Intl.DateTimeFormat('de-DE', {
   day: '2-digit',
@@ -126,7 +128,7 @@ const formatDate = (dateString: string) => {
 								const slug = relatedComponent.replace(/^component:/, '');
 								return (
 									<li>
-										<a class="syn-link" href={`/component/${slug}`}>
+										<a class="syn-link" href={toAppHref(`/component/${slug}`)}>
 											<syn-badge>Related to component:</syn-badge>
 											{relatedComponent}
 										</a>
@@ -137,7 +139,7 @@ const formatDate = (dateString: string) => {
 								const slug = relatedTemplate.replace(/^template:/, '').toLowerCase();
 								return (
 									<li>
-										<a class="syn-link" href={`/template/${slug}`}>
+										<a class="syn-link" href={toAppHref(`/template/${slug}`)}>
 											<syn-badge>Used in</syn-badge>
 											{relatedTemplate}
 										</a>

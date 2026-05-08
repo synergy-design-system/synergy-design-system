@@ -40,6 +40,10 @@ packages/docs/src/materialSymbolsMetadata.json
 packages/metadata/data
 packages/metadata/config
 
+# Static docs page build output
+packages/static-docs-page/dist
+packages/static-docs-page/.astro
+
 # Locally generated mcp logs
 packages/mcp/logs
 

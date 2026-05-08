@@ -7,12 +7,32 @@ import '../styles/global.css';
 import MetaNavigation from '../components/MetaNavigation.astro';
 import Navigation from '../components/Navigation';
 
-const currentPath = Astro.url.pathname;
+const basePath = import.meta.env.BASE_URL;
+const normalizePathForNavigation = (pathname: string, base: string) => {
+	if (base === '/') {
+		return pathname;
+	}
+
+	const normalizedBase = base.endsWith('/') ? base : `${base}/`;
+	if (pathname === normalizedBase.slice(0, -1) || pathname === normalizedBase) {
+		return '/';
+	}
+
+	if (!pathname.startsWith(normalizedBase)) {
+		return pathname;
+	}
+
+	const withoutBase = pathname.slice(normalizedBase.length);
+	return `/${withoutBase}`;
+};
+
+const currentPath = normalizePathForNavigation(Astro.url.pathname, basePath);
 ---
 
 <script>
 // @todo: Only load whats really needed!
 import { registerIconLibrary } from '@synergy-design-system/components';
+const basePath = import.meta.env.BASE_URL;
 
 // Draw icons from esm.sh for the time being.
 registerIconLibrary("default", {
@@ -20,7 +40,7 @@ registerIconLibrary("default", {
 });
 
 registerIconLibrary('logos', {
-	resolver: name => `/icons/${name}.svg`,
+	resolver: name => `${basePath}icons/${name}.svg`,
 })
 </script>
 
@@ -29,8 +49,8 @@ registerIconLibrary('logos', {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href={`${basePath}favicon.svg`} />
+		<link rel="icon" href={`${basePath}favicon.ico`} />
 		<meta name="generator" content={Astro.generator} />
 		<title>Synergy Design System - Design System Specification</title>
 	</head>
@@ -40,7 +60,7 @@ registerIconLibrary('logos', {
 			<MetaNavigation />
 		</syn-header>
 		<div class="content">
-			<Navigation currentPath={currentPath} />
+			<Navigation basePath={basePath} currentPath={currentPath} />
 			<main>
 				<slot />
 			</main>

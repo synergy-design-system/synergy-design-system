@@ -1,0 +1,360 @@
+---
+import {
+	getComponentMetadata,
+	listComponents,
+} from '@synergy-design-system/metadata';
+import Layout from '../../layouts/Layout.astro';
+import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
+
+export async function getStaticPaths() {
+	const result = await listComponents({}, metadataStoreOptions);
+
+	return result.data.map(component => ({
+		params: { id: component.id.replace(/^component:/, '') },
+		props: { componentId: component.id }
+	}));
+}
+
+const routeId = Astro.params.id;
+const { componentId } = Astro.props;
+
+if (!routeId) {
+	throw new Error('Missing component route parameter.');
+}
+
+if (!componentId) {
+	throw new Error('Missing component metadata id for route.');
+}
+
+const { data, meta } = await getComponentMetadata(componentId, {
+	includeInterfaceSnapshot: true,
+}, metadataStoreOptions);
+
+const component = data;
+
+const dateFormatter = new Intl.DateTimeFormat('de-DE', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+  hour: 'numeric',
+  minute: '2-digit',
+  hour12: false,
+  timeZone: 'UTC', // keep 9:30 from the Z timestamp
+});
+
+const formatDate = (dateString: string) => {
+	const date = new Date(dateString);
+	return dateFormatter.format(date);
+};
+---
+
+<Layout>
+	{component ? (
+		<syn-card shadow>
+			<h1 class="syn-heading--3x-large" slot="header">
+				{component.name}
+				<nav>
+					{component.status && (
+						<syn-tooltip>
+							<div slot="content">
+								<strong>Current development status.</strong>
+								<ul>
+									<li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Stable:</strong> fully released and ready for production use.</li>
+									<li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Deprecated:</strong> use with caution as this component will be removed in the future.</li>
+									<li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Experimental:</strong> use with caution as it is in early access and potentially gets changes in the future.</li>
+								</ul>
+							</div>
+							<syn-badge variant={component.status === 'stable' ? 'success' : 'warning'}>
+								{component.status}
+							</syn-badge>
+						</syn-tooltip>
+					)}
+					{component.since && (
+						<syn-tooltip content={`Available since version ${component.since}.`}>
+							<syn-badge variant="neutral">
+								{component.since}
+							</syn-badge>
+						</syn-tooltip>
+					)}
+
+					{component.custom?.interfaceSnapshot?.figmaDocsId && (
+						<syn-tooltip content="View Figma documentation">
+							<syn-icon-button
+								href={`https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=${component.custom.interfaceSnapshot.figmaDocsId}`}
+								target="_blank"
+								name="figma"
+								label="Synergy on Figma"
+								library="logos"
+								size="medium"
+							/>
+						</syn-tooltip>
+					)}
+
+					{component.custom?.interfaceSnapshot?.documentation && (
+						<syn-tooltip content="View Storybook documentation">
+							<syn-icon-button
+								href={component.custom.interfaceSnapshot.documentation}
+								target="_blank"
+								name="storybook"
+								label="View Storybook Documentation"
+								library="logos"
+								size="medium"
+							/>
+						</syn-tooltip>
+					)}
+				</nav>
+			</h1>
+
+			{/* Description */}
+			<section>
+				<h2 class="syn-heading--2x-large">Description</h2>
+				<p>{component.custom!.summary}</p>
+			</section>
+			{/* /Description */}
+
+			{/* Links */}
+			<section>
+				<h2 class="syn-heading--2x-large">Related components and links</h2>
+				<ul>
+					{component.custom!.rules?.related && (
+						<>
+							{component.custom!.rules.related.components?.map(relatedComponent => {
+								const slug = relatedComponent.replace(/^component:/, '');
+								return (
+									<li>
+										<a class="syn-link" href={`/component/${slug}`}>
+											<syn-badge>Related to component:</syn-badge>
+											{relatedComponent}
+										</a>
+									</li>
+								);
+							})}
+							{component.custom!.rules.related.templates?.map(relatedTemplate => {
+								const slug = relatedTemplate.replace(/^template:/, '');
+								return (
+									<li>
+										<a class="syn-link" href={`/template/${slug}`}>
+											<syn-badge>Used in</syn-badge>
+											{relatedTemplate}
+										</a>
+									</li>
+								);
+							})}
+						</>
+					)}
+				</ul>
+			</section>
+			{/* /Links */}
+
+			{/* Design System Rules */}
+			{component.custom!.rules && (
+				<section>
+					<h2 class="syn-heading--2x-large">Rules</h2>
+
+					{/* Common Use Cases */}
+					{component.custom!.rules.useCases && (
+						<article>
+							<h3 class="syn-heading--large">Common use cases</h3>
+							<ul>
+								{component.custom!.rules.useCases.map(useCase => (
+									<li>{useCase}</li>
+								))}
+							</ul>
+						</article>
+					)}
+					{/* /Common Use Cases */}
+
+					{/* Usage Guidelines */}
+					{component.custom!.rules.usageGuidelines && (
+						<>
+							{component.custom!.rules.usageGuidelines.map(guideline => (
+								<article>
+									<h3 class="syn-heading--large">{guideline.name}</h3>
+									<ul>
+										{guideline.content.map(item => (
+											<li>{item}</li>
+										))}
+									</ul>
+								</article>
+							))}
+						</>
+					)}
+					{/* /Usage Guidelines */}
+
+					{/* A11y */}
+					{component.custom!.rules.accessibility && (
+						<article>
+							<h3 class="syn-heading--large">Accessibility</h3>
+							<ul>
+								{component.custom!.rules.accessibility.map(item => (
+									<li>{item}</li>
+								))}
+							</ul>
+						</article>
+					)}
+					{/* /A11y */}
+				</section>
+			)}
+			{/* /Design System Rules */}
+
+			<syn-divider />
+
+			{ /* Interface */ }
+			{data.custom?.interfaceSnapshot && (
+				<section>
+					<h2 class="syn-heading--2x-large">Component Interface</h2>
+					
+					<syn-accordion contained>
+						{/* Slots */}
+						{data.custom.interfaceSnapshot.slots.length > 0 && (
+							<syn-details summary={`Slots (${data.custom.interfaceSnapshot.slots.length})`}>
+								<article>
+									<table class="syn-table--alternating syn-table--border">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Description</th>
+												<th>Default</th>
+											</tr>
+										</thead>
+										<tbody>
+											{data.custom.interfaceSnapshot.slots.map(slot => (
+												<tr>
+													<td>{slot.name}</td>
+													<td>{slot.description}</td>
+													<td><code>{slot.name === '' ? '-' : slot.name}</code></td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</article>
+							</syn-details>
+						)}
+						{/* /Slots */}
+
+						{/* Attributes */}
+						{data.custom.interfaceSnapshot.attributes.length > 0 && (
+							<syn-details summary={`Attributes (${data.custom.interfaceSnapshot.attributes.length})`}>
+								<article>
+									<table class="syn-table--alternating syn-table--border">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Description</th>
+												<th>Type</th>
+												<th>Default</th>
+												<th>Reflects?</th>
+											</tr>
+										</thead>
+										<tbody>
+											{data.custom.interfaceSnapshot.attributes.map(attr => (
+												<tr>
+													<td>{attr.name}</td>
+													<td>{attr.description}</td>
+													<td><code>{attr.type}</code></td>
+													<td><code>{attr.default ?? '-'}</code></td>
+													<td>{attr.reflects ? 'Yes' : 'No'}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</article>
+							</syn-details>
+						)}
+						{/* /Attributes */}
+
+						{/* Parts */}
+						{data.custom.interfaceSnapshot.cssParts.length > 0 && (
+							<syn-details summary={`Parts (${data.custom.interfaceSnapshot.cssParts.length})`}>
+								<article>
+									<table class="syn-table--alternating syn-table--border">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Description</th>
+											</tr>
+										</thead>
+										<tbody>
+											{data.custom.interfaceSnapshot.cssParts.map(part => (
+												<tr>
+													<td>{part.name}</td>
+													<td>{part.description}</td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</article>
+							</syn-details>
+						)}
+						{/* /Parts */}
+
+						{/* Events */}
+						{data.custom.interfaceSnapshot.events.length > 0 && (
+							<syn-details summary={`Events (${data.custom.interfaceSnapshot.events.length})`}>
+								<article>
+									<table class="syn-table--alternating syn-table--border">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Description</th>
+												<th>Type</th>
+											</tr>
+										</thead>
+										<tbody>
+											{data.custom.interfaceSnapshot.events.map(event => (
+												<tr>
+													<td>{event.name}</td>
+													<td>{event.description}</td>
+													<td><code>{event.type}</code></td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</article>
+							</syn-details>
+						)}
+						{/* /Events */}
+
+						{/* Methods */}
+						{data.custom.interfaceSnapshot.methods.length > 0 && (
+							<syn-details summary={`Methods (${data.custom.interfaceSnapshot.methods.length})`}>
+								<article>
+									<table class="syn-table--alternating syn-table--border">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Description</th>
+												<th>Parameters</th>
+											</tr>
+										</thead>
+										<tbody>
+											{data.custom.interfaceSnapshot.methods.map(method => (
+												<tr>
+													<td>{method.name}</td>
+													<td>{method.description}</td>
+													<td><code>{method.parameters.map(param => `${param.name}: ${param.type}`).join(', ')}</code></td>
+												</tr>
+											))}
+										</tbody>
+									</table>
+								</article>
+							</syn-details>
+						)}
+						{/* /Methods */}
+					</syn-accordion>
+				</section>
+			)}
+			{ /* /Interface */ }
+
+			<footer slot="footer">
+				<syn-divider />
+				Data created at {formatDate(meta.builtAt)}
+			</footer>
+		</syn-card>
+	) : (
+		<syn-card>
+			<h1>Component not found</h1>
+			<p>No metadata entry exists for route: {routeId}</p>
+		</syn-card>
+	)}
+</Layout>

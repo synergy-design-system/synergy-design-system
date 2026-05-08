@@ -123,6 +123,8 @@ export type ComponentCustom = {
     vue?: ComponentVueCustom;
   };
   interfaceSnapshot?: ComponentInterfaceSnapshot;
+  sourceModulePath?: string;
+  summary?: string;
   override?: {
     figmaComponentId?: string;
     figmaDocsId?: string;
@@ -292,9 +294,16 @@ export type PublicResponse<T> = {
 };
 
 /** Relation reference from one entity to another. */
+export type MetadataRelationType =
+  | 'dependsOn'
+  | 'usedBy'
+  | 'partOf'
+  | 'relates';
+
+/** Relation reference from one entity to another. */
 export type MetadataRelationRef = {
   id: string;
-  kind: string;
+  type: MetadataRelationType;
 };
 
 /** Reference to one generated layer file. */

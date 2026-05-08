@@ -1,0 +1,49 @@
+---
+import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/styles/index.css';
+import '@synergy-design-system/components/styles/index.css';
+import '@synergy-design-system/fonts/src/sick-intl/font.css';
+import '../styles/global.css';
+import MetaNavigation from '../components/MetaNavigation.astro';
+import Navigation from '../components/Navigation';
+
+const currentPath = Astro.url.pathname;
+---
+
+<script>
+// @todo: Only load whats really needed!
+import { registerIconLibrary } from '@synergy-design-system/components';
+
+// Draw icons from esm.sh for the time being.
+registerIconLibrary("default", {
+	resolver: (name) => `https://esm.sh/@synergy-design-system/assets@latest/src/sick2025/icons/outline/${name}.svg`
+});
+
+registerIconLibrary('logos', {
+	resolver: name => `/icons/${name}.svg`,
+})
+</script>
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Synergy Design System - Metadata Browser</title>
+	</head>
+	<body>
+		<syn-header>
+			<span slot="label">Synergy Design System - Metadata Browser</span>
+			<MetaNavigation />
+		</syn-header>
+		<div class="content">
+			<Navigation currentPath={currentPath} />
+			<main>
+				<slot />
+			</main>
+		</div>
+	</body>
+</html>

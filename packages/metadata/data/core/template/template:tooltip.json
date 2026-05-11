@@ -1,0 +1,22 @@
+{
+  "custom": {},
+  "id": "template:tooltip",
+  "kind": "template",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/template/template:tooltip.md"
+      }
+    ]
+  },
+  "name": "Tooltip",
+  "package": "docs",
+  "relations": [],
+  "since": "1.0.0",
+  "sources": [],
+  "status": "stable",
+  "tags": [
+    "template"
+  ]
+}

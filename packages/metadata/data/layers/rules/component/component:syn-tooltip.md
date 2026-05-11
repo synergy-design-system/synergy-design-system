@@ -45,3 +45,7 @@ Tooltips display additional information based on a specific action.
 - On desktop, tooltips open by default on hover over the trigger element, or optionally on click. They close by clicking the trigger again or by moving the pointer away.
 - On touch devices, tooltips open when tapping on the trigger element and close by tapping on the trigger element again.
 - For keyboard navigation, tooltips should open by focusing (Tab) on the trigger element and close by pressing Escape or by moving focus away.
+
+## Related Templates
+
+- tooltip

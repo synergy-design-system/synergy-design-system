@@ -11,6 +11,7 @@ export default {
   component: 'syn-tooltip',
   related: {
     templates: [
+      'tooltip',
     ],
   },
   usageGuidelines: [

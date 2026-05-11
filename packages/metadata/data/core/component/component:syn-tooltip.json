@@ -161,7 +161,9 @@
       ],
       "component": "syn-tooltip",
       "related": {
-        "templates": []
+        "templates": [
+          "tooltip"
+        ]
       },
       "usageGuidelines": [
         {

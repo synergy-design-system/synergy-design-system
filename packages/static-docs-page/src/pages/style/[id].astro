@@ -5,6 +5,7 @@ import {
 	listStyles,
 } from '@synergy-design-system/metadata';
 import Layout from '../../layouts/Layout.astro';
+import ContentFooter from '../../components/ContentFooter.astro';
 import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
 
 export async function getStaticPaths() {
@@ -87,21 +88,6 @@ const parseStyleCodeSamples = (
 
 const examples = styleData?.examples ?? [];
 const codeSamples = examples.flatMap((entry) => parseStyleCodeSamples(entry.content, entry.path));
-
-const dateFormatter = new Intl.DateTimeFormat('de-DE', {
-	day: '2-digit',
-	hour: 'numeric',
-	hour12: false,
-	minute: '2-digit',
-	month: '2-digit',
-	timeZone: 'UTC',
-	year: 'numeric',
-});
-
-const formatDate = (dateString: string) => {
-	const date = new Date(dateString);
-	return dateFormatter.format(date);
-};
 ---
 
 <Layout>
@@ -143,10 +129,10 @@ const formatDate = (dateString: string) => {
 				)}
 			</section>
 
-			<footer slot="footer">
-				<syn-divider />
-				Data created at {formatDate(styleMeta.builtAt)}
-			</footer>
+			<ContentFooter
+				creationDate={styleMeta.builtAt}
+				entityId={routeId}
+			/>
 		</syn-card>
 	) : (
 		<syn-card>

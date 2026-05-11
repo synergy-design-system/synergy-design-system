@@ -6,14 +6,14 @@ This package is intended as a lightweight, crawlable source for Retrieval-Augmen
 
 ## Routes
 
-| Route              | Description                                                  |
-| ------------------ | ------------------------------------------------------------ |
-| `/`                | Home page with a brief introduction to the site              |
-| `/component/:id`   | Detail page for every component in the Synergy design system |
-| `/template/:id`    | Detail page for every template                               |
-| `/style/:id`       | Detail page for every CSS utility style                      |
-| `/changelog`       | Overview of all package changelogs                           |
-| `/changelog/:id`   | Full changelog for a specific package                        |
+| Route            | Description                                                  |
+| ---------------- | ------------------------------------------------------------ |
+| `/`              | Home page with a brief introduction to the site              |
+| `/component/:id` | Detail page for every component in the Synergy design system |
+| `/template/:id`  | Detail page for every template                               |
+| `/style/:id`     | Detail page for every CSS utility style                      |
+| `/changelog`     | Overview of all package changelogs                           |
+| `/changelog/:id` | Full changelog for a specific package                        |
 
 ## Page content
 

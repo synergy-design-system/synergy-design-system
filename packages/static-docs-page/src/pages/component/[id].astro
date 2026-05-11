@@ -4,6 +4,7 @@ import {
 	listComponents,
 } from '@synergy-design-system/metadata';
 import Layout from '../../layouts/Layout.astro';
+import ContentFooter from '../../components/ContentFooter.astro';
 import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
 
 export async function getStaticPaths() {
@@ -34,20 +35,8 @@ const component = data;
 const basePath = import.meta.env.BASE_URL;
 const toAppHref = (path: string) => `${basePath}${path.replace(/^\//, '')}`;
 
-const dateFormatter = new Intl.DateTimeFormat('de-DE', {
-  day: '2-digit',
-  month: '2-digit',
-  year: 'numeric',
-  hour: 'numeric',
-  minute: '2-digit',
-  hour12: false,
-  timeZone: 'UTC', // keep 9:30 from the Z timestamp
-});
-
-const formatDate = (dateString: string) => {
-	const date = new Date(dateString);
-	return dateFormatter.format(date);
-};
+// Make sure to only display methods that have a public documentation, otherwise the table gets cluttered with internal methods that are not relevant for users of the component.
+const methods = component?.custom?.interfaceSnapshot?.methods?.filter(method => !!method.description) ?? [];
 ---
 
 <Layout>
@@ -64,9 +53,9 @@ const formatDate = (dateString: string) => {
 							<div slot="content">
 								<strong>Current development status.</strong>
 								<ul>
-									<li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Stable:</strong> fully released and ready for production use.</li>
-									<li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Deprecated:</strong> use with caution as this component will be removed in the future.</li>
-									<li style={{ color: 'var(--syn-color-neutral-0)' }}><strong>Experimental:</strong> use with caution as it is in early access and potentially gets changes in the future.</li>
+									<li><strong>Stable:</strong> fully released and ready for production use.</li>
+									<li><strong>Deprecated:</strong> use with caution as this component will be removed in the future.</li>
+									<li><strong>Experimental:</strong> use with caution as it is in early access and potentially gets changes in the future.</li>
 								</ul>
 							</div>
 							<syn-badge variant={component.status === 'stable' ? 'success' : 'warning'}>
@@ -320,8 +309,8 @@ const formatDate = (dateString: string) => {
 						{/* /Events */}
 
 						{/* Methods */}
-						{data.custom.interfaceSnapshot.methods.length > 0 && (
-							<syn-details summary={`Methods (${data.custom.interfaceSnapshot.methods.length})`}>
+						{methods.length > 0 && (
+							<syn-details summary={`Methods (${methods.length})`}>
 								<article>
 									<table class="syn-table--alternating syn-table--border">
 										<thead>
@@ -332,7 +321,7 @@ const formatDate = (dateString: string) => {
 											</tr>
 										</thead>
 										<tbody>
-											{data.custom.interfaceSnapshot.methods.map(method => (
+											{methods.map(method => (
 												<tr>
 													<td>{method.name}</td>
 													<td>{method.description}</td>
@@ -350,11 +339,10 @@ const formatDate = (dateString: string) => {
 			)}
 			{ /* /Interface */ }
 
-			<footer slot="footer">
-				<syn-divider />
-				Data created at {formatDate(meta.builtAt)}
-				Generated from the canonical metadata for component:syn-button.
-			</footer>
+			<ContentFooter
+				creationDate={meta.builtAt}
+				entityId={routeId}
+			/>
 		</syn-card>
 	) : (
 		<syn-card>

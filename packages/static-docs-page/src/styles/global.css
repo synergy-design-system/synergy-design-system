@@ -16,6 +16,16 @@ body {
 	position: relative;
 }
 
+.header-logo {
+  display: block;
+  height: 32px;
+  syn-icon {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+}
+
 main {
 	display: flex;
 	flex: 1;
@@ -35,7 +45,8 @@ main {
 
     h3,
     p,
-    ul {
+    ul,
+    table {
       margin: 0 0 var(--syn-spacing-medium);
     }
 

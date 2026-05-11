@@ -52,10 +52,18 @@ registerIconLibrary('logos', {
 		<link rel="icon" type="image/svg+xml" href={`${basePath}favicon.svg`} />
 		<link rel="icon" href={`${basePath}favicon.ico`} />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="ai-policy" href={`${basePath}llms.txt`}>
 		<title>Synergy Design System - Design System Specification</title>
 	</head>
 	<body>
 		<syn-header>
+			<a href="/" slot="logo" tabindex="0" class="header-logo">
+				<syn-icon
+					name="logo-color"
+					library="system"
+					label="Custom Logo with link"
+				/>
+			</a>
 			<span slot="label">Synergy Design System - Design System Specification</span>
 			<MetaNavigation />
 		</syn-header>

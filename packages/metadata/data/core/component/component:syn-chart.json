@@ -11,7 +11,7 @@
       "react": {
         "jsx": {
           "componentName": "SynChart",
-          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-chart--docs",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
           "since": "0.0.0",
@@ -35,7 +35,7 @@
       }
     },
     "sourceModulePath": "components/chart/chart.js",
-    "summary": "The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts."
+    "summary": "The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)"
   },
   "id": "component:syn-chart",
   "kind": "component",
@@ -51,11 +51,19 @@
       },
       {
         "layer": "full",
+        "path": "layers/full/component/component:syn-chart/components/chart.palettes.ts"
+      },
+      {
+        "layer": "full",
         "path": "layers/full/component/component:syn-chart/components/chart.styles.ts"
       },
       {
         "layer": "full",
         "path": "layers/full/component/component:syn-chart/components/chart.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-chart/components/utilities.ts"
       },
       {
         "layer": "full",
@@ -88,8 +96,10 @@
   "sources": [
     "packages/angular/components/chart/chart.component.ts",
     "packages/components/src/components/chart/chart.component.ts",
+    "packages/components/src/components/chart/chart.palettes.ts",
     "packages/components/src/components/chart/chart.styles.ts",
     "packages/components/src/components/chart/chart.ts",
+    "packages/components/src/components/chart/utilities.ts",
     "packages/react/src/components/chart.ts",
     "packages/vue/src/components/SynVueChart.vue"
   ],

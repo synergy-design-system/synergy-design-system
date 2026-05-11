@@ -18,7 +18,7 @@
   "name": "sick2025_dark.css",
   "package": "tokens",
   "relations": [],
-  "since": "3.13.2",
+  "since": "3.13.4",
   "sources": [
     "packages/tokens/dist/charts/themes/sick2025_dark.css"
   ],

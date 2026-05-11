@@ -265,9 +265,9 @@ export type SynCustomElement<
  * @cssproperty --padding - The padding to use for the card's sections.
  */ export type SynCardJSXElement = SynCustomElement<SynCard, []>;
 /**
- * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts.
+ * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
  *
- * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-chart--docs
+ * @documentation https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs
  * @status experimental
  * @since 0.0.0
  *
@@ -1725,9 +1725,9 @@ declare module 'react' {
        * @cssproperty --padding - The padding to use for the card's sections.
        */ 'syn-card': SynCardJSXElement;
       /**
-       * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts.
+       * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
        *
-       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-chart--docs
+       * @documentation https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs
        * @status experimental
        * @since 0.0.0
        *

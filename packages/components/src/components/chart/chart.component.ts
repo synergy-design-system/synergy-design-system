@@ -1,12 +1,12 @@
 import {
-  type ComposeOption, type EChartsType, init, use,
+  type EChartsType, init, use,
 } from 'echarts/core.js';
 import { CanvasRenderer } from 'echarts/renderers.js';
 import { html } from 'lit';
 import type { CSSResultGroup, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
-import { LineChart, type LineSeriesOption } from 'echarts/charts.js';
+import { LineChart } from 'echarts/charts.js';
 import {
   GridComponent, LegendComponent, TitleComponent, TooltipComponent,
 } from 'echarts/components.js';
@@ -14,9 +14,8 @@ import { classMap } from 'lit/directives/class-map.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './chart.styles.js';
-
-// Scoped option type — only includes the components and chart types registered via use()
-type ECOption = ComposeOption<LineSeriesOption>;
+import { PALETTE_TOKENS, type SynChartPalette } from './chart.palettes.js';
+import type { ECOption } from './utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -31,7 +30,7 @@ use([
 /**
  * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
  *
- * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-chart--docs
+ * @documentation https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs
  * @status experimental
  * @since 0.0.0
  *
@@ -76,9 +75,46 @@ export default class SynChart extends SynergyElement {
   @property({ attribute: false })
   option: ECOption = {};
 
+  /**
+   * The color palette to apply to chart series.
+   *
+   * - `categorical` (default) — 12 distinct colors for comparing unrelated data series
+   * - `sequential-01` … `sequential-07` — 10-step single-hue ramps:
+   *   `01`=primary, `02`=accent, `03`=muted, `04`=purple, `05`=teal, `06`=magenta, `07`=neutral
+   * - `sequential-status-critical`, `sequential-status-error`, `sequential-status-info`,
+   *   `sequential-status-success`, `sequential-status-warning` — 10-step status ramps
+   *
+   * The palette sets the ECharts `color` array. If `option.color` is explicitly provided,
+   * it takes precedence over the palette.
+   */
+  @property({ reflect: true })
+  palette: 'categorical' | 'sequential-01' | 'sequential-02' | 'sequential-03' | 'sequential-04' | 'sequential-05'
+  | 'sequential-06' | 'sequential-07' | 'sequential-status-critical' | 'sequential-status-error' | 'sequential-status-info'
+  | 'sequential-status-success' | 'sequential-status-warning' = 'categorical';
+
+  /** Resolves palette CSS custom properties to computed color values and applies them to the chart. */
+  private applyPalette(): void {
+    if (!this.chartInstance) return;
+    // If the user explicitly set option.color, respect it — palette is a default only
+    if (Array.isArray(this.option.color) && this.option.color.length > 0) return;
+
+    const tokens = PALETTE_TOKENS[this.palette];
+    const computedStyles = getComputedStyle(this);
+    const colors = tokens
+      .map(token => computedStyles.getPropertyValue(token).trim())
+      .filter(Boolean);
+
+    if (colors.length > 0) {
+      this.chartInstance.setOption({ color: colors }, { notMerge: false });
+    }
+  }
+
   protected updated(changedProperties: PropertyValues<this>): void {
     if (changedProperties.has('option') && this.chartInstance) {
       this.chartInstance.setOption(this.option, { notMerge: true });
+    }
+    if ((changedProperties.has('palette') || changedProperties.has('option')) && this.chartInstance) {
+      this.applyPalette();
     }
   }
 
@@ -96,6 +132,8 @@ export default class SynChart extends SynergyElement {
       if (Object.keys(this.option).length > 0) {
         this.chartInstance.setOption(this.option);
       }
+      // Apply palette after option so colors blend in without replacing the full config
+      this.applyPalette();
     }
   }
 

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-05-06T08:56:23.923Z",
+  "builtAt": "2026-05-11T07:54:18.715Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -280,7 +280,7 @@
       "id": "component:syn-chart",
       "kind": "component",
       "layers": {
-        "full": 7,
+        "full": 9,
         "interface": 2
       },
       "name": "syn-chart",

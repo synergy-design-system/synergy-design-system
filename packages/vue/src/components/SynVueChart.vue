@@ -6,9 +6,9 @@
 // ---------------------------------------------------------------------
 
 /**
- * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts.
+ * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
  *
- * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-chart--docs
+ * @documentation https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs
  * @status experimental
  * @since 0.0.0
  *
@@ -25,8 +25,52 @@ const nativeElement = ref<SynChart>();
 defineExpose({
   nativeElement,
 });
+
+// Map attributes
+const props = defineProps<{
+  /**
+* The color palette to apply to chart series.
+
+- `categorical` (default) — 12 distinct colors for comparing unrelated data series
+- `sequential-01` … `sequential-07` — 10-step single-hue ramps:
+  `01`=primary, `02`=accent, `03`=muted, `04`=purple, `05`=teal, `06`=magenta, `07`=neutral
+- `sequential-status-critical`, `sequential-status-error`, `sequential-status-info`,
+  `sequential-status-success`, `sequential-status-warning` — 10-step status ramps
+
+The palette sets the ECharts `color` array.
+* If `option.color` is explicitly provided,
+it takes precedence over the palette.
+ */
+  palette?: SynChart['palette'];
+
+  /**
+* The ECharts configuration option object.
+
+This property maps 1:1 to the ECharts `option` parameter passed to `setOption()`.
+Consult the [ECharts option documentation](https://echarts.apache.org/en/option.html)
+and assign the object directly to this property.
+
+> **Note:** Currently only **line charts** (`series[].type: 'line'`) are supported.
+> Support for additional chart types (bar, pie, etc.) will be added in future releases or can be requested.
+
+Assigning a new object completely replaces the previous chart configuration (`notMerge: true`).
+To update only parts of the chart, access the underlying ECharts instance directly and
+call `setOption()` with custom merge options.
+ */
+  option?: SynChart['option'];
+}>();
+
+// Make sure prop binding only forwards the props that are actually there.
+// This is needed because :param="param" also adds an empty attribute
+// when using web-components, which breaks optional arguments like size in SynInput
+// @see https://github.com/vuejs/core/issues/5190#issuecomment-1003112498
+const visibleProps = computed(() =>
+  Object.fromEntries(
+    Object.entries(props).filter(([, value]) => typeof value !== 'undefined'),
+  ),
+);
 </script>
 
 <template>
-  <syn-chart ref="nativeElement"> </syn-chart>
+  <syn-chart v-bind="visibleProps" ref="nativeElement"> </syn-chart>
 </template>

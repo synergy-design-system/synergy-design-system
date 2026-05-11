@@ -79,6 +79,42 @@ export const General: Story = {
   `,
 };
 
+export const Palette: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: [
+          'Use the `palette` attribute to apply a Synergy design token color palette to chart series.',
+          'Palette names map 1:1 to Synergy token groups: `categorical` (default, 12 colors),',
+          '`sequential-01`–`sequential-07` (10-step single-hue ramps), and',
+          '`sequential-status-critical/error/info/success/warning` (10-step status ramps).',
+          '<br><br>',
+          'If `option.color` is explicitly set, it takes precedence over the `palette` attribute.',
+        ].join(' '),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart
+      palette="sequential-02"
+      .option=${{
+      legend: {},
+      series: [
+        { data: [150, 230, 224, 218, 135, 147, 260], name: 'Series A', type: 'line' },
+        { data: [80, 130, 180, 100, 90, 120, 200], name: 'Series B', type: 'line' },
+        { data: [200, 160, 140, 170, 210, 180, 150], name: 'Series C', type: 'line' },
+        { data: [100, 120, 150, 80, 70, 110, 130], name: 'Series D', type: 'line' },
+        { data: [180, 200, 170, 190, 220, 210, 240], name: 'Series E', type: 'line' },
+        { data: [90, 110, 130, 70, 60, 100, 120], name: 'Series F', type: 'line' },
+        { data: [160, 190, 150, 200, 230, 220, 250], name: 'Series G', type: 'line' },
+      ],
+      xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category' },
+      yAxis: { type: 'value' },
+    }}
+    ></syn-chart>
+  `,
+};
+
 export const GetInstance: Story = {
   parameters: {
     docs: {
@@ -96,7 +132,7 @@ export const GetInstance: Story = {
     },
   },
   render: () => html`
-      <syn-chart id="get-instance" 
+      <syn-chart id="chart-get-instance" 
         .option=${{
         series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
         tooltip: { trigger: 'item' },
@@ -109,9 +145,39 @@ export const GetInstance: Story = {
         Open the browser console and click a data point to see the native ECharts event payload.
       </p>
       <script type="module">
-        const chart = document.getElementById('get-instance');
+        const chart = document.getElementById('chart-get-instance');
         const chartInstance = chart.getInstance();
         chartInstance.on('click', params => console.log('ECharts click event:', params));
       </script>
     `,
+};
+
+export const MultipleCharts: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'You can use multiple charts in one `<syn-chart>` instance, each with its own configuration and colors.',
+      },
+    },
+  },
+  render: () => html`
+      <syn-chart
+        palette="categorical"
+        .option=${{
+        legend: {},
+        series: [
+          {
+            color: ['#7CFC00'], data: [150, 230, 224, 218, 135, 147, 260], name: 'Series A', type: 'line',
+          },
+          {
+            color: ['#FFA500'],data: [80, 130, 180, 100, 90, 120, 200], name: 'Series B', type: 'line',
+          },
+          {
+            data: [200, 160, 140, 170, 210, 180, 150], name: 'Series C', type: 'line',
+          },
+        ],
+        xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category' },
+        yAxis: { type: 'value' },
+      }}
+      ></syn-chart>`,
 };

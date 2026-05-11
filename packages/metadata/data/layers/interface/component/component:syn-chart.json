@@ -1,5 +1,14 @@
 {
-  "attributes": [],
+  "attributes": [
+    {
+      "default": "'categorical'",
+      "description": "The color palette to apply to chart series.\n\n- `categorical` (default) — 12 distinct colors for comparing unrelated data series\n- `sequential-01` … `sequential-07` — 10-step single-hue ramps:\n  `01`=primary, `02`=accent, `03`=muted, `04`=purple, `05`=teal, `06`=magenta, `07`=neutral\n- `sequential-status-critical`, `sequential-status-error`, `sequential-status-info`,\n  `sequential-status-success`, `sequential-status-warning` — 10-step status ramps\n\nThe palette sets the ECharts `color` array. If `option.color` is explicitly provided,\nit takes precedence over the palette.",
+      "fieldName": "palette",
+      "name": "palette",
+      "reflects": true,
+      "type": "SynChartPalette"
+    }
+  ],
   "cssParts": [
     {
       "description": "The component's base wrapper.",
@@ -7,14 +16,35 @@
     }
   ],
   "dependencies": [],
-  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-chart--docs",
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs",
   "events": [],
-  "methods": [],
-  "properties": [],
+  "methods": [
+    {
+      "description": "Returns the underlying ECharts instance, giving direct access to the full\n[ECharts API](https://echarts.apache.org/en/api.html#echartsInstance).\n\nUse this when the `option` property alone is not sufficient — for example to\nimperatively call `setOption()` with custom merge flags, listen to ECharts events,\ntrigger actions, or retrieve chart data.\n\nReturns `undefined` if called before the component has been connected to the DOM\n(i.e. before `firstUpdated` has run).",
+      "name": "getInstance",
+      "parameters": []
+    }
+  ],
+  "properties": [
+    {
+      "access": "public",
+      "default": "{}",
+      "description": "The ECharts configuration option object.\n\nThis property maps 1:1 to the ECharts `option` parameter passed to `setOption()`.\nConsult the [ECharts option documentation](https://echarts.apache.org/en/option.html)\nand assign the object directly to this property.\n\n> **Note:** Currently only **line charts** (`series[].type: 'line'`) are supported.\n> Support for additional chart types (bar, pie, etc.) will be added in future releases or can be requested.\n\nAssigning a new object completely replaces the previous chart configuration (`notMerge: true`).\nTo update only parts of the chart, access the underlying ECharts instance directly and\ncall `setOption()` with custom merge options.",
+      "name": "option",
+      "type": "ECOption"
+    },
+    {
+      "access": "public",
+      "default": "'categorical'",
+      "description": "The color palette to apply to chart series.\n\n- `categorical` (default) — 12 distinct colors for comparing unrelated data series\n- `sequential-01` … `sequential-07` — 10-step single-hue ramps:\n  `01`=primary, `02`=accent, `03`=muted, `04`=purple, `05`=teal, `06`=magenta, `07`=neutral\n- `sequential-status-critical`, `sequential-status-error`, `sequential-status-info`,\n  `sequential-status-success`, `sequential-status-warning` — 10-step status ramps\n\nThe palette sets the ECharts `color` array. If `option.color` is explicitly provided,\nit takes precedence over the palette.",
+      "name": "palette",
+      "type": "SynChartPalette"
+    }
+  ],
   "since": "0.0.0",
   "slots": [],
   "sourceModulePath": "components/chart/chart.js",
   "status": "experimental",
-  "summary": "The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts.",
+  "summary": "The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)",
   "tagName": "syn-chart"
 }

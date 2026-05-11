@@ -70,6 +70,7 @@ export default {
       <body>
         <link rel="stylesheet" href="dist/styles/index.css">
         <link rel="stylesheet" href="node_modules/@synergy-design-system/tokens/dist/themes/light.css">
+        <link rel="stylesheet" href="node_modules/@synergy-design-system/tokens/dist/charts/themes/light.css">
         <script>
           window.process = {env: { NODE_ENV: "production" }}
         </script>

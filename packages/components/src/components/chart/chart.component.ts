@@ -14,7 +14,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './chart.styles.js';
-import { PALETTE_TOKENS, type SynChartPalette } from './chart.palettes.js';
+import { PALETTE_TOKENS } from './chart.palettes.js';
 import type { ECOption } from './utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?

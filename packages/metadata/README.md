@@ -107,6 +107,23 @@ Use `getRulesForComponent()` when you want a narrower helper that requires the `
 
 Generated rules markdown is stored under `data/layers/rules/component/` and referenced from each component entity through `layers.rules`.
 
+### CLI: Install Local Skills
+
+This package also provides a CLI command to generate a self-contained Synergy skill bundle for local developer workflows.
+
+```bash
+npx @synergy-design-system/metadata install-skills --path .github/skills
+```
+
+The command supports both `--path ./dir` and `--path=./dir`, creates missing directories, and writes a portable bundle under:
+
+- `synergy-component/SKILL.md`
+- `synergy-component/components/<component-name>/interface.md`
+- `synergy-component/components/<component-name>/rules.md`
+- `synergy-component/components/<component-name>/examples.md`
+
+After generation, reference the skill in VS Code with `@synergy-component`.
+
 ### Public data artifacts
 
 - `data/index.json`

@@ -1,0 +1,69 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContentFooter from '../components/ContentFooter.astro';
+---
+
+<Layout>
+  <syn-card>
+    <h1 class="syn-heading--2x-large" slot="header">Brand support and versions</h1>
+
+    <p>
+      This page describes the brand versions supported by the Synergy Design System and how they relate to components, assets, and documentation.
+      It is <strong>non-normative</strong> and does not define component behavior or API contracts.
+    </p>
+
+    <h2 class="syn-heading--large">Supported brand versions</h2>
+    <p>Synergy currently supports two SICK brand versions:</p>
+
+    <ul>
+      <li>
+        <strong>SICK 2025 (current)</strong><br>
+        The default and actively maintained brand version.
+        All new components, features, and visual updates target this brand.
+        New applications must use this brand version to access the latest design and functionality improvements.
+      </li>
+
+      <li>
+        <strong>SICK 2018 (legacy)</strong><br>
+        Supported to ensure compatibility with existing applications.
+        No new features are introduced for this brand version.
+      </li>
+    </ul>
+
+    <h2 class="syn-heading--large">What “current” and “legacy” mean</h2>
+    <p>
+      A <strong>current</strong> brand version is the primary target for ongoing development and documentation.
+      A <strong>legacy</strong> brand version remains supported to avoid breaking existing products, but primarily receives compatibility maintenance.
+    </p>
+
+    <h2 class="syn-heading--large">Impact on components and APIs</h2>
+    <p>Brand versions affect <strong>visual appearance</strong> and <strong>assets</strong> such as icons, colors, and typography.</p>
+
+    <p>Brand versions do <strong>not</strong> change:</p>
+    <ul>
+      <li>component APIs and attributes</li>
+      <li>events and behavior</li>
+      <li>accessibility requirements</li>
+      <li>supported usage rules</li>
+    </ul>
+
+    <h2 class="syn-heading--large">How to read the documentation</h2>
+    <p>
+      Unless explicitly stated otherwise, documentation and examples reflect the <strong>SICK 2025</strong> brand version.
+      Differences in appearance between applications may be the result of using the legacy SICK 2018 brand.
+    </p>
+
+    <h2 class="syn-heading--large">Migration and evolution</h2>
+    <p>
+      Synergy provides tooling and guidance to support migration between brand versions where applicable.
+      Migration strategies and timelines are documented separately and are not defined on this page.
+    </p>
+
+    <ContentFooter
+      creationDate={new Date().toISOString()}
+      entityId={null}
+    >
+      | Normative component behavior and API contracts are defined on individual component pages.
+    </ContentFooter>
+  </syn-card>
+</Layout>

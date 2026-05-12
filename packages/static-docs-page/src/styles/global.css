@@ -50,6 +50,10 @@ main {
       margin: 0 0 var(--syn-spacing-medium);
     }
 
+    h4 {
+      margin: 0 0 var(--syn-spacing-small);
+    }
+
     li {
       margin: 0 0 var(--syn-spacing-x-small);
     }

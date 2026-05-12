@@ -6,5 +6,8 @@ const { creationDate, entityId } = Astro.props;
 <footer slot="footer">
   <syn-divider />
   Data created at {formatDate(creationDate)}
-  Generated from the canonical metadata for {entityId}.
+  {entityId && (
+    <>Generated from the canonical metadata for {entityId}.</>
+  )}
+  <slot />
 </footer>

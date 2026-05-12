@@ -15,6 +15,15 @@ const CHANGELOG_PACKAGES = [
 	{ id: 'tokens', name: 'Tokens' },
 ];
 
+const additionalLinks = [
+  { href: '/accessibility', id: 'accessibility', name: 'Accessibility' },
+  { href: '/brand-support', id: 'brand-support', name: 'Brand Support' },
+  { href: '/goals', id: 'goals', name: 'Goals and Guidelines' },
+  { href: '/misconceptions', id: 'misconceptions', name: 'Misconceptions' },
+  { href: '/out-of-scope', id: 'out-of-scope', name: 'Out of Scope' },
+  { href: '/brand-support', id: 'brand-support', name: 'Brand Support' }
+];
+
 type NavigationProps = {
 	basePath: string;
 	currentPath: string;
@@ -104,6 +113,26 @@ export default function Navigation({ basePath, currentPath }: NavigationProps) {
 					);
 				})}
 			</syn-nav-item>
+
+      <syn-nav-item
+        slot="footer"
+        open={additionalLinks
+          .map(link => toAppHref(link.href))
+          .some(path => normalizedCurrentPath.includes(path))
+        }
+      >
+        Additional Information
+        {additionalLinks.map(link => (
+          <syn-nav-item
+            current={normalizedCurrentPath === link.href}
+            href={toAppHref(link.href)}
+            slot="children"
+            key={link.id}
+          >
+            {link.name}
+          </syn-nav-item>
+        ))}
+      </syn-nav-item>
 		</syn-side-nav>
 	);
 }

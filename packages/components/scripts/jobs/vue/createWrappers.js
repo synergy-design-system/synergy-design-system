@@ -191,6 +191,9 @@ export const runCreateWrappers = job('Vue: Creating Component Wrappers...', asyn
   // Index exports file
   const index = [];
 
+  // chart exports file
+  const chart = [];
+
   const componentDir = path.join(outDir, 'components');
 
   components.forEach(component => {
@@ -280,6 +283,11 @@ ${exports}
         name: vueComponentName,
         outputPath: `./components/${vueComponentName}.vue`,
       });
+    } else {
+      chart.push({
+        name: vueComponentName,
+        outputPath: `./components/${vueComponentName}.vue`,
+      });
     }
 
     fs.writeFileSync(componentFile, `${source}\n`, 'utf8');
@@ -289,4 +297,8 @@ ${exports}
 
   // Generate the index file
   fs.writeFileSync(path.join(outDir, 'index.ts'), frameworkIndex, 'utf8');
+
+  // Generate the chart export file. This is needed so we are able to create a dts file for the chart component, which is not part of the default exports.
+  const chartIndex = createFrameworkIndex(headerComment, chart, true);
+  fs.writeFileSync(path.join(outDir, 'chart.ts'), chartIndex, 'utf8');
 });

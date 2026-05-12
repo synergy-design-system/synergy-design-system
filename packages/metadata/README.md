@@ -109,20 +109,22 @@ Generated rules markdown is stored under `data/layers/rules/component/` and refe
 
 ### CLI: Install Local Skills
 
-This package also provides a CLI command to generate a self-contained Synergy skill bundle for local developer workflows.
+This package also provides a CLI command to generate self-contained Synergy skill bundles for local developer workflows.
 
 ```bash
 npx @synergy-design-system/metadata install-skills --path .github/skills
 ```
 
-The command supports both `--path ./dir` and `--path=./dir`, creates missing directories, and writes a portable bundle under:
+The command supports both `--path ./dir` and `--path=./dir`, creates missing directories, and writes portable bundles under:
 
 - `synergy-component/SKILL.md`
 - `synergy-component/components/<component-name>/interface.md`
 - `synergy-component/components/<component-name>/rules.md`
 - `synergy-component/components/<component-name>/examples.md`
+- `synergy-templates/SKILL.md`
+- `synergy-templates/templates/<template-name>/examples.md`
 
-After generation, reference the skill in VS Code with `@synergy-component`.
+After generation, reference the skills in VS Code with `@synergy-component` and `@synergy-templates`.
 
 ### Public data artifacts
 

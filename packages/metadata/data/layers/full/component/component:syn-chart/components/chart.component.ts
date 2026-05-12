@@ -14,7 +14,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './chart.styles.js';
-import { PALETTE_TOKENS, type SynChartPalette } from './chart.palettes.js';
+import { PALETTE_TOKENS } from './chart.palettes.js';
 import type { ECOption } from './utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
@@ -88,7 +88,9 @@ export default class SynChart extends SynergyElement {
    * it takes precedence over the palette.
    */
   @property({ reflect: true })
-  palette: SynChartPalette = 'categorical';
+  palette: 'categorical' | 'sequential-01' | 'sequential-02' | 'sequential-03' | 'sequential-04' | 'sequential-05'
+  | 'sequential-06' | 'sequential-07' | 'sequential-status-critical' | 'sequential-status-error' | 'sequential-status-info'
+  | 'sequential-status-success' | 'sequential-status-warning' = 'categorical';
 
   /** Resolves palette CSS custom properties to computed color values and applies them to the chart. */
   private applyPalette(): void {

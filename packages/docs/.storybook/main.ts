@@ -55,6 +55,7 @@ const config: StorybookConfig = {
     '../stories/Presentation.mdx',
     '../stories/Accessibility.mdx',
     '../stories/Contributing.mdx',
+    '../stories/Charting.mdx',
     '../stories/migration/**/*.mdx',
     '../stories/Migration2025.mdx',
     '../stories/limitations/**/*.mdx',

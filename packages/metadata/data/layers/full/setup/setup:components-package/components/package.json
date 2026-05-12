@@ -116,10 +116,13 @@
     "lit": "^3.3.2"
   },
   "peerDependencies": {
-    "@synergy-design-system/tokens": "workspace:*"
-  },
-  "customElements": "dist/custom-elements.json",
-  "optionalDependencies": {
+    "@synergy-design-system/tokens": "workspace:*",
     "echarts": "^6.0.0"
-  }
+  },
+  "peerDependenciesMeta": {
+    "echarts": {
+      "optional": true
+    }
+  },
+  "customElements": "dist/custom-elements.json"
 }

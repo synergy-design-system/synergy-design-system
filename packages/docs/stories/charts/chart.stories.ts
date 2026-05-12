@@ -35,7 +35,7 @@ const meta: Meta = {
     docs: {
       description: {
         // TODO: update this by using our docs helpers to generate a description based on the JSDoc comments in the component source code
-        component: 'The default story demonstrates a basic line chart configuration. The chart is configured via the `option` property, which accepts an object that maps directly to the ECharts option configuration. In this example, we set up a simple line chart with data for three categories (Mon, Tue, Wed) and corresponding values.',
+        component: 'The default story demonstrates a basic line chart configuration. The chart is configured via the `option` property, which accepts an object that maps directly to the ECharts option configuration.',
       },
     },
   },
@@ -54,14 +54,14 @@ export const Default: Story = {
     docs: {
       description: {
         // TODO: update this by using our docs helpers to generate a description based on the JSDoc comments in the component source code
-        story: 'The default story demonstrates a basic line chart configuration. The chart is configured via the `option` property, which accepts an object that maps directly to the ECharts option configuration. In this example, we set up a simple line chart with data for three categories (Mon, Tue, Wed) and corresponding values.',
+        story: 'The default story demonstrates a basic line chart configuration. The chart is configured via the `option` property, which accepts an object that maps directly to the ECharts option configuration.',
       },
     },
   },
   render: args => generateTemplate({ args }),
 };
 
-export const General: Story = {
+export const Option: Story = {
   parameters: {
     docs: {
       description: {
@@ -85,8 +85,7 @@ export const Palette: Story = {
       description: {
         story: [
           'Use the `palette` attribute to apply a Synergy design token color palette to chart series.',
-          'Palette names map 1:1 to Synergy token groups: `categorical` (default, 12 colors),',
-          '`sequential-01`–`sequential-07` (10-step single-hue ramps), and',
+          '`categorical` (12 distinct colors for comparing unrelated data series), `sequential-01`–`sequential-07` (10-step single-hue ramps), and',
           '`sequential-status-critical/error/info/success/warning` (10-step status ramps).',
           '<br><br>',
           'If `option.color` is explicitly set, it takes precedence over the `palette` attribute.',
@@ -164,7 +163,6 @@ export const MultipleCharts: Story = {
       <syn-chart
         palette="categorical"
         .option=${{
-        legend: {},
         series: [
           {
             color: ['#7CFC00'], data: [150, 230, 224, 218, 135, 147, 260], name: 'Series A', type: 'line',

@@ -576,6 +576,58 @@
         "type": "text"
       }
     },
+    "chart": {
+      "default": {
+        "title": {
+          "value": "Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "The default story demonstrates a basic line chart configuration. The chart is configured via the `option` property, which accepts an object that maps directly to the ECharts option configuration.",
+          "type": "text"
+        }
+      },
+      "option": {
+        "title": {
+          "value": "Option",
+          "type": "text"
+        },
+        "description": {
+          "value": "The `option` property is the main way to configure the chart. It accepts an object that maps 1:1 to the ECharts option configuration. Assigning a new object to this property will update the chart with the new configuration.",
+          "type": "text"
+        }
+      },
+      "palette": {
+        "title": {
+          "value": "Palette",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `palette` attribute to apply a Synergy design token color palette to chart series. `categorical` (12 distinct colors for comparing unrelated data series), `sequential-01`–`sequential-07` (10-step single-hue ramps), and `sequential-status-critical/error/info/success/warning` (10-step status ramps). If `option.color` is explicitly set, it takes precedence over the `palette` attribute.",
+          "type": "text"
+        }
+      },
+      "get-instance": {
+        "title": {
+          "value": "Get Instance",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `getInstance()` to access the underlying ECharts instance directly and work with its full native API. This is useful when the `option` property alone is not sufficient — for example to listen to ECharts events, trigger actions, or call `setOption()` with custom merge behavior. This example attaches a click listener via the native ECharts API. Click any data point to see the event payload logged to the browser console.",
+          "type": "text"
+        }
+      },
+      "multiple-charts": {
+        "title": {
+          "value": "Multiple Charts",
+          "type": "text"
+        },
+        "description": {
+          "value": "You can use multiple charts in one `<syn-chart>` instance, each with its own configuration and colors.",
+          "type": "text"
+        }
+      }
+    },
     "checkbox": {
       "default": {
         "title": {

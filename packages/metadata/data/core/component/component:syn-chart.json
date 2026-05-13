@@ -34,12 +34,25 @@
         "sourcePath": "packages/vue/src/components/SynVueChart.vue"
       }
     },
+    "override": {
+      "figmaComponentId": "https://www.figma.com/design/9IpXnDH4GFziUH9sOpnK8V/Chart-Library?node-id=0-1&p=f&t=PkQKC2p7WIr2k0og-0",
+      "storySourcePath": "components.chart",
+      "storyTags": [
+        "Data Visualization"
+      ]
+    },
     "sourceModulePath": "components/chart/chart.js",
     "summary": "The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)"
   },
   "id": "component:syn-chart",
   "kind": "component",
   "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-chart.md"
+      }
+    ],
     "full": [
       {
         "layer": "full",

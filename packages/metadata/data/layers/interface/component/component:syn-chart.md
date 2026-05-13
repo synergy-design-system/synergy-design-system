@@ -7,6 +7,7 @@ The `<syn-chart>` component is a container for displaying charts. It provides a 
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs)
+- [Figma Design](https://www.figma.com/design/9IpXnDH4GFziUH9sOpnK8V/Chart-Library?node-id=0-1&p=f&t=PkQKC2p7WIr2k0og-0)
 
 ## Class Information
 

@@ -56,13 +56,13 @@ pnpm add @synergy-design-system/components
 <syn-chart id="my-chart"></syn-chart>
 
 <script type="module">
-  import '@synergy-design-system/components/components/chart/chart.js';
+  import "@synergy-design-system/components/components/chart/chart.js";
 
-  const chart = document.getElementById('my-chart');
+  const chart = document.getElementById("my-chart");
   chart.option = {
-    xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
-    yAxis: { type: 'value' },
-    series: [{ type: 'line', data: [150, 230, 224, 218, 135] }],
+    xAxis: { type: "category", data: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
+    yAxis: { type: "value" },
+    series: [{ type: "line", data: [150, 230, 224, 218, 135] }],
   };
 </script>
 ```
@@ -72,13 +72,13 @@ pnpm add @synergy-design-system/components
 #### Full react wrapper
 
 ```tsx
-import { SynChart } from '@synergy-design-system/react/components/chart.js';
-import type { ECOption } from '@synergy-design-system/components/components/chart/utilities.js';
+import { SynChart } from "@synergy-design-system/react/components/chart.js";
+import type { ECOption } from "@synergy-design-system/components/components/chart/utilities.js";
 
 const option: ECOption = {
-  xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
-  yAxis: { type: 'value' },
-  series: [{ type: 'line', data: [150, 230, 224, 218, 135] }],
+  xAxis: { type: "category", data: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
+  yAxis: { type: "value" },
+  series: [{ type: "line", data: [150, 230, 224, 218, 135] }],
 };
 
 export default function App() {
@@ -87,21 +87,21 @@ export default function App() {
 ```
 
 #### Native web components with react types (version >= 19)
+
 ```tsx
-import '@synergy-design-system/components/components/chart/chart.js';
-import type { ECOption } from '@synergy-design-system/components/components/chart/utilities.js';
+import "@synergy-design-system/components/components/chart/chart.js";
+import type { ECOption } from "@synergy-design-system/components/components/chart/utilities.js";
 
 const option: ECOption = {
-  xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
-  yAxis: { type: 'value' },
-  series: [{ type: 'line', data: [150, 230, 224, 218, 135] }],
+  xAxis: { type: "category", data: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
+  yAxis: { type: "value" },
+  series: [{ type: "line", data: [150, 230, 224, 218, 135] }],
 };
 
 export default function App() {
   return <syn-chart option={option}></syn-chart>;
 }
 ```
-
 
 ### Vue
 
@@ -125,33 +125,34 @@ const option: ECOption = {
 ### Angular
 
 ```ts
-import { SynChartComponent } from '@synergy-design-system/angular/components/chart';
-import type { ECOption } from '@synergy-design-system/components/components/chart/utilities.js';
+import { SynChartComponent } from "@synergy-design-system/angular/components/chart";
+import type { ECOption } from "@synergy-design-system/components/components/chart/utilities.js";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
   imports: [SynChartComponent],
   template: `<syn-chart [option]="option"></syn-chart>`,
 })
 export class AppComponent {
   option: ECOption = {
-    xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
-    yAxis: { type: 'value' },
-    series: [{ type: 'line', data: [150, 230, 224, 218, 135] }],
+    xAxis: { type: "category", data: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
+    yAxis: { type: "value" },
+    series: [{ type: "line", data: [150, 230, 224, 218, 135] }],
   };
 }
 ```
+
 ---
 
 ## Full Replace vs. Partial Update
 
 There are two ways to update chart data:
 
-| Approach | Behavior | When to use |
-|----------|----------|-------------|
-| Assign `chart.option = { ... }` | **Full replace** – the previous config is discarded (`notMerge: true`) | Initial setup or complete config changes |
-| `chart.getInstance()?.setOption(...)` | **Partial / merged update** – only the provided keys are changed | Streaming data, animation-preserving updates |
+| Approach                              | Behavior                                                               | When to use                                  |
+| ------------------------------------- | ---------------------------------------------------------------------- | -------------------------------------------- |
+| Assign `chart.option = { ... }`       | **Full replace** – the previous config is discarded (`notMerge: true`) | Initial setup or complete config changes     |
+| `chart.getInstance()?.setOption(...)` | **Partial / merged update** – only the provided keys are changed       | Streaming data, animation-preserving updates |
 
 ```js
 // Full replace (all previous series/axes are discarded)
@@ -171,10 +172,11 @@ chart.getInstance()?.setOption(
 The `option` property is typed as `ECOption`, which is a **scoped** [`ComposeOption`](https://echarts.apache.org/en/api.html#echarts.ComposeOption) — it only includes the chart types and ECharts components that are currently registered internally:
 
 ```ts
-import type { ECOption } from '@synergy-design-system/components/components/chart/utilities.js';
+import type { ECOption } from "@synergy-design-system/components/components/chart/utilities.js";
 ```
 
 The type currently covers:
+
 - `LineSeriesOption` (line charts)
 - `CanvasRenderer`, `TitleComponentOption`, `TooltipComponentOption`, `LegendComponentOption`, `GridComponentOption`
 

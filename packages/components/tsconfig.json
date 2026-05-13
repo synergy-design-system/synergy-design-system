@@ -26,7 +26,7 @@
     "useUnknownInCatchVariables": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-    "types": ["mocha"],
+    "types": ["mocha"]
   },
   "include": ["src", "echarts.d.ts"]
 }

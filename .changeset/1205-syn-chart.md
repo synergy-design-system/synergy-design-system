@@ -4,7 +4,6 @@
 "@synergy-design-system/mcp": minor
 "@synergy-design-system/metadata": minor
 "@synergy-design-system/react": minor
-"@synergy-design-system/tokens": minor
 "@synergy-design-system/vue": minor
 ---
 

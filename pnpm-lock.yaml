@@ -696,7 +696,7 @@ importers:
         version: 2.32.0(@typescript-eslint/parser@8.59.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))
       eslint-plugin-jest:
         specifier: ^29.15.2
-        version: 29.15.2(@typescript-eslint/eslint-plugin@8.59.0(@typescript-eslint/parser@8.59.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(jest@30.3.0(@types/node@25.6.0)(esbuild-register@3.6.0(esbuild@0.28.0)))(typescript@5.9.3)
+        version: 29.15.2(@typescript-eslint/eslint-plugin@8.59.0(@typescript-eslint/parser@8.59.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(jest@30.3.0(@types/node@24.12.2)(esbuild-register@3.6.0(esbuild@0.28.0)))(typescript@5.9.3)
       eslint-plugin-lit:
         specifier: ^2.2.1
         version: 2.2.1(eslint@9.39.4(jiti@2.6.1))
@@ -711,7 +711,7 @@ importers:
         version: 3.1.0(eslint@9.39.4(jiti@2.6.1))
       html-validate:
         specifier: ^10.13.1
-        version: 10.13.1(@jest/globals@30.3.0)(jest-diff@30.3.0)(jest-snapshot@30.3.0)(jest@30.3.0(@types/node@25.6.0)(esbuild-register@3.6.0(esbuild@0.28.0)))(vitest@3.0.5(@types/debug@4.1.12)(@types/node@25.6.0)(jiti@2.6.1)(jsdom@27.4.0(@noble/hashes@1.8.0))(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(terser@5.46.0)(yaml@2.8.3))
+        version: 10.13.1(@jest/globals@30.3.0)(jest-diff@30.3.0)(jest-snapshot@30.3.0)(jest@30.3.0(@types/node@24.12.2)(esbuild-register@3.6.0(esbuild@0.28.0)))(vitest@3.0.5(@types/debug@4.1.12)(@types/node@24.12.2)(jiti@2.6.1)(jsdom@27.4.0(@noble/hashes@1.8.0))(less@4.6.4)(lightningcss@1.32.0)(sass@1.99.0)(terser@5.46.0)(yaml@2.8.3))
       ora:
         specifier: ^9.4.0
         version: 9.4.0
@@ -17966,13 +17966,13 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jest@29.15.2(@typescript-eslint/eslint-plugin@8.59.0(@typescript-eslint/parser@8.59.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(jest@30.3.0(@types/node@25.6.0)(esbuild-register@3.6.0(esbuild@0.28.0)))(typescript@5.9.3):
+  eslint-plugin-jest@29.15.2(@typescript-eslint/eslint-plugin@8.59.0(@typescript-eslint/parser@8.59.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(jest@30.3.0(@types/node@24.12.2)(esbuild-register@3.6.0(esbuild@0.28.0)))(typescript@5.9.3):
     dependencies:
       '@typescript-eslint/utils': 8.59.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)
       eslint: 9.39.4(jiti@2.6.1)
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.59.0(@typescript-eslint/parser@8.59.0(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.4(jiti@2.6.1))(typescript@5.9.3)
-      jest: 30.3.0(@types/node@25.6.0)(esbuild-register@3.6.0(esbuild@0.28.0))
+      jest: 30.3.0(@types/node@24.12.2)(esbuild-register@3.6.0(esbuild@0.28.0))
       typescript: 5.9.3
     transitivePeerDependencies:
       - supports-color

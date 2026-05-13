@@ -207,7 +207,7 @@ document.addEventListener("load", () => {
 });
 ```
 
---- 
+---
 
 ### 6. Using the `syn-chart` component (optional)
 
@@ -216,7 +216,6 @@ For more detailed information about the `syn-chart` see the [Charting Overview p
 The `<syn-chart>` component allows you to display charts powered by [Apache ECharts](https://echarts.apache.org). Because not every project needs charting functionality, `echarts` is an **optional peer dependency** that must be installed separately.
 
 > **Note:** `syn-chart` is currently **experimental**. Only **line charts** (`series[].type: 'line'`) are supported. Support for additional chart types will be added in future releases.
-
 
 #### Step 1: Install the `echarts` dependency
 
@@ -258,12 +257,12 @@ import "@synergy-design-system/components/components/chart/chart.js";
 <syn-chart id="my-chart"></syn-chart>
 
 <script type="module">
-  const chart = document.getElementById('my-chart');
+  const chart = document.getElementById("my-chart");
 
   chart.option = {
-    xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
-    yAxis: { type: 'value' },
-    series: [{ type: 'line', data: [820, 932, 901, 934, 1290] }],
+    xAxis: { type: "category", data: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
+    yAxis: { type: "value" },
+    series: [{ type: "line", data: [820, 932, 901, 934, 1290] }],
   };
 </script>
 ```

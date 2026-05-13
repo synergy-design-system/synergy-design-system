@@ -1,5 +1,8 @@
 {
   "custom": {
+    "clusters": [
+      "components-by-tag/data-visualization"
+    ],
     "frameworks": {
       "angular": {
         "componentName": "SynChartComponent",

@@ -146,7 +146,7 @@ export const GetInstance: Story = {
   `,
 };
 
-export const MultipleCharts: Story = {
+export const MultipleChartsWithDifferentPalettes: Story = {
   parameters: {
     docs: {
       description: {
@@ -158,16 +158,31 @@ export const MultipleCharts: Story = {
     <syn-chart id="chart-multiple-charts" palette="categorical"></syn-chart>
     <script type="module">
       const chart = document.querySelector('#chart-multiple-charts');
+
+      const getHexValueFromVariable = (val) => getComputedStyle(document.documentElement).getPropertyValue(val).trim();
+
       chart.option = {
         series: [
           {
-            color: ['#7CFC00'], data: [150, 230, 224, 218, 135, 147, 260], name: 'Series A', type: 'line',
+            data: [160, 185, 180, 175, 150, 160, 190], name: 'Series A', type: 'line',
           },
           {
-            color: ['#FFA500'], data: [80, 130, 180, 100, 90, 120, 200], name: 'Series B', type: 'line',
+            data: [170, 165, 155, 168, 180, 170, 158], name: 'Series B', type: 'line',
           },
           {
-            data: [200, 160, 140, 170, 210, 180, 150], name: 'Series C', type: 'line',
+            data: [165, 175, 158, 172, 182, 175, 185], name: 'Series C', type: 'line',
+          },
+          {
+            color: [getHexValueFromVariable('--syn-sequential-05-80')],
+            data: [80, 60, 90, 50, 70, 55, 85], name: 'Series D', type: 'line',
+          },
+          {
+            color: [getHexValueFromVariable('--syn-sequential-05-60')],
+            data: [65, 75, 55, 80, 45, 70, 60], name: 'Series E', type: 'line',
+          },
+          {
+            color: [getHexValueFromVariable('--syn-sequential-05-40')],
+            data: [50, 70, 60, 45, 55, 65, 75], name: 'Series F', type: 'line',
           },
         ],
         xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category' },

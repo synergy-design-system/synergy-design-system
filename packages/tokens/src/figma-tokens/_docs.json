@@ -623,7 +623,7 @@
           "type": "text"
         },
         "description": {
-          "value": "You can use multiple charts in one `<syn-chart>` instance, each with its own configuration and colors.",
+          "value": "You can use multiple charts in one `<syn-chart>` instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the `color` property directly on the series object — allowing fine-grained control over individual chart series colors.\n\n**Important:** The `color` property does **not** support CSS variables (e.g. `var(--syn-sequential-05-80)`). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using `getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim()` and pass the resolved value instead.",
           "type": "text"
         }
       }

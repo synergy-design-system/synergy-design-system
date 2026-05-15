@@ -1,9 +1,10 @@
 import React, {
   type FC,
 } from 'react';
+import { Markdown } from '@storybook/addon-docs/blocks';
 import { CopyToClipBoard } from './Clipboard.js';
 import { CopyRawHexValue } from './RawColorValue.js';
-import { ColorSwatch, MultiLineDescription } from './TokenHelpers.js';
+import { ColorSwatch } from './TokenHelpers.js';
 import { getCSSToken, getSASSToken } from '../helpers/tokens.js';
 import { TokensForThemes, getThemesForComponent } from './TokensForThemes.js';
 
@@ -53,7 +54,7 @@ export const TokenPalette: FC<TokenPaletteProps> = ({
 }) => (
   <>
     <h2 id={`token-palette-${paletteTitle.toLowerCase().replace(/\s+/g, '-')}`}>{paletteTitle}</h2>
-    {description ? <MultiLineDescription value={description} /> : null}
+    {description ? <Markdown>{description}</Markdown> : null}
     <TokensForThemes
       themes={getThemesForComponent(themes, () => (
         <table>

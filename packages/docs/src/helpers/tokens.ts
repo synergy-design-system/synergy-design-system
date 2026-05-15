@@ -228,8 +228,8 @@ const sortByOrder = (tokenA: string, tokenB: string, orderArray: string[], repla
  * @returns Sort comparison result
  */
 const sortByNumber = (tokenA: string, tokenB: string, replaceString: string): number => {
-  const aValue = parseInt(tokenA.toLowerCase().replaceAll(replaceString, '').trim(), 10);
-  const bValue = parseInt(tokenB.toLowerCase().replaceAll(replaceString, '').trim(), 10);
+  const aValue = parseInt(tokenA.toLowerCase().replaceAll(replaceString, '').replaceAll('_', '').trim(), 10);
+  const bValue = parseInt(tokenB.toLowerCase().replaceAll(replaceString, '').replaceAll('_', '').trim(), 10);
 
   if (bValue > aValue) return -1;
   if (bValue < aValue) return 1;

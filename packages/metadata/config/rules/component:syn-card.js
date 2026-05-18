@@ -45,7 +45,7 @@ export default {
   ],
   useCases: [
     'Display grouped information such as KPIs, summaries, or previews.',
-    'Provide a reusable container for dashboard modules.',
+    'Provide a reusable container for dashboard elements.',
     'Present actionable items with a compact overview and clear next steps.',
   ],
 };

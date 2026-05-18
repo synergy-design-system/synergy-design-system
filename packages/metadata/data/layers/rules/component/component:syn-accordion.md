@@ -27,7 +27,6 @@ Accordions provide the ability to group a list of `<syn-details>`.
 
 - Use only for non-critical information. Hiding content can become a potential barrier, making content more challenging to discover.
 - Use “close-others” attribute to keep only one item from the group open at a time, reducing the amount of information displayed at once and therefore reducing the cognitive load on the user.
-- For purely decorative images, ALT-tags should be left empty so that screen readers can bypass them and concentrate on conveying meaningful content.
 
 ## Related Components
 

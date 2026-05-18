@@ -37,13 +37,6 @@ export default {
       id: 'content',
       name: 'Content',
     },
-    {
-      content: [
-        'Use light background options like white, neutral-100 or primary-100.',
-      ],
-      id: 'background',
-      name: 'Background',
-    },
   ],
   useCases: [
     'Revealing additional content, such as a detailed description, specifications, or additional options without overwhelming the user with too much content at once.',

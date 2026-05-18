@@ -10,13 +10,6 @@ export default {
   usageGuidelines: [
     {
       content: [
-        'Use light background options like white, neutral-100 or primary-100.',
-      ],
-      id: 'background',
-      name: 'Background',
-    },
-    {
-      content: [
         'Maintain consistent spacing around separators to prevent them from appearing cramped or too distant from the content they divide.',
         'Ensure consistent use to prevent confusion, especially for users relying on assistive technologies.',
       ],

@@ -176,13 +176,6 @@
           ],
           "id": "content",
           "name": "Content"
-        },
-        {
-          "content": [
-            "Use light background options like white, neutral-100 or primary-100."
-          ],
-          "id": "background",
-          "name": "Background"
         }
       ],
       "useCases": [

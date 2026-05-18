@@ -18,13 +18,6 @@ export default {
   usageGuidelines: [
     {
       content: [
-        'Use light background options like white, neutral-100 or primary-100.',
-      ],
-      id: 'background',
-      name: 'Background',
-    },
-    {
-      content: [
         'Use clear and descriptive labels that accurately represent each page or section in the navigation path.',
       ],
       id: 'content_and_labeling',

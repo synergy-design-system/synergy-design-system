@@ -11,10 +11,6 @@ Dividers are used to visually separate or group elements.
 
 ## Usage Guidelines
 
-### Background
-
-- Use light background options like white, neutral-100 or primary-100.
-
 ### Spacing and Consistency
 
 - Maintain consistent spacing around separators to prevent them from appearing cramped or too distant from the content they divide.

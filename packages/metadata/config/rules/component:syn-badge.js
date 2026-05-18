@@ -28,14 +28,6 @@ export default {
   usageGuidelines: [
     {
       content: [
-        'Use light backgrounds: white, neutral-100, primary-100',
-        'Use primary background when inverted',
-      ],
-      id: 'background',
-      name: 'Background',
-    },
-    {
-      content: [
         'Consistently apply one color choice for a cohesive look',
         'Use default variants for standard notifications',
         'Blue = neutral integration, green = more attention, red = maximum emphasis',
@@ -62,7 +54,6 @@ export default {
     },
   ],
   useCases: [
-    'Indicate the number of items selected, such as when using a filter',
     'Show the count of newly added items',
     'Display the number of messages received or tasks still pending',
     'Present the quantity of items collected, like those in a shopping cart',

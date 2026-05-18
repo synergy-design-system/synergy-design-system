@@ -218,13 +218,6 @@
         },
         {
           "content": [
-            "Use light background options like white, neutral-100, primary-100, or use a primary background when inverted."
-          ],
-          "id": "background",
-          "name": "Background"
-        },
-        {
-          "content": [
             "Use to trigger an action or place a link inside it to navigate to other content."
           ],
           "id": "function",

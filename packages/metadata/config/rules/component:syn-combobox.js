@@ -19,14 +19,6 @@ export default {
   usageGuidelines: [
     {
       content: [
-        'Use light backgrounds such as white, neutral-100, or primary-100 for clarity and consistency across different layouts.',
-        'Keep focus styles clearly visible when the user navigates through suggestions with a keyboard or screen reader.',
-      ],
-      id: 'background',
-      name: 'Background',
-    },
-    {
-      content: [
         'Keep option labels concise so that suggestions are easy to scan and select.',
         'Provide a clear, descriptive placeholder (e.g., "Search or select an option...") to help users understand they can type and choose from suggestions.',
         'Avoid repeating the same initial word in multiple suggestions to reduce scanning difficulty.',
@@ -37,7 +29,6 @@ export default {
     {
       content: [
         'Filter available options in real time as the user types; highlight or bold matching text to indicate relevance.',
-        'Show a message (e.g., "No matches found") when no options align with the user\'s input.',
         'Consider limiting the maximum number of displayed suggestions to avoid overwhelming users. We recommend displaying 6-8 (with scrolling for additional results).',
       ],
       id: 'searching_behavior',

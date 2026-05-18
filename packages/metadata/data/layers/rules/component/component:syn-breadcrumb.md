@@ -13,10 +13,6 @@ Breadcrumbs provide a group of links so users can easily navigate a website's hi
 
 ## Usage Guidelines
 
-### Background
-
-- Use light background options like white, neutral-100 or primary-100.
-
 ### Content and Labeling
 
 - Use clear and descriptive labels that accurately represent each page or section in the navigation path.

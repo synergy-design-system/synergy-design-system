@@ -61,7 +61,6 @@ export default {
     },
     {
       content: [
-        'Always include an appropriate icon that reinforces the message tone and helps with quick visual scanning.',
         'Use icons for consistency (info, check_circle, warning, status-error, settings).',
         'Ensure the icon clearly represents the alert type — don\'t use confusing or misleading icons.',
         'Icons are optional but highly recommended for accessibility and visual clarity.',
@@ -78,16 +77,6 @@ export default {
       ],
       id: 'dismissal',
       name: 'Dismissal & Duration',
-    },
-    {
-      content: [
-        'Use small size for brief, non-intrusive messages or in constrained spaces.',
-        'Use medium size (default) for most standard alerts and notifications.',
-        'Use large size for important messages that need to command attention.',
-        'Ensure size choices are consistent with message importance and context.',
-      ],
-      id: 'sizing',
-      name: 'Sizing',
     },
     {
       content: [

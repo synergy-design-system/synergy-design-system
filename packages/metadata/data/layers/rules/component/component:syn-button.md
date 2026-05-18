@@ -24,10 +24,6 @@ Buttons represent actions that are available to the user.
 - Select the appropriate variant for each action based on context and importance.
 - Avoid displaying more than one Call To Action (CTA) at a time on the screen, especially in the same context (e.g., teaser).
 
-### Background
-
-- Use light background options like white, neutral-100, primary-100, or use a primary background when inverted.
-
 ### Function
 
 - Use to trigger an action or place a link inside it to navigate to other content.

@@ -6,17 +6,11 @@ Badges are used to draw attention and display statuses or counts.
 
 ## Common Use Cases
 
-- Indicate the number of items selected, such as when using a filter
 - Show the count of newly added items
 - Display the number of messages received or tasks still pending
 - Present the quantity of items collected, like those in a shopping cart
 
 ## Usage Guidelines
-
-### Background
-
-- Use light backgrounds: white, neutral-100, primary-100
-- Use primary background when inverted
 
 ### Color
 

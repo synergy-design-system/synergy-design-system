@@ -10,10 +10,6 @@ Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to repres
 
 ## Usage Guidelines
 
-### Background
-
-- Use light background options like white, neutral-100 or primary-100.
-
 ### Content and Labeling
 
 - Use clear and descriptive labels that accurately represent each page or section in the navigation path.

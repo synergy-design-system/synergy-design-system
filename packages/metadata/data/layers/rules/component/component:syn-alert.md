@@ -44,7 +44,6 @@ Alerts are used to display important messages inline or as toast notifications.
 
 ### Icons
 
-- Always include an appropriate icon that reinforces the message tone and helps with quick visual scanning.
 - Use icons for consistency (info, check_circle, warning, status-error, settings).
 - Ensure the icon clearly represents the alert type — don't use confusing or misleading icons.
 - Icons are optional but highly recommended for accessibility and visual clarity.
@@ -55,13 +54,6 @@ Alerts are used to display important messages inline or as toast notifications.
 - For critical errors or required information, consider hiding the close button.
 - Use auto-hide duration for informational alerts, especially toast notifications (typically 3000-5000ms).
 - Pause the auto-hide timer when the user hovers over the alert to allow time for reading.
-
-### Sizing
-
-- Use small size for brief, non-intrusive messages or in constrained spaces.
-- Use medium size (default) for most standard alerts and notifications.
-- Use large size for important messages that need to command attention.
-- Ensure size choices are consistent with message importance and context.
 
 ### Placement & Presentation
 

@@ -7,7 +7,7 @@ Cards can be used to group related subjects in a container.
 ## Common Use Cases
 
 - Display grouped information such as KPIs, summaries, or previews.
-- Provide a reusable container for dashboard modules.
+- Provide a reusable container for dashboard elements.
 - Present actionable items with a compact overview and clear next steps.
 
 ## Usage Guidelines

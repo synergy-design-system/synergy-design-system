@@ -16,11 +16,6 @@ allowing users to either select from predefined options or enter custom values (
 
 ## Usage Guidelines
 
-### Background
-
-- Use light backgrounds such as white, neutral-100, or primary-100 for clarity and consistency across different layouts.
-- Keep focus styles clearly visible when the user navigates through suggestions with a keyboard or screen reader.
-
 ### Content and Labels
 
 - Keep option labels concise so that suggestions are easy to scan and select.
@@ -30,7 +25,6 @@ allowing users to either select from predefined options or enter custom values (
 ### Searching Behavior
 
 - Filter available options in real time as the user types; highlight or bold matching text to indicate relevance.
-- Show a message (e.g., "No matches found") when no options align with the user's input.
 - Consider limiting the maximum number of displayed suggestions to avoid overwhelming users. We recommend displaying 6-8 (with scrolling for additional results).
 
 ## Accessibility

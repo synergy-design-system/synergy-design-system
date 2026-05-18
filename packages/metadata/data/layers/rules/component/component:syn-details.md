@@ -27,10 +27,6 @@ Details show a brief summary and expand to show additional content.
 - Ensure the content is focused and necessary. If the information can be splitted into different meaningful units, consider using syn-accordion.
 - Avoid using collapsible sections for information that must always be visible.
 
-### Background
-
-- Use light background options like white, neutral-100 or primary-100.
-
 ## Accessibility
 
 - Use only for non-critical information. Hiding content can become a potential barrier, making content more challenging to discover.

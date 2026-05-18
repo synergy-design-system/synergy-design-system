@@ -34,7 +34,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "2.3.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -55,7 +55,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "41227-232486",
+      "figmaComponentId": "20877-88398",
+      "figmaDocsId": "41227-232486",
       "stories": [
         {
           "description": {
@@ -140,6 +141,49 @@
         "Structure"
       ]
     },
+    "rules": {
+      "accessibility": [
+        "Use only for non-critical information. Hiding content can become a potential barrier, making content more challenging to discover.",
+        "For purely decorative images, ALT-tags should be left empty so that screen readers can bypass them and concentrate on conveying meaningful content."
+      ],
+      "component": "syn-details",
+      "related": {
+        "components": [
+          "syn-accordion"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use the \"summary\" slot to add text to the header.",
+            "Use the \"default\" slot to add content."
+          ],
+          "id": "slots",
+          "name": "Slots"
+        },
+        {
+          "content": [
+            "Make sure the header summary clearly describes the content inside.",
+            "Keep header summaries concise to prevent them from wrapping onto multiple lines."
+          ],
+          "id": "header_summary",
+          "name": "Header Summary"
+        },
+        {
+          "content": [
+            "Ensure the content is focused and necessary. If the information can be splitted into different meaningful units, consider using syn-accordion.",
+            "Avoid using collapsible sections for information that must always be visible."
+          ],
+          "id": "content",
+          "name": "Content"
+        }
+      ],
+      "useCases": [
+        "Revealing additional content, such as a detailed description, specifications, or additional options without overwhelming the user with too much content at once.",
+        "Interactive elements like a single FAQ item, where the user can expand to see the answer.",
+        "Useful in forms to hide optional sections that the user can expand if needed, keeping the form clean and concise."
+      ]
+    },
     "sourceModulePath": "components/details/details.js",
     "summary": "Details show a brief summary and expand to show additional content."
   },
@@ -191,6 +235,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-details.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-details.md"
+      }
     ]
   },
   "name": "syn-details",
@@ -201,7 +251,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "2.3.0",
   "sources": [
     "packages/angular/components/details/details.component.ts",
     "packages/components/src/components/details/details.component.ts",

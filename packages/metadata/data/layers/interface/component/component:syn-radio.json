@@ -70,7 +70,8 @@
       "type": "SynFocusEvent"
     }
   ],
-  "figmaComponentId": "41310-252390",
+  "figmaComponentId": "1345-21578",
+  "figmaDocsId": "41310-252390",
   "methods": [
     {
       "description": "",
@@ -126,7 +127,7 @@
       "type": "string | number"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "slots": [
     {
       "description": "The radio's label.",

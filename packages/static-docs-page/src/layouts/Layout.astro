@@ -1,0 +1,77 @@
+---
+import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/styles/index.css';
+import '@synergy-design-system/components/styles/index.css';
+import '@synergy-design-system/fonts/src/sick-intl/font.css';
+import '../styles/global.css';
+import MetaNavigation from '../components/MetaNavigation.astro';
+import Navigation from '../components/Navigation';
+
+const basePath = import.meta.env.BASE_URL;
+const normalizePathForNavigation = (pathname: string, base: string) => {
+	if (base === '/') {
+		return pathname;
+	}
+
+	const normalizedBase = base.endsWith('/') ? base : `${base}/`;
+	if (pathname === normalizedBase.slice(0, -1) || pathname === normalizedBase) {
+		return '/';
+	}
+
+	if (!pathname.startsWith(normalizedBase)) {
+		return pathname;
+	}
+
+	const withoutBase = pathname.slice(normalizedBase.length);
+	return `/${withoutBase}`;
+};
+
+const currentPath = normalizePathForNavigation(Astro.url.pathname, basePath);
+---
+
+<script>
+// @todo: Only load whats really needed!
+import { registerIconLibrary } from '@synergy-design-system/components';
+const basePath = import.meta.env.BASE_URL;
+
+// Draw icons from esm.sh for the time being.
+registerIconLibrary("default", {
+	resolver: (name) => `https://esm.sh/@synergy-design-system/assets@latest/src/sick2025/icons/outline/${name}.svg`
+});
+
+registerIconLibrary('logos', {
+	resolver: name => `${basePath}icons/${name}.svg`,
+})
+</script>
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href={`${basePath}favicon.svg`} />
+		<link rel="icon" href={`${basePath}favicon.ico`} />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="ai-policy" href={`${basePath}llms.txt`}>
+		<title>Synergy Design System - Design System Specification</title>
+	</head>
+	<body>
+		<syn-header>
+			<a href="/" slot="logo" tabindex="0" class="header-logo">
+				<syn-icon
+					name="logo-color"
+					library="system"
+					label="Custom Logo with link"
+				/>
+			</a>
+			<span slot="label">Synergy Design System - Design System Specification</span>
+			<MetaNavigation />
+		</syn-header>
+		<div class="content">
+			<Navigation basePath={basePath} currentPath={currentPath} />
+			<main>
+				<slot />
+			</main>
+		</div>
+	</body>
+</html>

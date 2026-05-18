@@ -23,13 +23,16 @@ Override files add metadata to specific entities without modifying generated dat
 
 ```json
 {
-  "figmaComponentId": "16967-26428",
+  "figmaComponentId": "20877-88547",
+  "figmaDocsId": "41094-279501",
   "storyTags": ["Structure"],
   "storySourcePath": "components.accordion"
 }
 ```
 
-These values are enriched by transformers that pull from external data sources (e.g., `_docs.json`).
+`figmaDocsId` points to the Storybook-style examples/demo node. `figmaComponentId` points to the real Figma component node used by code-connect. Both fields accept either a bare node-id or a full Figma URL; bare IDs are expanded to canonical URLs during markdown generation.
+
+These values are enriched by transformers that pull from external data sources (e.g., `_docs.json`). During the metadata build, `figmaComponentId` is also synchronized from `packages/components/code-connect/components/*.figma.ts` when a matching code-connect file exists.
 
 ## Clustering
 

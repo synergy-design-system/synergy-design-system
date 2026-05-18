@@ -3,16 +3,46 @@
  * Records tool call duration, token count, success/error state, and parameters.
  * Respects logging config: early-exits if logging is disabled to avoid token counting overhead.
  */
-
 import { logToolCall } from '../utilities/logger.js';
 import {
   countTextTokens,
   toTextPayload,
 } from '../utilities/token-counter.js';
 import { toContentArray } from '../utilities/metadata.js';
+import type { PromptResponse } from '../types/prompt-response.js';
 import type {
   ToolMiddleware,
 } from './types.js';
+
+const isPromptResponse = (value: unknown): value is PromptResponse => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const maybePrompt = value as Partial<PromptResponse>;
+  return typeof maybePrompt.description === 'string' && Array.isArray(maybePrompt.messages);
+};
+
+const toPromptTextPayload = (result: unknown[]): string => {
+  const lines = result.flatMap((entry) => {
+    if (typeof entry === 'string') {
+      return [entry];
+    }
+
+    if (isPromptResponse(entry)) {
+      return entry.messages
+        .map(message => {
+          if (message.content.type === 'text') return message.content.text;
+          return '';
+        })
+        .filter(Boolean);
+    }
+
+    return [JSON.stringify(entry)];
+  });
+
+  return lines.join('\n\n');
+};
 
 /**
  * Middleware that logs details about tool execution, including duration, success/failure, token count, and parameters.
@@ -75,6 +105,61 @@ export const withToolLoggingMiddleware: ToolMiddleware<Record<string, unknown>> 
       success,
       tokenCount,
       toolName: context.toolName,
+    });
+  }
+};
+
+/**
+ * Middleware that logs prompt execution details.
+ * Token counting is based on the resolved prompt text payload.
+ */
+export const withPromptLoggingMiddleware: ToolMiddleware<Record<string, unknown>> = (
+  next,
+  context,
+) => async (args) => {
+  if (context.config.logging.localFile.path === null) {
+    return next(args);
+  }
+
+  const startedAt = process.hrtime.bigint();
+  let success = false;
+  let errorMessage: string | undefined;
+  let tokenCount: number | undefined;
+
+  try {
+    const result = await next(args);
+    success = true;
+
+    const textPayload = toPromptTextPayload(result);
+    tokenCount = await countTextTokens(textPayload);
+
+    return result;
+  } catch (error) {
+    errorMessage = error instanceof Error ? error.message : String(error);
+    throw error;
+  } finally {
+    const durationMs = Number(process.hrtime.bigint() - startedAt) / 1_000_000;
+    const internalProps = new Set([
+      'requestId',
+      'signal',
+      'requestInfo',
+      'sessionId',
+    ]);
+    const loggableParameters: Record<string, unknown> = {};
+
+    Object.entries(args).forEach(([key, value]) => {
+      if (!internalProps.has(key)) {
+        loggableParameters[key] = value;
+      }
+    });
+
+    await logToolCall({
+      durationMs,
+      errorMessage,
+      parameters: loggableParameters,
+      success,
+      tokenCount,
+      toolName: `prompt:${context.toolName}`,
     });
   }
 };

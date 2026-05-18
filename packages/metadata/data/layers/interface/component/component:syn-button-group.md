@@ -7,7 +7,7 @@ Button groups can be used to group related buttons into sections.
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=45597-333063)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=45597-333063)
 
 ## Class Information
 
@@ -17,7 +17,7 @@ Button groups can be used to group related buttons into sections.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 3.1.0
 
 ## Available Slots
 

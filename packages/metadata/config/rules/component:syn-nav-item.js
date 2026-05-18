@@ -14,27 +14,43 @@ export default {
       'syn-prio-nav',
     ],
     templates: [
-      'Application Shell',
+      'AppShell',
     ],
   },
-  usageGuidelines: {
-    background_options: [
-      'Use with background options of white, neutral-100, and primary-100.',
-    ],
-    labels_and_icons: [
-      'Use clear, concise labels for navigation items.',
-      'Don\'t use icons alone unless they are universally understood.',
-      'Use icons and labels together to enhance comprehension.',
-    ],
-    spacing: [
-      'Use indented for nested navigation items in vertical desktop or mobile viewports and in horizontal mobile menus.',
-    ],
-    text_styles_and_descriptions: [
-      'Be consistent in the use of descriptions: Include them for all items at the same level and keep them similar in length.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Use with background options of white, neutral-100, and primary-100.',
+      ],
+      id: 'background_options',
+      name: 'Background Options',
+    },
+    {
+      content: [
+        'Use clear, concise labels for navigation items.',
+        'Don\'t use icons alone unless they are universally understood.',
+        'Use icons and labels together to enhance comprehension.',
+      ],
+      id: 'labels_and_icons',
+      name: 'Labels and Icons',
+    },
+    {
+      content: [
+        'Use indented for nested navigation items in vertical desktop or mobile viewports and in horizontal mobile menus.',
+      ],
+      id: 'spacing',
+      name: 'Spacing',
+    },
+    {
+      content: [
+        'Be consistent in the use of descriptions: Include them for all items at the same level and keep them similar in length.',
+      ],
+      id: 'text_styles_and_descriptions',
+      name: 'Text Styles and Descriptions',
+    },
+  ],
   useCases: [
-    'Populate an syn-header navigation bar at the top of a page, helping users easily access different sections.',
-    'Implement navigation items in a syn-side-nav for a more detailed and hierarchical navigation structure.',
+    'Populate an `<syn-prio-nav>` within a `<syn-header>` navigation bar at the top of a page, helping users easily access different sections.',
+    'Implement navigation items in a `<syn-side-nav>` for a more detailed and hierarchical navigation structure.',
   ],
 };

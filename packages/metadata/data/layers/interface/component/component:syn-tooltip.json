@@ -101,7 +101,8 @@
       "type": "SynShowEvent"
     }
   ],
-  "figmaComponentId": "41337-203414",
+  "figmaComponentId": "16910-25970",
+  "figmaDocsId": "41337-203414",
   "methods": [
     {
       "description": "",
@@ -198,7 +199,7 @@
       "type": "string"
     }
   ],
-  "since": "2.0",
+  "since": "1.21.0",
   "slots": [
     {
       "description": "The tooltip's target element. Avoid slotting in more than one element, as subsequent ones will be ignored.",

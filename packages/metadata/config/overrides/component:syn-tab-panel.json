@@ -1,5 +1,8 @@
 {
-  "figmaComponentId": "42207-340626",
-  "storyTags": ["Navigation"],
-  "storySourcePath": "components.tab-panel"
+  "figmaComponentId": "20730-44681",
+  "figmaDocsId": "42207-340626",
+  "storySourcePath": "components.tab-panel",
+  "storyTags": [
+    "Navigation"
+  ]
 }

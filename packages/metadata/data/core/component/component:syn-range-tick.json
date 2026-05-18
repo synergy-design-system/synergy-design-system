@@ -17,6 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-range-tick--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
+          "since": "2.6.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -37,7 +38,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "41310-326049",
+      "figmaComponentId": "25215-38412",
+      "figmaDocsId": "41310-326049",
       "stories": [
         {
           "description": {
@@ -88,6 +90,17 @@
       "storyTags": [
         "Form"
       ]
+    },
+    "rules": {
+      "component": "syn-range-tick",
+      "related": {
+        "components": [
+          "syn-range"
+        ],
+        "templates": [
+          "Forms"
+        ]
+      }
     },
     "sourceModulePath": "components/range-tick/range-tick.js",
     "summary": "Ticks visually improve positioning on range sliders."
@@ -140,12 +153,18 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-range-tick.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-range-tick.md"
+      }
     ]
   },
   "name": "syn-range-tick",
   "package": "components",
   "relations": [],
-  "since": "unknown",
+  "since": "2.6.0",
   "sources": [
     "packages/angular/components/range-tick/range-tick.component.ts",
     "packages/components/src/components/range-tick/range-tick.component.ts",

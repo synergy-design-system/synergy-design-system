@@ -16,7 +16,7 @@ Popup is a utility that lets you declaratively anchor "popup" containers to anot
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.12.0
 
 ## Available Slots
 

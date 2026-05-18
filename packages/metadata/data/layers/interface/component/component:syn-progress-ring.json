@@ -30,7 +30,8 @@
   "dependencies": [],
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs",
   "events": [],
-  "figmaComponentId": "41203-296727",
+  "figmaComponentId": "16193-20867",
+  "figmaDocsId": "41203-296727",
   "methods": [],
   "properties": [
     {
@@ -60,7 +61,7 @@
       "type": "number"
     }
   ],
-  "since": "2.0",
+  "since": "1.18.0",
   "slots": [
     {
       "description": "A label to show inside the ring.",

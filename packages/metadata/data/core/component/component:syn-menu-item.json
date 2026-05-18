@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.12.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -38,7 +38,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "41203-369012",
+      "figmaComponentId": "10514-9627",
+      "figmaDocsId": "41203-369012",
       "stories": [
         {
           "description": {
@@ -123,6 +124,17 @@
         "Navigation"
       ]
     },
+    "rules": {
+      "component": "syn-menu-item",
+      "related": {
+        "components": [
+          "syn-menu"
+        ],
+        "templates": [
+          "AppShell"
+        ]
+      }
+    },
     "sourceModulePath": "components/menu-item/menu-item.js",
     "summary": "Menu items provide options for the user to pick from in a menu."
   },
@@ -178,6 +190,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-menu-item.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-menu-item.md"
+      }
     ]
   },
   "name": "syn-menu-item",
@@ -196,7 +214,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.12.0",
   "sources": [
     "packages/angular/components/menu-item/menu-item.component.ts",
     "packages/components/src/components/menu-item/menu-item.component.ts",

@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContentFooter from '../components/ContentFooter.astro';
+---
+
+<Layout>
+  <syn-card>
+    <h1 class="syn-heading--2x-large" slot="header">
+      Frequently misunderstood topics
+    </h1>
+
+    <p>
+      This page clarifies common misconceptions about the Synergy Design System.
+      It helps distinguish between what Synergy provides, what it enables,
+      and what is intentionally left to applications and teams.
+    </p>
+
+    <p>
+      This page is <strong>non-normative</strong> and does not define component
+      behavior or API contracts.
+    </p>
+
+    <h2 class="syn-heading--large">Common misconceptions</h2>
+    <ul>
+      <li>
+        <strong><quote>"Synergy provides complete application layouts."</quote></strong><br>
+        Synergy provides components and composition patterns,
+        but does not define full page layouts or application structure.
+      </li>
+
+      <li>
+        <strong><quote>"Using Synergy automatically guarantees accessibility."</quote></strong><br>
+        Components are built with accessibility in mind,
+        but correct usage and application context remain essential.
+      </li>
+
+      <li>
+        <strong><quote>"Examples introduce additional supported features."</quote></strong><br>
+        Examples demonstrate usage of documented APIs only
+        and do not add new capabilities.
+      </li>
+
+      <li>
+        <strong><quote>"If it exists in Storybook, it is part of the specification."</quote></strong><br>
+        Storybook shows implementation examples.
+        The specification is defined on this documentation site.
+      </li>
+    </ul>
+
+    <ContentFooter
+      creationDate={new Date().toISOString()}
+      entityId={null}
+    >
+      | Normative component behavior and API contracts are defined on individual component pages.
+    </ContentFooter>
+  </syn-card>
+</Layout>

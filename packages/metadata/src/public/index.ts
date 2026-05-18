@@ -1,7 +1,12 @@
 export { clearMetadataStoreCache, createMetadataStore, getMetadataInfo } from './store.js';
 export { getAssetMetadata, listAssets, searchIcons } from './domains/assets.js';
 export { listComponentClusters, listComponentsByCluster } from './domains/clusters.js';
-export { getComponentMetadata, getDataForComponent, listComponents } from './domains/components.js';
+export {
+  getComponentMetadata,
+  getDataForComponent,
+  getRulesForComponent,
+  listComponents,
+} from './domains/components.js';
 export { getFontMetadata, listFonts } from './domains/fonts.js';
 export { getMigrations } from './domains/migrations.js';
 export { getDataForSetup } from './domains/setup.js';
@@ -23,6 +28,7 @@ export type {
   ComponentFrameworkDetails,
   ComponentLayerContent,
   ComponentQueryOptions,
+  ComponentRulesPayload,
   ComponentTextLayerContent,
 } from './domains/components.js';
 export type { FontQueryOptions } from './domains/fonts.js';

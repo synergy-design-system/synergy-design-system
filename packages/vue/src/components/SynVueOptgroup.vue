@@ -9,7 +9,7 @@
  * @summary The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs
  * @status stable
- * @since 1.3.0
+ * @since 1.5.0
  *
  * @dependency syn-divider
  *

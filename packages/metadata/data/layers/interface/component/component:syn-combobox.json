@@ -311,7 +311,8 @@
       "type": "SynShowEvent"
     }
   ],
-  "figmaComponentId": "42207-352063",
+  "figmaComponentId": "26894-38120",
+  "figmaDocsId": "42207-352063",
   "methods": [
     {
       "description": "Removes focus from the control.",
@@ -629,7 +630,7 @@
       "type": "HTMLInputElement"
     }
   ],
-  "since": "unknown",
+  "since": "2.8.0",
   "slots": [
     {
       "description": "The listbox options. Must be `<syn-option>` elements. You can use `<syn-optgroup>`'s to group items visually.",

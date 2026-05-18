@@ -29,6 +29,7 @@ Component.define('syn-combobox');
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
  * @status stable
+ * @since 2.8.0
  *
  * @dependency syn-icon
  * @dependency syn-popup

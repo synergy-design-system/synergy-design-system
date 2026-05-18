@@ -1,5 +1,7 @@
 {
-  "figmaComponentId": "41310-253349",
-  "storyTags": ["Form"],
-  "storySourcePath": "components.radio-group"
+  "figmaDocsId": "41310-253349",
+  "storySourcePath": "components.radio-group",
+  "storyTags": [
+    "Form"
+  ]
 }

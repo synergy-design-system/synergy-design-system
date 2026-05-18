@@ -26,7 +26,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.0.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -47,7 +47,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "41310-252390",
+      "figmaComponentId": "1345-21578",
+      "figmaDocsId": "41310-252390",
       "stories": [
         {
           "description": {
@@ -132,6 +133,17 @@
         "Form"
       ]
     },
+    "rules": {
+      "component": "syn-radio",
+      "related": {
+        "components": [
+          "syn-radio-group"
+        ],
+        "templates": [
+          "Forms"
+        ]
+      }
+    },
     "sourceModulePath": "components/radio/radio.js",
     "summary": "Radios allow the user to select a single option from a group."
   },
@@ -183,6 +195,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-radio.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-radio.md"
+      }
     ]
   },
   "name": "syn-radio",
@@ -193,7 +211,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "sources": [
     "packages/angular/components/radio/radio.component.ts",
     "packages/components/src/components/radio/radio.component.ts",

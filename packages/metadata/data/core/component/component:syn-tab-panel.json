@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "2.1.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -38,7 +38,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "42207-340626",
+      "figmaComponentId": "20730-44681",
+      "figmaDocsId": "42207-340626",
       "stories": [
         {
           "description": {
@@ -56,6 +57,16 @@
       "storyTags": [
         "Navigation"
       ]
+    },
+    "rules": {
+      "component": "syn-tab-panel",
+      "related": {
+        "components": [
+          "syn-tab",
+          "syn-tab-group"
+        ],
+        "templates": []
+      }
     },
     "sourceModulePath": "components/tab-panel/tab-panel.js",
     "summary": "Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content."
@@ -112,12 +123,18 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tab-panel.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-tab-panel.md"
+      }
     ]
   },
   "name": "syn-tab-panel",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "2.1.0",
   "sources": [
     "packages/angular/components/tab-panel/tab-panel.component.ts",
     "packages/components/src/components/tab-panel/tab-panel.component.ts",

@@ -2,22 +2,24 @@
  * Main CLI entry point: orchestrate the entire metadata build.
  *
  * Steps:
- * 1. Load configuration (overrides, clustering, artifacts)
- * 2. Run all source pipelines (collectors) in parallel
- * 3. Aggregate results
- * 4. Validate entities
- * 5. Enrich with configuration
- * 6. Run storybook scraper (generates examples files)
- * 7. Process and write layer assets (before core entities)
- * 8. Write core entities with layer data
- * 9. Write supporting artifacts (index, manifest)
- * 9.5. Cleanup orphaned files from previous builds
- * 10. Generate JSON schemas
+ * 1. Sync Figma override references from code-connect
+ * 2. Load configuration (overrides, clustering, artifacts)
+ * 3. Run all source pipelines (collectors) in parallel
+ * 4. Aggregate results
+ * 5. Validate entities
+ * 6. Enrich with configuration
+ * 7. Run storybook scraper (generates examples files)
+ * 8. Process and write layer assets (before core entities)
+ * 9. Write core entities with layer data
+ * 10. Write supporting artifacts (index, manifest)
+ * 10.5. Cleanup orphaned files from previous builds
+ * 11. Generate JSON schemas
  */
 import { resolve } from 'node:path';
 import { createConsoleLogger } from '../core/context.js';
 import { type Context } from '../core/context.js';
 import { loadConfig } from '../../config/index.js';
+import { syncCodeConnectFigmaOverrides } from '../../config/sync-code-connect.js';
 import { runStorybook } from '../collectors/storybook/build-docs.js';
 import { createTemplateEntities } from '../collectors/templates.js';
 import {
@@ -65,9 +67,15 @@ async function main() {
   ctx.logger?.info(`Output: ${outputDir}`);
 
   try {
-    // Step 1: Load configuration (overrides, clustering, artifacts)
-    ctx.logger?.info('Step 1: Loading configuration');
     const configDir = resolve(ctx.workspaceRoot, 'config');
+    const repoRoot = resolve(ctx.workspaceRoot, '..', '..');
+
+    // Step 1: Sync Figma override references from code-connect
+    ctx.logger?.info('Step 1: Syncing Figma override references');
+    await syncCodeConnectFigmaOverrides(configDir, repoRoot, ctx.logger);
+
+    // Step 2: Load configuration (overrides, clustering, artifacts)
+    ctx.logger?.info('Step 2: Loading configuration');
     try {
       ctx.config = await loadConfig(configDir);
       ctx.logger?.info('Configuration loaded', {
@@ -81,8 +89,8 @@ async function main() {
       });
     }
 
-    // Step 2: Run all source pipelines (collectors) in parallel
-    ctx.logger?.info('Step 2: Running source pipelines');
+    // Step 3: Run all source pipelines (collectors) in parallel
+    ctx.logger?.info('Step 3: Running source pipelines');
     const [componentsResult, tokensResult, stylesResult, fontsResult, assetsResult] = await Promise.all([
       runSourcePipeline(
         componentsPipeline,
@@ -149,8 +157,8 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 3: Aggregate results
-    ctx.logger?.info('Step 3: Aggregating entities');
+    // Step 4: Aggregate results
+    ctx.logger?.info('Step 4: Aggregating entities');
     const aggregated = aggregateEntities([
       componentsResult.value,
       tokensResult.value,
@@ -163,16 +171,16 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 4: Validate entities
-    ctx.logger?.info('Step 4: Validating entities');
+    // Step 5: Validate entities
+    ctx.logger?.info('Step 5: Validating entities');
     const validated = validateEntities(aggregated.value, ctx);
     if (!validated.ok) {
       ctx.logger?.error('Validation failed', validated.error);
       process.exit(1);
     }
 
-    // Step 5: Enrich with configuration
-    ctx.logger?.info('Step 5: Enriching entities with configuration');
+    // Step 6: Enrich with configuration
+    ctx.logger?.info('Step 6: Enriching entities with configuration');
 
     const enriched = enrichEntitiesWithConfig(validated.value, ctx);
     const enrichedWithStats = enriched.filter((e) => {
@@ -200,14 +208,11 @@ async function main() {
       });
     }
 
-    // Calculate repo root (two levels up from metadata package)
-    const repoRoot = resolve(ctx.workspaceRoot, '..', '..');
-
-    // Step 6: Run storybook scraper (optional, generates examples files)
+    // Step 7: Run storybook scraper (optional, generates examples files)
     // Only runs if RUN_STORYBOOK_SCRAPER environment variable is set to 'true'
     const runStorybookScraper = process.env.RUN_STORYBOOK_SCRAPER?.toLowerCase() === 'true';
     if (runStorybookScraper) {
-      ctx.logger?.info('Step 6: Running storybook scraper');
+      ctx.logger?.info('Step 7: Running storybook scraper');
       const storybookSuccess = await runStorybook('all', ctx);
       if (!storybookSuccess) {
         ctx.logger?.error(
@@ -218,12 +223,12 @@ async function main() {
       }
     } else {
       ctx.logger?.info(
-        'Step 6: Skipping storybook scraper (set RUN_STORYBOOK_SCRAPER=true to enable)',
+        'Step 7: Skipping storybook scraper (set RUN_STORYBOOK_SCRAPER=true to enable)',
       );
     }
 
-    // Step 7: Process and write layer assets (before core entities)
-    ctx.logger?.info('Step 7: Processing layer assets');
+    // Step 8: Process and write layer assets (before core entities)
+    ctx.logger?.info('Step 8: Processing layer assets');
     const layersResult = await writeLayerAssets(enriched, outputDir, repoRoot, ctx);
     if (!layersResult.ok) {
       ctx.logger?.error('Writing layers failed', layersResult.error);
@@ -244,7 +249,7 @@ async function main() {
     });
 
     // Generate template entities from discovered layer data
-    ctx.logger?.info('Step 7b: Generating template metadata');
+    ctx.logger?.info('Step 8b: Generating template metadata');
     const templateEntities = await createTemplateEntities(outputDir);
     if (templateEntities.length > 0) {
       ctx.logger?.info(`Generated ${templateEntities.length} template entities from layer data`);
@@ -285,16 +290,16 @@ async function main() {
       };
     });
 
-    // Step 8: Write core entities with layer data
-    ctx.logger?.info('Step 8: Building index');
+    // Step 9: Write core entities with layer data
+    ctx.logger?.info('Step 9: Building index');
     const indexResult = buildIndex(entitiesForWrite, ctx);
     if (!indexResult.ok) {
       ctx.logger?.error('Index build failed', indexResult.error);
       process.exit(1);
     }
 
-    // Step 8: Write core entities with layer data (continued)
-    ctx.logger?.info('Step 8: Writing core entities');
+    // Step 9: Write core entities with layer data (continued)
+    ctx.logger?.info('Step 9: Writing core entities');
     const coreResult = await writeCoreEntities(entitiesForWrite, outputDir, ctx);
     if (!coreResult.ok) {
       ctx.logger?.error('Writing core failed', coreResult.error);
@@ -307,8 +312,8 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 9: Write supporting artifacts (index, manifest)
-    ctx.logger?.info('Step 9: Creating manifest');
+    // Step 10: Write supporting artifacts (index, manifest)
+    ctx.logger?.info('Step 10: Creating manifest');
     const manifest: Manifest = {
       builtAt: new Date().toISOString(),
       sources: [{
@@ -364,8 +369,8 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 9.5: Cleanup orphaned files
-    // Merge layer refs from template entities (created in Step 7b, after writeLayerAssets)
+    // Step 10.5: Cleanup orphaned files
+    // Merge layer refs from template entities (created in Step 8b, after writeLayerAssets)
     // into the layers map so cleanup doesn't treat their files as orphaned.
     const allEntityLayers: EntityLayers = { ...layersResult.value };
     for (const entity of entitiesWithLayers) {
@@ -392,8 +397,8 @@ async function main() {
       process.exit(1);
     }
 
-    // Step 10: Generate JSON schemas
-    ctx.logger?.info('Step 10: Generating JSON schemas');
+    // Step 11: Generate JSON schemas
+    ctx.logger?.info('Step 11: Generating JSON schemas');
     const schemas = {
       'core-entity.schema.json': CoreEntitySchema.toJSONSchema(),
       'layer-ref.schema.json': LayerRefSchema.toJSONSchema(),

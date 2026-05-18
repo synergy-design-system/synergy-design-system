@@ -44,10 +44,16 @@ export type WatermarkScenario = {
   id: string;
 
   /**
+   * Determines which MCP API should be used for this scenario.
+   */
+  kind: 'tool' | 'prompt';
+
+  /**
    * The name of the tool to be tested in this scenario.
    * This should correspond to a valid tool name that the MCP server recognizes and can execute with the provided arguments.
    */
   toolName: string;
+  promptName?: string;
 };
 
 export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
@@ -63,6 +69,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 3200,
     },
     id: 'component-info:interface:syn-button',
+    kind: 'tool',
     toolName: 'component-info',
   },
   {
@@ -77,6 +84,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 4200,
     },
     id: 'component-info:examples:syn-button',
+    kind: 'tool',
     toolName: 'component-info',
   },
   {
@@ -91,6 +99,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 10000,
     },
     id: 'component-info:full:syn-button',
+    kind: 'tool',
     toolName: 'component-info',
   },
   {
@@ -105,6 +114,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 1800,
     },
     id: 'component-info:interface:syn-divider',
+    kind: 'tool',
     toolName: 'component-info',
   },
   {
@@ -119,6 +129,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 5200,
     },
     id: 'component-info:interface:syn-input',
+    kind: 'tool',
     toolName: 'component-info',
   },
   {
@@ -133,6 +144,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 7000,
     },
     id: 'component-info:interface:syn-combobox',
+    kind: 'tool',
     toolName: 'component-info',
   },
   {
@@ -145,6 +157,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 2200,
     },
     id: 'styles-info:syn-body',
+    kind: 'tool',
     toolName: 'styles-info',
   },
   {
@@ -157,6 +170,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 18000,
     },
     id: 'template-info:appshell',
+    kind: 'tool',
     toolName: 'template-info',
   },
   {
@@ -170,6 +184,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 3000,
     },
     id: 'migration-info:components:index.md',
+    kind: 'tool',
     toolName: 'migration-info',
   },
   {
@@ -184,6 +199,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 1700,
     },
     id: 'asset-info:current:home',
+    kind: 'tool',
     toolName: 'asset-info',
   },
   {
@@ -197,6 +213,21 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
       maxTokens: 10000,
     },
     id: 'token-info:css:sick2025-light',
+    kind: 'tool',
     toolName: 'token-info',
+  },
+  {
+    args: {
+      component: 'syn-accordion',
+    },
+    budget: {
+      maxRegressionAbs: 350,
+      maxRegressionPct: 20,
+      maxTokens: 2600,
+    },
+    id: 'prompt:explain-component-rules:syn-accordion',
+    kind: 'prompt',
+    promptName: 'explain-component-rules',
+    toolName: 'prompt:explain-component-rules',
   },
 ];

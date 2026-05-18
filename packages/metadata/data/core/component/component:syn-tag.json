@@ -22,7 +22,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.2.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -43,7 +43,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "41163-156701",
+      "figmaComponentId": "2842-16750",
+      "figmaDocsId": "41163-156701",
       "stories": [
         {
           "description": {
@@ -84,6 +85,48 @@
         "Feedback",
         "Tags",
         "Filter"
+      ]
+    },
+    "rules": {
+      "component": "syn-tag",
+      "related": {
+        "components": [
+          "syn-tag-group"
+        ],
+        "templates": [
+          "Tag Group"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use the \"removable\" attribute to include a small close \"x\" button next to the label.",
+            "Avoid using a standalone, non-removable tag, as its selected/unselected state could be unclear. Apply the \"removable\" attribute for those cases."
+          ],
+          "id": "behavior",
+          "name": "Behavior"
+        },
+        {
+          "content": [
+            "Tags are interactive elements which trigger an action."
+          ],
+          "id": "interactivity",
+          "name": "Interactivity"
+        },
+        {
+          "content": [
+            "Try to keep a similar text length for all labels, and specially avoid excessively long ones. If necessary, truncate the label and show the full text in a tooltip on hover.",
+            "Don't use tags to indicate the status of a task, use syn-status-badge instead."
+          ],
+          "id": "labels",
+          "name": "Labels"
+        }
+      ],
+      "useCases": [
+        "Label and categorize items to help users filter and find relevant content.",
+        "Highlight important keywords or attributes associated with an item.",
+        "Allow users to filter content dynamically by clicking on tags.",
+        "Display topics or categories associated with an article, post or product."
       ]
     },
     "sourceModulePath": "components/tag/tag.js",
@@ -141,6 +184,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tag.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-tag.md"
+      }
     ]
   },
   "name": "syn-tag",
@@ -151,7 +200,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.2.0",
   "sources": [
     "packages/angular/components/tag/tag.component.ts",
     "packages/components/src/components/tag/tag.component.ts",

@@ -143,10 +143,12 @@ export const storybookTemplate = (customElementTag: string) => ({
   }) => getStorybookHelpers(customElementTag).template(data.args),
 });
 
-type ComponentPath = 'components' | 'templates';
-type Component<TPath extends ComponentPath> = keyof (typeof docsTokens)[TPath];
-type Attribute<TPath extends ComponentPath, TComponent extends Component<TPath>> =
-  keyof (typeof docsTokens)[TPath][TComponent];
+export type Component = keyof typeof docsTokens.components | keyof typeof docsTokens.templates;
+type Attribute<T extends Component> = T extends keyof typeof docsTokens.components
+  ? keyof typeof docsTokens.components[T]
+  : T extends keyof typeof docsTokens.templates
+    ? keyof typeof docsTokens.templates[T]
+    : never;
 
 /**
  * Returns the story description to the corresponding component and attribute

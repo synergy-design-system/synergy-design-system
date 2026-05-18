@@ -8,7 +8,5 @@ export default {
       'syn-tab-group',
       'syn-tab-panel',
     ],
-    templates: [
-    ],
   },
 };

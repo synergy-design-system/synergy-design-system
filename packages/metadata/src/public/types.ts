@@ -6,7 +6,7 @@
 import type { ComponentRules } from '../config/types.js';
 
 /** Logical metadata layer names used for query and response shaping. */
-export type LayerName = 'full' | 'interface' | 'examples';
+export type LayerName = 'full' | 'interface' | 'examples' | 'rules';
 /** Verbosity levels for response formatting in public query helpers. */
 export type Verbosity = 'readable' | 'compact' | 'minified';
 
@@ -61,6 +61,8 @@ export type ComponentInterfaceSnapshot = {
   dependencies: string[];
   documentation?: string;
   events: ComponentInterfaceEvent[];
+  figmaComponentId?: string;
+  figmaDocsId?: string;
   methods: ComponentInterfaceMethod[];
   properties: ComponentInterfaceProperty[];
   since: string;
@@ -121,7 +123,11 @@ export type ComponentCustom = {
     vue?: ComponentVueCustom;
   };
   interfaceSnapshot?: ComponentInterfaceSnapshot;
+  sourceModulePath?: string;
+  summary?: string;
   override?: {
+    figmaComponentId?: string;
+    figmaDocsId?: string;
     stories?: Array<{
       description?: { type: string; value: string };
       name: string;
@@ -288,9 +294,16 @@ export type PublicResponse<T> = {
 };
 
 /** Relation reference from one entity to another. */
+export type MetadataRelationType =
+  | 'dependsOn'
+  | 'usedBy'
+  | 'partOf'
+  | 'relates';
+
+/** Relation reference from one entity to another. */
 export type MetadataRelationRef = {
   id: string;
-  kind: string;
+  type: MetadataRelationType;
 };
 
 /** Reference to one generated layer file. */

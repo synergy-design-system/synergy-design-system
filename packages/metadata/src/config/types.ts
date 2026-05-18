@@ -24,11 +24,25 @@ export const ComponentOverrideSchema = z.object({
     }),
   ).optional(),
   figmaComponentId: z.string().optional(),
+  figmaDocsId: z.string().optional(),
   storySourcePath: z.string().optional(),
   storyTags: z.array(z.string()).optional(),
 }).strict();
 
 export type ComponentOverride = z.infer<typeof ComponentOverrideSchema>;
+
+/**
+ * Usage guideline schema — structured guidance with id, name, and content
+ */
+export const UsageGuidelineSchema = z
+  .object({
+    content: z.array(z.string()),
+    id: z.string(),
+    name: z.string(),
+  })
+  .strict();
+
+export type UsageGuideline = z.infer<typeof UsageGuidelineSchema>;
 
 /**
  * Component rules schema — authored design guidance per component.
@@ -51,7 +65,7 @@ export const ComponentRulesSchema = z
         templates: z.array(z.string()).optional(),
       })
       .optional(),
-    usageGuidelines: z.record(z.string(), z.array(z.string())).optional(),
+    usageGuidelines: z.array(UsageGuidelineSchema).optional(),
     useCases: z.array(z.string()).optional(),
   })
   .strict();

@@ -15,7 +15,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @summary Tags are used as labels to organize things or to indicate a selection.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs
  * @status stable
- * @since 2.0
+ * @since 1.2.0
  *
  * @dependency syn-icon-button
  *

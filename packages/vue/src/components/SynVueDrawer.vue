@@ -9,7 +9,7 @@
  * @summary Drawers slide in from a container to expose additional options and information.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs
  * @status stable
- * @since 2.0
+ * @since 1.8.0
  *
  * @dependency syn-icon-button
  *

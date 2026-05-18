@@ -6,9 +6,9 @@ import { z } from 'zod';
  */
 export const LayerRefSchema = z.object({
   /**
-   * Layer kind: examples (use cases), interface (API docs), full (source details)
+   * Layer kind: examples (use cases), interface (API docs), rules (usage guidance), full (source details)
    */
-  layer: z.enum(['examples', 'interface', 'full']),
+  layer: z.enum(['examples', 'interface', 'rules', 'full']),
   /**
    * Relative path to the asset, e.g., "metadata/layers/examples/components/button/basic.md"
    */

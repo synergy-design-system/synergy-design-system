@@ -22,7 +22,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "2.1.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -43,7 +43,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "42207-338162",
+      "figmaComponentId": "20730-47184",
+      "figmaDocsId": "42207-338162",
       "stories": [
         {
           "description": {
@@ -61,6 +62,15 @@
       "storyTags": [
         "Navigation"
       ]
+    },
+    "rules": {
+      "component": "syn-tab",
+      "related": {
+        "components": [
+          "syn-tab-group",
+          "syn-tab-panel"
+        ]
+      }
     },
     "sourceModulePath": "components/tab/tab.js",
     "summary": "Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel)."
@@ -117,6 +127,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tab.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-tab.md"
+      }
     ]
   },
   "name": "syn-tab",
@@ -127,7 +143,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "2.1.0",
   "sources": [
     "packages/angular/components/tab/tab.component.ts",
     "packages/components/src/components/tab/tab.component.ts",

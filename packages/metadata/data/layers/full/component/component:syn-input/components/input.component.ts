@@ -33,7 +33,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @summary Inputs collect data from the user.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  * @dependency syn-divider

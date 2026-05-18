@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.5.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -38,7 +38,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "41325-312743",
+      "figmaComponentId": "30345-113913",
+      "figmaDocsId": "41325-312743",
       "stories": [
         {
           "description": {
@@ -88,6 +89,39 @@
       "storySourcePath": "components.option",
       "storyTags": [
         "Form"
+      ]
+    },
+    "rules": {
+      "accessibility": [
+        "Long option names can be difficult to understand and perceive, so it's best to keep them concise.",
+        "Ensure that the beginning of each option is unique to avoid confusion, especially for screen reader users.",
+        "Don't include headings or interactive elements like links, buttons, or checkboxes within dropdown options."
+      ],
+      "component": "syn-option",
+      "related": {
+        "components": [
+          "syn-select",
+          "syn-combobox",
+          "syn-optgroup"
+        ],
+        "templates": [
+          "Forms"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Make sure all items in the list are mutually exclusive and unambiguous to help users understand what they are selecting.",
+            "Provide a default choice where applicable to guide users."
+          ],
+          "id": "content",
+          "name": "Content"
+        }
+      ],
+      "useCases": [
+        "Provide options in selects or comboboxes.",
+        "Allow users to select from a list of predefined choices in forms or settings, where they might choose one or more options.",
+        "Present filter options in searches or data tables."
       ]
     },
     "sourceModulePath": "components/option/option.js",
@@ -149,6 +183,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-option.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-option.md"
+      }
     ]
   },
   "name": "syn-option",
@@ -159,7 +199,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.5.0",
   "sources": [
     "packages/angular/components/option/option.component.ts",
     "packages/components/src/components/option/option-size.styles.ts",

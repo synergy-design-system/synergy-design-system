@@ -26,7 +26,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-item.js';
 
-import type { SynBreadcrumbItem } from '@synergy-design-system/components';
+import type SynBreadcrumbItem from '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-item.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynBreadcrumbItem>();

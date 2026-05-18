@@ -17,7 +17,7 @@ function halfNumbers(input) {
 }
 
 /**
- * Fix figma css blur variables as they are ment to be half of the figma value.
+ * Fix figma css blur variables as they are meant to be half of the figma value.
  * Before: --syn-overlay-background-blur: 16px;
  * After: --syn-overlay-background-blur: 8px;
  *

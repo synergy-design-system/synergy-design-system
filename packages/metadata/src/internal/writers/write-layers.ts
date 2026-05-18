@@ -362,7 +362,13 @@ ${event.description}
 
   // Add figma link if available in enriched override
   if (enrichedOverride?.figmaComponentId) {
-    documentationLines.push(`[Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=${enrichedOverride.figmaComponentId})`);
+    let baseLink = '';
+    // If full link instead of just the ID is provided, use it directly
+    if (!enrichedOverride.figmaComponentId.startsWith('http')) {
+      baseLink = 'https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=';
+    }
+
+    documentationLines.push(`[Figma Design](${baseLink}${enrichedOverride.figmaComponentId})`);
   }
 
   const finalDocumentation = documentationLines

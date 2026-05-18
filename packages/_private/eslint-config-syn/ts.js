@@ -58,7 +58,7 @@ export const createCustomConfig = ({
       '@stylistic/quotes': ['error', 'single', { avoidEscape: true }],
       '@stylistic/semi': ['error', 'always'],
       '@typescript-eslint/no-shadow': ['error'],
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_', }],
       '@typescript-eslint/no-use-before-define': ['error'],
       'import/no-unresolved': 'off', // TypeScript handles import resolution better
       'no-shadow': 'off',

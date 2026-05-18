@@ -4,11 +4,8 @@ import fsSync from 'fs';
 import path from 'path';
 import url from 'url';
 import { exec } from 'child_process';
-import util from 'util';
+import { promisify, styleText } from 'util';
 import prettier from 'prettier';
-import { deleteAsync } from 'del';
-import { globby } from 'globby';
-import chalk from 'chalk';
 import ora from 'ora';
 import { pascalCase } from 'change-case';
 
@@ -72,7 +69,7 @@ export const job = (label, action) => async (...args) => {
 /**
  * Creates an async version of exec
  */
-export const execPromise = util.promisify(exec);
+export const execPromise = promisify(exec);
 
 /**
  * Get the absolute path of one to many path parts,
@@ -133,7 +130,7 @@ export const getPackageJSONAsObject = () => JSON.parse(fsSync.readFileSync(getPa
 export const createRunPrepare = (label) => job(label, async (...dirs) => {
   // Remove all directories
   await Promise.all(
-    dirs.map(dir => deleteAsync(dir, { force: true })),
+    dirs.map(dir => fs.rm(dir, { force: true, recursive: true })),
   );
 
   // Create all directories
@@ -173,20 +170,41 @@ export const createHeader = (framework = '') => {
 };
 
 /**
- * Get the complete list of exports from the file system
- * @param {boolean} warn Show warning messages when skipping an entry?
+ * Generate import statements for component event types.
+ * @param {object[]} [events=[]] The component's event list from the manifest
+ * @returns {string} Newline-separated import type statements
  */
-export const getExportsListFromFileSystem = async (warn = false) => {
+export const getEventImports = (events = []) => events
+  .map(e => `import type { ${e.eventName} } from '@synergy-design-system/components';`)
+  .join('\n');
+
+/**
+ * Generate re-export statements for component event types.
+ * @param {object[]} [events=[]] The component's event list from the manifest
+ * @returns {string} Newline-separated export type statements
+ */
+export const getEventExports = (events = []) => events
+  .map(e => `export type { ${e.eventName} } from '@synergy-design-system/components';`)
+  .join('\n');
+
+/**
+ * Get the complete list of exports from the file system.
+ * @param {object} [options={}] Options
+ * @param {boolean} [options.warn=false] Show warning messages when skipping an entry. Default: false
+ * @param {boolean} [options.withChart=true] Include chart component in the export list. Default: true
+ * @returns {Promise<Array>} List of exported components with their name and path
+ */
+export const getExportsListFromFileSystem = async ({ warn = false, withChart = true } = {}) => {
   // Make sure to use the cache when calling the function again
   if (EXPORTED_COMPONENTS) {
-    return EXPORTED_COMPONENTS;
+    return EXPORTED_COMPONENTS.filter(c => withChart || c.componentName !== 'chart');
   }
 
   const componentsDir = getPath('../src/components');
   const optimizedPath = optimizePathForWindows(componentsDir);
 
   // Only treat components as available if there is a COMPONENTNAME.component.ts!
-  const foundComponents = await globby(`${optimizedPath}/**/*.component.ts`);
+  const foundComponents = await Array.fromAsync(fs.glob(`${optimizedPath}/**/*.component.ts`));
 
   EXPORTED_COMPONENTS = foundComponents
     .sort()
@@ -207,29 +225,30 @@ export const getExportsListFromFileSystem = async (warn = false) => {
 
       // Make sure to warn user if it seems we missed an export
       if (!available && warn) {
-        console.warn(`\n${chalk.yellow('⚠')} Warning: Not exporting component <${c.componentClass} /> as there is no export file found. Please create ${c.componentAbsolutePath} to export this file`);
+        console.warn(`\n${styleText('yellow','⚠')} Warning: Not exporting component <${c.componentClass} /> as there is no export file found. Please create ${c.componentAbsolutePath} to export this file`);
       }
 
       return available;
     });
 
-  return EXPORTED_COMPONENTS;
+  return EXPORTED_COMPONENTS.filter(c => withChart || c.componentName !== 'chart');
 };
 
 /**
  * Get all available components out of the metadata
  * @param {object} metadata Metadata, usually from components.json
+ * @param {boolean} [withChart=true] Include chart component in the export list? Default: true
  * @returns {array} List of components
  */
-export const getAllComponents = async (metadata) => {
+export const getAllComponents = async (metadata, withChart = true) => {
   // Make sure to use the cache when calling the function again
   if (ALL_COMPONENTS) {
-    return ALL_COMPONENTS;
+    return ALL_COMPONENTS.filter(c => withChart || c.tagNameWithoutPrefix !== 'chart');
   }
 
   const allComponents = [];
 
-  const exportedComponents = await getExportsListFromFileSystem(false);
+  const exportedComponents = await getExportsListFromFileSystem();
   const exportedComponentsWithoutPrefix = exportedComponents.map(c => c.componentName);
 
   metadata.modules.forEach(module => {
@@ -238,6 +257,7 @@ export const getAllComponents = async (metadata) => {
         const component = declaration;
         if (component && exportedComponentsWithoutPrefix.includes(component.tagNameWithoutPrefix)) {
           allComponents.push(Object.assign(component, {
+            componentPath: module.path.replace(/\.js$/, '.component.js'),
             path: module.path,
           }));
         }
@@ -248,7 +268,7 @@ export const getAllComponents = async (metadata) => {
   // Make sure to always sort alphabetically as this will otherwise trigger bad effects
   ALL_COMPONENTS = [...allComponents].sort(sortByComponentName);
 
-  return ALL_COMPONENTS;
+  return ALL_COMPONENTS.filter(c => withChart || c.tagNameWithoutPrefix !== 'chart');
 };
 
 /**
@@ -334,13 +354,13 @@ export const getIsTwoWayBindingEnabledFor = (componentName) => TWOWAY_BINDING_EN
  */
 export const getControlAttributeForTwoWayBinding = (componentName) => {
   switch (componentName) {
-  case 'checkbox':
-  case 'switch':
-    return 'checked';
-  case 'file':
-    return 'files';
-  default:
-    return 'value';
+    case 'checkbox':
+    case 'switch':
+      return 'checked';
+    case 'file':
+      return 'files';
+    default:
+      return 'value';
   }
 };
 
@@ -352,8 +372,8 @@ export const getControlAttributeForTwoWayBinding = (componentName) => {
 export const getEventAttributeForTwoWayBinding = (componentName) => {
   switch (componentName) {
   // #729: Syn-Range should emit on change as it may be too fast to use it with syn-input
-  case 'range': return 'syn-change';
-  default: return 'syn-input';
+    case 'range': return 'syn-change';
+    default: return 'syn-input';
   }
 };
 

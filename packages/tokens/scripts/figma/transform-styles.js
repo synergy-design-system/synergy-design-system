@@ -7,15 +7,23 @@
  * @typedef { import('@figma/rest-api-spec').DropShadowEffect} DropShadowEffect
  * @typedef { { radius?: number, spread?: number, color?: string, offsetX?: number, offsetY?: number } } DropShadowObject
  * @typedef {import('@figma/rest-api-spec').RGBA | import('@figma/rest-api-spec').RGB} Color
+ * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse['meta']} VariablesAndCollections
  */
-import { existsSync, readFileSync, writeFileSync } from 'fs';
-import { join } from 'path';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { setNestedProperty } from '../helpers.js';
 import {
   createDirectory, formatColor, getAliasValue, getAvailableThemes, resolveAlias,
 } from './helpers.js';
 import stylesJson from '../../src/figma-variables/styleTokens.json' with { type: 'json' };
-import { OUTPUT_DIR } from '../config.js';
+import variablesJson from '../../src/figma-variables/variableTokens.json' with { type: 'json' };
+import { COMPONENTS_COLLECTION_NAME, COMPONENTS_OUTPUT_DIR } from '../config.js';
+
+/**
+ */
+
+/** @type {VariablesAndCollections} */
+const figmaVariables = /** @type {VariablesAndCollections} */ (/** @type {unknown} */ (variablesJson));
 
 /**
  * The fetching result of the Figma API for styles.
@@ -70,7 +78,7 @@ const getAliasOrValueForStyle = (style, key) => {
     return style.style[key];
   }
 
-  const alias = resolveAlias(boundVariable.id);
+  const alias = resolveAlias(figmaVariables, boundVariable.id);
   if (alias) {
     return alias.value;
   }
@@ -85,7 +93,7 @@ const getAliasOrValueForStyle = (style, key) => {
  * @returns {unknown | undefined} The value of the alias variable, or undefined if not found.
  */
 const getRealValueFromAlias = (aliasId, modeId) => {
-  const alias = getAliasValue(aliasId, modeId);
+  const alias = getAliasValue(figmaVariables, aliasId, modeId);
   if (
     alias && typeof alias === 'object' && 'type' in alias
     && 'id' in alias && alias.type === 'VARIABLE_ALIAS'
@@ -137,7 +145,7 @@ const getBoundVariablesEffectStyles = (style, modeId) => {
       const boundingVariables = Object.fromEntries(Object.entries(effect.boundVariables || {})
         .map(([key, value]) => {
           const aliasValue = getRealValueFromAlias(value.id, modeId);
-          const alias = resolveAlias(value.id);
+          const alias = resolveAlias(figmaVariables, value.id);
           if (alias?.type === 'color') {
             const color = formatColor(/** @type {Color} */(aliasValue));
             return [key, color];
@@ -255,7 +263,7 @@ const transformFigmaStyles = () => {
   const result = {};
   console.log('Transforming Figma styles...');
 
-  const themes = getAvailableThemes();
+  const themes = getAvailableThemes(figmaVariables, COMPONENTS_COLLECTION_NAME);
 
   figmaStyles.forEach((style) => {
     themes.forEach(({ id, name }) => {
@@ -266,10 +274,10 @@ const transformFigmaStyles = () => {
   });
 
   Object.entries(result).forEach(([name, styles]) => {
-    const targetFilePath = join(OUTPUT_DIR, `${name}.json`);
+    const targetFilePath = join(COMPONENTS_OUTPUT_DIR, `${name}.json`);
     if (!existsSync(targetFilePath)) {
       console.warn(`Target file ${targetFilePath} does not exist. Creating a new file.`);
-      createDirectory(OUTPUT_DIR);
+      createDirectory(COMPONENTS_OUTPUT_DIR);
       writeFileSync(targetFilePath, '{}', 'utf-8');
     }
     const fileData = readFileSync(targetFilePath, 'utf-8');

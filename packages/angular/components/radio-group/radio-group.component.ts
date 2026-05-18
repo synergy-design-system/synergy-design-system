@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynRadioGroup } from '@synergy-design-system/components';
+import type SynRadioGroup from '@synergy-design-system/components/components/radio-group/radio-group.component.js';
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';

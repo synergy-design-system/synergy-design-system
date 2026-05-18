@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynAccordion } from '@synergy-design-system/components';
+import type SynAccordion from '@synergy-design-system/components/components/accordion/accordion.component.js';
 
 import '@synergy-design-system/components/components/accordion/accordion.js';
 

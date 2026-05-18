@@ -1,5 +1,6 @@
 import { kebabCase } from 'change-case';
-import * as tokens from '@synergy-design-system/tokens';
+import * as componentTokens from '@synergy-design-system/tokens';
+import * as chartTokens from '@synergy-design-system/tokens/charts';
 
 /**
  * Parse size patterns like "2xlarge", "xlarge", "large", etc.
@@ -155,17 +156,36 @@ export const getRawValueFromToken = (token: string, parentElement?: HTMLElement)
 };
 
 /**
- * Get all tokens from a category as array of key value pairs
- * @param category The category to search for
- * @param useFullTokenName Optionally preserve the token name
- * @returns Returns the complete tokens category
+ * Returns a function that filters and maps design tokens by category prefix.
+ *
+ * @param tokens - A flat record of all design tokens (key = token name, value = CSS variable string).
+ * @returns A function that accepts a category string and an optional flag:
  */
-export const getTokensByCategory = (category: string, useFullTokenName = false): [string, string][] => Object.entries(tokens)
+const getTokensByCategory = (tokens: Record<string, string>) => (
+  category: string,
+  useFullTokenName = false,
+): [string, string][] => Object.entries(tokens)
   .filter(([token]) => token.toLowerCase().startsWith(`syn${category.toLocaleLowerCase()}`))
   .map(([token, value]) => [
     useFullTokenName ? token : token.toLowerCase().replace('syn', ''),
     value,
   ]);
+
+/**
+ * Get all component tokens from a category as array of key value pairs
+ * @param category The category to search for
+ * @param useFullTokenName Optionally preserve the token name
+ * @returns Returns the complete tokens category
+ */
+export const getComponentTokensByCategory = getTokensByCategory(componentTokens);
+
+/**
+ * Get all chart tokens from a category as array of key value pairs
+ * @param category The category to search for
+ * @param useFullTokenName Optionally preserve the token name
+ * @returns Returns the complete chart tokens category
+ */
+export const getChartTokensByCategory = getTokensByCategory(chartTokens);
 
 /**
  * Get the raw value of a css property from an element
@@ -208,8 +228,8 @@ const sortByOrder = (tokenA: string, tokenB: string, orderArray: string[], repla
  * @returns Sort comparison result
  */
 const sortByNumber = (tokenA: string, tokenB: string, replaceString: string): number => {
-  const aValue = parseInt(tokenA.toLowerCase().replaceAll(replaceString, '').trim(), 10);
-  const bValue = parseInt(tokenB.toLowerCase().replaceAll(replaceString, '').trim(), 10);
+  const aValue = parseInt(tokenA.toLowerCase().replaceAll(replaceString, '').replaceAll('_', '').trim(), 10);
+  const bValue = parseInt(tokenB.toLowerCase().replaceAll(replaceString, '').replaceAll('_', '').trim(), 10);
 
   if (bValue > aValue) return -1;
   if (bValue < aValue) return 1;

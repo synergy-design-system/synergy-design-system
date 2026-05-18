@@ -12,7 +12,10 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./components/*": "./dist/components/*"
+    "./components/*": {
+      "types": "./dist/components/*.vue.d.ts",
+      "import": "./dist/components/*.js"
+    }
   },
   "scripts": {
     "_build": "vite build"

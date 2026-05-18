@@ -20,7 +20,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/spinner/spinner.js';
 
-import type { SynSpinner } from '@synergy-design-system/components';
+import type SynSpinner from '@synergy-design-system/components/components/spinner/spinner.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynSpinner>();

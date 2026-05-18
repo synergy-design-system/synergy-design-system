@@ -59,7 +59,7 @@ import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
-import type { SynNavItem } from '@synergy-design-system/components';
+import type SynNavItem from '@synergy-design-system/components/components/nav-item/nav-item.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynNavItem>();

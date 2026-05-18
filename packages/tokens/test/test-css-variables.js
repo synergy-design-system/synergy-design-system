@@ -2,26 +2,55 @@
  * Test script to compare CSS variables between built and reference files
  */
 
-import { readFileSync } from 'fs';
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const filename = fileURLToPath(import.meta.url);
 const directory = dirname(filename);
 
 // Paths to the files to compare
-const BUILT_FILE_DIR = join(directory, '../dist/themes/');
+const BUILT_FILE_COMPONENTS_DIR = join(directory, '../dist/themes/');
+const BUILT_FILE_CHARTS_DIR = join(directory, '../dist/charts/themes/');
 const REFERENCE_FILE_DIR = join(directory, '../test/');
 const SICK2018_LIGHT_FILE = 'sick2018_light.css';
 const SICK2018_DARK_FILE = 'sick2018_dark.css';
 const SICK2025_LIGHT_FILE = 'sick2025_light.css';
 const SICK2025_DARK_FILE = 'sick2025_dark.css';
+const SICK2025_LIGHT_CHARTS_FILE = 'sick2025_light_charts.css';
+const SICK2025_DARK_CHARTS_FILE = 'sick2025_dark_charts.css';
 
 const modes = [
-  SICK2018_LIGHT_FILE,
-  SICK2018_DARK_FILE,
-  SICK2025_DARK_FILE,
-  SICK2025_LIGHT_FILE,
+  {
+    builtFile: join(BUILT_FILE_COMPONENTS_DIR, SICK2018_LIGHT_FILE),
+    name: 'sick2018_light',
+    referenceFile: join(REFERENCE_FILE_DIR, SICK2018_LIGHT_FILE),
+  },
+  {
+    builtFile: join(BUILT_FILE_COMPONENTS_DIR, SICK2018_DARK_FILE),
+    name: 'sick2018_dark',
+    referenceFile: join(REFERENCE_FILE_DIR, SICK2018_DARK_FILE),
+  },
+  {
+    builtFile: join(BUILT_FILE_COMPONENTS_DIR, SICK2025_DARK_FILE),
+    name: 'sick2025_dark',
+    referenceFile: join(REFERENCE_FILE_DIR, SICK2025_DARK_FILE),
+  },
+  {
+    builtFile: join(BUILT_FILE_COMPONENTS_DIR, SICK2025_LIGHT_FILE),
+    name: 'sick2025_light',
+    referenceFile: join(REFERENCE_FILE_DIR, SICK2025_LIGHT_FILE),
+  },
+  {
+    builtFile: join(BUILT_FILE_CHARTS_DIR, SICK2025_LIGHT_FILE),
+    name: 'sick2025_light_charts',
+    referenceFile: join(REFERENCE_FILE_DIR, SICK2025_LIGHT_CHARTS_FILE),
+  },
+  {
+    builtFile: join(BUILT_FILE_CHARTS_DIR, SICK2025_DARK_FILE),
+    name: 'sick2025_dark_charts',
+    referenceFile: join(REFERENCE_FILE_DIR, SICK2025_DARK_CHARTS_FILE),
+  },
 ];
 
 /**
@@ -133,14 +162,12 @@ function runTest() {
   try {
     /** @type {{[key: string]: ReturnType<typeof compareVariables>}} */
     const modesResults = {};
-    modes.forEach(mode => {
-      console.log(`\n🔍 Processing mode: ${mode}`);
-      const BUILT_CSS_PATH = join(BUILT_FILE_DIR, mode);
-      const REFERENCE_CSS_PATH = join(REFERENCE_FILE_DIR, mode);
-      console.log(`📖 Reading built CSS: ${BUILT_CSS_PATH}`);
-      const builtCSS = readFileSync(BUILT_CSS_PATH, 'utf8');
-      console.log(`📖 Reading reference CSS files: ${REFERENCE_CSS_PATH}`);
-      const referenceCSS = readFileSync(REFERENCE_CSS_PATH, 'utf8');
+    modes.forEach(({ name, builtFile, referenceFile }) => {
+      console.log(`\n🔍 Processing mode: ${name}`);
+      console.log(`📖 Reading built CSS: ${builtFile}`);
+      const builtCSS = readFileSync(builtFile, 'utf8');
+      console.log(`📖 Reading reference CSS files: ${referenceFile}`);
+      const referenceCSS = readFileSync(referenceFile, 'utf8');
 
       console.log('\n🔍 Extracting CSS variables...');
       const builtVars = extractCSSVariables(builtCSS);
@@ -152,7 +179,7 @@ function runTest() {
       console.log('\n⚖️  Comparing variables...');
       const results = compareVariables(builtVars, refVars);
 
-      modesResults[mode] = results;
+      modesResults[name] = results;
     });
 
     const success = Object.values(modesResults).every(result => result.success);

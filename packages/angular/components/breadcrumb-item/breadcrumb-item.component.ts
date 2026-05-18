@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynBreadcrumbItem } from '@synergy-design-system/components';
+import type SynBreadcrumbItem from '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-item.component.js';
 
 import '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-item.js';
 

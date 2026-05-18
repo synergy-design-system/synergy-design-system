@@ -8,7 +8,7 @@ import { getExportsListFromFileSystem, job } from '../shared.js';
 export const runCreateExports = job('Synergy: Creating component exports in src/synergy.ts...', async (componentsDir) => {
   const synergyMainFile = path.join(componentsDir, 'src/synergy.ts');
 
-  const foundComponents = await getExportsListFromFileSystem(true);
+  const foundComponents = await getExportsListFromFileSystem({ warn: true, withChart: false });
 
   // Get the export list for of all components
   const exportList = foundComponents.map(

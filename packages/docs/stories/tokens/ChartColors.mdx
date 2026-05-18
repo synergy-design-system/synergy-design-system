@@ -1,0 +1,46 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import {
+  getChartColorAsPalette,
+} from '../../src/helpers';
+import {
+  generateStoryDescription
+} from '../../src/helpers/component.ts';
+import {
+  TokenPalette,
+} from '../../src/shared-components/TokenPalette.tsx';
+
+<Meta title="Tokens/Chart Colors" tags={['Design Tokens', 'Colors', 'Charts']} />
+
+# Color Palettes
+
+{[
+  {
+    title: 'Categorical Palette',
+    palettes: [{tokens: getChartColorAsPalette('categorical', true)}],
+    description: generateStoryDescription('chart-colors', 'categorical', 'tokens'),
+  },
+  {
+    title: 'Sequential Palettes',
+    palettes: ['1', '2', '3', '4', '5', '6', '7'].map(num => ({
+      subtitle: `Sequential Palette ${num}`,
+      tokens: getChartColorAsPalette(`sequential0${num}`, true)
+    })),
+    description: generateStoryDescription('chart-colors', 'sequential', 'tokens'),},
+{
+  title: 'Sequential Status Palettes',
+  palettes: ['error', 'success', 'critical', 'warning',  'info'].map(status => ({
+    subtitle: `Sequential Status ${status.charAt(0).toUpperCase() + status.slice(1)} Palette`,
+    tokens: getChartColorAsPalette(`sequentialstatus${status}`, true)
+  })),
+  description: generateStoryDescription('chart-colors', 'sequential-status', 'tokens'),
+}
+
+].map(({ title, palettes, description }) => (
+  <TokenPalette
+    key={title}
+    paletteTitle={title}
+    palettes={palettes}
+    description={description}
+  />
+))}
+

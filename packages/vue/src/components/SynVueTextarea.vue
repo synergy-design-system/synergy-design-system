@@ -35,7 +35,7 @@ import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
-import type { SynTextarea } from '@synergy-design-system/components';
+import type SynTextarea from '@synergy-design-system/components/components/textarea/textarea.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTextarea>();

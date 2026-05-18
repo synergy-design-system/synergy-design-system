@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynTabPanel } from '@synergy-design-system/components';
+import type SynTabPanel from '@synergy-design-system/components/components/tab-panel/tab-panel.component.js';
 
 import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
 

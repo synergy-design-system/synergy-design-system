@@ -9,7 +9,8 @@ import { type ScrapingConfig, type StorybookArtifactKind } from './types.js';
 const getStoriesFromStorybook = (prefix: string): Record<string, string> => {
   const foundStories = Object
     .entries(storybookOutput.entries)
-    .filter(([key]) => key.startsWith(`${prefix}-`) && key.endsWith('-docs'))
+    // Ignore overview pages (e.g., "charts-overview--docs") and any stories that don't match the prefix
+    .filter(([key]) => key.startsWith(`${prefix}-`) && key.endsWith('--docs') && !key.includes('overview'))
     .map(([, value]) => value)
     .reduce((acc, story) => {
       const componentName = story.id.split('--')[0].replace(`${prefix}-`, '');
@@ -21,8 +22,12 @@ const getStoriesFromStorybook = (prefix: string): Record<string, string> => {
 };
 
 const componentStories = getStoriesFromStorybook('components');
+const chartStories = getStoriesFromStorybook('charts');
 const styleStories = getStoriesFromStorybook('styles');
 const templateStories = getStoriesFromStorybook('templates');
+
+// enhance componentStories with chart stories, as charts are a type of component
+Object.assign(componentStories, chartStories);
 
 const formatStoriesAsMarkdown = (stories: Parameters<ScrapingConfig['formatContent']>[1]): string => stories.map(
   (story) => `

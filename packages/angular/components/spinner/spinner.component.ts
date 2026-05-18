@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynSpinner } from '@synergy-design-system/components';
+import type SynSpinner from '@synergy-design-system/components/components/spinner/spinner.component.js';
 
 import '@synergy-design-system/components/components/spinner/spinner.js';
 

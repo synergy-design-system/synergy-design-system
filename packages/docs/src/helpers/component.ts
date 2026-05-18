@@ -143,17 +143,22 @@ export const storybookTemplate = (customElementTag: string) => ({
   }) => getStorybookHelpers(customElementTag).template(data.args),
 });
 
-type ComponentPath = 'components' | 'templates';
+type ComponentPath = 'components' | 'templates' | 'tokens';
 type Component<TPath extends ComponentPath> = keyof (typeof docsTokens)[TPath];
 type Attribute<TPath extends ComponentPath, TComponent extends Component<TPath>> =
   keyof (typeof docsTokens)[TPath][TComponent];
 
 /**
- * Returns the story description to the corresponding component and attribute
+ * Returns a formatted HTML string containing the story description for a given component and attribute,
+ * sourced from the docs token JSON file. The description is taken from the `description.value` field
+ * and an optional developer hint from the `note.value` field. Line breaks in the source text are
+ * converted to `<br/>` tags. If no description is found, `'No Description'` is returned as fallback.
+ * If a hint is present, it is appended below the description with a bold heading.
  *
- * @param {T} component  - The component name
- * @param {Attribute<T>} attribute - The attribute name
- * @returns {string} The story description
+ * @param {string} component - The component name (must be a valid key in the docs tokens for the given path)
+ * @param {string} attribute - The attribute name within the component
+ * @param {'components' | 'templates' | 'tokens'} [path='components'] - The token path to look up
+ * @returns {string} The formatted HTML story description string
  */
 export function generateStoryDescription<TComponent extends Component<'components'>>(
   component: TComponent,
@@ -164,6 +169,11 @@ export function generateStoryDescription<TComponent extends Component<'templates
   component: TComponent,
   attribute: Attribute<'templates', TComponent>,
   path: 'templates',
+): string;
+export function generateStoryDescription<TComponent extends Component<'tokens'>>(
+  component: TComponent,
+  attribute: Attribute<'tokens', TComponent>,
+  path: 'tokens',
 ): string;
 export function generateStoryDescription(
   component: keyof typeof docsTokens.components | keyof typeof docsTokens.templates,

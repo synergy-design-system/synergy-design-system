@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynButtonGroup } from '@synergy-design-system/components';
+import type SynButtonGroup from '@synergy-design-system/components/components/button-group/button-group.component.js';
 
 import '@synergy-design-system/components/components/button-group/button-group.js';
 

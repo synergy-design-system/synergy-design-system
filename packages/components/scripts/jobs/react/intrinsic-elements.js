@@ -22,7 +22,14 @@ export const runCreateIntrinsicElements = job('React: Creating react intrinsic e
     return acc.concat(events.map(event => event.eventName));
   }, []);
 
-  const componentTypeImports = components.map(component => component.name);
+  // Get a list of all component types except of chart
+  const componentTypeImports = components
+    .filter(component => component.tagNameWithoutPrefix !== 'chart')
+    .map(component => component.name);
+
+  // Create a separate chart import, as it it not part of the synergy component default export
+  const chartComponent = components.find(component => component.tagNameWithoutPrefix === 'chart');
+  const chartTypeImport = `import type ${chartComponent.name} from '@synergy-design-system/components/${chartComponent.componentPath}';`;
 
   const synergyTypes = Array.from(new Set([
     ...eventTypeImports,
@@ -33,7 +40,8 @@ export const runCreateIntrinsicElements = job('React: Creating react intrinsic e
   const imports = `
     import type { CSSProperties, DOMAttributes, RefObject } from 'react';
     import type { ${synergyTypes.join(',')} } from '@synergy-design-system/components';
-
+    ${chartTypeImport}
+  
     /**
      * Used core types
      * @see https://coryrylan.com/blog/how-to-use-web-components-with-typescript-and-react

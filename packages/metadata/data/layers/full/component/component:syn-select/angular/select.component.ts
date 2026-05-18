@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynSelect } from '@synergy-design-system/components';
+import type SynSelect from '@synergy-design-system/components/components/select/select.component.js';
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynClearEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';

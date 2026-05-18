@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynRangeTick } from '@synergy-design-system/components';
+import type SynRangeTick from '@synergy-design-system/components/components/range-tick/range-tick.component.js';
 
 import '@synergy-design-system/components/components/range-tick/range-tick.js';
 

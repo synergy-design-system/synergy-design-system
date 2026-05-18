@@ -35,7 +35,7 @@ import '@synergy-design-system/components/components/button/button.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
-import type { SynButton } from '@synergy-design-system/components';
+import type SynButton from '@synergy-design-system/components/components/button/button.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynButton>();

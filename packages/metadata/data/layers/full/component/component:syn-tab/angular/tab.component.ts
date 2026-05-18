@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynTab } from '@synergy-design-system/components';
+import type SynTab from '@synergy-design-system/components/components/tab/tab.component.js';
 import type { SynCloseEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tab/tab.js';
 

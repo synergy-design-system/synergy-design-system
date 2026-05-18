@@ -22,10 +22,11 @@ describe('token-info tool', () => {
     await session.close();
   });
 
-  it('returns raw token file content', async () => {
+  it('returns raw token file content and rules', async () => {
     const response = await session.client.callTool({
       arguments: {
         theme: 'sick2025-light',
+        tokenScope: 'components',
         type: 'css',
       },
       name: 'token-info',
@@ -33,7 +34,82 @@ describe('token-info tool', () => {
     const typedResponse = toToolResponse(response);
 
     assert.ok(Array.isArray(typedResponse.content));
-    assert.ok(typedResponse.content.length > 0);
-    assert.ok(typedResponse.content[0].text.length > 0);
+    assert.equal(typedResponse.content.length, 2);
+
+    const [rulesContent, listContent] = typedResponse.content;
+    assert.equal(rulesContent.type, 'text');
+    assert.match(rulesContent.text, /Rules for chatbots and llms/i);
+
+    assert.equal(listContent.type, 'text');
+    assert.match(listContent.text, /--syn-input-color/i);
+  });
+
+  it('returns chart tokens when tokenScope is "charts"', async () => {
+    const response = await session.client.callTool({
+      arguments: {
+        theme: 'sick2025-light',
+        tokenScope: 'charts',
+        type: 'css',
+      },
+      name: 'token-info',
+    });
+    const typedResponse = toToolResponse(response);
+    const listContent = typedResponse.content[1];
+
+    assert.equal(listContent.type, 'text');
+    assert.match(listContent.text, /--syn-categorical-/i);
+  });
+
+  it('falls back to sick2025-light when sick2018-light is requested with tokenScope "charts"', async () => {
+    const sick2018Response = await session.client.callTool({
+      arguments: {
+        theme: 'sick2018-light',
+        tokenScope: 'charts',
+        type: 'css',
+      },
+      name: 'token-info',
+    });
+    const sick2025Response = await session.client.callTool({
+      arguments: {
+        theme: 'sick2025-light',
+        tokenScope: 'charts',
+        type: 'css',
+      },
+      name: 'token-info',
+    });
+
+    const sick2018Typed = toToolResponse(sick2018Response);
+    const sick2025Typed = toToolResponse(sick2025Response);
+
+    // Both should return the same token content since sick2018 falls back to sick2025
+    const sick2018Content = sick2018Typed.content.map((c) => c.text).join('\n');
+    const sick2025Content = sick2025Typed.content.map((c) => c.text).join('\n');
+    assert.equal(sick2018Content, sick2025Content);
+  });
+
+  it('falls back to sick2025-dark when sick2018-dark is requested with tokenScope "charts"', async () => {
+    const sick2018Response = await session.client.callTool({
+      arguments: {
+        theme: 'sick2018-dark',
+        tokenScope: 'charts',
+        type: 'css',
+      },
+      name: 'token-info',
+    });
+    const sick2025Response = await session.client.callTool({
+      arguments: {
+        theme: 'sick2025-dark',
+        tokenScope: 'charts',
+        type: 'css',
+      },
+      name: 'token-info',
+    });
+
+    const sick2018Typed = toToolResponse(sick2018Response);
+    const sick2025Typed = toToolResponse(sick2025Response);
+
+    const sick2018Content = sick2018Typed.content.map((c) => c.text).join('\n');
+    const sick2025Content = sick2025Typed.content.map((c) => c.text).join('\n');
+    assert.equal(sick2018Content, sick2025Content);
   });
 });

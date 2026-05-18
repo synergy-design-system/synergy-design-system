@@ -19,7 +19,7 @@ export const runCreateNgModule = job('Angular: Creating SynergyModule...', async
   await fs.mkdir(synergyModuleDir, { recursive: true });
 
   // Get the path to component exports
-  const components = await getAllComponents(metadata);
+  const components = await getAllComponents(metadata, false);
   const componentNames = components.map(component => `${component.name}Component`)
     .join(',\n');
 

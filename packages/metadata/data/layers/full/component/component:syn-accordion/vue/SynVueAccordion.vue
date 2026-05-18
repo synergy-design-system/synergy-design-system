@@ -19,7 +19,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/accordion/accordion.js';
 
-import type { SynAccordion } from '@synergy-design-system/components';
+import type SynAccordion from '@synergy-design-system/components/components/accordion/accordion.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynAccordion>();

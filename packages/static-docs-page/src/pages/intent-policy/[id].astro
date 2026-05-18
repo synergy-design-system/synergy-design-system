@@ -9,6 +9,7 @@ import {
 } from '@synergy-design-system/metadata';
 import Layout from '../../layouts/Layout.astro';
 import ContentFooter from '../../components/ContentFooter.astro';
+import ContentHeader from '../../components/ContentHeader.astro';
 import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
 
 export async function getStaticPaths() {
@@ -101,14 +102,13 @@ const getPhaseBadge = (phase: string): SynBadge['variant'] => {
 
 <Layout>
 	<syn-card shadow>
-		<h1 class="syn-heading--3x-large" slot="header">
-			Intent Policy: {category.data!.id}
+		<ContentHeader headline={`Intent Policy: ${category.data!.id}`}>
 			{category.data!.phase && (
 				<syn-tooltip content={getDescriptionForPhase(category.data!.phase)}>
 					<syn-badge variant={getPhaseBadge(category.data!.phase)}>{category.data!.phase}</syn-badge>
 				</syn-tooltip>
 			)}
-		</h1>
+		</ContentHeader>
 
 		<h2 class="syn-heading--2x-large">Description</h2>
 		<p>{category.data!.description}</p>

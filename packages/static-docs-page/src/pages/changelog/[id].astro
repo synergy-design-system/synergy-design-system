@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ContentHeader from '../../components/ContentHeader.astro';
 
 const PACKAGE_LABELS: Record<string, string> = {
 	angular: '@synergy-design-system/angular',
@@ -42,9 +43,7 @@ const label = PACKAGE_LABELS[id!] ?? id;
 <Layout>
 	{Content ? (
 		<syn-card class="changelog-view" shadow>
-			<header class="changelog-header" slot="header">
-				<h1 class="syn-heading--3x-large">{label}</h1>
-			</header>
+			<ContentHeader headline={label} />
 			<div class="changelog-content">
 				<Content />
 			</div>
@@ -61,11 +60,6 @@ const label = PACKAGE_LABELS[id!] ?? id;
 </Layout>
 
 <style>
-	.changelog-header {
-		display: flex;
-		align-items: center;
-	}
-
 	.changelog-content :global(h1) {
 		/* The markdown file itself has a top-level # Changelog heading — hide it,
 		   the page header already shows the package name */

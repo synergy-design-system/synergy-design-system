@@ -65,15 +65,4 @@ main {
   table {
     width: 100%;
   }
-
-  .component-header {
-    justify-content: space-between;
-    display: flex;
-
-    nav {
-      align-items: center;
-      display: flex;
-      gap: var(--syn-spacing-small);
-    }
-  }
 }

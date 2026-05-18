@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ContentHeader from '../components/ContentHeader.astro';
 ---
 
 <Layout>
 	<syn-card>
-		<h1 class="syn-heading--2x-large" slot="header">Welcome to the Synergy Design System Documentation</h1>
+		<ContentHeader headline="Welcome to the Synergy Design System Documentation" headlineClass="syn-heading--2x-large" />
 		<p>
 			This documentation is a read-only projection of the canonical <a class="syn-link" href="https://github.com/synergy-design-system/synergy-design-system/tree/main/packages/metadata" target="_blank">Synergy Design System metadata</a>.
 			This site reflects the current authoritative Synergy Design System specification.

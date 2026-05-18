@@ -6,6 +6,7 @@ import {
 } from '@synergy-design-system/metadata';
 import Layout from '../../layouts/Layout.astro';
 import ContentFooter from '../../components/ContentFooter.astro';
+import ContentHeader from '../../components/ContentHeader.astro';
 import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
 
 export async function getStaticPaths() {
@@ -93,8 +94,7 @@ const codeSamples = examples.flatMap((entry) => parseTemplateCodeSamples(entry.c
 <Layout>
 	{template ? (
 		<syn-card shadow>
-			<h1 class="syn-heading--3x-large" slot="header">
-				{template.name}
+			<ContentHeader headline={template.name}>
 				<nav>
 					{template.status && (
 						<syn-badge variant={template.status === 'stable' ? 'success' : 'warning'}>
@@ -109,7 +109,7 @@ const codeSamples = examples.flatMap((entry) => parseTemplateCodeSamples(entry.c
 						</syn-tooltip>
 					)}
 				</nav>
-			</h1>
+			</ContentHeader>
 
 			<section>
 				<h2 class="syn-heading--2x-large">Code Samples</h2>

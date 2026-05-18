@@ -1,13 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContentFooter from '../components/ContentFooter.astro';
+import ContentHeader from '../components/ContentHeader.astro';
 ---
 
 <Layout>
   <syn-card>
-    <h1 class="syn-heading--2x-large" slot="header">
-      Frequently misunderstood topics
-    </h1>
+    <ContentHeader headline="Frequently misunderstood topics" headlineClass="syn-heading--2x-large" />
 
     <p>
       This page clarifies common misconceptions about the Synergy Design System.

@@ -5,6 +5,7 @@ import {
 } from '@synergy-design-system/metadata';
 import Layout from '../../layouts/Layout.astro';
 import ContentFooter from '../../components/ContentFooter.astro';
+import ContentHeader from '../../components/ContentHeader.astro';
 import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
 
 export async function getStaticPaths() {
@@ -42,11 +43,7 @@ const methods = component?.custom?.interfaceSnapshot?.methods?.filter(method => 
 <Layout>
 	{component ? (
 		<syn-card class="component-view" shadow>
-			{/* Header */}
-			<header class="component-header" slot="header">
-				<h1 class="syn-heading--3x-large" slot="header">
-					{component.name}
-				</h1>
+			<ContentHeader headline={component.name}>
 				<nav>
 					{component.status && (
 						<syn-tooltip>
@@ -97,8 +94,7 @@ const methods = component?.custom?.interfaceSnapshot?.methods?.filter(method => 
 						</syn-tooltip>
 					)}
 				</nav>
-			</header>
-			{/* /Header */}
+			</ContentHeader>
 
 			{/* Description */}
 			<section>

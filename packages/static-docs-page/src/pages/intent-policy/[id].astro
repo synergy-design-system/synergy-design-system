@@ -1,0 +1,167 @@
+---
+import { type SynBadge } from '@synergy-design-system/components';
+import {
+	experimental_listIntentCategories,
+	experimental_getIntentCategory,
+	experimental_listIntentCapabilities,
+	experimental_listIntents,
+	type IntentTargetRef,
+} from '@synergy-design-system/metadata';
+import Layout from '../../layouts/Layout.astro';
+import ContentFooter from '../../components/ContentFooter.astro';
+import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
+
+export async function getStaticPaths() {
+	const result = await experimental_listIntentCategories(metadataStoreOptions);
+
+	return result.data.map(category => ({
+		params: { id: category.id },
+		props: {
+			categoryId: category.id,
+		}
+	}));
+}
+
+const routeId = Astro.params.id;
+const { categoryId } = Astro.props;
+
+if (!routeId) {
+	throw new Error('Missing intent policy route parameter.');
+}
+
+if (!categoryId) {
+	throw new Error('Missing intent policy category id for route.');
+}
+
+const category = await experimental_getIntentCategory(categoryId, {}, metadataStoreOptions);
+
+const intents = await experimental_listIntents({
+	category: categoryId,
+	includePhases: ['experimental'],
+}, metadataStoreOptions);
+
+const capabilitiesByIntentId = new Map(
+	await Promise.all(intents.data.map(async intent => {
+		const capabilities = await experimental_listIntentCapabilities(intent.id, {
+			includePhases: ['experimental'],
+		}, metadataStoreOptions);
+
+		return [intent.id, capabilities.data] as const;
+	})),
+);
+
+const nowIso = new Date().toISOString();
+
+const formatTarget = (target: IntentTargetRef): string => {
+	if (target.id) {
+		return target.id;
+	}
+
+	if (target.name) {
+		return `${target.kind}:${target.name}`;
+	}
+
+	if (target.selector) {
+		return `${target.kind}:${target.selector}`;
+	}
+
+	if (target.classes && target.classes.length > 0) {
+		return `${target.kind}:.${target.classes.join('.')}`;
+	}
+
+	return target.kind;
+};
+
+const getDescriptionForPhase = (phase: string): string => {
+	switch (phase) {
+		case 'deprecated':
+			return 'This intent is deprecated and may be removed in future releases. Use with caution.';
+		case 'experimental':
+			return 'This intent is experimental and may change or be removed in future releases. Use with caution.';
+		case 'stable':
+			return 'This intent is stable and ready for production use.';
+		default:
+			return '';
+	}
+};
+
+const getPhaseBadge = (phase: string): SynBadge['variant'] => {
+	switch (phase) {
+		case 'deprecated':
+			return 'danger';
+		case 'experimental':
+			return 'warning';
+		case 'stable':
+			return 'success';
+		default:
+			return 'neutral';
+	}
+};
+---
+
+<Layout>
+	<syn-card shadow>
+		<h1 class="syn-heading--3x-large" slot="header">
+			Intent Policy: {category.data!.id}
+			{category.data!.phase && (
+				<syn-tooltip content={getDescriptionForPhase(category.data!.phase)}>
+					<syn-badge variant={getPhaseBadge(category.data!.phase)}>{category.data!.phase}</syn-badge>
+				</syn-tooltip>
+			)}
+		</h1>
+
+		<h2 class="syn-heading--2x-large">Description</h2>
+		<p>{category.data!.description}</p>
+
+		<h2 class="syn-heading--2x-large">Intents</h2>
+		{intents.data.length > 0 && (
+			<>
+				{intents.data.map(intent => {
+					const linkedCapabilities = capabilitiesByIntentId.get(intent.id) ?? [];
+					return (
+					<article>
+						<h3 class="syn-heading--large">
+							{intent.id}
+							{intent.phase && (
+								<syn-tooltip content={getDescriptionForPhase(intent.phase)}>
+									<syn-badge variant={getPhaseBadge(intent.phase)}>{intent.phase}</syn-badge>
+								</syn-tooltip>
+							)}
+						</h3>
+
+						<ul>
+							<li>
+								<strong>Description</strong>
+								{intent.description}
+							</li>
+							<li>
+								<strong>User Goal</strong>
+								{intent.userGoal}
+							</li>
+							<li>
+								<strong>Linked Targets</strong>
+								{linkedCapabilities.length > 0 ? (
+									<ul>
+										{linkedCapabilities.map(capability => (
+											<li>
+												{formatTarget(capability.target)}
+											</li>
+										))}
+									</ul>
+								) : (
+									<span> No linked targets found.</span>
+								)}
+							</li>
+						</ul>
+					</article>
+					);
+				})}
+			</>
+		)}
+
+		<ContentFooter
+			creationDate={nowIso}
+			entityId={routeId}
+		/>
+	</syn-card>
+</Layout>

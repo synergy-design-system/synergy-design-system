@@ -4,6 +4,11 @@ import { metadataStoreOptions } from '../utils/metadataStoreOptions';
 const components = await meta.listComponents({}, metadataStoreOptions);
 const templates = await meta.listTemplates({}, metadataStoreOptions);
 const styles = await meta.listStyles({}, metadataStoreOptions);
+const intentCategories = await meta.experimental_listIntentCategories(metadataStoreOptions, {
+  includePhases: [
+    process.env.NODE_ENV === 'production' ? 'stable' : 'experimental',
+  ],
+});
 
 const CHANGELOG_PACKAGES = [
 	{ id: 'assets', name: 'Assets' },
@@ -113,6 +118,32 @@ export default function Navigation({ basePath, currentPath }: NavigationProps) {
 					);
 				})}
 			</syn-nav-item>
+
+      {intentCategories.data.length > 0 && (
+        <syn-nav-item open={normalizedCurrentPath.startsWith('/intent-policy')}>
+          Intent Policies
+            <syn-tooltip slot="suffix" content="Structural interaction intent requiring composition, slots, and semantic roles. This feature is in active development and may be subject to breaking changes.">
+              <syn-badge variant="warning">!</syn-badge>
+            </syn-tooltip>
+
+          {intentCategories.data.map(category => {
+            const relativePath = `/intent-policy/${category.id}`;
+            const href = toAppHref(relativePath);
+            const isCurrent = normalizedCurrentPath === relativePath;
+
+            return (
+              <syn-nav-item
+                current={isCurrent}
+                href={href}
+                slot="children"
+                key={category.id}
+              >
+                {category.id.charAt(0).toUpperCase() + category.id.slice(1)}
+              </syn-nav-item>
+            );
+          })}
+        </syn-nav-item>
+      )}
 
       <syn-nav-item
         slot="footer"

@@ -140,6 +140,24 @@ export type ComponentCustom = {
 };
 
 // ---------------------------------------------------------------------------
+// Intent policy types (re-exported from single source of truth)
+// ---------------------------------------------------------------------------
+
+export type {
+  IntentCapability,
+  IntentCategory,
+  IntentDefinition,
+  IntentPhase,
+  IntentPreset,
+  IntentPresetValue,
+  IntentResolutionResult,
+  IntentTargetKind,
+  IntentTargetRef,
+  IntentStructureNode,
+  IntentUsagePattern,
+} from '../intentPolicy/types.js';
+
+// ---------------------------------------------------------------------------
 // Font custom types
 // ---------------------------------------------------------------------------
 

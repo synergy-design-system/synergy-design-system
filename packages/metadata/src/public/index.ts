@@ -1,4 +1,15 @@
+import {
+  getIntentCategory as experimentalGetIntentCategory,
+  getTargetCapabilities as experimentalGetTargetCapabilities,
+  listIntentCapabilities as experimentalListIntentCapabilities,
+  listIntentCategories as experimentalListIntentCategories,
+  listIntents as experimentalListIntents,
+  resolveIntent as experimentalResolveIntent,
+} from './domains/intent-policy.js';
+
 export { clearMetadataStoreCache, createMetadataStore, getMetadataInfo } from './store.js';
+export { generateSkillBundle } from './skill-bundle.js';
+export type { SkillBundleOptions } from './skill-bundle.js';
 export { getAssetMetadata, listAssets, searchIcons } from './domains/assets.js';
 export { listComponentClusters, listComponentsByCluster } from './domains/clusters.js';
 export {
@@ -32,6 +43,12 @@ export type {
   ComponentTextLayerContent,
 } from './domains/components.js';
 export type { FontQueryOptions } from './domains/fonts.js';
+export type {
+  IntentCategoryQueryOptions as ExperimentalIntentCategoryQueryOptions,
+  IntentListQueryOptions as ExperimentalIntentListQueryOptions,
+  IntentPhaseQueryOptions as ExperimentalIntentPhaseQueryOptions,
+  IntentResolutionQuery as ExperimentalIntentResolutionQuery,
+} from './domains/intent-policy.js';
 export type { MigrationQueryOptions } from './domains/migrations.js';
 export type {
   SetupDataPayload,
@@ -102,6 +119,17 @@ export type {
   MetadataStoreOptions,
   MigrationCustom,
   MigrationEntity,
+  IntentCapability,
+  IntentCategory,
+  IntentDefinition,
+  IntentPhase,
+  IntentPreset,
+  IntentPresetValue,
+  IntentResolutionResult,
+  IntentTargetKind,
+  IntentTargetRef,
+  IntentStructureNode,
+  IntentUsagePattern,
   SetupCustom,
   SetupEntity,
   PublicError,
@@ -115,3 +143,51 @@ export type {
   TokenEntity,
   Verbosity,
 } from './types.js';
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
+export const experimental_getIntentCategory = experimentalGetIntentCategory;
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
+export const experimental_getTargetCapabilities = experimentalGetTargetCapabilities;
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
+export const experimental_listIntentCategories = experimentalListIntentCategories;
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
+export const experimental_listIntentCapabilities = experimentalListIntentCapabilities;
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
+export const experimental_listIntents = experimentalListIntents;
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
+export const experimental_resolveIntent = experimentalResolveIntent;

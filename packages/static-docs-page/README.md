@@ -12,7 +12,6 @@ This package is intended as a lightweight, crawlable source for Retrieval-Augmen
 | `/component/:id` | Detail page for every component in the Synergy design system |
 | `/template/:id`  | Detail page for every template                               |
 | `/style/:id`     | Detail page for every CSS utility style                      |
-| `/changelog`     | Overview of all package changelogs                           |
 | `/changelog/:id` | Full changelog for a specific package                        |
 
 ## Page content
@@ -53,9 +52,8 @@ Mirrors the template page structure:
 - **Description** — summary from the style metadata.
 - **Code samples** — fenced code blocks extracted from the style's markdown example layer.
 
-### Changelog pages (`/changelog` and `/changelog/:id`)
+### Changelog pages (`/changelog/:id`)
 
-- `/changelog` — overview table listing every package with a short description and a link to its full changelog.
 - `/changelog/:id` — full version history for a single package, rendered directly from the `CHANGELOG.md` file in that package. Packages covered:
   `components`, `styles`, `tokens`, `assets`, `fonts`, `react`, `angular`, `vue`, `mcp`, `metadata`.
 
@@ -177,7 +175,6 @@ src/
     style/
       [id].astro           style detail pages
     changelog/
-      index.astro          changelog overview page
       [id].astro           per-package changelog pages (sourced from CHANGELOG.md)
   styles/
     global.css             global layout styles

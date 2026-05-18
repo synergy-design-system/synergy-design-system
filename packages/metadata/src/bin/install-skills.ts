@@ -8,7 +8,7 @@
  *   npx @synergy-design-system/metadata install-skills --path=/absolute/path
  */
 import { resolve } from 'node:path';
-import { generateSkillBundle } from '../internal/generators/skill-bundle.js';
+import { generateSkillBundle } from '../public/index.js';
 
 const SYNERGY_LOGO = `
   +------------------------------+

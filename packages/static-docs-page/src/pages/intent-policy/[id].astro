@@ -5,6 +5,7 @@ import {
 	experimental_getIntentCategory,
 	experimental_listIntentCapabilities,
 	experimental_listIntents,
+	experimental_renderIntent,
 	type IntentTargetRef,
 } from '@synergy-design-system/metadata';
 import Layout from '../../layouts/Layout.astro';
@@ -48,6 +49,31 @@ const capabilitiesByIntentId = new Map(
 		}, metadataStoreOptions);
 
 		return [intent.id, capabilities.data] as const;
+	})),
+);
+
+const renderFrameworks = ['react-wrapper', 'react-web-components', 'angular', 'vue', 'vanilla'] as const;
+
+const previewsByIntentId = new Map(
+	await Promise.all(intents.data.map(async intent => {
+		const linkedCapabilities = capabilitiesByIntentId.get(intent.id) ?? [];
+
+		if (linkedCapabilities.length === 0) {
+			return [intent.id, [] as Array<readonly [typeof renderFrameworks[number], string]>] as const;
+		}
+
+		const previews = await Promise.all(renderFrameworks.map(async framework => {
+			const rendered = await experimental_renderIntent({
+				framework,
+				includePhases: ['experimental'],
+				intent: intent.id,
+			}, metadataStoreOptions);
+
+			const fallback = `ERROR:${rendered.errors?.[0]?.code ?? 'UNKNOWN'}`;
+			return [framework, rendered.data ?? fallback] as const;
+		}));
+
+		return [intent.id, previews] as const;
 	})),
 );
 
@@ -118,6 +144,7 @@ const getPhaseBadge = (phase: string): SynBadge['variant'] => {
 			<>
 				{intents.data.map(intent => {
 					const linkedCapabilities = capabilitiesByIntentId.get(intent.id) ?? [];
+					const previews = previewsByIntentId.get(intent.id) ?? [];
 					return (
 					<article>
 						<h3 class="syn-heading--large">
@@ -150,6 +177,21 @@ const getPhaseBadge = (phase: string): SynBadge['variant'] => {
 									</ul>
 								) : (
 									<span> No linked targets found.</span>
+								)}
+							</li>
+							<li>
+								<strong>Render Previews</strong>
+								{previews.length > 0 ? (
+									<ul>
+										{previews.map(([framework, output]) => (
+											<li>
+												<strong>{framework}</strong>
+												<pre><code>{output}</code></pre>
+											</li>
+										))}
+									</ul>
+								) : (
+									<span> No previews available.</span>
 								)}
 							</li>
 						</ul>

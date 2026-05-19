@@ -132,6 +132,238 @@ export type IntentCapability = {
 export type IntentPresetValue = boolean | null | number | string;
 
 /**
+ * Severity level for property validation rules.
+ *
+ * - 'error': Violation prevents valid usage.
+ * - 'warning': Violation is non-blocking but ill-advised.
+ * - 'info': Violation is advisory guidance only.
+ */
+export type IntentValidationSeverity = 'error' | 'warning' | 'info';
+
+/**
+ * Base fields shared by all property validation rule types.
+ *
+ * These fields are common across all rule kinds and provide
+ * the essential information for communicating rule violations
+ * to developers and consumers.
+ */
+export type IntentPropRuleBase = {
+  /**
+   * Machine-readable rule code for programmatic identification.
+   *
+   * Used in validation results to identify the specific rule
+   * that was violated, enabling targeted error handling and
+   * localization of messages.
+   */
+  code: string;
+  /**
+   * Human-readable validation message shown to developers.
+   *
+   * Describes what the violation is in plain language, indicating
+   * what property failed and why it matters for the intent.
+   */
+  message: string;
+  /**
+   * Optional explanation of why this rule exists.
+   *
+   * Provides context about the design decision or constraint
+   * that motivated the rule, helping developers understand the
+   * architectural reasoning.
+   */
+  rationale?: string;
+  /**
+   * Recommended action to resolve the violation.
+   *
+   * Offers concrete guidance on how to fix the issue, such as
+   * changing a property value or removing a conflicting prop.
+   */
+  suggestedFix?: string;
+};
+
+/**
+ * Validation rule requiring a property to equal a specific value (error severity).
+ *
+ * This rule type enforces strict requirements where a property
+ * must be set to an exact value for the intent to be valid.
+ * Violations are treated as errors that block usage.
+ */
+export type IntentRequiredEqualsPropRule = IntentPropRuleBase & {
+  /**
+   * Discriminator indicating this is a requiredEquals rule.
+   */
+  kind: 'requiredEquals';
+  /**
+   * Property name that must equal the specified value.
+   */
+  prop: string;
+  /**
+   * Required value for the property to satisfy this rule.
+   */
+  value: IntentPresetValue;
+};
+
+/**
+ * Validation rule preventing a property from being present (error severity).
+ *
+ * This rule type enforces constraints where a property must not
+ * be combined with a given intent, or must not be present at all.
+ * Violations are treated as errors that block usage.
+ */
+export type IntentForbiddenPropRule = IntentPropRuleBase & {
+  /**
+   * Discriminator indicating this is a forbidden rule.
+   */
+  kind: 'forbidden';
+  /**
+   * Property name that must not be present or combined with this intent.
+   */
+  prop: string;
+};
+
+/**
+ * Validation rule recommending a property equal a specific value (info severity).
+ *
+ * This rule type provides advisory guidance suggesting an optimal
+ * property value for the intent. Violations are non-blocking
+ * recommendations only.
+ */
+export type IntentRecommendedEqualsPropRule = IntentPropRuleBase & {
+  /**
+   * Discriminator indicating this is a recommendedEquals rule.
+   */
+  kind: 'recommendedEquals';
+  /**
+   * Property name that should ideally equal the suggested value.
+   */
+  prop: string;
+  /**
+   * Severity level for this recommendation (defaults to 'info').
+   */
+  severity?: 'info';
+  /**
+   * Recommended value for optimal intent usage.
+   */
+  value: IntentPresetValue;
+};
+
+/**
+ * Validation rule warning when a property equals a specific value (warning severity).
+ *
+ * This rule type detects context-dependent issues where a property
+ * combination temporarily blocks or impairs the intent, such as a
+ * disabled submit button. Violations emit warnings but do not block
+ * overall validation.
+ */
+export type IntentWarnWhenEqualsPropRule = IntentPropRuleBase & {
+  /**
+   * Discriminator indicating this is a warnWhenEquals rule.
+   */
+  kind: 'warnWhenEquals';
+  /**
+   * Property name to monitor for the blocking condition.
+   */
+  prop: string;
+  /**
+   * Severity level for this warning (defaults to 'warning').
+   */
+  severity?: 'warning';
+  /**
+   * Value that triggers the warning when present.
+   */
+  value: IntentPresetValue;
+};
+
+/**
+ * Union type of all property validation rule kinds.
+ *
+ * Discriminated by the 'kind' field, allowing type-safe handling
+ * of different rule types in validator logic and rule evaluation.
+ *
+ * - 'requiredEquals': Property must equal value (error)
+ * - 'forbidden': Property must not be present (error)
+ * - 'recommendedEquals': Property should equal value (info)
+ * - 'warnWhenEquals': Property equals value warns (warning)
+ */
+export type IntentPropRule =
+  | IntentRequiredEqualsPropRule
+  | IntentForbiddenPropRule
+  | IntentRecommendedEqualsPropRule
+  | IntentWarnWhenEqualsPropRule;
+
+/**
+ * Configuration rules for component usage with a specific intent.
+ *
+ * Contains an ordered list of property validation rules that are
+ * evaluated when a component claims to fulfill an intent. Rules are
+ * processed sequentially, with different kinds producing different
+ * severity levels in validation results.
+ */
+export type IntentConfig = {
+  /**
+   * List of property validation rules evaluated in order.
+   *
+   * Each rule is checked against the component's actual props,
+   * generating validation issues based on rule kind and severity.
+   * Rules are evaluated in the order they appear.
+   */
+  propRules?: IntentPropRule[];
+};
+
+/**
+ * Condition that activates an advisory rule when matched.
+ *
+ * Defines a simple property-value equality check used to determine
+ * when an advisory rule should emit guidance or warnings.
+ */
+export type IntentAdvisoryRuleCondition = {
+  /**
+   * The exact value the property must match to activate the rule.
+   */
+  equals: IntentPresetValue;
+  /**
+   * Property name to check against the condition value.
+   */
+  prop: string;
+};
+
+/**
+ * Non-blocking validation guidance for context-dependent usage states.
+ *
+ * Advisory rules emit warnings or info when certain property
+ * combinations are detected, such as a disabled submit button.
+ * They do not prevent validation from succeeding but alert developers
+ * to potential contextual issues.
+ *
+ * @deprecated Use IntentPropRule with kind='warnWhenEquals' instead.
+ */
+export type IntentAdvisoryRule = {
+  /**
+   * Machine-readable code identifying this advisory rule.
+   */
+  code: string;
+  /**
+   * Condition that triggers this advisory guidance.
+   */
+  condition: IntentAdvisoryRuleCondition;
+  /**
+   * Human-readable message describing the advisory condition.
+   */
+  message: string;
+  /**
+   * Optional explanation of why this guidance exists.
+   */
+  rationale?: string;
+  /**
+   * Severity level of this advisory (info or warning).
+   */
+  severity?: 'info' | 'warning';
+  /**
+   * Recommended action to resolve the advisory condition.
+   */
+  suggestedFix?: string;
+};
+
+/**
  * Property-level implementation guidance for an intent.
  */
 export type IntentPreset = {
@@ -139,6 +371,10 @@ export type IntentPreset = {
    * Props that must not be combined with this preset.
    */
   forbiddenProps?: string[];
+  /**
+   * Contextual, non-blocking guidance evaluated against provided props.
+   */
+  advisoryRules?: IntentAdvisoryRule[];
   /**
     * Recommended prop/value mapping for this target-intent pair.
    */
@@ -192,9 +428,9 @@ export type IntentStructureNode = {
  */
 export type IntentUsagePattern = {
   /**
-   * Neutral target reference the pattern applies to.
+   * Configuration rules for component usage with this intent.
    */
-  target: IntentTargetRef;
+  config?: IntentConfig;
   /**
    * Human-readable explanation of when and how to use the pattern.
    */
@@ -204,13 +440,13 @@ export type IntentUsagePattern = {
    */
   intent: string;
   /**
-   * Stability phase of this usage pattern.
-   */
-  phase?: IntentPhase;
-  /**
    * Optional additional guidance or caveats for consumers.
    */
   notes?: string[];
+  /**
+   * Stability phase of this usage pattern.
+   */
+  phase?: IntentPhase;
   /**
    * Optional prop-level preset guidance.
    */
@@ -223,6 +459,10 @@ export type IntentUsagePattern = {
    * Optional structural composition guidance.
    */
   structure?: IntentStructureNode;
+  /**
+   * Neutral target reference the pattern applies to.
+   */
+  target: IntentTargetRef;
 };
 
 /**

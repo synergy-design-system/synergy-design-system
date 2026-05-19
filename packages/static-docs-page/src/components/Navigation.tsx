@@ -122,9 +122,18 @@ export default function Navigation({ basePath, currentPath }: NavigationProps) {
       {intentCategories.data.length > 0 && (
         <syn-nav-item open={normalizedCurrentPath.startsWith('/intent-policy')}>
           Intent Policies
-            <syn-tooltip slot="suffix" content="Structural interaction intent requiring composition, slots, and semantic roles. This feature is in active development and may be subject to breaking changes.">
-              <syn-badge variant="warning">!</syn-badge>
-            </syn-tooltip>
+          <syn-tooltip slot="suffix" content="Structural interaction intent requiring composition, slots, and semantic roles. This feature is in active development and may be subject to breaking changes.">
+            <syn-badge variant="warning">!</syn-badge>
+          </syn-tooltip>
+
+					<syn-nav-item
+						current={normalizedCurrentPath === '/intent-policy'}
+						href={toAppHref('/intent-policy')}
+						slot="children"
+						key="intent-policy-overview"
+					>
+						Overview
+					</syn-nav-item>
 
           {intentCategories.data.map(category => {
             const relativePath = `/intent-policy/${category.id}`;

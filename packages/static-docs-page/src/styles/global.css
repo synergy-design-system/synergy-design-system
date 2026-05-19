@@ -11,8 +11,8 @@ body {
 
 .content {
 	display: flex;
+	height: calc(100vh - 64px);
 	flex-direction: row;
-	min-height: calc(100vh - 64px);
 	position: relative;
 }
 
@@ -28,11 +28,21 @@ body {
 
 main {
 	display: flex;
+  height: calc(100% - calc(var(--syn-spacing-medium) * 2));
 	flex: 1;
 	padding: var(--syn-spacing-medium);
 
   syn-card {
     width: 100%;
+
+    &::part(base) {
+      height: 100%;
+    }
+
+    &::part(body) {
+      overflow: auto;
+      height: 100%;
+    }
 
     h1 {
       margin: 0;

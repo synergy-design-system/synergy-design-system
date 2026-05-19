@@ -73,8 +73,14 @@ const withPatternPhase = (pattern: IntentUsagePattern): IntentUsagePattern => ({
   phase: normalizePhase(pattern.phase),
 });
 
+/**
+ * Normalize an intent ID for deterministic registry lookup.
+ */
 export const normalizeIntentId = (intentId: string): string => normalize(intentId);
 
+/**
+ * Normalize a target reference so matching stays deterministic across registry lookups.
+ */
 export const normalizeTargetRef = (target: IntentTargetRef): IntentTargetRef => {
   const normalizedKind = normalize(target.kind);
   const kind: IntentTargetKind = isTargetKind(normalizedKind) ? normalizedKind : 'component';
@@ -136,6 +142,9 @@ const getCapabilityTarget = (capability: IntentCapability): IntentTargetRef => n
 
 const getPatternTarget = (pattern: IntentUsagePattern): IntentTargetRef => normalizeTargetRef(pattern.target);
 
+/**
+ * List intent categories from the in-memory registry.
+ */
 export const listIntentCategoriesFromRegistry = (phases?: IntentPhase[]): IntentCategory[] => {
   const allowedPhases = normalizePhaseFilter(phases);
   return structuredClone(intentCategories)
@@ -143,6 +152,9 @@ export const listIntentCategoriesFromRegistry = (phases?: IntentPhase[]): Intent
     .filter((category) => isAllowedPhase(category.phase ?? DEFAULT_PHASE, allowedPhases));
 };
 
+/**
+ * List intent definitions from the in-memory registry.
+ */
 export const listIntentsFromRegistry = (category?: string, phases?: IntentPhase[]): IntentDefinition[] => {
   const allowedPhases = normalizePhaseFilter(phases);
   const categoriesById = new Map(
@@ -172,6 +184,9 @@ export const listIntentsFromRegistry = (category?: string, phases?: IntentPhase[
   return filteredIntents.filter((intent) => normalize(intent.category) === normalizedCategory);
 };
 
+/**
+ * Return a single intent definition by ID if present and phase-compatible.
+ */
 export const getIntentFromRegistry = (intentId: string, phases?: IntentPhase[]): IntentDefinition | null => {
   const allowedPhases = normalizePhaseFilter(phases);
   const categoriesById = new Map(
@@ -203,6 +218,9 @@ export const getIntentFromRegistry = (intentId: string, phases?: IntentPhase[]):
   return intent;
 };
 
+/**
+ * Return the capability declaration for a normalized target reference.
+ */
 export const getTargetCapabilityFromRegistry = (target: IntentTargetRef, phases?: IntentPhase[]): IntentCapability | null => {
   const allowedPhases = normalizePhaseFilter(phases);
   const normalizedTargetKey = targetKey(target);
@@ -216,6 +234,9 @@ export const getTargetCapabilityFromRegistry = (target: IntentTargetRef, phases?
   return capability ?? null;
 };
 
+/**
+ * Resolve one target + intent pair to the matching usage pattern.
+ */
 export const resolveUsagePatternFromRegistry = (
   target: IntentTargetRef,
   intentId: string,
@@ -236,6 +257,9 @@ export const resolveUsagePatternFromRegistry = (
   return pattern ?? null;
 };
 
+/**
+ * Check whether a target is eligible to resolve a given intent.
+ */
 export const canTargetResolveIntent = (
   target: IntentTargetRef,
   intentId: string,
@@ -251,6 +275,9 @@ export const canTargetResolveIntent = (
   return capability.categories.map(normalize).includes(normalize(intent.category));
 };
 
+/**
+ * List all capabilities that support the category of a given intent.
+ */
 export const listCapabilitiesForIntentFromRegistry = (
   intentId: string,
   phases?: IntentPhase[],
@@ -271,6 +298,9 @@ export const listCapabilitiesForIntentFromRegistry = (
     );
 };
 
+/**
+ * Resolve a target + intent pair to a full intent-resolution payload.
+ */
 export const resolveIntentFromRegistry = (
   target: IntentTargetRef,
   intentId: string,

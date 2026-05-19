@@ -11,6 +11,19 @@ export const navigationPatterns: IntentUsagePattern[] = [
     preset: {
       requiredClasses: ['syn-link'],
     },
+    structure: {
+      children: [
+        {
+          component: 'text',
+          text: 'Link',
+        },
+      ],
+      component: 'a',
+      props: {
+        class: 'syn-link',
+        href: '#',
+      },
+    },
     target: {
       classes: ['syn-link'],
       id: 'style:syn-link',
@@ -24,6 +37,110 @@ export const navigationPatterns: IntentUsagePattern[] = [
     intent: 'navigation.link-list.grouped',
     preset: {
       requiredClasses: ['syn-link-list'],
+    },
+    structure: {
+      children: [
+        {
+          children: [
+            {
+              children: [
+                {
+                  component: 'syn-icon',
+                  props: {
+                    name: 'keyboard_arrow_right',
+                  },
+                },
+                {
+                  component: 'text',
+                  text: 'Link',
+                },
+              ],
+              component: 'a',
+              props: {
+                class: 'syn-link',
+                href: '#',
+              },
+            },
+          ],
+          component: 'li',
+        },
+        {
+          children: [
+            {
+              children: [
+                {
+                  component: 'syn-icon',
+                  props: {
+                    name: 'keyboard_arrow_right',
+                  },
+                },
+                {
+                  component: 'text',
+                  text: 'Link',
+                },
+              ],
+              component: 'a',
+              props: {
+                class: 'syn-link',
+                href: '#',
+              },
+            },
+          ],
+          component: 'li',
+        },
+        {
+          children: [
+            {
+              children: [
+                {
+                  component: 'syn-icon',
+                  props: {
+                    name: 'keyboard_arrow_right',
+                  },
+                },
+                {
+                  component: 'text',
+                  text: 'Link',
+                },
+              ],
+              component: 'a',
+              props: {
+                class: 'syn-link',
+                href: '#',
+              },
+            },
+          ],
+          component: 'li',
+        },
+        {
+          children: [
+            {
+              children: [
+                {
+                  component: 'syn-icon',
+                  props: {
+                    name: 'keyboard_arrow_right',
+                  },
+                },
+                {
+                  component: 'text',
+                  text: 'Link',
+                },
+              ],
+              component: 'a',
+              props: {
+                class: 'syn-link',
+                href: '#',
+              },
+            },
+          ],
+          component: 'li',
+        },
+      ],
+      component: 'ul',
+      props: {
+        class: 'syn-link-list',
+      },
     },
     target: {
       classes: ['syn-link-list'],

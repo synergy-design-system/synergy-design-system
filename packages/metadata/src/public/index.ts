@@ -1,10 +1,15 @@
 import {
+  findComponentsForTask as experimentalFindComponentsForTask,
+  getComponentGuide as experimentalGetComponentGuide,
   getIntentCategory as experimentalGetIntentCategory,
+  getIntentOptions as experimentalGetIntentOptions,
   getTargetCapabilities as experimentalGetTargetCapabilities,
   listIntentCapabilities as experimentalListIntentCapabilities,
   listIntentCategories as experimentalListIntentCategories,
   listIntents as experimentalListIntents,
+  renderIntent as experimentalRenderIntent,
   resolveIntent as experimentalResolveIntent,
+  validateComponent as experimentalValidateComponent,
 } from './domains/intent-policy.js';
 
 export { clearMetadataStoreCache, createMetadataStore, getMetadataInfo } from './store.js';
@@ -44,10 +49,19 @@ export type {
 } from './domains/components.js';
 export type { FontQueryOptions } from './domains/fonts.js';
 export type {
+  ComponentGuideQuery as ExperimentalComponentGuideQuery,
+  ComponentGuideResult as ExperimentalComponentGuideResult,
+  FindComponentsForTaskQuery as ExperimentalFindComponentsForTaskQuery,
+  FindComponentsForTaskResult as ExperimentalFindComponentsForTaskResult,
+  IntentOptionsQuery as ExperimentalIntentOptionsQuery,
+  IntentOptionsResult as ExperimentalIntentOptionsResult,
   IntentCategoryQueryOptions as ExperimentalIntentCategoryQueryOptions,
   IntentListQueryOptions as ExperimentalIntentListQueryOptions,
   IntentPhaseQueryOptions as ExperimentalIntentPhaseQueryOptions,
+  IntentRenderQuery as ExperimentalIntentRenderQuery,
   IntentResolutionQuery as ExperimentalIntentResolutionQuery,
+  ValidateComponentQuery as ExperimentalValidateComponentQuery,
+  ValidateComponentResult as ExperimentalValidateComponentResult,
 } from './domains/intent-policy.js';
 export type { MigrationQueryOptions } from './domains/migrations.js';
 export type {
@@ -166,6 +180,22 @@ export const experimental_getTargetCapabilities = experimentalGetTargetCapabilit
  * @experimental
  */
 // eslint-disable-next-line camelcase
+export const experimental_getComponentGuide = experimentalGetComponentGuide;
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
+export const experimental_getIntentOptions = experimentalGetIntentOptions;
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
 export const experimental_listIntentCategories = experimentalListIntentCategories;
 
 /**
@@ -190,4 +220,28 @@ export const experimental_listIntents = experimentalListIntents;
  * @experimental
  */
 // eslint-disable-next-line camelcase
+export const experimental_findComponentsForTask = experimentalFindComponentsForTask;
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
+export const experimental_renderIntent = experimentalRenderIntent;
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
 export const experimental_resolveIntent = experimentalResolveIntent;
+
+/**
+ * Experimental API export.
+ *
+ * @experimental
+ */
+// eslint-disable-next-line camelcase
+export const experimental_validateComponent = experimentalValidateComponent;

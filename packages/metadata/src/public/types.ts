@@ -157,6 +157,10 @@ export type {
   IntentUsagePattern,
 } from '../intentPolicy/types.js';
 
+export type {
+  FrameworkProfile,
+} from '../intentPolicy/intermediate-representation/types.js';
+
 // ---------------------------------------------------------------------------
 // Font custom types
 // ---------------------------------------------------------------------------

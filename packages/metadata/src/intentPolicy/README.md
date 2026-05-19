@@ -25,6 +25,77 @@ Boundary rules:
 - It does not mutate canonical component metadata objects.
 - It does not write or persist anything into generated data artifacts.
 
+Developer interface (experimental):
+- The primary integration surface is the public facade at `../public/domains/intent-policy.ts`.
+- Use these high-level APIs for application-facing guidance and validation:
+	- `getComponentGuide`: returns supported intents, recommended usages, common misuses, and quick checks for one component.
+	- `validateComponent`: validates one component usage against intent-policy rules and returns issues plus score.
+	- `findComponentsForTask`: returns ranked component recommendations for one intent/task.
+	- `getIntentOptions`: returns renderable options for one intent and framework.
+
+Intent options behavior:
+- `getIntentOptions` is strict by default for a provided `intentId`.
+- By default, results focus on exact renderable target + intent matches.
+- Category-level diagnostics for non-renderable targets are opt-in via `includeDiagnostics: true`.
+
+Example usage (same queries as the static docs overview page):
+
+```ts
+import {
+	experimental_findComponentsForTask,
+	experimental_getComponentGuide,
+	experimental_getIntentOptions,
+	experimental_listIntentCategories,
+	experimental_validateComponent,
+} from '@synergy-design-system/metadata';
+
+const includePhases = ['experimental'] as const;
+
+const categories = await experimental_listIntentCategories(
+	metadataStoreOptions,
+	{ includePhases: [...includePhases] },
+);
+
+const componentGuide = await experimental_getComponentGuide({
+	component: 'syn-button',
+	framework: 'react-web-components',
+	includePhases: [...includePhases],
+}, metadataStoreOptions);
+
+const componentValidation = await experimental_validateComponent({
+	component: 'syn-button',
+	framework: 'react-web-components',
+	includePhases: [...includePhases],
+	intent: 'action.submit',
+	props: {
+		href: '#',
+	},
+}, metadataStoreOptions);
+
+const taskRecommendations = await experimental_findComponentsForTask({
+	framework: 'react-web-components',
+	includePhases: [...includePhases],
+	taskId: 'action.submit',
+}, metadataStoreOptions);
+
+const intentOptions = await experimental_getIntentOptions({
+	framework: 'react-web-components',
+	includePhases: [...includePhases],
+	intentId: 'navigation.link-list.grouped',
+}, metadataStoreOptions);
+```
+
+Example with diagnostics enabled for intent options:
+
+```ts
+const intentOptionsWithDiagnostics = await experimental_getIntentOptions({
+	framework: 'react-web-components',
+	includePhases: ['experimental'],
+	includeDiagnostics: true,
+	intentId: 'navigation.link-list.grouped',
+}, metadataStoreOptions);
+```
+
 Implementation map:
 - types.ts: intent domain types.
 - categories/: category definitions and categories/index.ts aggregator.

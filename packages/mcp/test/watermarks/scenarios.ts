@@ -59,6 +59,81 @@ export type WatermarkScenario = {
 export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
   {
     args: {
+      includePhases: ['experimental'],
+    },
+    budget: {
+      maxRegressionAbs: 300,
+      maxRegressionPct: 20,
+      maxTokens: 2500,
+    },
+    id: 'intent-categories-list:experimental',
+    kind: 'tool',
+    toolName: 'intent-categories-list',
+  },
+  {
+    args: {
+      component: 'syn-button',
+      framework: 'react-web-components',
+      includePhases: ['experimental'],
+    },
+    budget: {
+      maxRegressionAbs: 700,
+      maxRegressionPct: 20,
+      maxTokens: 8500,
+    },
+    id: 'intent-component-guide:syn-button',
+    kind: 'tool',
+    toolName: 'intent-component-guide',
+  },
+  {
+    args: {
+      component: 'syn-button',
+      framework: 'react-web-components',
+      includePhases: ['experimental'],
+      intent: 'action.submit',
+      markup: '<syn-button disabled type="submit" variant="filled">Send</syn-button>',
+    },
+    budget: {
+      maxRegressionAbs: 500,
+      maxRegressionPct: 20,
+      maxTokens: 5000,
+    },
+    id: 'intent-component-validate:action.submit',
+    kind: 'tool',
+    toolName: 'intent-component-validate',
+  },
+  {
+    args: {
+      framework: 'react-web-components',
+      includePhases: ['experimental'],
+      taskId: 'action.submit',
+    },
+    budget: {
+      maxRegressionAbs: 600,
+      maxRegressionPct: 20,
+      maxTokens: 6000,
+    },
+    id: 'intent-task-recommendations:action.submit',
+    kind: 'tool',
+    toolName: 'intent-task-recommendations',
+  },
+  {
+    args: {
+      framework: 'react-web-components',
+      includePhases: ['experimental'],
+      intentId: 'navigation.link-list.grouped',
+    },
+    budget: {
+      maxRegressionAbs: 500,
+      maxRegressionPct: 20,
+      maxTokens: 5000,
+    },
+    id: 'intent-options:navigation.link-list.grouped',
+    kind: 'tool',
+    toolName: 'intent-options',
+  },
+  {
+    args: {
       component: 'syn-button',
       framework: 'vanilla',
       layer: 'interface',

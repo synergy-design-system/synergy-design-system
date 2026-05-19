@@ -46,13 +46,13 @@ describe('intent policy render public api', () => {
     };
   };
 
-  it('exports experimental_renderIntent and renders action.primary for react19', async () => {
+  it('exports experimental_renderIntent and renders action.primary for react-web-components', async () => {
     const { experimental_renderIntent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
       const response = await experimental_renderIntent({
-        framework: 'react19',
+        framework: 'react-web-components',
         intent: 'action.primary',
         target: {
           id: 'component:syn-button',
@@ -76,7 +76,7 @@ describe('intent policy render public api', () => {
 
     try {
       const response = await experimental_renderIntent({
-        framework: 'react19',
+        framework: 'react-web-components',
         intent: 'action.grouped',
       }, {
         dataDir: fixture.dataDir,

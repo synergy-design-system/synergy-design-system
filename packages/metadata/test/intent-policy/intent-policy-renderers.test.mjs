@@ -26,13 +26,13 @@ describe('intent policy renderers', () => {
     const { renderIntentFromRegistry } = await loadRenderService();
 
     expect(renderIntentFromRegistry({
-      framework: 'react19',
+      framework: 'react-web-components',
       intent: 'action.primary',
       target: buttonTarget,
     })).to.equal('<syn-button type="button" variant="filled">CONTENT</syn-button>');
 
     expect(renderIntentFromRegistry({
-      framework: 'react18',
+      framework: 'react-wrapper',
       intent: 'action.primary',
       target: buttonTarget,
     })).to.equal('<SynButton type="button" variant="filled">CONTENT</SynButton>');
@@ -60,7 +60,7 @@ describe('intent policy renderers', () => {
     const { renderIntentFromRegistry } = await loadRenderService();
 
     const rendered = renderIntentFromRegistry({
-      framework: 'react19',
+      framework: 'react-web-components',
       intent: 'structure.confirmation',
       target: {
         id: 'component:syn-dialog',
@@ -73,7 +73,7 @@ describe('intent policy renderers', () => {
     expect(rendered).to.include('<syn-dialog');
     expect(rendered).to.include('<nav slot="footer">');
     expect(rendered).to.include('<syn-button variant="text">Abort</syn-button>');
-    expect(rendered).to.include('<syn-button variant="danger">Delete this!</syn-button>');
+    expect(rendered).to.include('<syn-button variant="filled">Delete this!</syn-button>');
 
     const cancelIndex = rendered.indexOf('Abort');
     const confirmIndex = rendered.indexOf('Delete this!');
@@ -84,12 +84,12 @@ describe('intent policy renderers', () => {
     const { renderIntentFromRegistry } = await loadRenderService();
 
     const iconAction = renderIntentFromRegistry({
-      framework: 'react19',
+      framework: 'react-web-components',
       intent: 'action.button.icon',
     });
 
     const groupedAction = renderIntentFromRegistry({
-      framework: 'react19',
+      framework: 'react-web-components',
       intent: 'action.grouped',
     });
 

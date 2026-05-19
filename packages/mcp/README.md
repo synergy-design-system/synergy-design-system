@@ -145,6 +145,12 @@ Example:
   // "toon": Encode structured data to compact toon text format
   "compression": "none",
 
+  // Experimental feature toggles
+  "experimentalFeatures": {
+    // Enables experimental intent policy tools
+    "intentTools": true,
+  },
+
   // Default parameters for each endpoint can be overridden
   "tools": {
     "assetInfo": {
@@ -162,6 +168,30 @@ Example:
       // for vanilla components at the moment.
       "layer": "full",
     },
+    "intentCategoriesList": {
+      // Default phases for intent-categories-list
+      "includePhases": ["experimental"],
+    },
+    "intentComponentGuide": {
+      // Framework profile used when omitted in tool call
+      "framework": "vanilla",
+      "includePhases": ["experimental"],
+    },
+    "intentComponentValidate": {
+      "framework": "vanilla",
+      "includePhases": ["experimental"],
+    },
+    "intentOptions": {
+      "framework": "vanilla",
+      "includeDiagnostics": false,
+      "includePhases": ["experimental"],
+      "maxAlternatives": 5,
+    },
+    "intentTaskRecommendations": {
+      "framework": "vanilla",
+      "includePhases": ["experimental"],
+      "maxAlternatives": 5,
+    },
     "tokenInfo": {
       // If you are preferring scss, use "sass" here
       "type": "css",
@@ -169,6 +199,27 @@ Example:
   },
 }
 ```
+
+#### Enabling Experimental Intent Endpoints
+
+Intent tools are experimental and disabled by default.
+Enable them explicitly with:
+
+```jsonc
+{
+  "experimentalFeatures": {
+    "intentTools": true,
+  },
+}
+```
+
+When enabled, these additional tools become available:
+
+- `intent-categories-list`
+- `intent-component-guide`
+- `intent-component-validate`
+- `intent-task-recommendations`
+- `intent-options`
 
 #### CLI Override Precedence
 
@@ -400,7 +451,7 @@ Resource identifier reference (exact values used by the server):
 
 ## Available Tools
 
-The MCP server currently registers 16 tools.
+The MCP server currently registers 16 stable tools by default.
 
 ### 1. `component-list`
 
@@ -651,6 +702,92 @@ Example prompts:
 - "Show me the setup instructions for tokens"
 - "Give me the Synergy assets setup and limitations"
 
+### Experimental Tools (Intent Policy)
+
+The following endpoints are experimental and are only registered when `experimentalFeatures.intentTools` is set to `true`.
+
+### 17. `intent-categories-list` (experimental)
+
+**Description:** List available intent categories in the intent policy layer.
+
+**Parameters:**
+
+- `includePhases` (array, optional): Intent phases to include. Defaults to runtime config `tools.intentCategoriesList.includePhases` (`["experimental"]` by default).
+
+**Example prompts:**
+
+- "List intent categories"
+- "Show experimental intent categories"
+
+### 18. `intent-component-guide` (experimental)
+
+**Description:** Answer the question: What can I do with a component in the intent system?
+
+**Parameters:**
+
+- `component` (string, required): Component tag, for example `syn-button`.
+- `framework` (string, optional): `react-wrapper`, `react-web-components`, `angular`, `vue`, or `vanilla`. Defaults to runtime config `tools.intentComponentGuide.framework`.
+- `includePhases` (array, optional): Defaults to runtime config `tools.intentComponentGuide.includePhases`.
+
+**Example prompts:**
+
+- "What can I do with syn-button?"
+- "Show intent guide for syn-button in react-web-components"
+
+### 19. `intent-component-validate` (experimental)
+
+**Description:** Answer the question: Do I use a component correctly for a specific intent?
+
+**Parameters:**
+
+- `component` (string, required): Component tag, for example `syn-button`.
+- `intent` (string, required): Intent id, for example `action.submit`.
+- `markup` (string, required): Template/markup source to lint. The tool derives structure internally.
+- `framework` (string, optional): Defaults to runtime config `tools.intentComponentValidate.framework`.
+- `includePhases` (array, optional): Defaults to runtime config `tools.intentComponentValidate.includePhases`.
+
+**Example prompts:**
+
+- "Do I use syn-button right for action.submit?"
+- "Validate this syn-button markup for action.submit: <syn-button type=\"submit\" variant=\"filled\">Send</syn-button>"
+
+### 20. `intent-task-recommendations` (experimental)
+
+**Description:** Answer the question: What does Synergy provide for a specific task intent?
+
+**Parameters:**
+
+- `taskId` (string, required): Intent id representing the task.
+- `framework` (string, optional): Defaults to runtime config `tools.intentTaskRecommendations.framework`.
+- `includePhases` (array, optional): Defaults to runtime config `tools.intentTaskRecommendations.includePhases`.
+- `maxAlternatives` (number, optional): Defaults to runtime config `tools.intentTaskRecommendations.maxAlternatives`.
+- `preferredTargets` (array, optional): Preferred target ids.
+- `avoidTargets` (array, optional): Target ids to avoid.
+- `content` (string, optional): Optional snippet content.
+
+**Example prompts:**
+
+- "What does Synergy provide to submit a form?"
+- "Recommend components for action.submit"
+
+### 21. `intent-options` (experimental)
+
+**Description:** Answer the question: What are my renderable options for a specific intent?
+
+**Parameters:**
+
+- `intentId` (string, required): Intent id to resolve.
+- `framework` (string, optional): Defaults to runtime config `tools.intentOptions.framework`.
+- `includePhases` (array, optional): Defaults to runtime config `tools.intentOptions.includePhases`.
+- `includeDiagnostics` (boolean, optional): Defaults to runtime config `tools.intentOptions.includeDiagnostics`.
+- `maxAlternatives` (number, optional): Defaults to runtime config `tools.intentOptions.maxAlternatives`.
+- `content` (string, optional): Optional preview content.
+
+**Example prompts:**
+
+- "What are my renderable options for navigation.link-list.grouped?"
+- "Show intent options for action.submit"
+
 ## Available Prompts
 
 The MCP server currently registers 1 prompt.
@@ -806,6 +943,11 @@ src/
 │   ├── component-list.ts
 │   ├── davinci-migration-info.ts
 │   ├── davinci-migration-list.ts
+│   ├── intent-categories-list.ts
+│   ├── intent-component-guide.ts
+│   ├── intent-component-validate.ts
+│   ├── intent-options.ts
+│   ├── intent-task-recommendations.ts
 │   ├── migration-info.ts
 │   ├── migration-list.ts
 │   ├── setup.ts
@@ -818,7 +960,7 @@ src/
 │   └── index.ts
 ├── transports/          # Transport factory and implementations
 ├── types/               # Shared type definitions
-└── utilities/           # Runtime config, metadata adapters, and CLI helpers
+└── utilities/           # Runtime config, metadata adapters, intent defaults, and CLI helpers
 rules/                   # Markdown guidance files prepended to selected tool output
 test/
 ├── e2e/                 # End-to-end MCP tests

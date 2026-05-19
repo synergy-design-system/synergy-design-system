@@ -1,5 +1,11 @@
 import { readFile } from 'node:fs/promises';
 import { z } from 'zod';
+import {
+  INTENT_DEFAULT_FRAMEWORK,
+  INTENT_DEFAULT_PHASES,
+  INTENT_FRAMEWORK_VALUES,
+  INTENT_PHASE_VALUES,
+} from './intent.js';
 
 /**
  * Zod schema for the synergy-mcp.json configuration file.
@@ -13,6 +19,19 @@ export const McpRuntimeConfigSchema = z.object({
    * @default 'none'
    */
   compression: z.enum(['none', 'toon']).default('none'),
+
+  /**
+   * Experimental feature toggles.
+   *
+   * Tools or capabilities guarded by these flags are disabled unless
+   * explicitly enabled.
+   *
+   * Known keys:
+   * - intentTools: Enables experimental intent MCP tools.
+   *
+   * @default {}
+   */
+  experimentalFeatures: z.record(z.string(), z.boolean()).default({}),
 
   /**
    * HTTP server host/interface when interface is 'http'.
@@ -141,6 +160,106 @@ export const McpRuntimeConfigSchema = z.object({
       package: z.enum(['basic-elements', 'dashboard-elements']).default('basic-elements'),
     }).default({ package: 'basic-elements' }),
 
+    intentCategoriesList: z.object({
+      /**
+       * Default intent phases when none are provided by the caller.
+       * @default ['experimental']
+       */
+      includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
+    }).default({ includePhases: [...INTENT_DEFAULT_PHASES] }),
+
+    intentComponentGuide: z.object({
+      /**
+       * Default framework when no framework is provided by the caller.
+       * @default 'vanilla'
+       */
+      framework: z.enum(INTENT_FRAMEWORK_VALUES).default(INTENT_DEFAULT_FRAMEWORK),
+      /**
+       * Default intent phases when none are provided by the caller.
+       * @default ['experimental']
+       */
+      includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
+    }).default({
+      framework: INTENT_DEFAULT_FRAMEWORK,
+      includePhases: [...INTENT_DEFAULT_PHASES],
+    }),
+
+    intentComponentValidate: z.object({
+      /**
+       * Default framework when no framework is provided by the caller.
+       * @default 'vanilla'
+       */
+      framework: z.enum(INTENT_FRAMEWORK_VALUES).default(INTENT_DEFAULT_FRAMEWORK),
+      /**
+       * Default intent phases when none are provided by the caller.
+       * @default ['experimental']
+       */
+      includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
+    }).default({
+      framework: INTENT_DEFAULT_FRAMEWORK,
+      includePhases: [...INTENT_DEFAULT_PHASES],
+    }),
+
+    intentOptions: z.object({
+      /**
+       * Default framework when no framework is provided by the caller.
+       * @default 'vanilla'
+       */
+      framework: z.enum(INTENT_FRAMEWORK_VALUES).default(INTENT_DEFAULT_FRAMEWORK),
+      /**
+       * Include non-renderable candidates by default.
+       * @default false
+       */
+      includeDiagnostics: z.boolean().default(false),
+      /**
+       * Default intent phases when none are provided by the caller.
+       * @default ['experimental']
+       */
+      includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
+      /**
+       * Default maximum number of alternatives.
+       * @default 5
+       */
+      maxAlternatives: z
+        .number()
+        .int()
+        .min(1)
+        .max(20)
+        .default(5),
+    }).default({
+      framework: INTENT_DEFAULT_FRAMEWORK,
+      includeDiagnostics: false,
+      includePhases: [...INTENT_DEFAULT_PHASES],
+      maxAlternatives: 5,
+    }),
+
+    intentTaskRecommendations: z.object({
+      /**
+       * Default framework when no framework is provided by the caller.
+       * @default 'vanilla'
+       */
+      framework: z.enum(INTENT_FRAMEWORK_VALUES).default(INTENT_DEFAULT_FRAMEWORK),
+      /**
+       * Default intent phases when none are provided by the caller.
+       * @default ['experimental']
+       */
+      includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
+      /**
+       * Default maximum number of alternatives.
+       * @default 5
+       */
+      maxAlternatives: z
+        .number()
+        .int()
+        .min(1)
+        .max(20)
+        .default(5),
+    }).default({
+      framework: INTENT_DEFAULT_FRAMEWORK,
+      includePhases: [...INTENT_DEFAULT_PHASES],
+      maxAlternatives: 5,
+    }),
+
     migrationInfo: z.object({
       /**
        * Default Synergy package when none is provided by the caller.
@@ -177,6 +296,20 @@ export const McpRuntimeConfigSchema = z.object({
     componentInfo: { framework: 'vanilla', layer: 'full' },
     davinciMigrationInfo: { package: 'basic-elements' },
     davinciMigrationList: { package: 'basic-elements' },
+    intentCategoriesList: { includePhases: [...INTENT_DEFAULT_PHASES] },
+    intentComponentGuide: { framework: INTENT_DEFAULT_FRAMEWORK, includePhases: [...INTENT_DEFAULT_PHASES] },
+    intentComponentValidate: { framework: INTENT_DEFAULT_FRAMEWORK, includePhases: [...INTENT_DEFAULT_PHASES] },
+    intentOptions: {
+      framework: INTENT_DEFAULT_FRAMEWORK,
+      includeDiagnostics: false,
+      includePhases: [...INTENT_DEFAULT_PHASES],
+      maxAlternatives: 5,
+    },
+    intentTaskRecommendations: {
+      framework: INTENT_DEFAULT_FRAMEWORK,
+      includePhases: [...INTENT_DEFAULT_PHASES],
+      maxAlternatives: 5,
+    },
     migrationInfo: { synergyPackage: 'components' },
     migrationList: { synergyPackage: 'components' },
     setup: { includeLimitations: true },

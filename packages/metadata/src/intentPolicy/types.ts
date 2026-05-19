@@ -291,14 +291,34 @@ export type IntentPropRule =
   | IntentWarnWhenEqualsPropRule;
 
 /**
+ * Validation rule requiring that a node has visible content (text and/or child nodes).
+ *
+ * This rule type enforces that interactive elements such as buttons
+ * are never rendered empty, which would result in an inaccessible
+ * or invisible control. Violations are treated as errors.
+ */
+export type IntentRequiredContentRule = IntentPropRuleBase & {
+  /**
+   * Discriminator indicating this is a requiredContent rule.
+   */
+  kind: 'requiredContent';
+};
+
+/**
  * Configuration rules for component usage with a specific intent.
  *
- * Contains an ordered list of property validation rules that are
- * evaluated when a component claims to fulfill an intent. Rules are
- * processed sequentially, with different kinds producing different
- * severity levels in validation results.
+ * Contains an ordered list of property validation rules and optional
+ * content rules that are evaluated when a component claims to fulfill
+ * an intent. Rules are processed sequentially.
  */
 export type IntentConfig = {
+  /**
+   * Content rules evaluated against the node's children and text.
+   *
+   * Use this for rules that concern visible content rather than props,
+   * such as requiring that a button has a label or child nodes.
+   */
+  contentRules?: IntentRequiredContentRule[];
   /**
    * List of property validation rules evaluated in order.
    *
@@ -398,6 +418,10 @@ export type IntentPreset = {
  */
 export type IntentStructureNode = {
   /**
+   * Optional class names present on this structural node.
+   */
+  classes?: string[];
+  /**
    * Nested structural children in rendering order.
    */
   children?: IntentStructureNode[];
@@ -406,9 +430,21 @@ export type IntentStructureNode = {
    */
   component: string;
   /**
+   * Node-level configuration rules for this structural node.
+   */
+  config?: IntentConfig;
+  /**
+   * Class names that must not be present on this structural node.
+   */
+  forbiddenClasses?: string[];
+  /**
    * Recommended props for this structural node.
    */
   props?: Record<string, IntentPresetValue>;
+  /**
+   * Class names that must be present on this structural node.
+   */
+  requiredClasses?: string[];
   /**
    * Semantic role key resolved through the pattern roles map.
    */
@@ -427,10 +463,6 @@ export type IntentStructureNode = {
  * Full guidance artifact for one target and one intent.
  */
 export type IntentUsagePattern = {
-  /**
-   * Configuration rules for component usage with this intent.
-   */
-  config?: IntentConfig;
   /**
    * Human-readable explanation of when and how to use the pattern.
    */

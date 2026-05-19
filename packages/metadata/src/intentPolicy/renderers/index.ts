@@ -41,9 +41,28 @@ const renderProps = (
     .join('');
 };
 
+const extractRenderableNodeProps = (
+  node: IntentStructureNode,
+): Record<string, IntentPresetValue> | undefined => {
+  const requiredRuleProps = (node.config?.propRules ?? [])
+    .filter((rule) => rule.kind === 'requiredEquals')
+    .reduce<Record<string, IntentPresetValue>>((acc, rule) => {
+      acc[rule.prop] = rule.value;
+      return acc;
+    }, {});
+
+  const mergedProps = {
+    ...requiredRuleProps,
+    ...(node.props ?? {}),
+  };
+
+  return Object.keys(mergedProps).length > 0 ? mergedProps : undefined;
+};
+
 const renderStructureNode = (
   node: IntentStructureNode,
   framework: FrameworkProfile,
+  fallbackContent = '',
 ): string => {
   if (node.component === 'text') {
     return node.text ?? '';
@@ -51,12 +70,23 @@ const renderStructureNode = (
 
   const component = resolveFrameworkComponentName(node.component, framework);
   const slotAttribute = node.slot ? ` slot="${escapeAttribute(node.slot)}"` : '';
-  const children = [
-    ...(node.text ? [node.text] : []),
-    ...(node.children?.map((child) => renderStructureNode(child, framework)) ?? []),
-  ].join('');
+  const hasStructuredChildren = !!node.children && node.children.length > 0;
 
-  return `<${component}${slotAttribute}${renderProps(node.props, framework)}>${children}</${component}>`;
+  const childrenParts: string[] = [];
+
+  if (node.text) {
+    childrenParts.push(node.text);
+  } else if (!hasStructuredChildren) {
+    childrenParts.push(fallbackContent);
+  }
+
+  if (hasStructuredChildren) {
+    childrenParts.push(...node.children!.map((child) => renderStructureNode(child, framework)));
+  }
+
+  const children = childrenParts.join('');
+
+  return `<${component}${slotAttribute}${renderProps(extractRenderableNodeProps(node), framework)}>${children}</${component}>`;
 };
 
 const inferPatternComponent = (pattern: IntentUsagePattern): string => {
@@ -72,11 +102,11 @@ const inferPatternComponent = (pattern: IntentUsagePattern): string => {
 };
 
 /**
- * Extract renderable props from a pattern's config.propRules (requiredEquals rules)
+ * Extract renderable props from a pattern structure root config.propRules (requiredEquals rules)
  * or fall back to the legacy preset.props field.
  */
 const extractRenderableProps = (pattern: IntentUsagePattern): Record<string, IntentPresetValue> | undefined => {
-  const propRules = pattern.config?.propRules;
+  const propRules = pattern.structure?.config?.propRules;
   if (propRules && propRules.length > 0) {
     const props: Record<string, IntentPresetValue> = {};
     for (const rule of propRules) {
@@ -99,7 +129,7 @@ export const renderIntentUsagePattern = (
   content: string,
 ): string => {
   if (pattern.structure) {
-    return renderStructureNode(pattern.structure, framework);
+    return renderStructureNode(pattern.structure, framework, content);
   }
 
   const component = resolveFrameworkComponentName(inferPatternComponent(pattern), framework);

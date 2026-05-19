@@ -21,7 +21,11 @@ import {
   type MetadataStoreOptions,
   type PublicResponse,
 } from '../types.js';
-import type { IntentPhase, IntentPropRule } from '../../intentPolicy/types.js';
+import type {
+  IntentPhase,
+  IntentPropRule,
+  IntentStructureNode,
+} from '../../intentPolicy/types.js';
 import { createMetadataStore } from '../store.js';
 
 /**
@@ -447,6 +451,7 @@ export type ValidateComponentQuery = {
   includePhases?: IntentPhase[];
   intent?: string;
   props?: Record<string, IntentPresetValue>;
+  structure?: IntentStructureNode;
 };
 
 /**
@@ -592,6 +597,200 @@ const getTargetIdentity = (target: IntentTargetRef): string => target.id
   ?? target.selector
   ?? `${target.kind}:unknown`;
 
+const evaluateNodePropRules = (
+  rules: IntentPropRule[],
+  props: Record<string, IntentPresetValue> | undefined,
+  nodePath: string,
+  issues: ComponentValidationIssue[],
+  strictRequiredEquals: boolean,
+): void => {
+  for (const rule of rules) {
+    if (rule.kind === 'forbidden') {
+      if (props && Object.prototype.hasOwnProperty.call(props, rule.prop)) {
+        issues.push({
+          code: rule.code,
+          message: rule.message,
+          path: `${nodePath}.props.${rule.prop}`,
+          rationale: rule.rationale,
+          severity: 'error',
+          suggestedFix: rule.suggestedFix,
+        });
+      }
+      continue;
+    }
+
+    if (rule.kind === 'requiredEquals') {
+      const hasProp = !!props && Object.prototype.hasOwnProperty.call(props, rule.prop);
+      const propValue = props?.[rule.prop];
+      const shouldReport = strictRequiredEquals ? (!hasProp || propValue !== rule.value) : (hasProp && propValue !== rule.value);
+      if (shouldReport) {
+        issues.push({
+          code: rule.code,
+          message: rule.message,
+          path: `${nodePath}.props.${rule.prop}`,
+          rationale: rule.rationale,
+          severity: 'error',
+          suggestedFix: rule.suggestedFix,
+        });
+      }
+      continue;
+    }
+
+    if (rule.kind === 'recommendedEquals') {
+      const propValue = props?.[rule.prop];
+      if (propValue !== rule.value) {
+        issues.push({
+          code: rule.code,
+          message: rule.message,
+          path: `${nodePath}.props.${rule.prop}`,
+          rationale: rule.rationale,
+          severity: rule.severity ?? 'info',
+          suggestedFix: rule.suggestedFix,
+        });
+      }
+      continue;
+    }
+
+    const propValue = props?.[rule.prop];
+    if (propValue !== rule.value) {
+      continue;
+    }
+
+    issues.push({
+      code: rule.code,
+      message: rule.message,
+      path: `${nodePath}.props.${rule.prop}`,
+      rationale: rule.rationale,
+      severity: rule.severity ?? 'warning',
+      suggestedFix: rule.suggestedFix,
+    });
+  }
+};
+
+const validateStructureNode = (
+  expected: IntentStructureNode,
+  actual: IntentStructureNode | undefined,
+  nodePath: string,
+  issues: ComponentValidationIssue[],
+  strictRequiredEquals: boolean,
+): void => {
+  if (!actual) {
+    issues.push({
+      code: 'STRUCTURE_NODE_MISSING',
+      message: `Missing required node "${expected.component}".`,
+      path: nodePath,
+      severity: 'error',
+    });
+    return;
+  }
+
+  if (actual.component !== expected.component) {
+    issues.push({
+      code: 'STRUCTURE_COMPONENT_MISMATCH',
+      message: `Expected component "${expected.component}" but found "${actual.component}".`,
+      path: `${nodePath}.component`,
+      severity: 'error',
+    });
+  }
+
+  if (expected.role && actual.role !== expected.role) {
+    issues.push({
+      code: 'STRUCTURE_ROLE_MISMATCH',
+      message: `Expected role "${expected.role}" but found "${actual.role ?? 'undefined'}".`,
+      path: `${nodePath}.role`,
+      severity: 'warning',
+    });
+  }
+
+  if (expected.slot && actual.slot !== expected.slot) {
+    issues.push({
+      code: 'STRUCTURE_SLOT_MISMATCH',
+      message: `Expected slot "${expected.slot}" but found "${actual.slot ?? 'undefined'}".`,
+      path: `${nodePath}.slot`,
+      severity: 'error',
+    });
+  }
+
+  const actualClasses = new Set(actual.classes ?? []);
+  for (const requiredClass of expected.requiredClasses ?? []) {
+    if (!actualClasses.has(requiredClass)) {
+      issues.push({
+        code: 'STRUCTURE_REQUIRED_CLASS_MISSING',
+        message: `Required class "${requiredClass}" is missing on node "${expected.component}".`,
+        path: `${nodePath}.classes`,
+        severity: 'error',
+      });
+    }
+  }
+
+  for (const forbiddenClass of expected.forbiddenClasses ?? []) {
+    if (actualClasses.has(forbiddenClass)) {
+      issues.push({
+        code: 'STRUCTURE_FORBIDDEN_CLASS_PRESENT',
+        message: `Forbidden class "${forbiddenClass}" is present on node "${expected.component}".`,
+        path: `${nodePath}.classes`,
+        severity: 'error',
+      });
+    }
+  }
+
+  evaluateNodePropRules(expected.config?.propRules ?? [], actual.props, nodePath, issues, strictRequiredEquals);
+
+  if (strictRequiredEquals) {
+    for (const rule of expected.config?.contentRules ?? []) {
+      const hasTextContent = typeof actual.text === 'string' && actual.text.trim().length > 0;
+      const hasChildren = (actual.children?.length ?? 0) > 0;
+
+      if (!hasTextContent && !hasChildren) {
+        issues.push({
+          code: rule.code,
+          message: rule.message,
+          path: `${nodePath}.children`,
+          rationale: rule.rationale,
+          severity: 'error',
+          suggestedFix: rule.suggestedFix,
+        });
+      }
+    }
+  }
+
+  if (expected.component === 'text' && expected.text && actual.text !== expected.text) {
+    issues.push({
+      code: 'STRUCTURE_TEXT_MISMATCH',
+      message: `Expected text "${expected.text}" but found "${actual.text ?? ''}".`,
+      path: `${nodePath}.text`,
+      severity: 'warning',
+    });
+  }
+
+  const expectedChildren = expected.children ?? [];
+  const actualChildren = actual.children ?? [];
+
+  if (actualChildren.length < expectedChildren.length) {
+    issues.push({
+      code: 'STRUCTURE_CHILD_MISSING',
+      message: `Expected ${expectedChildren.length} child nodes but found ${actualChildren.length}.`,
+      path: `${nodePath}.children`,
+      severity: 'error',
+    });
+  }
+
+  if (expectedChildren.length > 0 && actualChildren.length > expectedChildren.length) {
+    issues.push({
+      code: 'STRUCTURE_UNEXPECTED_CHILD',
+      message: `Found ${actualChildren.length - expectedChildren.length} unexpected child nodes.`,
+      path: `${nodePath}.children`,
+      severity: 'warning',
+    });
+  }
+
+  for (let index = 0; index < expectedChildren.length; index += 1) {
+    const expectedChild = expectedChildren[index];
+    const actualChild = actualChildren[index];
+    validateStructureNode(expectedChild, actualChild, `${nodePath}.children.${index}`, issues, strictRequiredEquals);
+  }
+};
+
 /**
  * Validate whether a component usage aligns with intent-policy guidance.
  *
@@ -656,88 +855,20 @@ export const validateComponent = async (
         severity: 'error',
       });
     } else {
-      const propRules = pattern.config?.propRules ?? [];
-
-      // Evaluate forbidden rules
-      for (const rule of propRules.filter((r) => r.kind === 'forbidden')) {
-        if (query.props && Object.prototype.hasOwnProperty.call(query.props, rule.prop)) {
-          issues.push({
-            code: rule.code,
-            message: rule.message,
-            path: `props.${rule.prop}`,
-            rationale: rule.rationale,
-            severity: 'error',
-            suggestedFix: rule.suggestedFix,
-          });
+      const expectedStructure: IntentStructureNode = pattern.structure ?? {
+        component: query.component,
+      };
+      const actualStructure: IntentStructureNode = query.structure
+        ? {
+          ...query.structure,
+          props: query.structure.props ?? query.props,
         }
-      }
+        : {
+          component: query.component,
+          props: query.props,
+        };
 
-      // Evaluate requiredEquals rules — error when prop is present with wrong value
-      for (const rule of propRules.filter((r) => r.kind === 'requiredEquals')) {
-        if (query.props && Object.prototype.hasOwnProperty.call(query.props, rule.prop)) {
-          const propValue = query.props[rule.prop];
-          if (propValue !== rule.value) {
-            issues.push({
-              code: rule.code,
-              message: rule.message,
-              path: `props.${rule.prop}`,
-              rationale: rule.rationale,
-              severity: 'error',
-              suggestedFix: rule.suggestedFix,
-            });
-          }
-        }
-      }
-
-      // Evaluate warnWhenEquals rules — warning when prop equals the trigger value
-      for (const rule of propRules.filter((r) => r.kind === 'warnWhenEquals')) {
-        const propValue = query.props?.[rule.prop];
-        if (propValue !== rule.value) {
-          continue;
-        }
-
-        issues.push({
-          code: rule.code,
-          message: rule.message,
-          path: `props.${rule.prop}`,
-          rationale: rule.rationale,
-          severity: rule.severity ?? 'warning',
-          suggestedFix: rule.suggestedFix,
-        });
-      }
-
-      // Fall back to legacy preset fields when no config.propRules are defined
-      if (propRules.length === 0) {
-        const forbidden = pattern.preset?.forbiddenProps ?? [];
-        for (const forbiddenProp of forbidden) {
-          if (query.props && Object.prototype.hasOwnProperty.call(query.props, forbiddenProp)) {
-            issues.push({
-              code: 'FORBIDDEN_PROP',
-              message: `Property "${forbiddenProp}" must not be used for intent "${query.intent}".`,
-              path: `props.${forbiddenProp}`,
-              severity: 'error',
-              suggestedFix: `Remove props.${forbiddenProp}.`,
-            });
-          }
-        }
-
-        const advisoryRules = pattern.preset?.advisoryRules ?? [];
-        for (const advisoryRule of advisoryRules) {
-          const propValue = query.props?.[advisoryRule.condition.prop];
-          if (propValue !== advisoryRule.condition.equals) {
-            continue;
-          }
-
-          issues.push({
-            code: advisoryRule.code,
-            message: advisoryRule.message,
-            path: `props.${advisoryRule.condition.prop}`,
-            rationale: advisoryRule.rationale,
-            severity: advisoryRule.severity ?? 'warning',
-            suggestedFix: advisoryRule.suggestedFix,
-          });
-        }
-      }
+      validateStructureNode(expectedStructure, actualStructure, 'structure', issues, !!query.structure);
     }
   }
 
@@ -832,7 +963,7 @@ export const getComponentGuide = async (
       return {
         description: pattern.description,
         intentId: intent.id,
-        propRules: pattern.config?.propRules ?? [],
+        propRules: pattern.structure?.config?.propRules ?? [],
         snippet,
       };
     })
@@ -845,7 +976,7 @@ export const getComponentGuide = async (
       continue;
     }
 
-    const forbiddenRules = pattern.config?.propRules?.filter((r) => r.kind === 'forbidden')
+    const forbiddenRules = pattern.structure?.config?.propRules?.filter((r) => r.kind === 'forbidden')
       ?? pattern.preset?.forbiddenProps?.map((prop) => ({
         code: 'FORBIDDEN_PROP',
         kind: 'forbidden' as const,

@@ -119,6 +119,7 @@ export type {
   ComponentVueCustom,
   FontCustom,
   FontEntity,
+  FrameworkProfile,
   IconFilterMode,
   IconSearchQuery,
   IconSearchResult,

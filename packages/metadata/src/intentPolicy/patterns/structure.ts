@@ -25,16 +25,44 @@ export const structurePatterns: IntentUsagePattern[] = [
           children: [
             {
               component: 'syn-button',
-              props: {
-                variant: 'text',
+              config: {
+                propRules: [
+                  {
+                    code: 'REQUIRED_CANCEL_VARIANT_TEXT',
+                    kind: 'requiredEquals',
+                    message: 'Cancel action should use text variant in confirmation dialog footer.',
+                    prop: 'variant',
+                    rationale: 'Text variant keeps cancel action visually secondary to destructive confirmation.',
+                    suggestedFix: 'Set variant property to "text".',
+                    value: 'text',
+                  },
+                ],
               },
               role: 'cancelAction',
               text: 'Abort',
             },
             {
               component: 'syn-button',
-              props: {
-                variant: 'danger',
+              config: {
+                propRules: [
+                  {
+                    code: 'REQUIRED_CONFIRM_VARIANT_FILLED',
+                    kind: 'requiredEquals',
+                    message: 'Confirm action should use filled variant in confirmation dialog footer.',
+                    prop: 'variant',
+                    rationale: 'Filled variant visually signals the destructive nature of the action.',
+                    suggestedFix: 'Set variant property to "filled".',
+                    value: 'filled',
+                  },
+                  {
+                    code: 'FORBIDDEN_CONFIRM_HREF',
+                    kind: 'forbidden',
+                    message: 'Confirm action in confirmation dialogs must not use href navigation.',
+                    prop: 'href',
+                    rationale: 'Destructive confirmation should execute an explicit action, not navigate away.',
+                    suggestedFix: 'Remove href and handle confirmation through action callbacks.',
+                  },
+                ],
               },
               role: 'confirmAction',
               text: 'Delete this!',

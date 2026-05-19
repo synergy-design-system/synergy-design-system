@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict';
+import { unlink, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 import {
   after,
   before,
@@ -11,6 +14,12 @@ import {
 } from '../utilities/index.ts';
 
 let session: ClientSession;
+
+const writeTempConfig = async (content: unknown): Promise<string> => {
+  const filePath = join(tmpdir(), `synergy-mcp-tool-contract-${Date.now()}-${Math.random().toString(36).slice(2)}.json`);
+  await writeFile(filePath, JSON.stringify(content), 'utf8');
+  return filePath;
+};
 
 describe('tool contract', () => {
   before(async () => {
@@ -46,6 +55,54 @@ describe('tool contract', () => {
 
     expected.forEach((name) => {
       assert.ok(names.includes(name), `Expected tool "${name}" to be registered.`);
+    });
+
+    const notExpected = [
+      'intent-categories-list',
+      'intent-component-guide',
+      'intent-component-validate',
+      'intent-options',
+      'intent-task-recommendations',
+    ];
+
+    notExpected.forEach((name) => {
+      assert.ok(!names.includes(name), `Did not expect experimental tool "${name}" to be registered by default.`);
+    });
+  });
+});
+
+describe('tool contract (experimental intent tools enabled)', () => {
+  let configuredSession: ClientSession;
+  let configPath: string;
+
+  before(async () => {
+    configPath = await writeTempConfig({
+      experimentalFeatures: {
+        intentTools: true,
+      },
+    });
+    configuredSession = await createClientSession({ configPath });
+  });
+
+  after(async () => {
+    await configuredSession.close();
+    await unlink(configPath).catch(() => {/* ignore cleanup errors */});
+  });
+
+  it('exposes intent tool names via listTools', async () => {
+    const result = await configuredSession.client.listTools();
+    const names = result.tools.map((tool) => tool.name);
+
+    const expectedIntentTools = [
+      'intent-categories-list',
+      'intent-component-guide',
+      'intent-component-validate',
+      'intent-options',
+      'intent-task-recommendations',
+    ];
+
+    expectedIntentTools.forEach((name) => {
+      assert.ok(names.includes(name), `Expected intent tool "${name}" to be registered.`);
     });
   });
 });

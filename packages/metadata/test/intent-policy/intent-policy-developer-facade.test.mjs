@@ -53,7 +53,7 @@ describe('intent policy developer facade', () => {
     try {
       const response = await experimental_validateComponent({
         component: 'syn-button',
-        framework: 'react19',
+        framework: 'react-web-components',
         includePhases: ['experimental'],
         intent: 'action.submit',
         props: {
@@ -79,7 +79,7 @@ describe('intent policy developer facade', () => {
     try {
       const response = await experimental_getComponentGuide({
         component: 'syn-button',
-        framework: 'react19',
+        framework: 'react-web-components',
         includePhases: ['experimental'],
       }, {
         dataDir: fixture.dataDir,
@@ -101,7 +101,7 @@ describe('intent policy developer facade', () => {
     try {
       const response = await experimental_validateComponent({
         component: 'syn-button',
-        framework: 'react19',
+        framework: 'react-web-components',
         includePhases: ['experimental'],
         intent: 'action.submit',
         props: {
@@ -122,13 +122,73 @@ describe('intent policy developer facade', () => {
     }
   });
 
+  it('validates structural composition and node-level rules for confirmation dialog intent', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-dialog',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'structure.confirmation',
+        structure: {
+          children: [
+            {
+              component: 'text',
+              role: 'content',
+              text: 'Content',
+            },
+            {
+              children: [
+                {
+                  component: 'syn-button',
+                  props: {
+                    variant: 'danger',
+                  },
+                  role: 'cancelAction',
+                  text: 'Abort',
+                },
+                {
+                  component: 'syn-button',
+                  props: {
+                    href: '#',
+                    variant: 'text',
+                  },
+                  role: 'confirmAction',
+                  text: 'Delete this!',
+                },
+              ],
+              component: 'nav',
+              role: 'footer',
+              slot: 'footer',
+            },
+          ],
+          component: 'syn-dialog',
+          role: 'container',
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.valid).to.equal(false);
+      expect(response.data.issues.map((issue) => issue.code)).to.include('REQUIRED_CANCEL_VARIANT_TEXT');
+      expect(response.data.issues.map((issue) => issue.code)).to.include('REQUIRED_CONFIRM_VARIANT_FILLED');
+      expect(response.data.issues.map((issue) => issue.code)).to.include('FORBIDDEN_CONFIRM_HREF');
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
   it('finds component recommendations for an intent task', async () => {
     const { experimental_findComponentsForTask } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
       const response = await experimental_findComponentsForTask({
-        framework: 'react19',
+        framework: 'react-web-components',
         includePhases: ['experimental'],
         taskId: 'action.submit',
       }, {
@@ -150,7 +210,7 @@ describe('intent policy developer facade', () => {
 
     try {
       const response = await experimental_getIntentOptions({
-        framework: 'react19',
+        framework: 'react-web-components',
         includePhases: ['experimental'],
         intentId: 'action.grouped',
       }, {
@@ -173,7 +233,7 @@ describe('intent policy developer facade', () => {
 
     try {
       const response = await experimental_getIntentOptions({
-        framework: 'react19',
+        framework: 'react-web-components',
         includeDiagnostics: true,
         includePhases: ['experimental'],
         intentId: 'navigation.link-list.grouped',

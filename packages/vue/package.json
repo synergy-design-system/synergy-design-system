@@ -16,10 +16,10 @@
       "types": "./dist/components/*.vue.d.ts",
       "import": "./dist/components/*.js"
     },
-    "./chart": {  
-      "types": "./dist/chart.d.ts",  
-      "import": "./dist/chart.js"  
-    }  
+    "./chart": {
+      "types": "./dist/chart.d.ts",
+      "import": "./dist/chart.js"
+    }
   },
   "scripts": {
     "_build": "vite build"

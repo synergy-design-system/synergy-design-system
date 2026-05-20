@@ -248,6 +248,7 @@ export const Home: FC = () => {
 ```
 
 ### 10. Using the chart component
+
 For details on chart components, see the [chart overview](https://synergy-design-system.github.io/?path=/docs/charts-overview--docs) and the [React-specific chart documentation](https://synergy-design-system.github.io/?path=/docs/charts-overview--docs#react).
 
 ---

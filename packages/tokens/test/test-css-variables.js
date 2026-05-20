@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Test script to compare CSS variables between built and reference files
  */

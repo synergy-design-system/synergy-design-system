@@ -175,8 +175,8 @@ export default class SynChart extends SynergyElement {
       <div
         part="base"
         class=${classMap({
-      chart: true,
-    })}>
+          chart: true,
+        })}>
       </div>
     `;
   }

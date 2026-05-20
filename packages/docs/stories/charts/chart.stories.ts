@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/chart/chart.js';
 import {
+  generateScreenshotStory,
   generateStoryDescription,
   storybookDefaults,
   storybookHelpers,
@@ -191,3 +192,13 @@ export const MultipleChartsWithDifferentPalettes: Story = {
     </script>
   `,
 };
+
+/* eslint-disable sort-keys */
+export const Screenshot: Story = generateScreenshotStory({
+  Default,
+  Option,
+  Palette,
+  GetInstance,
+  MultipleChartsWithDifferentPalettes,
+}, 600);
+/* eslint-enable sort-keys */

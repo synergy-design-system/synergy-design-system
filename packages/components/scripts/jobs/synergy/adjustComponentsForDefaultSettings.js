@@ -49,7 +49,7 @@ export const adjustComponentsForDefaultSettings = job('Synergy: Adjusting compon
       try {
         await fs.writeFile(componentFile, newContent);
         return STATE_WRITTEN;
-      } catch (_err) {
+      } catch {
         return STATE_ERROR;
       }
     });

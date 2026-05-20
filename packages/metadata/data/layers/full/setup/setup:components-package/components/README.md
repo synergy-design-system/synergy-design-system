@@ -211,7 +211,7 @@ document.addEventListener("load", () => {
 
 ### 6. Using the `syn-chart` component (optional)
 
-For more detailed information about the `syn-chart` see the [Charting Overview page](https://synergy-design-system.github.io/?path=/docs/charting-overview--docs)
+For more detailed information about the `syn-chart` component see the [Charting Overview page](https://synergy-design-system.github.io/?path=/docs/charting-overview--docs)
 
 The `<syn-chart>` component allows you to display charts powered by [Apache ECharts](https://echarts.apache.org). Because not every project needs charting functionality, `echarts` is an **optional peer dependency** that must be installed separately.
 
@@ -222,6 +222,8 @@ The `<syn-chart>` component allows you to display charts powered by [Apache ECha
 ```bash
 npm install --save echarts
 ```
+
+> **Note:** Only **Apache ECharts version 6** (`echarts@^6.1.0`) is officially supported. Other versions may work but are not tested or guaranteed to be compatible.
 
 #### Step 2: Load the component tokens (required)
 

@@ -20,7 +20,7 @@ export const createSCSS = (header, inputFile, outputFile) => {
       return [
         pascalCase(varName, {
           mergeAmbiguousCharacters: true,
-          split:  (value) => joinConsecutiveNumbers(split(value)),
+          split: (value) => joinConsecutiveNumbers(split(value)),
         }),
         cssVar.replace(':', ''),
       ];

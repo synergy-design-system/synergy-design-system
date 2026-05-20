@@ -79,7 +79,7 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-chart/components/utilities.ts"
+        "path": "layers/full/component/component:syn-chart/components/types.ts"
       },
       {
         "layer": "full",
@@ -115,7 +115,7 @@
     "packages/components/src/components/chart/chart.palettes.ts",
     "packages/components/src/components/chart/chart.styles.ts",
     "packages/components/src/components/chart/chart.ts",
-    "packages/components/src/components/chart/utilities.ts",
+    "packages/components/src/components/chart/types.ts",
     "packages/react/src/components/chart.ts",
     "packages/vue/src/components/SynVueChart.vue"
   ],

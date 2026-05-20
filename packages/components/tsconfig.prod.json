@@ -3,6 +3,6 @@
   "compilerOptions": {
     "rootDir": "./src"
   },
-  "include": ["src", "echarts.d.ts"],
+  "include": ["src"],
   "exclude": ["src/**/*.test.ts"]
 }

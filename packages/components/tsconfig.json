@@ -28,5 +28,5 @@
     "verbatimModuleSyntax": true,
     "types": ["mocha"]
   },
-  "include": ["src", "echarts.d.ts"]
+  "include": ["src"]
 }

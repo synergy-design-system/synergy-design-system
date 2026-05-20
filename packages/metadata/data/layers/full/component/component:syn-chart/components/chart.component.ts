@@ -15,7 +15,7 @@ import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './chart.styles.js';
 import { PALETTE_TOKENS } from './chart.palettes.js';
-import type { ECOption } from './utilities.js';
+import type { ECOption } from './types.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -42,7 +42,7 @@ export default class SynChart extends SynergyElement {
     styles,
   ];
 
-  @query('.chart', true)
+  @query('.chart')
   private chartContainer: HTMLDivElement;
 
   private chartInstance: EChartsType;

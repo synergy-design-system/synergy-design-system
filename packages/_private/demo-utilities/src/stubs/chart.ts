@@ -1,4 +1,4 @@
-import type { ECOption } from '@synergy-design-system/components/components/chart/utilities.js';
+import type { ECOption } from '@synergy-design-system/components/components/chart/types.js';
 
 export const lineChartOption: ECOption = {
   series: [

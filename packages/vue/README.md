@@ -237,6 +237,10 @@ You may use it in one of the following ways:
 </template>
 ```
 
+### 10. Using the chart component
+For details on chart components, see the [chart overview](https://synergy-design-system.github.io/?path=/docs/charts-overview--docs) and the [Vue-specific chart documentation](https://synergy-design-system.github.io/?path=/docs/charts-overview--docs#vue).
+
+
 ---
 
 ## Development

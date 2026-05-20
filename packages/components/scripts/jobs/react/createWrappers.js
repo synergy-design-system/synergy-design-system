@@ -62,13 +62,11 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
       ${eventExports}
     `;
 
-    // Remove chart component from the index, as it should not be part of the default exports
-    if (component.tagNameWithoutPrefix !== 'chart') {
-      index.push({
-        name: component.name,
-        outputPath: `./components/${component.tagNameWithoutPrefix}.js`,
-      });
-    }
+    index.push({
+      component: component.tagNameWithoutPrefix,
+      name: component.name,
+      outputPath: `./components/${component.tagNameWithoutPrefix}.js`,
+    });
 
     fs.writeFileSync(componentFile, source, 'utf8');
   });

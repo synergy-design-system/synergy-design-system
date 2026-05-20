@@ -32,6 +32,8 @@ npm install @synergy-design-system/components
 pnpm add @synergy-design-system/components
 ```
 
+The chart component is shipped as a **separate entrypoint** for all packages and framework wrappers to avoid bundling the echarts dependency unless it is actually needed.
+
 > **Note:** `echarts` is a **required peer dependency** and must be installed separately:
 >
 > ```bash
@@ -107,7 +109,7 @@ export default function App() {
 
 ```ts
 <script setup lang="ts">
-import SynVueChart from '@synergy-design-system/vue/components/SynVueChart';
+import { SynVueChart } from '@synergy-design-system/vue/chart';
 import type { ECOption } from '@synergy-design-system/components/components/chart/utilities.js';
 
 const option: ECOption = {
@@ -195,6 +197,18 @@ The type currently covers:
 > ⚠️ **Currently, only line charts are supported** (`series[].type: 'line'`).
 >
 > Support for additional chart types (bar, pie, gauge, etc.) is planned for future releases.
+
+If you can't wait for the future releases or want to use echarts features, which we won't support, you can do this be registering the needed echarts plugins by yourself.
+But keep in mind, that they are not synergy approved and do not have synergy styling!
+
+To register echarts functionalities do following or have a closer look at the [echarts documentation](https://echarts.apache.org/en/api.html#echarts.use) :
+
+```js
+import { use } from "echarts/core.js";
+import { BarChart } from "echarts/charts.js";
+
+use([BarChart]);
+```
 
 ---
 

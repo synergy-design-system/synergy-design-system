@@ -206,13 +206,12 @@ export const runCreateComponents = job('Angular: Creating components', async (me
       ${eventExports}
     `.trim();
 
-    // Remove chart component from the index, as it should not be part of the default exports
-    if (component.tagNameWithoutPrefix !== 'chart') {
-      index.push({
-        name: `${component.name}Component`,
-        outputPath: `@synergy-design-system/angular/components/${component.tagNameWithoutPrefix}`,
-      });
-    }
+    index.push({
+      component: component.tagNameWithoutPrefix,
+      name: `${component.name}Component`,
+      outputPath: `@synergy-design-system/angular/components/${component.tagNameWithoutPrefix}`,
+    });
+
     fs.writeFileSync(componentPath, source, 'utf8');
     createNgPackageJson(componentFileName, componentDir);
   });

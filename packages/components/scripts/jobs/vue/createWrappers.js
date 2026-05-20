@@ -277,13 +277,13 @@ ${exports}
 </template>
 `.trim();
 
-    // Remove chart component from the index, as it should not be part of the default exports
-    if (component.tagNameWithoutPrefix !== 'chart') {
-      index.push({
-        name: vueComponentName,
-        outputPath: `./components/${vueComponentName}.vue`,
-      });
-    } else {
+    index.push({
+      component: component.tagNameWithoutPrefix,
+      name: vueComponentName,
+      outputPath: `./components/${vueComponentName}.vue`,
+    });
+
+    if (component.tagNameWithoutPrefix === 'chart') {
       chart.push({
         name: vueComponentName,
         outputPath: `./components/${vueComponentName}.vue`,

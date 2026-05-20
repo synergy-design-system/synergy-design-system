@@ -1,6 +1,6 @@
-import { CHARTS_OUTPUT_DIR, COMPONENTS_OUTPUT_DIR } from './config.js';
-import { getCssSelectors, getDefaultTheme } from './helpers.js';
-import { copyDefaultThemeAliases, runBuildPipeline } from './build-generic.js';
+import { CHARTS_OUTPUT_DIR, COMPONENTS_OUTPUT_DIR } from '../config.js';
+import { getCssSelectors, getDefaultTheme } from '../helpers.js';
+import { copyDefaultThemeAliases, runBuildPipeline } from './shared.js';
 
 const DEFAULT_THEME = getDefaultTheme();
 
@@ -9,7 +9,7 @@ const DEFAULT_THEME = getDefaultTheme();
  * @param {string} theme - e.g. "sick2025-light"
  * @param {string} mode - e.g. "light"
  */
-const getChartThemeInformation = (theme, mode) => {
+const getThemeInformation = (theme, mode) => {
   if (!theme || !mode) throw new Error('Theme and mode are required');
   const usedTheme = theme.replaceAll('-', '_');
   return {
@@ -22,13 +22,13 @@ const getChartThemeInformation = (theme, mode) => {
   };
 };
 
-await runBuildPipeline({
+export const buildCharts = async () => runBuildPipeline({
   buildPath: './dist/charts/',
   copyToDefault: (themesDir) => copyDefaultThemeAliases(themesDir, DEFAULT_THEME),
   // For charting tokens we need to include the component tokens in the build for resolving references,
   // but we don't want to output them in the charting CSS files since they're not used directly.
   filter: ({filePath}) => filePath.includes('figma-charts'),
-  getThemeInformation: getChartThemeInformation,
+  getThemeInformation,
   prefix: 'syn-',
   sourceDir: CHARTS_OUTPUT_DIR,
 });

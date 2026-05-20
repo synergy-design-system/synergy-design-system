@@ -308,6 +308,7 @@ export const createFrameworkIndex = (
   // due to the fact that the order is not treated well
   const alphabeticIndex = [...components]
     .sort(sortByComponentName)
+    .filter(c => c.component !== 'chart') // Make sure to not include chart in the index, as it is no part of the default exports
     .map(({ name, outputPath }) => {
       // When we use useDefaultExport,
       // make sure to export the default as named export

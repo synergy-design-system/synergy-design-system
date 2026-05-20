@@ -378,6 +378,9 @@ export class Home {
 }
 ```
 
+### 11. Using the chart component
+For details on chart components, see the [chart overview](https://synergy-design-system.github.io/?path=/docs/charts-overview--docs) and the [Angular-specific chart documentation](https://synergy-design-system.github.io/?path=/docs/charts-overview--docs#angular).
+
 ---
 
 ## Development

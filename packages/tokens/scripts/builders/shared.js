@@ -3,16 +3,16 @@ import { copyFileSync, readdirSync } from 'node:fs';
 import { styleText } from 'node:util';
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
-import { cssVariableFormatter } from './formats/index.js';
-import { createJS, createSCSS } from './outputs/index.js';
+import { cssVariableFormatter } from '../formats/index.js';
+import { createJS, createSCSS } from '../outputs/index.js';
 import {
   addFallbackFonts,
   addMissingQuotesForStrings,
   changeOutputValues,
   convertLetterSpacingValue,
   fixFigmaBackgroundBlur,
-} from './transforms/index.js';
-import { getPackageInformation } from './helpers.js';
+} from '../transforms/index.js';
+import { getPackageInformation } from '../helpers.js';
 
 let isStyleDictionaryInitialized = false;
 

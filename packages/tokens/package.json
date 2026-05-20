@@ -61,7 +61,7 @@
     "directory": "packages/tokens"
   },
   "scripts": {
-    "build": "pnpm clean && node scripts/build-components.js && node scripts/build-charts.js",
+    "build": "pnpm clean && node scripts/build.js",
     "build:all": "dotenvx -q run pnpm build:_all",
     "build:_all": "pnpm clean && pnpm fetch:figma && pnpm build:figma && pnpm build",
     "build:figma": "pnpm run build:variables && pnpm run build:styles",

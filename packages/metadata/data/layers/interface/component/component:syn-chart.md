@@ -34,9 +34,7 @@ The ECharts configuration option object. This property maps 1:1 to the ECharts `
 
 attribute: `palette`
 reflects: yes
-type: `'categorical' | 'sequential-01' | 'sequential-02' | 'sequential-03' | 'sequential-04' | 'sequential-05'
-  | 'sequential-06' | 'sequential-07' | 'sequential-status-critical' | 'sequential-status-error' | 'sequential-status-info'
-  | 'sequential-status-success' | 'sequential-status-warning'`
+type: `SynChartPalette`
 default: `'categorical'`
 
 The color palette to apply to chart series. - `categorical` (default) — 12 distinct colors for comparing unrelated data series - `sequential-01` … `sequential-07` — 10-step single-hue ramps: `01`=primary, `02`=accent, `03`=muted, `04`=purple, `05`=teal, `06`=magenta, `07`=neutral - `sequential-status-critical`, `sequential-status-error`, `sequential-status-info`, `sequential-status-success`, `sequential-status-warning` — 10-step status ramps The palette sets the ECharts `color` array. If `option.color` is explicitly provided, it takes precedence over the palette.

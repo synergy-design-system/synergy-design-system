@@ -1,8 +1,8 @@
 import { join } from 'node:path';
-import { addMissingTokens } from './add-missing-tokens.js';
-import { COMPONENTS_OUTPUT_DIR, OUTPUT_VARIABLE_CHANGES } from './config.js';
-import { getCssSelectors, getDefaultTheme } from './helpers.js';
-import { copyDefaultThemeAliases, runBuildPipeline } from './build-generic.js';
+import { addMissingTokens } from '../add-missing-tokens.js';
+import { COMPONENTS_OUTPUT_DIR, OUTPUT_VARIABLE_CHANGES } from '../config.js';
+import { getCssSelectors, getDefaultTheme } from '../helpers.js';
+import { copyDefaultThemeAliases, runBuildPipeline } from './shared.js';
 
 const DEFAULT_THEME = getDefaultTheme();
 
@@ -11,7 +11,7 @@ const DEFAULT_THEME = getDefaultTheme();
  * @param {string} theme - e.g. "sick2025-light"
  * @param {string} mode - e.g. "light"
  */
-const getComponentThemeInformation = (theme, mode) => {
+const getThemeInformation = (theme, mode) => {
   if (!theme || !mode) throw new Error('Theme and mode are required');
   const usedTheme = theme.replaceAll('-', '_');
   return {
@@ -26,10 +26,10 @@ const getComponentThemeInformation = (theme, mode) => {
   };
 };
 
-await runBuildPipeline({
+export const buildComponents = async () => runBuildPipeline({
   buildPath: './dist/',
   copyToDefault: (themesDir) => copyDefaultThemeAliases(themesDir, DEFAULT_THEME),
-  getThemeInformation: getComponentThemeInformation,
+  getThemeInformation,
   postProcess: (themesDir) => addMissingTokens(join(themesDir)),
   prefix: 'syn-',
   sourceDir: COMPONENTS_OUTPUT_DIR,

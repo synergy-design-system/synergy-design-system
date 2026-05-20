@@ -128,9 +128,9 @@ export default function Navigation({ basePath, currentPath }: NavigationProps) {
 
       {intentCategories.data.length > 0 && (
         <syn-nav-item open={normalizedCurrentPath.startsWith('/intent-policy')}>
-          <syn-icon slot="prefix" name="more" library="sidenav" />
+          <syn-icon name="more" library="sidenav" slot="prefix" />
           Intent Policies
-          <syn-tooltip slot="suffix" content="Structural interaction intent requiring composition, slots, and semantic roles. This feature is in active development and may be subject to breaking changes.">
+          <syn-tooltip slot="suffix" content="Intent policies are currently in development and subject to change.">
             <syn-badge variant="warning">!</syn-badge>
           </syn-tooltip>
 

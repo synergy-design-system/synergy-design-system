@@ -19,7 +19,7 @@ const aiPolicyHref = withBasePath('/llms.txt', basePath);
 
 <script>
 // @todo: Only load whats really needed!
-import { registerIconLibrary, SynNavItem, type SynShowEvent } from '@synergy-design-system/components';
+import { registerIconLibrary, SynNavItem } from '@synergy-design-system/components';
 const basePath = import.meta.env.BASE_URL;
 
 // Draw icons from esm.sh for the time being.
@@ -33,37 +33,47 @@ registerIconLibrary('sidenav', {
 
 registerIconLibrary('logos', {
 	resolver: name => `${basePath}icons/${name}.svg`,
-})
+});
+
+type SynSideNavElement = HTMLElement & { open?: boolean };
+
+const getTopLevelNavItems = (sideNav: SynSideNavElement): SynNavItem[] =>
+	Array.from(sideNav.querySelectorAll<SynNavItem>(':scope > syn-nav-item:not([slot="footer"])'));
 
 const attachSideNavBehavior = async () => {
 	await customElements.whenDefined('syn-side-nav');
-	const sideNav = document.querySelector('syn-side-nav');
+	const sideNav = document.querySelector<SynSideNavElement>('syn-side-nav');
 
 	if (!sideNav) {
 		return;
 	}
 
-	const toggleNavItems = () => {
-		const isOpen = sideNav.open;
+	const toggleNavItems = async () => {
+		const isOpen = sideNav.hasAttribute('open');
+		const topLevelItems = getTopLevelNavItems(sideNav);
 
-		sideNav.querySelectorAll<SynNavItem>(':scope > syn-nav-item').forEach(el => {
-			if (isOpen) {
+		for (const el of topLevelItems) {
+			if (!isOpen) {
 				el.open = false;
-
-				// Check if the item or one of its children is active, and if so open it.
-				if (el.querySelector('syn-nav-item[current]')) {
-					el.open = true;
-				}
-			} else {
-				el.open = false;
+				continue;
 			}
-		});
+
+			el.open = false;
+			const activeChild = el.querySelector<HTMLElement>('syn-nav-item[current]');
+			if (!activeChild) {
+				continue;
+			}
+
+			el.open = true;
+			await el.updateComplete;
+			activeChild.scrollIntoView({ block: 'nearest' });
+		}
 	};
 
 	const observer = new MutationObserver(mutations => {
 		for (const mutation of mutations) {
 			if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
-				toggleNavItems();
+				void toggleNavItems();
 			}
 		}
 	});
@@ -73,31 +83,43 @@ const attachSideNavBehavior = async () => {
 		attributes: true,
 	});
 
-	toggleNavItems();
-
-	sideNav.addEventListener('syn-hide', (e: SynShowEvent) => {
-		if (!sideNav.open) {
-			e.stopPropagation();
-			e.preventDefault();
+	// Prevent expanding first-level accordion groups while side nav is collapsed.
+	sideNav.addEventListener('click', (event: Event) => {
+		if (sideNav.hasAttribute('open')) {
+			return;
 		}
-	});
 
-	sideNav.addEventListener('syn-show', (e: SynShowEvent) => {
-		if (!sideNav.open) {
-			e.stopPropagation();
-			e.preventDefault();
-			const { target } = e;
-			if (target instanceof SynNavItem) {
-				target.open = false;
-			}
+		const clickedNavItem = event
+			.composedPath()
+			.find((target): target is SynNavItem =>
+				target instanceof SynNavItem
+			);
+
+		if (!clickedNavItem) {
+			return;
 		}
-	});
-}
+
+		const isTopLevel = clickedNavItem.parentElement === sideNav && clickedNavItem.getAttribute('slot') !== 'footer';
+		const hasChildren = !!clickedNavItem.querySelector(':scope > [slot="children"]');
+
+		if (!isTopLevel || !hasChildren) {
+			return;
+		}
+
+		clickedNavItem.open = false;
+		event.preventDefault();
+		event.stopImmediatePropagation();
+	}, { capture: true });
+
+	void toggleNavItems();
+};
 
 if (document.readyState === 'loading') {
-	document.addEventListener('DOMContentLoaded', attachSideNavBehavior, { once: true });
+	document.addEventListener('DOMContentLoaded', () => {
+		void attachSideNavBehavior();
+	}, { once: true });
 } else {
-	attachSideNavBehavior();
+	void attachSideNavBehavior();
 }
 </script>
 

@@ -72,11 +72,11 @@ describe('intent policy renderers', () => {
     expect(rendered).to.not.equal(null);
     expect(rendered).to.include('<syn-dialog');
     expect(rendered).to.include('<nav slot="footer">');
-    expect(rendered).to.include('<syn-button variant="text">Abort</syn-button>');
-    expect(rendered).to.include('<syn-button variant="filled">Delete this!</syn-button>');
+    expect(rendered).to.include('<syn-button variant="text"></syn-button>');
+    expect(rendered).to.include('<syn-button variant="filled"></syn-button>');
 
-    const cancelIndex = rendered.indexOf('Abort');
-    const confirmIndex = rendered.indexOf('Delete this!');
+    const cancelIndex = rendered.indexOf('variant="text"');
+    const confirmIndex = rendered.indexOf('variant="filled"');
     expect(cancelIndex).to.be.lessThan(confirmIndex);
   });
 

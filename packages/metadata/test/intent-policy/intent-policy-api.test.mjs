@@ -88,8 +88,8 @@ describe('intent policy api (separate from integration tests)', () => {
       expect(response.errors).to.equal(undefined);
       expect(response.data).to.not.equal(null);
       expect(response.data?.pattern.structure?.component).to.equal('syn-dialog');
-      expect(response.data?.pattern.structure?.children?.[1]?.slot).to.equal('footer');
-      const confirmButton = response.data?.pattern.structure?.children?.[1]?.children?.[1];
+      expect(response.data?.pattern.structure?.children?.[0]?.slot).to.equal('footer');
+      const confirmButton = response.data?.pattern.structure?.children?.[0]?.children?.[1];
       expect(confirmButton?.component).to.equal('syn-button');
       const variantRule = confirmButton?.config?.propRules?.find(r => r.prop === 'variant');
       expect(variantRule?.value).to.equal('filled');

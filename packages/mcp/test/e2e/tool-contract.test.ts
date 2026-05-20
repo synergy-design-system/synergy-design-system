@@ -13,6 +13,8 @@ import {
   createClientSession,
 } from '../utilities/index.ts';
 
+const INTENT_RESOURCE_URI = 'synergy://intent-categories/list';
+
 let session: ClientSession;
 
 const writeTempConfig = async (content: unknown): Promise<string> => {
@@ -69,6 +71,13 @@ describe('tool contract', () => {
       assert.ok(!names.includes(name), `Did not expect experimental tool "${name}" to be registered by default.`);
     });
   });
+
+  it('does not expose intent resources via listResources by default', async () => {
+    const result = await session.client.listResources();
+    const uris = result.resources.map((resource) => resource.uri);
+
+    assert.ok(!uris.includes(INTENT_RESOURCE_URI), `Did not expect intent resource "${INTENT_RESOURCE_URI}" to be registered by default.`);
+  });
 });
 
 describe('tool contract (experimental intent tools enabled)', () => {
@@ -86,7 +95,9 @@ describe('tool contract (experimental intent tools enabled)', () => {
 
   after(async () => {
     await configuredSession.close();
-    await unlink(configPath).catch(() => {/* ignore cleanup errors */});
+    await unlink(configPath).catch(() => {
+      /* ignore cleanup errors */
+    });
   });
 
   it('exposes intent tool names via listTools', async () => {
@@ -104,5 +115,12 @@ describe('tool contract (experimental intent tools enabled)', () => {
     expectedIntentTools.forEach((name) => {
       assert.ok(names.includes(name), `Expected intent tool "${name}" to be registered.`);
     });
+  });
+
+  it('exposes intent resources via listResources', async () => {
+    const result = await configuredSession.client.listResources();
+    const uris = result.resources.map((resource) => resource.uri);
+
+    assert.ok(uris.includes(INTENT_RESOURCE_URI), `Expected intent resource "${INTENT_RESOURCE_URI}" to be registered.`);
   });
 });

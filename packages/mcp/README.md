@@ -213,7 +213,13 @@ Enable them explicitly with:
 }
 ```
 
-When enabled, these additional tools become available:
+When enabled, these additional features become available:
+
+#### Resources
+
+- `synergy://intent-categories/list`
+
+#### Tools
 
 - `intent-categories-list`
 - `intent-component-guide`
@@ -353,7 +359,9 @@ This lets you change per-tool defaults without modifying the MCP server code.
 
 ## Available Resources
 
-The MCP server currently registers 5 resources. Resources expose static, read-only data that does not change during server runtime. Clients that support MCP resources can read them directly without calling a tool.
+The MCP server currently registers 5 stable resources by default. Resources expose static, read-only data that does not change during server runtime. Clients that support MCP resources can read them directly without calling a tool.
+
+When `experimentalFeatures.intentTools` is enabled, 1 additional intent resource is registered.
 
 Resource identifier reference (exact values used by the server):
 
@@ -362,6 +370,7 @@ Resource identifier reference (exact values used by the server):
 - `synergy://component-clusters/list` → name: `component-clusters-list`
 - `synergy://styles/list` → name: `styles-list`
 - `synergy://templates/list` → name: `templates-list`
+- `synergy://intent-categories/list` → name: `intent-categories-list` (experimental)
 
 ### 1. `synergy://components/list`
 
@@ -447,6 +456,30 @@ Resource identifier reference (exact values used by the server):
 
 ```json
 ["app-shell", "dashboard", "form", ...]
+```
+
+### 6. `synergy://intent-categories/list` (experimental)
+
+**Name:** `intent-categories-list`
+
+**MIME type:** `application/json`
+
+**Description:** Available intent categories in the Synergy intent policy layer.
+
+**Registration:** Only available when `experimentalFeatures.intentTools` is `true`.
+
+**Example:**
+
+```json
+{
+  "data": [
+    {
+      "description": "User actions and commands",
+      "id": "action",
+      "label": "Action"
+    }
+  ]
+}
 ```
 
 ## Available Tools
@@ -932,6 +965,7 @@ src/
 │   ├── component-list.ts
 │   ├── asset-list.ts
 │   ├── component-cluster-list.ts
+│   ├── intent-categories-list.ts
 │   ├── styles-list.ts
 │   ├── templates-list.ts
 │   └── index.ts
@@ -1067,6 +1101,7 @@ The MCP server is intentionally small:
 - `src/bin/start.ts` parses CLI arguments, loads optional runtime config, resolves overrides, and starts the selected transport.
 - `src/transports/` contains the transport factory and runtime implementations for stdio and HTTP/HTTPS.
 - `src/server.ts` creates the `McpServer` instance and registers all exported tools from `src/tools/index.ts` and all exported resources from `src/resources/index.ts`.
+- `src/server.ts` applies feature-flag gating generically: exports whose factory names start with `intent` are only registered when `experimentalFeatures.intentTools` is enabled.
 - Tool implementations in `src/tools/` call the public APIs of `@synergy-design-system/metadata` to retrieve data.
 - Resource implementations in `src/resources/` expose static, read-only data that does not change during server runtime. Resources bypass the tool middleware pipeline entirely — no compression, logging, or error wrapping is applied.
 - Utilities in `src/utilities/` handle runtime config, MCP response shaping, DaVinci migration extraction, and package migration document loading.

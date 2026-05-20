@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
 import { html } from 'lit';
 import '../../../components/src/components/chart/chart.js';
+import { PALETTE_TOKENS } from '../../../components/src/components/chart/chart.palettes.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -23,7 +24,13 @@ const meta: Meta = {
       value: 'chart-default',
     },
   ], defaultArgs),
-  argTypes,
+  argTypes: {
+    ...argTypes,
+    palette: {
+      control: 'select',
+      options: Object.keys(PALETTE_TOKENS),
+    },
+  },
   component: 'syn-chart',
   parameters: {
     chromatic: {
@@ -32,7 +39,14 @@ const meta: Meta = {
     design: generateFigmaPluginObject('41094-279501'),
     docs: {
       description: {
-        component: generateStoryDescription('chart', 'default'),
+        component:
+          [
+            '>⚠️ **Experimental Status**:',
+            '>syn-chart is currently experimental.',
+            '>The API may change in future releases without prior notice.',
+            '>Use it with caution in production environments and expect potential breaking changes.\n',
+            generateStoryDescription('chart', 'default'),
+          ].join('\n'),
       },
     },
   },

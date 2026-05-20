@@ -17,11 +17,6 @@ export const structurePatterns: IntentUsagePattern[] = [
     structure: {
       children: [
         {
-          component: 'text',
-          role: 'content',
-          text: 'Content',
-        },
-        {
           children: [
             {
               component: 'syn-button',
@@ -38,8 +33,6 @@ export const structurePatterns: IntentUsagePattern[] = [
                   },
                 ],
               },
-              role: 'cancelAction',
-              text: 'Abort',
             },
             {
               component: 'syn-button',
@@ -64,12 +57,9 @@ export const structurePatterns: IntentUsagePattern[] = [
                   },
                 ],
               },
-              role: 'confirmAction',
-              text: 'Delete this!',
             },
           ],
           component: 'nav',
-          role: 'footer',
           slot: 'footer',
         },
       ],
@@ -77,7 +67,6 @@ export const structurePatterns: IntentUsagePattern[] = [
       props: {
         open: true,
       },
-      role: 'container',
     },
     target: { id: 'component:syn-dialog', kind: 'component', name: 'syn-dialog' },
   },

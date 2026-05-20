@@ -13,7 +13,6 @@ const basePath = import.meta.env.BASE_URL;
 const currentPath = normalizePathForNavigation(Astro.url.pathname, basePath);
 const logoHref = withBasePath('/', basePath);
 const faviconSvgHref = withBasePath('/favicon.svg', basePath);
-const faviconIcoHref = withBasePath('/favicon.ico', basePath);
 const aiPolicyHref = withBasePath('/llms.txt', basePath);
 ---
 
@@ -129,7 +128,6 @@ if (document.readyState === 'loading') {
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href={faviconSvgHref} />
-		<link rel="icon" href={faviconIcoHref} />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="ai-policy" href={aiPolicyHref}>
 		<title>Synergy Design System - Design System Specification</title>

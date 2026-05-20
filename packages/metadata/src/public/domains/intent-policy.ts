@@ -766,28 +766,64 @@ const validateStructureNode = (
   const expectedChildren = expected.children ?? [];
   const actualChildren = actual.children ?? [];
 
-  if (actualChildren.length < expectedChildren.length) {
-    issues.push({
-      code: 'STRUCTURE_CHILD_MISSING',
-      message: `Expected ${expectedChildren.length} child nodes but found ${actualChildren.length}.`,
-      path: `${nodePath}.children`,
-      severity: 'error',
-    });
-  }
+  // Filter actual children by slot if expected children are slot-specific
+  // This allows flexible default-slot content while still validating specific slots
+  const expectedHasSlots = expectedChildren.some((child) => child.slot);
+  const actualChildrenBySlot = new Map<string | undefined, IntentStructureNode[]>();
 
-  if (expectedChildren.length > 0 && actualChildren.length > expectedChildren.length) {
-    issues.push({
-      code: 'STRUCTURE_UNEXPECTED_CHILD',
-      message: `Found ${actualChildren.length - expectedChildren.length} unexpected child nodes.`,
-      path: `${nodePath}.children`,
-      severity: 'warning',
-    });
-  }
+  if (expectedHasSlots) {
+    // Group actual children by slot attribute
+    for (const child of actualChildren) {
+      const { slot } = child;
+      if (!actualChildrenBySlot.has(slot)) {
+        actualChildrenBySlot.set(slot, []);
+      }
+      actualChildrenBySlot.get(slot)!.push(child);
+    }
 
-  for (let index = 0; index < expectedChildren.length; index += 1) {
-    const expectedChild = expectedChildren[index];
-    const actualChild = actualChildren[index];
-    validateStructureNode(expectedChild, actualChild, `${nodePath}.children.${index}`, issues, strictRequiredEquals);
+    // Validate each expected child against children in its slot
+    for (let index = 0; index < expectedChildren.length; index += 1) {
+      const expectedChild = expectedChildren[index];
+      const expectedSlot = expectedChild.slot;
+      const slottedChildren = actualChildrenBySlot.get(expectedSlot) ?? [];
+
+      if (slottedChildren.length === 0) {
+        issues.push({
+          code: 'STRUCTURE_NODE_MISSING',
+          message: `Missing required node "${expectedChild.component}" in slot "${expectedSlot ?? 'default'}".`,
+          path: `${nodePath}.children.${index}`,
+          severity: 'error',
+        });
+      } else {
+        // Compare expected child with the first actual child in that slot
+        validateStructureNode(expectedChild, slottedChildren[0], `${nodePath}.children.${index}`, issues, strictRequiredEquals);
+      }
+    }
+  } else {
+    // Original positional matching for non-slot patterns
+    if (actualChildren.length < expectedChildren.length) {
+      issues.push({
+        code: 'STRUCTURE_CHILD_MISSING',
+        message: `Expected ${expectedChildren.length} child nodes but found ${actualChildren.length}.`,
+        path: `${nodePath}.children`,
+        severity: 'error',
+      });
+    }
+
+    if (expectedChildren.length > 0 && actualChildren.length > expectedChildren.length) {
+      issues.push({
+        code: 'STRUCTURE_UNEXPECTED_CHILD',
+        message: `Found ${actualChildren.length - expectedChildren.length} unexpected child nodes.`,
+        path: `${nodePath}.children`,
+        severity: 'warning',
+      });
+    }
+
+    for (let index = 0; index < expectedChildren.length; index += 1) {
+      const expectedChild = expectedChildren[index];
+      const actualChild = actualChildren[index];
+      validateStructureNode(expectedChild, actualChild, `${nodePath}.children.${index}`, issues, strictRequiredEquals);
+    }
   }
 };
 

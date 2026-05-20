@@ -19,13 +19,6 @@ export default {
   usageGuidelines: [
     {
       content: [
-        'Use light background options such as white, neutral-100, or primary-100.',
-      ],
-      id: 'background',
-      name: 'Background',
-    },
-    {
-      content: [
         'Keep each option to a single line of text for readability.',
         'Ensure all options have consistent line lengths for easier scanning.',
         'Avoid using the same word or phrase at the beginning of options.',

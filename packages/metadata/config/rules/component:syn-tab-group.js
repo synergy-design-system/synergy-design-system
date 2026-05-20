@@ -16,13 +16,6 @@ export default {
   usageGuidelines: [
     {
       content: [
-        'Use background options of white, neutral-100, or primary-100.',
-      ],
-      id: 'background',
-      name: 'Background',
-    },
-    {
-      content: [
         'Maintain a consistent tab order across different pages or sections to reduce confusion and enhance user familiarity.',
         'Limit the number of tabs (typically no more than six) to avoid overwhelming users; for more options, consider using side navigation.',
         'Do not nest tabs within other tab containers.',
@@ -39,14 +32,6 @@ export default {
       ],
       id: 'content',
       name: 'Content',
-    },
-    {
-      content: [
-        'Bold labels if desired, keeping this decision consistent across the group.',
-        'Customize to suit user requirements by changing label alignment or deleting the separator between group and content.',
-      ],
-      id: 'styling',
-      name: 'Styling',
     },
   ],
   useCases: [

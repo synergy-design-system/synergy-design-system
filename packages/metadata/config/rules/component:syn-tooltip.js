@@ -17,13 +17,6 @@ export default {
   usageGuidelines: [
     {
       content: [
-        'Use with light background options of white, neutral-100 and primary-100.',
-      ],
-      id: 'background',
-      name: 'Background',
-    },
-    {
-      content: [
         'Place the tooltip where the floating element does not obscure important content related to the subject.',
         'Ensure it disappears when the user interacts with other elements.',
         'Avoid tooltips being cropped by other elements of the interface; use appropriate placement for this purpose.',

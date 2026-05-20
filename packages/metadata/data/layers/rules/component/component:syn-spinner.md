@@ -14,10 +14,6 @@ Spinners are used to show the progress of an indeterminate operation.
 
 ## Usage Guidelines
 
-### Background
-
-- Use light background options like white, neutral-100, primary-100, or use a primary background when inverted.
-
 ### Behavior and Placement
 
 - Use for processes that take a short amount of time (typically under 4 seconds).

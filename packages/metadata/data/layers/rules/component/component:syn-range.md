@@ -14,10 +14,6 @@ Ranges allow the user to select values within a given range using one or two thu
 
 ## Usage Guidelines
 
-### Background
-
-- Use light background options like white, neutral-100 or primary-100.
-
 ### Context
 
 - Position the range component in an uncluttered area to facilitate easy interaction.

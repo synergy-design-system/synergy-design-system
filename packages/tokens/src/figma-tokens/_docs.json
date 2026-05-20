@@ -1299,23 +1299,15 @@
       }
     },
     "icon": {
-      "description": {
-        "value": "Icons are symbols that can be used to represent various options within an application.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Icon",
-        "type": "text"
-      }
-    },
-    "image-comparer": {
-      "description": {
-        "value": "Compare visual differences between similar photos with a sliding panel.",
-        "type": "text"
-      },
-      "title": {
-        "value": "Image Comparer",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Icons are symbols that can be used to represent various options within an application.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Icon",
+          "type": "text"
+        }
       }
     },
     "include": {

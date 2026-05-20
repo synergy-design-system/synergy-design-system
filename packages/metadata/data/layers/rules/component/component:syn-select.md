@@ -12,10 +12,6 @@ Selects allow you to choose items from a menu of predefined options.
 
 ## Usage Guidelines
 
-### Background
-
-- Use light background options such as white, neutral-100, or primary-100.
-
 ### Content and Labels
 
 - Keep each option to a single line of text for readability.

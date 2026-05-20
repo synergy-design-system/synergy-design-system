@@ -6,7 +6,7 @@ Checkboxes allow the user to toggle an option on or off.
 
 ## Common Use Cases
 
-- Used for selections that don't immediately activate.
+- Used for selections that don't immediately trigger an action.
 - Selecting an option like "Agree to Terms and Conditions" before submitting a registration form.
 - Opt-in/Opt-out of notifications or subscriptions.
 

@@ -37,11 +37,9 @@ export default {
     {
       content: [
         'Use size variants consistently within a control group.',
-        'Use semantic colors only when state or priority must be emphasized.',
-        'Do not overuse high contrast icon buttons in low priority contexts.',
       ],
-      id: 'visuals',
-      name: 'Size and Color',
+      id: 'size',
+      name: 'Size',
     },
   ],
   useCases: [

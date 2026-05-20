@@ -16,13 +16,6 @@ export default {
   usageGuidelines: [
     {
       content: [
-        'Use light background options like white, neutral-100, primary-100, or use a primary background when inverted.',
-      ],
-      id: 'background',
-      name: 'Background',
-    },
-    {
-      content: [
         'Use for processes that take a short amount of time (typically under 4 seconds).',
         'Apply within specific sections rather than blocking the entire page, unless absolutely necessary.',
         'Place in a consistent location relative to the content it is loading.',

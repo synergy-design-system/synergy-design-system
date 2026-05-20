@@ -24,11 +24,9 @@ Icons buttons are simple, icon-only buttons that can be used for actions and in 
 - Prefer regular buttons when text improves clarity.
 - Use disabled state sparingly and explain why an action is unavailable when possible.
 
-### Size and Color
+### Size
 
 - Use size variants consistently within a control group.
-- Use semantic colors only when state or priority must be emphasized.
-- Do not overuse high contrast icon buttons in low priority contexts.
 
 ## Accessibility
 

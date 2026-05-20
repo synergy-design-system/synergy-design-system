@@ -9,7 +9,6 @@ export default {
   component: 'syn-nav-item',
   related: {
     components: [
-      'syn-header',
       'syn-side-nav',
       'syn-prio-nav',
     ],

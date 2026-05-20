@@ -13,10 +13,6 @@ Tooltips display additional information based on a specific action.
 
 ## Usage Guidelines
 
-### Background
-
-- Use with light background options of white, neutral-100 and primary-100.
-
 ### Behavior and Placement
 
 - Place the tooltip where the floating element does not obscure important content related to the subject.

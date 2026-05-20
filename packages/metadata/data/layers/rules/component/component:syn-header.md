@@ -22,7 +22,7 @@ that can be used to add applications name, toolbar and primary navigation.
 
 ### Navigation Structure and Content
 
-- Include the logo, main navigation, and, if applicable, sub-brand logos and meta navigation.
+- Include the logo, main navigation, and, if applicable, meta navigation.
 - Use the number of navigation items that best suits the content, always ensuring categories are clearly labeled and mutually exclusive.
 - Regularly update the navigation links to reflect current content and structure.
 

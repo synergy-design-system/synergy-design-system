@@ -48,7 +48,19 @@
     },
     "override": {
       "figmaDocsId": "1616-1512",
-      "stories": [],
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Icons are symbols that can be used to represent various options within an application."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Icon"
+          }
+        }
+      ],
       "storySourcePath": "components.icon",
       "storyTags": [
         "Icons"

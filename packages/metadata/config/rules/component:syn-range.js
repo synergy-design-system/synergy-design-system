@@ -18,13 +18,6 @@ export default {
   usageGuidelines: [
     {
       content: [
-        'Use light background options like white, neutral-100 or primary-100.',
-      ],
-      id: 'background',
-      name: 'Background',
-    },
-    {
-      content: [
         'Position the range component in an uncluttered area to facilitate easy interaction.',
         'Reserve the component for relevant, contextually meaningful ranges (e.g., price filters, time spans).',
       ],

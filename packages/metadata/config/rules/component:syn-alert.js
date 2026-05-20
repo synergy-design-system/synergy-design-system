@@ -100,6 +100,6 @@ export default {
   ],
   useCases: [
     'Inline notifications can provide contextual feedback to users. They are directly embedded within the content of a page or form.',
-    'Toast notifications provide brief, unobtrusive messages to users through toast notifications that overlay the interface and do not necessarily need attention.',
+    'Toast notifications provide brief, unobtrusive messages that appear as overlays to confirm actions or share updates without interrupting the user\'s current task.',
   ],
 };

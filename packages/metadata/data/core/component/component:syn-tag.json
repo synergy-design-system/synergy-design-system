@@ -88,6 +88,13 @@
       ]
     },
     "rules": {
+      "accessibility": [
+        "Ensure each tag has a short, meaningful text label that can be understood without visual context alone.",
+        "For removable tags, ensure the remove action is clearly announced by assistive technologies and communicates which tag will be removed.",
+        "Provide visible focus indication for any interactive tag or remove control and keep focus order consistent with surrounding controls.",
+        "When tags are presented as a set (for example, active filters), provide group context with a clear label via syn-tag-group or an equivalent labeled container.",
+        "After a tag is removed, move focus predictably to a logical next element and provide feedback about the updated state when relevant."
+      ],
       "component": "syn-tag",
       "related": {
         "components": [
@@ -105,13 +112,6 @@
           ],
           "id": "behavior",
           "name": "Behavior"
-        },
-        {
-          "content": [
-            "Tags are interactive elements which trigger an action."
-          ],
-          "id": "interactivity",
-          "name": "Interactivity"
         },
         {
           "content": [

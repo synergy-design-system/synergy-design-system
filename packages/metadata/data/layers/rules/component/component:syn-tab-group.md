@@ -14,10 +14,6 @@ Tab groups organize content into a container that shows one section at a time.
 
 ## Usage Guidelines
 
-### Background
-
-- Use background options of white, neutral-100, or primary-100.
-
 ### Behavior
 
 - Maintain a consistent tab order across different pages or sections to reduce confusion and enhance user familiarity.
@@ -30,11 +26,6 @@ Tab groups organize content into a container that shows one section at a time.
 - Ensure the first tab is the most relevant for the user.
 - Place related tabs next to each other for logical grouping.
 - Avoid overloading each tabs content with too much information; keep it manageable and focused.
-
-### Styling
-
-- Bold labels if desired, keeping this decision consistent across the group.
-- Customize to suit user requirements by changing label alignment or deleting the separator between group and content.
 
 ## Accessibility
 

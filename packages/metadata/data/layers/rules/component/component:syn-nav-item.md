@@ -36,7 +36,6 @@ Flexible button / link component that can be used to quickly build navigations.
 
 ## Related Components
 
-- syn-header
 - syn-side-nav
 - syn-prio-nav
 

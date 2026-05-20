@@ -6,42 +6,99 @@ import '@synergy-design-system/fonts/src/sick-intl/font.css';
 import '../styles/global.css';
 import MetaNavigation from '../components/MetaNavigation.astro';
 import Navigation from '../components/Navigation';
+import { normalizePathForNavigation, withBasePath } from '../utils/basePath';
 
 const basePath = import.meta.env.BASE_URL;
-const normalizePathForNavigation = (pathname: string, base: string) => {
-	if (base === '/') {
-		return pathname;
-	}
-
-	const normalizedBase = base.endsWith('/') ? base : `${base}/`;
-	if (pathname === normalizedBase.slice(0, -1) || pathname === normalizedBase) {
-		return '/';
-	}
-
-	if (!pathname.startsWith(normalizedBase)) {
-		return pathname;
-	}
-
-	const withoutBase = pathname.slice(normalizedBase.length);
-	return `/${withoutBase}`;
-};
 
 const currentPath = normalizePathForNavigation(Astro.url.pathname, basePath);
+const logoHref = withBasePath('/', basePath);
+const faviconSvgHref = withBasePath('/favicon.svg', basePath);
+const faviconIcoHref = withBasePath('/favicon.ico', basePath);
+const aiPolicyHref = withBasePath('/llms.txt', basePath);
 ---
 
 <script>
 // @todo: Only load whats really needed!
-import { registerIconLibrary } from '@synergy-design-system/components';
+import { registerIconLibrary, SynNavItem, type SynShowEvent } from '@synergy-design-system/components';
 const basePath = import.meta.env.BASE_URL;
 
 // Draw icons from esm.sh for the time being.
-registerIconLibrary("default", {
-	resolver: (name) => `https://esm.sh/@synergy-design-system/assets@latest/src/sick2025/icons/outline/${name}.svg`
+// registerIconLibrary("default", {
+// 	resolver: (name) => `https://esm.sh/@synergy-design-system/assets@latest/src/sick2025/icons/outline/${name}.svg`
+// });
+
+registerIconLibrary('sidenav', {
+	resolver: name => `${basePath}icons/sidenav/${name}.svg`,
 });
 
 registerIconLibrary('logos', {
 	resolver: name => `${basePath}icons/${name}.svg`,
 })
+
+const attachSideNavBehavior = async () => {
+	await customElements.whenDefined('syn-side-nav');
+	const sideNav = document.querySelector('syn-side-nav');
+
+	if (!sideNav) {
+		return;
+	}
+
+	const toggleNavItems = () => {
+		const isOpen = sideNav.open;
+
+		sideNav.querySelectorAll<SynNavItem>(':scope > syn-nav-item').forEach(el => {
+			if (isOpen) {
+				el.open = false;
+
+				// Check if the item or one of its children is active, and if so open it.
+				if (el.querySelector('syn-nav-item[current]')) {
+					el.open = true;
+				}
+			} else {
+				el.open = false;
+			}
+		});
+	};
+
+	const observer = new MutationObserver(mutations => {
+		for (const mutation of mutations) {
+			if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
+				toggleNavItems();
+			}
+		}
+	});
+
+	observer.observe(sideNav, {
+		attributeFilter: ['open'],
+		attributes: true,
+	});
+
+	toggleNavItems();
+
+	sideNav.addEventListener('syn-hide', (e: SynShowEvent) => {
+		if (!sideNav.open) {
+			e.stopPropagation();
+			e.preventDefault();
+		}
+	});
+
+	sideNav.addEventListener('syn-show', (e: SynShowEvent) => {
+		if (!sideNav.open) {
+			e.stopPropagation();
+			e.preventDefault();
+			const { target } = e;
+			if (target instanceof SynNavItem) {
+				target.open = false;
+			}
+		}
+	});
+}
+
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', attachSideNavBehavior, { once: true });
+} else {
+	attachSideNavBehavior();
+}
 </script>
 
 <!doctype html>
@@ -49,15 +106,15 @@ registerIconLibrary('logos', {
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={`${basePath}favicon.svg`} />
-		<link rel="icon" href={`${basePath}favicon.ico`} />
+		<link rel="icon" type="image/svg+xml" href={faviconSvgHref} />
+		<link rel="icon" href={faviconIcoHref} />
 		<meta name="generator" content={Astro.generator} />
-		<link rel="ai-policy" href={`${basePath}llms.txt`}>
+		<link rel="ai-policy" href={aiPolicyHref}>
 		<title>Synergy Design System - Design System Specification</title>
 	</head>
 	<body>
 		<syn-header>
-			<a href="/" slot="logo" tabindex="0" class="header-logo">
+			<a href={logoHref} slot="logo" tabindex="0" class="header-logo">
 				<syn-icon
 					name="logo-color"
 					library="system"

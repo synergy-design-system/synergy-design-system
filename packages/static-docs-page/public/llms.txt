@@ -32,6 +32,7 @@ No interpretation or inference is performed during generation.
 - Package changelogs and version history: `/changelog/{id}`
 - Concept and guidance pages (non-normative):
   - Accessibility: `/accessibility`
+  - Brand Version Support: `/brand-support`
   - Goals and guidelines: `/goals`
   - Out of scope and non-goals: `/out-of-scope`
   - Frequently misunderstood topics: `/misconceptions`

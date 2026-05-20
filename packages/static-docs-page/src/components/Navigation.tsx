@@ -1,4 +1,5 @@
 import * as meta from '@synergy-design-system/metadata';
+import { withBasePath } from '../utils/basePath';
 import { metadataStoreOptions } from '../utils/metadataStoreOptions';
 
 const components = await meta.listComponents({}, metadataStoreOptions);
@@ -35,18 +36,21 @@ type NavigationProps = {
 };
 
 export default function Navigation({ basePath, currentPath }: NavigationProps) {
-	const toAppHref = (path: string) => `${basePath}${path.replace(/^\//, '')}`;
 	const normalizedCurrentPath = currentPath !== '/' && currentPath.endsWith('/')
 		? currentPath.slice(0, -1)
 		: currentPath;
 
 	return (
-		<syn-side-nav variant="sticky" open>
+		<syn-side-nav
+      variant="sticky"
+      open
+    >
 			<syn-nav-item open={normalizedCurrentPath.includes('/component/')}>
+        <syn-icon slot="prefix" name="brick" library="sidenav" />
 				Components
 				{components.data.map(c => {
 					const relativePath = `/component/${c.id.replace(/^component:/, '')}`;
-					const href = toAppHref(relativePath);
+					const href = withBasePath(relativePath, basePath);
 					const isCurrent = normalizedCurrentPath === relativePath;
 
 					return (
@@ -62,10 +66,11 @@ export default function Navigation({ basePath, currentPath }: NavigationProps) {
 				})}
 			</syn-nav-item>
 			<syn-nav-item open={normalizedCurrentPath.includes('/template/')}>
+        <syn-icon slot="prefix" name="pattern" library="sidenav" />
 				Templates
 				{templates.data.map(t => {
 					const relativePath = `/template/${t.id.replace(/^template:/, '')}`;
-					const href = toAppHref(relativePath);
+					const href = withBasePath(relativePath, basePath);
 					const isCurrent = normalizedCurrentPath === relativePath;
 
 					return (
@@ -81,10 +86,11 @@ export default function Navigation({ basePath, currentPath }: NavigationProps) {
 				})}
 			</syn-nav-item>
 			<syn-nav-item open={normalizedCurrentPath.includes('/style/')}>
+        <syn-icon slot="prefix" name="css" library="sidenav" />
 				Styles
 				{styles.data.map(s => {
 					const relativePath = `/style/${s.id.replace(/^style:/, '')}`;
-					const href = toAppHref(relativePath);
+					const href = withBasePath(relativePath, basePath);
 					const isCurrent = normalizedCurrentPath === relativePath;
 
 					return (
@@ -100,10 +106,11 @@ export default function Navigation({ basePath, currentPath }: NavigationProps) {
 				})}
 			</syn-nav-item>
 			<syn-nav-item open={normalizedCurrentPath.startsWith('/changelog')}>
+        <syn-icon slot="prefix" name="receipt_long" library="sidenav" />
 				Package Changelogs
 				{CHANGELOG_PACKAGES.map(pkg => {
 					const relativePath = `/changelog/${pkg.id}`;
-					const href = toAppHref(relativePath);
+					const href = withBasePath(relativePath, basePath);
 					const isCurrent = normalizedCurrentPath === relativePath;
 
 					return (
@@ -121,23 +128,15 @@ export default function Navigation({ basePath, currentPath }: NavigationProps) {
 
       {intentCategories.data.length > 0 && (
         <syn-nav-item open={normalizedCurrentPath.startsWith('/intent-policy')}>
+          <syn-icon slot="prefix" name="more" library="sidenav" />
           Intent Policies
           <syn-tooltip slot="suffix" content="Structural interaction intent requiring composition, slots, and semantic roles. This feature is in active development and may be subject to breaking changes.">
             <syn-badge variant="warning">!</syn-badge>
           </syn-tooltip>
 
-					<syn-nav-item
-						current={normalizedCurrentPath === '/intent-policy'}
-						href={toAppHref('/intent-policy')}
-						slot="children"
-						key="intent-policy-overview"
-					>
-						Overview
-					</syn-nav-item>
-
           {intentCategories.data.map(category => {
             const relativePath = `/intent-policy/${category.id}`;
-            const href = toAppHref(relativePath);
+						const href = withBasePath(relativePath, basePath);
             const isCurrent = normalizedCurrentPath === relativePath;
 
             return (
@@ -157,15 +156,16 @@ export default function Navigation({ basePath, currentPath }: NavigationProps) {
       <syn-nav-item
         slot="footer"
         open={additionalLinks
-          .map(link => toAppHref(link.href))
+					.map(link => link.href)
           .some(path => normalizedCurrentPath.includes(path))
         }
       >
+        <syn-icon slot="prefix" name="tips_and_updates" library="sidenav" />
         Additional Information
         {additionalLinks.map(link => (
           <syn-nav-item
             current={normalizedCurrentPath === link.href}
-            href={toAppHref(link.href)}
+						href={withBasePath(link.href, basePath)}
             slot="children"
             key={link.id}
           >

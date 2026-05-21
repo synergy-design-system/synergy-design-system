@@ -1,9 +1,29 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-05-11T08:40:49.126Z",
+  "generatedAt": "2026-05-21T10:37:45.023Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
+    {
+      "id": "intent-categories-list:experimental",
+      "tokens": 166
+    },
+    {
+      "id": "intent-component-guide:syn-button",
+      "tokens": 1123
+    },
+    {
+      "id": "intent-component-validate:action.submit",
+      "tokens": 98
+    },
+    {
+      "id": "intent-task-recommendations:action.submit",
+      "tokens": 134
+    },
+    {
+      "id": "intent-options:navigation.link-list.grouped",
+      "tokens": 189
+    },
     {
       "id": "component-info:interface:syn-button",
       "tokens": 1555
@@ -50,7 +70,7 @@
     },
     {
       "id": "prompt:explain-component-rules:syn-accordion",
-      "tokens": 310
+      "tokens": 284
     }
   ]
 }

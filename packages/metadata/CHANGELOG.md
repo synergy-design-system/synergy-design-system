@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.8.0
+
+### Minor Changes
+
+- [#1276](https://github.com/synergy-design-system/synergy-design-system/pull/1276) [`a6b68f2`](https://github.com/synergy-design-system/synergy-design-system/commit/a6b68f2126ee0c63f2e9f5a91d96e97c2486e3c9) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-05-21
+
+  feat: ✨ component context guidelines ([#1187](https://github.com/synergy-design-system/synergy-design-system/issues/1187))
+  - Correct `@since` flags for all components
+  - Updated component usage rules (beta)
+  - Add missing rules files
+  - Create overviews for all components
+
 ## 3.7.0
 
 ## 3.6.0

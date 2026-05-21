@@ -13,22 +13,31 @@ export default {
       description: 'The spinner component may experience animation issues in Safari, causing it to appear wobbly.',
     },
   ],
-  usageGuidelines: {
-    background: [
-      'Use light background options like white, neutral-100, primary-100, or use a primary background when inverted.',
-    ],
-    behavior_and_placement: [
-      'Use for processes that take a short amount of time (typically under 4 seconds).',
-      'Apply within specific sections rather than blocking the entire page, unless absolutely necessary.',
-      'Place in a consistent location relative to the content it is loading.',
-    ],
-    content: [
-      'Include a label or message to provide context about what is being loaded, especially if the loading time is long.',
-    ],
-    styling: [
-      'Maintain consistency in size and style; avoid using spinners of varying sizes on the same page.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Use for processes that take a short amount of time (typically under 4 seconds).',
+        'Apply within specific sections rather than blocking the entire page, unless absolutely necessary.',
+        'Place in a consistent location relative to the content it is loading.',
+      ],
+      id: 'behavior_and_placement',
+      name: 'Behavior and Placement',
+    },
+    {
+      content: [
+        'Include a label or message to provide context about what is being loaded, especially if the loading time is long.',
+      ],
+      id: 'content',
+      name: 'Content',
+    },
+    {
+      content: [
+        'Maintain consistency in size and style; avoid using spinners of varying sizes on the same page.',
+      ],
+      id: 'styling',
+      name: 'Styling',
+    },
+  ],
   useCases: [
     'Indicate that content is being loaded, such as when fetching data from a server or loading a new page.',
     'Show ongoing background processes, like file uploads or data processing tasks.',

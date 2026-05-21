@@ -321,6 +321,7 @@ describe('public metadata api', () => {
     const {
       getComponentMetadata,
       getDataForComponent,
+      getRulesForComponent,
       listComponentClusters,
       listComponents,
     } = await loadPublicApi();
@@ -413,6 +414,21 @@ describe('public metadata api', () => {
     expect(examplesLayerData.data?.examples).to.be.an('array').that.is.not.empty;
     expect(examplesLayerData.data?.examples?.every((entry) => entry.path.endsWith('.md'))).to.equal(true);
 
+    const rulesLayerData = await getDataForComponent('syn-accordion', {
+      layer: 'rules',
+    });
+    expect(rulesLayerData.errors).to.equal(undefined);
+    expect(rulesLayerData.data?.layer).to.equal('rules');
+    expect(rulesLayerData.data?.rules).to.be.an('array').that.is.not.empty;
+    expect(rulesLayerData.data?.rules?.every((entry) => entry.path.endsWith('.md'))).to.equal(true);
+    expect(rulesLayerData.data?.rules?.[0]?.content).to.include('## Usage Guidelines');
+
+    const focusedRulesData = await getRulesForComponent('syn-accordion');
+    expect(focusedRulesData.errors).to.equal(undefined);
+    expect(focusedRulesData.data?.layer).to.equal('rules');
+    expect(focusedRulesData.data?.rules).to.be.an('array').that.is.not.empty;
+    expect(focusedRulesData.data?.rules?.[0]?.content).to.include('## Common Use Cases');
+
     const fixture = await createComponentFixtureDataDir();
     try {
       const strictLayerErrorResponse = await getComponentMetadata(
@@ -429,6 +445,13 @@ describe('public metadata api', () => {
       expect(strictLayerErrorResponse.data).to.equal(null);
       expect(strictLayerErrorResponse.errors).to.be.an('array').that.is.not.empty;
       expect(strictLayerErrorResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
+
+      const missingRulesResponse = await getRulesForComponent('component:syn-fixture', {
+        dataDir: fixture.dataDir,
+      });
+      expect(missingRulesResponse.data).to.equal(null);
+      expect(missingRulesResponse.errors).to.be.an('array').that.is.not.empty;
+      expect(missingRulesResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
     } finally {
       await fixture.cleanup();
     }

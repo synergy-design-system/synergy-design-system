@@ -1,0 +1,13 @@
+---
+import { formatDate } from '../utils/date';
+const { creationDate, entityId } = Astro.props;
+---
+
+<footer slot="footer">
+  <syn-divider />
+  Data created at {formatDate(creationDate)}
+  {entityId && (
+    <>Generated from the canonical metadata for {entityId}.</>
+  )}
+  <slot />
+</footer>

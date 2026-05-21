@@ -1,5 +1,8 @@
 {
-  "figmaComponentId": "41337-204379",
-  "storyTags": ["Form"],
-  "storySourcePath": "components.textarea"
+  "figmaComponentId": "1101-1482",
+  "figmaDocsId": "41337-204379",
+  "storySourcePath": "components.textarea",
+  "storyTags": [
+    "Form"
+  ]
 }

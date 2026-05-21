@@ -26,7 +26,7 @@ Component.define('syn-select');
  * @summary Selects allow you to choose items from a menu of predefined options.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs
  * @status stable
- * @since 2.0
+ * @since 1.5.0
  *
  * @dependency syn-icon
  * @dependency syn-popup

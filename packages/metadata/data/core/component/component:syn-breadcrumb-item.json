@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.26.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -38,7 +38,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "41127-679600",
+      "figmaComponentId": "18458-27218",
+      "figmaDocsId": "41127-679600",
       "stories": [
         {
           "description": {
@@ -55,6 +56,33 @@
       "storySourcePath": "components.breadcrumb-item",
       "storyTags": [
         "Navigation"
+      ]
+    },
+    "rules": {
+      "accessibility": [
+        "Dynamically update breadcrumbs and announce changes with aria-live for screen readers.",
+        "Provide clear labels for breadcrumb items to ensure screen readers convey the navigation path effectively."
+      ],
+      "component": "syn-breadcrumb-item",
+      "related": {
+        "components": [
+          "syn-breadcrumb"
+        ],
+        "templates": [
+          "Breadcrumb"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use clear and descriptive labels that accurately represent each page or section in the navigation path."
+          ],
+          "id": "content_and_labeling",
+          "name": "Content and Labeling"
+        }
+      ],
+      "useCases": [
+        "Populate a syn-breadcrumb navigation helping users easily access different pages."
       ]
     },
     "sourceModulePath": "components/breadcrumb-item/breadcrumb-item.js",
@@ -112,12 +140,18 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-breadcrumb-item.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-breadcrumb-item.md"
+      }
     ]
   },
   "name": "syn-breadcrumb-item",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.26.0",
   "sources": [
     "packages/angular/components/breadcrumb-item/breadcrumb-item.component.ts",
     "packages/components/src/components/breadcrumb-item/breadcrumb-item.component.ts",

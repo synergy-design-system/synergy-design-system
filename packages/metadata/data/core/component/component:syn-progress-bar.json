@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-progress-bar--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.19.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -38,7 +38,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "41203-297162",
+      "figmaComponentId": "16209-20856",
+      "figmaDocsId": "41203-297162",
       "stories": [
         {
           "description": {
@@ -101,6 +102,54 @@
         "Feedback"
       ]
     },
+    "rules": {
+      "accessibility": [
+        "Provide accessible labels for progress context, especially when multiple bars are visible.",
+        "Use determinate mode when actual progress is known and indeterminate only when unknown.",
+        "Do not rely on color only to communicate progress status."
+      ],
+      "component": "syn-progress-bar",
+      "related": {
+        "components": [
+          "syn-progress-ring",
+          "syn-spinner"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use determinate mode for measurable tasks such as uploads or imports.",
+            "Use indeterminate mode for short operations when duration cannot be estimated.",
+            "Switch to determinate mode as soon as reliable progress information is available."
+          ],
+          "id": "mode",
+          "name": "Determinate vs Indeterminate"
+        },
+        {
+          "content": [
+            "Provide descriptive labels that state what process is progressing.",
+            "Show values when users benefit from precise completion feedback.",
+            "Keep labeling consistent across similar processes."
+          ],
+          "id": "labels",
+          "name": "Labels and Values"
+        },
+        {
+          "content": [
+            "Use custom heights carefully to preserve readability and visual balance.",
+            "Maintain sufficient contrast between track and indicator.",
+            "Avoid decorative overuse of animated progress indicators."
+          ],
+          "id": "visuals",
+          "name": "Visual Styling"
+        }
+      ],
+      "useCases": [
+        "Show progress for uploads, downloads, or data processing.",
+        "Indicate completion status in multi-step operations.",
+        "Display background task progress in dashboards and forms."
+      ]
+    },
     "sourceModulePath": "components/progress-bar/progress-bar.js",
     "summary": "Progress bars are used to show the status of an ongoing operation."
   },
@@ -156,12 +205,18 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-progress-bar.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-progress-bar.md"
+      }
     ]
   },
   "name": "syn-progress-bar",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.19.0",
   "sources": [
     "packages/angular/components/progress-bar/progress-bar.component.ts",
     "packages/components/src/components/progress-bar/progress-bar.component.ts",

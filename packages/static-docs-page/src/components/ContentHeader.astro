@@ -1,0 +1,46 @@
+---
+type Props = {
+	headline: string;
+	headlineClass?: string;
+};
+
+const { headline, headlineClass = 'syn-heading--3x-large' } = Astro.props;
+---
+
+<header class="content-header" slot="header">
+	<h1 class={headlineClass}>{headline}</h1>
+	<div class="content-header-actions">
+		<slot />
+	</div>
+</header>
+<syn-divider slot="header"></syn-divider>
+
+<style>
+	.content-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--syn-spacing-small);
+	}
+
+	.content-header-actions {
+		display: flex;
+		align-items: center;
+		gap: var(--syn-spacing-small);
+	}
+
+	.content-header-actions :global(nav) {
+		display: flex;
+		align-items: center;
+		gap: var(--syn-spacing-small);
+	}
+
+	.content-header :global(h1) {
+		margin: 0;
+		padding: 0;
+	}
+
+	.content-header-actions:empty {
+		display: none;
+	}
+</style>

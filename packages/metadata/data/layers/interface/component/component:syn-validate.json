@@ -93,7 +93,8 @@
   ],
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs",
   "events": [],
-  "figmaComponentId": "41310-284767",
+  "figmaComponentId": "25638-40480",
+  "figmaDocsId": "41310-284767",
   "methods": [
     {
       "description": "Returns the validity state of the input component.\n`true` for valid and `false` for invalid.",
@@ -212,7 +213,7 @@
       "type": "'native' | 'tooltip' | 'inline'"
     }
   ],
-  "since": "unknown",
+  "since": "2.12.0",
   "slots": [
     {
       "description": "The form field that should be validated. Avoid slotting in more than one element, as subsequent ones will be ignored.",

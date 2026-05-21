@@ -23,6 +23,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @summary File controls allow selecting an arbitrary number of files for uploading.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs
  * @status stable
+ * @since 2.5.0
  *
  * @dependency syn-button
  * @dependency syn-icon

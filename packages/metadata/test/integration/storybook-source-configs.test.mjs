@@ -47,6 +47,9 @@ describe('storybook source configs', () => {
     expect(templateItems.length).to.be.greaterThan(0);
 
     expect(styleItems.every((item) => stylesScrapingConfig.generateEntityId(item).startsWith('style:syn-'))).to.equal(true);
+    expect(componentScrapingConfig.generateStoryId('syn-accordion')).to.equal('components-syn-accordion--docs');
+    expect(componentScrapingConfig.generateStoryId('syn-alert')).to.equal('components-syn-alert--docs');
+    expect(componentScrapingConfig.generateStoryId('syn-spinner')).to.equal('components-syn-spinner--docs');
     expect(templateItems).to.include('appshell');
     expect(templateItems).to.include('forms');
   });

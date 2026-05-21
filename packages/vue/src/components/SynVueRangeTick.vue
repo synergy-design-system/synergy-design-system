@@ -9,6 +9,7 @@
  * @summary Ticks visually improve positioning on range sliders.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range-tick--docs
  * @status stable
+ * @since 2.6.0
  *
  * @slot - The tick's label
  *

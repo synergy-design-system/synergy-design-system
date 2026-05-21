@@ -14,7 +14,7 @@ Component.define('syn-breadcrumb-item');
  * @summary Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs
  * @status stable
- * @since 2.0
+ * @since 1.26.0
  *
  * @slot - The breadcrumb item's label.
  * @slot prefix - An optional prefix, usually an icon or icon button.

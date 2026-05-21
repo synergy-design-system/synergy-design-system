@@ -1,0 +1,154 @@
+---
+import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/styles/index.css';
+import '@synergy-design-system/components/styles/index.css';
+import '@synergy-design-system/fonts/src/sick-intl/font.css';
+import '../styles/global.css';
+import MetaNavigation from '../components/MetaNavigation.astro';
+import Navigation from '../components/Navigation';
+import { normalizePathForNavigation, withBasePath } from '../utils/basePath';
+
+const basePath = import.meta.env.BASE_URL;
+
+const currentPath = normalizePathForNavigation(Astro.url.pathname, basePath);
+const logoHref = withBasePath('/', basePath);
+const faviconSvgHref = withBasePath('/favicon.svg', basePath);
+const aiPolicyHref = withBasePath('/llms.txt', basePath);
+---
+
+<script>
+// @todo: Only load whats really needed!
+import { registerIconLibrary, SynNavItem } from '@synergy-design-system/components';
+const basePath = import.meta.env.BASE_URL;
+
+// Draw icons from esm.sh for the time being.
+// registerIconLibrary("default", {
+// 	resolver: (name) => `https://esm.sh/@synergy-design-system/assets@latest/src/sick2025/icons/outline/${name}.svg`
+// });
+
+registerIconLibrary('sidenav', {
+	resolver: name => `${basePath}icons/sidenav/${name}.svg`,
+});
+
+registerIconLibrary('logos', {
+	resolver: name => `${basePath}icons/${name}.svg`,
+});
+
+type SynSideNavElement = HTMLElement & { open?: boolean };
+
+const getTopLevelNavItems = (sideNav: SynSideNavElement): SynNavItem[] =>
+	Array.from(sideNav.querySelectorAll<SynNavItem>(':scope > syn-nav-item:not([slot="footer"])'));
+
+const attachSideNavBehavior = async () => {
+	await customElements.whenDefined('syn-side-nav');
+	const sideNav = document.querySelector<SynSideNavElement>('syn-side-nav');
+
+	if (!sideNav) {
+		return;
+	}
+
+	const toggleNavItems = async () => {
+		const isOpen = sideNav.hasAttribute('open');
+		const topLevelItems = getTopLevelNavItems(sideNav);
+
+		for (const el of topLevelItems) {
+			if (!isOpen) {
+				el.open = false;
+				continue;
+			}
+
+			el.open = false;
+			const activeChild = el.querySelector<HTMLElement>('syn-nav-item[current]');
+			if (!activeChild) {
+				continue;
+			}
+
+			el.open = true;
+			await el.updateComplete;
+			activeChild.scrollIntoView({ block: 'nearest' });
+		}
+	};
+
+	const observer = new MutationObserver(mutations => {
+		for (const mutation of mutations) {
+			if (mutation.type === 'attributes' && mutation.attributeName === 'open') {
+				void toggleNavItems();
+			}
+		}
+	});
+
+	observer.observe(sideNav, {
+		attributeFilter: ['open'],
+		attributes: true,
+	});
+
+	// Prevent expanding first-level accordion groups while side nav is collapsed.
+	sideNav.addEventListener('click', (event: Event) => {
+		if (sideNav.hasAttribute('open')) {
+			return;
+		}
+
+		const clickedNavItem = event
+			.composedPath()
+			.find((target): target is SynNavItem =>
+				target instanceof SynNavItem
+			);
+
+		if (!clickedNavItem) {
+			return;
+		}
+
+		const isTopLevel = clickedNavItem.parentElement === sideNav && clickedNavItem.getAttribute('slot') !== 'footer';
+		const hasChildren = !!clickedNavItem.querySelector(':scope > [slot="children"]');
+
+		if (!isTopLevel || !hasChildren) {
+			return;
+		}
+
+		clickedNavItem.open = false;
+		event.preventDefault();
+		event.stopImmediatePropagation();
+	}, { capture: true });
+
+	void toggleNavItems();
+};
+
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', () => {
+		void attachSideNavBehavior();
+	}, { once: true });
+} else {
+	void attachSideNavBehavior();
+}
+</script>
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href={faviconSvgHref} />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="ai-policy" href={aiPolicyHref}>
+		<title>Synergy Design System - Design System Specification</title>
+	</head>
+	<body>
+		<syn-header>
+			<a href={logoHref} slot="logo" tabindex="0" class="header-logo">
+				<syn-icon
+					name="logo-color"
+					library="system"
+					label="Custom Logo with link"
+				/>
+			</a>
+			<span slot="label">Synergy Design System - Design System Specification</span>
+			<MetaNavigation />
+		</syn-header>
+		<div class="content">
+			<Navigation basePath={basePath} currentPath={currentPath} />
+			<main>
+				<slot />
+			</main>
+		</div>
+	</body>
+</html>

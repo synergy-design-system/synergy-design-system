@@ -32,6 +32,7 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
  * @status stable
+ * @since 2.8.0
  *
  * @dependency syn-icon
  * @dependency syn-popup

@@ -1,0 +1,12 @@
+import {
+	Canvas,
+	Meta,
+} from '@storybook/addon-docs/blocks';
+import { RulesHelper } from '../../../src/helpers/rules-helper.tsx';
+import * as Stories from '../../components/nav-item.stories.ts';
+
+<Meta title="Components/syn-nav-item/Overview" tags={['Rules', 'A11y']} />
+
+<RulesHelper forItem="component:syn-nav-item">
+  <Canvas of={Stories.Default} />
+</RulesHelper>

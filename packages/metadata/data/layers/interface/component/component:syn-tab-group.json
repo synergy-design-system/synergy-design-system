@@ -103,7 +103,8 @@
       "type": "SynTabShowEvent"
     }
   ],
-  "figmaComponentId": "42207-338578",
+  "figmaComponentId": "20730-44793",
+  "figmaDocsId": "42207-338578",
   "methods": [
     {
       "description": "",
@@ -216,7 +217,7 @@
       "type": "SynTab[]"
     }
   ],
-  "since": "2.0",
+  "since": "2.1.0",
   "slots": [
     {
       "description": "Used for grouping tab panels in the tab group. Must be `<syn-tab-panel>` elements.",

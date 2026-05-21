@@ -50,9 +50,20 @@ jobs:
       - name: Cleanup documentation repository
         run: rm -rf ./synergy-design-system.github.io/www/*
 
+      # Build the static knowledge site for subdirectory hosting
+      - name: Build Static Docs Page
+        working-directory: ./synergy-design-system
+        env:
+          STATIC_DOCS_BASE: /knowledge
+        run: pnpm --filter @synergy-design-system/static-docs-page run build
+
       # Copy built docs to the other repo
       - name: Copy Built Docs to documentation Repo
         run: mkdir -p ./synergy-design-system.github.io/www && cp -r ./synergy-design-system/packages/docs/dist/* ./synergy-design-system.github.io/www
+
+      # Copy static knowledge site to /knowledge subfolder
+      - name: Copy Static Docs Page to documentation Repo
+        run: mkdir -p ./synergy-design-system.github.io/www/knowledge && cp -r ./synergy-design-system/packages/static-docs-page/dist/* ./synergy-design-system.github.io/www/knowledge
 
       # Commit and Push Changes
       - name: Commit and Push to documentation Repo

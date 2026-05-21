@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.25.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -38,7 +38,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "42207-351610",
+      "figmaComponentId": "44847-125816",
+      "figmaDocsId": "42207-351610",
       "stories": [
         {
           "description": {
@@ -123,6 +124,52 @@
         "Structure"
       ]
     },
+    "rules": {
+      "accessibility": [
+        "Ensure card content has a logical heading and text order so screen readers can parse it correctly.",
+        "Do not use cards as the only way to access critical information or actions.",
+        "Keep interactive elements inside cards keyboard reachable with clear focus indicators."
+      ],
+      "component": "syn-card",
+      "related": {
+        "components": [],
+        "templates": []
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Group related information into one card and keep each card focused on a single topic.",
+            "Use clear headings and concise body text to improve scanability.",
+            "Avoid overloading a card with too many actions or dense information."
+          ],
+          "id": "content",
+          "name": "Content"
+        },
+        {
+          "content": [
+            "Use spacing and visual hierarchy to separate header, body, and footer regions.",
+            "Align card width and density with surrounding content so cards feel consistent.",
+            "Use shadows or sharp style consistently across a view."
+          ],
+          "id": "layout",
+          "name": "Layout and Hierarchy"
+        },
+        {
+          "content": [
+            "Place primary actions in a predictable location such as the card footer.",
+            "Use action labels that clearly describe the result.",
+            "Limit actions to the most relevant options for the card context."
+          ],
+          "id": "actions",
+          "name": "Actions"
+        }
+      ],
+      "useCases": [
+        "Display grouped information such as KPIs, summaries, or previews.",
+        "Provide a reusable container for dashboard elements.",
+        "Present actionable items with a compact overview and clear next steps."
+      ]
+    },
     "sourceModulePath": "components/card/card.js",
     "summary": "Cards can be used to group related subjects in a container."
   },
@@ -178,12 +225,18 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-card.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-card.md"
+      }
     ]
   },
   "name": "syn-card",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.25.0",
   "sources": [
     "packages/angular/components/card/card.component.ts",
     "packages/components/src/components/card/card.component.ts",

@@ -55,7 +55,7 @@
       "type": "SynLoadEvent"
     }
   ],
-  "figmaComponentId": "1616-1512",
+  "figmaDocsId": "1616-1512",
   "methods": [
     {
       "description": "",
@@ -96,7 +96,7 @@
       "type": "string | undefined"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "slots": [],
   "sourceModulePath": "components/icon/icon.js",
   "status": "stable",

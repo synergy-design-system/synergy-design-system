@@ -14,7 +14,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs
  * @status stable
- * @since 1.23.0
+ * @since 2.3.0
  *
  * @slot - The accordion's main content. Must be `<syn-details />` elements.
  *

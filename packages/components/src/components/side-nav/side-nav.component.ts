@@ -30,7 +30,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-divider
  * @dependency syn-drawer

@@ -14,7 +14,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @summary Button groups can be used to group related buttons into sections.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs
  * @status stable
- * @since 2.0
+ * @since 3.1.0
  *
  * @slot - One or more `<syn-button>` elements to display in the button group.
  *

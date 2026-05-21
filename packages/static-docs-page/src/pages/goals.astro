@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContentFooter from '../components/ContentFooter.astro';
+import ContentHeader from '../components/ContentHeader.astro';
+---
+
+<Layout>
+	<syn-card>
+    <ContentHeader headline="Guiding principles and vision of the Synergy Design System" headlineClass="syn-heading--2x-large" />
+    <p>
+      This page describes the guiding principles, vision, and goals of the Synergy Design System.
+      It is non-normative and does not define component behavior or API contracts.
+    </p>
+
+    <h2 class="syn-heading--large">Guiding principles</h2>
+    <p>The Synergy Design System serves as a robust foundation for SICK's digital landscape, built upon three core principles which should be kept in mind by designers, developers and stakeholders.</p>
+
+    <h3 class="syn-heading--medium">Progressive – Guiding into Tomorrow</h3>
+    <p>We stay ahead, making our design system more flexible for our brand's future needs, while keeping it easy for users.</p>
+
+    <h3 class="syn-heading--medium">Unified – Building Together, Always</h3>
+    <p>As developers and designers we shape a single product by learning from and being responsible for each other.</p>
+
+    <h3 class="syn-heading--medium">Connected – Building on Trust</h3>
+    <p>We build on trusted vendors, proven standards and the expertise of our community, to focus on what's relevant for our brand and users.</p>
+
+    <syn-divider />
+
+    <h2 class="syn-heading--large">Vision, mission and goals</h2>
+
+    <h3 class="syn-heading--medium">Vision</h3>
+    <p>Synergy is the foundation to efficiently build a consistent digital landscape for SICK.</p>
+
+    <h3 class="syn-heading--medium">Mission</h3>
+    <p>
+      Synergies mission is to empower teams to create user-friendly, adaptable, and accessible products across all digital platforms through a unified, collaborative, and evolving UI design system.
+      Synergy ensures high-quality, consistent interfaces aligned with our brand values, enhancing productivity and scalability for teams.
+      Additionally, it improves usability and accessibility for a diverse user base, driving efficient, coherent, and inclusive product development.
+    </p>
+
+    <h3 class="syn-heading--medium">Goals</h3>
+    
+    <h4 class="syn-heading--small">Consistency and branding</h4>
+    <ul>
+      <li>Ensure user interface consistency and quality</li>
+      <li>Harmonized user experience for all SICK customers</li>
+      <li>Strengthen brand perception</li>
+      <li>Ensure accessibility</li>
+    </ul>
+
+    <h4 class="syn-heading--small">Efficiency and productivity</h4>
+    <ul>
+      <li>Boost productivity of domain teams</li>
+      <li>Develop user-centric and focus at stakeholders</li>
+      <li>Design (Figma) and development (Web components) are always in-sync</li>
+      <li>Enable teams to rapidly prototype and iterate</li>
+      <li>Ensure the scalability as the digital ecosystem expands</li>
+      <li>Favor standards and make reuse as much as possible</li>
+    </ul>
+
+    <h4 class="syn-heading--small">Flexibility and adaptation</h4>
+    <ul>
+      <li>Provide means to flexible adapt and customize the components</li>
+      <li>Allow users to integrate components in every web application</li>
+    </ul>
+
+    <h4 class="syn-heading--small">Collaboration and communication</h4>
+    <ul>
+      <li>Transparency towards and alignment with stakeholders</li>
+      <li>Involve stakeholders in decision processes and development (contribution)</li>
+    </ul>
+
+    <ContentFooter
+      creationDate={new Date().toISOString()}
+      entityId={null}
+    />
+
+	</syn-card>
+</Layout>

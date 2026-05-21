@@ -7,7 +7,8 @@ Details show a brief summary and expand to show additional content.
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41227-232486)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41227-232486)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=20877-88398)
 
 ## Class Information
 
@@ -17,7 +18,7 @@ Details show a brief summary and expand to show additional content.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 2.3.0
 
 ## Available Slots
 

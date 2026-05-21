@@ -1,5 +1,10 @@
 {
-  "figmaComponentId": "41163-156701",
-  "storyTags": ["Feedback", "Tags", "Filter"],
-  "storySourcePath": "components.tag"
+  "figmaComponentId": "2842-16750",
+  "figmaDocsId": "41163-156701",
+  "storySourcePath": "components.tag",
+  "storyTags": [
+    "Feedback",
+    "Tags",
+    "Filter"
+  ]
 }

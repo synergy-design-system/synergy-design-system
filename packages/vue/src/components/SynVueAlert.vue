@@ -9,7 +9,7 @@
  * @summary Alerts are used to display important messages inline or as toast notifications.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs
  * @status stable
- * @since 2.0
+ * @since 1.20.0
  *
  * @dependency syn-icon-button
  *

@@ -200,7 +200,7 @@ describe('intent tools (experimental suite)', () => {
     }>(typed, 0);
 
     assert.equal(validation.valid, false);
-    assert.ok(validation.issues.some((issue) => issue.code === 'STRUCTURE_CHILD_MISSING'));
+    assert.ok(validation.issues.some((issue) => issue.code === 'STRUCTURE_NODE_MISSING'));
   });
 
   it('returns task recommendations for action.submit', async () => {

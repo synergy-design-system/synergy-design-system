@@ -11,6 +11,7 @@ import {
 } from '../../intentPolicy/resolution.js';
 import { renderIntentFromRegistry } from '../../intentPolicy/services/render.js';
 import {
+  type ComponentInterfaceSnapshot,
   type FrameworkProfile,
   type IntentCapability,
   type IntentCategory,
@@ -592,6 +593,113 @@ const toComponentTarget = (component: string): IntentTargetRef => ({
   name: component,
 });
 
+const normalizeComponentEntityId = (component: string): string => {
+  const normalized = component.trim().toLowerCase();
+  if (normalized.startsWith('component:')) {
+    return normalized;
+  }
+
+  if (normalized.startsWith('syn-')) {
+    return `component:${normalized}`;
+  }
+
+  return `component:syn-${normalized}`;
+};
+
+const parsePropertyDefaultValue = (rawValue: string | undefined): IntentPresetValue | undefined => {
+  if (typeof rawValue !== 'string') {
+    return undefined;
+  }
+
+  const trimmed = rawValue.trim();
+  if (trimmed.length === 0) {
+    return undefined;
+  }
+
+  const isQuoted = (trimmed.startsWith('\'') && trimmed.endsWith('\''))
+    || (trimmed.startsWith('"') && trimmed.endsWith('"'));
+  const normalized = isQuoted ? trimmed.slice(1, -1) : trimmed;
+
+  // Empty string defaults should not be treated as authored values for validation.
+  if (normalized.length === 0) {
+    return undefined;
+  }
+
+  if (normalized === 'true') {
+    return true;
+  }
+
+  if (normalized === 'false') {
+    return false;
+  }
+
+  if (normalized === 'null') {
+    return null;
+  }
+
+  if (/^-?\d+(\.\d+)?$/.test(normalized)) {
+    return Number(normalized);
+  }
+
+  return normalized;
+};
+
+const getPropertyDefaultsFromInterfaceSnapshot = (
+  snapshot: Partial<ComponentInterfaceSnapshot>,
+): Record<string, IntentPresetValue> => {
+  const properties = Array.isArray(snapshot.properties) ? snapshot.properties : [];
+
+  const defaults: Record<string, IntentPresetValue> = {};
+  for (const property of properties) {
+    if (typeof property.name !== 'string') {
+      continue;
+    }
+
+    const defaultValue = parsePropertyDefaultValue(property.default);
+    if (defaultValue === undefined) {
+      continue;
+    }
+
+    defaults[property.name] = defaultValue;
+  }
+
+  return defaults;
+};
+
+const createComponentPropertyDefaultsResolver = (
+  store: ReturnType<typeof createMetadataStore>,
+): ((component: string) => Promise<Record<string, IntentPresetValue>>) => {
+  const cache = new Map<string, Promise<Record<string, IntentPresetValue>>>();
+
+  return async (component: string): Promise<Record<string, IntentPresetValue>> => {
+    const cacheKey = component.trim().toLowerCase();
+    if (!cacheKey || cacheKey === 'text' || !cacheKey.includes('-')) {
+      return {};
+    }
+
+    const cached = cache.get(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
+    const loadDefaultsPromise = (async (): Promise<Record<string, IntentPresetValue>> => {
+      const entity = await store.getEntity(normalizeComponentEntityId(cacheKey));
+      const interfaceRef = entity?.layers?.interface?.find((ref) => ref.path.endsWith('.json'));
+      if (!interfaceRef) {
+        return {};
+      }
+
+      const rawSnapshot = await store.readLayerFile(interfaceRef);
+      const interfaceSnapshot = JSON.parse(rawSnapshot) as Partial<ComponentInterfaceSnapshot>;
+
+      return getPropertyDefaultsFromInterfaceSnapshot(interfaceSnapshot);
+    })();
+
+    cache.set(cacheKey, loadDefaultsPromise);
+    return loadDefaultsPromise;
+  };
+};
+
 const getTargetIdentity = (target: IntentTargetRef): string => target.id
   ?? target.name
   ?? target.selector
@@ -667,13 +775,14 @@ const evaluateNodePropRules = (
   }
 };
 
-const validateStructureNode = (
+const validateStructureNode = async (
+  resolveComponentPropertyDefaults: (component: string) => Promise<Record<string, IntentPresetValue>>,
   expected: IntentStructureNode,
   actual: IntentStructureNode | undefined,
   nodePath: string,
   issues: ComponentValidationIssue[],
   strictRequiredEquals: boolean,
-): void => {
+): Promise<void> => {
   if (!actual) {
     issues.push({
       code: 'STRUCTURE_NODE_MISSING',
@@ -684,34 +793,45 @@ const validateStructureNode = (
     return;
   }
 
-  if (actual.component !== expected.component) {
+  const componentDefaults = strictRequiredEquals
+    ? await resolveComponentPropertyDefaults(actual.component)
+    : {};
+  const actualWithDefaults: IntentStructureNode = {
+    ...actual,
+    props: {
+      ...componentDefaults,
+      ...(actual.props ?? {}),
+    },
+  };
+
+  if (actualWithDefaults.component !== expected.component) {
     issues.push({
       code: 'STRUCTURE_COMPONENT_MISMATCH',
-      message: `Expected component "${expected.component}" but found "${actual.component}".`,
+      message: `Expected component "${expected.component}" but found "${actualWithDefaults.component}".`,
       path: `${nodePath}.component`,
       severity: 'error',
     });
   }
 
-  if (expected.role && actual.role !== expected.role) {
+  if (expected.role && actualWithDefaults.role !== expected.role) {
     issues.push({
       code: 'STRUCTURE_ROLE_MISMATCH',
-      message: `Expected role "${expected.role}" but found "${actual.role ?? 'undefined'}".`,
+      message: `Expected role "${expected.role}" but found "${actualWithDefaults.role ?? 'undefined'}".`,
       path: `${nodePath}.role`,
       severity: 'warning',
     });
   }
 
-  if (expected.slot && actual.slot !== expected.slot) {
+  if (expected.slot && actualWithDefaults.slot !== expected.slot) {
     issues.push({
       code: 'STRUCTURE_SLOT_MISMATCH',
-      message: `Expected slot "${expected.slot}" but found "${actual.slot ?? 'undefined'}".`,
+      message: `Expected slot "${expected.slot}" but found "${actualWithDefaults.slot ?? 'undefined'}".`,
       path: `${nodePath}.slot`,
       severity: 'error',
     });
   }
 
-  const actualClasses = new Set(actual.classes ?? []);
+  const actualClasses = new Set(actualWithDefaults.classes ?? []);
   for (const requiredClass of expected.requiredClasses ?? []) {
     if (!actualClasses.has(requiredClass)) {
       issues.push({
@@ -734,12 +854,12 @@ const validateStructureNode = (
     }
   }
 
-  evaluateNodePropRules(expected.config?.propRules ?? [], actual.props, nodePath, issues, strictRequiredEquals);
+  evaluateNodePropRules(expected.config?.propRules ?? [], actualWithDefaults.props, nodePath, issues, strictRequiredEquals);
 
   if (strictRequiredEquals) {
     for (const rule of expected.config?.contentRules ?? []) {
-      const hasTextContent = typeof actual.text === 'string' && actual.text.trim().length > 0;
-      const hasChildren = (actual.children?.length ?? 0) > 0;
+      const hasTextContent = typeof actualWithDefaults.text === 'string' && actualWithDefaults.text.trim().length > 0;
+      const hasChildren = (actualWithDefaults.children?.length ?? 0) > 0;
 
       if (!hasTextContent && !hasChildren) {
         issues.push({
@@ -754,17 +874,17 @@ const validateStructureNode = (
     }
   }
 
-  if (expected.component === 'text' && expected.text && actual.text !== expected.text) {
+  if (expected.component === 'text' && expected.text && actualWithDefaults.text !== expected.text) {
     issues.push({
       code: 'STRUCTURE_TEXT_MISMATCH',
-      message: `Expected text "${expected.text}" but found "${actual.text ?? ''}".`,
+      message: `Expected text "${expected.text}" but found "${actualWithDefaults.text ?? ''}".`,
       path: `${nodePath}.text`,
       severity: 'warning',
     });
   }
 
   const expectedChildren = expected.children ?? [];
-  const actualChildren = actual.children ?? [];
+  const actualChildren = actualWithDefaults.children ?? [];
 
   // Filter actual children by slot if expected children are slot-specific
   // This allows flexible default-slot content while still validating specific slots
@@ -796,7 +916,7 @@ const validateStructureNode = (
         });
       } else {
         // Compare expected child with the first actual child in that slot
-        validateStructureNode(expectedChild, slottedChildren[0], `${nodePath}.children.${index}`, issues, strictRequiredEquals);
+        await validateStructureNode(resolveComponentPropertyDefaults, expectedChild, slottedChildren[0], `${nodePath}.children.${index}`, issues, strictRequiredEquals);
       }
     }
   } else {
@@ -822,7 +942,7 @@ const validateStructureNode = (
     for (let index = 0; index < expectedChildren.length; index += 1) {
       const expectedChild = expectedChildren[index];
       const actualChild = actualChildren[index];
-      validateStructureNode(expectedChild, actualChild, `${nodePath}.children.${index}`, issues, strictRequiredEquals);
+      await validateStructureNode(resolveComponentPropertyDefaults, expectedChild, actualChild, `${nodePath}.children.${index}`, issues, strictRequiredEquals);
     }
   }
 };
@@ -855,6 +975,7 @@ export const validateComponent = async (
   }
 
   const phases = resolveGuidePhases(query.includePhases);
+  const resolveComponentPropertyDefaults = createComponentPropertyDefaultsResolver(store);
   const target = normalizeTargetRef(toComponentTarget(query.component));
   const issues: ComponentValidationIssue[] = [];
   const capability = getTargetCapabilityFromRegistry(target, phases);
@@ -904,7 +1025,7 @@ export const validateComponent = async (
           props: query.props,
         };
 
-      validateStructureNode(expectedStructure, actualStructure, 'structure', issues, !!query.structure);
+      await validateStructureNode(resolveComponentPropertyDefaults, expectedStructure, actualStructure, 'structure', issues, !!query.structure);
     }
   }
 

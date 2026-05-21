@@ -1,6 +1,7 @@
 import {
   mkdir,
   mkdtemp,
+  readFile,
   rm,
   writeFile,
 } from 'node:fs/promises';
@@ -25,15 +26,53 @@ describe('intent policy developer facade', () => {
 
   const createFixtureDataDir = async () => {
     const root = await mkdtemp(path.join(tmpdir(), 'metadata-intent-policy-developer-facade-'));
-    await mkdir(path.join(root, 'core'), { recursive: true });
+    await mkdir(path.join(root, 'core', 'component'), { recursive: true });
+    await mkdir(path.join(root, 'layers', 'interface', 'component'), { recursive: true });
+
+    const synButtonInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component:syn-button.json');
+    const sourceSynButtonInterfaceLayerPath = path.join(
+      metadataPackageDir,
+      'data',
+      'layers',
+      'interface',
+      'component',
+      'component:syn-button.json',
+    );
+    const synButtonCorePath = path.join(root, 'core', 'component', 'component:syn-button.json');
 
     const index = {
       builtAt: '2026-05-18T00:00:00.000Z',
-      entities: [],
+      entities: [{
+        corePath: 'data/core/component/component:syn-button.json',
+        id: 'component:syn-button',
+        kind: 'component',
+        layers: {
+          interface: 1,
+        },
+        name: 'syn-button',
+        search: ['component:syn-button', 'syn-button'],
+      }],
       version: '1.0.0',
     };
 
+    const synButtonCoreEntity = {
+      id: 'component:syn-button',
+      kind: 'component',
+      layers: {
+        interface: [{
+          layer: 'interface',
+          path: 'data/layers/interface/component/component:syn-button.json',
+        }],
+      },
+      name: 'syn-button',
+    };
+
     await writeFile(path.join(root, 'index.json'), JSON.stringify(index));
+    await writeFile(
+      synButtonInterfaceLayerPath,
+      await readFile(sourceSynButtonInterfaceLayerPath, 'utf8'),
+    );
+    await writeFile(synButtonCorePath, JSON.stringify(synButtonCoreEntity));
 
     return {
       cleanup: async () => {
@@ -67,6 +106,77 @@ describe('intent policy developer facade', () => {
       expect(response.data).to.not.equal(null);
       expect(response.data.valid).to.equal(false);
       expect(response.data.issues.map((issue) => issue.code)).to.include('FORBIDDEN_PROP_HREF');
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('uses metadata property defaults during strict structure validation', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-button',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'action.primary',
+        structure: {
+          children: [
+            {
+              component: 'text',
+              text: 'Action',
+            },
+          ],
+          component: 'syn-button',
+          props: {
+            variant: 'filled',
+          },
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.valid).to.equal(true);
+      expect(response.data.issues.some((issue) => issue.code === 'REQUIRED_PROP_BUTTON_TYPE')).to.equal(false);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('keeps explicit property values over metadata defaults', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-button',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'action.primary',
+        structure: {
+          children: [
+            {
+              component: 'text',
+              text: 'Action',
+            },
+          ],
+          component: 'syn-button',
+          props: {
+            type: 'reset',
+            variant: 'filled',
+          },
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.valid).to.equal(false);
+      expect(response.data.issues.some((issue) => issue.code === 'REQUIRED_PROP_BUTTON_TYPE')).to.equal(true);
     } finally {
       await fixture.cleanup();
     }

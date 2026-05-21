@@ -102,6 +102,28 @@ describe('intent tools (experimental suite)', () => {
     assert.ok(validation.issues.some((issue) => issue.code === 'FORBIDDEN_PROP_HREF'));
   });
 
+  it('uses metadata property defaults for action.primary when type is omitted in markup', async () => {
+    const response = await session.client.callTool({
+      arguments: {
+        component: 'syn-button',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'action.primary',
+        markup: '<syn-button variant="filled">Action</syn-button>',
+      },
+      name: 'intent-component-validate',
+    });
+
+    const typed = toToolResponse(response);
+    const validation = parseJsonContent<{
+      issues: Array<{ code: string }>;
+      valid: boolean;
+    }>(typed, 0);
+
+    assert.equal(validation.valid, true);
+    assert.ok(!validation.issues.some((issue) => issue.code === 'REQUIRED_PROP_BUTTON_TYPE'));
+  });
+
   it('validates structure-aware confirmation dialog usage', async () => {
     const response = await session.client.callTool({
       arguments: {

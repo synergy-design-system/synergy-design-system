@@ -49,7 +49,7 @@ returns: `void`
 Returns the underlying ECharts instance, giving direct access to the full
 [ECharts API](https://echarts.apache.org/en/api.html#echartsInstance).
 
-Use this when the `option` property alone is not sufficient — for example to
+Use this when the `config` property alone is not sufficient — for example to
 imperatively call `setOption()` with custom merge flags, listen to ECharts events,
 trigger actions, or retrieve chart data.
 

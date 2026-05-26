@@ -3,6 +3,9 @@
     "name": "SICK Global UX Foundation",
     "url": "https://www.sick.com"
   },
+  "bin": {
+    "install-skills": "./dist/bin/install-skills.js"
+  },
   "description": "Metadata for the Synergy Design System, usable by MCP Servers or other AI tools",
   "devDependencies": {
     "@synergy-design-system/components": "workspace:*",
@@ -42,6 +45,8 @@
     "dist/index.d.ts",
     "dist/index.js",
     "dist/public/**",
+    "dist/intentPolicy/**",
+    "dist/bin/**",
     "README.md",
     "CHANGELOG.md"
   ],
@@ -77,5 +82,5 @@
   },
   "types": "./dist/index.d.ts",
   "type": "module",
-  "version": "3.7.0"
+  "version": "3.8.0"
 }

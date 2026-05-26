@@ -1,0 +1,18 @@
+---
+import { withBasePath } from '../utils/basePath';
+
+interface Props {
+	href: string;
+	class?: string;
+}
+
+const { href, class: className }: Props = Astro.props;
+
+const basePath = import.meta.env.BASE_URL;
+
+const normalizedHref = withBasePath(href, basePath);
+---
+
+<a href={normalizedHref} class:list={['syn-link', className]}>
+	<slot />
+</a>

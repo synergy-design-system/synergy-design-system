@@ -14,7 +14,7 @@ Component.define('syn-breadcrumb');
  * @summary Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb--docs
  * @status stable
- * @since 2.0
+ * @since 1.26.0
  *
  * @slot - One or more breadcrumb items to display.
  * @slot separator - The separator to use between breadcrumb items. Works best with `<syn-icon>`.

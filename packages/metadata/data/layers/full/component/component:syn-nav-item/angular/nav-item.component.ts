@@ -28,7 +28,7 @@ import '@synergy-design-system/components/components/nav-item/nav-item.js';
  * - or accordion (overrides all other if 'children' slot is defined).
  *
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-divider
  * @dependency syn-icon

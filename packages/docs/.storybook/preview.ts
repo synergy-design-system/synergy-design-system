@@ -62,7 +62,7 @@ const manifest = {
     ...componentsManifestFiltered.modules,
     ...stylesManifestFiltered.modules,
   ],
-} as Package;
+};
 
 setCustomElementsManifest(manifest);
 

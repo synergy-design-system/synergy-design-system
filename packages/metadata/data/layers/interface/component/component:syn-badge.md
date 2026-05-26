@@ -7,7 +7,8 @@ Badges are used to draw attention and display statuses or counts.
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41137-656313)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41137-656313)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=14127-697924)
 
 ## Class Information
 
@@ -17,7 +18,7 @@ Badges are used to draw attention and display statuses or counts.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.14.0
 
 ## Available Slots
 

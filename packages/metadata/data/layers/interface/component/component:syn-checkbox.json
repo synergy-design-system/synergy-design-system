@@ -153,7 +153,8 @@
       "type": "SynInvalidEvent"
     }
   ],
-  "figmaComponentId": "41310-257927",
+  "figmaComponentId": "1847-5746",
+  "figmaDocsId": "41310-257927",
   "methods": [
     {
       "description": "Removes focus from the checkbox.",
@@ -312,7 +313,7 @@
       "type": "string"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "slots": [
     {
       "description": "The checkbox's label.",

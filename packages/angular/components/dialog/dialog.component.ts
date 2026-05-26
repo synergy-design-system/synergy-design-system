@@ -25,7 +25,7 @@ import '@synergy-design-system/components/components/dialog/dialog.js';
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs
  * @status stable
- * @since 2.0
+ * @since 1.23.0
  *
  * @dependency syn-icon-button
  *

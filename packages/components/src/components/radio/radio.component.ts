@@ -13,7 +13,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @summary Radios allow the user to select a single option from a group.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  *

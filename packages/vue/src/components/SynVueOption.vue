@@ -9,7 +9,7 @@
  * @summary Options define the selectable items within various form controls such as [select](/components/select).
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs
  * @status stable
- * @since 2.0
+ * @since 1.5.0
  *
  * @dependency syn-icon
  *

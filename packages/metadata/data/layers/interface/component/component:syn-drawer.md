@@ -7,7 +7,8 @@ Drawers slide in from a container to expose additional options and information.
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41163-282330)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41163-282330)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=9983-7953)
 
 ## Class Information
 
@@ -17,7 +18,7 @@ Drawers slide in from a container to expose additional options and information.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.8.0
 
 ## Available Slots
 

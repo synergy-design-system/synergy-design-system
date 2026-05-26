@@ -7,7 +7,8 @@ Tabs are used inside [tab groups](/components/tab-group) to represent and activa
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-tab--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42207-338162)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42207-338162)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=20730-47184)
 
 ## Class Information
 
@@ -17,7 +18,7 @@ Tabs are used inside [tab groups](/components/tab-group) to represent and activa
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 2.1.0
 
 ## Available Slots
 

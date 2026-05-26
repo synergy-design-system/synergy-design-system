@@ -26,7 +26,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "2.1.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -47,7 +47,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "42207-338578",
+      "figmaComponentId": "20730-44793",
+      "figmaDocsId": "42207-338578",
       "stories": [
         {
           "description": {
@@ -143,6 +144,46 @@
         "Navigation"
       ]
     },
+    "rules": {
+      "accessibility": [
+        "Provide a clear label for the tab group (e.g., via aria-label or aria-labelledby).",
+        "The tab group takes a single tabstop, then focus moves to the first interactive element in the tab panel, or the tab panel if there is none. Arrow keys should be used to move between tabs.",
+        "Use only for non-critical information. Hiding content can become a potential barrier, making it more challenging for users to access information.",
+        "For purely decorative images, ALT-tags should be left empty so that screen readers can bypass them and concentrate on conveying meaningful content."
+      ],
+      "component": "syn-tab-group",
+      "related": {
+        "templates": []
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Maintain a consistent tab order across different pages or sections to reduce confusion and enhance user familiarity.",
+            "Limit the number of tabs (typically no more than six) to avoid overwhelming users; for more options, consider using side navigation.",
+            "Do not nest tabs within other tab containers."
+          ],
+          "id": "behavior",
+          "name": "Behavior"
+        },
+        {
+          "content": [
+            "Choose labels that are concise and use no more than two words.",
+            "Ensure the first tab is the most relevant for the user.",
+            "Place related tabs next to each other for logical grouping.",
+            "Avoid overloading each tabs content with too much information; keep it manageable and focused."
+          ],
+          "id": "content",
+          "name": "Content"
+        }
+      ],
+      "useCases": [
+        "Organize content into different sections, allowing users to switch between them without leaving the page.",
+        "Implement in dashboards where users need to access different data views or widgets.",
+        "Group settings or configuration options into categories for easier navigation.",
+        "Display different aspects of a product, such as description, reviews, and specifications.",
+        "Arrange user profile information into sections like personal details, activity, and settings."
+      ]
+    },
     "sourceModulePath": "components/tab-group/tab-group.js",
     "summary": "Tab groups organize content into a container that shows one section at a time."
   },
@@ -198,6 +239,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-tab-group.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-tab-group.md"
+      }
     ]
   },
   "name": "syn-tab-group",
@@ -208,7 +255,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "2.1.0",
   "sources": [
     "packages/angular/components/tab-group/tab-group.component.ts",
     "packages/components/src/components/tab-group/tab-group.component.ts",

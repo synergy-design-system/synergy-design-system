@@ -7,7 +7,8 @@ Buttons represent actions that are available to the user.
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42076-167749)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42076-167749)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=1080-6566)
 
 ## Class Information
 
@@ -17,7 +18,7 @@ Buttons represent actions that are available to the user.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.0.0
 
 ## Available Slots
 

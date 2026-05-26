@@ -9,7 +9,7 @@
  * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-group--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-button-group
  *

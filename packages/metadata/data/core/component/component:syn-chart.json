@@ -38,7 +38,7 @@
       }
     },
     "override": {
-      "figmaComponentId": "https://www.figma.com/design/9IpXnDH4GFziUH9sOpnK8V/Chart-Library?node-id=0-1&p=f&t=PkQKC2p7WIr2k0og-0",
+      "figmaDocsId": "https://www.figma.com/design/9IpXnDH4GFziUH9sOpnK8V/Chart-Library?node-id=0-1&p=f&t=PkQKC2p7WIr2k0og-0",
       "storySourcePath": "components.chart",
       "storyTags": [
         "Data Visualization"

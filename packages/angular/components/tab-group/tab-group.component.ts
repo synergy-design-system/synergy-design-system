@@ -21,7 +21,7 @@ import '@synergy-design-system/components/components/tab-group/tab-group.js';
  * @summary Tab groups organize content into a container that shows one section at a time.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab-group--docs
  * @status stable
- * @since 2.0
+ * @since 2.1.0
  *
  * @dependency syn-icon-button
  *

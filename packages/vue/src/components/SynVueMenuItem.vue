@@ -9,7 +9,7 @@
  * @summary Menu items provide options for the user to pick from in a menu.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @dependency syn-icon
  * @dependency syn-popup

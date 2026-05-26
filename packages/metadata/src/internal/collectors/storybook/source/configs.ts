@@ -1,22 +1,48 @@
 import storybookOutput from '@synergy-design-system/docs/dist/index.json' with { type: 'json' };
 import { type ScrapingConfig, type StorybookArtifactKind } from './types.js';
 
+interface StorybookEntry {
+  id: string;
+  importPath?: string;
+}
+
 /**
  * Get stories from Storybook output based on a prefix.
  * @param prefix Prefix to filter stories by
  * @returns List of stories matching the prefix
  */
 const getStoriesFromStorybook = (prefix: string): Record<string, string> => {
-  const foundStories = Object
+  const byComponent = new Map<string, { priority: number; storyId: string }>();
+
+  Object
     .entries(storybookOutput.entries)
-    // Ignore overview pages (e.g., "charts-overview--docs") and any stories that don't match the prefix
-    .filter(([key]) => key.startsWith(`${prefix}-`) && key.endsWith('--docs') && !key.includes('overview'))
-    .map(([, value]) => value)
-    .reduce((acc, story) => {
-      const componentName = story.id.split('--')[0].replace(`${prefix}-`, '');
-      acc[componentName] = story.id;
-      return acc;
-    }, {} as Record<string, string>);
+    .filter(([key]) => key.startsWith(`${prefix}-`) && key.endsWith('-docs'))
+    .map(([, value]) => value as StorybookEntry)
+    .forEach((story) => {
+      const docsId = story.id;
+      const baseId = docsId.replace('--docs', '');
+      const isOverviewDocs = baseId.endsWith('-overview');
+      if (isOverviewDocs) {
+        return;
+      }
+      const isStoriesFileDocs = !!story.importPath && /\.stories\.[cm]?[jt]sx?$/.test(story.importPath);
+      const componentName = baseId
+        .replace(`${prefix}-`, '')
+        .replace(/-overview$/, '');
+      const priority = isStoriesFileDocs ? 3 : 2;
+
+      const existing = byComponent.get(componentName);
+      if (!existing || priority > existing.priority) {
+        byComponent.set(componentName, {
+          priority,
+          storyId: docsId,
+        });
+      }
+    });
+
+  const foundStories = Object.fromEntries(
+    Array.from(byComponent.entries()).map(([componentName, value]) => [componentName, value.storyId]),
+  );
 
   return foundStories;
 };

@@ -69,6 +69,12 @@ export async function cleanupOrphanedFiles(
           writtenFilePaths.add(layerRef.path);
         }
       }
+
+      if (layers.rules) {
+        for (const layerRef of layers.rules) {
+          writtenFilePaths.add(layerRef.path);
+        }
+      }
     }
 
     // Find orphaned layer files using glob

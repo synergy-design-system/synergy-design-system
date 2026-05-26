@@ -81,6 +81,51 @@ if (component.data) {
 
 Use this flow when you need real file content (for example framework wrappers, styles, or examples), not only layer file paths.
 
+### Rules Layer
+
+Component usage guidance is published as a dedicated `rules` layer.
+Use it when you need authored guidance such as common use cases, usage guidelines, accessibility notes, related components, and known issues.
+
+```ts
+import {
+  getDataForComponent,
+  getRulesForComponent,
+} from "@synergy-design-system/metadata";
+
+const genericRulesLayer = await getDataForComponent("syn-accordion", {
+  layer: "rules",
+});
+
+const focusedRules = await getRulesForComponent("syn-accordion");
+
+console.log(genericRulesLayer.data?.rules?.[0]?.path);
+console.log(focusedRules.data?.rules?.[0]?.content);
+```
+
+Use `getDataForComponent(..., { layer: "rules" })` when you want to stay inside the generic layer-based component API.
+Use `getRulesForComponent()` when you want a narrower helper that requires the `rules` layer and never falls back to `full`.
+
+Generated rules markdown is stored under `data/layers/rules/component/` and referenced from each component entity through `layers.rules`.
+
+### CLI: Install Local Skills
+
+This package also provides a CLI command to generate self-contained Synergy skill bundles for local developer workflows.
+
+```bash
+npx @synergy-design-system/metadata install-skills --path .github/skills
+```
+
+The command supports both `--path ./dir` and `--path=./dir`, creates missing directories, and writes portable bundles under:
+
+- `synergy-component/SKILL.md`
+- `synergy-component/components/<component-name>/interface.md`
+- `synergy-component/components/<component-name>/rules.md`
+- `synergy-component/components/<component-name>/examples.md`
+- `synergy-templates/SKILL.md`
+- `synergy-templates/templates/<template-name>/examples.md`
+
+After generation, reference the skills in VS Code with `@synergy-component` and `@synergy-templates`.
+
 ### Public data artifacts
 
 - `data/index.json`

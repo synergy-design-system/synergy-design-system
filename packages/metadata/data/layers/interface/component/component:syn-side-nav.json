@@ -112,7 +112,8 @@
       "type": "SynShowEvent"
     }
   ],
-  "figmaComponentId": "41227-327748",
+  "figmaComponentId": "12362-15033",
+  "figmaDocsId": "41227-327748",
   "methods": [
     {
       "description": "",
@@ -163,7 +164,7 @@
       "type": "'default' | 'rail' | 'sticky'"
     }
   ],
-  "since": "1.14.0",
+  "since": "1.15.0",
   "slots": [
     {
       "description": "The main content of the side-nav. Used for <syn-nav-item /> elements.",

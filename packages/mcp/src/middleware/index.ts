@@ -8,3 +8,4 @@ export { composeMiddlewares } from './compose.js';
 export { withCompressionMiddleware } from './compression.js';
 export { withErrorHandlingMiddleware } from './error-handler.js';
 export { withToolLoggingMiddleware } from './logging.js';
+export { withPromptLoggingMiddleware } from './logging.js';

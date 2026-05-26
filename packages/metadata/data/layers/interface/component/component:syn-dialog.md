@@ -7,7 +7,8 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42207-348565)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=42207-348565)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=17938-28299)
 
 ## Class Information
 
@@ -17,7 +18,7 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.23.0
 
 ## Available Slots
 

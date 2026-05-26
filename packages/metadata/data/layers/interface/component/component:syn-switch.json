@@ -131,7 +131,8 @@
       "type": "SynInvalidEvent"
     }
   ],
-  "figmaComponentId": "41310-259132",
+  "figmaComponentId": "2190-4038",
+  "figmaDocsId": "41310-259132",
   "methods": [
     {
       "description": "Removes focus from the switch.",
@@ -283,7 +284,7 @@
       "type": "string"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "slots": [
     {
       "description": "The switch's label.",

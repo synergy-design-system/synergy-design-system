@@ -23,6 +23,7 @@ import '@synergy-design-system/components/components/tag-group/tag-group.js';
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs
  * @status stable
+ * @since 3.7.0
  *
  * @slot - The tag group's main content. Must be `<syn-tag />` elements.
  * @slot label - The tag group's label. Alternatively, you can use the `label` attribute.

@@ -9,7 +9,8 @@ and showing the validation message in a consistent, user defined way.
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-284767)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-284767)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=25638-40480)
 
 ## Class Information
 
@@ -19,7 +20,7 @@ and showing the validation message in a consistent, user defined way.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** unknown
+- **Since:** 2.12.0
 
 ## Available Slots
 

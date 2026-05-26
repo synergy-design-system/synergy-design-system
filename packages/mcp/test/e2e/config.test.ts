@@ -189,3 +189,43 @@ describe('config: missing or invalid config file falls back to defaults', () => 
     });
   });
 });
+
+describe('config: intent tool defaults from config', () => {
+  let session: ClientSession;
+  let configPath: string;
+
+  before(async () => {
+    configPath = await writeTempConfig({
+      experimentalFeatures: {
+        intentTools: true,
+      },
+      includeAiRules: false,
+      tools: {
+        intentComponentGuide: {
+          framework: 'vanilla',
+          includePhases: ['experimental'],
+        },
+      },
+    });
+    session = await createClientSession({ configPath });
+  });
+
+  after(async () => {
+    await session.close();
+    await unlink(configPath).catch(() => {/* ignore cleanup errors */});
+  });
+
+  it('applies configured default framework when no framework is passed to intent-component-guide', async () => {
+    const response = await session.client.callTool({
+      arguments: {
+        component: 'syn-button',
+      },
+      name: 'intent-component-guide',
+    });
+
+    const typedResponse = toToolResponse(response);
+    const payload = parseJsonContent<{ framework: string }>(typedResponse, 0);
+
+    assert.equal(payload.framework, 'vanilla');
+  });
+});

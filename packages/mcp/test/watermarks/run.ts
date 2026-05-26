@@ -81,7 +81,12 @@ const loadBaseline = async (baselinePath: string): Promise<Map<string, number> |
 const createRuntimeConfig = async (): Promise<string> => {
   const dir = await mkdir(join(tmpdir(), `synergy-mcp-watermark-${Date.now()}`), { recursive: true });
   const configPath = join(dir!, 'synergy-mcp.json');
-  await writeFile(configPath, JSON.stringify({ includeAiRules: false }), 'utf8');
+  await writeFile(configPath, JSON.stringify({
+    experimentalFeatures: {
+      intentTools: true,
+    },
+    includeAiRules: false,
+  }), 'utf8');
   return configPath;
 };
 
@@ -92,13 +97,32 @@ const executeScenario = async (
   const session = await createClientSession({ configPath });
 
   try {
-    const response = await session.client.callTool({
-      arguments: scenario.args,
-      name: scenario.toolName,
-    });
+    let textPayload = '';
 
-    const typed = toToolResponse(response);
-    const textPayload = toTextPayload(typed.content);
+    if (scenario.kind === 'prompt') {
+      if (!scenario.promptName) {
+        throw new Error(`Missing promptName for scenario ${scenario.id}`);
+      }
+
+      const response = await session.client.getPrompt({
+        arguments: scenario.args,
+        name: scenario.promptName,
+      });
+
+      textPayload = response.messages
+        .map((message) => (message.content.type === 'text' ? message.content.text : ''))
+        .filter(Boolean)
+        .join('\n\n');
+    } else {
+      const response = await session.client.callTool({
+        arguments: scenario.args,
+        name: scenario.toolName,
+      });
+
+      const typed = toToolResponse(response);
+      textPayload = toTextPayload(typed.content);
+    }
+
     const tokenCount = await countTextTokens(textPayload);
 
     if (tokenCount === undefined) {

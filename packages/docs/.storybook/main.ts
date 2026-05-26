@@ -61,6 +61,7 @@ const config: StorybookConfig = {
     '../stories/limitations/**/*.mdx',
     '../stories/packages/**/*.mdx',
     '../stories/tokens/**/*.@(mdx|stories.*)',
+    '../stories/overview/**/*.mdx',
     '../stories/components/**/*.@(mdx|stories.*)',
     '../stories/charts/**/*.@(mdx|stories.*)',
     '../stories/styles/**/*.@(mdx|stories.*)',

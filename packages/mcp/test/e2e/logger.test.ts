@@ -268,4 +268,42 @@ describe('tool call logging (local file provider)', () => {
     assert.equal(event.success, true);
     assert.equal(event.tokenCount, expectedTokenCount);
   });
+
+  it('writes prompt calls to the log output', async () => {
+    const logDir = await mkdtemp(join(tmpdir(), 'synergy-mcp-prompt-logs-'));
+    temporaryPaths.push(logDir);
+
+    const configPath = await writeTempConfig({
+      logging: {
+        localFile: {
+          path: logDir,
+        },
+      },
+    });
+    temporaryPaths.push(configPath);
+
+    const session = await createClientSession({ configPath });
+    try {
+      const response = await session.client.getPrompt({
+        arguments: {
+          component: 'syn-accordion',
+        },
+        name: 'explain-component-rules',
+      });
+
+      assert.equal(response.messages.length > 0, true);
+    } finally {
+      await session.close();
+    }
+
+    const entries = await readLoggedEvents(logDir);
+    const event = entries.find(entry => entry.toolName === 'prompt:explain-component-rules');
+
+    assert.ok(event);
+    assert.equal(event.success, true);
+    assert.deepEqual(event.parameters, { component: 'syn-accordion' });
+    assert.equal(typeof event.durationMs, 'number');
+    assert.ok(event.durationMs >= 0);
+    assert.equal(typeof event.tokenCount, 'number');
+  });
 });

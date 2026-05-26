@@ -23,9 +23,9 @@ export const componentInfoTool = (server: McpServer) => {
       inputSchema: {
         component: z.string().startsWith('syn-').describe('The name of the component to get information about.'),
         framework: z.enum(['react', 'vue', 'angular', 'vanilla']).optional().describe('The framework of the component, e.g., "react", "vue", etc.'),
-        layer: z.enum(['full', 'examples', 'interface'])
+        layer: z.enum(['full', 'examples', 'interface', 'rules'])
           .optional()
-          .describe('Defines which type of information to return. full = filtered source files (useful for debugging), examples = markdown examples, interface = markdown API overview. Examples and interface are only available for vanilla components at the moment.')
+          .describe('Defines which type of information to return. full = filtered source files (useful for debugging), examples = markdown examples, interface = markdown API overview, rules = Usage guidelines and rules for the component. Examples and interface are only available for vanilla components at the moment.')
         ,
       },
       title: 'Component info',
@@ -60,6 +60,9 @@ export const componentInfoTool = (server: McpServer) => {
           break;
         case 'examples':
           finalContent = metadata.data.examples?.map((entry) => entry.content) ?? [];
+          break;
+        case 'rules':
+          finalContent = metadata.data.rules?.map((entry) => entry.content) ?? [];
           break;
         default:
           finalContent = [metadata.data];

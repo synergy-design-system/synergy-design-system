@@ -28,7 +28,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.1.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -49,7 +49,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "41137-747935",
+      "figmaComponentId": "3173-8459",
+      "figmaDocsId": "41137-747935",
       "stories": [
         {
           "description": {
@@ -136,6 +137,53 @@
         "Icons"
       ]
     },
+    "rules": {
+      "accessibility": [
+        "Always provide a meaningful label attribute for icon only buttons.",
+        "Ensure focus styles remain visible in all variants and states.",
+        "Avoid using icon buttons for destructive actions without clear context or confirmation."
+      ],
+      "component": "syn-icon-button",
+      "related": {
+        "components": [
+          "syn-icon",
+          "syn-button",
+          "syn-tooltip"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use concise labels that describe the resulting action, such as \"Edit\" or \"Close\".",
+            "Add a tooltip when extra context is helpful, especially in dense toolbars.",
+            "Keep label wording consistent across the product."
+          ],
+          "id": "labeling",
+          "name": "Labeling"
+        },
+        {
+          "content": [
+            "Use icon buttons for quick actions and compact controls.",
+            "Prefer regular buttons when text improves clarity.",
+            "Use disabled state sparingly and explain why an action is unavailable when possible."
+          ],
+          "id": "interaction",
+          "name": "Interaction"
+        },
+        {
+          "content": [
+            "Use size variants consistently within a control group."
+          ],
+          "id": "size",
+          "name": "Size"
+        }
+      ],
+      "useCases": [
+        "Toolbar actions such as edit, delete, and settings.",
+        "Compact controls in tables, cards, and dialogs.",
+        "Navigation utility actions in headers and side panels."
+      ]
+    },
     "sourceModulePath": "components/icon-button/icon-button.js",
     "summary": "Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars."
   },
@@ -187,6 +235,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-icon-button.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-icon-button.md"
+      }
     ]
   },
   "name": "syn-icon-button",
@@ -197,7 +251,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.1.0",
   "sources": [
     "packages/angular/components/icon-button/icon-button.component.ts",
     "packages/components/src/components/icon-button/icon-button.component.ts",

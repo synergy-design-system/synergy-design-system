@@ -21,7 +21,7 @@
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-dropdown
  * @dependency syn-icon

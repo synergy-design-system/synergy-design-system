@@ -14,7 +14,7 @@ Component.define('syn-progress-ring');
  * @summary Progress rings are used to show the progress of a determinate operation in a circular fashion.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs
  * @status stable
- * @since 2.0
+ * @since 1.18.0
  *
  * @slot - A label to show inside the ring.
  *

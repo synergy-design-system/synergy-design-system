@@ -20,7 +20,7 @@ import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
  * @summary Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs
  * @status stable
- * @since 2.0
+ * @since 2.1.0
  *
  * @slot - The tab panel's content.
  *

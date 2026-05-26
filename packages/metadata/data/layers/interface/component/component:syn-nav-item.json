@@ -140,7 +140,8 @@
       "type": "SynShowEvent"
     }
   ],
-  "figmaComponentId": "41163-402744",
+  "figmaComponentId": "12362-10922",
+  "figmaDocsId": "41163-402744",
   "methods": [
     {
       "description": "Removes focus from the button.",
@@ -243,7 +244,7 @@
       "type": "'_blank' | '_parent' | '_self' | '_top'"
     }
   ],
-  "since": "1.14.0",
+  "since": "1.15.0",
   "slots": [
     {
       "description": "The navigation item's label.",

@@ -1,4 +1,7 @@
 {
+  "experimentalFeatures": {
+    "intentTools": true
+  },
   "interface": "stdio",
   "port": 9119,
   "host": "127.0.0.1",

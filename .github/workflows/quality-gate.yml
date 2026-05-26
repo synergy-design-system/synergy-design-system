@@ -130,7 +130,7 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
         with:
           # Make sure to exclude unneeded packages to speed up the build.
-          build-command: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/mcp' build
+          build-command: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/static-docs-page' --filter='!@synergy-design-system/mcp' build
 
       - name: Run tests
         run: pnpm test.${{ matrix.framework }} --project=${{ matrix.browser }}
@@ -161,8 +161,8 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
         with:
           with-build: 'false'
-      - name: Build workspace packages (except metadata and mcp)
-        run: pnpm -r --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/mcp' build
+      - name: Build workspace packages (except metadata, MCP, and static-docs-page)
+        run: pnpm -r --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/mcp' --filter='!@synergy-design-system/static-docs-page' build
       - name: Build metadata (full)
         run: pnpm -C packages/metadata build:all
       - name: Run tests (metadata)

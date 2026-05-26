@@ -60,6 +60,12 @@ interface StorybookEntry {
   [key: string]: unknown;
 }
 
+function getComponentPrefixFromDocsStoryId(docsStoryId: string): string {
+  return docsStoryId
+    .replace('--docs', '')
+    .replace(/-overview$/, '');
+}
+
 /**
  * Check if a story should be skipped based on its tags
  * @param storyId The story ID to check (e.g., "components-syn-combobox--async-options")
@@ -73,7 +79,7 @@ function shouldSkipStory(storyId: string): boolean {
 
 function isDefaultOrScreenshotOnlyDocsStory(docsStoryId: string): boolean {
   const entries = storybookOutput.entries as Record<string, StorybookEntry>;
-  const componentPrefix = docsStoryId.replace('--docs', '');
+  const componentPrefix = getComponentPrefixFromDocsStoryId(docsStoryId);
 
   const relatedStoryIds = Object.keys(entries)
     .filter((id) => id.startsWith(`${componentPrefix}--`) && !id.endsWith('--docs'));
@@ -96,8 +102,9 @@ function isDefaultOrScreenshotOnlyDocsStory(docsStoryId: string): boolean {
  */
 function shouldSkipStoryByHeading(docsStoryId: string, heading: string): boolean {
   // Get the component prefix from docs story ID
-  // (e.g., "components-syn-combobox" from "components-syn-combobox--docs")
-  const componentPrefix = docsStoryId.replace('--docs', '');
+  // (e.g., "components-syn-combobox" from "components-syn-combobox--docs" or
+  // "components-syn-combobox-overview--docs")
+  const componentPrefix = getComponentPrefixFromDocsStoryId(docsStoryId);
 
   // Find matching story by converting heading to potential story ID format
   // Story names are typically converted from "Async Options" to "async-options"

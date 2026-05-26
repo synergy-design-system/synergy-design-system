@@ -119,7 +119,8 @@
       "type": "SynShowEvent"
     }
   ],
-  "figmaComponentId": "41163-282330",
+  "figmaComponentId": "9983-7953",
+  "figmaDocsId": "41163-282330",
   "methods": [
     {
       "description": "",
@@ -213,7 +214,7 @@
       "type": "'top' | 'end' | 'bottom' | 'start'"
     }
   ],
-  "since": "2.0",
+  "since": "1.8.0",
   "slots": [
     {
       "description": "The drawer's main content.",

@@ -19,7 +19,7 @@ export default [
     ],
     rules: {
       complexity: ['error', {
-        max: 15,
+        max: 20,
       }],
     },
   },

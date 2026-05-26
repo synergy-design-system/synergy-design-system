@@ -58,7 +58,8 @@
       "type": "SynCloseEvent"
     }
   ],
-  "figmaComponentId": "42207-338162",
+  "figmaComponentId": "20730-47184",
+  "figmaDocsId": "42207-338162",
   "methods": [
     {
       "description": "",
@@ -107,7 +108,7 @@
       "type": "HTMLElement"
     }
   ],
-  "since": "2.0",
+  "since": "2.1.0",
   "slots": [
     {
       "description": "The tab's label.",

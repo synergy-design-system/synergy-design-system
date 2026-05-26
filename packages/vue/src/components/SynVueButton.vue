@@ -9,7 +9,7 @@
  * @summary Buttons represent actions that are available to the user.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  * @dependency syn-spinner

@@ -9,7 +9,7 @@
  * @summary Tooltips display additional information based on a specific action.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tooltip--docs
  * @status stable
- * @since 2.0
+ * @since 1.21.0
  *
  * @dependency syn-popup
  *

@@ -17,7 +17,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "1.3.0",
+          "since": "1.5.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -38,10 +38,50 @@
       }
     },
     "override": {
-      "figmaComponentId": "41325-324372",
+      "figmaComponentId": "30344-112405",
+      "figmaDocsId": "41325-324372",
       "storySourcePath": "components.optgroup",
       "storyTags": [
         "Form"
+      ]
+    },
+    "rules": {
+      "accessibility": [
+        "Ensure that the group label is short and concise as it may be read out when users enter the group."
+      ],
+      "component": "syn-optgroup",
+      "related": {
+        "components": [
+          "syn-select",
+          "syn-combobox",
+          "syn-option"
+        ],
+        "templates": [
+          "Forms"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Provide a reason or alternative if some choice is disabled."
+          ],
+          "id": "behavior",
+          "name": "Behavior"
+        },
+        {
+          "content": [
+            "Make sure all items in the list are mutually exclusive and unambiguous to help users understand what they are selecting.",
+            "Provide a default choice where applicable to guide users.",
+            "Use the optional grouping label and/or divider attributes to visually identify the groups."
+          ],
+          "id": "content",
+          "name": "Content"
+        }
+      ],
+      "useCases": [
+        "Provide options in selects or comboboxes.",
+        "Allow users to select from a list of predefined choices in forms or settings, where they might choose one or more options.",
+        "Present filter options in searches or data tables."
       ]
     },
     "sourceModulePath": "components/optgroup/optgroup.js",
@@ -95,6 +135,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-optgroup.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-optgroup.md"
+      }
     ]
   },
   "name": "syn-optgroup",
@@ -105,7 +151,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "1.3.0",
+  "since": "1.5.0",
   "sources": [
     "packages/angular/components/optgroup/optgroup.component.ts",
     "packages/components/src/components/optgroup/optgroup.component.ts",

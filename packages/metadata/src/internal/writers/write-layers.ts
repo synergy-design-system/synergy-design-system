@@ -16,6 +16,8 @@ import { type LayerRef } from '../schemas/layer-ref.js';
 import {
   type EnrichedOverride, getOverride,
 } from '../../config/index.js';
+import type { ComponentRules } from '../../config/types.js';
+import { buildFigmaComponentUrl, buildFigmaDocsUrl } from '../../config/figma.js';
 import { formatGeneratedMarkdown } from '../core/markdown.js';
 import { ensureDir, writeJsonAtomic } from './fs-utils.js';
 
@@ -134,6 +136,19 @@ const getComponentInterfaceSnapshot = (entity: CoreEntity): Record<string, unkno
   return snapshot as Record<string, unknown>;
 };
 
+const getComponentRules = (entity: CoreEntity): ComponentRules | undefined => {
+  if (entity.kind !== 'component') {
+    return undefined;
+  }
+
+  const rules = entity.custom?.rules;
+  if (!rules || typeof rules !== 'object' || Array.isArray(rules)) {
+    return undefined;
+  }
+
+  return rules as ComponentRules;
+};
+
 type InterfaceNamedDescription = { description: string; name: string };
 type InterfaceAttribute = {
   default?: string;
@@ -163,6 +178,8 @@ type InterfaceSnapshot = {
   dependencies?: string[];
   documentation?: string;
   events?: InterfaceEvent[];
+  figmaComponentId?: string;
+  figmaDocsId?: string;
   methods?: InterfaceMethod[];
   properties?: InterfaceProperty[];
   since?: string;
@@ -205,17 +222,45 @@ const renderMarkdownSection = (title: string, content: string | undefined): stri
   return `## ${title}\n\n${content.trimEnd()}`;
 };
 
+const renderBulletList = (items: string[] | undefined): string | undefined => {
+  if (!items || items.length === 0) {
+    return undefined;
+  }
+
+  return items.map((item) => `- ${item}`).join('\n');
+};
+
+const renderRulesMarkdown = (
+  componentName: string,
+  summary: string | undefined,
+  rules: ComponentRules,
+): string => {
+  const sections: string[] = [
+    renderMarkdownSection('Summary', summary?.trim()),
+    renderMarkdownSection('Common Use Cases', renderBulletList(rules.useCases)),
+    renderMarkdownSection(
+      'Usage Guidelines',
+      rules.usageGuidelines?.map((guideline) => {
+        const content = renderBulletList(guideline.content) ?? '-';
+        return `### ${guideline.name}\n\n${content}`;
+      }).join('\n\n'),
+    ),
+    renderMarkdownSection('Accessibility', renderBulletList(rules.accessibility)),
+    renderMarkdownSection(
+      'Known Issues',
+      rules.knownIssues?.map((issue) => `- **${issue.browser}**: ${issue.description}`).join('\n'),
+    ),
+    renderMarkdownSection('Related Components', renderBulletList(rules.related?.components)),
+    renderMarkdownSection('Related Templates', renderBulletList(rules.related?.templates)),
+  ].filter((section) => section.length > 0);
+
+  return `# ${componentName}\n\n${sections.join('\n\n')}\n`;
+};
+
 const renderInterfaceMarkdown = (
   rawSnapshot: Record<string, unknown>,
   enrichedOverride?: EnrichedOverride,
 ): string => {
-  // @todo Re-enable component rules in interface markdown by restoring the
-  // rules parameter and appending the rules-driven sections below.
-  // const renderInterfaceMarkdown = (
-  //   rawSnapshot: Record<string, unknown>,
-  //   enrichedOverride?: EnrichedOverride,
-  //   rules?: ComponentRules,
-  // ): string => {
   const snapshot = rawSnapshot as InterfaceSnapshot;
 
   const tagName = snapshot.tagName ?? 'unknown-component';
@@ -360,15 +405,14 @@ ${event.description}
     documentationLines.push(`[Component Documentation](${documentation})`);
   }
 
-  // Add figma link if available in enriched override
-  if (enrichedOverride?.figmaComponentId) {
-    let baseLink = '';
-    // If full link instead of just the ID is provided, use it directly
-    if (!enrichedOverride.figmaComponentId.startsWith('http')) {
-      baseLink = 'https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=';
-    }
+  const figmaDocsUrl = buildFigmaDocsUrl(enrichedOverride?.figmaDocsId);
+  if (figmaDocsUrl) {
+    documentationLines.push(`[Figma Examples](${figmaDocsUrl})`);
+  }
 
-    documentationLines.push(`[Figma Design](${baseLink}${enrichedOverride.figmaComponentId})`);
+  const figmaComponentUrl = buildFigmaComponentUrl(enrichedOverride?.figmaComponentId);
+  if (figmaComponentUrl) {
+    documentationLines.push(`[Figma Component](${figmaComponentUrl})`);
   }
 
   const finalDocumentation = documentationLines
@@ -396,52 +440,6 @@ ${event.description}
       sections.push(renderMarkdownSection(sectionData.title, sectionData.content));
     }
   }
-
-  // if (rules) {
-  //   if (rules.useCases && rules.useCases.length > 0) {
-  //     sections.push(renderMarkdownSection(
-  //       'Common Use Cases',
-  //       rules.useCases.map(uc => `- ${uc}`).join('\n'),
-  //     ));
-  //   }
-  //
-  //   if (rules.usageGuidelines && Object.keys(rules.usageGuidelines).length > 0) {
-  //     const guidelinesContent = Object.entries(rules.usageGuidelines)
-  //       .map(([key, items]) => {
-  //         const heading = key.charAt(0).toUpperCase() + key.slice(1);
-  //         return `### ${heading}\n\n${items.map(item => `- ${item}`).join('\n')}`;
-  //       })
-  //       .join('\n\n');
-  //     sections.push(renderMarkdownSection('Usage Guidelines', guidelinesContent));
-  //   }
-  //
-  //   if (rules.accessibility && rules.accessibility.length > 0) {
-  //     sections.push(renderMarkdownSection(
-  //       'Accessibility',
-  //       rules.accessibility.map(item => `- ${item}`).join('\n'),
-  //     ));
-  //   }
-  //
-  //   if (rules.knownIssues && rules.knownIssues.length > 0) {
-  //     sections.push(renderMarkdownSection(
-  //       'Known Issues',
-  //       rules.knownIssues.map(issue => `- **${issue.browser}**: ${issue.description}`).join('\n'),
-  //     ));
-  //   }
-  //
-  //   const relatedComponents = rules.related?.components ?? [];
-  //   const relatedTemplates = rules.related?.templates ?? [];
-  //   if (relatedComponents.length > 0 || relatedTemplates.length > 0) {
-  //     const parts: string[] = [];
-  //     if (relatedComponents.length > 0) {
-  //       parts.push(`### Components\n\n${relatedComponents.map(c => `- \`${c}\``).join('\n')}`);
-  //     }
-  //     if (relatedTemplates.length > 0) {
-  //       parts.push(`### Templates\n\n${relatedTemplates.map(t => `- ${t}`).join('\n')}`);
-  //     }
-  //     sections.push(renderMarkdownSection('Related', parts.join('\n\n')));
-  //   }
-  // }
 
   const nonEmptySections = sections.filter((section) => section.length > 0);
   return `# ${tagName}\n\n${nonEmptySections.join('\n\n')}\n`;
@@ -477,6 +475,7 @@ export async function writeLayerAssets(
   for (const entity of entities) {
     const fullLayerRefs: LayerRef[] = [];
     const interfaceLayerRefs: LayerRef[] = [];
+    const rulesLayerRefs: LayerRef[] = [];
 
     try {
       // Token artifact entities are grouped by package path under layers/full/tokens.
@@ -585,23 +584,16 @@ export async function writeLayerAssets(
         // Get enriched override if config is available
         const enrichedOverride = ctx.config ? (getOverride(ctx.config, entity.id, true) ?? undefined) : undefined;
 
-        // @todo Re-enable component rules in generated interface artifacts by
-        // restoring getRules() here, merging rules into interfaceSnapshot JSON,
-        // and passing rules into renderInterfaceMarkdown().
-        // const rules = ctx.config ? (getRules(ctx.config, entity.id) ?? undefined) : undefined;
-
-        // Merge figmaComponentId from override into snapshot
+        // Merge Figma references from override into snapshot
         if (enrichedOverride?.figmaComponentId) {
           interfaceSnapshot.figmaComponentId = enrichedOverride.figmaComponentId;
         }
-
-        // if (rules) {
-        //   interfaceSnapshot.rules = rules;
-        // }
+        if (enrichedOverride?.figmaDocsId) {
+          interfaceSnapshot.figmaDocsId = enrichedOverride.figmaDocsId;
+        }
 
         const interfaceMarkdown = await formatGeneratedMarkdown(
           renderInterfaceMarkdown(interfaceSnapshot, enrichedOverride),
-          // renderInterfaceMarkdown(interfaceSnapshot, enrichedOverride, rules),
         );
 
         await writeJsonAtomic(interfacePath, interfaceSnapshot);
@@ -622,6 +614,25 @@ export async function writeLayerAssets(
         ctx.logger?.debug(`Wrote interface markdown: ${relative(outputDir, interfaceMarkdownPath)}`);
       }
 
+      const rules = getComponentRules(entity);
+      if (rules) {
+        const rulesPath = join(layersDir, 'rules', entity.kind, `${entity.id}.md`);
+        const summary = typeof entity.custom?.summary === 'string' ? entity.custom.summary : undefined;
+
+        await ensureDir(dirname(rulesPath));
+
+        const rulesMarkdown = await formatGeneratedMarkdown(
+          renderRulesMarkdown(entity.name, summary, rules),
+        );
+
+        await writeFile(rulesPath, rulesMarkdown, 'utf8');
+        rulesLayerRefs.push({
+          layer: 'rules',
+          path: relative(outputDir, rulesPath),
+        });
+        ctx.logger?.debug(`Wrote rules markdown: ${relative(outputDir, rulesPath)}`);
+      }
+
       // Discover generated examples files (from storybook scraper) for this entity
       const examplesLayerRefs: LayerRef[] = [];
       const examplesFilePath = join(layersDir, 'examples', entity.kind, `${entity.id}.md`);
@@ -636,10 +647,11 @@ export async function writeLayerAssets(
         // File doesn't exist, which is fine - examples are optional and only generated during build:all
       }
 
-      if (fullLayerRefs.length > 0 || interfaceLayerRefs.length > 0 || examplesLayerRefs.length > 0) {
+      if (fullLayerRefs.length > 0 || interfaceLayerRefs.length > 0 || rulesLayerRefs.length > 0 || examplesLayerRefs.length > 0) {
         layersByEntity[entity.id] = {
           ...(fullLayerRefs.length > 0 ? { full: fullLayerRefs } : {}),
           ...(interfaceLayerRefs.length > 0 ? { interface: interfaceLayerRefs } : {}),
+          ...(rulesLayerRefs.length > 0 ? { rules: rulesLayerRefs } : {}),
           ...(examplesLayerRefs.length > 0 ? { examples: examplesLayerRefs } : {}),
         };
       }

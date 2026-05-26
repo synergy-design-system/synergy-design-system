@@ -144,9 +144,24 @@ export const storybookTemplate = (customElementTag: string) => ({
 });
 
 type ComponentPath = 'components' | 'templates' | 'tokens';
-type Component<TPath extends ComponentPath> = keyof (typeof docsTokens)[TPath];
+
+export type Component<TPath extends ComponentPath = ComponentPath> =
+  TPath extends 'components' ? keyof typeof docsTokens.components :
+    TPath extends 'templates' ? keyof typeof docsTokens.templates :
+      TPath extends 'tokens' ? keyof typeof docsTokens.tokens :
+        never;
+
 type Attribute<TPath extends ComponentPath, TComponent extends Component<TPath>> =
-  keyof (typeof docsTokens)[TPath][TComponent];
+  TPath extends 'components'
+    ? TComponent extends keyof typeof docsTokens.components
+      ? keyof typeof docsTokens.components[TComponent] : never
+    : TPath extends 'templates'
+      ? TComponent extends keyof typeof docsTokens.templates
+        ? keyof typeof docsTokens.templates[TComponent] : never
+      : TPath extends 'tokens'
+        ? TComponent extends keyof typeof docsTokens.tokens
+          ? keyof typeof docsTokens.tokens[TComponent] : never
+        : never;
 
 /**
  * Returns a formatted HTML string containing the story description for a given component and attribute,
@@ -154,6 +169,7 @@ type Attribute<TPath extends ComponentPath, TComponent extends Component<TPath>>
  * and an optional developer hint from the `note.value` field. Line breaks in the source text are
  * converted to `<br/>` tags. If no description is found, `'No Description'` is returned as fallback.
  * If a hint is present, it is appended below the description with a bold heading.
+ *
  *
  * @param {string} component - The component name (must be a valid key in the docs tokens for the given path)
  * @param {string} attribute - The attribute name within the component
@@ -181,7 +197,7 @@ export function generateStoryDescription(
   path: ComponentPath = 'components',
 ): string {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
-  const objectToUse: Record<string, any> = (docsTokens[path] as any)[component] ?? {};
+  const objectToUse: Record<string, any> = (docsTokens as any)[path][component] ?? {};
   const attributeKey = String(attribute);
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access

@@ -213,5 +213,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Palette,
   GetInstance,
   MultipleChartsWithDifferentPalettes,
-}, 600);
+}, 700);
 /* eslint-enable sort-keys */

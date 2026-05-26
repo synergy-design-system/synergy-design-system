@@ -16,22 +16,22 @@ The default story demonstrates a basic line chart configuration. The chart is co
       },
       yAxis: { type: "value" },
     };
-    chart.option = option;
+    chart.config = option;
   });
 </script>
 ```
 
 ---
 
-## Option
+## Config
 
-The option property is the main way to configure the chart. It accepts an object that maps 1:1 to the ECharts option configuration. Assigning a new object to this property will update the chart with the new configuration.
+The config property is the main way to configure the chart. It accepts an object that maps 1:1 to the ECharts option configuration. Assigning a new object to this property will update the chart with the new configuration.
 
 ```html
-<syn-chart id="chart-option"></syn-chart>
+<syn-chart id="chart-config"></syn-chart>
 <script type="module">
-  const chart = document.querySelector("#chart-option");
-  chart.option = {
+  const chart = document.querySelector("#chart-config");
+  chart.config = {
     series: [{ data: [150, 230, 224], type: "line" }],
     xAxis: { data: ["Mon", "Tue", "Wed"], type: "category" },
     yAxis: { type: "value" },
@@ -49,7 +49,7 @@ Use the palette attribute to apply a Synergy design token color palette to chart
 <syn-chart id="chart-palette" palette="sequential-02"></syn-chart>
 <script type="module">
   const chart = document.querySelector("#chart-palette");
-  chart.option = {
+  chart.config = {
     series: [
       {
         data: [150, 230, 224, 218, 135, 147, 260],
@@ -116,7 +116,7 @@ Use getInstance() to access the underlying ECharts instance directly and work wi
 </p>
 <script type="module">
   const chart = document.querySelector("#chart-get-instance");
-  chart.option = {
+  chart.config = {
     series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
     tooltip: { trigger: "item" },
     xAxis: {
@@ -146,7 +146,7 @@ You can use multiple charts in one <syn-chart> instance, each with its own confi
   const getHexValueFromVariable = (val) =>
     getComputedStyle(document.documentElement).getPropertyValue(val).trim();
 
-  chart.option = {
+  chart.config = {
     series: [
       {
         data: [160, 185, 180, 175, 150, 160, 190],

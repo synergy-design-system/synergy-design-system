@@ -9,9 +9,9 @@ import { mockData } from '@synergy-design-system/demo-utilities';
     SynChartComponent,
   ],
   template: `
-    <syn-chart [option]="lineChartOption"></syn-chart>
+    <syn-chart [config]="lineChartConfig"></syn-chart>
   `,
 })
 export class Chart {
-  lineChartOption = mockData('lineChartOption');
+  lineChartConfig = mockData('lineChartConfig');
 }

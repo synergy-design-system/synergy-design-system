@@ -583,17 +583,17 @@
           "type": "text"
         },
         "description": {
-          "value": "The default story demonstrates a basic line chart configuration. The chart is configured via the `option` property, which accepts an object that maps directly to the ECharts option configuration.",
+          "value": "The default story demonstrates a basic line chart configuration. The chart is configured via the `config` property, which accepts an object that maps directly to the ECharts option configuration.",
           "type": "text"
         }
       },
-      "option": {
+      "config": {
         "title": {
-          "value": "Option",
+          "value": "Config",
           "type": "text"
         },
         "description": {
-          "value": "The `option` property is the main way to configure the chart. It accepts an object that maps 1:1 to the ECharts option configuration. Assigning a new object to this property will update the chart with the new configuration.",
+          "value": "The `config` property is the main way to configure the chart. It accepts an object that maps 1:1 to the ECharts option configuration. Assigning a new object to this property will update the chart with the new configuration.",
           "type": "text"
         }
       },
@@ -613,7 +613,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use `getInstance()` to access the underlying ECharts instance directly and work with its full native API. This is useful when the `option` property alone is not sufficient — for example to listen to ECharts events, trigger actions, or call `setOption()` with custom merge behavior. This example attaches a click listener via the native ECharts API. Click any data point to see the event payload logged to the browser console.",
+          "value": "Use `getInstance()` to access the underlying ECharts instance directly and work with its full native API. This is useful when the `config` property alone is not sufficient — for example to listen to ECharts events, trigger actions, or call `setOption()` with custom merge behavior. This example attaches a click listener via the native ECharts API. Click any data point to see the event payload logged to the browser console.",
           "type": "text"
         }
       },

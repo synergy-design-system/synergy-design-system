@@ -3,7 +3,7 @@ import { expect, fixture, html } from '@open-wc/testing';
 import type { SeriesOption } from 'echarts';
 import type SynChart from './chart.component.js';
 import { PALETTE_TOKENS } from './chart.palettes.js';
-import type { ECOption } from './types.js';
+import type { ECConfig } from './types.js';
 
 async function createChart(template = html`<syn-chart></syn-chart>`): Promise<SynChart> {
   return fixture<SynChart>(template);
@@ -23,7 +23,7 @@ describe('<syn-chart>', () => {
   it('default properties', async () => {
     const chart = await createChart();
     await chart.updateComplete;
-    expect(chart.option).to.deep.equal({});
+    expect(chart.config).to.deep.equal({});
     expect(chart.palette).to.equal('categorical');
   });
 
@@ -36,46 +36,46 @@ describe('<syn-chart>', () => {
     });
   });
 
-  describe('option property', () => {
-    it('should apply an option object', async () => {
-      const initialOption: ECOption = {
+  describe('config property', () => {
+    it('should apply an config object', async () => {
+      const initialConfig: ECConfig = {
         series: [{ data: [100, 200], type: 'line' }],
         xAxis: { data: ['Mon', 'Tue'], type: 'category' },
         yAxis: { type: 'value' },
       };
 
-      const el = await createChart(html`<syn-chart .option=${initialOption}></syn-chart>`);
+      const el = await createChart(html`<syn-chart .config=${initialConfig}></syn-chart>`);
       await el.updateComplete;
       const instance = el.getInstance()!;
       const option = instance.getOption();
-      expect(firstOf(option.xAxis)).to.deep.include(initialOption.xAxis);
-      expect(firstOf(option.yAxis)).to.deep.include(initialOption.yAxis);
-      expect(firstOf(option.series)).to.have.property('data').that.deep.equals(firstOf(initialOption.series!).data);
+      expect(firstOf(option.xAxis)).to.deep.include(initialConfig.xAxis);
+      expect(firstOf(option.yAxis)).to.deep.include(initialConfig.yAxis);
+      expect(firstOf(option.series)).to.have.property('data').that.deep.equals(firstOf(initialConfig.series!).data);
     });
 
-    it('should update the chart when option changes', async () => {
+    it('should update the chart when config changes', async () => {
       const el = await createChart();
       await el.updateComplete;
 
       const instance = el.getInstance()!;
-      const firstOption: ECOption = {
+      const firstConfig: ECConfig = {
         series: [{ data: [1, 2, 3], type: 'line' }],
         xAxis: { data: ['One', 'Two', 'Three'], type: 'category' },
         yAxis: { type: 'value' },
       };
-      el.option = firstOption;
+      el.config = firstConfig;
       await el.updateComplete;
       const option = instance.getOption();
-      expect(firstOf(option.series)).to.have.property('data').that.deep.equals(firstOf(firstOption.series!).data);
-      const secondOption: ECOption = {
+      expect(firstOf(option.series)).to.have.property('data').that.deep.equals(firstOf(firstConfig.series!).data);
+      const secondConfig: ECConfig = {
         series: [{ data: [4, 5, 6], type: 'line' }],
         xAxis: { data: ['Four', 'Five', 'Six'], type: 'category' },
         yAxis: { type: 'value' },
       };
-      el.option = secondOption;
+      el.config = secondConfig;
       await el.updateComplete;
       const updatedOptions = instance.getOption();
-      expect(firstOf(updatedOptions.series)).to.have.property('data').that.deep.equals(firstOf(secondOption.series!).data);
+      expect(firstOf(updatedOptions.series)).to.have.property('data').that.deep.equals(firstOf(secondConfig.series!).data);
     });
   });
 
@@ -94,10 +94,10 @@ describe('<syn-chart>', () => {
       });
     });
 
-    it('should respect custom global option.color over the palette', async () => {
+    it('should respect custom global config.color over the palette', async () => {
       const customColors = ['#ff0000', '#00ff00', '#0000ff'];
-      const customOption: ECOption = { color: customColors };
-      const el = await createChart(html`<syn-chart palette="sequential-01" .option=${customOption}></syn-chart>`);
+      const customConfig: ECConfig = { color: customColors };
+      const el = await createChart(html`<syn-chart palette="sequential-01" .config=${customConfig}></syn-chart>`);
       await el.updateComplete;
       const instance = el.getInstance()!;
       const option = instance.getOption();
@@ -105,7 +105,7 @@ describe('<syn-chart>', () => {
     });
 
     it('should respect explicit series color over the palette', async () => {
-      const initialOption: ECOption = {
+      const initialConfig: ECConfig = {
         series: [
           {
             color: ['#7CFC00'], data: [150, 230, 224], name: 'Series A', type: 'line',
@@ -115,7 +115,7 @@ describe('<syn-chart>', () => {
         xAxis: { data: ['One', 'Two', 'Three'], type: 'category' },
         yAxis: { type: 'value' },
       };
-      const el = await createChart(html`<syn-chart palette="categorical" .option=${initialOption}></syn-chart>`);
+      const el = await createChart(html`<syn-chart palette="categorical" .config=${initialConfig}></syn-chart>`);
       await el.updateComplete;
       const instance = el.getInstance()!;
       const option = instance.getOption();

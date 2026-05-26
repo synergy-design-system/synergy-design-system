@@ -73,30 +73,29 @@ export const Default: Story = {
     <script type="module">
       const charts = document.querySelectorAll('#chart-default');
       charts.forEach(chart => {
-        const option = {
+        chart.config = {
           series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
           xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category' },
           yAxis: { type: 'value' },
         };
-        chart.option = option;
       });
     </script>
   `,
 };
 
-export const Option: Story = {
+export const Config: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'option'),
+        story: generateStoryDescription('chart', 'config'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="chart-option"></syn-chart>
+    <syn-chart id="chart-config"></syn-chart>
     <script type="module">
-      const chart = document.querySelector('#chart-option');
-      chart.option = {
+      const chart = document.querySelector('#chart-config');
+      chart.config = {
         series: [{ data: [150, 230, 224], type: 'line' }],
         xAxis: { data: ['Mon', 'Tue', 'Wed'], type: 'category' },
         yAxis: { type: 'value' },
@@ -117,7 +116,7 @@ export const Palette: Story = {
     <syn-chart id="chart-palette" palette="sequential-02"></syn-chart>
     <script type="module">
       const chart = document.querySelector('#chart-palette');
-      chart.option = {
+      chart.config = {
         series: [
           { data: [150, 230, 224, 218, 135, 147, 260], name: 'Series A', type: 'line' },
           { data: [80, 130, 180, 100, 90, 120, 200], name: 'Series B', type: 'line' },
@@ -149,7 +148,7 @@ export const GetInstance: Story = {
     </p>
     <script type="module">
       const chart = document.querySelector('#chart-get-instance');
-      chart.option = {
+      chart.config = {
         series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
         tooltip: { trigger: 'item' },
         xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category' },
@@ -176,7 +175,7 @@ export const MultipleChartsWithDifferentPalettes: Story = {
 
       const getHexValueFromVariable = (val) => getComputedStyle(document.documentElement).getPropertyValue(val).trim();
 
-      chart.option = {
+      chart.config = {
         series: [
           {
             data: [160, 185, 180, 175, 150, 160, 190], name: 'Series A', type: 'line',
@@ -210,7 +209,7 @@ export const MultipleChartsWithDifferentPalettes: Story = {
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
-  Option,
+  Config,
   Palette,
   GetInstance,
   MultipleChartsWithDifferentPalettes,

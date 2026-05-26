@@ -1,6 +1,6 @@
-import type { ECOption } from '@synergy-design-system/components/components/chart/types.js';
+import type { ECConfig } from '@synergy-design-system/components/components/chart/types.js';
 
-export const lineChartOption: ECOption = {
+export const lineChartConfig: ECConfig = {
   series: [
     { data: [150, 230, 224, 218, 135, 147, 260], name: 'Visits', type: 'line' },
     { data: [80, 120, 100, 134, 90, 110, 200], name: 'Unique', type: 'line' },

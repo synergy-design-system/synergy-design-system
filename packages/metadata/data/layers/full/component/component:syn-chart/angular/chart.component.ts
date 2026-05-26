@@ -49,7 +49,7 @@ export class SynChartComponent {
   `sequential-status-success`, `sequential-status-warning` — 10-step status ramps
 
 The palette sets the ECharts `color` array.
-* If `option.color` is explicitly provided,
+* If `config.color` is explicitly provided,
 it takes precedence over the palette.
  */
   @Input()
@@ -75,10 +75,10 @@ To update only parts of the chart, access the underlying ECharts instance direct
 call `setOption()` with custom merge options.
  */
   @Input()
-  set option(v: SynChart['option']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.option = v));
+  set config(v: SynChart['config']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.config = v));
   }
-  get option(): SynChart['option'] {
-    return this.nativeElement.option;
+  get config(): SynChart['config'] {
+    return this.nativeElement.config;
   }
 }

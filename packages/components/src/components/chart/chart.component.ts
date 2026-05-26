@@ -15,7 +15,7 @@ import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './chart.styles.js';
 import { PALETTE_TOKENS, type SynChartPalette } from './chart.palettes.js';
-import type { ECOption } from './types.js';
+import type { ECConfig } from './types.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -65,7 +65,7 @@ export default class SynChart extends SynergyElement {
    *
    * @example
    * ```js
-   * chart.option = {
+   * chart.config = {
    *   xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed'] },
    *   yAxis: { type: 'value' },
    *   series: [{ type: 'line', data: [150, 230, 224] }],
@@ -73,7 +73,7 @@ export default class SynChart extends SynergyElement {
    * ```
    */
   @property({ attribute: false })
-  option: ECOption = {};
+  config: ECConfig = {};
 
   /**
    * The color palette to apply to chart series.
@@ -84,7 +84,7 @@ export default class SynChart extends SynergyElement {
    * - `sequential-status-critical`, `sequential-status-error`, `sequential-status-info`,
    *   `sequential-status-success`, `sequential-status-warning` — 10-step status ramps
    *
-   * The palette sets the ECharts `color` array. If `option.color` is explicitly provided,
+   * The palette sets the ECharts `color` array. If `config.color` is explicitly provided,
    * it takes precedence over the palette.
    */
   @property({ reflect: true })
@@ -93,8 +93,8 @@ export default class SynChart extends SynergyElement {
   /** Resolves palette CSS custom properties to computed color values and applies them to the chart. */
   private applyPalette(): void {
     if (!this.chartInstance) return;
-    // If the user explicitly set option.color, respect it — palette is a default only
-    if (Array.isArray(this.option.color) && this.option.color.length > 0) return;
+    // If the user explicitly set config.color, respect it — palette is a default only
+    if (Array.isArray(this.config.color) && this.config.color.length > 0) return;
 
     const tokens = PALETTE_TOKENS[this.palette];
     const computedStyles = getComputedStyle(this);
@@ -108,10 +108,10 @@ export default class SynChart extends SynergyElement {
   }
 
   protected updated(changedProperties: PropertyValues<this>): void {
-    if (changedProperties.has('option') && this.chartInstance) {
-      this.chartInstance.setOption(this.option, { notMerge: true });
+    if (changedProperties.has('config') && this.chartInstance) {
+      this.chartInstance.setOption(this.config, { notMerge: true });
     }
-    if ((changedProperties.has('palette') || changedProperties.has('option')) && this.chartInstance) {
+    if ((changedProperties.has('palette') || changedProperties.has('config')) && this.chartInstance) {
       this.applyPalette();
     }
   }
@@ -126,11 +126,11 @@ export default class SynChart extends SynergyElement {
       });
       this.resizeObserver.observe(this.chartContainer);
 
-      // Apply option if already set before first render
-      if (Object.keys(this.option).length > 0) {
-        this.chartInstance.setOption(this.option);
+      // Apply config if already set before first render
+      if (Object.keys(this.config).length > 0) {
+        this.chartInstance.setOption(this.config);
       }
-      // Apply palette after option so colors blend in without replacing the full config
+      // Apply palette after config so colors blend in without replacing the full config
       this.applyPalette();
     }
   }
@@ -145,7 +145,7 @@ export default class SynChart extends SynergyElement {
    * Returns the underlying ECharts instance, giving direct access to the full
    * [ECharts API](https://echarts.apache.org/en/api.html#echartsInstance).
    *
-   * Use this when the `option` property alone is not sufficient — for example to
+   * Use this when the `config` property alone is not sufficient — for example to
    * imperatively call `setOption()` with custom merge flags, listen to ECharts events,
    * trigger actions, or retrieve chart data.
    *

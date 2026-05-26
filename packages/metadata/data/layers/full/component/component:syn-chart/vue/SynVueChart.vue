@@ -38,7 +38,7 @@ const props = defineProps<{
   `sequential-status-success`, `sequential-status-warning` — 10-step status ramps
 
 The palette sets the ECharts `color` array.
-* If `option.color` is explicitly provided,
+* If `config.color` is explicitly provided,
 it takes precedence over the palette.
  */
   palette?: SynChart['palette'];
@@ -57,7 +57,7 @@ Assigning a new object completely replaces the previous chart configuration (`no
 To update only parts of the chart, access the underlying ECharts instance directly and
 call `setOption()` with custom merge options.
  */
-  option?: SynChart['option'];
+  config?: SynChart['config'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

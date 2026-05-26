@@ -261,7 +261,7 @@ import "@synergy-design-system/components/components/chart/chart.js";
 <script type="module">
   const chart = document.getElementById("my-chart");
 
-  chart.option = {
+  chart.config = {
     xAxis: { type: "category", data: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
     yAxis: { type: "value" },
     series: [{ type: "line", data: [820, 932, 901, 934, 1290] }],

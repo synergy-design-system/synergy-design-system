@@ -4,6 +4,6 @@ import { html } from 'lit';
 
 export const Chart = () => html`
   <syn-chart
-    .option=${mockData('lineChartOption')}
+    .config=${mockData('lineChartConfig')}
   ></syn-chart>
 `;

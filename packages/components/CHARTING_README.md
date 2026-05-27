@@ -1,6 +1,6 @@
 # `<syn-chart>` – Charting Component
 
-> ⚠️ **Experimental Status**
+> ⚠️ **Experimental**
 >
 > `syn-chart` is currently **experimental**. The API may change in future releases without prior notice.
 > Use it with caution in production environments and expect potential breaking changes.
@@ -10,6 +10,10 @@
 ## Overview
 
 `<syn-chart>` is a web component that provides a structured, consistently styled container for rendering charts inside the Synergy Design System. It is a thin, opinionated wrapper around [Apache ECharts](https://echarts.apache.org), which handles all rendering internally.
+
+> ⚠️ **Theme Compatibility**
+>
+> Chart design tokens are only available for the **sick2025** theme and are **not supported** by the sick2018 theme.
 
 ## Based on Apache ECharts
 

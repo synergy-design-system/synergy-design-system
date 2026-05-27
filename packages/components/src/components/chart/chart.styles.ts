@@ -4,7 +4,7 @@ export default css`
   :host {
     aspect-ratio: 16 / 9;
     display: block;
-    min-height: 250px;
+    min-height: 180px;
     width: 100%;
   }
 

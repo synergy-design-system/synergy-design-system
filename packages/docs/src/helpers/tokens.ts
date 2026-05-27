@@ -1,6 +1,8 @@
 import { kebabCase } from 'change-case';
 import * as componentTokens from '@synergy-design-system/tokens';
 import * as chartTokens from '@synergy-design-system/tokens/charts';
+import chartTokenCss from '@synergy-design-system/tokens/charts/themes/light.css?inline';
+import componentTokenCss from '@synergy-design-system/tokens/themes/light.css?inline';
 
 /**
  * Parse size patterns like "2xlarge", "xlarge", "large", etc.
@@ -284,4 +286,28 @@ export const sortTokens = (tokenA: [string, string], tokenB: [string, string], s
   // Handle number sorting (default)
   const { replaceString = '' } = sortingParameters;
   return sortByNumber(aName, bName, replaceString);
+};
+
+export const getCssAlias = (token: string, tokenCategory: 'chart' | 'component' = 'component'): string => {
+  const cssVariable = getCSSToken(token);
+  const css = tokenCategory === 'chart' ? chartTokenCss : componentTokenCss;
+
+  const regex = new RegExp(`(${cssVariable})\\s*:\\s*([^;]+);`);
+  const match = css.match(regex);
+  if (!match) return '';
+
+  const value = match[2].trim();
+
+  // If it contains var(...), extract the variable name
+  if (value.includes('var(')) {
+    const varMatch = value.match(/var\((--[^)]+)\)/);
+    return varMatch ? varMatch[1] : value;
+  }
+
+  return '';
+};
+
+export const hasCssAlias = (token: string, tokenCategory: 'chart' | 'component' = 'component'): boolean => {
+  const referenceVariable = getCssAlias(token, tokenCategory);
+  return Boolean(referenceVariable);
 };

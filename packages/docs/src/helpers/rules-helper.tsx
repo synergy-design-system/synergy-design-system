@@ -220,6 +220,12 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
   const componentWithoutPrefix = content.component.replace('syn-', '');
   const description = generateStoryDescription(componentWithoutPrefix as ComponentHelperType<'components'>, 'default');
   const figmaDocsId = coreMetadata?.custom?.override?.figmaDocsId;
+  // Check if it is a full URL (starts with http or https), otherwise treat it as a node id
+  const figmaDocsUrl = figmaDocsId && (figmaDocsId.startsWith('http') ? figmaDocsId : `https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=${figmaDocsId}`);
+
+  const component = content.component.toLowerCase();
+  const subPath = component === 'syn-chart' ? 'charts' : 'components';
+  const storybookPath = `/?path=/docs/${subPath}-${component}--docs`;
 
   // Final output
   return (
@@ -257,17 +263,17 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
             )}
             <syn-tooltip content="View Storybook documentation">
               <syn-icon-button
-                href={`/?path=/docs/components-${content.component.toLowerCase()}--docs`}
+                href={storybookPath}
                 label="Storybook Documentation"
                 size="large"
                 src="/storybook-logo.svg"
               />
             </syn-tooltip>
 
-            {figmaDocsId && (
+            {figmaDocsUrl && (
               <syn-tooltip content="View Figma documentation">
                 <syn-icon-button
-                  href={`https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=${figmaDocsId}`}
+                  href={figmaDocsUrl}
                   label="Figma"
                   size="large"
                   src="/figma-logo.svg"

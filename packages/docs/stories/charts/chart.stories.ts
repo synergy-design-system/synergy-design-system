@@ -41,7 +41,7 @@ const meta: Meta = {
       description: {
         component:
           [
-            '>⚠️ **Experimental Status**:',
+            '>⚠️ **Experimental**:',
             '>syn-chart is currently experimental.',
             '>The API may change in future releases without prior notice.',
             '>Use it with caution in production environments and expect potential breaking changes.\n',
@@ -113,7 +113,7 @@ export const Palette: Story = {
     },
   },
   render: () => html`
-    <syn-chart id="chart-palette" palette="sequential-02"></syn-chart>
+    <syn-chart id="chart-palette" palette="sequential-01"></syn-chart>
     <script type="module">
       const chart = document.querySelector('#chart-palette');
       chart.config = {

@@ -21,8 +21,8 @@ const getStoriesFromStorybook = (prefix: string): Record<string, string> => {
     .forEach((story) => {
       const docsId = story.id;
       const baseId = docsId.replace('--docs', '');
-      const isOverviewDocs = baseId.endsWith('-overview');
-      if (isOverviewDocs) {
+      const shouldSkip = baseId.endsWith('-overview') || baseId.endsWith('-getting-started');
+      if (shouldSkip) {
         return;
       }
       const isStoriesFileDocs = !!story.importPath && /\.stories\.[cm]?[jt]sx?$/.test(story.importPath);

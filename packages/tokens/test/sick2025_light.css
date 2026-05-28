@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.12.1
+ * @synergy-design-system/tokens version 3.15.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -429,6 +429,8 @@
   --syn-transition-x-slow: 1000ms; /** Shoelace compatibility DO NOT USE */
   --syn-typography-color-text: var(--syn-color-neutral-950);
   --syn-typography-color-text-inverted: var(--syn-color-neutral-0);
+  --syn-typography-color-text-quiet: var(--syn-color-neutral-700);
+  --syn-typography-color-text-quiet-inverted: var(--syn-color-neutral-300);
   --syn-z-index-dialog: 800; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-drawer: 700; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-dropdown: 900; /** Shoelace compatibility DO NOT USE */

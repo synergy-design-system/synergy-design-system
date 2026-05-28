@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.12.1
+ * @synergy-design-system/tokens version 3.15.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -19,6 +19,7 @@
   --syn-categorical-07: var(--syn-color-data-magenta-700);
   --syn-categorical-08: var(--syn-color-neutral-800);
   --syn-categorical-09: var(--syn-color-data-teal-800);
+  --syn-grid-lines-color: var(--syn-color-neutral-100);
   --syn-sequential-01-10: var(--syn-color-primary-100);
   --syn-sequential-01-20: var(--syn-color-primary-200);
   --syn-sequential-01-30: var(--syn-color-primary-300);

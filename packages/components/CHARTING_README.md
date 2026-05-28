@@ -79,7 +79,7 @@ The chart component is shipped as a **separate entrypoint** for all packages and
 
 ```tsx
 import { SynChart } from "@synergy-design-system/react/components/chart.js";
-import type { ECConfig } from "@synergy-design-system/components/components/chart/utilities.js";
+import type { ECConfig } from "@synergy-design-system/components/components/chart/types.js";
 
 const config: ECConfig = {
   xAxis: { type: "category", data: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
@@ -96,7 +96,7 @@ export default function App() {
 
 ```tsx
 import "@synergy-design-system/components/components/chart/chart.js";
-import type { ECConfig } from "@synergy-design-system/components/components/chart/utilities.js";
+import type { ECConfig } from "@synergy-design-system/components/components/chart/types.js";
 
 const config: ECConfig = {
   xAxis: { type: "category", data: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
@@ -114,7 +114,7 @@ export default function App() {
 ```ts
 <script setup lang="ts">
 import { SynVueChart } from '@synergy-design-system/vue/chart';
-import type { ECConfig } from '@synergy-design-system/components/components/chart/utilities.js';
+import type { ECConfig } from '@synergy-design-system/components/components/chart/types.js';
 
 const config: ECConfig = {
   xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'] },
@@ -132,7 +132,7 @@ const config: ECConfig = {
 
 ```ts
 import { SynChartComponent } from "@synergy-design-system/angular/components/chart";
-import type { ECConfig } from "@synergy-design-system/components/components/chart/utilities.js";
+import type { ECConfig } from "@synergy-design-system/components/components/chart/types.js";
 
 @Component({
   selector: "app-root",
@@ -178,13 +178,12 @@ chart.getInstance()?.setOption(
 The `config` property is typed as `ECConfig`, which is a **scoped** [`ComposeOption`](https://echarts.apache.org/en/api.html#echarts.ComposeOption) — it only includes the chart types and ECharts components that are currently registered internally:
 
 ```ts
-import type { ECConfig } from "@synergy-design-system/components/components/chart/utilities.js";
+import type { ECConfig } from "@synergy-design-system/components/components/chart/types.js";
 ```
 
 The type currently covers:
 
 - `LineSeriesOption` (line charts)
-- `CanvasRenderer`, `TitleComponentOption`, `TooltipComponentOption`, `LegendComponentOption`, `GridComponentOption`
 
 > If you use TypeScript and assign options for unsupported chart types (e.g. `BarSeriesOption`), you will get a **type error**. This is intentional — it reflects the actual runtime capabilities of the component.
 
@@ -204,8 +203,8 @@ The type currently covers:
 >
 > Support for additional chart types (bar, pie, gauge, etc.) is planned for future releases.
 
-If you can't wait for the future releases or want to use echarts features, which we won't support, you can do this be registering the needed echarts plugins by yourself.
-But keep in mind, that they are not synergy approved and do not have synergy styling!
+If you can't wait for the future releases or want to use echarts features, which we won't support, you can do this by registering the needed echarts plugins by yourself.
+But keep in mind, that they are not synergy approved and do not have synergy styling! Also the registration needs to be done **before** the component is initialized.
 
 To register echarts functionalities do following or have a closer look at the [echarts documentation](https://echarts.apache.org/en/api.html#echarts.use) :
 

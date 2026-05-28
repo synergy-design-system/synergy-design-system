@@ -1,5 +1,24 @@
 # @synergy-design-system/vue
 
+## 3.15.0
+
+### Minor Changes
+
+- [#1271](https://github.com/synergy-design-system/synergy-design-system/pull/1271) [`74917ea`](https://github.com/synergy-design-system/synergy-design-system/commit/74917ea30e2d26780202c382c7f157c63e3833ef) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-05-28
+
+  feat: ✨ `<syn-chart>` ([#1205](https://github.com/synergy-design-system/synergy-design-system/issues/1205))
+
+  This release adds an experimental MVP for the new `<syn-chart>` component for data visualization based on [Apache ECharts](https://echarts.apache.org).
+  It is available for Web Component, React, Angular and Vue
+
+  > ⚠️ **Experimental:** The API or behavior may change in future releases without a major version bump.
+
+### Patch Changes
+
+- Updated dependencies [[`74917ea`](https://github.com/synergy-design-system/synergy-design-system/commit/74917ea30e2d26780202c382c7f157c63e3833ef), [`74917ea`](https://github.com/synergy-design-system/synergy-design-system/commit/74917ea30e2d26780202c382c7f157c63e3833ef)]:
+  - @synergy-design-system/tokens@3.15.0
+  - @synergy-design-system/components@3.15.0
+
 ## 3.14.0
 
 ### Minor Changes

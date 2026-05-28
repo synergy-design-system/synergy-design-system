@@ -3,14 +3,14 @@
  */
 
 /**
- * The directory path where Figma variables are stored and processed.
+ * The directory path where Figma variables from components are stored and processed.
  */
 export const FIGMA_VARIABLES_DIR = './src/figma-variables';
 
 /**
- * The output directory path where processed Figma variables will be written.
+ * The output directory path where processed Figma variables from components will be written.
  */
-export const OUTPUT_DIR = `${FIGMA_VARIABLES_DIR}/output`;
+export const COMPONENTS_OUTPUT_DIR = `${FIGMA_VARIABLES_DIR}/output`;
 
 /**
  * The path to the JSON file where the fetched Figma styles will be written.
@@ -18,9 +18,24 @@ export const OUTPUT_DIR = `${FIGMA_VARIABLES_DIR}/output`;
 export const FIGMA_FETCHED_STYLES_PATH = `${FIGMA_VARIABLES_DIR}/styleTokens.json`;
 
 /**
- * The path to the JSON file where the fetched Figma variables will be written.
+ * The path to the JSON file where the fetched Figma variables from components will be written.
  */
 export const FIGMA_FETCHED_VARIABLES_PATH = `${FIGMA_VARIABLES_DIR}/variableTokens.json`;
+
+/**
+ * The directory path where Figma variables are stored and processed.
+ */
+export const FIGMA_CHARTS_DIR = './src/figma-charts';
+
+/**
+ * The output directory path where processed Figma charting variables will be written.
+ */
+export const CHARTS_OUTPUT_DIR = `${FIGMA_CHARTS_DIR}/output`;
+
+/**
+ * The path to the JSON file where the fetched Figma charting variables will be written.
+ */
+export const FIGMA_FETCHED_CHARTING_VARIABLES_PATH = `${FIGMA_CHARTS_DIR}/chartTokens.json`;
 
 /**
  * Prefixes we use in figma for grouping variables
@@ -28,9 +43,14 @@ export const FIGMA_FETCHED_VARIABLES_PATH = `${FIGMA_VARIABLES_DIR}/variableToke
 export const FIGMA_TOKENS_PREFIXES = ['primitive', 'component', 'semantic'];
 
 /**
- * The prefix used for color palette tokens.
+ * The name of the variable collection in Figma that contains the Synergy themes for base components.
  */
-export const COLOR_PALETTE_PREFIX = '_color-palette';
+export const COMPONENTS_COLLECTION_NAME = 'Synergy Themes';
+
+/**
+ * The name of the variable collection in Figma that contains the Synergy themes for charting.
+ */
+export const CHART_COLLECTION_NAME = 'Chart Themes';
 
 /**
  * List of static changed to variables for specific themes and modes.

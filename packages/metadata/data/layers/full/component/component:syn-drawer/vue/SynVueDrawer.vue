@@ -71,7 +71,7 @@ import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInitialFocusEvent } from '@synergy-design-system/components';
 import type { SynRequestCloseEvent } from '@synergy-design-system/components';
-import type { SynDrawer } from '@synergy-design-system/components';
+import type SynDrawer from '@synergy-design-system/components/components/drawer/drawer.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDrawer>();

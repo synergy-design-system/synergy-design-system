@@ -19,7 +19,7 @@ import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/menu/menu.js';
 
 import type { SynSelectEvent } from '@synergy-design-system/components';
-import type { SynMenu } from '@synergy-design-system/components';
+import type SynMenu from '@synergy-design-system/components/components/menu/menu.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynMenu>();

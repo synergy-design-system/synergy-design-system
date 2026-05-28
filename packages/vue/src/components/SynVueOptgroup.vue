@@ -30,7 +30,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/optgroup/optgroup.js';
 
-import type { SynOptgroup } from '@synergy-design-system/components';
+import type SynOptgroup from '@synergy-design-system/components/components/optgroup/optgroup.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynOptgroup>();

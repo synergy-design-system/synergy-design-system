@@ -26,7 +26,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/option/option.js';
 
-import type { SynOption } from '@synergy-design-system/components';
+import type SynOption from '@synergy-design-system/components/components/option/option.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynOption>();

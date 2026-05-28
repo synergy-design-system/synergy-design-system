@@ -5,6 +5,8 @@ import {
   createFrameworkIndex,
   createHeader,
   getAllComponents,
+  getEventExports,
+  getEventImports,
   job,
 } from '../shared.js';
 
@@ -21,15 +23,10 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
 
   components.forEach(component => {
     const componentFile = path.join(componentDir, `${component.tagNameWithoutPrefix}.ts`);
-    const importPath = `@synergy-design-system/components/${component.path.replace(/\.js$/, '.component.js')}`;
+    const importPath = `@synergy-design-system/components/${component.componentPath}`;
 
-    const eventImports = (component.events || [])
-      .map(event => `import type { ${event.eventName} } from '@synergy-design-system/components';`)
-      .join('\n');
-
-    const eventExports = (component.events || [])
-      .map(event => `export type { ${event.eventName} } from '@synergy-design-system/components';`)
-      .join('\n');
+    const eventImports = getEventImports(component.events);
+    const eventExports = getEventExports(component.events);
 
     const eventNameImport = (component.events || []).length > 0 ? 'import { type EventName } from \'@lit/react\';' : '';
 
@@ -66,6 +63,7 @@ export const runCreateWrappers = job('React: Creating Component Wrappers...', as
     `;
 
     index.push({
+      component: component.tagNameWithoutPrefix,
       name: component.name,
       outputPath: `./components/${component.tagNameWithoutPrefix}.js`,
     });

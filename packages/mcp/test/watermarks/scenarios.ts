@@ -285,7 +285,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
     budget: {
       maxRegressionAbs: 700,
       maxRegressionPct: 20,
-      maxTokens: 10000,
+      maxTokens: 12000,
     },
     id: 'token-info:css:sick2025-light',
     kind: 'tool',

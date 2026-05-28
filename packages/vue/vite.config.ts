@@ -14,7 +14,7 @@ export default defineConfig({
     },
     rollupOptions: {
       external: ['vue'],
-      input: ['src/index.ts'],
+      input: ['src/index.ts', 'src/chart.ts'],
       output: [{
         format: 'es',
         entryFileNames: '[name].js',

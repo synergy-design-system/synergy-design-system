@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynDivider } from '@synergy-design-system/components';
+import type SynDivider from '@synergy-design-system/components/components/divider/divider.component.js';
 
 import '@synergy-design-system/components/components/divider/divider.js';
 

@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynTag } from '@synergy-design-system/components';
+import type SynTag from '@synergy-design-system/components/components/tag/tag.component.js';
 import type { SynRemoveEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tag/tag.js';
 

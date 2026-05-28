@@ -1,5 +1,8 @@
 import { kebabCase } from 'change-case';
-import * as tokens from '@synergy-design-system/tokens';
+import * as componentTokens from '@synergy-design-system/tokens';
+import * as chartTokens from '@synergy-design-system/tokens/charts';
+import chartTokenCss from '@synergy-design-system/tokens/charts/themes/light.css?inline';
+import componentTokenCss from '@synergy-design-system/tokens/themes/light.css?inline';
 
 /**
  * Parse size patterns like "2xlarge", "xlarge", "large", etc.
@@ -155,17 +158,36 @@ export const getRawValueFromToken = (token: string, parentElement?: HTMLElement)
 };
 
 /**
- * Get all tokens from a category as array of key value pairs
- * @param category The category to search for
- * @param useFullTokenName Optionally preserve the token name
- * @returns Returns the complete tokens category
+ * Returns a function that filters and maps design tokens by category prefix.
+ *
+ * @param tokens - A flat record of all design tokens (key = token name, value = CSS variable string).
+ * @returns A function that accepts a category string and an optional flag:
  */
-export const getTokensByCategory = (category: string, useFullTokenName = false): [string, string][] => Object.entries(tokens)
+const getTokensByCategory = (tokens: Record<string, string>) => (
+  category: string,
+  useFullTokenName = false,
+): [string, string][] => Object.entries(tokens)
   .filter(([token]) => token.toLowerCase().startsWith(`syn${category.toLocaleLowerCase()}`))
   .map(([token, value]) => [
     useFullTokenName ? token : token.toLowerCase().replace('syn', ''),
     value,
   ]);
+
+/**
+ * Get all component tokens from a category as array of key value pairs
+ * @param category The category to search for
+ * @param useFullTokenName Optionally preserve the token name
+ * @returns Returns the complete tokens category
+ */
+export const getComponentTokensByCategory = getTokensByCategory(componentTokens);
+
+/**
+ * Get all chart tokens from a category as array of key value pairs
+ * @param category The category to search for
+ * @param useFullTokenName Optionally preserve the token name
+ * @returns Returns the complete chart tokens category
+ */
+export const getChartTokensByCategory = getTokensByCategory(chartTokens);
 
 /**
  * Get the raw value of a css property from an element
@@ -208,8 +230,8 @@ const sortByOrder = (tokenA: string, tokenB: string, orderArray: string[], repla
  * @returns Sort comparison result
  */
 const sortByNumber = (tokenA: string, tokenB: string, replaceString: string): number => {
-  const aValue = parseInt(tokenA.toLowerCase().replaceAll(replaceString, '').trim(), 10);
-  const bValue = parseInt(tokenB.toLowerCase().replaceAll(replaceString, '').trim(), 10);
+  const aValue = parseInt(tokenA.toLowerCase().replaceAll(replaceString, '').replaceAll('_', '').trim(), 10);
+  const bValue = parseInt(tokenB.toLowerCase().replaceAll(replaceString, '').replaceAll('_', '').trim(), 10);
 
   if (bValue > aValue) return -1;
   if (bValue < aValue) return 1;
@@ -264,4 +286,28 @@ export const sortTokens = (tokenA: [string, string], tokenB: [string, string], s
   // Handle number sorting (default)
   const { replaceString = '' } = sortingParameters;
   return sortByNumber(aName, bName, replaceString);
+};
+
+export const getCssAlias = (token: string, tokenCategory: 'chart' | 'component' = 'component'): string => {
+  const cssVariable = getCSSToken(token);
+  const css = tokenCategory === 'chart' ? chartTokenCss : componentTokenCss;
+
+  const regex = new RegExp(`(${cssVariable})\\s*:\\s*([^;]+);`);
+  const match = css.match(regex);
+  if (!match) return '';
+
+  const value = match[2].trim();
+
+  // If it contains var(...), extract the variable name
+  if (value.includes('var(')) {
+    const varMatch = value.match(/var\((--[^)]+)\)/);
+    return varMatch ? varMatch[1] : value;
+  }
+
+  return '';
+};
+
+export const hasCssAlias = (token: string, tokenCategory: 'chart' | 'component' = 'component'): boolean => {
+  const referenceVariable = getCssAlias(token, tokenCategory);
+  return Boolean(referenceVariable);
 };

@@ -21,8 +21,8 @@ const getStoriesFromStorybook = (prefix: string): Record<string, string> => {
     .forEach((story) => {
       const docsId = story.id;
       const baseId = docsId.replace('--docs', '');
-      const isOverviewDocs = baseId.endsWith('-overview');
-      if (isOverviewDocs) {
+      const shouldSkip = baseId.endsWith('-overview') || baseId.endsWith('-getting-started');
+      if (shouldSkip) {
         return;
       }
       const isStoriesFileDocs = !!story.importPath && /\.stories\.[cm]?[jt]sx?$/.test(story.importPath);
@@ -48,8 +48,12 @@ const getStoriesFromStorybook = (prefix: string): Record<string, string> => {
 };
 
 const componentStories = getStoriesFromStorybook('components');
+const chartStories = getStoriesFromStorybook('charts');
 const styleStories = getStoriesFromStorybook('styles');
 const templateStories = getStoriesFromStorybook('templates');
+
+// enhance componentStories with chart stories, as charts are a type of component
+Object.assign(componentStories, chartStories);
 
 const formatStoriesAsMarkdown = (stories: Parameters<ScrapingConfig['formatContent']>[1]): string => stories.map(
   (story) => `

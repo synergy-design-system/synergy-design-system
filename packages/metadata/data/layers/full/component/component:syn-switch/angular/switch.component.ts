@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynSwitch } from '@synergy-design-system/components';
+import type SynSwitch from '@synergy-design-system/components/components/switch/switch.component.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';

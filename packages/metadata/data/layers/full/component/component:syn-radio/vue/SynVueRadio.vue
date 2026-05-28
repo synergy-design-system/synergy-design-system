@@ -29,7 +29,7 @@ import '@synergy-design-system/components/components/radio/radio.js';
 
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
-import type { SynRadio } from '@synergy-design-system/components';
+import type SynRadio from '@synergy-design-system/components/components/radio/radio.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynRadio>();

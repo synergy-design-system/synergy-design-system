@@ -1,12 +1,9 @@
-import fs from 'fs/promises';
-import { deleteAsync } from 'del';
+import { mkdir, rm } from 'fs/promises';
 import { job } from '../shared.js';
 
 export const runPrepare = job('Synergy: Cleaning up artifacts...', async (dir) => {
-  await Promise.all([
-    deleteAsync(dir),
-  ]);
-  return await fs.mkdir(dir, {
+  await rm(dir, { force: true, recursive: true });
+  return mkdir(dir, {
     recursive: true,
   });
 });

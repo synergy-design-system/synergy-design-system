@@ -1,0 +1,1 @@
+export type SynChartJSXElement = SynCustomElement<SynChart, []>;

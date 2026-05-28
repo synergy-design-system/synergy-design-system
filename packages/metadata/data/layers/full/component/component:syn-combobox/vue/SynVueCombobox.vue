@@ -82,7 +82,7 @@ import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';
-import type { SynCombobox } from '@synergy-design-system/components';
+import type SynCombobox from '@synergy-design-system/components/components/combobox/combobox.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynCombobox>();

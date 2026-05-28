@@ -1,7 +1,7 @@
-import fs from 'fs';
-import { pascalCase } from 'change-case';
-import chalk from 'chalk';
-import { createFolder, createHeaderComment } from '../helpers.js';
+import fs from 'node:fs';
+import { styleText } from 'node:util';
+import { pascalCase, split } from 'change-case';
+import { createFolder, createHeaderComment, joinConsecutiveNumbers } from '../helpers.js';
 
 /**
  * Creates JavaScript exports from the provided css file
@@ -20,6 +20,7 @@ export const createJS = (header, inputFile, outputFile) => {
       return [
         pascalCase(varName, {
           mergeAmbiguousCharacters: true,
+          split: (value) => joinConsecutiveNumbers(split(value)),
         }),
         cssVar.replace(':', ''),
       ];
@@ -40,7 +41,7 @@ ${jsExports.join('\n')}
   fs.writeFileSync(outputFile, `${jsOutput}\n`, {
     encoding: 'utf-8',
   });
-  console.log(chalk.green('✔︎ Created javascript exports'));
+  console.log(styleText('green', '✔︎ Created javascript exports'));
 
   // Create the typescript files
   const tsFile = outputFile.replace(/\.js$/, '.d.ts');
@@ -58,5 +59,5 @@ ${tsExports.join('\n')}
   fs.writeFileSync(tsFile, `${tsOutput}\n`, {
     encoding: 'utf-8',
   });
-  console.log(chalk.green('✔︎ Created typescript types'));
+  console.log(styleText('green', '✔︎ Created typescript types'));
 };

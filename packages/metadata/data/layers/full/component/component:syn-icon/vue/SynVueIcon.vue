@@ -22,7 +22,7 @@ import '@synergy-design-system/components/components/icon/icon.js';
 
 import type { SynLoadEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';
-import type { SynIcon } from '@synergy-design-system/components';
+import type SynIcon from '@synergy-design-system/components/components/icon/icon.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynIcon>();

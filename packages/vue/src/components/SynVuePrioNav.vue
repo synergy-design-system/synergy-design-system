@@ -43,7 +43,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
 
-import type { SynPrioNav } from '@synergy-design-system/components';
+import type SynPrioNav from '@synergy-design-system/components/components/prio-nav/prio-nav.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynPrioNav>();

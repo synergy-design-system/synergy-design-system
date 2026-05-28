@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynTagGroup } from '@synergy-design-system/components';
+import type SynTagGroup from '@synergy-design-system/components/components/tag-group/tag-group.component.js';
 
 import '@synergy-design-system/components/components/tag-group/tag-group.js';
 

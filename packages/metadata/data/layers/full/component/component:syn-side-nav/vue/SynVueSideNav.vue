@@ -72,7 +72,7 @@ import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
-import type { SynSideNav } from '@synergy-design-system/components';
+import type SynSideNav from '@synergy-design-system/components/components/side-nav/side-nav.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynSideNav>();

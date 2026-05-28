@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynBadge } from '@synergy-design-system/components';
+import type SynBadge from '@synergy-design-system/components/components/badge/badge.component.js';
 
 import '@synergy-design-system/components/components/badge/badge.js';
 

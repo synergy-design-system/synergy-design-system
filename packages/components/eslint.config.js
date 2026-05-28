@@ -34,6 +34,7 @@ export default [
       reportUnusedDisableDirectives: 'off',
     },
     rules: {
+      'import/no-extraneous-dependencies': ['error', { optionalDependencies: true }],
       'no-unused-disable-directive': 'off',
     },
   },

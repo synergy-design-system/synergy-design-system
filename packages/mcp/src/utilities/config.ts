@@ -286,11 +286,19 @@ export const McpRuntimeConfigSchema = z.object({
 
     tokenInfo: z.object({
       /**
+       * Default token scope when none is provided by the caller.
+       * 'component' returns base component tokens (js/scss/themes).
+       * 'charts' returns chart palette tokens.
+       * @default 'component'
+       */
+      tokenScope: z.enum(['components', 'charts']).default('components'),
+
+      /**
        * Default token output type when none is provided by the caller.
        * @default 'css'
        */
       type: z.enum(['javascript', 'css', 'sass']).default('css'),
-    }).default({ type: 'css' }),
+    }).default({ tokenScope: 'components', type: 'css' }),
   }).default({
     assetInfo: { iconset: 'current' },
     componentInfo: { framework: 'vanilla', layer: 'full' },
@@ -313,7 +321,7 @@ export const McpRuntimeConfigSchema = z.object({
     migrationInfo: { synergyPackage: 'components' },
     migrationList: { synergyPackage: 'components' },
     setup: { includeLimitations: true },
-    tokenInfo: { type: 'css' },
+    tokenInfo: { tokenScope: 'components', type: 'css' },
   }),
 });
 

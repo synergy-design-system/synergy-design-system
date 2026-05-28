@@ -9,6 +9,8 @@ import {
   getAllComponents,
   getControlAttributeForTwoWayBinding,
   getEventAttributeForTwoWayBinding,
+  getEventExports,
+  getEventImports,
   getIsTwoWayBindingEnabledFor,
   job,
   lcFirstLetter,
@@ -16,14 +18,6 @@ import {
 import { createNgPackageJson } from './shared.js';
 
 const headerComment = createHeader('angular');
-
-const getEventImports = (events = []) => events
-  .map(event => `import type { ${event.eventName} } from '@synergy-design-system/components';`)
-  .join('\n');
-
-const getEventExports = (events = []) => events
-  .map(event => `export type { ${event.eventName} } from '@synergy-design-system/components';`)
-  .join('\n');
 
 const getEventListeners = ({
   events = [],
@@ -150,6 +144,7 @@ export const runCreateComponents = job('Angular: Creating components', async (me
     const componentPath = path.join(componentDir, componentFileName);
     const jsDoc = component.jsDoc || '';
     const importPath = `@synergy-design-system/components/${component.path}`;
+    const componentImportPath = `@synergy-design-system/components/${component.componentPath}`;
 
     const eventImports = getEventImports(component.events);
     const eventExports = getEventExports(component.events);
@@ -174,7 +169,7 @@ export const runCreateComponents = job('Angular: Creating components', async (me
         EventEmitter,
         AfterContentInit,
       } from '@angular/core';
-      import type { ${component.name} } from '@synergy-design-system/components';
+      import type ${component.name} from '${componentImportPath}';
       ${eventImports}
       import '${importPath}';
 
@@ -212,6 +207,7 @@ export const runCreateComponents = job('Angular: Creating components', async (me
     `.trim();
 
     index.push({
+      component: component.tagNameWithoutPrefix,
       name: `${component.name}Component`,
       outputPath: `@synergy-design-system/angular/components/${component.tagNameWithoutPrefix}`,
     });

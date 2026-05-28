@@ -1,0 +1,5 @@
+{
+  "name": "Data Visualization Components",
+  "description": "Components for visualizing data through charts and graphs",
+  "entities": ["component:syn-chart"]
+}

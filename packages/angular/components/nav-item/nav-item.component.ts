@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynNavItem } from '@synergy-design-system/components';
+import type SynNavItem from '@synergy-design-system/components/components/nav-item/nav-item.component.js';
 import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynBlurEvent } from '@synergy-design-system/components';

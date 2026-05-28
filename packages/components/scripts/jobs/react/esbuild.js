@@ -1,5 +1,5 @@
+import { glob } from 'node:fs/promises';
 import esbuild from 'esbuild';
-import { globby } from 'globby';
 import { job } from '../shared.js';
 
 export const runEsBuild = job('React: Running esbuild...', async (distDir) => {
@@ -10,7 +10,7 @@ export const runEsBuild = job('React: Running esbuild...', async (distDir) => {
       'process.env.NODE_ENV': '"production"',
     },
     entryPoints: [
-      ...(await globby('../react/src/**/!(*.(style|test)).ts')),
+      ...(await Array.fromAsync(glob('../react/src/**/*.ts'))),
     ],
     external: undefined,
     format: 'esm',
@@ -22,5 +22,5 @@ export const runEsBuild = job('React: Running esbuild...', async (distDir) => {
     target: 'es2020',
   };
 
-  return await esbuild.build(esbuildConfig);
+  return esbuild.build(esbuildConfig);
 });

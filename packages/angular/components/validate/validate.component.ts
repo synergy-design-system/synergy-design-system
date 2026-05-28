@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynValidate } from '@synergy-design-system/components';
+import type SynValidate from '@synergy-design-system/components/components/validate/validate.component.js';
 
 import '@synergy-design-system/components/components/validate/validate.js';
 

@@ -18,7 +18,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/button-group/button-group.js';
 
-import type { SynButtonGroup } from '@synergy-design-system/components';
+import type SynButtonGroup from '@synergy-design-system/components/components/button-group/button-group.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynButtonGroup>();

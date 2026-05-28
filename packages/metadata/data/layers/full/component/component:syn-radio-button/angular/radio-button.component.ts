@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynRadioButton } from '@synergy-design-system/components';
+import type SynRadioButton from '@synergy-design-system/components/components/radio-button/radio-button.component.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/radio-button/radio-button.js';

@@ -83,6 +83,7 @@ import type {
   SynTooltip,
   SynValidate,
 } from '@synergy-design-system/components';
+import type SynChart from '@synergy-design-system/components/components/chart/chart.component.js';
 
 /**
  * Used core types
@@ -263,6 +264,15 @@ export type SynCustomElement<
  * @cssproperty --border-width - The width of the card's borders.
  * @cssproperty --padding - The padding to use for the card's sections.
  */ export type SynCardJSXElement = SynCustomElement<SynCard, []>;
+/**
+ * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
+ *
+ * @documentation https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs
+ * @status experimental
+ * @since 0.0.0
+ *
+ * @csspart base - The component's base wrapper.
+ */ export type SynChartJSXElement = SynCustomElement<SynChart, []>;
 /**
  * @summary Checkboxes allow the user to toggle an option on or off.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs
@@ -1722,6 +1732,15 @@ declare module 'react' {
        * @cssproperty --border-width - The width of the card's borders.
        * @cssproperty --padding - The padding to use for the card's sections.
        */ 'syn-card': SynCardJSXElement;
+      /**
+       * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
+       *
+       * @documentation https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs
+       * @status experimental
+       * @since 0.0.0
+       *
+       * @csspart base - The component's base wrapper.
+       */ 'syn-chart': SynChartJSXElement;
       /**
        * @summary Checkboxes allow the user to toggle an option on or off.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs

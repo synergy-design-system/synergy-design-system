@@ -5,7 +5,7 @@ import { execPromise, job } from '../shared.js';
  * @param {String} outDir The directory where to emit to
  * @param {String} baseDir The base directory path
  */
-export const runReactTypeScript = job('React: Generating typescript types...', async (outDir, baseDir) => await execPromise(
+export const runReactTypeScript = job('React: Generating typescript types...', async (outDir, baseDir) => execPromise(
   `tsc --project ${baseDir}/tsconfig.json --outDir "${outDir}"`,
   { stdio: 'inherit' },
 ));

@@ -1,5 +1,5 @@
 import path from 'path';
-import { deleteAsync } from 'del';
+import { rm } from 'fs/promises';
 import * as jobs from './angular/index.js';
 import {
   createRunFormat,
@@ -31,7 +31,7 @@ export const runCreateAngularWrappers = async ({
 
   await createRunPrepare('Angular: Cleaning up artifacts...')(distDir, modulesDir, componentsDir, directivesDir);
   // Remove old index file
-  await deleteAsync(indexFile, { force: true });
+  await rm(indexFile, { force: true });
 
   await jobs.runCreateComponents(metadata, componentsDir);
   await jobs.runCreateNgModule(metadata, modulesDir);

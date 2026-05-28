@@ -24,7 +24,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/menu-label/menu-label.js';
 
-import type { SynMenuLabel } from '@synergy-design-system/components';
+import type SynMenuLabel from '@synergy-design-system/components/components/menu-label/menu-label.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynMenuLabel>();

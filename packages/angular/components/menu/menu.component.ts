@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynMenu } from '@synergy-design-system/components';
+import type SynMenu from '@synergy-design-system/components/components/menu/menu.component.js';
 import type { SynSelectEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/menu/menu.js';
 

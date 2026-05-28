@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynOptgroup } from '@synergy-design-system/components';
+import type SynOptgroup from '@synergy-design-system/components/components/optgroup/optgroup.component.js';
 
 import '@synergy-design-system/components/components/optgroup/optgroup.js';
 

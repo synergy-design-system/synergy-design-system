@@ -62,7 +62,7 @@ import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynClampEvent } from '@synergy-design-system/components';
-import type { SynInput } from '@synergy-design-system/components';
+import type SynInput from '@synergy-design-system/components/components/input/input.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynInput>();

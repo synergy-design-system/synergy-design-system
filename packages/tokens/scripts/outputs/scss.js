@@ -1,7 +1,7 @@
-import fs from 'fs';
-import { pascalCase } from 'change-case';
-import chalk from 'chalk';
-import { createFolder, createHeaderComment } from '../helpers.js';
+import fs from 'node:fs';
+import { styleText } from 'node:util';
+import { pascalCase, split } from 'change-case';
+import { createFolder, createHeaderComment, joinConsecutiveNumbers } from '../helpers.js';
 
 /**
  * Creates scss exports from the provided css file
@@ -20,6 +20,7 @@ export const createSCSS = (header, inputFile, outputFile) => {
       return [
         pascalCase(varName, {
           mergeAmbiguousCharacters: true,
+          split: (value) => joinConsecutiveNumbers(split(value)),
         }),
         cssVar.replace(':', ''),
       ];
@@ -37,5 +38,5 @@ ${foundItems}
   fs.writeFileSync(outputFile, `${output}\n`, {
     encoding: 'utf-8',
   });
-  console.log(chalk.green('✔︎ Created SCSS exports'));
+  console.log(styleText('green', '✔︎ Created SCSS exports'));
 };

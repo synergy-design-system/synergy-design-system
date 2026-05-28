@@ -20,7 +20,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/tab-panel/tab-panel.js';
 
-import type { SynTabPanel } from '@synergy-design-system/components';
+import type SynTabPanel from '@synergy-design-system/components/components/tab-panel/tab-panel.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTabPanel>();

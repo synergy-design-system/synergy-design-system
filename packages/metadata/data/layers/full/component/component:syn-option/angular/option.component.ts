@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynOption } from '@synergy-design-system/components';
+import type SynOption from '@synergy-design-system/components/components/option/option.component.js';
 
 import '@synergy-design-system/components/components/option/option.js';
 

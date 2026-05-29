@@ -173,6 +173,142 @@ chart.getInstance()?.setOption(
 
 ---
 
+## Config Builder
+
+Instead of manually assembling deeply nested ECharts option objects, `syn-chart` ships a middleware-style composition system. The central concept is the **`ConfigModifier`** — a plain function with the signature `(config: ECConfig) => ECConfig`. Predefined modifiers cover the most common styling adjustments; you can also write your own.
+
+### `enhanceConfig` — Fluent Builder
+
+`enhanceConfig(base)` wraps a base config in a fluent builder. Chain as many `.with(modifier)` calls as needed, then call `.build()` to get the final `ECConfig`.
+
+```js
+import {
+  enhanceConfig,
+  hideAxisValues,
+  showGridLines,
+} from '@synergy-design-system/components/components/chart/configs/index.js';
+
+const baseConfig = {
+  series: [{ type: 'line', data: [150, 230, 224] }],
+  xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed'], name: 'Days' },
+  yAxis: { type: 'value', name: 'Values' },
+};
+
+chart.config = enhanceConfig(baseConfig)
+  .with(showGridLines)
+  .with(hideAxisValues)
+  .build();
+```
+
+### `compose` — Combine Modifiers
+
+`compose(...modifiers)` combines several `ConfigModifier` functions into a single one. Modifiers are applied left-to-right.
+
+```js
+import { compose, hideAxisValues, showGridLines } from '@synergy-design-system/components/components/chart/configs/index.js';
+
+const myPreset = compose(showGridLines, hideAxisValues);
+
+chart.config = enhanceConfig(baseConfig).with(myPreset).build();
+```
+
+### Writing Your Own Modifier
+
+```js
+import { mergeConfigs } from '@synergy-design-system/components/components/chart/configs/index.js';
+
+/** @type {import('@synergy-design-system/components/components/chart/configs/index.js').ConfigModifier} */
+const withTitle = (config) => mergeConfigs(config, {
+  title: { text: 'My Chart' },
+});
+
+chart.config = enhanceConfig(baseConfig).with(withTitle).build();
+```
+
+### Array Merge Strategy
+
+Nested objects are deep-merged across layers; **arrays are always replaced** by the value from the most recently applied modifier. Keep this in mind when modifying `series`, `xAxis.data`, etc.
+
+---
+
+## Predefined Config Reference
+
+All predefined modifiers are exported from `@synergy-design-system/components/components/chart/configs/index.js`.
+
+### Grid & Axis Lines
+
+| Modifier | Description |
+| --- | --- |
+| `showHorizontalGridLines` | Enables horizontal grid lines by showing the `yAxis.splitLine`. |
+| `showVerticalGridLines` | Enables vertical grid lines by showing the `xAxis.splitLine`. |
+| `showGridLines` | Enables grid lines in both directions and makes the `xAxis` and `yAxis` baseline visible. Composes `showHorizontalGridLines` and `showVerticalGridLines`. |
+
+### Axis Labels
+
+| Modifier | Description |
+| --- | --- |
+| `hideXAxisValues` | Hides x-axis tick labels. Adjusts `nameGap` to compensate for the removed label space. |
+| `hideYAxisValues` | Hides y-axis tick labels. Left-aligns the axis name text when labels are hidden. |
+| `hideAxisValues` | Hides tick labels on both axes. Composes `hideXAxisValues` and `hideYAxisValues`. |
+
+### `xAxisWithIconLabels(options)`
+
+Renders a custom icon above or below each x-axis tick label. Each icon is supplied as an SVG data URL and is automatically colorized.
+
+```js
+import { xAxisWithIconLabels, enhanceConfig } from '@synergy-design-system/components/components/chart/configs/index.js';
+
+const iconUrls = ['data:image/svg+xml;base64,...', 'data:image/svg+xml;base64,...'];
+
+chart.config = enhanceConfig(baseConfig)
+  .with(xAxisWithIconLabels({ iconUrls, iconPosition: 'top' }))
+  .build();
+```
+
+#### Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `iconUrls` | `string[]` | *(required)* | One SVG data URL per x-axis category value. |
+| `iconPosition` | `'top' \| 'bottom'` | `'top'` | Whether icons appear above or below the tick label. |
+| `iconColor` | `string` | resolved value of `--syn-color-neutral-950` | A real color value (e.g. `#1a1a1a`, `rgb(26, 26, 26)`) used to replace `currentColor` in each SVG. **CSS custom properties (e.g. `--syn-color-neutral-950`) are not supported** — pass the resolved value instead: `getComputedStyle(document.body).getPropertyValue('--syn-color-neutral-950').trim()`. |
+| `iconsStyle` | `TextCommonOption` | `{ height: --syn-spacing-large, width: --syn-spacing-large }` | ECharts rich-text style overrides for the icon element. |
+| `labelsStyle` | `TextCommonOption` | See note | ECharts rich-text style overrides for the label element. Defaults use Synergy typography tokens (`--syn-font-sans`, `--syn-font-size-x-small`, `--syn-font-weight-normal`, `--syn-typography-color-text-quiet`). |
+
+### `yAxisWithIconLabels(options)`
+
+Renders a custom icon to the left or right of each y-axis tick label. The label box width is calculated automatically from the longest label in the config so that icons stay horizontally aligned; override via `labelsStyle.width`.
+
+```js
+import { yAxisWithIconLabels, enhanceConfig } from '@synergy-design-system/components/components/chart/configs/index.js';
+
+const iconUrls = ['data:image/svg+xml;base64,...', 'data:image/svg+xml;base64,...'];
+
+chart.config = enhanceConfig(baseConfig)
+  .with(yAxisWithIconLabels({ iconUrls, iconPosition: 'left' }))
+  .build();
+```
+
+#### Options
+
+| Option | Type | Default | Description |
+| --- | --- | --- | --- |
+| `iconUrls` | `string[]` | *(required)* | One SVG data URL per y-axis category value. |
+| `iconPosition` | `'left' \| 'right'` | `'left'` | Whether icons appear to the left or right of the tick label. |
+| `iconColor` | `string` | resolved value of `--syn-color-neutral-950` | A real color value (e.g. `#1a1a1a`, `rgb(26, 26, 26)`) used to replace `currentColor` in each SVG. **CSS custom properties (e.g. `--syn-color-neutral-950`) are not supported** — pass the resolved value instead: `getComputedStyle(document.body).getPropertyValue('--syn-color-neutral-950').trim()`. |
+| `iconsStyle` | `TextCommonOption` | `{ height: --syn-spacing-large, width: --syn-spacing-large }` | ECharts rich-text style overrides for the icon element. |
+| `labelsStyle` | `TextCommonOption` | See note | ECharts rich-text style overrides for the label element. Defaults use Synergy typography tokens. For `iconPosition: 'left'` the label width is auto-calculated to keep icons aligned; set `labelsStyle.width` explicitly to override. |
+
+### Builder Utilities
+
+| Export | Signature | Description |
+| --- | --- | --- |
+| `enhanceConfig` | `(base: ECConfig) => ConfigBuilder` | Creates a fluent builder. Chain `.with(modifier)` calls, then `.build()` to get the final config. |
+| `compose` | `(...modifiers: ConfigModifier[]) => ConfigModifier` | Combines multiple modifiers into one. Applied left-to-right. |
+| `mergeConfigs` | `(...layers: Partial<ECConfig>[]) => ECConfig` | Low-level deep-merge primitive. Nested objects are merged; arrays are replaced. Used internally by all predefined modifiers. |
+
+---
+
 ## TypeScript
 
 The `config` property is typed as `ECConfig`, which is a **scoped** [`ComposeOption`](https://echarts.apache.org/en/api.html#echarts.ComposeOption) — it only includes the chart types and ECharts components that are currently registered internally:

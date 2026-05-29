@@ -4,18 +4,18 @@ Tab groups organize content into a container that shows one section at a time. T
 
 ```html
 <syn-tab-group>
-  <syn-tab-panel name="general" active=""
+  <syn-tab-panel name="general" active
     >This is the general tab panel.</syn-tab-panel
   >
   <syn-tab-panel name="custom">This is the custom tab panel.</syn-tab-panel>
   <syn-tab-panel name="advanced">This is the advanced tab panel.</syn-tab-panel>
   <syn-tab-panel name="disabled">This is the disabled tab panel.</syn-tab-panel>
-  <syn-tab slot="nav" panel="general" active="">General</syn-tab>
+  <syn-tab slot="nav" panel="general" active>General</syn-tab>
   <span slot="nav"> </span> <syn-tab slot="nav" panel="custom">Custom</syn-tab>
   <span slot="nav"> </span>
   <syn-tab slot="nav" panel="advanced">Advanced</syn-tab>
   <span slot="nav"> </span>
-  <syn-tab slot="nav" panel="disabled" disabled="">Disabled</syn-tab>
+  <syn-tab slot="nav" panel="disabled" disabled>Disabled</syn-tab>
 </syn-tab-group>
 ```
 
@@ -27,11 +27,11 @@ Tabs can be shown on the starting side by setting placement to start.
 
 ```html
 <syn-tab-group placement="start">
-  <syn-tab slot="nav" panel="general" active="">General</syn-tab>
+  <syn-tab slot="nav" panel="general" active>General</syn-tab>
   <syn-tab slot="nav" panel="custom">Custom</syn-tab>
   <syn-tab slot="nav" panel="advanced">Advanced</syn-tab>
-  <syn-tab slot="nav" panel="disabled" disabled="">Disabled</syn-tab>
-  <syn-tab-panel name="general" active=""
+  <syn-tab slot="nav" panel="disabled" disabled>Disabled</syn-tab>
+  <syn-tab-panel name="general" active
     >This is the general tab panel.</syn-tab-panel
   >
   <syn-tab-panel name="custom">This is the custom tab panel.</syn-tab-panel>
@@ -48,11 +48,11 @@ Tabs can be shown on the ending side by setting placement to end.
 
 ```html
 <syn-tab-group placement="end">
-  <syn-tab slot="nav" panel="general" active="">General</syn-tab>
+  <syn-tab slot="nav" panel="general" active>General</syn-tab>
   <syn-tab slot="nav" panel="custom">Custom</syn-tab>
   <syn-tab slot="nav" panel="advanced">Advanced</syn-tab>
-  <syn-tab slot="nav" panel="disabled" disabled="">Disabled</syn-tab>
-  <syn-tab-panel name="general" active=""
+  <syn-tab slot="nav" panel="disabled" disabled>Disabled</syn-tab>
+  <syn-tab-panel name="general" active
     >This is the general tab panel.</syn-tab-panel
   >
   <syn-tab-panel name="custom">This is the custom tab panel.</syn-tab-panel>
@@ -70,13 +70,13 @@ Add the closable attribute to a tab to show a close button. This example shows h
 ```html
 <syn-tab-group class="tabs-closable">
   <!-- Tabs -->
-  <syn-tab slot="nav" panel="general" active="">General</syn-tab
-  ><syn-tab slot="nav" panel="closable-1" closable="">Closable 1</syn-tab
-  ><syn-tab slot="nav" panel="closable-2" closable="">Closable 2</syn-tab
-  ><syn-tab slot="nav" panel="closable-3" closable="">Closable 3</syn-tab>
+  <syn-tab slot="nav" panel="general" active>General</syn-tab
+  ><syn-tab slot="nav" panel="closable-1" closable>Closable 1</syn-tab
+  ><syn-tab slot="nav" panel="closable-2" closable>Closable 2</syn-tab
+  ><syn-tab slot="nav" panel="closable-3" closable>Closable 3</syn-tab>
 
   <!-- Tab Panels  -->
-  <syn-tab-panel name="general" active=""
+  <syn-tab-panel name="general" active
     >This is the general tab panel.</syn-tab-panel
   ><syn-tab-panel name="closable-1"
     >This is the first closable tab panel.</syn-tab-panel
@@ -114,7 +114,7 @@ When there are more tabs than horizontal space allows, the nav will be scrollabl
 ```html
 <syn-tab-group>
   <!-- Tabs -->
-  <syn-tab slot="nav" panel="tab-1" active="">Tab 1</syn-tab
+  <syn-tab slot="nav" panel="tab-1" active>Tab 1</syn-tab
   ><syn-tab slot="nav" panel="tab-2">Tab 2</syn-tab
   ><syn-tab slot="nav" panel="tab-3">Tab 3</syn-tab
   ><syn-tab slot="nav" panel="tab-4">Tab 4</syn-tab
@@ -136,7 +136,7 @@ When there are more tabs than horizontal space allows, the nav will be scrollabl
   ><syn-tab slot="nav" panel="tab-20">Tab 20</syn-tab>
 
   <!-- Tab Panels -->
-  <syn-tab-panel name="tab-1" active="">Tab panel 1</syn-tab-panel
+  <syn-tab-panel name="tab-1" active>Tab panel 1</syn-tab-panel
   ><syn-tab-panel name="tab-2">Tab panel 2</syn-tab-panel
   ><syn-tab-panel name="tab-3">Tab panel 3</syn-tab-panel
   ><syn-tab-panel name="tab-4">Tab panel 4</syn-tab-panel
@@ -168,12 +168,12 @@ To structure the Page, you can use different tab styles.
 ```html
 <h3 class="body-medium">Default</h3>
 <syn-tab-group>
-  <syn-tab slot="nav" panel="tab-1" active="">Tab item</syn-tab
+  <syn-tab slot="nav" panel="tab-1" active>Tab item</syn-tab
   ><syn-tab slot="nav" panel="tab-2">Tab item</syn-tab
   ><syn-tab slot="nav" panel="tab-3">Tab item</syn-tab
   ><syn-tab slot="nav" panel="tab-4">Tab item</syn-tab>
 
-  <syn-tab-panel name="tab-1" active="">
+  <syn-tab-panel name="tab-1" active>
     <main class="synergy-replace">Replace this slot</main>
   </syn-tab-panel>
 
@@ -191,13 +191,13 @@ To structure the Page, you can use different tab styles.
 </syn-tab-group>
 
 <h3 class="body-medium">Contained</h3>
-<syn-tab-group contained="">
-  <syn-tab slot="nav" panel="tab-1" active="">Tab item</syn-tab
+<syn-tab-group contained>
+  <syn-tab slot="nav" panel="tab-1" active>Tab item</syn-tab
   ><syn-tab slot="nav" panel="tab-2">Tab item</syn-tab
   ><syn-tab slot="nav" panel="tab-3">Tab item</syn-tab
   ><syn-tab slot="nav" panel="tab-4">Tab item</syn-tab>
 
-  <syn-tab-panel name="tab-1" active="">
+  <syn-tab-panel name="tab-1" active>
     <main class="synergy-replace">Replace this slot</main>
   </syn-tab-panel>
 
@@ -215,13 +215,13 @@ To structure the Page, you can use different tab styles.
 </syn-tab-group>
 
 <h3 class="body-medium">Sharp</h3>
-<syn-tab-group contained="" sharp="">
-  <syn-tab slot="nav" panel="tab-1" active="">Tab item</syn-tab
+<syn-tab-group contained sharp>
+  <syn-tab slot="nav" panel="tab-1" active>Tab item</syn-tab
   ><syn-tab slot="nav" panel="tab-2">Tab item</syn-tab
   ><syn-tab slot="nav" panel="tab-3">Tab item</syn-tab
   ><syn-tab slot="nav" panel="tab-4">Tab item</syn-tab>
 
-  <syn-tab-panel name="tab-1" active="">
+  <syn-tab-panel name="tab-1" active>
     <main class="synergy-replace">Replace this slot</main>
   </syn-tab-panel>
 
@@ -271,11 +271,11 @@ When focused, keyboard users can press Left or Right to select the desired tab. 
 
 ```html
 <syn-tab-group activation="manual">
-  <syn-tab slot="nav" panel="general" active="">General</syn-tab>
+  <syn-tab slot="nav" panel="general" active>General</syn-tab>
   <syn-tab slot="nav" panel="custom">Custom</syn-tab>
   <syn-tab slot="nav" panel="advanced">Advanced</syn-tab>
-  <syn-tab slot="nav" panel="disabled" disabled="">Disabled</syn-tab>
-  <syn-tab-panel name="general" active=""
+  <syn-tab slot="nav" panel="disabled" disabled>Disabled</syn-tab>
+  <syn-tab-panel name="general" active
     >This is the general tab panel.</syn-tab-panel
   >
   <syn-tab-panel name="custom">This is the custom tab panel.</syn-tab-panel>
@@ -292,7 +292,7 @@ It is also possible to a Add icon to the Tabs.
 
 ```html
 <syn-tab-group>
-  <syn-tab slot="nav" panel="general" active="">
+  <syn-tab slot="nav" panel="general" active>
     <syn-icon name="style"></syn-icon>
     General
   </syn-tab>
@@ -304,11 +304,11 @@ It is also possible to a Add icon to the Tabs.
     <syn-icon name="verified_user"></syn-icon>
     Advanced
   </syn-tab>
-  <syn-tab slot="nav" panel="disabled" disabled="">
+  <syn-tab slot="nav" panel="disabled" disabled>
     <syn-icon name="update_disabled"></syn-icon>
     Disabled
   </syn-tab>
-  <syn-tab-panel name="general" active=""
+  <syn-tab-panel name="general" active
     >This is the general tab panel.</syn-tab-panel
   >
   <syn-tab-panel name="custom">This is the custom tab panel.</syn-tab-panel>

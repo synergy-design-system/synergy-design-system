@@ -110,23 +110,23 @@
   <div class="synergy-demo-content">
     <!-- side-navigation -->
     <syn-side-nav variant="default">
-      <syn-nav-item current="">
+      <syn-nav-item current>
         <syn-icon name="home" slot="prefix"></syn-icon>
         Start
       </syn-nav-item>
-      <syn-nav-item divider="">
+      <syn-nav-item divider>
         <syn-icon name="spoke" slot="prefix"></syn-icon>
         Workspaces
       </syn-nav-item>
-      <syn-nav-item divider="">
+      <syn-nav-item divider>
         <syn-icon name="insert_drive_file" slot="prefix"></syn-icon>
         Documents
       </syn-nav-item>
-      <syn-nav-item divider="">
+      <syn-nav-item divider>
         <syn-icon name="wb_cloudy" slot="prefix"></syn-icon>
         Cloud
       </syn-nav-item>
-      <syn-nav-item divider="">
+      <syn-nav-item divider>
         <syn-icon name="volunteer_activism" slot="prefix"></syn-icon>
         Feedback
       </syn-nav-item>
@@ -135,7 +135,7 @@
         <syn-icon name="settings" slot="prefix"></syn-icon>
         Settings
       </syn-nav-item>
-      <syn-nav-item slot="footer" divider="">
+      <syn-nav-item slot="footer" divider>
         <syn-icon name="logout" slot="prefix"></syn-icon>
         Logout
       </syn-nav-item>

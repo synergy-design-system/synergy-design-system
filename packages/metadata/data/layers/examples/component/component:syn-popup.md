@@ -4,7 +4,7 @@ Popup is a utility that lets you declaratively anchor “popup” containers to 
 
 ```html
 <div class="popup-default">
-  <syn-popup active="" arrow-padding="10">
+  <syn-popup active arrow-padding="10">
     <div class="box"></div>
     <span slot="anchor"></span>
   </syn-popup>
@@ -37,13 +37,13 @@ meaning you can have many idle popups on the page without affecting performance.
 
 ```html
 <div class="popup-active">
-  <syn-popup placement="top" active="">
+  <syn-popup placement="top" active>
     <span slot="anchor"></span>
     <div class="box"></div>
   </syn-popup>
 
   <br />
-  <syn-switch checked="">Active</syn-switch>
+  <syn-switch checked>Active</syn-switch>
 </div>
 
 <style>
@@ -85,7 +85,7 @@ to the anchor property to achieve the same effect without using an id.
 ```html
 <span id="external-anchor"></span>
 
-<syn-popup anchor="external-anchor" placement="top" active="">
+<syn-popup anchor="external-anchor" placement="top" active>
   <div class="box"></div>
 </syn-popup>
 
@@ -121,7 +121,7 @@ available space and it will be removed when the popup is deactivated.
 
 ```html
 <div class="popup-placement">
-  <syn-popup placement="top" active="">
+  <syn-popup placement="top" active>
     <span slot="anchor"></span>
     <div class="box"></div>
   </syn-popup>
@@ -181,7 +181,7 @@ A positive value will move the popup further away and a negative value will move
 
 ```html
 <div class="popup-distance">
-  <syn-popup placement="top" distance="0" active="">
+  <syn-popup placement="top" distance="0" active>
     <span slot="anchor"></span>
     <div class="box"></div>
   </syn-popup>
@@ -232,7 +232,7 @@ Both positive and negative values are allowed.
 
 ```html
 <div class="popup-skidding">
-  <syn-popup placement="top" skidding="0" active="">
+  <syn-popup placement="top" skidding="0" active>
     <span slot="anchor"></span>
     <div class="box"></div>
   </syn-popup>
@@ -289,13 +289,7 @@ the arrow to align to the start, end, or center of the instead.
 
 ```html
 <div class="popup-arrow">
-  <syn-popup
-    placement="top"
-    arrow=""
-    arrow-placement="anchor"
-    distance="8"
-    active=""
-  >
+  <syn-popup placement="top" arrow arrow-placement="anchor" distance="8" active>
     <span slot="anchor"></span>
     <div class="box"></div>
   </syn-popup>
@@ -330,7 +324,7 @@ the arrow to align to the start, end, or center of the instead.
   </div>
 
   <div class="popup-arrow-options">
-    <syn-switch name="arrow" checked="">Arrow</syn-switch>
+    <syn-switch name="arrow" checked>Arrow</syn-switch>
   </div>
 
   <style>
@@ -398,7 +392,7 @@ This is useful for controls that need the popup to stay the same width or height
 
 ```html
 <div class="popup-sync">
-  <syn-popup placement="top" sync="width" active="">
+  <syn-popup placement="top" sync="width" active>
     <span slot="anchor"></span>
     <div class="box"></div>
   </syn-popup>
@@ -407,7 +401,7 @@ This is useful for controls that need the popup to stay the same width or height
     <syn-option value="width">Width</syn-option>
     <syn-option value="height">Height</syn-option>
     <syn-option value="both">Both</syn-option>
-    <syn-option value="">None</syn-option>
+    <syn-option value>None</syn-option>
   </syn-select>
 </div>
 
@@ -458,14 +452,14 @@ Additional options are available to control the flip behavior's boundary and pad
 ```html
 <div class="popup-flip">
   <div class="overflow">
-    <syn-popup placement="top" flip="" active="" id="popup-flip">
+    <syn-popup placement="top" flip active id="popup-flip">
       <span slot="anchor"></span>
       <div class="box"></div>
     </syn-popup>
   </div>
 
   <br />
-  <syn-switch checked="">Flip</syn-switch>
+  <syn-switch checked>Flip</syn-switch>
 </div>
 
 <style>
@@ -523,10 +517,10 @@ Scroll the container to see how the popup changes it's fallback placement to pre
   <div class="overflow">
     <syn-popup
       placement="top"
-      flip=""
+      flip
       flip-fallback-placements="right bottom"
       flip-fallback-strategy="initial"
-      active=""
+      active
     >
       <span slot="anchor"></span>
       <div class="box"></div>
@@ -571,13 +565,13 @@ Toggle the switch to see the difference.
 ```html
 <div class="popup-shift">
   <div class="overflow">
-    <syn-popup placement="top" shift="" shift-padding="10" active="">
+    <syn-popup placement="top" shift shift-padding="10" active>
       <span slot="anchor"></span>
       <div class="box"></div>
     </syn-popup>
   </div>
 
-  <syn-switch checked="">Shift</syn-switch>
+  <syn-switch checked>Shift</syn-switch>
 </div>
 
 <style>

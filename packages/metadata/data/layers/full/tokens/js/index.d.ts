@@ -2039,11 +2039,6 @@ export const SynToggleSizeSmall: string;
 export const SynTooltipArrowSize: string;
 
 /**
- * Maps to the css variable `--syn-tooltip-background-color`
- */
-export const SynTooltipBackgroundColor: string;
-
-/**
  * Maps to the css variable `--syn-tooltip-border-radius`
  */
 export const SynTooltipBorderRadius: string;
@@ -2112,6 +2107,16 @@ export const SynTypographyColorText: string;
  * Maps to the css variable `--syn-typography-color-text-inverted`
  */
 export const SynTypographyColorTextInverted: string;
+
+/**
+ * Maps to the css variable `--syn-typography-color-text-quiet`
+ */
+export const SynTypographyColorTextQuiet: string;
+
+/**
+ * Maps to the css variable `--syn-typography-color-text-quiet-inverted`
+ */
+export const SynTypographyColorTextQuietInverted: string;
 
 /**
  * Maps to the css variable `--syn-z-index-dialog`

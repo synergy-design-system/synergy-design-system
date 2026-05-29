@@ -69,7 +69,7 @@ The focus event gives the user feedback that one of the radio buttons has been f
 
 ```html
 <syn-radio-group label="This is a label" name="a">
-  <syn-radio value="1" disabled="">Option</syn-radio>
+  <syn-radio value="1" disabled>Option</syn-radio>
   <syn-radio value="2">Option</syn-radio>
   <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>
@@ -84,7 +84,7 @@ Radios and radio buttons can be disabled by adding the disabled attribute to the
 ```html
 <syn-radio-group label="This is a label" help-text="This is disabled" name="a">
   <syn-radio value="1">Option</syn-radio>
-  <syn-radio value="2" disabled="">Option</syn-radio>
+  <syn-radio value="2" disabled>Option</syn-radio>
   <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>
 ```
@@ -103,7 +103,7 @@ Add the readonly attribute to a radio to draw it in a readonly state.
   value="2"
 >
   <syn-radio value="1">Option</syn-radio>
-  <syn-radio value="2" readonly="">Option</syn-radio>
+  <syn-radio value="2" readonly>Option</syn-radio>
   <syn-radio value="3">Option</syn-radio>
 </syn-radio-group>
 ```
@@ -145,7 +145,7 @@ The invalid status is used to warn the user that the Radio Group is invalid. For
     label="Select an option"
     name="a"
     help-text="This is required"
-    required=""
+    required
   >
     <syn-radio value="1">Option 1</syn-radio>
     <syn-radio value="2">Option 2</syn-radio>

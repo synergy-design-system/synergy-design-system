@@ -66,6 +66,11 @@ export const SynCategorical09 = 'var(--syn-categorical-09)';
 /**
  * @type {string}
  */
+export const SynGridLinesColor = 'var(--syn-grid-lines-color)';
+
+/**
+ * @type {string}
+ */
 export const SynSequential01_10 = 'var(--syn-sequential-01-10)';
 
 /**

@@ -13,8 +13,9 @@ The default story demonstrates a basic line chart configuration. The chart is co
       xAxis: {
         data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         type: "category",
+        name: "Days",
       },
-      yAxis: { type: "value" },
+      yAxis: { type: "value", name: "Values" },
     };
   });
 </script>
@@ -45,7 +46,7 @@ The config property is the main way to configure the chart. It accepts an object
 Use the palette attribute to apply a Synergy design token color palette to chart series. categorical (12 distinct colors for comparing unrelated data series), sequential-01–sequential-07 (10-step single-hue ramps), and sequential-status-critical/error/info/success/warning (10-step status ramps). If option.color is explicitly set, it takes precedence over the palette attribute.
 
 ```html
-<syn-chart id="chart-palette" palette="sequential-01"></syn-chart>
+<syn-chart id="chart-palette" palette="sequential-02"></syn-chart>
 <script type="module">
   const chart = document.querySelector("#chart-palette");
   chart.config = {
@@ -187,5 +188,280 @@ You can use multiple charts in one <syn-chart> instance, each with its own confi
     },
     yAxis: { type: "value" },
   };
+</script>
+```
+
+---
+
+## Axis Lines Hidden
+
+You can use multiple charts in one <syn-chart> instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the color property directly on the series object — allowing fine-grained control over individual chart series colors.Important: The color property does not support CSS variables (e.g. var(--syn-sequential-05-80)). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim() and pass the resolved value instead.
+
+```html
+<syn-chart id="chart-lines-hidden" palette="categorical"></syn-chart>
+<script type="module">
+  const chart = document.querySelector("#chart-lines-hidden");
+
+  chart.config = {
+    series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+</script>
+```
+
+---
+
+## Axis Lines Visible
+
+You can use multiple charts in one <syn-chart> instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the color property directly on the series object — allowing fine-grained control over individual chart series colors.Important: The color property does not support CSS variables (e.g. var(--syn-sequential-05-80)). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim() and pass the resolved value instead.
+
+```html
+<syn-chart id="chart-lines-visible" palette="categorical"></syn-chart>
+<script type="module">
+  const chart = document.querySelector("#chart-lines-visible");
+
+  const baseConfig = {
+    series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+      type: "value",
+    },
+  };
+
+  chart.config = enhanceConfig(baseConfig).with(showGridLines).build();
+  setTimeout(() => {
+    const instance = chart.getInstance();
+    console.log("ECharts instance with axis lines visible:");
+    console.log(instance.getOption());
+  }, 2000);
+</script>
+```
+
+---
+
+## Horizontal Lines Visible
+
+You can use multiple charts in one <syn-chart> instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the color property directly on the series object — allowing fine-grained control over individual chart series colors.Important: The color property does not support CSS variables (e.g. var(--syn-sequential-05-80)). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim() and pass the resolved value instead.
+
+```html
+<syn-chart
+  id="chart-horizontal-lines-visible"
+  palette="categorical"
+></syn-chart>
+<script type="module">
+  const chart = document.querySelector("#chart-horizontal-lines-visible");
+
+  const baseConfig = {
+    series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+      type: "value",
+    },
+  };
+
+  chart.config = enhanceConfig(baseConfig)
+    .with(showHorizontalGridLines)
+    .build();
+  setTimeout(() => {
+    const instance = chart.getInstance();
+    console.log("ECharts instance with axis lines visible:");
+    console.log(instance.getOption());
+  }, 2000);
+</script>
+```
+
+---
+
+## Vertical Lines Visible
+
+You can use multiple charts in one <syn-chart> instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the color property directly on the series object — allowing fine-grained control over individual chart series colors.Important: The color property does not support CSS variables (e.g. var(--syn-sequential-05-80)). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim() and pass the resolved value instead.
+
+```html
+<syn-chart id="chart-vertical-lines-visible"></syn-chart>
+<script type="module">
+  const chart = document.querySelector("#chart-vertical-lines-visible");
+
+  const baseConfig = {
+    series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+      type: "value",
+    },
+  };
+
+  chart.config = enhanceConfig(baseConfig).with(showVerticalGridLines).build();
+  setTimeout(() => {
+    const instance = chart.getInstance();
+    console.log("ECharts instance with axis lines visible:");
+    console.log(instance.getOption());
+  }, 2000);
+</script>
+```
+
+---
+
+## Axis Lines Hidden Values Hidden
+
+You can use multiple charts in one <syn-chart> instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the color property directly on the series object — allowing fine-grained control over individual chart series colors.Important: The color property does not support CSS variables (e.g. var(--syn-sequential-05-80)). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim() and pass the resolved value instead.
+
+```html
+<syn-chart
+  id="chart-lines-hidden-values-hidden"
+  palette="categorical"
+></syn-chart>
+<script type="module">
+  const chart = document.querySelector("#chart-lines-hidden-values-hidden");
+
+  const baseConfig = {
+    series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+      type: "value",
+    },
+  };
+  chart.config = enhanceConfig(baseConfig).with(hideAxisValues).build();
+</script>
+```
+
+---
+
+## Axis Lines Visible Values Hidden
+
+You can use multiple charts in one <syn-chart> instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the color property directly on the series object — allowing fine-grained control over individual chart series colors.Important: The color property does not support CSS variables (e.g. var(--syn-sequential-05-80)). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim() and pass the resolved value instead.
+
+```html
+<syn-chart
+  id="chart-lines-visible-values-hidden"
+  palette="categorical"
+></syn-chart>
+<script type="module">
+  const baseConfig = {
+    series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: {
+      name: "Values",
+      type: "value",
+    },
+  };
+
+  const chart = document.querySelector("#chart-lines-visible-values-hidden");
+  chart.config = enhanceConfig(baseConfig)
+    .with(hideAxisValues)
+    .with(showGridLines)
+    .build();
+</script>
+```
+
+---
+
+## Prefix Icons
+
+You can use multiple charts in one <syn-chart> instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the color property directly on the series object — allowing fine-grained control over individual chart series colors.Important: The color property does not support CSS variables (e.g. var(--syn-sequential-05-80)). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim() and pass the resolved value instead.
+
+```html
+<syn-chart id="chart-axis-prefix-icons" palette="categorical"></syn-chart>
+<script type="module">
+  const DAY_ICONS = [
+    "calendar_today",
+    "event_available",
+    "schedule",
+    "event_note",
+    "event_upcoming",
+    "weekend",
+    "sunny",
+  ];
+
+  const YAXIS_ICONS = [
+    "wallpaper",
+    "tune",
+    "watch",
+    "format_paint",
+    "brush",
+    "gradient",
+    "format_color_reset",
+  ];
+
+  const bootstrap = async () => {
+    const iconUrls = await Promise.all(
+      DAY_ICONS.map(async (iconName) => {
+        const svg = await fetch("/assets/sick2025/" + iconName + ".svg").then(
+          (r) => r.text(),
+        );
+        return "data:image/svg+xml;base64," + btoa(svg);
+      }),
+    );
+    const yAxisIconUrls = await Promise.all(
+      YAXIS_ICONS.map(async (iconName) => {
+        const svg = await fetch("/assets/sick2025/" + iconName + ".svg").then(
+          (r) => r.text(),
+        );
+        return "data:image/svg+xml;base64," + btoa(svg);
+      }),
+    );
+
+    const baseConfig = {
+      series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
+      xAxis: {
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        name: "Days",
+        type: "category",
+      },
+      yAxis: {
+        name: "Values",
+        type: "value",
+        axisLabel: {
+          color: "green",
+        },
+      },
+    };
+
+    const chart = document.querySelector("#chart-axis-prefix-icons");
+    chart.config = enhanceConfig(baseConfig)
+      .with(showGridLines)
+      .with(
+        xAxisWithIconLabels({
+          iconUrls,
+          iconPosition: "top",
+        }),
+      )
+      .with(
+        yAxisWithIconLabels({
+          iconUrls: yAxisIconUrls,
+          iconPosition: "left",
+        }),
+      )
+      .build();
+  };
+
+  bootstrap();
 </script>
 ```

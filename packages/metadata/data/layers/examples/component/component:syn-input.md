@@ -3,7 +3,7 @@
 Inputs collect data from the user.
 
 ```html
-<syn-input spellcheck=""></syn-input>
+<syn-input spellcheck></syn-input>
 ```
 
 ---
@@ -46,7 +46,7 @@ Use the placeholder attribute to add a placeholder.
 Add the clearable attribute to add a clear button when the input has content.
 
 ```html
-<syn-input value="Clearable" placeholder="Clearable" clearable=""></syn-input>
+<syn-input value="Clearable" placeholder="Clearable" clearable></syn-input>
 ```
 
 ---
@@ -59,7 +59,7 @@ Add the password-toggle attribute to add a toggle button that will show the pass
 <syn-input
   type="password"
   placeholder="Password Toggle"
-  password-toggle=""
+  password-toggle
 ></syn-input>
 ```
 
@@ -70,7 +70,7 @@ Add the password-toggle attribute to add a toggle button that will show the pass
 Add the readonly attribute to draw a read-only input.
 
 ```html
-<syn-input value="Readonly content" readonly=""></syn-input>
+<syn-input value="Readonly content" readonly></syn-input>
 ```
 
 ---
@@ -98,12 +98,7 @@ The focus attribute provides feedback to the users, informing them that the inpu
 Use the disabled attribute to disable an input.
 
 ```html
-<syn-input
-  placeholder="Disabled"
-  help-text="Help Text"
-  label="Label"
-  disabled=""
->
+<syn-input placeholder="Disabled" help-text="Help Text" label="Label" disabled>
   <syn-icon name="home" slot="prefix"></syn-icon>
   <syn-icon name="chat" slot="suffix"></syn-icon>
 </syn-input>
@@ -133,7 +128,7 @@ The invalid status is used to warn the user that the input is invalid. For examp
     help-text="This input is required."
     label="Label"
     placeholder="Insert text here..."
-    required=""
+    required
   ></syn-input>
   <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>

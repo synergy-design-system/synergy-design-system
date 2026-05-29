@@ -64,6 +64,11 @@ export const SynCategorical08: string;
 export const SynCategorical09: string;
 
 /**
+ * Maps to the css variable `--syn-grid-lines-color`
+ */
+export const SynGridLinesColor: string;
+
+/**
  * Maps to the css variable `--syn-sequential-01-10`
  */
 export const SynSequential01_10: string;

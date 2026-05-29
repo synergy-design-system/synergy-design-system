@@ -3,7 +3,7 @@
 Tooltips display additional information based on a specific action.A tooltip’s target is its first child element, so you should only wrap one element inside of the tooltip. If you need the tooltip to show up for multiple elements, nest them inside a container first.Tooltips use display: contents so they won’t interfere with how elements are positioned in a flex or grid layout.
 
 ```html
-<syn-tooltip content="This is a tooltip" distance="13" open="">
+<syn-tooltip content="This is a tooltip" distance="13" open>
   <syn-button>Hover me</syn-button>
 </syn-tooltip>
 ```
@@ -17,59 +17,59 @@ Use the placement attribute to set the preferred placement of the tooltip.
 ```html
 <div class="tooltip-placement-example">
   <div class="tooltip-placement-example-row">
-    <syn-tooltip content="top-start" placement="top-start" open="">
+    <syn-tooltip content="top-start" placement="top-start" open>
       <syn-button></syn-button>
     </syn-tooltip>
 
-    <syn-tooltip content="top" placement="top" open="">
+    <syn-tooltip content="top" placement="top" open>
       <syn-button></syn-button>
     </syn-tooltip>
 
-    <syn-tooltip content="top-end" placement="top-end" open="">
-      <syn-button></syn-button>
-    </syn-tooltip>
-  </div>
-
-  <div class="tooltip-placement-example-row">
-    <syn-tooltip content="left-start" placement="left-start" open="">
-      <syn-button></syn-button>
-    </syn-tooltip>
-
-    <syn-tooltip content="right-start" placement="right-start" open="">
+    <syn-tooltip content="top-end" placement="top-end" open>
       <syn-button></syn-button>
     </syn-tooltip>
   </div>
 
   <div class="tooltip-placement-example-row">
-    <syn-tooltip content="left" placement="left" open="">
+    <syn-tooltip content="left-start" placement="left-start" open>
       <syn-button></syn-button>
     </syn-tooltip>
 
-    <syn-tooltip content="right" placement="right" open="">
-      <syn-button></syn-button>
-    </syn-tooltip>
-  </div>
-
-  <div class="tooltip-placement-example-row">
-    <syn-tooltip content="left-end" placement="left-end" open="">
-      <syn-button></syn-button>
-    </syn-tooltip>
-
-    <syn-tooltip content="right-end" placement="right-end" open="">
+    <syn-tooltip content="right-start" placement="right-start" open>
       <syn-button></syn-button>
     </syn-tooltip>
   </div>
 
   <div class="tooltip-placement-example-row">
-    <syn-tooltip content="bottom-start" placement="bottom-start" open="">
+    <syn-tooltip content="left" placement="left" open>
       <syn-button></syn-button>
     </syn-tooltip>
 
-    <syn-tooltip content="bottom" placement="bottom" open="">
+    <syn-tooltip content="right" placement="right" open>
+      <syn-button></syn-button>
+    </syn-tooltip>
+  </div>
+
+  <div class="tooltip-placement-example-row">
+    <syn-tooltip content="left-end" placement="left-end" open>
       <syn-button></syn-button>
     </syn-tooltip>
 
-    <syn-tooltip content="bottom-end" placement="bottom-end" open="">
+    <syn-tooltip content="right-end" placement="right-end" open>
+      <syn-button></syn-button>
+    </syn-tooltip>
+  </div>
+
+  <div class="tooltip-placement-example-row">
+    <syn-tooltip content="bottom-start" placement="bottom-start" open>
+      <syn-button></syn-button>
+    </syn-tooltip>
+
+    <syn-tooltip content="bottom" placement="bottom" open>
+      <syn-button></syn-button>
+    </syn-tooltip>
+
+    <syn-tooltip content="bottom-end" placement="bottom-end" open>
       <syn-button></syn-button>
     </syn-tooltip>
   </div>
@@ -136,7 +136,7 @@ Use the placement attribute to set the preferred placement of the tooltip.
 Set the trigger attribute to click to toggle the tooltip on click instead of hover.
 
 ```html
-<syn-tooltip content="Click again to dismiss" trigger="click" open="">
+<syn-tooltip content="Click again to dismiss" trigger="click" open>
   <syn-button>Click to Toggle</syn-button>
 </syn-tooltip>
 ```
@@ -153,7 +153,7 @@ Tooltips can be controlled programmatically by setting the trigger attribute t
   content="This is an avatar"
   trigger="manual"
   class="manual-tooltip"
-  open=""
+  open
 >
   <syn-icon-button
     name="person"
@@ -181,7 +181,7 @@ You can control the size of tooltip arrows by overriding the --syn-tooltip-arro
 <syn-tooltip
   content="This is a tooltip"
   style="--syn-tooltip-arrow-size: 0"
-  open=""
+  open
 >
   <syn-button>No Arrow</syn-button>
 </syn-tooltip>
@@ -194,7 +194,7 @@ You can control the size of tooltip arrows by overriding the --syn-tooltip-arro
 Use the content slot to create tooltips with HTML content. Tooltips are designed only for text and presentational elements. Avoid placing interactive content, such as buttons, links, and form controls, in a tooltip.
 
 ```html
-<syn-tooltip open="">
+<syn-tooltip open>
   <div slot="content">
     I'm not <strong>just</strong> a tooltip, I'm a <em>tooltip</em> with HTML!
   </div>
@@ -213,7 +213,7 @@ Use the --max-width custom property to change the width the tooltip can grow t
 <syn-tooltip
   style="--max-width: 80px"
   content="This tooltip will wrap after only 80 pixels."
-  open=""
+  open
 >
   <syn-button>Hover me</syn-button>
 </syn-tooltip>

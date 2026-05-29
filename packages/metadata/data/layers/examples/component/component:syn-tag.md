@@ -25,9 +25,9 @@ Use the removable attribute to add a remove button to the tag.
 
 ```html
 <div class="tags-removable">
-  <syn-tag size="small" removable="">Small</syn-tag>
-  <syn-tag size="medium" removable="">Medium</syn-tag>
-  <syn-tag size="large" removable="">Large</syn-tag>
+  <syn-tag size="small" removable>Small</syn-tag>
+  <syn-tag size="medium" removable>Medium</syn-tag>
+  <syn-tag size="large" removable>Large</syn-tag>
 </div>
 
 <script type="module">

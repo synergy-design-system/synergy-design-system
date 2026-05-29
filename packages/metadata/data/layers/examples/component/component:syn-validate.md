@@ -41,7 +41,7 @@ When the tooltip variant is chosen, validation errors are displayed in a <syn-to
       label="Invalid input"
       type="email"
       value="team(at)synergy.com"
-      required=""
+      required
     ></syn-input>
   </syn-validate>
   <p>
@@ -100,7 +100,7 @@ Use hide-icon to hide the icon in inline style. This is especially useful when s
 
 ```html
 <form id="components-syn-validate--hide-icon-validate-demo-form">
-  <syn-validate class="validation-hide-icon" hide-icon="" variant="inline">
+  <syn-validate class="validation-hide-icon" hide-icon variant="inline">
     <syn-input
       label="Hide icon"
       type="email"
@@ -135,7 +135,7 @@ In development use the size attribute of the form element e.g. syn-input to set 
   <div
     style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
   >
-    <syn-validate eager="" variant="inline">
+    <syn-validate eager variant="inline">
       <syn-input
         type="email"
         value="team(at)synergy.com"
@@ -144,7 +144,7 @@ In development use the size attribute of the form element e.g. syn-input to set 
       ></syn-input>
     </syn-validate>
 
-    <syn-validate eager="" variant="inline">
+    <syn-validate eager variant="inline">
       <syn-input
         type="email"
         value="team(at)synergy.com"
@@ -153,7 +153,7 @@ In development use the size attribute of the form element e.g. syn-input to set 
       ></syn-input>
     </syn-validate>
 
-    <syn-validate eager="" variant="inline">
+    <syn-validate eager variant="inline">
       <syn-input
         type="email"
         value="team(at)synergy.com"
@@ -259,7 +259,7 @@ Wrap the element around any other form field, that follows browser standards to 
 <form id="components-syn-validate--custom-form-field-validate-demo-form">
   <h3 style="margin: 0; padding: 0">Choose SICK´s brand color</h3>
   <syn-validate class="validation-custom-form-field" on="live" variant="inline">
-    <validate-demo-radio name="color" required=""></validate-demo-radio>
+    <validate-demo-radio name="color" required></validate-demo-radio>
   </syn-validate>
 
   <p>
@@ -324,7 +324,7 @@ Use the eager attribute to validate the field when the component is mounted. Thi
 
 ```html
 <form id="components-syn-validate--eager-validate-demo-form">
-  <syn-validate eager="" variant="inline">
+  <syn-validate eager variant="inline">
     <syn-input
       label="Eager validation (triggered on page load)"
       type="email"

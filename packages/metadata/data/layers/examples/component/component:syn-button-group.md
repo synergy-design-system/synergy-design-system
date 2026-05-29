@@ -75,7 +75,7 @@ All button sizes are supported. The size of the button-group will be used to det
   <syn-button>Button</syn-button>
   <syn-button>Button</syn-button>
   <syn-dropdown placement="bottom-end">
-    <syn-button slot="trigger" caret="">Dropdown</syn-button>
+    <syn-button slot="trigger" caret>Dropdown</syn-button>
     <syn-menu>
       <syn-menu-item>Save</syn-menu-item>
       <syn-menu-item>Save as…</syn-menu-item>
@@ -95,7 +95,7 @@ Create a split button using a button and a dropdown. Use a visually hidden label
 <syn-button-group label="Example Button Group">
   <syn-button>Save</syn-button>
   <syn-dropdown placement="bottom-end">
-    <syn-button slot="trigger" variant="primary" caret=""></syn-button>
+    <syn-button slot="trigger" variant="primary" caret></syn-button>
     <syn-menu>
       <syn-menu-item>Save</syn-menu-item>
       <syn-menu-item>Save as…</syn-menu-item>

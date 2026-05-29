@@ -14,7 +14,7 @@ To set the initial value and checked state, use the value attribute on the radio
 
 ```html
 <syn-radio-group value="1">
-  <syn-radio value="1" selected="">Option</syn-radio>
+  <syn-radio value="1" selected>Option</syn-radio>
 </syn-radio-group>
 ```
 
@@ -35,7 +35,7 @@ The focus event gives the user feedback that the Radio has been focused by the k
 Use the disabled attribute to disable a radio.
 
 ```html
-<syn-radio value="1" disabled="">Option</syn-radio>
+<syn-radio value="1" disabled>Option</syn-radio>
 ```
 
 ---
@@ -46,7 +46,7 @@ Add the readonly attribute to draw a read-only radio.
 
 ```html
 <syn-radio-group value="1">
-  <syn-radio value="1" readonly="">Read-only content</syn-radio>
+  <syn-radio value="1" readonly>Read-only content</syn-radio>
 </syn-radio-group>
 ```
 
@@ -74,7 +74,7 @@ The invalid status is used to warn the user that the Radio is invalid. For examp
 
 ```html
 <form class="custom-validity">
-  <syn-radio-group required="" value="2">
+  <syn-radio-group required value="2">
     <syn-radio value="1">Invalid</syn-radio>
     <syn-radio value="2">Invalid</syn-radio>
   </syn-radio-group>

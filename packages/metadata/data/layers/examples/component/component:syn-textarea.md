@@ -3,7 +3,7 @@
 Textareas collect data from the user and allow multiple lines of text.
 
 ```html
-<syn-textarea rows="4" spellcheck=""></syn-textarea>
+<syn-textarea rows="4" spellcheck></syn-textarea>
 ```
 
 ---
@@ -61,7 +61,7 @@ Use the placeholder attribute to add a placeholder.
 Add the readonly attribute to draw a read-only textarea.
 
 ```html
-<syn-textarea value="Read-only content" readonly=""></syn-textarea>
+<syn-textarea value="Read-only content" readonly></syn-textarea>
 ```
 
 ---
@@ -89,7 +89,7 @@ Use the disabled attribute to disable a textarea.
   placeholder="Textarea"
   help-text="Please tell us what you think."
   label="Label"
-  disabled=""
+  disabled
 ></syn-textarea>
 ```
 
@@ -116,7 +116,7 @@ The invalid status is used to warn the user that the input is invalid. For examp
   <syn-textarea
     placeholder="Type something"
     help-text="This textarea is required."
-    required=""
+    required
   ></syn-textarea>
   <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>

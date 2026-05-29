@@ -45,7 +45,7 @@ Use the disabled attribute to disable an option and prevent it from being select
 ```html
 <syn-menu style="max-width: 240px">
   <syn-menu-item>Option 1</syn-menu-item>
-  <syn-menu-item disabled="">Option 2</syn-menu-item>
+  <syn-menu-item disabled>Option 2</syn-menu-item>
   <syn-menu-item>Option 3</syn-menu-item>
 </syn-menu>
 ```
@@ -59,7 +59,7 @@ Use the loading attribute to indicate that a menu item is busy. Like a disable
 ```html
 <syn-menu style="max-width: 240px">
   <syn-menu-item>Option 1</syn-menu-item>
-  <syn-menu-item loading="">Option 2</syn-menu-item>
+  <syn-menu-item loading>Option 2</syn-menu-item>
   <syn-menu-item>Option 3</syn-menu-item>
 </syn-menu>
 ```
@@ -73,7 +73,7 @@ The focus event gives the user feedback that the Menu Item has been focused by t
 ```html
 <syn-menu style="max-width: 240px">
   <syn-menu-item>Option 1</syn-menu-item>
-  <syn-menu-item disabled="">Option 2</syn-menu-item>
+  <syn-menu-item disabled>Option 2</syn-menu-item>
   <syn-menu-item>Option 3</syn-menu-item>
 </syn-menu>
 ```
@@ -87,7 +87,7 @@ Set the type attribute to checkbox to create a menu item that will toggle on
 ```html
 <syn-menu style="max-width: 240px">
   <syn-menu-item type="checkbox">Autosave</syn-menu-item>
-  <syn-menu-item type="checkbox" checked="">Check Spelling</syn-menu-item>
+  <syn-menu-item type="checkbox" checked>Check Spelling</syn-menu-item>
   <syn-menu-item type="checkbox">Word Wrap</syn-menu-item>
 </syn-menu>
 ```
@@ -104,7 +104,7 @@ The value attribute can be used to assign a hidden value, such as a unique ide
   <syn-menu-item value="opt-2">Option 2</syn-menu-item>
   <syn-menu-item value="opt-3">Option 3</syn-menu-item>
   <syn-divider></syn-divider>
-  <syn-menu-item type="checkbox" value="opt-4" checked=""
+  <syn-menu-item type="checkbox" value="opt-4" checked
     >Checkbox 4</syn-menu-item
   >
   <syn-menu-item type="checkbox" value="opt-5">Checkbox 5</syn-menu-item>

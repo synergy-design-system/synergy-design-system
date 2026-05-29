@@ -1,5 +1,5 @@
 import {
-  type EChartsType, init, use,
+  type EChartsType, init, registerTheme, use,
 } from 'echarts/core.js';
 import { CanvasRenderer } from 'echarts/renderers.js';
 import { html } from 'lit';
@@ -16,6 +16,7 @@ import componentStyles from '../../styles/component.styles.js';
 import styles from './chart.styles.js';
 import { PALETTE_TOKENS, type SynChartPalette } from './chart.palettes.js';
 import type { ECConfig } from './types.js';
+import { synergyLightTheme } from './themes/light.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -119,7 +120,11 @@ export default class SynChart extends SynergyElement {
   // Initialize echarts instance and resize observer
   protected firstUpdated(_changedProperties: PropertyValues): void {
     if (this.chartContainer !== null && this.chartContainer !== undefined) {
-      this.chartInstance = init(this.chartContainer);
+      registerTheme('synergy-light', synergyLightTheme);
+
+      // TODO: Check if it should overwrite the default themes 'default' and 'dark' of echarts, so people do not need to know about the theme and set it manually.
+      this.chartInstance = init(this.chartContainer,'synergy-light');
+      // this.chartInstance = init(this.chartContainer);
       // Resize observer
       this.resizeObserver = new ResizeObserver(() => {
         this.chartInstance?.resize();

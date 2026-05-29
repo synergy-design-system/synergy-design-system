@@ -39,7 +39,7 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
 Use the disabled attribute to disable a range.
 
 ```html
-<syn-range disabled="" max="100" min="0" value="50"></syn-range>
+<syn-range disabled max="100" min="0" value="50"></syn-range>
 ```
 
 ---
@@ -100,7 +100,7 @@ Add the readonly attribute to a range to draw it in a readonly state.
 
 ```html
 <form>
-  <syn-range max="100" min="0" value="50" readonly=""></syn-range>
+  <syn-range max="100" min="0" value="50" readonly></syn-range>
 </form>
 ```
 
@@ -176,7 +176,7 @@ Add any element to the start and end of range items using the prefix and suffix 
   <span slot="suffix">
     <div class="suffix-input">
       60
-      <syn-input value="30" type="number" no-spin-buttons="" min="0" max="60">
+      <syn-input value="30" type="number" no-spin-buttons min="0" max="60">
         <span slot="suffix">sec</span>
       </syn-input>
     </div>
@@ -285,7 +285,7 @@ Set the restrict-movement attribute to true to prevent the thumbs from overlappi
   label="Demo of restricting values"
   min="0"
   max="100"
-  restrict-movement=""
+  restrict-movement
   step="1"
 ></syn-range>
 ```
@@ -326,15 +326,15 @@ Use the ticks slot to insert ticks or groups with ticks to improve positioning.
   >
     <nav slot="ticks">
       <syn-range-tick>0</syn-range-tick>
-      <syn-range-tick subdivision=""></syn-range-tick>
-      <syn-range-tick subdivision=""></syn-range-tick>
-      <syn-range-tick subdivision=""></syn-range-tick>
-      <syn-range-tick subdivision=""></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
       <syn-range-tick>50</syn-range-tick>
-      <syn-range-tick subdivision=""></syn-range-tick>
-      <syn-range-tick subdivision=""></syn-range-tick>
-      <syn-range-tick subdivision=""></syn-range-tick>
-      <syn-range-tick subdivision=""></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
+      <syn-range-tick subdivision></syn-range-tick>
       <syn-range-tick>100</syn-range-tick>
     </nav>
   </syn-range>

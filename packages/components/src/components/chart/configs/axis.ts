@@ -1,3 +1,4 @@
+/* eslint-disable complexity */
 import type { TextCommonOption } from 'echarts/types/src/util/types.js';
 import { getRealStyleValue, getRealValueWithoutUnit } from '../themes/utilities.js';
 import { type ConfigModifier, compose, mergeConfigs } from './config.js';

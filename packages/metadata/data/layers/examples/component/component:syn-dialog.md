@@ -3,7 +3,7 @@
 Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
 
 ```html
-<syn-dialog open="" label="Dialog">
+<syn-dialog open label="Dialog">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <span slot="footer"> </span>
   <syn-button class="default-close-icon" variant="filled" slot="footer"
@@ -53,7 +53,7 @@ Dialogs, sometimes called "modals", appear above the page and require the user's
 Use the --width custom property to set the dialog’s width.
 
 ```html
-<syn-dialog open="" label="Dialog" style="--width: 50vw">
+<syn-dialog open label="Dialog" style="--width: 50vw">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
   <syn-button class="dialog-custom-width" variant="filled" slot="footer"
@@ -101,7 +101,7 @@ Use the --width custom property to set the dialog’s width.
 By design, a dialog’s height will never exceed that of the viewport. As such, dialogs will not scroll with the page ensuring the header and footer are always accessible to the user.
 
 ```html
-<syn-dialog open="" label="Dialog">
+<syn-dialog open label="Dialog">
   <div>
     <p>Scroll down and give it a try! 👇</p>
     <p>
@@ -182,7 +182,7 @@ By design, a dialog’s height will never exceed that of the viewport. As such, 
 The header shows a functional close button by default. You can use the header-actions slot to add additional icon buttons if needed.
 
 ```html
-<syn-dialog open="" label="Dialog">
+<syn-dialog open label="Dialog">
   <syn-icon-button
     class="new-window"
     slot="header-actions"
@@ -241,7 +241,7 @@ The header shows a functional close button by default. You can use the header-ac
 By default, dialogs will close when the user clicks the close button, clicks the overlay, or presses the Escape key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.To keep the dialog open in such cases, you can cancel the syn-request-close event. When canceled, the dialog will remain open and pulse briefly to draw the user’s attention to it.You can use event.detail.source to determine what triggered the request to close. This example prevents the dialog from closing when the overlay is clicked, but allows the close button or Escape to dismiss it.
 
 ```html
-<syn-dialog open="" label="Dialog" class="dialog-deny-close">
+<syn-dialog open label="Dialog" class="dialog-deny-close">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
   <syn-button class="dialog-deny-close-actions" variant="filled" slot="footer"
@@ -301,7 +301,7 @@ By default, the dialog’s panel will gain focus when opened. This allows a subs
 ```html
 <syn-dialog label="Dialog">
   <syn-input
-    autofocus=""
+    autofocus
     placeholder="I will have focus when the dialog is opened"
   ></syn-input>
 

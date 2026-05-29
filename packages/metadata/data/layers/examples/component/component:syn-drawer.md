@@ -3,7 +3,7 @@
 Drawers slide in from a container to expose additional options and information.
 
 ```html
-<syn-drawer open="" label="Drawer">
+<syn-drawer open label="Drawer">
   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
   <span slot="footer"> </span>
   <syn-button class="close-icon" slot="footer" variant="filled"
@@ -46,7 +46,7 @@ By default, drawers slide in from the end. To make the drawer slide in from the 
 ```html
 <syn-drawer
   label="Drawer"
-  open=""
+  open
   placement="start"
   class="drawer-placement-start"
 >
@@ -73,7 +73,7 @@ By default, drawers slide in from the end. To make the drawer slide in from the 
 To make the drawer slide in from the top, set the placement attribute to top.
 
 ```html
-<syn-drawer label="Drawer" open="" placement="top" class="drawer-placement-top">
+<syn-drawer label="Drawer" open placement="top" class="drawer-placement-top">
   This drawer slides in from the top.
   <syn-button slot="footer" variant="filled">Close</syn-button>
 </syn-drawer>
@@ -99,7 +99,7 @@ To make the drawer slide in from the bottom, set the placement attribute to b
 ```html
 <syn-drawer
   label="Drawer"
-  open=""
+  open
   placement="bottom"
   class="drawer-placement-bottom"
 >
@@ -140,8 +140,8 @@ By default, drawers slide out of their containing block, which is usually the v
 
   <syn-drawer
     label="Drawer"
-    open=""
-    contained=""
+    open
+    contained
     class="drawer-contained"
     style="--size: 50%"
   >
@@ -171,7 +171,7 @@ Use the --size custom property to set the drawer’s size. This will be applie
 ```html
 <syn-drawer
   label="Drawer"
-  open=""
+  open
   placement="start"
   class="drawer-custom-size"
   style="--size: 50vw"
@@ -199,7 +199,7 @@ Use the --size custom property to set the drawer’s size. This will be applie
 By design, a drawer’s height will never exceed 100% of its container. As such, drawers will not scroll with the page to ensure the header and footer are always accessible to the user.
 
 ```html
-<syn-drawer label="Drawer" open="" placement="start" class="drawer-scrolling">
+<syn-drawer label="Drawer" open placement="start" class="drawer-scrolling">
   <div>
     <p>Scroll down and give it a try! 👇</p>
     <p>
@@ -256,12 +256,7 @@ By design, a drawer’s height will never exceed 100% of its container. As such,
 The header shows a functional close button by default. You can use the header-actions slot to add additional icon buttons if needed.
 
 ```html
-<syn-drawer
-  label="Drawer"
-  open=""
-  placement="start"
-  class="drawer-header-actions"
->
+<syn-drawer label="Drawer" open placement="start" class="drawer-header-actions">
   <syn-icon-button
     class="new-window"
     slot="header-actions"
@@ -293,7 +288,7 @@ The header shows a functional close button by default. You can use the header-a
 By default, drawers will close when the user clicks the close button, clicks the overlay, or presses the Escape key. In most cases, the default behavior is the best behavior in terms of UX. However, there are situations where this may be undesirable, such as when data loss will occur.To keep the drawer open in such cases, you can cancel the syn-request-close event. When canceled, the drawer will remain open and pulse briefly to draw the user’s attention to it.You can use event.detail.source to determine what triggered the request to close. This example prevents the drawer from closing when the overlay is clicked, but allows the close button or Escape to dismiss it.
 
 ```html
-<syn-drawer label="Drawer" open="" class="drawer-deny-close">
+<syn-drawer label="Drawer" open class="drawer-deny-close">
   This drawer will not close when you click on the overlay.
   <syn-button slot="footer" variant="filled">Close</syn-button>
 </syn-drawer>
@@ -326,7 +321,7 @@ By default, the drawer’s panel will gain focus when opened. This allows a subs
 ```html
 <syn-drawer label="Drawer" class="drawer-focus">
   <syn-input
-    autofocus=""
+    autofocus
     placeholder="I will have focus when the drawer is opened"
   ></syn-input>
   <syn-button slot="footer" variant="filled">Close</syn-button>

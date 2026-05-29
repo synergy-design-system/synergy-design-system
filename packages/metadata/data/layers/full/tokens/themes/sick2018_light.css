@@ -414,7 +414,6 @@
   --syn-toggle-size-medium: var(--syn-spacing-medium-large);
   --syn-toggle-size-small: var(--syn-spacing-medium);
   --syn-tooltip-arrow-size: 9px;
-  --syn-tooltip-background-color: var(--syn-color-neutral-950);
   --syn-tooltip-border-radius: var(--syn-border-radius-small);
   --syn-tooltip-color: var(--syn-typography-color-text-inverted);
   --syn-tooltip-font-family: var(--syn-font-sans);
@@ -429,6 +428,8 @@
   --syn-transition-x-slow: 1000ms; /** Shoelace compatibility DO NOT USE */
   --syn-typography-color-text: var(--syn-color-neutral-950);
   --syn-typography-color-text-inverted: var(--syn-color-neutral-0);
+  --syn-typography-color-text-quiet: var(--syn-color-neutral-800);
+  --syn-typography-color-text-quiet-inverted: var(--syn-color-neutral-200);
   --syn-z-index-dialog: 800; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-drawer: 700; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-dropdown: 900; /** Shoelace compatibility DO NOT USE */

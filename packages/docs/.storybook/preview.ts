@@ -38,6 +38,7 @@ import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { themeSwitchIcons } from '../src/decorators/ThemeSwitchIcons.js';
 import docsPreviewIframeThemer from '../src/docs-preview-iframe-themer/index.js';
+import docsCodeOptimizer from '../src/docs-code-optimizer/index.js';
 
 // Filter out all private members and readonly properties from the manifest
 const filteredManifest = (manifest: Package): Package => ({
@@ -135,9 +136,11 @@ const preview: Preview = {
             plugins: [htmlParser],
           });
 
+          const optimizedSource = docsCodeOptimizer(formattedSource);
+
           // TODO: this function for theming iframes can be removed as soon as Storybook supports theming docs iframes natively
           docsPreviewIframeThemer(storyContext);
-          return docsCodepenEnhancer(formattedSource, storyContext);
+          return docsCodepenEnhancer(optimizedSource, storyContext);
         },
       },
       stories: { inline: false },

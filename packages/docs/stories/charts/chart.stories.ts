@@ -12,6 +12,7 @@ import {
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
+
 const { overrideArgs } = storybookHelpers('syn-chart');
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-chart');
 const { generateTemplate } = storybookTemplate('syn-chart');
@@ -41,7 +42,7 @@ const meta: Meta = {
       description: {
         component:
           [
-            '>⚠️ **Experimental**:',
+            '>⚠️ **Experimental Status**:',
             '>syn-chart is currently experimental.',
             '>The API may change in future releases without prior notice.',
             '>Use it with caution in production environments and expect potential breaking changes.\n',
@@ -75,8 +76,8 @@ export const Default: Story = {
       charts.forEach(chart => {
         chart.config = {
           series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
-          xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category' },
-          yAxis: { type: 'value' },
+          xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category', name: 'Days' },
+          yAxis: { type: 'value', name: 'Values' },
         };
       });
     </script>
@@ -113,7 +114,7 @@ export const Palette: Story = {
     },
   },
   render: () => html`
-    <syn-chart id="chart-palette" palette="sequential-01"></syn-chart>
+    <syn-chart id="chart-palette" palette="sequential-02"></syn-chart>
     <script type="module">
       const chart = document.querySelector('#chart-palette');
       chart.config = {
@@ -206,6 +207,301 @@ export const MultipleChartsWithDifferentPalettes: Story = {
   `,
 };
 
+export const AxisLinesHidden: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'multiple-charts'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="chart-lines-hidden" palette="categorical"></syn-chart>
+    <script type="module">
+      const chart = document.querySelector('#chart-lines-hidden');
+
+      chart.config = {
+          series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
+          xAxis: { 
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            type: 'category', name: 'Days',
+          },
+          yAxis: { type: 'value', name: 'Values' },
+      };
+    </script>
+  `,
+};
+
+export const AxisLinesVisible: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'multiple-charts'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="chart-lines-visible" palette="categorical"></syn-chart>
+    <script type="module">
+       // preview-ignore:start
+      import { enhanceConfig, showGridLines } from '../node_modules/@synergy-design-system/components/dist/components/chart/configs/index.js';
+      // preview-ignore:end
+
+      
+      const chart = document.querySelector('#chart-lines-visible');
+
+      const baseConfig = {
+        series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
+        xAxis: {
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          name: 'Days',
+          type: 'category',
+        },
+        yAxis: {
+          name: 'Values',
+          type: 'value',
+        },
+      };
+
+      chart.config = enhanceConfig(baseConfig).with(showGridLines).build();
+      setTimeout(() => {
+        const instance = chart.getInstance();
+        console.log('ECharts instance with axis lines visible:');
+        console.log(instance.getOption());
+      }, 2000);
+    </script>
+  `,
+};
+
+export const HorizontalLinesVisible: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'multiple-charts'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="chart-horizontal-lines-visible" palette="categorical"></syn-chart>
+    <script type="module">
+       // preview-ignore:start
+       // Because of browser errors I cant import these functions on top of the chart.stories.ts and need to directly import it here.
+       // But the caveat is, that every time something is changed in the chart component, the components package needs to be rebuild to see the changes in the story :/
+      import { enhanceConfig, showHorizontalGridLines } from '../node_modules/@synergy-design-system/components/dist/components/chart/configs/index.js';
+      // preview-ignore:end
+      
+      const chart = document.querySelector('#chart-horizontal-lines-visible');
+
+      const baseConfig = {
+        series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
+        xAxis: {
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          name: 'Days',
+          type: 'category',
+        },
+        yAxis: {
+          name: 'Values',
+          type: 'value',
+        },
+      };
+
+      chart.config = enhanceConfig(baseConfig).with(showHorizontalGridLines).build();
+      setTimeout(() => {
+        const instance = chart.getInstance();
+        console.log('ECharts instance with axis lines visible:');
+        console.log(instance.getOption());
+      }, 2000);
+    </script>
+  `,
+};
+
+export const VerticalLinesVisible: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'multiple-charts'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="chart-vertical-lines-visible"></syn-chart>
+    <script type="module">
+       // preview-ignore:start
+      import { enhanceConfig, showVerticalGridLines } from '../node_modules/@synergy-design-system/components/dist/components/chart/configs/index.js';
+      // preview-ignore:end
+      
+      const chart = document.querySelector('#chart-vertical-lines-visible');
+
+      const baseConfig = {
+        series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
+        xAxis: {
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          name: 'Days',
+          type: 'category',
+        },
+        yAxis: {
+          name: 'Values',
+          type: 'value',
+        },
+      };
+
+      chart.config = enhanceConfig(baseConfig).with(showVerticalGridLines).build();
+      setTimeout(() => {
+        const instance = chart.getInstance();
+        console.log('ECharts instance with axis lines visible:');
+        console.log(instance.getOption());
+      }, 2000);
+    </script>
+  `,
+};
+
+export const AxisLinesHiddenValuesHidden: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'multiple-charts'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="chart-lines-hidden-values-hidden" palette="categorical"></syn-chart>
+    <script type="module">
+        // preview-ignore:start
+        import { enhanceConfig, hideAxisValues } from '../node_modules/@synergy-design-system/components/dist/components/chart/configs/index.js';
+        // preview-ignore:end
+        
+        const chart = document.querySelector('#chart-lines-hidden-values-hidden');
+
+        const baseConfig = {
+          series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
+          xAxis: {
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            name: 'Days',
+            type: 'category',
+          },
+          yAxis: {
+            name: 'Values',
+            type: 'value',
+          },
+        };
+        chart.config = enhanceConfig(baseConfig).with(hideAxisValues).build();
+    </script>
+  `,
+};
+
+export const AxisLinesVisibleValuesHidden: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'multiple-charts'),
+      },
+    },
+  },
+  render: () => html`
+      <syn-chart id="chart-lines-visible-values-hidden" palette="categorical"></syn-chart>
+      <script type="module">
+        // preview-ignore:start
+        import { enhanceConfig, hideAxisValues, showGridLines } from '../node_modules/@synergy-design-system/components/dist/components/chart/configs/index.js';
+        // preview-ignore:end
+
+        const baseConfig = {
+          series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
+          xAxis: {
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+            name: 'Days',
+            type: 'category',
+          },
+          yAxis: {
+            name: 'Values',
+            type: 'value',
+          },
+        };
+
+        const chart = document.querySelector('#chart-lines-visible-values-hidden');
+        chart.config = enhanceConfig(baseConfig).with(hideAxisValues).with(showGridLines).build();
+      </script>
+    `
+  ,
+};
+
+export const PrefixIcons: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'multiple-charts'),
+      },
+    },
+  },
+  render: () => html`
+      <syn-chart id="chart-axis-prefix-icons" palette="categorical"></syn-chart>
+      <script type="module">
+        // preview-ignore:start
+        import { enhanceConfig, showGridLines, xAxisWithIconLabels, yAxisWithIconLabels } from '../node_modules/@synergy-design-system/components/dist/components/chart/configs/index.js';
+        // preview-ignore:end
+
+        const DAY_ICONS = [
+          'calendar_today',
+          'event_available',
+          'schedule',
+          'event_note',
+          'event_upcoming',
+          'weekend',
+          'sunny',
+        ];
+
+        const YAXIS_ICONS = ['wallpaper', 'tune', 'watch', 'format_paint', 'brush', 'gradient', 'format_color_reset'];
+
+        const bootstrap = async () => {
+          const iconUrls = await Promise.all(
+            DAY_ICONS.map(async (iconName) => {
+              const svg = await fetch('/assets/sick2025/' + iconName + '.svg').then(r => r.text());
+              return 'data:image/svg+xml;base64,' + btoa(svg);
+            })
+          );
+          const yAxisIconUrls = await Promise.all(
+            YAXIS_ICONS.map(async (iconName) => {
+              const svg = await fetch('/assets/sick2025/' + iconName + '.svg').then(r => r.text());
+              return 'data:image/svg+xml;base64,' + btoa(svg);
+            })
+          );
+          
+
+          const baseConfig = {
+            series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
+            xAxis: {
+              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+              name: 'Days',
+              type: 'category',
+            },
+            yAxis: {
+              name: 'Values',
+              type: 'value',
+              axisLabel: {
+                color: 'green',
+              }
+            },
+          };
+
+          const chart = document.querySelector('#chart-axis-prefix-icons');
+          chart.config = enhanceConfig(baseConfig)
+            .with(showGridLines)
+            .with(xAxisWithIconLabels({
+              iconUrls,
+              iconPosition: 'top',
+            }))
+            .with(yAxisWithIconLabels({
+              iconUrls: yAxisIconUrls,
+              iconPosition: 'left',
+            }))
+            .build();
+        };
+
+        bootstrap();
+      </script>
+    `
+  ,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -213,5 +509,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Palette,
   GetInstance,
   MultipleChartsWithDifferentPalettes,
-}, 700);
+}, 600);
 /* eslint-enable sort-keys */

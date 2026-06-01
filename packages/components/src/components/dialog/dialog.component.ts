@@ -352,8 +352,14 @@ setDefaultAnimation('dialog.hide', {
 });
 
 setDefaultAnimation('dialog.denyClose', {
-  keyframes: [{ scale: 1 }, { scale: 1.02 }, { scale: 1 }],
-  options: { duration: 250 },
+  keyframes: [
+    { translate: 'calc(var(--syn-spacing-small) * -1)' },
+    { translate: 'var(--syn-spacing-small)' },
+    { translate: 'calc(var(--syn-spacing-small) * -1)' },
+    { translate: 'var(--syn-spacing-small)' },
+    { translate: '0' },
+  ],
+  options: { duration: 500, easing: 'ease-out' },
 });
 
 setDefaultAnimation('dialog.overlay.show', {

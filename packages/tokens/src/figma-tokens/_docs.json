@@ -577,6 +577,86 @@
       }
     },
     "chart": {
+      "axes-default": {
+        "title": {
+          "value": "Axes",
+          "type": "text"
+        },
+        "description": {
+          "value": "The chart’s axes define the visual structure of the data and can be customized to match different visualization needs. Both the horizontal and vertical axes support flexible configuration options, allowing you to control how reference lines and labels are displayed.\n\nYou can choose to show only horizontal grid lines, only vertical grid lines, or both, depending on the level of visual guidance you want to provide. ",
+          "type": "text"
+        }
+      },
+      "axes-hidden": {
+        "title": {
+          "value": "Hidden Axes",
+          "type": "text"
+        },
+        "description": {
+          "value": "The default is, that both axes lines as well as the grid lines are hidden.",
+          "type": "text"
+        }
+      },
+      "axes-visible": {
+        "title": {
+          "value": "Visible Axes",
+          "type": "text"
+        },
+        "description": {
+          "value": "If you want to display both axes lines and grid lines, you can enable them using the *showGridLines* helper function.",
+          "type": "text"
+        }
+      },
+      "axes-horizontal": {
+        "title": {
+          "value": "Horizontal Grid Lines Only",
+          "type": "text"
+        },
+        "description": {
+          "value": "To show only horizontal grid lines, use the *showHorizontalGridLines* helper function.",
+          "type": "text"
+        }
+      },
+      "axes-vertical": {
+        "title": {
+          "value": "Vertical Grid Lines Only",
+          "type": "text"
+        },
+        "description": {
+          "value": "To show only vertical grid lines, use the *showVerticalGridLines* helper function.",
+          "type": "text"
+        }
+      },
+      "axes-values-hidden": {
+        "title": {
+          "value": "Hidden Axis Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "If you want to hide the axis values, you can use the *hideAxesValues* helper function.",
+          "type": "text"
+        }
+      },
+      "axes-lines-visible-values-hidden": {
+        "title": {
+          "value": "Visible Axes Lines with Hidden Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "To show axes lines but hide the axis values, use the *showAxesLinesHideValues* helper function.",
+          "type": "text"
+        }
+      },
+      "axes-values-with-icons": {
+        "title": {
+          "value": "Axes Values with Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "To add icons to axis values, use the *xAxisWithIconLabels* and *yAxisWithIconLabels* helper functions.",
+          "type": "text"
+        }
+      },
       "default": {
         "title": {
           "value": "Chart",

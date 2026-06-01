@@ -1,2 +1,2 @@
-export * from './axis.js';
+export * from './axes.js';
 export * from './config.js';

@@ -77,7 +77,7 @@ export const hideYAxisValues: ConfigModifier = (config) => mergeConfigs(config, 
  * Hides tick labels on both the x-axis and y-axis.
  * Composes `hideXAxisValues` and `hideYAxisValues`.
  */
-export const hideAxisValues: ConfigModifier = compose(hideXAxisValues, hideYAxisValues);
+export const hideAxesValues: ConfigModifier = compose(hideXAxisValues, hideYAxisValues);
 
 /**
  * Builds an ECharts `xAxis.axisLabel` config that renders a custom icon above

@@ -184,7 +184,7 @@ Instead of manually assembling deeply nested ECharts option objects, `syn-chart`
 ```js
 import {
   enhanceConfig,
-  hideAxisValues,
+  hideAxesValues,
   showGridLines,
 } from "@synergy-design-system/components/components/chart/configs/index.js";
 
@@ -196,7 +196,7 @@ const baseConfig = {
 
 chart.config = enhanceConfig(baseConfig)
   .with(showGridLines)
-  .with(hideAxisValues)
+  .with(hideAxesValues)
   .build();
 ```
 
@@ -207,11 +207,11 @@ chart.config = enhanceConfig(baseConfig)
 ```js
 import {
   compose,
-  hideAxisValues,
+  hideAxesValues,
   showGridLines,
 } from "@synergy-design-system/components/components/chart/configs/index.js";
 
-const myPreset = compose(showGridLines, hideAxisValues);
+const myPreset = compose(showGridLines, hideAxesValues);
 
 chart.config = enhanceConfig(baseConfig).with(myPreset).build();
 ```
@@ -254,7 +254,7 @@ All predefined modifiers are exported from `@synergy-design-system/components/co
 | ----------------- | -------------------------------------------------------------------------------------- |
 | `hideXAxisValues` | Hides x-axis tick labels. Adjusts `nameGap` to compensate for the removed label space. |
 | `hideYAxisValues` | Hides y-axis tick labels. Left-aligns the axis name text when labels are hidden.       |
-| `hideAxisValues`  | Hides tick labels on both axes. Composes `hideXAxisValues` and `hideYAxisValues`.      |
+| `hideAxesValues`  | Hides tick labels on both axes. Composes `hideXAxisValues` and `hideYAxisValues`.      |
 
 ### `xAxisWithIconLabels(options)`
 

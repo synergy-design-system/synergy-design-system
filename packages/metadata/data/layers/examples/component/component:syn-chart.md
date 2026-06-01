@@ -344,7 +344,7 @@ You can use multiple charts in one <syn-chart> instance, each with its own confi
       type: "value",
     },
   };
-  chart.config = enhanceConfig(baseConfig).with(hideAxisValues).build();
+  chart.config = enhanceConfig(baseConfig).with(hideAxesValues).build();
 </script>
 ```
 
@@ -375,7 +375,7 @@ You can use multiple charts in one <syn-chart> instance, each with its own confi
 
   const chart = document.querySelector("#chart-lines-visible-values-hidden");
   chart.config = enhanceConfig(baseConfig)
-    .with(hideAxisValues)
+    .with(hideAxesValues)
     .with(showGridLines)
     .build();
 </script>

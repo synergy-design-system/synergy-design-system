@@ -120,7 +120,9 @@ export default class SynOptgroup extends SynergyElement {
           if (optgroupMutation.type === 'childList') {
             optgroupMutation.addedNodes.forEach((node) => {
               if (node instanceof HTMLElement && node.matches('syn-option')) {
-                handleInitialDisabledForOption(node, this.disabled);
+                // False positive for instanceof check, but we know this is correct since the mutation observer is only looking for syn-options
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+                handleInitialDisabledForOption(node as SynOption, this.disabled);
               }
             });
           }

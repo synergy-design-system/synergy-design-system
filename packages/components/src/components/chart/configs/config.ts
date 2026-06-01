@@ -70,7 +70,7 @@ export type ConfigModifier = (config: ECConfig) => ECConfig;
  *
  * @example
  * ```ts
- * const combined = compose(showGridLines, hideYAxisValues);
+ * const combined = compose(showGridLines(), hideYAxisValues());
  * chart.config = enhanceConfig(baseConfig).with(combined).build();
  * ```
  */
@@ -116,14 +116,14 @@ class ConfigBuilderImpl implements ConfigBuilder {
  * @example
  * ```ts
  * chart.config = enhanceConfig(baseConfig)
- *   .with(showGridLines)
+ *   .with(showGridLines())
  *   .with(xAxisWithIconLabels({ iconUrls }))
  *   .build();
  * ```
  *
  * Modifiers can themselves be composed using `compose`:
  * ```ts
- * const myModifier = compose(showGridLines, hideYAxisValues);
+ * const myModifier = compose(showGridLines(), hideYAxisValues());
  * chart.config = enhanceConfig(baseConfig).with(myModifier).build();
  * ```
  */

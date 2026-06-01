@@ -120,7 +120,7 @@ export default class SynOptgroup extends SynergyElement {
           if (optgroupMutation.type === 'childList') {
             optgroupMutation.addedNodes.forEach((node) => {
               if (node instanceof HTMLElement && node.matches('syn-option')) {
-                handleInitialDisabledForOption(node as SynOption, this.disabled);
+                handleInitialDisabledForOption(node, this.disabled);
               }
             });
           }

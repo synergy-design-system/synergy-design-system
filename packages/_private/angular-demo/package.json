@@ -35,7 +35,7 @@
     "@angular/cli": "^21.2.13",
     "@angular/compiler-cli": "^21.2.15",
     "@types/jasmine": "~6.0.0",
-    "html-validate": "^10.17.0",
+    "html-validate": "^11.4.0",
     "jasmine-core": "~6.0.1",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
@@ -43,6 +43,6 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.2.0",
     "typescript": "~5.9.3",
-    "zone.js": "~0.16.1"
+    "zone.js": "~0.16.2"
   }
 }

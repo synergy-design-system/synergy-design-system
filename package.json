@@ -38,6 +38,7 @@
       "lmdb",
       "msgpackr-extract",
       "rs-module-lexer",
+      "sharp",
       "style-dictionary",
       "unrs-resolver"
     ],

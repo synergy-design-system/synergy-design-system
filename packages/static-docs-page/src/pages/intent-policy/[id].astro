@@ -11,6 +11,8 @@ import {
 import Layout from '../../layouts/Layout.astro';
 import ContentFooter from '../../components/ContentFooter.astro';
 import ContentHeader from '../../components/ContentHeader.astro';
+import Link from '../../components/Link.astro';
+import { getIntentTargetPath } from '../../utils/intentTargetPath';
 import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
 
 export async function getStaticPaths() {
@@ -170,9 +172,23 @@ const getPhaseBadge = (phase: string): SynBadge['variant'] => {
 								{linkedCapabilities.length > 0 ? (
 									<ul>
 										{linkedCapabilities.map(capability => (
-											<li>
-												{formatTarget(capability.target)}
-											</li>
+												<li>
+													{(() => {
+														const targetLabel = formatTarget(capability.target);
+														const targetPath = getIntentTargetPath(capability.target);
+
+														if (!targetPath) {
+															return targetLabel;
+														}
+
+														return (
+															<Link href={targetPath}>
+																<syn-badge>Uses</syn-badge>
+																{targetLabel}
+															</Link>
+														);
+													})()}
+												</li>
 										))}
 									</ul>
 								) : (

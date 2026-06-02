@@ -27,7 +27,6 @@ const additionalLinks = [
   { href: '/goals', id: 'goals', name: 'Goals and Guidelines' },
   { href: '/misconceptions', id: 'misconceptions', name: 'Misconceptions' },
   { href: '/out-of-scope', id: 'out-of-scope', name: 'Out of Scope' },
-  { href: '/brand-support', id: 'brand-support', name: 'Brand Support' }
 ];
 
 type NavigationProps = {
@@ -35,144 +34,164 @@ type NavigationProps = {
 	currentPath: string;
 };
 
+type NavigationEntry = {
+	id: string;
+	name: string;
+	relativePath: string;
+};
+
+type NavigationSection = {
+	id: string;
+	name: string;
+	rootPath: string;
+	iconName: string;
+	entries: NavigationEntry[];
+	slot?: 'footer';
+	showIntentBadge?: boolean;
+};
+
+function isCurrentPathWithinRoot(path: string, rootPath: string): boolean {
+	return path === rootPath || path.startsWith(`${rootPath}/`);
+}
+
+function capitalizeFirst(value: string): string {
+	return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
 export default function Navigation({ basePath, currentPath }: NavigationProps) {
 	const normalizedCurrentPath = currentPath !== '/' && currentPath.endsWith('/')
 		? currentPath.slice(0, -1)
 		: currentPath;
 
+	const navigationSections: NavigationSection[] = [
+		{
+			id: 'components',
+			name: 'Components',
+			rootPath: '/component',
+			iconName: 'brick',
+			entries: components.data.map(component => ({
+				id: component.id,
+				name: component.name,
+				relativePath: `/component/${component.id.replace(/^component:/, '')}`,
+			})),
+		},
+		{
+			id: 'templates',
+			name: 'Templates',
+			rootPath: '/template',
+			iconName: 'pattern',
+			entries: templates.data.map(template => ({
+				id: template.id,
+				name: template.name,
+				relativePath: `/template/${template.id.replace(/^template:/, '')}`,
+			})),
+		},
+		{
+			id: 'styles',
+			name: 'Styles',
+			rootPath: '/style',
+			iconName: 'css',
+			entries: styles.data.map(style => ({
+				id: style.id,
+				name: style.name,
+				relativePath: `/style/${style.id.replace(/^style:/, '')}`,
+			})),
+		},
+		...(intentCategories.data.length > 0
+			? [{
+				id: 'intent-policies',
+				name: 'Intent Policies',
+				rootPath: '/intent-policy',
+				iconName: 'more',
+				showIntentBadge: true,
+				entries: intentCategories.data.map(category => ({
+					id: category.id,
+					name: capitalizeFirst(category.id),
+					relativePath: `/intent-policy/${category.id}`,
+				})),
+			} satisfies NavigationSection]
+			: []),
+		{
+			id: 'changelog',
+			name: 'Package Changelogs',
+			rootPath: '/changelog',
+			iconName: 'receipt_long',
+			entries: CHANGELOG_PACKAGES.map(pkg => ({
+				id: pkg.id,
+				name: pkg.name,
+				relativePath: `/changelog/${pkg.id}`,
+			})),
+		},
+		{
+			id: 'additional-information',
+			name: 'Additional Information',
+			rootPath: '/additional-information',
+			iconName: 'tips_and_updates',
+			slot: 'footer',
+			entries: additionalLinks.map(link => ({
+				id: link.id,
+				name: link.name,
+				relativePath: link.href,
+			})),
+		},
+	];
+
+	const renderSynSection = (section: NavigationSection) => (
+		<syn-nav-item
+			key={section.id}
+			slot={section.slot}
+			open={
+				isCurrentPathWithinRoot(normalizedCurrentPath, section.rootPath)
+				|| section.entries.some(entry => isCurrentPathWithinRoot(normalizedCurrentPath, entry.relativePath))
+			}
+		>
+			<syn-icon slot="prefix" name={section.iconName} library="sidenav" />
+			{section.name}
+			{section.showIntentBadge && (
+				<syn-tooltip slot="suffix" content="Intent policies are currently in development and subject to change.">
+					<syn-badge variant="warning">!</syn-badge>
+				</syn-tooltip>
+			)}
+
+			{section.entries.map(entry => (
+				<syn-nav-item
+					current={normalizedCurrentPath === entry.relativePath}
+					href={withBasePath(entry.relativePath, basePath)}
+					slot="children"
+					key={entry.id}
+				>
+					{entry.name}
+				</syn-nav-item>
+			))}
+		</syn-nav-item>
+	);
+
 	return (
-		<syn-side-nav
-      variant="sticky"
-      open
-    >
-			<syn-nav-item open={normalizedCurrentPath.includes('/component/')}>
-        <syn-icon slot="prefix" name="brick" library="sidenav" />
-				Components
-				{components.data.map(c => {
-					const relativePath = `/component/${c.id.replace(/^component:/, '')}`;
-					const href = withBasePath(relativePath, basePath);
-					const isCurrent = normalizedCurrentPath === relativePath;
-
-					return (
-						<syn-nav-item
-							current={isCurrent}
-							href={href}
-							slot="children"
-							key={c.id}
-						>
-							{c.name}
-						</syn-nav-item>
-					);
-				})}
-			</syn-nav-item>
-			<syn-nav-item open={normalizedCurrentPath.includes('/template/')}>
-        <syn-icon slot="prefix" name="pattern" library="sidenav" />
-				Templates
-				{templates.data.map(t => {
-					const relativePath = `/template/${t.id.replace(/^template:/, '')}`;
-					const href = withBasePath(relativePath, basePath);
-					const isCurrent = normalizedCurrentPath === relativePath;
-
-					return (
-						<syn-nav-item
-							current={isCurrent}
-							href={href}
-							slot="children"
-							key={t.id}
-						>
-							{t.name}
-						</syn-nav-item>
-					);
-				})}
-			</syn-nav-item>
-			<syn-nav-item open={normalizedCurrentPath.includes('/style/')}>
-        <syn-icon slot="prefix" name="css" library="sidenav" />
-				Styles
-				{styles.data.map(s => {
-					const relativePath = `/style/${s.id.replace(/^style:/, '')}`;
-					const href = withBasePath(relativePath, basePath);
-					const isCurrent = normalizedCurrentPath === relativePath;
-
-					return (
-						<syn-nav-item
-							current={isCurrent}
-							href={href}
-							slot="children"
-							key={s.id}
-						>
-							{s.name}
-						</syn-nav-item>
-					);
-				})}
-			</syn-nav-item>
-			<syn-nav-item open={normalizedCurrentPath.startsWith('/changelog')}>
-        <syn-icon slot="prefix" name="receipt_long" library="sidenav" />
-				Package Changelogs
-				{CHANGELOG_PACKAGES.map(pkg => {
-					const relativePath = `/changelog/${pkg.id}`;
-					const href = withBasePath(relativePath, basePath);
-					const isCurrent = normalizedCurrentPath === relativePath;
-
-					return (
-						<syn-nav-item
-							current={isCurrent}
-							href={href}
-							slot="children"
-							key={pkg.id}
-						>
-							{pkg.name}
-						</syn-nav-item>
-					);
-				})}
-			</syn-nav-item>
-
-      {intentCategories.data.length > 0 && (
-        <syn-nav-item open={normalizedCurrentPath.startsWith('/intent-policy')}>
-          <syn-icon name="more" library="sidenav" slot="prefix" />
-          Intent Policies
-          <syn-tooltip slot="suffix" content="Intent policies are currently in development and subject to change.">
-            <syn-badge variant="warning">!</syn-badge>
-          </syn-tooltip>
-
-          {intentCategories.data.map(category => {
-            const relativePath = `/intent-policy/${category.id}`;
-						const href = withBasePath(relativePath, basePath);
-            const isCurrent = normalizedCurrentPath === relativePath;
-
-            return (
-              <syn-nav-item
-                current={isCurrent}
-                href={href}
-                slot="children"
-                key={category.id}
-              >
-                {category.id.charAt(0).toUpperCase() + category.id.slice(1)}
-              </syn-nav-item>
-            );
-          })}
-        </syn-nav-item>
-      )}
-
-      <syn-nav-item
-        slot="footer"
-        open={additionalLinks
-					.map(link => link.href)
-          .some(path => normalizedCurrentPath.includes(path))
-        }
-      >
-        <syn-icon slot="prefix" name="tips_and_updates" library="sidenav" />
-        Additional Information
-        {additionalLinks.map(link => (
-          <syn-nav-item
-            current={normalizedCurrentPath === link.href}
-						href={withBasePath(link.href, basePath)}
-            slot="children"
-            key={link.id}
-          >
-            {link.name}
-          </syn-nav-item>
-        ))}
-      </syn-nav-item>
-		</syn-side-nav>
+		<>
+			<syn-side-nav
+				variant="sticky"
+				open
+			>
+				{navigationSections.map(section => renderSynSection(section))}
+			</syn-side-nav>
+			<noscript>
+				<nav aria-label="Documentation navigation">
+					<ul>
+						{navigationSections.map(section => (
+							<li key={`noscript-${section.id}`}>
+								<span>{section.name}</span>
+								<ul>
+									{section.entries.map(entry => (
+										<li key={`noscript-${entry.id}`}>
+											<a href={withBasePath(entry.relativePath, basePath)}>{entry.name}</a>
+										</li>
+									))}
+								</ul>
+							</li>
+						))}
+					</ul>
+				</nav>
+			</noscript>
+		</>
 	);
 }

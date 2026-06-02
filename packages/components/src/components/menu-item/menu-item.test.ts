@@ -1,6 +1,7 @@
 /* eslint-disable */
 import '../../../dist/synergy.js';
 import { expect, fixture, html, waitUntil } from '@open-wc/testing';
+import { aTimeout } from '@open-wc/testing';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
 import type { SynSelectEvent } from '../../events/syn-select.js';
@@ -120,6 +121,105 @@ describe('<syn-menu-item>', () => {
     expect(menuItem.shadowRoot!.querySelector('syn-popup')).to.be.not.null;
     const submenuSlot: HTMLElement = menuItem.shadowRoot!.querySelector('slot[name="submenu"]')!;
     expect(submenuSlot.hidden).to.be.false;
+  });
+
+  it('should not steal focus on hover', async () => {
+    const wrapper = await fixture<HTMLDivElement>(html`
+      <div>
+        <button id="before">Before</button>
+        <syn-menu>
+          <syn-menu-item>Item 1</syn-menu-item>
+          <syn-menu-item>Item 2</syn-menu-item>
+        </syn-menu>
+      </div>
+    `);
+
+    const button = wrapper.querySelector<HTMLButtonElement>('#before')!;
+    const item = wrapper.querySelector<SynMenuItem>('syn-menu-item')!;
+
+    button.focus();
+    expect(document.activeElement).to.equal(button);
+
+    item.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, composed: true }));
+    await aTimeout(0);
+
+    expect(document.activeElement).to.equal(button);
+  });
+
+  it('should close an open submenu when the window loses focus', async () => {
+    const menu = await fixture<SynMenuItem>(html`
+      <syn-menu>
+        <syn-menu-item>
+          Submenu
+          <syn-menu slot="submenu">
+            <syn-menu-item>Nested Item 1</syn-menu-item>
+          </syn-menu>
+        </syn-menu-item>
+      </syn-menu>
+    `);
+
+    const menuItem = menu.querySelector<SynMenuItem>('syn-menu-item')!;
+    const popup = menuItem.shadowRoot!.querySelector('syn-popup')!;
+
+    menuItem.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, composed: true }));
+    await waitUntil(() => popup.active);
+
+    window.dispatchEvent(new Event('blur'));
+    await waitUntil(() => !popup.active);
+
+    expect(popup.active).to.be.false;
+  });
+
+  it('should close an open submenu when hover leaves the trigger item', async () => {
+    const menu = await fixture<SynMenuItem>(html`
+      <div>
+        <syn-menu>
+          <syn-menu-item>
+            Submenu
+            <syn-menu slot="submenu">
+              <syn-menu-item>Nested Item 1</syn-menu-item>
+            </syn-menu>
+          </syn-menu-item>
+        </syn-menu>
+        <button id="outside">Outside</button>
+      </div>
+    `);
+
+    const menuItem = menu.querySelector<SynMenuItem>('syn-menu-item')!;
+    const popup = menuItem.shadowRoot!.querySelector('syn-popup')!;
+    const outside = menu.querySelector<HTMLButtonElement>('#outside')!;
+
+    menuItem.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, composed: true }));
+    await waitUntil(() => popup.active);
+
+    menuItem.dispatchEvent(new MouseEvent('mouseleave', { relatedTarget: outside }));
+    await waitUntil(() => !popup.active);
+
+    expect(popup.active).to.be.false;
+  });
+
+  it('should close an open submenu when pressing escape after hover opening', async () => {
+    const menu = await fixture<SynMenuItem>(html`
+      <syn-menu>
+        <syn-menu-item>
+          Submenu
+          <syn-menu slot="submenu">
+            <syn-menu-item>Nested Item 1</syn-menu-item>
+          </syn-menu>
+        </syn-menu-item>
+      </syn-menu>
+    `);
+
+    const menuItem = menu.querySelector<SynMenuItem>('syn-menu-item')!;
+    const popup = menuItem.shadowRoot!.querySelector('syn-popup')!;
+
+    menuItem.dispatchEvent(new MouseEvent('mouseover', { bubbles: true, composed: true }));
+    await waitUntil(() => popup.active);
+
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    await waitUntil(() => !popup.active);
+
+    expect(popup.active).to.be.false;
   });
 
   it.skip('should focus on first menuitem of submenu if ArrowRight is pressed on parent menuitem', async () => {

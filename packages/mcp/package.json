@@ -21,7 +21,7 @@
     "typescript": "^5.9.3"
   },
   "optionalDependencies": {
-    "@toon-format/toon": "^2.1.0",
+    "@toon-format/toon": "^2.3.0",
     "tiktoken": "^1.0.22"
   },
   "exports": {

@@ -5,7 +5,7 @@
   },
   "description": "Design tokens for Synergy, the SICK Design System",
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.69.2",
+    "@dotenvx/dotenvx": "^1.71.0",
     "@figma-export/cli": "^6.4.0",
     "@figma-export/types": "^6.4.0",
     "@figma/rest-api-spec": "^0.37.0",
@@ -16,7 +16,7 @@
     "@types/node": "^24.12.4",
     "change-case": "^5.4.4",
     "eslint": "^9.39.4",
-    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-import-resolver-typescript": "^4.4.5",
     "style-dictionary": "^5.4.2",
     "stylelint": "^17.12.0",
     "typescript": "^5.9.3"

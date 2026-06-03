@@ -8,7 +8,7 @@
   },
   "description": "Assets for the Synergy Design System",
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.63.0",
+    "@dotenvx/dotenvx": "^1.71.0",
     "@figma-export/cli": "^6.4.0",
     "@figma-export/core": "^6.4.0",
     "@figma-export/output-components-as-svg": "^6.4.0",
@@ -16,7 +16,7 @@
     "@figma-export/types": "^6.4.0",
     "@figma/rest-api-spec": "^0.37.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
-    "@types/node": "^24.12.2",
+    "@types/node": "^24.12.4",
     "cheerio": "^1.2.0",
     "eslint": "^9.39.4",
     "rimraf": "^6.1.3",

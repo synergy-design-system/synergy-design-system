@@ -1,9 +1,27 @@
 packages:
   - "packages/*"
   - "packages/_private/*"
+
 # Needed because of following issue: https://github.com/microsoft/vscode-eslint/issues/1986#issuecomment-2799868163
 publicHoistPattern:
   # - "*eslint*" # this seems to be needed as long as we are using eslint v8
 
 # Make sure that we only allow updates of packages that have been released for at least 24 hours
 minimumReleaseAge: 1440
+
+overrides:
+  browserslist: ">=4.24.3"
+
+patchedDependencies:
+  "@changesets/assemble-release-plan": patches/@changesets__assemble-release-plan.patch
+
+allowBuilds:
+  "@bundled-es-modules/glob": true
+  "@parcel/watcher": true
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true
+  rs-module-lexer: true
+  sharp: true
+  style-dictionary: true
+  unrs-resolver: true

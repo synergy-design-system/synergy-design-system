@@ -30,29 +30,11 @@
     "release.status": "pnpm changeset status --since=main"
   },
   "private": true,
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@bundled-es-modules/glob",
-      "@parcel/watcher",
-      "esbuild",
-      "lmdb",
-      "msgpackr-extract",
-      "rs-module-lexer",
-      "style-dictionary",
-      "unrs-resolver"
-    ],
-    "overrides": {
-      "browserslist": ">=4.24.3"
-    },
-    "patchedDependencies": {
-      "@changesets/assemble-release-plan": "patches/@changesets__assemble-release-plan.patch"
-    }
-  },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.31.0",
     "prettier": "^3.8.3",
     "update-browserslist-db": "^1.2.3"
   },
-  "packageManager": "pnpm@10.27.0+sha512.72d699da16b1179c14ba9e64dc71c9a40988cbdc65c264cb0e489db7de917f20dcf4d64d8723625f2969ba52d4b7e2a1170682d9ac2a5dcaeaab732b7e16f04a"
+  "packageManager": "pnpm@11.5.1+sha512.93f7b57422ea7068257235b4c16eb60762eb68e1dc23723199cc739043ea9be2c4143274a399d8c6defa2b1176226d9ca1c4b63482d6200c1a8fbaa78c1d1485"
 }

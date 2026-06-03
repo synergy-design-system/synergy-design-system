@@ -56,6 +56,11 @@ const AllComponentSelectors = {
   inputContent: '#tab-content-Input',
   inputLink: '#tab-Input',
 
+  // Menu
+  menu1295StealsFocus: '#tab-content-Menu [data-testid="menu-1295-steals-focus"]',
+  menuContent: '#tab-content-Menu',
+  menuLink: '#tab-Menu',
+
   // NgModelUpdateOn
   ngModelUpdateOnCheckbox: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="checkbox-808"]',
   ngModelUpdateOnCheckboxChanged: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="checkbox-changed-808"]',

@@ -50,4 +50,33 @@ describe('<syn-menu> (custom)', () => {
 
     expect(getShowCheckmarks(menu.querySelectorAll('syn-menu-item'))).to.be.false;
   });
+
+  it('should hide checkmarks for wrapped menu items when no item is checkbox or loading', async () => {
+    const menu = await fixture<SynMenu>(html`
+      <syn-menu>
+        <syn-tooltip content="something">
+          <syn-menu-item value="item-1">Item 1</syn-menu-item>
+        </syn-tooltip>
+        <syn-menu-item value="item-2">Item 2</syn-menu-item>
+      </syn-menu>
+    `);
+
+    const menuItems = menu.querySelectorAll('syn-menu-item');
+    expect(menuItems.length).to.equal(2);
+    expect(Array.from(menuItems).every(item => getComputedStyle(item).getPropertyValue('--display-checkmark') === 'none')).to
+      .be.true;
+  });
+
+  it('should show checkmarks for wrapped menu items when any item is checkbox', async () => {
+    const menu = await fixture<SynMenu>(html`
+      <syn-menu>
+        <syn-tooltip content="something">
+          <syn-menu-item value="item-1">Item 1</syn-menu-item>
+        </syn-tooltip>
+        <syn-menu-item value="item-2" type="checkbox">Item 2</syn-menu-item>
+      </syn-menu>
+    `);
+
+    expect(getShowCheckmarks(menu.querySelectorAll('syn-menu-item'))).to.be.true;
+  });
 });

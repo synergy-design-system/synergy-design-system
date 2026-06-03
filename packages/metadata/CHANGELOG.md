@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.11.0
+
+### Patch Changes
+
+- [#1296](https://github.com/synergy-design-system/synergy-design-system/pull/1296) [`4fdb69a`](https://github.com/synergy-design-system/synergy-design-system/commit/4fdb69aec5ddb0ddfa76a948c87eaf84be6fd670) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-03
+
+  fix: 🐛 `<syn-menu>` multiple issues ([#1295](https://github.com/synergy-design-system/synergy-design-system/issues/1295))
+
+  This release fixes multiple issues when using `<syn-menu>`:
+  - submenus no longer stay open when leaving the browser window ([#882](https://github.com/synergy-design-system/synergy-design-system/issues/882))
+  - `<syn-menu-item>` wrapped in tooltip can now be used reliably (including navigation and selection) ([#1162](https://github.com/synergy-design-system/synergy-design-system/issues/1162))
+  - `<syn-menu-item>` no longer steals focus on hover ([#1286](https://github.com/synergy-design-system/synergy-design-system/issues/1286))
+
 ## 3.10.0
 
 ### Minor Changes

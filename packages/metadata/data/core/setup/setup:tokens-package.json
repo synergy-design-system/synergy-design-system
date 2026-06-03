@@ -32,7 +32,7 @@
       "./themes/*"
     ],
     "packageName": "@synergy-design-system/tokens",
-    "packageVersion": "3.15.0"
+    "packageVersion": "3.15.1"
   },
   "id": "setup:tokens-package",
   "kind": "setup",
@@ -59,7 +59,7 @@
   "name": "Tokens Package",
   "package": "tokens",
   "relations": [],
-  "since": "3.15.0",
+  "since": "3.15.1",
   "sources": [
     "packages/tokens/BREAKING_CHANGES.md",
     "packages/tokens/CHANGELOG.md",

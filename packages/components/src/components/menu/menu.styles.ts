@@ -26,12 +26,4 @@ export default css`
   ::slotted(syn-menu-label:first-of-type) {
     --display-divider: none;
   }
-
-  /*
-   * #368: Hide the checkmarks for menu items
-   * when no syn-menu-item[checkbox] or loading is present
-   */
-  .menu--no-checkmarks::slotted(syn-menu-item) {
-    --display-checkmark: none;
-  }
 `;

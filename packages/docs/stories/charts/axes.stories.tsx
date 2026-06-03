@@ -321,7 +321,6 @@ export const AxesValuesWithIcons: Story = {
             .with(yAxisWithIconLabels({
               iconUrls: yAxisIconUrls,
               iconPosition: yAxisIconPosition,
-              axisIndex: 0,
             }))
             .build();
         };
@@ -329,103 +328,6 @@ export const AxesValuesWithIcons: Story = {
         fetchIcons().then(setConfig);
         xAxisIconPositionSelect.addEventListener('syn-change', setConfig);
         yAxisIconPositionSelect.addEventListener('syn-change', setConfig);
-      </script>
-      <style>
-        .controls {
-          display: flex;
-          gap: var(--syn-spacing-large);
-          margin-bottom: var(--syn-spacing-large);
-        }
-      </style>
-    `
-  ,
-};
-
-export const Test: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('chart', 'axes-values-with-icons'),
-      },
-    },
-  },
-  render: () => html`
-      <div class="controls">
-        <syn-select value="top" label="x-axis icon position" id="x-axis-icon-position">
-          <syn-option value="top">Top</syn-option>
-          <syn-option value="bottom">Bottom</syn-option>
-        </syn-select>
-        <syn-select value="left" label="y-axis icon position" id="y-axis-icon-position">
-          <syn-option value="left">Left</syn-option>
-          <syn-option value="right">Right</syn-option>
-        </syn-select>
-      </div>
-      <syn-chart id="chart-axis-prefix-icons"></syn-chart>
-      <script type="module">
-        const XAXIS_ICONS = ['calendar_today', 'event_available', 'schedule', 'event_note', 'event_upcoming', 'weekend', 'sunny'];
-        const YAXIS_ICONS = ['wallpaper', 'tune', 'watch', 'format_paint', 'brush', 'gradient', 'format_color_reset'];
-
-        let yAxisIconUrls = [];
-        let xAxisIconUrls = [];
-
-        const fetchIcons = async () => {
-          xAxisIconUrls = await Promise.all(
-            XAXIS_ICONS.map(async (iconName) => {
-              const svg = await fetch('/assets/sick2025/' + iconName + '.svg').then(r => r.text());
-              return 'data:image/svg+xml;base64,' + btoa(svg);
-            })
-          );
-          yAxisIconUrls = await Promise.all(
-            YAXIS_ICONS.map(async (iconName) => {
-              const svg = await fetch('/assets/sick2025/' + iconName + '.svg').then(r => r.text());
-              return 'data:image/svg+xml;base64,' + btoa(svg);
-            })
-          );
-        };
-
-        const xAxisIconPositionSelect = document.querySelector('#x-axis-icon-position');
-        const yAxisIconPositionSelect = document.querySelector('#y-axis-icon-position');
-        const chart = document.querySelector('#chart-axis-prefix-icons');
-
-        const setConfig = async () => {        
-          const baseConfig = {
-            series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }, { data: [120, 200, 150, 80, 70, 110, 130], type: 'line', yAxisIndex: 1 }],
-            xAxis: {
-              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-              name: 'Days',
-              type: 'category',
-            },
-            yAxis: [{
-              name: 'Values',
-              type: 'value',
-            }, {
-              name: 'Blub',
-              type: 'value',
-            }],
-          };
-
-          const yAxisIconPosition = yAxisIconPositionSelect.value;
-          const xAxisIconPosition = xAxisIconPositionSelect.value;
-
-          chart.config = enhanceConfig(baseConfig)
-          .with(xAxisWithIconLabels({
-            iconUrls: xAxisIconUrls,
-            iconPosition: xAxisIconPosition,
-          }))
-          .with(yAxisWithIconLabels({
-            iconUrls: yAxisIconUrls,
-            iconPosition: yAxisIconPosition,
-          }))
-          .with(showGridLines())
-          .with(hideAxesValues({yAxisIndex: 0, xAxisIndex: []}))
-          .build();
-        };
-
-
-        fetchIcons().then(setConfig);
-        xAxisIconPositionSelect.addEventListener('syn-change', setConfig);
-        yAxisIconPositionSelect.addEventListener('syn-change', setConfig);
-
       </script>
       <style>
         .controls {

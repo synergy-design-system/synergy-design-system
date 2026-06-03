@@ -54,14 +54,14 @@ describe('enhanceConfig', () => {
   });
 
   it('applies a single ConfigModifier via .with()', () => {
-    const addName: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { name: 'Days' } });
+    const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
     const result = enhanceConfig({ xAxis: { type: 'category' } }).with(addName).build();
     expect(result).to.deep.equal({ xAxis: { name: 'Days', type: 'category' } });
   });
 
   it('applies multiple modifiers left-to-right via chained .with()', () => {
-    const addName: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { name: 'Days' } });
-    const addRotate: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { axisLabel: { rotate: 45 } } });
+    const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
+    const addRotate: ConfigModifier = () => ({ xAxis: { axisLabel: { rotate: 45 } } });
 
     const result = enhanceConfig({ xAxis: { type: 'category' } })
       .with(addName)
@@ -74,8 +74,8 @@ describe('enhanceConfig', () => {
   });
 
   it('later modifiers override earlier ones for the same key', () => {
-    const setNameA: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { name: 'First' } });
-    const setNameB: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { name: 'Second' } });
+    const setNameA: ConfigModifier = () => ({ xAxis: { name: 'First' } });
+    const setNameB: ConfigModifier = () => ({ xAxis: { name: 'Second' } });
 
     const result = enhanceConfig({}).with(setNameA).with(setNameB).build();
     expect((result.xAxis as { name: string }).name).to.equal('Second');
@@ -86,13 +86,13 @@ describe('enhanceConfig', () => {
 
     const modifierA: ConfigModifier = (config) => {
       visited.push('A');
-      return mergeConfigs(config, { xAxis: { name: 'A' } });
+      return { xAxis: { name: 'A' } };
     };
     const modifierB: ConfigModifier = (config) => {
       visited.push('B');
       // B can read what A wrote
       expect((config.xAxis as { name: string }).name).to.equal('A');
-      return mergeConfigs(config, { yAxis: { name: 'B' } });
+      return { yAxis: { name: 'B' } };
     };
 
     enhanceConfig({}).with(modifierA).with(modifierB).build();
@@ -101,31 +101,31 @@ describe('enhanceConfig', () => {
 });
 
 describe('compose', () => {
-  it('returns an identity modifier when called with no arguments', () => {
+  it('returns an empty patch when called with no arguments', () => {
     const base = { xAxis: { type: 'category' } };
-    expect(compose()(base)).to.deep.equal(base);
+    expect(compose()(base)).to.deep.equal({});
   });
 
   it('applies a single modifier', () => {
-    const addName: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { name: 'Days' } });
+    const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
     const result = compose(addName)({ xAxis: { type: 'category' } });
-    expect(result).to.deep.equal({ xAxis: { name: 'Days', type: 'category' } });
+    expect(result).to.deep.equal({ xAxis: { name: 'Days' } });
   });
 
   it('composes multiple modifiers left-to-right', () => {
-    const addName: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { name: 'Days' } });
-    const addRotate: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { axisLabel: { rotate: 45 } } });
+    const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
+    const addRotate: ConfigModifier = () => ({ xAxis: { axisLabel: { rotate: 45 } } });
     const combined = compose(addName, addRotate);
 
     const result = combined({ xAxis: { type: 'category' } });
     expect(result).to.deep.equal({
-      xAxis: { axisLabel: { rotate: 45 }, name: 'Days', type: 'category' },
+      xAxis: { axisLabel: { rotate: 45 }, name: 'Days' },
     });
   });
 
   it('can be nested inside enhanceConfig .with()', () => {
-    const addName: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { name: 'Days' } });
-    const addType: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { type: 'category' } });
+    const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
+    const addType: ConfigModifier = () => ({ xAxis: { type: 'category' } });
     const combined = compose(addName, addType);
 
     const result = enhanceConfig({}).with(combined).build();
@@ -133,9 +133,9 @@ describe('compose', () => {
   });
 
   it('composes composed modifiers (nested composition)', () => {
-    const setX: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { name: 'X' } });
-    const setY: ConfigModifier = (config) => mergeConfigs(config, { yAxis: { name: 'Y' } });
-    const setZ: ConfigModifier = (config) => mergeConfigs(config, { xAxis: { type: 'category' } });
+    const setX: ConfigModifier = () => ({ xAxis: { name: 'X' } });
+    const setY: ConfigModifier = () => ({ yAxis: { name: 'Y' } });
+    const setZ: ConfigModifier = () => ({ xAxis: { type: 'category' } });
 
     const inner = compose(setX, setY);
     const outer = compose(inner, setZ);

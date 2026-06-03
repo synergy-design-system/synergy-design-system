@@ -68,6 +68,9 @@ export type ConfigModifier = (config: ECConfig) => ECConfig;
  * Composes multiple ConfigModifiers into a single ConfigModifier.
  * Modifiers are applied left-to-right, so later modifiers override earlier ones.
  *
+ * Each modifier is evaluated against the accumulated, merged config so composed
+ * patch-style modifiers can depend on updates from earlier modifiers.
+ *
  * @example
  * ```ts
  * const combined = compose(showGridLines(), hideYAxisValues());
@@ -75,7 +78,7 @@ export type ConfigModifier = (config: ECConfig) => ECConfig;
  * ```
  */
 export const compose = (...modifiers: ConfigModifier[]): ConfigModifier => (config) => modifiers
-  .reduce<ECConfig>((acc, modifier) => modifier(acc), config);
+  .reduce<ECConfig>((acc, modifier) => mergeConfigs(acc, modifier(acc)), config);
 
 /**
  * Public interface for the fluent config builder returned by `enhanceConfig`.
@@ -99,7 +102,7 @@ class ConfigBuilderImpl implements ConfigBuilder {
   }
 
   with(modifier: ConfigModifier): this {
-    this.#config = modifier(this.#config);
+    this.#config = mergeConfigs(this.#config, modifier(this.#config));
     return this;
   }
 

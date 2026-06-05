@@ -1,4 +1,6 @@
 import type { ECConfig } from '../types.js';
+import { createPresetModifier } from './presets/index.js';
+import type { PresetTuple, SynChartPresetName, SynChartPresetOptionsMap } from './presets/index.js';
 
 // ---------------------------------------------------------------------------
 // Low-level deep-merge primitives
@@ -53,6 +55,40 @@ export const mergeConfigs = (...layers: ConfigLayer[]): ECConfig => mergeConfigL
 // ---------------------------------------------------------------------------
 
 /**
+ * Chart config builder that supports middleware-style composition of ConfigModifiers and named presets.
+ */
+class ChartConfigBuilder {
+  #config: ECConfig;
+
+  constructor(base: ECConfig) {
+    this.#config = base;
+  }
+
+  /**
+   * Applies a ConfigModifier to the accumulated config and returns the builder for chaining.
+   */
+  with(modifier: ConfigModifier): this {
+    this.#config = mergeConfigs(this.#config, modifier(this.#config));
+    return this;
+  }
+
+  /**
+   * Applies a named preset by resolving it to a ConfigModifier.
+   */
+  usePreset<K extends SynChartPresetName>(...args: PresetTuple<K>): this {
+    const [name, options] = args;
+    return this.with(createPresetModifier(name, options as SynChartPresetOptionsMap[K]));
+  }
+
+  /**
+   * Returns the final, merged ECConfig after all modifiers have been applied.
+   */
+  build(): ECConfig {
+    return this.#config;
+  }
+}
+
+/**
  * A function that receives the current chart config and returns a new, enhanced config.
  * ConfigModifiers are the building blocks of the middleware-style composition system.
  *
@@ -73,7 +109,7 @@ export type ConfigModifier = (config: ECConfig) => ECConfig;
  *
  * @example
  * ```ts
- * const combined = compose(showGridLines(), hideYAxisValues());
+ * const combined = compose(withAxesSplitLines(), withHiddenYAxisLabels());
  * chart.config = enhanceConfig(baseConfig).with(combined).build();
  * ```
  */
@@ -81,53 +117,23 @@ export const compose = (...modifiers: ConfigModifier[]): ConfigModifier => (conf
   .reduce<ECConfig>((acc, modifier) => mergeConfigs(acc, modifier(acc)), config);
 
 /**
- * Public interface for the fluent config builder returned by `enhanceConfig`.
- */
-export interface ConfigBuilder {
-  /**
-   * Applies a ConfigModifier to the accumulated config and returns the builder for chaining.
-   */
-  with(modifier: ConfigModifier): ConfigBuilder;
-  /**
-   * Returns the final, merged ECConfig after all modifiers have been applied.
-   */
-  build(): ECConfig;
-}
-
-class ConfigBuilderImpl implements ConfigBuilder {
-  #config: ECConfig;
-
-  constructor(base: ECConfig) {
-    this.#config = base;
-  }
-
-  with(modifier: ConfigModifier): this {
-    this.#config = mergeConfigs(this.#config, modifier(this.#config));
-    return this;
-  }
-
-  build(): ECConfig {
-    return this.#config;
-  }
-}
-
-/**
  * Creates a fluent builder for composing chart config modifiers in a middleware-style chain.
  * Each `.with()` call applies a ConfigModifier to the accumulated config.
+ * Use `.usePreset(name, options)` for named, reusable modifier bundles.
  * Call `.build()` at the end to retrieve the final ECConfig.
  *
  * @example
  * ```ts
  * chart.config = enhanceConfig(baseConfig)
- *   .with(showGridLines())
- *   .with(xAxisWithIconLabels({ iconUrls }))
+ *   .with(withAxesSplitLines())
+ *   .with(withXAxisLabelIcons({ iconUrls }))
  *   .build();
  * ```
  *
  * Modifiers can themselves be composed using `compose`:
  * ```ts
- * const myModifier = compose(showGridLines(), hideYAxisValues());
+ * const myModifier = compose(withAxesSplitLines(), withHiddenYAxisLabels());
  * chart.config = enhanceConfig(baseConfig).with(myModifier).build();
  * ```
  */
-export const enhanceConfig = (base: ECConfig): ConfigBuilder => new ConfigBuilderImpl(base);
+export const enhanceConfig = (base: ECConfig): ChartConfigBuilder => new ChartConfigBuilder(base);

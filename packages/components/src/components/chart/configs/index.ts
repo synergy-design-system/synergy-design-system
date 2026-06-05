@@ -1,2 +1,4 @@
-export * from './axes.js';
-export * from './config.js';
+export {
+  enhanceConfig,
+} from './config.js';
+export * from './axes/index.js';

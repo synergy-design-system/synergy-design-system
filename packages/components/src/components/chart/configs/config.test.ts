@@ -49,7 +49,7 @@ describe('mergeConfigs', () => {
 
 describe('enhanceConfig', () => {
   it('returns the base config unchanged when no modifiers are applied', () => {
-    const base = { xAxis: { type: 'category' } };
+    const base = { xAxis: { type: 'category' as const } };
     expect(enhanceConfig(base).build()).to.deep.equal(base);
   });
 
@@ -84,7 +84,7 @@ describe('enhanceConfig', () => {
   it('passes the accumulated config into each subsequent modifier', () => {
     const visited: string[] = [];
 
-    const modifierA: ConfigModifier = (config) => {
+    const modifierA: ConfigModifier = () => {
       visited.push('A');
       return { xAxis: { name: 'A' } };
     };
@@ -101,15 +101,15 @@ describe('enhanceConfig', () => {
 });
 
 describe('compose', () => {
-  it('returns an empty patch when called with no arguments', () => {
-    const base = { xAxis: { type: 'category' } };
-    expect(compose()(base)).to.deep.equal({});
+  it('returns the input config unchanged when called with no arguments', () => {
+    const base = { xAxis: { type: 'category' as const } };
+    expect(compose()(base)).to.deep.equal(base);
   });
 
   it('applies a single modifier', () => {
     const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
     const result = compose(addName)({ xAxis: { type: 'category' } });
-    expect(result).to.deep.equal({ xAxis: { name: 'Days' } });
+    expect(result).to.deep.equal({ xAxis: { name: 'Days', type: 'category' } });
   });
 
   it('composes multiple modifiers left-to-right', () => {
@@ -119,7 +119,7 @@ describe('compose', () => {
 
     const result = combined({ xAxis: { type: 'category' } });
     expect(result).to.deep.equal({
-      xAxis: { axisLabel: { rotate: 45 }, name: 'Days' },
+      xAxis: { axisLabel: { rotate: 45 }, name: 'Days', type: 'category' },
     });
   });
 

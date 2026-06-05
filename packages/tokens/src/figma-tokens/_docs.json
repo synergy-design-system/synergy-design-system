@@ -587,73 +587,73 @@
           "type": "text"
         }
       },
-      "axes-hidden": {
+      "axes-split-lines-hidden": {
         "title": {
-          "value": "Hidden Axes",
+          "value": "Hidden Axes Split Lines",
           "type": "text"
         },
         "description": {
-          "value": "The default is, that both axes lines as well as the grid lines are hidden.",
+          "value": "The default is, that both axes lines as well as the split lines are hidden.",
           "type": "text"
         }
       },
-      "axes-visible": {
+      "axes-split-lines-visible": {
         "title": {
-          "value": "Visible Axes",
+          "value": "Visible Axes Split Lines",
           "type": "text"
         },
         "description": {
-          "value": "If you want to display both axes lines and grid lines, you can enable them using the *showGridLines* helper function.",
+          "value": "If you want to display both axes lines and split lines, you can enable them using the *'axes.split-lines'* preset or *withAxesSplitLines* modifier helper.",
           "type": "text"
         }
       },
-      "axes-horizontal": {
+      "axes-horizontal-split-lines": {
         "title": {
-          "value": "Horizontal Grid Lines Only",
+          "value": "Horizontal Split Lines Only",
           "type": "text"
         },
         "description": {
-          "value": "To show only horizontal grid lines, use the *showHorizontalGridLines* helper function.",
+          "value": "To show only horizontal split lines, use the *'axes.y-split-lines'* preset or *withYAxisSplitLines* modifier helper.",
           "type": "text"
         }
       },
-      "axes-vertical": {
+      "axes-vertical-split-lines": {
         "title": {
-          "value": "Vertical Grid Lines Only",
+          "value": "Vertical Split Lines Only",
           "type": "text"
         },
         "description": {
-          "value": "To show only vertical grid lines, use the *showVerticalGridLines* helper function.",
+          "value": "To show only vertical split lines, use the *'axes.x-split-lines'* preset or *withXAxisSplitLines* modifier helper.",
           "type": "text"
         }
       },
-      "axes-values-hidden": {
+      "axes-labels-hidden": {
         "title": {
-          "value": "Hidden Axis Values",
+          "value": "Hidden Axis Labels",
           "type": "text"
         },
         "description": {
-          "value": "If you want to hide the axis values, you can use the *hideAxesValues* helper function.",
+          "value": "If you want to hide the axis labels, you can use the *'axes.hide-labels'* preset or *withHiddenAxisLabels* modifier helper.",
           "type": "text"
         }
       },
-      "axes-lines-visible-values-hidden": {
+      "axes-lines-visible-labels-hidden": {
         "title": {
           "value": "Visible Axes Lines with Hidden Values",
           "type": "text"
         },
         "description": {
-          "value": "To show axes lines but hide the axis values, use the *showAxesLinesHideValues* helper function.",
+          "value": "To show axes split lines but hide the axis labels, combine *'axes.split-lines'* and *'axes.hide-labels'* presets or *withAxesSplitLines* and *withHiddenAxisLabels* modifier helpers.",
           "type": "text"
         }
       },
-      "axes-values-with-icons": {
+      "axes-labels-with-icons": {
         "title": {
-          "value": "Axes Values with Icons",
+          "value": "Axes Labels with Icons",
           "type": "text"
         },
         "description": {
-          "value": "To add icons to axis values, use the *xAxisWithIconLabels* and *yAxisWithIconLabels* helper functions.",
+          "value": "To add icons to axis labels, use the *'axes.x-label-icons'* and *'axes.y-label-icons'* presets or the *withXAxisLabelIcons* and *withYAxisLabelIcons* modifiers helpers.",
           "type": "text"
         }
       },

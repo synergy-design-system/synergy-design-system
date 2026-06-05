@@ -10,7 +10,7 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import {
-  enhanceConfig, hideAxesValues, showGridLines, showHorizontalGridLines, showVerticalGridLines, xAxisWithIconLabels, yAxisWithIconLabels,
+  enhanceConfig,
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore - Can be ignored as this is a monorepo workspace problem
 } from '../../../components/src/components/chart/configs/index.js';
@@ -25,22 +25,10 @@ import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 declare global {
   interface Window {
     enhanceConfig: typeof enhanceConfig;
-    hideAxesValues: typeof hideAxesValues;
-    showGridLines: typeof showGridLines;
-    showHorizontalGridLines: typeof showHorizontalGridLines;
-    showVerticalGridLines: typeof showVerticalGridLines;
-    xAxisWithIconLabels: typeof xAxisWithIconLabels;
-    yAxisWithIconLabels: typeof yAxisWithIconLabels;
   }
 }
 
 window.enhanceConfig = enhanceConfig;
-window.showGridLines = showGridLines;
-window.showHorizontalGridLines = showHorizontalGridLines;
-window.xAxisWithIconLabels = xAxisWithIconLabels;
-window.yAxisWithIconLabels = yAxisWithIconLabels;
-window.hideAxesValues = hideAxesValues;
-window.showVerticalGridLines = showVerticalGridLines;
 
 const meta: Meta = {
   component: 'syn-chart',
@@ -70,11 +58,11 @@ export default meta;
 
 type Story = StoryObj;
 
-export const AxesLinesHidden: Story = {
+export const AxesSplitLinesHidden: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-hidden'),
+        story: generateStoryDescription('chart', 'axes-split-lines-hidden'),
       },
     },
   },
@@ -95,11 +83,11 @@ export const AxesLinesHidden: Story = {
   `,
 };
 
-export const AxesLinesVisible: Story = {
+export const AxesSplitLinesVisible: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-visible'),
+        story: generateStoryDescription('chart', 'axes-split-lines-visible'),
       },
     },
   },
@@ -121,16 +109,16 @@ export const AxesLinesVisible: Story = {
         },
       };
 
-      chart.config = enhanceConfig(baseConfig).with(showGridLines()).build();
+      chart.config = enhanceConfig(baseConfig).usePreset('axes.split-lines').build();
     </script>
   `,
 };
 
-export const HorizontalGridLinesVisible: Story = {
+export const HorizontalSplitLinesVisible: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-horizontal'),
+        story: generateStoryDescription('chart', 'axes-horizontal-split-lines'),
       },
     },
   },
@@ -152,16 +140,16 @@ export const HorizontalGridLinesVisible: Story = {
         },
       };
 
-      chart.config = enhanceConfig(baseConfig).with(showHorizontalGridLines()).build();
+      chart.config = enhanceConfig(baseConfig).usePreset('axes.y-split-lines').build();
     </script>
   `,
 };
 
-export const VerticalGridLinesVisible: Story = {
+export const VerticalSplitLinesVisible: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-vertical'),
+        story: generateStoryDescription('chart', 'axes-vertical-split-lines'),
       },
     },
   },
@@ -183,16 +171,16 @@ export const VerticalGridLinesVisible: Story = {
         },
       };
 
-      chart.config = enhanceConfig(baseConfig).with(showVerticalGridLines()).build();
+      chart.config = enhanceConfig(baseConfig).usePreset('axes.x-split-lines').build();
     </script>
   `,
 };
 
-export const AxesValuesHidden: Story = {
+export const AxesLabelsHidden: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-values-hidden'),
+        story: generateStoryDescription('chart', 'axes-labels-hidden'),
       },
     },
   },
@@ -213,16 +201,16 @@ export const AxesValuesHidden: Story = {
             type: 'value',
           },
         };
-        chart.config = enhanceConfig(baseConfig).with(hideAxesValues()).build();
+        chart.config = enhanceConfig(baseConfig).usePreset('axes.hide-labels').build();
     </script>
   `,
 };
 
-export const AxesLinesVisibleWithValuesHidden: Story = {
+export const AxesLinesVisibleWithLabelsHidden: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-lines-visible-values-hidden'),
+        story: generateStoryDescription('chart', 'axes-lines-visible-labels-hidden'),
       },
     },
   },
@@ -243,17 +231,20 @@ export const AxesLinesVisibleWithValuesHidden: Story = {
         };
 
         const chart = document.querySelector('#chart-lines-visible-values-hidden');
-        chart.config = enhanceConfig(baseConfig).with(hideAxesValues()).with(showGridLines()).build();
+        chart.config = enhanceConfig(baseConfig)
+          .usePreset('axes.hide-labels')
+          .usePreset('axes.split-lines')
+          .build();
       </script>
     `
   ,
 };
 
-export const AxesValuesWithIcons: Story = {
+export const AxesLabelsWithIcons: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-values-with-icons'),
+        story: generateStoryDescription('chart', 'axes-labels-with-icons'),
       },
     },
   },
@@ -313,15 +304,15 @@ export const AxesValuesWithIcons: Story = {
 
           const chart = document.querySelector('#chart-axis-prefix-icons');
           chart.config = enhanceConfig(baseConfig)
-            .with(showGridLines())
-            .with(xAxisWithIconLabels({
+            .usePreset('axes.split-lines')
+            .usePreset('axes.x-label-icons', {
               iconUrls: xAxisIconUrls,
               iconPosition: xAxisIconPosition,
-            }))
-            .with(yAxisWithIconLabels({
+            })
+            .usePreset('axes.y-label-icons', {
               iconUrls: yAxisIconUrls,
               iconPosition: yAxisIconPosition,
-            }))
+            })
             .build();
         };
 
@@ -342,12 +333,12 @@ export const AxesValuesWithIcons: Story = {
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
-  AxesLinesHidden,
-  AxesLinesVisible,
-  HorizontalGridLinesVisible,
-  VerticalGridLinesVisible,
-  AxesValuesHidden,
-  AxesLinesVisibleWithValuesHidden,
-  AxesValuesWithIcons,
+  AxesSplitLinesHidden,
+  AxesSplitLinesVisible,
+  HorizontalSplitLinesVisible,
+  VerticalSplitLinesVisible,
+  AxesLabelsHidden,
+  AxesLinesVisibleWithLabelsHidden,
+  AxesLabelsWithIcons,
 }, 700);
 /* eslint-enable sort-keys */

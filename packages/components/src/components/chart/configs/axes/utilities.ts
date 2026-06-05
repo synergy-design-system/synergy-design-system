@@ -2,7 +2,7 @@ import type { TextCommonOption } from 'echarts/types/src/util/types.js';
 import type { CategoryAxisBaseOption } from 'echarts/types/src/coord/axisCommonTypes.js';
 import { getRealStyleValue, getRealValueWithoutUnit } from '../../themes/utilities.js';
 import type { ECConfig } from '../../types.js';
-import { mergeConfigs } from '../config.js';
+import { mergeConfigs, mergeObjects } from '../config.js';
 import type {
   AxisKey,
   AxisLabelIconsConfigOptions,
@@ -328,3 +328,72 @@ export const buildAxisLabelConfigWithIcon = ({
     },
   };
 };
+
+const DEFAULT_AXES_OPTIONS = {
+  xAxis: {
+    axisLabel: {
+      margin: getRealValueWithoutUnit('--syn-spacing-small'),
+    },
+    // Distance between axis line and name
+    nameGap: 32,
+    nameLocation: 'center',
+  },
+  yAxis: {
+    axisLabel: {
+      margin: getRealValueWithoutUnit('--syn-spacing-medium'),
+    },
+    nameGap: getRealValueWithoutUnit('--syn-spacing-medium'),
+    nameTextStyle: {
+      align: 'right',
+      padding: [0, getRealValueWithoutUnit('--syn-spacing-medium'), 0, 0],
+    },
+  },
+};
+
+const toMergeableObject = (value: unknown): Record<string, unknown> => {
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    return value as Record<string, unknown>;
+  }
+  return {};
+};
+
+/**
+ * Sets the default axis config for the provided axis key, but only for the config parameters that are not explicitly set by the user.
+ * @param axisKey - The axis key to set the config for ('xAxis' or 'yAxis').
+ * @param option - The current ECharts config object, which may already contain partial axis config from the theme or user.
+ * @param userConfig - The original user-provided config object, used to check for explicitly set values that should not be overridden.
+*/
+/* eslint-disable no-param-reassign */
+export const enhanceAxisConfig = (axisKey: AxisKey, option: ECConfig, userConfig: ECConfig) => {
+  if (!option[axisKey]) return;
+
+  if (Array.isArray(option[axisKey])) {
+    option[axisKey] = option[axisKey].map((axisOption, index) => {
+      const userAxisOption = userConfig[axisKey] && (Array.isArray(userConfig[axisKey]) ? userConfig[axisKey][index] : userConfig[axisKey]);
+      const merged = mergeObjects(
+        toMergeableObject(axisOption),
+        DEFAULT_AXES_OPTIONS[axisKey],
+      );
+      if (userAxisOption) {
+        return mergeObjects(merged, toMergeableObject(userAxisOption));
+      }
+      return merged;
+    });
+  } else {
+    const userAxisOption = userConfig[axisKey];
+    const merged = mergeObjects(
+      toMergeableObject(option[axisKey]),
+      DEFAULT_AXES_OPTIONS[axisKey],
+    );
+    if (userAxisOption) {
+      const normalizedUserAxisOption = Array.isArray(userAxisOption) ? (userAxisOption[0] ?? {}) : userAxisOption;
+      option[axisKey] = mergeObjects(
+        merged,
+        toMergeableObject(normalizedUserAxisOption),
+      );
+    } else {
+      option[axisKey] = merged;
+    }
+  }
+};
+/* eslint-enable no-param-reassign */

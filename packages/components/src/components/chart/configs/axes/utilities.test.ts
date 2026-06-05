@@ -1,12 +1,14 @@
 import { expect } from '@open-wc/testing';
-import type { YAXisOption } from 'echarts/types/dist/shared';
+import type { XAXisOption, YAXisOption } from 'echarts/types/dist/shared';
 import {
   buildAxisLabelConfigWithIcon,
   colorSvgDataUrl,
+  enhanceAxisConfig,
   extractYAxisLabelTexts,
   measureMaxTextWidth,
   patchAxisConfig,
 } from './utilities.js';
+import type { ECConfig } from '../../types.js';
 
 const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
 
@@ -157,6 +159,80 @@ describe('chart axis utilities', () => {
       };
 
       expect(axisLabel.rich.label.width).to.equal(96);
+    });
+  });
+
+  describe('enhanceAxisConfig', () => {
+    it('leaves config unchanged when the selected axis key is missing', () => {
+      const option = {
+        yAxis: { type: 'value' },
+      } as ECConfig;
+
+      enhanceAxisConfig('xAxis', option, {});
+
+      expect(option).to.deep.equal({
+        yAxis: { type: 'value' },
+      });
+    });
+
+    it('applies default values to a single x-axis object', () => {
+      const option = {
+        xAxis: { type: 'category' },
+      } as ECConfig;
+
+      enhanceAxisConfig('xAxis', option, {});
+
+      const axis = option.xAxis as XAXisOption;
+      expect(axis.axisLabel?.margin).to.be.a('number');
+      expect(axis.nameGap).to.equal(32);
+      expect(axis.nameLocation).to.equal('center');
+      expect(axis.type).to.equal('category');
+    });
+
+    it('prioritizes explicit user y-axis values over defaults', () => {
+      const option = {
+        yAxis: { type: 'value' },
+      } as ECConfig;
+      const userConfig = {
+        yAxis: {
+          axisLabel: { margin: 999 },
+          nameGap: 777,
+        },
+      };
+
+      enhanceAxisConfig('yAxis', option, userConfig);
+
+      const axis = option.yAxis as YAXisOption;
+      expect(axis.axisLabel?.margin).to.equal(999);
+      expect(axis.nameGap).to.equal(777);
+      expect(axis.nameTextStyle?.align).to.equal('right');
+    });
+
+    it('merges axis arrays and applies per-index user overrides', () => {
+      const option = {
+        xAxis: [
+          { name: 'Bottom', type: 'category' },
+          { name: 'Top', type: 'category' },
+        ],
+      } as ECConfig;
+      const userConfig = {
+        xAxis: [
+          undefined,
+          {
+            axisLabel: { margin: 123 },
+            nameLocation: 'end',
+          },
+        ],
+      } as ECConfig;
+
+      enhanceAxisConfig('xAxis', option, userConfig);
+
+      const first= (option.xAxis as XAXisOption[])[0];
+      const second = (option.xAxis as XAXisOption[])[1];
+
+      expect(first.axisLabel?.margin).to.be.a('number');
+      expect(second.nameLocation).to.equal('end');
+      expect(second.axisLabel?.margin).to.equal(123);
     });
   });
 });

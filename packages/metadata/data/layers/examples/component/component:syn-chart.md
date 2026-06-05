@@ -15,7 +15,7 @@ The default story demonstrates a basic line chart configuration. The chart is co
         type: "category",
         name: "Days",
       },
-      yAxis: { type: "value", name: "Values" },
+      yAxis: { type: "value" },
     };
   });
 </script>
@@ -46,7 +46,7 @@ The config property is the main way to configure the chart. It accepts an object
 Use the palette attribute to apply a Synergy design token color palette to chart series. categorical (12 distinct colors for comparing unrelated data series), sequential-01–sequential-07 (10-step single-hue ramps), and sequential-status-critical/error/info/success/warning (10-step status ramps). If option.color is explicitly set, it takes precedence over the palette attribute.
 
 ```html
-<syn-chart id="chart-palette" palette="sequential-02"></syn-chart>
+<syn-chart id="chart-palette" palette="sequential-01"></syn-chart>
 <script type="module">
   const chart = document.querySelector("#chart-palette");
   chart.config = {

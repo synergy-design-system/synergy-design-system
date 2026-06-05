@@ -105,7 +105,13 @@ export default class SynChart extends SynergyElement {
       .filter(Boolean);
 
     if (colors.length > 0) {
-      this.chartInstance.setOption({ color: colors }, { notMerge: false });
+      const oldOption = this.chartInstance.getOption();
+      if(!oldOption) return;
+
+      oldOption.color = colors;
+      // We can not only replace 'color' via { replaceMerge: ['color'] }. Echarts does not allow to do this.
+      // Therefore we need to completely replace it, with the old option but new color.
+      this.chartInstance.setOption(oldOption, { notMerge: true });
     }
   }
 

@@ -103,6 +103,31 @@ describe('<syn-menu>', () => {
     expect(selectHandler).to.not.have.been.called;
   });
 
+  it('should include wrapped menu items in roving tabindex', async () => {
+    const menu = await fixture<SynMenu>(html`
+      <syn-menu>
+        <syn-tooltip content="Tooltip">
+          <syn-menu-item value="item-1">Item 1</syn-menu-item>
+        </syn-tooltip>
+        <syn-menu-item value="item-2">Item 2</syn-menu-item>
+      </syn-menu>
+    `);
+
+    const [item1, item2] = menu.querySelectorAll<SynMenuItem>('syn-menu-item');
+
+    expect(menu.getAllItems()).to.deep.equal([item1, item2]);
+    expect(item1.getAttribute('tabindex')).to.equal('0');
+    expect(item2.getAttribute('tabindex')).to.equal('-1');
+
+    item1.focus();
+    await item1.updateComplete;
+    await sendKeys({ press: 'ArrowDown' });
+
+    expect(document.activeElement).to.equal(item2);
+    expect(item1.getAttribute('tabindex')).to.equal('-1');
+    expect(item2.getAttribute('tabindex')).to.equal('0');
+  });
+
   // @see https://github.com/shoelace-style/shoelace/issues/1596
   it('Should fire "syn-select" when clicking an element within a menu-item', async () => {
     // eslint-disable-next-line

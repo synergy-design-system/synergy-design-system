@@ -1,6 +1,6 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-05-28T08:21:19.694Z",
+  "generatedAt": "2026-06-03T07:54:29.516Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
@@ -66,7 +66,7 @@
     },
     {
       "id": "token-info:css:sick2025-light",
-      "tokens": 8484
+      "tokens": 8487
     },
     {
       "id": "prompt:explain-component-rules:syn-accordion",

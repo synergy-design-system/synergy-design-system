@@ -12,7 +12,6 @@ import {
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
-
 const { overrideArgs } = storybookHelpers('syn-chart');
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-chart');
 const { generateTemplate } = storybookTemplate('syn-chart');
@@ -42,7 +41,7 @@ const meta: Meta = {
       description: {
         component:
           [
-            '>⚠️ **Experimental Status**:',
+            '>⚠️ **Experimental**:',
             '>syn-chart is currently experimental.',
             '>The API may change in future releases without prior notice.',
             '>Use it with caution in production environments and expect potential breaking changes.\n',
@@ -77,7 +76,7 @@ export const Default: Story = {
         chart.config = {
           series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
           xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category', name: 'Days' },
-          yAxis: { type: 'value', name: 'Values' },
+          yAxis: { type: 'value' },
         };
       });
     </script>
@@ -114,7 +113,7 @@ export const Palette: Story = {
     },
   },
   render: () => html`
-    <syn-chart id="chart-palette" palette="sequential-02"></syn-chart>
+    <syn-chart id="chart-palette" palette="sequential-01"></syn-chart>
     <script type="module">
       const chart = document.querySelector('#chart-palette');
       chart.config = {
@@ -214,5 +213,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Palette,
   GetInstance,
   MultipleChartsWithDifferentPalettes,
-}, 600);
+}, 700);
 /* eslint-enable sort-keys */

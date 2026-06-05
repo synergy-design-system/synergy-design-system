@@ -120,11 +120,10 @@ export default class SynChart extends SynergyElement {
   // Initialize echarts instance and resize observer
   protected firstUpdated(_changedProperties: PropertyValues): void {
     if (this.chartContainer !== null && this.chartContainer !== undefined) {
-      registerTheme('synergy-light', synergyLightTheme);
+      registerTheme('default', synergyLightTheme);
 
-      // TODO: Check if it should overwrite the default themes 'default' and 'dark' of echarts, so people do not need to know about the theme and set it manually.
-      this.chartInstance = init(this.chartContainer,'synergy-light');
-      // this.chartInstance = init(this.chartContainer);
+      this.chartInstance = init(this.chartContainer, 'default');
+
       // Resize observer
       this.resizeObserver = new ResizeObserver(() => {
         this.chartInstance?.resize();

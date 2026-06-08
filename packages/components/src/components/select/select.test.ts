@@ -119,6 +119,53 @@ describe('<syn-select>', () => {
     await waitUntil(() => submitHandler.calledOnce);
   });
 
+  it('should stay open when used inside a dialog and opened with the mouse', async () => {
+    const dialog = await fixture<HTMLElement>(html`
+      <syn-dialog open>
+        <syn-select label="Select one">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-select>
+      </syn-dialog>
+    `);
+    const el = dialog.querySelector<SynSelect>('syn-select')!;
+
+    const showHandler = sinon.spy();
+    const hideHandler = sinon.spy();
+    const combobox = el.shadowRoot!.querySelector('.select__combobox')!;
+
+    el.addEventListener('syn-show', showHandler);
+    el.addEventListener('syn-hide', hideHandler);
+
+    await clickOnElement(combobox);
+    await aTimeout(100);
+
+    expect(showHandler).to.have.been.calledOnce;
+    expect(hideHandler).to.not.have.been.called;
+    expect(el.open).to.equal(true);
+  });
+
+  it('should stay open when used inside a dialog and opened with the keyboard', async () => {
+    const dialog = await fixture<HTMLElement>(html`
+      <syn-dialog open>
+        <syn-select label="Select one">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-3">Option 3</syn-option>
+        </syn-select>
+      </syn-dialog>
+    `);
+    const el = dialog.querySelector<SynSelect>('syn-select')!;
+
+    el.focus();
+    await sendKeys({ press: ' ' });
+    await waitUntil(() => el.open === true);
+    await aTimeout(100);
+
+    expect(el.open).to.equal(true);
+  });
+
   describe('when the value changes', () => {
     it('should emit syn-change when the value is changed with the mouse', async () => {
       const el = await fixture<SynSelect>(html`

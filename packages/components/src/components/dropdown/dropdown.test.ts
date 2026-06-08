@@ -207,6 +207,32 @@ describe('<syn-dropdown>', () => {
     expect(document.activeElement).to.equal(secondMenuItem);
   });
 
+  it('should keep keyboard focus on menu items when inside a dialog', async () => {
+    const dialog = await fixture<HTMLElement>(html`
+      <syn-dialog open>
+        <syn-dropdown>
+          <syn-button slot="trigger" caret>Toggle</syn-button>
+          <syn-menu>
+            <syn-menu-item>Item 1</syn-menu-item>
+            <syn-menu-item>Item 2</syn-menu-item>
+          </syn-menu>
+        </syn-dropdown>
+      </syn-dialog>
+    `);
+    const el = dialog.querySelector<SynDropdown>('syn-dropdown')!;
+    const trigger = el.querySelector('syn-button')!;
+    const firstMenuItem = el.querySelectorAll('syn-menu-item')[0];
+    const dialogCloseButton = dialog.shadowRoot!.querySelector('syn-icon-button')!;
+
+    trigger.focus();
+    await sendKeys({ press: 'ArrowDown' });
+    await el.updateComplete;
+
+    expect(el.open).to.be.true;
+    expect(document.activeElement).to.equal(firstMenuItem);
+    expect(document.activeElement).to.not.equal(dialogCloseButton);
+  });
+
   it('should navigate to first focusable item on arrow navigation', async () => {
     const el = await fixture<SynDropdown>(html`
       <syn-dropdown>

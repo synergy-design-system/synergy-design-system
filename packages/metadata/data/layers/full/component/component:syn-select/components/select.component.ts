@@ -14,7 +14,6 @@ import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
-import type SynDialog from '../dialog/dialog.js';
 import SynIcon from '../icon/icon.component.js';
 import SynPopup from '../popup/popup.component.js';
 import SynTag from '../tag/tag.component.js';
@@ -95,8 +94,10 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private selectedOptionObserver: MutationObserver;
   private isUserInput: boolean = false;
 
-  private getContainingDialog() {
-    return this.closest('syn-dialog') as SynDialog | null;
+  private getContainingModalHost() {
+    return this.closest('syn-dialog, syn-drawer') as
+      | (HTMLElement & { modal?: { activateExternal(): void; deactivateExternal(): void } })
+      | null;
   }
 
   @query('.select') popup: SynPopup;
@@ -306,7 +307,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
 
     // #1297: If the select is inside a dialog, we need to activate the dialog's modal to prevent focus from escaping the dialog while the select is open
-    this.getContainingDialog()?.modal?.activateExternal();
+    this.getContainingModalHost()?.modal?.activateExternal();
 
     // If the component is rendered in a shadow root, we need to attach the focusin listener there too
     if (this.getRootNode() !== document) {
@@ -331,7 +332,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
 
     // #1297: If the select is inside a dialog, we need to activate the dialog's modal to prevent focus from escaping the dialog while the select is open
-    this.getContainingDialog()?.modal?.deactivateExternal();
+    this.getContainingModalHost()?.modal?.deactivateExternal();
 
     if (this.getRootNode() !== document) {
       this.getRootNode().removeEventListener('focusin', this.handleDocumentFocusIn);

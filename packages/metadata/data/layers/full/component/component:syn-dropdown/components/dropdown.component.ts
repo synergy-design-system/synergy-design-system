@@ -17,7 +17,6 @@ import styles from './dropdown.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynSelectEvent } from '../../events/syn-select.js';
 import type SynButton from '../button/button.js';
-import type SynDialog from '../dialog/dialog.js';
 import type SynIconButton from '../icon-button/icon-button.js';
 import type SynMenu from '../menu/menu.js';
 
@@ -137,8 +136,10 @@ export default class SynDropdown extends SynergyElement {
     }
   }
 
-  private getContainingDialog() {
-    return this.closest('syn-dialog') as SynDialog | null;
+  private getContainingModalHost() {
+    return this.closest('syn-dialog, syn-drawer') as
+      | (HTMLElement & { modal?: { activateExternal(): void; deactivateExternal(): void } })
+      | null;
   }
 
   getMenu() {
@@ -360,9 +361,8 @@ export default class SynDropdown extends SynergyElement {
   addOpenListeners() {
     this.panel.addEventListener('syn-select', this.handlePanelSelect);
 
-    // If the dropdown is inside a dialog, temporarily disable its focus trap while the
-    // popup is open because popup content can move to the browser top layer.
-    this.getContainingDialog()?.modal?.activateExternal();
+    // #1297: If the dropdown is inside a dialog, temporarily disable its focus trap while the popup is open because popup content can move to the browser top layer.
+    this.getContainingModalHost()?.modal?.activateExternal();
 
     if ('CloseWatcher' in window) {
       this.closeWatcher?.destroy();
@@ -384,7 +384,8 @@ export default class SynDropdown extends SynergyElement {
       this.panel.removeEventListener('keydown', this.handleKeyDown);
     }
 
-    this.getContainingDialog()?.modal?.deactivateExternal();
+    // #1297: If the dropdown is inside a dialog, temporarily disable its focus trap while the popup is open because popup content can move to the browser top layer.
+    this.getContainingModalHost()?.modal?.deactivateExternal();
 
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);

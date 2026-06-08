@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.15.2
+ * @synergy-design-system/tokens version 3.15.3
  * SICK Global UX Foundation
  */
 

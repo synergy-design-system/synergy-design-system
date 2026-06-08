@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.12.0
+
+### Patch Changes
+
+- [#1298](https://github.com/synergy-design-system/synergy-design-system/pull/1298) [`49e5b92`](https://github.com/synergy-design-system/synergy-design-system/commit/49e5b92f06c0600c5e8612834cb34e0f7c2a474a) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-08
+
+  fix: 🐛 `<syn-select>` and `<syn-dropdown>` not opening correctly when slotted in `<syn-dialog>` or `<syn-drawer>` ([#1297](https://github.com/synergy-design-system/synergy-design-system/issues/1297))
+
+  This release fixes an issue with multiple Synergy components automatically closing when opened in a `<syn-dialog>` or `<syn-drawer>` element in Chromium based browsers. This happens because Chromium now uses a more aggressive method of checking the active focused element when using `popover`.
+
 ## 3.11.1
 
 ### Patch Changes

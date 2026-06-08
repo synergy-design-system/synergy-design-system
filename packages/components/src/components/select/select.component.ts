@@ -94,6 +94,12 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private selectedOptionObserver: MutationObserver;
   private isUserInput: boolean = false;
 
+  private getContainingModalHost() {
+    return this.closest('syn-dialog, syn-drawer') as
+      | (HTMLElement & { modal?: { activateExternal(): void; deactivateExternal(): void } })
+      | null;
+  }
+
   @query('.select') popup: SynPopup;
   @query('.select__combobox') combobox: HTMLSlotElement;
   @query('.select__display-input') displayInput: HTMLInputElement;
@@ -300,6 +306,9 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     document.addEventListener('keydown', this.handleDocumentKeyDown);
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
 
+    // #1297: If the select is inside a dialog, we need to activate the dialog's modal to prevent focus from escaping the dialog while the select is open
+    this.getContainingModalHost()?.modal?.activateExternal();
+
     // If the component is rendered in a shadow root, we need to attach the focusin listener there too
     if (this.getRootNode() !== document) {
       this.getRootNode().addEventListener('focusin', this.handleDocumentFocusIn);
@@ -321,6 +330,9 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     document.removeEventListener('focusin', this.handleDocumentFocusIn);
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
+
+    // #1297: If the select is inside a dialog, we need to activate the dialog's modal to prevent focus from escaping the dialog while the select is open
+    this.getContainingModalHost()?.modal?.deactivateExternal();
 
     if (this.getRootNode() !== document) {
       this.getRootNode().removeEventListener('focusin', this.handleDocumentFocusIn);

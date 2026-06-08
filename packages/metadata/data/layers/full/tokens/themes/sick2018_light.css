@@ -414,6 +414,7 @@
   --syn-toggle-size-medium: var(--syn-spacing-medium-large);
   --syn-toggle-size-small: var(--syn-spacing-medium);
   --syn-tooltip-arrow-size: 9px;
+  --syn-tooltip-background-color: var(--syn-color-neutral-950);
   --syn-tooltip-border-radius: var(--syn-border-radius-small);
   --syn-tooltip-color: var(--syn-typography-color-text-inverted);
   --syn-tooltip-font-family: var(--syn-font-sans);

@@ -2039,6 +2039,11 @@ export const SynToggleSizeSmall: string;
 export const SynTooltipArrowSize: string;
 
 /**
+ * Maps to the css variable `--syn-tooltip-background-color`
+ */
+export const SynTooltipBackgroundColor: string;
+
+/**
  * Maps to the css variable `--syn-tooltip-border-radius`
  */
 export const SynTooltipBorderRadius: string;

@@ -2041,6 +2041,11 @@ export const SynTooltipArrowSize = 'var(--syn-tooltip-arrow-size)';
 /**
  * @type {string}
  */
+export const SynTooltipBackgroundColor = 'var(--syn-tooltip-background-color)';
+
+/**
+ * @type {string}
+ */
 export const SynTooltipBorderRadius = 'var(--syn-tooltip-border-radius)';
 
 /**

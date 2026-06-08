@@ -137,7 +137,6 @@ export const cssVariableFormatter = {
       'stroke-weight-default',
       'stroke-weight-thin',
       'stroke-weight-thick',
-      'tooltip-background-color',
       'track-color',
     ].map(v => `${prefix}${v}`);
 
@@ -184,7 +183,12 @@ export const cssVariableFormatter = {
           convertOriginalToCssVarRecursive(dict[key]);
         } else {
           const name = dict[key]?.name;
-          if (name && BRAND2025_IGNORE_PATTERNS.includes(name)) {
+
+          // TODO: currently we have a double token name (syn-tooltip-background-color) in components and charts. We need to remove it from charts manually until design renames it.
+          // Otherwise the tokens would overwrite each other, if both token files are imported.
+          const chartDoubleNameException = name === 'syn-tooltip-background-color' && dict[key].filePath.includes('figma-charts');
+
+          if (name && (BRAND2025_IGNORE_PATTERNS.includes(name) || chartDoubleNameException)) {
             alreadyIgnoredList.push(name);
             delete dict[key];
             return;

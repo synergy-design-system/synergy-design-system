@@ -1,5 +1,5 @@
 import { PALETTE_TOKENS } from '../chart.palettes.js';
-import { getRealStyleValue } from './utilities.js';
+import { deepMerge, getRealStyleValue, getRealValueWithoutUnit } from './utilities.js';
 
 // TODO: Do we want to work with getComputedStyle, or just add a light / dark theme with explicit hex colors?
 // To be able to use SSR we probably need to go with explicit colors in the theme
@@ -37,9 +37,29 @@ const axisCommon = () => ({
   },
 });
 
+const valueAxis = () => deepMerge(axisCommon(), {
+  axisLabel: {
+    margin: getRealValueWithoutUnit('--syn-spacing-medium'),
+  },
+  nameGap: getRealValueWithoutUnit('--syn-spacing-medium'),
+  nameTextStyle: {
+    align: 'right',
+    padding: [0, getRealValueWithoutUnit('--syn-spacing-medium'), 0, 0],
+  },
+});
+
+const categoryAxis = () => deepMerge(axisCommon(), {
+  axisLabel: {
+    margin: getRealValueWithoutUnit('--syn-spacing-small'),
+  },
+  // Distance between axis line and name
+  nameGap: 32,
+  nameLocation: 'center',
+});
+
 // Synergy ECharts Theme
 export const synergyLightTheme = {
-  categoryAxis: axisCommon(),
+  categoryAxis: categoryAxis(),
   // Default color palette for charts, is categorical by default but can be overridden by setting the palette property on the chart component or by directly setting config.color
   color: categoricalColors,
   darkMode: 'auto',
@@ -50,7 +70,7 @@ export const synergyLightTheme = {
     right: 1,
     top: 0,
   },
-  logAxis: axisCommon(),
+  logAxis: categoryAxis(),
   // Global font style
   textStyle: {
     color: getRealStyleValue('--syn-typography-color-text'),
@@ -58,6 +78,6 @@ export const synergyLightTheme = {
     fontSize: getRealStyleValue('--syn-font-size-small'),
     fontWeight: getRealStyleValue('--syn-font-weight-normal'),
   },
-  timeAxis: axisCommon(),
-  valueAxis: axisCommon(),
+  timeAxis: categoryAxis(),
+  valueAxis: valueAxis(),
 };

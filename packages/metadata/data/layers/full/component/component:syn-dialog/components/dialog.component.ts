@@ -353,13 +353,16 @@ setDefaultAnimation('dialog.hide', {
 
 setDefaultAnimation('dialog.denyClose', {
   keyframes: [
-    { translate: 'calc(var(--syn-spacing-small) * -1)' },
-    { translate: 'var(--syn-spacing-small)' },
-    { translate: 'calc(var(--syn-spacing-small) * -1)' },
-    { translate: 'var(--syn-spacing-small)' },
-    { translate: '0' },
+    { offset: 0, transform: 'translateX(0)' },
+    { offset: 0.32, transform: 'translateX(calc(var(--syn-spacing-small) * -1))' },
+    { offset: 0.6, transform: 'translateX(var(--syn-spacing-x-small))' },
+    { offset: 0.82, transform: 'translateX(calc(var(--syn-spacing-2x-small) * -1))' },
+    { offset: 1, transform: 'translateX(0)' },
   ],
-  options: { duration: 500, easing: 'ease-out' },
+  options: {
+    duration: 250,
+    easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+  },
 });
 
 setDefaultAnimation('dialog.overlay.show', {

@@ -157,6 +157,12 @@ const preview: Preview = {
         ].join(', '),
       },
     },
+    options: {
+      storySort: {
+        // Special sorting for Charts subsections
+        order: ['Charts', ['Getting Started', 'Overview', 'syn-chart', 'Features']],
+      },
+    },
     // Configures the viewports addon to make sure
     // that we have a valid default viewport.
     // When not setting this, the last active viewport will be used, which we do not want

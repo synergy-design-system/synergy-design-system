@@ -13,7 +13,7 @@ Checkboxes allow the user to toggle an option on or off.
 Use the checked attribute to activate the checkbox.
 
 ```html
-<syn-checkbox checked>Checked</syn-checkbox>
+<syn-checkbox checked="">Checked</syn-checkbox>
 ```
 
 ---
@@ -35,7 +35,7 @@ Add descriptive help text to a checkbox with the help-text attribute. For help t
 Use the indeterminate attribute to make the checkbox indeterminate.
 
 ```html
-<syn-checkbox indeterminate>Indeterminate</syn-checkbox>
+<syn-checkbox indeterminate="">Indeterminate</syn-checkbox>
 ```
 
 ---
@@ -55,7 +55,7 @@ The focus event gives the user feedback that the Checkbox has been focused by th
 Use the disabled attribute to disable the checkbox.
 
 ```html
-<syn-checkbox disabled>Disabled</syn-checkbox>
+<syn-checkbox disabled="">Disabled</syn-checkbox>
 ```
 
 ---
@@ -68,11 +68,11 @@ Add the readonly attribute to draw a read-only checkbox.
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-checkbox name="a" value="a" readonly>Read only content</syn-checkbox>
-  <syn-checkbox name="b" value="b" readonly indeterminate
+  <syn-checkbox name="a" value="a" readonly="">Read only content</syn-checkbox>
+  <syn-checkbox name="b" value="b" readonly="" indeterminate=""
     >Read only content (indet)</syn-checkbox
   >
-  <syn-checkbox name="c" value="c" readonly checked
+  <syn-checkbox name="c" value="c" readonly="" checked=""
     >Read only content (checked)</syn-checkbox
   >
 </div>
@@ -103,9 +103,9 @@ The invalid status is used to warn the user that the Checkbox is invalid. For ex
 ```html
 <form class="custom-validity">
   <div class="custom-validity">
-    <syn-checkbox required>Invalid</syn-checkbox>
-    <syn-checkbox required indeterminate>Invalid</syn-checkbox>
-    <syn-checkbox required checked>Invalid</syn-checkbox>
+    <syn-checkbox required="">Invalid</syn-checkbox>
+    <syn-checkbox required="" indeterminate="">Invalid</syn-checkbox>
+    <syn-checkbox required="" checked="">Invalid</syn-checkbox>
   </div>
   <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>

@@ -102,9 +102,9 @@ If you need different icon groups or a separator between them, add a <syn-divide
       name="insert_chart_outlined"
       label="Analytics"
     ></syn-icon-button>
-    <syn-divider vertical></syn-divider>
+    <syn-divider vertical=""></syn-divider>
     <syn-icon-button name="dark_mode" label="Dark Mode"></syn-icon-button>
-    <syn-divider vertical></syn-divider>
+    <syn-divider vertical=""></syn-divider>
     <syn-icon-button name="language" label="Language"></syn-icon-button>
     <syn-icon-button name="login" label="Login"></syn-icon-button>
   </nav>
@@ -120,11 +120,11 @@ Use the top navigation slot to add syn-navigation and horizontal syn-navigation-
 ```html
 <syn-header label="App Name">
   <syn-prio-nav slot="navigation">
-    <syn-nav-item current horizontal>Domains</syn-nav-item>
-    <syn-nav-item horizontal>Projects</syn-nav-item>
-    <syn-nav-item horizontal>Trainings</syn-nav-item>
-    <syn-nav-item horizontal>Evaluations</syn-nav-item>
-    <syn-nav-item horizontal>Deployments</syn-nav-item>
+    <syn-nav-item current="" horizontal="">Domains</syn-nav-item>
+    <syn-nav-item horizontal="">Projects</syn-nav-item>
+    <syn-nav-item horizontal="">Trainings</syn-nav-item>
+    <syn-nav-item horizontal="">Evaluations</syn-nav-item>
+    <syn-nav-item horizontal="">Deployments</syn-nav-item>
   </syn-prio-nav>
 </syn-header>
 <script type="module">
@@ -167,5 +167,5 @@ Use the Burger Menu as trigger to open and close the Navigation. In the open sta
 Use the sticky attribute to add a shadow when the header is fixed at the top and other content scrolls behind it.
 
 ```html
-<syn-header label="App Name" sticky></syn-header>
+<syn-header label="App Name" sticky=""></syn-header>
 ```

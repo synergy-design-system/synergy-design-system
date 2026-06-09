@@ -33,7 +33,7 @@ Add descriptive help text to a switch with the help-text attribute. For help tex
 Use the multiple attribute to allow the selection of multiple files.Figma only: Override the button/droparea and value text directly, to indicate that multiple files are selected (“file” -> “files”)
 
 ```html
-<syn-file label="Multiple file input" multiple></syn-file>
+<syn-file label="Multiple file input" multiple=""></syn-file>
 ```
 
 ---
@@ -43,7 +43,7 @@ Use the multiple attribute to allow the selection of multiple files.Figma only: 
 There might be situations, where you don’t want to show the selected value (e. g. when something is automatically uploading).
 
 ```html
-<syn-file hide-value label="This is a label"></syn-file>
+<syn-file hide-value="" label="This is a label"></syn-file>
 ```
 
 ---
@@ -57,7 +57,7 @@ The focus event gives the user feedback that the Dropzone has been focused by th
   <syn-file
     label="This is a label"
     help-text="This is a help text"
-    droparea
+    droparea=""
   ></syn-file>
 </div>
 ```
@@ -70,8 +70,8 @@ Use the disabled attribute to disable a file input.
 
 ```html
 <div style="display: flex; flex-direction: column; gap: 1rem">
-  <syn-file disabled label="This is a label"></syn-file>
-  <syn-file disabled droparea label="This is a label"></syn-file>
+  <syn-file disabled="" label="This is a label"></syn-file>
+  <syn-file disabled="" droparea="" label="This is a label"></syn-file>
 </div>
 ```
 
@@ -83,8 +83,8 @@ Use the readonly attribute to set a file input to a readonly state.
 
 ```html
 <div style="display: flex; flex-direction: column; gap: 1rem">
-  <syn-file readonly label="This is a label"></syn-file>
-  <syn-file readonly droparea label="This is a label"></syn-file>
+  <syn-file readonly="" label="This is a label"></syn-file>
+  <syn-file readonly="" droparea="" label="This is a label"></syn-file>
 </div>
 ```
 
@@ -114,7 +114,7 @@ The invalid status is used to warn the user that the syn-file is invalid. For ex
 <form class="custom-validity">
   <syn-file
     class="syn-file-invalid"
-    droparea
+    droparea=""
     help-text="This is an error text."
     label="This is a label"
   ></syn-file>
@@ -151,26 +151,26 @@ Use the droparea attribute to switch to a full-width button with a drop area.
 >
   <syn-file
     accept="text/plain,image/*"
-    droparea
+    droparea=""
     help-text="This is a help text"
     label="Small"
-    multiple
+    multiple=""
     size="small"
   ></syn-file>
   <syn-file
     accept="text/plain,image/*"
-    droparea
+    droparea=""
     help-text="This is a help text"
     label="Medium"
-    multiple
+    multiple=""
     size="medium"
   ></syn-file>
   <syn-file
     accept="text/plain,image/*"
-    droparea
+    droparea=""
     help-text="This is a help text"
     label="Large"
-    multiple
+    multiple=""
     size="large"
   ></syn-file>
 </div>
@@ -186,7 +186,7 @@ The webkitdirectory setting allows users to select entire directories instead of
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-file label="Button" webkitdirectory></syn-file>
-  <syn-file droparea label="Droparea" webkitdirectory></syn-file>
+  <syn-file label="Button" webkitdirectory=""></syn-file>
+  <syn-file droparea="" label="Droparea" webkitdirectory=""></syn-file>
 </div>
 ```

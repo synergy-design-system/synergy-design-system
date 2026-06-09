@@ -13,7 +13,7 @@ Switches allow the user to toggle an option on or off.
 Use the checked attribute to activate the switch.
 
 ```html
-<syn-switch checked>Checked</syn-switch>
+<syn-switch checked="">Checked</syn-switch>
 ```
 
 ---
@@ -33,7 +33,7 @@ The focus event gives the user feedback that the Switch has been focused by the 
 Use the disabled attribute to disable the switch.
 
 ```html
-<syn-switch disabled>Disabled</syn-switch>
+<syn-switch disabled="">Disabled</syn-switch>
 ```
 
 ---
@@ -51,8 +51,8 @@ Add the readonly attribute to draw a read-only switch.
     align-items: flex-start;
   "
 >
-  <syn-switch readonly>Unchecked</syn-switch>
-  <syn-switch checked readonly>Checked</syn-switch>
+  <syn-switch readonly="">Unchecked</syn-switch>
+  <syn-switch checked="" readonly="">Checked</syn-switch>
 </div>
 ```
 
@@ -97,7 +97,7 @@ The invalid status is used to warn the user that the Switch is invalid.
 
 ```html
 <form class="custom-validity">
-  <syn-switch required>Option</syn-switch>
+  <syn-switch required="">Option</syn-switch>
   <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
 <style>

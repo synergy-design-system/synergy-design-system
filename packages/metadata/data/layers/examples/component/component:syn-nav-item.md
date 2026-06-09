@@ -23,7 +23,7 @@ Use the label attribute to change the content of a navigation item.
 The current attribute provides the user feedback about which of the navigation elements is currently selected.
 
 ```html
-<syn-nav-item current>Current Navigation item</syn-nav-item>
+<syn-nav-item current="">Current Navigation item</syn-nav-item>
 ```
 
 ---
@@ -34,8 +34,10 @@ Use the horizontal attribute to indicate that an element is used in a horizontal
 
 ```html
 <div style="display: flex; gap: var(--syn-spacing-large)">
-  <syn-nav-item current horizontal>Horizontal navigation item</syn-nav-item>
-  <syn-nav-item horizontal>Horizontal navigation item</syn-nav-item>
+  <syn-nav-item current="" horizontal=""
+    >Horizontal navigation item</syn-nav-item
+  >
+  <syn-nav-item horizontal="">Horizontal navigation item</syn-nav-item>
 </div>
 ```
 
@@ -100,7 +102,7 @@ Use the \*children attribute to indicate that a chevron should be shown. In deve
     </nav>
   </syn-nav-item>
   <br />
-  <syn-nav-item open>
+  <syn-nav-item open="">
     Children open
     <nav slot="children">
       <syn-nav-item href="javascript:void(0)">Item 1</syn-nav-item>
@@ -119,7 +121,7 @@ Use the divider attribute to add a border at the top. This should be used for fi
 ```html
 <nav style="width: 320px">
   <syn-nav-item>Dividing element</syn-nav-item>
-  <syn-nav-item divider>Dividing element</syn-nav-item>
+  <syn-nav-item divider="">Dividing element</syn-nav-item>
 </nav>
 ```
 
@@ -131,9 +133,13 @@ Vertical navigation elements can be indented to indicate deeper navigation level
 
 ```html
 <nav style="width: 320px; gap: 24px; display: flex; flex-direction: column">
-  <syn-nav-item current>Indentation: none</syn-nav-item>
-  <syn-nav-item current style="--indentation: 1">Indentation: 1</syn-nav-item>
-  <syn-nav-item current style="--indentation: 2">Indentation: 2</syn-nav-item>
+  <syn-nav-item current="">Indentation: none</syn-nav-item>
+  <syn-nav-item current="" style="--indentation: 1"
+    >Indentation: 1</syn-nav-item
+  >
+  <syn-nav-item current="" style="--indentation: 2"
+    >Indentation: 2</syn-nav-item
+  >
 </nav>
 ```
 
@@ -144,5 +150,5 @@ Vertical navigation elements can be indented to indicate deeper navigation level
 Use the disabled attribute to disable a navigation-item.
 
 ```html
-<syn-nav-item disabled>Parent Element</syn-nav-item>
+<syn-nav-item disabled="">Parent Element</syn-nav-item>
 ```

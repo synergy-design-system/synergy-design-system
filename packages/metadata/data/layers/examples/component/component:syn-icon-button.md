@@ -91,14 +91,14 @@ Use the disabled attribute to disable the icon button.
     name="wallpaper"
     label="Wallpaper"
     color="neutral"
-    disabled
+    disabled=""
     size="medium"
   ></syn-icon-button>
   <syn-icon-button
     name="wallpaper"
     label="Wallpaper"
     color="primary"
-    disabled
+    disabled=""
     size="medium"
   ></syn-icon-button>
 </div>

@@ -176,6 +176,21 @@ describe('chart axis utilities', () => {
       expect(axisLabel.rich.label.width).to.be.a('number');
       expect(Number(axisLabel.rich.label.width)).to.be.greaterThan(30);
     });
+
+    it('does not create icon style entries when icon URLs are null or undefined', () => {
+      const axisLabel = buildAxisLabelConfigWithIcon({
+        config: { xAxis: { data: ['Mon', 'Tue'], type: 'category' } },
+        iconColor: '#111111',
+        iconPosition: 'top',
+        iconsStyle: undefined,
+        iconUrls: [null, svgDataUrl, undefined, svgDataUrl] as string[],
+        labelsStyle: { fontSize: 14 },
+      });
+      const rich = axisLabel!.rich!;
+      const keys = Object.keys(rich);
+
+      expect(keys).to.deep.equal(['label', 'icon_1', 'icon_3']);
+    });
   });
 
   describe('applyAxisDefaultsPreprocessor', () => {

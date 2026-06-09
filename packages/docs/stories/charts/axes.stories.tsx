@@ -52,7 +52,7 @@ const meta: Meta = {
     },
   },
   tags: ['Charting', 'Data Visualization'],
-  title: 'Charts/Axes',
+  title: 'Charts/Features/Axes',
 };
 export default meta;
 
@@ -215,8 +215,76 @@ export const AxesLinesVisibleWithLabelsHidden: Story = {
     },
   },
   render: () => html`
-      <syn-chart id="chart-lines-visible-values-hidden"></syn-chart>
-      <script type="module">
+    <syn-chart id="chart-lines-visible-values-hidden"></syn-chart>
+    <script type="module">
+      const baseConfig = {
+        series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
+        xAxis: {
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          name: 'Days',
+          type: 'category',
+        },
+        yAxis: {
+          name: 'Values',
+          type: 'value',
+        },
+      };
+
+      const chart = document.querySelector('#chart-lines-visible-values-hidden');
+      chart.config = enhanceConfig(baseConfig)
+        .usePreset('axes.hide-labels')
+        .usePreset('axes.split-lines')
+        .build();
+    </script>
+  `,
+};
+
+export const AxesLabelsWithIcons: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'axes-labels-with-icons'),
+      },
+    },
+  },
+  render: () => html`
+    <div class="controls">
+      <syn-select value="top" label="x-axis icon position" id="x-axis-icon-position">
+        <syn-option value="top">Top</syn-option>
+        <syn-option value="bottom">Bottom</syn-option>
+      </syn-select>
+      <syn-select value="left" label="y-axis icon position" id="y-axis-icon-position">
+        <syn-option value="left">Left</syn-option>
+        <syn-option value="right">Right</syn-option>
+      </syn-select>
+    </div>
+    <syn-chart id="chart-axis-prefix-icons"></syn-chart>
+    <script type="module">
+      const XAXIS_ICONS = ['calendar_today', 'event_available', 'schedule', 'event_note', 'event_upcoming', 'weekend', 'sunny'];
+      const YAXIS_ICONS = ['wallpaper', 'tune', 'watch', 'format_paint', 'brush', 'gradient', 'format_color_reset'];
+
+      let yAxisIconUrls = [];
+      let xAxisIconUrls = [];
+
+      const fetchIcons = async () => {
+        xAxisIconUrls = await Promise.all(
+          XAXIS_ICONS.map(async (iconName) => {
+            const svg = await fetch('/assets/sick2025/' + iconName + '.svg').then(r => r.text());
+            return 'data:image/svg+xml;base64,' + btoa(svg);
+          })
+        );
+        yAxisIconUrls = await Promise.all(
+          YAXIS_ICONS.map(async (iconName) => {
+            const svg = await fetch('/assets/sick2025/' + iconName + '.svg').then(r => r.text());
+            return 'data:image/svg+xml;base64,' + btoa(svg);
+          })
+        );
+      };
+
+      const xAxisIconPositionSelect = document.querySelector('#x-axis-icon-position');
+      const yAxisIconPositionSelect = document.querySelector('#y-axis-icon-position');
+
+      const setConfig = async () => {        
         const baseConfig = {
           series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
           xAxis: {
@@ -230,105 +298,35 @@ export const AxesLinesVisibleWithLabelsHidden: Story = {
           },
         };
 
-        const chart = document.querySelector('#chart-lines-visible-values-hidden');
+        const yAxisIconPosition = yAxisIconPositionSelect.value;
+        const xAxisIconPosition = xAxisIconPositionSelect.value;
+
+        const chart = document.querySelector('#chart-axis-prefix-icons');
         chart.config = enhanceConfig(baseConfig)
-          .usePreset('axes.hide-labels')
           .usePreset('axes.split-lines')
+          .usePreset('axes.x-label-icons', {
+            iconUrls: xAxisIconUrls,
+            iconPosition: xAxisIconPosition,
+          })
+          .usePreset('axes.y-label-icons', {
+            iconUrls: yAxisIconUrls,
+            iconPosition: yAxisIconPosition,
+          })
           .build();
-      </script>
-    `
-  ,
-};
+      };
 
-export const AxesLabelsWithIcons: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('chart', 'axes-labels-with-icons'),
-      },
-    },
-  },
-  render: () => html`
-      <div class="controls">
-        <syn-select value="top" label="x-axis icon position" id="x-axis-icon-position">
-          <syn-option value="top">Top</syn-option>
-          <syn-option value="bottom">Bottom</syn-option>
-        </syn-select>
-        <syn-select value="left" label="y-axis icon position" id="y-axis-icon-position">
-          <syn-option value="left">Left</syn-option>
-          <syn-option value="right">Right</syn-option>
-        </syn-select>
-      </div>
-      <syn-chart id="chart-axis-prefix-icons"></syn-chart>
-      <script type="module">
-        const XAXIS_ICONS = ['calendar_today', 'event_available', 'schedule', 'event_note', 'event_upcoming', 'weekend', 'sunny'];
-        const YAXIS_ICONS = ['wallpaper', 'tune', 'watch', 'format_paint', 'brush', 'gradient', 'format_color_reset'];
-
-        let yAxisIconUrls = [];
-        let xAxisIconUrls = [];
-
-        const fetchIcons = async () => {
-          xAxisIconUrls = await Promise.all(
-            XAXIS_ICONS.map(async (iconName) => {
-              const svg = await fetch('/assets/sick2025/' + iconName + '.svg').then(r => r.text());
-              return 'data:image/svg+xml;base64,' + btoa(svg);
-            })
-          );
-          yAxisIconUrls = await Promise.all(
-            YAXIS_ICONS.map(async (iconName) => {
-              const svg = await fetch('/assets/sick2025/' + iconName + '.svg').then(r => r.text());
-              return 'data:image/svg+xml;base64,' + btoa(svg);
-            })
-          );
-        };
-
-        const xAxisIconPositionSelect = document.querySelector('#x-axis-icon-position');
-        const yAxisIconPositionSelect = document.querySelector('#y-axis-icon-position');
-
-        const setConfig = async () => {        
-          const baseConfig = {
-            series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
-            xAxis: {
-              data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-              name: 'Days',
-              type: 'category',
-            },
-            yAxis: {
-              name: 'Values',
-              type: 'value',
-            },
-          };
-
-          const yAxisIconPosition = yAxisIconPositionSelect.value;
-          const xAxisIconPosition = xAxisIconPositionSelect.value;
-
-          const chart = document.querySelector('#chart-axis-prefix-icons');
-          chart.config = enhanceConfig(baseConfig)
-            .usePreset('axes.split-lines')
-            .usePreset('axes.x-label-icons', {
-              iconUrls: xAxisIconUrls,
-              iconPosition: xAxisIconPosition,
-            })
-            .usePreset('axes.y-label-icons', {
-              iconUrls: yAxisIconUrls,
-              iconPosition: yAxisIconPosition,
-            })
-            .build();
-        };
-
-        fetchIcons().then(setConfig);
-        xAxisIconPositionSelect.addEventListener('syn-change', setConfig);
-        yAxisIconPositionSelect.addEventListener('syn-change', setConfig);
-      </script>
-      <style>
-        .controls {
-          display: flex;
-          gap: var(--syn-spacing-large);
-          margin-bottom: var(--syn-spacing-large);
-        }
-      </style>
-    `
-  ,
+      fetchIcons().then(setConfig);
+      xAxisIconPositionSelect.addEventListener('syn-change', setConfig);
+      yAxisIconPositionSelect.addEventListener('syn-change', setConfig);
+    </script>
+    <style>
+      .controls {
+        display: flex;
+        gap: var(--syn-spacing-large);
+        margin-bottom: var(--syn-spacing-large);
+      }
+    </style>
+  `,
 };
 
 /* eslint-disable sort-keys */

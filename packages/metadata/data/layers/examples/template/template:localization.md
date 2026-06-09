@@ -6,7 +6,7 @@ This example shows how to dynamically set localizations for Synergy components. 
 <!-- .synergy-demo-application -->
 <div id="localization-demo-story" class="synergy-demo-application">
   <!-- header -->
-  <syn-header label="Localization Demo" sticky>
+  <syn-header label="Localization Demo" sticky="">
     <!-- meta-navigation -->
     <nav slot="meta-navigation">
       <syn-dropdown>
@@ -24,7 +24,7 @@ This example shows how to dynamically set localizations for Synergy components. 
 
           <syn-menu-item type="checkbox" value="da">Dansk</syn-menu-item>
 
-          <syn-menu-item type="checkbox" checked value="de"
+          <syn-menu-item type="checkbox" checked="" value="de"
             >Deutsch</syn-menu-item
           >
 
@@ -69,10 +69,10 @@ This example shows how to dynamically set localizations for Synergy components. 
   <!-- .synergy-demo-content -->
   <div class="synergy-demo-content">
     <main class="synergy-demo-main">
-      <syn-card shadow>
+      <syn-card shadow="">
         <h1 class="syn-heading--3x-large">
           Current selected language:
-          <span data-current-language>Deutsch</span>
+          <span data-current-language="">Deutsch</span>
         </h1>
         <p>
           The following example demonstrates the usage of the
@@ -87,8 +87,8 @@ This example shows how to dynamically set localizations for Synergy components. 
           the first file input updates its translations accordingly.
         </p>
         <div class="form">
-          <syn-file droparea></syn-file>
-          <syn-file droparea lang="en"></syn-file>
+          <syn-file droparea=""></syn-file>
+          <syn-file droparea="" lang="en"></syn-file>
         </div>
       </syn-card>
     </main>

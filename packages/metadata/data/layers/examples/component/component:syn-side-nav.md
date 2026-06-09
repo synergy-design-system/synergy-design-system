@@ -12,24 +12,24 @@ Side navigation lets the user navigate through the entire content of a product. 
   "
   class="side-nav-default"
 >
-  <syn-side-nav open>
-    <syn-nav-item current>
+  <syn-side-nav open="">
+    <syn-nav-item current="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
@@ -83,23 +83,23 @@ Set the variant attribute to rail to only show a small navigation stripe at the 
 <syn-header class="header-rail" label="Side Navigation"></syn-header>
 <main class="main-rail">
   <syn-side-nav class="side-nav-rail" variant="rail">
-    <syn-nav-item current>
+    <syn-nav-item current="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
@@ -177,23 +177,23 @@ Use the sticky variant when you need a persistent, toggleable side navigation th
 <syn-header class="header-sticky" label="Side Navigation"></syn-header>
 <main class="main-sticky">
   <syn-side-nav class="side-nav-sticky" variant="sticky">
-    <syn-nav-item current>
+    <syn-nav-item current="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
@@ -270,24 +270,24 @@ The Side navigation can have an optional bottom navigation "slot" to split up th
 ```html
 <syn-header class="header-footer" label="Side Navigation"></syn-header>
 <main class="main-footer">
-  <syn-side-nav class="side-nav-footer" open>
-    <syn-nav-item current>
+  <syn-side-nav class="side-nav-footer" open="">
+    <syn-nav-item current="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
@@ -296,7 +296,7 @@ The Side navigation can have an optional bottom navigation "slot" to split up th
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Footer Item
     </syn-nav-item>
-    <syn-nav-item divider slot="footer">
+    <syn-nav-item divider="" slot="footer">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Footer Item
     </syn-nav-item>
@@ -357,24 +357,24 @@ Per default, the side navigation shows an overlay. This should always be the cas
 <div class="container-fixed">
   <syn-header class="header-fixed" label="Side Navigation"></syn-header>
   <main class="main-fixed">
-    <syn-side-nav class="side-nav-fixed" open>
-      <syn-nav-item current>
+    <syn-side-nav class="side-nav-fixed" open="">
+      <syn-nav-item current="">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider>
+      <syn-nav-item divider="">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider>
+      <syn-nav-item divider="">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider>
+      <syn-nav-item divider="">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
-      <syn-nav-item divider>
+      <syn-nav-item divider="">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
       </syn-nav-item>
@@ -454,24 +454,24 @@ For specific cases it might make sense to have the navigation open while still b
 ```html
 <syn-header class="header-shrink" label="Side Navigation"></syn-header>
 <main class="main-shrink">
-  <syn-side-nav open class="side-nav-shrink" no-focus-trapping>
-    <syn-nav-item current>
+  <syn-side-nav open="" class="side-nav-shrink" no-focus-trapping="">
+    <syn-nav-item current="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
@@ -552,16 +552,16 @@ The different levels of navigation can be organized using the indention. The cur
 ```html
 <syn-header class="header-indentation" label="Side Navigation"></syn-header>
 <main class="main-indentation">
-  <syn-side-nav class="side-nav-indentation" open>
-    <syn-nav-item open>
+  <syn-side-nav class="side-nav-indentation" open="">
+    <syn-nav-item open="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
       <!-- second-level -->
-      <syn-nav-item slot="children" open>
+      <syn-nav-item slot="children" open="">
         <syn-icon name="wallpaper" slot="prefix"></syn-icon>
         Navigation Item
         <!-- third-level -->
-        <syn-nav-item slot="children" current>
+        <syn-nav-item slot="children" current="">
           <syn-icon name="wallpaper" slot="prefix"></syn-icon>
           Navigation Item
         </syn-nav-item>
@@ -569,11 +569,11 @@ The different levels of navigation can be organized using the indention. The cur
       </syn-nav-item>
       <!-- /second-level -->
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>
-    <syn-nav-item divider>
+    <syn-nav-item divider="">
       <syn-icon name="wallpaper" slot="prefix"></syn-icon>
       Navigation Item
     </syn-nav-item>

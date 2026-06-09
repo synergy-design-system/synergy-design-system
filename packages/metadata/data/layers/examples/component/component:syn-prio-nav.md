@@ -4,9 +4,9 @@ Priority navigation is supported as product navigation if required. This navigat
 
 ```html
 <syn-prio-nav>
-  <syn-nav-item current horizontal>Domains</syn-nav-item>
-  <syn-nav-item horizontal>Projects</syn-nav-item>
-  <syn-nav-item horizontal href="javascript:void(0)">Trainings</syn-nav-item>
+  <syn-nav-item current="" horizontal="">Domains</syn-nav-item>
+  <syn-nav-item horizontal="">Projects</syn-nav-item>
+  <syn-nav-item horizontal="" href="javascript:void(0)">Trainings</syn-nav-item>
 </syn-prio-nav>
 ```
 
@@ -25,14 +25,18 @@ If there is not enough space, elements will move into a dropdown. If there is on
   "
 >
   <syn-prio-nav style="width: 220px">
-    <syn-nav-item current horizontal>Domains</syn-nav-item>
-    <syn-nav-item horizontal href="javascript:void(0)">Projects</syn-nav-item>
-    <syn-nav-item horizontal>Trainings</syn-nav-item>
+    <syn-nav-item current="" horizontal="">Domains</syn-nav-item>
+    <syn-nav-item horizontal="" href="javascript:void(0)"
+      >Projects</syn-nav-item
+    >
+    <syn-nav-item horizontal="">Trainings</syn-nav-item>
   </syn-prio-nav>
   <syn-prio-nav style="width: 170px">
-    <syn-nav-item current horizontal>Domains</syn-nav-item>
-    <syn-nav-item horizontal href="javascript:void(0)">Projects</syn-nav-item>
-    <syn-nav-item horizontal>Trainings</syn-nav-item>
+    <syn-nav-item current="" horizontal="">Domains</syn-nav-item>
+    <syn-nav-item horizontal="" href="javascript:void(0)"
+      >Projects</syn-nav-item
+    >
+    <syn-nav-item horizontal="">Trainings</syn-nav-item>
   </syn-prio-nav>
 </div>
 ```

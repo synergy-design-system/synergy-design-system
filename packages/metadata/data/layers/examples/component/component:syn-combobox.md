@@ -79,7 +79,7 @@ The focus attribute provides feedback to the users, informing them that the comb
 Add the clearable attribute to add a clear button when the combobox has content.
 
 ```html
-<syn-combobox value="Green" clearable>
+<syn-combobox value="Green" clearable="">
   <syn-option value="Black">Black</syn-option>
   <syn-option value="Blue">Blue</syn-option>
   <syn-option value="Brown">Brown</syn-option>
@@ -103,7 +103,7 @@ Add the clearable attribute to add a clear button when the combobox has content.
 Use the disabled attribute to disable a combobox.
 
 ```html
-<syn-combobox disabled placeholder="Disabled">
+<syn-combobox disabled="" placeholder="Disabled">
   <syn-option value="Black">Black</syn-option>
   <syn-option value="Blue">Blue</syn-option>
   <syn-option value="Brown">Brown</syn-option>
@@ -130,7 +130,7 @@ Add the readonly attribute to draw a read-only combobox.
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-combobox placeholder="Readonly" value="option-1" readonly>
+  <syn-combobox placeholder="Readonly" value="option-1" readonly="">
     <syn-icon name="wallpaper" slot="prefix"></syn-icon>
     <syn-option value="option-1">Option 1</syn-option>
     <syn-option value="option-2">Option 2</syn-option>
@@ -138,10 +138,10 @@ Add the readonly attribute to draw a read-only combobox.
   </syn-combobox>
   <syn-combobox
     max-options-visible="2"
-    multiple
+    multiple=""
     placeholder="Readonly"
     value="option-1 option-2 option-3"
-    readonly
+    readonly=""
   >
     <syn-option value="option-1">Option 1</syn-option>
     <syn-option value="option-2">Option 2</syn-option>
@@ -159,8 +159,8 @@ To allow multiple options to be selected, use the multiple attribute. It’s a g
 ```html
 <syn-combobox
   value="option-1 option-2 option-3"
-  multiple
-  clearable
+  multiple=""
+  clearable=""
   max-options-visible="2"
 >
   <syn-option value="option-1">Option 1</syn-option>
@@ -181,8 +181,8 @@ Use the value attribute to set the initial selection.When using multiple, the va
 ```html
 <syn-combobox
   value="option-1 option-2 option-3"
-  multiple
-  clearable
+  multiple=""
+  clearable=""
   max-options-visible="2"
 >
   <syn-option value="option-1">Option 1</syn-option>
@@ -201,7 +201,7 @@ Use the value attribute to set the initial selection.When using multiple, the va
 This restricts the combobox to only allow selections from the available options. Users cannot enter custom values that are not in the list.
 
 ```html
-<syn-combobox value="Option 1" restricted>
+<syn-combobox value="Option 1" restricted="">
   <syn-option value="option-1">Option 1</syn-option>
   <syn-option value="option-2">Option 2</syn-option>
   <syn-option value="option-3">Option 3</syn-option>
@@ -215,7 +215,7 @@ This restricts the combobox to only allow selections from the available options.
 A “No results found” message is displayed, when the search term doesn’t match the options.
 
 ```html
-<syn-combobox id="no-results" value="Search term" open restricted>
+<syn-combobox id="no-results" value="Search term" open="" restricted="">
   <syn-option>Option 1</syn-option>
   <syn-option>Option 2</syn-option>
   <syn-option>Option 3</syn-option>
@@ -291,7 +291,7 @@ The invalid status is used to warn the user that the combobox is invalid. For ex
 ```html
 <form class="custom-validity">
   <syn-combobox
-    required
+    required=""
     placeholder="Type something"
     help-text="This is required"
   >
@@ -330,7 +330,7 @@ The invalid status is used to warn the user that the combobox is invalid. For ex
 Use the prefix and suffix slots to add text and icons.
 
 ```html
-<syn-combobox placeholder="Small" size="small" clearable>
+<syn-combobox placeholder="Small" size="small" clearable="">
   <span slot="prefix">prefix</span>
   <span slot="suffix">suffix</span>
   <syn-option value="Black">Black</syn-option>
@@ -348,7 +348,7 @@ Use the prefix and suffix slots to add text and icons.
   <syn-option value="Yellow">Yellow</syn-option>
 </syn-combobox>
 <br />
-<syn-combobox placeholder="Medium" size="medium" clearable>
+<syn-combobox placeholder="Medium" size="medium" clearable="">
   <span slot="prefix">prefix</span>
   <span slot="suffix">suffix</span>
   <syn-option value="Black">Black</syn-option>
@@ -366,7 +366,7 @@ Use the prefix and suffix slots to add text and icons.
   <syn-option value="Yellow">Yellow</syn-option>
 </syn-combobox>
 <br />
-<syn-combobox placeholder="Large" size="large" clearable>
+<syn-combobox placeholder="Large" size="large" clearable="">
   <span slot="prefix">prefix</span>
   <span slot="suffix">suffix</span>
   <syn-option value="Black">Black</syn-option>
@@ -386,7 +386,7 @@ Use the prefix and suffix slots to add text and icons.
 
 <br />
 
-<syn-combobox placeholder="Small" size="small" clearable>
+<syn-combobox placeholder="Small" size="small" clearable="">
   <syn-icon name="wallpaper" slot="prefix"></syn-icon>
   <syn-option value="Black">Black</syn-option>
   <syn-option value="Blue">Blue</syn-option>
@@ -404,7 +404,7 @@ Use the prefix and suffix slots to add text and icons.
   <syn-icon name="wallpaper" slot="suffix"></syn-icon>
 </syn-combobox>
 <br />
-<syn-combobox placeholder="Medium" size="medium" clearable>
+<syn-combobox placeholder="Medium" size="medium" clearable="">
   <syn-icon name="wallpaper" slot="prefix"></syn-icon>
   <syn-option value="Black">Black</syn-option>
   <syn-option value="Blue">Blue</syn-option>
@@ -422,7 +422,7 @@ Use the prefix and suffix slots to add text and icons.
   <syn-icon name="wallpaper" slot="suffix"></syn-icon>
 </syn-combobox>
 <br />
-<syn-combobox placeholder="Large" size="large" clearable>
+<syn-combobox placeholder="Large" size="large" clearable="">
   <syn-icon name="wallpaper" slot="prefix"></syn-icon>
   <syn-option value="Black">Black</syn-option>
   <syn-option value="Blue">Blue</syn-option>

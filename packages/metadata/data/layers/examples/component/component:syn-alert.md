@@ -3,7 +3,7 @@
 Alerts are used to display important messages inline or as toast notifications.
 
 ```html
-<syn-alert open>
+<syn-alert open="">
   This is a standard alert. You can customize its content and even the icon.
   <syn-icon slot="icon" name="info"></syn-icon>
 </syn-alert>
@@ -19,31 +19,31 @@ Set the variant attribute to change the alert’s variant.
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium)"
 >
-  <syn-alert variant="primary" open id="something">
+  <syn-alert variant="primary" open="" id="something">
     <syn-icon slot="icon" name="info"></syn-icon>
     <strong>This is super informative</strong><br />
     You can tell by how pretty the alert is.
   </syn-alert>
 
-  <syn-alert variant="success" open>
+  <syn-alert variant="success" open="">
     <syn-icon slot="icon" name="check_circle"></syn-icon>
     <strong>Your changes have been saved</strong><br />
     You can safely exit the app now.
   </syn-alert>
 
-  <syn-alert variant="neutral" open>
+  <syn-alert variant="neutral" open="">
     <syn-icon slot="icon" name="settings"></syn-icon>
     <strong>Your settings have been updated</strong><br />
     Settings will take effect on next login.
   </syn-alert>
 
-  <syn-alert variant="warning" open>
+  <syn-alert variant="warning" open="">
     <syn-icon slot="icon" name="warning"></syn-icon>
     <strong>Your session has ended</strong><br />
     Please login again to continue.
   </syn-alert>
 
-  <syn-alert variant="danger" open>
+  <syn-alert variant="danger" open="">
     <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
     <strong>Your account has been deleted</strong><br />
     We're very sorry to see you go!
@@ -63,7 +63,7 @@ Set the variant attribute to change the alert’s variant.
 Add the closable attribute to show a close button that will hide the alert.
 
 ```html
-<syn-alert variant="primary" open closable class="alert-closable">
+<syn-alert variant="primary" open="" closable="" class="alert-closable">
   <syn-icon slot="icon" name="info"></syn-icon>
   You can close this alert any time!
 </syn-alert>
@@ -83,7 +83,7 @@ Add the closable attribute to show a close button that will hide the alert.
 Icons are optional. Simply omit the icon slot if you don’t want them.
 
 ```html
-<syn-alert variant="primary" open>
+<syn-alert variant="primary" open="">
   Nothing fancy here, just a simple alert.
 </syn-alert>
 ```
@@ -98,19 +98,19 @@ Use the size attribute to change an alert’s size.
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-alert variant="primary" open size="small">
+  <syn-alert variant="primary" open="" size="small">
     <syn-icon slot="icon" name="info"></syn-icon>
     <strong>This is size small</strong><br />
     Nothing fancy here, just a simple alert.
   </syn-alert>
 
-  <syn-alert variant="primary" open size="medium">
+  <syn-alert variant="primary" open="" size="medium">
     <syn-icon slot="icon" name="info"></syn-icon>
     <strong>This is size medium</strong><br />
     Nothing fancy here, just a simple alert.
   </syn-alert>
 
-  <syn-alert variant="primary" open size="large">
+  <syn-alert variant="primary" open="" size="large">
     <syn-icon slot="icon" name="info"></syn-icon>
     <strong>This is size large</strong><br />
     Nothing fancy here, just a simple alert.
@@ -128,7 +128,7 @@ Set the duration attribute to automatically hide an alert after a period of time
 <div class="alert-duration">
   <syn-button variant="outline">Show Alert</syn-button>
 
-  <syn-alert variant="primary" duration="3000" closable>
+  <syn-alert variant="primary" duration="3000" closable="">
     <syn-icon slot="icon" name="info"></syn-icon>
     This alert will automatically hide itself after three seconds, unless you
     interact with it.
@@ -166,31 +166,31 @@ To display an alert as a toast notification, or “toast”, create the alert an
     <syn-button data-variant="danger">Danger</syn-button>
   </div>
 
-  <syn-alert variant="primary" duration="3000" closable>
+  <syn-alert variant="primary" duration="3000" closable="">
     <syn-icon slot="icon" name="info"></syn-icon>
     <strong>This is super informative</strong><br />
     You can tell by how pretty the alert is.
   </syn-alert>
 
-  <syn-alert variant="success" duration="3000" closable>
+  <syn-alert variant="success" duration="3000" closable="">
     <syn-icon slot="icon" name="check_circle"></syn-icon>
     <strong>Your changes have been saved</strong><br />
     You can safely exit the app now.
   </syn-alert>
 
-  <syn-alert variant="neutral" duration="3000" closable>
+  <syn-alert variant="neutral" duration="3000" closable="">
     <syn-icon slot="icon" name="settings"></syn-icon>
     <strong>Your settings have been updated</strong><br />
     Settings will take effect on next login.
   </syn-alert>
 
-  <syn-alert variant="warning" duration="3000" closable>
+  <syn-alert variant="warning" duration="3000" closable="">
     <syn-icon slot="icon" name="warning"></syn-icon>
     <strong>Your session has ended</strong><br />
     Please login again to continue.
   </syn-alert>
 
-  <syn-alert variant="danger" duration="3000" closable>
+  <syn-alert variant="danger" duration="3000" closable="">
     <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
     <strong>Your account has been deleted</strong><br />
     We're very sorry to see you go!

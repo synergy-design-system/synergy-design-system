@@ -4,27 +4,27 @@ A tag group is used to display multiple tags that belong together, often represe
 
 ```html
 <syn-tag-group>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
@@ -41,27 +41,27 @@ Use the label attribute to give the tag-group an accessible label. For labels th
 ```html
 <syn-tag-group>
   <div slot="label">This is a label</div>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
@@ -79,81 +79,81 @@ Use the size attribute to change a tag group’s size.
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-x-large)"
 >
   <syn-tag-group size="small" label="Small">
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
   </syn-tag-group>
 
   <syn-tag-group size="medium" label="Medium">
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
   </syn-tag-group>
 
   <syn-tag-group size="large" label="Large">
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
-    <syn-tag removable>
+    <syn-tag removable="">
       <syn-icon name="wallpaper"></syn-icon>
       Option
     </syn-tag>
@@ -169,27 +169,27 @@ Use the label-position attribute to change the position of the label. Use 'top' 
 
 ```html
 <syn-tag-group label="This is a label" label-position="start">
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>
-  <syn-tag removable>
+  <syn-tag removable="">
     <syn-icon name="wallpaper"></syn-icon>
     Option
   </syn-tag>

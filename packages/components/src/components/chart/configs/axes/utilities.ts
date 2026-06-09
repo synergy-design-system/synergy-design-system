@@ -31,6 +31,18 @@ export function colorSvgDataUrl(dataUrl: string, color: string): string {
   }
 }
 
+const getDataFromAxis = (axis: unknown): string[] => {
+  if (
+    axis
+    && typeof axis === 'object'
+    && 'data' in axis
+    && Array.isArray((axis as Record<string, unknown>).data)
+  ) {
+    return ((axis as Record<string, unknown>).data as unknown[]).map(String);
+  }
+  return [];
+};
+
 /**
  * Extracts the strings that will appear as y-axis labels from the current config.
  *
@@ -43,18 +55,6 @@ export function colorSvgDataUrl(dataUrl: string, color: string): string {
  * @returns Label texts that can be used for width estimation of rich y-axis labels.
  */
 export function extractYAxisLabelTexts(config: ECConfig): string[] {
-  const getDataFromAxis = (axis: unknown): string[] => {
-    if (
-      axis
-      && typeof axis === 'object'
-      && 'data' in axis
-      && Array.isArray((axis as Record<string, unknown>).data)
-    ) {
-      return ((axis as Record<string, unknown>).data as unknown[]).map(String);
-    }
-    return [];
-  };
-
   const { yAxis } = config;
   const fromAxis = Array.isArray(yAxis)
     ? yAxis.flatMap(getDataFromAxis)
@@ -320,13 +320,18 @@ export const buildAxisLabelConfigWithIcon = ({
     rich: {
       label: mergedLabelsStyle,
       ...Object.fromEntries(
-        iconUrls.map((url, index) => [
-          `icon_${index}`,
-          {
-            ...mergedIconsStyle,
-            backgroundColor: { image: colorSvgDataUrl(url, iconColor) },
-          },
-        ]),
+        iconUrls.flatMap((url, index) => {
+          // If the URL is null or undefined, skip creating a style for this icon and the formatter will render only the label for this index.
+          if (url == null) return [];
+
+          return [[
+            `icon_${index}`,
+            {
+              ...mergedIconsStyle,
+              backgroundColor: { image: colorSvgDataUrl(url, iconColor) },
+            },
+          ]];
+        }),
       ),
     },
   };

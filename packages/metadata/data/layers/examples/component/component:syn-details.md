@@ -3,7 +3,7 @@
 Details show a brief summary and expand to show additional content. If you want to group the details, we recommend that you use the syn-accordion component.
 
 ```html
-<syn-details summary="Toggle Me" contained>
+<syn-details summary="Toggle Me" contained="">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);
@@ -25,7 +25,7 @@ Details show a brief summary and expand to show additional content. If you want 
 Details show a brief summary and expand to show additional content.
 
 ```html
-<syn-details summary="Toggle Me" open>
+<syn-details summary="Toggle Me" open="">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);
@@ -47,7 +47,7 @@ Details show a brief summary and expand to show additional content.
 To give content more structure, you can use the property contained.
 
 ```html
-<syn-details summary="Toggle Me" contained>
+<syn-details summary="Toggle Me" contained="">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);
@@ -61,7 +61,7 @@ To give content more structure, you can use the property contained.
   voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
 </syn-details>
 <br />
-<syn-details summary="Toggle Me" open contained>
+<syn-details summary="Toggle Me" open="" contained="">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);
@@ -84,7 +84,7 @@ The focus event gives the user feedback that the detail has been focused by the 
 
 ```html
 <div style="padding: 5px">
-  <syn-details summary="Toggle Me" contained>
+  <syn-details summary="Toggle Me" contained="">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -107,7 +107,7 @@ The focus event gives the user feedback that the detail has been focused by the 
 Use the disable attribute to prevent the details from expanding.
 
 ```html
-<syn-details summary="Toggle Me" disabled>
+<syn-details summary="Toggle Me" disabled="">
   <h3
     style="
       margin: 0 0 var(--syn-spacing-x-small);
@@ -132,7 +132,7 @@ Use the size attribute to change a detail’s size.
 <div
   style="display: flex; gap: var(--syn-spacing-x-small); flex-direction: column"
 >
-  <syn-details size="small" contained>
+  <syn-details size="small" contained="">
     <span slot="summary">Toggle Me</span>
     <h3
       style="
@@ -146,7 +146,7 @@ Use the size attribute to change a detail’s size.
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details size="medium" contained>
+  <syn-details size="medium" contained="">
     <span slot="summary">Toggle Me</span>
     <h3
       style="
@@ -160,7 +160,7 @@ Use the size attribute to change a detail’s size.
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details size="large" contained>
+  <syn-details size="large" contained="">
     <span slot="summary">Toggle Me</span>
     <h3
       style="
@@ -184,7 +184,7 @@ Use the size attribute to change a detail’s size.
 Use the prefix Icon to prepend an icon to the details.
 
 ```html
-<syn-details open>
+<syn-details open="">
   <syn-icon name="home" slot="summary"></syn-icon>
   <span slot="summary">Accordion Element</span>
   <h3

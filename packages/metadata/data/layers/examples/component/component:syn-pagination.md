@@ -19,7 +19,7 @@ An optional divider can be shown to provide visual separation depending on the l
 
 ```html
 <syn-pagination
-  divider
+  divider=""
   current-page="2"
   page-size="25"
   total-items="500"
@@ -34,7 +34,7 @@ Use the disabled attribute to disable all interactive elements like syn-select, 
 
 ```html
 <syn-pagination
-  disabled
+  disabled=""
   current-page="1"
   page-size="25"
   total-items="500"

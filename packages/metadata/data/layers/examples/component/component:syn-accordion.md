@@ -4,7 +4,7 @@ Accordion is a group of syn-details to show a brief summary and expand to show a
 
 ```html
 <syn-accordion>
-  <syn-details summary="First" open>
+  <syn-details summary="First" open="">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -53,8 +53,8 @@ Accordion is a group of syn-details to show a brief summary and expand to show a
 To give content more structure, you can use the property contained.
 
 ```html
-<syn-accordion contained>
-  <syn-details open>
+<syn-accordion contained="">
+  <syn-details open="">
     <span slot="summary">Accordion Element</span>
     <h3
       style="
@@ -106,8 +106,8 @@ To give content more structure, you can use the property contained.
 Set the close-others property to true to ensure only one detail is open at a time.
 
 ```html
-<syn-accordion close-others>
-  <syn-details summary="First" open>
+<syn-accordion close-others="">
+  <syn-details summary="First" open="">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);
@@ -222,7 +222,7 @@ Use the disable attribute to prevent the details from expanding.
     eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
     voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
   </syn-details>
-  <syn-details summary="Accordion Element" disabled>
+  <syn-details summary="Accordion Element" disabled="">
     <h3
       style="
         margin: 0 0 var(--syn-spacing-x-small);

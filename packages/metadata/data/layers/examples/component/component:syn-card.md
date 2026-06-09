@@ -198,7 +198,7 @@ Cards accept an image slot. The image is displayed atop the card and stretches t
 Use the sharp variant attribute for the Card to Use a different style.
 
 ```html
-<syn-card class="sharp-card" sharp>
+<syn-card class="sharp-card" sharp="">
   <img
     slot="image"
     src="https://synergy-design-system.github.io/card-example.jpg"
@@ -223,7 +223,7 @@ Use the shadow attribute to add a shadow.
 
 ```html
 <div class="shadow-card-wrapper">
-  <syn-card shadow>
+  <syn-card shadow="">
     <img
       slot="image"
       src="https://synergy-design-system.github.io/card-example.jpg"
@@ -232,7 +232,7 @@ Use the shadow attribute to add a shadow.
     These are some happy employees, but not just any employees. These are SICK
     employees.
   </syn-card>
-  <syn-card shadow sharp>
+  <syn-card shadow="" sharp="">
     <img
       slot="image"
       src="https://synergy-design-system.github.io/card-example.jpg"

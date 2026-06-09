@@ -49,9 +49,9 @@ Add the vertical attribute to draw the divider in a vertical orientation. The di
 ```html
 <div style="display: flex; align-items: center; height: 2rem">
   First
-  <syn-divider vertical></syn-divider>
+  <syn-divider vertical=""></syn-divider>
   Middle
-  <syn-divider vertical></syn-divider>
+  <syn-divider vertical=""></syn-divider>
   Last
 </div>
 ```

@@ -59,7 +59,7 @@ Use the placeholder attribute to add a placeholder.
 Use the clearable attribute to make the control clearable. The clear button only appears when an option is selected.
 
 ```html
-<syn-select clearable value="option-1">
+<syn-select clearable="" value="option-1">
   <syn-option value="option-1">Option 1</syn-option>
   <syn-option value="option-2">Option 2</syn-option>
   <syn-option value="option-3">Option 3</syn-option>
@@ -89,7 +89,7 @@ The focus event gives the user feedback that the Select has been focused by the 
 Use the disabled attribute to disable a select.
 
 ```html
-<syn-select placeholder="Disabled" disabled>
+<syn-select placeholder="Disabled" disabled="">
   <syn-option value="option-1">Option 1</syn-option>
   <syn-option value="option-2">Option 2</syn-option>
   <syn-option value="option-3">Option 3</syn-option>
@@ -106,7 +106,7 @@ Add the readonly attribute to a select to draw it in a readonly state.
 <div
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
 >
-  <syn-select placeholder="Readonly" value="option-1" readonly>
+  <syn-select placeholder="Readonly" value="option-1" readonly="">
     <syn-icon name="wallpaper" slot="prefix"></syn-icon>
     <syn-option value="option-1">Option 1</syn-option>
     <syn-option value="option-2">Option 2</syn-option>
@@ -114,10 +114,10 @@ Add the readonly attribute to a select to draw it in a readonly state.
   </syn-select>
   <syn-select
     max-options-visible="2"
-    multiple
+    multiple=""
     placeholder="Readonly"
     value="option-1 option-2 option-3"
-    readonly
+    readonly=""
   >
     <syn-option value="option-1">Option 1</syn-option>
     <syn-option value="option-2">Option 2</syn-option>
@@ -136,8 +136,8 @@ To allow multiple options to be selected, use the multiple attribute. It’s a g
 <syn-select
   label="Select a Few"
   value="Option_1 Option_2 Option_3"
-  multiple
-  clearable
+  multiple=""
+  clearable=""
 >
   <syn-option value="Option_1">Option 1</syn-option>
   <syn-option value="Option_2">Option 2</syn-option>
@@ -157,8 +157,8 @@ Use the value attribute to set the initial selection.When using multiple, the va
 ```html
 <syn-select
   value="option-1 option-2 option-3 option-4"
-  multiple
-  clearable
+  multiple=""
+  clearable=""
   class="custom-tag"
 >
   <syn-option value="option-1">Option</syn-option>
@@ -251,7 +251,7 @@ The invalid status is used to warn the user that the Select is invalid. For exam
 
 ```html
 <form class="custom-validity">
-  <syn-select label="Select one" required>
+  <syn-select label="Select one" required="">
     <syn-option value="option-1">Option 1</syn-option>
     <syn-option value="option-2">Option 2</syn-option>
     <syn-option value="option-3">Option 3</syn-option>
@@ -277,7 +277,7 @@ The invalid status is used to warn the user that the Select is invalid. For exam
 Use the prefix and suffix slots to add text and icons.
 
 ```html
-<syn-select placeholder="Small" size="small" clearable>
+<syn-select placeholder="Small" size="small" clearable="">
   <syn-icon name="wallpaper" slot="prefix"></syn-icon>
   <syn-option value="option-1">Option 1</syn-option>
   <syn-option value="option-2">Option 2</syn-option>
@@ -285,7 +285,7 @@ Use the prefix and suffix slots to add text and icons.
   <syn-icon name="wallpaper" slot="suffix"></syn-icon>
 </syn-select>
 <br />
-<syn-select placeholder="Medium" size="medium" clearable>
+<syn-select placeholder="Medium" size="medium" clearable="">
   <syn-icon name="wallpaper" slot="prefix"></syn-icon>
   <syn-option value="option-1">Option 1</syn-option>
   <syn-option value="option-2">Option 2</syn-option>
@@ -293,7 +293,7 @@ Use the prefix and suffix slots to add text and icons.
   <syn-icon name="wallpaper" slot="suffix"></syn-icon>
 </syn-select>
 <br />
-<syn-select placeholder="Large" size="large" clearable>
+<syn-select placeholder="Large" size="large" clearable="">
   <syn-icon name="wallpaper" slot="prefix"></syn-icon>
   <syn-option value="option-1">Option 1</syn-option>
   <syn-option value="option-2">Option 2</syn-option>
@@ -310,9 +310,9 @@ When multiple options can be selected, you can provide custom tags by passing a 
 
 ```html
 <syn-select
-  clearable
+  clearable=""
   id="custom-tags-story"
-  multiple
+  multiple=""
   placeholder="Select one"
   value="phone email"
 >

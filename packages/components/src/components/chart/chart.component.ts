@@ -10,7 +10,6 @@ import { LineChart } from 'echarts/charts.js';
 import {
   GridComponent, LegendComponent, TitleComponent, TooltipComponent,
 } from 'echarts/components.js';
-import { classMap } from 'lit/directives/class-map.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './chart.styles.js';
@@ -191,9 +190,7 @@ export default class SynChart extends SynergyElement {
     return html`
       <div
         part="base"
-        class=${classMap({
-      chart: true,
-    })}>
+        class="chart">
       </div>
     `;
   }

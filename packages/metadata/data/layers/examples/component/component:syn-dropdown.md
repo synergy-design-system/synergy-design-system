@@ -5,14 +5,14 @@ Dropdowns expose additional content that “drops down” in a panel.Dropdowns c
 ```html
 <div style="position: relative">
   <syn-dropdown>
-    <syn-button slot="trigger" caret>Dropdown</syn-button>
+    <syn-button slot="trigger" caret="">Dropdown</syn-button>
     <syn-menu style="min-width: 240px">
       <syn-menu-item>Dropdown Item 1</syn-menu-item>
       <syn-menu-item>Dropdown Item 2</syn-menu-item>
       <syn-menu-item>Dropdown Item 3</syn-menu-item>
       <syn-divider></syn-divider>
-      <syn-menu-item type="checkbox" checked>Checkbox</syn-menu-item>
-      <syn-menu-item disabled>Disabled</syn-menu-item>
+      <syn-menu-item type="checkbox" checked="">Checkbox</syn-menu-item>
+      <syn-menu-item disabled="">Disabled</syn-menu-item>
       <syn-divider></syn-divider>
       <syn-menu-item>
         Prefix
@@ -37,7 +37,7 @@ When dropdowns are used with menus, you can listen for the syn-select event t
 <div style="position: relative">
   <div class="dropdown-selection">
     <syn-dropdown>
-      <syn-button slot="trigger" caret>Edit</syn-button>
+      <syn-button slot="trigger" caret="">Edit</syn-button>
       <syn-menu style="min-width: 240px">
         <syn-menu-item value="cut">Cut</syn-menu-item>
         <syn-menu-item value="copy">Copy</syn-menu-item>
@@ -67,7 +67,7 @@ The preferred placement of the dropdown can be set with the placement attribut
 ```html
 <div style="position: relative">
   <syn-dropdown placement="right-start">
-    <syn-button slot="trigger" caret>Edit</syn-button>
+    <syn-button slot="trigger" caret="">Edit</syn-button>
     <syn-menu style="min-width: 240px">
       <syn-menu-item>Cut</syn-menu-item>
       <syn-menu-item>Copy</syn-menu-item>
@@ -89,7 +89,7 @@ The distance from the panel to the trigger can be customized using the distance
 ```html
 <div style="position: relative">
   <syn-dropdown distance="30">
-    <syn-button slot="trigger" caret>Edit</syn-button>
+    <syn-button slot="trigger" caret="">Edit</syn-button>
     <syn-menu style="min-width: 240px">
       <syn-menu-item>Cut</syn-menu-item>
       <syn-menu-item>Copy</syn-menu-item>
@@ -111,7 +111,7 @@ The offset of the panel along the trigger can be customized using the skidding�
 ```html
 <div style="position: relative">
   <syn-dropdown skidding="30">
-    <syn-button slot="trigger" caret>Edit</syn-button>
+    <syn-button slot="trigger" caret="">Edit</syn-button>
     <syn-menu style="min-width: 240px">
       <syn-menu-item>Cut</syn-menu-item>
       <syn-menu-item>Copy</syn-menu-item>
@@ -133,7 +133,7 @@ To create a submenu, nest an <syn-menu slot="submenu"> element in a menu item
 ```html
 <div style="position: relative">
   <syn-dropdown>
-    <syn-button slot="trigger" caret>Edit</syn-button>
+    <syn-button slot="trigger" caret="">Edit</syn-button>
 
     <syn-menu style="min-width: 240px">
       <syn-menu-item value="undo">Undo</syn-menu-item>

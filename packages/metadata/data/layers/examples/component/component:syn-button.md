@@ -68,7 +68,7 @@ It’s often helpful to have a button that works like a link. This is possible b
   <syn-button href="/assets/images/wordmark.svg" download="synergy.svg"
     >Download</syn-button
   >
-  <syn-button href="https://example.com/" disabled>Disabled</syn-button>
+  <syn-button href="https://example.com/" disabled="">Disabled</syn-button>
 </div>
 ```
 
@@ -240,9 +240,9 @@ Use the caret attribute to add a dropdown indicator when a button will trigger a
     gap: var(--syn-spacing-large);
   "
 >
-  <syn-button size="small" caret>Small</syn-button>
-  <syn-button size="medium" caret>Medium</syn-button>
-  <syn-button size="large" caret>Large</syn-button>
+  <syn-button size="small" caret="">Small</syn-button>
+  <syn-button size="medium" caret="">Medium</syn-button>
+  <syn-button size="large" caret="">Large</syn-button>
 </div>
 ```
 
@@ -254,9 +254,9 @@ Use the loading attribute to make a button busy. The width will remain the same 
 
 ```html
 <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)">
-  <syn-button variant="filled" loading>Filled</syn-button>
-  <syn-button variant="outline" loading>Outline</syn-button>
-  <syn-button variant="text" loading>Text</syn-button>
+  <syn-button variant="filled" loading="">Filled</syn-button>
+  <syn-button variant="outline" loading="">Outline</syn-button>
+  <syn-button variant="text" loading="">Text</syn-button>
 </div>
 ```
 
@@ -268,19 +268,19 @@ Use the disabled attribute to disable a button.
 
 ```html
 <div style="display: flex; flex-direction: row; gap: var(--syn-spacing-large)">
-  <syn-button variant="filled" disabled>
+  <syn-button variant="filled" disabled="">
     <syn-icon name="wallpaper" slot="prefix"></syn-icon>
     Button
     <syn-icon name="wallpaper" slot="suffix"></syn-icon>
   </syn-button>
 
-  <syn-button variant="outline" disabled>
+  <syn-button variant="outline" disabled="">
     <syn-icon name="wallpaper" slot="prefix"></syn-icon>
     Button
     <syn-icon name="wallpaper" slot="suffix"></syn-icon>
   </syn-button>
 
-  <syn-button variant="text" disabled>
+  <syn-button variant="text" disabled="">
     <syn-icon name="wallpaper" slot="prefix"></syn-icon>
     Button
     <syn-icon name="wallpaper" slot="suffix"></syn-icon>

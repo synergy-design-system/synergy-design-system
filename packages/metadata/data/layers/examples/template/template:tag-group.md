@@ -5,10 +5,10 @@
   <form class="filter-form">
     <h1>Capacitive proximity sensors</h1>
 
-    <syn-details size="small" summary="Hide filters" open>
+    <syn-details size="small" summary="Hide filters" open="">
       <div class="filter-group">
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Housing </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Housing </syn-button>
           <syn-menu id="filter-1">
             <syn-menu-item type="checkbox" value="metric">metric</syn-menu-item>
 
@@ -18,10 +18,10 @@
           </syn-menu>
         </syn-dropdown>
 
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Cable material - 1 </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Cable material - 1 </syn-button>
           <syn-menu id="filter-2">
-            <syn-menu-item type="checkbox" checked value="PUR"
+            <syn-menu-item type="checkbox" checked="" value="PUR"
               >PUR</syn-menu-item
             >
 
@@ -29,22 +29,22 @@
           </syn-menu>
         </syn-dropdown>
 
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Length of cable - 4 </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Length of cable - 4 </syn-button>
           <syn-menu id="filter-3">
-            <syn-menu-item type="checkbox" checked value="0.2 m"
+            <syn-menu-item type="checkbox" checked="" value="0.2 m"
               >0.2 m</syn-menu-item
             >
 
-            <syn-menu-item type="checkbox" checked value="0.3 m"
+            <syn-menu-item type="checkbox" checked="" value="0.3 m"
               >0.3 m</syn-menu-item
             >
 
-            <syn-menu-item type="checkbox" checked value="0.7 m"
+            <syn-menu-item type="checkbox" checked="" value="0.7 m"
               >0.7 m</syn-menu-item
             >
 
-            <syn-menu-item type="checkbox" checked value="0.23 m"
+            <syn-menu-item type="checkbox" checked="" value="0.23 m"
               >0.23 m</syn-menu-item
             >
 
@@ -52,8 +52,8 @@
           </syn-menu>
         </syn-dropdown>
 
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Electrical wiring </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Electrical wiring </syn-button>
           <syn-menu id="filter-4">
             <syn-menu-item type="checkbox" value="AC 2-wire"
               >AC 2-wire</syn-menu-item
@@ -69,8 +69,8 @@
           </syn-menu>
         </syn-dropdown>
 
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Switching output </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Switching output </syn-button>
           <syn-menu id="filter-5">
             <syn-menu-item type="checkbox" value="NPN">NPN</syn-menu-item>
 
@@ -78,14 +78,14 @@
           </syn-menu>
         </syn-dropdown>
 
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Connection type - 1 </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Connection type - 1 </syn-button>
           <syn-menu id="filter-6">
             <syn-menu-item type="checkbox" value="Cable, 2-wire"
               >Cable, 2-wire</syn-menu-item
             >
 
-            <syn-menu-item type="checkbox" checked value="Cable, 3-wire"
+            <syn-menu-item type="checkbox" checked="" value="Cable, 3-wire"
               >Cable, 3-wire</syn-menu-item
             >
 
@@ -99,21 +99,21 @@
 
     <div class="filter-tags">
       <syn-tag-group label-position="start" label="Cable material">
-        <syn-tag removable> PUR </syn-tag>
+        <syn-tag removable=""> PUR </syn-tag>
       </syn-tag-group>
 
       <syn-tag-group label-position="start" label="Length of cable">
-        <syn-tag removable> 0.2 m </syn-tag>
+        <syn-tag removable=""> 0.2 m </syn-tag>
 
-        <syn-tag removable> 0.3 m </syn-tag>
+        <syn-tag removable=""> 0.3 m </syn-tag>
 
-        <syn-tag removable> 0.7 m </syn-tag>
+        <syn-tag removable=""> 0.7 m </syn-tag>
 
-        <syn-tag removable> 0.23 m </syn-tag>
+        <syn-tag removable=""> 0.23 m </syn-tag>
       </syn-tag-group>
 
       <syn-tag-group label-position="start" label="Connection type">
-        <syn-tag removable> Cable, 3-wire </syn-tag>
+        <syn-tag removable=""> Cable, 3-wire </syn-tag>
       </syn-tag-group>
 
       <syn-button class="clear-button" variant="text">
@@ -216,10 +216,10 @@
   <form class="filter-form">
     <h1>Capacitive proximity sensors</h1>
 
-    <syn-details size="small" summary="Hide filters" open>
+    <syn-details size="small" summary="Hide filters" open="">
       <div class="filter-group">
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Housing </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Housing </syn-button>
           <syn-menu id="filter-1">
             <syn-menu-item type="checkbox" value="metric">metric</syn-menu-item>
 
@@ -229,10 +229,10 @@
           </syn-menu>
         </syn-dropdown>
 
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Cable material - 1 </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Cable material - 1 </syn-button>
           <syn-menu id="filter-2">
-            <syn-menu-item type="checkbox" checked value="PUR"
+            <syn-menu-item type="checkbox" checked="" value="PUR"
               >PUR</syn-menu-item
             >
 
@@ -240,22 +240,22 @@
           </syn-menu>
         </syn-dropdown>
 
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Length of cable - 4 </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Length of cable - 4 </syn-button>
           <syn-menu id="filter-3">
-            <syn-menu-item type="checkbox" checked value="0.2 m"
+            <syn-menu-item type="checkbox" checked="" value="0.2 m"
               >0.2 m</syn-menu-item
             >
 
-            <syn-menu-item type="checkbox" checked value="0.3 m"
+            <syn-menu-item type="checkbox" checked="" value="0.3 m"
               >0.3 m</syn-menu-item
             >
 
-            <syn-menu-item type="checkbox" checked value="0.7 m"
+            <syn-menu-item type="checkbox" checked="" value="0.7 m"
               >0.7 m</syn-menu-item
             >
 
-            <syn-menu-item type="checkbox" checked value="0.23 m"
+            <syn-menu-item type="checkbox" checked="" value="0.23 m"
               >0.23 m</syn-menu-item
             >
 
@@ -263,8 +263,8 @@
           </syn-menu>
         </syn-dropdown>
 
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Electrical wiring </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Electrical wiring </syn-button>
           <syn-menu id="filter-4">
             <syn-menu-item type="checkbox" value="AC 2-wire"
               >AC 2-wire</syn-menu-item
@@ -280,8 +280,8 @@
           </syn-menu>
         </syn-dropdown>
 
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Switching output </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Switching output </syn-button>
           <syn-menu id="filter-5">
             <syn-menu-item type="checkbox" value="NPN">NPN</syn-menu-item>
 
@@ -289,14 +289,14 @@
           </syn-menu>
         </syn-dropdown>
 
-        <syn-dropdown stay-open-on-select sync="width">
-          <syn-button slot="trigger" caret> Connection type - 1 </syn-button>
+        <syn-dropdown stay-open-on-select="" sync="width">
+          <syn-button slot="trigger" caret=""> Connection type - 1 </syn-button>
           <syn-menu id="filter-6">
             <syn-menu-item type="checkbox" value="Cable, 2-wire"
               >Cable, 2-wire</syn-menu-item
             >
 
-            <syn-menu-item type="checkbox" checked value="Cable, 3-wire"
+            <syn-menu-item type="checkbox" checked="" value="Cable, 3-wire"
               >Cable, 3-wire</syn-menu-item
             >
 
@@ -310,21 +310,21 @@
 
     <div class="filter-tags">
       <syn-tag-group label-position="start" label="Cable material">
-        <syn-tag removable> PUR </syn-tag>
+        <syn-tag removable=""> PUR </syn-tag>
       </syn-tag-group>
 
       <syn-tag-group label-position="start" label="Length of cable">
-        <syn-tag removable> 0.2 m </syn-tag>
+        <syn-tag removable=""> 0.2 m </syn-tag>
 
-        <syn-tag removable> 0.3 m </syn-tag>
+        <syn-tag removable=""> 0.3 m </syn-tag>
 
-        <syn-tag removable> 0.7 m </syn-tag>
+        <syn-tag removable=""> 0.7 m </syn-tag>
 
-        <syn-tag removable> 0.23 m </syn-tag>
+        <syn-tag removable=""> 0.23 m </syn-tag>
       </syn-tag-group>
 
       <syn-tag-group label-position="start" label="Connection type">
-        <syn-tag removable> Cable, 3-wire </syn-tag>
+        <syn-tag removable=""> Cable, 3-wire </syn-tag>
       </syn-tag-group>
 
       <syn-button class="clear-button" variant="text">

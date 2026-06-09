@@ -4,20 +4,20 @@
 <table class="syn-table--default">
   <thead>
     <tr>
-      <th class>Name</th>
-      <th class>Customer</th>
-      <th class>Location</th>
-      <th class>Contract Start</th>
-      <th class></th>
+      <th class="">Name</th>
+      <th class="">Customer</th>
+      <th class="">Location</th>
+      <th class="">Contract Start</th>
+      <th class=""></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -29,10 +29,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -44,10 +44,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -59,10 +59,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -74,10 +74,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -106,20 +106,20 @@
 <table class="syn-table--alternating">
   <thead>
     <tr>
-      <th class>Name</th>
-      <th class>Customer</th>
-      <th class>Location</th>
-      <th class>Contract Start</th>
-      <th class></th>
+      <th class="">Name</th>
+      <th class="">Customer</th>
+      <th class="">Location</th>
+      <th class="">Contract Start</th>
+      <th class=""></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -131,10 +131,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -146,10 +146,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -161,10 +161,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -176,10 +176,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -208,20 +208,20 @@
 <table class="syn-table--border">
   <thead>
     <tr>
-      <th class>Name</th>
-      <th class>Customer</th>
-      <th class>Location</th>
-      <th class>Contract Start</th>
-      <th class></th>
+      <th class="">Name</th>
+      <th class="">Customer</th>
+      <th class="">Location</th>
+      <th class="">Contract Start</th>
+      <th class=""></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -233,10 +233,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -248,10 +248,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -263,10 +263,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -278,10 +278,10 @@
     </tr>
 
     <tr>
-      <td class>Max Mustermann</td>
-      <td class>Muster AG</td>
-      <td class>Hamburg, Düsseldorf, Freiburg</td>
-      <td class>20.01.2023</td>
+      <td class="">Max Mustermann</td>
+      <td class="">Muster AG</td>
+      <td class="">Hamburg, Düsseldorf, Freiburg</td>
+      <td class="">20.01.2023</td>
       <td class="buttons-cell">
         <syn-button variant="text" size="small">
           <syn-icon name="edit"></syn-icon>
@@ -315,19 +315,19 @@ property should be set to 'separate'. Otherwise the table will have some strange
     <thead>
       <tr>
         <th class="syn-table-cell--shadow-end shadow-cell">Name</th>
-        <th class>Customer</th>
-        <th class>Location</th>
-        <th class>Contract Start</th>
-        <th class></th>
+        <th class="">Customer</th>
+        <th class="">Location</th>
+        <th class="">Contract Start</th>
+        <th class=""></th>
       </tr>
     </thead>
 
     <tbody>
       <tr>
         <td class="syn-table-cell--shadow-end shadow-cell">Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -340,9 +340,9 @@ property should be set to 'separate'. Otherwise the table will have some strange
 
       <tr>
         <td class="syn-table-cell--shadow-end shadow-cell">Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -355,9 +355,9 @@ property should be set to 'separate'. Otherwise the table will have some strange
 
       <tr>
         <td class="syn-table-cell--shadow-end shadow-cell">Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -370,9 +370,9 @@ property should be set to 'separate'. Otherwise the table will have some strange
 
       <tr>
         <td class="syn-table-cell--shadow-end shadow-cell">Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -385,9 +385,9 @@ property should be set to 'separate'. Otherwise the table will have some strange
 
       <tr>
         <td class="syn-table-cell--shadow-end shadow-cell">Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -461,20 +461,20 @@ property should be set to 'separate'. Otherwise the table will have some strange
   <table class="syn-table--default">
     <thead>
       <tr>
-        <th class>Name</th>
-        <th class>Customer</th>
-        <th class>Location</th>
-        <th class>Contract Start</th>
+        <th class="">Name</th>
+        <th class="">Customer</th>
+        <th class="">Location</th>
+        <th class="">Contract Start</th>
         <th class="syn-table-cell--shadow-start shadow-cell"></th>
       </tr>
     </thead>
 
     <tbody>
       <tr>
-        <td class>Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Max Mustermann</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="syn-table-cell--shadow-start shadow-cell buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -486,10 +486,10 @@ property should be set to 'separate'. Otherwise the table will have some strange
       </tr>
 
       <tr>
-        <td class>Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Max Mustermann</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="syn-table-cell--shadow-start shadow-cell buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -501,10 +501,10 @@ property should be set to 'separate'. Otherwise the table will have some strange
       </tr>
 
       <tr>
-        <td class>Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Max Mustermann</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="syn-table-cell--shadow-start shadow-cell buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -516,10 +516,10 @@ property should be set to 'separate'. Otherwise the table will have some strange
       </tr>
 
       <tr>
-        <td class>Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Max Mustermann</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="syn-table-cell--shadow-start shadow-cell buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -531,10 +531,10 @@ property should be set to 'separate'. Otherwise the table will have some strange
       </tr>
 
       <tr>
-        <td class>Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Max Mustermann</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="syn-table-cell--shadow-start shadow-cell buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -624,10 +624,10 @@ property should be set to 'separate'. Otherwise the table will have some strange
 
     <tbody>
       <tr>
-        <td class>Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Max Mustermann</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -639,10 +639,10 @@ property should be set to 'separate'. Otherwise the table will have some strange
       </tr>
 
       <tr>
-        <td class>Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Max Mustermann</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -654,10 +654,10 @@ property should be set to 'separate'. Otherwise the table will have some strange
       </tr>
 
       <tr>
-        <td class>Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Max Mustermann</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -669,10 +669,10 @@ property should be set to 'separate'. Otherwise the table will have some strange
       </tr>
 
       <tr>
-        <td class>Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Max Mustermann</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>
@@ -684,10 +684,10 @@ property should be set to 'separate'. Otherwise the table will have some strange
       </tr>
 
       <tr>
-        <td class>Max Mustermann</td>
-        <td class>Muster AG</td>
-        <td class>Hamburg, Düsseldorf, Freiburg</td>
-        <td class>20.01.2023</td>
+        <td class="">Max Mustermann</td>
+        <td class="">Muster AG</td>
+        <td class="">Hamburg, Düsseldorf, Freiburg</td>
+        <td class="">20.01.2023</td>
         <td class="buttons-cell">
           <syn-button variant="text" size="small">
             <syn-icon name="edit"></syn-icon>

@@ -144,19 +144,23 @@
         applicable.
       </p>
 
-      <syn-textarea name="message" required label="Message"></syn-textarea>
+      <syn-textarea name="message" required="" label="Message"></syn-textarea>
     </fieldset>
 
     <fieldset>
       <legend>Contact Details</legend>
       <div class="fields">
         <syn-input name="customerNr" label="Customer Number"></syn-input>
-        <syn-input name="companyName" required label="Company name"></syn-input>
-        <syn-input name="address" required label="Address"></syn-input>
-        <syn-input name="zip" required label="Postal Code"></syn-input>
-        <syn-input name="city" required label="City"></syn-input>
+        <syn-input
+          name="companyName"
+          required=""
+          label="Company name"
+        ></syn-input>
+        <syn-input name="address" required="" label="Address"></syn-input>
+        <syn-input name="zip" required="" label="Postal Code"></syn-input>
+        <syn-input name="city" required="" label="City"></syn-input>
 
-        <syn-select name="country" required label="Country">
+        <syn-select name="country" required="" label="Country">
           <syn-option value="0">Deutschland</syn-option>
 
           <syn-option value="1">USA</syn-option>
@@ -166,7 +170,7 @@
 
         <syn-combobox
           name="salesPerson"
-          required
+          required=""
           label="Your reference contact"
         >
           <syn-option>Max Mustermann</syn-option>
@@ -179,7 +183,7 @@
         <syn-input
           type="email"
           name="mail"
-          required
+          required=""
           label="E-Mail address"
         ></syn-input>
       </div>
@@ -256,18 +260,18 @@
     id="upload-multiple-form-docs"
   >
     <syn-file
-      droparea
+      droparea=""
       name="files"
-      multiple
+      multiple=""
       label="Select Files"
       help-text="Max file size is 500kb. Supported file types are .jgp, .png and .pdf"
     ></syn-file>
 
     <!-- File list: hidden until files are selected -->
-    <ul class="uploaded-files" hidden></ul>
+    <ul class="uploaded-files" hidden=""></ul>
 
     <div class="submit-actions">
-      <syn-button type="submit" variant="filled" disabled>Upload</syn-button>
+      <syn-button type="submit" variant="filled" disabled="">Upload</syn-button>
     </div>
   </form>
 </div>

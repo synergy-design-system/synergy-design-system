@@ -1,12 +1,14 @@
 import { expect } from '@open-wc/testing';
-import type { YAXisOption } from 'echarts/types/dist/shared';
+import type { XAXisOption, YAXisOption } from 'echarts/types/dist/shared';
 import {
+  applyAxisDefaultsPreprocessor,
   buildAxisLabelConfigWithIcon,
   colorSvgDataUrl,
   extractYAxisLabelTexts,
   measureMaxTextWidth,
   patchAxisConfig,
 } from './utilities.js';
+import type { ECConfig } from '../../types.js';
 
 const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
 
@@ -157,6 +159,46 @@ describe('chart axis utilities', () => {
       };
 
       expect(axisLabel.rich.label.width).to.equal(96);
+    });
+
+    it('derives label width from the widest configured y-axis label when available', () => {
+      const axisLabel = buildAxisLabelConfigWithIcon({
+        config: { yAxis: { data: ['Short', 'A much longer label'], type: 'category' } },
+        iconColor: '#111111',
+        iconPosition: 'left',
+        iconsStyle: undefined,
+        iconUrls: [svgDataUrl],
+        labelsStyle: { fontSize: 16 },
+      }) as unknown as {
+        rich: Record<string, { width?: number | string }>;
+      };
+
+      expect(axisLabel.rich.label.width).to.be.a('number');
+      expect(Number(axisLabel.rich.label.width)).to.be.greaterThan(30);
+    });
+  });
+
+  describe('applyAxisDefaultsPreprocessor', () => {
+    it('applies defaults to each axis entry without overriding existing values', () => {
+      const config: ECConfig = {
+        xAxis: [{ type: 'category' }, { axisLabel: { margin: 99 }, nameLocation: 'end', type: 'category' }],
+        yAxis: { type: 'value' },
+      };
+
+      applyAxisDefaultsPreprocessor(config);
+
+      expect((config.xAxis as XAXisOption[])[0].axisLabel?.margin).to.equal(12);
+      expect((config.xAxis as XAXisOption[])[0].nameLocation).to.equal('center');
+      expect((config.xAxis as XAXisOption[])[0].nameGap).to.equal(32);
+
+      expect((config.xAxis as XAXisOption[])[1].axisLabel?.margin).to.equal(99);
+      expect((config.xAxis as XAXisOption[])[1].nameLocation).to.equal('end');
+      expect((config.xAxis as XAXisOption[])[1].nameGap).to.equal(32);
+
+      expect((config.yAxis as YAXisOption).axisLabel?.margin).to.equal(16);
+      expect((config.yAxis as YAXisOption).nameGap).to.equal(16);
+      expect((config.yAxis as YAXisOption).nameTextStyle?.align).to.equal('right');
+      expect((config.yAxis as YAXisOption).nameTextStyle?.padding).to.deep.equal([0, 16, 0, 0]);
     });
   });
 });

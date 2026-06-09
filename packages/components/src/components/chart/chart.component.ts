@@ -1,5 +1,5 @@
 import {
-  type EChartsType, init, registerTheme, use,
+  type EChartsType, init, registerPreprocessor, registerTheme, use,
 } from 'echarts/core.js';
 import { CanvasRenderer } from 'echarts/renderers.js';
 import { html } from 'lit';
@@ -17,6 +17,7 @@ import styles from './chart.styles.js';
 import { PALETTE_TOKENS, type SynChartPalette } from './chart.palettes.js';
 import type { ECConfig } from './types.js';
 import { synergyLightTheme } from './themes/light.js';
+import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -105,7 +106,7 @@ export default class SynChart extends SynergyElement {
 
     if (colors.length > 0) {
       const oldOption = this.chartInstance.getOption();
-      if(!oldOption) return;
+      if (!oldOption) return;
 
       oldOption.color = colors;
       // We can not only replace 'color' via { replaceMerge: ['color'] }. Echarts does not allow to do this.
@@ -123,11 +124,19 @@ export default class SynChart extends SynergyElement {
     }
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    registerTheme('default', synergyLightTheme);
+    /**
+     * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.
+     * This is needed because ECharts does not provide a way to set specific styles for x and y axis, only for axis types.
+     */
+    registerPreprocessor(applyAxisDefaultsPreprocessor);
+  }
+
   // Initialize echarts instance and resize observer
   protected firstUpdated(_changedProperties: PropertyValues): void {
     if (this.chartContainer !== null && this.chartContainer !== undefined) {
-      registerTheme('default', synergyLightTheme);
-
       this.chartInstance = init(this.chartContainer, 'default');
 
       // Resize observer

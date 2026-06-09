@@ -1,6 +1,8 @@
 import type { TextCommonOption } from 'echarts/types/src/util/types.js';
 import type { CategoryAxisBaseOption } from 'echarts/types/src/coord/axisCommonTypes.js';
-import { getRealStyleValue, getRealValueWithoutUnit } from '../../themes/utilities.js';
+import {
+  getRealStyleValue, getRealValueWithoutUnit, normalizeArray, setDefaultValueIfNotAvailable,
+} from '../../themes/utilities.js';
 import type { ECConfig } from '../../types.js';
 import { mergeConfigs } from '../config.js';
 import type {
@@ -181,20 +183,20 @@ export const patchAxisConfig = <T extends AxisKey>(
 /**
  * Default styles for axis labels
  */
-const DEFAULT_AXIS_LABELS_STYLE: TextCommonOption = {
+const getDefaultAxisLabelStyle = (): TextCommonOption => ({
   color: getRealStyleValue('--syn-typography-color-text-quiet'),
   fontFamily: getRealStyleValue('--syn-font-sans'),
   fontSize: getRealStyleValue('--syn-font-size-x-small'),
   fontWeight: getRealStyleValue('--syn-font-weight-normal') as TextCommonOption['fontWeight'],
-};
+});
 
 /**
  * Default styles for axis label icons
  */
-const DEFAULT_AXIS_ICONS_STYLE: TextCommonOption = {
+const getDefaultAxisIconStyle = (): TextCommonOption => ({
   height: getRealValueWithoutUnit('--syn-spacing-large'),
   width: getRealValueWithoutUnit('--syn-spacing-large'),
-};
+});
 
 /**
  * Builds a compact CSS font shorthand from the effective rich-label styles.
@@ -204,10 +206,11 @@ const DEFAULT_AXIS_ICONS_STYLE: TextCommonOption = {
  * @returns A CSS font shorthand string suitable for `CanvasRenderingContext2D.font`.
  */
 const getFontShorthand = (labelsStyle: TextCommonOption | undefined): string => {
-  const fontSizeValue = labelsStyle?.fontSize ?? DEFAULT_AXIS_LABELS_STYLE.fontSize;
+  const defaultAxisLabelStyle = getDefaultAxisLabelStyle();
+  const fontSizeValue = labelsStyle?.fontSize ?? defaultAxisLabelStyle.fontSize;
   const fontSize = typeof fontSizeValue === 'number' ? `${fontSizeValue}px` : String(fontSizeValue);
-  const fontFamily = String(labelsStyle?.fontFamily ?? DEFAULT_AXIS_LABELS_STYLE.fontFamily);
-  const fontWeight = String(labelsStyle?.fontWeight ?? DEFAULT_AXIS_LABELS_STYLE.fontWeight);
+  const fontFamily = String(labelsStyle?.fontFamily ?? defaultAxisLabelStyle.fontFamily);
+  const fontWeight = String(labelsStyle?.fontWeight ?? defaultAxisLabelStyle.fontWeight);
 
   return `${fontWeight} ${fontSize} ${fontFamily}`;
 };
@@ -301,14 +304,14 @@ export const buildAxisLabelConfigWithIcon = ({
 
   const mergedLabelsStyle = {
     // ECharts rich labels do not inherit all text defaults from the global textStyle.
-    ...DEFAULT_AXIS_LABELS_STYLE,
+    ...getDefaultAxisLabelStyle(),
     padding: positionConfig.padding,
     width: positionConfig.width,
     ...labelsStyle,
   };
 
   const mergedIconsStyle = {
-    ...DEFAULT_AXIS_ICONS_STYLE,
+    ...getDefaultAxisIconStyle(),
     ...iconsStyle,
   };
 
@@ -328,3 +331,87 @@ export const buildAxisLabelConfigWithIcon = ({
     },
   };
 };
+
+const getDefaultXAxisStyle = () => ({
+  'axisLabel.margin': getRealValueWithoutUnit('--syn-spacing-small'),
+  nameGap: 32,
+  nameLocation: 'center',
+});
+
+const getDefaultYAxisStyle = () => ({
+  'axisLabel.margin': getRealValueWithoutUnit('--syn-spacing-medium'),
+  nameGap: getRealValueWithoutUnit('--syn-spacing-medium'),
+  'nameTextStyle.align': 'right',
+  'nameTextStyle.padding': [0, getRealValueWithoutUnit('--syn-spacing-medium'), 0, 0],
+});
+
+/**
+ * Mutation helper to apply default styles to all entries of the specified axis key in the config.
+ * This is used by the `applyAxisDefaultsPreprocessor` to set Synergy-specific defaults for x and y axes.
+ * @param axisKey - The axis key to apply defaults for ('xAxis' or 'yAxis').
+ * @param axisOption - The axis option object or array of objects to apply defaults to.
+ */
+const applyAxisDefaults = <T extends AxisKey>(axisKey: T, axisOption: ECConfig[T]) => {
+  if (!axisOption) return;
+  const axes = normalizeArray<ECConfig[T]>(axisOption);
+  const axisDefaults = axisKey === 'xAxis' ? getDefaultXAxisStyle() : getDefaultYAxisStyle();
+  axes.forEach((axis) => {
+    Object.entries(axisDefaults).forEach(([keyPath, value]) => {
+      setDefaultValueIfNotAvailable(axis as Record<string, unknown>, keyPath, value);
+    });
+  });
+};
+
+/**
+ * Preprocessor to apply default styles to x and y axes based on the Synergy theme.
+ * This is needed because ECharts does not provide a way to set specific styles for x and y axis, only for axis types.
+ * If the user already provided specific styles for these properties, those will be respected and not overridden.
+ *
+ * @param option - The ECharts config option object that is being processed before rendering.
+ */
+export const applyAxisDefaultsPreprocessor = (option: ECConfig) => {
+  if (!option || (!option.xAxis && !option.yAxis)) return;
+
+  if (option.xAxis) {
+    applyAxisDefaults('xAxis', option.xAxis);
+  }
+  if (option.yAxis) {
+    applyAxisDefaults('yAxis', option.yAxis);
+  }
+};
+
+/**
+ * Default styling for all axes.
+ * This is done as function to ensure that the real style values are read at runtime and not at build time, which allows them to be dynamic based on the current theme.
+ */
+export const axisCommonStyles = () => ({
+  // This ensures that the number of ticks on multiple axes are the same
+  alignTicks: true,
+  axisLabel: {
+    color: getRealStyleValue('--syn-typography-color-text-quiet'),
+    fontFamily: getRealStyleValue('--syn-font-sans'),
+    fontSize: getRealStyleValue('--syn-font-size-x-small'),
+    fontWeight: getRealStyleValue('--syn-font-weight-normal'),
+  },
+  axisLine: {
+    lineStyle: {
+      color: getRealStyleValue('--syn-grid-lines-color'),
+    },
+    show: false,
+  },
+  minorSplitLine: {
+    lineStyle: {
+    },
+  },
+  nameTextStyle: {
+    color: getRealStyleValue('--syn-typography-color-text'),
+    fontSize: getRealStyleValue('--syn-font-size-small'),
+    fontWeight: getRealStyleValue('--syn-font-weight-bold'),
+  },
+  splitLine: {
+    lineStyle: {
+      color: getRealStyleValue('--syn-grid-lines-color'),
+    },
+    show: false,
+  },
+});

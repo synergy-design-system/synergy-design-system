@@ -1,5 +1,45 @@
 # Changelog
 
+## 3.15.3
+
+### Patch Changes
+
+- [#1298](https://github.com/synergy-design-system/synergy-design-system/pull/1298) [`49e5b92`](https://github.com/synergy-design-system/synergy-design-system/commit/49e5b92f06c0600c5e8612834cb34e0f7c2a474a) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-08
+
+  fix: 🐛 `<syn-select>` and `<syn-dropdown>` not opening correctly when slotted in `<syn-dialog>` or `<syn-drawer>` ([#1297](https://github.com/synergy-design-system/synergy-design-system/issues/1297))
+
+  This release fixes an issue with multiple Synergy components automatically closing when opened in a `<syn-dialog>` or `<syn-drawer>` element in Chromium based browsers. This happens because Chromium now uses a more aggressive method of checking the active focused element when using `popover`.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.15.3
+
+## 3.15.2
+
+### Patch Changes
+
+- [#1293](https://github.com/synergy-design-system/synergy-design-system/pull/1293) [`513e931`](https://github.com/synergy-design-system/synergy-design-system/commit/513e931c88a46e1e71a3a4d8ca7ac3c3a85b2189) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-03
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+- Updated dependencies [[`513e931`](https://github.com/synergy-design-system/synergy-design-system/commit/513e931c88a46e1e71a3a4d8ca7ac3c3a85b2189)]:
+  - @synergy-design-system/tokens@3.15.2
+
+## 3.15.1
+
+### Patch Changes
+
+- [#1296](https://github.com/synergy-design-system/synergy-design-system/pull/1296) [`4fdb69a`](https://github.com/synergy-design-system/synergy-design-system/commit/4fdb69aec5ddb0ddfa76a948c87eaf84be6fd670) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-03
+
+  fix: 🐛 `<syn-menu>` multiple issues ([#1295](https://github.com/synergy-design-system/synergy-design-system/issues/1295))
+
+  This release fixes multiple issues when using `<syn-menu>`:
+  - submenus no longer stay open when leaving the browser window ([#882](https://github.com/synergy-design-system/synergy-design-system/issues/882))
+  - `<syn-menu-item>` wrapped in tooltip can now be used reliably (including navigation and selection) ([#1162](https://github.com/synergy-design-system/synergy-design-system/issues/1162))
+  - `<syn-menu-item>` no longer steals focus on hover ([#1286](https://github.com/synergy-design-system/synergy-design-system/issues/1286))
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.15.1
+
 ## 3.15.0
 
 ### Minor Changes

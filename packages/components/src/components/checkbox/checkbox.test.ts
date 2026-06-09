@@ -1,7 +1,6 @@
 /* eslint-disable */
 import '../../../dist/synergy.js';
 import { aTimeout, expect, fixture, html, oneEvent, waitUntil } from '@open-wc/testing';
-import { clickOnElement } from '../../internal/test.js';
 import { runFormControlBaseTests } from '../../internal/test/form-control-base-tests.js';
 import { sendKeys } from '@web/test-runner-commands';
 import sinon from 'sinon';
@@ -189,7 +188,7 @@ describe('<syn-checkbox>', () => {
     });
 
     it('should be invalid when setCustomValidity() is called with a non-empty value', async () => {
-      const checkbox = await fixture<HTMLFormElement>(html` <syn-checkbox></syn-checkbox> `);
+      const checkbox = await fixture<SynCheckbox>(html` <syn-checkbox></syn-checkbox> `);
 
       // Submitting the form after setting custom validity should not trigger the handler
       checkbox.setCustomValidity('Invalid selection');
@@ -202,7 +201,7 @@ describe('<syn-checkbox>', () => {
       expect(checkbox.hasAttribute('data-user-invalid')).to.be.false;
       expect(checkbox.hasAttribute('data-user-valid')).to.be.false;
 
-      await clickOnElement(checkbox);
+      checkbox.click();
       await checkbox.updateComplete;
 
       expect(checkbox.hasAttribute('data-user-invalid')).to.be.true;

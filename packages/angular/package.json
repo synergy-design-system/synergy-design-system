@@ -22,7 +22,7 @@
     "url": "https://github.com/synergy-design-system/synergy-design-system.git",
     "directory": "packages/angular"
   },
-  "version": "3.15.0",
+  "version": "3.15.3",
   "scripts": {
     "_build": "pnpm _clean && ng-packagr -c tsconfig.lib.json && pnpm _after-build",
     "_clean": "rm -rf ../_private/angular-demo/.angular",
@@ -36,8 +36,8 @@
     "@synergy-design-system/tokens": "workspace:*"
   },
   "devDependencies": {
-    "@angular/core": "^21.2.10",
-    "@angular/forms": "^21.2.10",
+    "@angular/core": "^21.2.15",
+    "@angular/forms": "^21.2.15",
     "@synergy-design-system/components": "workspace:*",
     "ng-packagr": "^21.2.3",
     "tslib": "^2.8.1",

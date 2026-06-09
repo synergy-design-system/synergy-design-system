@@ -79,13 +79,11 @@ export default class SynMenuItem extends SynergyElement {
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener('click', this.handleHostClick);
-    this.addEventListener('mouseover', this.handleMouseOver);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener('click', this.handleHostClick);
-    this.removeEventListener('mouseover', this.handleMouseOver);
   }
 
   private handleDefaultSlotChange() {
@@ -110,11 +108,6 @@ export default class SynMenuItem extends SynergyElement {
       event.preventDefault();
       event.stopImmediatePropagation();
     }
-  };
-
-  private handleMouseOver = (event: MouseEvent) => {
-    this.focus();
-    event.stopPropagation();
   };
 
   @watch('checked')

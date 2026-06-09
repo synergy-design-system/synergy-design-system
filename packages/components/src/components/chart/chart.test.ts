@@ -1,10 +1,10 @@
 import '../../../dist/components/chart/chart.js';
 import { expect, fixture, html } from '@open-wc/testing';
 import type { SeriesOption } from 'echarts';
+import type { XAXisOption, YAXisOption } from 'echarts/types/dist/shared';
 import type SynChart from './chart.component.js';
 import { PALETTE_TOKENS } from './chart.palettes.js';
 import type { ECConfig } from './types.js';
-import type { XAXisOption, YAXisOption } from 'echarts/types/dist/shared';
 
 async function createChart(template = html`<syn-chart></syn-chart>`): Promise<SynChart> {
   return fixture<SynChart>(template);

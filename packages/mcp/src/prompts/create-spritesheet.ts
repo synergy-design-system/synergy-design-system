@@ -9,24 +9,28 @@ export const createSpriteSheetPrompt = (server: McpServer) => {
     'create-spritesheet',
     {
       argsSchema: {
-        folder: z
-          .string()
-          .describe('The folder that should be searched for occurrences of syn-icon.'),
         name: z
           .string()
           .optional()
           .describe('The name of the generated sprite sheet. If not provided, the sprite sheet will be registered as the default library.'),
+        path: z
+          .string()
+          .optional()
+          .describe('A directory or file that should be searched for occurrences of icons. If omitted, searches in the whole project.'),
       },
       description: 'Creates a SVG sprite sheet for a provided set of icons. Only works with the Synergy 2025 icon set.',
       title: 'Create Sprite Sheet',
     },
     promptHandler('create-spritesheet', async ({
-      folder,
       name = 'default',
+      path,
     // eslint-disable-next-line @typescript-eslint/require-await
     }) => {
       // Ensure to use a valid name
       const resolvedName = name?.trim() || 'default';
+
+      // Ensure to use a valid path
+      const resolvedPath = !path ? 'the entire project' : path.trim();
 
       // Code sample to register the generated sprite sheet as an icon library in the Synergy Design System
       const registrationCode = `
@@ -42,12 +46,12 @@ registerIconLibrary('${resolvedName}', {
       const content = `
 You are working with a Synergy Design System project.
 Task:
-Generate an SVG sprite sheet for all synergy icons used in the folder "${folder}".
+Generate an SVG sprite sheet for all synergy icons used in ${resolvedPath}.
 
 Instructions:
-1. Search through the folder and find all occurrences of \`<syn-icon>\`.
+1. Search through the project (or the provided path if specified) and find all occurrences of \`<syn-icon>\` and \`<syn-icon-button>\`.
 2. Extract the value of the "name" attribute from each usage.
-3. If at least one icon name was extracted, call the "create-spritesheet" tool.
+3. If at least one icon name was extracted, call the "create-spritesheet" tool with the extracted icon names as the "icons" argument.
    If no icons were found, do not call the tool and instead inform the user.
 
 After the tool returns:
@@ -83,9 +87,9 @@ Important:
       ];
     }, {
       description: ({
-        folder,
         name,
-      }) => `Creates a SVG sprite sheet for all synergy icons found in ${folder} and registers it as ${name ?? 'the default library'}.`,
+        path,
+      }) => `Creates a SVG sprite sheet for all synergy icons found in ${path} and registers it as ${name ?? 'the default library'}.`,
     }),
   );
 };

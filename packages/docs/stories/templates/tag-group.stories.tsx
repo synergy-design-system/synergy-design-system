@@ -108,7 +108,7 @@ export const TagGroup = {
     // Pure view function that takes state and actions as parameters
     const renderView = (currentState: typeof state, actions: Actions) => html`
       <form class="filter-form">
-        <h1>Capacitive proximity sensors</h1>
+        <h1 class="syn-heading--3x-large">Capacitive proximity sensors</h1>
         
         <syn-details
           summary=${currentState.filtersOpen ? 'Hide filters' : 'Show filters'}
@@ -196,7 +196,7 @@ export const TagGroup = {
         .filter-form h1 {
           color: var(--syn-typography-color-text);
           font: var(--syn-heading-3x-large);
-          margin: 0 0 var(--syn-spacing-2x-large);
+          margin: 0 0 var(--syn-spacing-2x-large) !important;
           padding: 0;
         }
 

@@ -154,7 +154,7 @@ export const ContactForm = {
     }
     </style>
     <div class="synergy-form-demo">
-      <h1>${getTranslation('contactForm.headline')}</h1>
+      <h1 class="syn-heading--3x-large">${getTranslation('contactForm.headline')}</h1>
       <p>${getTranslation('contactForm.subHeadline')}</p>
 
       <form method="post" id="syn-form-demo">
@@ -281,7 +281,7 @@ export const ContactFormTablet = {
 export const MultipleFilesUploadForm: Story = {
   render: (_, context) => html`
     <div class="synergy-upload-form-demo">
-      <h1>${getTranslation('fileUpload.multiple.headline')}</h1>
+      <h1 class="syn-heading--3x-large">${getTranslation('fileUpload.multiple.headline')}</h1>
       <form id="upload-multiple-form-${context.viewMode}" enctype="multipart/form-data" method="post">
         <syn-file
           droparea
@@ -316,9 +316,8 @@ export const MultipleFilesUploadForm: Story = {
       }
 
       h1 {
-        font-size: var(--syn-font-size-3x-large);
-        font-weight: var(--syn-font-weight-bold);
-        margin: 0 0 var(--syn-spacing-medium) 0;
+        font: var(--syn-heading-3x-large) !important;
+        margin: 0 0 var(--syn-spacing-medium) 0 !important;
       }
 
       .uploaded-files {

@@ -95,7 +95,7 @@
   }
 </style>
 <div class="synergy-form-demo">
-  <h1>Contact Form</h1>
+  <h1 class="syn-heading--3x-large">Contact Form</h1>
   <p>
     Please fill in your personal information and let us know how we can help
     you.
@@ -253,7 +253,7 @@
 
 ```html
 <div class="synergy-upload-form-demo">
-  <h1>Multiple files upload</h1>
+  <h1 class="syn-heading--3x-large">Multiple files upload</h1>
   <form
     enctype="multipart/form-data"
     method="post"
@@ -291,9 +291,8 @@
   }
 
   h1 {
-    font-size: var(--syn-font-size-3x-large);
-    font-weight: var(--syn-font-weight-bold);
-    margin: 0 0 var(--syn-spacing-medium) 0;
+    font: var(--syn-heading-3x-large) !important;
+    margin: 0 0 var(--syn-spacing-medium) 0 !important;
   }
 
   .uploaded-files {

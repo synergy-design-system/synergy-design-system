@@ -65,7 +65,7 @@ export default css`
    */
   .header__label {
     color: var(--syn-typography-color-text);
-    font: var(--syn-body-large-bold);
+    font: var(--syn-heading-large);
     padding: 0 var(--syn-spacing-2x-large);
     white-space: nowrap;
   }

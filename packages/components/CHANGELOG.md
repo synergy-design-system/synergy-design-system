@@ -1,5 +1,18 @@
 # Changelog
 
+## 3.15.4
+
+### Patch Changes
+
+- [#1294](https://github.com/synergy-design-system/synergy-design-system/pull/1294) [`7dd08e1`](https://github.com/synergy-design-system/synergy-design-system/commit/7dd08e1f2dc1cd9ca93fd0a3e0f2795677dec5d3) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-10
+
+  fix: 🐛 `<syn-dialog>` Font looks blurry when the prevent close animation is run ([#1285](https://github.com/synergy-design-system/synergy-design-system/issues/1285))
+
+  Fixes an issue introduced with [Synergy@3.11.1](https://synergy-design-system.github.io/?path=/docs/packages-components-changelog--docs#3111) that could lead to text looking blurry in `<syn-dialog>` in Chromium based browsers.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.15.4
+
 ## 3.15.3
 
 ### Patch Changes

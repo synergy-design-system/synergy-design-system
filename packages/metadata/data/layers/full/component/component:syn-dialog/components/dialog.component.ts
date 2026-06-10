@@ -352,8 +352,17 @@ setDefaultAnimation('dialog.hide', {
 });
 
 setDefaultAnimation('dialog.denyClose', {
-  keyframes: [{ scale: 1 }, { scale: 1.02 }, { scale: 1 }],
-  options: { duration: 250 },
+  keyframes: [
+    { offset: 0, transform: 'translateX(0)' },
+    { offset: 0.32, transform: 'translateX(calc(var(--syn-spacing-x-small) * -1))' },
+    { offset: 0.6, transform: 'translateX(var(--syn-spacing-2x-small))' },
+    { offset: 0.82, transform: 'translateX(calc(var(--syn-spacing-3x-small) * -1))' },
+    { offset: 1, transform: 'translateX(0)' },
+  ],
+  options: {
+    duration: 250,
+    easing: 'cubic-bezier(0.25, 0.1, 0.25, 1)',
+  },
 });
 
 setDefaultAnimation('dialog.overlay.show', {

@@ -17,7 +17,7 @@ The `<syn-chart>` component is a container for displaying charts. It provides a 
 ## Usage Information
 
 - **Status:** experimental
-- **Since:** 0.0.0
+- **Since:** 3.15.0
 
 ## Available Properties
 

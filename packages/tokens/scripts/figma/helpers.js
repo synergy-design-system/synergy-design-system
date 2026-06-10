@@ -17,7 +17,7 @@ export const createDirectory = (dirPath) => {
 };
 
 /**
- * Renames a variable by removing the prefix or in case of type color with "primitive" prefix exchange it by "color"
+ * Rename variable function for component variables by removing the prefix or in case of type color with "primitive" prefix exchange it by "color"
  * E.g. instead of "primitive/spacing/4x-small" it becomes "spacing/4x-small"
  * @example renameVariable("primitive/spacing/4x-small", "spacing") // "spacing/4x-small"
  * @example renameVariable("primitive/primary/500", "color") // "color/primary/500"
@@ -25,11 +25,22 @@ export const createDirectory = (dirPath) => {
  * @param {string} type type of the variable
  * @returns {string} The renamed variable
  */
-export const renameVariable = (name, type) => {
+export const renameVariableComponents = (name, type) => {
   if (name.startsWith('primitive/') && type === 'color') {
     const primitivePattern = /^primitive/;
     return name.replace(primitivePattern, 'color');
   }
+  const prefixPattern = new RegExp(`^(${FIGMA_TOKENS_PREFIXES.join('/|')}/)`);
+  return name.replace(prefixPattern, '');
+};
+
+/**
+ * Rename variable function for charts variables, which removes the prefix from the variable name.
+ * E.g. instead of "primitive/categorical/01" it becomes "categorical/01"
+ * @param {string} name Name of the variable
+ * @returns {string} The renamed variable
+ */
+export const renameVariableCharts = (name) => {
   const prefixPattern = new RegExp(`^(${FIGMA_TOKENS_PREFIXES.join('/|')}/)`);
   return name.replace(prefixPattern, '');
 };
@@ -59,28 +70,6 @@ export const getTypeForFloatVariable = (name) => {
     default:
       return 'sizing';
   }
-};
-
-/**
- * Resolves a variable alias by its ID.
- * @param {VariablesAndCollections} variablesData The fetched Figma variables data
- * @param {string} id The ID of the variable
- * @returns {{ value: string, type: string } | null} The resolved value and type of the variable, or null if not found.
- */
-export const resolveAlias = (variablesData, id) => {
-  const aliasVar = Object.values(variablesData.variables).find(v => v.id === id);
-  if (!aliasVar) return null;
-  const aliasName = aliasVar.name.toLowerCase();
-
-  const aliasType = aliasVar.resolvedType === 'FLOAT'
-    ? getTypeForFloatVariable(aliasName)
-    : aliasVar.resolvedType.toLowerCase();
-
-  const renamedAlias = renameVariable(aliasName, aliasType);
-  // The syntax for separators in style dictionary is ".", so all "/" are replaced with "."
-  const replacedSeparator = renamedAlias.replaceAll('/', '.');
-
-  return { type: aliasType, value: `{${replacedSeparator}}` };
 };
 
 /**

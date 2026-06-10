@@ -1,6 +1,7 @@
 import '../../../dist/components/chart/chart.js';
 import { expect, fixture, html } from '@open-wc/testing';
 import type { SeriesOption } from 'echarts';
+import type { XAXisOption, YAXisOption } from 'echarts/types/dist/shared';
 import type SynChart from './chart.component.js';
 import { PALETTE_TOKENS } from './chart.palettes.js';
 import type { ECConfig } from './types.js';
@@ -136,6 +137,44 @@ describe('<syn-chart>', () => {
       expect(instance.isDisposed()).to.be.undefined;
       el.remove();
       expect(instance.isDisposed()).to.be.true;
+    });
+  });
+
+  describe('applyAxisDefaultsPreprocessor', () => {
+    it('should apply default y and y axis styles', async () => {
+      const el = await createChart();
+      await el.updateComplete;
+      const instance = el.getInstance()!;
+      const config: ECConfig = {
+        series: [{ data: [150, 230], type: 'line' }],
+        xAxis: { data: ['Mon', 'Tue'], type: 'category'},
+        yAxis: { type: 'value' },
+      };
+      el.config = config;
+      await el.updateComplete;
+      const option = instance.getOption();
+      const xAxis = firstOf(option.xAxis) as XAXisOption;
+      const yAxis = firstOf(option.yAxis) as YAXisOption;
+      expect(xAxis.nameLocation).to.equal('center');
+      expect(yAxis.nameLocation).to.equal('end');
+    });
+
+    it('should not apply default x and y axis styles when explicitly set', async () => {
+      const el = await createChart();
+      await el.updateComplete;
+      const instance = el.getInstance()!;
+      const config: ECConfig = {
+        series: [{ data: [150, 230], type: 'line' }],
+        xAxis: { data: ['Mon', 'Tue'], nameLocation: 'start', type: 'category' },
+        yAxis: { nameLocation: 'center', type: 'value' },
+      };
+      el.config = config;
+      await el.updateComplete;
+      const option = instance.getOption();
+      const xAxis = firstOf(option.xAxis) as XAXisOption;
+      const yAxis = firstOf(option.yAxis) as YAXisOption;
+      expect(xAxis.nameLocation).to.equal('start');
+      expect(yAxis.nameLocation).to.equal('center');
     });
   });
 });

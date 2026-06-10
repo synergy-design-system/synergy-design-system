@@ -173,19 +173,89 @@ chart.getInstance()?.setOption(
 
 ---
 
-## TypeScript
+## Config Builder
 
-The `config` property is typed as `ECConfig`, which is a **scoped** [`ComposeOption`](https://echarts.apache.org/en/api.html#echarts.ComposeOption) — it only includes the chart types and ECharts components that are currently registered internally:
+Instead of manually assembling deeply nested ECharts option objects, `syn-chart` ships a middleware-style composition system.
 
-```ts
-import type { ECConfig } from "@synergy-design-system/components/components/chart/types.js";
+The central concept is the **`ConfigModifier`** — a plain function with the signature `(config: ECConfig) => ECConfig`.
+
+- Use `.with(modifier)` when you want to apply modifier functions directly.
+- Use `.usePreset(name, options)` when you want to apply the same behavior through a named preset.
+
+Named presets are a discoverable wrapper around predefined modifier functions. You can also write your own modifiers.
+
+### `enhanceConfig` — Fluent Builder
+
+`enhanceConfig(base)` wraps a base config in a fluent builder. Chain `.with(modifier)` calls for direct modifier composition, use `.usePreset(name, options)` for discoverable named presets, then call `.build()` to get the final `ECConfig`.
+
+```js
+import {
+  enhanceConfig,
+  withAxesSplitLines,
+  withHiddenAxisLabels,
+} from "@synergy-design-system/components/components/chart/configs/index.js";
+
+const baseConfig = {
+  series: [{ type: "line", data: [150, 230, 224] }],
+  xAxis: { type: "category", data: ["Mon", "Tue", "Wed"], name: "Days" },
+  yAxis: { type: "value", name: "Values" },
+};
+
+chart.config = enhanceConfig(baseConfig)
+  .with(withAxesSplitLines())
+  .with(withHiddenAxisLabels())
+  .with(
+    withXAxisLabelIcons({
+      iconUrls,
+      iconPosition: "top",
+    }),
+  )
+  .build();
 ```
 
-The type currently covers:
+`enhanceConfig(base)` also supports named presets via `.usePreset(name, options)`.
 
-- `LineSeriesOption` (line charts)
+```js
+chart.config = enhanceConfig(baseConfig)
+  .usePreset("axes.split-lines")
+  .usePreset("axes.hide-labels")
+  .usePreset("axes.x-label-icons", {
+    iconUrls,
+    iconPosition: "top",
+  })
+  .build();
+```
 
-> If you use TypeScript and assign options for unsupported chart types (e.g. `BarSeriesOption`), you will get a **type error**. This is intentional — it reflects the actual runtime capabilities of the component.
+### Array Merge Strategy
+
+Nested objects are deep-merged across layers; **arrays are always replaced** by the value from the most recently applied modifier. Keep this in mind when modifying `series`, `xAxis.data`, etc.
+
+---
+
+## Predefined Configs / Presets
+
+All predefined modifier functions are exported from `@synergy-design-system/components/components/chart/configs/index.js`.
+
+The sections below document both layers of the API:
+
+- Modifier functions, which you pass to `.with(...)`
+- Named presets, which you pass to `.usePreset(...)`
+
+Each named preset maps directly to one predefined modifier function.
+
+### Axes presets
+
+| Preset name            | Equivalent modifier       | Options                          | Description                                        |
+| ---------------------- | ------------------------- | -------------------------------- | -------------------------------------------------- |
+| `'axes.split-lines'`   | `withAxesSplitLines()`    | `AxesPatchOptions` _(optional)_  | Enables horizontal and vertical split lines.       |
+| `'axes.x-split-lines'` | `withXAxisSplitLines()`   | `AxisPatchOptions` _(optional)_  | Enables vertical split lines only on the x-axis.   |
+| `'axes.y-split-lines'` | `withYAxisSplitLines()`   | `AxisPatchOptions` _(optional)_  | Enables horizontal split lines only on the y-axis. |
+| `'axes.hide-labels'`   | `withHiddenAxisLabels()`  | `AxesPatchOptions` _(optional)_  | Hides tick labels on both axes.                    |
+| `'axes.hide-x-labels'` | `withHiddenXAxisLabels()` | `AxisPatchOptions` _(optional)_  | Hides tick labels only on the x-axis.              |
+| `'axes.hide-y-labels'` | `withHiddenYAxisLabels()` | `AxisPatchOptions` _(optional)_  | Hides tick labels only on the y-axis.              |
+| `'axes.x-label-icons'` | `withXAxisLabelIcons()`   | `AxisLabelIconsOptions<'xAxis'>` | Adds one icon per x-axis label.                    |
+|                        |
+| `'axes.y-label-icons'` | `withYAxisLabelIcons()`   | `AxisLabelIconsOptions<'yAxis'>` | Adds one icon per y-axis label.                    |
 
 ---
 

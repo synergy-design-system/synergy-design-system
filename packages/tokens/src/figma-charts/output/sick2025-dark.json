@@ -1,4 +1,10 @@
 {
+  "background": {
+    "color": {
+      "type": "color",
+      "value": "{color.neutral.50}"
+    }
+  },
   "categorical": {
     "10": {
       "type": "color",
@@ -47,6 +53,52 @@
     "09": {
       "type": "color",
       "value": "{color.data.teal.500}"
+    }
+  },
+  "grid lines": {
+    "color": {
+      "type": "color",
+      "value": "{color.neutral.300}"
+    }
+  },
+  "opacity": {
+    "10": {
+      "type": "opacity",
+      "value": "10%"
+    },
+    "20": {
+      "type": "opacity",
+      "value": "20%"
+    },
+    "40": {
+      "type": "opacity",
+      "value": "40%"
+    }
+  },
+  "pattern": {
+    "color": {
+      "type": "color",
+      "value": "{color.neutral.1000}"
+    },
+    "color-inverted": {
+      "type": "color",
+      "value": "{color.neutral.0}"
+    }
+  },
+  "plot-line": {
+    "color": {
+      "type": "color",
+      "value": "{color.neutral.1000}"
+    }
+  },
+  "range selection": {
+    "color": {
+      "type": "color",
+      "value": "{color.neutral.600}"
+    },
+    "number": {
+      "type": "opacity",
+      "value": "{opacity.10}"
     }
   },
   "sequential": {
@@ -555,6 +607,38 @@
           "value": "{color.warning.950}"
         }
       }
+    }
+  },
+  "stroke weight": {
+    "default": {
+      "type": "fontWeights",
+      "value": "1.5"
+    },
+    "thick": {
+      "type": "fontWeights",
+      "value": "2"
+    },
+    "thin": {
+      "type": "fontWeights",
+      "value": "1"
+    }
+  },
+  "tooltip": {
+    "background": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.400}"
+      }
+    },
+    "color": {
+      "type": "color",
+      "value": "{color.neutral.200}"
+    }
+  },
+  "track": {
+    "color": {
+      "type": "color",
+      "value": "{color.neutral.300}"
     }
   }
 }

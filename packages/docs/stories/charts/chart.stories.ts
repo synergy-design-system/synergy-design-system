@@ -75,7 +75,7 @@ export const Default: Story = {
       charts.forEach(chart => {
         chart.config = {
           series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
-          xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category' },
+          xAxis: { data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], type: 'category', name: 'Days' },
           yAxis: { type: 'value' },
         };
       });

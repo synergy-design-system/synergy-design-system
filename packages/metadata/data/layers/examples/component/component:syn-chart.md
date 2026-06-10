@@ -13,6 +13,7 @@ The default story demonstrates a basic line chart configuration. The chart is co
       xAxis: {
         data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         type: "category",
+        name: "Days",
       },
       yAxis: { type: "value" },
     };

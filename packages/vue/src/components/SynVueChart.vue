@@ -10,7 +10,7 @@
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs
  * @status experimental
- * @since 0.0.0
+ * @since 3.15.0
  *
  * @csspart base - The component's base wrapper.
  */

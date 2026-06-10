@@ -64,10 +64,6 @@ export const cssVariableFormatter = {
      * @type {string[]} List of variables that should be ignored for the brand 2025 theme
      */
     const BRAND2025_IGNORE_PATTERNS = [
-      // Unknown component, skipping for now
-      'typography-color-text-quiet',
-      'typography-color-text-quiet-inverted',
-
       'progress-track-readonly-color',
 
       // Font Style tokens are needed later
@@ -127,6 +123,21 @@ export const cssVariableFormatter = {
       // #1171: Leftover after refactoring the readonly tokens.
       // Can be removed as soon as it is gone in Figma.
       'readonly-opacity-color',
+
+      // For now remove all chart tokens, which are not needed in the chart component
+      'background-color',
+      'opacity-10',
+      'opacity-20',
+      'opacity-40',
+      'pattern-color',
+      'pattern-color-inverted',
+      'plot-line-color',
+      'range-selection-color',
+      'range-selection-number',
+      'stroke-weight-default',
+      'stroke-weight-thin',
+      'stroke-weight-thick',
+      'track-color',
     ].map(v => `${prefix}${v}`);
 
     /**
@@ -172,7 +183,12 @@ export const cssVariableFormatter = {
           convertOriginalToCssVarRecursive(dict[key]);
         } else {
           const name = dict[key]?.name;
-          if (name && BRAND2025_IGNORE_PATTERNS.includes(name)) {
+
+          // TODO: currently we have a double token name (syn-tooltip-background-color) in components and charts. We need to remove it from charts manually until design renames it.
+          // Otherwise the tokens would overwrite each other, if both token files are imported.
+          const chartDoubleNameException = name === 'syn-tooltip-background-color' && dict[key].filePath.includes('figma-charts');
+
+          if (name && (BRAND2025_IGNORE_PATTERNS.includes(name) || chartDoubleNameException)) {
             alreadyIgnoredList.push(name);
             delete dict[key];
             return;

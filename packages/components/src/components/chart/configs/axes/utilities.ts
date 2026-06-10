@@ -275,6 +275,7 @@ const createPositionConfig = (
       };
     default:
       return {
+        align: 'left' as const,
         formatter: (value: string, i: number) => `{icon_${i}|}{label|${value}}`,
         padding: [0, 0, 0, 4],
         width: getYAxisLabelEffectiveWidth(labelsStyle, config),
@@ -307,11 +308,14 @@ export const buildAxisLabelConfigWithIcon = ({
     ...getDefaultAxisLabelStyle(),
     padding: positionConfig.padding,
     width: positionConfig.width,
+    ...(positionConfig.align ? { align: positionConfig.align } : {}),
     ...labelsStyle,
   };
 
   const mergedIconsStyle = {
     ...getDefaultAxisIconStyle(),
+    // We need to set both to "align: 'left'", the label style and the icon style. As otherwise the label does not apply the left alignment for some reason.
+    ...(positionConfig.align ? { align: positionConfig.align } : {}),
     ...iconsStyle,
   };
 

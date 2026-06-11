@@ -484,7 +484,7 @@ Resource identifier reference (exact values used by the server):
 
 ## Available Tools
 
-The MCP server currently registers 16 stable tools by default.
+The MCP server currently registers 17 stable tools by default.
 
 ### 1. `component-list`
 
@@ -735,11 +735,25 @@ Example prompts:
 - "Show me the setup instructions for tokens"
 - "Give me the Synergy assets setup and limitations"
 
+### 17. `create-spritesheet`
+
+**Description:** Creates a SVG sprite sheet for a provided set of icons. Only works with the Synergy 2025 icon set.
+
+**Parameters:**
+
+- `icons` (array, required): The icons to include in the sprite sheet. Must be valid icon keys from the Synergy 2025 icon set.
+
+**Example prompts:**
+
+- "Create a spritesheet containing these icons: star, home, settings"
+- "Generate a custom Synergy 2025 sprite sheet for my selected icons"
+- "Build an SVG sprite sheet from this icon list"
+
 ### Experimental Tools (Intent Policy)
 
 The following endpoints are experimental and are only registered when `experimentalFeatures.intentTools` is set to `true`.
 
-### 17. `intent-categories-list` (experimental)
+### 18. `intent-categories-list` (experimental)
 
 **Description:** List available intent categories in the intent policy layer.
 
@@ -752,7 +766,7 @@ The following endpoints are experimental and are only registered when `experimen
 - "List intent categories"
 - "Show experimental intent categories"
 
-### 18. `intent-component-guide` (experimental)
+### 19. `intent-component-guide` (experimental)
 
 **Description:** Answer the question: What can I do with a component in the intent system?
 
@@ -767,7 +781,7 @@ The following endpoints are experimental and are only registered when `experimen
 - "What can I do with syn-button?"
 - "Show intent guide for syn-button in react-web-components"
 
-### 19. `intent-component-validate` (experimental)
+### 20. `intent-component-validate` (experimental)
 
 **Description:** Answer the question: Do I use a component correctly for a specific intent?
 
@@ -784,7 +798,7 @@ The following endpoints are experimental and are only registered when `experimen
 - "Do I use syn-button right for action.submit?"
 - "Validate this syn-button markup for action.submit: <syn-button type=\"submit\" variant=\"filled\">Send</syn-button>"
 
-### 20. `intent-task-recommendations` (experimental)
+### 21. `intent-task-recommendations` (experimental)
 
 **Description:** Answer the question: What does Synergy provide for a specific task intent?
 
@@ -803,7 +817,7 @@ The following endpoints are experimental and are only registered when `experimen
 - "What does Synergy provide to submit a form?"
 - "Recommend components for action.submit"
 
-### 21. `intent-options` (experimental)
+### 22. `intent-options` (experimental)
 
 **Description:** Answer the question: What are my renderable options for a specific intent?
 
@@ -823,7 +837,7 @@ The following endpoints are experimental and are only registered when `experimen
 
 ## Available Prompts
 
-The MCP server currently registers 1 prompt.
+The MCP server currently registers 2 prompts.
 
 ### 1. `explain-component-rules`
 
@@ -838,6 +852,22 @@ The MCP server currently registers 1 prompt.
 - "Explain the rules for syn-button"
 - "What are the design and accessibility guidelines for syn-dialog?"
 - "Give me the usage guidance for syn-accordion"
+
+### 2. `create-spritesheet`
+
+**Description:** Generates a task-specific instruction prompt for creating an SVG sprite sheet from icon usage found in a folder, including registration and usage guidance.
+
+**Parameters:**
+
+- `name` (string, optional): The name of the generated sprite sheet. If not provided, the sprite sheet will be registered as the default library.
+- `path` (string, required): The path that should be searched for occurrences of `syn-icon` and `syn-icon-button` elements. Will search the project root if omitted.
+
+**Example prompts:**
+
+- "/mcp.synergy.create-spritesheet"
+- "Create a sprite sheet prompt for icons used in src/components"
+- "Generate create-spritesheet instructions for apps/demo with name app-icons"
+- "Help me produce a spritesheet from icon usage in my UI folder"
 
 ## Usage Examples
 
@@ -960,6 +990,7 @@ src/
 │   └── index.ts         # Middleware module entrypoint
 ├── prompts/             # MCP prompt implementations
 │   ├── component-rules.ts
+│   ├── create-spritesheet.ts
 │   └── index.ts
 ├── resources/           # MCP resource implementations (static, read-only data)
 │   ├── component-list.ts
@@ -975,6 +1006,7 @@ src/
 │   ├── component-cluster-list.ts
 │   ├── component-info.ts
 │   ├── component-list.ts
+│   ├── create-spritesheet.ts
 │   ├── davinci-migration-info.ts
 │   ├── davinci-migration-list.ts
 │   ├── intent-categories-list.ts

@@ -1,5 +1,6 @@
 storybook-static/
 dist/
+public/sick-intl-inline.css
 chromatic.log
 build-storybook.log
 debug-storybook.log

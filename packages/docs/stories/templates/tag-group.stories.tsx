@@ -194,10 +194,7 @@ export const TagGroup = {
         }
         
         .filter-form h1 {
-          color: var(--syn-typography-color-text);
-          font: var(--syn-heading-3x-large);
-          margin: 0 0 var(--syn-spacing-2x-large) !important;
-          padding: 0;
+          margin: 0 0 var(--syn-spacing-2x-large);
         }
 
         .filter-form syn-details::part(base) {

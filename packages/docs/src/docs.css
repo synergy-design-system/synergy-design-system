@@ -1,113 +1,64 @@
-/* Element Selection */
-::selection {
-  background-color: var(--syn-color-primary-200);
-  color: var(--syn-typography-color-text);
-}
-
-/* Default Body */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  box-sizing: border-box;
-  line-height: var(--syn-line-height-normal);
-}
-
+/* stylelint-disable plugin/no-unsupported-browser-features */
 body {
   background-color: var(--syn-page-background-color-muted);
   color: var(--syn-typography-color-text);
-  font: 16px var(--syn-font-sans);
+  font: var(--syn-body-medium-regular);
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-weight: var(--syn-font-weight-normal);
-  line-height: var(--syn-line-height-normal);
-  overflow-x: hidden;
 }
 
-/* Special treatment for code preview in docs panel */
-.sbdocs-preview {
-  border: 1px solid var(--syn-panel-border-color);
+.sbdocs {
+  font-family: var(--syn-font-sans);
+
+  > :not(.sb-anchor) {
+    > :is(h1) {
+      font: var(--syn-heading-3x-large);
+      margin: 0 0 var(--syn-spacing-large) 0;
+    }
+
+    > :is(h2) {
+      border: none;
+      font: var(--syn-heading-2x-large);
+      margin: 0 0 var(--syn-spacing-medium-large) 0;
+    }
+
+    > :is(h3) {
+      font: var(--syn-heading-x-large);
+      margin: 0 0 var(--syn-spacing-medium) 0;
+    }
+
+    > :is(h4) {
+      font: var(--syn-heading-large);
+      margin: 0 0 var(--syn-spacing-small) 0;
+    }
+
+    > :is(h6) {
+      font: var(--syn-heading-medium);
+      margin: 0 0 var(--syn-spacing-x-small) 0;
+    }
+
+    > :is(hr) {
+      font: var(--syn-heading-medium);
+      margin: var(--syn-spacing-medium) 0;
+    }
+
+    > :is(p, ul, li) {
+      font: var(--syn-body-medium-regular) !important;
+      font-family: unset;
+      margin: 0 0 var(--syn-spacing-small) 0;
+    }
+  }
 }
 
 .docs-story {
   background: var(--syn-panel-background-color);
 }
 
-/*
- * Make sure we have a small amount of inner padding
- * This will make it possible to see outlines
- * more clearly without them being cut on the sides
- */
 .sb-story {
   padding: 1rem;
 }
 
-/* Common elements */
-.sbdocs h1,
-.sbdocs h2,
-.sbdocs h3,
-.sbdocs h4,
-.sbdocs h5,
-.sbdocs h6 {
-  font-family: var(--syn-font-sans);
-  font-weight: var(--syn-font-weight-semibold);
-  margin: 3rem 0 1.5rem;
-}
-
-.sbdocs h1 {
-  font-size: 2.5rem;
-}
-
-.sbdocs h1:first-of-type {
-  margin-top: 1rem;
-}
-
-.sbdocs h2 {
-  border-bottom: solid var(--docs-border-width) var(--docs-border-color);
-  font-size: 1.875rem;
-}
-
-.sbdocs h3 {
-  font-size: 1.625rem;
-}
-
-.sbdocs h4 {
-  font-size: 1.375rem;
-}
-
-.sbdocs h5 {
-  font-size: 1.125rem;
-}
-
-.sbdocs h6 {
-  font-size: 0.875rem;
-}
-
-/* Special overrides for the changelog */
-.synergy-changelog h1 {
-  margin: 0 0 1.5rem !important;
-}
-
-.synergy-changelog h2 {
-  margin: 0 0 1rem;
-}
-
-.synergy-changelog h3 {
-  margin: 0 0 0.75rem;
-}
-
-.synergy-changelog ul p {
-  margin: 0 0 0.25rem !important;
-}
-
-/* Remove the copyright class, so there is no unneeded css in the footer template, which others don't need */
-.sbdocs p:not(.copyright) {
-  margin-block-end: 1.5em;
-}
-
+/* Global Links */
 .sbdocs a:not(.syn-link) {
   color: var(--syn-color-primary-600);
 }
@@ -127,10 +78,14 @@ button:focus-visible {
   outline-offset: var(--syn-focus-ring-offset);
 }
 
-img {
-  max-width: 100%;
+/* Changelogs */
+.synergy-changelog {
+  p {
+    margin: 0 0 var(--syn-spacing-small) 0;
+  }
+
+  hr {
+    margin: var(--syn-spacing-large) 0;
+  }
 }
 
-.docs-syn-style ul {
-  margin: 0;
-}

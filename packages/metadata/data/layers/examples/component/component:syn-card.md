@@ -29,8 +29,8 @@ Cards can be used to group related subjects in a container.
     }
 
     syn-card h3 {
-      font: var(--syn-body-medium-bold) !important;
-      margin: 0 0 var(--syn-spacing-x-small) !important;
+      font: var(--syn-body-medium-bold);
+      margin: 0 0 var(--syn-spacing-x-small);
     }
 
     syn-card small {
@@ -142,8 +142,8 @@ Footers can be used to display actions, summaries, or other relevant content.
     }
 
     syn-card h3 {
-      font: var(--syn-body-medium-bold) !important;
-      margin: 0 0 var(--syn-spacing-x-small) !important;
+      font: var(--syn-body-medium-bold);
+      margin: 0 0 var(--syn-spacing-x-small);
     }
 
     syn-card small {

@@ -69,7 +69,6 @@ const config: StorybookConfig = {
     // "../src/**/*.mdx",
     // "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
-
   viteFinal: (cfg) => ({
     ...cfg,
     build: {
@@ -78,6 +77,15 @@ const config: StorybookConfig = {
       // that prevents bundling via `pnpm build`.
       // @see https://github.com/vitejs/vite/issues/6985
       target: 'esnext',
+    },
+    server: {
+      ...cfg.server,
+      fs: {
+        ...cfg.server?.fs,
+        // This fixes a problem we have since vite 8.0.16, as they no longer allow fetching files with colon in the file path see: https://github.com/vitejs/vite/pull/22572
+        // But we need this for our metadata files, which are named e.g. "component:syn-button.js". This is only a problem for the local development server, as the production build does not have this issue.
+        strict: process.env.NODE_ENV === 'production',
+      },
     },
   }),
 };

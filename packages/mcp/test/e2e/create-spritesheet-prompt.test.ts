@@ -21,11 +21,30 @@ describe('create-spritesheet prompt', () => {
     await session.close();
   });
 
-  it('returns instructions for creating a sprite sheet', async () => {
+  it('returns instructions with default values', async () => {
+    const result = await session.client.getPrompt({
+      arguments: {},
+      name: 'create-spritesheet',
+    });
+
+    assert.equal(result.messages.length, 1);
+    assert.equal(result.messages[0]?.role, 'assistant');
+
+    const promptText = result.messages[0]?.content.type === 'text'
+      ? result.messages[0].content.text
+      : '';
+
+    assert.match(promptText, /You are working with a Synergy Design System project./);
+    assert.match(promptText, /Generate an SVG sprite sheet for all synergy icons used in the entire project\./);
+    assert.match(promptText, /registerIconLibrary\('default',/);
+    assert.match(promptText, /<syn-icon name="star"><\/syn-icon>/);
+  });
+
+  it('returns instructions with a non-default path', async () => {
     const result = await session.client.getPrompt({
       arguments: {
-        folder: 'src/icons',
         name: 'custom-icons',
+        path: 'src/icons',
       },
       name: 'create-spritesheet',
     });
@@ -38,7 +57,8 @@ describe('create-spritesheet prompt', () => {
       : '';
 
     assert.match(promptText, /You are working with a Synergy Design System project./);
-    assert.match(promptText, /Generate an SVG sprite sheet for all synergy icons used in the folder "src\/icons"./);
+    assert.match(promptText, /Generate an SVG sprite sheet for all synergy icons used in src\/icons\./);
     assert.match(promptText, /registerIconLibrary\('custom-icons',/);
+    assert.match(promptText, /<syn-icon library="custom-icons" name="star"><\/syn-icon>/);
   });
 });

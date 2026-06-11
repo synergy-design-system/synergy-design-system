@@ -859,11 +859,12 @@ The MCP server currently registers 2 prompts.
 
 **Parameters:**
 
-- `folder` (string, required): The folder that should be searched for occurrences of `syn-icon`.
 - `name` (string, optional): The name of the generated sprite sheet. If not provided, the sprite sheet will be registered as the default library.
+- `path` (string, required): The path that should be searched for occurrences of `syn-icon` and `syn-icon-button` elements. Will search the project root if omitted.
 
 **Example prompts:**
 
+- "/mcp.synergy.create-spritesheet"
 - "Create a sprite sheet prompt for icons used in src/components"
 - "Generate create-spritesheet instructions for apps/demo with name app-icons"
 - "Help me produce a spritesheet from icon usage in my UI folder"

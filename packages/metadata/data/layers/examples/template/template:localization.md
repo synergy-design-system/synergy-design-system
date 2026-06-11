@@ -100,7 +100,6 @@ This example shows how to dynamically set localizations for Synergy components. 
 
 <style>
   body {
-    margin: 0 !important;
     padding: 0 !important;
   }
 

@@ -231,7 +231,7 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
   return (
     <>
       <syn-card
-        className="rules-helper"
+        className="rules-helper sbdocs"
         shadow
         sharp
       >

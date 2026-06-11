@@ -1,3 +1,4 @@
+import '../../../components/src/components/divider/divider.js';
 import React, {
   FC,
   ReactNode,
@@ -11,19 +12,19 @@ type Props = {
 export const Chapter: FC<Props> = ({ title, children }) => (
   <>
     <div className='sb-unstyled docs-syn-style' style={{ display: 'flex' }}>
-      <div
+      <h4
+        className="syn-heading--large"
         style={{
-          flexShrink: 0, fontSize: '24px', fontWeight: 'bold', width: '10em',
+          flexShrink: 0,
+          width: '10em',
         }}
-      >
-        {title}
-      </div>
+      >{title}</h4>
       <div>
         {children}
       </div>
     </div>
     <br />
-    <hr />
+    <syn-divider />
   </>
 );
 

@@ -193,10 +193,6 @@
       },
       {
         "layer": "full",
-        "path": "layers/full/component/component:syn-card/components/card.custom.styles.ts"
-      },
-      {
-        "layer": "full",
         "path": "layers/full/component/component:syn-card/components/card.styles.ts"
       },
       {
@@ -240,7 +236,6 @@
   "sources": [
     "packages/angular/components/card/card.component.ts",
     "packages/components/src/components/card/card.component.ts",
-    "packages/components/src/components/card/card.custom.styles.ts",
     "packages/components/src/components/card/card.styles.ts",
     "packages/components/src/components/card/card.ts",
     "packages/react/src/components/card.ts",

@@ -94,10 +94,53 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private selectedOptionObserver: MutationObserver;
   private isUserInput: boolean = false;
 
+  // Tracks whether a user-initiated interaction is in progress.
+  // This allows async focus calls to know they originated from user input,
+  // which is relevant for the upcoming focus-without-user-activation browser policy
+  // (Chromium issue #40095111 / Chrome 149+).
+  private userInteractionActive = false;
+  private userInteractionTimeout: number;
+
+  // Walk the composed tree (crossing shadow-DOM boundaries) to find the nearest
+  // ancestor that exposes the activateExternal / deactivateExternal modal API.
+  // Previously only syn-dialog / syn-drawer were detected via closest(); now any
+  // ancestor with that interface is found, including ones composed inside shadow roots.
   private getContainingModalHost() {
-    return this.closest('syn-dialog, syn-drawer') as
-      | (HTMLElement & { modal?: { activateExternal(): void; deactivateExternal(): void } })
-      | null;
+    let node: Node | null = this.parentNode;
+    while (node) {
+      if (node instanceof HTMLElement) {
+        const typedNode = node as HTMLElement & {
+          modal?: { activateExternal(): void; deactivateExternal(): void };
+        };
+        if (typeof typedNode.modal?.activateExternal === 'function') {
+          return typedNode;
+        }
+      }
+      // Cross shadow-root boundaries so we find modals wrapping us from outside
+      const root = node.getRootNode();
+      node = root instanceof ShadowRoot ? root.host : (node as Element).parentElement;
+    }
+    return null;
+  }
+
+  // Marks the beginning of a user-initiated interaction so subsequent async
+  // focus calls can be identified as originating from a real user gesture.
+  private markUserInteraction() {
+    this.userInteractionActive = true;
+    clearTimeout(this.userInteractionTimeout);
+    this.userInteractionTimeout = window.setTimeout(() => {
+      this.userInteractionActive = false;
+    }, 200);
+  }
+
+  // Safely focuses the display input, guarding against browsers that may block
+  // programmatic focus without user activation (Chrome 149+ focus policy).
+  private focusDisplayInput(options?: FocusOptions) {
+    try {
+      this.displayInput.focus(options ?? { preventScroll: true });
+    } catch {
+      // Silently ignore – the browser policy may prevent focus in some contexts
+    }
   }
 
   @query('.select') popup: SynPopup;
@@ -320,7 +363,8 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       this.closeWatcher.onclose = () => {
         if (this.open) {
           this.hide();
-          this.displayInput.focus({ preventScroll: true });
+          // CloseWatcher fires from a user gesture (e.g. Escape), so focus is safe here
+          this.focusDisplayInput();
         }
       };
     }
@@ -352,10 +396,22 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     this.emit('syn-blur');
   }
 
-  private handleDocumentFocusIn = (event: KeyboardEvent) => {
-    // Close when focusing out of the select
+  private handleDocumentFocusIn = (event: FocusEvent) => {
+    // Close when focusing out of the select.
+    //
+    // We cannot rely solely on composedPath() here because Chrome 149+ changed
+    // how paths are reported when the popup is elevated to the browser top-layer
+    // via the Popover API (Chromium issue #407769114). When a syn-option inside
+    // the top-layer listbox receives focus the composedPath() no longer includes
+    // this host element, causing a false "focus left the select" detection.
+    //
+    // Fix: additionally check this.contains() for the event target.
+    // syn-option elements are light-DOM children of syn-select, so contains()
+    // returns true even when the popup is in the top-layer.
     const path = event.composedPath();
-    if (this && !path.includes(this)) {
+    const target = event.target as Node | null;
+    const isInsideSelect = path.includes(this) || (target !== null && this.contains(target));
+    if (this && !isInsideSelect) {
       this.hide();
     }
   };
@@ -375,7 +431,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       event.preventDefault();
       event.stopPropagation();
       this.hide();
-      this.displayInput.focus({ preventScroll: true });
+      this.focusDisplayInput();
     }
 
     // Handle enter and space. When pressing space, we allow for type to select behaviors so if there's anything in the
@@ -408,7 +464,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
         if (!this.multiple) {
           this.hide();
-          this.displayInput.focus({ preventScroll: true });
+          this.focusDisplayInput();
         }
       }
 
@@ -501,12 +557,12 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
   private handleFormControlClick() {
     if (this.readonly) {
-      this.displayInput.focus();
+      this.focusDisplayInput({});
     }
   }
 
   private handleLabelClick() {
-    this.displayInput.focus();
+    this.focusDisplayInput({});
   }
 
   private handleComboboxMouseDown(event: MouseEvent) {
@@ -519,7 +575,8 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
 
     event.preventDefault();
-    this.displayInput.focus({ preventScroll: true });
+    this.markUserInteraction();
+    this.focusDisplayInput();
     this.open = !this.open;
   }
 
@@ -529,17 +586,19 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     }
 
     event.stopPropagation();
+    this.markUserInteraction();
     this.handleDocumentKeyDown(event);
   }
 
   private handleClearClick(event: MouseEvent) {
     event.stopPropagation();
+    this.markUserInteraction();
 
     this.valueHasChanged = true;
 
     if (this.value !== '') {
       this.setSelectedOptions([]);
-      this.displayInput.focus({ preventScroll: true });
+      this.focusDisplayInput();
 
       // Emit after update
       this.updateComplete.then(() => {
@@ -564,14 +623,13 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     if (option && !option.disabled) {
       this.valueHasChanged = true;
       this.isUserInput = true;
+      this.markUserInteraction();
+
       if (this.multiple) {
         this.toggleOptionSelection(option);
       } else {
         this.setSelectedOptions(option);
       }
-
-      // Set focus after updating so the value is announced by screen readers
-      this.updateComplete.then(() => this.displayInput.focus({ preventScroll: true }));
 
       if (this.value !== oldValue) {
         // Emit after updating
@@ -583,7 +641,17 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
 
       if (!this.multiple) {
         this.hide();
-        this.displayInput.focus({ preventScroll: true });
+        // Focus synchronously – we are still within the user-gesture call stack
+        this.focusDisplayInput();
+      } else {
+        // For multi-select the component re-renders tags first; focus after the
+        // update but only when the interaction flag is still active so the call
+        // stays within the user-activation window expected by Chrome 149+.
+        this.updateComplete.then(() => {
+          if (this.userInteractionActive) {
+            this.focusDisplayInput();
+          }
+        });
       }
     }
   }
@@ -655,7 +723,11 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
       this.currentOption = option;
       option.current = true;
       option.tabIndex = 0;
-      option.focus();
+      try {
+        option.focus();
+      } catch {
+        // Silently ignore – the browser policy may prevent focus in some contexts
+      }
     }
   }
 

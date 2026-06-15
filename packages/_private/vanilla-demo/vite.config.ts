@@ -48,6 +48,7 @@ const icons = [
   'bug_report',
   'light_mode',
   'dark_mode',
+  'troubleshoot',
 ] satisfies (Icon2018Keys & Icon2025Keys)[];
 
 const defaultOptions: SynSpriteSheetOptions<Icon2018Keys> = {

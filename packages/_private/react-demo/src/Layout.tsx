@@ -63,6 +63,10 @@ export const Layout: FC = () => {
             All Components
             <SynIcon name="grid_view" slot="prefix" />
           </RouterLink>
+          <RouterLink divider href="/complex-bugs" current={currentNavigationPath === '/complex-bugs'}>
+            Complex Bugs
+            <SynIcon name="troubleshoot" slot="prefix" />
+          </RouterLink>
           <RouterLink divider href="/framework-specific" current={currentNavigationPath === '/framework-specific'}>
             Framework specific issues
             <SynIcon name="bug_report" slot="prefix" />

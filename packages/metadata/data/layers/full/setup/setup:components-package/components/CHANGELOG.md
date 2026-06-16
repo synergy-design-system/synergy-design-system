@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.15.5
+
+### Patch Changes
+
+- [#1306](https://github.com/synergy-design-system/synergy-design-system/pull/1306) [`b4494ba`](https://github.com/synergy-design-system/synergy-design-system/commit/b4494ba1bcaf1016c83bc03c44b1ece17b8a194a) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-06-16
+
+  fix: 🐛 Focus Issues with new Chromium version ([#1304](https://github.com/synergy-design-system/synergy-design-system/issues/1304))
+
+  This release fixes focus-related issues caused by changes in newer Chromium versions.
+  Affected were `<syn-select />` and `<syn-dropdown />` in combination with `<syn-dialog />` or `<syn-drawer />`
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.15.5
+
 ## 3.15.4
 
 ### Patch Changes

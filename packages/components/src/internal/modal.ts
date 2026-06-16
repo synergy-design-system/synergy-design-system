@@ -54,7 +54,31 @@ export default class Modal {
   private checkFocus() {
     if (this.isActive() && !this.isExternalActivated) {
       const tabbableElements = getTabbableElements(this.element);
-      if (!this.element.matches(':focus-within')) {
+
+      // Chrome 149+ (Chromium issue #407769114) changed the `:focus-within`
+      // pseudo-class so that it no longer propagates through top-layer elements
+      // (e.g. popovers opened via the Popover API).  When a syn-select or
+      // syn-dropdown inside this dialog opens its popup (which is promoted to
+      // the top-layer), `:focus-within` on the dialog returns `false` even
+      // though focus is logically still within the dialog's content tree.
+      // This caused the modal to immediately yank focus back, closing the popup.
+      //
+      // Fix: walk the composed active-element chain and check whether any
+      // element in that chain is a descendant of this modal.  This is immune to
+      // the top-layer boundary because we query actual DOM containment rather
+      // than relying on the CSS pseudo-class.
+      const isFocusWithin = (() => {
+        // Traverse shadow-root boundaries to find the deepest focused element
+        let node: Element | null = document.activeElement;
+        while (node) {
+          if (this.element.contains(node)) return true;
+          const root = node.shadowRoot;
+          node = root ? root.activeElement : null;
+        }
+        return false;
+      })();
+
+      if (!isFocusWithin) {
         const start = tabbableElements[0];
         const end = tabbableElements[tabbableElements.length - 1];
         const target = this.tabDirection === 'forward' ? start : end;

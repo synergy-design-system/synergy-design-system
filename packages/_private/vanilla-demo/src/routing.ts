@@ -10,7 +10,9 @@ import {
 import { afterRenderDemoTemplate } from './demo-template.js';
 import * as AllComponents from './AllComponentParts/index.js';
 import * as FrameworkSpecifics from './FrameworkSpecificParts/index.js';
+import * as ComplexBugs from './ComplexBugs/index.js';
 import { allComponentsRegressions } from './all-components-regressions.js';
+import { complexBugsRegressions } from './complex-bugs-regressions.js';
 
 const allComponents = {
   demos: Object.entries(AllComponents),
@@ -21,6 +23,12 @@ const allComponents = {
 const frameworkSpecific = {
   demos: Object.entries(FrameworkSpecifics),
   id: 'framework-specific',
+};
+
+const complexBugs = {
+  demos: Object.entries(ComplexBugs),
+  id: 'complex-bugs',
+  regressions: complexBugsRegressions,
 };
 
 const history = createBrowserHistory();
@@ -50,6 +58,11 @@ const routes = [
     afterLoad: () => afterRenderDemoTemplate(frameworkSpecific),
     href: `/${frameworkSpecific.id}`,
     page: frameworkSpecific.id,
+  },
+  {
+    afterLoad: () => afterRenderDemoTemplate(complexBugs),
+    href: `/${complexBugs.id}`,
+    page: complexBugs.id,
   },
 ];
 

@@ -47,6 +47,10 @@ const routeTo = (route: string) => {
         All Components
         <SynVueIcon name="grid_view" slot="prefix"/>
       </SynVueNavItem>
+      <SynVueNavItem :current="currentRoute === '/complex-bugs'" divider @click="() => routeTo('/complex-bugs')">
+        Complex Bugs
+        <SynVueIcon name="troubleshoot" slot="prefix"/>
+      </SynVueNavItem>
       <SynVueNavItem :current="currentRoute === '/framework-specific'" divider @click="() => routeTo('/framework-specific')">
         Framework specific issues
         <SynVueIcon name="bug_report" slot="prefix"/>

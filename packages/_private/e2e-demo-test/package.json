@@ -26,7 +26,7 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@playwright/test": "^1.60.0",
+    "@playwright/test": "^1.61.0",
     "@synergy-design-system/components": "workspace:^",
     "@synergy-design-system/tokens": "workspace:^"
   }

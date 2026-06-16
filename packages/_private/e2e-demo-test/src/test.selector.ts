@@ -143,9 +143,26 @@ const AllComponentSelectors = {
   validateLink: '#tab-Validate',
 };
 
+const ComplexBugsSelectors = {
+  bug1304NestedDrawerButton: '#tab-content-Bug1304NestedDrawer syn-button[data-testid="nested-btn-1304"]',
+  bug1304NestedDrawerContent: '#tab-content-Bug1304NestedDrawer',
+  bug1304NestedDrawerDropDown: '#tab-content-Bug1304NestedDrawer syn-dropdown',
+  bug1304NestedDrawerLink: '#tab-Bug1304NestedDrawer',
+  bug1304NestedDrawerSelect: '#tab-content-Bug1304NestedDrawer syn-select',
+
+  bug1304SingleDrawerButton: '#tab-content-Bug1304SingleDrawer syn-button[data-testid="single-btn-1304"]',
+  bug1304SingleDrawerContent: '#tab-content-Bug1304SingleDrawer',
+  bug1304SingleDrawerDropDown: '#tab-content-Bug1304SingleDrawer syn-dropdown',
+  bug1304SingleDrawerLink: '#tab-Bug1304SingleDrawer',
+  bug1304SingleDrawerSelectFirst: '#tab-content-Bug1304SingleDrawer syn-select[data-testid="first"]',
+  bug1304SingleDrawerSelectSecond: '#tab-content-Bug1304SingleDrawer syn-select[data-testid="second"]',
+
+};
+
 export default {
   ...AllComponentSelectors,
   ...AppShellSelectors,
+  ...ComplexBugsSelectors,
   addInfoLoc: '#additional-info',
   angular: 'syn-option[value=angular]',
   birth: '#input-date',

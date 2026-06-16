@@ -10,6 +10,7 @@ export class PageObject {
    */
   static availablePages = {
     allComponents: '/all-components',
+    complexBugs: '/complex-bugs',
     form: '/contact-form',
     formValidate: '/contact-form-validate',
     frameworkSpecifics: '/framework-specific',

@@ -405,6 +405,7 @@ export const axisCommonStyles = () => ({
   axisLine: {
     lineStyle: {
       color: getRealStyleValue('--syn-grid-lines-color'),
+      width: getRealValueWithoutUnit('--syn-border-width-medium'),
     },
     show: false,
   },

@@ -424,7 +424,7 @@ const resolveValue = (variablesData, variable, modeId) => {
  *   Directory where the per-mode JSON files are written (one file per theme).
  * @property {string} collectionName
  *   Name of the Figma variable collection whose modes are transformed
- *   (e.g. `'Synergy Themes'` or `'Chart Themes'`).
+ *   (e.g. `'Synergy Themes'` or `'Charts'`).
  */
 
 /**

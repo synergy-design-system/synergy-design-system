@@ -16,7 +16,7 @@
           "name": "sick2025-dark"
         }
       ],
-      "name": "Chart Themes",
+      "name": "Charts",
       "remote": false,
       "variableIds": [
         "VariableID:8:323",
@@ -295,8 +295,8 @@
         "VariableID:2835:266",
         "VariableID:2855:2329",
         "VariableID:2855:2330",
-        "VariableID:3592:166089",
         "VariableID:2855:2331",
+        "VariableID:3592:166089",
         "VariableID:2855:2332",
         "VariableID:3330:10612",
         "VariableID:2911:36354",

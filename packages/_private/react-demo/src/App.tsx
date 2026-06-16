@@ -6,9 +6,11 @@ import { Home } from './Home.js';
 import { DemosTemplate } from './DemosTemplate.js';
 import * as AllComponents from './AllComponentParts/index.js';
 import * as FrameworkSpecifics from './FrameworkSpecificParts/index.js';
+import * as ComplexBugs from './ComplexBugs/index.js';
 
 const allComponentsDemo = Object.entries(AllComponents);
 const frameworkSpecificDemo = Object.entries(FrameworkSpecifics);
+const complexBugsDemo = Object.entries(ComplexBugs);
 
 export const App = () => (
   <BrowserRouter>
@@ -18,6 +20,7 @@ export const App = () => (
         <Route path="contact-form" element={<DemoForm />} />
         <Route path="contact-form-validate" element={<DemoFormValidate />} />
         <Route path="all-components" element={<DemosTemplate demos={allComponentsDemo} />} />
+        <Route path="complex-bugs" element={<DemosTemplate demos={complexBugsDemo} />} />
         <Route path="framework-specific" element={<DemosTemplate demos={frameworkSpecificDemo} />} />
       </Route>
     </Routes>

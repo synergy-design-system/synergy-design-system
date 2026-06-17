@@ -177,23 +177,14 @@ chart.getInstance()?.setOption(
 
 Instead of manually assembling deeply nested ECharts option objects, `syn-chart` ships a middleware-style composition system.
 
-The central concept is the **`ConfigModifier`** — a plain function with the signature `(config: ECConfig) => ECConfig`.
-
-- Use `.with(modifier)` when you want to apply modifier functions directly.
-- Use `.usePreset(name, options)` when you want to apply the same behavior through a named preset.
-
-Named presets are a discoverable wrapper around predefined modifier functions. You can also write your own modifiers.
+Use `.usePreset(name, options)` to apply predefined, discoverable preset bundles to a base config.
 
 ### `enhanceConfig` — Fluent Builder
 
-`enhanceConfig(base)` wraps a base config in a fluent builder. Chain `.with(modifier)` calls for direct modifier composition, use `.usePreset(name, options)` for discoverable named presets, then call `.build()` to get the final `ECConfig`.
+`enhanceConfig(base)` wraps a base config in a fluent builder. Chain `.usePreset(name, options)` calls for discoverable named presets, then call `.build()` to get the final `ECConfig`.
 
 ```js
-import {
-  enhanceConfig,
-  withAxesSplitLines,
-  withHiddenAxisLabels,
-} from "@synergy-design-system/components/components/chart/configs/index.js";
+import { enhanceConfig } from "@synergy-design-system/components/components/chart/configs/index.js";
 
 const baseConfig = {
   series: [{ type: "line", data: [150, 230, 224] }],
@@ -201,21 +192,6 @@ const baseConfig = {
   yAxis: { type: "value", name: "Values" },
 };
 
-chart.config = enhanceConfig(baseConfig)
-  .with(withAxesSplitLines())
-  .with(withHiddenAxisLabels())
-  .with(
-    withXAxisLabelIcons({
-      iconUrls,
-      iconPosition: "top",
-    }),
-  )
-  .build();
-```
-
-`enhanceConfig(base)` also supports named presets via `.usePreset(name, options)`.
-
-```js
 chart.config = enhanceConfig(baseConfig)
   .usePreset("axes.split-lines")
   .usePreset("axes.hide-labels")
@@ -226,36 +202,24 @@ chart.config = enhanceConfig(baseConfig)
   .build();
 ```
 
-### Array Merge Strategy
-
-Nested objects are deep-merged across layers; **arrays are always replaced** by the value from the most recently applied modifier. Keep this in mind when modifying `series`, `xAxis.data`, etc.
-
 ---
 
-## Predefined Configs / Presets
+## Predefined Presets
 
-All predefined modifier functions are exported from `@synergy-design-system/components/components/chart/configs/index.js`.
-
-The sections below document both layers of the API:
-
-- Modifier functions, which you pass to `.with(...)`
-- Named presets, which you pass to `.usePreset(...)`
-
-Each named preset maps directly to one predefined modifier function.
+The sections below documents the named presets, which you pass to `.usePreset(...)`
 
 ### Axes presets
 
-| Preset name            | Equivalent modifier       | Options                          | Description                                        |
-| ---------------------- | ------------------------- | -------------------------------- | -------------------------------------------------- |
-| `'axes.split-lines'`   | `withAxesSplitLines()`    | `AxesPatchOptions` _(optional)_  | Enables horizontal and vertical split lines.       |
-| `'axes.x-split-lines'` | `withXAxisSplitLines()`   | `AxisPatchOptions` _(optional)_  | Enables vertical split lines only on the x-axis.   |
-| `'axes.y-split-lines'` | `withYAxisSplitLines()`   | `AxisPatchOptions` _(optional)_  | Enables horizontal split lines only on the y-axis. |
-| `'axes.hide-labels'`   | `withHiddenAxisLabels()`  | `AxesPatchOptions` _(optional)_  | Hides tick labels on both axes.                    |
-| `'axes.hide-x-labels'` | `withHiddenXAxisLabels()` | `AxisPatchOptions` _(optional)_  | Hides tick labels only on the x-axis.              |
-| `'axes.hide-y-labels'` | `withHiddenYAxisLabels()` | `AxisPatchOptions` _(optional)_  | Hides tick labels only on the y-axis.              |
-| `'axes.x-label-icons'` | `withXAxisLabelIcons()`   | `AxisLabelIconsOptions<'xAxis'>` | Adds one icon per x-axis label.                    |
-|                        |
-| `'axes.y-label-icons'` | `withYAxisLabelIcons()`   | `AxisLabelIconsOptions<'yAxis'>` | Adds one icon per y-axis label.                    |
+| Preset name            | Options                          | Description                                        |
+| ---------------------- | -------------------------------- | -------------------------------------------------- |
+| `'axes.split-lines'`   | `AxesPatchOptions` _(optional)_  | Enables horizontal and vertical split lines.       |
+| `'axes.x-split-lines'` | `AxisPatchOptions` _(optional)_  | Enables vertical split lines only on the x-axis.   |
+| `'axes.y-split-lines'` | `AxisPatchOptions` _(optional)_  | Enables horizontal split lines only on the y-axis. |
+| `'axes.hide-labels'`   | `AxesPatchOptions` _(optional)_  | Hides tick labels on both axes.                    |
+| `'axes.hide-x-labels'` | `AxisPatchOptions` _(optional)_  | Hides tick labels only on the x-axis.              |
+| `'axes.hide-y-labels'` | `AxisPatchOptions` _(optional)_  | Hides tick labels only on the y-axis.              |
+| `'axes.x-label-icons'` | `AxisLabelIconsOptions<'xAxis'>` | Adds one icon per x-axis label.                    |
+| `'axes.y-label-icons'` | `AxisLabelIconsOptions<'yAxis'>` | Adds one icon per y-axis label.                    |
 
 ---
 

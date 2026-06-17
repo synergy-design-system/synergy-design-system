@@ -10,7 +10,8 @@ import {
   withYAxisSplitLines,
 } from '../axes/index.js';
 
-const presetFactories = {
+// Define factories lazily to ensure all imported functions are available
+const getPresetFactories = () => ({
   'axes.hide-labels': withHiddenAxisLabels,
   'axes.hide-x-labels': withHiddenXAxisLabels,
   'axes.hide-y-labels': withHiddenYAxisLabels,
@@ -19,13 +20,15 @@ const presetFactories = {
   'axes.x-split-lines': withXAxisSplitLines,
   'axes.y-label-icons': withYAxisLabelIcons,
   'axes.y-split-lines': withYAxisSplitLines,
-} as const;
+}) as const;
 
-export type SynChartPresetName = keyof typeof presetFactories;
+type PresetFactories = ReturnType<typeof getPresetFactories>;
+
+export type SynChartPresetName = keyof PresetFactories;
 
 export type SynChartPresetOptionsMap = {
   [K in SynChartPresetName]:
-  Parameters<typeof presetFactories[K]>[0];
+  Parameters<PresetFactories[K]>[0];
 };
 
 export type PresetTuple<K extends SynChartPresetName> =
@@ -45,4 +48,4 @@ const applyPresetFactory = <
 
 export const createPresetModifier = <K extends SynChartPresetName>(
   ...preset: PresetTuple<K>
-): ConfigModifier => applyPresetFactory(presetFactories, preset[0], preset[1]);
+): ConfigModifier => applyPresetFactory(getPresetFactories(), preset[0], preset[1]);

@@ -126,7 +126,7 @@ export const withAxisLabelIcons = <T extends AxisKey>(
 export const withXAxisLabelIcons = (options: AxisLabelIconsOptions<'xAxis'>): ConfigModifier => withAxisLabelIcons('xAxis', options);
 
 /**
- * Adds icons to x-axis labels.
+ * Adds icons to y-axis labels.
  *
  * ECharts reference:
  *  - https://echarts.apache.org/en/option.html#yAxis.axisLabel

@@ -1,6 +1,5 @@
 import { expect } from '@open-wc/testing';
-import { type ConfigModifier, compose, enhanceConfig } from './config.js';
-import { mergeConfigs } from './config.js';
+import { compose, enhanceConfig, mergeConfigs } from './config.js';
 
 describe('mergeConfigs', () => {
   it('deep-merges nested objects with last layer precedence', () => {
@@ -53,50 +52,31 @@ describe('enhanceConfig', () => {
     expect(enhanceConfig(base).build()).to.deep.equal(base);
   });
 
-  it('applies a single ConfigModifier via .with()', () => {
-    const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
-    const result = enhanceConfig({ xAxis: { type: 'category' } }).with(addName).build();
-    expect(result).to.deep.equal({ xAxis: { name: 'Days', type: 'category' } });
-  });
-
-  it('applies multiple modifiers left-to-right via chained .with()', () => {
-    const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
-    const addRotate: ConfigModifier = () => ({ xAxis: { axisLabel: { rotate: 45 } } });
-
-    const result = enhanceConfig({ xAxis: { type: 'category' } })
-      .with(addName)
-      .with(addRotate)
+  it('applies named presets via usePreset()', () => {
+    const result = enhanceConfig({
+      xAxis: { type: 'category' },
+      yAxis: { type: 'value' },
+    })
+      .usePreset('axes.split-lines')
       .build();
 
-    expect(result).to.deep.equal({
-      xAxis: { axisLabel: { rotate: 45 }, name: 'Days', type: 'category' },
-    });
+    expect((result.xAxis as { splitLine?: { show?: boolean } }).splitLine?.show).to.equal(true);
+    expect((result.yAxis as { splitLine?: { show?: boolean } }).splitLine?.show).to.equal(true);
   });
 
-  it('later modifiers override earlier ones for the same key', () => {
-    const setNameA: ConfigModifier = () => ({ xAxis: { name: 'First' } });
-    const setNameB: ConfigModifier = () => ({ xAxis: { name: 'Second' } });
+  it('supports chaining multiple named presets', () => {
+    const result = enhanceConfig({ xAxis: { type: 'category' } })
+      .usePreset('axes.hide-x-labels')
+      .usePreset('axes.x-split-lines')
+      .build();
 
-    const result = enhanceConfig({}).with(setNameA).with(setNameB).build();
-    expect((result.xAxis as { name: string }).name).to.equal('Second');
-  });
-
-  it('passes the accumulated config into each subsequent modifier', () => {
-    const visited: string[] = [];
-
-    const modifierA: ConfigModifier = () => {
-      visited.push('A');
-      return { xAxis: { name: 'A' } };
-    };
-    const modifierB: ConfigModifier = (config) => {
-      visited.push('B');
-      // B can read what A wrote
-      expect((config.xAxis as { name: string }).name).to.equal('A');
-      return { yAxis: { name: 'B' } };
+    const xAxis = result.xAxis as {
+      axisLabel?: { show?: boolean };
+      splitLine?: { show?: boolean };
     };
 
-    enhanceConfig({}).with(modifierA).with(modifierB).build();
-    expect(visited).to.deep.equal(['A', 'B']);
+    expect(xAxis.axisLabel?.show).to.equal(false);
+    expect(xAxis.splitLine?.show).to.equal(true);
   });
 });
 
@@ -107,14 +87,14 @@ describe('compose', () => {
   });
 
   it('applies a single modifier', () => {
-    const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
+    const addName = () => ({ xAxis: { name: 'Days' } });
     const result = compose(addName)({ xAxis: { type: 'category' } });
     expect(result).to.deep.equal({ xAxis: { name: 'Days', type: 'category' } });
   });
 
   it('composes multiple modifiers left-to-right', () => {
-    const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
-    const addRotate: ConfigModifier = () => ({ xAxis: { axisLabel: { rotate: 45 } } });
+    const addName = () => ({ xAxis: { name: 'Days' } });
+    const addRotate = () => ({ xAxis: { axisLabel: { rotate: 45 } } });
     const combined = compose(addName, addRotate);
 
     const result = combined({ xAxis: { type: 'category' } });
@@ -123,19 +103,10 @@ describe('compose', () => {
     });
   });
 
-  it('can be nested inside enhanceConfig .with()', () => {
-    const addName: ConfigModifier = () => ({ xAxis: { name: 'Days' } });
-    const addType: ConfigModifier = () => ({ xAxis: { type: 'category' } });
-    const combined = compose(addName, addType);
-
-    const result = enhanceConfig({}).with(combined).build();
-    expect(result).to.deep.equal({ xAxis: { name: 'Days', type: 'category' } });
-  });
-
   it('composes composed modifiers (nested composition)', () => {
-    const setX: ConfigModifier = () => ({ xAxis: { name: 'X' } });
-    const setY: ConfigModifier = () => ({ yAxis: { name: 'Y' } });
-    const setZ: ConfigModifier = () => ({ xAxis: { type: 'category' } });
+    const setX = () => ({ xAxis: { name: 'X' } });
+    const setY = () => ({ yAxis: { name: 'Y' } });
+    const setZ = () => ({ xAxis: { type: 'category' as const } });
 
     const inner = compose(setX, setY);
     const outer = compose(inner, setZ);

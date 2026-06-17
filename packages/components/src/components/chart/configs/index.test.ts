@@ -15,17 +15,6 @@ describe('enhanceConfig with usePreset', () => {
     expect((result.yAxis as YAXisOption).splitLine?.show).to.equal(true);
   });
 
-  it('chains usePreset and with together', () => {
-    const result = enhanceConfig({ xAxis: { type: 'category' } })
-      .usePreset('axes.hide-x-labels')
-      .with(() => ({ xAxis: { name: 'Days' } }))
-      .build();
-
-    const xAxis = result.xAxis as XAXisOption;
-    expect(xAxis.axisLabel?.show).to.equal(false);
-    expect(xAxis.name).to.equal('Days');
-  });
-
   it('passes typed options to presets', () => {
     const result = enhanceConfig({
       xAxis: [{ name: 'Bottom', type: 'category' }, { name: 'Top', type: 'category' }],

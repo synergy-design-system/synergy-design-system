@@ -11,7 +11,7 @@ type ConfigLayer = Partial<ECConfig> | undefined;
 
 const isMergeableObject = (value: unknown): value is Mergeable => typeof value === 'object' && value !== null && !Array.isArray(value);
 
-export const mergeObjects = (target: Mergeable, source: Mergeable): Mergeable => {
+const mergeDeep = (target: Mergeable, source: Mergeable): Mergeable => {
   const merged = { ...target };
 
   Object.entries(source).forEach(([key, sourceValue]) => {
@@ -24,7 +24,7 @@ export const mergeObjects = (target: Mergeable, source: Mergeable): Mergeable =>
     }
 
     if (isMergeableObject(targetValue) && isMergeableObject(sourceValue)) {
-      merged[key] = mergeObjects(targetValue, sourceValue);
+      merged[key] = mergeDeep(targetValue, sourceValue);
       return;
     }
 
@@ -34,7 +34,7 @@ export const mergeObjects = (target: Mergeable, source: Mergeable): Mergeable =>
   return merged;
 };
 
-const mergeConfigLayers = (layers: ConfigLayer[]): ECConfig => layers.reduce<ECConfig>((acc, layer) => (layer ? mergeObjects(acc, layer) : acc), {});
+const mergeConfigLayers = (layers: ConfigLayer[]): ECConfig => layers.reduce<ECConfig>((acc, layer) => (layer ? mergeDeep(acc, layer) : acc), {});
 
 /**
  * Merges multiple config layers into a single ECConfig.
@@ -65,9 +65,9 @@ class ChartConfigBuilder {
   }
 
   /**
-   * Applies a ConfigModifier to the accumulated config and returns the builder for chaining.
+   * Applies a ConfigModifier to config and returns the builder for chaining.
    */
-  with(modifier: ConfigModifier): this {
+  #with(modifier: ConfigModifier): this {
     this.#config = mergeConfigs(this.#config, modifier(this.#config));
     return this;
   }
@@ -77,7 +77,7 @@ class ChartConfigBuilder {
    */
   usePreset<K extends SynChartPresetName>(...args: PresetTuple<K>): this {
     const [name, options] = args;
-    return this.with(createPresetModifier(name, options as SynChartPresetOptionsMap[K]));
+    return this.#with(createPresetModifier(name, options as SynChartPresetOptionsMap[K]));
   }
 
   /**
@@ -101,7 +101,7 @@ class ChartConfigBuilder {
 export type ConfigModifier = (config: ECConfig) => ECConfig;
 
 /**
- * Composes multiple ConfigModifiers into a single ConfigModifier.
+ * Composes multiple modifiers into a single modifier.
  * Modifiers are applied left-to-right, so later modifiers override earlier ones.
  *
  * Each modifier is evaluated against the accumulated, merged config so composed
@@ -117,23 +117,16 @@ export const compose = (...modifiers: ConfigModifier[]): ConfigModifier => (conf
   .reduce<ECConfig>((acc, modifier) => mergeConfigs(acc, modifier(acc)), config);
 
 /**
- * Creates a fluent builder for composing chart config modifiers in a middleware-style chain.
- * Each `.with()` call applies a ConfigModifier to the accumulated config.
- * Use `.usePreset(name, options)` for named, reusable modifier bundles.
+ * Creates a fluent builder for composing chart presets in a middleware-style chain.
+ * Each `.usePreset(name, options)` call applies a named, reusable preset bundle.
  * Call `.build()` at the end to retrieve the final ECConfig.
  *
  * @example
  * ```ts
  * chart.config = enhanceConfig(baseConfig)
- *   .with(withAxesSplitLines())
- *   .with(withXAxisLabelIcons({ iconUrls }))
+ *   .usePreset('axes.split-lines')
+ *   .usePreset('axes.x-label-icons', { iconUrls })
  *   .build();
- * ```
- *
- * Modifiers can themselves be composed using `compose`:
- * ```ts
- * const myModifier = compose(withAxesSplitLines(), withHiddenYAxisLabels());
- * chart.config = enhanceConfig(baseConfig).with(myModifier).build();
  * ```
  */
 export const enhanceConfig = (base: ECConfig): ChartConfigBuilder => new ChartConfigBuilder(base);

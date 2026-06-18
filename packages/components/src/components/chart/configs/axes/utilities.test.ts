@@ -186,7 +186,7 @@ describe('chart axis utilities', () => {
         iconUrls: [null, svgDataUrl, undefined, svgDataUrl] as string[],
         labelsStyle: { fontSize: 14 },
       });
-      const rich = axisLabel!.rich!;
+      const rich = axisLabel.rich!;
       const keys = Object.keys(rich);
 
       expect(keys).to.deep.equal(['label', 'icon_1', 'icon_3']);

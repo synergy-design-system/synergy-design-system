@@ -177,14 +177,14 @@ chart.getInstance()?.setOption(
 
 Instead of manually assembling deeply nested ECharts option objects, `syn-chart` ships a middleware-style composition system.
 
-Use `.usePreset(name, options)` to apply predefined, discoverable preset bundles to a base config.
+Use `.apply(name, options)` to apply predefined, discoverable preset bundles to a base config.
 
-### `enhanceConfig` — Fluent Builder
+### `createConfig` — Fluent Builder
 
-`enhanceConfig(base)` wraps a base config in a fluent builder. Chain `.usePreset(name, options)` calls for discoverable named presets, then call `.build()` to get the final `ECConfig`.
+`createConfig(base)` wraps a base config in a fluent builder. Chain `.apply(name, options)` calls for discoverable named presets, then call `.build()` to get the final `ECConfig`.
 
 ```js
-import { enhanceConfig } from "@synergy-design-system/components/components/chart/configs/index.js";
+import { createConfig } from "@synergy-design-system/components/components/chart/configs/index.js";
 
 const baseConfig = {
   series: [{ type: "line", data: [150, 230, 224] }],
@@ -192,10 +192,10 @@ const baseConfig = {
   yAxis: { type: "value", name: "Values" },
 };
 
-chart.config = enhanceConfig(baseConfig)
-  .usePreset("axes.split-lines")
-  .usePreset("axes.hide-labels")
-  .usePreset("axes.x-label-icons", {
+chart.config = createConfig(baseConfig)
+  .apply("axes.split-lines")
+  .apply("axes.hide-labels")
+  .apply("axes.x-label-icons", {
     iconUrls,
     iconPosition: "top",
   })
@@ -206,7 +206,7 @@ chart.config = enhanceConfig(baseConfig)
 
 ## Predefined Presets
 
-The sections below documents the named presets, which you pass to `.usePreset(...)`
+The sections below documents the named presets, which you pass to `.apply(...)`
 
 ### Axes presets
 

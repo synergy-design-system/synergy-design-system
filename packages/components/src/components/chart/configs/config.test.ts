@@ -1,5 +1,5 @@
 import { expect } from '@open-wc/testing';
-import { compose, enhanceConfig, mergeConfigs } from './config.js';
+import { compose, createConfig, mergeConfigs } from './config.js';
 
 describe('mergeConfigs', () => {
   it('deep-merges nested objects with last layer precedence', () => {
@@ -46,18 +46,18 @@ describe('mergeConfigs', () => {
   });
 });
 
-describe('enhanceConfig', () => {
+describe('createConfig', () => {
   it('returns the base config unchanged when no modifiers are applied', () => {
     const base = { xAxis: { type: 'category' as const } };
-    expect(enhanceConfig(base).build()).to.deep.equal(base);
+    expect(createConfig(base).build()).to.deep.equal(base);
   });
 
-  it('applies named presets via usePreset()', () => {
-    const result = enhanceConfig({
+  it('applies named presets via apply()', () => {
+    const result = createConfig({
       xAxis: { type: 'category' },
       yAxis: { type: 'value' },
     })
-      .usePreset('axes.split-lines')
+      .apply('axes.split-lines')
       .build();
 
     expect((result.xAxis as { splitLine?: { show?: boolean } }).splitLine?.show).to.equal(true);
@@ -65,9 +65,9 @@ describe('enhanceConfig', () => {
   });
 
   it('supports chaining multiple named presets', () => {
-    const result = enhanceConfig({ xAxis: { type: 'category' } })
-      .usePreset('axes.hide-x-labels')
-      .usePreset('axes.x-split-lines')
+    const result = createConfig({ xAxis: { type: 'category' } })
+      .apply('axes.hide-x-labels')
+      .apply('axes.x-split-lines')
       .build();
 
     const xAxis = result.xAxis as {

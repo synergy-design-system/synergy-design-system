@@ -1,3 +1,3 @@
 export {
-  enhanceConfig,
+  createConfig,
 } from './config.js';

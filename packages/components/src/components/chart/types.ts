@@ -4,10 +4,9 @@ export type ECConfig = EChartsOption;
 
 export type {
   SynChartPresetName,
-  SynChartPresetOptionsMap,
+  SynChartPresetOption,
 } from './configs/presets/index.js';
 
-// Public preset option types
 export type {
   AxisIndexSelection,
   AxisPatchOptions,

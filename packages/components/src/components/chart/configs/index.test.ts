@@ -1,14 +1,14 @@
 import { expect } from '@open-wc/testing';
 import type { XAXisOption, YAXisOption } from 'echarts/types/dist/shared';
-import { enhanceConfig } from './index.js';
+import { createConfig } from './index.js';
 
-describe('enhanceConfig with usePreset', () => {
+describe('createConfig with apply', () => {
   it('applies an axes preset by name', () => {
-    const result = enhanceConfig({
+    const result = createConfig({
       xAxis: { type: 'category' },
       yAxis: { type: 'value' },
     })
-      .usePreset('axes.split-lines')
+      .apply('axes.split-lines')
       .build();
 
     expect((result.xAxis as XAXisOption).splitLine?.show).to.equal(true);
@@ -16,10 +16,10 @@ describe('enhanceConfig with usePreset', () => {
   });
 
   it('passes typed options to presets', () => {
-    const result = enhanceConfig({
+    const result = createConfig({
       xAxis: [{ name: 'Bottom', type: 'category' }, { name: 'Top', type: 'category' }],
     })
-      .usePreset('axes.x-split-lines', { axisIndex: 1 })
+      .apply('axes.x-split-lines', { axisIndex: 1 })
       .build();
 
     const xAxes = result.xAxis as XAXisOption[];

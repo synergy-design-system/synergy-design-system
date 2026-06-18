@@ -1,4 +1,3 @@
-import type { ThemeOption } from 'echarts/types/src/util/types.js';
 import { PALETTE_TOKENS } from '../chart.palettes.js';
 import { getRealStyleValue } from './utilities.js';
 import { axisCommonStyles } from '../configs/axes/utilities.js';
@@ -8,7 +7,7 @@ import { axisCommonStyles } from '../configs/axes/utilities.js';
 const categoricalColors = PALETTE_TOKENS.categorical.map(getRealStyleValue).filter(Boolean);
 
 // Synergy ECharts Theme
-export const synergyLightTheme: ThemeOption = {
+export const synergyLightTheme = {
   categoryAxis: axisCommonStyles(),
   // Default color palette for charts, is categorical by default but can be overridden by setting the palette property on the chart component or by directly setting config.color
   color: categoricalColors,

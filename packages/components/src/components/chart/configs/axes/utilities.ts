@@ -1,5 +1,3 @@
-import type { TextCommonOption } from 'echarts/types/src/util/types.js';
-import type { CategoryAxisBaseOption } from 'echarts/types/src/coord/axisCommonTypes.js';
 import {
   getRealStyleValue, getRealValueWithoutUnit, normalizeArray, setDefaultValueIfNotAvailable,
 } from '../../themes/utilities.js';
@@ -7,7 +5,9 @@ import type { ECConfig } from '../../types.js';
 import { mergeConfigs } from '../config.js';
 import type {
   AxisKey,
+  AxisLabel,
   AxisLabelIconsConfig,
+  AxisLabelRich,
   AxisOption,
   AxisUpdateOptions,
 } from './types.js';
@@ -178,17 +178,17 @@ export const updateAxisConfig = <T extends AxisKey>(
 /**
  * Default styles for axis labels
  */
-const getDefaultAxisLabelStyle = (): TextCommonOption => ({
+const getDefaultAxisLabelStyle = (): AxisLabelRich => ({
   color: getRealStyleValue('--syn-typography-color-text-quiet'),
   fontFamily: getRealStyleValue('--syn-font-sans'),
   fontSize: getRealStyleValue('--syn-font-size-x-small'),
-  fontWeight: getRealStyleValue('--syn-font-weight-normal') as TextCommonOption['fontWeight'],
+  fontWeight: getRealStyleValue('--syn-font-weight-normal') as AxisLabelRich['fontWeight'],
 });
 
 /**
  * Default styles for axis label icons
  */
-const getDefaultAxisIconStyle = (): TextCommonOption => ({
+const getDefaultAxisIconStyle = (): AxisLabelRich => ({
   height: getRealValueWithoutUnit('--syn-spacing-large'),
   width: getRealValueWithoutUnit('--syn-spacing-large'),
 });
@@ -200,7 +200,7 @@ const getDefaultAxisIconStyle = (): TextCommonOption => ({
  * @param labelsStyle - Optional rich-text overrides for the label part.
  * @returns A CSS font shorthand string suitable for `CanvasRenderingContext2D.font`.
  */
-const getFontShorthand = (labelsStyle: TextCommonOption | undefined): string => {
+const getFontShorthand = (labelsStyle: AxisLabelRich | undefined): string => {
   const defaultAxisLabelStyle = getDefaultAxisLabelStyle();
   const fontSizeValue = labelsStyle?.fontSize ?? defaultAxisLabelStyle.fontSize;
   const fontSize = typeof fontSizeValue === 'number' ? `${fontSizeValue}px` : String(fontSizeValue);
@@ -222,7 +222,7 @@ const getFontShorthand = (labelsStyle: TextCommonOption | undefined): string => 
  * @returns An explicit width value for the label block.
  */
 const getYAxisLabelEffectiveWidth = (
-  labelsStyle: TextCommonOption | undefined,
+  labelsStyle: AxisLabelRich | undefined,
   config: ECConfig,
 ): number | string | undefined => {
   if (labelsStyle?.width !== undefined) return labelsStyle.width;
@@ -246,7 +246,7 @@ const getYAxisLabelEffectiveWidth = (
  */
 const createPositionConfig = (
   iconPosition: AxisLabelIconsConfig['iconPosition'],
-  labelsStyle: TextCommonOption | undefined,
+  labelsStyle: AxisLabelRich | undefined,
   config: ECConfig,
 ) => {
   switch (iconPosition) {
@@ -295,7 +295,7 @@ export const buildAxisLabelConfigWithIcon = ({
   iconsStyle,
   iconUrls,
   labelsStyle,
-}: AxisLabelIconsConfig): CategoryAxisBaseOption['axisLabel'] => {
+}: AxisLabelIconsConfig): AxisLabel => {
   const positionConfig = createPositionConfig(iconPosition, labelsStyle, config);
 
   const mergedLabelsStyle = {

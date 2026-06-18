@@ -1,5 +1,8 @@
-import type { TextCommonOption } from 'echarts/types/src/util/types.js';
+import type { XAXisOption } from 'echarts/types/dist/shared';
 import type { ECConfig } from '../../types.js';
+
+export type AxisLabel = NonNullable<XAXisOption['axisLabel']>;
+export type AxisLabelRich = NonNullable<AxisLabel['rich']>[string];
 
 export type AxisKey = 'xAxis' | 'yAxis';
 
@@ -76,11 +79,11 @@ export type AxisLabelIconOptions<T extends AxisKey> = {
   /**
    * Optional styles applied to all icons.
    */
-  iconsStyle?: TextCommonOption;
+  iconsStyle?: AxisLabelRich;
   /**
    * Optional styles applied to all labels.
    */
-  labelsStyle?: TextCommonOption;
+  labelsStyle?: AxisLabelRich;
 };
 
 type IconLabelPosition = 'top' | 'bottom' | 'left' | 'right';

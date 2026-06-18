@@ -1,8 +1,8 @@
 export type {
-  AxisIndexSelection,
-  AxisLabelIconsOptions,
-  AxisPatchOptions,
-  AxesPatchOptions,
+  AxisIndices,
+  AxisLabelIconOptions,
+  AxisUpdateOptions,
+  AxesUpdateOptions,
 } from './types.js';
 
 export {

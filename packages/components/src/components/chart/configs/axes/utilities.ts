@@ -7,9 +7,9 @@ import type { ECConfig } from '../../types.js';
 import { mergeConfigs } from '../config.js';
 import type {
   AxisKey,
-  AxisLabelIconsConfigOptions,
+  AxisLabelIconsConfig,
   AxisOption,
-  AxisPatchOptions,
+  AxisUpdateOptions,
 } from './types.js';
 
 /**
@@ -109,50 +109,45 @@ export function measureMaxTextWidth(texts: string[], font: string): number {
 }
 
 /**
- * Applies a partial patch to one chart axis (`xAxis` or `yAxis`) and returns
- * the patched axis config for that axis key.
+ * Merges a partial patch into one axis config (`xAxis` or `yAxis`) and returns
+ * the updated value for that axis key.
  *
- * Supports both single-axis objects and axis arrays:
- * - If the axis config is an array, only selected indices are patched.
- * - If the axis config is a single object, index `0` is used for selection.
+ * Supports both single-axis objects and axis arrays. When `axisIndex` is set,
+ * only the selected axis entries are updated. For non-array axis configs,
+ * index `0` is used.
  *
- * @param config ECharts config object.
- * @param axisKey Axis key to patch (`xAxis` or `yAxis`).
- * @param patch Partial axis values that should be merged into the selected axis entries.
- * @param options Optional axis selection settings.
- * @returns The patched config section at `config[axisKey]` with the same structural shape
- * as before (single object or array).
+ * @param config - ECharts config object.
+ * @param axisKey - Axis key to update (`xAxis` or `yAxis`).
+ * @param patch - Partial axis config merged into the selected axis entries.
+ * @param options - Optional axis selection settings.
+ * @returns The updated axis config at `config[axisKey]`, preserving its original shape.
  *
  * @example
  * ```ts
- * const nextXAxis = patchAxisConfig(
+ * const nextXAxis = updateAxisConfig(
  *   config,
  *   'xAxis',
  *   { axisLabel: { show: false } },
  *   { axisIndex: [0, 2] },
  * );
  *
- * // resulting object
- * {
- *   xAxis: [
- *     { ...config.xAxis[0], axisLabel: { ...config.xAxis[0].axisLabel, show: false } },
- *     config.xAxis[1],
- *     { ...config.xAxis[2], axisLabel: { ...config.xAxis[2].axisLabel, show: false } },
- *     ...restOfXAxisArray
- *   ],
- *   // other config entries remain unchanged
- * }
+ * // nextXAxis
+ * [
+ *   { ...config.xAxis[0], axisLabel: { ...config.xAxis[0].axisLabel, show: false } },
+ *   config.xAxis[1],
+ *   { ...config.xAxis[2], axisLabel: { ...config.xAxis[2].axisLabel, show: false } },
+ * ]
  * ```
  */
-export const patchAxisConfig = <T extends AxisKey>(
+export const updateAxisConfig = <T extends AxisKey>(
   config: ECConfig,
   axisKey: T,
   patch: AxisOption<T>,
-  options: AxisPatchOptions = {},
+  options: AxisUpdateOptions = {},
 ): ECConfig[T] => {
   const { axisIndex } = options;
 
-  const shouldPatchIndex = (index: number): boolean => {
+  const shouldUpdateIndex = (index: number): boolean => {
     if (axisIndex === undefined) return true;
     if (Array.isArray(axisIndex)) return axisIndex.includes(index);
     return axisIndex === index;
@@ -171,12 +166,12 @@ export const patchAxisConfig = <T extends AxisKey>(
   if (Array.isArray(axisConfig)) {
     return axisConfig
       .map((axis, index) => {
-        if (!shouldPatchIndex(index)) return axis;
+        if (!shouldUpdateIndex(index)) return axis;
         return mergeSingleAxis(axis as AxisOption<T>);
       }) as ECConfig[T];
   }
 
-  if (!shouldPatchIndex(0)) return axisConfig;
+  if (!shouldUpdateIndex(0)) return axisConfig;
   return mergeSingleAxis((axisConfig ?? {}) as AxisOption<T>);
 };
 
@@ -250,7 +245,7 @@ const getYAxisLabelEffectiveWidth = (
  * @returns Formatter, padding and optional width for the rich label definition.
  */
 const createPositionConfig = (
-  iconPosition: AxisLabelIconsConfigOptions['iconPosition'],
+  iconPosition: AxisLabelIconsConfig['iconPosition'],
   labelsStyle: TextCommonOption | undefined,
   config: ECConfig,
 ) => {
@@ -300,7 +295,7 @@ export const buildAxisLabelConfigWithIcon = ({
   iconsStyle,
   iconUrls,
   labelsStyle,
-}: AxisLabelIconsConfigOptions): CategoryAxisBaseOption['axisLabel'] => {
+}: AxisLabelIconsConfig): CategoryAxisBaseOption['axisLabel'] => {
   const positionConfig = createPositionConfig(iconPosition, labelsStyle, config);
 
   const mergedLabelsStyle = {

@@ -6,7 +6,7 @@ import {
   colorSvgDataUrl,
   extractYAxisLabelTexts,
   measureMaxTextWidth,
-  patchAxisConfig,
+  updateAxisConfig,
 } from './utilities.js';
 import type { ECConfig } from '../../types.js';
 
@@ -72,9 +72,9 @@ describe('chart axis utilities', () => {
     });
   });
 
-  describe('patchAxisConfig', () => {
+  describe('updateAxisConfig', () => {
     it('patches only the selected axis indices in axis arrays', () => {
-      const result = patchAxisConfig(
+      const result = updateAxisConfig(
         {
           xAxis: [
             { name: 'Bottom', type: 'category' },
@@ -97,7 +97,7 @@ describe('chart axis utilities', () => {
     it('keeps single-axis objects unchanged when their index is not selected', () => {
       const axis: YAXisOption = { name: 'Values', type: 'value' };
 
-      const result = patchAxisConfig(
+      const result = updateAxisConfig(
         { yAxis: axis },
         'yAxis',
         { axisLabel: { show: false } },

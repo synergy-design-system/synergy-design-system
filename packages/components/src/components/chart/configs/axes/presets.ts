@@ -2,21 +2,21 @@ import type { ConfigModifier } from '../config.js';
 import { compose } from '../config.js';
 import { getRealStyleValue, getRealValueWithoutUnit } from '../../themes/utilities.js';
 import type {
-  AxesPatchOptions,
+  AxesUpdateOptions,
   AxisKey,
-  AxisLabelIconsOptions,
+  AxisLabelIconOptions,
   AxisOption,
-  AxisPatchOptions,
+  AxisUpdateOptions,
 } from './types.js';
-import { buildAxisLabelConfigWithIcon, patchAxisConfig } from './utilities.js';
+import { buildAxisLabelConfigWithIcon, updateAxisConfig } from './utilities.js';
 
 /**
  * Shows horizontal split lines at each y-axis tick.
  *
  * ECharts reference: https://echarts.apache.org/en/option.html#yAxis.splitLine
  */
-export const withYAxisSplitLines = ({ axisIndex }: AxisPatchOptions = {}): ConfigModifier => (config) => ({
-  yAxis: patchAxisConfig(config, 'yAxis', {
+export const withYAxisSplitLines = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
+  yAxis: updateAxisConfig(config, 'yAxis', {
     splitLine: { show: true },
   }, { axisIndex }),
 });
@@ -26,8 +26,8 @@ export const withYAxisSplitLines = ({ axisIndex }: AxisPatchOptions = {}): Confi
  *
  * ECharts reference: https://echarts.apache.org/en/option.html#xAxis.splitLine
  */
-export const withXAxisSplitLines = ({ axisIndex }: AxisPatchOptions = {}): ConfigModifier => (config) => ({
-  xAxis: patchAxisConfig(config, 'xAxis', {
+export const withXAxisSplitLines = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
+  xAxis: updateAxisConfig(config, 'xAxis', {
     splitLine: { show: true },
   }, { axisIndex }),
 });
@@ -41,14 +41,14 @@ export const withXAxisSplitLines = ({ axisIndex }: AxisPatchOptions = {}): Confi
  * - https://echarts.apache.org/en/option.html#xAxis.splitLine
  * - https://echarts.apache.org/en/option.html#yAxis.splitLine
  */
-export const withAxesSplitLines = ({ xAxisIndex, yAxisIndex }: AxesPatchOptions = {}): ConfigModifier => compose(
+export const withAxesSplitLines = ({ xAxisIndex, yAxisIndex }: AxesUpdateOptions = {}): ConfigModifier => compose(
   withYAxisSplitLines({ axisIndex: yAxisIndex }),
   withXAxisSplitLines({ axisIndex: xAxisIndex }),
   (config) => ({
-    xAxis: patchAxisConfig(config, 'xAxis', {
+    xAxis: updateAxisConfig(config, 'xAxis', {
       axisLine: { show: true },
     }, { axisIndex: xAxisIndex }),
-    yAxis: patchAxisConfig(config, 'yAxis', {
+    yAxis: updateAxisConfig(config, 'yAxis', {
       axisLine: { show: true },
     }, { axisIndex: yAxisIndex }),
   }),
@@ -61,8 +61,8 @@ export const withAxesSplitLines = ({ xAxisIndex, yAxisIndex }: AxesPatchOptions 
  * - https://echarts.apache.org/en/option.html#xAxis.axisLabel
  * - https://echarts.apache.org/en/option.html#xAxis.nameGap
  */
-export const withHiddenXAxisLabels = ({ axisIndex }: AxisPatchOptions = {}): ConfigModifier => (config) => ({
-  xAxis: patchAxisConfig(config, 'xAxis', {
+export const withHiddenXAxisLabels = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
+  xAxis: updateAxisConfig(config, 'xAxis', {
     axisLabel: { show: false },
     nameGap: getRealValueWithoutUnit('--syn-spacing-small'),
   }, { axisIndex }),
@@ -75,8 +75,8 @@ export const withHiddenXAxisLabels = ({ axisIndex }: AxisPatchOptions = {}): Con
  * - https://echarts.apache.org/en/option.html#yAxis.axisLabel
  * - https://echarts.apache.org/en/option.html#yAxis.nameTextStyle
  */
-export const withHiddenYAxisLabels = ({ axisIndex }: AxisPatchOptions = {}): ConfigModifier => (config) => ({
-  yAxis: patchAxisConfig(config, 'yAxis', {
+export const withHiddenYAxisLabels = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
+  yAxis: updateAxisConfig(config, 'yAxis', {
     axisLabel: { show: false },
     nameTextStyle: { align: 'left' },
   }, { axisIndex }),
@@ -85,14 +85,14 @@ export const withHiddenYAxisLabels = ({ axisIndex }: AxisPatchOptions = {}): Con
 /**
  * Hides axis labels on x-axis and y-axis.
  */
-export const withHiddenAxisLabels = ({ xAxisIndex, yAxisIndex }: AxesPatchOptions = {}): ConfigModifier => compose(
+export const withHiddenAxisLabels = ({ xAxisIndex, yAxisIndex }: AxesUpdateOptions = {}): ConfigModifier => compose(
   withHiddenXAxisLabels({ axisIndex: xAxisIndex }),
   withHiddenYAxisLabels({ axisIndex: yAxisIndex }),
 );
 
 export const withAxisLabelIcons = <T extends AxisKey>(
   axisKey: T,
-  options: AxisLabelIconsOptions<T>,
+  options: AxisLabelIconOptions<T>,
 ): ConfigModifier => (config) => {
   const defaults = {
     iconColor: getRealStyleValue('--syn-color-neutral-950'),
@@ -102,7 +102,7 @@ export const withAxisLabelIcons = <T extends AxisKey>(
   const mergedOptions = { ...defaults, ...options };
 
   return {
-    [axisKey]: patchAxisConfig(config, axisKey, {
+    [axisKey]: updateAxisConfig(config, axisKey, {
       axisLabel: buildAxisLabelConfigWithIcon({
         config,
         iconColor: mergedOptions.iconColor,
@@ -123,7 +123,7 @@ export const withAxisLabelIcons = <T extends AxisKey>(
  *  - https://echarts.apache.org/en/option.html#xAxis.axisLabel.rich
  *  - https://echarts.apache.org/en/option.html#xAxis.axisLabel.formatter
  */
-export const withXAxisLabelIcons = (options: AxisLabelIconsOptions<'xAxis'>): ConfigModifier => withAxisLabelIcons('xAxis', options);
+export const withXAxisLabelIcons = (options: AxisLabelIconOptions<'xAxis'>): ConfigModifier => withAxisLabelIcons('xAxis', options);
 
 /**
  * Adds icons to y-axis labels.
@@ -133,4 +133,4 @@ export const withXAxisLabelIcons = (options: AxisLabelIconsOptions<'xAxis'>): Co
  *  - https://echarts.apache.org/en/option.html#yAxis.axisLabel.rich
  *  - https://echarts.apache.org/en/option.html#yAxis.axisLabel.formatter
  */
-export const withYAxisLabelIcons = (options: AxisLabelIconsOptions<'yAxis'>): ConfigModifier => withAxisLabelIcons('yAxis', options);
+export const withYAxisLabelIcons = (options: AxisLabelIconOptions<'yAxis'>): ConfigModifier => withAxisLabelIcons('yAxis', options);

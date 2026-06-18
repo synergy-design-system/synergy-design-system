@@ -8,8 +8,8 @@ export type {
 } from './configs/presets/index.js';
 
 export type {
-  AxisIndexSelection,
-  AxisPatchOptions,
-  AxesPatchOptions,
-  AxisLabelIconsOptions,
+  AxisIndices,
+  AxisUpdateOptions,
+  AxesUpdateOptions,
+  AxisLabelIconOptions,
 } from './configs/axes/types.js';

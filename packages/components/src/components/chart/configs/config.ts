@@ -175,7 +175,6 @@ export type ConfigModifier = (config: ECConfig) => ECConfig;
  * @example
  * ```ts
  * const combined = compose(withAxesSplitLines(), withHiddenYAxisLabels());
- * chart.config = createConfig(baseConfig).with(combined).build();
  * ```
  */
 export const compose = (...modifiers: ConfigModifier[]): ConfigModifier => (config) => modifiers

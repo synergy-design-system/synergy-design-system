@@ -212,14 +212,14 @@ The sections below documents the named presets, which you pass to `.apply(...)`
 
 | Preset name            | Options                          | Description                                        |
 | ---------------------- | -------------------------------- | -------------------------------------------------- |
-| `'axes.split-lines'`   | `AxesPatchOptions` _(optional)_  | Enables horizontal and vertical split lines.       |
-| `'axes.x-split-lines'` | `AxisPatchOptions` _(optional)_  | Enables vertical split lines only on the x-axis.   |
-| `'axes.y-split-lines'` | `AxisPatchOptions` _(optional)_  | Enables horizontal split lines only on the y-axis. |
-| `'axes.hide-labels'`   | `AxesPatchOptions` _(optional)_  | Hides tick labels on both axes.                    |
-| `'axes.hide-x-labels'` | `AxisPatchOptions` _(optional)_  | Hides tick labels only on the x-axis.              |
-| `'axes.hide-y-labels'` | `AxisPatchOptions` _(optional)_  | Hides tick labels only on the y-axis.              |
-| `'axes.x-label-icons'` | `AxisLabelIconsOptions<'xAxis'>` | Adds one icon per x-axis label.                    |
-| `'axes.y-label-icons'` | `AxisLabelIconsOptions<'yAxis'>` | Adds one icon per y-axis label.                    |
+| `'axes.split-lines'`   | `AxesUpdateOptions` _(optional)_ | Enables horizontal and vertical split lines.       |
+| `'axes.x-split-lines'` | `AxisUpdateOptions` _(optional)_ | Enables vertical split lines only on the x-axis.   |
+| `'axes.y-split-lines'` | `AxisUpdateOptions` _(optional)_ | Enables horizontal split lines only on the y-axis. |
+| `'axes.hide-labels'`   | `AxesUpdateOptions` _(optional)_ | Hides tick labels on both axes.                    |
+| `'axes.hide-x-labels'` | `AxisUpdateOptions` _(optional)_ | Hides tick labels only on the x-axis.              |
+| `'axes.hide-y-labels'` | `AxisUpdateOptions` _(optional)_ | Hides tick labels only on the y-axis.              |
+| `'axes.x-label-icons'` | `AxisLabelIconOptions<'xAxis'>`  | Adds one icon per x-axis label.                    |
+| `'axes.y-label-icons'` | `AxisLabelIconOptions<'yAxis'>`  | Adds one icon per y-axis label.                    |
 
 ---
 

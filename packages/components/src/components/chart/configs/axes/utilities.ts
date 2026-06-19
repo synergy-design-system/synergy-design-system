@@ -399,7 +399,7 @@ export const axisCommonStyles = () => ({
   },
   axisLine: {
     lineStyle: {
-      color: getRealStyleValue('--syn-grid-lines-color'),
+      color: getRealStyleValue('--syn-chart-grid-lines-color-emphasize'),
       width: getRealValueWithoutUnit('--syn-border-width-medium'),
     },
     show: false,
@@ -415,7 +415,7 @@ export const axisCommonStyles = () => ({
   },
   splitLine: {
     lineStyle: {
-      color: getRealStyleValue('--syn-grid-lines-color'),
+      color: getRealStyleValue('--syn-chart-grid-lines-color'),
     },
     show: false,
   },

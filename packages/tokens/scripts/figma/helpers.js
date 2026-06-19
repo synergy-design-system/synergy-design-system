@@ -36,13 +36,13 @@ export const renameVariableComponents = (name, type) => {
 
 /**
  * Rename variable function for charts variables, which removes the prefix from the variable name.
- * E.g. instead of "primitive/categorical/01" it becomes "categorical/01"
+ * E.g. instead of "chart/primitive/categorical/01" it becomes "chart/categorical/01"
  * @param {string} name Name of the variable
  * @returns {string} The renamed variable
  */
 export const renameVariableCharts = (name) => {
-  const prefixPattern = new RegExp(`^(${FIGMA_TOKENS_PREFIXES.join('/|')}/)`);
-  return name.replace(prefixPattern, '');
+  const prefixPattern = new RegExp(`^(chart/)?(${FIGMA_TOKENS_PREFIXES.join('/|')}/)`);
+  return name.replace(prefixPattern, '$1');
 };
 
 /**
@@ -105,6 +105,8 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
    * starting with a underscore or containing "utilities" are only used for better organization in figma and are not needed in dev
    */
   /^_/,
+  // The chart tokens of "Charts" collection all start with a *chart* prefix. The design-only tokens have an additional underscore after the prefix
+  /^chart\/_/,
   /utilities/,
 
   /**

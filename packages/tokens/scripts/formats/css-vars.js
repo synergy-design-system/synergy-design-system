@@ -125,19 +125,21 @@ export const cssVariableFormatter = {
       'readonly-opacity-color',
 
       // For now remove all chart tokens, which are not needed in the chart component
-      'background-color',
-      'opacity-10',
-      'opacity-20',
-      'opacity-40',
-      'pattern-color',
-      'pattern-color-inverted',
-      'plot-line-color',
-      'range-selection-color',
-      'range-selection-number',
-      'stroke-weight-default',
-      'stroke-weight-thin',
-      'stroke-weight-thick',
-      'track-color',
+      'chart-background-color',
+      'chart-opacity-10',
+      'chart-opacity-20',
+      'chart-opacity-40',
+      'chart-pattern-color',
+      'chart-pattern-color-inverted',
+      'chart-plot-line-color',
+      'chart-range-selection-color',
+      'chart-range-selection-number',
+      'chart-stroke-weight-default',
+      'chart-stroke-weight-thin',
+      'chart-stroke-weight-thick',
+      'chart-track-color',
+      'chart-tooltip-background-color',
+      'chart-tooltip-color',
     ].map(v => `${prefix}${v}`);
 
     /**
@@ -184,11 +186,7 @@ export const cssVariableFormatter = {
         } else {
           const name = dict[key]?.name;
 
-          // TODO: currently we have a double token name (syn-tooltip-background-color) in components and charts. We need to remove it from charts manually until design renames it.
-          // Otherwise the tokens would overwrite each other, if both token files are imported.
-          const chartDoubleNameException = name === 'syn-tooltip-background-color' && dict[key].filePath.includes('figma-charts');
-
-          if (name && (BRAND2025_IGNORE_PATTERNS.includes(name) || chartDoubleNameException)) {
+          if (name && BRAND2025_IGNORE_PATTERNS.includes(name)) {
             alreadyIgnoredList.push(name);
             delete dict[key];
             return;

@@ -220,7 +220,7 @@ const buildSdReference = (aliasVar) => {
  * @returns {boolean} `true` if the variable must be resolved to its next reference or value.
  */
 const isInternalOrAlwaysResolvedVariable = (variableName) => {
-  const INTERNAL_OR_ALWAYS_RESOLVE_REGEX = /^_|letter-spacing\/(?:default|positive-2)|(?:^|\/)line-height/;
+  const INTERNAL_OR_ALWAYS_RESOLVE_REGEX = /(?:^|\/)_|letter-spacing\/(?:default|positive-2)|(?:^|\/)line-height/;
   return INTERNAL_OR_ALWAYS_RESOLVE_REGEX.test(variableName);
 };
 
@@ -278,7 +278,7 @@ const followAliasChainToSdReference = (variablesData, aliasId, modeId) => {
     modeValue && typeof modeValue === 'object' && 'type' in modeValue
     && modeValue.type === 'VARIABLE_ALIAS' && 'id' in modeValue
   ) {
-    return followAliasChainToSdReference(variablesData, /** @type {string} */ (modeValue.id), modeId);
+    return followAliasChainToSdReference(variablesData, /** @type {string} */(modeValue.id), modeId);
   }
 
   return null;
@@ -386,11 +386,11 @@ const resolveValue = (variablesData, variable, modeId) => {
   }
 
   if (resolvedType === 'FLOAT') {
-    const floatResult = resolveFloatValue(cleanName, /** @type {number} */ (modeValue));
+    const floatResult = resolveFloatValue(cleanName, /** @type {number} */(modeValue));
     finalValue = floatResult.value;
     type = floatResult.type;
   } else if (resolvedType === 'COLOR') {
-    finalValue = formatColor(/** @type {Color} */ (modeValue));
+    finalValue = formatColor(/** @type {Color} */(modeValue));
     type = 'color';
   } else if (scopes.includes('FONT_FAMILY')) {
     finalValue = modeValue;

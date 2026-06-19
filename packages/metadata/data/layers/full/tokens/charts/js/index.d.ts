@@ -4,666 +4,671 @@
  */
 
 /**
- * Maps to the css variable `--syn-categorical-10`
+ * Maps to the css variable `--syn-chart-categorical-10`
  */
-export const SynCategorical10: string;
+export const SynChartCategorical10: string;
 
 /**
- * Maps to the css variable `--syn-categorical-11`
+ * Maps to the css variable `--syn-chart-categorical-11`
  */
-export const SynCategorical11: string;
+export const SynChartCategorical11: string;
 
 /**
- * Maps to the css variable `--syn-categorical-12`
+ * Maps to the css variable `--syn-chart-categorical-12`
  */
-export const SynCategorical12: string;
+export const SynChartCategorical12: string;
 
 /**
- * Maps to the css variable `--syn-categorical-01`
+ * Maps to the css variable `--syn-chart-categorical-01`
  */
-export const SynCategorical01: string;
+export const SynChartCategorical01: string;
 
 /**
- * Maps to the css variable `--syn-categorical-02`
+ * Maps to the css variable `--syn-chart-categorical-02`
  */
-export const SynCategorical02: string;
+export const SynChartCategorical02: string;
 
 /**
- * Maps to the css variable `--syn-categorical-03`
+ * Maps to the css variable `--syn-chart-categorical-03`
  */
-export const SynCategorical03: string;
+export const SynChartCategorical03: string;
 
 /**
- * Maps to the css variable `--syn-categorical-04`
+ * Maps to the css variable `--syn-chart-categorical-04`
  */
-export const SynCategorical04: string;
+export const SynChartCategorical04: string;
 
 /**
- * Maps to the css variable `--syn-categorical-05`
+ * Maps to the css variable `--syn-chart-categorical-05`
  */
-export const SynCategorical05: string;
+export const SynChartCategorical05: string;
 
 /**
- * Maps to the css variable `--syn-categorical-06`
+ * Maps to the css variable `--syn-chart-categorical-06`
  */
-export const SynCategorical06: string;
+export const SynChartCategorical06: string;
 
 /**
- * Maps to the css variable `--syn-categorical-07`
+ * Maps to the css variable `--syn-chart-categorical-07`
  */
-export const SynCategorical07: string;
+export const SynChartCategorical07: string;
 
 /**
- * Maps to the css variable `--syn-categorical-08`
+ * Maps to the css variable `--syn-chart-categorical-08`
  */
-export const SynCategorical08: string;
+export const SynChartCategorical08: string;
 
 /**
- * Maps to the css variable `--syn-categorical-09`
+ * Maps to the css variable `--syn-chart-categorical-09`
  */
-export const SynCategorical09: string;
+export const SynChartCategorical09: string;
 
 /**
- * Maps to the css variable `--syn-grid-lines-color`
+ * Maps to the css variable `--syn-chart-grid-lines-color`
  */
-export const SynGridLinesColor: string;
+export const SynChartGridLinesColor: string;
 
 /**
- * Maps to the css variable `--syn-sequential-01-10`
+ * Maps to the css variable `--syn-chart-grid-lines-color-emphasize`
  */
-export const SynSequential01_10: string;
+export const SynChartGridLinesColorEmphasize: string;
 
 /**
- * Maps to the css variable `--syn-sequential-01-20`
+ * Maps to the css variable `--syn-chart-sequential-01-10`
  */
-export const SynSequential01_20: string;
+export const SynChartSequential01_10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-01-30`
+ * Maps to the css variable `--syn-chart-sequential-01-20`
  */
-export const SynSequential01_30: string;
+export const SynChartSequential01_20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-01-40`
+ * Maps to the css variable `--syn-chart-sequential-01-30`
  */
-export const SynSequential01_40: string;
+export const SynChartSequential01_30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-01-50`
+ * Maps to the css variable `--syn-chart-sequential-01-40`
  */
-export const SynSequential01_50: string;
+export const SynChartSequential01_40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-01-60`
+ * Maps to the css variable `--syn-chart-sequential-01-50`
  */
-export const SynSequential01_60: string;
+export const SynChartSequential01_50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-01-70`
+ * Maps to the css variable `--syn-chart-sequential-01-60`
  */
-export const SynSequential01_70: string;
+export const SynChartSequential01_60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-01-80`
+ * Maps to the css variable `--syn-chart-sequential-01-70`
  */
-export const SynSequential01_80: string;
+export const SynChartSequential01_70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-01-90`
+ * Maps to the css variable `--syn-chart-sequential-01-80`
  */
-export const SynSequential01_90: string;
+export const SynChartSequential01_80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-01-100`
+ * Maps to the css variable `--syn-chart-sequential-01-90`
  */
-export const SynSequential01_100: string;
+export const SynChartSequential01_90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-02-10`
+ * Maps to the css variable `--syn-chart-sequential-01-100`
  */
-export const SynSequential02_10: string;
+export const SynChartSequential01_100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-02-20`
+ * Maps to the css variable `--syn-chart-sequential-02-10`
  */
-export const SynSequential02_20: string;
+export const SynChartSequential02_10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-02-30`
+ * Maps to the css variable `--syn-chart-sequential-02-20`
  */
-export const SynSequential02_30: string;
+export const SynChartSequential02_20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-02-40`
+ * Maps to the css variable `--syn-chart-sequential-02-30`
  */
-export const SynSequential02_40: string;
+export const SynChartSequential02_30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-02-50`
+ * Maps to the css variable `--syn-chart-sequential-02-40`
  */
-export const SynSequential02_50: string;
+export const SynChartSequential02_40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-02-60`
+ * Maps to the css variable `--syn-chart-sequential-02-50`
  */
-export const SynSequential02_60: string;
+export const SynChartSequential02_50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-02-70`
+ * Maps to the css variable `--syn-chart-sequential-02-60`
  */
-export const SynSequential02_70: string;
+export const SynChartSequential02_60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-02-80`
+ * Maps to the css variable `--syn-chart-sequential-02-70`
  */
-export const SynSequential02_80: string;
+export const SynChartSequential02_70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-02-90`
+ * Maps to the css variable `--syn-chart-sequential-02-80`
  */
-export const SynSequential02_90: string;
+export const SynChartSequential02_80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-02-100`
+ * Maps to the css variable `--syn-chart-sequential-02-90`
  */
-export const SynSequential02_100: string;
+export const SynChartSequential02_90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-03-10`
+ * Maps to the css variable `--syn-chart-sequential-02-100`
  */
-export const SynSequential03_10: string;
+export const SynChartSequential02_100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-03-20`
+ * Maps to the css variable `--syn-chart-sequential-03-10`
  */
-export const SynSequential03_20: string;
+export const SynChartSequential03_10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-03-30`
+ * Maps to the css variable `--syn-chart-sequential-03-20`
  */
-export const SynSequential03_30: string;
+export const SynChartSequential03_20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-03-40`
+ * Maps to the css variable `--syn-chart-sequential-03-30`
  */
-export const SynSequential03_40: string;
+export const SynChartSequential03_30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-03-50`
+ * Maps to the css variable `--syn-chart-sequential-03-40`
  */
-export const SynSequential03_50: string;
+export const SynChartSequential03_40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-03-60`
+ * Maps to the css variable `--syn-chart-sequential-03-50`
  */
-export const SynSequential03_60: string;
+export const SynChartSequential03_50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-03-70`
+ * Maps to the css variable `--syn-chart-sequential-03-60`
  */
-export const SynSequential03_70: string;
+export const SynChartSequential03_60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-03-80`
+ * Maps to the css variable `--syn-chart-sequential-03-70`
  */
-export const SynSequential03_80: string;
+export const SynChartSequential03_70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-03-90`
+ * Maps to the css variable `--syn-chart-sequential-03-80`
  */
-export const SynSequential03_90: string;
+export const SynChartSequential03_80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-03-100`
+ * Maps to the css variable `--syn-chart-sequential-03-90`
  */
-export const SynSequential03_100: string;
+export const SynChartSequential03_90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-04-10`
+ * Maps to the css variable `--syn-chart-sequential-03-100`
  */
-export const SynSequential04_10: string;
+export const SynChartSequential03_100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-04-20`
+ * Maps to the css variable `--syn-chart-sequential-04-10`
  */
-export const SynSequential04_20: string;
+export const SynChartSequential04_10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-04-30`
+ * Maps to the css variable `--syn-chart-sequential-04-20`
  */
-export const SynSequential04_30: string;
+export const SynChartSequential04_20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-04-40`
+ * Maps to the css variable `--syn-chart-sequential-04-30`
  */
-export const SynSequential04_40: string;
+export const SynChartSequential04_30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-04-50`
+ * Maps to the css variable `--syn-chart-sequential-04-40`
  */
-export const SynSequential04_50: string;
+export const SynChartSequential04_40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-04-60`
+ * Maps to the css variable `--syn-chart-sequential-04-50`
  */
-export const SynSequential04_60: string;
+export const SynChartSequential04_50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-04-70`
+ * Maps to the css variable `--syn-chart-sequential-04-60`
  */
-export const SynSequential04_70: string;
+export const SynChartSequential04_60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-04-80`
+ * Maps to the css variable `--syn-chart-sequential-04-70`
  */
-export const SynSequential04_80: string;
+export const SynChartSequential04_70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-04-90`
+ * Maps to the css variable `--syn-chart-sequential-04-80`
  */
-export const SynSequential04_90: string;
+export const SynChartSequential04_80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-04-100`
+ * Maps to the css variable `--syn-chart-sequential-04-90`
  */
-export const SynSequential04_100: string;
+export const SynChartSequential04_90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-05-10`
+ * Maps to the css variable `--syn-chart-sequential-04-100`
  */
-export const SynSequential05_10: string;
+export const SynChartSequential04_100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-05-20`
+ * Maps to the css variable `--syn-chart-sequential-05-10`
  */
-export const SynSequential05_20: string;
+export const SynChartSequential05_10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-05-30`
+ * Maps to the css variable `--syn-chart-sequential-05-20`
  */
-export const SynSequential05_30: string;
+export const SynChartSequential05_20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-05-40`
+ * Maps to the css variable `--syn-chart-sequential-05-30`
  */
-export const SynSequential05_40: string;
+export const SynChartSequential05_30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-05-50`
+ * Maps to the css variable `--syn-chart-sequential-05-40`
  */
-export const SynSequential05_50: string;
+export const SynChartSequential05_40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-05-60`
+ * Maps to the css variable `--syn-chart-sequential-05-50`
  */
-export const SynSequential05_60: string;
+export const SynChartSequential05_50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-05-70`
+ * Maps to the css variable `--syn-chart-sequential-05-60`
  */
-export const SynSequential05_70: string;
+export const SynChartSequential05_60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-05-80`
+ * Maps to the css variable `--syn-chart-sequential-05-70`
  */
-export const SynSequential05_80: string;
+export const SynChartSequential05_70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-05-90`
+ * Maps to the css variable `--syn-chart-sequential-05-80`
  */
-export const SynSequential05_90: string;
+export const SynChartSequential05_80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-05-100`
+ * Maps to the css variable `--syn-chart-sequential-05-90`
  */
-export const SynSequential05_100: string;
+export const SynChartSequential05_90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-06-10`
+ * Maps to the css variable `--syn-chart-sequential-05-100`
  */
-export const SynSequential06_10: string;
+export const SynChartSequential05_100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-06-20`
+ * Maps to the css variable `--syn-chart-sequential-06-10`
  */
-export const SynSequential06_20: string;
+export const SynChartSequential06_10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-06-30`
+ * Maps to the css variable `--syn-chart-sequential-06-20`
  */
-export const SynSequential06_30: string;
+export const SynChartSequential06_20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-06-40`
+ * Maps to the css variable `--syn-chart-sequential-06-30`
  */
-export const SynSequential06_40: string;
+export const SynChartSequential06_30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-06-50`
+ * Maps to the css variable `--syn-chart-sequential-06-40`
  */
-export const SynSequential06_50: string;
+export const SynChartSequential06_40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-06-60`
+ * Maps to the css variable `--syn-chart-sequential-06-50`
  */
-export const SynSequential06_60: string;
+export const SynChartSequential06_50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-06-70`
+ * Maps to the css variable `--syn-chart-sequential-06-60`
  */
-export const SynSequential06_70: string;
+export const SynChartSequential06_60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-06-80`
+ * Maps to the css variable `--syn-chart-sequential-06-70`
  */
-export const SynSequential06_80: string;
+export const SynChartSequential06_70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-06-90`
+ * Maps to the css variable `--syn-chart-sequential-06-80`
  */
-export const SynSequential06_90: string;
+export const SynChartSequential06_80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-06-100`
+ * Maps to the css variable `--syn-chart-sequential-06-90`
  */
-export const SynSequential06_100: string;
+export const SynChartSequential06_90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-07-10`
+ * Maps to the css variable `--syn-chart-sequential-06-100`
  */
-export const SynSequential07_10: string;
+export const SynChartSequential06_100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-07-20`
+ * Maps to the css variable `--syn-chart-sequential-07-10`
  */
-export const SynSequential07_20: string;
+export const SynChartSequential07_10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-07-30`
+ * Maps to the css variable `--syn-chart-sequential-07-20`
  */
-export const SynSequential07_30: string;
+export const SynChartSequential07_20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-07-40`
+ * Maps to the css variable `--syn-chart-sequential-07-30`
  */
-export const SynSequential07_40: string;
+export const SynChartSequential07_30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-07-50`
+ * Maps to the css variable `--syn-chart-sequential-07-40`
  */
-export const SynSequential07_50: string;
+export const SynChartSequential07_40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-07-60`
+ * Maps to the css variable `--syn-chart-sequential-07-50`
  */
-export const SynSequential07_60: string;
+export const SynChartSequential07_50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-07-70`
+ * Maps to the css variable `--syn-chart-sequential-07-60`
  */
-export const SynSequential07_70: string;
+export const SynChartSequential07_60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-07-80`
+ * Maps to the css variable `--syn-chart-sequential-07-70`
  */
-export const SynSequential07_80: string;
+export const SynChartSequential07_70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-07-90`
+ * Maps to the css variable `--syn-chart-sequential-07-80`
  */
-export const SynSequential07_90: string;
+export const SynChartSequential07_80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-07-100`
+ * Maps to the css variable `--syn-chart-sequential-07-90`
  */
-export const SynSequential07_100: string;
+export const SynChartSequential07_90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-critical-10`
+ * Maps to the css variable `--syn-chart-sequential-07-100`
  */
-export const SynSequentialStatusCritical10: string;
+export const SynChartSequential07_100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-critical-20`
+ * Maps to the css variable `--syn-chart-sequential-status-critical-10`
  */
-export const SynSequentialStatusCritical20: string;
+export const SynChartSequentialStatusCritical10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-critical-30`
+ * Maps to the css variable `--syn-chart-sequential-status-critical-20`
  */
-export const SynSequentialStatusCritical30: string;
+export const SynChartSequentialStatusCritical20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-critical-40`
+ * Maps to the css variable `--syn-chart-sequential-status-critical-30`
  */
-export const SynSequentialStatusCritical40: string;
+export const SynChartSequentialStatusCritical30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-critical-50`
+ * Maps to the css variable `--syn-chart-sequential-status-critical-40`
  */
-export const SynSequentialStatusCritical50: string;
+export const SynChartSequentialStatusCritical40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-critical-60`
+ * Maps to the css variable `--syn-chart-sequential-status-critical-50`
  */
-export const SynSequentialStatusCritical60: string;
+export const SynChartSequentialStatusCritical50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-critical-70`
+ * Maps to the css variable `--syn-chart-sequential-status-critical-60`
  */
-export const SynSequentialStatusCritical70: string;
+export const SynChartSequentialStatusCritical60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-critical-80`
+ * Maps to the css variable `--syn-chart-sequential-status-critical-70`
  */
-export const SynSequentialStatusCritical80: string;
+export const SynChartSequentialStatusCritical70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-critical-90`
+ * Maps to the css variable `--syn-chart-sequential-status-critical-80`
  */
-export const SynSequentialStatusCritical90: string;
+export const SynChartSequentialStatusCritical80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-critical-100`
+ * Maps to the css variable `--syn-chart-sequential-status-critical-90`
  */
-export const SynSequentialStatusCritical100: string;
+export const SynChartSequentialStatusCritical90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-error-10`
+ * Maps to the css variable `--syn-chart-sequential-status-critical-100`
  */
-export const SynSequentialStatusError10: string;
+export const SynChartSequentialStatusCritical100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-error-20`
+ * Maps to the css variable `--syn-chart-sequential-status-error-10`
  */
-export const SynSequentialStatusError20: string;
+export const SynChartSequentialStatusError10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-error-30`
+ * Maps to the css variable `--syn-chart-sequential-status-error-20`
  */
-export const SynSequentialStatusError30: string;
+export const SynChartSequentialStatusError20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-error-40`
+ * Maps to the css variable `--syn-chart-sequential-status-error-30`
  */
-export const SynSequentialStatusError40: string;
+export const SynChartSequentialStatusError30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-error-50`
+ * Maps to the css variable `--syn-chart-sequential-status-error-40`
  */
-export const SynSequentialStatusError50: string;
+export const SynChartSequentialStatusError40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-error-60`
+ * Maps to the css variable `--syn-chart-sequential-status-error-50`
  */
-export const SynSequentialStatusError60: string;
+export const SynChartSequentialStatusError50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-error-70`
+ * Maps to the css variable `--syn-chart-sequential-status-error-60`
  */
-export const SynSequentialStatusError70: string;
+export const SynChartSequentialStatusError60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-error-80`
+ * Maps to the css variable `--syn-chart-sequential-status-error-70`
  */
-export const SynSequentialStatusError80: string;
+export const SynChartSequentialStatusError70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-error-90`
+ * Maps to the css variable `--syn-chart-sequential-status-error-80`
  */
-export const SynSequentialStatusError90: string;
+export const SynChartSequentialStatusError80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-error-100`
+ * Maps to the css variable `--syn-chart-sequential-status-error-90`
  */
-export const SynSequentialStatusError100: string;
+export const SynChartSequentialStatusError90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-info-10`
+ * Maps to the css variable `--syn-chart-sequential-status-error-100`
  */
-export const SynSequentialStatusInfo10: string;
+export const SynChartSequentialStatusError100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-info-20`
+ * Maps to the css variable `--syn-chart-sequential-status-info-10`
  */
-export const SynSequentialStatusInfo20: string;
+export const SynChartSequentialStatusInfo10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-info-30`
+ * Maps to the css variable `--syn-chart-sequential-status-info-20`
  */
-export const SynSequentialStatusInfo30: string;
+export const SynChartSequentialStatusInfo20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-info-40`
+ * Maps to the css variable `--syn-chart-sequential-status-info-30`
  */
-export const SynSequentialStatusInfo40: string;
+export const SynChartSequentialStatusInfo30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-info-50`
+ * Maps to the css variable `--syn-chart-sequential-status-info-40`
  */
-export const SynSequentialStatusInfo50: string;
+export const SynChartSequentialStatusInfo40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-info-60`
+ * Maps to the css variable `--syn-chart-sequential-status-info-50`
  */
-export const SynSequentialStatusInfo60: string;
+export const SynChartSequentialStatusInfo50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-info-70`
+ * Maps to the css variable `--syn-chart-sequential-status-info-60`
  */
-export const SynSequentialStatusInfo70: string;
+export const SynChartSequentialStatusInfo60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-info-80`
+ * Maps to the css variable `--syn-chart-sequential-status-info-70`
  */
-export const SynSequentialStatusInfo80: string;
+export const SynChartSequentialStatusInfo70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-info-90`
+ * Maps to the css variable `--syn-chart-sequential-status-info-80`
  */
-export const SynSequentialStatusInfo90: string;
+export const SynChartSequentialStatusInfo80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-info-100`
+ * Maps to the css variable `--syn-chart-sequential-status-info-90`
  */
-export const SynSequentialStatusInfo100: string;
+export const SynChartSequentialStatusInfo90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-success-10`
+ * Maps to the css variable `--syn-chart-sequential-status-info-100`
  */
-export const SynSequentialStatusSuccess10: string;
+export const SynChartSequentialStatusInfo100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-success-20`
+ * Maps to the css variable `--syn-chart-sequential-status-success-10`
  */
-export const SynSequentialStatusSuccess20: string;
+export const SynChartSequentialStatusSuccess10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-success-30`
+ * Maps to the css variable `--syn-chart-sequential-status-success-20`
  */
-export const SynSequentialStatusSuccess30: string;
+export const SynChartSequentialStatusSuccess20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-success-40`
+ * Maps to the css variable `--syn-chart-sequential-status-success-30`
  */
-export const SynSequentialStatusSuccess40: string;
+export const SynChartSequentialStatusSuccess30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-success-50`
+ * Maps to the css variable `--syn-chart-sequential-status-success-40`
  */
-export const SynSequentialStatusSuccess50: string;
+export const SynChartSequentialStatusSuccess40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-success-60`
+ * Maps to the css variable `--syn-chart-sequential-status-success-50`
  */
-export const SynSequentialStatusSuccess60: string;
+export const SynChartSequentialStatusSuccess50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-success-70`
+ * Maps to the css variable `--syn-chart-sequential-status-success-60`
  */
-export const SynSequentialStatusSuccess70: string;
+export const SynChartSequentialStatusSuccess60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-success-80`
+ * Maps to the css variable `--syn-chart-sequential-status-success-70`
  */
-export const SynSequentialStatusSuccess80: string;
+export const SynChartSequentialStatusSuccess70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-success-90`
+ * Maps to the css variable `--syn-chart-sequential-status-success-80`
  */
-export const SynSequentialStatusSuccess90: string;
+export const SynChartSequentialStatusSuccess80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-success-100`
+ * Maps to the css variable `--syn-chart-sequential-status-success-90`
  */
-export const SynSequentialStatusSuccess100: string;
+export const SynChartSequentialStatusSuccess90: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-warning-10`
+ * Maps to the css variable `--syn-chart-sequential-status-success-100`
  */
-export const SynSequentialStatusWarning10: string;
+export const SynChartSequentialStatusSuccess100: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-warning-20`
+ * Maps to the css variable `--syn-chart-sequential-status-warning-10`
  */
-export const SynSequentialStatusWarning20: string;
+export const SynChartSequentialStatusWarning10: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-warning-30`
+ * Maps to the css variable `--syn-chart-sequential-status-warning-20`
  */
-export const SynSequentialStatusWarning30: string;
+export const SynChartSequentialStatusWarning20: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-warning-40`
+ * Maps to the css variable `--syn-chart-sequential-status-warning-30`
  */
-export const SynSequentialStatusWarning40: string;
+export const SynChartSequentialStatusWarning30: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-warning-50`
+ * Maps to the css variable `--syn-chart-sequential-status-warning-40`
  */
-export const SynSequentialStatusWarning50: string;
+export const SynChartSequentialStatusWarning40: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-warning-60`
+ * Maps to the css variable `--syn-chart-sequential-status-warning-50`
  */
-export const SynSequentialStatusWarning60: string;
+export const SynChartSequentialStatusWarning50: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-warning-70`
+ * Maps to the css variable `--syn-chart-sequential-status-warning-60`
  */
-export const SynSequentialStatusWarning70: string;
+export const SynChartSequentialStatusWarning60: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-warning-80`
+ * Maps to the css variable `--syn-chart-sequential-status-warning-70`
  */
-export const SynSequentialStatusWarning80: string;
+export const SynChartSequentialStatusWarning70: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-warning-90`
+ * Maps to the css variable `--syn-chart-sequential-status-warning-80`
  */
-export const SynSequentialStatusWarning90: string;
+export const SynChartSequentialStatusWarning80: string;
 
 /**
- * Maps to the css variable `--syn-sequential-status-warning-100`
+ * Maps to the css variable `--syn-chart-sequential-status-warning-90`
  */
-export const SynSequentialStatusWarning100: string;
+export const SynChartSequentialStatusWarning90: string;
+
+/**
+ * Maps to the css variable `--syn-chart-sequential-status-warning-100`
+ */
+export const SynChartSequentialStatusWarning100: string;

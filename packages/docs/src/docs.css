@@ -35,41 +35,53 @@ body {
   }
 
   > :not(.sb-anchor) {
-    :is(h1) {
+    h1 {
       font: var(--syn-heading-3x-large);
       margin: 0 0 var(--syn-spacing-large) 0;
     }
 
-    :is(h2) {
+    h2 {
       border: none;
       font: var(--syn-heading-2x-large);
       margin: 0 0 var(--syn-spacing-medium-large) 0;
     }
 
-    :is(h3) {
+    h3 {
       font: var(--syn-heading-x-large);
       margin: 0 0 var(--syn-spacing-medium) 0;
     }
 
-    :is(h4) {
+    h4 {
       font: var(--syn-heading-large);
       margin: 0 0 var(--syn-spacing-small) 0;
     }
 
-    :is(h6) {
+    h6 {
       font: var(--syn-heading-medium);
       margin: 0 0 var(--syn-spacing-x-small) 0;
     }
 
-    :is(hr) {
+    hr {
       font: var(--syn-heading-medium);
       margin: var(--syn-spacing-medium) 0;
     }
 
-    :is(p, ul, li) {
+    p, ul, li {
       font: var(--syn-body-medium-regular) !important;
       font-family: unset;
-      margin: 0 0 var(--syn-spacing-small) 0;
+      margin: 0 0 var(--syn-spacing-medium) 0;
+    }
+
+    ul, li {
+      margin: initial;
+    }
+
+    h3 + p {
+      margin-bottom: var(--syn-spacing-medium-large);
+    }
+
+    table {
+      width: 100%;
     }
   }
 }

@@ -119,11 +119,11 @@ const styles = `
   }
 
   ul {
-    margin: 0 0 var(--syn-spacing-medium);
+    margin: 0 0 var(--syn-spacing-medium) !important;
   }
 
   li {
-    margin-bottom: var(--syn-spacing-2x-small);
+    margin-bottom: var(--syn-spacing-2x-small) !important;
   }
 }
 

@@ -1,5 +1,13 @@
 # @synergy-design-system/vue
 
+## 3.15.6
+
+### Patch Changes
+
+- Updated dependencies [[`77a02c1`](https://github.com/synergy-design-system/synergy-design-system/commit/77a02c15b4d9310dbb24ea945629c83a7a2e4e16)]:
+  - @synergy-design-system/components@3.15.6
+  - @synergy-design-system/tokens@3.15.6
+
 ## 3.15.5
 
 ### Patch Changes

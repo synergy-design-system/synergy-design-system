@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.15.6
+
+### Patch Changes
+
+- [#1302](https://github.com/synergy-design-system/synergy-design-system/pull/1302) [`77a02c1`](https://github.com/synergy-design-system/synergy-design-system/commit/77a02c15b4d9310dbb24ea945629c83a7a2e4e16) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-22
+
+  fix: 🐛 Components should use correct headline styles ([#1290](https://github.com/synergy-design-system/synergy-design-system/issues/1290))
+
+  This release fixes multiple typographic issues for headers in the following components:
+  - `<syn-card>`
+  - `<syn-dialog>`
+  - `<syn-drawer>`
+  - `<syn-header>`
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.15.6
+
 ## 3.15.5
 
 ### Patch Changes

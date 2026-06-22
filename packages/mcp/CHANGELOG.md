@@ -1,5 +1,20 @@
 # Changelog
 
+## 3.16.0
+
+### Minor Changes
+
+- [#1301](https://github.com/synergy-design-system/synergy-design-system/pull/1301) [`672f061`](https://github.com/synergy-design-system/synergy-design-system/commit/672f061900dada6eb4bab892ec6bb945dde009be) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-22
+
+  feat: ✨ Allow the MCP server to create spritesheets for applications ([#923](https://github.com/synergy-design-system/synergy-design-system/issues/923))
+
+  This release adds a new tool `create-spritesheet` that can be used to generate synergy compatible SVG spritesheets. It also includes a prompt `/create-spritesheet` that can be used to create the spritesheet, write it to the filesystem and register the icon library.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@3.16.0
+
 ## 3.15.0
 
 ### Minor Changes

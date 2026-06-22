@@ -107,13 +107,14 @@ const styles = `
 
   h2 {
     border: none;
-    margin: 0 0 var(--syn-spacing-medium);
+    font: var(--syn-heading-2x-large);
     padding: 0;
   }
 
   h3 {
     border: none;
-    margin: 0 0 var(--syn-spacing-small);
+    font: var(--syn-heading-x-large);
+    margin: 0 0 var(--syn-spacing-medium) 0;
     padding: 0;
   }
 

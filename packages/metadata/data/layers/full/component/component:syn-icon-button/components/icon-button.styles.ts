@@ -43,7 +43,6 @@ export default css`
   }
 
   .icon-button--disabled {
-    color: var(--syn-color-neutral-400);
     cursor: not-allowed;
     opacity: var(--syn-input-disabled-opacity); /* #429: Use token for opacity */
   }

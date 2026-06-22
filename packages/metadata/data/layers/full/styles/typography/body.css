@@ -1,8 +1,12 @@
 /**
  * Typographic text classes
- * @variant {x-small | small | medium | large} syn-body The font size of the body text
+ * @variant {2x-small | x-small | small | medium | large} syn-body The font size of the body text
  */
-.syn-body--x-small {
+.syn-body--2x-small {
+  font: var(--syn-body-2x-small-regular);
+}
+
+ .syn-body--x-small {
   font: var(--syn-body-x-small-regular);
 }
 

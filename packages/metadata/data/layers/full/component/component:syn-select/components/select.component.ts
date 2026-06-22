@@ -29,7 +29,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @summary Selects allow you to choose items from a menu of predefined options.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs
  * @status stable
- * @since 2.0
+ * @since 1.5.0
  *
  * @dependency syn-icon
  * @dependency syn-popup
@@ -91,7 +91,14 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   private typeToSelectTimeout: number;
   private closeWatcher: CloseWatcher | null;
   private resizeObserver: ResizeObserver;
+  private selectedOptionObserver: MutationObserver;
   private isUserInput: boolean = false;
+
+  private getContainingModalHost() {
+    return this.closest('syn-dialog, syn-drawer') as
+      | (HTMLElement & { modal?: { activateExternal(): void; deactivateExternal(): void } })
+      | null;
+  }
 
   @query('.select') popup: SynPopup;
   @query('.select__combobox') combobox: HTMLSlotElement;
@@ -248,6 +255,20 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   connectedCallback() {
     super.connectedCallback();
 
+    // #1265: When updating the content of the selected syn-option, the select needs to update the display label.
+    // To do this, we use a MutationObserver to watch for changes in the selected options.
+    this.selectedOptionObserver = new MutationObserver(() => {
+      if (this.multiple) {
+        if (this.readonly) {
+          this.displayLabel = this.selectedOptions.map(option => option.getTextLabel()).join(', ');
+        } else {
+          this.requestUpdate();
+        }
+      } else {
+        this.displayLabel = this.selectedOptions[0]?.getTextLabel?.() ?? '';
+      }
+    });
+
     setTimeout(() => {
       this.handleDefaultSlotChange();
     });
@@ -260,6 +281,19 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
   disconnectedCallback() {
     super.disconnectedCallback();
     this.resizeObserver?.disconnect();
+    this.selectedOptionObserver?.disconnect();
+  }
+
+  private observeSelectedOptions() {
+    this.selectedOptionObserver?.disconnect();
+
+    this.selectedOptions.forEach(option => {
+      this.selectedOptionObserver.observe(option, {
+        childList: true,
+        characterData: true,
+        subtree: true,
+      });
+    });
   }
 
   private addOpenListeners() {
@@ -271,6 +305,9 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     document.addEventListener('focusin', this.handleDocumentFocusIn);
     document.addEventListener('keydown', this.handleDocumentKeyDown);
     document.addEventListener('mousedown', this.handleDocumentMouseDown);
+
+    // #1297: If the select is inside a dialog, we need to activate the dialog's modal to prevent focus from escaping the dialog while the select is open
+    this.getContainingModalHost()?.modal?.activateExternal();
 
     // If the component is rendered in a shadow root, we need to attach the focusin listener there too
     if (this.getRootNode() !== document) {
@@ -293,6 +330,9 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     document.removeEventListener('focusin', this.handleDocumentFocusIn);
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
+
+    // #1297: If the select is inside a dialog, we need to activate the dialog's modal to prevent focus from escaping the dialog while the select is open
+    this.getContainingModalHost()?.modal?.deactivateExternal();
 
     if (this.getRootNode() !== document) {
       this.getRootNode().removeEventListener('focusin', this.handleDocumentFocusIn);
@@ -653,6 +693,7 @@ export default class SynSelect extends SynergyElement implements SynergyFormCont
     const options = this.getAllOptions();
     // Update selected options cache
     this.selectedOptions = options.filter(el => el.selected);
+    this.observeSelectedOptions();
 
     // Keep a reference to the previous `valueHasChanged`. Changes made here don't count has changing the value.
     const cachedValueHasChanged = this.valueHasChanged;

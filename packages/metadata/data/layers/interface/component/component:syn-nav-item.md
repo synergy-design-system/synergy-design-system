@@ -7,7 +7,8 @@ Flexible button / link component that can be used to quickly build navigations.
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-nav-item--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41163-402744)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41163-402744)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=12362-10922)
 
 ## Class Information
 
@@ -17,7 +18,7 @@ Flexible button / link component that can be used to quickly build navigations.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 1.14.0
+- **Since:** 1.15.0
 
 ## Available Slots
 

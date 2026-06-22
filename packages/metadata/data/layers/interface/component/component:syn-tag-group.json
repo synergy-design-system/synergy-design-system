@@ -38,7 +38,7 @@
   "dependencies": [],
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs",
   "events": [],
-  "figmaComponentId": "45275-186668",
+  "figmaDocsId": "45275-186668",
   "methods": [
     {
       "description": "",
@@ -80,7 +80,7 @@
       "type": "SynTag[]"
     }
   ],
-  "since": "unknown",
+  "since": "3.7.0",
   "slots": [
     {
       "description": "The tag group's main content. Must be `<syn-tag />` elements.",

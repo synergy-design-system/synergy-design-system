@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynButton } from '@synergy-design-system/components';
+import type SynButton from '@synergy-design-system/components/components/button/button.component.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
@@ -22,7 +22,7 @@ import '@synergy-design-system/components/components/button/button.js';
  * @summary Buttons represent actions that are available to the user.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  * @dependency syn-spinner

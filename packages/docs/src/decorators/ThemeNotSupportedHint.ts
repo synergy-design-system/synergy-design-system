@@ -12,8 +12,8 @@ import {
  */
 const waitForSick2025Class = (timeout = 5000): Promise<void> => new Promise((resolve, reject) => {
   // Check if class is already present
-  if (document.body.classList.contains(SICK_2025_DARK_CLASS as string)
-    || document.body.classList.contains(SICK_2025_LIGHT_CLASS as string)) {
+  if (document.body.classList.contains(SICK_2025_DARK_CLASS)
+    || document.body.classList.contains(SICK_2025_LIGHT_CLASS)) {
     resolve();
     return;
   }
@@ -22,8 +22,8 @@ const waitForSick2025Class = (timeout = 5000): Promise<void> => new Promise((res
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-        if (document.body.classList.contains(SICK_2025_LIGHT_CLASS as string)
-          || document.body.classList.contains(SICK_2025_DARK_CLASS as string)) {
+        if (document.body.classList.contains(SICK_2025_LIGHT_CLASS)
+          || document.body.classList.contains(SICK_2025_DARK_CLASS)) {
           observer.disconnect();
           resolve();
         }

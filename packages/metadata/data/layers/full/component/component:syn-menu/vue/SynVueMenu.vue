@@ -9,7 +9,7 @@
  * @summary Menus provide a list of options for the user to choose from.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @slot - The menu's content, including menu items, menu labels, and dividers.
  *
@@ -19,7 +19,7 @@ import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/menu/menu.js';
 
 import type { SynSelectEvent } from '@synergy-design-system/components';
-import type { SynMenu } from '@synergy-design-system/components';
+import type SynMenu from '@synergy-design-system/components/components/menu/menu.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynMenu>();

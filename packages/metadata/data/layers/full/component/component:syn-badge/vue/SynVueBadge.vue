@@ -9,7 +9,7 @@
  * @summary Badges are used to draw attention and display statuses or counts.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs
  * @status stable
- * @since 2.0
+ * @since 1.14.0
  *
  * @slot - The badge's content.
  *
@@ -18,7 +18,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/badge/badge.js';
 
-import type { SynBadge } from '@synergy-design-system/components';
+import type SynBadge from '@synergy-design-system/components/components/badge/badge.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynBadge>();

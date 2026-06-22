@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynIconButton } from '@synergy-design-system/components';
+import type SynIconButton from '@synergy-design-system/components/components/icon-button/icon-button.component.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/icon-button/icon-button.js';
@@ -21,7 +21,7 @@ import '@synergy-design-system/components/components/icon-button/icon-button.js'
  * @summary Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-icon-button--docs
  * @status stable
- * @since 2.0
+ * @since 1.1.0
  *
  * @dependency syn-icon
  *

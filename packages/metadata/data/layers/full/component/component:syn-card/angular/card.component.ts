@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynCard } from '@synergy-design-system/components';
+import type SynCard from '@synergy-design-system/components/components/card/card.component.js';
 
 import '@synergy-design-system/components/components/card/card.js';
 
@@ -20,7 +20,7 @@ import '@synergy-design-system/components/components/card/card.js';
  * @summary Cards can be used to group related subjects in a container.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs
  * @status stable
- * @since 2.0
+ * @since 1.25.0
  *
  * @slot - The card's main content.
  * @slot header - An optional header for the card.

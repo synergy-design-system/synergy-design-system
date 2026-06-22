@@ -9,7 +9,7 @@
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @event syn-reposition - Emitted when the popup is repositioned. This event can fire a lot, so avoid putting expensive
  *  operations in your listener or consider debouncing it.
@@ -38,7 +38,7 @@ import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/popup/popup.js';
 
 import type { SynRepositionEvent } from '@synergy-design-system/components';
-import type { SynPopup } from '@synergy-design-system/components';
+import type SynPopup from '@synergy-design-system/components/components/popup/popup.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynPopup>();

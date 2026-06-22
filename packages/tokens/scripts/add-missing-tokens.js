@@ -7,8 +7,8 @@ import {
   readdirSync,
   writeFileSync,
 } from 'node:fs';
-import path from 'path';
-import chalk from 'chalk';
+import path from 'node:path';
+import { styleText } from 'node:util';
 
 /**
  * Extract variables from the given data
@@ -44,7 +44,8 @@ const appendVariables = (targetFilePath, variables) => {
         const variableExists = targetVariableProperties.includes(name);
         if (variableExists) {
           console.log(
-            chalk.red(
+            styleText(
+              'red',
               `Variable ${name} already exists in ${targetFilePath}. `
               + 'Update the missingVariables array in addMissingTokens function.',
             ),
@@ -62,7 +63,7 @@ const appendVariables = (targetFilePath, variables) => {
 
     writeFileSync(targetFilePath, updatedTargetData, 'utf-8');
   } catch (error) {
-    console.error(chalk.red(`Error processing file ${targetFilePath}:`, error));
+    console.error(styleText('red', `Error processing file ${targetFilePath}: ${error}`));
   }
 };
 
@@ -90,8 +91,8 @@ export const addMissingTokens = (targetDir) => {
       appendVariables(targetFilePath, missingVariables);
     });
 
-    console.log(chalk.green('✔︎ Missing tokens added'));
+    console.log(styleText('green', '✔︎ Missing tokens added'));
   } catch (error) {
-    console.error(chalk.red('Error reading directory:', error));
+    console.error(styleText('red', `Error reading directory: ${error}`));
   }
 };

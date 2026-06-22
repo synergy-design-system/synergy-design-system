@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynRadio } from '@synergy-design-system/components';
+import type SynRadio from '@synergy-design-system/components/components/radio/radio.component.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/radio/radio.js';
@@ -21,7 +21,7 @@ import '@synergy-design-system/components/components/radio/radio.js';
  * @summary Radios allow the user to select a single option from a group.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  *

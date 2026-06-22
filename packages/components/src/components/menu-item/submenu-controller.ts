@@ -11,6 +11,7 @@ export class SubmenuController implements ReactiveController {
   private host: ReactiveControllerHost & SynMenuItem;
   private popupRef: Ref<SynPopup> = createRef();
   private enableSubmenuTimer = -1;
+  private hasGlobalDismissListeners = false;
   private isConnected = false;
   private isPopupConnected = false;
   private skidding = 0;
@@ -45,6 +46,7 @@ export class SubmenuController implements ReactiveController {
     if (!this.isConnected) {
       this.host.addEventListener('mousemove', this.handleMouseMove);
       this.host.addEventListener('mouseover', this.handleMouseOver);
+      this.host.addEventListener('mouseleave', this.handleHostMouseLeave);
       this.host.addEventListener('keydown', this.handleKeyDown);
       this.host.addEventListener('click', this.handleClick);
       this.host.addEventListener('focusout', this.handleFocusOut);
@@ -56,6 +58,7 @@ export class SubmenuController implements ReactiveController {
     if (!this.isPopupConnected) {
       if (this.popupRef.value) {
         this.popupRef.value.addEventListener('mouseover', this.handlePopupMouseover);
+        this.popupRef.value.addEventListener('mouseleave', this.handlePopupMouseLeave);
         this.popupRef.value.addEventListener('syn-reposition', this.handlePopupReposition);
         this.isPopupConnected = true;
       }
@@ -66,6 +69,7 @@ export class SubmenuController implements ReactiveController {
     if (this.isConnected) {
       this.host.removeEventListener('mousemove', this.handleMouseMove);
       this.host.removeEventListener('mouseover', this.handleMouseOver);
+      this.host.removeEventListener('mouseleave', this.handleHostMouseLeave);
       this.host.removeEventListener('keydown', this.handleKeyDown);
       this.host.removeEventListener('click', this.handleClick);
       this.host.removeEventListener('focusout', this.handleFocusOut);
@@ -74,10 +78,37 @@ export class SubmenuController implements ReactiveController {
     if (this.isPopupConnected) {
       if (this.popupRef.value) {
         this.popupRef.value.removeEventListener('mouseover', this.handlePopupMouseover);
+        this.popupRef.value.removeEventListener('mouseleave', this.handlePopupMouseLeave);
         this.popupRef.value.removeEventListener('syn-reposition', this.handlePopupReposition);
         this.isPopupConnected = false;
       }
     }
+
+    this.removeGlobalDismissListeners();
+  }
+
+  private addGlobalDismissListeners() {
+    if (this.hasGlobalDismissListeners) {
+      return;
+    }
+
+    document.addEventListener('keydown', this.handleDocumentKeyDown);
+    window.addEventListener('blur', this.handleWindowBlur);
+    window.addEventListener('pagehide', this.handlePageHide);
+    document.addEventListener('visibilitychange', this.handleVisibilityChange);
+    this.hasGlobalDismissListeners = true;
+  }
+
+  private removeGlobalDismissListeners() {
+    if (!this.hasGlobalDismissListeners) {
+      return;
+    }
+
+    document.removeEventListener('keydown', this.handleDocumentKeyDown);
+    window.removeEventListener('blur', this.handleWindowBlur);
+    window.removeEventListener('pagehide', this.handlePageHide);
+    document.removeEventListener('visibilitychange', this.handleVisibilityChange);
+    this.hasGlobalDismissListeners = false;
   }
 
   // Set the safe triangle cursor position
@@ -90,6 +121,35 @@ export class SubmenuController implements ReactiveController {
     if (this.hasSlotController.test('submenu')) {
       this.enableSubmenu();
     }
+  };
+
+  private isWithinSubmenuInteractionTree(target: EventTarget | null): boolean {
+    if (!(target instanceof Node)) {
+      return false;
+    }
+
+    if (this.host.contains(target)) {
+      return true;
+    }
+
+    if (this.popupRef.value?.contains(target)) {
+      return true;
+    }
+
+    const rootNode = target.getRootNode();
+    if (rootNode instanceof ShadowRoot) {
+      return this.isWithinSubmenuInteractionTree(rootNode.host);
+    }
+
+    return false;
+  }
+
+  private handleHostMouseLeave = (event: MouseEvent) => {
+    if (this.isWithinSubmenuInteractionTree(event.relatedTarget)) {
+      return;
+    }
+
+    this.disableSubmenu();
   };
 
   private handleSubmenuEntry(event: KeyboardEvent) {
@@ -187,9 +247,38 @@ export class SubmenuController implements ReactiveController {
     this.disableSubmenu();
   };
 
+  private handleWindowBlur = () => {
+    this.disableSubmenu();
+  };
+
+  private handlePageHide = () => {
+    this.disableSubmenu();
+  };
+
+  private handleVisibilityChange = () => {
+    if (document.visibilityState === 'hidden') {
+      this.disableSubmenu();
+    }
+  };
+
+  private handleDocumentKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'Escape' && this.isExpanded()) {
+      this.disableSubmenu();
+      event.stopPropagation();
+    }
+  };
+
   // Prevent the parent menu-item from getting focus on mouse movement on the submenu
   private handlePopupMouseover = (event: MouseEvent) => {
     event.stopPropagation();
+  };
+
+  private handlePopupMouseLeave = (event: MouseEvent) => {
+    if (this.isWithinSubmenuInteractionTree(event.relatedTarget)) {
+      return;
+    }
+
+    this.disableSubmenu();
   };
 
   // Set the safe triangle values for the submenu when the position changes
@@ -213,6 +302,11 @@ export class SubmenuController implements ReactiveController {
     if (this.popupRef.value) {
       if (this.popupRef.value.active !== state) {
         this.popupRef.value.active = state;
+        if (state) {
+          this.addGlobalDismissListeners();
+        } else {
+          this.removeGlobalDismissListeners();
+        }
         this.host.requestUpdate();
       }
     }

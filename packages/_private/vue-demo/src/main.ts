@@ -8,6 +8,8 @@ import '@synergy-design-system/tokens/themes/sick2018_dark.css';
 import '@synergy-design-system/tokens/themes/sick2018_light.css';
 import '@synergy-design-system/tokens/themes/sick2025_dark.css';
 import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/tokens/charts/themes/sick2025_dark.css';
+import '@synergy-design-system/tokens/charts/themes/sick2025_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';
@@ -21,6 +23,7 @@ import HomeView from './HomeView.vue';
 import DemosTemplate from './DemosTemplate.vue';
 import * as AllComponents from './AllComponentParts/index.js';
 import * as FrameworkSpecifics from './FrameworkSpecificParts/index.js';
+import * as ComplexBugs from './ComplexBugs/index.js';
 
 const allComponentsDemo = Object
   .entries(AllComponents)
@@ -30,11 +33,18 @@ const frameworkSpecificDemo = Object
   .entries(FrameworkSpecifics)
   .map(([name, Component]) => [name.replace('Demo', ''), Component]);
 
+const complexBugsDemo = Object
+  .entries(ComplexBugs)
+  .map(([name, Component]) => [name.replace('Demo', ''), Component]);
+
+  console.log(complexBugsDemo);
+
 const routes = [
   { path: '/', component: HomeView },
   { path: '/all-components', component: DemosTemplate, props: { demos: allComponentsDemo } },
   { path: '/contact-form', component: DemoForm },
   { path: '/contact-form-validate', component: DemoFormValidate },
+  { path: '/complex-bugs', component: DemosTemplate, props: { demos: complexBugsDemo } },
   { path: '/framework-specific', component: DemosTemplate, props: { demos: frameworkSpecificDemo } },
 ];
 

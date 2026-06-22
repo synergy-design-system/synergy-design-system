@@ -9,7 +9,7 @@
  * @summary Dividers are used to visually separate or group elements.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-divider--docs
  * @status stable
- * @since 2.0
+ * @since 1.4.0
  *
  * @cssproperty --color - The color of the divider.
  * @cssproperty --width - The width of the divider.
@@ -18,7 +18,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/divider/divider.js';
 
-import type { SynDivider } from '@synergy-design-system/components';
+import type SynDivider from '@synergy-design-system/components/components/divider/divider.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDivider>();

@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynTag } from '@synergy-design-system/components';
+import type SynTag from '@synergy-design-system/components/components/tag/tag.component.js';
 import type { SynRemoveEvent } from '@synergy-design-system/components';
 import '@synergy-design-system/components/components/tag/tag.js';
 
@@ -20,7 +20,7 @@ import '@synergy-design-system/components/components/tag/tag.js';
  * @summary Tags are used as labels to organize things or to indicate a selection.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs
  * @status stable
- * @since 2.0
+ * @since 1.2.0
  *
  * @dependency syn-icon-button
  *

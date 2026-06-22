@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynMenuLabel } from '@synergy-design-system/components';
+import type SynMenuLabel from '@synergy-design-system/components/components/menu-label/menu-label.component.js';
 
 import '@synergy-design-system/components/components/menu-label/menu-label.js';
 
@@ -20,7 +20,7 @@ import '@synergy-design-system/components/components/menu-label/menu-label.js';
  * @summary Menu labels are used to describe a group of menu items.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @slot - The menu label's content.
  *

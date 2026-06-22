@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynOption } from '@synergy-design-system/components';
+import type SynOption from '@synergy-design-system/components/components/option/option.component.js';
 
 import '@synergy-design-system/components/components/option/option.js';
 
@@ -20,7 +20,7 @@ import '@synergy-design-system/components/components/option/option.js';
  * @summary Options define the selectable items within various form controls such as [select](/components/select).
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs
  * @status stable
- * @since 2.0
+ * @since 1.5.0
  *
  * @dependency syn-icon
  *

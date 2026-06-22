@@ -301,6 +301,61 @@ In other cases, make sure to suppress the other elements' emitted `syn-hide` eve
 
 ---
 
+<h2 id="syn-dialog-focus-trap-top-layer">Keyboard focus jumps to the modal close button when popup components are used inside `<syn-dialog>` or `<syn-drawer>`</h2>
+
+<h3 id="syn-dialog-focus-trap-top-layer-meta">Meta Information</h3>
+
+- Framework version: ALL
+- Synergy version: <= 3.15.2
+- Browsers: Chrome >= 149.0.7827.54, Edge >= 149.0.4022.52
+- Issues: [#1297](https://github.com/synergy-design-system/synergy-design-system/issues/1297)
+
+<h3 id="syn-dialog-focus-trap-top-layer-description">Description</h3>
+
+When using keyboard navigation in popup-based components (e.g. `<syn-select>` or `<syn-dropdown>`) inside an open `<syn-dialog>` or `<syn-drawer>`, focus may jump to the modal close button instead of staying on popup menu items.
+
+<h3 id="syn-dialog-focus-trap-top-layer-cause">Cause</h3>
+
+Some browsers render popup content in the top layer. In this case, the focused popup element may no longer be detected as part of the modal subtree. The modal focus trap then treats focus as escaped and moves it back to the first tabbable modal element (often the close button).
+
+<h3 id="syn-dialog-focus-trap-top-layer-solution">Proposed Solution</h3>
+
+When opening a popup inside a dialog or drawer, temporarily disable the host modal focus trap with `modalHost.modal.activateExternal()`. Re-enable it after closing with `modalHost.modal.deactivateExternal()`.
+
+<h4 id="syn-dialog-focus-trap-top-layer-problem">Problem</h4>
+
+```html
+<syn-dialog open>
+  <my-custom-popup-select></my-custom-popup-select>
+</syn-dialog>
+
+<syn-drawer open>
+  <my-custom-popup-select></my-custom-popup-select>
+</syn-drawer>
+
+<script type="module">
+  // Inside my-custom-popup-select keyboard handling
+  // Focus may jump to the modal close button on ArrowDown
+</script>
+```
+
+<h4 id="syn-dialog-focus-trap-top-layer-solution-example">Solution</h4>
+
+```js
+// Example component logic
+const modalHost = this.closest("syn-dialog, syn-drawer");
+
+function onOpenPopup() {
+  modalHost?.modal?.activateExternal();
+}
+
+function onClosePopup() {
+  modalHost?.modal?.deactivateExternal();
+}
+```
+
+---
+
 <h2 id="syn-nav-item-click-events">Click events for `syn-nav-item` are not fired when clicking slotted items (e.g. icons)</h2>
 
 <h3 id="syn-nav-item-click-events-meta">Meta Information</h3>

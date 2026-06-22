@@ -9,7 +9,7 @@
  * @summary Button groups can be used to group related buttons into sections.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs
  * @status stable
- * @since 2.0
+ * @since 3.1.0
  *
  * @slot - One or more `<syn-button>` elements to display in the button group.
  *
@@ -18,7 +18,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/button-group/button-group.js';
 
-import type { SynButtonGroup } from '@synergy-design-system/components';
+import type SynButtonGroup from '@synergy-design-system/components/components/button-group/button-group.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynButtonGroup>();

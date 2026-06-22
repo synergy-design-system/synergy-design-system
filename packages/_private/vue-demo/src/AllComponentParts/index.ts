@@ -5,6 +5,7 @@ import DemoBreadcrumb from "./DemoBreadcrumb.vue";
 import DemoButton from "./DemoButton.vue";
 import DemoButtonGroup from "./DemoButtonGroup.vue";
 import DemoCard from "./DemoCard.vue";
+import DemoChart from "./DemoChart.vue";
 import DemoCheckbox from "./DemoCheckbox.vue";
 import DemoCombobox from "./DemoCombobox.vue";
 import DemoDetails from "./DemoDetails.vue";
@@ -44,6 +45,7 @@ export {
   DemoButton,
   DemoButtonGroup,
   DemoCard,
+  DemoChart,
   DemoCheckbox,
   DemoCombobox,
   DemoDetails,

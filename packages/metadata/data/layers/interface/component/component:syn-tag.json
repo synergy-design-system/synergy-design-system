@@ -46,7 +46,8 @@
       "type": "SynRemoveEvent"
     }
   ],
-  "figmaComponentId": "41163-156701",
+  "figmaComponentId": "2842-16750",
+  "figmaDocsId": "41163-156701",
   "methods": [],
   "properties": [
     {
@@ -64,7 +65,7 @@
       "type": "'small' | 'medium' | 'large'"
     }
   ],
-  "since": "2.0",
+  "since": "1.2.0",
   "slots": [
     {
       "description": "The tag's content.",

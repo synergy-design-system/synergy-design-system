@@ -9,7 +9,7 @@
  * @summary Radios allow the user to select a single option from a group.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  *
@@ -29,7 +29,7 @@ import '@synergy-design-system/components/components/radio/radio.js';
 
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
-import type { SynRadio } from '@synergy-design-system/components';
+import type SynRadio from '@synergy-design-system/components/components/radio/radio.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynRadio>();

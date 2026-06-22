@@ -29,7 +29,7 @@ export type ComponentQueryOptions = PublicRequestOptions & {
 };
 
 /** Layer selector for component data payloads. */
-export type ComponentDataLayer = 'examples' | 'full' | 'interface';
+export type ComponentDataLayer = 'examples' | 'full' | 'interface' | 'rules';
 /** Framework selector for component data payloads. */
 export type ComponentFramework = 'angular' | 'react' | 'vanilla' | 'vue';
 
@@ -72,6 +72,15 @@ export type ComponentDataPayload = {
   requestedFrameworkDetails?: ComponentFrameworkDetails;
   relevantLayerCode?: ComponentLayerContent[];
   examples?: ComponentTextLayerContent[];
+  rules?: ComponentTextLayerContent[];
+  warnings?: string[];
+};
+
+/** Narrow rules-only payload for component usage guidance. */
+export type ComponentRulesPayload = {
+  component: string;
+  layer: 'rules';
+  rules: ComponentTextLayerContent[];
   warnings?: string[];
 };
 
@@ -196,7 +205,7 @@ export const listComponents = async (
   });
 
   const sorted = sortByEntityId(entities)
-    .filter((entity) => matchesCluster(entity as MetadataEntity<ComponentCustom>, options.cluster));
+    .filter((entity) => matchesCluster(entity, options.cluster));
   const hasRequestedLayer = sorted.every((entity) => layerExistsForEntity(entity, requestedLayer));
 
   if (options.strictLayer && !hasRequestedLayer) {
@@ -410,6 +419,12 @@ export const getDataForComponent = async (
         interface: textLayerContent,
       };
       break;
+    case 'rules':
+      data = {
+        ...basePayload,
+        rules: textLayerContent,
+      };
+      break;
     default:
       data = {
         ...basePayload,
@@ -421,5 +436,50 @@ export const getDataForComponent = async (
   return {
     ...metadata,
     data,
+  };
+};
+
+/**
+ * Focused helper for component rules markdown.
+ * Unlike `getDataForComponent(..., { layer: 'rules' })`, this helper requires the
+ * rules layer and returns only the rules-specific payload shape.
+ */
+export const getRulesForComponent = async (
+  nameOrId: string,
+  storeOptions: MetadataStoreOptions = {},
+): Promise<PublicResponse<ComponentRulesPayload | null>> => {
+  const metadata = await getComponentMetadata(nameOrId, {
+    includeLayerRefs: true,
+    includeSources: false,
+    layer: 'rules',
+    strictLayer: true,
+  }, storeOptions);
+
+  if (!metadata.data) {
+    return {
+      ...metadata,
+      data: null,
+    };
+  }
+
+  const store = createMetadataStore(storeOptions);
+  const layerFiles = await readLayerFilesForEntity(store, metadata.data, 'rules');
+
+  const rules = layerFiles
+    .filter(({ ref }) => ref.path.endsWith('.md'))
+    .map(({ content, ref }) => ({
+      content,
+      path: ref.path,
+    }))
+    .toSorted((a, b) => a.path.localeCompare(b.path));
+
+  return {
+    ...metadata,
+    data: {
+      component: metadata.data.id,
+      layer: 'rules',
+      rules,
+      warnings: metadata.meta.warnings,
+    },
   };
 };

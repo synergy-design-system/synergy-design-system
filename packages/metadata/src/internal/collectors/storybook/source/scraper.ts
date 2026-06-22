@@ -9,6 +9,10 @@ const logger = createConsoleLogger('storybook');
 
 const DEFAULT_HIDDEN_SOURCE_WAIT_TIMEOUT_MS = 15000;
 
+// In CI we have to wait a bit longer for stories to render and inject hidden sources, otherwise we get unstyled stories into the index.
+// This is true for the current playwright version as time of writing (v1.59.1).
+const DEFAULT_STORY_SETTLE_DELAY_MS = process.env.CI ? 2000 : 100;
+
 const parseHiddenSourceWaitTimeout = (): number => {
   const rawValue = process.env.SYNERGY_METADATA_HIDDEN_SOURCE_TIMEOUT_MS;
   if (!rawValue) {
@@ -25,6 +29,25 @@ const parseHiddenSourceWaitTimeout = (): number => {
 
 const HIDDEN_SOURCE_WAIT_TIMEOUT_MS = parseHiddenSourceWaitTimeout();
 
+const parseStorySettleDelayMs = (): number => {
+  const rawValue = process.env.SYNERGY_METADATA_STORY_SETTLE_DELAY_MS
+    ?? process.env.SYNERGY_METADATA_STORY_ANCHOR_SETTLE_DELAY_MS;
+  if (!rawValue) {
+    return DEFAULT_STORY_SETTLE_DELAY_MS;
+  }
+
+  const parsed = Number.parseInt(rawValue, 10);
+  if (Number.isNaN(parsed) || parsed < 0) {
+    return DEFAULT_STORY_SETTLE_DELAY_MS;
+  }
+
+  return parsed;
+};
+
+const STORY_SETTLE_DELAY_MS = parseStorySettleDelayMs();
+
+logger.debug(`Storybook scraper initialized with STORY_SETTLE_DELAY_MS=${STORY_SETTLE_DELAY_MS}ms (CI=${process.env.CI ?? 'undefined'})`);
+
 interface HiddenSourceStatus {
   hasCodeToggle: boolean;
   hasNonEmptyHiddenSource: boolean;
@@ -35,6 +58,12 @@ interface StorybookEntry {
   id: string;
   tags?: string[];
   [key: string]: unknown;
+}
+
+function getComponentPrefixFromDocsStoryId(docsStoryId: string): string {
+  return docsStoryId
+    .replace('--docs', '')
+    .replace(/-overview$/, '');
 }
 
 /**
@@ -50,7 +79,7 @@ function shouldSkipStory(storyId: string): boolean {
 
 function isDefaultOrScreenshotOnlyDocsStory(docsStoryId: string): boolean {
   const entries = storybookOutput.entries as Record<string, StorybookEntry>;
-  const componentPrefix = docsStoryId.replace('--docs', '');
+  const componentPrefix = getComponentPrefixFromDocsStoryId(docsStoryId);
 
   const relatedStoryIds = Object.keys(entries)
     .filter((id) => id.startsWith(`${componentPrefix}--`) && !id.endsWith('--docs'));
@@ -73,8 +102,9 @@ function isDefaultOrScreenshotOnlyDocsStory(docsStoryId: string): boolean {
  */
 function shouldSkipStoryByHeading(docsStoryId: string, heading: string): boolean {
   // Get the component prefix from docs story ID
-  // (e.g., "components-syn-combobox" from "components-syn-combobox--docs")
-  const componentPrefix = docsStoryId.replace('--docs', '');
+  // (e.g., "components-syn-combobox" from "components-syn-combobox--docs" or
+  // "components-syn-combobox-overview--docs")
+  const componentPrefix = getComponentPrefixFromDocsStoryId(docsStoryId);
 
   // Find matching story by converting heading to potential story ID format
   // Story names are typically converted from "Async Options" to "async-options"
@@ -93,9 +123,17 @@ async function scrollAnchorsIntoView(page: Page): Promise<void> {
   const anchors = page.locator('.sb-anchor');
   const anchorCount = await anchors.count();
 
+  logger.debug(`scrollAnchorsIntoView: found ${anchorCount} anchors, STORY_SETTLE_DELAY_MS=${STORY_SETTLE_DELAY_MS}ms`);
+
   for (let i = 0; i < anchorCount; i += 1) {
     const anchor = anchors.nth(i);
     await anchor.scrollIntoViewIfNeeded();
+
+    // Wait before each story anchor snapshot to reduce CI timing flakiness.
+    if (STORY_SETTLE_DELAY_MS > 0) {
+      logger.debug(`scrollAnchorsIntoView: waiting ${STORY_SETTLE_DELAY_MS}ms before anchor ${i + 1}/${anchorCount}`);
+      await page.waitForTimeout(STORY_SETTLE_DELAY_MS);
+    }
 
     const hasIframe = (await anchor.locator('iframe').count()) > 0;
     if (hasIframe) {
@@ -319,7 +357,7 @@ export class StorybookScraper {
       }));
 
       scrapingReport.status = 'success';
-      logger.info(`Scraped ${storyId}`);
+      logger.info(`Scraped ${storyId} with settle delay ${STORY_SETTLE_DELAY_MS}ms`);
       return processedStories;
     } catch (error) {
       scrapingReport.error = error instanceof Error ? error : new Error(String(error));

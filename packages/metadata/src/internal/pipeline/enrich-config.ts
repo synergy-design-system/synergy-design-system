@@ -10,6 +10,7 @@ import {
   type EnrichedOverride,
   getClustersForEntity,
   getOverride,
+  getRules,
 } from '../../config/index.js';
 
 export interface EnrichedEntity extends CoreEntity {
@@ -42,17 +43,15 @@ export function enrichEntitiesWithConfig(
     const custom = (entity.custom as Record<string, unknown>) ?? {};
     const enriched: Record<string, unknown> = { ...custom };
 
-    // @todo Re-enable component rules in metadata output by importing getRules()
-    // and attaching enriched.rules here before writing entities.
-    // const rules = getRules(ctx.config as any, entity.id);
-    // if (rules) {
-    //   enriched.rules = rules;
-    //   enrichedCount += 1;
-    // }
+    // Add rules if they exist for this entity
+    const rules = getRules(ctx.config!, entity.id);
+    if (rules) {
+      enriched.rules = rules;
+      enrichedCount += 1;
+    }
 
     // Attach override if one exists for this entity
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-argument
-    const override = getOverride(ctx.config as any, entity.id, true);
+    const override = getOverride(ctx.config!, entity.id, true);
     if (override) {
       enriched.override = override;
       overrideCount += 1;
@@ -60,15 +59,12 @@ export function enrichEntitiesWithConfig(
     }
 
     // Attach clustering info
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-argument
-    const clusters = getClustersForEntity(ctx.config as any, entity.id);
+    const clusters = getClustersForEntity(ctx.config!, entity.id);
     if (clusters.length > 0) {
       enriched.clusters = clusters.map((c: Cluster) => {
         // Find cluster ID by searching config
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-call
-        for (const [clusterId, clusterData] of (ctx.config as any).clustering.entries()) {
+        for (const [clusterId, clusterData] of (ctx.config!).clustering.entries()) {
           if (clusterData === c) {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
             return clusterId;
           }
         }
@@ -81,7 +77,7 @@ export function enrichEntitiesWithConfig(
     return {
       ...entity,
       custom: enriched,
-    } as EnrichedEntity;
+    };
   });
 
   ctx.logger?.info(

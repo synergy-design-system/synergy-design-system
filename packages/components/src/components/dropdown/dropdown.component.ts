@@ -24,7 +24,7 @@ import type SynMenu from '../menu/menu.js';
  * @summary Dropdowns expose additional content that "drops down" in a panel.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-dropdown--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @dependency syn-popup
  *
@@ -134,6 +134,12 @@ export default class SynDropdown extends SynergyElement {
     if (typeof trigger?.focus === 'function') {
       trigger.focus();
     }
+  }
+
+  private getContainingModalHost() {
+    return this.closest('syn-dialog, syn-drawer') as
+      | (HTMLElement & { modal?: { activateExternal(): void; deactivateExternal(): void } })
+      | null;
   }
 
   getMenu() {
@@ -354,6 +360,10 @@ export default class SynDropdown extends SynergyElement {
 
   addOpenListeners() {
     this.panel.addEventListener('syn-select', this.handlePanelSelect);
+
+    // #1297: If the dropdown is inside a dialog, temporarily disable its focus trap while the popup is open because popup content can move to the browser top layer.
+    this.getContainingModalHost()?.modal?.activateExternal();
+
     if ('CloseWatcher' in window) {
       this.closeWatcher?.destroy();
       this.closeWatcher = new CloseWatcher();
@@ -373,6 +383,10 @@ export default class SynDropdown extends SynergyElement {
       this.panel.removeEventListener('syn-select', this.handlePanelSelect);
       this.panel.removeEventListener('keydown', this.handleKeyDown);
     }
+
+    // #1297: If the dropdown is inside a dialog, temporarily disable its focus trap while the popup is open because popup content can move to the browser top layer.
+    this.getContainingModalHost()?.modal?.deactivateExternal();
+
     document.removeEventListener('keydown', this.handleDocumentKeyDown);
     document.removeEventListener('mousedown', this.handleDocumentMouseDown);
     this.closeWatcher?.destroy();

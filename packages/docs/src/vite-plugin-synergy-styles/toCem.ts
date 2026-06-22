@@ -192,5 +192,5 @@ export const toCem = (structure: Structure[]): Package => {
     modules,
     readme: '',
     schemaVersion: '1.0.0',
-  } as Package;
+  };
 };

@@ -9,7 +9,7 @@
  * @summary Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab--docs
  * @status stable
- * @since 2.0
+ * @since 2.1.0
  *
  * @dependency syn-icon-button
  *
@@ -25,7 +25,7 @@ import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/tab/tab.js';
 
 import type { SynCloseEvent } from '@synergy-design-system/components';
-import type { SynTab } from '@synergy-design-system/components';
+import type SynTab from '@synergy-design-system/components/components/tab/tab.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTab>();

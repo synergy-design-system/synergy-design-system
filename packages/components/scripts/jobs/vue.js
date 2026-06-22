@@ -9,9 +9,9 @@ import {
 const runFormat = createRunFormat('Vue: Running code formatter...');
 
 /**
- * Run all steps to create new react components
+ * Run all steps to create new vue components
  * @param {String} settings.componentDistDir The absolute path to the component dist
- * @param {String} settings.vuePackageDir The absolute path to the react package root
+ * @param {String} settings.vuePackageDir The absolute path to the vue package root
  */
 export const runCreateVueWrappers = async ({
   componentDistDir,

@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynCombobox } from '@synergy-design-system/components';
+import type SynCombobox from '@synergy-design-system/components/components/combobox/combobox.component.js';
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynClearEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
@@ -32,6 +32,7 @@ import '@synergy-design-system/components/components/combobox/combobox.js';
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
  * @status stable
+ * @since 2.8.0
  *
  * @dependency syn-icon
  * @dependency syn-popup

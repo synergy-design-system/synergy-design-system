@@ -9,7 +9,7 @@
  * @summary Tags are used as labels to organize things or to indicate a selection.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs
  * @status stable
- * @since 2.0
+ * @since 1.2.0
  *
  * @dependency syn-icon-button
  *
@@ -26,7 +26,7 @@ import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/tag/tag.js';
 
 import type { SynRemoveEvent } from '@synergy-design-system/components';
-import type { SynTag } from '@synergy-design-system/components';
+import type SynTag from '@synergy-design-system/components/components/tag/tag.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTag>();

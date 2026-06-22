@@ -9,7 +9,7 @@
  * @summary Tab groups organize content into a container that shows one section at a time.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab-group--docs
  * @status stable
- * @since 2.0
+ * @since 2.1.0
  *
  * @dependency syn-icon-button
  *
@@ -39,7 +39,7 @@ import '@synergy-design-system/components/components/tab-group/tab-group.js';
 
 import type { SynTabShowEvent } from '@synergy-design-system/components';
 import type { SynTabHideEvent } from '@synergy-design-system/components';
-import type { SynTabGroup } from '@synergy-design-system/components';
+import type SynTabGroup from '@synergy-design-system/components/components/tab-group/tab-group.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTabGroup>();

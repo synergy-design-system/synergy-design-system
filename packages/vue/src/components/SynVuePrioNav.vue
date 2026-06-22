@@ -21,7 +21,7 @@
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-dropdown
  * @dependency syn-icon
@@ -43,7 +43,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
 
-import type { SynPrioNav } from '@synergy-design-system/components';
+import type SynPrioNav from '@synergy-design-system/components/components/prio-nav/prio-nav.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynPrioNav>();

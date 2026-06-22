@@ -9,7 +9,7 @@
  * @summary Progress rings are used to show the progress of a determinate operation in a circular fashion.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs
  * @status stable
- * @since 2.0
+ * @since 1.18.0
  *
  * @slot - A label to show inside the ring.
  *
@@ -26,7 +26,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/progress-ring/progress-ring.js';
 
-import type { SynProgressRing } from '@synergy-design-system/components';
+import type SynProgressRing from '@synergy-design-system/components/components/progress-ring/progress-ring.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynProgressRing>();

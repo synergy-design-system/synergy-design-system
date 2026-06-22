@@ -7,7 +7,7 @@ Radio groups are used to group multiple [radios](/components/radio) or [radio bu
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-radio-group--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-253349)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-253349)
 
 ## Class Information
 
@@ -17,7 +17,7 @@ Radio groups are used to group multiple [radios](/components/radio) or [radio bu
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.0.0
 
 ## Available Slots
 

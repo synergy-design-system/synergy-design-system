@@ -1,5 +1,138 @@
 # @synergy-design-system/vue
 
+## 3.15.5
+
+### Patch Changes
+
+- Updated dependencies [[`b4494ba`](https://github.com/synergy-design-system/synergy-design-system/commit/b4494ba1bcaf1016c83bc03c44b1ece17b8a194a)]:
+  - @synergy-design-system/components@3.15.5
+  - @synergy-design-system/tokens@3.15.5
+
+## 3.15.4
+
+### Patch Changes
+
+- Updated dependencies [[`7dd08e1`](https://github.com/synergy-design-system/synergy-design-system/commit/7dd08e1f2dc1cd9ca93fd0a3e0f2795677dec5d3)]:
+  - @synergy-design-system/components@3.15.4
+  - @synergy-design-system/tokens@3.15.4
+
+## 3.15.3
+
+### Patch Changes
+
+- Updated dependencies [[`49e5b92`](https://github.com/synergy-design-system/synergy-design-system/commit/49e5b92f06c0600c5e8612834cb34e0f7c2a474a)]:
+  - @synergy-design-system/components@3.15.3
+  - @synergy-design-system/tokens@3.15.3
+
+## 3.15.2
+
+### Patch Changes
+
+- [#1293](https://github.com/synergy-design-system/synergy-design-system/pull/1293) [`513e931`](https://github.com/synergy-design-system/synergy-design-system/commit/513e931c88a46e1e71a3a4d8ca7ac3c3a85b2189) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-03
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+- Updated dependencies [[`513e931`](https://github.com/synergy-design-system/synergy-design-system/commit/513e931c88a46e1e71a3a4d8ca7ac3c3a85b2189)]:
+  - @synergy-design-system/components@3.15.2
+  - @synergy-design-system/tokens@3.15.2
+
+## 3.15.1
+
+### Patch Changes
+
+- Updated dependencies [[`4fdb69a`](https://github.com/synergy-design-system/synergy-design-system/commit/4fdb69aec5ddb0ddfa76a948c87eaf84be6fd670)]:
+  - @synergy-design-system/components@3.15.1
+  - @synergy-design-system/tokens@3.15.1
+
+## 3.15.0
+
+### Minor Changes
+
+- [#1271](https://github.com/synergy-design-system/synergy-design-system/pull/1271) [`74917ea`](https://github.com/synergy-design-system/synergy-design-system/commit/74917ea30e2d26780202c382c7f157c63e3833ef) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-05-28
+
+  feat: ✨ `<syn-chart>` ([#1205](https://github.com/synergy-design-system/synergy-design-system/issues/1205))
+
+  This release adds an experimental MVP for the new `<syn-chart>` component for data visualization based on [Apache ECharts](https://echarts.apache.org).
+  It is available for Web Component, React, Angular and Vue
+
+  > ⚠️ **Experimental:** The API or behavior may change in future releases without a major version bump.
+
+### Patch Changes
+
+- Updated dependencies [[`74917ea`](https://github.com/synergy-design-system/synergy-design-system/commit/74917ea30e2d26780202c382c7f157c63e3833ef), [`74917ea`](https://github.com/synergy-design-system/synergy-design-system/commit/74917ea30e2d26780202c382c7f157c63e3833ef)]:
+  - @synergy-design-system/tokens@3.15.0
+  - @synergy-design-system/components@3.15.0
+
+## 3.14.0
+
+### Minor Changes
+
+- [#1276](https://github.com/synergy-design-system/synergy-design-system/pull/1276) [`a6b68f2`](https://github.com/synergy-design-system/synergy-design-system/commit/a6b68f2126ee0c63f2e9f5a91d96e97c2486e3c9) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-05-21
+
+  feat: ✨ component context guidelines ([#1187](https://github.com/synergy-design-system/synergy-design-system/issues/1187))
+  - Correct `@since` flags for all components
+  - Updated component usage rules (beta)
+  - Add missing rules files
+  - Create overviews for all components
+
+### Patch Changes
+
+- Updated dependencies [[`a6b68f2`](https://github.com/synergy-design-system/synergy-design-system/commit/a6b68f2126ee0c63f2e9f5a91d96e97c2486e3c9)]:
+  - @synergy-design-system/components@3.14.0
+  - @synergy-design-system/tokens@3.14.0
+
+## 3.13.4
+
+### Patch Changes
+
+- Updated dependencies [[`a4b0e11`](https://github.com/synergy-design-system/synergy-design-system/commit/a4b0e1139dfc644d5607b7bfd08fd20158ace570)]:
+  - @synergy-design-system/components@3.13.4
+  - @synergy-design-system/tokens@3.13.4
+
+## 3.13.3
+
+### Patch Changes
+
+- Updated dependencies [[`de1f21e`](https://github.com/synergy-design-system/synergy-design-system/commit/de1f21e46ac3092e8bd3a1911e1284936b3354cf)]:
+  - @synergy-design-system/components@3.13.3
+  - @synergy-design-system/tokens@3.13.3
+
+## 3.13.2
+
+### Patch Changes
+
+- Updated dependencies [[`e84b97a`](https://github.com/synergy-design-system/synergy-design-system/commit/e84b97ae70affae71afcc85725e56b3f690a445e)]:
+  - @synergy-design-system/components@3.13.2
+  - @synergy-design-system/tokens@3.13.2
+
+## 3.13.1
+
+### Patch Changes
+
+- Updated dependencies [[`2444517`](https://github.com/synergy-design-system/synergy-design-system/commit/2444517aaedc22b115d9572dd14d47c43189ec5d)]:
+  - @synergy-design-system/components@3.13.1
+  - @synergy-design-system/tokens@3.13.1
+
+## 3.13.0
+
+### Patch Changes
+
+- Updated dependencies [[`930328a`](https://github.com/synergy-design-system/synergy-design-system/commit/930328af3af87ba91738b89984ad7b11edd78ec5)]:
+  - @synergy-design-system/tokens@3.13.0
+  - @synergy-design-system/components@3.13.0
+
+## 3.12.1
+
+### Patch Changes
+
+- [#1263](https://github.com/synergy-design-system/synergy-design-system/pull/1263) [`f422a1f`](https://github.com/synergy-design-system/synergy-design-system/commit/f422a1f5e7c8d8970b086d914dbba3a5b3bb8d0b) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-04-28
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+- Updated dependencies [[`f422a1f`](https://github.com/synergy-design-system/synergy-design-system/commit/f422a1f5e7c8d8970b086d914dbba3a5b3bb8d0b)]:
+  - @synergy-design-system/components@3.12.1
+  - @synergy-design-system/tokens@3.12.1
+
 ## 3.12.0
 
 ### Minor Changes

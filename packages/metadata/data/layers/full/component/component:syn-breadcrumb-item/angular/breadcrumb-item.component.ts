@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynBreadcrumbItem } from '@synergy-design-system/components';
+import type SynBreadcrumbItem from '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-item.component.js';
 
 import '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-item.js';
 
@@ -20,7 +20,7 @@ import '@synergy-design-system/components/components/breadcrumb-item/breadcrumb-
  * @summary Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs
  * @status stable
- * @since 2.0
+ * @since 1.26.0
  *
  * @slot - The breadcrumb item's label.
  * @slot prefix - An optional prefix, usually an icon or icon button.

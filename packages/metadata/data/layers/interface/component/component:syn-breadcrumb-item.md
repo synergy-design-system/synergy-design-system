@@ -7,7 +7,8 @@ Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to repres
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41127-679600)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41127-679600)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=18458-27218)
 
 ## Class Information
 
@@ -17,7 +18,7 @@ Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to repres
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.26.0
 
 ## Available Slots
 

@@ -38,6 +38,8 @@ const AllComponentSelectors = {
   combobox1036Delimiter: '#tab-content-Combobox syn-combobox[data-testid="combobox-1036-subsequently-changed-delimiter"]',
   combobox1056DelimiterAsyncPreValue: '#tab-content-Combobox syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-async-pre-value"]',
   combobox1056DelimiterPreValue: '#tab-content-Combobox syn-combobox[data-testid="combobox-1056-async-delimiter-change-with-pre-value"]',
+  combobox1265DynamicOptionChangeButton: '#tab-content-Combobox syn-button[data-testid="combobox-1265-dynamic-option-button"]',
+  combobox1265DynamicOptionChanges: '#tab-content-Combobox syn-combobox[data-testid="combobox-1265-dynamic-option-changes"]',
   comboboxContent: '#tab-content-Combobox',
   comboboxFormReset: '#tab-content-Combobox form syn-button',
   comboboxLink: '#tab-Combobox',
@@ -53,6 +55,11 @@ const AllComponentSelectors = {
   input1023Autocorrect: '#tab-content-Input syn-input[data-testid="input-1023-autocorrect"]',
   inputContent: '#tab-content-Input',
   inputLink: '#tab-Input',
+
+  // Menu
+  menu1295StealsFocus: '#tab-content-Menu [data-testid="menu-1295-steals-focus"]',
+  menuContent: '#tab-content-Menu',
+  menuLink: '#tab-Menu',
 
   // NgModelUpdateOn
   ngModelUpdateOnCheckbox: '#tab-content-NgModelUpdateOn syn-checkbox[data-testid="checkbox-808"]',
@@ -76,6 +83,10 @@ const AllComponentSelectors = {
   optgroupThirdEnabledItems: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3) syn-option:not([disabled])',
   optgroupThirdItem: '#tab-content-OptGroup syn-select syn-optgroup:nth-of-type(3)',
 
+  // Range
+  range1272ChangeValueButton: '#tab-content-Range syn-button[data-testid="range-1272-change-value-button"]',
+  range1272ProgramaticValueChange: '#tab-content-Range syn-range[data-testid="range-1272-programatic-value-change"]',
+
   // Select
   select847Multiple: '#tab-content-Select syn-select[data-testid="select-847-multiple"]',
   select885ValueZeroNumber: '#tab-content-Select syn-select[data-testid="select-885-value-zero-number"]',
@@ -83,6 +94,8 @@ const AllComponentSelectors = {
   select1036Delimiter: '#tab-content-Select syn-select[data-testid="select-1036-subsequently-changed-delimiter"]',
   select1056DelimiterAsyncPreValue: '#tab-content-Select syn-select[data-testid="select-1056-async-delimiter-change-with-async-pre-value"]',
   select1056DelimiterPreValue: '#tab-content-Select syn-select[data-testid="select-1056-async-delimiter-change-with-pre-value"]',
+  select1265DynamicOptionChangeButton: '#tab-content-Select syn-button[data-testid="select-1265-dynamic-option-button"]',
+  select1265DynamicOptionChanges: '#tab-content-Select syn-select[data-testid="select-1265-dynamic-option-changes"]',
   selectContent: '#tab-content-Select',
   selectForm: '#tab-content-Select syn-select[data-testid="select-form-813"]',
   selectFormOptions: '#tab-content-Select syn-select[data-testid="select-form-813"] syn-option',
@@ -130,9 +143,26 @@ const AllComponentSelectors = {
   validateLink: '#tab-Validate',
 };
 
+const ComplexBugsSelectors = {
+  bug1304NestedDrawerButton: '#tab-content-Bug1304NestedDrawer syn-button[data-testid="nested-btn-1304"]',
+  bug1304NestedDrawerContent: '#tab-content-Bug1304NestedDrawer',
+  bug1304NestedDrawerDropDown: '#tab-content-Bug1304NestedDrawer syn-dropdown',
+  bug1304NestedDrawerLink: '#tab-Bug1304NestedDrawer',
+  bug1304NestedDrawerSelect: '#tab-content-Bug1304NestedDrawer syn-select',
+
+  bug1304SingleDrawerButton: '#tab-content-Bug1304SingleDrawer syn-button[data-testid="single-btn-1304"]',
+  bug1304SingleDrawerContent: '#tab-content-Bug1304SingleDrawer',
+  bug1304SingleDrawerDropDown: '#tab-content-Bug1304SingleDrawer syn-dropdown',
+  bug1304SingleDrawerLink: '#tab-Bug1304SingleDrawer',
+  bug1304SingleDrawerSelectFirst: '#tab-content-Bug1304SingleDrawer syn-select[data-testid="first"]',
+  bug1304SingleDrawerSelectSecond: '#tab-content-Bug1304SingleDrawer syn-select[data-testid="second"]',
+
+};
+
 export default {
   ...AllComponentSelectors,
   ...AppShellSelectors,
+  ...ComplexBugsSelectors,
   addInfoLoc: '#additional-info',
   angular: 'syn-option[value=angular]',
   birth: '#input-date',

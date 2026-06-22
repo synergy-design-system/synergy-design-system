@@ -8,7 +8,7 @@ import { execPromise, job } from '../shared.js';
 export const runTypeScript = job('Synergy: Generating typescript types...', async (
   outDir,
   tsConfigPath = './tsconfig.json',
-) => await execPromise(
+) => execPromise(
   `tsc --project ${tsConfigPath} --outDir "${outDir}"`,
   { stdio: 'inherit' },
 ));

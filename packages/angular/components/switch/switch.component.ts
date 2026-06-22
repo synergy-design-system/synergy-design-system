@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynSwitch } from '@synergy-design-system/components';
+import type SynSwitch from '@synergy-design-system/components/components/switch/switch.component.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
@@ -24,7 +24,7 @@ import '@synergy-design-system/components/components/switch/switch.js';
  * @summary Switches allow the user to toggle an option on or off.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @slot - The switch's label.
  * @slot help-text - Text that describes how to use the switch. Alternatively, you can use the `help-text` attribute.

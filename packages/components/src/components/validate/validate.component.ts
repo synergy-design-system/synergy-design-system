@@ -41,6 +41,9 @@ const renderDefaultSlot = () => html`
  * It does this by using [the native browser validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
  * and showing the validation message in a consistent, user defined way.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs
+ * @status stable
+ * @since 2.12.0
+ *
  * @dependency syn-alert
  * @dependency syn-tooltip
  *
@@ -566,7 +569,7 @@ export default class SynValidate extends SynergyElement {
     const slotContent = this.variant === 'tooltip'
       ? html`
         <syn-tooltip
-          .anchor=${getActualInputElement(this.getInput()) as Element ?? undefined}
+          .anchor=${getActualInputElement(this.getInput()) ?? undefined}
           exportparts="base:tooltip__base,base__popup:tooltip__popup,base__arrow:tooltip__arrow,body:tooltip__body"
           .open=${this.eager ? !this.isValid && this.getDisplayValidationMessage().length > 0 : false}
           part="tooltip"

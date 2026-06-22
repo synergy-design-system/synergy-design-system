@@ -1,28 +1,59 @@
 import storybookOutput from '@synergy-design-system/docs/dist/index.json' with { type: 'json' };
 import { type ScrapingConfig, type StorybookArtifactKind } from './types.js';
 
+interface StorybookEntry {
+  id: string;
+  importPath?: string;
+}
+
 /**
  * Get stories from Storybook output based on a prefix.
  * @param prefix Prefix to filter stories by
  * @returns List of stories matching the prefix
  */
 const getStoriesFromStorybook = (prefix: string): Record<string, string> => {
-  const foundStories = Object
+  const byComponent = new Map<string, { priority: number; storyId: string }>();
+
+  Object
     .entries(storybookOutput.entries)
     .filter(([key]) => key.startsWith(`${prefix}-`) && key.endsWith('-docs'))
-    .map(([, value]) => value)
-    .reduce((acc, story) => {
-      const componentName = story.id.split('--')[0].replace(`${prefix}-`, '');
-      acc[componentName] = story.id;
-      return acc;
-    }, {} as Record<string, string>);
+    .map(([, value]) => value as StorybookEntry)
+    .forEach((story) => {
+      const docsId = story.id;
+      const baseId = docsId.replace('--docs', '');
+      const shouldSkip = baseId.endsWith('-overview') || baseId.endsWith('-getting-started');
+      if (shouldSkip) {
+        return;
+      }
+      const isStoriesFileDocs = !!story.importPath && /\.stories\.[cm]?[jt]sx?$/.test(story.importPath);
+      const componentName = baseId
+        .replace(`${prefix}-`, '')
+        .replace(/-overview$/, '');
+      const priority = isStoriesFileDocs ? 3 : 2;
+
+      const existing = byComponent.get(componentName);
+      if (!existing || priority > existing.priority) {
+        byComponent.set(componentName, {
+          priority,
+          storyId: docsId,
+        });
+      }
+    });
+
+  const foundStories = Object.fromEntries(
+    Array.from(byComponent.entries()).map(([componentName, value]) => [componentName, value.storyId]),
+  );
 
   return foundStories;
 };
 
 const componentStories = getStoriesFromStorybook('components');
+const chartStories = getStoriesFromStorybook('charts');
 const styleStories = getStoriesFromStorybook('styles');
 const templateStories = getStoriesFromStorybook('templates');
+
+// enhance componentStories with chart stories, as charts are a type of component
+Object.assign(componentStories, chartStories);
 
 const formatStoriesAsMarkdown = (stories: Parameters<ScrapingConfig['formatContent']>[1]): string => stories.map(
   (story) => `

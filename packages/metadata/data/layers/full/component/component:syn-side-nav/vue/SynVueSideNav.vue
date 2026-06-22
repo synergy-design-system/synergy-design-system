@@ -17,7 +17,7 @@
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-divider
  * @dependency syn-drawer
@@ -72,7 +72,7 @@ import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
-import type { SynSideNav } from '@synergy-design-system/components';
+import type SynSideNav from '@synergy-design-system/components/components/side-nav/side-nav.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynSideNav>();

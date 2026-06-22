@@ -193,7 +193,8 @@
       "type": "SynInvalidEvent"
     }
   ],
-  "figmaComponentId": "42076-167749",
+  "figmaComponentId": "1080-6566",
+  "figmaDocsId": "42076-167749",
   "methods": [
     {
       "description": "Removes focus from the button.",
@@ -402,7 +403,7 @@
       "type": "'filled' | 'outline' | 'text'"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "slots": [
     {
       "description": "The button's label.",

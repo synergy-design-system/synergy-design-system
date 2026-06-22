@@ -1,0 +1,52 @@
+---
+import componentsPackage from '@synergy-design-system/components/package.json';
+import metadataPackage from '@synergy-design-system/metadata/package.json';
+
+const componentsVersion = componentsPackage.version;
+const metadataVersion = metadataPackage.version;
+---
+
+<nav slot="meta-navigation">
+	<syn-tooltip content="Visit Synergies Storybook Developer Documentation">
+		<syn-icon-button
+			href="https://synergy-design-system.github.io/?path=/docs/welcome--docs"
+			target="_blank"
+			name="storybook"
+			label="Synergy on Storybook"
+			library="logos"
+		/>
+	</syn-tooltip>
+	<syn-tooltip content="Visit Synergy on Figma">
+		<syn-icon-button
+			href="https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?t=aUVrRtmSe1QgX5Iq-0"
+			target="_blank"
+			name="figma"
+			label="Synergy on Figma"
+			library="logos"
+		/>
+	</syn-tooltip>
+	<syn-tooltip content="Visit Synergy on Github">
+		<syn-icon-button
+			href="https://github.com/synergy-design-system/synergy-design-system"
+			target="_blank"
+			name="github"
+			label="Synergy on Github"
+			library="logos"
+		/>
+	</syn-tooltip>
+	<syn-tooltip>
+    <div slot="content">
+      Synergy made with love by Synergy Design System Team.
+			This documentation is built using Synergy Design System components and is currently running:
+      <ul>
+        <li>Components version {componentsVersion}</li>
+        <li>Metadata version {metadataVersion}</li>
+      </ul>
+    </div>
+		<syn-icon-button
+			name="heart"
+			label="Synergy made with Love"
+			library="logos"
+		/>
+	</syn-tooltip>
+</nav>

@@ -34,7 +34,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.12.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -55,7 +55,8 @@
       }
     },
     "override": {
-      "figmaComponentId": "41203-538934",
+      "figmaComponentId": "11573-375949",
+      "figmaDocsId": "41203-538934",
       "stories": [
         {
           "description": {
@@ -129,6 +130,48 @@
         "Form"
       ]
     },
+    "rules": {
+      "accessibility": [
+        "Ensure that when the menu is triggered via keyboard, the first item receives focus."
+      ],
+      "component": "syn-dropdown",
+      "related": {
+        "templates": [
+          "AppShell"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Avoid hiding sets of less than 4 items in dropdowns.",
+            "Refrain from nesting dropdowns within each other. If nesting is strictly necessary, limit the menu to two layers to prevent complex operation and cognitive load.",
+            "Keep the panel near its trigger so users understand its context."
+          ],
+          "id": "behavior",
+          "name": "Behavior"
+        },
+        {
+          "content": [
+            "Group related panel items to make them easier to find, especially if there are many. Use a group label and syn-divider to separate them visually."
+          ],
+          "id": "panel_items",
+          "name": "Panel Items"
+        },
+        {
+          "content": [
+            "Maintain consistent styling for dropdown triggers placed at the same level or in the same group; i.e., if a trigger has both text and icon, other triggers on the same level or group should also display text and icon.",
+            "Avoid truncating trigger labels if possible."
+          ],
+          "id": "triggers",
+          "name": "Triggers"
+        }
+      ],
+      "useCases": [
+        "Provide a list of items in a compact space.",
+        "Display additional options or settings related to a specific item.",
+        "Enable navigation through different sections or categories."
+      ]
+    },
     "sourceModulePath": "components/dropdown/dropdown.js",
     "summary": "Dropdowns expose additional content that \"drops down\" in a panel."
   },
@@ -180,6 +223,12 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-dropdown.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-dropdown.md"
+      }
     ]
   },
   "name": "syn-dropdown",
@@ -190,7 +239,7 @@
       "type": "dependsOn"
     }
   ],
-  "since": "2.0",
+  "since": "1.12.0",
   "sources": [
     "packages/angular/components/dropdown/dropdown.component.ts",
     "packages/components/src/components/dropdown/dropdown.component.ts",

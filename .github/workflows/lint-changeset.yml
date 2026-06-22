@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           # Needed to receive the branch name!
           ref: ${{ github.head_ref }}
@@ -59,7 +59,7 @@ jobs:
         continue-on-error: true
         run: |
           # Run command and save to file
-          pnpm release.status --no-color > changeset-status.txt 2>&1 || true
+          pnpm release.status > changeset-status.txt 2>&1 || true
           
           # Escape backticks before adding to GITHUB_OUTPUT
           sed -i 's/`/\\`/g' changeset-status.txt
@@ -71,7 +71,7 @@ jobs:
 
       # Post or update a comment on the PR with the results from the validation
       - name: Update PR
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         with:
           script: |
             // Parse outputs from previous step

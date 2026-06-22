@@ -1,12 +1,32 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-04-28T07:00:23.653Z",
+  "generatedAt": "2026-06-16T06:12:22.804Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
     {
+      "id": "intent-categories-list:experimental",
+      "tokens": 166
+    },
+    {
+      "id": "intent-component-guide:syn-button",
+      "tokens": 1123
+    },
+    {
+      "id": "intent-component-validate:action.submit",
+      "tokens": 98
+    },
+    {
+      "id": "intent-task-recommendations:action.submit",
+      "tokens": 134
+    },
+    {
+      "id": "intent-options:navigation.link-list.grouped",
+      "tokens": 189
+    },
+    {
       "id": "component-info:interface:syn-button",
-      "tokens": 1507
+      "tokens": 1555
     },
     {
       "id": "component-info:examples:syn-button",
@@ -14,23 +34,23 @@
     },
     {
       "id": "component-info:full:syn-button",
-      "tokens": 8205
+      "tokens": 8207
     },
     {
       "id": "component-info:interface:syn-divider",
-      "tokens": 187
+      "tokens": 235
     },
     {
       "id": "component-info:interface:syn-input",
-      "tokens": 2981
+      "tokens": 3028
     },
     {
       "id": "component-info:interface:syn-combobox",
-      "tokens": 2386
+      "tokens": 2437
     },
     {
       "id": "styles-info:syn-body",
-      "tokens": 26
+      "tokens": 210
     },
     {
       "id": "template-info:appshell",
@@ -46,7 +66,11 @@
     },
     {
       "id": "token-info:css:sick2025-light",
-      "tokens": 8292
+      "tokens": 8487
+    },
+    {
+      "id": "prompt:explain-component-rules:syn-accordion",
+      "tokens": 284
     }
   ]
 }

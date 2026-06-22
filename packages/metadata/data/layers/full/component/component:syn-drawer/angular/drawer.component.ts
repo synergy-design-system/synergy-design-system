@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynDrawer } from '@synergy-design-system/components';
+import type SynDrawer from '@synergy-design-system/components/components/drawer/drawer.component.js';
 import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
@@ -25,7 +25,7 @@ import '@synergy-design-system/components/components/drawer/drawer.js';
  * @summary Drawers slide in from a container to expose additional options and information.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs
  * @status stable
- * @since 2.0
+ * @since 1.8.0
  *
  * @dependency syn-icon-button
  *

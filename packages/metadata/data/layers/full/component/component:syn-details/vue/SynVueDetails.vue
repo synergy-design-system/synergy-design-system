@@ -9,7 +9,7 @@
  * @summary Details show a brief summary and expand to show additional content.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs
  * @status stable
- * @since 2.0
+ * @since 2.3.0
  *
  * @dependency syn-icon
  *
@@ -42,7 +42,7 @@ import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
-import type { SynDetails } from '@synergy-design-system/components';
+import type SynDetails from '@synergy-design-system/components/components/details/details.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDetails>();

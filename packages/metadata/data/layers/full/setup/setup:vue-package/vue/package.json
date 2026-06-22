@@ -12,7 +12,14 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./components/*": "./dist/components/*"
+    "./components/*": {
+      "types": "./dist/components/*.vue.d.ts",
+      "import": "./dist/components/*.js"
+    },
+    "./chart": {
+      "types": "./dist/chart.d.ts",
+      "import": "./dist/chart.js"
+    }
   },
   "scripts": {
     "_build": "vite build"
@@ -43,14 +50,14 @@
     "directory": "packages/vue"
   },
   "type": "module",
-  "version": "3.12.0",
+  "version": "3.15.5",
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.5",
-    "@vue/tsconfig": "^0.8.1",
-    "rollup-plugin-node-externals": "^8.1.2",
-    "vite": "^7.3.1",
+    "@vitejs/plugin-vue": "^6.0.7",
+    "@vue/tsconfig": "^0.9.1",
+    "rollup-plugin-node-externals": "^9.0.1",
+    "vite": "^8.0.16",
     "vite-plugin-dts": "^4.5.4",
-    "vue": "^3.5.30"
+    "vue": "^3.5.35"
   },
   "peerDependencies": {
     "@synergy-design-system/tokens": "workspace:*"

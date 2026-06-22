@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContentFooter from '../components/ContentFooter.astro';
+import ContentHeader from '../components/ContentHeader.astro';
+---
+<Layout>
+  <syn-card>
+    <ContentHeader headline="Out of scope and non-goals" headlineClass="syn-heading--2x-large" />
+
+    <p>
+      This page describes areas that are intentionally
+      <strong>out of scope</strong> for the Synergy Design System.
+      It clarifies system boundaries to prevent incorrect assumptions.
+      This page is non-normative and does not define component behavior or API contracts.
+    </p>
+
+    <h2 class="syn-heading--large">Explicit non-goals</h2>
+    <ul>
+      <li>Synergy does not define application-specific business logic.</li>
+      <li>Synergy does not define backend APIs or server-side data validation.</li>
+      <li>Synergy does not define product-specific UX flows or user journeys.</li>
+      <li>Synergy does not define content strategy, tone of voice, or copywriting.</li>
+      <li>Synergy does not define non-web (native mobile or desktop) UI frameworks.</li>
+    </ul>
+
+    <ContentFooter
+      creationDate={new Date().toISOString()}
+      entityId={null}
+    >
+      | Normative component behavior and API contracts are defined on individual component pages.
+    </ContentFooter>
+
+  </syn-card>
+</Layout>

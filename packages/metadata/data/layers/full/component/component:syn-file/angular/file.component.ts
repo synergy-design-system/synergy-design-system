@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynFile } from '@synergy-design-system/components';
+import type SynFile from '@synergy-design-system/components/components/file/file.component.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynErrorEvent } from '@synergy-design-system/components';
@@ -24,6 +24,7 @@ import '@synergy-design-system/components/components/file/file.js';
  * @summary File controls allow selecting an arbitrary number of files for uploading.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs
  * @status stable
+ * @since 2.5.0
  *
  * @dependency syn-button
  * @dependency syn-icon

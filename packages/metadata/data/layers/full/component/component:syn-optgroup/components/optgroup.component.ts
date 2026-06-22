@@ -32,7 +32,7 @@ const handleInitialDisabledForOption = (option: SynOption, isDisabled: boolean) 
  * @summary The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs
  * @status stable
- * @since 1.3.0
+ * @since 1.5.0
  *
  * @dependency syn-divider
  *
@@ -120,6 +120,8 @@ export default class SynOptgroup extends SynergyElement {
           if (optgroupMutation.type === 'childList') {
             optgroupMutation.addedNodes.forEach((node) => {
               if (node instanceof HTMLElement && node.matches('syn-option')) {
+                // False positive for instanceof check, but we know this is correct since the mutation observer is only looking for syn-options
+                // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
                 handleInitialDisabledForOption(node as SynOption, this.disabled);
               }
             });

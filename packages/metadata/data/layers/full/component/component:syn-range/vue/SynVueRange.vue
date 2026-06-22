@@ -9,6 +9,7 @@
  * @summary Ranges allow the user to select values within a given range using one or two thumbs.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
  * @status stable
+ * @since 2.6.0
  *
  * @dependency syn-tooltip
  *
@@ -65,7 +66,7 @@ import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynMoveEvent } from '@synergy-design-system/components';
-import type { SynRange } from '@synergy-design-system/components';
+import type SynRange from '@synergy-design-system/components/components/range/range.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynRange>();

@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:
@@ -34,7 +34,7 @@ jobs:
     needs: build-check
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:
@@ -50,7 +50,7 @@ jobs:
     needs: build-check
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-check
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:
@@ -82,14 +82,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-check
     container:
-      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      image: mcr.microsoft.com/playwright:v1.61.0-noble
       options: --memory=4g --memory-swap=4g
     strategy:
       fail-fast: true
       matrix:
         browser: [chromium, firefox, webkit]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Setup, but only run build for components
       - name: Setup Node.js and pnpm
@@ -116,7 +116,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-check
     container:
-      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      image: mcr.microsoft.com/playwright:v1.61.0-noble
       options: --memory=4g --memory-swap=4g
     strategy:
       fail-fast: true
@@ -124,13 +124,13 @@ jobs:
         framework: [react, angular, vue, vanilla]
         browser: [chromium, firefox, webkit]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Setup Node.js and pnpm
         uses: ./.github/actions/setup-node-pnpm
         with:
           # Make sure to exclude unneeded packages to speed up the build.
-          build-command: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/mcp' build
+          build-command: pnpm -r --filter='!@synergy-design-system/docs' --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/static-docs-page' --filter='!@synergy-design-system/mcp' build
 
       - name: Run tests
         run: pnpm test.${{ matrix.framework }} --project=${{ matrix.browser }}
@@ -146,10 +146,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build-check, format-check, lint-check, component-test, e2e-test, tokens-test]
     container:
-      image: mcr.microsoft.com/playwright:v1.58.2-noble
+      image: mcr.microsoft.com/playwright:v1.61.0-noble
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       
@@ -161,8 +161,8 @@ jobs:
         uses: ./.github/actions/setup-node-pnpm
         with:
           with-build: 'false'
-      - name: Build workspace packages (except metadata and mcp)
-        run: pnpm -r --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/mcp' build
+      - name: Build workspace packages (except metadata, MCP, and static-docs-page)
+        run: pnpm -r --filter='!@synergy-design-system/metadata' --filter='!@synergy-design-system/mcp' --filter='!@synergy-design-system/static-docs-page' build
       - name: Build metadata (full)
         run: pnpm -C packages/metadata build:all
       - name: Run tests (metadata)
@@ -191,7 +191,7 @@ jobs:
     needs: [build-check, format-check, lint-check, component-test, e2e-test, tokens-test]
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0 # 👈 Required to retrieve git history
           # 👇 Tells the checkout which commit hash to reference

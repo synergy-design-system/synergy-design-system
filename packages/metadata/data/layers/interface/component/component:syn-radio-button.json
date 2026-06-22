@@ -142,7 +142,7 @@
       "type": "string | number"
     }
   ],
-  "since": "2.0",
+  "since": "1.0.0",
   "slots": [
     {
       "description": "The radio button's label.",

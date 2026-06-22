@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContentHeader from '../../components/ContentHeader.astro';
+
+const PACKAGE_LABELS: Record<string, string> = {
+	angular: '@synergy-design-system/angular',
+	assets: '@synergy-design-system/assets',
+	components: '@synergy-design-system/components',
+	fonts: '@synergy-design-system/fonts',
+	metadata: '@synergy-design-system/metadata',
+	mcp: '@synergy-design-system/mcp',
+	react: '@synergy-design-system/react',
+	styles: '@synergy-design-system/styles',
+	tokens: '@synergy-design-system/tokens',
+	vue: '@synergy-design-system/vue',
+};
+
+// Glob all sibling-package changelogs at build time
+const allChangelogs = import.meta.glob('../../../../*/CHANGELOG.md', { eager: true }) as Record<
+	string,
+	{ Content: any }
+>;
+
+const changelogMap = Object.fromEntries(
+	Object.entries(allChangelogs).map(([path, mod]) => [
+		path.split('/').at(-2)!,
+		mod.Content,
+	]),
+);
+
+export async function getStaticPaths() {
+	const mods = import.meta.glob('../../../../*/CHANGELOG.md', { eager: true });
+	return Object.keys(mods).map(path => ({
+		params: { id: path.split('/').at(-2)! },
+	}));
+}
+
+const { id } = Astro.params;
+const Content = changelogMap[id!];
+const label = PACKAGE_LABELS[id!] ?? id;
+---
+
+<Layout>
+	{Content ? (
+		<syn-card class="changelog-view" shadow>
+			<ContentHeader headline={label} />
+			<div class="changelog-content">
+				<Content />
+			</div>
+			<footer slot="footer">
+				<syn-divider />
+				Changelog for {label}
+			</footer>
+		</syn-card>
+	) : (
+		<syn-card shadow>
+			<p>Changelog for package "{id}" not found.</p>
+		</syn-card>
+	)}
+</Layout>
+
+<style>
+	.changelog-content :global(h1) {
+		/* The markdown file itself has a top-level # Changelog heading — hide it,
+		   the page header already shows the package name */
+		display: none;
+	}
+
+	.changelog-content :global(h2) {
+		font: var(--syn-font-weight-semibold) var(--syn-font-size-x-large) / var(--syn-line-height-normal) var(--syn-font-sans);
+		margin: var(--syn-spacing-2x-large) 0 var(--syn-spacing-small);
+	}
+
+	.changelog-content :global(h3) {
+		font: var(--syn-font-weight-semibold) var(--syn-font-size-large) / var(--syn-line-height-normal) var(--syn-font-sans);
+		color: var(--syn-color-neutral-600);
+		margin: var(--syn-spacing-large) 0 var(--syn-spacing-x-small);
+	}
+
+	.changelog-content :global(a) {
+		color: var(--syn-color-primary-600);
+		text-decoration: none;
+	}
+
+	.changelog-content :global(a:hover) {
+		text-decoration: underline;
+	}
+</style>

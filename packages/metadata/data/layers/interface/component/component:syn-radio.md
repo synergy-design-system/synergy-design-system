@@ -7,7 +7,8 @@ Radios allow the user to select a single option from a group.
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-252390)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41310-252390)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=1345-21578)
 
 ## Class Information
 
@@ -17,7 +18,7 @@ Radios allow the user to select a single option from a group.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.0.0
 
 ## Available Slots
 

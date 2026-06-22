@@ -7,7 +7,8 @@ Menu labels are used to describe a group of menu items.
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs)
-- [Figma Design](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41203-427127)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=41203-427127)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=10666-9080)
 
 ## Class Information
 
@@ -17,7 +18,7 @@ Menu labels are used to describe a group of menu items.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 2.0
+- **Since:** 1.12.0
 
 ## Available Slots
 

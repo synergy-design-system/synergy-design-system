@@ -205,7 +205,8 @@
       "type": "SynMoveEvent"
     }
   ],
-  "figmaComponentId": "41310-323916",
+  "figmaComponentId": "25215-36015",
+  "figmaDocsId": "41310-323916",
   "methods": [
     {
       "description": "Checks for validity but does not show a validation message.\nReturns `true` when valid and `false` when invalid.",
@@ -399,7 +400,7 @@
       "name": "valueAsArray"
     }
   ],
-  "since": "unknown",
+  "since": "2.6.0",
   "slots": [
     {
       "description": "The range's label. Alternatively, you can use the `label` attribute.",

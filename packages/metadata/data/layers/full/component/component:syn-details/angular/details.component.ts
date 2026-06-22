@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynDetails } from '@synergy-design-system/components';
+import type SynDetails from '@synergy-design-system/components/components/details/details.component.js';
 import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
@@ -23,7 +23,7 @@ import '@synergy-design-system/components/components/details/details.js';
  * @summary Details show a brief summary and expand to show additional content.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs
  * @status stable
- * @since 2.0
+ * @since 2.3.0
  *
  * @dependency syn-icon
  *

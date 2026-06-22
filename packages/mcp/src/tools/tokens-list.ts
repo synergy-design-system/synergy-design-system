@@ -10,7 +10,7 @@ import {
 type TokenTheme = 'sick2018-dark' | 'sick2018-light' | 'sick2025-dark' | 'sick2025-light';
 
 /**
- * Simple tool to list available token output types and theme variants.
+ * Simple tool to list available token output types, scopes and theme variants.
  * @param server - The MCP server instance to register the tool on.
  */
 export const tokenListTool = (server: McpServer) => {
@@ -55,9 +55,11 @@ export const tokenListTool = (server: McpServer) => {
         defaults: {
           tokenInfo: {
             theme: 'sick2025-light',
+            tokenScope: 'components',
             type: 'css',
           },
         },
+        supportedScopes: ['components', 'charts'],
         supportedTypes: [
           ...(cssThemes.length > 0 ? ['css'] : []),
           ...(hasJavascript ? ['javascript'] : []),

@@ -1,0 +1,40 @@
+# syn-tag
+
+## Summary
+
+Tags are used as labels to organize things or to indicate a selection.
+
+## Common Use Cases
+
+- Label and categorize items to help users filter and find relevant content.
+- Highlight important keywords or attributes associated with an item.
+- Allow users to filter content dynamically by clicking on tags.
+- Display topics or categories associated with an article, post or product.
+
+## Usage Guidelines
+
+### Behavior
+
+- Use the "removable" attribute to include a small close "x" button next to the label.
+- Avoid using a standalone, non-removable tag, as its selected/unselected state could be unclear. Apply the "removable" attribute for those cases.
+
+### Labels
+
+- Try to keep a similar text length for all labels, and specially avoid excessively long ones. If necessary, truncate the label and show the full text in a tooltip on hover.
+- Don't use tags to indicate the status of a task, use syn-status-badge instead.
+
+## Accessibility
+
+- Ensure each tag has a short, meaningful text label that can be understood without visual context alone.
+- For removable tags, ensure the remove action is clearly announced by assistive technologies and communicates which tag will be removed.
+- Provide visible focus indication for any interactive tag or remove control and keep focus order consistent with surrounding controls.
+- When tags are presented as a set (for example, active filters), provide group context with a clear label via syn-tag-group or an equivalent labeled container.
+- After a tag is removed, move focus predictably to a logical next element and provide feedback about the updated state when relevant.
+
+## Related Components
+
+- syn-tag-group
+
+## Related Templates
+
+- Tag Group

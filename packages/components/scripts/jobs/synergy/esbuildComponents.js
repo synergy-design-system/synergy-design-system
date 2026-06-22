@@ -1,6 +1,6 @@
+import { glob } from 'node:fs/promises';
 import esbuild from 'esbuild';
 import { replace } from 'esbuild-plugin-replace';
-import { globby } from 'globby';
 import { job } from '../shared.js';
 
 /**
@@ -21,13 +21,13 @@ export const runEsBuildComponents = job('Synergy: Running esbuild...', async (di
       // The auto-loader
       './src/synergy-autoloader.ts',
       // Components
-      ...(await globby('./src/components/**/!(*.(style|test)).ts')),
+      ...(await Array.fromAsync(glob('./src/components/**/*.ts', { exclude: ['**/*.style.ts', '**/*.test.ts'] }))),
       // Translations
-      ...(await globby('./src/translations/**/*.ts')),
+      ...(await Array.fromAsync(glob('./src/translations/**/*.ts'))),
       // Theme stylesheets
-      ...(await globby('./src/themes/**/!(*.test).ts')),
+      ...(await Array.fromAsync(glob('./src/themes/**/*.ts', { exclude: ['**/*.test.ts'] }))),
       // Public utilities
-      ...(await globby('./src/utilities/**/!(*.(style|test)).ts')),
+      ...(await Array.fromAsync(glob('./src/utilities/**/*.ts', { exclude: ['**/*.style.ts', '**/*.test.ts'] }))),
     ],
     external: undefined,
     format: 'esm',
@@ -44,5 +44,5 @@ export const runEsBuildComponents = job('Synergy: Running esbuild...', async (di
     target: 'es2017',
   };
 
-  return await esbuild.build(esbuildConfig);
+  return esbuild.build(esbuildConfig);
 });

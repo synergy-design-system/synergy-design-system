@@ -23,7 +23,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "2.0",
+          "since": "1.0.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -42,6 +42,63 @@
         "packageName": "@synergy-design-system/vue",
         "sourcePath": "packages/vue/src/components/SynVueRadioButton.vue"
       }
+    },
+    "rules": {
+      "accessibility": [
+        "Provide meaningful alternative text for icon-only radio buttons.",
+        "Communicate the group's function-such as filtering or view switching-through clear context or labels."
+      ],
+      "component": "syn-radio-button",
+      "related": {
+        "components": [
+          "syn-radio",
+          "syn-radio-group"
+        ],
+        "templates": [
+          "Forms"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use with light background options such as white, neutral-100, or primary-100."
+          ],
+          "id": "background",
+          "name": "Background"
+        },
+        {
+          "content": [
+            "Don't use as input method in forms, for they are not form elements. Use syn-radio instead.",
+            "Slot inside of an syn-radio-group.",
+            "Use only in groups, as they are designed to allow the user to activate one of several options. To work with a single option, use syn-checkbox instead.",
+            "Pre-select always a \"default\" value; there is no invalid state.",
+            "Limit the number of options in the group. Users should be able to retain all options available and not be overwhelmed by them."
+          ],
+          "id": "behavior",
+          "name": "Behavior"
+        },
+        {
+          "content": [
+            "Include icons to support each option visually if possible.",
+            "Label each choice clearly."
+          ],
+          "id": "content",
+          "name": "Content"
+        },
+        {
+          "content": [
+            "All radio buttons in the group must be styled similarly, e.g., each one is labelled with both text and icon.",
+            "Avoid styling options only with icons if they are not common symbols, to prevent ambiguous interpretations."
+          ],
+          "id": "styling",
+          "name": "Styling"
+        }
+      ],
+      "useCases": [
+        "Select one option from a group where one is already preselected.",
+        "Switch between groups of settings.",
+        "Filter views by a parent category."
+      ]
     },
     "sourceModulePath": "components/radio-button/radio-button.js",
     "summary": "Radios buttons allow the user to select a single option from a group using a button-like control."
@@ -94,12 +151,18 @@
         "layer": "interface",
         "path": "layers/interface/component/component:syn-radio-button.md"
       }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-radio-button.md"
+      }
     ]
   },
   "name": "syn-radio-button",
   "package": "components",
   "relations": [],
-  "since": "2.0",
+  "since": "1.0.0",
   "sources": [
     "packages/angular/components/radio-button/radio-button.component.ts",
     "packages/components/src/components/radio-button/radio-button.component.ts",

@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynRange } from '@synergy-design-system/components';
+import type SynRange from '@synergy-design-system/components/components/range/range.component.js';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
@@ -25,6 +25,7 @@ import '@synergy-design-system/components/components/range/range.js';
  * @summary Ranges allow the user to select values within a given range using one or two thumbs.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
  * @status stable
+ * @since 2.6.0
  *
  * @dependency syn-tooltip
  *

@@ -2,9 +2,8 @@
  * @typedef {import('size-limit').Check} Check
  * @typedef {import('size-limit').SizeLimitConfig} SizeLimitConfig
  */
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, globSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { globbySync } from 'globby';
 
 // Get the dependency list so we can exclude all deps
 const packageJSON = import.meta.resolve('./package.json');
@@ -12,16 +11,16 @@ const packageJSON = import.meta.resolve('./package.json');
 const { dependencies } = JSON.parse(
   readFileSync(
     fileURLToPath(packageJSON),
-    'utf-8'
-  )
+    'utf-8',
+  ),
 );
 
 const customElements = import.meta.resolve('./dist/custom-elements.json');
 const metadata = JSON.parse(
   readFileSync(
     fileURLToPath(customElements),
-    'utf-8'
-  )
+    'utf-8',
+  ),
 );
 
 /**
@@ -41,8 +40,8 @@ const defaultSizeOptions = {
 const elements = metadata?.modules
   // Only allow modules that have custom elements declared
   ?.filter(module => module.declarations.some(
-    d => d.customElement),
-  )
+    d => d.customElement,
+  ))
   // Make sure to only include custom elements that have a path.
   // This strips out stuff we only use internally, like syn-resize-observer
   .filter(m => existsSync(`dist/${m.path}`))
@@ -59,8 +58,8 @@ const elements = metadata?.modules
  * @type {Check[]}
  * Dynamic list of checks for each regular export in the dist folder
  */
-const otherExports = globbySync('dist/**/*.js', {
-  ignore: [
+const otherExports = globSync('dist/**/*.js', {
+  exclude: [
     // Already included via dist/synergy.js
     'dist/chunks',
     'dist/synergy.js',

@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynHeader } from '@synergy-design-system/components';
+import type SynHeader from '@synergy-design-system/components/components/header/header.component.js';
 import type { SynBurgerMenuClosedEvent } from '@synergy-design-system/components';
 import type { SynBurgerMenuHiddenEvent } from '@synergy-design-system/components';
 import type { SynBurgerMenuOpenEvent } from '@synergy-design-system/components';

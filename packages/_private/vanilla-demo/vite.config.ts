@@ -48,6 +48,7 @@ const icons = [
   'bug_report',
   'light_mode',
   'dark_mode',
+  'troubleshoot',
 ] satisfies (Icon2018Keys & Icon2025Keys)[];
 
 const defaultOptions: SynSpriteSheetOptions<Icon2018Keys> = {
@@ -90,11 +91,17 @@ export const defaultConfig = {
         // Copy all static assets to the dist folder
         {
           dest: './assets/icons/',
+          rename: {
+            stripBase: true,
+          },
           src: './node_modules/@synergy-design-system/assets/src/sick2025/icons/outline/*',
         },
         // Allow loading subpages from the src/pages directory
         {
           dest: './pages/',
+          rename: {
+            stripBase: true,
+          },
           src: './src/pages/*',
         },
       ],
@@ -121,6 +128,9 @@ export const withSpriteSheetGenerator = {
         // Allow loading subpages from the src/pages directory
         {
           dest: './pages/',
+          rename: {
+            stripBase: true,
+          },
           src: './src/pages/*',
         },
       ],

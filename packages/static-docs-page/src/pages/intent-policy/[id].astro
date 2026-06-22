@@ -1,0 +1,225 @@
+---
+import { type SynBadge } from '@synergy-design-system/components';
+import {
+	experimental_listIntentCategories,
+	experimental_getIntentCategory,
+	experimental_listIntentCapabilities,
+	experimental_listIntents,
+	experimental_renderIntent,
+	type IntentTargetRef,
+} from '@synergy-design-system/metadata';
+import Layout from '../../layouts/Layout.astro';
+import ContentFooter from '../../components/ContentFooter.astro';
+import ContentHeader from '../../components/ContentHeader.astro';
+import Link from '../../components/Link.astro';
+import { getIntentTargetPath } from '../../utils/intentTargetPath';
+import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
+
+export async function getStaticPaths() {
+	const result = await experimental_listIntentCategories(metadataStoreOptions);
+
+	return result.data.map(category => ({
+		params: { id: category.id },
+		props: {
+			categoryId: category.id,
+		}
+	}));
+}
+
+const routeId = Astro.params.id;
+const { categoryId } = Astro.props;
+
+if (!routeId) {
+	throw new Error('Missing intent policy route parameter.');
+}
+
+if (!categoryId) {
+	throw new Error('Missing intent policy category id for route.');
+}
+
+const category = await experimental_getIntentCategory(categoryId, {}, metadataStoreOptions);
+
+const intents = await experimental_listIntents({
+	category: categoryId,
+	includePhases: ['experimental'],
+}, metadataStoreOptions);
+
+const capabilitiesByIntentId = new Map(
+	await Promise.all(intents.data.map(async intent => {
+		const capabilities = await experimental_listIntentCapabilities(intent.id, {
+			includePhases: ['experimental'],
+		}, metadataStoreOptions);
+
+		return [intent.id, capabilities.data] as const;
+	})),
+);
+
+const renderFrameworks = ['react-wrapper', 'react-web-components', 'angular', 'vue', 'vanilla'] as const;
+
+const previewsByIntentId = new Map(
+	await Promise.all(intents.data.map(async intent => {
+		const linkedCapabilities = capabilitiesByIntentId.get(intent.id) ?? [];
+
+		if (linkedCapabilities.length === 0) {
+			return [intent.id, [] as Array<readonly [typeof renderFrameworks[number], string]>] as const;
+		}
+
+		const previews = await Promise.all(renderFrameworks.map(async framework => {
+			const rendered = await experimental_renderIntent({
+				framework,
+				includePhases: ['experimental'],
+				intent: intent.id,
+			}, metadataStoreOptions);
+
+			const fallback = `ERROR:${rendered.errors?.[0]?.code ?? 'UNKNOWN'}`;
+			return [framework, rendered.data ?? fallback] as const;
+		}));
+
+		return [intent.id, previews] as const;
+	})),
+);
+
+const nowIso = new Date().toISOString();
+
+const formatTarget = (target: IntentTargetRef): string => {
+	if (target.id) {
+		return target.id;
+	}
+
+	if (target.name) {
+		return `${target.kind}:${target.name}`;
+	}
+
+	if (target.selector) {
+		return `${target.kind}:${target.selector}`;
+	}
+
+	if (target.classes && target.classes.length > 0) {
+		return `${target.kind}:.${target.classes.join('.')}`;
+	}
+
+	return target.kind;
+};
+
+const getDescriptionForPhase = (phase: string): string => {
+	switch (phase) {
+		case 'deprecated':
+			return 'This intent is deprecated and may be removed in future releases. Use with caution.';
+		case 'experimental':
+			return 'This intent is experimental and may change or be removed in future releases. Use with caution.';
+		case 'stable':
+			return 'This intent is stable and ready for production use.';
+		default:
+			return '';
+	}
+};
+
+const getPhaseBadge = (phase: string): SynBadge['variant'] => {
+	switch (phase) {
+		case 'deprecated':
+			return 'danger';
+		case 'experimental':
+			return 'warning';
+		case 'stable':
+			return 'success';
+		default:
+			return 'neutral';
+	}
+};
+---
+
+<Layout>
+	<syn-card shadow>
+		<ContentHeader headline={`Intent Policy: ${category.data!.id}`}>
+			{category.data!.phase && (
+				<syn-tooltip content={getDescriptionForPhase(category.data!.phase)}>
+					<syn-badge variant={getPhaseBadge(category.data!.phase)}>{category.data!.phase}</syn-badge>
+				</syn-tooltip>
+			)}
+		</ContentHeader>
+
+		<h2 class="syn-heading--2x-large">Description</h2>
+		<p>{category.data!.description}</p>
+
+		<h2 class="syn-heading--2x-large">Intents</h2>
+		{intents.data.length > 0 && (
+			<>
+				{intents.data.map(intent => {
+					const linkedCapabilities = capabilitiesByIntentId.get(intent.id) ?? [];
+					const previews = previewsByIntentId.get(intent.id) ?? [];
+					return (
+					<article>
+						<h3 class="syn-heading--large">
+							{intent.id}
+							{intent.phase && (
+								<syn-tooltip content={getDescriptionForPhase(intent.phase)}>
+									<syn-badge variant={getPhaseBadge(intent.phase)}>{intent.phase}</syn-badge>
+								</syn-tooltip>
+							)}
+						</h3>
+
+						<ul>
+							<li>
+								<strong>Description</strong>
+								{intent.description}
+							</li>
+							<li>
+								<strong>User Goal</strong>
+								{intent.userGoal}
+							</li>
+							<li>
+								<strong>Linked Targets</strong>
+								{linkedCapabilities.length > 0 ? (
+									<ul>
+										{linkedCapabilities.map(capability => (
+												<li>
+													{(() => {
+														const targetLabel = formatTarget(capability.target);
+														const targetPath = getIntentTargetPath(capability.target);
+
+														if (!targetPath) {
+															return targetLabel;
+														}
+
+														return (
+															<Link href={targetPath}>
+																<syn-badge>Uses</syn-badge>
+																{targetLabel}
+															</Link>
+														);
+													})()}
+												</li>
+										))}
+									</ul>
+								) : (
+									<span> No linked targets found.</span>
+								)}
+							</li>
+							<li>
+								<strong>Render Previews</strong>
+								{previews.length > 0 ? (
+									<ul>
+										{previews.map(([framework, output]) => (
+											<li>
+												<strong>{framework}</strong>
+												<pre><code>{output}</code></pre>
+											</li>
+										))}
+									</ul>
+								) : (
+									<span> No previews available.</span>
+								)}
+							</li>
+						</ul>
+					</article>
+					);
+				})}
+			</>
+		)}
+
+		<ContentFooter
+			creationDate={nowIso}
+			entityId={routeId}
+		/>
+	</syn-card>
+</Layout>

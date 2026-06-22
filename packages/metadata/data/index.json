@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-04-28T07:44:02.044Z",
+  "builtAt": "2026-06-22T09:17:21.041Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -114,7 +114,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-accordion",
       "search": [
@@ -135,7 +136,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-alert",
       "search": [
@@ -156,7 +158,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-badge",
       "search": [
@@ -177,7 +180,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-breadcrumb",
       "search": [
@@ -198,7 +202,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-breadcrumb-item",
       "search": [
@@ -219,7 +224,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-button",
       "search": [
@@ -240,7 +246,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-button-group",
       "search": [
@@ -261,7 +268,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-card",
       "search": [
@@ -276,13 +284,36 @@
       ]
     },
     {
+      "corePath": "data/core/component/component:syn-chart.json",
+      "id": "component:syn-chart",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 9,
+        "interface": 2,
+        "rules": 1
+      },
+      "name": "syn-chart",
+      "search": [
+        "component:syn-chart",
+        "syn-chart",
+        "angular",
+        "chart",
+        "component",
+        "react",
+        "syn-chart",
+        "vue"
+      ]
+    },
+    {
       "corePath": "data/core/component/component:syn-checkbox.json",
       "id": "component:syn-checkbox",
       "kind": "component",
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-checkbox",
       "search": [
@@ -303,7 +334,8 @@
       "layers": {
         "examples": 1,
         "full": 9,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-combobox",
       "search": [
@@ -324,7 +356,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-details",
       "search": [
@@ -345,7 +378,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-dialog",
       "search": [
@@ -366,7 +400,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-divider",
       "search": [
@@ -387,7 +422,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-drawer",
       "search": [
@@ -408,7 +444,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-dropdown",
       "search": [
@@ -429,7 +466,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-file",
       "search": [
@@ -450,7 +488,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-header",
       "search": [
@@ -471,7 +510,8 @@
       "layers": {
         "examples": 1,
         "full": 14,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-icon",
       "search": [
@@ -492,7 +532,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-icon-button",
       "search": [
@@ -513,7 +554,8 @@
       "layers": {
         "examples": 1,
         "full": 10,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-input",
       "search": [
@@ -534,7 +576,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-menu",
       "search": [
@@ -555,7 +598,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-menu-item",
       "search": [
@@ -576,7 +620,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-menu-label",
       "search": [
@@ -597,7 +642,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-nav-item",
       "search": [
@@ -618,7 +664,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-optgroup",
       "search": [
@@ -639,7 +686,8 @@
       "layers": {
         "examples": 1,
         "full": 9,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-option",
       "search": [
@@ -660,7 +708,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-pagination",
       "search": [
@@ -681,7 +730,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-popup",
       "search": [
@@ -702,7 +752,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-prio-nav",
       "search": [
@@ -723,7 +774,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-progress-bar",
       "search": [
@@ -744,7 +796,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-progress-ring",
       "search": [
@@ -765,7 +818,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-radio",
       "search": [
@@ -786,7 +840,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-radio-button",
       "search": [
@@ -807,7 +862,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-radio-group",
       "search": [
@@ -828,7 +884,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-range",
       "search": [
@@ -849,7 +906,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-range-tick",
       "search": [
@@ -870,7 +928,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-select",
       "search": [
@@ -891,7 +950,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-side-nav",
       "search": [
@@ -912,7 +972,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-spinner",
       "search": [
@@ -933,7 +994,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-switch",
       "search": [
@@ -954,7 +1016,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-tab",
       "search": [
@@ -975,7 +1038,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-tab-group",
       "search": [
@@ -996,7 +1060,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-tab-panel",
       "search": [
@@ -1017,7 +1082,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-tag",
       "search": [
@@ -1038,7 +1104,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-tag-group",
       "search": [
@@ -1059,7 +1126,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-textarea",
       "search": [
@@ -1080,7 +1148,8 @@
       "layers": {
         "examples": 1,
         "full": 7,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-tooltip",
       "search": [
@@ -1101,7 +1170,8 @@
       "layers": {
         "examples": 1,
         "full": 8,
-        "interface": 2
+        "interface": 2,
+        "rules": 1
       },
       "name": "syn-validate",
       "search": [
@@ -1505,6 +1575,20 @@
       ]
     },
     {
+      "corePath": "data/core/template/template:loading-screen.json",
+      "id": "template:loading-screen",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Loading Screen",
+      "search": [
+        "template:loading-screen",
+        "Loading Screen",
+        "template"
+      ]
+    },
+    {
       "corePath": "data/core/template/template:localization.json",
       "id": "template:localization",
       "kind": "template",
@@ -1544,6 +1628,105 @@
         "template:tag-group",
         "Tag Group",
         "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template:tooltip.json",
+      "id": "template:tooltip",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Tooltip",
+      "search": [
+        "template:tooltip",
+        "Tooltip",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-js-index-d-ts.json",
+      "id": "token:tokens-charts-js-index-d-ts",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "index.d.ts",
+      "search": [
+        "token:tokens-charts-js-index-d-ts",
+        "index.d.ts",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-js-index-js.json",
+      "id": "token:tokens-charts-js-index-js",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "index.js",
+      "search": [
+        "token:tokens-charts-js-index-js",
+        "index.js",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-scss-tokens-scss.json",
+      "id": "token:tokens-charts-scss-tokens-scss",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "_tokens.scss",
+      "search": [
+        "token:tokens-charts-scss-tokens-scss",
+        "_tokens.scss",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-themes-sick2025-dark-css.json",
+      "id": "token:tokens-charts-themes-sick2025-dark-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025_dark.css",
+      "search": [
+        "token:tokens-charts-themes-sick2025-dark-css",
+        "sick2025_dark.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-themes-sick2025-light-css.json",
+      "id": "token:tokens-charts-themes-sick2025-light-css",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "sick2025_light.css",
+      "search": [
+        "token:tokens-charts-themes-sick2025-light-css",
+        "sick2025_light.css",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
       ]
     },
     {

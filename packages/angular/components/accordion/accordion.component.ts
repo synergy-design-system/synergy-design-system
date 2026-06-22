@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynAccordion } from '@synergy-design-system/components';
+import type SynAccordion from '@synergy-design-system/components/components/accordion/accordion.component.js';
 
 import '@synergy-design-system/components/components/accordion/accordion.js';
 
@@ -21,7 +21,7 @@ import '@synergy-design-system/components/components/accordion/accordion.js';
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs
  * @status stable
- * @since 1.23.0
+ * @since 2.3.0
  *
  * @slot - The accordion's main content. Must be `<syn-details />` elements.
  *

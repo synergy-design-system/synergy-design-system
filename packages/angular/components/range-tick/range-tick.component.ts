@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynRangeTick } from '@synergy-design-system/components';
+import type SynRangeTick from '@synergy-design-system/components/components/range-tick/range-tick.component.js';
 
 import '@synergy-design-system/components/components/range-tick/range-tick.js';
 
@@ -20,6 +20,7 @@ import '@synergy-design-system/components/components/range-tick/range-tick.js';
  * @summary Ticks visually improve positioning on range sliders.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range-tick--docs
  * @status stable
+ * @since 2.6.0
  *
  * @slot - The tick's label
  *

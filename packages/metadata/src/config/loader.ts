@@ -46,7 +46,7 @@ async function loadRules(configDir: string): Promise<Map<string, ComponentRules>
 export function getRules(
   context: ConfigContext,
   entityId: string,
-): ComponentRules | null {
+) {
   return context.rules.get(entityId) ?? null;
 }
 

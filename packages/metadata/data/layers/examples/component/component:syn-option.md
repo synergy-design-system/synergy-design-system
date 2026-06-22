@@ -22,6 +22,13 @@ Use the disabled attribute to disable an option and prevent it from being select
   <syn-option value="option-1">Email</syn-option>
   <syn-option value="option-2" disabled="">Phone</syn-option>
   <syn-option value="option-3">Chat</syn-option>
+
+  <syn-option value="option-4" disabled="">
+    <syn-icon name="chat_bubble_outline" slot="prefix"></syn-icon>
+    <syn-icon name="check_circle_outline" slot="suffix"></syn-icon>
+    Other
+  </syn-option>
+  <!-- /Regression#1277 -->
 </syn-select>
 ```
 
@@ -32,7 +39,7 @@ Use the disabled attribute to disable an option and prevent it from being select
 Add icons to the start and end of menu items using the prefix and suffix slots.
 
 ```html
-<syn-select label="Select one">
+<syn-select label="Select one" open="">
   <syn-option value="option-1">
     <syn-icon slot="prefix" name="email"></syn-icon>
     Email

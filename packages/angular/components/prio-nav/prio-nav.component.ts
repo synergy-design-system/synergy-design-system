@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynPrioNav } from '@synergy-design-system/components';
+import type SynPrioNav from '@synergy-design-system/components/components/prio-nav/prio-nav.component.js';
 
 import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
 
@@ -32,7 +32,7 @@ import '@synergy-design-system/components/components/prio-nav/prio-nav.js';
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-dropdown
  * @dependency syn-icon

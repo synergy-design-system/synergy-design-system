@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynSideNav } from '@synergy-design-system/components';
+import type SynSideNav from '@synergy-design-system/components/components/side-nav/side-nav.component.js';
 import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
@@ -31,7 +31,7 @@ import '@synergy-design-system/components/components/side-nav/side-nav.js';
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-divider
  * @dependency syn-drawer

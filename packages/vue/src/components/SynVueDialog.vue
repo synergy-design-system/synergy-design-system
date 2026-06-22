@@ -9,7 +9,7 @@
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs
  * @status stable
- * @since 2.0
+ * @since 1.23.0
  *
  * @dependency syn-icon-button
  *
@@ -64,7 +64,7 @@ import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInitialFocusEvent } from '@synergy-design-system/components';
 import type { SynRequestCloseEvent } from '@synergy-design-system/components';
-import type { SynDialog } from '@synergy-design-system/components';
+import type SynDialog from '@synergy-design-system/components/components/dialog/dialog.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDialog>();

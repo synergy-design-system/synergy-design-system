@@ -9,7 +9,7 @@
  * @summary Dropdowns expose additional content that "drops down" in a panel.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-dropdown--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @dependency syn-popup
  *
@@ -36,7 +36,7 @@ import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynAfterShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
-import type { SynDropdown } from '@synergy-design-system/components';
+import type SynDropdown from '@synergy-design-system/components/components/dropdown/dropdown.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDropdown>();

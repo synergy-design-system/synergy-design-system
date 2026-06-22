@@ -9,7 +9,7 @@
  * @summary Inputs collect data from the user.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  * @dependency syn-divider
@@ -62,7 +62,7 @@ import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
 import type { SynClampEvent } from '@synergy-design-system/components';
-import type { SynInput } from '@synergy-design-system/components';
+import type SynInput from '@synergy-design-system/components/components/input/input.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynInput>();

@@ -19,7 +19,7 @@ import type { CSSResultGroup } from 'lit';
  * @summary Menu items provide options for the user to pick from in a menu.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @dependency syn-icon
  * @dependency syn-popup
@@ -79,13 +79,11 @@ export default class SynMenuItem extends SynergyElement {
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener('click', this.handleHostClick);
-    this.addEventListener('mouseover', this.handleMouseOver);
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this.removeEventListener('click', this.handleHostClick);
-    this.removeEventListener('mouseover', this.handleMouseOver);
   }
 
   private handleDefaultSlotChange() {
@@ -110,11 +108,6 @@ export default class SynMenuItem extends SynergyElement {
       event.preventDefault();
       event.stopImmediatePropagation();
     }
-  };
-
-  private handleMouseOver = (event: MouseEvent) => {
-    this.focus();
-    event.stopPropagation();
   };
 
   @watch('checked')

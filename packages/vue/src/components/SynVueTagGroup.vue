@@ -12,6 +12,7 @@
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs
  * @status stable
+ * @since 3.7.0
  *
  * @slot - The tag group's main content. Must be `<syn-tag />` elements.
  * @slot label - The tag group's label. Alternatively, you can use the `label` attribute.
@@ -22,7 +23,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/tag-group/tag-group.js';
 
-import type { SynTagGroup } from '@synergy-design-system/components';
+import type SynTagGroup from '@synergy-design-system/components/components/tag-group/tag-group.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynTagGroup>();

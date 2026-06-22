@@ -86,10 +86,7 @@ export const storybookHelpers = (customElementTag: string) => ({
 
     const { argTypes } = storybookDefaults(customElementTag);
 
-    // Add an explicit index signature to help TypeScript with key access
-    const typedArgTypes = argTypes as unknown as Record<string, InputType>;
-
-    return typedArgTypes[usedAttribute]?.options;
+    return argTypes[usedAttribute]?.options;
   },
 
   /**
@@ -146,33 +143,68 @@ export const storybookTemplate = (customElementTag: string) => ({
   }) => getStorybookHelpers(customElementTag).template(data.args),
 });
 
-type Component = keyof typeof docsTokens.components | keyof typeof docsTokens.templates;
-type Attribute<T extends Component> = T extends keyof typeof docsTokens.components
-  ? keyof typeof docsTokens.components[T]
-  : T extends keyof typeof docsTokens.templates
-    ? keyof typeof docsTokens.templates[T]
-    : never;
+type ComponentPath = 'components' | 'templates' | 'tokens';
+
+export type Component<TPath extends ComponentPath = ComponentPath> =
+  TPath extends 'components' ? keyof typeof docsTokens.components :
+    TPath extends 'templates' ? keyof typeof docsTokens.templates :
+      TPath extends 'tokens' ? keyof typeof docsTokens.tokens :
+        never;
+
+type Attribute<TPath extends ComponentPath, TComponent extends Component<TPath>> =
+  TPath extends 'components'
+    ? TComponent extends keyof typeof docsTokens.components
+      ? keyof typeof docsTokens.components[TComponent] : never
+    : TPath extends 'templates'
+      ? TComponent extends keyof typeof docsTokens.templates
+        ? keyof typeof docsTokens.templates[TComponent] : never
+      : TPath extends 'tokens'
+        ? TComponent extends keyof typeof docsTokens.tokens
+          ? keyof typeof docsTokens.tokens[TComponent] : never
+        : never;
 
 /**
- * Returns the story description to the corresponding component and attribute
+ * Returns a formatted HTML string containing the story description for a given component and attribute,
+ * sourced from the docs token JSON file. The description is taken from the `description.value` field
+ * and an optional developer hint from the `note.value` field. Line breaks in the source text are
+ * converted to `<br/>` tags. If no description is found, `'No Description'` is returned as fallback.
+ * If a hint is present, it is appended below the description with a bold heading.
  *
- * @param {T} component  - The component name
- * @param {Attribute<T>} attribute - The attribute name
- * @returns {string} The story description
+ *
+ * @param {string} component - The component name (must be a valid key in the docs tokens for the given path)
+ * @param {string} attribute - The attribute name within the component
+ * @param {'components' | 'templates' | 'tokens'} [path='components'] - The token path to look up
+ * @returns {string} The formatted HTML story description string
  */
-export const generateStoryDescription = <T extends Component>(
-  component: T,
-  attribute: Attribute<T>,
-  path: 'components' | 'templates' = 'components',
-) => {
+export function generateStoryDescription<TComponent extends Component<'components'>>(
+  component: TComponent,
+  attribute: Attribute<'components', TComponent>,
+  path?: 'components',
+): string;
+export function generateStoryDescription<TComponent extends Component<'templates'>>(
+  component: TComponent,
+  attribute: Attribute<'templates', TComponent>,
+  path: 'templates',
+): string;
+export function generateStoryDescription<TComponent extends Component<'tokens'>>(
+  component: TComponent,
+  attribute: Attribute<'tokens', TComponent>,
+  path: 'tokens',
+): string;
+export function generateStoryDescription(
+  component: keyof typeof docsTokens.components | keyof typeof docsTokens.templates,
+  attribute: PropertyKey,
+  path: ComponentPath = 'components',
+): string {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
-  const objectToUse: Record<string, any> = (docsTokens[path] as any)[component] ?? {};
+  const objectToUse: Record<string, any> = (docsTokens as any)[path][component] ?? {};
+  const attributeKey = String(attribute);
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const description: string = objectToUse[attribute]?.description?.value ?? 'No Description';
+  const description: string = objectToUse[attributeKey]?.description?.value ?? 'No Description';
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
-  const hint: string = objectToUse[attribute]?.note?.value ?? '';
+  const hint: string = objectToUse[attributeKey]?.note?.value ?? '';
 
   const formatText = (text: string) => text.replace(/\n/g, '<br/>');
 
@@ -180,7 +212,7 @@ export const generateStoryDescription = <T extends Component>(
   const finalHint = hint ? `<br/><br/><strong>👨‍💻 Additional developer Information:</strong><br>${formatText(hint)}` : '';
 
   return `${finalDescription}${finalHint}`;
-};
+}
 
 /**
  * Parameters for the generateScreenshotStory function

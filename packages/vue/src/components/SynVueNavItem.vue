@@ -14,7 +14,7 @@
  * - or accordion (overrides all other if 'children' slot is defined).
  *
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-divider
  * @dependency syn-icon
@@ -59,7 +59,7 @@ import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynBlurEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
-import type { SynNavItem } from '@synergy-design-system/components';
+import type SynNavItem from '@synergy-design-system/components/components/nav-item/nav-item.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynNavItem>();

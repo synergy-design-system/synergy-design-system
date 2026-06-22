@@ -209,7 +209,89 @@ document.addEventListener("load", () => {
 
 ---
 
-### 6. Add html autocompletion to VSCode (optional)
+### 6. Using the `syn-chart` component (optional)
+
+For more detailed information about the `syn-chart` component see the [Charting Overview page](https://synergy-design-system.github.io/?path=/docs/charting-overview--docs)
+
+The `<syn-chart>` component allows you to display charts powered by [Apache ECharts](https://echarts.apache.org). Because not every project needs charting functionality, `echarts` is an **optional peer dependency** that must be installed separately.
+
+> **Note:** `syn-chart` is currently **experimental**. Only **line charts** (`series[].type: 'line'`) are supported. Support for additional chart types will be added in future releases.
+
+#### Step 1: Install the `echarts` dependency
+
+```bash
+npm install --save echarts
+```
+
+> **Note:** Only **Apache ECharts version 6** (`echarts@^6.1.0`) is officially supported. Other versions may work but are not tested or guaranteed to be compatible.
+
+#### Step 2: Load the component tokens (required)
+
+The chart component requires two sets of design tokens to render correctly:
+
+1. **The standard Synergy component tokens** – loaded as part of the regular theme setup (light or dark). If you have already done this as part of step 3 above, you can skip this.
+2. **The chart-specific tokens** – must be loaded **in addition** to the standard tokens.
+
+```typescript
+// main.ts
+
+// 1. Load the standard Synergy theme tokens (light or dark)
+import "@synergy-design-system/tokens/themes/light.css";
+
+// 2. Load the chart-specific tokens matching your theme (light or dark)
+import "@synergy-design-system/tokens/charts/themes/light.css";
+```
+
+#### Step 3: Import the chart component explicitly
+
+`syn-chart` is **not** included in the default Synergy bundle (i.e. it is not exported by the main `synergy.js` entry point). You must import it explicitly:
+
+```typescript
+// main.ts
+
+// Import the chart component explicitly (not part of the default bundle)
+import "@synergy-design-system/components/components/chart/chart.js";
+```
+
+#### Step 4: Use the component in your HTML
+
+```html
+<syn-chart id="my-chart"></syn-chart>
+
+<script type="module">
+  const chart = document.getElementById("my-chart");
+
+  chart.config = {
+    xAxis: { type: "category", data: ["Mon", "Tue", "Wed", "Thu", "Fri"] },
+    yAxis: { type: "value" },
+    series: [{ type: "line", data: [820, 932, 901, 934, 1290] }],
+  };
+</script>
+```
+
+#### Complete setup example (using a build tool like Vite)
+
+```typescript
+// main.ts
+
+// 1. Load the standard Synergy theme (required for all components)
+import "@synergy-design-system/tokens/themes/light.css";
+
+// 2. Load the chart-specific tokens (required for syn-chart)
+import "@synergy-design-system/tokens/charts/themes/light.css";
+
+// 3. Load the Synergy CSS utility functions
+import "@synergy-design-system/components/index.css";
+
+// 4. Import the chart component explicitly
+import "@synergy-design-system/components/components/chart/chart.js";
+```
+
+For the full API documentation, available properties, and live examples, visit the [syn-chart component documentation](https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs).
+
+---
+
+### 7. Add html autocompletion to VSCode (optional)
 
 This package ships with a [custom-elements-manifest](https://github.com/webcomponents/custom-elements-manifest) that may be used to provide typings for tags. To enable code completion, please proceed the following way:
 
@@ -224,7 +306,7 @@ This package ships with a [custom-elements-manifest](https://github.com/webcompo
 
 ---
 
-### 7. Breaking changes between major versions
+### 8. Breaking changes between major versions
 
 Please have a look at the official [breaking changes list](https://synergy-design-system.github.io/?path=/docs/packages-components-breaking-changes--docs) for information how to update to new major versions of Synergy.
 

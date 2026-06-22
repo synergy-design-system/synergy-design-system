@@ -83,6 +83,7 @@ import type {
   SynTooltip,
   SynValidate,
 } from '@synergy-design-system/components';
+import type SynChart from '@synergy-design-system/components/components/chart/chart.component.js';
 
 /**
  * Used core types
@@ -117,7 +118,7 @@ export type SynCustomElement<
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs
  * @status stable
- * @since 1.23.0
+ * @since 2.3.0
  *
  * @slot - The accordion's main content. Must be `<syn-details />` elements.
  *
@@ -127,7 +128,7 @@ export type SynCustomElement<
  * @summary Alerts are used to display important messages inline or as toast notifications.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs
  * @status stable
- * @since 2.0
+ * @since 1.20.0
  *
  * @dependency syn-icon-button
  *
@@ -160,7 +161,7 @@ export type SynCustomElement<
  * @summary Badges are used to draw attention and display statuses or counts.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs
  * @status stable
- * @since 2.0
+ * @since 1.14.0
  *
  * @slot - The badge's content.
  *
@@ -170,7 +171,7 @@ export type SynCustomElement<
  * @summary Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb--docs
  * @status stable
- * @since 2.0
+ * @since 1.26.0
  *
  * @slot - One or more breadcrumb items to display.
  * @slot separator - The separator to use between breadcrumb items. Works best with `<syn-icon>`.
@@ -183,7 +184,7 @@ export type SynCustomElement<
  * @summary Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs
  * @status stable
- * @since 2.0
+ * @since 1.26.0
  *
  * @slot - The breadcrumb item's label.
  * @slot prefix - An optional prefix, usually an icon or icon button.
@@ -204,7 +205,7 @@ export type SynCustomElement<
  * @summary Buttons represent actions that are available to the user.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  * @dependency syn-spinner
@@ -235,7 +236,7 @@ export type SynCustomElement<
  * @summary Button groups can be used to group related buttons into sections.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs
  * @status stable
- * @since 2.0
+ * @since 3.1.0
  *
  * @slot - One or more `<syn-button>` elements to display in the button group.
  *
@@ -245,7 +246,7 @@ export type SynCustomElement<
  * @summary Cards can be used to group related subjects in a container.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs
  * @status stable
- * @since 2.0
+ * @since 1.25.0
  *
  * @slot - The card's main content.
  * @slot header - An optional header for the card.
@@ -264,10 +265,19 @@ export type SynCustomElement<
  * @cssproperty --padding - The padding to use for the card's sections.
  */ export type SynCardJSXElement = SynCustomElement<SynCard, []>;
 /**
+ * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
+ *
+ * @documentation https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs
+ * @status experimental
+ * @since 0.0.0
+ *
+ * @csspart base - The component's base wrapper.
+ */ export type SynChartJSXElement = SynCustomElement<SynChart, []>;
+/**
  * @summary Checkboxes allow the user to toggle an option on or off.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  *
@@ -304,6 +314,7 @@ export type SynCustomElement<
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
  * @status stable
+ * @since 2.8.0
  *
  * @dependency syn-icon
  * @dependency syn-popup
@@ -379,7 +390,7 @@ export type SynCustomElement<
  * @summary Details show a brief summary and expand to show additional content.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs
  * @status stable
- * @since 2.0
+ * @since 2.3.0
  *
  * @dependency syn-icon
  *
@@ -417,7 +428,7 @@ export type SynCustomElement<
  * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs
  * @status stable
- * @since 2.0
+ * @since 1.23.0
  *
  * @dependency syn-icon-button
  *
@@ -477,7 +488,7 @@ export type SynCustomElement<
  * @summary Dividers are used to visually separate or group elements.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-divider--docs
  * @status stable
- * @since 2.0
+ * @since 1.4.0
  *
  * @cssproperty --color - The color of the divider.
  * @cssproperty --width - The width of the divider.
@@ -487,7 +498,7 @@ export type SynCustomElement<
  * @summary Drawers slide in from a container to expose additional options and information.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs
  * @status stable
- * @since 2.0
+ * @since 1.8.0
  *
  * @dependency syn-icon-button
  *
@@ -554,7 +565,7 @@ export type SynCustomElement<
  * @summary Dropdowns expose additional content that "drops down" in a panel.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-dropdown--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @dependency syn-popup
  *
@@ -586,6 +597,7 @@ export type SynCustomElement<
  * @summary File controls allow selecting an arbitrary number of files for uploading.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs
  * @status stable
+ * @since 2.5.0
  *
  * @dependency syn-button
  * @dependency syn-icon
@@ -682,7 +694,7 @@ export type SynCustomElement<
  * @summary Icons are symbols that can be used to represent various options within an application.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @event syn-load - Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit.
  * @event syn-error - Emitted when the icon fails to load due to an error. When using `spriteSheet: true` this will not emit.
@@ -697,7 +709,7 @@ export type SynCustomElement<
  * @summary Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-icon-button--docs
  * @status stable
- * @since 2.0
+ * @since 1.1.0
  *
  * @dependency syn-icon
  *
@@ -713,7 +725,7 @@ export type SynCustomElement<
  * @summary Inputs collect data from the user.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  * @dependency syn-divider
@@ -771,7 +783,7 @@ export type SynCustomElement<
  * @summary Menus provide a list of options for the user to choose from.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @slot - The menu's content, including menu items, menu labels, and dividers.
  *
@@ -784,7 +796,7 @@ export type SynCustomElement<
  * @summary Menu items provide options for the user to pick from in a menu.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @dependency syn-icon
  * @dependency syn-popup
@@ -810,7 +822,7 @@ export type SynCustomElement<
  * @summary Menu labels are used to describe a group of menu items.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @slot - The menu label's content.
  *
@@ -831,7 +843,7 @@ export type SynCustomElement<
  * - or accordion (overrides all other if 'children' slot is defined).
  *
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-divider
  * @dependency syn-icon
@@ -881,7 +893,7 @@ export type SynCustomElement<
  * @summary The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs
  * @status stable
- * @since 1.3.0
+ * @since 1.5.0
  *
  * @dependency syn-divider
  *
@@ -903,7 +915,7 @@ export type SynCustomElement<
  * @summary Options define the selectable items within various form controls such as [select](/components/select).
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs
  * @status stable
- * @since 2.0
+ * @since 1.5.0
  *
  * @dependency syn-icon
  *
@@ -952,7 +964,7 @@ export type SynCustomElement<
  * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @event syn-reposition - Emitted when the popup is repositioned. This event can fire a lot, so avoid putting expensive
  *  operations in your listener or consider debouncing it.
@@ -996,7 +1008,7 @@ export type SynCustomElement<
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-dropdown
  * @dependency syn-icon
@@ -1019,7 +1031,7 @@ export type SynCustomElement<
  * @summary Progress bars are used to show the status of an ongoing operation.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-progress-bar--docs
  * @status stable
- * @since 2.0
+ * @since 1.19.0
  *
  * @slot - A label to show inside the progress indicator.
  *
@@ -1037,7 +1049,7 @@ export type SynCustomElement<
  * @summary Progress rings are used to show the progress of a determinate operation in a circular fashion.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs
  * @status stable
- * @since 2.0
+ * @since 1.18.0
  *
  * @slot - A label to show inside the ring.
  *
@@ -1058,7 +1070,7 @@ export type SynCustomElement<
  * @summary Radios allow the user to select a single option from a group.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  *
@@ -1080,7 +1092,7 @@ export type SynCustomElement<
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @slot - The radio button's label.
  * @slot prefix - A presentational prefix icon or similar element.
@@ -1103,7 +1115,7 @@ export type SynCustomElement<
  * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-group--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-button-group
  *
@@ -1134,6 +1146,7 @@ export type SynCustomElement<
  * @summary Ranges allow the user to select values within a given range using one or two thumbs.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
  * @status stable
+ * @since 2.6.0
  *
  * @dependency syn-tooltip
  *
@@ -1195,6 +1208,7 @@ export type SynCustomElement<
  * @summary Ticks visually improve positioning on range sliders.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range-tick--docs
  * @status stable
+ * @since 2.6.0
  *
  * @slot - The tick's label
  *
@@ -1209,7 +1223,7 @@ export type SynCustomElement<
  * @summary Selects allow you to choose items from a menu of predefined options.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs
  * @status stable
- * @since 2.0
+ * @since 1.5.0
  *
  * @dependency syn-icon
  * @dependency syn-popup
@@ -1279,7 +1293,7 @@ export type SynCustomElement<
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-divider
  * @dependency syn-drawer
@@ -1339,7 +1353,7 @@ export type SynCustomElement<
  * @summary Spinners are used to show the progress of an indeterminate operation.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-spinner--docs
  * @status stable
- * @since 2.0
+ * @since 1.22.0
  *
  * @csspart base - The component's base wrapper.
  *
@@ -1351,7 +1365,7 @@ export type SynCustomElement<
  * @summary Switches allow the user to toggle an option on or off.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @slot - The switch's label.
  * @slot help-text - Text that describes how to use the switch. Alternatively, you can use the `help-text` attribute.
@@ -1385,7 +1399,7 @@ export type SynCustomElement<
  * @summary Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab--docs
  * @status stable
- * @since 2.0
+ * @since 2.1.0
  *
  * @dependency syn-icon-button
  *
@@ -1404,7 +1418,7 @@ export type SynCustomElement<
  * @summary Tab groups organize content into a container that shows one section at a time.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab-group--docs
  * @status stable
- * @since 2.0
+ * @since 2.1.0
  *
  * @dependency syn-icon-button
  *
@@ -1436,7 +1450,7 @@ export type SynCustomElement<
  * @summary Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs
  * @status stable
- * @since 2.0
+ * @since 2.1.0
  *
  * @slot - The tab panel's content.
  *
@@ -1448,7 +1462,7 @@ export type SynCustomElement<
  * @summary Tags are used as labels to organize things or to indicate a selection.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs
  * @status stable
- * @since 2.0
+ * @since 1.2.0
  *
  * @dependency syn-icon-button
  *
@@ -1471,6 +1485,7 @@ export type SynCustomElement<
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs
  * @status stable
+ * @since 3.7.0
  *
  * @slot - The tag group's main content. Must be `<syn-tag />` elements.
  * @slot label - The tag group's label. Alternatively, you can use the `label` attribute.
@@ -1482,7 +1497,7 @@ export type SynCustomElement<
  * @summary Textareas collect data from the user and allow multiple lines of text.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @slot label - The textarea's label. Alternatively, you can use the `label` attribute.
  * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
@@ -1513,7 +1528,7 @@ export type SynCustomElement<
  * @summary Tooltips display additional information based on a specific action.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tooltip--docs
  * @status stable
- * @since 2.0
+ * @since 1.21.0
  *
  * @dependency syn-popup
  *
@@ -1550,6 +1565,9 @@ export type SynCustomElement<
  * It does this by using [the native browser validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
  * and showing the validation message in a consistent, user defined way.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs
+ * @status stable
+ * @since 2.12.0
+ *
  * @dependency syn-alert
  * @dependency syn-tooltip
  *
@@ -1586,7 +1604,7 @@ declare module 'react' {
        *
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-accordion--docs
        * @status stable
-       * @since 1.23.0
+       * @since 2.3.0
        *
        * @slot - The accordion's main content. Must be `<syn-details />` elements.
        *
@@ -1596,7 +1614,7 @@ declare module 'react' {
        * @summary Alerts are used to display important messages inline or as toast notifications.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-alert--docs
        * @status stable
-       * @since 2.0
+       * @since 1.20.0
        *
        * @dependency syn-icon-button
        *
@@ -1621,7 +1639,7 @@ declare module 'react' {
        * @summary Badges are used to draw attention and display statuses or counts.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-badge--docs
        * @status stable
-       * @since 2.0
+       * @since 1.14.0
        *
        * @slot - The badge's content.
        *
@@ -1631,7 +1649,7 @@ declare module 'react' {
        * @summary Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb--docs
        * @status stable
-       * @since 2.0
+       * @since 1.26.0
        *
        * @slot - One or more breadcrumb items to display.
        * @slot separator - The separator to use between breadcrumb items. Works best with `<syn-icon>`.
@@ -1644,7 +1662,7 @@ declare module 'react' {
        * @summary Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb-item--docs
        * @status stable
-       * @since 2.0
+       * @since 1.26.0
        *
        * @slot - The breadcrumb item's label.
        * @slot prefix - An optional prefix, usually an icon or icon button.
@@ -1662,7 +1680,7 @@ declare module 'react' {
        * @summary Buttons represent actions that are available to the user.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button--docs
        * @status stable
-       * @since 2.0
+       * @since 1.0.0
        *
        * @dependency syn-icon
        * @dependency syn-spinner
@@ -1686,7 +1704,7 @@ declare module 'react' {
        * @summary Button groups can be used to group related buttons into sections.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-button-group--docs
        * @status stable
-       * @since 2.0
+       * @since 3.1.0
        *
        * @slot - One or more `<syn-button>` elements to display in the button group.
        *
@@ -1696,7 +1714,7 @@ declare module 'react' {
        * @summary Cards can be used to group related subjects in a container.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-card--docs
        * @status stable
-       * @since 2.0
+       * @since 1.25.0
        *
        * @slot - The card's main content.
        * @slot header - An optional header for the card.
@@ -1715,10 +1733,19 @@ declare module 'react' {
        * @cssproperty --padding - The padding to use for the card's sections.
        */ 'syn-card': SynCardJSXElement;
       /**
+       * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
+       *
+       * @documentation https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs
+       * @status experimental
+       * @since 0.0.0
+       *
+       * @csspart base - The component's base wrapper.
+       */ 'syn-chart': SynChartJSXElement;
+      /**
        * @summary Checkboxes allow the user to toggle an option on or off.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs
        * @status stable
-       * @since 2.0
+       * @since 1.0.0
        *
        * @dependency syn-icon
        *
@@ -1746,6 +1773,7 @@ declare module 'react' {
        *
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-combobox--docs
        * @status stable
+       * @since 2.8.0
        *
        * @dependency syn-icon
        * @dependency syn-popup
@@ -1806,7 +1834,7 @@ declare module 'react' {
        * @summary Details show a brief summary and expand to show additional content.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-details--docs
        * @status stable
-       * @since 2.0
+       * @since 2.3.0
        *
        * @dependency syn-icon
        *
@@ -1836,7 +1864,7 @@ declare module 'react' {
        * @summary Dialogs, sometimes called "modals", appear above the page and require the user's immediate attention.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-dialog--docs
        * @status stable
-       * @since 2.0
+       * @since 1.23.0
        *
        * @dependency syn-icon-button
        *
@@ -1886,7 +1914,7 @@ declare module 'react' {
        * @summary Dividers are used to visually separate or group elements.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-divider--docs
        * @status stable
-       * @since 2.0
+       * @since 1.4.0
        *
        * @cssproperty --color - The color of the divider.
        * @cssproperty --width - The width of the divider.
@@ -1896,7 +1924,7 @@ declare module 'react' {
        * @summary Drawers slide in from a container to expose additional options and information.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs
        * @status stable
-       * @since 2.0
+       * @since 1.8.0
        *
        * @dependency syn-icon-button
        *
@@ -1953,7 +1981,7 @@ declare module 'react' {
        * @summary Dropdowns expose additional content that "drops down" in a panel.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-dropdown--docs
        * @status stable
-       * @since 2.0
+       * @since 1.12.0
        *
        * @dependency syn-popup
        *
@@ -1977,6 +2005,7 @@ declare module 'react' {
        * @summary File controls allow selecting an arbitrary number of files for uploading.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs
        * @status stable
+       * @since 2.5.0
        *
        * @dependency syn-button
        * @dependency syn-icon
@@ -2057,7 +2086,7 @@ declare module 'react' {
        * @summary Icons are symbols that can be used to represent various options within an application.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-icon--docs
        * @status stable
-       * @since 2.0
+       * @since 1.0.0
        *
        * @event syn-load - Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit.
        * @event syn-error - Emitted when the icon fails to load due to an error. When using `spriteSheet: true` this will not emit.
@@ -2069,7 +2098,7 @@ declare module 'react' {
        * @summary Icons buttons are simple, icon-only buttons that can be used for actions and in toolbars.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-icon-button--docs
        * @status stable
-       * @since 2.0
+       * @since 1.1.0
        *
        * @dependency syn-icon
        *
@@ -2082,7 +2111,7 @@ declare module 'react' {
        * @summary Inputs collect data from the user.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-input--docs
        * @status stable
-       * @since 2.0
+       * @since 1.0.0
        *
        * @dependency syn-icon
        * @dependency syn-divider
@@ -2129,7 +2158,7 @@ declare module 'react' {
        * @summary Menus provide a list of options for the user to choose from.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs
        * @status stable
-       * @since 2.0
+       * @since 1.12.0
        *
        * @slot - The menu's content, including menu items, menu labels, and dividers.
        *
@@ -2139,7 +2168,7 @@ declare module 'react' {
        * @summary Menu items provide options for the user to pick from in a menu.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu-item--docs
        * @status stable
-       * @since 2.0
+       * @since 1.12.0
        *
        * @dependency syn-icon
        * @dependency syn-popup
@@ -2165,7 +2194,7 @@ declare module 'react' {
        * @summary Menu labels are used to describe a group of menu items.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu-label--docs
        * @status stable
-       * @since 2.0
+       * @since 1.12.0
        *
        * @slot - The menu label's content.
        *
@@ -2186,7 +2215,7 @@ declare module 'react' {
        * - or accordion (overrides all other if 'children' slot is defined).
        *
        * @status stable
-       * @since 1.14.0
+       * @since 1.15.0
        *
        * @dependency syn-divider
        * @dependency syn-icon
@@ -2228,7 +2257,7 @@ declare module 'react' {
        * @summary The <syn-optgroup> element creates a grouping for <syn-option>s within a <syn-select>.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs
        * @status stable
-       * @since 1.3.0
+       * @since 1.5.0
        *
        * @dependency syn-divider
        *
@@ -2250,7 +2279,7 @@ declare module 'react' {
        * @summary Options define the selectable items within various form controls such as [select](/components/select).
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-option--docs
        * @status stable
-       * @since 2.0
+       * @since 1.5.0
        *
        * @dependency syn-icon
        *
@@ -2293,7 +2322,7 @@ declare module 'react' {
        * @summary Popup is a utility that lets you declaratively anchor "popup" containers to another element.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-popup--docs
        * @status stable
-       * @since 2.0
+       * @since 1.12.0
        *
        * @event syn-reposition - Emitted when the popup is repositioned. This event can fire a lot, so avoid putting expensive
        *  operations in your listener or consider debouncing it.
@@ -2334,7 +2363,7 @@ declare module 'react' {
        *
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-prio-nav--docs
        * @status stable
-       * @since 1.14.0
+       * @since 1.15.0
        *
        * @dependency syn-dropdown
        * @dependency syn-icon
@@ -2357,7 +2386,7 @@ declare module 'react' {
        * @summary Progress bars are used to show the status of an ongoing operation.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-progress-bar--docs
        * @status stable
-       * @since 2.0
+       * @since 1.19.0
        *
        * @slot - A label to show inside the progress indicator.
        *
@@ -2375,7 +2404,7 @@ declare module 'react' {
        * @summary Progress rings are used to show the progress of a determinate operation in a circular fashion.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs
        * @status stable
-       * @since 2.0
+       * @since 1.18.0
        *
        * @slot - A label to show inside the ring.
        *
@@ -2393,7 +2422,7 @@ declare module 'react' {
        * @summary Radios allow the user to select a single option from a group.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio--docs
        * @status stable
-       * @since 2.0
+       * @since 1.0.0
        *
        * @dependency syn-icon
        *
@@ -2412,7 +2441,7 @@ declare module 'react' {
        * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs
        * @status stable
-       * @since 2.0
+       * @since 1.0.0
        *
        * @slot - The radio button's label.
        * @slot prefix - A presentational prefix icon or similar element.
@@ -2432,7 +2461,7 @@ declare module 'react' {
        * @summary Radio groups are used to group multiple [radios](/components/radio) or [radio buttons](/components/radio-button) so they function as a single form control.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-group--docs
        * @status stable
-       * @since 2.0
+       * @since 1.0.0
        *
        * @dependency syn-button-group
        *
@@ -2456,6 +2485,7 @@ declare module 'react' {
        * @summary Ranges allow the user to select values within a given range using one or two thumbs.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range--docs
        * @status stable
+       * @since 2.6.0
        *
        * @dependency syn-tooltip
        *
@@ -2507,6 +2537,7 @@ declare module 'react' {
        * @summary Ticks visually improve positioning on range sliders.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-range-tick--docs
        * @status stable
+       * @since 2.6.0
        *
        * @slot - The tick's label
        *
@@ -2521,7 +2552,7 @@ declare module 'react' {
        * @summary Selects allow you to choose items from a menu of predefined options.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-select--docs
        * @status stable
-       * @since 2.0
+       * @since 1.5.0
        *
        * @dependency syn-icon
        * @dependency syn-popup
@@ -2577,7 +2608,7 @@ declare module 'react' {
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-side-nav--docs
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-divider
  * @dependency syn-drawer
@@ -2629,7 +2660,7 @@ declare module 'react' {
        * @summary Spinners are used to show the progress of an indeterminate operation.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-spinner--docs
        * @status stable
-       * @since 2.0
+       * @since 1.22.0
        *
        * @csspart base - The component's base wrapper.
        *
@@ -2641,7 +2672,7 @@ declare module 'react' {
        * @summary Switches allow the user to toggle an option on or off.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-switch--docs
        * @status stable
-       * @since 2.0
+       * @since 1.0.0
        *
        * @slot - The switch's label.
        * @slot help-text - Text that describes how to use the switch. Alternatively, you can use the `help-text` attribute.
@@ -2666,7 +2697,7 @@ declare module 'react' {
        * @summary Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel).
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab--docs
        * @status stable
-       * @since 2.0
+       * @since 2.1.0
        *
        * @dependency syn-icon-button
        *
@@ -2682,7 +2713,7 @@ declare module 'react' {
        * @summary Tab groups organize content into a container that shows one section at a time.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab-group--docs
        * @status stable
-       * @since 2.0
+       * @since 2.1.0
        *
        * @dependency syn-icon-button
        *
@@ -2711,7 +2742,7 @@ declare module 'react' {
        * @summary Tab panels are used inside [tab groups](/components/tab-group) to display tabbed content.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tab-panel--docs
        * @status stable
-       * @since 2.0
+       * @since 2.1.0
        *
        * @slot - The tab panel's content.
        *
@@ -2723,7 +2754,7 @@ declare module 'react' {
        * @summary Tags are used as labels to organize things or to indicate a selection.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs
        * @status stable
-       * @since 2.0
+       * @since 1.2.0
        *
        * @dependency syn-icon-button
        *
@@ -2743,6 +2774,7 @@ declare module 'react' {
        *
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tag-group--docs
        * @status stable
+       * @since 3.7.0
        *
        * @slot - The tag group's main content. Must be `<syn-tag />` elements.
        * @slot label - The tag group's label. Alternatively, you can use the `label` attribute.
@@ -2754,7 +2786,7 @@ declare module 'react' {
        * @summary Textareas collect data from the user and allow multiple lines of text.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-textarea--docs
        * @status stable
-       * @since 2.0
+       * @since 1.0.0
        *
        * @slot label - The textarea's label. Alternatively, you can use the `label` attribute.
        * @slot help-text - Text that describes how to use the input. Alternatively, you can use the `help-text` attribute.
@@ -2776,7 +2808,7 @@ declare module 'react' {
        * @summary Tooltips display additional information based on a specific action.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-tooltip--docs
        * @status stable
-       * @since 2.0
+       * @since 1.21.0
        *
        * @dependency syn-popup
        *
@@ -2805,6 +2837,9 @@ declare module 'react' {
        * It does this by using [the native browser validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
        * and showing the validation message in a consistent, user defined way.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs
+       * @status stable
+       * @since 2.12.0
+       *
        * @dependency syn-alert
        * @dependency syn-tooltip
        *

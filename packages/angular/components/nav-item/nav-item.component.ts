@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynNavItem } from '@synergy-design-system/components';
+import type SynNavItem from '@synergy-design-system/components/components/nav-item/nav-item.component.js';
 import type { SynShowEvent } from '@synergy-design-system/components';
 import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynBlurEvent } from '@synergy-design-system/components';
@@ -28,7 +28,7 @@ import '@synergy-design-system/components/components/nav-item/nav-item.js';
  * - or accordion (overrides all other if 'children' slot is defined).
  *
  * @status stable
- * @since 1.14.0
+ * @since 1.15.0
  *
  * @dependency syn-divider
  * @dependency syn-icon

@@ -88,7 +88,8 @@
       "type": "SynShowEvent"
     }
   ],
-  "figmaComponentId": "41137-630160",
+  "figmaComponentId": "45147-41625",
+  "figmaDocsId": "41137-630160",
   "methods": [
     {
       "description": "",
@@ -164,7 +165,7 @@
       "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
     }
   ],
-  "since": "2.0",
+  "since": "1.20.0",
   "slots": [
     {
       "description": "The alert's main content.",

@@ -12,7 +12,7 @@ import {
   EventEmitter,
   AfterContentInit,
 } from '@angular/core';
-import type { SynValidate } from '@synergy-design-system/components';
+import type SynValidate from '@synergy-design-system/components/components/validate/validate.component.js';
 
 import '@synergy-design-system/components/components/validate/validate.js';
 
@@ -21,6 +21,9 @@ import '@synergy-design-system/components/components/validate/validate.js';
  * It does this by using [the native browser validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
  * and showing the validation message in a consistent, user defined way.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-validate--docs
+ * @status stable
+ * @since 2.12.0
+ *
  * @dependency syn-alert
  * @dependency syn-tooltip
  *

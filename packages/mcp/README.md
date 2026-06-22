@@ -145,6 +145,12 @@ Example:
   // "toon": Encode structured data to compact toon text format
   "compression": "none",
 
+  // Experimental feature toggles
+  "experimentalFeatures": {
+    // Enables experimental intent policy tools
+    "intentTools": true,
+  },
+
   // Default parameters for each endpoint can be overridden
   "tools": {
     "assetInfo": {
@@ -156,10 +162,35 @@ Example:
       // Defines which type of information to return.
       // full = filtered source files,
       // examples = markdown examples,
-      // interface = markdown API overview.
+      // interface = markdown API overview,
+      // rules = markdown usage, design, and accessibility guidance.
       // Note that examples and interface are only available
       // for vanilla components at the moment.
       "layer": "full",
+    },
+    "intentCategoriesList": {
+      // Default phases for intent-categories-list
+      "includePhases": ["experimental"],
+    },
+    "intentComponentGuide": {
+      // Framework profile used when omitted in tool call
+      "framework": "vanilla",
+      "includePhases": ["experimental"],
+    },
+    "intentComponentValidate": {
+      "framework": "vanilla",
+      "includePhases": ["experimental"],
+    },
+    "intentOptions": {
+      "framework": "vanilla",
+      "includeDiagnostics": false,
+      "includePhases": ["experimental"],
+      "maxAlternatives": 5,
+    },
+    "intentTaskRecommendations": {
+      "framework": "vanilla",
+      "includePhases": ["experimental"],
+      "maxAlternatives": 5,
     },
     "tokenInfo": {
       // If you are preferring scss, use "sass" here
@@ -168,6 +199,33 @@ Example:
   },
 }
 ```
+
+#### Enabling Experimental Intent Endpoints
+
+Intent tools are experimental and disabled by default.
+Enable them explicitly with:
+
+```jsonc
+{
+  "experimentalFeatures": {
+    "intentTools": true,
+  },
+}
+```
+
+When enabled, these additional features become available:
+
+#### Resources
+
+- `synergy://intent-categories/list`
+
+#### Tools
+
+- `intent-categories-list`
+- `intent-component-guide`
+- `intent-component-validate`
+- `intent-task-recommendations`
+- `intent-options`
 
 #### CLI Override Precedence
 
@@ -301,7 +359,9 @@ This lets you change per-tool defaults without modifying the MCP server code.
 
 ## Available Resources
 
-The MCP server currently registers 5 resources. Resources expose static, read-only data that does not change during server runtime. Clients that support MCP resources can read them directly without calling a tool.
+The MCP server currently registers 5 stable resources by default. Resources expose static, read-only data that does not change during server runtime. Clients that support MCP resources can read them directly without calling a tool.
+
+When `experimentalFeatures.intentTools` is enabled, 1 additional intent resource is registered.
 
 Resource identifier reference (exact values used by the server):
 
@@ -310,6 +370,7 @@ Resource identifier reference (exact values used by the server):
 - `synergy://component-clusters/list` → name: `component-clusters-list`
 - `synergy://styles/list` → name: `styles-list`
 - `synergy://templates/list` → name: `templates-list`
+- `synergy://intent-categories/list` → name: `intent-categories-list` (experimental)
 
 ### 1. `synergy://components/list`
 
@@ -397,9 +458,33 @@ Resource identifier reference (exact values used by the server):
 ["app-shell", "dashboard", "form", ...]
 ```
 
+### 6. `synergy://intent-categories/list` (experimental)
+
+**Name:** `intent-categories-list`
+
+**MIME type:** `application/json`
+
+**Description:** Available intent categories in the Synergy intent policy layer.
+
+**Registration:** Only available when `experimentalFeatures.intentTools` is `true`.
+
+**Example:**
+
+```json
+{
+  "data": [
+    {
+      "description": "User actions and commands",
+      "id": "action",
+      "label": "Action"
+    }
+  ]
+}
+```
+
 ## Available Tools
 
-The MCP server currently registers 16 tools.
+The MCP server currently registers 16 stable tools by default.
 
 ### 1. `component-list`
 
@@ -450,13 +535,14 @@ Example prompts:
 
 - `component` (string, required): The component name. Must start with `syn-`, for example `syn-button`.
 - `framework` (string, optional): `react`, `vue`, `angular`, or `vanilla`. Defaults to the runtime config value, which is `vanilla` by default.
-- `layer` (string, optional): `full`, `examples`, or `interface`. Defaults to the runtime config value, which is `full` by default. `examples` and `interface` are currently only available for vanilla components.
+- `layer` (string, optional): `full`, `examples`, `interface`, or `rules`. Defaults to the runtime config value, which is `full` by default. `examples` and `interface` are currently only available for vanilla components. `rules` returns component usage, design, and accessibility guidance.
 
 **Example prompts:**
 
 - "How do I use syn-button in React?"
 - "Show me the interface docs for syn-dialog"
 - "Give me examples for syn-card"
+- "Show me the rules for syn-accordion"
 
 ### 4. `asset-list`
 
@@ -649,6 +735,110 @@ Example prompts:
 - "Show me the setup instructions for tokens"
 - "Give me the Synergy assets setup and limitations"
 
+### Experimental Tools (Intent Policy)
+
+The following endpoints are experimental and are only registered when `experimentalFeatures.intentTools` is set to `true`.
+
+### 17. `intent-categories-list` (experimental)
+
+**Description:** List available intent categories in the intent policy layer.
+
+**Parameters:**
+
+- `includePhases` (array, optional): Intent phases to include. Defaults to runtime config `tools.intentCategoriesList.includePhases` (`["experimental"]` by default).
+
+**Example prompts:**
+
+- "List intent categories"
+- "Show experimental intent categories"
+
+### 18. `intent-component-guide` (experimental)
+
+**Description:** Answer the question: What can I do with a component in the intent system?
+
+**Parameters:**
+
+- `component` (string, required): Component tag, for example `syn-button`.
+- `framework` (string, optional): `react-wrapper`, `react-web-components`, `angular`, `vue`, or `vanilla`. Defaults to runtime config `tools.intentComponentGuide.framework`.
+- `includePhases` (array, optional): Defaults to runtime config `tools.intentComponentGuide.includePhases`.
+
+**Example prompts:**
+
+- "What can I do with syn-button?"
+- "Show intent guide for syn-button in react-web-components"
+
+### 19. `intent-component-validate` (experimental)
+
+**Description:** Answer the question: Do I use a component correctly for a specific intent?
+
+**Parameters:**
+
+- `component` (string, required): Component tag, for example `syn-button`.
+- `intent` (string, required): Intent id, for example `action.submit`.
+- `markup` (string, required): Template/markup source to lint. The tool derives structure internally.
+- `framework` (string, optional): Defaults to runtime config `tools.intentComponentValidate.framework`.
+- `includePhases` (array, optional): Defaults to runtime config `tools.intentComponentValidate.includePhases`.
+
+**Example prompts:**
+
+- "Do I use syn-button right for action.submit?"
+- "Validate this syn-button markup for action.submit: <syn-button type=\"submit\" variant=\"filled\">Send</syn-button>"
+
+### 20. `intent-task-recommendations` (experimental)
+
+**Description:** Answer the question: What does Synergy provide for a specific task intent?
+
+**Parameters:**
+
+- `taskId` (string, required): Intent id representing the task.
+- `framework` (string, optional): Defaults to runtime config `tools.intentTaskRecommendations.framework`.
+- `includePhases` (array, optional): Defaults to runtime config `tools.intentTaskRecommendations.includePhases`.
+- `maxAlternatives` (number, optional): Defaults to runtime config `tools.intentTaskRecommendations.maxAlternatives`.
+- `preferredTargets` (array, optional): Preferred target ids.
+- `avoidTargets` (array, optional): Target ids to avoid.
+- `content` (string, optional): Optional snippet content.
+
+**Example prompts:**
+
+- "What does Synergy provide to submit a form?"
+- "Recommend components for action.submit"
+
+### 21. `intent-options` (experimental)
+
+**Description:** Answer the question: What are my renderable options for a specific intent?
+
+**Parameters:**
+
+- `intentId` (string, required): Intent id to resolve.
+- `framework` (string, optional): Defaults to runtime config `tools.intentOptions.framework`.
+- `includePhases` (array, optional): Defaults to runtime config `tools.intentOptions.includePhases`.
+- `includeDiagnostics` (boolean, optional): Defaults to runtime config `tools.intentOptions.includeDiagnostics`.
+- `maxAlternatives` (number, optional): Defaults to runtime config `tools.intentOptions.maxAlternatives`.
+- `content` (string, optional): Optional preview content.
+
+**Example prompts:**
+
+- "What are my renderable options for navigation.link-list.grouped?"
+- "Show intent options for action.submit"
+
+## Available Prompts
+
+The MCP server currently registers 1 prompt.
+
+### 1. `explain-component-rules`
+
+**Description:** Explains the usage rules, design guidelines, and accessibility considerations for a Synergy component.
+
+**Parameters:**
+
+- `component` (string, required): The component name. Must start with `syn-`, for example `syn-button`.
+
+**Example prompts:**
+
+- "Explain the rules for syn-button"
+- "What are the design and accessibility guidelines for syn-dialog?"
+- "Give me the usage guidance for syn-accordion"
+
 ## Usage Examples
 
 ### Command Line Interface
@@ -741,6 +931,7 @@ Once connected to an AI assistant, you can use prompts like:
 
 ```text
 Show me how to use syn-button in React
+Explain the rules for syn-accordion
 Give me the interface docs for syn-select
 What token formats are available?
 How do I set up Synergy for Vue?
@@ -759,7 +950,7 @@ src/
 ├── bin/
 │   ├── clean.js         # Removes dist/ before builds
 │   └── start.ts         # CLI entry point for syn-mcp
-├── server.ts            # MCP server creation, tool and resource registration
+├── server.ts            # MCP server creation, tool, prompt and resource registration
 ├── middleware/          # Tool execution middleware pipeline
 │   ├── compose.ts       # composeMiddlewares (reduceRight composition)
 │   ├── compression.ts   # withCompressionMiddleware (experimental)
@@ -767,10 +958,14 @@ src/
 │   ├── logging.ts       # withToolLoggingMiddleware
 │   ├── types.ts         # ToolMiddleware, ToolMiddlewareContext, RawToolHandler, WithErrorHandlerOptions
 │   └── index.ts         # Middleware module entrypoint
+├── prompts/             # MCP prompt implementations
+│   ├── component-rules.ts
+│   └── index.ts
 ├── resources/           # MCP resource implementations (static, read-only data)
 │   ├── component-list.ts
 │   ├── asset-list.ts
 │   ├── component-cluster-list.ts
+│   ├── intent-categories-list.ts
 │   ├── styles-list.ts
 │   ├── templates-list.ts
 │   └── index.ts
@@ -782,6 +977,11 @@ src/
 │   ├── component-list.ts
 │   ├── davinci-migration-info.ts
 │   ├── davinci-migration-list.ts
+│   ├── intent-categories-list.ts
+│   ├── intent-component-guide.ts
+│   ├── intent-component-validate.ts
+│   ├── intent-options.ts
+│   ├── intent-task-recommendations.ts
 │   ├── migration-info.ts
 │   ├── migration-list.ts
 │   ├── setup.ts
@@ -793,20 +993,8 @@ src/
 │   ├── tokens-list.ts
 │   └── index.ts
 ├── transports/          # Transport factory and implementations
-│   ├── http.ts
-│   ├── stdio.ts
-│   └── index.ts
 ├── types/               # Shared type definitions
-│   └── tool-response.ts
-└── utilities/           # Runtime config, metadata adapters, and CLI helpers
-  ├── cli.ts
-  ├── config.ts
-  ├── davinci.ts
-  ├── metadata.ts
-  ├── migration.ts
-  ├── rules.ts
-  ├── server.ts
-  └── index.ts
+└── utilities/           # Runtime config, metadata adapters, intent defaults, and CLI helpers
 rules/                   # Markdown guidance files prepended to selected tool output
 test/
 ├── e2e/                 # End-to-end MCP tests
@@ -913,6 +1101,7 @@ The MCP server is intentionally small:
 - `src/bin/start.ts` parses CLI arguments, loads optional runtime config, resolves overrides, and starts the selected transport.
 - `src/transports/` contains the transport factory and runtime implementations for stdio and HTTP/HTTPS.
 - `src/server.ts` creates the `McpServer` instance and registers all exported tools from `src/tools/index.ts` and all exported resources from `src/resources/index.ts`.
+- `src/server.ts` applies feature-flag gating generically: exports whose factory names start with `intent` are only registered when `experimentalFeatures.intentTools` is enabled.
 - Tool implementations in `src/tools/` call the public APIs of `@synergy-design-system/metadata` to retrieve data.
 - Resource implementations in `src/resources/` expose static, read-only data that does not change during server runtime. Resources bypass the tool middleware pipeline entirely — no compression, logging, or error wrapping is applied.
 - Utilities in `src/utilities/` handle runtime config, MCP response shaping, DaVinci migration extraction, and package migration document loading.

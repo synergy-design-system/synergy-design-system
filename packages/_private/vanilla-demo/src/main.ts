@@ -19,6 +19,8 @@ import '@synergy-design-system/tokens/themes/sick2018_dark.css';
 import '@synergy-design-system/tokens/themes/sick2018_light.css';
 import '@synergy-design-system/tokens/themes/sick2025_dark.css';
 import '@synergy-design-system/tokens/themes/sick2025_light.css';
+import '@synergy-design-system/tokens/charts/themes/sick2025_dark.css';
+import '@synergy-design-system/tokens/charts/themes/sick2025_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import './app.css';

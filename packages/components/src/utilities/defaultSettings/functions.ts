@@ -178,13 +178,14 @@ export const setDefaultSettingsForElement = <C extends SynergyElement>(
 ) => {
   // List of all changes in the default settings
   const detail = {
-    [component]: [] as SynDefaultChangedAttribute[],
+    [component]: [],
   } as Record<string, SynDefaultChangedAttribute[]>;
 
   Object.entries(newValues).forEach(([key, value]) => {
     if (
       defaultSettings[key as keyof SynDefaultSettings]
       && typeof (
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
         defaultSettings[key as keyof SynDefaultSettings] as Record<string, unknown>
       )[component] !== 'undefined'
     ) {
@@ -198,7 +199,9 @@ export const setDefaultSettingsForElement = <C extends SynergyElement>(
       });
 
       (
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
         defaultSettings[key as keyof SynDefaultSettings] as Record<string, unknown>
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       )[component] = value as AllowedValueForDefaultSetting<C, keyof C>;
     }
   });
@@ -268,6 +271,7 @@ export const setGlobalDefaultSettings = (
       // Update defaultSettings for this component
       changes.forEach(change => {
         (
+          // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
           defaultSettings[change.attribute as keyof SynDefaultSettings] as Record<string, unknown>
         )[component] = change.newValue;
       });

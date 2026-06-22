@@ -9,7 +9,7 @@
  * @summary Drawers slide in from a container to expose additional options and information.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-drawer--docs
  * @status stable
- * @since 2.0
+ * @since 1.8.0
  *
  * @dependency syn-icon-button
  *
@@ -71,7 +71,7 @@ import type { SynHideEvent } from '@synergy-design-system/components';
 import type { SynAfterHideEvent } from '@synergy-design-system/components';
 import type { SynInitialFocusEvent } from '@synergy-design-system/components';
 import type { SynRequestCloseEvent } from '@synergy-design-system/components';
-import type { SynDrawer } from '@synergy-design-system/components';
+import type SynDrawer from '@synergy-design-system/components/components/drawer/drawer.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynDrawer>();

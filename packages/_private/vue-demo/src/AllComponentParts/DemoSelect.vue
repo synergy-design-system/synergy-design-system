@@ -1,7 +1,12 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { SynVueButton, SynVueSelect, SynVueOption } from '@synergy-design-system/vue';
-import { type SelectItem, mockAsyncData, mockData } from '@synergy-design-system/demo-utilities';
+import {
+  type SelectItem,
+  mockAsyncData,
+  mockData,
+  updateSelectRegressions1265,
+} from '@synergy-design-system/demo-utilities';
 
 const levels = ref<SelectItem[]>([]);
 const numericItems = mockData('selectItemsMixedValue');
@@ -117,4 +122,18 @@ onMounted(async () => {
     <SynVueOption value="option-2">Option 2</SynVueOption>
     <SynVueOption value="option-3">Option 3</SynVueOption>
   </SynVueSelect>
+
+  <SynVueSelect
+    data-testid="select-1265-dynamic-option-changes"
+    label="Dynamic Option Changes"
+    value="option-2"
+  >
+    <SynVueOption value="option-1">Option 1</SynVueOption>
+    <SynVueOption value="option-2">Option 2</SynVueOption>
+    <SynVueOption value="option-3">Option 2</SynVueOption>
+  </SynVueSelect>
+
+  <SynVueButton data-testid="select-1265-dynamic-option-button" @click="updateSelectRegressions1265">
+    Dynamically change option 2 to "Changed Option 2"
+  </SynVueButton>
 </template>

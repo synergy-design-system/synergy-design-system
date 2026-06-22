@@ -15,35 +15,52 @@ export default {
       'Forms',
     ],
   },
-  usageGuidelines: {
-    action_labels: [
-      'Write simple, self-explanatory labels that include both a verb (action) and a noun.',
-      'Use text-only labels whenever possible.',
-      'Avoid generic labels like "OK" or "Download". Use "Confirm selection" or "Download Report" instead.',
-      'Limit action labels to 1 to 3 words or 15 to 20 characters.',
-    ],
-    action_priority: [
-      'Select the appropriate variant for each action based on context and importance.',
-      'Avoid displaying more than one Call To Action (CTA) at a time on the screen, especially in the same context (e.g., teaser).',
-    ],
-    background: [
-      'Use light background options like white, neutral-100, primary-100, or use a primary background when inverted.',
-    ],
-    function: [
-      'Use to trigger an action or place a link inside it to navigate to other content.',
-    ],
-    icons: [
-      'Add icons to labels only when they clearly support the associated action (e.g., print, email, share), and reserve icon-only buttons for exceptions.',
-      'Avoid displaying both left and right icons simultaneously.',
-      'To prevent overcrowding, do not use icons on buttons with extensive copy that spans multiple lines.',
-    ],
-    placement_and_responsiveness: [
-      'Maintain consistent placement of interactive elements throughout the user interface.',
-      'Position the primary action at the top (in vertical layout) or on the right (in horizontal layout) when paired with a secondary option.',
-      'Avoid placing two primary actions next to each other; opt for a secondary action instead.',
-      'Expand to full width on small devices if applicable.',
-    ],
-  },
+  usageGuidelines: [
+    {
+      content: [
+        'Write simple, self-explanatory labels that include both a verb (action) and a noun.',
+        'Use text-only labels whenever possible.',
+        'Avoid generic labels like "OK" or "Download". Use "Confirm selection" or "Download Report" instead.',
+        'Limit action labels to 1 to 3 words or 15 to 20 characters.',
+      ],
+      id: 'action_labels',
+      name: 'Action Labels',
+    },
+    {
+      content: [
+        'Select the appropriate variant for each action based on context and importance.',
+        'Avoid displaying more than one Call To Action (CTA) at a time on the screen, especially in the same context (e.g., teaser).',
+      ],
+      id: 'action_priority',
+      name: 'Action Priority',
+    },
+    {
+      content: [
+        'Use to trigger an action or place a link inside it to navigate to other content.',
+      ],
+      id: 'function',
+      name: 'Function',
+    },
+    {
+      content: [
+        'Add icons to labels only when they clearly support the associated action (e.g., print, email, share), and reserve icon-only buttons for exceptions.',
+        'Avoid displaying both left and right icons simultaneously.',
+        'To prevent overcrowding, do not use icons on buttons with extensive copy that spans multiple lines.',
+      ],
+      id: 'icons',
+      name: 'Icons',
+    },
+    {
+      content: [
+        'Maintain consistent placement of interactive elements throughout the user interface.',
+        'Position the primary action at the top (in vertical layout) or on the right (in horizontal layout) when paired with a secondary option.',
+        'Avoid placing two primary actions next to each other; opt for a secondary action instead.',
+        'Expand to full width on small devices if applicable.',
+      ],
+      id: 'placement_and_responsiveness',
+      name: 'Placement and Responsiveness',
+    },
+  ],
   useCases: [
     'Highlight key actions, like "Request information" or "Next step".',
     'Provide supporting actions, like "Learn more", "Explore topic", or "Cancel".',

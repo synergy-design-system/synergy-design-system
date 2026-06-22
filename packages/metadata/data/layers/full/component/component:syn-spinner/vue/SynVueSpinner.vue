@@ -9,7 +9,7 @@
  * @summary Spinners are used to show the progress of an indeterminate operation.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-spinner--docs
  * @status stable
- * @since 2.0
+ * @since 1.22.0
  *
  * @csspart base - The component's base wrapper.
  *
@@ -20,7 +20,7 @@
 import { computed, ref } from 'vue';
 import '@synergy-design-system/components/components/spinner/spinner.js';
 
-import type { SynSpinner } from '@synergy-design-system/components';
+import type SynSpinner from '@synergy-design-system/components/components/spinner/spinner.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynSpinner>();

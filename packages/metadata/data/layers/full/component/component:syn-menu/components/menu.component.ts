@@ -2,7 +2,6 @@
 import { html } from 'lit';
 import { query } from 'lit/decorators.js';
 import { state } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
 import type { SynAttributesChangedEvent } from '../../events/syn-attributes-changed.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
@@ -18,7 +17,7 @@ export interface MenuSelectEventDetail {
  * @summary Menus provide a list of options for the user to choose from.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs
  * @status stable
- * @since 2.0
+ * @since 1.12.0
  *
  * @slot - The menu's content, including menu items, menu labels, and dividers.
  *
@@ -29,11 +28,35 @@ export default class SynMenu extends SynergyElement {
 
   @query('slot') defaultSlot: HTMLSlotElement;
   @state() hasMenuItemsWithCheckmarks = false;
+  private checkmarkStyledItems = new Set<SynMenuItem>();
 
   private handleUpdateCheckmarks(items: SynMenuItem[]) {
     // #368: Treat a menu as having checkmarks if it has any checkboxes or items with loading states
     // The loading indicator has to be checked as well, as it's specially placed over the check mark
-    this.hasMenuItemsWithCheckmarks = items.some(item => item.type === 'checkbox' || item.loading);  
+    this.hasMenuItemsWithCheckmarks = items.some(item => item.type === 'checkbox' || item.loading);
+    this.syncCheckmarkVisibility(items);
+  }
+
+  private syncCheckmarkVisibility(items: SynMenuItem[]) {
+    this.checkmarkStyledItems.forEach(item => {
+      if (!items.includes(item)) {
+        item.style.removeProperty('--display-checkmark');
+        this.checkmarkStyledItems.delete(item);
+      }
+    });
+
+    if (this.hasMenuItemsWithCheckmarks) {
+      items.forEach(item => {
+        item.style.removeProperty('--display-checkmark');
+        this.checkmarkStyledItems.delete(item);
+      });
+      return;
+    }
+
+    items.forEach(item => {
+      item.style.setProperty('--display-checkmark', 'none');
+      this.checkmarkStyledItems.add(item);
+    });
   }
 
   private updateCheckMarksByChildPropChange = (e: SynAttributesChangedEvent) => {
@@ -43,6 +66,8 @@ export default class SynMenu extends SynergyElement {
   
   disconnectedCallback() {
     this.removeEventListener('syn-attributes-changed', this.updateCheckMarksByChildPropChange);
+    this.checkmarkStyledItems.forEach(item => item.style.removeProperty('--display-checkmark'));
+    this.checkmarkStyledItems.clear();
   }
 
   connectedCallback() {
@@ -51,22 +76,26 @@ export default class SynMenu extends SynergyElement {
     this.addEventListener('syn-attributes-changed', this.updateCheckMarksByChildPropChange);
   }
 
-  private handleClick(event: MouseEvent) {
-    const menuItemTypes = ['menuitem', 'menuitemcheckbox'];
-
+  private getMenuItemFromEvent(event: Event) {
     const composedPath = event.composedPath();
-    const target = composedPath.find((el: Element) => menuItemTypes.includes(el?.getAttribute?.('role') || ''));
+    const target = composedPath.find((el: EventTarget) => el instanceof HTMLElement && this.isMenuItem(el));
 
-    if (!target) return;
+    if (!target || !(target instanceof HTMLElement)) {
+      return undefined;
+    }
 
-    const closestMenu = composedPath.find((el: Element) => el?.getAttribute?.('role') === 'menu');
-    const clickHasSubmenu = closestMenu !== this;
+    const closestMenu = composedPath.find((el: EventTarget) => el instanceof Element && el.getAttribute('role') === 'menu');
+    if (closestMenu !== this) {
+      return undefined;
+    }
 
-    // Make sure we're the menu thats supposed to be handling the click event.
-    if (clickHasSubmenu) return;
+    return target as SynMenuItem;
+  }
 
-    // This isn't true. But we use it for TypeScript checks below.
-    const item = target as SynMenuItem;
+  private handleClick(event: MouseEvent) {
+    const item = this.getMenuItemFromEvent(event);
+
+    if (!item) return;
 
     if (item.type === 'checkbox') {
       item.checked = !item.checked;
@@ -120,10 +149,10 @@ export default class SynMenu extends SynergyElement {
   }
 
   private handleMouseDown(event: MouseEvent) {
-    const target = event.target as HTMLElement;
+    const target = this.getMenuItemFromEvent(event);
 
-    if (this.isMenuItem(target)) {
-      this.setCurrentItem(target as SynMenuItem);
+    if (target) {
+      this.setCurrentItem(target);
     }
   }
 
@@ -144,14 +173,25 @@ export default class SynMenu extends SynergyElement {
     );
   }
 
+  private getMenuItemsFromElement(element: HTMLElement): SynMenuItem[] {
+    if (element.inert) {
+      return [];
+    }
+
+    if (this.isMenuItem(element)) {
+      return [element as SynMenuItem];
+    }
+
+    if (element.tagName.toLowerCase() === 'syn-menu') {
+      return [];
+    }
+
+    return [...element.children].flatMap(child => this.getMenuItemsFromElement(child as HTMLElement));
+  }
+
   /** @internal Gets all slotted menu items, ignoring dividers, headers, and other elements. */
   getAllItems() {
-    return [...this.defaultSlot.assignedElements({ flatten: true })].filter((el: HTMLElement) => {
-      if (el.inert || !this.isMenuItem(el)) {
-        return false;
-      }
-      return true;
-    }) as SynMenuItem[];
+    return [...this.defaultSlot.assignedElements({ flatten: true })].flatMap(el => this.getMenuItemsFromElement(el as HTMLElement));
   }
 
   /**
@@ -178,9 +218,6 @@ export default class SynMenu extends SynergyElement {
   render() {
     return html`
       <slot
-        class=${classMap({
-          'menu--no-checkmarks': !this.hasMenuItemsWithCheckmarks,
-        })}
         @slotchange=${this.handleSlotChange}
         @click=${this.handleClick}
         @keydown=${this.handleKeyDown}

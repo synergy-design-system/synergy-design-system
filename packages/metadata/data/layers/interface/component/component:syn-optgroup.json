@@ -48,7 +48,8 @@
   ],
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-optgroup--docs",
   "events": [],
-  "figmaComponentId": "41325-324372",
+  "figmaComponentId": "30344-112405",
+  "figmaDocsId": "41325-324372",
   "methods": [],
   "properties": [
     {
@@ -72,7 +73,7 @@
       "type": "string"
     }
   ],
-  "since": "1.3.0",
+  "since": "1.5.0",
   "slots": [
     {
       "description": "The given options. Must be `<syn-option>` elements.",

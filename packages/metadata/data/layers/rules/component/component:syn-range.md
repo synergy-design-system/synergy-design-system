@@ -1,0 +1,46 @@
+# syn-range
+
+## Summary
+
+Ranges allow the user to select values within a given range using one or two thumbs.
+
+## Common Use Cases
+
+- Adjust settings within a defined range (e.g., volume, brightness).
+- Filter results by specifying a price range or product parameters.
+- Select time intervals for scheduling or reminder tasks.
+- Set minimum and maximum inputs (e.g., age, quantity, distance).
+- Visualize progress by assigning milestones within a larger goal or process.
+
+## Usage Guidelines
+
+### Context
+
+- Position the range component in an uncluttered area to facilitate easy interaction.
+- Reserve the component for relevant, contextually meaningful ranges (e.g., price filters, time spans).
+
+### Labels and Value Display
+
+- Provide clear labels or tooltips indicating the current value or range.
+- Pair the slider with text labels or numeric indicators for precise adjustments.
+- Avoid relying solely on color or visuals; add a text representation for clarity.
+
+### Range Definition
+
+- Choose realistic minimum and maximum values for the intended use case.
+- Avoid extremely large intervals (e.g., 1 to 1,000,000) unless necessary, and label them thoroughly.
+- Use appropriate step sizes for fine control (e.g., increments of 5 or 10 for a price slider).
+- Enable two-handle sliders (min/max) if the scenario requires independent adjustments.
+
+## Accessibility
+
+- Always provide a label for the range so that screenreaders correctly announce the component.
+- Provide alternative input methods like numeric input fields or a stepper, allowing users who struggle with dragging to manually set values.
+
+## Related Components
+
+- syn-range-tick
+
+## Related Templates
+
+- Forms

@@ -9,7 +9,7 @@
  * @summary Checkboxes allow the user to toggle an option on or off.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox--docs
  * @status stable
- * @since 2.0
+ * @since 1.0.0
  *
  * @dependency syn-icon
  *
@@ -39,7 +39,7 @@ import type { SynChangeEvent } from '@synergy-design-system/components';
 import type { SynFocusEvent } from '@synergy-design-system/components';
 import type { SynInputEvent } from '@synergy-design-system/components';
 import type { SynInvalidEvent } from '@synergy-design-system/components';
-import type { SynCheckbox } from '@synergy-design-system/components';
+import type SynCheckbox from '@synergy-design-system/components/components/checkbox/checkbox.component.js';
 
 // DOM Reference to the element
 const nativeElement = ref<SynCheckbox>();

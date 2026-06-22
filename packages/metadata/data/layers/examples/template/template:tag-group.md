@@ -3,7 +3,7 @@
 ```html
 <div>
   <form class="filter-form">
-    <h1>Capacitive proximity sensors</h1>
+    <h1 class="syn-heading--3x-large">Capacitive proximity sensors</h1>
 
     <syn-details size="small" summary="Hide filters" open="">
       <div class="filter-group">
@@ -132,10 +132,7 @@
     }
 
     .filter-form h1 {
-      color: var(--syn-typography-color-text);
-      font: var(--syn-heading-3x-large);
       margin: 0 0 var(--syn-spacing-2x-large);
-      padding: 0;
     }
 
     .filter-form syn-details::part(base) {
@@ -214,7 +211,7 @@
 ```html
 <div>
   <form class="filter-form">
-    <h1>Capacitive proximity sensors</h1>
+    <h1 class="syn-heading--3x-large">Capacitive proximity sensors</h1>
 
     <syn-details size="small" summary="Hide filters" open="">
       <div class="filter-group">
@@ -343,10 +340,7 @@
     }
 
     .filter-form h1 {
-      color: var(--syn-typography-color-text);
-      font: var(--syn-heading-3x-large);
       margin: 0 0 var(--syn-spacing-2x-large);
-      padding: 0;
     }
 
     .filter-form syn-details::part(base) {

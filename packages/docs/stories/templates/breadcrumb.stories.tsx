@@ -23,7 +23,6 @@ import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 const createSharedStyles = () => html`
   <style>
       body {
-        margin: 0 !important;
         padding: 0 !important;
       }
 

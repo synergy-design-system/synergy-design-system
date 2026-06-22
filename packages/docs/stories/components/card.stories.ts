@@ -41,8 +41,8 @@ const createFooter = ({
     }
 
     syn-card h3 {
-      font: var(--syn-body-medium-bold) !important;
-      margin: 0 0 var(--syn-spacing-x-small) !important;  
+      font: var(--syn-body-medium-bold);
+      margin: 0 0 var(--syn-spacing-x-small); 
     }
 
     syn-card small {

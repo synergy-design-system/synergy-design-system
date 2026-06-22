@@ -439,7 +439,7 @@ describe('public metadata api', () => {
     expect(focusedRulesData.data?.rules).to.be.an('array').that.is.not.empty;
     expect(focusedRulesData.data?.rules?.[0]?.content).to.include('## Common Use Cases');
 
-    const fixture = await createComponentFixtureDataDir();
+    const strictLayerFixture = await createComponentFixtureDataDir();
     try {
       const strictLayerErrorResponse = await getComponentMetadata(
         'component:syn-fixture',
@@ -457,7 +457,7 @@ describe('public metadata api', () => {
       expect(strictLayerErrorResponse.errors?.[0]?.code).to.equal('LAYER_NOT_AVAILABLE');
 
       const missingRulesResponse = await getRulesForComponent('component:syn-fixture', {
-        dataDir: fixture.dataDir,
+        dataDir: strictLayerFixture.dataDir,
       });
       expect(missingRulesResponse.data).to.equal(null);
       expect(missingRulesResponse.errors).to.be.an('array').that.is.not.empty;

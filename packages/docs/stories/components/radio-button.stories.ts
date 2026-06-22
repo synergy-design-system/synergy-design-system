@@ -39,14 +39,14 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('16967-26428'),
+    design: generateFigmaPluginObject('49697-83768'),
     docs: {
       description: {
         component: generateStoryDescription('radio-button', 'default'),
       },
     },
   },
-  tags: ['Structure'],
+  tags: ['Form'],
   title: 'Components/syn-radio-button',
 };
 export default meta;

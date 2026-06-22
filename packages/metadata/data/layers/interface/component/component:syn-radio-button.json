@@ -72,6 +72,8 @@
       "type": "SynFocusEvent"
     }
   ],
+  "figmaComponentId": "47863-30109",
+  "figmaDocsId": "49697-83768",
   "methods": [
     {
       "description": "Removes focus from the radio button.",

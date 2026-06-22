@@ -150,6 +150,13 @@ The side navigation opens when the user clicks on the burger menu. As the side n
 <!-- /.synergy-demo-application -->
 
 <style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0 !important;
     padding: 0 !important;
@@ -431,6 +438,13 @@ The side navigation opens when the user clicks on the burger menu. As the side n
 <!-- /.synergy-demo-application -->
 
 <style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0 !important;
     padding: 0 !important;
@@ -761,6 +775,13 @@ The navigation opens when the user hovers over it. As the navigation opens, it o
 <!-- /.synergy-demo-application -->
 
 <style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0 !important;
     padding: 0 !important;
@@ -1054,6 +1075,13 @@ The navigation opens when the user touches it. As the side navigation opens, a t
 <!-- /.synergy-demo-application -->
 
 <style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0 !important;
     padding: 0 !important;
@@ -1338,6 +1366,13 @@ General BehaviourThe navigation maintains its compact width until the user click
 <!-- /.synergy-demo-application -->
 
 <style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0 !important;
     padding: 0 !important;
@@ -1622,6 +1657,13 @@ General BehaviourThe navigation maintains its compact width until the user click
 <!-- /.synergy-demo-application -->
 
 <style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0 !important;
     padding: 0 !important;
@@ -1888,6 +1930,13 @@ The top navigation can be combined with a light grey background.This variant is 
 <!-- /.synergy-demo-application -->
 
 <style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0 !important;
     padding: 0 !important;
@@ -2142,6 +2191,13 @@ Additionally the top navigation can be combined with an alternative background.
 <!-- /.synergy-demo-application -->
 
 <style>
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     margin: 0 !important;
     padding: 0 !important;

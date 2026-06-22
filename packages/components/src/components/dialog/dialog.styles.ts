@@ -54,12 +54,10 @@ export default css`
   }
 
   .dialog__title {
+    align-items: center;
+    display: flex;
     flex: 1 1 auto;
-    font: inherit;
-    font-family: var(--syn-font-sans);
-    font-size: var(--syn-font-size-x-large);
-    font-weight: var(--syn-font-weight-bold);
-    line-height: var(--syn-line-height-normal);
+    font: var(--syn-heading-x-large);
     margin: 0;
     padding: var(--header-spacing);
   }
@@ -72,15 +70,6 @@ export default css`
     gap: var(--syn-spacing-x-small);
     justify-content: end;
     padding: var(--syn-spacing-large) var(--syn-spacing-small) var(--syn-spacing-large) 0;
-  }
-
-  /**
-   * We need this to make sure we are big enough as defined in the layout
-   * When omitting this statement, we will get rounding problems via line-height
-   */
-  .dialog__title,
-  .dialog__header-actions {
-    min-height: 88px;
   }
 
   .dialog__header-actions syn-icon-button,

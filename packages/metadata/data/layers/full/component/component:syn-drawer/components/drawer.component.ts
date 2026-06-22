@@ -17,7 +17,6 @@ import Modal from '../../internal/modal.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './drawer.styles.js';
-import customStyles from './drawer.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 
 /**
@@ -78,7 +77,7 @@ import type { CSSResultGroup } from 'lit';
  *   the third-party modal opens. Upon closing, call `modal.deactivateExternal()` to restore Synergy's focus trapping.
  */
 export default class SynDrawer extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
   static dependencies = { 'syn-icon-button': SynIconButton };
 
   private readonly hasSlotController = new HasSlotController(this, 'footer');

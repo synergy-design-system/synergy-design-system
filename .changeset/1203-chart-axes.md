@@ -13,6 +13,5 @@ This release introduces the first chart axis MVP for syn-chart.
 
 New features:
 - Adds and registers a Synergy ECharts light theme as default for syn-chart.
-- Introduces a middleware-style chart config API with `createConfig` and named presets via `.apply(...)` that contain encapsulate common chart configurations.
-- Adds presets like e.g. `axes.split-lines`, `axes.x-label-icons`, ...
+- Provides a config callback API with chainable preset methods like `axesShowSplitLines()`, `axesAddXLabelIcons()`, and `axesHideLabels()` as an alternative to raw ECharts configuration objects for the *config* property.
 

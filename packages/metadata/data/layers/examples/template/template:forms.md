@@ -7,12 +7,10 @@
     margin: 0 auto;
     padding: var(--syn-spacing-x-large);
     max-width: 750px;
-  }
 
-  h1 {
-    font-size: var(--syn-font-size-3x-large);
-    font-weight: var(--syn-font-weight-bold);
-    margin: 0 0 var(--syn-spacing-medium) 0;
+    h1 {
+      margin: 0 0 var(--syn-spacing-medium) 0;
+    }
   }
 
   .synergy-form-demo > p {
@@ -31,10 +29,8 @@
   }
 
   fieldset legend {
-    font-size: var(--syn-font-size-large);
-    font-weight: var(--syn-font-weight-bold);
-    line-height: var(--syn-line-height-normal);
-    margin-bottom: var(--syn-spacing-medium);
+    font: var(--syn-heading-large);
+    margin-bottom: var(--syn-spacing-large);
   }
 
   fieldset legend + p {
@@ -47,13 +43,7 @@
     display: flex;
     flex-flow: wrap;
     margin-bottom: var(--syn-spacing-2x-large);
-    gap: var(--syn-spacing-large) var(--syn-spacing-large);
-
-    /* TODO: this two css properties can be removed, when this issue is fixed https://github.com/synergy-design-system/synergy-design-system/issues/612
-    * It is fixed for the newest chrome and firefox versions, but not for safari :(
-    */
-    position: relative;
-    z-index: 1;
+    gap: var(--syn-spacing-large);
   }
 
   .fields > * {
@@ -62,7 +52,7 @@
 
   @container (min-width: 640px) {
     .fields > * {
-      flex-basis: calc(50% - var(--syn-spacing-medium));
+      flex-basis: calc(50% - calc(var(--syn-spacing-large) / 2));
     }
   }
 
@@ -95,7 +85,7 @@
   }
 </style>
 <div class="synergy-form-demo">
-  <h1>Contact Form</h1>
+  <h1 class="syn-heading--3x-large">Contact Form</h1>
   <p>
     Please fill in your personal information and let us know how we can help
     you.
@@ -253,7 +243,7 @@
 
 ```html
 <div class="synergy-upload-form-demo">
-  <h1>Multiple files upload</h1>
+  <h1 class="syn-heading--3x-large">Multiple files upload</h1>
   <form
     enctype="multipart/form-data"
     method="post"
@@ -288,12 +278,10 @@
       flex-direction: column;
       gap: var(--syn-spacing-medium);
     }
-  }
 
-  h1 {
-    font-size: var(--syn-font-size-3x-large);
-    font-weight: var(--syn-font-weight-bold);
-    margin: 0 0 var(--syn-spacing-medium) 0;
+    h1 {
+      margin: 0 0 var(--syn-spacing-medium) 0;
+    }
   }
 
   .uploaded-files {

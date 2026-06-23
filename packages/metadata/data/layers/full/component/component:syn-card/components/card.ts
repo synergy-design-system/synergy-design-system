@@ -1,4 +1,3 @@
-/* eslint-disable */
 import SynCard from './card.component.js';
 
 export * from './card.component.js';

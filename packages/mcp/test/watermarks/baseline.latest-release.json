@@ -1,6 +1,6 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-06-16T06:12:22.804Z",
+  "generatedAt": "2026-06-22T13:06:28.908Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
@@ -54,7 +54,7 @@
     },
     {
       "id": "template-info:appshell",
-      "tokens": 15421
+      "tokens": 15629
     },
     {
       "id": "migration-info:components:index.md",

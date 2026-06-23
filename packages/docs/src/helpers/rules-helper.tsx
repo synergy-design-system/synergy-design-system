@@ -107,22 +107,23 @@ const styles = `
 
   h2 {
     border: none;
-    margin: 0 0 var(--syn-spacing-medium);
+    font: var(--syn-heading-2x-large);
     padding: 0;
   }
 
   h3 {
     border: none;
-    margin: 0 0 var(--syn-spacing-small);
+    font: var(--syn-heading-x-large);
+    margin: 0 0 var(--syn-spacing-medium) 0;
     padding: 0;
   }
 
   ul {
-    margin: 0 0 var(--syn-spacing-medium);
+    margin: 0 0 var(--syn-spacing-medium) !important;
   }
 
   li {
-    margin-bottom: var(--syn-spacing-2x-small);
+    margin-bottom: var(--syn-spacing-2x-small) !important;
   }
 }
 
@@ -231,7 +232,7 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
   return (
     <>
       <syn-card
-        className="rules-helper"
+        className="rules-helper sbdocs"
         shadow
         sharp
       >

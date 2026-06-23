@@ -66,13 +66,12 @@ export const ContactForm = {
       margin: 0 auto;
       padding: var(--syn-spacing-x-large);
       max-width: 750px;
+
+      h1 {
+        margin: 0 0 var(--syn-spacing-medium) 0;
+      }
     }
 
-    h1 {
-      font-size: var(--syn-font-size-3x-large);
-      font-weight: var(--syn-font-weight-bold);
-      margin: 0 0 var(--syn-spacing-medium) 0;
-    }
 
     .synergy-form-demo > p {
       margin: 0 0 var(--syn-spacing-2x-large) 0;
@@ -90,10 +89,8 @@ export const ContactForm = {
     }
 
     fieldset legend {
-      font-size: var(--syn-font-size-large);
-      font-weight: var(--syn-font-weight-bold);
-      line-height: var(--syn-line-height-normal);
-      margin-bottom: var(--syn-spacing-medium);
+      font: var(--syn-heading-large);
+      margin-bottom: var(--syn-spacing-large);
     }
 
     fieldset legend + p {
@@ -106,13 +103,7 @@ export const ContactForm = {
       display: flex;
       flex-flow: wrap;
       margin-bottom: var(--syn-spacing-2x-large);
-      gap: var(--syn-spacing-large) var(--syn-spacing-large);
-
-      /* TODO: this two css properties can be removed, when this issue is fixed https://github.com/synergy-design-system/synergy-design-system/issues/612
-      * It is fixed for the newest chrome and firefox versions, but not for safari :( 
-      */
-      position: relative;
-      z-index: 1;
+      gap: var(--syn-spacing-large);
     }
 
     .fields > * {
@@ -121,7 +112,7 @@ export const ContactForm = {
 
     @container (min-width: 640px) {
       .fields > * {
-        flex-basis: calc(50% - var(--syn-spacing-medium));
+        flex-basis: calc(50% - calc(var(--syn-spacing-large) / 2));
       }
     }
 
@@ -154,7 +145,7 @@ export const ContactForm = {
     }
     </style>
     <div class="synergy-form-demo">
-      <h1>${getTranslation('contactForm.headline')}</h1>
+      <h1 class="syn-heading--3x-large">${getTranslation('contactForm.headline')}</h1>
       <p>${getTranslation('contactForm.subHeadline')}</p>
 
       <form method="post" id="syn-form-demo">
@@ -281,7 +272,7 @@ export const ContactFormTablet = {
 export const MultipleFilesUploadForm: Story = {
   render: (_, context) => html`
     <div class="synergy-upload-form-demo">
-      <h1>${getTranslation('fileUpload.multiple.headline')}</h1>
+      <h1 class="syn-heading--3x-large">${getTranslation('fileUpload.multiple.headline')}</h1>
       <form id="upload-multiple-form-${context.viewMode}" enctype="multipart/form-data" method="post">
         <syn-file
           droparea
@@ -313,12 +304,10 @@ export const MultipleFilesUploadForm: Story = {
           flex-direction: column;
           gap: var(--syn-spacing-medium);
         }
-      }
 
-      h1 {
-        font-size: var(--syn-font-size-3x-large);
-        font-weight: var(--syn-font-weight-bold);
-        margin: 0 0 var(--syn-spacing-medium) 0;
+        h1 {
+          margin: 0 0 var(--syn-spacing-medium) 0;
+        }
       }
 
       .uploaded-files {

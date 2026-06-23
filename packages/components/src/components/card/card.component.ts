@@ -1,13 +1,13 @@
-/* eslint-disable */
+import {
+  type CSSResultGroup,
+  html,
+} from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 import { property } from 'lit/decorators.js';
 import { HasSlotController } from '../../internal/slot.js';
-import { html } from 'lit';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './card.styles.js';
-import customStyles from './card.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 
 /**
  * @summary Cards can be used to group related subjects in a container.
@@ -32,15 +32,15 @@ import type { CSSResultGroup } from 'lit';
  * @cssproperty --padding - The padding to use for the card's sections.
  */
 export default class SynCard extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   private readonly hasSlotController = new HasSlotController(this, 'footer', 'header', 'image');
 
   /** Draws the card with a shadow. Can be used when the card has to stand out visually, for example in dashboards. */
-  @property({ type: Boolean, reflect: true }) shadow = false;
+  @property({ reflect: true, type: Boolean }) shadow = false;
 
   /** Draws the card with sharp edges. Can be used e.g. when nesting multiple syn-cards to create hierarchy. */
-  @property({ type: Boolean, reflect: true }) sharp = false;
+  @property({ reflect: true, type: Boolean }) sharp = false;
 
   render() {
     return html`
@@ -48,11 +48,11 @@ export default class SynCard extends SynergyElement {
         part="base"
         class=${classMap({
           card: true,
+          'card--has-footer': this.hasSlotController.test('footer'),
+          'card--has-header': this.hasSlotController.test('header'),
+          'card--has-image': this.hasSlotController.test('image'),
           'card--shadow': this.shadow,
           'card--sharp': this.sharp,
-          'card--has-footer': this.hasSlotController.test('footer'),
-          'card--has-image': this.hasSlotController.test('image'),
-          'card--has-header': this.hasSlotController.test('header')
         })}
       >
         <slot name="image" part="image" class="card__image"></slot>

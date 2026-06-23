@@ -44,6 +44,11 @@ const config: StorybookConfig = {
       from: '../../assets/src/sick2025/icons/outline',
       to: '/assets/sick2025',
     },
+    // #1290: Add sick.intl
+    {
+      from: '../../fonts/dist/sick-intl-inline.css',
+      to: '/',
+    },
   ],
 
   stories: [
@@ -69,7 +74,6 @@ const config: StorybookConfig = {
     // "../src/**/*.mdx",
     // "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
-
   viteFinal: (cfg) => ({
     ...cfg,
     build: {

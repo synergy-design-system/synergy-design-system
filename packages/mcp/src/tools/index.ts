@@ -3,6 +3,7 @@ export * from './asset-list.js';
 export * from './component-cluster-list.js';
 export * from './component-info.js';
 export * from './component-list.js';
+export * from './create-spritesheet.js';
 export * from './davinci-migration-info.js';
 export * from './davinci-migration-list.js';
 export * from './migration-info.js';

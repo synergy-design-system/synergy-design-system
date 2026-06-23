@@ -7,7 +7,7 @@
  *   (`01`=primary, `02`=accent, `03`=muted, `04`=purple, `05`=teal, `06`=magenta, `07`=neutral)
  * - `sequential-status-critical/error/info/success/warning` — 10-step status color ramps, ordered from darkest to brightest
  */
-export type SynChartPalette =
+export type ChartPalette =
   | 'categorical'
   | 'sequential-01'
   | 'sequential-02'
@@ -23,7 +23,7 @@ export type SynChartPalette =
   | 'sequential-status-warning';
 
 /** Maps each palette name to the ordered list of CSS custom property names to resolve. */
-export const PALETTE_TOKENS: Record<SynChartPalette, string[]> = {
+export const PALETTE_TOKENS: Record<ChartPalette, string[]> = {
   categorical: [
     '--syn-chart-categorical-01', '--syn-chart-categorical-02', '--syn-chart-categorical-03',
     '--syn-chart-categorical-04', '--syn-chart-categorical-05', '--syn-chart-categorical-06',

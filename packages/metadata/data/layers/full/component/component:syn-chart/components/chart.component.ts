@@ -13,8 +13,9 @@ import {
 import SynergyElement from '../../internal/synergy-element.js';
 import componentStyles from '../../styles/component.styles.js';
 import styles from './chart.styles.js';
-import { PALETTE_TOKENS, type SynChartPalette } from './chart.palettes.js';
-import type { ECConfig } from './types.js';
+import { type ChartPalette, PALETTE_TOKENS } from './chart.palettes.js';
+import { resolveConfigInput } from './configs/config.js';
+import type { ChartConfigType, ECConfig } from './types.js';
 import { synergyLightTheme } from './themes/light.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
 
@@ -50,17 +51,25 @@ export default class SynChart extends SynergyElement {
 
   private resizeObserver: ResizeObserver;
 
+  private resolvedConfig: ECConfig = {};
+
   /**
-   * The ECharts configuration option object.
+   * The ECharts configuration input.
    *
-   * This property maps 1:1 to the ECharts `option` parameter passed to `setOption()`.
+   * This property accepts either:
+   * - a plain `ECConfig` object, or
+   * - a callback that receives a typed preset handle and applies chart presets.
+   *
+   * The resolved result maps 1:1 to the ECharts `option` parameter passed to
+   * `setOption()`.
    * Consult the [ECharts option documentation](https://echarts.apache.org/en/option.html)
-   * and assign the object directly to this property.
+   * and assign either the object directly or build it through the handle.
    *
    * > **Note:** Currently only **line charts** (`series[].type: 'line'`) are supported.
    * > Support for additional chart types (bar, pie, etc.) will be added in future releases or can be requested.
    *
-   * Assigning a new object completely replaces the previous chart configuration (`notMerge: true`).
+   * Assigning a new config input completely replaces the previous chart
+   * configuration (`notMerge: true`).
    * To update only parts of the chart, access the underlying ECharts instance directly and
    * call `setOption()` with custom merge options.
    *
@@ -71,10 +80,19 @@ export default class SynChart extends SynergyElement {
    *   yAxis: { type: 'value' },
    *   series: [{ type: 'line', data: [150, 230, 224] }],
    * };
+   *
+   * chart.config = (handle) => {
+   *   handle.baseConfig({
+   *     xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed'] },
+   *     yAxis: { type: 'value' },
+   *     series: [{ type: 'line', data: [150, 230, 224] }],
+   *   });
+   *   handle.axesShowSplitLines();
+   * };
    * ```
    */
   @property({ attribute: false })
-  config: ECConfig = {};
+  config: ChartConfigType = {};
 
   /**
    * The color palette to apply to chart series.
@@ -89,13 +107,13 @@ export default class SynChart extends SynergyElement {
    * it takes precedence over the palette.
    */
   @property({ reflect: true })
-  palette: SynChartPalette = 'categorical';
+  palette: ChartPalette = 'categorical';
 
   /** Resolves palette CSS custom properties to computed color values and applies them to the chart. */
   private applyPalette(): void {
     if (!this.chartInstance) return;
     // If the user explicitly set config.color, respect it — palette is a default only
-    if (Array.isArray(this.config.color) && this.config.color.length > 0) return;
+    if (Array.isArray(this.resolvedConfig.color) && this.resolvedConfig.color.length > 0) return;
 
     const tokens = PALETTE_TOKENS[this.palette];
     const computedStyles = getComputedStyle(this);
@@ -116,7 +134,8 @@ export default class SynChart extends SynergyElement {
 
   protected updated(changedProperties: PropertyValues<this>): void {
     if (changedProperties.has('config') && this.chartInstance) {
-      this.chartInstance.setOption(this.config, { notMerge: true });
+      this.resolvedConfig = resolveConfigInput(this.config);
+      this.chartInstance.setOption(this.resolvedConfig, { notMerge: true });
     }
     if ((changedProperties.has('palette') || changedProperties.has('config')) && this.chartInstance) {
       this.applyPalette();
@@ -145,8 +164,9 @@ export default class SynChart extends SynergyElement {
       this.resizeObserver.observe(this.chartContainer);
 
       // Apply config if already set before first render
-      if (Object.keys(this.config).length > 0) {
-        this.chartInstance.setOption(this.config);
+      this.resolvedConfig = resolveConfigInput(this.config);
+      if (Object.keys(this.resolvedConfig).length > 0) {
+        this.chartInstance.setOption(this.resolvedConfig);
       }
       // Apply palette after config so colors blend in without replacing the full config
       this.applyPalette();

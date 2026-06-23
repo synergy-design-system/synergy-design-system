@@ -1,74 +1,60 @@
 import { expect } from '@open-wc/testing';
-import { compose, createConfig, mergeConfigs } from './config.js';
+import { resolveConfigInput } from './config.js';
 
-describe('mergeConfigs', () => {
-  it('deep-merges nested objects with last layer precedence', () => {
-    const merged = mergeConfigs(
-      {
-        xAxis: {
-          axisLabel: {
-            show: true,
-          },
-          type: 'category',
-        },
-      },
-      {
-        xAxis: {
-          axisLabel: {
-            rotate: 45,
-          },
-        },
-      },
-    );
-
-    expect(merged).to.deep.equal({
-      xAxis: {
-        axisLabel: {
-          rotate: 45,
-          show: true,
-        },
-        type: 'category',
-      },
-    });
-  });
-
-  it('replaces arrays with the latest layer by default', () => {
-    const merged = mergeConfigs(
-      {
-        series: [{ data: [1, 2], type: 'line' }],
-      },
-      {
-        series: [{ data: [3, 4], type: 'line' }],
-      },
-    );
-
-    expect(merged.series).to.deep.equal([{ data: [3, 4], type: 'line' }]);
-  });
-});
-
-describe('createConfig', () => {
-  it('returns the base config unchanged when no modifiers are applied', () => {
+describe('resolveConfigInput', () => {
+  it('returns config object input unchanged', () => {
     const base = { xAxis: { type: 'category' as const } };
-    expect(createConfig(base).build()).to.deep.equal(base);
+    expect(resolveConfigInput(base)).to.deep.equal(base);
   });
 
-  it('applies named presets via apply()', () => {
-    const result = createConfig({
-      xAxis: { type: 'category' },
-      yAxis: { type: 'value' },
-    })
-      .apply('axes.split-lines')
-      .build();
+  it('supports callback input without baseConfig', () => {
+    const result = resolveConfigInput((handle) => {
+      handle.axesShowXSplitLines();
+    });
+
+    expect((result.xAxis as { splitLine?: { show?: boolean } }).splitLine?.show).to.equal(true);
+    expect(result.yAxis).to.equal(undefined);
+  });
+
+  it('uses the latest baseConfig call as the new base', () => {
+    const result = resolveConfigInput((handle) => {
+      handle.baseConfig({
+        series: [{ data: [1, 2, 3], type: 'line' }],
+        xAxis: { name: 'Old X Axis', type: 'category' },
+      });
+
+      handle.baseConfig({
+        yAxis: { name: 'New Y Axis', type: 'value' },
+      });
+
+      handle.axesShowYSplitLines();
+    });
+
+    expect(result.xAxis).to.equal(undefined);
+    expect(result.series).to.equal(undefined);
+    expect((result.yAxis as { name?: string; splitLine?: { show?: boolean } }).name).to.equal('New Y Axis');
+    expect((result.yAxis as { splitLine?: { show?: boolean } }).splitLine?.show).to.equal(true);
+  });
+
+  it('applies handle presets inside callback input', () => {
+    const result = resolveConfigInput((handle) => {
+      handle.baseConfig({
+        xAxis: { type: 'category' },
+        yAxis: { type: 'value' },
+      });
+      handle.axesShowSplitLines();
+    });
 
     expect((result.xAxis as { splitLine?: { show?: boolean } }).splitLine?.show).to.equal(true);
     expect((result.yAxis as { splitLine?: { show?: boolean } }).splitLine?.show).to.equal(true);
   });
 
-  it('supports chaining multiple named presets', () => {
-    const result = createConfig({ xAxis: { type: 'category' } })
-      .apply('axes.hide-x-labels')
-      .apply('axes.x-split-lines')
-      .build();
+  it('supports chaining multiple handle methods', () => {
+    const result = resolveConfigInput((handle) => {
+      handle.baseConfig({ xAxis: { type: 'category' } });
+      handle.axesHideXLabels();
+      handle.axesShowXSplitLines();
+    });
 
     const xAxis = result.xAxis as {
       axisLabel?: { show?: boolean };
@@ -77,44 +63,5 @@ describe('createConfig', () => {
 
     expect(xAxis.axisLabel?.show).to.equal(false);
     expect(xAxis.splitLine?.show).to.equal(true);
-  });
-});
-
-describe('compose', () => {
-  it('returns the input config unchanged when called with no arguments', () => {
-    const base = { xAxis: { type: 'category' as const } };
-    expect(compose()(base)).to.deep.equal(base);
-  });
-
-  it('applies a single modifier', () => {
-    const addName = () => ({ xAxis: { name: 'Days' } });
-    const result = compose(addName)({ xAxis: { type: 'category' } });
-    expect(result).to.deep.equal({ xAxis: { name: 'Days', type: 'category' } });
-  });
-
-  it('composes multiple modifiers left-to-right', () => {
-    const addName = () => ({ xAxis: { name: 'Days' } });
-    const addRotate = () => ({ xAxis: { axisLabel: { rotate: 45 } } });
-    const combined = compose(addName, addRotate);
-
-    const result = combined({ xAxis: { type: 'category' } });
-    expect(result).to.deep.equal({
-      xAxis: { axisLabel: { rotate: 45 }, name: 'Days', type: 'category' },
-    });
-  });
-
-  it('composes composed modifiers (nested composition)', () => {
-    const setX = () => ({ xAxis: { name: 'X' } });
-    const setY = () => ({ yAxis: { name: 'Y' } });
-    const setZ = () => ({ xAxis: { type: 'category' as const } });
-
-    const inner = compose(setX, setY);
-    const outer = compose(inner, setZ);
-
-    const result = outer({});
-    expect(result).to.deep.equal({
-      xAxis: { name: 'X', type: 'category' },
-      yAxis: { name: 'Y' },
-    });
   });
 });

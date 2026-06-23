@@ -128,6 +128,41 @@ describe('chart axis utilities', () => {
       expect(decodeBase64DataUrl(axisLabel.rich.icon_0.backgroundColor!.image!)).to.include('#0088cc');
     });
 
+    it('builds bottom-positioned x-axis icon labels', () => {
+      const axisLabel = buildAxisLabelConfigWithIcon({
+        config: { xAxis: { data: ['Mon'], type: 'category' } },
+        iconColor: '#0088cc',
+        iconPosition: 'bottom',
+        iconsStyle: undefined,
+        iconUrls: [svgDataUrl],
+        labelsStyle: undefined,
+      }) as unknown as {
+        formatter: (value: string, index: number) => string;
+        rich: Record<string, { padding?: number[] }>;
+      };
+
+      expect(axisLabel.formatter('Mon', 0)).to.equal('{label|Mon}\n{icon_0|}');
+      expect(axisLabel.rich.label.padding).to.deep.equal([0, 0, 4, 0]);
+    });
+
+    it('builds right-positioned y-axis icon labels', () => {
+      const axisLabel = buildAxisLabelConfigWithIcon({
+        config: { yAxis: { type: 'value' } },
+        iconColor: '#111111',
+        iconPosition: 'right',
+        iconsStyle: undefined,
+        iconUrls: [svgDataUrl],
+        labelsStyle: undefined,
+      }) as unknown as {
+        formatter: (value: string, index: number) => string;
+        rich: Record<string, { width?: number | string; padding?: number[] }>;
+      };
+
+      expect(axisLabel.formatter('Revenue', 0)).to.equal('{label|Revenue}{icon_0|}');
+      expect(axisLabel.rich.label.padding).to.deep.equal([0, 4, 0, 0]);
+      expect(axisLabel.rich.label.width).to.equal(undefined);
+    });
+
     it('uses a fallback label width for left-positioned y-axis icons when none is provided', () => {
       const axisLabel = buildAxisLabelConfigWithIcon({
         config: { yAxis: { type: 'value' } },

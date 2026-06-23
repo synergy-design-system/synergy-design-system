@@ -2,7 +2,7 @@ import {
   getRealStyleValue, getRealValueWithoutUnit, normalizeArray, setDefaultValueIfNotAvailable,
 } from '../../themes/utilities.js';
 import type { ECConfig } from '../../types.js';
-import { mergeConfigs } from '../config.js';
+import { mergeConfigs } from '../utilities.js';
 import type {
   AxisKey,
   AxisLabel,

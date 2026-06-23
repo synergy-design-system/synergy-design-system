@@ -52,6 +52,22 @@ The chart component is shipped as a **separate entrypoint** for all packages and
 > Error: Could not resolve "echarts/core.js" imported by "@synergy-design-system/components". Is it installed?
 > ```
 
+### Token Import
+
+> Component tokens and chart tokens must be imported in your application for the chart to render correctly with the Synergy theme:
+>
+> ```js
+> // Import tokens FIRST, before any component initialization
+> import "@synergy-design-system/tokens/themes/light.css";
+> import "@synergy-design-system/tokens/charts/themes/light.css";
+> // Then import other files and initialize your app
+> ```
+
+> ⚠️ **Important**
+>
+> Token files must be imported **before** your application is initialized to ensure the default Synergy theme is loaded correctly for the chart component.
+> Therefore add these imports at the very beginning of your application entry point.
+
 ---
 
 ## Usage
@@ -173,53 +189,69 @@ chart.getInstance()?.setOption(
 
 ---
 
-## Config Builder
+## Config Handle API
 
-Instead of manually assembling deeply nested ECharts option objects, `syn-chart` ships a middleware-style composition system.
+Instead of passing a full ECharts option object, you can pass a callback directly to `chart.config`.
 
-Use `.apply(name, options)` to apply predefined, discoverable preset bundles to a base config.
+This callback receives a typed handle with preset helper functions. The handle is useful when you want to:
 
-### `createConfig` — Fluent Builder
+- start with a small base config,
+- apply Synergy-approved styling/behavior presets,
+- keep chart setup readable and consistent across teams.
 
-`createConfig(base)` wraps a base config in a fluent builder. Chain `.apply(name, options)` calls for discoverable named presets, then call `.build()` to get the final `ECConfig`.
+### How it works
+
+1. A temporary config builder is created.
+2. Your callback runs and calls handle methods (for example `baseConfig`, `axesShowSplitLines`, `axesAddXLabelIcons`).
+3. The final ECharts option is generated and applied to the chart.
+
+### Merge and order rules (important)
+
+- Calls are applied in the order they are called.
+- Later handle calls override conflicting values from earlier calls.
+- Nested objects are merged deeply.
+- Arrays (for example `series`) are replaced by the latest value, not merged item-by-item.
+- If you call `baseConfig()` multiple times, the latest call becomes the new base.
 
 ```js
-import { createConfig } from "@synergy-design-system/components/components/chart/configs/index.js";
-
 const baseConfig = {
   series: [{ type: "line", data: [150, 230, 224] }],
   xAxis: { type: "category", data: ["Mon", "Tue", "Wed"], name: "Days" },
   yAxis: { type: "value", name: "Values" },
 };
 
-chart.config = createConfig(baseConfig)
-  .apply("axes.split-lines")
-  .apply("axes.hide-labels")
-  .apply("axes.x-label-icons", {
+chart.config = handle => {
+  handle.baseConfig(baseConfig);
+  handle.axesShowSplitLines();
+  handle.axesHideLabels();
+  handle.axesAddXLabelIcons({
     iconUrls,
     iconPosition: "top",
-  })
-  .build();
+  });
+};
 ```
 
 ---
 
-## Predefined Presets
+## Predefined Preset Functions
 
-The sections below documents the named presets, which you pass to `.apply(...)`
+The sections below document the handle preset functions available in `chart.config = handle => { ... }` callbacks.
 
 ### Axes presets
 
-| Preset name            | Options                          | Description                                        |
-| ---------------------- | -------------------------------- | -------------------------------------------------- |
-| `'axes.split-lines'`   | `AxesUpdateOptions` _(optional)_ | Enables horizontal and vertical split lines.       |
-| `'axes.x-split-lines'` | `AxisUpdateOptions` _(optional)_ | Enables vertical split lines only on the x-axis.   |
-| `'axes.y-split-lines'` | `AxisUpdateOptions` _(optional)_ | Enables horizontal split lines only on the y-axis. |
-| `'axes.hide-labels'`   | `AxesUpdateOptions` _(optional)_ | Hides tick labels on both axes.                    |
-| `'axes.hide-x-labels'` | `AxisUpdateOptions` _(optional)_ | Hides tick labels only on the x-axis.              |
-| `'axes.hide-y-labels'` | `AxisUpdateOptions` _(optional)_ | Hides tick labels only on the y-axis.              |
-| `'axes.x-label-icons'` | `AxisLabelIconOptions<'xAxis'>`  | Adds one icon per x-axis label.                    |
-| `'axes.y-label-icons'` | `AxisLabelIconOptions<'yAxis'>`  | Adds one icon per y-axis label.                    |
+| Preset function       | Options                          | Description                                      |
+| --------------------- | -------------------------------- | ------------------------------------------------ |
+| `axesShowSplitLines`  | `AxesUpdateOptions` _(optional)_ | Shows horizontal and vertical split lines.       |
+| `axesShowXSplitLines` | `AxisUpdateOptions` _(optional)_ | Shows vertical split lines only on the x-axis.   |
+| `axesShowYSplitLines` | `AxisUpdateOptions` _(optional)_ | Shows horizontal split lines only on the y-axis. |
+| `axesHideLabels`      | `AxesUpdateOptions` _(optional)_ | Hides tick labels on both axes.                  |
+| `axesHideXLabels`     | `AxisUpdateOptions` _(optional)_ | Hides tick labels only on the x-axis.            |
+| `axesHideYLabels`     | `AxisUpdateOptions` _(optional)_ | Hides tick labels only on the y-axis.            |
+| `axesAddXLabelIcons`  | `AxisLabelIconOptions<'xAxis'>`  | Adds one icon per x-axis label.                  |
+| `axesAddYLabelIcons`  | `AxisLabelIconOptions<'yAxis'>`  | Adds one icon per y-axis label.                  |
+
+Axis index behavior:
+If index options are omitted, presets are applied to all configured axes of the targeted type.
 
 ---
 

@@ -56,7 +56,7 @@ export type AxisLabelIconOptions<T extends AxisKey> = {
    */
   axisIndex?: AxisIndices;
   /**
-   * Icon color.
+   * Icon color. Should be a valid CSS color string (e.g. `#ff0000`, `rgb(255, 0, 0)`, `red`).
    *
    * When omitted, the Synergy default color is used.
    */

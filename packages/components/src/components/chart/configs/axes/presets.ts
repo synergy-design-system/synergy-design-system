@@ -1,5 +1,4 @@
-import type { ConfigModifier } from '../config.js';
-import { compose } from '../config.js';
+import { type ConfigModifier, compose } from '../utilities.js';
 import { getRealStyleValue, getRealValueWithoutUnit } from '../../themes/utilities.js';
 import type {
   AxesUpdateOptions,
@@ -13,9 +12,11 @@ import { buildAxisLabelConfigWithIcon, updateAxisConfig } from './utilities.js';
 /**
  * Shows horizontal split lines at each y-axis tick.
  *
- * ECharts reference: https://echarts.apache.org/en/option.html#yAxis.splitLine
+ * @param {AxisUpdateOptions} options Preset options.
+ * @param {number | number[]} [options.axisIndex] Axis index or indices to update. If omitted, applies to the preset default axis selection.
+ * @see https://echarts.apache.org/en/option.html#yAxis.splitLine
  */
-export const withYAxisSplitLines = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
+export const axesShowYSplitLines = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
   yAxis: updateAxisConfig(config, 'yAxis', {
     splitLine: { show: true },
   }, { axisIndex }),
@@ -24,9 +25,11 @@ export const withYAxisSplitLines = ({ axisIndex }: AxisUpdateOptions = {}): Conf
 /**
  * Shows vertical split lines at each x-axis tick.
  *
- * ECharts reference: https://echarts.apache.org/en/option.html#xAxis.splitLine
+ * @param {AxisUpdateOptions} options Preset options.
+ * @param {number | number[]} [options.axisIndex] Axis index or indices to update. If omitted, applies to the preset default axis selection.
+ * @see https://echarts.apache.org/en/option.html#xAxis.splitLine
  */
-export const withXAxisSplitLines = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
+export const axesShowXSplitLines = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
   xAxis: updateAxisConfig(config, 'xAxis', {
     splitLine: { show: true },
   }, { axisIndex }),
@@ -35,15 +38,17 @@ export const withXAxisSplitLines = ({ axisIndex }: AxisUpdateOptions = {}): Conf
 /**
  * Shows split lines on both xAxis and yAxis.
  *
- * ECharts reference:
- * - https://echarts.apache.org/en/option.html#xAxis.axisLine
- * - https://echarts.apache.org/en/option.html#yAxis.axisLine
- * - https://echarts.apache.org/en/option.html#xAxis.splitLine
- * - https://echarts.apache.org/en/option.html#yAxis.splitLine
+ * @param {AxesUpdateOptions} options Preset options.
+ * @param {number | number[]} [options.xAxisIndex] X-axis index or indices to update. If omitted, applies to the preset default x-axis selection.
+ * @param {number | number[]} [options.yAxisIndex] Y-axis index or indices to update. If omitted, applies to the preset default y-axis selection.
+ * @see https://echarts.apache.org/en/option.html#xAxis.axisLine
+ * @see https://echarts.apache.org/en/option.html#yAxis.axisLine
+ * @see https://echarts.apache.org/en/option.html#xAxis.splitLine
+ * @see https://echarts.apache.org/en/option.html#yAxis.splitLine
  */
-export const withAxesSplitLines = ({ xAxisIndex, yAxisIndex }: AxesUpdateOptions = {}): ConfigModifier => compose(
-  withYAxisSplitLines({ axisIndex: yAxisIndex }),
-  withXAxisSplitLines({ axisIndex: xAxisIndex }),
+export const axesShowSplitLines = ({ xAxisIndex, yAxisIndex }: AxesUpdateOptions = {}): ConfigModifier => compose(
+  axesShowYSplitLines({ axisIndex: yAxisIndex }),
+  axesShowXSplitLines({ axisIndex: xAxisIndex }),
   (config) => ({
     xAxis: updateAxisConfig(config, 'xAxis', {
       axisLine: { show: true },
@@ -57,11 +62,12 @@ export const withAxesSplitLines = ({ xAxisIndex, yAxisIndex }: AxesUpdateOptions
 /**
  * Hides axis labels on x-axis.
  *
- * ECharts reference:
- * - https://echarts.apache.org/en/option.html#xAxis.axisLabel
- * - https://echarts.apache.org/en/option.html#xAxis.nameGap
+ * @param {AxisUpdateOptions} options Preset options.
+ * @param {number | number[]} [options.axisIndex] Axis index or indices to update. If omitted, applies to the preset default axis selection.
+ * @see https://echarts.apache.org/en/option.html#xAxis.axisLabel
+ * @see https://echarts.apache.org/en/option.html#xAxis.nameGap
  */
-export const withHiddenXAxisLabels = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
+export const axesHideXLabels = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
   xAxis: updateAxisConfig(config, 'xAxis', {
     axisLabel: { show: false },
     nameGap: getRealValueWithoutUnit('--syn-spacing-small'),
@@ -71,11 +77,12 @@ export const withHiddenXAxisLabels = ({ axisIndex }: AxisUpdateOptions = {}): Co
 /**
  * Hides axis labels on y-axis.
  *
- * ECharts reference:
- * - https://echarts.apache.org/en/option.html#yAxis.axisLabel
- * - https://echarts.apache.org/en/option.html#yAxis.nameTextStyle
+ * @param {AxisUpdateOptions} options Preset options.
+ * @param {number | number[]} [options.axisIndex] Axis index or indices to update. If omitted, applies to the preset default axis selection.
+ * @see https://echarts.apache.org/en/option.html#yAxis.axisLabel
+ * @see https://echarts.apache.org/en/option.html#yAxis.nameTextStyle
  */
-export const withHiddenYAxisLabels = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
+export const axesHideYLabels = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
   yAxis: updateAxisConfig(config, 'yAxis', {
     axisLabel: { show: false },
     nameTextStyle: { align: 'left' },
@@ -84,13 +91,17 @@ export const withHiddenYAxisLabels = ({ axisIndex }: AxisUpdateOptions = {}): Co
 
 /**
  * Hides axis labels on x-axis and y-axis.
+ *
+ * @param {AxesUpdateOptions} options Preset options.
+ * @param {number | number[]} [options.xAxisIndex] X-axis index or indices to update. If omitted, applies to the preset default x-axis selection.
+ * @param {number | number[]} [options.yAxisIndex] Y-axis index or indices to update. If omitted, applies to the preset default y-axis selection.
  */
-export const withHiddenAxisLabels = ({ xAxisIndex, yAxisIndex }: AxesUpdateOptions = {}): ConfigModifier => compose(
-  withHiddenXAxisLabels({ axisIndex: xAxisIndex }),
-  withHiddenYAxisLabels({ axisIndex: yAxisIndex }),
+export const axesHideLabels = ({ xAxisIndex, yAxisIndex }: AxesUpdateOptions = {}): ConfigModifier => compose(
+  axesHideXLabels({ axisIndex: xAxisIndex }),
+  axesHideYLabels({ axisIndex: yAxisIndex }),
 );
 
-export const withAxisLabelIcons = <T extends AxisKey>(
+const axesAddLabelIcons = <T extends AxisKey>(
   axisKey: T,
   options: AxisLabelIconOptions<T>,
 ): ConfigModifier => (config) => {
@@ -118,19 +129,31 @@ export const withAxisLabelIcons = <T extends AxisKey>(
 /**
  * Adds icons to x-axis labels.
  *
- * ECharts reference:
- *  - https://echarts.apache.org/en/option.html#xAxis.axisLabel
- *  - https://echarts.apache.org/en/option.html#xAxis.axisLabel.rich
- *  - https://echarts.apache.org/en/option.html#xAxis.axisLabel.formatter
+ * @param {AxisLabelIconOptions<'xAxis'>} options Preset options.
+ * @param {string[]} options.iconUrls SVG data URLs applied to labels in label order.
+ * @param {number | number[]} [options.axisIndex] Axis index or indices to update. If omitted, applies to the preset default axis selection.
+ * @param {'top' | 'bottom'} [options.iconPosition] Position of the icon relative to labels. Defaults to `'top'`.
+ * @param {string} [options.iconColor] Icon color. Should be a valid CSS color string (e.g. `#ff0000`, `rgb(255, 0, 0)`, `red`). Uses a Synergy default when omitted.
+ * @param {AxisLabelRich} [options.iconsStyle] Rich style object applied to all icons.
+ * @param {AxisLabelRich} [options.labelsStyle] Rich style object applied to all labels.
+ * @see https://echarts.apache.org/en/option.html#xAxis.axisLabel
+ * @see https://echarts.apache.org/en/option.html#xAxis.axisLabel.rich
+ * @see https://echarts.apache.org/en/option.html#xAxis.axisLabel.formatter
  */
-export const withXAxisLabelIcons = (options: AxisLabelIconOptions<'xAxis'>): ConfigModifier => withAxisLabelIcons('xAxis', options);
+export const axesAddXLabelIcons = (options: AxisLabelIconOptions<'xAxis'>): ConfigModifier => axesAddLabelIcons('xAxis', options);
 
 /**
  * Adds icons to y-axis labels.
  *
- * ECharts reference:
- *  - https://echarts.apache.org/en/option.html#yAxis.axisLabel
- *  - https://echarts.apache.org/en/option.html#yAxis.axisLabel.rich
- *  - https://echarts.apache.org/en/option.html#yAxis.axisLabel.formatter
+ * @param {AxisLabelIconOptions<'yAxis'>} options Preset options.
+ * @param {string[]} options.iconUrls SVG data URLs applied to labels in label order.
+ * @param {number | number[]} [options.axisIndex] Axis index or indices to update. If omitted, applies to the preset default axis selection.
+ * @param {'left' | 'right'} [options.iconPosition] Position of the icon relative to labels. Defaults to `'left'`.
+ * @param {string} [options.iconColor] Icon color. Should be a valid CSS color string (e.g. `#ff0000`, `rgb(255, 0, 0)`, `red`). Uses a Synergy default when omitted.
+ * @param {AxisLabelRich} [options.iconsStyle] Rich style object applied to all icons.
+ * @param {AxisLabelRich} [options.labelsStyle] Rich style object applied to all labels.
+ * @see https://echarts.apache.org/en/option.html#yAxis.axisLabel
+ * @see https://echarts.apache.org/en/option.html#yAxis.axisLabel.rich
+ * @see https://echarts.apache.org/en/option.html#yAxis.axisLabel.formatter
  */
-export const withYAxisLabelIcons = (options: AxisLabelIconOptions<'yAxis'>): ConfigModifier => withAxisLabelIcons('yAxis', options);
+export const axesAddYLabelIcons = (options: AxisLabelIconOptions<'yAxis'>): ConfigModifier => axesAddLabelIcons('yAxis', options);

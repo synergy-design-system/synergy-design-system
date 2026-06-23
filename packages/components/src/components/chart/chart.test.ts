@@ -78,6 +78,28 @@ describe('<syn-chart>', () => {
       const updatedOptions = instance.getOption();
       expect(firstOf(updatedOptions.series)).to.have.property('data').that.deep.equals(firstOf(secondConfig.series!).data);
     });
+
+    it('should apply config callback input with handle methods', async () => {
+      const el = await createChart();
+      await el.updateComplete;
+
+      const instance = el.getInstance()!;
+      el.config = (handle) => {
+        handle.baseConfig({
+          series: [{ data: [11, 22, 33], type: 'line' }],
+          xAxis: { data: ['A', 'B', 'C'], type: 'category' },
+          yAxis: { type: 'value' },
+        });
+        handle.axesShowSplitLines();
+      };
+
+      await el.updateComplete;
+      const option = instance.getOption();
+
+      expect(firstOf(option.series)).to.have.property('data').that.deep.equals([11, 22, 33]);
+      expect((firstOf(option.xAxis) as XAXisOption).splitLine?.show).to.equal(true);
+      expect((firstOf(option.yAxis) as YAXisOption).splitLine?.show).to.equal(true);
+    });
   });
 
   describe('palette property', () => {

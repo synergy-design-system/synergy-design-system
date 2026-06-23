@@ -9,11 +9,6 @@ import {
   Subtitle,
   Title,
 } from '@storybook/addon-docs/blocks';
-import {
-  createConfig,
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore - Can be ignored as this is a monorepo workspace problem
-} from '../../../components/src/components/chart/configs/index.js';
 import '../../../components/src/components/chart/chart.js';
 import {
   generateScreenshotStory,
@@ -21,14 +16,6 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
-
-declare global {
-  interface Window {
-    createConfig: typeof createConfig;
-  }
-}
-
-window.createConfig = createConfig;
 
 const meta: Meta = {
   component: 'syn-chart',
@@ -109,7 +96,10 @@ export const AxesSplitLinesVisible: Story = {
         },
       };
 
-      chart.config = createConfig(baseConfig).apply('axes.split-lines').build();
+      chart.config = handle => {
+        handle.baseConfig(baseConfig);
+        handle.axesShowSplitLines();
+      };
     </script>
   `,
 };
@@ -140,7 +130,10 @@ export const HorizontalSplitLinesVisible: Story = {
         },
       };
 
-      chart.config = createConfig(baseConfig).apply('axes.y-split-lines').build();
+      chart.config = handle => {
+        handle.baseConfig(baseConfig);
+        handle.axesShowYSplitLines();
+      };
     </script>
   `,
 };
@@ -171,7 +164,10 @@ export const VerticalSplitLinesVisible: Story = {
         },
       };
 
-      chart.config = createConfig(baseConfig).apply('axes.x-split-lines').build();
+      chart.config = handle => {
+        handle.baseConfig(baseConfig);
+        handle.axesShowXSplitLines();
+      };
     </script>
   `,
 };
@@ -201,7 +197,10 @@ export const AxesLabelsHidden: Story = {
             type: 'value',
           },
         };
-        chart.config = createConfig(baseConfig).apply('axes.hide-labels').build();
+        chart.config = handle => {
+          handle.baseConfig(baseConfig);
+          handle.axesHideLabels();
+        };
     </script>
   `,
 };
@@ -231,10 +230,11 @@ export const AxesLinesVisibleWithLabelsHidden: Story = {
       };
 
       const chart = document.querySelector('#chart-lines-visible-values-hidden');
-      chart.config = createConfig(baseConfig)
-        .apply('axes.hide-labels')
-        .apply('axes.split-lines')
-        .build();
+      chart.config = handle => {
+        handle.baseConfig(baseConfig);
+        handle.axesHideLabels();
+        handle.axesShowSplitLines();
+      };
     </script>
   `,
 };
@@ -302,17 +302,18 @@ export const AxesLabelsWithIcons: Story = {
         const xAxisIconPosition = xAxisIconPositionSelect.value;
 
         const chart = document.querySelector('#chart-axis-prefix-icons');
-        chart.config = createConfig(baseConfig)
-          .apply('axes.split-lines')
-          .apply('axes.x-label-icons', {
+        chart.config = handle => {
+          handle.baseConfig(baseConfig);
+          handle.axesShowSplitLines();
+          handle.axesAddXLabelIcons({
             iconUrls: xAxisIconUrls,
             iconPosition: xAxisIconPosition,
-          })
-          .apply('axes.y-label-icons', {
+          });
+          handle.axesAddYLabelIcons({
             iconUrls: yAxisIconUrls,
             iconPosition: yAxisIconPosition,
-          })
-          .build();
+          });
+        };
       };
 
       fetchIcons().then(setConfig);

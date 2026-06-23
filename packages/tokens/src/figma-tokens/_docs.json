@@ -603,7 +603,7 @@
           "type": "text"
         },
         "description": {
-          "value": "If you want to display both axes lines and split lines, you can enable them using the *'axes.split-lines'* preset or *withAxesSplitLines* modifier helper.",
+          "value": "If you want to display both axes lines and split lines, use the handle method `axesShowSplitLines()`.",
           "type": "text"
         }
       },
@@ -613,7 +613,7 @@
           "type": "text"
         },
         "description": {
-          "value": "To show only horizontal split lines, use the *'axes.y-split-lines'* preset or *withYAxisSplitLines* modifier helper.",
+          "value": "To show only horizontal split lines, use the handle method `axesShowYSplitLines()`.",
           "type": "text"
         }
       },
@@ -623,7 +623,7 @@
           "type": "text"
         },
         "description": {
-          "value": "To show only vertical split lines, use the *'axes.x-split-lines'* preset or *withXAxisSplitLines* modifier helper.",
+          "value": "To show only vertical split lines, use the handle method `axesShowXSplitLines()`.",
           "type": "text"
         }
       },
@@ -633,7 +633,7 @@
           "type": "text"
         },
         "description": {
-          "value": "If you want to hide the axis labels, you can use the *'axes.hide-labels'* preset or *withHiddenAxisLabels* modifier helper.",
+          "value": "If you want to hide the axis labels, use the handle method `axesHideLabels()`.",
           "type": "text"
         }
       },
@@ -643,7 +643,7 @@
           "type": "text"
         },
         "description": {
-          "value": "To show axes split lines but hide the axis labels, combine *'axes.split-lines'* and *'axes.hide-labels'* presets or *withAxesSplitLines* and *withHiddenAxisLabels* modifier helpers.",
+          "value": "To show axes split lines but hide axis labels, combine `axesShowSplitLines()` and `axesHideLabels()`.",
           "type": "text"
         }
       },
@@ -653,7 +653,7 @@
           "type": "text"
         },
         "description": {
-          "value": "To add icons to axis labels, use the *'axes.x-label-icons'* and *'axes.y-label-icons'* presets or the *withXAxisLabelIcons* and *withYAxisLabelIcons* modifiers helpers.",
+          "value": "To add icons to axis labels, use the handle methods `axesAddXLabelIcons()` and `axesAddYLabelIcons()`.",
           "type": "text"
         }
       },

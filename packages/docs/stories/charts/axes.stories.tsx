@@ -56,16 +56,18 @@ export const AxesSplitLinesHidden: Story = {
   render: () => html`
     <syn-chart id="chart-lines-hidden"></syn-chart>
     <script type="module">
-      const chart = document.querySelector('#chart-lines-hidden');
+      const charts = document.querySelectorAll('#chart-lines-hidden');
 
-      chart.config = {
+      charts.forEach(chart => {
+        chart.config = {
           series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
           xAxis: { 
             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
             type: 'category', name: 'Days',
           },
           yAxis: { type: 'value', name: 'Values' },
-      };
+        };
+      });
     </script>
   `,
 };
@@ -81,7 +83,7 @@ export const AxesSplitLinesVisible: Story = {
   render: () => html`
     <syn-chart id="chart-lines-visible"></syn-chart>
     <script type="module">
-      const chart = document.querySelector('#chart-lines-visible');
+      const charts = document.querySelectorAll('#chart-lines-visible');
 
       const baseConfig = {
         series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
@@ -96,10 +98,12 @@ export const AxesSplitLinesVisible: Story = {
         },
       };
 
-      chart.config = handle => {
-        handle.baseConfig(baseConfig);
-        handle.axesShowSplitLines();
-      };
+      charts.forEach(chart => {
+        chart.config = handle => {
+          handle.baseConfig(baseConfig);
+          handle.axesShowSplitLines();
+        };
+      });
     </script>
   `,
 };
@@ -115,7 +119,7 @@ export const HorizontalSplitLinesVisible: Story = {
   render: () => html`
     <syn-chart id="chart-horizontal-lines-visible"></syn-chart>
     <script type="module">
-      const chart = document.querySelector('#chart-horizontal-lines-visible');
+      const charts = document.querySelectorAll('#chart-horizontal-lines-visible');
 
       const baseConfig = {
         series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
@@ -130,10 +134,12 @@ export const HorizontalSplitLinesVisible: Story = {
         },
       };
 
-      chart.config = handle => {
-        handle.baseConfig(baseConfig);
-        handle.axesShowYSplitLines();
-      };
+      charts.forEach(chart => {
+        chart.config = handle => {
+          handle.baseConfig(baseConfig);
+          handle.axesShowYSplitLines();
+        };
+      });
     </script>
   `,
 };
@@ -149,7 +155,7 @@ export const VerticalSplitLinesVisible: Story = {
   render: () => html`
     <syn-chart id="chart-vertical-lines-visible"></syn-chart>
     <script type="module">
-      const chart = document.querySelector('#chart-vertical-lines-visible');
+      const charts = document.querySelectorAll('#chart-vertical-lines-visible');
 
       const baseConfig = {
         series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
@@ -164,10 +170,12 @@ export const VerticalSplitLinesVisible: Story = {
         },
       };
 
-      chart.config = handle => {
-        handle.baseConfig(baseConfig);
-        handle.axesShowXSplitLines();
-      };
+      charts.forEach(chart => {
+        chart.config = handle => {
+          handle.baseConfig(baseConfig);
+          handle.axesShowXSplitLines();
+        };
+      });
     </script>
   `,
 };
@@ -183,7 +191,7 @@ export const AxesLabelsHidden: Story = {
   render: () => html`
     <syn-chart id="chart-lines-hidden-values-hidden"></syn-chart>
     <script type="module">
-        const chart = document.querySelector('#chart-lines-hidden-values-hidden');
+        const charts = document.querySelectorAll('#chart-lines-hidden-values-hidden');
 
         const baseConfig = {
           series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: 'line' }],
@@ -197,10 +205,12 @@ export const AxesLabelsHidden: Story = {
             type: 'value',
           },
         };
-        chart.config = handle => {
-          handle.baseConfig(baseConfig);
-          handle.axesHideLabels();
-        };
+        charts.forEach(chart => {
+          chart.config = handle => {
+            handle.baseConfig(baseConfig);
+            handle.axesHideLabels();
+          };
+        });
     </script>
   `,
 };
@@ -229,12 +239,14 @@ export const AxesLinesVisibleWithLabelsHidden: Story = {
         },
       };
 
-      const chart = document.querySelector('#chart-lines-visible-values-hidden');
-      chart.config = handle => {
-        handle.baseConfig(baseConfig);
-        handle.axesHideLabels();
-        handle.axesShowSplitLines();
-      };
+      const charts = document.querySelectorAll('#chart-lines-visible-values-hidden');
+      charts.forEach(chart => {
+        chart.config = handle => {
+          handle.baseConfig(baseConfig);
+          handle.axesHideLabels();
+          handle.axesShowSplitLines();
+        };
+      });
     </script>
   `,
 };
@@ -301,19 +313,21 @@ export const AxesLabelsWithIcons: Story = {
         const yAxisIconPosition = yAxisIconPositionSelect.value;
         const xAxisIconPosition = xAxisIconPositionSelect.value;
 
-        const chart = document.querySelector('#chart-axis-prefix-icons');
-        chart.config = handle => {
-          handle.baseConfig(baseConfig);
-          handle.axesShowSplitLines();
-          handle.axesAddXLabelIcons({
-            iconUrls: xAxisIconUrls,
-            iconPosition: xAxisIconPosition,
-          });
-          handle.axesAddYLabelIcons({
-            iconUrls: yAxisIconUrls,
-            iconPosition: yAxisIconPosition,
-          });
-        };
+        const charts = document.querySelectorAll('#chart-axis-prefix-icons');
+        charts.forEach(chart => {
+          chart.config = handle => {
+            handle.baseConfig(baseConfig);
+            handle.axesShowSplitLines();
+            handle.axesAddXLabelIcons({
+              iconUrls: xAxisIconUrls,
+              iconPosition: xAxisIconPosition,
+            });
+            handle.axesAddYLabelIcons({
+              iconUrls: yAxisIconUrls,
+              iconPosition: yAxisIconPosition,
+            });
+          };
+        });
       };
 
       fetchIcons().then(setConfig);

@@ -15,13 +15,14 @@ import {
   generateStoryDescription,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
-import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
 
 const meta: Meta = {
   component: 'syn-chart',
   parameters: {
     chromatic: {
-      modes: Chromatic_Modes_All,
+      modes: Chromatic_Modes_Sick_2025,
+      pauseAnimationAtEnd: false,
     },
     design: generateFigmaPluginObject('41094-279501'),
     docs: {

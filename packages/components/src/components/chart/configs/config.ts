@@ -1,4 +1,5 @@
 import type {
+  ChartConfigHandle,
   ChartConfigType,
   ECConfig,
 } from '../types.js';
@@ -9,7 +10,7 @@ import { ChartPresets } from './presets/index.js';
 // Composition API
 // ---------------------------------------------------------------------------
 
-class ChartConfigBuilder {
+export class ChartConfigBuilder {
   #config: ECConfig;
 
   /**
@@ -34,10 +35,13 @@ class ChartConfigBuilder {
   }
 
   /**
-   * Sets the base chart config for subsequent preset updates.
+   * Sets the base chart config that subsequent preset calls extend.
+   *
+   * Calling `baseConfig()` again replaces the previous base config.
    */
-  baseConfig(config: ECConfig): void {
+  baseConfig(config: ECConfig): ChartConfigHandle {
     this.#config = mergeConfigs(config);
+    return this as ChartConfigHandle;
   }
 
   /**
@@ -46,19 +50,18 @@ class ChartConfigBuilder {
    * Each method is named after the preset and accepts the same options as the preset function.
    * Calling a method applies the corresponding preset to the current config.
    */
-  #registerPresetHandleMethods(): void {
+  #registerPresetHandleMethods(): ChartConfigHandle {
     Object.entries(ChartPresets)
       .forEach(([modifierName, modifier]) => {
         Object.defineProperty(this, modifierName, {
           configurable: true,
           enumerable: false,
-          value: (options: Parameters<typeof modifier>[0]) => {
-            // @ts-expect-error - Ignore it for now
-            this.#with(modifier(options));
-          },
+          // @ts-expect-error - Ignore it for now
+          value: (options: Parameters<typeof modifier>[0]) => this.#with(modifier(options)),
           writable: false,
         });
       });
+    return this as ChartConfigHandle;
   }
 
   /**

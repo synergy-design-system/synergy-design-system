@@ -56,7 +56,7 @@
         "value": "{color.data.teal.500}"
       }
     },
-    "grid lines": {
+    "grid-lines": {
       "color": {
         "type": "color",
         "value": "{color.neutral.300}"
@@ -96,7 +96,7 @@
         "value": "{color.neutral.1000}"
       }
     },
-    "range selection": {
+    "range-selection": {
       "color": {
         "type": "color",
         "value": "{color.neutral.600}"
@@ -614,7 +614,7 @@
         }
       }
     },
-    "stroke weight": {
+    "stroke-weight": {
       "default": {
         "type": "fontWeights",
         "value": "1.5"

@@ -2,21 +2,15 @@ import type { EChartsOption } from 'echarts/types/dist/shared.js';
 import {
   type ChartPresets,
 } from './configs/presets/index.js';
+import type { ChartConfigBuilder } from './configs/config.js';
 
 export type ECConfig = EChartsOption;
 
 export type ChartPresetFunctions = {
-  [K in keyof typeof ChartPresets]: (...args: Parameters<(typeof ChartPresets)[K]>) => void;
+  [K in keyof typeof ChartPresets]: (...args: Parameters<(typeof ChartPresets)[K]>) => ChartConfigHandle;
 };
 
-export type ChartConfigHandle = ChartPresetFunctions & {
-  /**
-   * Sets the base chart option that subsequent preset calls extend.
-   *
-   * Calling `baseConfig()` again replaces the previous base config.
-   */
-  baseConfig(config: ECConfig): void;
-};
+export type ChartConfigHandle = ChartPresetFunctions & Omit<ChartConfigBuilder, 'build'>;
 
 /**
  * Configuration callback for the chart `config` property.

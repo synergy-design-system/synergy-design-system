@@ -100,10 +100,9 @@ export const AxesSplitLinesVisible: Story = {
       };
 
       charts.forEach(chart => {
-        chart.config = handle => {
-          handle.baseConfig(baseConfig);
-          handle.axesShowSplitLines();
-        };
+        chart.config = handle => handle
+          .baseConfig(baseConfig)
+          .axesShowSplitLines();
       });
     </script>
   `,
@@ -136,10 +135,9 @@ export const HorizontalSplitLinesVisible: Story = {
       };
 
       charts.forEach(chart => {
-        chart.config = handle => {
-          handle.baseConfig(baseConfig);
-          handle.axesShowYSplitLines();
-        };
+        chart.config = handle => handle
+          .baseConfig(baseConfig)
+          .axesShowYSplitLines();
       });
     </script>
   `,
@@ -172,10 +170,9 @@ export const VerticalSplitLinesVisible: Story = {
       };
 
       charts.forEach(chart => {
-        chart.config = handle => {
-          handle.baseConfig(baseConfig);
-          handle.axesShowXSplitLines();
-        };
+        chart.config = handle => handle
+          .baseConfig(baseConfig)
+          .axesShowXSplitLines();
       });
     </script>
   `,
@@ -207,10 +204,9 @@ export const AxesLabelsHidden: Story = {
           },
         };
         charts.forEach(chart => {
-          chart.config = handle => {
-            handle.baseConfig(baseConfig);
-            handle.axesHideLabels();
-          };
+          chart.config = handle => handle
+            .baseConfig(baseConfig)
+            .axesHideLabels();
         });
     </script>
   `,
@@ -242,11 +238,10 @@ export const AxesLinesVisibleWithLabelsHidden: Story = {
 
       const charts = document.querySelectorAll('#chart-lines-visible-values-hidden');
       charts.forEach(chart => {
-        chart.config = handle => {
-          handle.baseConfig(baseConfig);
-          handle.axesHideLabels();
-          handle.axesShowSplitLines();
-        };
+        chart.config = handle => handle
+          .baseConfig(baseConfig)
+          .axesHideLabels()
+          .axesHideLabels();
       });
     </script>
   `,
@@ -316,18 +311,17 @@ export const AxesLabelsWithIcons: Story = {
 
         const charts = document.querySelectorAll('#chart-axis-prefix-icons');
         charts.forEach(chart => {
-          chart.config = handle => {
-            handle.baseConfig(baseConfig);
-            handle.axesShowSplitLines();
-            handle.axesAddXLabelIcons({
+          chart.config = handle => handle
+            .baseConfig(baseConfig)
+            .axesShowSplitLines()
+            .axesAddXLabelIcons({
               iconUrls: xAxisIconUrls,
               iconPosition: xAxisIconPosition,
-            });
-            handle.axesAddYLabelIcons({
+            })
+            .axesAddYLabelIcons({
               iconUrls: yAxisIconUrls,
               iconPosition: yAxisIconPosition,
             });
-          };
         });
       };
 

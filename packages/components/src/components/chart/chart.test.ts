@@ -79,7 +79,7 @@ describe('<syn-chart>', () => {
       expect(firstOf(updatedOptions.series)).to.have.property('data').that.deep.equals(firstOf(secondConfig.series!).data);
     });
 
-    it('should apply config callback input with handle methods', async () => {
+    it('should apply config callback input with sequential handle calls', async () => {
       const el = await createChart();
       await el.updateComplete;
 
@@ -97,6 +97,27 @@ describe('<syn-chart>', () => {
       const option = instance.getOption();
 
       expect(firstOf(option.series)).to.have.property('data').that.deep.equals([11, 22, 33]);
+      expect((firstOf(option.xAxis) as XAXisOption).splitLine?.show).to.equal(true);
+      expect((firstOf(option.yAxis) as YAXisOption).splitLine?.show).to.equal(true);
+    });
+
+    it('should apply config callback input with chained handle calls', async () => {
+      const el = await createChart();
+      await el.updateComplete;
+
+      const instance = el.getInstance()!;
+      el.config = handle => handle
+        .baseConfig({
+          series: [{ data: [21, 42, 63], type: 'line' }],
+          xAxis: { data: ['X', 'Y', 'Z'], type: 'category' },
+          yAxis: { type: 'value' },
+        })
+        .axesShowSplitLines();
+
+      await el.updateComplete;
+      const option = instance.getOption();
+
+      expect(firstOf(option.series)).to.have.property('data').that.deep.equals([21, 42, 63]);
       expect((firstOf(option.xAxis) as XAXisOption).splitLine?.show).to.equal(true);
       expect((firstOf(option.yAxis) as YAXisOption).splitLine?.show).to.equal(true);
     });

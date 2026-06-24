@@ -213,6 +213,8 @@ This callback receives a typed handle with preset helper functions. The handle i
 - Arrays (for example `series`) are replaced by the latest value, not merged item-by-item.
 - If you call `baseConfig()` multiple times, the latest call becomes the new base.
 
+You can call handle methods either by **chaining** or by **sequential calls** — both approaches are equivalent:
+
 ```js
 const baseConfig = {
   series: [{ type: "line", data: [150, 230, 224] }],
@@ -220,6 +222,18 @@ const baseConfig = {
   yAxis: { type: "value", name: "Values" },
 };
 
+// Chaining approach
+chart.config = handle =>
+  handle
+    .baseConfig(baseConfig)
+    .axesShowSplitLines()
+    .axesHideLabels()
+    .axesAddXLabelIcons({
+      iconUrls,
+      iconPosition: "top",
+    });
+
+// Sequential calls approach
 chart.config = handle => {
   handle.baseConfig(baseConfig);
   handle.axesShowSplitLines();

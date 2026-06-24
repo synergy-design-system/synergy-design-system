@@ -75,12 +75,23 @@ export default class SynChart extends SynergyElement {
    *
    * @example
    * ```js
+   * // Using a plain object
    * chart.config = {
    *   xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed'] },
    *   yAxis: { type: 'value' },
    *   series: [{ type: 'line', data: [150, 230, 224] }],
    * };
    *
+   * // Using the handle with method chaining
+   * chart.config = (handle) => handle
+   *   .baseConfig({
+   *     xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed'] },
+   *     yAxis: { type: 'value' },
+   *     series: [{ type: 'line', data: [150, 230, 224] }],
+   *   })
+   *   .axesShowSplitLines();
+   *
+   * // Using the handle with sequential calls
    * chart.config = (handle) => {
    *   handle.baseConfig({
    *     xAxis: { type: 'category', data: ['Mon', 'Tue', 'Wed'] },

@@ -49,12 +49,27 @@ describe('resolveConfigInput', () => {
     expect((result.yAxis as { splitLine?: { show?: boolean } }).splitLine?.show).to.equal(true);
   });
 
-  it('supports chaining multiple handle methods', () => {
+  it('supports sequential calls of multiple handle methods', () => {
     const result = resolveConfigInput((handle) => {
       handle.baseConfig({ xAxis: { type: 'category' } });
       handle.axesHideXLabels();
       handle.axesShowXSplitLines();
     });
+
+    const xAxis = result.xAxis as {
+      axisLabel?: { show?: boolean };
+      splitLine?: { show?: boolean };
+    };
+
+    expect(xAxis.axisLabel?.show).to.equal(false);
+    expect(xAxis.splitLine?.show).to.equal(true);
+  });
+
+  it('supports chaining multiple handle methods', () => {
+    const result = resolveConfigInput(handle => handle
+      .baseConfig({ xAxis: { type: 'category' } })
+      .axesHideXLabels()
+      .axesShowXSplitLines());
 
     const xAxis = result.xAxis as {
       axisLabel?: { show?: boolean };

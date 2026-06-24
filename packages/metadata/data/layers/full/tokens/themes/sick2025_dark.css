@@ -429,6 +429,8 @@
   --syn-transition-x-slow: 1000ms; /** Shoelace compatibility DO NOT USE */
   --syn-typography-color-text: var(--syn-color-neutral-1000);
   --syn-typography-color-text-inverted: var(--syn-color-neutral-50);
+  --syn-typography-color-text-quiet: var(--syn-color-neutral-800);
+  --syn-typography-color-text-quiet-inverted: var(--syn-color-neutral-200);
   --syn-z-index-dialog: 800; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-drawer: 700; /** Shoelace compatibility DO NOT USE */
   --syn-z-index-dropdown: 900; /** Shoelace compatibility DO NOT USE */

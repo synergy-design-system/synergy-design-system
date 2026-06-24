@@ -577,6 +577,86 @@
       }
     },
     "chart": {
+      "axes-default": {
+        "title": {
+          "value": "Axes",
+          "type": "text"
+        },
+        "description": {
+          "value": "The chart’s axes define the visual structure of the data and can be customized to match different visualization needs. Both the horizontal and vertical axes support flexible configuration options, allowing you to control how reference lines and labels are displayed.\n\nYou can choose to show only horizontal grid lines, only vertical grid lines, or both, depending on the level of visual guidance you want to provide. ",
+          "type": "text"
+        }
+      },
+      "axes-split-lines-hidden": {
+        "title": {
+          "value": "Hidden Axes Split Lines",
+          "type": "text"
+        },
+        "description": {
+          "value": "The default is, that both axes lines as well as the split lines are hidden.",
+          "type": "text"
+        }
+      },
+      "axes-split-lines-visible": {
+        "title": {
+          "value": "Visible Axes Split Lines",
+          "type": "text"
+        },
+        "description": {
+          "value": "If you want to display both axes lines and split lines, use the handle method `axesShowSplitLines()`.",
+          "type": "text"
+        }
+      },
+      "axes-horizontal-split-lines": {
+        "title": {
+          "value": "Horizontal Split Lines Only",
+          "type": "text"
+        },
+        "description": {
+          "value": "To show only horizontal split lines, use the handle method `axesShowYSplitLines()`.",
+          "type": "text"
+        }
+      },
+      "axes-vertical-split-lines": {
+        "title": {
+          "value": "Vertical Split Lines Only",
+          "type": "text"
+        },
+        "description": {
+          "value": "To show only vertical split lines, use the handle method `axesShowXSplitLines()`.",
+          "type": "text"
+        }
+      },
+      "axes-labels-hidden": {
+        "title": {
+          "value": "Hidden Axis Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "If you want to hide the axis labels, use the handle method `axesHideLabels()`.",
+          "type": "text"
+        }
+      },
+      "axes-lines-visible-labels-hidden": {
+        "title": {
+          "value": "Visible Axes Lines with Hidden Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "To show axes split lines but hide axis labels, combine `axesShowSplitLines()` and `axesHideLabels()`.",
+          "type": "text"
+        }
+      },
+      "axes-labels-with-icons": {
+        "title": {
+          "value": "Axes Labels with Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "To add icons to axis labels, use the handle methods `axesAddXLabelIcons()` and `axesAddYLabelIcons()`.",
+          "type": "text"
+        }
+      },
       "default": {
         "title": {
           "value": "Chart",

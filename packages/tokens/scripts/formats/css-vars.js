@@ -64,10 +64,6 @@ export const cssVariableFormatter = {
      * @type {string[]} List of variables that should be ignored for the brand 2025 theme
      */
     const BRAND2025_IGNORE_PATTERNS = [
-      // Unknown component, skipping for now
-      'typography-color-text-quiet',
-      'typography-color-text-quiet-inverted',
-
       'progress-track-readonly-color',
 
       // Font Style tokens are needed later
@@ -127,6 +123,23 @@ export const cssVariableFormatter = {
       // #1171: Leftover after refactoring the readonly tokens.
       // Can be removed as soon as it is gone in Figma.
       'readonly-opacity-color',
+
+      // For now remove all chart tokens, which are not needed in the chart component
+      'chart-background-color',
+      'chart-opacity-10',
+      'chart-opacity-20',
+      'chart-opacity-40',
+      'chart-pattern-color',
+      'chart-pattern-color-inverted',
+      'chart-plot-line-color',
+      'chart-range-selection-color',
+      'chart-range-selection-number',
+      'chart-stroke-weight-default',
+      'chart-stroke-weight-thin',
+      'chart-stroke-weight-thick',
+      'chart-track-color',
+      'chart-tooltip-background-color',
+      'chart-tooltip-color',
     ].map(v => `${prefix}${v}`);
 
     /**
@@ -172,6 +185,7 @@ export const cssVariableFormatter = {
           convertOriginalToCssVarRecursive(dict[key]);
         } else {
           const name = dict[key]?.name;
+
           if (name && BRAND2025_IGNORE_PATTERNS.includes(name)) {
             alreadyIgnoredList.push(name);
             delete dict[key];

@@ -2114,6 +2114,16 @@ export const SynTypographyColorText: string;
 export const SynTypographyColorTextInverted: string;
 
 /**
+ * Maps to the css variable `--syn-typography-color-text-quiet`
+ */
+export const SynTypographyColorTextQuiet: string;
+
+/**
+ * Maps to the css variable `--syn-typography-color-text-quiet-inverted`
+ */
+export const SynTypographyColorTextQuietInverted: string;
+
+/**
  * Maps to the css variable `--syn-z-index-dialog`
  */
 export const SynZIndexDialog: string;

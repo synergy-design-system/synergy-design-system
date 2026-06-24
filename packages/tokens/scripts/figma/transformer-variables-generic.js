@@ -22,9 +22,60 @@ import {
   formatColor,
   getTypeForFloatVariable,
   isDesignOnlyVariableOrStyle,
-  renameVariable,
+  renameVariableCharts,
+  renameVariableComponents,
 } from './helpers.js';
 import componentsVariables from '../../src/figma-variables/variableTokens.json' with { type: 'json' };
+import chartsVariables from '../../src/figma-charts/chartTokens.json' with { type: 'json' };
+
+/**
+ * Returns `true` when the given variable was resolved from the bundled
+ * chart variables file (`chartTokens.json`)
+ *
+ * @param {Variable} aliasVar
+ * @returns {boolean}
+ */
+const isVariableFromCharts = (aliasVar) => aliasVar.id in chartsVariables.variables;
+
+/**
+ * Returns the appropriate rename function for the given variable based on its origin.
+ *
+ * Variables resolved from the bundled chart tokens (`chartTokens.json`) use
+ * {@link renameVariableCharts}; all other variables use {@link renameVariableComponents}.
+ *
+ * @param {Variable} aliasVar - The Figma variable whose origin determines the rename strategy.
+ * @returns {(name: string, type: string) => string} The rename function to apply to the variable name.
+ */
+const getRenameFunction = (aliasVar) => {
+  if (isVariableFromCharts(aliasVar)) {
+    return renameVariableCharts;
+  }
+  return renameVariableComponents;
+};
+
+/**
+ * Resolves a variable alias by its ID.
+ * @param {VariablesAndCollections} variablesData The fetched Figma variables data
+ * @param {string} id The ID of the variable
+ * @returns {{ value: string, type: string } | null} The resolved value and type of the variable, or null if not found.
+ */
+export const resolveAlias = (variablesData, id) => {
+  const aliasVar = Object.values(variablesData.variables).find(v => v.id === id);
+  if (!aliasVar) return null;
+  const aliasName = aliasVar.name.toLowerCase();
+
+  const aliasType = aliasVar.resolvedType === 'FLOAT'
+    ? getTypeForFloatVariable(aliasName)
+    : aliasVar.resolvedType.toLowerCase();
+
+  const renameVariable = getRenameFunction(aliasVar);
+
+  const renamedAlias = renameVariable(aliasName, aliasType);
+  // The syntax for separators in style dictionary is ".", so all "/" are replaced with "."
+  const replacedSeparator = renamedAlias.replaceAll('/', '.');
+
+  return { type: aliasType, value: `{${replacedSeparator}}` };
+};
 
 /**
  * Extracts the Figma key from a key-based variable ID used in cross-collection
@@ -148,6 +199,7 @@ const buildSdReference = (aliasVar) => {
   const aliasType = aliasVar.resolvedType === 'FLOAT'
     ? getTypeForFloatVariable(aliasName)
     : aliasVar.resolvedType.toLowerCase();
+  const renameVariable = getRenameFunction(aliasVar);
   const renamedAlias = renameVariable(aliasName, aliasType);
   return { type: aliasType, value: `{${renamedAlias.replaceAll('/', '.')}}` };
 };
@@ -168,7 +220,7 @@ const buildSdReference = (aliasVar) => {
  * @returns {boolean} `true` if the variable must be resolved to its next reference or value.
  */
 const isInternalOrAlwaysResolvedVariable = (variableName) => {
-  const INTERNAL_OR_ALWAYS_RESOLVE_REGEX = /^_|letter-spacing\/(?:default|positive-2)|(?:^|\/)line-height/;
+  const INTERNAL_OR_ALWAYS_RESOLVE_REGEX = /(?:^|\/)_|letter-spacing\/(?:default|positive-2)|(?:^|\/)line-height/;
   return INTERNAL_OR_ALWAYS_RESOLVE_REGEX.test(variableName);
 };
 
@@ -226,7 +278,7 @@ const followAliasChainToSdReference = (variablesData, aliasId, modeId) => {
     modeValue && typeof modeValue === 'object' && 'type' in modeValue
     && modeValue.type === 'VARIABLE_ALIAS' && 'id' in modeValue
   ) {
-    return followAliasChainToSdReference(variablesData, /** @type {string} */ (modeValue.id), modeId);
+    return followAliasChainToSdReference(variablesData, /** @type {string} */(modeValue.id), modeId);
   }
 
   return null;
@@ -253,6 +305,7 @@ const buildSdReferenceForAlias = (variablesData, id) => {
     ? getTypeForFloatVariable(aliasName)
     : aliasVar.resolvedType.toLowerCase();
 
+  const renameVariable = getRenameFunction(aliasVar);
   const renamedAlias = renameVariable(aliasName, aliasType);
   const replacedSeparator = renamedAlias.replaceAll('/', '.');
 
@@ -333,11 +386,11 @@ const resolveValue = (variablesData, variable, modeId) => {
   }
 
   if (resolvedType === 'FLOAT') {
-    const floatResult = resolveFloatValue(cleanName, /** @type {number} */ (modeValue));
+    const floatResult = resolveFloatValue(cleanName, /** @type {number} */(modeValue));
     finalValue = floatResult.value;
     type = floatResult.type;
   } else if (resolvedType === 'COLOR') {
-    finalValue = formatColor(/** @type {Color} */ (modeValue));
+    finalValue = formatColor(/** @type {Color} */(modeValue));
     type = 'color';
   } else if (scopes.includes('FONT_FAMILY')) {
     finalValue = modeValue;
@@ -371,7 +424,7 @@ const resolveValue = (variablesData, variable, modeId) => {
  *   Directory where the per-mode JSON files are written (one file per theme).
  * @property {string} collectionName
  *   Name of the Figma variable collection whose modes are transformed
- *   (e.g. `'Synergy Themes'` or `'Chart Themes'`).
+ *   (e.g. `'Synergy Themes'` or `'Charts'`).
  */
 
 /**
@@ -422,6 +475,7 @@ export const transformFigmaVariables = ({
 
       const { value, type } = variableValue;
       const cleanName = name.toLowerCase();
+      const renameVariable = getRenameFunction(variable);
       const renamedToken = renameVariable(cleanName, type);
       const keys = renamedToken.split('/');
       const description = variable.description || undefined;

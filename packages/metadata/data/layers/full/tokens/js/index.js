@@ -2116,6 +2116,16 @@ export const SynTypographyColorTextInverted = 'var(--syn-typography-color-text-i
 /**
  * @type {string}
  */
+export const SynTypographyColorTextQuiet = 'var(--syn-typography-color-text-quiet)';
+
+/**
+ * @type {string}
+ */
+export const SynTypographyColorTextQuietInverted = 'var(--syn-typography-color-text-quiet-inverted)';
+
+/**
+ * @type {string}
+ */
 export const SynZIndexDialog = 'var(--syn-z-index-dialog)';
 
 /**

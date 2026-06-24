@@ -10,7 +10,7 @@
  *
  * @documentation https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs
  * @status experimental
- * @since 0.0.0
+ * @since 3.15.0
  *
  * @csspart base - The component's base wrapper.
  */
@@ -44,16 +44,22 @@ it takes precedence over the palette.
   palette?: SynChart['palette'];
 
   /**
-* The ECharts configuration option object.
+* The ECharts configuration input.
 
-This property maps 1:1 to the ECharts `option` parameter passed to `setOption()`.
+This property accepts either:
+- a plain `ECConfig` object, or
+- a callback that receives a typed preset handle and applies chart presets.
+
+The resolved result maps 1:1 to the ECharts `option` parameter passed to
+`setOption()`.
 Consult the [ECharts option documentation](https://echarts.apache.org/en/option.html)
-and assign the object directly to this property.
+and assign either the object directly or build it through the handle.
 
 > **Note:** Currently only **line charts** (`series[].type: 'line'`) are supported.
 > Support for additional chart types (bar, pie, etc.) will be added in future releases or can be requested.
 
-Assigning a new object completely replaces the previous chart configuration (`notMerge: true`).
+Assigning a new config input completely replaces the previous chart
+configuration (`notMerge: true`).
 To update only parts of the chart, access the underlying ECharts instance directly and
 call `setOption()` with custom merge options.
  */

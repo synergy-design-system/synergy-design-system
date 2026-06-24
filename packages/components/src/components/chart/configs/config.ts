@@ -45,22 +45,31 @@ export class ChartConfigBuilder {
   }
 
   /**
+   * Installs a single preset method on this builder.
+   */
+  #registerPresetHandleMethod<K extends keyof typeof ChartPresets>(modifierName: K): void {
+    const modifier = ChartPresets[modifierName];
+    type PresetOptions = Parameters<(typeof ChartPresets)[K]>[0];
+    const typedModifier = modifier as (options: PresetOptions) => ConfigModifier;
+
+    Object.defineProperty(this, modifierName, {
+      configurable: true,
+      enumerable: false,
+      value: (options: PresetOptions) => this.#with(typedModifier(options)),
+      writable: false,
+    });
+  }
+
+  /**
    * Registers all preset functions from the `ChartPresets` namespace as methods on this builder instance.
    *
    * Each method is named after the preset and accepts the same options as the preset function.
    * Calling a method applies the corresponding preset to the current config.
    */
   #registerPresetHandleMethods(): ChartConfigHandle {
-    Object.entries(ChartPresets)
-      .forEach(([modifierName, modifier]) => {
-        Object.defineProperty(this, modifierName, {
-          configurable: true,
-          enumerable: false,
-          // @ts-expect-error - Ignore it for now
-          value: (options: Parameters<typeof modifier>[0]) => this.#with(modifier(options)),
-          writable: false,
-        });
-      });
+    const presetNames = Object.keys(ChartPresets) as Array<keyof typeof ChartPresets>;
+    presetNames.forEach((presetName) => this.#registerPresetHandleMethod(presetName));
+
     return this as ChartConfigHandle;
   }
 
@@ -95,8 +104,7 @@ export class ChartConfigBuilder {
 export const resolveConfigInput = (input: ChartConfigType): ECConfig => {
   if (typeof input === 'function') {
     const builder = new ChartConfigBuilder();
-    // @ts-expect-error - Ignore it for now
-    input(builder);
+    input(builder as ChartConfigBuilder & ChartConfigHandle);
     return builder.build();
   }
 

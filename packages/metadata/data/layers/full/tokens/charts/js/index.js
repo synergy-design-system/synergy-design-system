@@ -1,664 +1,674 @@
 /**
- * @synergy-design-system/tokens version 3.15.5
+ * @synergy-design-system/tokens version 3.16.0
  * SICK Global UX Foundation
  */
 
 /**
  * @type {string}
  */
-export const SynCategorical10 = 'var(--syn-categorical-10)';
+export const SynChartCategorical10 = 'var(--syn-chart-categorical-10)';
 
 /**
  * @type {string}
  */
-export const SynCategorical11 = 'var(--syn-categorical-11)';
+export const SynChartCategorical11 = 'var(--syn-chart-categorical-11)';
 
 /**
  * @type {string}
  */
-export const SynCategorical12 = 'var(--syn-categorical-12)';
+export const SynChartCategorical12 = 'var(--syn-chart-categorical-12)';
 
 /**
  * @type {string}
  */
-export const SynCategorical01 = 'var(--syn-categorical-01)';
+export const SynChartCategorical01 = 'var(--syn-chart-categorical-01)';
 
 /**
  * @type {string}
  */
-export const SynCategorical02 = 'var(--syn-categorical-02)';
+export const SynChartCategorical02 = 'var(--syn-chart-categorical-02)';
 
 /**
  * @type {string}
  */
-export const SynCategorical03 = 'var(--syn-categorical-03)';
+export const SynChartCategorical03 = 'var(--syn-chart-categorical-03)';
 
 /**
  * @type {string}
  */
-export const SynCategorical04 = 'var(--syn-categorical-04)';
+export const SynChartCategorical04 = 'var(--syn-chart-categorical-04)';
 
 /**
  * @type {string}
  */
-export const SynCategorical05 = 'var(--syn-categorical-05)';
+export const SynChartCategorical05 = 'var(--syn-chart-categorical-05)';
 
 /**
  * @type {string}
  */
-export const SynCategorical06 = 'var(--syn-categorical-06)';
+export const SynChartCategorical06 = 'var(--syn-chart-categorical-06)';
 
 /**
  * @type {string}
  */
-export const SynCategorical07 = 'var(--syn-categorical-07)';
+export const SynChartCategorical07 = 'var(--syn-chart-categorical-07)';
 
 /**
  * @type {string}
  */
-export const SynCategorical08 = 'var(--syn-categorical-08)';
+export const SynChartCategorical08 = 'var(--syn-chart-categorical-08)';
 
 /**
  * @type {string}
  */
-export const SynCategorical09 = 'var(--syn-categorical-09)';
+export const SynChartCategorical09 = 'var(--syn-chart-categorical-09)';
 
 /**
  * @type {string}
  */
-export const SynSequential01_10 = 'var(--syn-sequential-01-10)';
+export const SynChartGridLinesColor = 'var(--syn-chart-grid-lines-color)';
 
 /**
  * @type {string}
  */
-export const SynSequential01_20 = 'var(--syn-sequential-01-20)';
+export const SynChartGridLinesColorEmphasize = 'var(--syn-chart-grid-lines-color-emphasize)';
 
 /**
  * @type {string}
  */
-export const SynSequential01_30 = 'var(--syn-sequential-01-30)';
+export const SynChartSequential01_10 = 'var(--syn-chart-sequential-01-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential01_40 = 'var(--syn-sequential-01-40)';
+export const SynChartSequential01_20 = 'var(--syn-chart-sequential-01-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential01_50 = 'var(--syn-sequential-01-50)';
+export const SynChartSequential01_30 = 'var(--syn-chart-sequential-01-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential01_60 = 'var(--syn-sequential-01-60)';
+export const SynChartSequential01_40 = 'var(--syn-chart-sequential-01-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential01_70 = 'var(--syn-sequential-01-70)';
+export const SynChartSequential01_50 = 'var(--syn-chart-sequential-01-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential01_80 = 'var(--syn-sequential-01-80)';
+export const SynChartSequential01_60 = 'var(--syn-chart-sequential-01-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential01_90 = 'var(--syn-sequential-01-90)';
+export const SynChartSequential01_70 = 'var(--syn-chart-sequential-01-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential01_100 = 'var(--syn-sequential-01-100)';
+export const SynChartSequential01_80 = 'var(--syn-chart-sequential-01-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential02_10 = 'var(--syn-sequential-02-10)';
+export const SynChartSequential01_90 = 'var(--syn-chart-sequential-01-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential02_20 = 'var(--syn-sequential-02-20)';
+export const SynChartSequential01_100 = 'var(--syn-chart-sequential-01-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential02_30 = 'var(--syn-sequential-02-30)';
+export const SynChartSequential02_10 = 'var(--syn-chart-sequential-02-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential02_40 = 'var(--syn-sequential-02-40)';
+export const SynChartSequential02_20 = 'var(--syn-chart-sequential-02-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential02_50 = 'var(--syn-sequential-02-50)';
+export const SynChartSequential02_30 = 'var(--syn-chart-sequential-02-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential02_60 = 'var(--syn-sequential-02-60)';
+export const SynChartSequential02_40 = 'var(--syn-chart-sequential-02-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential02_70 = 'var(--syn-sequential-02-70)';
+export const SynChartSequential02_50 = 'var(--syn-chart-sequential-02-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential02_80 = 'var(--syn-sequential-02-80)';
+export const SynChartSequential02_60 = 'var(--syn-chart-sequential-02-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential02_90 = 'var(--syn-sequential-02-90)';
+export const SynChartSequential02_70 = 'var(--syn-chart-sequential-02-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential02_100 = 'var(--syn-sequential-02-100)';
+export const SynChartSequential02_80 = 'var(--syn-chart-sequential-02-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential03_10 = 'var(--syn-sequential-03-10)';
+export const SynChartSequential02_90 = 'var(--syn-chart-sequential-02-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential03_20 = 'var(--syn-sequential-03-20)';
+export const SynChartSequential02_100 = 'var(--syn-chart-sequential-02-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential03_30 = 'var(--syn-sequential-03-30)';
+export const SynChartSequential03_10 = 'var(--syn-chart-sequential-03-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential03_40 = 'var(--syn-sequential-03-40)';
+export const SynChartSequential03_20 = 'var(--syn-chart-sequential-03-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential03_50 = 'var(--syn-sequential-03-50)';
+export const SynChartSequential03_30 = 'var(--syn-chart-sequential-03-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential03_60 = 'var(--syn-sequential-03-60)';
+export const SynChartSequential03_40 = 'var(--syn-chart-sequential-03-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential03_70 = 'var(--syn-sequential-03-70)';
+export const SynChartSequential03_50 = 'var(--syn-chart-sequential-03-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential03_80 = 'var(--syn-sequential-03-80)';
+export const SynChartSequential03_60 = 'var(--syn-chart-sequential-03-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential03_90 = 'var(--syn-sequential-03-90)';
+export const SynChartSequential03_70 = 'var(--syn-chart-sequential-03-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential03_100 = 'var(--syn-sequential-03-100)';
+export const SynChartSequential03_80 = 'var(--syn-chart-sequential-03-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential04_10 = 'var(--syn-sequential-04-10)';
+export const SynChartSequential03_90 = 'var(--syn-chart-sequential-03-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential04_20 = 'var(--syn-sequential-04-20)';
+export const SynChartSequential03_100 = 'var(--syn-chart-sequential-03-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential04_30 = 'var(--syn-sequential-04-30)';
+export const SynChartSequential04_10 = 'var(--syn-chart-sequential-04-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential04_40 = 'var(--syn-sequential-04-40)';
+export const SynChartSequential04_20 = 'var(--syn-chart-sequential-04-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential04_50 = 'var(--syn-sequential-04-50)';
+export const SynChartSequential04_30 = 'var(--syn-chart-sequential-04-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential04_60 = 'var(--syn-sequential-04-60)';
+export const SynChartSequential04_40 = 'var(--syn-chart-sequential-04-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential04_70 = 'var(--syn-sequential-04-70)';
+export const SynChartSequential04_50 = 'var(--syn-chart-sequential-04-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential04_80 = 'var(--syn-sequential-04-80)';
+export const SynChartSequential04_60 = 'var(--syn-chart-sequential-04-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential04_90 = 'var(--syn-sequential-04-90)';
+export const SynChartSequential04_70 = 'var(--syn-chart-sequential-04-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential04_100 = 'var(--syn-sequential-04-100)';
+export const SynChartSequential04_80 = 'var(--syn-chart-sequential-04-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential05_10 = 'var(--syn-sequential-05-10)';
+export const SynChartSequential04_90 = 'var(--syn-chart-sequential-04-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential05_20 = 'var(--syn-sequential-05-20)';
+export const SynChartSequential04_100 = 'var(--syn-chart-sequential-04-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential05_30 = 'var(--syn-sequential-05-30)';
+export const SynChartSequential05_10 = 'var(--syn-chart-sequential-05-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential05_40 = 'var(--syn-sequential-05-40)';
+export const SynChartSequential05_20 = 'var(--syn-chart-sequential-05-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential05_50 = 'var(--syn-sequential-05-50)';
+export const SynChartSequential05_30 = 'var(--syn-chart-sequential-05-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential05_60 = 'var(--syn-sequential-05-60)';
+export const SynChartSequential05_40 = 'var(--syn-chart-sequential-05-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential05_70 = 'var(--syn-sequential-05-70)';
+export const SynChartSequential05_50 = 'var(--syn-chart-sequential-05-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential05_80 = 'var(--syn-sequential-05-80)';
+export const SynChartSequential05_60 = 'var(--syn-chart-sequential-05-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential05_90 = 'var(--syn-sequential-05-90)';
+export const SynChartSequential05_70 = 'var(--syn-chart-sequential-05-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential05_100 = 'var(--syn-sequential-05-100)';
+export const SynChartSequential05_80 = 'var(--syn-chart-sequential-05-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential06_10 = 'var(--syn-sequential-06-10)';
+export const SynChartSequential05_90 = 'var(--syn-chart-sequential-05-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential06_20 = 'var(--syn-sequential-06-20)';
+export const SynChartSequential05_100 = 'var(--syn-chart-sequential-05-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential06_30 = 'var(--syn-sequential-06-30)';
+export const SynChartSequential06_10 = 'var(--syn-chart-sequential-06-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential06_40 = 'var(--syn-sequential-06-40)';
+export const SynChartSequential06_20 = 'var(--syn-chart-sequential-06-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential06_50 = 'var(--syn-sequential-06-50)';
+export const SynChartSequential06_30 = 'var(--syn-chart-sequential-06-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential06_60 = 'var(--syn-sequential-06-60)';
+export const SynChartSequential06_40 = 'var(--syn-chart-sequential-06-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential06_70 = 'var(--syn-sequential-06-70)';
+export const SynChartSequential06_50 = 'var(--syn-chart-sequential-06-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential06_80 = 'var(--syn-sequential-06-80)';
+export const SynChartSequential06_60 = 'var(--syn-chart-sequential-06-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential06_90 = 'var(--syn-sequential-06-90)';
+export const SynChartSequential06_70 = 'var(--syn-chart-sequential-06-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential06_100 = 'var(--syn-sequential-06-100)';
+export const SynChartSequential06_80 = 'var(--syn-chart-sequential-06-80)';
 
 /**
  * @type {string}
  */
-export const SynSequential07_10 = 'var(--syn-sequential-07-10)';
+export const SynChartSequential06_90 = 'var(--syn-chart-sequential-06-90)';
 
 /**
  * @type {string}
  */
-export const SynSequential07_20 = 'var(--syn-sequential-07-20)';
+export const SynChartSequential06_100 = 'var(--syn-chart-sequential-06-100)';
 
 /**
  * @type {string}
  */
-export const SynSequential07_30 = 'var(--syn-sequential-07-30)';
+export const SynChartSequential07_10 = 'var(--syn-chart-sequential-07-10)';
 
 /**
  * @type {string}
  */
-export const SynSequential07_40 = 'var(--syn-sequential-07-40)';
+export const SynChartSequential07_20 = 'var(--syn-chart-sequential-07-20)';
 
 /**
  * @type {string}
  */
-export const SynSequential07_50 = 'var(--syn-sequential-07-50)';
+export const SynChartSequential07_30 = 'var(--syn-chart-sequential-07-30)';
 
 /**
  * @type {string}
  */
-export const SynSequential07_60 = 'var(--syn-sequential-07-60)';
+export const SynChartSequential07_40 = 'var(--syn-chart-sequential-07-40)';
 
 /**
  * @type {string}
  */
-export const SynSequential07_70 = 'var(--syn-sequential-07-70)';
+export const SynChartSequential07_50 = 'var(--syn-chart-sequential-07-50)';
 
 /**
  * @type {string}
  */
-export const SynSequential07_80 = 'var(--syn-sequential-07-80)';
+export const SynChartSequential07_60 = 'var(--syn-chart-sequential-07-60)';
 
 /**
  * @type {string}
  */
-export const SynSequential07_90 = 'var(--syn-sequential-07-90)';
+export const SynChartSequential07_70 = 'var(--syn-chart-sequential-07-70)';
 
 /**
  * @type {string}
  */
-export const SynSequential07_100 = 'var(--syn-sequential-07-100)';
+export const SynChartSequential07_80 = 'var(--syn-chart-sequential-07-80)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusCritical10 = 'var(--syn-sequential-status-critical-10)';
+export const SynChartSequential07_90 = 'var(--syn-chart-sequential-07-90)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusCritical20 = 'var(--syn-sequential-status-critical-20)';
+export const SynChartSequential07_100 = 'var(--syn-chart-sequential-07-100)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusCritical30 = 'var(--syn-sequential-status-critical-30)';
+export const SynChartSequentialStatusCritical10 = 'var(--syn-chart-sequential-status-critical-10)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusCritical40 = 'var(--syn-sequential-status-critical-40)';
+export const SynChartSequentialStatusCritical20 = 'var(--syn-chart-sequential-status-critical-20)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusCritical50 = 'var(--syn-sequential-status-critical-50)';
+export const SynChartSequentialStatusCritical30 = 'var(--syn-chart-sequential-status-critical-30)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusCritical60 = 'var(--syn-sequential-status-critical-60)';
+export const SynChartSequentialStatusCritical40 = 'var(--syn-chart-sequential-status-critical-40)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusCritical70 = 'var(--syn-sequential-status-critical-70)';
+export const SynChartSequentialStatusCritical50 = 'var(--syn-chart-sequential-status-critical-50)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusCritical80 = 'var(--syn-sequential-status-critical-80)';
+export const SynChartSequentialStatusCritical60 = 'var(--syn-chart-sequential-status-critical-60)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusCritical90 = 'var(--syn-sequential-status-critical-90)';
+export const SynChartSequentialStatusCritical70 = 'var(--syn-chart-sequential-status-critical-70)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusCritical100 = 'var(--syn-sequential-status-critical-100)';
+export const SynChartSequentialStatusCritical80 = 'var(--syn-chart-sequential-status-critical-80)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusError10 = 'var(--syn-sequential-status-error-10)';
+export const SynChartSequentialStatusCritical90 = 'var(--syn-chart-sequential-status-critical-90)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusError20 = 'var(--syn-sequential-status-error-20)';
+export const SynChartSequentialStatusCritical100 = 'var(--syn-chart-sequential-status-critical-100)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusError30 = 'var(--syn-sequential-status-error-30)';
+export const SynChartSequentialStatusError10 = 'var(--syn-chart-sequential-status-error-10)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusError40 = 'var(--syn-sequential-status-error-40)';
+export const SynChartSequentialStatusError20 = 'var(--syn-chart-sequential-status-error-20)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusError50 = 'var(--syn-sequential-status-error-50)';
+export const SynChartSequentialStatusError30 = 'var(--syn-chart-sequential-status-error-30)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusError60 = 'var(--syn-sequential-status-error-60)';
+export const SynChartSequentialStatusError40 = 'var(--syn-chart-sequential-status-error-40)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusError70 = 'var(--syn-sequential-status-error-70)';
+export const SynChartSequentialStatusError50 = 'var(--syn-chart-sequential-status-error-50)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusError80 = 'var(--syn-sequential-status-error-80)';
+export const SynChartSequentialStatusError60 = 'var(--syn-chart-sequential-status-error-60)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusError90 = 'var(--syn-sequential-status-error-90)';
+export const SynChartSequentialStatusError70 = 'var(--syn-chart-sequential-status-error-70)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusError100 = 'var(--syn-sequential-status-error-100)';
+export const SynChartSequentialStatusError80 = 'var(--syn-chart-sequential-status-error-80)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusInfo10 = 'var(--syn-sequential-status-info-10)';
+export const SynChartSequentialStatusError90 = 'var(--syn-chart-sequential-status-error-90)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusInfo20 = 'var(--syn-sequential-status-info-20)';
+export const SynChartSequentialStatusError100 = 'var(--syn-chart-sequential-status-error-100)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusInfo30 = 'var(--syn-sequential-status-info-30)';
+export const SynChartSequentialStatusInfo10 = 'var(--syn-chart-sequential-status-info-10)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusInfo40 = 'var(--syn-sequential-status-info-40)';
+export const SynChartSequentialStatusInfo20 = 'var(--syn-chart-sequential-status-info-20)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusInfo50 = 'var(--syn-sequential-status-info-50)';
+export const SynChartSequentialStatusInfo30 = 'var(--syn-chart-sequential-status-info-30)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusInfo60 = 'var(--syn-sequential-status-info-60)';
+export const SynChartSequentialStatusInfo40 = 'var(--syn-chart-sequential-status-info-40)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusInfo70 = 'var(--syn-sequential-status-info-70)';
+export const SynChartSequentialStatusInfo50 = 'var(--syn-chart-sequential-status-info-50)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusInfo80 = 'var(--syn-sequential-status-info-80)';
+export const SynChartSequentialStatusInfo60 = 'var(--syn-chart-sequential-status-info-60)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusInfo90 = 'var(--syn-sequential-status-info-90)';
+export const SynChartSequentialStatusInfo70 = 'var(--syn-chart-sequential-status-info-70)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusInfo100 = 'var(--syn-sequential-status-info-100)';
+export const SynChartSequentialStatusInfo80 = 'var(--syn-chart-sequential-status-info-80)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusSuccess10 = 'var(--syn-sequential-status-success-10)';
+export const SynChartSequentialStatusInfo90 = 'var(--syn-chart-sequential-status-info-90)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusSuccess20 = 'var(--syn-sequential-status-success-20)';
+export const SynChartSequentialStatusInfo100 = 'var(--syn-chart-sequential-status-info-100)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusSuccess30 = 'var(--syn-sequential-status-success-30)';
+export const SynChartSequentialStatusSuccess10 = 'var(--syn-chart-sequential-status-success-10)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusSuccess40 = 'var(--syn-sequential-status-success-40)';
+export const SynChartSequentialStatusSuccess20 = 'var(--syn-chart-sequential-status-success-20)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusSuccess50 = 'var(--syn-sequential-status-success-50)';
+export const SynChartSequentialStatusSuccess30 = 'var(--syn-chart-sequential-status-success-30)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusSuccess60 = 'var(--syn-sequential-status-success-60)';
+export const SynChartSequentialStatusSuccess40 = 'var(--syn-chart-sequential-status-success-40)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusSuccess70 = 'var(--syn-sequential-status-success-70)';
+export const SynChartSequentialStatusSuccess50 = 'var(--syn-chart-sequential-status-success-50)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusSuccess80 = 'var(--syn-sequential-status-success-80)';
+export const SynChartSequentialStatusSuccess60 = 'var(--syn-chart-sequential-status-success-60)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusSuccess90 = 'var(--syn-sequential-status-success-90)';
+export const SynChartSequentialStatusSuccess70 = 'var(--syn-chart-sequential-status-success-70)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusSuccess100 = 'var(--syn-sequential-status-success-100)';
+export const SynChartSequentialStatusSuccess80 = 'var(--syn-chart-sequential-status-success-80)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusWarning10 = 'var(--syn-sequential-status-warning-10)';
+export const SynChartSequentialStatusSuccess90 = 'var(--syn-chart-sequential-status-success-90)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusWarning20 = 'var(--syn-sequential-status-warning-20)';
+export const SynChartSequentialStatusSuccess100 = 'var(--syn-chart-sequential-status-success-100)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusWarning30 = 'var(--syn-sequential-status-warning-30)';
+export const SynChartSequentialStatusWarning10 = 'var(--syn-chart-sequential-status-warning-10)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusWarning40 = 'var(--syn-sequential-status-warning-40)';
+export const SynChartSequentialStatusWarning20 = 'var(--syn-chart-sequential-status-warning-20)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusWarning50 = 'var(--syn-sequential-status-warning-50)';
+export const SynChartSequentialStatusWarning30 = 'var(--syn-chart-sequential-status-warning-30)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusWarning60 = 'var(--syn-sequential-status-warning-60)';
+export const SynChartSequentialStatusWarning40 = 'var(--syn-chart-sequential-status-warning-40)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusWarning70 = 'var(--syn-sequential-status-warning-70)';
+export const SynChartSequentialStatusWarning50 = 'var(--syn-chart-sequential-status-warning-50)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusWarning80 = 'var(--syn-sequential-status-warning-80)';
+export const SynChartSequentialStatusWarning60 = 'var(--syn-chart-sequential-status-warning-60)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusWarning90 = 'var(--syn-sequential-status-warning-90)';
+export const SynChartSequentialStatusWarning70 = 'var(--syn-chart-sequential-status-warning-70)';
 
 /**
  * @type {string}
  */
-export const SynSequentialStatusWarning100 = 'var(--syn-sequential-status-warning-100)';
+export const SynChartSequentialStatusWarning80 = 'var(--syn-chart-sequential-status-warning-80)';
+
+/**
+ * @type {string}
+ */
+export const SynChartSequentialStatusWarning90 = 'var(--syn-chart-sequential-status-warning-90)';
+
+/**
+ * @type {string}
+ */
+export const SynChartSequentialStatusWarning100 = 'var(--syn-chart-sequential-status-warning-100)';

@@ -1,5 +1,49 @@
 # Changelog
 
+## 3.17.0
+
+### Minor Changes
+
+- [#1291](https://github.com/synergy-design-system/synergy-design-system/pull/1291) [`363595e`](https://github.com/synergy-design-system/synergy-design-system/commit/363595ea1fde8baad6e11d69365732aa9f547c10) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-06-24
+
+  feat: ✨ chart axes mvp ([#1203](https://github.com/synergy-design-system/synergy-design-system/issues/1203))
+
+  This release introduces the first chart axis MVP for syn-chart.
+
+  New features:
+  - Adds and registers a Synergy ECharts light theme as default for syn-chart.
+  - Provides a config callback API with preset methods like `axesShowSplitLines()`, `axesAddXLabelIcons()`, and `axesHideLabels()` as an alternative to raw ECharts configuration objects for the _config_ property. These methods support both method chaining and sequential calling patterns for maximum flexibility.
+
+## 3.16.1
+
+### Patch Changes
+
+- [#1313](https://github.com/synergy-design-system/synergy-design-system/pull/1313) [`89a2022`](https://github.com/synergy-design-system/synergy-design-system/commit/89a2022e49b8f7aad3469ac392e5e5601b7238e8) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-24
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+## 3.16.0
+
+### Minor Changes
+
+- Released on: 2026-06-22
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+## 3.15.0
+
+### Patch Changes
+
+- [#1302](https://github.com/synergy-design-system/synergy-design-system/pull/1302) [`77a02c1`](https://github.com/synergy-design-system/synergy-design-system/commit/77a02c15b4d9310dbb24ea945629c83a7a2e4e16) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-22
+
+  fix: 🐛 Components should use correct headline styles ([#1290](https://github.com/synergy-design-system/synergy-design-system/issues/1290))
+
+  This release fixes multiple typographic issues for headers in the following components:
+  - `<syn-card>`
+  - `<syn-dialog>`
+  - `<syn-drawer>`
+  - `<syn-header>`
+
 ## 3.14.0
 
 ### Patch Changes

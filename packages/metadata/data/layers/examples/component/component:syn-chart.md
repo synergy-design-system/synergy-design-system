@@ -13,6 +13,7 @@ The default story demonstrates a basic line chart configuration. The chart is co
       xAxis: {
         data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
         type: "category",
+        name: "Days",
       },
       yAxis: { type: "value" },
     };
@@ -29,12 +30,14 @@ The config property is the main way to configure the chart. It accepts an object
 ```html
 <syn-chart id="chart-config"></syn-chart>
 <script type="module">
-  const chart = document.querySelector("#chart-config");
-  chart.config = {
-    series: [{ data: [150, 230, 224], type: "line" }],
-    xAxis: { data: ["Mon", "Tue", "Wed"], type: "category" },
-    yAxis: { type: "value" },
-  };
+  const charts = document.querySelectorAll("#chart-config");
+  charts.forEach((chart) => {
+    chart.config = {
+      series: [{ data: [150, 230, 224], type: "line" }],
+      xAxis: { data: ["Mon", "Tue", "Wed"], type: "category" },
+      yAxis: { type: "value" },
+    };
+  });
 </script>
 ```
 
@@ -47,51 +50,53 @@ Use the palette attribute to apply a Synergy design token color palette to chart
 ```html
 <syn-chart id="chart-palette" palette="sequential-01"></syn-chart>
 <script type="module">
-  const chart = document.querySelector("#chart-palette");
-  chart.config = {
-    series: [
-      {
-        data: [150, 230, 224, 218, 135, 147, 260],
-        name: "Series A",
-        type: "line",
+  const charts = document.querySelectorAll("#chart-palette");
+  charts.forEach((chart) => {
+    chart.config = {
+      series: [
+        {
+          data: [150, 230, 224, 218, 135, 147, 260],
+          name: "Series A",
+          type: "line",
+        },
+        {
+          data: [80, 130, 180, 100, 90, 120, 200],
+          name: "Series B",
+          type: "line",
+        },
+        {
+          data: [200, 160, 140, 170, 210, 180, 150],
+          name: "Series C",
+          type: "line",
+        },
+        {
+          data: [100, 120, 150, 80, 70, 110, 130],
+          name: "Series D",
+          type: "line",
+        },
+        {
+          data: [180, 200, 170, 190, 220, 210, 240],
+          name: "Series E",
+          type: "line",
+        },
+        {
+          data: [90, 110, 130, 70, 60, 100, 120],
+          name: "Series F",
+          type: "line",
+        },
+        {
+          data: [160, 190, 150, 200, 230, 220, 250],
+          name: "Series G",
+          type: "line",
+        },
+      ],
+      xAxis: {
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        type: "category",
       },
-      {
-        data: [80, 130, 180, 100, 90, 120, 200],
-        name: "Series B",
-        type: "line",
-      },
-      {
-        data: [200, 160, 140, 170, 210, 180, 150],
-        name: "Series C",
-        type: "line",
-      },
-      {
-        data: [100, 120, 150, 80, 70, 110, 130],
-        name: "Series D",
-        type: "line",
-      },
-      {
-        data: [180, 200, 170, 190, 220, 210, 240],
-        name: "Series E",
-        type: "line",
-      },
-      {
-        data: [90, 110, 130, 70, 60, 100, 120],
-        name: "Series F",
-        type: "line",
-      },
-      {
-        data: [160, 190, 150, 200, 230, 220, 250],
-        name: "Series G",
-        type: "line",
-      },
-    ],
-    xAxis: {
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      type: "category",
-    },
-    yAxis: { type: "value" },
-  };
+      yAxis: { type: "value" },
+    };
+  });
 </script>
 ```
 
@@ -114,20 +119,22 @@ Use getInstance() to access the underlying ECharts instance directly and work wi
   event payload.
 </p>
 <script type="module">
-  const chart = document.querySelector("#chart-get-instance");
-  chart.config = {
-    series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
-    tooltip: { trigger: "item" },
-    xAxis: {
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      type: "category",
-    },
-    yAxis: { type: "value" },
-  };
-  const chartInstance = chart.getInstance();
-  chartInstance.on("click", (params) =>
-    console.log("ECharts click event:", params),
-  );
+  const charts = document.querySelectorAll("#chart-get-instance");
+  charts.forEach((chart) => {
+    chart.config = {
+      series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
+      tooltip: { trigger: "item" },
+      xAxis: {
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        type: "category",
+      },
+      yAxis: { type: "value" },
+    };
+    const chartInstance = chart.getInstance();
+    chartInstance.on("click", (params) =>
+      console.log("ECharts click event:", params),
+    );
+  });
 </script>
 ```
 
@@ -140,52 +147,54 @@ You can use multiple charts in one <syn-chart> instance, each with its own confi
 ```html
 <syn-chart id="chart-multiple-charts" palette="categorical"></syn-chart>
 <script type="module">
-  const chart = document.querySelector("#chart-multiple-charts");
+  const charts = document.querySelectorAll("#chart-multiple-charts");
 
   const getHexValueFromVariable = (val) =>
     getComputedStyle(document.documentElement).getPropertyValue(val).trim();
 
-  chart.config = {
-    series: [
-      {
-        data: [160, 185, 180, 175, 150, 160, 190],
-        name: "Series A",
-        type: "line",
+  charts.forEach((chart) => {
+    chart.config = {
+      series: [
+        {
+          data: [160, 185, 180, 175, 150, 160, 190],
+          name: "Series A",
+          type: "line",
+        },
+        {
+          data: [170, 165, 155, 168, 180, 170, 158],
+          name: "Series B",
+          type: "line",
+        },
+        {
+          data: [165, 175, 158, 172, 182, 175, 185],
+          name: "Series C",
+          type: "line",
+        },
+        {
+          color: [getHexValueFromVariable("--syn-sequential-05-80")],
+          data: [80, 60, 90, 50, 70, 55, 85],
+          name: "Series D",
+          type: "line",
+        },
+        {
+          color: [getHexValueFromVariable("--syn-sequential-05-60")],
+          data: [65, 75, 55, 80, 45, 70, 60],
+          name: "Series E",
+          type: "line",
+        },
+        {
+          color: [getHexValueFromVariable("--syn-sequential-05-40")],
+          data: [50, 70, 60, 45, 55, 65, 75],
+          name: "Series F",
+          type: "line",
+        },
+      ],
+      xAxis: {
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        type: "category",
       },
-      {
-        data: [170, 165, 155, 168, 180, 170, 158],
-        name: "Series B",
-        type: "line",
-      },
-      {
-        data: [165, 175, 158, 172, 182, 175, 185],
-        name: "Series C",
-        type: "line",
-      },
-      {
-        color: [getHexValueFromVariable("--syn-sequential-05-80")],
-        data: [80, 60, 90, 50, 70, 55, 85],
-        name: "Series D",
-        type: "line",
-      },
-      {
-        color: [getHexValueFromVariable("--syn-sequential-05-60")],
-        data: [65, 75, 55, 80, 45, 70, 60],
-        name: "Series E",
-        type: "line",
-      },
-      {
-        color: [getHexValueFromVariable("--syn-sequential-05-40")],
-        data: [50, 70, 60, 45, 55, 65, 75],
-        name: "Series F",
-        type: "line",
-      },
-    ],
-    xAxis: {
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      type: "category",
-    },
-    yAxis: { type: "value" },
-  };
+      yAxis: { type: "value" },
+    };
+  });
 </script>
 ```

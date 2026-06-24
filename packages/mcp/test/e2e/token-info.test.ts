@@ -57,7 +57,7 @@ describe('token-info tool', () => {
     const listContent = typedResponse.content[1];
 
     assert.equal(listContent.type, 'text');
-    assert.match(listContent.text, /--syn-categorical-/i);
+    assert.match(listContent.text, /--syn-chart-categorical-/i);
   });
 
   it('falls back to sick2025-light when sick2018-light is requested with tokenScope "charts"', async () => {

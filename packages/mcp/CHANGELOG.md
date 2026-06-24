@@ -1,5 +1,64 @@
 # Changelog
 
+## 3.17.0
+
+### Minor Changes
+
+- [#1291](https://github.com/synergy-design-system/synergy-design-system/pull/1291) [`363595e`](https://github.com/synergy-design-system/synergy-design-system/commit/363595ea1fde8baad6e11d69365732aa9f547c10) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-06-24
+
+  feat: ✨ chart axes mvp ([#1203](https://github.com/synergy-design-system/synergy-design-system/issues/1203))
+
+  This release introduces the first chart axis MVP for syn-chart.
+
+  New features:
+  - Adds and registers a Synergy ECharts light theme as default for syn-chart.
+  - Provides a config callback API with preset methods like `axesShowSplitLines()`, `axesAddXLabelIcons()`, and `axesHideLabels()` as an alternative to raw ECharts configuration objects for the _config_ property. These methods support both method chaining and sequential calling patterns for maximum flexibility.
+
+### Patch Changes
+
+- Updated dependencies [[`363595e`](https://github.com/synergy-design-system/synergy-design-system/commit/363595ea1fde8baad6e11d69365732aa9f547c10)]:
+  - @synergy-design-system/metadata@3.17.0
+
+## 3.16.1
+
+### Patch Changes
+
+- [#1313](https://github.com/synergy-design-system/synergy-design-system/pull/1313) [`89a2022`](https://github.com/synergy-design-system/synergy-design-system/commit/89a2022e49b8f7aad3469ac392e5e5601b7238e8) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-24
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+- Updated dependencies [[`89a2022`](https://github.com/synergy-design-system/synergy-design-system/commit/89a2022e49b8f7aad3469ac392e5e5601b7238e8)]:
+  - @synergy-design-system/assets@2.1.3
+  - @synergy-design-system/metadata@3.16.1
+
+## 3.16.0
+
+### Minor Changes
+
+- [#1301](https://github.com/synergy-design-system/synergy-design-system/pull/1301) [`672f061`](https://github.com/synergy-design-system/synergy-design-system/commit/672f061900dada6eb4bab892ec6bb945dde009be) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-22
+
+  feat: ✨ Allow the MCP server to create spritesheets for applications ([#923](https://github.com/synergy-design-system/synergy-design-system/issues/923))
+
+  This release adds a new tool `create-spritesheet` that can be used to generate synergy compatible SVG spritesheets. It also includes a prompt `/create-spritesheet` that can be used to create the spritesheet, write it to the filesystem and register the icon library.
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@3.16.0
+
+## 3.15.0
+
+### Minor Changes
+
+- Released on: 2026-06-22
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`77a02c1`](https://github.com/synergy-design-system/synergy-design-system/commit/77a02c15b4d9310dbb24ea945629c83a7a2e4e16)]:
+  - @synergy-design-system/metadata@3.15.0
+
 ## 3.14.0
 
 ### Minor Changes

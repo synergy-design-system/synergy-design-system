@@ -1,5 +1,45 @@
 # @synergy-design-system/vue
 
+## 3.16.0
+
+### Minor Changes
+
+- [#1291](https://github.com/synergy-design-system/synergy-design-system/pull/1291) [`363595e`](https://github.com/synergy-design-system/synergy-design-system/commit/363595ea1fde8baad6e11d69365732aa9f547c10) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-06-24
+
+  feat: ✨ chart axes mvp ([#1203](https://github.com/synergy-design-system/synergy-design-system/issues/1203))
+
+  This release introduces the first chart axis MVP for syn-chart.
+
+  New features:
+  - Adds and registers a Synergy ECharts light theme as default for syn-chart.
+  - Provides a config callback API with preset methods like `axesShowSplitLines()`, `axesAddXLabelIcons()`, and `axesHideLabels()` as an alternative to raw ECharts configuration objects for the _config_ property. These methods support both method chaining and sequential calling patterns for maximum flexibility.
+
+### Patch Changes
+
+- Updated dependencies [[`363595e`](https://github.com/synergy-design-system/synergy-design-system/commit/363595ea1fde8baad6e11d69365732aa9f547c10), [`363595e`](https://github.com/synergy-design-system/synergy-design-system/commit/363595ea1fde8baad6e11d69365732aa9f547c10)]:
+  - @synergy-design-system/components@3.16.0
+  - @synergy-design-system/tokens@3.16.0
+
+## 3.15.7
+
+### Patch Changes
+
+- [#1313](https://github.com/synergy-design-system/synergy-design-system/pull/1313) [`89a2022`](https://github.com/synergy-design-system/synergy-design-system/commit/89a2022e49b8f7aad3469ac392e5e5601b7238e8) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-24
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+- Updated dependencies [[`89a2022`](https://github.com/synergy-design-system/synergy-design-system/commit/89a2022e49b8f7aad3469ac392e5e5601b7238e8)]:
+  - @synergy-design-system/components@3.15.7
+  - @synergy-design-system/tokens@3.15.7
+
+## 3.15.6
+
+### Patch Changes
+
+- Updated dependencies [[`77a02c1`](https://github.com/synergy-design-system/synergy-design-system/commit/77a02c15b4d9310dbb24ea945629c83a7a2e4e16)]:
+  - @synergy-design-system/components@3.15.6
+  - @synergy-design-system/tokens@3.15.6
+
 ## 3.15.5
 
 ### Patch Changes

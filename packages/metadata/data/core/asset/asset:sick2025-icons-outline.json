@@ -152200,7 +152200,7 @@
   "name": "sick2025 Icons (Outline)",
   "package": "assets",
   "relations": [],
-  "since": "2.1.2",
+  "since": "2.1.3",
   "sources": [
     "packages/assets/src/sick2025/js/outline.ts"
   ],

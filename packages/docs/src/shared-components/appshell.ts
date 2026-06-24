@@ -81,6 +81,13 @@ export const createFooter = () => html`
  */
 export const createSharedStyles = () => html`
   <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       margin: 0 !important;
       padding: 0 !important;

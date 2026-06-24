@@ -1,24 +1,22 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
   :host {
     --size: 25rem;
-    --header-spacing: var(--syn-spacing-large);
-    --body-spacing: var(--syn-spacing-large);
-    --footer-spacing: var(--syn-spacing-large);
+    --header-spacing: var(--syn-spacing-large) var(--syn-spacing-x-small) var(--syn-spacing-large) var(--syn-spacing-large);
+    --body-spacing: var(--syn-spacing-medium) var(--syn-spacing-large);
+    --footer-spacing: var(--syn-spacing-medium) var(--syn-spacing-large) var(--syn-spacing-large) var(--syn-spacing-medium);
 
     display: contents;
   }
 
   .drawer {
-    top: 0;
-    inset-inline-start: 0;
-    width: 100%;
     height: 100%;
-    pointer-events: none;
+    inset-inline-start: 0;
     overflow: hidden;
+    pointer-events: none;
+    top: 0;
+    width: 100%;
   }
 
   .drawer--contained {
@@ -32,16 +30,17 @@ export default css`
   }
 
   .drawer__panel {
-    position: absolute;
+    background-color: var(--syn-panel-background-color);
+    border: 0 solid var(--syn-panel-border-color);
+    color: var(--syn-color-neutral-950);
     display: flex;
     flex-direction: column;
-    z-index: 2;
-    max-width: 100%;
     max-height: 100%;
-    background-color: var(--syn-panel-background-color);
-    box-shadow: var(--syn-shadow-x-large);
+    max-width: 100%;
     overflow: auto;
     pointer-events: all;
+    position: absolute;
+    z-index: 2;
   }
 
   .drawer__panel:focus {
@@ -49,39 +48,39 @@ export default css`
   }
 
   .drawer--top .drawer__panel {
-    top: 0;
-    inset-inline-end: auto;
+    border-bottom-width: var(--syn-border-width-small);
     bottom: auto;
-    inset-inline-start: 0;
-    width: 100%;
     height: var(--size);
+    inset-inline: 0 auto;
+    top: 0;
+    width: 100%;
   }
 
   .drawer--end .drawer__panel {
-    top: 0;
-    inset-inline-end: 0;
+    border-left-width: var(--syn-border-width-small);
     bottom: auto;
-    inset-inline-start: auto;
-    width: var(--size);
     height: 100%;
+    inset-inline: auto 0;
+    top: 0;
+    width: var(--size);
   }
 
   .drawer--bottom .drawer__panel {
-    top: auto;
-    inset-inline-end: auto;
+    border-top-width: var(--syn-border-width-small);
     bottom: 0;
-    inset-inline-start: 0;
-    width: 100%;
     height: var(--size);
+    inset-inline: 0 auto;
+    top: auto;
+    width: 100%;
   }
 
   .drawer--start .drawer__panel {
-    top: 0;
-    inset-inline-end: auto;
+    border-right-width: var(--syn-border-width-small);
     bottom: auto;
-    inset-inline-start: 0;
-    width: var(--size);
     height: 100%;
+    inset-inline: 0 auto;
+    top: 0;
+    width: var(--size);
   }
 
   .drawer__header {
@@ -89,42 +88,44 @@ export default css`
   }
 
   .drawer__title {
+    align-items: center;
+    display: flex;
     flex: 1 1 auto;
-    font: inherit;
-    font-size: var(--syn-font-size-large);
-    line-height: var(--syn-line-height-dense);
-    padding: var(--header-spacing);
+    font: var(--syn-heading-x-large);
     margin: 0;
+    padding: var(--header-spacing);
   }
 
   .drawer__header-actions {
-    flex-shrink: 0;
+    align-items: flex-start;
     display: flex;
+    flex-shrink: 0;
     flex-wrap: wrap;
+    gap: var(--syn-spacing-x-small);
     justify-content: end;
-    gap: var(--syn-spacing-2x-small);
-    padding: 0 var(--header-spacing);
+    padding: var(--syn-spacing-large) var(--syn-spacing-small) var(--syn-spacing-large) 0;
   }
 
   .drawer__header-actions syn-icon-button,
   .drawer__header-actions ::slotted(syn-icon-button) {
-    flex: 0 0 auto;
-    display: flex;
     align-items: center;
-    font-size: var(--syn-font-size-medium);
+    color: var(--syn-color-neutral-950);
+    display: flex;
+    flex: 0 0 auto;
+    font-size: var(--syn-font-size-x-large);
   }
 
   .drawer__body {
-    flex: 1 1 auto;
     display: block;
-    padding: var(--body-spacing);
+    flex: 1 1 auto;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+    padding: var(--body-spacing);
   }
 
   .drawer__footer {
-    text-align: right;
     padding: var(--footer-spacing);
+    text-align: right;
   }
 
   .drawer__footer ::slotted(syn-button:not(:last-of-type)) {
@@ -136,14 +137,11 @@ export default css`
   }
 
   .drawer__overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     background-color: var(--syn-overlay-background-color);
+    display: block;
+    inset: 0;
     pointer-events: all;
+    position: fixed;
   }
 
   .drawer--contained .drawer__overlay {

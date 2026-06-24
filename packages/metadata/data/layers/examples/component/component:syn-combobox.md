@@ -498,24 +498,6 @@ The filtered options shown in the list can be customized by passing a function t
   // the highlight option renderer utility function can be imported via:
   // import { highlightOptionRenderer } from '@synergy-design-system/components';
 
-  // preview-ignore:start
-  const highlightOptionRenderer = (e, t) => {
-    if (!t) return e;
-    let n = e.cloneNode(!0),
-      r = n.getTextLabel();
-    n.selected = e.selected;
-    let i = r.toLowerCase().indexOf(t.toLowerCase()),
-      a = n.innerHTML.indexOf(r),
-      o = document.createElement(`mark`);
-    ((o.textContent = r.slice(i, i + t.length)),
-      o.classList.add(`syn-highlight-style`));
-    let s = r.replace(new RegExp(t, `i`), o.outerHTML),
-      c = n.innerHTML.slice(0, a),
-      l = n.innerHTML.slice(a + r.length);
-    return ((n.innerHTML = c.concat(s, l)), n);
-  };
-  // preview-ignore:end
-
   const comboboxes = document.querySelectorAll(".highlight-combobox");
   comboboxes.forEach((combobox) => {
     combobox.getOption = highlightOptionRenderer;

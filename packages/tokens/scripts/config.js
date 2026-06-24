@@ -50,7 +50,7 @@ export const COMPONENTS_COLLECTION_NAME = 'Synergy Themes';
 /**
  * The name of the variable collection in Figma that contains the Synergy themes for charting.
  */
-export const CHART_COLLECTION_NAME = 'Chart Themes';
+export const CHART_COLLECTION_NAME = 'Charts';
 
 /**
  * List of static changed to variables for specific themes and modes.

@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.15.5
+ * @synergy-design-system/tokens version 3.16.0
  * SICK Global UX Foundation
  */
 
@@ -2127,6 +2127,16 @@ export const SynTypographyColorText = 'var(--syn-typography-color-text)';
  * @type {string}
  */
 export const SynTypographyColorTextInverted = 'var(--syn-typography-color-text-inverted)';
+
+/**
+ * @type {string}
+ */
+export const SynTypographyColorTextQuiet = 'var(--syn-typography-color-text-quiet)';
+
+/**
+ * @type {string}
+ */
+export const SynTypographyColorTextQuietInverted = 'var(--syn-typography-color-text-quiet-inverted)';
 
 /**
  * @type {string}

@@ -13,14 +13,12 @@ import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { setNestedProperty } from '../helpers.js';
 import {
-  createDirectory, formatColor, getAliasValue, getAvailableThemes, resolveAlias,
+  createDirectory, formatColor, getAliasValue, getAvailableThemes,
 } from './helpers.js';
 import stylesJson from '../../src/figma-variables/styleTokens.json' with { type: 'json' };
 import variablesJson from '../../src/figma-variables/variableTokens.json' with { type: 'json' };
 import { COMPONENTS_COLLECTION_NAME, COMPONENTS_OUTPUT_DIR } from '../config.js';
-
-/**
- */
+import { resolveAlias } from './transformer-variables-generic.js';
 
 /** @type {VariablesAndCollections} */
 const figmaVariables = /** @type {VariablesAndCollections} */ (/** @type {unknown} */ (variablesJson));

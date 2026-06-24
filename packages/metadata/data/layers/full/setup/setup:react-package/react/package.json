@@ -43,9 +43,9 @@
     "directory": "packages/react"
   },
   "type": "module",
-  "version": "3.15.5",
+  "version": "3.16.0",
   "devDependencies": {
-    "@types/react": "^19.2.16",
+    "@types/react": "^19.2.17",
     "react": "^19.2.7"
   },
   "peerDependencies": {

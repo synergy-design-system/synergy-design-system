@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.17.0
+
+### Minor Changes
+
+- [#1291](https://github.com/synergy-design-system/synergy-design-system/pull/1291) [`363595e`](https://github.com/synergy-design-system/synergy-design-system/commit/363595ea1fde8baad6e11d69365732aa9f547c10) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-06-24
+
+  feat: ✨ chart axes mvp ([#1203](https://github.com/synergy-design-system/synergy-design-system/issues/1203))
+
+  This release introduces the first chart axis MVP for syn-chart.
+
+  New features:
+  - Adds and registers a Synergy ECharts light theme as default for syn-chart.
+  - Provides a config callback API with preset methods like `axesShowSplitLines()`, `axesAddXLabelIcons()`, and `axesHideLabels()` as an alternative to raw ECharts configuration objects for the _config_ property. These methods support both method chaining and sequential calling patterns for maximum flexibility.
+
 ## 3.16.1
 
 ### Patch Changes

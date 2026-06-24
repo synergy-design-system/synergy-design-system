@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.16.0
+
+### Minor Changes
+
+- [#1291](https://github.com/synergy-design-system/synergy-design-system/pull/1291) [`363595e`](https://github.com/synergy-design-system/synergy-design-system/commit/363595ea1fde8baad6e11d69365732aa9f547c10) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-06-24
+
+  feat: ✨ Prefix all chart tokens, add new component and chart tokens
+
+  **Prefixing chart tokens**
+  - chart-related tokens now use a dedicated `chart` prefix to ensure clear scoping and avoid naming conflicts.
+
+  **Component tokens**
+  - `--syn-typography-color-text-quiet`
+  - `--syn-typography-color-text-quiet-inverted`
+
+  **Chart tokens**:
+  - `--syn-chart-grid-lines-color`
+  - `--syn-chart-grid-lines-color-emphasize`
+
 ## 3.15.7
 
 ### Patch Changes

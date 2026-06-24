@@ -3,8 +3,8 @@
 import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';
-import { replaceCodePlugin } from 'vite-plugin-replace';
 import VitePluginCustomElementsManifest from 'vite-plugin-cem';
+import { replaceCodePlugin } from './src/vite-plugin-synergy-replace/index.js';
 import packageJson from '../components/package.json';
 import customElementConfig from '../components/custom-elements-manifest.config.js';
 import vitePluginSynergyStyles from './src/vite-plugin-synergy-styles/index.js';

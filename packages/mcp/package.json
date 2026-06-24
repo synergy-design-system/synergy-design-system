@@ -16,7 +16,7 @@
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@toon-format/toon": "^2.1.0",
-    "@types/node": "^24.12.4",
+    "@types/node": "^24.13.2",
     "eslint": "^9.39.4",
     "tiktoken": "^1.0.22",
     "typescript": "^5.9.3"

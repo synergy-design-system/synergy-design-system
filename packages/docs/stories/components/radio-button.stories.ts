@@ -82,6 +82,33 @@ export const Checked: Story = {
     },
   },
   render: () => html`
+    <syn-radio-group label="Select an option" name="b" value="2">
+      <syn-radio-button value="1">Option 1</syn-radio-button>
+      <syn-radio-button value="2">Option 2</syn-radio-button>
+      <syn-radio-button value="3">Option 3</syn-radio-button>
+    </syn-radio-group>
+  `,
+};
+
+export const Focus: Story = {
+  parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-button', 'focus'),
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const radio = canvasElement.querySelector('syn-radio-group');
+    if (radio) {
+      await radio.updateComplete;
+      radio.focus();
+    }
+  },
+  render: () => html`
     <syn-radio-group label="Select an option" name="b" value="1">
       <syn-radio-button value="1">Option 1</syn-radio-button>
       <syn-radio-button value="2">Option 2</syn-radio-button>
@@ -100,7 +127,7 @@ export const Disabled: Story = {
   },
   render: () => html`
     <syn-radio-group label="Select an option" name="b" value="1">
-      <syn-radio-button value="1">Option 1</syn-radio-button>
+      <syn-radio-button value="1" disabled>Option 1</syn-radio-button>
       <syn-radio-button value="2" disabled>Option 2</syn-radio-button>
       <syn-radio-button value="3">Option 3</syn-radio-button>
     </syn-radio-group>
@@ -127,6 +154,27 @@ export const Readonly: Story = {
         <syn-radio-button value="2">Option 2</syn-radio-button>
         <syn-radio-button value="3">Option 3</syn-radio-button>
       </syn-radio-group>
+    </div>
+  `,
+};
+
+export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-button', 'sizes'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium);">
+      ${(['small', 'medium', 'large'] as const).map(size => html`
+        <syn-radio-group label="Select an option" name="size" size=${size} value="1">
+          <syn-radio-button value="1">Option 1</syn-radio-button>
+          <syn-radio-button value="2">Option 2</syn-radio-button>
+          <syn-radio-button value="3">Option 3</syn-radio-button>
+        </syn-radio-group>
+      `)}
     </div>
   `,
 };
@@ -167,27 +215,6 @@ export const Invalid: Story = {
       <syn-radio-button value="2">Option 2</syn-radio-button>
       <syn-radio-button value="3">Option 3</syn-radio-button>
     </syn-radio-group>
-  `,
-};
-
-export const Sizes: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('radio-button', 'sizes'),
-      },
-    },
-  },
-  render: () => html`
-    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium);">
-      ${(['small', 'medium', 'large'] as const).map(size => html`
-        <syn-radio-group label="Select an option" name="size" size=${size} value="1">
-          <syn-radio-button value="1">Option 1</syn-radio-button>
-          <syn-radio-button value="2">Option 2</syn-radio-button>
-          <syn-radio-button value="3">Option 3</syn-radio-button>
-        </syn-radio-group>
-      `)}
-    </div>
   `,
 };
 

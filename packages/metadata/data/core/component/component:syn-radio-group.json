@@ -173,6 +173,17 @@
             "type": "text",
             "value": "Checked"
           }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Radio buttons offer an alternate way to display radio controls. In this case, an internal button group is used to group the buttons into a single, cohesive control."
+          },
+          "name": "radio-buttons",
+          "title": {
+            "type": "text",
+            "value": "Radio Buttons"
+          }
         }
       ],
       "storySourcePath": "components.radio-group",

@@ -1671,8 +1671,12 @@
       }
     }
   },
-  "radio-button-group": {
+  "radio-button": {
     "border": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.950}"
+      },
       "radius-large": {
         "type": "sizing",
         "value": "{border-radius.small}"

@@ -8,7 +8,7 @@ export default css`
   .button {
     /* Medium size is the default */
     --syn-radio-button-height: 32px;
-    --syn-radio-button-radius: var(--syn-radio-button-group-border-radius-medium);
+    --syn-radio-button-radius: var(--syn-radio-button-border-radius-medium);
 
     border-radius: var(--syn-radio-button-radius);
     font-weight: normal;
@@ -18,12 +18,12 @@ export default css`
 
   .button--small {
     --syn-radio-button-height: 24px;
-    --syn-radio-button-radius: var(--syn-radio-button-group-border-radius-small);
+    --syn-radio-button-radius: var(--syn-radio-button-border-radius-small);
   }
 
   .button--large {
     --syn-radio-button-height: 48px;
-    --syn-radio-button-radius: var(--syn-radio-button-group-border-radius-large);
+    --syn-radio-button-radius: var(--syn-radio-button-border-radius-large);
   }
 
   /**
@@ -44,6 +44,17 @@ export default css`
   .button--text:hover:not(.button--disabled):not(.button--readonly) {
     background: var(--syn-interactive-background-color-hover);
     color: var(--syn-interactive-quiet-color-hover);
+  }
+
+  /**
+   * Disabled active buttons should look like their default state, but with opacity applied.
+   * This overrides the defaults from the button component.
+   * Note we cannot use syn-button-color because it will be the wrong color in dark mode.
+   */
+  .button--filled.button--primary.button--disabled {
+    background: var(--syn-interactive-emphasis-color);
+    border-color: var(--syn-interactive-emphasis-color);
+    color: var(--syn-color-neutral-0);
   }
 
   /**

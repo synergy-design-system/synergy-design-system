@@ -148,11 +148,6 @@ const DESIGN_ONLY_VARIABLES_REGEX = [
   // Currently not used in dev
   // @TODO: Check with design if these are really needed and add it in dev or remove them in figma
   /component\/input\/focus-ring\/width/,
-
-  /**
-   * @todo: These tokens are old and must be removed in figma. They are not used in dev and should not be used in design anymore.
-   */
-  /component\/radio-button-group/,
 ];
 
 /**

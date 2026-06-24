@@ -46,7 +46,96 @@
     "override": {
       "figmaComponentId": "47863-30109",
       "figmaDocsId": "49697-83768",
-      "stories": [],
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Radio buttons allow the user to select a single option from a group using a button-like control.\n\nRadio buttons are designed to be used with radio groups. When a radio button has focus, the arrow keys can be used to change the selected option just like standard radio controls."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Radio Button"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To set the initial value and checked state, use the value attribute on the containing radio group."
+          },
+          "name": "checked",
+          "title": {
+            "type": "text",
+            "value": "Checked"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable a radio button."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Readonly"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio-button is mandatory and nothing has been checked."
+          },
+          "name": "invalid",
+          "title": {
+            "type": "text",
+            "value": "Invalid"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a radio button’s size."
+          },
+          "name": "sizes",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the prefix and suffix slots to add icons."
+          },
+          "name": "prefix-suffix",
+          "title": {
+            "type": "text",
+            "value": "Prefix and Suffix Icons"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "You can omit button labels and use icons instead. Make sure to set a label attribute on each icon so screen readers will announce each option correctly."
+          },
+          "name": "buttons-with-icons",
+          "title": {
+            "type": "text",
+            "value": "Buttons with Icons"
+          }
+        }
+      ],
       "storySourcePath": "components.radio-button",
       "storyTags": [
         "Form"

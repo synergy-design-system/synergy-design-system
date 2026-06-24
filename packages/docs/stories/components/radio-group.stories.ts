@@ -1,5 +1,6 @@
 import '../../../components/src/components/radio-group/radio-group.js';
 import '../../../components/src/components/radio/radio.js';
+import '../../../components/src/components/radio-button/radio-button.js';
 import '../../../components/src/components/button/button.js';
 import type { SynRadioGroup } from '@synergy-design-system/components';
 import type { Meta, StoryObj } from '@storybook/web-components-vite';
@@ -308,6 +309,23 @@ export const CustomValidity: Story = {
   `,
 };
 
+export const RadioButtons: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-group', 'radio-buttons'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-radio-group label="Select an option" value="Option 1" help-text="Select an option that makes you proud.">
+      <syn-radio-button value="Option 1">Option 1</syn-radio-button>
+      <syn-radio-button value="Option 2">Option 2</syn-radio-button>
+      <syn-radio-button value="Option 3">Option 3</syn-radio-button>
+    </syn-radio-group>
+  `,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
@@ -318,5 +336,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Disabled,
   Readonly,
   Sizes,
+  RadioButtons,
 }, 400);
 /* eslint-enable sort-keys */

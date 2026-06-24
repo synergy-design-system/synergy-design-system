@@ -18,6 +18,20 @@ Radio buttons allow the user to select a single option from a group using a butt
 To set the initial value and checked state, use the value attribute on the containing radio group.
 
 ```html
+<syn-radio-group label="Select an option" name="b" value="2">
+  <syn-radio-button value="1">Option 1</syn-radio-button>
+  <syn-radio-button value="2">Option 2</syn-radio-button>
+  <syn-radio-button value="3">Option 3</syn-radio-button>
+</syn-radio-group>
+```
+
+---
+
+## Focus
+
+The focus event gives the user feedback that the radio button has been focused by the keyboard interaction.
+
+```html
 <syn-radio-group label="Select an option" name="b" value="1">
   <syn-radio-button value="1">Option 1</syn-radio-button>
   <syn-radio-button value="2">Option 2</syn-radio-button>
@@ -33,7 +47,7 @@ Use the disabled attribute to disable a radio button.
 
 ```html
 <syn-radio-group label="Select an option" name="b" value="1">
-  <syn-radio-button value="1">Option 1</syn-radio-button>
+  <syn-radio-button value="1" disabled="">Option 1</syn-radio-button>
   <syn-radio-button value="2" disabled="">Option 2</syn-radio-button>
   <syn-radio-button value="3">Option 3</syn-radio-button>
 </syn-radio-group>
@@ -56,6 +70,36 @@ Add the read-only attribute to render a readonly radio button. Please note that 
   </syn-radio-group>
   <syn-radio-group label="Select an option" name="b" value="1">
     <syn-radio-button value="1" readonly="">Option 1</syn-radio-button>
+    <syn-radio-button value="2">Option 2</syn-radio-button>
+    <syn-radio-button value="3">Option 3</syn-radio-button>
+  </syn-radio-group>
+</div>
+```
+
+---
+
+## Sizes
+
+Use the size attribute to change a radio button’s size.
+
+```html
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium)"
+>
+  <syn-radio-group label="Select an option" name="size" value="1" size="small">
+    <syn-radio-button value="1">Option 1</syn-radio-button>
+    <syn-radio-button value="2">Option 2</syn-radio-button>
+    <syn-radio-button value="3">Option 3</syn-radio-button>
+  </syn-radio-group>
+
+  <syn-radio-group label="Select an option" name="size" value="1" size="medium">
+    <syn-radio-button value="1">Option 1</syn-radio-button>
+    <syn-radio-button value="2">Option 2</syn-radio-button>
+    <syn-radio-button value="3">Option 3</syn-radio-button>
+  </syn-radio-group>
+
+  <syn-radio-group label="Select an option" name="size" value="1" size="large">
+    <syn-radio-button value="1">Option 1</syn-radio-button>
     <syn-radio-button value="2">Option 2</syn-radio-button>
     <syn-radio-button value="3">Option 3</syn-radio-button>
   </syn-radio-group>
@@ -99,36 +143,6 @@ The invalid status is used to warn the user that the Radio Group is invalid. For
     align-self: flex-start;
   }
 </style>
-```
-
----
-
-## Sizes
-
-Use the size attribute to change a radio button’s size.
-
-```html
-<div
-  style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium)"
->
-  <syn-radio-group label="Select an option" name="size" value="1" size="small">
-    <syn-radio-button value="1">Option 1</syn-radio-button>
-    <syn-radio-button value="2">Option 2</syn-radio-button>
-    <syn-radio-button value="3">Option 3</syn-radio-button>
-  </syn-radio-group>
-
-  <syn-radio-group label="Select an option" name="size" value="1" size="medium">
-    <syn-radio-button value="1">Option 1</syn-radio-button>
-    <syn-radio-button value="2">Option 2</syn-radio-button>
-    <syn-radio-button value="3">Option 3</syn-radio-button>
-  </syn-radio-group>
-
-  <syn-radio-group label="Select an option" name="size" value="1" size="large">
-    <syn-radio-button value="1">Option 1</syn-radio-button>
-    <syn-radio-button value="2">Option 2</syn-radio-button>
-    <syn-radio-button value="3">Option 3</syn-radio-button>
-  </syn-radio-group>
-</div>
 ```
 
 ---

@@ -2105,6 +2105,16 @@
           "type": "text"
         }
       },
+      "focus": {
+        "description": {
+          "value": "The focus event gives the user feedback that the radio button has been focused by the keyboard interaction.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        }
+      },
       "disabled": {
         "description": {
           "value": "Use the disabled attribute to disable a radio button.",
@@ -2274,6 +2284,16 @@
         },
         "description": {
           "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+          "type": "text"
+        }
+      },
+      "radio-buttons": {
+        "title": {
+          "value": "Radio Buttons",
+          "type": "text"
+        },
+        "description": {
+          "value": "Radio buttons offer an alternate way to display radio controls. In this case, an internal button group is used to group the buttons into a single, cohesive control.",
           "type": "text"
         }
       }

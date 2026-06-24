@@ -21,7 +21,7 @@
   "name": "syn-table",
   "package": "styles",
   "relations": [],
-  "since": "2.1.1",
+  "since": "2.1.2",
   "sources": [
     "packages/styles/src/tables/table.css"
   ],

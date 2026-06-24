@@ -1,7 +1,7 @@
 {
   "custom": {
     "packageName": "@synergy-design-system/components",
-    "packageVersion": "3.15.6"
+    "packageVersion": "3.15.7"
   },
   "id": "setup:components-package",
   "kind": "setup",
@@ -40,7 +40,7 @@
   "name": "Components Package",
   "package": "components",
   "relations": [],
-  "since": "3.15.6",
+  "since": "3.15.7",
   "sources": [
     "packages/components/README.md",
     "packages/components/CHANGELOG.md",

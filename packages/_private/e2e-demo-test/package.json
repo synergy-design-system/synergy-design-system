@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
-    "@types/node": "^24.12.4",
+    "@types/node": "^24.13.2",
     "eslint": "^9.39.4",
     "serve": "^14.2.6",
     "typescript": "^5.9.3"

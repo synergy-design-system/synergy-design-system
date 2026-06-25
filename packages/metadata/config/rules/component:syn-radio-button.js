@@ -3,8 +3,9 @@
 /** @type {import('../../src/config/types.js').ComponentRules} */
 export default {
   accessibility: [
-    'Provide meaningful alternative text for icon-only radio buttons.',
-    'Communicate the group\'s function-such as filtering or view switching-through clear context or labels.',
+    'Provide meaningful alternative text for icon-only radio buttons using the label attribute.',
+    'Communicate the group\'s function—such as filtering or view switching—through clear context or labels.',
+    'Ensure each button option has a unique, non-ambiguous label to help assistive technology users understand their choices.',
   ],
   component: 'syn-radio-button',
   related: {
@@ -19,17 +20,19 @@ export default {
   usageGuidelines: [
     {
       content: [
-        'Use with light background options such as white, neutral-100, or primary-100.',
+        'Use syn-radio-button when you need button-style appearance for single option selection.',
+        'Use syn-radio for traditional radio button appearance.',
+        'Both work as form inputs when slotted inside syn-radio-group; the difference is visual presentation.',
+        'Choose syn-radio-button for use cases like filtering, view switching, or category selection where button styling enhances UX.',
+        'Slot inside syn-radio-group to participate in form submission and group state management.',
+        'Use only in groups, as they are designed to allow the user to activate one of several options. For single options, use syn-checkbox instead.',
       ],
-      id: 'background',
-      name: 'Background',
+      id: 'when_to_use',
+      name: 'When to Use',
     },
     {
       content: [
-        'Don\'t use as input method in forms, for they are not form elements. Use syn-radio instead.',
-        'Slot inside of an syn-radio-group.',
-        'Use only in groups, as they are designed to allow the user to activate one of several options. To work with a single option, use syn-checkbox instead.',
-        'Pre-select always a "default" value; there is no invalid state.',
+        'Always pre-select a "default" value. There is no invalid state; one option must always be selected.',
         'Limit the number of options in the group. Users should be able to retain all options available and not be overwhelmed by them.',
       ],
       id: 'behavior',
@@ -53,8 +56,10 @@ export default {
     },
   ],
   useCases: [
-    'Select one option from a group where one is already preselected.',
-    'Switch between groups of settings.',
-    'Filter views by a parent category.',
+    'Filter or switch between views with button-style appearance and icon support.',
+    'Select one option from a group where one is already preselected and no invalid state exists.',
+    'Switch between groups of settings with visual button presentation.',
+    'Display categorization choices with prominent, icon-enhanced options.',
+    'Preference or mode selection in UI controls where traditional form input is not needed.',
   ],
 };

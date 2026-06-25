@@ -1769,6 +1769,26 @@ export const SynProgressIndicatorColor: string;
 export const SynProgressTrackColor: string;
 
 /**
+ * Maps to the css variable `--syn-radio-button-border-color`
+ */
+export const SynRadioButtonBorderColor: string;
+
+/**
+ * Maps to the css variable `--syn-radio-button-border-radius-large`
+ */
+export const SynRadioButtonBorderRadiusLarge: string;
+
+/**
+ * Maps to the css variable `--syn-radio-button-border-radius-medium`
+ */
+export const SynRadioButtonBorderRadiusMedium: string;
+
+/**
+ * Maps to the css variable `--syn-radio-button-border-radius-small`
+ */
+export const SynRadioButtonBorderRadiusSmall: string;
+
+/**
  * Maps to the css variable `--syn-range-color-inactive`
  */
 export const SynRangeColorInactive: string;

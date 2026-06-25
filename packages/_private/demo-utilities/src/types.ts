@@ -38,6 +38,7 @@ export type DemoFormData = {
   newsletterVue: boolean;
   password: string;
   phone: string;
+  preferredContactMethod: string;
   previousNationality: string;
   previousRoles: string[];
   role: string;

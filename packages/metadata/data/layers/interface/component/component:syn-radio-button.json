@@ -10,9 +10,9 @@
     },
     {
       "default": "false",
-      "description": "Draws a pill-style radio button with rounded edges.",
-      "fieldName": "pill",
-      "name": "pill",
+      "description": "Sets the radio button to a readonly state.",
+      "fieldName": "readonly",
+      "name": "readonly",
       "reflects": true,
       "type": "boolean"
     },
@@ -72,6 +72,8 @@
       "type": "SynFocusEvent"
     }
   ],
+  "figmaComponentId": "47863-30109",
+  "figmaDocsId": "49697-83768",
   "methods": [
     {
       "description": "Removes focus from the radio button.",
@@ -97,6 +99,12 @@
   "properties": [
     {
       "access": "public",
+      "description": "",
+      "name": "defaultSlot",
+      "type": "HTMLSlotElement"
+    },
+    {
+      "access": "public",
       "default": "false",
       "description": "Disables the radio button.",
       "name": "disabled",
@@ -112,20 +120,14 @@
     {
       "access": "public",
       "description": "",
-      "name": "hiddenInput",
-      "type": "HTMLInputElement"
-    },
-    {
-      "access": "public",
-      "description": "",
       "name": "input",
       "type": "HTMLInputElement"
     },
     {
       "access": "public",
       "default": "false",
-      "description": "Draws a pill-style radio button with rounded edges.",
-      "name": "pill",
+      "description": "Sets the radio button to a readonly state.",
+      "name": "readonly",
       "type": "boolean"
     },
     {

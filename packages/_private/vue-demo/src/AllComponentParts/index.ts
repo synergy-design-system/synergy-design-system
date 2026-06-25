@@ -24,6 +24,7 @@ import DemoPagination from "./DemoPagination.vue";
 import DemoPrioNav from "./DemoPrioNav.vue";
 import DemoProgressBar from "./DemoProgressBar.vue";
 import DemoProgressRing from "./DemoProgressRing.vue";
+import DemoRadioButton from "./DemoRadioButton.vue";
 import DemoRadioGroup from "./DemoRadioGroup.vue";
 import DemoRange from "./DemoRange.vue";
 import DemoSelect from "./DemoSelect.vue";
@@ -63,6 +64,7 @@ export {
   DemoPrioNav,
   DemoProgressBar,
   DemoProgressRing,
+  DemoRadioButton,
   DemoRadioGroup,
   DemoRange,
   DemoSelect,

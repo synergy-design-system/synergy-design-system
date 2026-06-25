@@ -360,6 +360,10 @@
   --syn-panel-border-width: var(--syn-border-width-small);
   --syn-progress-indicator-color: var(--syn-color-primary-500);
   --syn-progress-track-color: var(--syn-color-neutral-300);
+  --syn-radio-button-border-color: var(--syn-color-neutral-1000);
+  --syn-radio-button-border-radius-large: var(--syn-border-radius-small);
+  --syn-radio-button-border-radius-medium: var(--syn-border-radius-small);
+  --syn-radio-button-border-radius-small: var(--syn-border-radius-small);
   --syn-range-color-inactive: var(--syn-color-neutral-300);
   --syn-range-error-color: var(--syn-color-error-600);
   --syn-range-tick-color: var(--syn-color-neutral-600);

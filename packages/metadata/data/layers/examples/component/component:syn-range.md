@@ -49,30 +49,32 @@ Use the disabled attribute to disable a range.
 The invalid status is used to warn the user that the input is invalid. As range validation is not supported by the browser, you will need to implement your own validation logic.
 
 ```html
-<form class="custom-validity">
+<form
+  onsubmit="
+    event.preventDefault();
+    event.stopPropagation();
+  "
+  id="components-syn-range--invalid"
+>
   <syn-range
     help-text="This is an error text"
     id="range-invalid"
     max="100"
     min="0"
     value="50"
-  >
-  </syn-range>
-  <syn-button type="submit">Submit</syn-button>
-</form>
-<script type="module">
-  document.querySelector("form").addEventListener("submit", (e) => {
-    e.preventDefault();
-  });
+  ></syn-range>
+  <script type="module">
+    const range = document.querySelector("#range-invalid");
+    range.setCustomValidity("Please enter a valid value");
+  </script>
 
-  const range = document.querySelector("#range-invalid");
-  range.setCustomValidity("Please enter a valid value");
-</script>
+  <syn-button type="submit" variant="filled">Submit</syn-button>
+</form>
 <style>
-  .custom-validity {
+  #components-syn-range--invalid {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--syn-spacing-large);
   }
   syn-button {
     align-self: flex-start;

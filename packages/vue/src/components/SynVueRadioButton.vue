@@ -53,16 +53,16 @@ const props = defineProps<{
   disabled?: SynRadioButton['disabled'];
 
   /**
+   * Sets the radio button to a readonly state.
+   */
+  readonly?: SynRadioButton['readonly'];
+
+  /**
 * The radio button's size.
 * When used inside a radio group, the size will be determined by the radio group's size so
 this attribute can typically be omitted.
  */
   size?: SynRadioButton['size'];
-
-  /**
-   * Draws a pill-style radio button with rounded edges.
-   */
-  pill?: SynRadioButton['pill'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

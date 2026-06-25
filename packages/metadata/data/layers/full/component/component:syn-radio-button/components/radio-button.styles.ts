@@ -51,6 +51,7 @@ export default css`
    * This overrides the defaults from the button component.
    * Note we cannot use syn-button-color because it will be the wrong color in dark mode.
    */
+  .button--filled.button--primary,
   .button--filled.button--primary.button--disabled {
     background: var(--syn-interactive-emphasis-color);
     border-color: var(--syn-interactive-emphasis-color);

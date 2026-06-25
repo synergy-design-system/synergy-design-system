@@ -173,7 +173,6 @@ export default css`
   /*
    * Text buttons
    */
-
   .button--text {
     background: transparent;
     border-color: transparent;

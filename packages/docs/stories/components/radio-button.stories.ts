@@ -151,7 +151,7 @@ export const Readonly: Story = {
       </syn-radio-group>
       <syn-radio-group label="Select an option" name="b" value="1">
         <syn-radio-button value="1" readonly>Option 1</syn-radio-button>
-        <syn-radio-button value="2">Option 2</syn-radio-button>
+        <syn-radio-button value="2" readonly>Option 2</syn-radio-button>
         <syn-radio-button value="3">Option 3</syn-radio-button>
       </syn-radio-group>
     </div>

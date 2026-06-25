@@ -14,6 +14,7 @@ const componentsUsingBlockLayout = [
   'details',
   'divider',
   'header',
+  'fieldset',
   'file',
   'menu',
   'menu-item',

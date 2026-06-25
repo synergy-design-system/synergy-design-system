@@ -1,0 +1,153 @@
+import {
+  type CSSResultGroup,
+  type PropertyValues,
+  html,
+} from 'lit';
+import { property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { HasSlotController } from '../../internal/slot.js';
+import componentStyles from '../../styles/component.styles.js';
+import SynergyElement from '../../internal/synergy-element.js';
+import styles from './fieldset.styles.js';
+import {
+  getFormElements,
+  isDisabledElement,
+} from './helpers.js';
+
+/**
+ * @summary Fieldsets are used to group related elements in a form.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-fieldset--docs
+ * @status stable
+ * @since 3.x.x
+ *
+ * @slot - The fieldset's main content. Place form controls inside the fieldset to group them together.
+ * @slot legend - Add a legend to the fieldset. This is displayed as the title of the fieldset. Alternatively, you can use the `legend` attribute.
+ * @slot description - Add a description to the fieldset. This is displayed below the legend and provides additional information about the fieldset. Alternatively, you can use the `description` attribute.
+ *
+ * @csspart base - The component's base wrapper.
+ * @csspart legend - The component's legend element.
+ * @csspart description - The component's description element.
+ * @csspart field-container - The container for the fieldset's fields.
+ *
+ * @cssproperty --item-gap - The gap between the fields in the fieldset. Defaults to `--syn-spacing-large`
+ */
+export default class SynFieldset extends SynergyElement {
+  static styles: CSSResultGroup = [componentStyles, styles];
+
+  private readonly hasSlotController = new HasSlotController(this, 'description', 'legend');
+
+  private originalDisabledStates = new WeakMap<Element, boolean>();
+
+  /**
+   * The legend for the fieldset. This is displayed as the title of the fieldset.
+   * If not provided, the fieldset will not have a description.
+   */
+  @property({ reflect: true, type: String }) description = '';
+
+  /**
+   * The legend for the fieldset. This is displayed as the title of the fieldset.
+   * If not provided, the fieldset will not have a legend.
+   */
+  @property({ reflect: true, type: String }) legend = '';
+
+  /**
+   * Whether the fieldset is disabled.
+   * When true, all form controls inside the fieldset are disabled
+   */
+  @property({ reflect: true, type: Boolean }) disabled = false;
+
+  /**
+    * The layout of the fieldset. This determines how the fields are displayed.
+    * - `one-column`: All fields are displayed in a single column.
+    * - `two-columns`: Fields are displayed in two columns. The number of items per row can be controlled with the `--items-per-row` CSS variable.
+    * Defaults to `one-column`.
+   */
+  @property({ reflect: true }) layout: 'one-column' | 'two-columns' = 'one-column';
+
+  private storeOriginalDisabledStates() {
+    getFormElements(this).forEach(element => {
+      if (!this.originalDisabledStates.has(element)) {
+        const isDisabled = isDisabledElement(element)
+          ? element.disabled
+          : false;
+        this.originalDisabledStates.set(element, isDisabled);
+      }
+    });
+  }
+
+  private syncDisabledState() {
+    const elements = getFormElements(this);
+    for (let i = 0; i < elements.length; i += 1) {
+      const el = elements[i];
+      if (isDisabledElement(el)) {
+        if (this.disabled) {
+          // Store current state if not already stored
+          if (!this.originalDisabledStates.has(el)) {
+            this.originalDisabledStates.set(el, el.disabled);
+          }
+          // Disable the element
+          el.disabled = true;
+        } else {
+          // Restore original state
+          const originalState = this.originalDisabledStates.get(el) ?? false;
+          el.disabled = originalState;
+        }
+      }
+    }
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.storeOriginalDisabledStates();
+  }
+
+  protected updated(_changedProperties: PropertyValues<this>) {
+    super.updated(_changedProperties);
+    if (_changedProperties.has('disabled')) {
+      this.syncDisabledState();
+    }
+  }
+
+  render() {
+    const legendExists = this.hasSlotController.test('legend') || this.legend.length > 0;
+    const descriptionExists = this.hasSlotController.test('description') || this.description.length > 0;
+
+    return html`
+      <fieldset
+        class=${classMap({
+          fieldset: true,
+        })}
+        ?disabled=${this.disabled}
+        part="base"
+      >
+        ${legendExists
+          ? html`
+            <legend class="legend">
+              <slot name="legend" part="legend">${this.legend}</slot>
+            </legend>
+          `
+          : null
+        }
+        
+        ${descriptionExists
+          ? html`
+            <div class="description">
+              <slot name="description" part="description">${this.description}</slot>
+            </div>
+          `
+          : null
+        }
+
+        <div
+          class=${classMap({
+            fields: true,
+            'fields--two-columns': this.layout === 'two-columns',
+          })}
+          part="field-container"
+        >
+          <slot></slot>
+        </div>
+      </fieldset>
+    `;
+  }
+}

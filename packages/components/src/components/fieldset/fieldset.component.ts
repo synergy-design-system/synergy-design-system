@@ -37,7 +37,19 @@ export default class SynFieldset extends SynergyElement {
 
   private readonly hasSlotController = new HasSlotController(this, 'description', 'legend');
 
-  private originalDisabledStates = new WeakMap<Element, boolean>();
+  private readonly forcedDisabledElements = new WeakSet<Element>();
+
+  private readonly lightDomObserver = new MutationObserver(() => {
+    if (this.disabled) {
+      this.syncDisabledState();
+    }
+  });
+
+  private handleSlotChange = () => {
+    if (this.disabled) {
+      this.syncDisabledState();
+    }
+  };
 
   /**
    * The legend for the fieldset. This is displayed as the title of the fieldset.
@@ -72,33 +84,21 @@ export default class SynFieldset extends SynergyElement {
    */
   @property({ attribute: 'item-spacing', reflect: true, type: String }) itemSpacing: 'dense' | 'normal' = 'normal';
 
-  private storeOriginalDisabledStates() {
-    getFormElements(this).forEach(element => {
-      if (!this.originalDisabledStates.has(element)) {
-        const isDisabled = isDisabledElement(element)
-          ? element.disabled
-          : false;
-        this.originalDisabledStates.set(element, isDisabled);
-      }
-    });
-  }
-
   private syncDisabledState() {
     const elements = getFormElements(this);
     for (let i = 0; i < elements.length; i += 1) {
       const el = elements[i];
       if (isDisabledElement(el)) {
         if (this.disabled) {
-          // Store current state if not already stored
-          if (!this.originalDisabledStates.has(el)) {
-            this.originalDisabledStates.set(el, el.disabled);
+          if (!el.disabled) {
+            this.forcedDisabledElements.add(el);
+            el.disabled = true;
           }
-          // Disable the element
-          el.disabled = true;
-        } else {
-          // Restore original state
-          const originalState = this.originalDisabledStates.get(el) ?? false;
-          el.disabled = originalState;
+        }
+
+        // Only revert controls that were disabled by this fieldset instance.
+        if (!this.disabled && this.forcedDisabledElements.has(el)) {
+          el.disabled = false;
         }
       }
     }
@@ -106,7 +106,17 @@ export default class SynFieldset extends SynergyElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.storeOriginalDisabledStates();
+    this.lightDomObserver.observe(this, {
+      attributeFilter: ['disabled'],
+      attributes: true,
+      childList: true,
+      subtree: true,
+    });
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.lightDomObserver?.disconnect();
   }
 
   protected updated(_changedProperties: PropertyValues<this>) {
@@ -155,7 +165,7 @@ export default class SynFieldset extends SynergyElement {
           })}
           part="field-container"
         >
-          <slot></slot>
+          <slot @slotchange=${this.handleSlotChange}></slot>
         </div>
       </fieldset>
     `;

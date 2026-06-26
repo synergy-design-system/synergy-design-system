@@ -32,7 +32,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Activates the positioning logic and shows the popup. When this attribute is removed, the positioning logic is torn down and the popup will be hidden.
+Activates the positioning logic and shows the popup. When this attribute is removed, the positioning logic is torn
+down and the popup will be hidden.
 
 ### anchor
 
@@ -41,7 +42,9 @@ reflects: no
 type: `Element | string | VirtualElement`
 default: none
 
-The element the popup will be anchored to. If the anchor lives outside of the popup, you can provide the anchor element `id`, a DOM element reference, or a `VirtualElement`. If the anchor lives inside the popup, use the `anchor` slot instead.
+The element the popup will be anchored to. If the anchor lives outside of the popup, you can provide the anchor
+element `id`, a DOM element reference, or a `VirtualElement`. If the anchor lives inside the popup, use the
+`anchor` slot instead.
 
 ### arrow
 
@@ -50,7 +53,9 @@ reflects: no
 type: `boolean`
 default: `false`
 
-Attaches an arrow to the popup. The arrow's size and color can be customized using the `--arrow-size` and `--arrow-color` custom properties. For additional customizations, you can also target the arrow using `::part(arrow)` in your stylesheet.
+Attaches an arrow to the popup. The arrow's size and color can be customized using the `--arrow-size` and
+`--arrow-color` custom properties. For additional customizations, you can also target the arrow using
+`::part(arrow)` in your stylesheet.
 
 ### arrowPadding
 
@@ -59,7 +64,8 @@ reflects: no
 type: `number`
 default: `10`
 
-The amount of padding between the arrow and the edges of the popup. If the popup has a border-radius, for example, this will prevent it from overflowing the corners.
+The amount of padding between the arrow and the edges of the popup. If the popup has a border-radius, for example,
+this will prevent it from overflowing the corners.
 
 ### arrowPlacement
 
@@ -68,7 +74,9 @@ reflects: no
 type: `'start' | 'end' | 'center' | 'anchor'`
 default: `'anchor'`
 
-The placement of the arrow. The default is `anchor`, which will align the arrow as close to the center of the anchor as possible, considering available space and `arrow-padding`. A value of `start`, `end`, or `center` will align the arrow to the start, end, or center of the popover instead.
+The placement of the arrow. The default is `anchor`, which will align the arrow as close to the center of the
+anchor as possible, considering available space and `arrow-padding`. A value of `start`, `end`, or `center` will
+align the arrow to the start, end, or center of the popover instead.
 
 ### autoSize
 
@@ -86,7 +94,9 @@ reflects: no
 type: `Element | Element[]`
 default: none
 
-The auto-size boundary describes clipping element(s) that overflow will be checked relative to when resizing. By default, the boundary includes overflow ancestors that will cause the element to be clipped. If needed, you can change the boundary by passing a reference to one or more elements to this property.
+The auto-size boundary describes clipping element(s) that overflow will be checked relative to when resizing. By
+default, the boundary includes overflow ancestors that will cause the element to be clipped. If needed, you can
+change the boundary by passing a reference to one or more elements to this property.
 
 ### autoSizePadding
 
@@ -113,7 +123,8 @@ reflects: no
 type: `boolean`
 default: `false`
 
-When set, placement of the popup will flip to the opposite site to keep it in view. You can use `flipFallbackPlacements` to further configure how the fallback placement is determined.
+When set, placement of the popup will flip to the opposite site to keep it in view. You can use
+`flipFallbackPlacements` to further configure how the fallback placement is determined.
 
 ### flipBoundary
 
@@ -122,7 +133,9 @@ reflects: no
 type: `Element | Element[]`
 default: none
 
-The flip boundary describes clipping element(s) that overflow will be checked relative to when flipping. By default, the boundary includes overflow ancestors that will cause the element to be clipped. If needed, you can change the boundary by passing a reference to one or more elements to this property.
+The flip boundary describes clipping element(s) that overflow will be checked relative to when flipping. By
+default, the boundary includes overflow ancestors that will cause the element to be clipped. If needed, you can
+change the boundary by passing a reference to one or more elements to this property.
 
 ### flipFallbackPlacements
 
@@ -131,7 +144,9 @@ reflects: no
 type: `string`
 default: `''`
 
-If the preferred placement doesn't fit, popup will be tested in these fallback placements until one fits. Must be a string of any number of placements separated by a space, e.g. "top bottom left". If no placement fits, the flip fallback strategy will be used instead.
+If the preferred placement doesn't fit, popup will be tested in these fallback placements until one fits. Must be a
+string of any number of placements separated by a space, e.g. "top bottom left". If no placement fits, the flip
+fallback strategy will be used instead.
 
 ### flipFallbackStrategy
 
@@ -140,7 +155,9 @@ reflects: no
 type: `'best-fit' | 'initial'`
 default: `'best-fit'`
 
-When neither the preferred placement nor the fallback placements fit, this value will be used to determine whether the popup should be positioned using the best available fit based on available space or as it was initially preferred.
+When neither the preferred placement nor the fallback placements fit, this value will be used to determine whether
+the popup should be positioned using the best available fit based on available space or as it was initially
+preferred.
 
 ### flipPadding
 
@@ -158,7 +175,10 @@ reflects: no
 type: `boolean`
 default: `false`
 
-When a gap exists between the anchor and the popup element, this option will add a "hover bridge" that fills the gap using an invisible element. This makes listening for events such as `mouseenter` and `mouseleave` more sane because the pointer never technically leaves the element. The hover bridge will only be drawn when the popover is active.
+When a gap exists between the anchor and the popup element, this option will add a "hover bridge" that fills the
+gap using an invisible element. This makes listening for events such as `mouseenter` and `mouseleave` more sane
+because the pointer never technically leaves the element. The hover bridge will only be drawn when the popover is
+active.
 
 ### placement
 
@@ -178,7 +198,8 @@ type: `| 'top'
     | 'left-end'`
 default: `'top'`
 
-The preferred placement of the popup. Note that the actual placement will vary as configured to keep the panel inside of the viewport.
+The preferred placement of the popup. Note that the actual placement will vary as configured to keep the
+panel inside of the viewport.
 
 ### popup
 
@@ -205,7 +226,9 @@ reflects: no
 type: `Element | Element[]`
 default: none
 
-The shift boundary describes clipping element(s) that overflow will be checked relative to when shifting. By default, the boundary includes overflow ancestors that will cause the element to be clipped. If needed, you can change the boundary by passing a reference to one or more elements to this property.
+The shift boundary describes clipping element(s) that overflow will be checked relative to when shifting. By
+default, the boundary includes overflow ancestors that will cause the element to be clipped. If needed, you can
+change the boundary by passing a reference to one or more elements to this property.
 
 ### shiftPadding
 

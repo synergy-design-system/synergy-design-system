@@ -61,4 +61,10 @@ export const inputIntents: IntentDefinition[] = [
     id: 'input.selection.grouped-options',
     userGoal: 'Find and choose options faster through labeled option groupings.',
   },
+  {
+    category: 'input',
+    description: 'Use when related form controls should be grouped under a shared legend and optional description.',
+    id: 'input.grouping.fieldset',
+    userGoal: 'Understand and complete related form fields as one coherent section.',
+  },
 ];

@@ -90,7 +90,7 @@ const meta: Meta = {
       },
     },
   },
-  tags: ['Form'],
+  tags: ['Form', 'Structure'],
   title: 'Components/syn-fieldset',
 };
 export default meta;

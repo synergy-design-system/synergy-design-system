@@ -50,7 +50,8 @@ reflects: no
 type: `string`
 default: none
 
-Specifies what permission the browser has to provide assistance in filling out form field values. Refer to [this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.
+Specifies what permission the browser has to provide assistance in filling out form field values. Refer to
+[this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values.
 
 ### autocorrect
 
@@ -113,7 +114,9 @@ reflects: yes
 type: `string`
 default: `''`
 
-By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you to place the form control outside of a form and associate it with the form that has this `id`. The form must be in the same document or shadow root for this to work.
+By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+the same document or shadow root for this to work.
 
 ### helpText
 
@@ -131,7 +134,8 @@ reflects: no
 type: `'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'`
 default: none
 
-Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual keyboard on supportive devices.
+Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
+keyboard on supportive devices.
 
 ### label
 
@@ -158,7 +162,8 @@ reflects: no
 type: `number`
 default: none
 
-The maximal amount of fraction digits to use for numeric values. Used to format the number when the input type is `number`.
+The maximal amount of fraction digits to use for numeric values.
+Used to format the number when the input type is `number`.
 
 ### maxlength
 
@@ -185,7 +190,8 @@ reflects: no
 type: `number`
 default: none
 
-The minimal amount of fraction digits to use for numeric values. Used to format the number when the input type is `number`.
+The minimal amount of fraction digits to use for numeric values.
+Used to format the number when the input type is `number`.
 
 ### minlength
 
@@ -221,7 +227,9 @@ reflects: -
 type: `Intl.NumberFormatOptions`
 default: none
 
-Optional options that should be passed to the `NumberFormatter` when formatting the value. This is used to format the number when the input type is `number`. Note this can only be set via `property`, not as an `attribute`!
+Optional options that should be passed to the `NumberFormatter` when formatting the value.
+This is used to format the number when the input type is `number`.
+Note this can only be set via `property`, not as an `attribute`!
 
 ### numericStrategy
 
@@ -230,7 +238,23 @@ reflects: no
 type: `'native' | 'modern' | Partial<NumericStrategy>`
 default: `modernNumericStrategy`
 
-Defines the strategy for handling numbers in the numeric input. This is used to determine how the input behaves when the user interacts with it. Includes the following configuration options: - **autoClamp**: If true, the input will clamp the value to the min and max attributes. - **noStepAlign**: If true, the input will not align the value to the step attribute. - **noStepValidation**: If true, the input will not validate the value against the step attribute. You may provide this as one of the following values: - 'native': Uses the native browser implementation. - 'modern': Uses a more intuitive implementation: - Values are clamped to the nearest min or max value. - Stepping is inclusive to the provided min and max values. - Provided stepping is no longer used in validation. - An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`!
+Defines the strategy for handling numbers in the numeric input.
+This is used to determine how the input behaves when the user interacts with it.
+
+Includes the following configuration options:
+
+- **autoClamp**: If true, the input will clamp the value to the min and max attributes.
+- **noStepAlign**: If true, the input will not align the value to the step attribute.
+- **noStepValidation**: If true, the input will not validate the value against the step attribute.
+
+You may provide this as one of the following values:
+
+- 'native': Uses the native browser implementation.
+- 'modern': Uses a more intuitive implementation:
+  - Values are clamped to the nearest min or max value.
+  - Stepping is inclusive to the provided min and max values.
+  - Provided stepping is no longer used in validation.
+- An object that matches the `NumericStrategy` type. Note this can only be set via `property`, not as an `attribute`!
 
 ### passwordToggle
 
@@ -311,7 +335,8 @@ reflects: no
 type: `number | 'any'`
 default: none
 
-Specifies the granularity that the value must adhere to, or the special value `any` which means no stepping is implied, allowing any numeric value. Only applies to date and number input types.
+Specifies the granularity that the value must adhere to, or the special value `any` which means no stepping is
+implied, allowing any numeric value. Only applies to date and number input types.
 
 ### type
 
@@ -329,7 +354,8 @@ type: `| 'date'
     | 'url'`
 default: `'text'`
 
-The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults to `text`.
+The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults
+to `text`.
 
 ### value
 

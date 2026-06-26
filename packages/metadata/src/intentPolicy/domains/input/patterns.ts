@@ -98,4 +98,13 @@ export const inputPatterns: IntentUsagePattern[] = [
     notes: ['Use syn-optgroup to cluster related syn-option entries under clear labels.'],
     target: { id: 'component:syn-select', kind: 'component', name: 'syn-select' },
   },
+  {
+    description: 'Group related form controls in a semantic section using legend and optional supporting description.',
+    intent: 'input.grouping.fieldset',
+    notes: [
+      'Provide a concise legend that describes the shared purpose of the grouped controls.',
+      'Keep critical guidance in control labels and help text; use fieldset description for contextual support.',
+    ],
+    target: { id: 'component:syn-fieldset', kind: 'component', name: 'syn-fieldset' },
+  },
 ];

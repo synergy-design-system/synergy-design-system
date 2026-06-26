@@ -34,7 +34,9 @@ reflects: yes
 type: `string`
 default: `''`
 
-By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you to place the form control outside of a form and associate it with the form that has this `id`. The form must be in the same document or shadow root for this to work.
+By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+the same document or shadow root for this to work.
 
 ### helpText
 
@@ -52,7 +54,8 @@ reflects: no
 type: `string`
 default: `''`
 
-The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot instead.
+The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot
+instead.
 
 ### name
 

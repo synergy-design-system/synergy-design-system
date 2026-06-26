@@ -49,6 +49,7 @@ import type {
   SynDivider,
   SynDrawer,
   SynDropdown,
+  SynFieldset,
   SynFile,
   SynHeader,
   SynIcon,
@@ -593,6 +594,24 @@ export type SynCustomElement<
     ['syn-after-hide', SynAfterHideEvent],
   ]
 >;
+/**
+ * @summary Fieldsets are used to group related elements in a form.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-fieldset--docs
+ * @status stable
+ * @since 3.x.x
+ *
+ * @slot - The fieldset's main content. Place form controls inside the fieldset to group them together.
+ * @slot legend - Add a legend to the fieldset. This is displayed as the title of the fieldset. Alternatively, you can use the `legend` attribute.
+ * @slot description - Add a description to the fieldset. This is displayed below the legend and provides additional information about the fieldset. Alternatively, you can use the `description` attribute.
+ *
+ * @csspart base - The component's base wrapper.
+ * @csspart legend - The component's legend element.
+ * @csspart description - The component's description element.
+ * @csspart field-container - The container for the fieldset's fields.
+ *
+ * @cssproperty --item-gap-normal - The gap between the fields in the fieldset when using normal layout. Defaults to `--syn-spacing-large`
+ * @cssproperty --item-gap-dense - The gap between the fields in the fieldset when using dense layout. Defaults to `--syn-spacing-x-small`
+ */ export type SynFieldsetJSXElement = SynCustomElement<SynFieldset, []>;
 /**
  * @summary File controls allow selecting an arbitrary number of files for uploading.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs
@@ -2001,6 +2020,24 @@ declare module 'react' {
        * @animation dropdown.show - The animation to use when showing the dropdown.
        * @animation dropdown.hide - The animation to use when hiding the dropdown.
        */ 'syn-dropdown': SynDropdownJSXElement;
+      /**
+       * @summary Fieldsets are used to group related elements in a form.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-fieldset--docs
+       * @status stable
+       * @since 3.x.x
+       *
+       * @slot - The fieldset's main content. Place form controls inside the fieldset to group them together.
+       * @slot legend - Add a legend to the fieldset. This is displayed as the title of the fieldset. Alternatively, you can use the `legend` attribute.
+       * @slot description - Add a description to the fieldset. This is displayed below the legend and provides additional information about the fieldset. Alternatively, you can use the `description` attribute.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart legend - The component's legend element.
+       * @csspart description - The component's description element.
+       * @csspart field-container - The container for the fieldset's fields.
+       *
+       * @cssproperty --item-gap-normal - The gap between the fields in the fieldset when using normal layout. Defaults to `--syn-spacing-large`
+       * @cssproperty --item-gap-dense - The gap between the fields in the fieldset when using dense layout. Defaults to `--syn-spacing-x-small`
+       */ 'syn-fieldset': SynFieldsetJSXElement;
       /**
        * @summary File controls allow selecting an arbitrary number of files for uploading.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs

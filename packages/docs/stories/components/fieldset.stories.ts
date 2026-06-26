@@ -4,6 +4,7 @@ import '../../../components/src/components/checkbox/checkbox.js';
 import '../../../components/src/components/fieldset/fieldset.js';
 import '../../../components/src/components/input/input.js';
 import '../../../components/src/components/select/select.js';
+import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/textarea/textarea.js';
 import { html } from 'lit';
 import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
@@ -106,8 +107,13 @@ export const Default: Story = {
     },
   },
   render: args => html`
-    <form method="get">
-      <syn-fieldset .disabled=${args.disabled} legend="Topic" layout=${args.layout}>
+    <form method="get" class="fieldset-demo">
+      <syn-fieldset
+        .disabled=${args.disabled}
+        item-spacing="dense"
+        layout="two-columns"
+        legend="Topic"
+      >
         <syn-checkbox name="topic[0]" value="Inquiry/offer">
           Inquiry/offer
         </syn-checkbox>
@@ -137,13 +143,18 @@ export const Default: Story = {
         </syn-checkbox>
       </syn-fieldset>
 
-      <syn-fieldset .disabled=${args.disabled} legend="Question">
-        <p slot="description">
+      <syn-fieldset
+        .disabled=${args.disabled}
+        item-spacing=${args.itemSpacing}
+        layout="one-column"
+        legend="Question"
+      >
+        <div slot="description">
           It is very helpful if the description is as precise as possible to
           enable us to process your enquiry correctly. When describing
           applications, please specify the material/dimensions/speed, if
           applicable.
-        </p>
+        </div>
 
         <syn-textarea name="message" required="" label="Message"></syn-textarea>
       </syn-fieldset>
@@ -153,6 +164,14 @@ export const Default: Story = {
 
       <syn-button type="submit">Submit</syn-button>
     </form>
+    <style>
+    .fieldset-demo {
+      background: var(--syn-color-neutral-0);
+      margin: 0 auto;
+      padding: var(--syn-spacing-x-large);
+      max-width: 750px;
+    }
+    </style>
     <script>
     document.querySelector('form').addEventListener('submit', (event) => {
       event.preventDefault();

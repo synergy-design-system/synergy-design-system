@@ -29,7 +29,8 @@ import {
  * @csspart description - The component's description element.
  * @csspart field-container - The container for the fieldset's fields.
  *
- * @cssproperty --item-gap - The gap between the fields in the fieldset. Defaults to `--syn-spacing-large`
+ * @cssproperty --item-gap-normal - The gap between the fields in the fieldset when using normal layout. Defaults to `--syn-spacing-large`
+ * @cssproperty --item-gap-dense - The gap between the fields in the fieldset when using dense layout. Defaults to `--syn-spacing-x-small`
  */
 export default class SynFieldset extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -63,6 +64,13 @@ export default class SynFieldset extends SynergyElement {
     * Defaults to `one-column`.
    */
   @property({ reflect: true }) layout: 'one-column' | 'two-columns' = 'one-column';
+
+  /**
+   * The spacing between the fields in the fieldset. This can be set to `dense` or `normal`. Defaults to `normal`.
+   * A dense layout is useful for displaying smaller form controls, e.g. checkboxes or radio buttons, while a normal layout is better suited for larger form controls, e.g. text inputs or selects.
+   * The spacing can also be controlled with the `--item-gap-normal` and `--item-gap-dense` CSS variables.
+   */
+  @property({ attribute: 'item-spacing', reflect: true, type: String }) itemSpacing: 'dense' | 'normal' = 'normal';
 
   private storeOriginalDisabledStates() {
     getFormElements(this).forEach(element => {
@@ -116,6 +124,8 @@ export default class SynFieldset extends SynergyElement {
       <fieldset
         class=${classMap({
           fieldset: true,
+          'fieldset--dense': this.itemSpacing === 'dense',
+          'fieldset--normal': this.itemSpacing === 'normal',
         })}
         ?disabled=${this.disabled}
         part="base"

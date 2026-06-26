@@ -10,9 +10,16 @@ export default css`
     --items-per-row: 2;
 
     /**
-     * The gap between the fields in the fieldset.
+     * The gap between the fields in the fieldset when using normal layout.
      */
-    --item-gap: var(--syn-spacing-large);
+    --item-gap-normal: var(--syn-spacing-large);
+
+    /**
+     * The gap between the fields in the fieldset when using dense layout.
+     */
+    --item-gap-dense: var(--syn-spacing-x-small);
+
+    display: block;
   }
 
   .fieldset {
@@ -21,9 +28,21 @@ export default css`
     padding: 0;
   }
 
+  /* Density Control */
+  .fieldset--dense {
+    --item-gap: var(--item-gap-dense);
+  }
+
+  .fieldset--normal {
+    --item-gap: var(--item-gap-normal);
+  }
+
   .legend {
+    display: block;
     font: var(--syn-heading-large);
     margin-bottom: var(--syn-spacing-large);
+    padding: 0;
+    width: 100%;
   }
 
   .description {
@@ -38,7 +57,6 @@ export default css`
     flex-flow: wrap;
     flex-direction: row;
     gap: var(--item-gap);
-    margin-bottom: var(--item-gap);
   }
 
   .fields ::slotted(*) {

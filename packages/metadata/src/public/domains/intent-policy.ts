@@ -23,6 +23,8 @@ import {
   type PublicResponse,
 } from '../types.js';
 import type {
+  IntentContentRule,
+  IntentContentSource,
   IntentPhase,
   IntentPropRule,
   IntentStructureNode,
@@ -705,6 +707,33 @@ const getTargetIdentity = (target: IntentTargetRef): string => target.id
   ?? target.selector
   ?? `${target.kind}:unknown`;
 
+const hasMeaningfulContentValue = (value: IntentPresetValue | undefined): boolean => {
+  if (typeof value === 'string') {
+    return value.trim().length > 0;
+  }
+
+  return value !== undefined && value !== null;
+};
+
+const hasContentForSource = (
+  source: IntentContentSource,
+  node: IntentStructureNode,
+): boolean => {
+  if (source.kind === 'prop') {
+    return hasMeaningfulContentValue(node.props?.[source.prop]);
+  }
+
+  if (source.kind === 'text') {
+    return typeof node.text === 'string' && node.text.trim().length > 0;
+  }
+
+  if (source.kind === 'children') {
+    return (node.children?.length ?? 0) > 0;
+  }
+
+  return (node.children ?? []).some((child) => child.slot === source.slot);
+};
+
 const evaluateNodePropRules = (
   rules: IntentPropRule[],
   props: Record<string, IntentPresetValue> | undefined,
@@ -768,6 +797,47 @@ const evaluateNodePropRules = (
       code: rule.code,
       message: rule.message,
       path: `${nodePath}.props.${rule.prop}`,
+      rationale: rule.rationale,
+      severity: rule.severity ?? 'warning',
+      suggestedFix: rule.suggestedFix,
+    });
+  }
+};
+
+const evaluateNodeContentRules = (
+  rules: IntentContentRule[],
+  node: IntentStructureNode,
+  nodePath: string,
+  issues: ComponentValidationIssue[],
+): void => {
+  for (const rule of rules) {
+    if (rule.kind === 'requiredContent') {
+      const hasTextContent = typeof node.text === 'string' && node.text.trim().length > 0;
+      const hasChildren = (node.children?.length ?? 0) > 0;
+
+      if (!hasTextContent && !hasChildren) {
+        issues.push({
+          code: rule.code,
+          message: rule.message,
+          path: `${nodePath}.children`,
+          rationale: rule.rationale,
+          severity: 'error',
+          suggestedFix: rule.suggestedFix,
+        });
+      }
+
+      continue;
+    }
+
+    const isSatisfied = rule.sources.some((source) => hasContentForSource(source, node));
+    if (isSatisfied) {
+      continue;
+    }
+
+    issues.push({
+      code: rule.code,
+      message: rule.message,
+      path: `${nodePath}.children`,
       rationale: rule.rationale,
       severity: rule.severity ?? 'warning',
       suggestedFix: rule.suggestedFix,
@@ -857,21 +927,7 @@ const validateStructureNode = async (
   evaluateNodePropRules(expected.config?.propRules ?? [], actualWithDefaults.props, nodePath, issues, strictRequiredEquals);
 
   if (strictRequiredEquals) {
-    for (const rule of expected.config?.contentRules ?? []) {
-      const hasTextContent = typeof actualWithDefaults.text === 'string' && actualWithDefaults.text.trim().length > 0;
-      const hasChildren = (actualWithDefaults.children?.length ?? 0) > 0;
-
-      if (!hasTextContent && !hasChildren) {
-        issues.push({
-          code: rule.code,
-          message: rule.message,
-          path: `${nodePath}.children`,
-          rationale: rule.rationale,
-          severity: 'error',
-          suggestedFix: rule.suggestedFix,
-        });
-      }
-    }
+    evaluateNodeContentRules(expected.config?.contentRules ?? [], actualWithDefaults, nodePath, issues);
   }
 
   if (expected.component === 'text' && expected.text && actualWithDefaults.text !== expected.text) {

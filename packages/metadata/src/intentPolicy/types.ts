@@ -305,6 +305,43 @@ export type IntentRequiredContentRule = IntentPropRuleBase & {
 };
 
 /**
+ * One possible authored content source that can satisfy a content requirement.
+ */
+export type IntentContentSource =
+  | { kind: 'children' }
+  | { kind: 'prop'; prop: string }
+  | { kind: 'slot'; slot: string }
+  | { kind: 'text' };
+
+/**
+ * Validation rule requiring content from at least one of several possible sources.
+ *
+ * This supports authoring patterns where equivalent content can be provided via
+ * a property or a named slot, such as `label` prop vs `label` slot.
+ */
+export type IntentRequiredAnyContentSourceRule = IntentPropRuleBase & {
+  /**
+   * Discriminator indicating this is a requiredAnyContentSource rule.
+   */
+  kind: 'requiredAnyContentSource';
+  /**
+   * Severity emitted when no allowed source provides content.
+   */
+  severity?: 'warning' | 'error';
+  /**
+   * Allowed authored content sources. Validation passes when any one source is satisfied.
+   */
+  sources: IntentContentSource[];
+};
+
+/**
+ * Union type of all content validation rule kinds.
+ */
+export type IntentContentRule =
+  | IntentRequiredContentRule
+  | IntentRequiredAnyContentSourceRule;
+
+/**
  * Configuration rules for component usage with a specific intent.
  *
  * Contains an ordered list of property validation rules and optional
@@ -318,7 +355,7 @@ export type IntentConfig = {
    * Use this for rules that concern visible content rather than props,
    * such as requiring that a button has a label or child nodes.
    */
-  contentRules?: IntentRequiredContentRule[];
+  contentRules?: IntentContentRule[];
   /**
    * List of property validation rules evaluated in order.
    *

@@ -105,6 +105,23 @@ export const inputPatterns: IntentUsagePattern[] = [
       'Provide a concise legend that describes the shared purpose of the grouped controls.',
       'Keep critical guidance in control labels and help text; use fieldset description for contextual support.',
     ],
+    structure: {
+      component: 'syn-fieldset',
+      config: {
+        contentRules: [{
+          code: 'FIELDSET_LEGEND_REQUIRED',
+          kind: 'requiredAnyContentSource',
+          message: 'Fieldsets should provide a legend, either through the legend property or the legend slot.',
+          rationale: 'A legend gives grouped form controls an accessible shared label and improves scanability.',
+          severity: 'warning',
+          sources: [
+            { kind: 'prop', prop: 'legend' },
+            { kind: 'slot', slot: 'legend' },
+          ],
+          suggestedFix: 'Provide a non-empty legend property or add content to the legend slot.',
+        }],
+      },
+    },
     target: { id: 'component:syn-fieldset', kind: 'component', name: 'syn-fieldset' },
   },
 ];

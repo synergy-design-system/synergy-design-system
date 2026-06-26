@@ -39,19 +39,41 @@ describe('intent policy developer facade', () => {
       'component:syn-button.json',
     );
     const synButtonCorePath = path.join(root, 'core', 'component', 'component:syn-button.json');
+    const synFieldsetInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component:syn-fieldset.json');
+    const sourceSynFieldsetInterfaceLayerPath = path.join(
+      metadataPackageDir,
+      'data',
+      'layers',
+      'interface',
+      'component',
+      'component:syn-fieldset.json',
+    );
+    const synFieldsetCorePath = path.join(root, 'core', 'component', 'component:syn-fieldset.json');
 
     const index = {
       builtAt: '2026-05-18T00:00:00.000Z',
-      entities: [{
-        corePath: 'data/core/component/component:syn-button.json',
-        id: 'component:syn-button',
-        kind: 'component',
-        layers: {
-          interface: 1,
+      entities: [
+        {
+          corePath: 'data/core/component/component:syn-button.json',
+          id: 'component:syn-button',
+          kind: 'component',
+          layers: {
+            interface: 1,
+          },
+          name: 'syn-button',
+          search: ['component:syn-button', 'syn-button'],
         },
-        name: 'syn-button',
-        search: ['component:syn-button', 'syn-button'],
-      }],
+        {
+          corePath: 'data/core/component/component:syn-fieldset.json',
+          id: 'component:syn-fieldset',
+          kind: 'component',
+          layers: {
+            interface: 1,
+          },
+          name: 'syn-fieldset',
+          search: ['component:syn-fieldset', 'syn-fieldset'],
+        },
+      ],
       version: '1.0.0',
     };
 
@@ -67,12 +89,29 @@ describe('intent policy developer facade', () => {
       name: 'syn-button',
     };
 
+    const synFieldsetCoreEntity = {
+      id: 'component:syn-fieldset',
+      kind: 'component',
+      layers: {
+        interface: [{
+          layer: 'interface',
+          path: 'data/layers/interface/component/component:syn-fieldset.json',
+        }],
+      },
+      name: 'syn-fieldset',
+    };
+
     await writeFile(path.join(root, 'index.json'), JSON.stringify(index));
     await writeFile(
       synButtonInterfaceLayerPath,
       await readFile(sourceSynButtonInterfaceLayerPath, 'utf8'),
     );
+    await writeFile(
+      synFieldsetInterfaceLayerPath,
+      await readFile(sourceSynFieldsetInterfaceLayerPath, 'utf8'),
+    );
     await writeFile(synButtonCorePath, JSON.stringify(synButtonCoreEntity));
+    await writeFile(synFieldsetCorePath, JSON.stringify(synFieldsetCoreEntity));
 
     return {
       cleanup: async () => {
@@ -227,6 +266,102 @@ describe('intent policy developer facade', () => {
       expect(response.data.score).to.equal(90);
       expect(response.data.issues.map((issue) => issue.code)).to.include('INTENT_TEMPORARILY_BLOCKED');
       expect(response.data.issues.find((issue) => issue.code === 'INTENT_TEMPORARILY_BLOCKED')?.severity).to.equal('warning');
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('warns when fieldset grouping intent omits both legend property and legend slot', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-fieldset',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.fieldset',
+        structure: {
+          children: [{
+            component: 'syn-input',
+          }],
+          component: 'syn-fieldset',
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.valid).to.equal(true);
+      expect(response.data.issues.map((issue) => issue.code)).to.include('FIELDSET_LEGEND_REQUIRED');
+      expect(response.data.issues.find((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED')?.severity).to.equal('warning');
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('accepts fieldset grouping intent when legend property is provided', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-fieldset',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.fieldset',
+        structure: {
+          children: [{
+            component: 'syn-input',
+          }],
+          component: 'syn-fieldset',
+          props: {
+            legend: 'Contact details',
+          },
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.issues.some((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED')).to.equal(false);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('accepts fieldset grouping intent when legend slot content is provided', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-fieldset',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.fieldset',
+        structure: {
+          children: [
+            {
+              component: 'text',
+              slot: 'legend',
+              text: 'Contact details',
+            },
+            {
+              component: 'syn-input',
+            },
+          ],
+          component: 'syn-fieldset',
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.issues.some((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED')).to.equal(false);
     } finally {
       await fixture.cleanup();
     }

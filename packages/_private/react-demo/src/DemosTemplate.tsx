@@ -6,6 +6,7 @@ export type DemosTemplateProps = {
 
 export const DemosTemplate = ({ demos }: DemosTemplateProps) => {
   const [activeDemo, setActiveDemo] = React.useState(demos[0]?.[0] || '');
+  const demoNames = React.useMemo(() => new Set(demos.map(([name]) => name)), [demos]);
 
   React.useEffect(() => {
     setActiveDemo(demos[0]?.[0] || '');
@@ -22,6 +23,10 @@ export const DemosTemplate = ({ demos }: DemosTemplateProps) => {
       className="demo-tab-group"
       onsyn-tab-show={(e) => {
         const { name } = e.detail;
+        if (!demoNames.has(name)) {
+          return;
+        }
+
         (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
 
         const dialog = document.querySelector('syn-dialog');

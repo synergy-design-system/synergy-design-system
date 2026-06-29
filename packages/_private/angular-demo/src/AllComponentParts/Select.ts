@@ -155,11 +155,10 @@ import {
   `
 })
 export class Select implements OnInit {
-  levels: SelectItem[] = [];
+  levels: SelectItem[] = mockData('selectItems');
   numericItems = mockData('selectItemsMixedValue');
   delimiterItems = mockData('selectItemsWithSpace');
-  // @ts-ignore
-  asyncValue: string;
+  asyncValue: string = mockData('valueWithSpace');
 
 
   ngOnInit(): void {

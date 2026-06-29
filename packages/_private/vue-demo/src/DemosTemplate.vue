@@ -6,6 +6,7 @@ import { type Component } from 'vue';
 import { computed, ref, watch } from 'vue';
 const props = defineProps<{ demos: [string, Component][] }>();
 const demos = computed(() => props.demos);
+const demoNames = computed(() => new Set(demos.value.map(([name]) => name)));
 
 const activeDemo = ref('');
 
@@ -15,6 +16,10 @@ watch(demos, (nextDemos) => {
 
 const showTab = (e: SynTabShowEvent) => {
   const { name } = e.detail;
+  if (!demoNames.value.has(name)) {
+    return;
+  }
+
   (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
 
   const dialog = document.querySelector('syn-dialog');

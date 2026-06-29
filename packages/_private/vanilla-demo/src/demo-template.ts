@@ -37,6 +37,11 @@ class DemoTemplate extends LitElement {
 
   private handleTabShow = (e: Event) => {
     const { name } = (e as CustomEvent<{ name: string }>).detail;
+    const demoNames = new Set(this.demos.map(([demoName]) => demoName));
+    if (!demoNames.has(name)) {
+      return;
+    }
+
     (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
 
     const dialog = document.querySelector('syn-dialog');

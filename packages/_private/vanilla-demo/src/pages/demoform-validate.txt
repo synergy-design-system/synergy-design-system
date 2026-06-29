@@ -236,9 +236,10 @@
     <syn-divider></syn-divider>
 
     <!-- Marketing -->
-    <fieldset class="syn-fieldset">
-      <!-- We will never do this, I promise! -->
-      <legend class="syn-legend">Please inform me about the following technologies</legend>
+    <syn-fieldset
+      class="syn-fieldset"
+      legend="Please inform me about the following technologies"
+    >
       <syn-validate variant="inline">
         <syn-checkbox
           id="checkbox-newsletter-default"

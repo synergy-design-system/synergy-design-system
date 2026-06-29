@@ -1184,6 +1184,48 @@
         }
       }
     },
+    "fieldset": {
+      "default": {
+        "title": {
+          "value": "Fieldset",
+          "type": "text"
+        },
+        "description": {
+          "value": "Fieldset is a component used to group related form controls and labels. It provides a visual and semantic grouping for better accessibility and organization.",
+          "type": "text"
+        }
+      },
+      "columns": {
+        "title": {
+          "value": "One-column vs. two-column layout",
+          "type": "text"
+        },
+        "description": {
+          "value": "The one-column layout applies to container widths below 640px and stacks the nested elements within a row. Overall, please make sure that no more than two items are nested within a single row.\n\nFor container widths of 640px or above, the nested elements within each row switch to a horizontal layout.\n\nIf you want to display a single full-width item per row for containers wider than 640px, place only that one item inside the row and make sure your nested component has its width set to “fill”.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable the disabled toggle to disable all nested elements simultaneously.",
+          "type": "text"
+        }
+      },
+      "item-spacing": {
+        "title": {
+          "value": "Item Spacing",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the item-spacing attribute to adjust the spacing between nested elements.",
+          "type": "text"
+        }
+      }
+    },
     "file": {
       "default": {
         "title": {

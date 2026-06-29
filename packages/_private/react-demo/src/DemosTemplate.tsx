@@ -5,7 +5,11 @@ export type DemosTemplateProps = {
 };
 
 export const DemosTemplate = ({ demos }: DemosTemplateProps) => {
-  const activeDemo = demos[0]?.[0] || '';
+  const [activeDemo, setActiveDemo] = React.useState(demos[0]?.[0] || '');
+
+  React.useEffect(() => {
+    setActiveDemo(demos[0]?.[0] || '');
+  }, [demos]);
 
   if (demos.length === 0) {
     return (
@@ -24,6 +28,8 @@ export const DemosTemplate = ({ demos }: DemosTemplateProps) => {
         if (dialog) {
           dialog.open = name === 'Dialog';
         }
+
+        setActiveDemo(name);
       }}
       placement='end'
     >
@@ -41,11 +47,13 @@ export const DemosTemplate = ({ demos }: DemosTemplateProps) => {
             active={name === activeDemo}
             name={name}
           >
-            <div id={`tab-content-${name}`}>
-              <h1 className="syn-heading--3x-large">{name}</h1>
-              <syn-divider />
-              <Component />
-            </div>
+            {name === activeDemo && (
+              <div id={`tab-content-${name}`}>
+                <h1 className="syn-heading--3x-large">{name}</h1>
+                <syn-divider />
+                <Component />
+              </div>
+            )}
           </syn-tab-panel>
         </React.Fragment>
       ))}

@@ -37,5 +37,7 @@ export class DemosTemplateComponent {
     if (dialog) {
       dialog.open = name === 'Dialog';
     }
+
+    this.activeDemo = name;
   }
 }

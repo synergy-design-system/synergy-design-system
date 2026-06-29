@@ -12,6 +12,7 @@ import DemoDetails from "./DemoDetails.vue";
 import DemoDialog from "./DemoDialog.vue";
 import DemoDivider from "./DemoDivider.vue";
 import DemoDropdown from "./DemoDropdown.vue";
+import DemoFieldset from "./DemoFieldset.vue";
 import DemoFile from "./DemoFile.vue";
 import DemoIcon from "./DemoIcon.vue";
 import DemoIconButton from "./DemoIconButton.vue";
@@ -51,6 +52,7 @@ export {
   DemoDialog,
   DemoDivider,
   DemoDropdown,
+  DemoFieldset,
   DemoFile,
   DemoIcon,
   DemoIconButton,

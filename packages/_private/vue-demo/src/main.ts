@@ -37,8 +37,6 @@ const complexBugsDemo = Object
   .entries(ComplexBugs)
   .map(([name, Component]) => [name.replace('Demo', ''), Component]);
 
-  console.log(complexBugsDemo);
-
 const routes = [
   { path: '/', component: HomeView },
   { path: '/all-components', component: DemosTemplate, props: { demos: allComponentsDemo } },

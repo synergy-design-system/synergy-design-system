@@ -19,7 +19,7 @@
   }
 
   <!-- PersonalInformation -->
-  <demo-fieldset legend="Personal Information">
+  <syn-fieldset legend="Personal Information">
 
     <syn-radio-group
       formControlName="gender"
@@ -103,13 +103,13 @@
       }
     </syn-combobox>
 
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /PersonalInformation -->
 
   <syn-divider />
 
   <!-- Security -->
-  <demo-fieldset legend="Security">
+  <syn-fieldset legend="Security">
     <syn-input
       formControlName="password"
       id="input-password"
@@ -131,13 +131,13 @@
       placeholder="Please choose a value with four digits, e.g. 1234"
       type="number"
     />
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /Security -->
 
   <syn-divider />
 
   <!-- Topics -->
-  <demo-fieldset legend="Topics">
+  <syn-fieldset legend="Topics">
     <syn-select
       clearable
       formControlName="topics"
@@ -172,13 +172,13 @@
         <syn-option [value]="framework.value">{{framework.label}}</syn-option>
       }
     </syn-combobox>
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /Topics -->
 
   <syn-divider />
 
   <!-- Happiness -->
-  <demo-fieldset id="happiness-fields" legend="Happiness">
+  <syn-fieldset id="happiness-fields" legend="Happiness">
     <syn-range
       formControlName="happiness"
       id="happiness"
@@ -209,13 +209,13 @@
         <syn-range-tick>6.000 €</syn-range-tick>
       </nav>
     </syn-range>
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /.Happiness -->
 
   <syn-divider />
 
   <!-- Experience -->
-  <demo-fieldset legend="Experience">
+  <syn-fieldset legend="Experience">
     <syn-radio-group
       formControlName="experience"
       id="experience"
@@ -228,13 +228,13 @@
       <syn-radio [value]=3>I am a Synergy Design System expert</syn-radio>
       <syn-radio [value]=4>I am the creator of the Synergy Design System</syn-radio>
     </syn-radio-group>
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- Experience -->
 
   <syn-divider />
 
   <!-- Marketing -->
-  <demo-fieldset legend="Please inform me about the following technologies">
+  <syn-fieldset legend="Please inform me about the following technologies">
     <syn-checkbox
       formControlName="newsletterStandard"
       id="checkbox-newsletter-default"
@@ -294,13 +294,13 @@
     >
       I am interested in the Synergy UX Program
     </syn-switch>
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /Marketing -->
 
   <syn-divider />
 
   <!-- AdditionalInformation -->
-  <demo-fieldset legend="Additional Information">
+  <syn-fieldset legend="Additional Information">
     <syn-textarea
       id="additional-info"
       formControlName="comment"
@@ -319,7 +319,7 @@
       multiple
       name="files"
     />
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /AdditionalInformation -->
 
   <syn-divider />

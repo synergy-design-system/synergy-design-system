@@ -4,8 +4,7 @@
     <syn-alert class="form-validation-message"></syn-alert>
 
     <!-- PersonalInformation -->
-    <fieldset class="syn-fieldset">
-      <legend class="syn-legend">Personal Information</legend>
+    <syn-fieldset legend="Personal Information">
 
       <syn-radio-group
         id="radiogroup-gender"
@@ -77,14 +76,13 @@
         required
       ></syn-combobox>
 
-    </fieldset>
+    </syn-fieldset>
     <!-- PersonalInformation -->
 
     <syn-divider></syn-divider>
 
     <!-- Security -->
-    <fieldset class="syn-fieldset">
-      <legend class="syn-legend">Security</legend>
+    <syn-fieldset legend="Security">
 
       <syn-input
         id="input-password"
@@ -109,14 +107,13 @@
       >
       </syn-input>
 
-    </fieldset>
+    </syn-fieldset>
     <!-- /Security -->
 
     <syn-divider></syn-divider>
 
     <!-- Topics -->
-    <fieldset class="syn-fieldset">
-      <legend class="syn-legend">Topics</legend>
+    <syn-fieldset legend="Topics">
       <syn-select
         clearable
         id="topics"
@@ -144,14 +141,13 @@
         placeholder="Select testing frameworks"
         required
       ></syn-combobox>
-    </fieldset>
+    </syn-fieldset>
     <!-- /Topics -->
 
     <syn-divider></syn-divider>
 
     <!-- Happiness -->
-    <fieldset id="happiness-fields" class="syn-fieldset">
-      <legend class="syn-legend">Happiness</legend>
+    <syn-fieldset id="happiness-fields" legend="Happiness">
       <syn-range
         id="happiness"
         label="How happy are you with the Synergy Design System?"
@@ -182,14 +178,13 @@
         </nav>
       </syn-range>
 
-    </fieldset>
+    </syn-fieldset>
     <!-- /.Happiness -->
 
     <syn-divider></syn-divider>
 
     <!-- Experience -->
-    <fieldset class="syn-fieldset">
-      <legend class="syn-legend">Experience</legend>
+    <syn-fieldset legend="Experience">
       <syn-radio-group
         id="experience"
         label="How experienced are you with the Synergy Design System?"
@@ -201,15 +196,14 @@
         <syn-radio>I am a Synergy Design System expert</syn-radio>
         <syn-radio>I am the creator of the Synergy Design System</syn-radio>
       </syn-radio-group>
-    </fieldset>
+    </syn-fieldset>
     <!-- /Experience -->
 
     <syn-divider></syn-divider>
 
     <!-- Marketing -->
-    <fieldset class="syn-fieldset">
+    <syn-fieldset legend="Please inform me about the following technologies">
       <!-- We will never do this, I promise! -->
-      <legend class="syn-legend">Please inform me about the following technologies</legend>
       <syn-checkbox
         id="checkbox-newsletter-default"
         name="checkbox-newsletter-default"
@@ -262,14 +256,13 @@
       >
         I am interested in the Synergy UX Program
       </syn-switch>
-    </fieldset>
+    </syn-fieldset>
     <!-- /Marketing -->
 
     <syn-divider></syn-divider>
 
     <!-- AdditionalInformation -->
-    <fieldset class="syn-fieldset">
-      <legend class="syn-legend">Additional Information</legend>
+    <syn-fieldset legend="Additional Information">
       <syn-textarea
         id="additional-info"
         label="Comment"
@@ -288,13 +281,13 @@
         name="files"
       ></syn-file>
 
-    </fieldset>
+    </syn-fieldset>
     <!-- /AdditionalInformation -->
 
     <syn-divider></syn-divider>
 
     <!-- Actions -->
-    <div class="syn-fieldset syn-submit-buttons">
+    <div class="syn-submit-buttons">
       <syn-button variant="outline" type="reset">Reset</syn-button>
       <syn-button variant="filled" type="submit">Send</syn-button>
     </div>

@@ -168,6 +168,14 @@ const SynDropdown = {
 /**
  * @type {import('html-validate').MetaElement}
  */
+const SynFieldset = {
+  flow: true,
+  sectioning: true,
+};
+
+/**
+ * @type {import('html-validate').MetaElement}
+ */
 const SynFile = {
   flow: true,
   focusable: true,
@@ -499,6 +507,7 @@ export const rules = {
   SynDivider,
   SynDrawer,
   SynDropdown,
+  SynFieldset,
   SynFile,
   SynHeader,
   SynIcon,

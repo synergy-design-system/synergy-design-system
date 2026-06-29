@@ -718,6 +718,37 @@
 
             <syn-tab
               slot="nav"
+              id="tab-Fieldset"
+              panel="Fieldset"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-fieldset"
+            >
+              Fieldset
+            </syn-tab>
+            <syn-tab-panel
+              name="Fieldset"
+              id="syn-tab-panel-fieldset"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Fieldset"
+            >
+              <div style="display: contents" id="tab-content-Fieldset">
+                <syn-fieldset
+                  description="This is a fieldset with a legend and description."
+                  legend="Fieldset Legend"
+                >
+                  <syn-input label="Input 1"></syn-input>
+                  <syn-input label="Input 2"></syn-input>
+                  <syn-input label="Input 3"></syn-input>
+                </syn-fieldset>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
               id="tab-File"
               panel="File"
               role="tab"

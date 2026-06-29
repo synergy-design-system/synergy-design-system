@@ -41,6 +41,52 @@
     "override": {
       "figmaComponentId": "50975-46749",
       "figmaDocsId": "50945-47173",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Fieldset is a component used to group related form controls and labels. It provides a visual and semantic grouping for better accessibility and organization."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Fieldset"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The one-column layout applies to container widths below 640px and stacks the nested elements within a row. Overall, please make sure that no more than two items are nested within a single row.\n\nFor container widths of 640px or above, the nested elements within each row switch to a horizontal layout.\n\nIf you want to display a single full-width item per row for containers wider than 640px, place only that one item inside the row and make sure your nested component has its width set to “fill”."
+          },
+          "name": "columns",
+          "title": {
+            "type": "text",
+            "value": "One-column vs. two-column layout"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Enable the disabled toggle to disable all nested elements simultaneously."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the item-spacing attribute to adjust the spacing between nested elements."
+          },
+          "name": "item-spacing",
+          "title": {
+            "type": "text",
+            "value": "Item Spacing"
+          }
+        }
+      ],
       "storySourcePath": "components.fieldset",
       "storyTags": [
         "Form",

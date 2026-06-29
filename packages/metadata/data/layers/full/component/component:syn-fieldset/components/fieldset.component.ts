@@ -5,6 +5,7 @@ import {
 } from 'lit';
 import { property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { HasSlotController } from '../../internal/slot.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
@@ -139,6 +140,7 @@ export default class SynFieldset extends SynergyElement {
           'fieldset--normal': this.itemSpacing === 'normal',
         })}
         ?disabled=${this.disabled}
+        aria-describedby=${ifDefined(descriptionExists ? 'description' : undefined)}
         part="base"
       >
         ${legendExists
@@ -152,7 +154,7 @@ export default class SynFieldset extends SynergyElement {
         
         ${descriptionExists
           ? html`
-            <div class="description">
+            <div class="description" id="description">
               <slot name="description" part="description">${this.description}</slot>
             </div>
           `

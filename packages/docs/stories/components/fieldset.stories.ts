@@ -22,12 +22,22 @@ const { args: defaultArgs, argTypes } = storybookDefaults('syn-fieldset');
 const { overrideArgs } = storybookHelpers('syn-fieldset');
 const { generateTemplate } = storybookTemplate('syn-fieldset');
 
+const createFields = (amount = 3) => Array.from(
+  { length: amount },
+  (_, i) => html`
+    <syn-input
+      name="item-${i + 1}"
+      label="Item ${i + 1}">
+    </syn-input>
+  `,
+);
+
 const meta: Meta = {
   args: overrideArgs([
     {
       name: 'legend',
       type: 'attribute',
-      value: 'Personal Information',
+      value: 'Legend',
     },
     {
       name: 'description',
@@ -38,42 +48,9 @@ const meta: Meta = {
       name: 'default',
       type: 'slot',
       value: `
-        <syn-input name="customerNr" label="Customer Number"></syn-input>
-        <syn-input
-          name="companyName"
-          required=""
-          label="Company name"
-        ></syn-input>
-        <syn-input name="address" required="" label="Address"></syn-input>
-        <syn-input name="zip" required="" label="Postal Code"></syn-input>
-        <syn-input name="city" required="" label="City"></syn-input>
-
-        <syn-select name="country" required="" label="Country">
-          <syn-option value="0">Deutschland</syn-option>
-
-          <syn-option value="1">USA</syn-option>
-
-          <syn-option value="2">China</syn-option>
-        </syn-select>
-
-        <syn-combobox
-          name="salesPerson"
-          required=""
-          label="Your reference contact"
-        >
-          <syn-option>Max Mustermann</syn-option>
-          <syn-option>John Doe</syn-option>
-          <syn-option>Jane Row</syn-option>
-          <syn-option>Average Joe</syn-option>
-        </syn-combobox>
-        <syn-input type="tel" name="phone" label="Phone number"></syn-input>
-        <syn-input type="tel" name="fax" label="Fax number"></syn-input>
-        <syn-input
-          type="email"
-          name="mail"
-          required=""
-          label="E-Mail address"
-        ></syn-input>
+        <syn-input name="item-1" label="Item 1"></syn-input>
+        <syn-input name="item-2" label="Item 2"></syn-input>
+        <syn-input name="item-3" label="Item 3"></syn-input>
       `,
     },
   ], defaultArgs),
@@ -102,90 +79,84 @@ export const Default: Story = {
     },
     docs: {
       description: {
-        story: generateStoryDescription('file', 'default'),
+        story: generateStoryDescription('fieldset', 'default'),
       },
     },
   },
-  render: args => html`
-    <form method="get" class="fieldset-demo">
-      <syn-fieldset
-        .disabled=${args.disabled}
-        item-spacing="dense"
-        layout="two-columns"
-        legend="Topic"
-      >
-        <syn-checkbox name="topic[0]" value="Inquiry/offer">
-          Inquiry/offer
-        </syn-checkbox>
+  render: args => generateTemplate({ args }),
+};
 
-        <syn-checkbox name="topic[1]" value="Orders/invoices">
-          Orders/invoices
-        </syn-checkbox>
+export const OneColumnLayout: Story = {
+  parameters: {
+    controls: {
+      disable: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('fieldset', 'one-column-layout'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-fieldset
+      description="For container widths < 640px"
+      layout="one-column"
+      legend="One column layout"
+    >
+      ${createFields(6)}
+    </syn-fieldset>
+  `,
+};
 
-        <syn-checkbox name="topic[2]" value="Returns/complaint">
-          Returns/complaint
-        </syn-checkbox>
+export const TwoColumnLayout: Story = {
+  parameters: {
+    controls: {
+      disable: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('fieldset', 'two-column-layout'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-fieldset
+      description="For container widths ≥ 640px"
+      layout="two-columns"
+      legend="Two column layout"
+    >
+      ${createFields(6)}
+    </syn-fieldset>
+  `,
+};
 
-        <syn-checkbox name="topic[3]" value="Documentation/CAD">
-          Documentation/CAD
-        </syn-checkbox>
-
-        <syn-checkbox name="topic[4]" value="Accessories selection">
-          Accessories selection
-        </syn-checkbox>
-
-        <syn-checkbox name="topic[5]" value="Application review">
-          Application review
-        </syn-checkbox>
-
-        <syn-checkbox name="topic[6]" value="Commissioning support">
-          Commissioning support
-        </syn-checkbox>
-      </syn-fieldset>
-
-      <syn-fieldset
-        .disabled=${args.disabled}
-        item-spacing=${args.itemSpacing}
-        layout="one-column"
-        legend="Question"
-      >
-        <div slot="description">
-          It is very helpful if the description is as precise as possible to
-          enable us to process your enquiry correctly. When describing
-          applications, please specify the material/dimensions/speed, if
-          applicable.
-        </div>
-
-        <syn-textarea name="message" required="" label="Message"></syn-textarea>
-      </syn-fieldset>
-
-
-      ${generateTemplate({ args })}
-
-      <syn-button type="submit">Submit</syn-button>
-    </form>
-    <style>
-    .fieldset-demo {
-      background: var(--syn-color-neutral-0);
-      margin: 0 auto;
-      padding: var(--syn-spacing-x-large);
-      max-width: 750px;
-    }
-    </style>
-    <script>
-    document.querySelector('form').addEventListener('submit', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      const formData = new FormData(event.target);
-      const data = Object.fromEntries(formData.entries());
-      console.log('Form submitted:', data);
-    });
-    </script>
+export const Disabled: Story = {
+  parameters: {
+    controls: {
+      disable: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('fieldset', 'disabled'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-fieldset
+      disabled
+      layout="two-columns"
+      legend="Disabled fieldset"
+    >
+      ${createFields(6)}
+    </syn-fieldset>
   `,
 };
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
+  OneColumnLayout,
+  TwoColumnLayout,
+  Disabled,
 }, 750);
 /* eslint-enable sort-keys */

@@ -145,8 +145,8 @@ export default class SynFieldset extends SynergyElement {
       >
         ${legendExists
           ? html`
-            <legend class="legend">
-              <slot name="legend" part="legend">${this.legend}</slot>
+            <legend class="legend" part="legend">
+              <slot name="legend">${this.legend}</slot>
             </legend>
           `
           : null
@@ -154,8 +154,8 @@ export default class SynFieldset extends SynergyElement {
         
         ${descriptionExists
           ? html`
-            <div class="description" id="description">
-              <slot name="description" part="description">${this.description}</slot>
+            <div class="description" id="description" part="description">
+              <slot name="description">${this.description}</slot>
             </div>
           `
           : null

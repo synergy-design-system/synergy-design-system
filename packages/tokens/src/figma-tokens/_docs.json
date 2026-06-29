@@ -1195,13 +1195,23 @@
           "type": "text"
         }
       },
-      "columns": {
+      "one-column-layout": {
         "title": {
-          "value": "One-column vs. two-column layout",
+          "value": "One-column Layout",
           "type": "text"
         },
         "description": {
-          "value": "The one-column layout applies to container widths below 640px and stacks the nested elements within a row. Overall, please make sure that no more than two items are nested within a single row.\n\nFor container widths of 640px or above, the nested elements within each row switch to a horizontal layout.\n\nIf you want to display a single full-width item per row for containers wider than 640px, place only that one item inside the row and make sure your nested component has its width set to “fill”.",
+          "value": "The one-column layout applies to container widths below 640px and stacks the nested elements within a row. Overall, please make sure that no more than two items are nested within a single row.",
+          "type": "text"
+        }
+      },
+      "two-column-layout": {
+        "title": {
+          "value": "Two-column Layout",
+          "type": "text"
+        },
+        "description": {
+          "value": "For container widths of 640px or above, the nested elements within each row switch to a horizontal layout.\n\nThis layout is ideal for forms with multiple fields, as it allows for a more compact and organized presentation of the form controls.\n\nWill automatically switch to a one-column layout for container widths below 640px.",
           "type": "text"
         }
       },

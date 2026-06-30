@@ -1,5 +1,23 @@
 # @synergy-design-system/vue
 
+## 3.17.0
+
+### Minor Changes
+
+- [#1231](https://github.com/synergy-design-system/synergy-design-system/pull/1231) [`8a6cbf7`](https://github.com/synergy-design-system/synergy-design-system/commit/8a6cbf78fe5236b691815edfad12b34659937df9) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-06-30
+
+  feat: ✨ `<syn-radio-button>` ([#1140](https://github.com/synergy-design-system/synergy-design-system/issues/1140))
+
+  This release adds the new `<syn-radio-button>` component for single-selection controls with a more prominent, button-like appearance.
+
+  Use `<syn-radio>` for classic form input patterns, and `<syn-radio-button>` when the same behavior should feel more like an immediate mode, view, or option switch.
+
+### Patch Changes
+
+- Updated dependencies [[`8a6cbf7`](https://github.com/synergy-design-system/synergy-design-system/commit/8a6cbf78fe5236b691815edfad12b34659937df9)]:
+  - @synergy-design-system/components@3.17.0
+  - @synergy-design-system/tokens@3.17.0
+
 ## 3.16.0
 
 ### Minor Changes

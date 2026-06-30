@@ -1771,6 +1771,26 @@ export const SynProgressTrackColor = 'var(--syn-progress-track-color)';
 /**
  * @type {string}
  */
+export const SynRadioButtonBorderColor = 'var(--syn-radio-button-border-color)';
+
+/**
+ * @type {string}
+ */
+export const SynRadioButtonBorderRadiusLarge = 'var(--syn-radio-button-border-radius-large)';
+
+/**
+ * @type {string}
+ */
+export const SynRadioButtonBorderRadiusMedium = 'var(--syn-radio-button-border-radius-medium)';
+
+/**
+ * @type {string}
+ */
+export const SynRadioButtonBorderRadiusSmall = 'var(--syn-radio-button-border-radius-small)';
+
+/**
+ * @type {string}
+ */
 export const SynRangeColorInactive = 'var(--syn-range-color-inactive)';
 
 /**

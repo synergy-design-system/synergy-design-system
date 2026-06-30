@@ -576,6 +576,138 @@
         "type": "text"
       }
     },
+    "chart": {
+      "axes-default": {
+        "title": {
+          "value": "Axes",
+          "type": "text"
+        },
+        "description": {
+          "value": "The chart’s axes define the visual structure of the data and can be customized to match different visualization needs. Both the horizontal and vertical axes support flexible configuration options, allowing you to control how reference lines and labels are displayed.\n\nYou can choose to show only horizontal grid lines, only vertical grid lines, or both, depending on the level of visual guidance you want to provide. ",
+          "type": "text"
+        }
+      },
+      "axes-split-lines-hidden": {
+        "title": {
+          "value": "Hidden Axes Split Lines",
+          "type": "text"
+        },
+        "description": {
+          "value": "The default is, that both axes lines as well as the split lines are hidden.",
+          "type": "text"
+        }
+      },
+      "axes-split-lines-visible": {
+        "title": {
+          "value": "Visible Axes Split Lines",
+          "type": "text"
+        },
+        "description": {
+          "value": "If you want to display both axes lines and split lines, use the handle method `axesShowSplitLines()`.",
+          "type": "text"
+        }
+      },
+      "axes-horizontal-split-lines": {
+        "title": {
+          "value": "Horizontal Split Lines Only",
+          "type": "text"
+        },
+        "description": {
+          "value": "To show only horizontal split lines, use the handle method `axesShowYSplitLines()`.",
+          "type": "text"
+        }
+      },
+      "axes-vertical-split-lines": {
+        "title": {
+          "value": "Vertical Split Lines Only",
+          "type": "text"
+        },
+        "description": {
+          "value": "To show only vertical split lines, use the handle method `axesShowXSplitLines()`.",
+          "type": "text"
+        }
+      },
+      "axes-labels-hidden": {
+        "title": {
+          "value": "Hidden Axis Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "If you want to hide the axis labels, use the handle method `axesHideLabels()`.",
+          "type": "text"
+        }
+      },
+      "axes-lines-visible-labels-hidden": {
+        "title": {
+          "value": "Visible Axes Lines with Hidden Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "To show axes split lines but hide axis labels, combine `axesShowSplitLines()` and `axesHideLabels()`.",
+          "type": "text"
+        }
+      },
+      "axes-labels-with-icons": {
+        "title": {
+          "value": "Axes Labels with Icons",
+          "type": "text"
+        },
+        "description": {
+          "value": "To add icons to axis labels, use the handle methods `axesAddXLabelIcons()` and `axesAddYLabelIcons()`.",
+          "type": "text"
+        }
+      },
+      "default": {
+        "title": {
+          "value": "Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "The default story demonstrates a basic line chart configuration. The chart is configured via the `config` property, which accepts an object that maps directly to the ECharts option configuration.",
+          "type": "text"
+        }
+      },
+      "config": {
+        "title": {
+          "value": "Config",
+          "type": "text"
+        },
+        "description": {
+          "value": "The `config` property is the main way to configure the chart. It accepts an object that maps 1:1 to the ECharts option configuration. Assigning a new object to this property will update the chart with the new configuration.",
+          "type": "text"
+        }
+      },
+      "palette": {
+        "title": {
+          "value": "Palette",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `palette` attribute to apply a Synergy design token color palette to chart series. `categorical` (12 distinct colors for comparing unrelated data series), `sequential-01`–`sequential-07` (10-step single-hue ramps), and `sequential-status-critical/error/info/success/warning` (10-step status ramps). If `option.color` is explicitly set, it takes precedence over the `palette` attribute.",
+          "type": "text"
+        }
+      },
+      "get-instance": {
+        "title": {
+          "value": "Get Instance",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `getInstance()` to access the underlying ECharts instance directly and work with its full native API. This is useful when the `config` property alone is not sufficient — for example to listen to ECharts events, trigger actions, or call `setOption()` with custom merge behavior. This example attaches a click listener via the native ECharts API. Click any data point to see the event payload logged to the browser console.",
+          "type": "text"
+        }
+      },
+      "multiple-charts": {
+        "title": {
+          "value": "Multiple Charts",
+          "type": "text"
+        },
+        "description": {
+          "value": "You can use multiple charts in one `<syn-chart>` instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the `color` property directly on the series object — allowing fine-grained control over individual chart series colors.\n\n**Important:** The `color` property does **not** support CSS variables (e.g. `var(--syn-sequential-05-80)`). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using `getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim()` and pass the resolved value instead.",
+          "type": "text"
+        }
+      }
+    },
     "checkbox": {
       "default": {
         "title": {
@@ -1953,13 +2085,85 @@
       }
     },
     "radio-button": {
-      "description": {
-        "value": "Radios buttons allow the user to select a single option from a group using a button-like control.",
-        "type": "text"
+      "default": {
+        "description": {
+          "value": "Radio buttons allow the user to select a single option from a group using a button-like control.\n\nRadio buttons are designed to be used with radio groups. When a radio button has focus, the arrow keys can be used to change the selected option just like standard radio controls.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Radio Button",
+          "type": "text"
+        }
       },
-      "title": {
-        "value": "Radio Button",
-        "type": "text"
+      "checked": {
+        "description": {
+          "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Checked",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "description": {
+          "value": "Use the disabled attribute to disable a radio button.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "description": {
+          "value": "Add the read-only attribute to render a readonly radio button. Please note that you need to enable the readonly state for each individual radio button.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Readonly",
+          "type": "text"
+        }
+      },
+      "invalid": {
+        "title": {
+          "value": "Invalid",
+          "type": "text"
+        },
+        "description": {
+          "value": "The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio-button is mandatory and nothing has been checked.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "description": {
+          "value": "Use the size attribute to change a radio button’s size.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        }
+      },
+      "prefix-suffix": {
+        "description": {
+          "value": "Use the prefix and suffix slots to add icons.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Prefix and Suffix Icons",
+          "type": "text"
+        }
+      },
+      "buttons-with-icons": {
+        "description": {
+          "value": "You can omit button labels and use icons instead. Make sure to set a label attribute on each icon so screen readers will announce each option correctly.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Buttons with Icons",
+          "type": "text"
+        }
       }
     },
     "radio-group": {
@@ -2070,6 +2274,16 @@
         },
         "description": {
           "value": "To set the initial value and checked state, use the value attribute on the containing radio group.",
+          "type": "text"
+        }
+      },
+      "radio-buttons": {
+        "title": {
+          "value": "Radio Buttons",
+          "type": "text"
+        },
+        "description": {
+          "value": "Radio buttons offer an alternate way to display radio controls. In this case, an internal button group is used to group the buttons into a single, cohesive control.",
           "type": "text"
         }
       }
@@ -3943,6 +4157,46 @@
             "value": "Link colors",
             "type": "text"
           }
+        }
+      }
+    },
+    "chart-colors": {
+      "description": {
+        "value": "Chart color tokens are organized into palettes designed for different data visualization needs. Colors must be applied consistently to ensure accessibility and visual coherence across themes.",
+        "type": "text"
+      },
+      "title": {
+        "value": "Chart Colors",
+        "type": "text"
+      },
+      "categorical": {
+        "title": {
+          "value": "Categorical Palette",
+          "type": "text"
+        },
+        "description": {
+          "value": "The Categorical Palette is used to visually distinguish discrete data categories in charts such as bar, line, or pie charts. To ensure consistency and recognition across applications, colors must be applied in a fixed sequence and should not be rearranged.\n\nAccessibility note:\n\nFor accessibility, the colors in this palette meet the minimum contrast ratio of 3:1 only when used on the chart-background token.\n\nUsing these colors on other background colors may result in insufficient contrast. Following these guidelines ensures that charts remain both visually effective and inclusive across themes.",
+          "type": "text"
+        }
+      },
+      "sequential": {
+        "title": {
+          "value": "Sequential Palettes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Sequential color palettes use a single color that progress from light to dark. They are ideal for visualizing ordered data that increases or decreases in magnitude, making it easy to see relative intensity or quantity at a glance.\n\nSequential palettes are particularly effective for showing continuous ranges, for example:\n- Low to high values\n- Small to large populations\n- Light to heavy usage or intensity\n- Early to late time spans\n\nUnlike categorical or diverging palettes, sequential palettes emphasize a smooth progression within one direction rather than contrasting two ends. This makes them well-suited for heatmaps, choropleth maps, distribution charts, and any visual where \"more vs. less\" is the key message.\n\nAccessibility note:\n\nBecause sequential palettes rely on gradual changes in luminance and saturation, adjacent steps can be hard to distinguish—especially at the very light or very dark ends, and for users with colour vision deficiencies. In other words, some shades don't meet the 3:1 minimum contrast ratio.\n\nTo address this:\n- Don't rely on color alone to convey meaning. Add a second cue (e.g., labels, icons, line styles) so the message is still clear if colours aren't easily distinguishable.\n- Highlight important thresholds or ranges with extra guidance, such as data labels or short annotations, contour lines, gridlines, or shaded bands to mark ranges, or subtle patterns or thin outlines on areas/bars.",
+          "type": "text"
+        }
+      },
+      "sequential-status": {
+        "title": {
+          "value": "Sequential Status Palettes",
+          "type": "text"
+        },
+        "description": {
+          "value": "Status sequential palettes use lighter to darker versions of a single status color (such as success, warning, error, info, or critical). They help show how strong or severe a status is, not just which status it belongs to. Lighter shades represent low impact or early stages, while darker shades show higher impact or urgency.\n\nThese palettes are useful when a status changes in intensity over time or across data points—for example in heatmaps, timelines, or charts that compare different levels of risk or confidence.\n\nAccessibility note:\n\nBecause sequential palettes rely on gradual changes in luminance and saturation, adjacent steps can be hard to distinguish—especially at the very light or very dark ends, and for users with colour vision deficiencies. In other words, some shades don't meet the 3:1 minimum contrast ratio.\n\nTo address this:\n- Don't rely on colour alone to convey meaning. Add a second cue (e.g., labels, icons, line styles) so the message is still clear if colours aren't easily distinguishable.\n- Highlight important thresholds or ranges with extra guidance, such as data labels or short annotations, contour lines, gridlines, or shaded bands to mark ranges, or subtle patterns or thin outlines on areas/bars.",
+          "type": "text"
         }
       }
     },

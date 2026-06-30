@@ -20,6 +20,7 @@ export class DemoForm extends BaseFormObject {
     return [
       this.newsUI,
       this.newsUX,
+      this.preferredContactPhone,
     ];
   }
 
@@ -68,6 +69,18 @@ export class DemoForm extends BaseFormObject {
 
   get donations(): Locator {
     return this.page.locator(selectors.donations);
+  }
+
+  get preferredContact(): Locator {
+    return this.page.locator(selectors.preferredContactLoc);
+  }
+
+  get preferredContactEmail(): Locator {
+    return this.page.locator(selectors.preferredContactEmail);
+  }
+
+  get preferredContactPhone(): Locator {
+    return this.page.locator(selectors.preferredContactPhone);
   }
 
   get allRequiredInputs(): Array<Locator> {
@@ -131,6 +144,10 @@ export class DemoForm extends BaseFormObject {
     // Set experience to a little
     await this.experience.click();
     await this.experienceLittle.click();
+
+    // Set preferred contact to email
+    await this.preferredContact.click();
+    await this.preferredContactEmail.click();
   }
 
   async checkInitialState(expect: Expect) {
@@ -149,6 +166,7 @@ export class DemoForm extends BaseFormObject {
     expect(await getInputValue(this.happiness)).toBe('5');
     expect(await getInputValue(this.donations)).toBe('2000 4000');
     expect(await getInputValue(this.testingFrameworks)).toEqual([]);
+    expect(await getInputValue(this.preferredContact)).toBe('other');
 
     const allNews = await Promise.all(this.allNews.map((news) => getCheckedValue(news)));
     allNews.forEach(val => expect(val).toBeFalsy());

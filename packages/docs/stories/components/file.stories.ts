@@ -3,6 +3,7 @@ import '../../../components/src/components/button/button.js';
 import { html } from 'lit';
 import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
 import { userEvent } from 'storybook/test';
+import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -201,6 +202,7 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
+  decorators: [FormSubmitDecorator],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -231,32 +233,18 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-    <form class="custom-validity">
-      <syn-file
-        class="syn-file-invalid"
-        droparea
-        help-text="This is an error text."
-        label="This is a label"
-      ></syn-file>
-      <syn-button type="submit" variant="filled">Submit</syn-button>
-    </form>
+    <syn-file
+      class="syn-file-invalid"
+      droparea
+      help-text="This is an error text."
+      label="This is a label"
+    ></syn-file>
     <script type="module">
       const files = document.querySelectorAll('.syn-file-invalid');
       files.forEach((file) => {
         file.setCustomValidity('This is an error text');
       });
     </script>
-    <style>
-      .custom-validity {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-
-      syn-button {
-        align-self: flex-start;
-      }
-    </style>
   `,
 };
 

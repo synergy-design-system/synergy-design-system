@@ -7,6 +7,8 @@ Radios buttons allow the user to select a single option from a group using a but
 ## Documentation
 
 - [Component Documentation](https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs)
+- [Figma Examples](https://www.figma.com/file/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?type=design&node-id=49697-83768)
+- [Figma Component](https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digital-Design-System?node-id=47863-30109)
 
 ## Class Information
 
@@ -16,7 +18,7 @@ Radios buttons allow the user to select a single option from a group using a but
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 1.0.0
+- **Since:** 3.17.0
 
 ## Available Slots
 
@@ -35,14 +37,14 @@ default: `false`
 
 Disables the radio button.
 
-### pill
+### readonly
 
-attribute: `pill`
+attribute: `readonly`
 reflects: yes
 type: `boolean`
 default: `false`
 
-Draws a pill-style radio button with rounded edges.
+Sets the radio button to a readonly state.
 
 ### size
 

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-06-24T10:06:47.286Z",
+  "builtAt": "2026-06-30T11:22:13.657Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -245,7 +245,7 @@
       "kind": "component",
       "layers": {
         "examples": 1,
-        "full": 8,
+        "full": 7,
         "interface": 2,
         "rules": 1
       },
@@ -838,6 +838,7 @@
       "id": "component:syn-radio-button",
       "kind": "component",
       "layers": {
+        "examples": 1,
         "full": 7,
         "interface": 2,
         "rules": 1

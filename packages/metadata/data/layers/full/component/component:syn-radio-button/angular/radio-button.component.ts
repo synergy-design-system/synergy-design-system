@@ -21,7 +21,7 @@ import '@synergy-design-system/components/components/radio-button/radio-button.j
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs
  * @status stable
- * @since 1.0.0
+ * @since 3.17.0
  *
  * @slot - The radio button's label.
  * @slot prefix - A presentational prefix icon or similar element.
@@ -83,6 +83,19 @@ export class SynRadioButtonComponent {
   }
 
   /**
+   * Sets the radio button to a readonly state.
+   */
+  @Input()
+  set readonly(v: '' | SynRadioButton['readonly']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.readonly = v === '' || v),
+    );
+  }
+  get readonly(): SynRadioButton['readonly'] {
+    return this.nativeElement.readonly;
+  }
+
+  /**
 * The radio button's size.
 * When used inside a radio group, the size will be determined by the radio group's size so
 this attribute can typically be omitted.
@@ -93,19 +106,6 @@ this attribute can typically be omitted.
   }
   get size(): SynRadioButton['size'] {
     return this.nativeElement.size;
-  }
-
-  /**
-   * Draws a pill-style radio button with rounded edges.
-   */
-  @Input()
-  set pill(v: '' | SynRadioButton['pill']) {
-    this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.pill = v === '' || v),
-    );
-  }
-  get pill(): SynRadioButton['pill'] {
-    return this.nativeElement.pill;
   }
 
   /**

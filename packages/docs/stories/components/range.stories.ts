@@ -5,6 +5,7 @@ import '../../../components/src/components/range/range.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/input/input.js';
 import '../../../components/src/components/range-tick/range-tick.js';
+import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -110,6 +111,7 @@ export const Disabled: Story = {
 };
 
 export const Invalid: Story = {
+  decorators: [FormSubmitDecorator],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -139,36 +141,17 @@ export const Invalid: Story = {
     }
   },
   render: () => html`
-    <form class="custom-validity">
-      <syn-range
-        help-text="This is an error text"
-        id="range-invalid"
-        max="100"
-        min="0"
-        value="50"
-      >
-
-      </syn-range>
-      <syn-button type="submit">Submit</syn-button>
-    </form>
+    <syn-range
+      help-text="This is an error text"
+      id="range-invalid"
+      max="100"
+      min="0"
+      value="50"
+    ></syn-range>
     <script type="module">
-      document.querySelector('form').addEventListener('submit', e => {
-        e.preventDefault();
-      });
-
       const range = document.querySelector('#range-invalid');
       range.setCustomValidity('Please enter a valid value');
     </script>
-    <style>
-      .custom-validity {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-      }
-      syn-button {
-        align-self: flex-start;
-      }
-    </style>
   `,
 };
 

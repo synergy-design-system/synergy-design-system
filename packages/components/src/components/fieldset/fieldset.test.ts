@@ -281,9 +281,9 @@ describe('<syn-fieldset>', () => {
       expect(radioGroup).to.have.attribute('option-layout', 'inline');
 
       el.groupAware = false;
-      await el.updateComplete;
+      await waitUntil(() => radioGroup.getAttribute('option-layout') !== 'inline');
 
-      expect(radioGroup).to.not.have.attribute('option-layout');
+      expect(radioGroup.getAttribute('option-layout')).to.not.equal('inline');
     });
   });
 

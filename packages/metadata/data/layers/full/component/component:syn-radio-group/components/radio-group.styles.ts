@@ -52,6 +52,33 @@ export default css`
     gap: var(--syn-spacing-x-small);
   }
 
+  .form-control--inline .form-control-input slot {
+    display: flex;
+    flex-wrap: wrap;
+    gap:
+      var(--syn-radio-group-inline-row-gap, var(--syn-spacing-x-small))
+      var(--syn-radio-group-inline-column-gap, var(--syn-spacing-medium));
+  }
+
+  .form-control--inline .form-control-input slot::slotted(syn-radio),
+  .form-control--inline .form-control-input slot::slotted(syn-radio-button) {
+    flex-basis: 100%;
+    min-width: 100%;
+  }
+
+  /**
+   * Picked up from the fieldset component to ensure that radio groups inside a fieldset with a dense item spacing are displayed correctly.
+   */
+  @container (min-width: 640px) {
+    .form-control--inline .form-control-input slot::slotted(syn-radio),
+    .form-control--inline .form-control-input slot::slotted(syn-radio-button) {
+      flex: 1 1 calc(
+        (100% - var(--syn-radio-group-inline-column-gap, var(--syn-spacing-medium))) / 2
+      );
+      min-width: min(18rem, 100%);
+    }
+  }
+
   .form-control--has-help-text.form-control--radio-group .form-control__help-text {
     margin-top: var(--syn-spacing-x-small);
   }

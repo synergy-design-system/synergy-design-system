@@ -89,6 +89,14 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /**
+   * Defines how options are laid out inside the radio group.
+   *
+   * - `stacked`: options are displayed in a single column (default)
+   * - `inline`: options are displayed in a wrapping row layout
+   */
+  @property({ attribute: 'option-layout', reflect: true }) optionLayout: 'stacked' | 'inline' = 'stacked';
+
+  /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
@@ -381,6 +389,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
           'form-control': true,
           'form-control--has-help-text': hasHelpText,
           'form-control--has-label': hasLabel,
+          'form-control--inline': this.optionLayout === 'inline',
           'form-control--large': this.size === 'large',
           'form-control--medium': this.size === 'medium',
           'form-control--radio-group': true,
@@ -416,7 +425,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
             </label>
           </div>
 
-          ${this.hasButtonGroup
+          ${this.hasButtonGroup && this.optionLayout !== 'inline'
             ? html`
                 <syn-button-group part="button-group" exportparts="base:button-group__base" role="presentation">
                   ${defaultSlot}

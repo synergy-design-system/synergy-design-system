@@ -1231,7 +1231,17 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the item-spacing attribute to adjust the spacing between nested elements.",
+          "value": "Use an item-spacing of \"dense\" to force a smaller spacing between nested elements. Useful for checkboxes, switches, and radio buttons.",
+          "type": "text"
+        }
+      },
+      "group-aware": {
+        "title": {
+          "value": "Group Aware",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable the group-aware toggle to ensure nested elements (like syn-radio-group) align with the fieldset spacing and remain readable across breakpoints.",
           "type": "text"
         }
       }

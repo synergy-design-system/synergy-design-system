@@ -77,6 +77,14 @@ instead.
   size?: SynRadioGroup['size'];
 
   /**
+* Defines how options are laid out inside the radio group.
+
+- `stacked`: options are displayed in a single column (default)
+- `inline`: options are displayed in a wrapping row layout
+ */
+  optionLayout?: SynRadioGroup['optionLayout'];
+
+  /**
 * By default, form controls are associated with the nearest containing `<form>` element.
 * This attribute allows you
 to place the form control outside of a form and associate it with the form that has this `id`.

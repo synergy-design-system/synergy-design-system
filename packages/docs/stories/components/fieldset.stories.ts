@@ -1,11 +1,8 @@
-import '../../../components/src/components/button/button.js';
-import '../../../components/src/components/combobox/combobox.js';
 import '../../../components/src/components/checkbox/checkbox.js';
 import '../../../components/src/components/fieldset/fieldset.js';
 import '../../../components/src/components/input/input.js';
-import '../../../components/src/components/select/select.js';
-import '../../../components/src/components/option/option.js';
-import '../../../components/src/components/textarea/textarea.js';
+import '../../../components/src/components/radio-group/radio-group.js';
+import '../../../components/src/components/radio/radio.js';
 import { html } from 'lit';
 import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
 import {
@@ -130,6 +127,61 @@ export const TwoColumnLayout: Story = {
   `,
 };
 
+export const ItemSpacing: Story = {
+  parameters: {
+    controls: {
+      disable: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('fieldset', 'item-spacing'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-fieldset
+      layout="two-columns"
+      legend="Item spacing"
+      item-spacing="dense"
+    >
+      <syn-checkbox name="checkbox-1">Checkbox 1</syn-checkbox>
+      <syn-checkbox name="checkbox-2">Checkbox 2</syn-checkbox>
+      <syn-checkbox name="checkbox-3">Checkbox 3</syn-checkbox>
+      <syn-checkbox name="checkbox-4">Checkbox 4</syn-checkbox>
+      <syn-checkbox name="checkbox-5">Checkbox 5</syn-checkbox>
+    </syn-fieldset>
+  `,
+};
+
+export const GroupAware: Story = {
+  parameters: {
+    controls: {
+      disable: false,
+    },
+    docs: {
+      description: {
+        story: generateStoryDescription('fieldset', 'group-aware'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-fieldset
+      description="Direct child radio groups get inline option layout automatically."
+      group-aware
+      layout="two-columns"
+      legend="Group-aware fieldset"
+      item-spacing="dense"
+    >
+      <syn-radio-group label="Contact Topic">
+        <syn-radio value="offer">Inquiry/offer</syn-radio>
+        <syn-radio value="invoice">Orders/invoices</syn-radio>
+        <syn-radio value="complaint">Returns/complaint</syn-radio>
+        <syn-radio value="docs">Documentation/CAD</syn-radio>
+      </syn-radio-group>
+    </syn-fieldset>
+  `,
+};
+
 export const Disabled: Story = {
   parameters: {
     controls: {
@@ -157,6 +209,8 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   OneColumnLayout,
   TwoColumnLayout,
+  ItemSpacing,
+  GroupAware,
   Disabled,
 }, 750);
 /* eslint-enable sort-keys */

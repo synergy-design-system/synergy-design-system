@@ -233,6 +233,58 @@ describe('<syn-fieldset>', () => {
 
       expect(el).to.have.attribute('layout', 'two-columns');
     });
+
+    it('should set option-layout="inline" on direct child radio groups when group-aware and two-columns are enabled', async () => {
+      const el = await fixture<SynFieldset>(html`
+        <syn-fieldset group-aware layout="two-columns">
+          <syn-radio-group id="rg">
+            <syn-radio value="1">One</syn-radio>
+            <syn-radio value="2">Two</syn-radio>
+          </syn-radio-group>
+        </syn-fieldset>
+      `);
+      const radioGroup = el.querySelector('#rg')!;
+
+      await el.updateComplete;
+
+      expect(radioGroup).to.have.attribute('option-layout', 'inline');
+    });
+
+    it('should not override an explicit option-layout on direct child radio groups', async () => {
+      const el = await fixture<SynFieldset>(html`
+        <syn-fieldset group-aware layout="two-columns">
+          <syn-radio-group id="rg" option-layout="stacked">
+            <syn-radio value="1">One</syn-radio>
+            <syn-radio value="2">Two</syn-radio>
+          </syn-radio-group>
+        </syn-fieldset>
+      `);
+      const radioGroup = el.querySelector('#rg')!;
+
+      await el.updateComplete;
+
+      expect(radioGroup).to.have.attribute('option-layout', 'stacked');
+    });
+
+    it('should remove propagated option-layout when group-aware is disabled', async () => {
+      const el = await fixture<SynFieldset>(html`
+        <syn-fieldset group-aware layout="two-columns">
+          <syn-radio-group id="rg">
+            <syn-radio value="1">One</syn-radio>
+            <syn-radio value="2">Two</syn-radio>
+          </syn-radio-group>
+        </syn-fieldset>
+      `);
+      const radioGroup = el.querySelector('#rg')!;
+
+      await el.updateComplete;
+      expect(radioGroup).to.have.attribute('option-layout', 'inline');
+
+      el.groupAware = false;
+      await el.updateComplete;
+
+      expect(radioGroup).to.not.have.attribute('option-layout');
+    });
   });
 
   describe('item spacing', () => {

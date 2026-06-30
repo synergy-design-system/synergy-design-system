@@ -48,6 +48,17 @@ default: `false`
 Whether the fieldset is disabled.
 When true, all form controls inside the fieldset are disabled
 
+### groupAware
+
+attribute: `group-aware`
+reflects: yes
+type: `boolean`
+default: `false`
+
+Enables group-aware handling for direct child radio groups in two-column layout.
+When enabled, direct child `<syn-radio-group>` elements are set to `option-layout="inline"`
+unless they already define an explicit `option-layout`.
+
 ### itemSpacing
 
 attribute: `item-spacing`

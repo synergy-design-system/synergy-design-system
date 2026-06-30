@@ -17,6 +17,14 @@
       "type": "boolean"
     },
     {
+      "default": "false",
+      "description": "Enables group-aware handling for direct child radio groups in two-column layout.\nWhen enabled, direct child `<syn-radio-group>` elements are set to `option-layout=\"inline\"`\nunless they already define an explicit `option-layout`.",
+      "fieldName": "groupAware",
+      "name": "group-aware",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
       "default": "'normal'",
       "description": "The spacing between the fields in the fieldset. This can be set to `dense` or `normal`. Defaults to `normal`.\nA dense layout is useful for displaying smaller form controls, e.g. checkboxes or radio buttons, while a normal layout is better suited for larger form controls, e.g. text inputs or selects.\nThe spacing can also be controlled with the `--item-gap-normal` and `--item-gap-dense` CSS variables.",
       "fieldName": "itemSpacing",
@@ -78,6 +86,13 @@
       "default": "false",
       "description": "Whether the fieldset is disabled.\nWhen true, all form controls inside the fieldset are disabled",
       "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Enables group-aware handling for direct child radio groups in two-column layout.\nWhen enabled, direct child `<syn-radio-group>` elements are set to `option-layout=\"inline\"`\nunless they already define an explicit `option-layout`.",
+      "name": "groupAware",
       "type": "boolean"
     },
     {

@@ -66,6 +66,18 @@ default: `'option'`
 
 The name of the radio group, submitted as a name/value pair with form data.
 
+### optionLayout
+
+attribute: `option-layout`
+reflects: yes
+type: `'stacked' | 'inline'`
+default: `'stacked'`
+
+Defines how options are laid out inside the radio group.
+
+- `stacked`: options are displayed in a single column (default)
+- `inline`: options are displayed in a wrapping row layout
+
 ### required
 
 attribute: `required`

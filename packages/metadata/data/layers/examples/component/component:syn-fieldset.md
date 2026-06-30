@@ -67,6 +67,45 @@ For container widths of 640px or above, the nested elements within each row swit
 
 ---
 
+## Item Spacing
+
+Use an item-spacing of "dense" to force a smaller spacing between nested elements. Useful for checkboxes, switches, and radio buttons.
+
+```html
+<syn-fieldset layout="two-columns" legend="Item spacing" item-spacing="dense">
+  <syn-checkbox name="checkbox-1">Checkbox 1</syn-checkbox>
+  <syn-checkbox name="checkbox-2">Checkbox 2</syn-checkbox>
+  <syn-checkbox name="checkbox-3">Checkbox 3</syn-checkbox>
+  <syn-checkbox name="checkbox-4">Checkbox 4</syn-checkbox>
+  <syn-checkbox name="checkbox-5">Checkbox 5</syn-checkbox>
+</syn-fieldset>
+```
+
+---
+
+## Group Aware
+
+Enable the group-aware toggle to ensure nested elements (like syn-radio-group) align with the fieldset spacing and remain readable across breakpoints.
+
+```html
+<syn-fieldset
+  description="Direct child radio groups get inline option layout automatically."
+  group-aware=""
+  layout="two-columns"
+  legend="Group-aware fieldset"
+  item-spacing="dense"
+>
+  <syn-radio-group label="Contact Topic">
+    <syn-radio value="offer">Inquiry/offer</syn-radio>
+    <syn-radio value="invoice">Orders/invoices</syn-radio>
+    <syn-radio value="complaint">Returns/complaint</syn-radio>
+    <syn-radio value="docs">Documentation/CAD</syn-radio>
+  </syn-radio-group>
+</syn-fieldset>
+```
+
+---
+
 ## Disabled
 
 Enable the disabled toggle to disable all nested elements simultaneously.

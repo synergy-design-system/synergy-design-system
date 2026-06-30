@@ -1,0 +1,23 @@
+# Our canonical URI 
+Canonical: https://www.sick.com/.well-known/security.txt
+
+# Our security addresses
+Contact: mailto:psirt@sick.de
+Contact: https://www.sick.com/de/en/service-and-support/the-sick-product-security-incident-response-team-sick-psirt/w/psirt/
+
+#Our OpenPGP keys
+Encryption: https://www.sick.com/.well-known/csaf/openpgp/E5097FC040473BB30F3EA7E0D58622400E6D0E90.asc
+
+#Our security acknowledgements page
+Acknowledgments: https://www.sick.com/de/en/sick-product-security-incident-response-team/sick-psirt-acknowledgments/w/psirt-acknowledgments/
+
+#Our preferred languages
+Preferred-Languages: en, de
+
+#Our security policy
+Policy: https://cdn.sick.com/media/content/hc8/h9b/9649321148446.pdf
+
+#Our security advisories
+CSAF: https://www.sick.com/.well-known/csaf/provider-metadata.json
+
+Expires: 2026-08-14T00:00:00.000Z

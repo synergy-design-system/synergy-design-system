@@ -59,6 +59,16 @@ export default css`
   }
 
   /**
+   * Make sure the active state is applied to the button in its selected and none selected state.
+   */
+  .button--filled.button--primary:active:not(.button--disabled),
+  .button--text.button--primary:active:not(.button--disabled) {
+    background: var(--syn-button-color-active);
+    border-color: var(--syn-button-color-active);
+    color: var(--syn-button-filled-color-text-active);
+  }
+
+  /**
    * Readonly state styles
    */
   .button.button--readonly {

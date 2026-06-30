@@ -23,7 +23,7 @@
             }
           ],
           "packageName": "@synergy-design-system/react",
-          "since": "1.0.0",
+          "since": "3.17.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -265,7 +265,7 @@
   "name": "syn-radio-button",
   "package": "components",
   "relations": [],
-  "since": "1.0.0",
+  "since": "3.17.0",
   "sources": [
     "packages/angular/components/radio-button/radio-button.component.ts",
     "packages/components/src/components/radio-button/radio-button.component.ts",

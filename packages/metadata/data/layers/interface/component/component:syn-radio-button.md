@@ -18,7 +18,7 @@ Radios buttons allow the user to select a single option from a group using a but
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 1.0.0
+- **Since:** 3.17.0
 
 ## Available Slots
 

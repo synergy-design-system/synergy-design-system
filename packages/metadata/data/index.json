@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-06-30T12:09:05.533Z",
+  "builtAt": "2026-07-01T11:44:12.125Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -456,6 +456,28 @@
         "dropdown",
         "react",
         "syn-dropdown",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-fieldset.json",
+      "id": "component:syn-fieldset",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 8,
+        "interface": 2,
+        "rules": 1
+      },
+      "name": "syn-fieldset",
+      "search": [
+        "component:syn-fieldset",
+        "syn-fieldset",
+        "angular",
+        "component",
+        "fieldset",
+        "react",
+        "syn-fieldset",
         "vue"
       ]
     },

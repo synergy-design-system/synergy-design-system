@@ -18,6 +18,7 @@ export { default as SynVueDialog } from './components/SynVueDialog.vue';
 export { default as SynVueDivider } from './components/SynVueDivider.vue';
 export { default as SynVueDrawer } from './components/SynVueDrawer.vue';
 export { default as SynVueDropdown } from './components/SynVueDropdown.vue';
+export { default as SynVueFieldset } from './components/SynVueFieldset.vue';
 export { default as SynVueFile } from './components/SynVueFile.vue';
 export { default as SynVueHeader } from './components/SynVueHeader.vue';
 export { default as SynVueIcon } from './components/SynVueIcon.vue';

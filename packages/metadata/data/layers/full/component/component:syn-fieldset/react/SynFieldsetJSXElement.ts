@@ -1,0 +1,1 @@
+export type SynFieldsetJSXElement = SynCustomElement<SynFieldset, []>;

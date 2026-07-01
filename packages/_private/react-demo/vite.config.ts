@@ -20,6 +20,7 @@ export default defineConfig({
     react(),
   ],
   server: {
+    forwardConsole: false,
     port: 5175,
   },
 });

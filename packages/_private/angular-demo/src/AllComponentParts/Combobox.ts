@@ -196,13 +196,11 @@ import {
   `,
 })
 export class Combobox implements OnInit {
-  levels: SelectItem[] = [];
+  levels: SelectItem[] = mockData('selectItems');
   delimiterItems = mockData('selectItemsWithSpace');
   numericItems = mockData('selectItemsMixedValue');
   cb632Value: string = '';
-  // @ts-ignore
-  asyncValue: string;
-
+  asyncValue: string = mockData('valueWithSpace');
 
   setcb632Value(e: SynChangeEvent) {
     this.cb632Value = (e.target as SynCombobox).value as string;

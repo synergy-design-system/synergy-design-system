@@ -16,7 +16,7 @@ const initialData = mockData('initialFullFormData');
 @Component({
   selector: 'demo-form',
   standalone: false,
-  styleUrls: ['./demoform.component.css'],
+  styleUrls: [],
   templateUrl: './demoform.component.html',
 })
 export class DemoForm {

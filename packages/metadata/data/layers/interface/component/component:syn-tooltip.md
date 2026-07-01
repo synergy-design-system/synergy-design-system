@@ -81,7 +81,8 @@ type: `| 'top'
     | 'left-end'`
 default: `'top'`
 
-The preferred placement of the tooltip. Note that the actual placement may vary as needed to keep the tooltip inside of the viewport.
+The preferred placement of the tooltip. Note that the actual placement may vary as needed to keep the tooltip
+inside of the viewport.
 
 ### skidding
 
@@ -99,7 +100,9 @@ reflects: no
 type: `string`
 default: `'hover focus'`
 
-Controls how the tooltip is activated. Possible options include `click`, `hover`, `focus`, and `manual`. Multiple options can be passed by separating them with a space. When manual is used, the tooltip must be activated programmatically.
+Controls how the tooltip is activated. Possible options include `click`, `hover`, `focus`, and `manual`. Multiple
+options can be passed by separating them with a space. When manual is used, the tooltip must be activated
+programmatically.
 
 ## Available Methods
 

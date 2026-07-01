@@ -8,6 +8,7 @@
     "component:syn-combobox",
     "component:syn-dropdown",
     "component:syn-file",
+    "component:syn-fieldset",
     "component:syn-icon-button",
     "component:syn-input",
     "component:syn-optgroup",

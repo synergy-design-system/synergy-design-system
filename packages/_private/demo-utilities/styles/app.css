@@ -1,7 +1,7 @@
 html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  height: 100%;
 }
 
 body {
@@ -11,7 +11,8 @@ body {
   font-size: var(--syn-font-size-medium);
 }
 
-#root {
+#root,
+.root {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -19,8 +20,8 @@ body {
 
 .custom-logo syn-icon {
   display: block;
-  width: auto;
   height: 32px;
+  width: auto;
 }
 
 /* Safari fix for ##623 */
@@ -34,34 +35,17 @@ body {
 }
 
 /* Form Wrappers */
-.syn-fieldset {
-  border: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--syn-spacing-large);
-  margin: 0 0 var(--syn-spacing-2x-large) 0;
-  padding: 0;
-}
-
 form syn-divider {
   --spacing: var(--syn-spacing-2x-large);
-}
-
-form .syn-fieldset:last-of-type {
-  margin-bottom: 0;
-}
-
-.syn-legend {
-  font: var(--syn-heading-large);
-  line-height: var(--syn-line-height-normal);
-  margin-bottom: var(--syn-spacing-medium);
 }
 
 .syn-submit-buttons {
   align-items: center;
   display: flex;
   flex-direction: row;
+  gap: var(--syn-spacing-large);
   justify-content: center;
+  margin: 0 0 var(--syn-spacing-2x-large) 0;
 }
 
 /* Special overrides */
@@ -81,17 +65,17 @@ form .syn-fieldset:last-of-type {
 }
 
 .main {
-  flex-grow: 1;
-  display: flex;
-  position: relative;
   background: var(--syn-page-background-color);
+  display: flex;
+  flex-grow: 1;
   overflow: hidden;
+  position: relative;
 }
 
 .content {
+  box-sizing: border-box;
   flex-grow: 1;
-  padding: var(--syn-spacing-medium) var(--syn-spacing-large);
   height: 100%;
   overflow-y: auto;
-  box-sizing: border-box;
+  padding: var(--syn-spacing-medium) var(--syn-spacing-large);
 }

@@ -3,20 +3,31 @@ import { SynVueDivider, SynVueTab, SynVueTabGroup, SynVueTabPanel } from '@syner
 import type { SynTabShowEvent } from '@synergy-design-system/components';
 import { type Component } from 'vue';
 
-import { computed } from 'vue';
+import { computed, ref, watch } from 'vue';
 const props = defineProps<{ demos: [string, Component][] }>();
 const demos = computed(() => props.demos);
+const demoNames = computed(() => new Set(demos.value.map(([name]) => name)));
 
-const activeDemo = computed( () => demos.value[0]?.[0] || '');
+const activeDemo = ref('');
+
+watch(demos, (nextDemos) => {
+  activeDemo.value = nextDemos[0]?.[0] || '';
+}, { immediate: true });
 
 const showTab = (e: SynTabShowEvent) => {
   const { name } = e.detail;
+  if (!demoNames.value.has(name)) {
+    return;
+  }
+
   (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
 
   const dialog = document.querySelector('syn-dialog');
   if (dialog) {
     dialog.open = name === 'Dialog';
   }
+
+  activeDemo.value = name;
 };
 </script>
 
@@ -47,7 +58,11 @@ const showTab = (e: SynTabShowEvent) => {
         :active="name === activeDemo"
         :name="name as string"
       >
-        <div :id="`tab-content-${name}`" style="display: 'contents';">
+        <div
+          v-if="name === activeDemo"
+          :id="`tab-content-${name}`"
+          style="display: 'contents';"
+        >
           <h1 className="syn-heading--3x-large">{{name}}</h1>
           <SynVueDivider />
           <component :is="Component" />

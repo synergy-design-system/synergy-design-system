@@ -20,22 +20,30 @@ export class DemosTemplateComponent {
   activeDemo = '';
 
   demos: Array<[string, typeof NgComponentOutlet]> = [];
+  demoNames = new Set<string>();
 
   constructor(private route: ActivatedRoute) {
     const routeDemos = this.route.snapshot.data['demos'];
     if (routeDemos) {
       this.demos = routeDemos;
     }
+    this.demoNames = new Set(this.demos.map(([name]) => name));
     this.activeDemo = this.demos[0]?.[0] || '';
   }
 
   handleTabShow = (e: SynTabShowEvent) => {
     const { name } = e.detail;
+    if (!this.demoNames.has(name)) {
+      return;
+    }
+
     (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
 
     const dialog = document.querySelector('syn-dialog');
     if (dialog) {
       dialog.open = name === 'Dialog';
     }
+
+    this.activeDemo = name;
   }
 }

@@ -379,6 +379,17 @@ export const DemoForm = () => {
         >
           I am interested in the Synergy UX Program
         </syn-switch>
+
+        <syn-radio-group
+          id="preferred-contact-method"
+          label="Preferred contact method"
+          name="preferredContactMethod"
+          value={formData.preferredContactMethod}
+        >
+          <syn-radio-button value="email">E-Mail</syn-radio-button>
+          <syn-radio-button value="phone" readonly>Phone</syn-radio-button>
+          <syn-radio-button value="other">Other</syn-radio-button>
+        </syn-radio-group>
       </syn-fieldset>
       {/* /Marketing */}
 

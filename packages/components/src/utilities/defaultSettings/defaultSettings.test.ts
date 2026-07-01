@@ -18,7 +18,8 @@ describe('GlobalSettings', () => {
     setGlobalDefaultSettings(INITIAL_DEFAULT_SETTINGS);
   });
 
-  // False positive safety check to ensure the settings are actually being reset between tests
+  // Disabled this rules because its a false positive.
+  // Playright thinks this is a playwright hook, but its actually a mocha hook and we need it to reset the settings after each test.
   // eslint-disable-next-line playwright/no-duplicate-hooks
   afterEach(() => {
     enableSettingEmitEvents(false);

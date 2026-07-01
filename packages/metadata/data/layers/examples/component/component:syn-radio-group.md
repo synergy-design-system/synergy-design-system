@@ -140,7 +140,13 @@ The size of Radios and Radio Buttons will be determined by the Radio Group’s s
 The invalid status is used to warn the user that the Radio Group is invalid. For example, if the radio is mandatory and nothing has been checked.
 
 ```html
-<form class="custom-validity">
+<form
+  onsubmit="
+    event.preventDefault();
+    event.stopPropagation();
+  "
+  id="components-syn-radio-group--invalid"
+>
   <syn-radio-group
     label="Select an option"
     name="a"
@@ -151,10 +157,11 @@ The invalid status is used to warn the user that the Radio Group is invalid. For
     <syn-radio value="2">Option 2</syn-radio>
     <syn-radio value="3">Option 3</syn-radio>
   </syn-radio-group>
+
   <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
 <style>
-  .custom-validity {
+  #components-syn-radio-group--invalid {
     display: flex;
     flex-direction: column;
     gap: var(--syn-spacing-large);
@@ -181,4 +188,22 @@ Use the setCustomValidity() method to set a custom validation message. This will
   <br />
   <syn-button type="submit" variant="filled">Submit</syn-button>
 </form>
+```
+
+---
+
+## Radio Buttons
+
+Radio buttons offer an alternate way to display radio controls. In this case, an internal button group is used to group the buttons into a single, cohesive control.
+
+```html
+<syn-radio-group
+  label="Select an option"
+  value="Option 1"
+  help-text="Select an option that makes you proud."
+>
+  <syn-radio-button value="Option 1">Option 1</syn-radio-button>
+  <syn-radio-button value="Option 2">Option 2</syn-radio-button>
+  <syn-radio-button value="Option 3">Option 3</syn-radio-button>
+</syn-radio-group>
 ```

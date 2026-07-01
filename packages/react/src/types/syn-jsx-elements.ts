@@ -1111,7 +1111,7 @@ export type SynCustomElement<
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs
  * @status stable
- * @since 1.0.0
+ * @since 3.17.0
  *
  * @slot - The radio button's label.
  * @slot prefix - A presentational prefix icon or similar element.
@@ -2478,7 +2478,7 @@ declare module 'react' {
        * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs
        * @status stable
-       * @since 1.0.0
+       * @since 3.17.0
        *
        * @slot - The radio button's label.
        * @slot prefix - A presentational prefix icon or similar element.

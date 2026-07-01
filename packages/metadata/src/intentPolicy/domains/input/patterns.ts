@@ -78,6 +78,15 @@ export const inputPatterns: IntentUsagePattern[] = [
     target: { id: 'component:syn-radio-group', kind: 'component', name: 'syn-radio-group' },
   },
   {
+    description: 'Single selectable option used within a radio-button group.',
+    intent: 'input.selection.single',
+    notes: [
+      'Use inside syn-radio-group to provide one explicit selection among related options.',
+      'Provide a default selected value at group level, as recommended in component usage rules.',
+    ],
+    target: { id: 'component:syn-radio-button', kind: 'component', name: 'syn-radio-button' },
+  },
+  {
     description: 'File attachment or upload control with optional multi-file mode.',
     intent: 'input.file.upload',
     preset: {

@@ -16,6 +16,7 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
+import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
@@ -332,6 +333,7 @@ export const Sizes: Story = {
 };
 
 export const Invalid: Story = {
+  decorators: [FormSubmitDecorator],
   parameters: {
     chromatic: {
       disableSnapshot: false,
@@ -354,27 +356,15 @@ export const Invalid: Story = {
       // userEvent.click works on native elements only
       await userEvent.click(button);
       button.click();
+      (document.activeElement as HTMLElement)?.blur();
     }
   },
   render: () => html`
-    <form class="custom-validity">
-      <syn-select label="Select one" required>
-        <syn-option value="option-1">Option 1</syn-option>
-        <syn-option value="option-2">Option 2</syn-option>
-        <syn-option value="option-3">Option 3</syn-option>
-      </syn-select>
-      <syn-button type="submit" variant="filled">Submit</syn-button>
-    </form>
-    <style>
-    .custom-validity {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    syn-button {
-      align-self: flex-start;
-    }
-    </style>
+    <syn-select label="Select one" required>
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 3</syn-option>
+    </syn-select>
   `,
 };
 

@@ -1,6 +1,6 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-06-24T10:07:00.581Z",
+  "generatedAt": "2026-06-30T12:09:15.390Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
@@ -34,7 +34,7 @@
     },
     {
       "id": "component-info:full:syn-button",
-      "tokens": 8207
+      "tokens": 7039
     },
     {
       "id": "component-info:interface:syn-divider",
@@ -66,7 +66,7 @@
     },
     {
       "id": "token-info:css:sick2025-light",
-      "tokens": 8527
+      "tokens": 8591
     },
     {
       "id": "prompt:explain-component-rules:syn-accordion",

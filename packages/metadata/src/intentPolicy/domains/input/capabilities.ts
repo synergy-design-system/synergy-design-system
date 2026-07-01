@@ -31,6 +31,10 @@ export const inputCapabilities: IntentCapability[] = [
   },
   {
     categories: ['input'],
+    target: { id: 'component:syn-radio-button', kind: 'component', name: 'syn-radio-button' },
+  },
+  {
+    categories: ['input'],
     target: { id: 'component:syn-file', kind: 'component', name: 'syn-file' },
   },
   {

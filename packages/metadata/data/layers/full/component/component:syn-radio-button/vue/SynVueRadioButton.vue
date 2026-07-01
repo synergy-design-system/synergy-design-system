@@ -9,7 +9,7 @@
  * @summary Radios buttons allow the user to select a single option from a group using a button-like control.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-radio-button--docs
  * @status stable
- * @since 1.0.0
+ * @since 3.17.0
  *
  * @slot - The radio button's label.
  * @slot prefix - A presentational prefix icon or similar element.
@@ -53,16 +53,16 @@ const props = defineProps<{
   disabled?: SynRadioButton['disabled'];
 
   /**
+   * Sets the radio button to a readonly state.
+   */
+  readonly?: SynRadioButton['readonly'];
+
+  /**
 * The radio button's size.
 * When used inside a radio group, the size will be determined by the radio group's size so
 this attribute can typically be omitted.
  */
   size?: SynRadioButton['size'];
-
-  /**
-   * Draws a pill-style radio button with rounded edges.
-   */
-  pill?: SynRadioButton['pill'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

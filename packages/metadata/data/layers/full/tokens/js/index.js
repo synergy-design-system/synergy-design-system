@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.16.0
+ * @synergy-design-system/tokens version 3.17.0
  * SICK Global UX Foundation
  */
 
@@ -1767,6 +1767,26 @@ export const SynProgressIndicatorColor = 'var(--syn-progress-indicator-color)';
  * @type {string}
  */
 export const SynProgressTrackColor = 'var(--syn-progress-track-color)';
+
+/**
+ * @type {string}
+ */
+export const SynRadioButtonBorderColor = 'var(--syn-radio-button-border-color)';
+
+/**
+ * @type {string}
+ */
+export const SynRadioButtonBorderRadiusLarge = 'var(--syn-radio-button-border-radius-large)';
+
+/**
+ * @type {string}
+ */
+export const SynRadioButtonBorderRadiusMedium = 'var(--syn-radio-button-border-radius-medium)';
+
+/**
+ * @type {string}
+ */
+export const SynRadioButtonBorderRadiusSmall = 'var(--syn-radio-button-border-radius-small)';
 
 /**
  * @type {string}

@@ -1671,6 +1671,26 @@
       }
     }
   },
+  "radio-button": {
+    "border": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.700}"
+      },
+      "radius-large": {
+        "type": "sizing",
+        "value": "{border-radius.none}"
+      },
+      "radius-medium": {
+        "type": "sizing",
+        "value": "{border-radius.none}"
+      },
+      "radius-small": {
+        "type": "sizing",
+        "value": "{border-radius.none}"
+      }
+    }
+  },
   "range": {
     "color-inactive": {
       "type": "color",

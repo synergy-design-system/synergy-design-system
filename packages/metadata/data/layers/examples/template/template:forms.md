@@ -38,8 +38,8 @@
   <form method="post" id="syn-form-demo">
     <syn-fieldset
       id="topics"
-      item-spacing="dense"
       layout="two-columns"
+      style="--item-gap: var(--syn-spacing-x-small)"
       legend="Topic"
     >
       <syn-checkbox name="topic[0]" value="Inquiry/offer">

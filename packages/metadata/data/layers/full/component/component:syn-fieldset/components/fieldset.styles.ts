@@ -10,14 +10,9 @@ export default css`
     --items-per-row: 2;
 
     /**
-     * The gap between the fields in the fieldset when using normal layout.
+     * The gap between the fields in the fieldset.
      */
-    --item-gap-normal: var(--syn-spacing-large);
-
-    /**
-     * The gap between the fields in the fieldset when using dense layout.
-     */
-    --item-gap-dense: var(--syn-spacing-x-small);
+    --item-gap: var(--syn-spacing-large);
 
     display: block;
   }
@@ -26,15 +21,6 @@ export default css`
     border: none;
     margin: 0;
     padding: 0;
-  }
-
-  /* Density Control */
-  .fieldset--dense {
-    --item-gap: var(--item-gap-dense);
-  }
-
-  .fieldset--normal {
-    --item-gap: var(--item-gap-normal);
   }
 
   .legend {
@@ -51,7 +37,7 @@ export default css`
   }
 
   .fields {
-    align-items: end; /* Todo: Test if this is really what we want! */
+    align-items: start;
     container-type: inline-size;
     display: flex;
     flex-flow: wrap;

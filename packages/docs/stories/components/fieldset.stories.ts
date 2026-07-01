@@ -140,32 +140,6 @@ export const TwoColumnLayout: Story = {
   `,
 };
 
-export const ItemSpacing: Story = {
-  parameters: {
-    controls: {
-      disable: false,
-    },
-    docs: {
-      description: {
-        story: generateStoryDescription('fieldset', 'item-spacing'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-fieldset
-      layout="two-columns"
-      legend="Item spacing"
-      item-spacing="dense"
-    >
-      <syn-checkbox name="checkbox-1">Checkbox 1</syn-checkbox>
-      <syn-checkbox name="checkbox-2">Checkbox 2</syn-checkbox>
-      <syn-checkbox name="checkbox-3">Checkbox 3</syn-checkbox>
-      <syn-checkbox name="checkbox-4">Checkbox 4</syn-checkbox>
-      <syn-checkbox name="checkbox-5">Checkbox 5</syn-checkbox>
-    </syn-fieldset>
-  `,
-};
-
 export const Disabled: Story = {
   parameters: {
     controls: {
@@ -193,7 +167,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   OneColumnLayout,
   TwoColumnLayout,
-  ItemSpacing,
   Disabled,
 }, 750);
 /* eslint-enable sort-keys */

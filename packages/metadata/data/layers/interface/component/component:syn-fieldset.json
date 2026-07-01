@@ -17,14 +17,6 @@
       "type": "boolean"
     },
     {
-      "default": "'normal'",
-      "description": "The spacing between the fields in the fieldset. This can be set to `dense` or `normal`. Defaults to `normal`.\nA dense layout is useful for displaying smaller form controls, e.g. checkboxes or radio buttons, while a normal layout is better suited for larger form controls, e.g. text inputs or selects.\nThe spacing can also be controlled with the `--item-gap-normal` and `--item-gap-dense` CSS variables.",
-      "fieldName": "itemSpacing",
-      "name": "item-spacing",
-      "reflects": true,
-      "type": "'dense' | 'normal'"
-    },
-    {
       "default": "'one-column'",
       "description": "The layout of the fieldset. This determines how the fields are displayed.\nDefaults to `one-column`.\n\n- `one-column`: All fields are displayed in a single column.\n- `two-columns`: Fields are displayed in two columns. Will automatically fall back to one-column if the fieldset is too narrow to display two columns.",
       "fieldName": "layout",
@@ -79,13 +71,6 @@
       "description": "Whether the fieldset is disabled.\nWhen true, all form controls inside the fieldset are disabled",
       "name": "disabled",
       "type": "boolean"
-    },
-    {
-      "access": "public",
-      "default": "'normal'",
-      "description": "The spacing between the fields in the fieldset. This can be set to `dense` or `normal`. Defaults to `normal`.\nA dense layout is useful for displaying smaller form controls, e.g. checkboxes or radio buttons, while a normal layout is better suited for larger form controls, e.g. text inputs or selects.\nThe spacing can also be controlled with the `--item-gap-normal` and `--item-gap-dense` CSS variables.",
-      "name": "itemSpacing",
-      "type": "'dense' | 'normal'"
     },
     {
       "access": "public",

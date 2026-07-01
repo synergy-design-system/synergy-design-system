@@ -31,8 +31,7 @@ import '@synergy-design-system/components/components/fieldset/fieldset.js';
  * @csspart description - The component's description element.
  * @csspart field-container - The container for the fieldset's fields.
  *
- * @cssproperty --item-gap-normal - The gap between the fields in the fieldset when using normal layout. Defaults to `--syn-spacing-large`
- * @cssproperty --item-gap-dense - The gap between the fields in the fieldset when using dense layout. Defaults to `--syn-spacing-x-small`
+ * @cssproperty --item-gap - The gap between the fields in the fieldset. Defaults to `--syn-spacing-large`
  */
 @Component({
   selector: 'syn-fieldset',
@@ -103,22 +102,5 @@ Defaults to `one-column`.
   }
   get layout(): SynFieldset['layout'] {
     return this.nativeElement.layout;
-  }
-
-  /**
-* The spacing between the fields in the fieldset.
-* This can be set to `dense` or `normal`.
-* Defaults to `normal`.
-A dense layout is useful for displaying smaller form controls, e.g.
-* checkboxes or radio buttons, while a normal layout is better suited for larger form controls, e.g.
-* text inputs or selects.
-The spacing can also be controlled with the `--item-gap-normal` and `--item-gap-dense` CSS variables.
- */
-  @Input()
-  set itemSpacing(v: SynFieldset['itemSpacing']) {
-    this._ngZone.runOutsideAngular(() => (this.nativeElement.itemSpacing = v));
-  }
-  get itemSpacing(): SynFieldset['itemSpacing'] {
-    return this.nativeElement.itemSpacing;
   }
 }

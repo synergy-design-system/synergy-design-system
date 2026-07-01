@@ -22,7 +22,6 @@ describe('<syn-fieldset>', () => {
       expect(el.description).to.equal('');
       expect(el.disabled).to.be.false;
       expect(el.layout).to.equal('one-column');
-      expect(el.itemSpacing).to.equal('normal');
     });
 
     it('should render without legend or description', async () => {
@@ -234,54 +233,6 @@ describe('<syn-fieldset>', () => {
       expect(el).to.have.attribute('layout', 'two-columns');
     });
 
-  });
-
-  describe('item spacing', () => {
-    it('should default to normal spacing', async () => {
-      const el = await fixture<SynFieldset>(html`<syn-fieldset></syn-fieldset>`);
-
-      expect(el.itemSpacing).to.equal('normal');
-    });
-
-    it('should apply normal class by default', async () => {
-      const el = await fixture<SynFieldset>(html`<syn-fieldset></syn-fieldset>`);
-      const fieldset = el.shadowRoot!.querySelector('.fieldset');
-
-      expect(fieldset).to.have.class('fieldset--normal');
-      expect(fieldset).to.not.have.class('fieldset--dense');
-    });
-
-    it('should apply dense class when itemSpacing is set to dense', async () => {
-      const el = await fixture<SynFieldset>(html`
-        <syn-fieldset item-spacing="dense"></syn-fieldset>
-      `);
-      const fieldset = el.shadowRoot!.querySelector('.fieldset');
-
-      expect(fieldset).to.have.class('fieldset--dense');
-      expect(fieldset).to.not.have.class('fieldset--normal');
-    });
-
-    it('should update spacing when property is changed', async () => {
-      const el = await fixture<SynFieldset>(html`<syn-fieldset></syn-fieldset>`);
-      const fieldset = el.shadowRoot!.querySelector('.fieldset')!;
-
-      expect(fieldset).to.have.class('fieldset--normal');
-
-      el.itemSpacing = 'dense';
-      await el.updateComplete;
-
-      expect(fieldset).to.have.class('fieldset--dense');
-      expect(fieldset).to.not.have.class('fieldset--normal');
-    });
-
-    it('should be reflected to the attribute', async () => {
-      const el = await fixture<SynFieldset>(html`<syn-fieldset></syn-fieldset>`);
-
-      el.itemSpacing = 'dense';
-      await el.updateComplete;
-
-      expect(el).to.have.attribute('item-spacing', 'dense');
-    });
   });
 
   describe('disabled state', () => {

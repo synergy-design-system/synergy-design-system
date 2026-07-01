@@ -1224,16 +1224,6 @@
           "value": "Enable the disabled toggle to disable all nested elements simultaneously.",
           "type": "text"
         }
-      },
-      "item-spacing": {
-        "title": {
-          "value": "Item Spacing",
-          "type": "text"
-        },
-        "description": {
-          "value": "Use an item-spacing of \"dense\" to force a smaller spacing between nested elements. Useful for checkboxes, switches, and radio buttons.",
-          "type": "text"
-        }
       }
     },
     "file": {

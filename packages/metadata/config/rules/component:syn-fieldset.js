@@ -59,17 +59,8 @@ export default {
         'Use two-column layout only when controls have similar weight and labels remain easy to read on all supported viewport sizes.',
         'Keep in mind that two-column layouts will automatically switch to a single column on smaller viewports, so ensure the reading order remains logical and accessible.',
       ],
-      id: 'layout_and_density',
-      name: 'Layout and Density',
-    },
-    {
-      content: [
-        'When two-column layout contains a direct child `<syn-radio-group>`, enable `group-aware` on `<syn-fieldset>` so grouped options align with fieldset spacing and stay readable across breakpoints.',
-        'Avoid mixing `group-aware` radio-group layouts with regular text-like inputs in the same visual grouping; split them into separate fieldsets when the grouped options need a different layout behavior than surrounding controls.',
-        'Prefer the dense item spacing when a fieldset only contains checkboxes, radios or radio buttons, as these controls typically benefit from a more compact vertical rhythm.',
-      ],
-      id: 'group_awareness',
-      name: 'Group Awareness',
+      id: 'layout',
+      name: 'Layout',
     },
   ],
   useCases: [

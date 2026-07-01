@@ -6,10 +6,18 @@ Fieldset is a component used to group related form controls and labels. It provi
 <syn-fieldset
   description="Description text for the fieldset. This is optional and can be used to provide additional information about the fieldset."
   legend="Legend"
+  layout="two-columns"
 >
   <syn-input name="item-1" label="Item 1"></syn-input>
   <syn-input name="item-2" label="Item 2"></syn-input>
   <syn-input name="item-3" label="Item 3"></syn-input>
+  <syn-radio-group layout="horizontal" name="item-4" label="Item 4">
+    <syn-radio name="radio-1" value="1">Option 1</syn-radio>
+    <syn-radio name="radio-2" value="2">Option 2</syn-radio>
+    <syn-radio name="radio-3" value="3">Option 3</syn-radio>
+  </syn-radio-group>
+  <syn-input name="item-5" label="Item 5"></syn-input>
+  <syn-textarea name="item-6" label="Item 6"></syn-textarea>
 </syn-fieldset>
 ```
 
@@ -62,45 +70,6 @@ For container widths of 640px or above, the nested elements within each row swit
   <syn-input name="item-5" label="Item 5"> </syn-input>
 
   <syn-input name="item-6" label="Item 6"> </syn-input>
-</syn-fieldset>
-```
-
----
-
-## Item Spacing
-
-Use an item-spacing of "dense" to force a smaller spacing between nested elements. Useful for checkboxes, switches, and radio buttons.
-
-```html
-<syn-fieldset layout="two-columns" legend="Item spacing" item-spacing="dense">
-  <syn-checkbox name="checkbox-1">Checkbox 1</syn-checkbox>
-  <syn-checkbox name="checkbox-2">Checkbox 2</syn-checkbox>
-  <syn-checkbox name="checkbox-3">Checkbox 3</syn-checkbox>
-  <syn-checkbox name="checkbox-4">Checkbox 4</syn-checkbox>
-  <syn-checkbox name="checkbox-5">Checkbox 5</syn-checkbox>
-</syn-fieldset>
-```
-
----
-
-## Group Aware
-
-Enable the group-aware toggle to ensure nested elements (like syn-radio-group) align with the fieldset spacing and remain readable across breakpoints.
-
-```html
-<syn-fieldset
-  description="Direct child radio groups get inline option layout automatically."
-  group-aware=""
-  layout="two-columns"
-  legend="Group-aware fieldset"
-  item-spacing="dense"
->
-  <syn-radio-group label="Contact Topic">
-    <syn-radio value="offer">Inquiry/offer</syn-radio>
-    <syn-radio value="invoice">Orders/invoices</syn-radio>
-    <syn-radio value="complaint">Returns/complaint</syn-radio>
-    <syn-radio value="docs">Documentation/CAD</syn-radio>
-  </syn-radio-group>
 </syn-fieldset>
 ```
 

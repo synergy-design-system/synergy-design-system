@@ -96,9 +96,9 @@ export const ContactForm = {
         
         <syn-fieldset
           id="topics"
-          item-spacing="dense"
           layout="two-columns"
           legend="${getTranslation('contactForm.topicLabel')}"
+          style="--item-gap: var(--syn-spacing-x-small)"
         >
           ${(getTranslation('contactForm.topics') as string[]).map((topic, index) => html`
             <syn-checkbox name="topic[${index}]" value="${topic}">

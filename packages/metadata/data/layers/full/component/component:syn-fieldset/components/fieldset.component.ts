@@ -30,8 +30,7 @@ import {
  * @csspart description - The component's description element.
  * @csspart field-container - The container for the fieldset's fields.
  *
- * @cssproperty --item-gap-normal - The gap between the fields in the fieldset when using normal layout. Defaults to `--syn-spacing-large`
- * @cssproperty --item-gap-dense - The gap between the fields in the fieldset when using dense layout. Defaults to `--syn-spacing-x-small`
+ * @cssproperty --item-gap - The gap between the fields in the fieldset. Defaults to `--syn-spacing-large`
  */
 export default class SynFieldset extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
@@ -78,13 +77,6 @@ export default class SynFieldset extends SynergyElement {
     * - `two-columns`: Fields are displayed in two columns. Will automatically fall back to one-column if the fieldset is too narrow to display two columns.
    */
   @property({ reflect: true }) layout: 'one-column' | 'two-columns' = 'one-column';
-
-  /**
-   * The spacing between the fields in the fieldset. This can be set to `dense` or `normal`. Defaults to `normal`.
-   * A dense layout is useful for displaying smaller form controls, e.g. checkboxes or radio buttons, while a normal layout is better suited for larger form controls, e.g. text inputs or selects.
-   * The spacing can also be controlled with the `--item-gap-normal` and `--item-gap-dense` CSS variables.
-   */
-  @property({ attribute: 'item-spacing', reflect: true, type: String }) itemSpacing: 'dense' | 'normal' = 'normal';
 
   private syncDisabledState() {
     const elements = getFormElements(this);
@@ -134,11 +126,7 @@ export default class SynFieldset extends SynergyElement {
 
     return html`
       <fieldset
-        class=${classMap({
-          fieldset: true,
-          'fieldset--dense': this.itemSpacing === 'dense',
-          'fieldset--normal': this.itemSpacing === 'normal',
-        })}
+        class="fieldset"
         ?disabled=${this.disabled}
         aria-describedby=${ifDefined(descriptionExists ? 'description' : undefined)}
         part="base"

@@ -48,17 +48,6 @@ default: `false`
 Whether the fieldset is disabled.
 When true, all form controls inside the fieldset are disabled
 
-### itemSpacing
-
-attribute: `item-spacing`
-reflects: yes
-type: `'dense' | 'normal'`
-default: `'normal'`
-
-The spacing between the fields in the fieldset. This can be set to `dense` or `normal`. Defaults to `normal`.
-A dense layout is useful for displaying smaller form controls, e.g. checkboxes or radio buttons, while a normal layout is better suited for larger form controls, e.g. text inputs or selects.
-The spacing can also be controlled with the `--item-gap-normal` and `--item-gap-dense` CSS variables.
-
 ### layout
 
 attribute: `layout`

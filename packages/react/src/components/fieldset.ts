@@ -25,8 +25,7 @@ Component.define('syn-fieldset');
  * @csspart description - The component's description element.
  * @csspart field-container - The container for the fieldset's fields.
  *
- * @cssproperty --item-gap-normal - The gap between the fields in the fieldset when using normal layout. Defaults to `--syn-spacing-large`
- * @cssproperty --item-gap-dense - The gap between the fields in the fieldset when using dense layout. Defaults to `--syn-spacing-x-small`
+ * @cssproperty --item-gap - The gap between the fields in the fieldset. Defaults to `--syn-spacing-large`
  */
 export const SynFieldset = createComponent({
   displayName: 'SynFieldset',

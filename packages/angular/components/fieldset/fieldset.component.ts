@@ -121,19 +121,4 @@ The spacing can also be controlled with the `--item-gap-normal` and `--item-gap-
   get itemSpacing(): SynFieldset['itemSpacing'] {
     return this.nativeElement.itemSpacing;
   }
-
-  /**
-* Enables group-aware handling for direct child radio groups in two-column layout.
-When enabled, direct child `<syn-radio-group>` elements are set to `option-layout="inline"`
-unless they already define an explicit `option-layout`.
- */
-  @Input()
-  set groupAware(v: '' | SynFieldset['groupAware']) {
-    this._ngZone.runOutsideAngular(
-      () => (this.nativeElement.groupAware = v === '' || v),
-    );
-  }
-  get groupAware(): SynFieldset['groupAware'] {
-    return this.nativeElement.groupAware;
-  }
 }

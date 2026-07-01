@@ -63,23 +63,9 @@ export default css`
     flex-basis: 100%;
   }
 
-  /**
-   * When the fieldset is group-aware, we want to make sure that the radio groups inside the fieldset are displayed in a way that respects the item spacing of the fieldset.
-   * This is done by setting the inline and column gap of the radio group to the item gap of the fieldset.
-   * This ensures that the radio groups are displayed in a way that respects the item spacing of the fieldset.
-   */
-  .fieldset--group-aware .fields ::slotted(syn-radio-group) {
-    --syn-radio-group-inline-row-gap: var(--item-gap);
-    --syn-radio-group-inline-column-gap: var(--item-gap);
-  }
-
   @container (min-width: 640px) {
     .fields--two-columns ::slotted(*) {
       flex-basis: calc((100% - (var(--item-gap) * (var(--items-per-row) - 1))) / var(--items-per-row));
-    }
-
-    .fieldset--group-aware .fields--two-columns ::slotted(syn-radio-group) {
-      flex-basis: 100%;
     }
   }
 `;

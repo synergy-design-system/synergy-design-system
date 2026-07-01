@@ -301,45 +301,6 @@ describe('when a size is applied', () => {
   });
 });
 
-describe('option layout', () => {
-  it('should default to stacked option layout', async () => {
-    const radioGroup = await fixture<SynRadioGroup>(html`
-      <syn-radio-group>
-        <syn-radio value="1"></syn-radio>
-      </syn-radio-group>
-    `);
-
-    expect(radioGroup.optionLayout).to.equal('stacked');
-    expect(radioGroup).to.not.have.attribute('option-layout', 'inline');
-  });
-
-  it('should reflect inline option layout to the attribute', async () => {
-    const radioGroup = await fixture<SynRadioGroup>(html`
-      <syn-radio-group>
-        <syn-radio value="1"></syn-radio>
-      </syn-radio-group>
-    `);
-
-    radioGroup.optionLayout = 'inline';
-    await radioGroup.updateComplete;
-
-    expect(radioGroup).to.have.attribute('option-layout', 'inline');
-  });
-
-  it('should not render syn-button-group wrapper when inline option layout is active', async () => {
-    const radioGroup = await fixture<SynRadioGroup>(html`
-      <syn-radio-group option-layout="inline">
-        <syn-radio-button value="1">One</syn-radio-button>
-        <syn-radio-button value="2">Two</syn-radio-button>
-      </syn-radio-group>
-    `);
-
-    const buttonGroup = radioGroup.shadowRoot!.querySelector('syn-button-group');
-
-    expect(buttonGroup).to.be.null;
-  });
-});
-
 describe('when handling focus', () => {
   const doAction = async (instance: SynRadioGroup, type: string) => {
     if (type === 'focus') {

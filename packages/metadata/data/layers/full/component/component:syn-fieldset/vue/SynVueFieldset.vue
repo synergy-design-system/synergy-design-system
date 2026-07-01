@@ -78,13 +78,6 @@ A dense layout is useful for displaying smaller form controls, e.g.
 The spacing can also be controlled with the `--item-gap-normal` and `--item-gap-dense` CSS variables.
  */
   itemSpacing?: SynFieldset['itemSpacing'];
-
-  /**
-* Enables group-aware handling for direct child radio groups in two-column layout.
-When enabled, direct child `<syn-radio-group>` elements are set to `option-layout="inline"`
-unless they already define an explicit `option-layout`.
- */
-  groupAware?: SynFieldset['groupAware'];
 }>();
 
 // Make sure prop binding only forwards the props that are actually there.

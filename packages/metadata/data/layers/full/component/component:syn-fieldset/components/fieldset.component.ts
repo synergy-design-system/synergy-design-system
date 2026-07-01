@@ -40,8 +40,6 @@ export default class SynFieldset extends SynergyElement {
 
   private readonly forcedDisabledElements = new WeakSet<Element>();
 
-  private readonly forcedGroupAwareElements = new WeakSet<Element>();
-
   private readonly lightDomObserver = new MutationObserver(() => {
     if (this.disabled) {
       this.syncDisabledState();
@@ -52,8 +50,6 @@ export default class SynFieldset extends SynergyElement {
     if (this.disabled) {
       this.syncDisabledState();
     }
-
-    this.syncGroupAwareState();
   };
 
   /**
@@ -90,13 +86,6 @@ export default class SynFieldset extends SynergyElement {
    */
   @property({ attribute: 'item-spacing', reflect: true, type: String }) itemSpacing: 'dense' | 'normal' = 'normal';
 
-  /**
-   * Enables group-aware handling for direct child radio groups in two-column layout.
-   * When enabled, direct child `<syn-radio-group>` elements are set to `option-layout="inline"`
-   * unless they already define an explicit `option-layout`.
-   */
-  @property({ attribute: 'group-aware', reflect: true, type: Boolean }) groupAware = false;
-
   private syncDisabledState() {
     const elements = getFormElements(this);
     for (let i = 0; i < elements.length; i += 1) {
@@ -117,32 +106,6 @@ export default class SynFieldset extends SynergyElement {
     }
   }
 
-  private getDirectChildRadioGroups() {
-    return Array.from(this.children).filter(
-      el => el.tagName.toLowerCase() === 'syn-radio-group',
-    ) as HTMLElement[];
-  }
-
-  private syncGroupAwareState() {
-    const radioGroups = this.getDirectChildRadioGroups();
-    const shouldApplyInlineLayout = this.groupAware && this.layout === 'two-columns';
-
-    for (let i = 0; i < radioGroups.length; i += 1) {
-      const group = radioGroups[i];
-      const hasExplicitLayout = group.hasAttribute('option-layout');
-
-      if (shouldApplyInlineLayout && !hasExplicitLayout) {
-        group.setAttribute('option-layout', 'inline');
-        this.forcedGroupAwareElements.add(group);
-      } else if (!shouldApplyInlineLayout && this.forcedGroupAwareElements.has(group)) {
-        if (group.getAttribute('option-layout') === 'inline') {
-          group.removeAttribute('option-layout');
-        }
-        this.forcedGroupAwareElements.delete(group);
-      }
-    }
-  }
-
   connectedCallback() {
     super.connectedCallback();
     this.lightDomObserver.observe(this, {
@@ -151,8 +114,6 @@ export default class SynFieldset extends SynergyElement {
       childList: true,
       subtree: true,
     });
-
-    this.syncGroupAwareState();
   }
 
   disconnectedCallback() {
@@ -165,10 +126,6 @@ export default class SynFieldset extends SynergyElement {
     if (_changedProperties.has('disabled')) {
       this.syncDisabledState();
     }
-
-    if (_changedProperties.has('groupAware') || _changedProperties.has('layout')) {
-      this.syncGroupAwareState();
-    }
   }
 
   render() {
@@ -180,7 +137,6 @@ export default class SynFieldset extends SynergyElement {
         class=${classMap({
           fieldset: true,
           'fieldset--dense': this.itemSpacing === 'dense',
-          'fieldset--group-aware': this.groupAware,
           'fieldset--normal': this.itemSpacing === 'normal',
         })}
         ?disabled=${this.disabled}

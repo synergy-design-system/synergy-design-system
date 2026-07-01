@@ -33,14 +33,6 @@
       "type": "string"
     },
     {
-      "default": "'stacked'",
-      "description": "Defines how options are laid out inside the radio group.\n\n- `stacked`: options are displayed in a single column (default)\n- `inline`: options are displayed in a wrapping row layout",
-      "fieldName": "optionLayout",
-      "name": "option-layout",
-      "reflects": true,
-      "type": "'stacked' | 'inline'"
-    },
-    {
       "default": "false",
       "description": "Ensures a child radio is checked before allowing the containing form to submit.",
       "fieldName": "required",
@@ -206,13 +198,6 @@
       "description": "The name of the radio group, submitted as a name/value pair with form data.",
       "name": "name",
       "type": "string"
-    },
-    {
-      "access": "public",
-      "default": "'stacked'",
-      "description": "Defines how options are laid out inside the radio group.\n\n- `stacked`: options are displayed in a single column (default)\n- `inline`: options are displayed in a wrapping row layout",
-      "name": "optionLayout",
-      "type": "'stacked' | 'inline'"
     },
     {
       "access": "public",

@@ -58,6 +58,8 @@ export default {
         'Use one-column layout for longer inputs and mixed controls to preserve scanability and reduce visual noise.',
         'Use two-column layout only when controls have similar weight and labels remain easy to read on all supported viewport sizes.',
         'Keep in mind that two-column layouts will automatically switch to a single column on smaller viewports, so ensure the reading order remains logical and accessible.',
+        'Nested grouped controls (for example syn-radio-group) are automatically aligned with the fieldset\'s effective layout: horizontal in effective two-column mode and vertical when collapsed to one-column.',
+        'Set `disable-auto-group-layout` when nested grouped controls must keep their own explicit layout and should not be changed by the fieldset.',
       ],
       id: 'layout',
       name: 'Layout',

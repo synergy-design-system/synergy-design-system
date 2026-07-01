@@ -84,6 +84,12 @@ export default class SynFieldset extends SynergyElement {
   @property({ reflect: true, type: Boolean }) disabled = false;
 
   /**
+   * Disables automatic grouped control layout syncing.
+   * When true, nested grouped controls keep their own layout configuration.
+   */
+  @property({ attribute: 'disable-auto-group-layout', reflect: true, type: Boolean }) disableAutoGroupLayout = false;
+
+  /**
     * The layout of the fieldset. This determines how the fields are displayed.
     * Defaults to `one-column`.
     *
@@ -98,6 +104,10 @@ export default class SynFieldset extends SynergyElement {
   }
 
   private syncGroupedControlLayouts() {
+    if (this.disableAutoGroupLayout) {
+      return;
+    }
+
     const targetLayout = getGroupedControlLayout(this.layout, this.getFieldContainerWidth());
     applyGroupedControlLayout(this, targetLayout);
   }

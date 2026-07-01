@@ -38,6 +38,16 @@ default: `''`
 The legend for the fieldset. This is displayed as the title of the fieldset.
 If not provided, the fieldset will not have a description.
 
+### disableAutoGroupLayout
+
+attribute: `disable-auto-group-layout`
+reflects: yes
+type: `boolean`
+default: `false`
+
+Disables automatic grouped control layout syncing.
+When true, nested grouped controls keep their own layout configuration.
+
 ### disabled
 
 attribute: `disabled`

@@ -57,6 +57,12 @@ When true, all form controls inside the fieldset are disabled
   disabled?: SynFieldset['disabled'];
 
   /**
+* Disables automatic grouped control layout syncing.
+When true, nested grouped controls keep their own layout configuration.
+ */
+  disableAutoGroupLayout?: SynFieldset['disableAutoGroupLayout'];
+
+  /**
 * The layout of the fieldset.
 * This determines how the fields are displayed.
 Defaults to `one-column`.

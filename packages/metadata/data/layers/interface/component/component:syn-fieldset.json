@@ -10,6 +10,14 @@
     },
     {
       "default": "false",
+      "description": "Disables automatic grouped control layout syncing.\nWhen true, nested grouped controls keep their own layout configuration.",
+      "fieldName": "disableAutoGroupLayout",
+      "name": "disable-auto-group-layout",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
       "description": "Whether the fieldset is disabled.\nWhen true, all form controls inside the fieldset are disabled",
       "fieldName": "disabled",
       "name": "disabled",
@@ -64,6 +72,13 @@
       "description": "The legend for the fieldset. This is displayed as the title of the fieldset.\nIf not provided, the fieldset will not have a description.",
       "name": "description",
       "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables automatic grouped control layout syncing.\nWhen true, nested grouped controls keep their own layout configuration.",
+      "name": "disableAutoGroupLayout",
+      "type": "boolean"
     },
     {
       "access": "public",

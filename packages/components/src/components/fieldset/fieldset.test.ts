@@ -21,6 +21,7 @@ describe('<syn-fieldset>', () => {
       expect(el.legend).to.equal('');
       expect(el.description).to.equal('');
       expect(el.disabled).to.be.false;
+      expect(el.disableAutoGroupLayout).to.be.false;
       expect(el.layout).to.equal('one-column');
     });
 
@@ -286,6 +287,31 @@ describe('<syn-fieldset>', () => {
       await waitUntil(() => checkboxGroup.getAttribute('layout') === 'vertical');
 
       expect(checkboxGroup).to.have.attribute('layout', 'vertical');
+    });
+
+    it('should not auto-sync grouped layout when disable-auto-group-layout is set', async () => {
+      const el = await fixture<SynFieldset>(html`
+        <syn-fieldset disable-auto-group-layout layout="two-columns" style="display: block; width: 900px;">
+          <syn-radio-group id="rg" layout="vertical">
+            <syn-radio value="1">One</syn-radio>
+            <syn-radio value="2">Two</syn-radio>
+          </syn-radio-group>
+        </syn-fieldset>
+      `);
+      const radioGroup = el.querySelector<any>('#rg')!;
+
+      await el.updateComplete;
+
+      expect(radioGroup.layout).to.equal('vertical');
+    });
+
+    it('should reflect disableAutoGroupLayout to disable-auto-group-layout attribute', async () => {
+      const el = await fixture<SynFieldset>(html`<syn-fieldset></syn-fieldset>`);
+
+      el.disableAutoGroupLayout = true;
+      await el.updateComplete;
+
+      expect(el).to.have.attribute('disable-auto-group-layout');
     });
 
   });

@@ -88,6 +88,20 @@ When true, all form controls inside the fieldset are disabled
   }
 
   /**
+* Disables automatic grouped control layout syncing.
+When true, nested grouped controls keep their own layout configuration.
+ */
+  @Input()
+  set disableAutoGroupLayout(v: '' | SynFieldset['disableAutoGroupLayout']) {
+    this._ngZone.runOutsideAngular(
+      () => (this.nativeElement.disableAutoGroupLayout = v === '' || v),
+    );
+  }
+  get disableAutoGroupLayout(): SynFieldset['disableAutoGroupLayout'] {
+    return this.nativeElement.disableAutoGroupLayout;
+  }
+
+  /**
 * The layout of the fieldset.
 * This determines how the fields are displayed.
 Defaults to `one-column`.

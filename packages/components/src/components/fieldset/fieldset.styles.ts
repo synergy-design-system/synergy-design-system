@@ -51,7 +51,7 @@ export default css`
   }
 
   .fields {
-    align-items: end; /* Todo: Test if this is really what we want! */
+    align-items: start;
     container-type: inline-size;
     display: flex;
     flex-flow: wrap;

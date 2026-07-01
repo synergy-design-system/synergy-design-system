@@ -1,5 +1,6 @@
 import '../../../components/src/components/checkbox/checkbox.js';
 import '../../../components/src/components/fieldset/fieldset.js';
+import '../../../components/src/components/textarea/textarea.js';
 import '../../../components/src/components/input/input.js';
 import '../../../components/src/components/radio-group/radio-group.js';
 import '../../../components/src/components/radio/radio.js';
@@ -32,6 +33,11 @@ const createFields = (amount = 3) => Array.from(
 const meta: Meta = {
   args: overrideArgs([
     {
+      name: 'layout',
+      type: 'attribute',
+      value: 'two-columns',
+    },
+    {
       name: 'legend',
       type: 'attribute',
       value: 'Legend',
@@ -48,6 +54,13 @@ const meta: Meta = {
         <syn-input name="item-1" label="Item 1"></syn-input>
         <syn-input name="item-2" label="Item 2"></syn-input>
         <syn-input name="item-3" label="Item 3"></syn-input>
+        <syn-radio-group layout="horizontal" name="item-4" label="Item 4">
+          <syn-radio name="radio-1" value="1">Option 1</syn-radio>
+          <syn-radio name="radio-2" value="2">Option 2</syn-radio>
+          <syn-radio name="radio-3" value="3">Option 3</syn-radio>
+        </syn-radio-group>
+        <syn-input name="item-5" label="Item 5"></syn-input>
+        <syn-textarea name="item-6" label="Item 6"></syn-textarea>
       `,
     },
   ], defaultArgs),
@@ -153,35 +166,6 @@ export const ItemSpacing: Story = {
   `,
 };
 
-export const GroupAware: Story = {
-  parameters: {
-    controls: {
-      disable: false,
-    },
-    docs: {
-      description: {
-        story: generateStoryDescription('fieldset', 'group-aware'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-fieldset
-      description="Direct child radio groups get inline option layout automatically."
-      group-aware
-      layout="two-columns"
-      legend="Group-aware fieldset"
-      item-spacing="dense"
-    >
-      <syn-radio-group label="Contact Topic">
-        <syn-radio value="offer">Inquiry/offer</syn-radio>
-        <syn-radio value="invoice">Orders/invoices</syn-radio>
-        <syn-radio value="complaint">Returns/complaint</syn-radio>
-        <syn-radio value="docs">Documentation/CAD</syn-radio>
-      </syn-radio-group>
-    </syn-fieldset>
-  `,
-};
-
 export const Disabled: Story = {
   parameters: {
     controls: {
@@ -210,7 +194,6 @@ export const Screenshot: Story = generateScreenshotStory({
   OneColumnLayout,
   TwoColumnLayout,
   ItemSpacing,
-  GroupAware,
   Disabled,
 }, 750);
 /* eslint-enable sort-keys */

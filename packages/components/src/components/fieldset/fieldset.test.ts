@@ -233,6 +233,61 @@ describe('<syn-fieldset>', () => {
       expect(el).to.have.attribute('layout', 'two-columns');
     });
 
+    it('should force direct child radio groups to horizontal in effective two-column layout', async () => {
+      const el = await fixture<SynFieldset>(html`
+        <syn-fieldset layout="two-columns" style="display: block; width: 900px;">
+          <syn-radio-group id="rg" layout="vertical">
+            <syn-radio value="1">One</syn-radio>
+            <syn-radio value="2">Two</syn-radio>
+          </syn-radio-group>
+        </syn-fieldset>
+      `);
+      const radioGroup = el.querySelector<any>('#rg')!;
+
+      await waitUntil(() => radioGroup.layout === 'horizontal');
+
+      expect(radioGroup.layout).to.equal('horizontal');
+    });
+
+    it('should force direct child radio groups to vertical when collapsing to one-column', async () => {
+      const el = await fixture<SynFieldset>(html`
+        <syn-fieldset layout="two-columns" style="display: block; width: 900px;">
+          <syn-radio-group id="rg">
+            <syn-radio value="1">One</syn-radio>
+            <syn-radio value="2">Two</syn-radio>
+          </syn-radio-group>
+        </syn-fieldset>
+      `);
+      const radioGroup = el.querySelector<any>('#rg')!;
+
+      await waitUntil(() => radioGroup.layout === 'horizontal');
+
+      el.style.width = '300px';
+
+      await waitUntil(() => radioGroup.layout === 'vertical');
+
+      expect(radioGroup.layout).to.equal('vertical');
+    });
+
+    it('should support future checkbox-group-like elements by falling back to layout attribute', async () => {
+      const el = await fixture<SynFieldset>(html`
+        <syn-fieldset layout="two-columns" style="display: block; width: 900px;">
+          <syn-checkbox-group id="cg"></syn-checkbox-group>
+        </syn-fieldset>
+      `);
+      const checkboxGroup = el.querySelector<HTMLElement>('#cg')!;
+
+      await waitUntil(() => checkboxGroup.getAttribute('layout') === 'horizontal');
+
+      expect(checkboxGroup).to.have.attribute('layout', 'horizontal');
+
+      el.style.width = '300px';
+
+      await waitUntil(() => checkboxGroup.getAttribute('layout') === 'vertical');
+
+      expect(checkboxGroup).to.have.attribute('layout', 'vertical');
+    });
+
   });
 
   describe('disabled state', () => {

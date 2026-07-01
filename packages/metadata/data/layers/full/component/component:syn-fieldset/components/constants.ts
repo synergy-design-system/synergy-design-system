@@ -1,0 +1,1 @@
+export const FIELDSET_TWO_COLUMN_BREAKPOINT = 640;

@@ -181,6 +181,10 @@
       },
       {
         "layer": "full",
+        "path": "layers/full/component/component:syn-fieldset/components/constants.ts"
+      },
+      {
+        "layer": "full",
         "path": "layers/full/component/component:syn-fieldset/components/fieldset.component.ts"
       },
       {
@@ -231,6 +235,7 @@
   "since": "3.x.x",
   "sources": [
     "packages/angular/components/fieldset/fieldset.component.ts",
+    "packages/components/src/components/fieldset/constants.ts",
     "packages/components/src/components/fieldset/fieldset.component.ts",
     "packages/components/src/components/fieldset/fieldset.styles.ts",
     "packages/components/src/components/fieldset/fieldset.ts",

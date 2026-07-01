@@ -1,3 +1,5 @@
+import { FIELDSET_TWO_COLUMN_BREAKPOINT } from './constants.js';
+
 /**
  * Get all form elements within a given context.
  * This includes both native form elements and custom Synform components.
@@ -40,3 +42,43 @@ export const getFormElements = (context: Element): Element[] => {
 export const isDisabledElement = (
   element: Element,
 ): element is Element & { disabled: boolean } => 'disabled' in element;
+
+export type GroupedControlLayout = 'horizontal' | 'vertical';
+
+const GROUPED_CONTROL_SELECTOR = 'syn-radio-group, syn-checkbox-group';
+
+export const getGroupedControlLayout = (
+  fieldsetLayout: 'one-column' | 'two-columns',
+  fieldContainerWidth: number,
+): GroupedControlLayout => {
+  if (fieldsetLayout !== 'two-columns') {
+    return 'vertical';
+  }
+
+  if (fieldContainerWidth < FIELDSET_TWO_COLUMN_BREAKPOINT) {
+    return 'vertical';
+  }
+
+  return 'horizontal';
+};
+
+export const applyGroupedControlLayout = (
+  context: Element,
+  targetLayout: GroupedControlLayout,
+) => {
+  const groups = context.querySelectorAll<HTMLElement>(GROUPED_CONTROL_SELECTOR);
+
+  groups.forEach((group) => {
+    if ('layout' in group) {
+      const typedGroup = group as HTMLElement & { layout: string };
+      if (typedGroup.layout !== targetLayout) {
+        typedGroup.layout = targetLayout;
+      }
+      return;
+    }
+
+    if (group.getAttribute('layout') !== targetLayout) {
+      group.setAttribute('layout', targetLayout);
+    }
+  });
+};

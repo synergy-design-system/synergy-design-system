@@ -1,4 +1,5 @@
 import { css } from 'lit';
+import { FIELDSET_TWO_COLUMN_BREAKPOINT } from './constants.js';
 
 export default css`
   :host {
@@ -49,7 +50,7 @@ export default css`
     flex-basis: 100%;
   }
 
-  @container (min-width: 640px) {
+  @container (min-width: ${FIELDSET_TWO_COLUMN_BREAKPOINT}px) {
     .fields--two-columns ::slotted(*) {
       flex-basis: calc((100% - (var(--item-gap) * (var(--items-per-row) - 1))) / var(--items-per-row));
     }

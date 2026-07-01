@@ -11,7 +11,9 @@ import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './fieldset.styles.js';
 import {
+  applyGroupedControlLayout,
   getFormElements,
+  getGroupedControlLayout,
   isDisabledElement,
 } from './helpers.js';
 
@@ -39,16 +41,28 @@ export default class SynFieldset extends SynergyElement {
 
   private readonly forcedDisabledElements = new WeakSet<Element>();
 
-  private readonly lightDomObserver = new MutationObserver(() => {
+  private readonly lightDomObserver = new MutationObserver((records) => {
     if (this.disabled) {
       this.syncDisabledState();
     }
+
+    if (records.some(record => record.type === 'childList')) {
+      this.scheduleGroupedControlLayoutSync();
+    }
   });
+
+  private readonly fieldContainerResizeObserver = new ResizeObserver(() => {
+    this.scheduleGroupedControlLayoutSync();
+  });
+
+  private groupedLayoutSyncAnimationFrame: number | null = null;
 
   private handleSlotChange = () => {
     if (this.disabled) {
       this.syncDisabledState();
     }
+
+    this.scheduleGroupedControlLayoutSync();
   };
 
   /**
@@ -77,6 +91,27 @@ export default class SynFieldset extends SynergyElement {
     * - `two-columns`: Fields are displayed in two columns. Will automatically fall back to one-column if the fieldset is too narrow to display two columns.
    */
   @property({ reflect: true }) layout: 'one-column' | 'two-columns' = 'one-column';
+
+  private getFieldContainerWidth(): number {
+    const fieldContainer = this.shadowRoot?.querySelector<HTMLElement>('.fields');
+    return fieldContainer?.getBoundingClientRect().width ?? 0;
+  }
+
+  private syncGroupedControlLayouts() {
+    const targetLayout = getGroupedControlLayout(this.layout, this.getFieldContainerWidth());
+    applyGroupedControlLayout(this, targetLayout);
+  }
+
+  private scheduleGroupedControlLayoutSync() {
+    if (this.groupedLayoutSyncAnimationFrame !== null) {
+      return;
+    }
+
+    this.groupedLayoutSyncAnimationFrame = requestAnimationFrame(() => {
+      this.groupedLayoutSyncAnimationFrame = null;
+      this.syncGroupedControlLayouts();
+    });
+  }
 
   private syncDisabledState() {
     const elements = getFormElements(this);
@@ -108,9 +143,24 @@ export default class SynFieldset extends SynergyElement {
     });
   }
 
+  firstUpdated() {
+    const fieldContainer = this.shadowRoot?.querySelector<HTMLElement>('.fields');
+    if (fieldContainer) {
+      this.fieldContainerResizeObserver.observe(fieldContainer);
+    }
+
+    this.syncGroupedControlLayouts();
+  }
+
   disconnectedCallback() {
     super.disconnectedCallback();
     this.lightDomObserver?.disconnect();
+    this.fieldContainerResizeObserver?.disconnect();
+
+    if (this.groupedLayoutSyncAnimationFrame !== null) {
+      cancelAnimationFrame(this.groupedLayoutSyncAnimationFrame);
+      this.groupedLayoutSyncAnimationFrame = null;
+    }
   }
 
   protected updated(_changedProperties: PropertyValues<this>) {
@@ -118,20 +168,22 @@ export default class SynFieldset extends SynergyElement {
     if (_changedProperties.has('disabled')) {
       this.syncDisabledState();
     }
+
+    this.scheduleGroupedControlLayoutSync();
   }
 
   render() {
-    const legendExists = this.hasSlotController.test('legend') || this.legend.length > 0;
-    const descriptionExists = this.hasSlotController.test('description') || this.description.length > 0;
+    const hasLegend = this.hasSlotController.test('legend') || this.legend.length > 0;
+    const hasDescription = this.hasSlotController.test('description') || this.description.length > 0;
 
     return html`
       <fieldset
         class="fieldset"
         ?disabled=${this.disabled}
-        aria-describedby=${ifDefined(descriptionExists ? 'description' : undefined)}
+        aria-describedby=${ifDefined(hasDescription ? 'description' : undefined)}
         part="base"
       >
-        ${legendExists
+        ${hasLegend
           ? html`
             <legend class="legend" part="legend">
               <slot name="legend">${this.legend}</slot>
@@ -140,7 +192,7 @@ export default class SynFieldset extends SynergyElement {
           : null
         }
         
-        ${descriptionExists
+        ${hasDescription
           ? html`
             <div class="description" id="description" part="description">
               <slot name="description">${this.description}</slot>

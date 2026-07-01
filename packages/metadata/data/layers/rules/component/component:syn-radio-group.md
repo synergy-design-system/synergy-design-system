@@ -28,6 +28,12 @@ Radio groups are used to group multiple [radios](/components/radio) or [radio bu
 - Do not disable all choices in a group; if a selection is not applicable, consider hiding the group instead.
 - Use only when users need to select one option; for multiple selections, use checkboxes instead.
 
+### Layout
+
+- Use the vertical layout as the default for most form scenarios, especially when labels are longer or when readability is more important than compactness.
+- Use horizontal layout only when options are short, similar in length, and there is sufficient horizontal space.
+- The layout setting applies to `syn-radio` options. `syn-radio-button` items are rendered in their own button-group and are not affected by this layout switch.
+
 ## Accessibility
 
 - Ensure that the group label is short and concise as it may be read out when users enter the group.

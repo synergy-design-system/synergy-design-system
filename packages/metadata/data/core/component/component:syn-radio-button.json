@@ -72,6 +72,17 @@
         {
           "description": {
             "type": "text",
+            "value": "The focus event gives the user feedback that the radio button has been focused by the keyboard interaction."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
             "value": "Use the disabled attribute to disable a radio button."
           },
           "name": "disabled",

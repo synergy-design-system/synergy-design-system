@@ -207,3 +207,28 @@ Radio buttons offer an alternate way to display radio controls. In this case, an
   <syn-radio-button value="Option 3">Option 3</syn-radio-button>
 </syn-radio-group>
 ```
+
+---
+
+## Horizontal
+
+Use the horizontal attribute to indicate that an element is used in a horizontal navigation.
+
+```html
+<div
+  style="display: flex; flex-direction: column; gap: var(--syn-spacing-large)"
+>
+  <syn-radio-group layout="horizontal" label="Small size" size="small">
+    <syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
+  </syn-radio-group>
+  <syn-radio-group layout="horizontal" label="Medium size" size="medium">
+    <syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
+  </syn-radio-group>
+  <syn-radio-group layout="horizontal" label="Large size" size="large">
+    <syn-radio value="1">Option</syn-radio>
+    <syn-radio value="2">Option</syn-radio>
+  </syn-radio-group>
+</div>
+```

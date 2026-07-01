@@ -57,6 +57,20 @@ default: `''`
 The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot
 instead.
 
+### layout
+
+attribute: `layout`
+reflects: yes
+type: `'horizontal' | 'vertical'`
+default: `'vertical'`
+
+The layout of the radio group. This determines how the radios are displayed.
+This only applies to `syn-radio` elements.
+`syn-radio-button` items are rendered in their own button-group and will always render vertically.
+
+- `horizontal`: Radios are displayed in a row.
+- `vertical`: Radios are displayed in a column.
+
 ### name
 
 attribute: `name`

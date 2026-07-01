@@ -326,6 +326,32 @@ export const RadioButtons: Story = {
   `,
 };
 
+export const Horizontal: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-group', 'horizontal'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-radio-group layout="horizontal" label="Small size" size="small">
+        <syn-radio value="1">Option</syn-radio>
+        <syn-radio value="2">Option</syn-radio>
+      </syn-radio-group>
+      <syn-radio-group layout="horizontal" label="Medium size" size="medium">
+        <syn-radio value="1">Option</syn-radio>
+        <syn-radio value="2">Option</syn-radio>
+      </syn-radio-group>
+      <syn-radio-group layout="horizontal" label="Large size" size="large">
+        <syn-radio value="1">Option</syn-radio>
+        <syn-radio value="2">Option</syn-radio>
+      </syn-radio-group>
+    </div>
+  `,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
@@ -337,5 +363,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Readonly,
   Sizes,
   RadioButtons,
+  Horizontal,
 }, 400);
 /* eslint-enable sort-keys */

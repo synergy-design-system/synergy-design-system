@@ -2167,6 +2167,16 @@
           "type": "text"
         }
       },
+      "focus": {
+        "description": {
+          "value": "The focus event gives the user feedback that the radio button has been focused by the keyboard interaction.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        }
+      },
       "disabled": {
         "description": {
           "value": "Use the disabled attribute to disable a radio button.",
@@ -2346,6 +2356,16 @@
         },
         "description": {
           "value": "Radio buttons offer an alternate way to display radio controls. In this case, an internal button group is used to group the buttons into a single, cohesive control.",
+          "type": "text"
+        }
+      },
+      "horizontal": {
+        "title": {
+          "value": "Horizontal alignment",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation.",
           "type": "text"
         }
       }

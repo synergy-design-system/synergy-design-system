@@ -89,6 +89,15 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
   /**
+   * The layout of the radio group. This determines how the radios are displayed.
+   * This only applies to `syn-radio` elements.
+   * `syn-radio-button` items are rendered in their own button-group and will always render vertically.
+   * - `horizontal`: Radios are displayed in a row.
+   * - `vertical`: Radios are displayed in a column.
+   */
+  @property({ reflect: true }) layout: 'horizontal' | 'vertical' = 'vertical';
+
+  /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
    * to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
    * the same document or shadow root for this to work.
@@ -388,6 +397,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
           'form-control--has-button-group': this.hasButtonGroup,
           'form-control--has-help-text': hasHelpText,
           'form-control--has-label': hasLabel,
+          'form-control--is-horizontal': this.layout === 'horizontal',
           'form-control--large': this.size === 'large',
           'form-control--medium': this.size === 'medium',
           'form-control--radio-group': true,

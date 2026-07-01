@@ -30,8 +30,6 @@ If you would like to encrypt sensitive information, please use our OpenPGP key:
 
 https://www.sick.com/.well-known/csaf/openpgp/E5097FC040473BB30F3EA7E0D58622400E6D0E90.asc
 
-
-
 ### Vulnerability Disclosure Policy
 
 Details regarding the reporting and handling of security vulnerabilities can be

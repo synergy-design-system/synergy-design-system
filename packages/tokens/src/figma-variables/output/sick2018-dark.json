@@ -1689,6 +1689,12 @@
         "type": "sizing",
         "value": "{border-radius.none}"
       }
+    },
+    "spacing": {
+      "small": {
+        "type": "sizing",
+        "value": "6px"
+      }
     }
   },
   "range": {

@@ -151,6 +151,7 @@
         "VariableID:47:1346",
         "VariableID:47:1347",
         "VariableID:47:1348",
+        "VariableID:4916:143146",
         "VariableID:27:1310",
         "VariableID:27:1307",
         "VariableID:27:1308",
@@ -5562,6 +5563,30 @@
         },
         "8:3": {
           "id": "VariableID:8:207",
+          "type": "VARIABLE_ALIAS"
+        }
+      },
+      "variableCollectionId": "VariableCollectionId:8:2"
+    },
+    "VariableID:4916:143146": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:4916:143146",
+      "key": "59fce2ade46d854154903811920c58c893d73a3f",
+      "name": "chart/semantic/disabled/color",
+      "remote": false,
+      "resolvedType": "COLOR",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "8:2": {
+          "id": "VariableID:27:1371",
+          "type": "VARIABLE_ALIAS"
+        },
+        "8:3": {
+          "id": "VariableID:27:1371",
           "type": "VARIABLE_ALIAS"
         }
       },

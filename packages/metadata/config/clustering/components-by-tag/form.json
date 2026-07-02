@@ -5,6 +5,7 @@
     "component:syn-button",
     "component:syn-button-group",
     "component:syn-checkbox",
+    "component:syn-checkbox-group",
     "component:syn-combobox",
     "component:syn-dropdown",
     "component:syn-file",

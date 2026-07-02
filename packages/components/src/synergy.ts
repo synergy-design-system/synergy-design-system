@@ -12,6 +12,7 @@ export { default as SynBreadcrumb } from './components/breadcrumb/breadcrumb.js'
 export { default as SynButtonGroup } from './components/button-group/button-group.js';
 export { default as SynButton } from './components/button/button.js';
 export { default as SynCard } from './components/card/card.js';
+export { default as SynCheckboxGroup } from './components/checkbox-group/checkbox-group.js';
 export { default as SynCheckbox } from './components/checkbox/checkbox.js';
 export { default as SynCombobox } from './components/combobox/combobox.js';
 export { default as SynDetails } from './components/details/details.js';

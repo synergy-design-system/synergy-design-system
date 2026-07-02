@@ -10,6 +10,7 @@ const componentsUsingBlockLayout = [
   'accordion',
   'breadcrumb',
   'chart',
+  'checkbox-group',
   'combobox',
   'details',
   'divider',

@@ -43,6 +43,7 @@ import type {
   SynButtonGroup,
   SynCard,
   SynCheckbox,
+  SynCheckboxGroup,
   SynCombobox,
   SynDetails,
   SynDialog,
@@ -308,6 +309,27 @@ export type SynCustomElement<
     ['syn-input', SynInputEvent],
     ['syn-invalid', SynInvalidEvent],
   ]
+>;
+/**
+ * @summary Checkbox groups are used to group multiple checkboxes together.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox-group--docs
+ * @status stable
+ * @since 3.x.x
+ *
+ * @slot - The default slot where `<syn-checkbox> elements are placed.
+ * @slot label - The checkbox group's label. Required for proper accessibility. Alternatively, you can use the `label`
+ *  attribute.
+ * @slot help-text - Text that describes how to use the checkbox group. Alternatively, you can use the `help-text` attribute.
+ *
+ * @csspart form-control - The form control that wraps the label, input, and help text.
+ * @csspart form-control-label - The label's wrapper.
+ * @csspart form-control-input - The input's wrapper.
+ * @csspart form-control-help-text - The help text's wrapper.
+ * @csspart button-group - The button group that wraps radio buttons.
+ * @csspart button-group__base - The button group's `base` part.
+ */ export type SynCheckboxGroupJSXElement = SynCustomElement<
+  SynCheckboxGroup,
+  []
 >;
 /**
  * @summary A combobox component that combines the functionality of a text input with a dropdown listbox,
@@ -1785,6 +1807,24 @@ declare module 'react' {
        * @csspart label - The container that wraps the checkbox's label.
        * @csspart form-control-help-text - The help text's wrapper.
        */ 'syn-checkbox': SynCheckboxJSXElement;
+      /**
+       * @summary Checkbox groups are used to group multiple checkboxes together.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox-group--docs
+       * @status stable
+       * @since 3.x.x
+       *
+       * @slot - The default slot where `<syn-checkbox> elements are placed.
+       * @slot label - The checkbox group's label. Required for proper accessibility. Alternatively, you can use the `label`
+       *  attribute.
+       * @slot help-text - Text that describes how to use the checkbox group. Alternatively, you can use the `help-text` attribute.
+       *
+       * @csspart form-control - The form control that wraps the label, input, and help text.
+       * @csspart form-control-label - The label's wrapper.
+       * @csspart form-control-input - The input's wrapper.
+       * @csspart form-control-help-text - The help text's wrapper.
+       * @csspart button-group - The button group that wraps radio buttons.
+       * @csspart button-group__base - The button group's `base` part.
+       */ 'syn-checkbox-group': SynCheckboxGroupJSXElement;
       /**
        * @summary A combobox component that combines the functionality of a text input with a dropdown listbox,
        * allowing users to either select from predefined options or enter custom values (when not restricted).

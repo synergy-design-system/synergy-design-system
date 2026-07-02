@@ -92,6 +92,7 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
    * The layout of the radio group. This determines how the radios are displayed.
    * This only applies to `syn-radio` elements.
    * `syn-radio-button` items are rendered in their own button-group and will always render vertically.
+   *
    * - `horizontal`: Radios are displayed in a row.
    * - `vertical`: Radios are displayed in a column.
    */

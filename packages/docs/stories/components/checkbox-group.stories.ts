@@ -13,6 +13,10 @@ import {
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
+const createCheckboxes = (count: number = 3) => Array.from({ length: count }, (_, i) => html`
+  <syn-checkbox name="checkbox-${i + 1}" value="checkbox-${i + 1}">Option</syn-checkbox>
+`);
+
 const { argTypes } = storybookDefaults('syn-checkbox-group');
 const { overrideArgs } = storybookHelpers('syn-checkbox-group');
 const { generateTemplate } = storybookTemplate('syn-checkbox-group');
@@ -66,6 +70,81 @@ export const Default: Story = {
     },
   },
   render: (args) => generateTemplate({ args }),
+};
+
+export const LayoutVertical: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox-group', 'layout-vertical'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-checkbox-group label="This is a label" layout="vertical">
+      ${createCheckboxes()}
+    </syn-checkbox-group>
+  `,
+};
+
+export const LayoutHorizontal: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox-group', 'layout-horizontal'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-checkbox-group label="This is a label" layout="horizontal">
+      ${createCheckboxes(11)}
+    </syn-checkbox-group>
+  `,
+};
+
+export const Labels: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox-group', 'labels'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-checkbox-group label="This is a label">
+      ${createCheckboxes(11)}
+    </syn-checkbox-group>
+  `,
+};
+
+export const HelpText: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox-group', 'help-text'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-checkbox-group label="This is a label" help-text="Choose the most appropriate option.">
+      ${createCheckboxes(3)}
+    </syn-checkbox-group>
+  `,
+};
+
+export const FocusTodo: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox-group', 'focus'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-checkbox-group label="This is a label" help-text="Choose the most appropriate option.">
+      ${createCheckboxes(3)}
+    </syn-checkbox-group>
+  `,
 };
 
 /* eslint-disable sort-keys */

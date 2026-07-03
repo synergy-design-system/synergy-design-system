@@ -64,6 +64,11 @@ export const SynChartCategorical08: string;
 export const SynChartCategorical09: string;
 
 /**
+ * Maps to the css variable `--syn-chart-disabled-color`
+ */
+export const SynChartDisabledColor: string;
+
+/**
  * Maps to the css variable `--syn-chart-grid-lines-color`
  */
 export const SynChartGridLinesColor: string;

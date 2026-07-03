@@ -7,8 +7,8 @@ export interface ScrapingConfig {
   kind: StorybookArtifactKind;
   /** Function to get the list of items to scrape */
   getItems: () => Promise<string[]> | string[];
-  /** Function to generate the story ID from an item */
-  generateStoryId: (item: string) => string;
+  /** Function to generate all story IDs for an item */
+  generateStoryIds: (item: string) => string[];
   /** Function to generate the canonical entity ID from an item */
   generateEntityId: (item: string) => string;
   /** Function to format the scraped content */

@@ -164,6 +164,21 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
   },
   {
     args: {
+      component: 'syn-chart',
+      framework: 'vanilla',
+      layer: 'examples',
+    },
+    budget: {
+      maxRegressionAbs: 500,
+      maxRegressionPct: 20,
+      maxTokens: 10000,
+    },
+    id: 'component-info:examples:syn-chart',
+    kind: 'tool',
+    toolName: 'component-info',
+  },
+  {
+    args: {
       component: 'syn-button',
       framework: 'vanilla',
       layer: 'full',

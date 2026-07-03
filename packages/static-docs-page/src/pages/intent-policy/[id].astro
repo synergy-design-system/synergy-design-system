@@ -1,11 +1,11 @@
 ---
+import { Code } from 'astro-expressive-code/components'
 import { type SynBadge } from '@synergy-design-system/components';
 import {
 	experimental_listIntentCategories,
 	experimental_getIntentCategory,
-	experimental_listIntentCapabilities,
+	experimental_getIntentOptions,
 	experimental_listIntents,
-	experimental_renderIntent,
 	type IntentTargetRef,
 } from '@synergy-design-system/metadata';
 import Layout from '../../layouts/Layout.astro';
@@ -44,38 +44,70 @@ const intents = await experimental_listIntents({
 	includePhases: ['experimental'],
 }, metadataStoreOptions);
 
-const capabilitiesByIntentId = new Map(
-	await Promise.all(intents.data.map(async intent => {
-		const capabilities = await experimental_listIntentCapabilities(intent.id, {
-			includePhases: ['experimental'],
-		}, metadataStoreOptions);
-
-		return [intent.id, capabilities.data] as const;
-	})),
-);
-
 const renderFrameworks = ['react-wrapper', 'react-web-components', 'angular', 'vue', 'vanilla'] as const;
 
-const previewsByIntentId = new Map(
+const variantsByIntentId = new Map(
 	await Promise.all(intents.data.map(async intent => {
-		const linkedCapabilities = capabilitiesByIntentId.get(intent.id) ?? [];
-
-		if (linkedCapabilities.length === 0) {
-			return [intent.id, [] as Array<readonly [typeof renderFrameworks[number], string]>] as const;
-		}
-
-		const previews = await Promise.all(renderFrameworks.map(async framework => {
-			const rendered = await experimental_renderIntent({
+		const defaultTargetIds = new Set<string>();
+		const variantResults = await Promise.all(renderFrameworks.map(async framework => {
+			const options = await experimental_getIntentOptions({
 				framework,
 				includePhases: ['experimental'],
-				intent: intent.id,
+				intentId: intent.id,
+				maxAlternatives: 20,
 			}, metadataStoreOptions);
 
-			const fallback = `ERROR:${rendered.errors?.[0]?.code ?? 'UNKNOWN'}`;
-			return [framework, rendered.data ?? fallback] as const;
+			if (options.data?.bestDefaultTargetId) {
+				defaultTargetIds.add(options.data.bestDefaultTargetId);
+			}
+
+			return [framework, options.data?.renderableTargets ?? []] as const;
 		}));
 
-		return [intent.id, previews] as const;
+		const variantMap = new Map<string, {
+			isDefault: boolean;
+			reason: string;
+			target: IntentTargetRef;
+			previews: Array<readonly [typeof renderFrameworks[number], string]>;
+		}>();
+
+		for (const [framework, targets] of variantResults) {
+			for (const target of targets) {
+				const targetRef: IntentTargetRef = {
+					id: target.targetId,
+					kind: target.targetId.startsWith('style:') ? 'style' : 'component',
+					name: target.targetName,
+				};
+
+				const existing = variantMap.get(target.targetId);
+				if (existing) {
+					existing.isDefault = existing.isDefault || defaultTargetIds.has(target.targetId);
+					existing.previews.push([framework, target.previewCode] as const);
+					continue;
+				}
+
+				variantMap.set(target.targetId, {
+					isDefault: defaultTargetIds.has(target.targetId),
+					previews: [[framework, target.previewCode] as const],
+					reason: target.reason,
+					target: targetRef,
+				});
+			}
+		}
+
+		const variants = Array.from(variantMap.values())
+			.sort((a, b) => {
+				if (a.isDefault !== b.isDefault) {
+					return a.isDefault ? -1 : 1;
+				}
+
+				const aLabel = a.target.id ?? a.target.name ?? a.target.selector ?? a.target.kind;
+				const bLabel = b.target.id ?? b.target.name ?? b.target.selector ?? b.target.kind;
+
+				return aLabel.localeCompare(bLabel);
+			});
+
+		return [intent.id, variants] as const;
 	})),
 );
 
@@ -145,8 +177,7 @@ const getPhaseBadge = (phase: string): SynBadge['variant'] => {
 		{intents.data.length > 0 && (
 			<>
 				{intents.data.map(intent => {
-					const linkedCapabilities = capabilitiesByIntentId.get(intent.id) ?? [];
-					const previews = previewsByIntentId.get(intent.id) ?? [];
+					const variants = variantsByIntentId.get(intent.id) ?? [];
 					return (
 					<article>
 						<h3 class="syn-heading--large">
@@ -169,13 +200,13 @@ const getPhaseBadge = (phase: string): SynBadge['variant'] => {
 							</li>
 							<li>
 								<strong>Linked Targets</strong>
-								{linkedCapabilities.length > 0 ? (
+								{variants.length > 0 ? (
 									<ul>
-										{linkedCapabilities.map(capability => (
+										{variants.map(variant => (
 												<li>
 													{(() => {
-														const targetLabel = formatTarget(capability.target);
-														const targetPath = getIntentTargetPath(capability.target);
+														const targetLabel = formatTarget(variant.target);
+														const targetPath = getIntentTargetPath(variant.target);
 
 														if (!targetPath) {
 															return targetLabel;
@@ -195,23 +226,31 @@ const getPhaseBadge = (phase: string): SynBadge['variant'] => {
 									<span> No linked targets found.</span>
 								)}
 							</li>
-							<li>
-								<strong>Render Previews</strong>
-								{previews.length > 0 ? (
-									<ul>
-										{previews.map(([framework, output]) => (
-											<li>
-												<strong>{framework}</strong>
-												<pre><code>{output}</code></pre>
-											</li>
-										))}
-									</ul>
-								) : (
-									<span> No previews available.</span>
-								)}
-							</li>
 						</ul>
+
+						<h4 class="syn-heading--medium">Render Previews</h4>
+						{variants.length > 0 ? (
+							<ul>
+								{variants.map(variant => (
+									<li>
+										<strong>{formatTarget(variant.target)}</strong>
+										{variant.isDefault && <syn-badge variant="success">Default</syn-badge>}
+										<p>{variant.reason}</p>
+										<ul>
+											{variant.previews.map(([framework, output]) => (
+												<li>
+													<Code code={output} title={framework} lang="html" />
+												</li>
+											))}
+										</ul>
+									</li>
+								))}
+							</ul>
+						) : (
+							<span> No previews available.</span>
+						)}
 					</article>
+					<syn-divider />
 					);
 				})}
 			</>

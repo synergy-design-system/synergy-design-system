@@ -16,3 +16,5 @@ Adds a new `<syn-fieldset>` component for grouping related form controls with se
 - Syncs disabled state to nested form controls.
 
 Adds a new property `layout` to `<syn-radio-group>`. This can be used to display slotted `<syn-radio>` elements horizontally.
+
+Adds a new `<syn-checkbox-group>` component for grouping related checkboxes with semantic markup.

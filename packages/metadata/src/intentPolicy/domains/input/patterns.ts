@@ -29,7 +29,9 @@ export const inputPatterns: IntentUsagePattern[] = [
         multiple: false,
       },
     },
+    priority: 80,
     target: { id: 'component:syn-select', kind: 'component', name: 'syn-select' },
+    targetRole: 'standalone',
   },
   {
     description: 'Multiple selection from a predefined options list.',
@@ -39,7 +41,9 @@ export const inputPatterns: IntentUsagePattern[] = [
         multiple: true,
       },
     },
+    priority: 90,
     target: { id: 'component:syn-select', kind: 'component', name: 'syn-select' },
+    targetRole: 'standalone',
   },
   {
     description: 'Searchable selection with real-time filtering for larger option sets.',
@@ -79,6 +83,7 @@ export const inputPatterns: IntentUsagePattern[] = [
       'Provide group labeling through the label property or label slot.',
       'Keep option-level guidance in child checkbox labels; use group help text for additional context.',
     ],
+    priority: 60,
     structure: {
       component: 'syn-checkbox-group',
       config: {
@@ -97,6 +102,7 @@ export const inputPatterns: IntentUsagePattern[] = [
       },
     },
     target: { id: 'component:syn-checkbox-group', kind: 'component', name: 'syn-checkbox-group' },
+    targetRole: 'container',
   },
   {
     description: 'Multi-select option set represented as grouped checkboxes in a single form control context.',
@@ -106,6 +112,7 @@ export const inputPatterns: IntentUsagePattern[] = [
       'Selection state belongs to child syn-checkbox controls; syn-checkbox-group provides structure and shared guidance.',
       'Prefer vertical layout for longer labels and better readability.',
     ],
+    priority: 70,
     structure: {
       component: 'syn-checkbox-group',
       config: {
@@ -124,12 +131,15 @@ export const inputPatterns: IntentUsagePattern[] = [
       },
     },
     target: { id: 'component:syn-checkbox-group', kind: 'component', name: 'syn-checkbox-group' },
+    targetRole: 'container',
   },
   {
     description: 'Single required choice among related options.',
     intent: 'input.selection.single',
     notes: ['Provide one default selected option as recommended in component usage rules.'],
+    priority: 100,
     target: { id: 'component:syn-radio-group', kind: 'component', name: 'syn-radio-group' },
+    targetRole: 'standalone',
   },
   {
     description: 'Single selectable option used within a radio-button group.',
@@ -138,7 +148,9 @@ export const inputPatterns: IntentUsagePattern[] = [
       'Use inside syn-radio-group to provide one explicit selection among related options.',
       'Provide a default selected value at group level, as recommended in component usage rules.',
     ],
+    priority: 20,
     target: { id: 'component:syn-radio-button', kind: 'component', name: 'syn-radio-button' },
+    targetRole: 'item',
   },
   {
     description: 'File attachment or upload control with optional multi-file mode.',
@@ -168,6 +180,7 @@ export const inputPatterns: IntentUsagePattern[] = [
       'Provide a concise legend that describes the shared purpose of the grouped controls.',
       'Keep critical guidance in control labels and help text; use fieldset description for contextual support.',
     ],
+    priority: 100,
     structure: {
       component: 'syn-fieldset',
       config: {
@@ -186,5 +199,6 @@ export const inputPatterns: IntentUsagePattern[] = [
       },
     },
     target: { id: 'component:syn-fieldset', kind: 'component', name: 'syn-fieldset' },
+    targetRole: 'container',
   },
 ];

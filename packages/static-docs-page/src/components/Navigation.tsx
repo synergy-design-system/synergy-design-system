@@ -7,8 +7,11 @@ const templates = await meta.listTemplates({}, metadataStoreOptions);
 const styles = await meta.listStyles({}, metadataStoreOptions);
 const intentCategories = await meta.experimental_listIntentCategories(metadataStoreOptions, {
   includePhases: [
-    process.env.NODE_ENV === 'production' ? 'stable' : 'experimental',
+    'experimental',
   ],
+  // includePhases: [
+  //   process.env.NODE_ENV === 'production' ? 'stable' : 'experimental',
+  // ],
 });
 
 const CHANGELOG_PACKAGES = [

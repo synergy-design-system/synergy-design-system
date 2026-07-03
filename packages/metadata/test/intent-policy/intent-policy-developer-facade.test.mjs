@@ -496,4 +496,30 @@ describe('intent policy developer facade', () => {
       await fixture.cleanup();
     }
   });
+
+  it('prioritizes radio-group over select and radio-button for input.selection.single', async () => {
+    const { experimental_getIntentOptions } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_getIntentOptions({
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intentId: 'input.selection.single',
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.bestDefaultTargetId).to.equal('component:syn-radio-group');
+      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+        'component:syn-radio-group',
+        'component:syn-select',
+        'component:syn-radio-button',
+      ]);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
 });

@@ -497,6 +497,18 @@ export type IntentStructureNode = {
 };
 
 /**
+ * Semantic role of a target when fulfilling an intent.
+ *
+ * - `standalone`: The target can satisfy the intent on its own.
+ * - `container`: The target fulfills the intent as an enclosing structure for subordinate parts.
+ * - `item`: The target is a subordinate building block that typically requires a parent container.
+ */
+export type IntentTargetRole =
+  | 'standalone'
+  | 'container'
+  | 'item';
+
+/**
  * Full guidance artifact for one target and one intent.
  */
 export type IntentUsagePattern = {
@@ -521,6 +533,11 @@ export type IntentUsagePattern = {
    */
   preset?: IntentPreset;
   /**
+   * Optional recommendation priority used to rank multiple valid targets for the same intent.
+   * Higher numbers indicate stronger recommendation. Defaults to 0 when omitted.
+   */
+  priority?: number;
+  /**
    * Optional semantic role map used by structural patterns.
    */
   roles?: Record<string, string>;
@@ -532,6 +549,11 @@ export type IntentUsagePattern = {
    * Neutral target reference the pattern applies to.
    */
   target: IntentTargetRef;
+  /**
+   * Optional semantic role of the target when fulfilling this intent.
+   * Defaults to `standalone` when omitted for recommendation ordering.
+   */
+  targetRole?: IntentTargetRole;
 };
 
 /**

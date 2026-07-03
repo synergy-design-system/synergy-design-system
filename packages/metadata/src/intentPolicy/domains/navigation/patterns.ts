@@ -8,6 +8,7 @@ export const navigationPatterns: IntentUsagePattern[] = [
       'Use syn-link--quiet when the link should have lower visual emphasis.',
       'Use size variants like syn-link--small, syn-link--medium, or syn-link--large as needed.',
     ],
+    priority: 0,
     preset: {
       requiredClasses: ['syn-link'],
     },
@@ -31,6 +32,7 @@ export const navigationPatterns: IntentUsagePattern[] = [
       layer: 'examples',
       selector: '.syn-link',
     },
+    targetRole: 'standalone',
   },
   {
     description: 'Grouped navigation links using the link-list utility class.',
@@ -174,21 +176,29 @@ export const navigationPatterns: IntentUsagePattern[] = [
   {
     description: 'Hierarchy-aware breadcrumb trail for location and backtracking.',
     intent: 'navigation.breadcrumb.trail',
+    priority: 100,
     target: { id: 'component:syn-breadcrumb', kind: 'component', name: 'syn-breadcrumb' },
+    targetRole: 'container',
   },
   {
     description: 'Breadcrumb item representing one navigable hierarchy level.',
     intent: 'navigation.breadcrumb.trail',
+    priority: 10,
     target: { id: 'component:syn-breadcrumb-item', kind: 'component', name: 'syn-breadcrumb-item' },
+    targetRole: 'item',
   },
   {
     description: 'Primary vertical navigation for app shell section switching.',
     intent: 'navigation.sidenav.menu',
+    priority: 100,
     target: { id: 'component:syn-side-nav', kind: 'component', name: 'syn-side-nav' },
+    targetRole: 'container',
   },
   {
     description: 'Single destination entry within side navigation structures.',
     intent: 'navigation.sidenav.menu',
+    priority: 10,
     target: { id: 'component:syn-nav-item', kind: 'component', name: 'syn-nav-item' },
+    targetRole: 'item',
   },
 ];

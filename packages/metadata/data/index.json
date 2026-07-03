@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-07-01T13:56:54.995Z",
+  "builtAt": "2026-07-03T08:01:04.230Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -324,6 +324,28 @@
         "component",
         "react",
         "syn-checkbox",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-checkbox-group.json",
+      "id": "component:syn-checkbox-group",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2,
+        "rules": 1
+      },
+      "name": "syn-checkbox-group",
+      "search": [
+        "component:syn-checkbox-group",
+        "syn-checkbox-group",
+        "angular",
+        "checkbox-group",
+        "component",
+        "react",
+        "syn-checkbox-group",
         "vue"
       ]
     },

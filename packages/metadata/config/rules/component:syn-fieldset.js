@@ -13,6 +13,7 @@ export default {
     components: [
       'syn-button',
       'syn-checkbox',
+      'syn-checkbox-group',
       'syn-combobox',
       'syn-dropdown',
       'syn-file',

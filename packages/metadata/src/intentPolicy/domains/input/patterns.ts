@@ -72,6 +72,60 @@ export const inputPatterns: IntentUsagePattern[] = [
     target: { id: 'component:syn-checkbox', kind: 'component', name: 'syn-checkbox' },
   },
   {
+    description: 'Group related checkbox controls in one form-scoped section with shared labeling and optional help text.',
+    intent: 'input.grouping.fieldset',
+    notes: [
+      'Use when related checkbox options need shared context in forms.',
+      'Provide group labeling through the label property or label slot.',
+      'Keep option-level guidance in child checkbox labels; use group help text for additional context.',
+    ],
+    structure: {
+      component: 'syn-checkbox-group',
+      config: {
+        contentRules: [{
+          code: 'CHECKBOX_GROUP_LABEL_REQUIRED',
+          kind: 'requiredAnyContentSource',
+          message: 'Checkbox groups should provide a label, either through the label property or the label slot.',
+          rationale: 'A group label gives related checkboxes a shared accessible context and improves scanability.',
+          severity: 'warning',
+          sources: [
+            { kind: 'prop', prop: 'label' },
+            { kind: 'slot', slot: 'label' },
+          ],
+          suggestedFix: 'Provide a non-empty label property or add content to the label slot.',
+        }],
+      },
+    },
+    target: { id: 'component:syn-checkbox-group', kind: 'component', name: 'syn-checkbox-group' },
+  },
+  {
+    description: 'Multi-select option set represented as grouped checkboxes in a single form control context.',
+    intent: 'input.selection.multiple',
+    notes: [
+      'Use when users may select none, one, or multiple options.',
+      'Selection state belongs to child syn-checkbox controls; syn-checkbox-group provides structure and shared guidance.',
+      'Prefer vertical layout for longer labels and better readability.',
+    ],
+    structure: {
+      component: 'syn-checkbox-group',
+      config: {
+        contentRules: [{
+          code: 'CHECKBOX_GROUP_LABEL_REQUIRED',
+          kind: 'requiredAnyContentSource',
+          message: 'Checkbox groups should provide a label, either through the label property or the label slot.',
+          rationale: 'A group label gives related checkboxes a shared accessible context and improves scanability.',
+          severity: 'warning',
+          sources: [
+            { kind: 'prop', prop: 'label' },
+            { kind: 'slot', slot: 'label' },
+          ],
+          suggestedFix: 'Provide a non-empty label property or add content to the label slot.',
+        }],
+      },
+    },
+    target: { id: 'component:syn-checkbox-group', kind: 'component', name: 'syn-checkbox-group' },
+  },
+  {
     description: 'Single required choice among related options.',
     intent: 'input.selection.single',
     notes: ['Provide one default selected option as recommended in component usage rules.'],

@@ -132,13 +132,20 @@ export const HelpText: Story = {
   `,
 };
 
-export const FocusTodo: Story = {
+export const Focus: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('checkbox-group', 'focus'),
       },
     },
+  },
+  play: ({ canvasElement }) => {
+    const checkboxGroup = canvasElement.querySelector('syn-checkbox-group');
+    checkboxGroup?.focus();
   },
   render: () => html`
     <syn-checkbox-group label="This is a label" help-text="Choose the most appropriate option.">
@@ -146,6 +153,26 @@ export const FocusTodo: Story = {
     </syn-checkbox-group>
   `,
 };
+
+export const Sizes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox-group', 'sizes'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      ${['small', 'medium', 'large'].map(size => html`
+        <syn-checkbox-group label="This is a label" help-text="Choose the most appropriate option." size="${size}">
+          ${createCheckboxes(2)}
+        </syn-checkbox-group>
+      `)}
+    </div>
+  `,
+};
+
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({

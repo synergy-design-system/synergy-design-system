@@ -817,7 +817,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Checkbox groups allow the user to select multiple options from a set of checkboxes.",
+          "value": "Checkbox groups are used to visually group multiple checkboxes.",
           "type": "text"
         }
       },

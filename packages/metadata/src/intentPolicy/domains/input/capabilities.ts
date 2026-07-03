@@ -23,6 +23,10 @@ export const inputCapabilities: IntentCapability[] = [
   },
   {
     categories: ['input'],
+    target: { id: 'component:syn-checkbox-group', kind: 'component', name: 'syn-checkbox-group' },
+  },
+  {
+    categories: ['input'],
     target: { id: 'component:syn-switch', kind: 'component', name: 'syn-switch' },
   },
   {

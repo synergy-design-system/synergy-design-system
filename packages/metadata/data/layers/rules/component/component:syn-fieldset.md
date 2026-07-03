@@ -47,6 +47,7 @@ Fieldsets are used to group related elements in a form.
 
 - syn-button
 - syn-checkbox
+- syn-checkbox-group
 - syn-combobox
 - syn-dropdown
 - syn-file

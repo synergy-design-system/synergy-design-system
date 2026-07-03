@@ -201,7 +201,7 @@ export default class SynFieldset extends SynergyElement {
           `
           : null
         }
-        
+
         ${hasDescription
           ? html`
             <div class="description" id="description" part="description">

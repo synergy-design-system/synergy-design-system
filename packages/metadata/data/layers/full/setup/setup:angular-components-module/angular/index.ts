@@ -12,6 +12,7 @@ export { SynButtonComponent } from '@synergy-design-system/angular/components/bu
 export { SynButtonGroupComponent } from '@synergy-design-system/angular/components/button-group';
 export { SynCardComponent } from '@synergy-design-system/angular/components/card';
 export { SynCheckboxComponent } from '@synergy-design-system/angular/components/checkbox';
+export { SynCheckboxGroupComponent } from '@synergy-design-system/angular/components/checkbox-group';
 export { SynComboboxComponent } from '@synergy-design-system/angular/components/combobox';
 export { SynDetailsComponent } from '@synergy-design-system/angular/components/details';
 export { SynDialogComponent } from '@synergy-design-system/angular/components/dialog';

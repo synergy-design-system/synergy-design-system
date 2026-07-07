@@ -183,3 +183,12 @@ export const ShowLegendBottom: Story = {
     </script>
   `,
 };
+
+/* eslint-disable sort-keys */
+export const Screenshot: Story = generateScreenshotStory({
+  ShowLegendTop,
+  ShowLegendLeft,
+  ShowLegendRight,
+  ShowLegendBottom,
+}, 700);
+/* eslint-enable sort-keys */

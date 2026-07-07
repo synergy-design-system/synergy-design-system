@@ -1,5 +1,156 @@
 import { expect } from '@open-wc/testing';
-import { compose, mergeConfigs } from './utilities.js';
+import { compose, mergeConfigs, mergeDeep } from './utilities.js';
+
+describe('mergeDeep', () => {
+  it('deep-merges nested objects into a new object', () => {
+    const target = {
+      xAxis: {
+        axisLabel: {
+          show: true,
+        },
+        type: 'category',
+      },
+    };
+
+    const source = {
+      xAxis: {
+        axisLabel: {
+          rotate: 45,
+        },
+      },
+    };
+
+    const merged = mergeDeep(target, source);
+
+    expect(merged).to.deep.equal({
+      xAxis: {
+        axisLabel: {
+          rotate: 45,
+          show: true,
+        },
+        type: 'category',
+      },
+    });
+
+    expect(merged).to.not.equal(target);
+    expect(merged).to.not.equal(source);
+    expect(target).to.deep.equal({
+      xAxis: {
+        axisLabel: {
+          show: true,
+        },
+        type: 'category',
+      },
+    });
+    expect(source).to.deep.equal({
+      xAxis: {
+        axisLabel: {
+          rotate: 45,
+        },
+      },
+    });
+  });
+
+  it('merges arrays by index with source precedence', () => {
+    const merged = mergeDeep(
+      [{ data: [1, 2], id: 'a', type: 'line' }],
+      [{ data: [3, 4], name: 'Latest', type: 'line' }],
+    );
+
+    expect(merged).to.deep.equal([
+      { data: [3, 4], id: 'a', name: 'Latest', type: 'line' },
+    ]);
+  });
+
+  it('merges object and array conflicts into the first array index', () => {
+    const objectIntoArray = mergeDeep(
+      {
+        axisLabel: { show: true },
+        type: 'category',
+      },
+      [{ axisLabel: { rotate: 45 } }],
+    );
+
+    const arrayIntoObject = mergeDeep(
+      [{ axisLabel: { show: true }, name: 'Base Axis' }],
+      {
+        axisLabel: { rotate: 30 },
+        type: 'value',
+      },
+    );
+
+    expect(objectIntoArray).to.deep.equal([
+      {
+        axisLabel: { rotate: 45, show: true },
+        type: 'category',
+      },
+    ]);
+
+    expect(arrayIntoObject).to.deep.equal([
+      {
+        axisLabel: { rotate: 30, show: true },
+        name: 'Base Axis',
+        type: 'value',
+      },
+    ]);
+  });
+
+  it('returns the source when called with an undefined target at runtime', () => {
+    const source = {
+      xAxis: {
+        type: 'category',
+      },
+    };
+
+    const merged = mergeDeep(undefined as unknown as object, source);
+
+    expect(merged).to.deep.equal(source);
+  });
+
+  it('returns the target when called with an undefined source at runtime', () => {
+    const target = {
+      xAxis: {
+        type: 'category',
+      },
+    };
+
+    const merged = mergeDeep(target, undefined as unknown as object);
+
+    expect(merged).to.deep.equal(target);
+  });
+
+  it('allows undefined source values to overwrite existing nested values', () => {
+    const merged = mergeDeep(
+      {
+        xAxis: {
+          axisLabel: {
+            rotate: 45,
+            show: true,
+          },
+          name: 'Days',
+        },
+      },
+      {
+        xAxis: {
+          axisLabel: {
+            rotate: undefined,
+          },
+          name: undefined,
+        },
+      },
+    );
+
+    expect(merged).to.deep.equal({
+      xAxis: {
+        axisLabel: {
+          rotate: undefined,
+          show: true,
+        },
+        name: undefined,
+      },
+    });
+  });
+});
 
 describe('mergeConfigs', () => {
   it('deep-merges nested objects with last layer precedence', () => {
@@ -32,17 +183,84 @@ describe('mergeConfigs', () => {
     });
   });
 
-  it('replaces arrays with the latest layer by default', () => {
+  it('merges arrays by index with source precedence', () => {
     const merged = mergeConfigs(
       {
-        series: [{ data: [1, 2], type: 'line' }],
+        series: [{ data: [1, 2], id: 'a', type: 'line' }],
       },
       {
-        series: [{ data: [3, 4], type: 'line' }],
+        series: [{ data: [3, 4], name: 'Latest', type: 'line' }],
       },
     );
 
-    expect(merged.series).to.deep.equal([{ data: [3, 4], type: 'line' }]);
+    expect(merged.series).to.deep.equal([
+      { data: [3, 4], id: 'a', name: 'Latest', type: 'line' },
+    ]);
+  });
+
+  it('keeps non-overlapping array entries from both layers', () => {
+    const merged = mergeConfigs(
+      {
+        series: [
+          { id: 'base-0', type: 'line' },
+          { id: 'base-1', type: 'bar' },
+        ],
+      },
+      {
+        series: [
+          { data: [1, 2, 3], id: 'base-0' },
+          { id: 'latest-1', stack: 'total' },
+          { id: 'latest-2', type: 'scatter' },
+        ],
+      },
+    );
+
+    expect(merged.series).to.deep.equal([
+      { data: [1, 2, 3], id: 'base-0', type: 'line' },
+      { id: 'latest-1', stack: 'total', type: 'bar' },
+      { id: 'latest-2', type: 'scatter' },
+    ]);
+  });
+
+  it('merges object and array conflicts into the first array index', () => {
+    const objectIntoArray = mergeConfigs(
+      {
+        xAxis: {
+          axisLabel: { show: true },
+          type: 'category',
+        },
+      },
+      {
+        xAxis: [{ axisLabel: { rotate: 45 } }],
+      },
+    );
+
+    const arrayIntoObject = mergeConfigs(
+      {
+        xAxis: [{ axisLabel: { show: true }, name: 'Base Axis' }],
+      },
+      {
+        xAxis: {
+          axisLabel: { rotate: 30 },
+          type: 'value',
+        },
+      },
+    );
+
+    expect(objectIntoArray.xAxis).to.deep.equal([
+      {
+        axisLabel: { rotate: 45, show: true },
+        type: 'category',
+      },
+    ]);
+
+    expect(arrayIntoObject.xAxis).to.deep.equal([
+      {
+        axisLabel: { rotate: 30, show: true },
+        name: 'Base Axis',
+        type: 'value',
+      },
+    ]);
   });
 });
 

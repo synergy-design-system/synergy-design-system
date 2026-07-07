@@ -178,7 +178,7 @@ export const updateAxisConfig = <T extends AxisKey>(
 /**
  * Default styles for axis labels
  */
-const getDefaultAxisLabelStyle = (): AxisLabelRich => ({
+const getDefaultAxisLabelStyle = () => ({
   color: getRealStyleValue('--syn-typography-color-text-quiet'),
   fontFamily: getRealStyleValue('--syn-font-sans'),
   fontSize: getRealStyleValue('--syn-font-size-x-small'),
@@ -388,15 +388,10 @@ export const applyAxisDefaultsPreprocessor = (option: ECConfig) => {
  * Default styling for all axes.
  * This is done as function to ensure that the real style values are read at runtime and not at build time, which allows them to be dynamic based on the current theme.
  */
-export const axisCommonStyles = () => ({
+export const getAxisCommonStyles = () => ({
   // This ensures that the number of ticks on multiple axes are the same
   alignTicks: true,
-  axisLabel: {
-    color: getRealStyleValue('--syn-typography-color-text-quiet'),
-    fontFamily: getRealStyleValue('--syn-font-sans'),
-    fontSize: getRealStyleValue('--syn-font-size-x-small'),
-    fontWeight: getRealStyleValue('--syn-font-weight-normal'),
-  },
+  axisLabel: getDefaultAxisLabelStyle(),
   axisLine: {
     lineStyle: {
       color: getRealStyleValue('--syn-chart-grid-lines-color-emphasize'),

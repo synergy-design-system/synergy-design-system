@@ -643,4 +643,29 @@ describe('intent policy developer facade', () => {
       await fixture.cleanup();
     }
   });
+
+  it('returns syn-validate as renderable target for generic validation feedback intent', async () => {
+    const { experimental_getIntentOptions } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_getIntentOptions({
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intentId: 'feedback.validation.generic',
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.bestDefaultTargetId).to.equal('component:syn-validate');
+      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+        'component:syn-validate',
+      ]);
+      expect(response.data.nonRenderableCandidates).to.deep.equal([]);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
 });

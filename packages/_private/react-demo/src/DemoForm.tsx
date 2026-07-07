@@ -320,7 +320,7 @@ export const DemoForm = () => {
       <syn-divider />
 
       {/* Marketing */}
-      <syn-fieldset legend="Please inform me about the following technologies">
+      <syn-checkbox-group label="Please inform me about the following technologies">
         <syn-checkbox
           checked={formData.newsletterStandard}
           id="checkbox-newsletter-default"
@@ -379,7 +379,11 @@ export const DemoForm = () => {
         >
           I am interested in the Synergy UX Program
         </syn-switch>
+      </syn-checkbox-group>
 
+      <syn-divider />
+
+      <syn-fieldset legend="Please inform me about the following technologies">
         <syn-radio-group
           id="preferred-contact-method"
           label="Preferred contact method"

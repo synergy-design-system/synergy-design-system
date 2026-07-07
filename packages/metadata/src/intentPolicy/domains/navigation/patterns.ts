@@ -8,10 +8,10 @@ export const navigationPatterns: IntentUsagePattern[] = [
       'Use syn-link--quiet when the link should have lower visual emphasis.',
       'Use size variants like syn-link--small, syn-link--medium, or syn-link--large as needed.',
     ],
-    priority: 0,
     preset: {
       requiredClasses: ['syn-link'],
     },
+    priority: 0,
     structure: {
       children: [
         {

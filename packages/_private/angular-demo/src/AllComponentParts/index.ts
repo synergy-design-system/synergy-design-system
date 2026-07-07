@@ -7,6 +7,7 @@ export * from './ButtonGroup.js';
 export * from './Card.js';
 export * from './Chart.js';
 export * from './Checkbox.js';
+export * from './CheckboxGroup.js';
 export * from './Combobox.js';
 export * from './Details.js';
 export * from './Dialog.js';

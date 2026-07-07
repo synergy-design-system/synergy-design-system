@@ -367,6 +367,127 @@ describe('intent policy developer facade', () => {
     }
   });
 
+  it('warns when checkbox grouping intent omits both label property and label slot', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-checkbox-group',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.checkbox',
+        structure: {
+          children: [{
+            component: 'syn-checkbox',
+          }],
+          component: 'syn-checkbox-group',
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.valid).to.equal(true);
+      expect(response.data.issues.map((issue) => issue.code)).to.include('CHECKBOX_GROUP_LABEL_REQUIRED');
+      expect(response.data.issues.find((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED')?.severity).to.equal('warning');
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('accepts checkbox grouping intent when label property is provided', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-checkbox-group',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.checkbox',
+        structure: {
+          children: [{
+            component: 'syn-checkbox',
+          }],
+          component: 'syn-checkbox-group',
+          props: {
+            label: 'Preferences',
+          },
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.issues.some((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED')).to.equal(false);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('accepts checkbox grouping intent when label slot content is provided', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-checkbox-group',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.checkbox',
+        structure: {
+          children: [
+            {
+              component: 'text',
+              slot: 'label',
+              text: 'Preferences',
+            },
+            {
+              component: 'syn-checkbox',
+            },
+          ],
+          component: 'syn-checkbox-group',
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.issues.some((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED')).to.equal(false);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('returns only syn-fieldset for fieldset grouping intent', async () => {
+    const { experimental_getIntentOptions } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_getIntentOptions({
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intentId: 'input.grouping.fieldset',
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.bestDefaultTargetId).to.equal('component:syn-fieldset');
+      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+        'component:syn-fieldset',
+      ]);
+      expect(response.data.nonRenderableCandidates.some((candidate) => candidate.targetId === 'component:syn-checkbox-group')).to.equal(false);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
   it('validates structural composition and node-level rules for confirmation dialog intent', async () => {
     const { experimental_validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();

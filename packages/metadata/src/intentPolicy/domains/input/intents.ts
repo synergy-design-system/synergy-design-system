@@ -63,6 +63,12 @@ export const inputIntents: IntentDefinition[] = [
   },
   {
     category: 'input',
+    description: 'Use when related checkbox controls should be grouped under a shared label and optional help text.',
+    id: 'input.grouping.checkbox',
+    userGoal: 'Understand and complete related checkboxes as one coherent section.',
+  },
+  {
+    category: 'input',
     description: 'Use when related form controls should be grouped under a shared legend and optional description.',
     id: 'input.grouping.fieldset',
     userGoal: 'Understand and complete related form fields as one coherent section.',

@@ -202,7 +202,7 @@
     <syn-divider></syn-divider>
 
     <!-- Marketing -->
-    <syn-fieldset legend="Please inform me about the following technologies">
+    <syn-checkbox-group label="Please inform me about the following technologies">
       <!-- We will never do this, I promise! -->
       <syn-checkbox
         id="checkbox-newsletter-default"
@@ -256,7 +256,11 @@
       >
         I am interested in the Synergy UX Program
       </syn-switch>
+    </syn-checkbox-group>
 
+    <syn-divider></syn-divider>
+
+    <syn-fieldset legend="Please inform me about the following technologies">
       <syn-radio-group
         id="preferred-contact-method"
         label="Preferred contact method"

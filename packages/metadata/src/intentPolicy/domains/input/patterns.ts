@@ -77,7 +77,7 @@ export const inputPatterns: IntentUsagePattern[] = [
   },
   {
     description: 'Group related checkbox controls in one form-scoped section with shared labeling and optional help text.',
-    intent: 'input.grouping.fieldset',
+    intent: 'input.grouping.checkbox',
     notes: [
       'Use when related checkbox options need shared context in forms.',
       'Provide group labeling through the label property or label slot.',

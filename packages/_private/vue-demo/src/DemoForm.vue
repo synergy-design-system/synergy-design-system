@@ -4,6 +4,7 @@ import {
   SynVueAlert,
   SynVueButton,
   SynVueCheckbox,
+  SynVueCheckboxGroup,
   SynVueCombobox,
   SynVueDivider,
   SynVueFieldset,
@@ -307,7 +308,7 @@ const synChange = () => {
     <SynVueDivider />
 
     <!-- Marketing -->
-    <SynVueFieldset legend="Please inform me about the following technologies">
+    <SynVueCheckboxGroup label="Please inform me about the following technologies">
       <SynVueCheckbox
         id="checkbox-newsletter-default"
         name="newsletterStandard"
@@ -367,7 +368,11 @@ const synChange = () => {
       >
         I am interested in the Synergy UX Program
       </SynVueSwitch>
+    </SynVueCheckboxGroup>
 
+    <SynVueDivider />
+
+    <SynVueFieldset legend="Please inform me about the following technologies">
       <SynVueRadioGroup
         id="preferred-contact-method"
         label="Preferred contact method"

@@ -7,6 +7,7 @@ import DemoButtonGroup from "./DemoButtonGroup.vue";
 import DemoCard from "./DemoCard.vue";
 import DemoChart from "./DemoChart.vue";
 import DemoCheckbox from "./DemoCheckbox.vue";
+import DemoCheckboxGroup from "./DemoCheckboxGroup.vue";
 import DemoCombobox from "./DemoCombobox.vue";
 import DemoDetails from "./DemoDetails.vue";
 import DemoDialog from "./DemoDialog.vue";
@@ -48,6 +49,7 @@ export {
   DemoCard,
   DemoChart,
   DemoCheckbox,
+  DemoCheckboxGroup,
   DemoCombobox,
   DemoDetails,
   DemoDialog,

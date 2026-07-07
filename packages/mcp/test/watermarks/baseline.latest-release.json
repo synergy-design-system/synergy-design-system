@@ -1,6 +1,6 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-07-03T06:41:52.324Z",
+  "generatedAt": "2026-07-07T13:33:15.748Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
@@ -34,7 +34,7 @@
     },
     {
       "id": "component-info:examples:syn-chart",
-      "tokens": 4040
+      "tokens": 4938
     },
     {
       "id": "component-info:full:syn-button",

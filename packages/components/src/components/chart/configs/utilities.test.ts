@@ -58,7 +58,9 @@ describe('mergeDeep', () => {
     );
 
     expect(merged).to.deep.equal([
-      { data: [3, 4], id: 'a', name: 'Latest', type: 'line' },
+      {
+        data: [3, 4], id: 'a', name: 'Latest', type: 'line',
+      },
     ]);
   });
 
@@ -194,7 +196,9 @@ describe('mergeConfigs', () => {
     );
 
     expect(merged.series).to.deep.equal([
-      { data: [3, 4], id: 'a', name: 'Latest', type: 'line' },
+      {
+        data: [3, 4], id: 'a', name: 'Latest', type: 'line',
+      },
     ]);
   });
 

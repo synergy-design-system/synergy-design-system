@@ -19,7 +19,6 @@ describe('chart legend utilities', () => {
       expect(getLegendConfigForPosition('left')).to.deep.equal({
         left: 0,
         orient: 'vertical',
-        top: 'middle',
       });
     });
 
@@ -27,7 +26,6 @@ describe('chart legend utilities', () => {
       expect(getLegendConfigForPosition('right')).to.deep.equal({
         orient: 'vertical',
         right: 0,
-        top: 'middle',
       });
     });
   });
@@ -76,7 +74,7 @@ describe('chart legend utilities', () => {
       expect(resultWithLongerName.right).to.be.greaterThan(result.right);
     });
 
-    it('adds a 70 px offset for "left" position when a left y-axis is configured', () => {
+    it('adds a 80px offset for "left" position when a left y-axis is configured', () => {
       const series = [{ name: 'Revenue', type: 'line' as const }];
       const legendStyle = { left: 0, orient: 'vertical' as const, top: 'middle' as const };
 
@@ -86,10 +84,10 @@ describe('chart legend utilities', () => {
         yAxis: { position: 'left', type: 'value' },
       }) as Record<string, number>;
 
-      expect(withLeftYAxis.left).to.equal(withoutYAxis.left + 70);
+      expect(withLeftYAxis.left).to.equal(withoutYAxis.left + 80);
     });
 
-    it('adds a 70 px offset for "left" position when a y-axis is configured without a position', () => {
+    it('adds a 80px offset for "left" position when a y-axis is configured without a position', () => {
       const series = [{ name: 'Revenue', type: 'line' as const }];
       const legendStyle = { left: 0, orient: 'vertical' as const, top: 'middle' as const };
 
@@ -99,7 +97,7 @@ describe('chart legend utilities', () => {
         yAxis: { type: 'value' },
       }) as Record<string, number>;
 
-      expect(withLeftYAxis.left).to.equal(withoutYAxis.left + 70);
+      expect(withLeftYAxis.left).to.equal(withoutYAxis.left + 80);
     });
 
     it('does not add a y-axis offset for "left" position when the y-axis is on the right', () => {
@@ -115,7 +113,7 @@ describe('chart legend utilities', () => {
       expect(withRightYAxis.left).to.equal(withoutYAxis.left);
     });
 
-    it('adds a 70 px offset for "right" position when a right y-axis is configured', () => {
+    it('adds a 80px offset for "right" position when a right y-axis is configured', () => {
       const series = [{ name: 'Revenue', type: 'line' as const }];
       const legendStyle = { orient: 'vertical' as const, right: 0, top: 'middle' as const };
 
@@ -125,7 +123,7 @@ describe('chart legend utilities', () => {
         yAxis: { position: 'right', type: 'value' },
       }) as Record<string, number>;
 
-      expect(withRightYAxis.right).to.equal(withoutYAxis.right + 70);
+      expect(withRightYAxis.right).to.equal(withoutYAxis.right + 80);
     });
 
     it('does not add a y-axis offset for "right" position when the y-axis is on the left', () => {
@@ -154,7 +152,7 @@ describe('chart legend utilities', () => {
         ],
       }) as Record<string, number>;
 
-      expect(withArrayYAxes.left).to.equal(withoutYAxis.left + 70);
+      expect(withArrayYAxes.left).to.equal(withoutYAxis.left + 80);
     });
 
     it('reads the itemWidth from the first entry when legend style is an array', () => {

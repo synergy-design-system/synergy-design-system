@@ -388,7 +388,7 @@ export const applyAxisDefaultsPreprocessor = (option: ECConfig) => {
  * Default styling for all axes.
  * This is done as function to ensure that the real style values are read at runtime and not at build time, which allows them to be dynamic based on the current theme.
  */
-export const getAxisCommonStyles = () => ({
+export const getDefaultAxisStyles = () => ({
   // This ensures that the number of ticks on multiple axes are the same
   alignTicks: true,
   axisLabel: getDefaultAxisLabelStyle(),

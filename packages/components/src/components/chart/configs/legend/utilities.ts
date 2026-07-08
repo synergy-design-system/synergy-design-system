@@ -17,7 +17,7 @@ const getDefaultLegendTextStyle = () => ({
 /**
  * The default common legend styles based on Synergy design tokens.
  */
-export const getLegendCommonStyles = () => ({
+export const getDefaultLegendStyles = () => ({
   inactiveColor: getRealStyleValue('--syn-chart-disabled-color'),
   itemGap: getRealValueWithoutUnit('--syn-spacing-small'),
   itemWidth: getRealValueWithoutUnit('--syn-spacing-x-large'),
@@ -40,8 +40,8 @@ export const getLegendCommonStyles = () => ({
 export const getLegendConfigForPosition = (position: LegendPosition): NonNullable<ECConfig['legend']> => {
   const legendByPosition: Record<LegendPosition, NonNullable<ECConfig['legend']>> = {
     bottom: { bottom: 0 },
-    left: { left: 0, orient: 'vertical', top: 'middle' },
-    right: { orient: 'vertical', right: 0, top: 'middle' },
+    left: { left: 0, orient: 'vertical' },
+    right: { orient: 'vertical', right: 0 },
     top: { top: 0 },
   };
 
@@ -56,11 +56,11 @@ export const getLegendConfigForPosition = (position: LegendPosition): NonNullabl
  * @returns A CSS font shorthand string suitable for `CanvasRenderingContext2D.font`.
  */
 const getFontShorthand = (labelsStyle: LegendComponentOption['textStyle'] | undefined): string => {
-  const defaultLabelTextStyle = getDefaultLegendTextStyle();
-  const fontSizeValue = labelsStyle?.fontSize ?? defaultLabelTextStyle.fontSize;
+  const defaultTextStyle = getDefaultLegendTextStyle();
+  const fontSizeValue = labelsStyle?.fontSize ?? defaultTextStyle.fontSize;
   const fontSize = typeof fontSizeValue === 'number' ? `${fontSizeValue}px` : String(fontSizeValue);
-  const fontFamily = String(labelsStyle?.fontFamily ?? defaultLabelTextStyle.fontFamily);
-  const fontWeight = String(labelsStyle?.fontWeight ?? defaultLabelTextStyle.fontWeight);
+  const fontFamily = String(labelsStyle?.fontFamily ?? defaultTextStyle.fontFamily);
+  const fontWeight = String(labelsStyle?.fontWeight ?? defaultTextStyle.fontWeight);
 
   return `${fontWeight} ${fontSize} ${fontFamily}`;
 };
@@ -79,7 +79,8 @@ const calculateLegendWidth = (legendStyle: NonNullable<ECConfig['legend']>, seri
   const legendItem = Array.isArray(legendStyle) ? legendStyle[0] : legendStyle;
   const fontShorthand = getFontShorthand(legendItem?.textStyle);
   const maxTextWidth = measureMaxTextWidth(seriesNames, fontShorthand);
-  const itemWidth = legendItem?.itemWidth ?? 32;
+  const defaultLegendStyle = getDefaultLegendStyles();
+  const itemWidth = legendItem?.itemWidth ?? defaultLegendStyle.itemWidth;
   // 6px additional padding between legend item and text
   return maxTextWidth + itemWidth + 6;
 };
@@ -127,7 +128,7 @@ export const getGridForLegendPosition = (position: LegendPosition, legendStyle: 
   // If there is no position set, the default is left
   const hasLeftYAxis = yAxis.find(axis => axis?.position !== 'right');
   const hasRightYAxis = yAxis.find(axis => axis?.position === 'right');
-  const axisOffset = (position === 'left' ? hasLeftYAxis : hasRightYAxis) ? 70 : 0;
+  const axisOffset = (position === 'left' ? hasLeftYAxis : hasRightYAxis) ? 80 : 0;
 
   return {
     [position]: verticalWidth + axisOffset,

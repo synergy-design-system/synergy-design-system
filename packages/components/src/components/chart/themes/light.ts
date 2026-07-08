@@ -1,10 +1,10 @@
 import { PALETTE_TOKENS } from '../chart.palettes.js';
 import { getRealStyleValue } from './utilities.js';
-import { getAxisCommonStyles } from '../configs/axes/utilities.js';
-import { getLegendCommonStyles } from '../configs/legend/utilities.js';
+import { getDefaultAxisStyles } from '../configs/axes/utilities.js';
+import { getDefaultLegendStyles } from '../configs/legend/utilities.js';
 
-const axisCommonStyles = getAxisCommonStyles();
-const legendCommonStyles = getLegendCommonStyles();
+const axisCommonStyles = getDefaultAxisStyles();
+const legendCommonStyles = getDefaultLegendStyles();
 
 // TODO: Do we want to work with getComputedStyle, or just add a light / dark theme with explicit hex colors?
 // To be able to use SSR we probably need to go with explicit colors in the theme

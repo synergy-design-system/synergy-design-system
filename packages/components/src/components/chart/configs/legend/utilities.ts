@@ -20,6 +20,7 @@ const getDefaultLegendTextStyle = () => ({
 export const getDefaultLegendStyles = () => ({
   inactiveColor: getRealStyleValue('--syn-chart-disabled-color'),
   itemGap: getRealValueWithoutUnit('--syn-spacing-small'),
+  itemHeight: getRealValueWithoutUnit('--syn-spacing-small'),
   itemWidth: getRealValueWithoutUnit('--syn-spacing-x-large'),
   // The default legend position is top left
   left: 0,

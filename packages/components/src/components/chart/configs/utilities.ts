@@ -198,3 +198,25 @@ export const compose = (...modifiers: ConfigModifier[]): ConfigModifier => (conf
   .reduce<ECConfig>((acc, modifier) => mergeConfigs(acc, modifier(acc)), config);
 
 export const getAsArray = <T>(value: T | T[]): T[] => (Array.isArray(value) ? value : [value]);
+
+/**
+ * Colors an SVG data URL by replacing `currentColor` with the provided color string. If current color is not available the value of "fill" attribute will be replaced with the provided color string.
+ * Returns the original data URL unchanged if decoding or re-encoding fails.
+ *
+ * @param dataUrl - A data URL containing a base64-encoded SVG image.
+ * @param color - The replacement color (e.g. `#ff0000` or `red`).
+ * @returns A new SVG data URL with `currentColor` substituted.
+ */
+export function colorSvgDataUrl(dataUrl: string, color: string): string {
+  try {
+    const [, base64] = dataUrl.split(',');
+    if (!base64) return dataUrl;
+    const decodedSvg = atob(base64);
+    const hasCurrentColor = decodedSvg.includes('currentColor');
+
+    const svg = hasCurrentColor ? decodedSvg.replace(/currentColor/gi, color) : decodedSvg.replace(/fill="[^"]*"/gi, `fill="${color}"`);
+    return `data:image/svg+xml;base64,${btoa(svg)}`;
+  } catch {
+    return dataUrl;
+  }
+}

@@ -2,7 +2,7 @@ import {
   getRealStyleValue, getRealValueWithoutUnit, normalizeArray, setDefaultValueIfNotAvailable,
 } from '../../themes/utilities.js';
 import type { ECConfig } from '../../types.js';
-import { mergeConfigs } from '../utilities.js';
+import { colorSvgDataUrl, mergeConfigs } from '../utilities.js';
 import type {
   AxisKey,
   AxisLabel,
@@ -11,25 +11,6 @@ import type {
   AxisOption,
   AxisUpdateOptions,
 } from './types.js';
-
-/**
- * Colors an SVG data URL by replacing `currentColor` with the provided color string.
- * Returns the original data URL unchanged if decoding or re-encoding fails.
- *
- * @param dataUrl - A data URL containing a base64-encoded SVG image.
- * @param color - The replacement color (e.g. `#ff0000` or `red`).
- * @returns A new SVG data URL with `currentColor` substituted.
- */
-export function colorSvgDataUrl(dataUrl: string, color: string): string {
-  try {
-    const [, base64] = dataUrl.split(',');
-    if (!base64) return dataUrl;
-    const svg = atob(base64).replace(/currentColor/gi, color);
-    return `data:image/svg+xml;base64,${btoa(svg)}`;
-  } catch {
-    return dataUrl;
-  }
-}
 
 const getDataFromAxis = (axis: unknown): string[] => {
   if (

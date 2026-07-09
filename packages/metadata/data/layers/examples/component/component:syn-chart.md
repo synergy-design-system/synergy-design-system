@@ -539,7 +539,7 @@ The default is, that both axes lines as well as the split lines are hidden.
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle.baseConfig(baseConfig).showLegend({ position: "top" });
+      handle.baseConfig(baseConfig).legendShow({ position: "top" });
   });
 </script>
 ```
@@ -583,7 +583,7 @@ The default is, that both axes lines as well as the split lines are hidden.
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle.baseConfig(baseConfig).showLegend({ position: "left" });
+      handle.baseConfig(baseConfig).legendShow({ position: "left" });
   });
 </script>
 ```
@@ -627,7 +627,7 @@ The default is, that both axes lines as well as the split lines are hidden.
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle.baseConfig(baseConfig).showLegend({ position: "right" });
+      handle.baseConfig(baseConfig).legendShow({ position: "right" });
   });
 </script>
 ```
@@ -671,7 +671,7 @@ The default is, that both axes lines as well as the split lines are hidden.
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle.baseConfig(baseConfig).showLegend({ position: "bottom" });
+      handle.baseConfig(baseConfig).legendShow({ position: "bottom" });
   });
 </script>
 ```

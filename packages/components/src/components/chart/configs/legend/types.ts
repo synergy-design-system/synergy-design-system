@@ -6,7 +6,7 @@ import type { ECConfig } from '../../types.js';
 export type LegendPosition = 'top' | 'bottom' | 'left' | 'right';
 
 /**
- * Options for the `showLegend` preset.
+ * Options for the `legendShow` preset.
  *
  * `legendOptions` and `gridOptions` can be either single ECharts config objects
  * or arrays, matching the ECharts API.

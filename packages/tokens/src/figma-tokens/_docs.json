@@ -657,6 +657,56 @@
           "type": "text"
         }
       },
+      "legend-default": {
+        "title": {
+          "value": "Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "The legend provides a clear overview of all data series displayed in the chart. Each item reflects the series’ label, color, and visual style, ensuring users can quickly understand how values are grouped and represented. \n\nDepending on the selected chart type, the legend adapts its appearance. Line charts display a small line preview showing the stroke style, while bar charts use a solid color swatch that matches the bar fill. This makes it easy to distinguish series at a glance, regardless of the visualization style.",
+          "type": "text"
+        }
+      },
+      "legend-top": {
+        "title": {
+          "value": "Legend on Top",
+          "type": "text"
+        },
+        "description": {
+          "value": "The default position of the legend is top. The legend can be positioned at the top of the chart by using the handle method `legendShow()` or `legendShow({ position: 'top' })`.",
+          "type": "text"
+        }
+      },
+      "legend-left": {
+        "title": {
+          "value": "Legend on Left",
+          "type": "text"
+        },
+        "description": {
+          "value": "The legend can be positioned at the left of the chart by using the handle method `legendShow({ position: 'left' })`.",
+          "type": "text"
+        }
+      },
+      "legend-right": {
+        "title": {
+          "value": "Legend on Right",
+          "type": "text"
+        },
+        "description": {
+          "value": "The legend can be positioned at the right of the chart by using the handle method `legendShow({ position: 'right' })`.",
+          "type": "text"
+        }
+      },
+      "legend-bottom": {
+        "title": {
+          "value": "Legend on Bottom",
+          "type": "text"
+        },
+        "description": {
+          "value": "The legend can be positioned at the bottom of the chart by using the handle method `legendShow({ position: 'bottom' })`.",
+          "type": "text"
+        }
+      },
       "default": {
         "title": {
           "value": "Chart",

@@ -163,10 +163,27 @@ export default class SynChart extends SynergyElement {
     registerPreprocessor(applyAxisDefaultsPreprocessor);
   }
 
+  private registerLegendListener() {
+    this.chartInstance?.on('legendselectchanged', (params: { selected: Record<string, boolean> }) => {
+      const legendFormatter = (name: string) => {
+        const isVisible = params.selected[name];
+        const icon = isVisible ? 'showIcon' : 'hideIcon';
+        return `${name}  {${icon}|}`;
+      };
+
+      this.chartInstance?.setOption({
+        legend: {
+          formatter: legendFormatter,
+        },
+      });
+    });
+  }
+
   // Initialize echarts instance and resize observer
   protected firstUpdated(_changedProperties: PropertyValues): void {
     if (this.chartContainer !== null && this.chartContainer !== undefined) {
       this.chartInstance = init(this.chartContainer, 'default');
+      this.registerLegendListener();
 
       // Resize observer
       this.resizeObserver = new ResizeObserver(() => {

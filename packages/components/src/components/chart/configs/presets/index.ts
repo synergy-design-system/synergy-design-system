@@ -11,4 +11,4 @@ import * as legend from '../legend/presets.js';
 export const ChartPresets = {
   ...axes,
   ...legend,
-} as typeof axes;
+} as typeof axes & typeof legend;

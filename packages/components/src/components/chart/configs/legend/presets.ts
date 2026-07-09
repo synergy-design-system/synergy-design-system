@@ -19,7 +19,7 @@ import type { LegendOptions } from './types.js';
  * @see https://echarts.apache.org/en/option.html#legend
  * @see https://echarts.apache.org/en/option.html#grid
  */
-export const showLegend = (options: LegendOptions = {}): ConfigModifier => (config) => {
+export const legendShow = (options: LegendOptions = {}): ConfigModifier => (config) => {
   const position = options.position ?? 'top';
   const legendOptions = options.legendOptions ?? {};
   const legendConfig = mergeDeep(getLegendConfigForPosition(position), legendOptions) as NonNullable<ECConfig['legend']>;

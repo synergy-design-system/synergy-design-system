@@ -1,5 +1,15 @@
 import { expect } from '@open-wc/testing';
-import { compose, mergeConfigs, mergeDeep } from './utilities.js';
+import {
+  colorSvgDataUrl, compose, getAsArray, mergeConfigs, mergeDeep,
+} from './utilities.js';
+
+const svgWithCurrentColor = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
+const svgWithFillAttr = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9IiMwMDAwMDAiLz48L3N2Zz4=';
+
+function decodeBase64DataUrl(dataUrl: string): string {
+  const [, base64 = ''] = dataUrl.split(',');
+  return atob(base64);
+}
 
 describe('mergeDeep', () => {
   it('deep-merges nested objects into a new object', () => {
@@ -265,6 +275,49 @@ describe('mergeConfigs', () => {
         type: 'value',
       },
     ]);
+  });
+});
+
+describe('colorSvgDataUrl', () => {
+  it('replaces currentColor inside a valid SVG data URL', () => {
+    const result = colorSvgDataUrl(svgWithCurrentColor, '#ff0000');
+
+    expect(decodeBase64DataUrl(result)).to.include('#ff0000');
+    expect(decodeBase64DataUrl(result)).to.not.include('currentColor');
+  });
+
+  it('replaces fill attribute value when currentColor is not present', () => {
+    const result = colorSvgDataUrl(svgWithFillAttr, '#aabbcc');
+
+    expect(decodeBase64DataUrl(result)).to.include('#aabbcc');
+    expect(decodeBase64DataUrl(result)).to.not.include('#000000');
+  });
+
+  it('returns the original value for malformed data URLs', () => {
+    const malformed = 'data:image/svg+xml;base64,%%%';
+
+    expect(colorSvgDataUrl(malformed, '#ff0000')).to.equal(malformed);
+  });
+
+  it('returns the original value when there is no base64 segment', () => {
+    expect(colorSvgDataUrl('data:image/svg+xml;base64,', '#ff0000')).to.equal('data:image/svg+xml;base64,');
+  });
+});
+
+describe('getAsArray', () => {
+  it('wraps a single value in an array', () => {
+    expect(getAsArray('a')).to.deep.equal(['a']);
+    expect(getAsArray(42)).to.deep.equal([42]);
+    expect(getAsArray({ x: 1 })).to.deep.equal([{ x: 1 }]);
+  });
+
+  it('returns the same array reference when already an array', () => {
+    const arr = ['a', 'b'];
+    expect(getAsArray(arr)).to.equal(arr);
+  });
+
+  it('handles empty arrays', () => {
+    expect(getAsArray([])).to.deep.equal([]);
   });
 });
 

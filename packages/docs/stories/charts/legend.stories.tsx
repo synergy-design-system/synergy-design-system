@@ -48,7 +48,7 @@ export const ShowLegendTop: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-split-lines-hidden'),
+        story: generateStoryDescription('chart', 'legend-top'),
       },
     },
   },
@@ -73,7 +73,7 @@ export const ShowLegendTop: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .showLegend({ position: 'top'});
+          .legendShow({ position: 'top'});
       });
     </script>
   `,
@@ -83,7 +83,7 @@ export const ShowLegendLeft: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-split-lines-hidden'),
+        story: generateStoryDescription('chart', 'legend-left'),
       },
     },
   },
@@ -108,7 +108,7 @@ export const ShowLegendLeft: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .showLegend({ position: 'left' });
+          .legendShow({ position: 'left' });
       });
     </script>
   `,
@@ -118,7 +118,7 @@ export const ShowLegendRight: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-split-lines-hidden'),
+        story: generateStoryDescription('chart', 'legend-right'),
       },
     },
   },
@@ -143,7 +143,7 @@ export const ShowLegendRight: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .showLegend({ position: 'right'});
+          .legendShow({ position: 'right'});
       });
     </script>
   `,
@@ -153,7 +153,7 @@ export const ShowLegendBottom: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-split-lines-hidden'),
+        story: generateStoryDescription('chart', 'legend-bottom'),
       },
     },
   },
@@ -178,7 +178,7 @@ export const ShowLegendBottom: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .showLegend({ position: 'bottom'});
+          .legendShow({ position: 'bottom'});
       });
     </script>
   `,

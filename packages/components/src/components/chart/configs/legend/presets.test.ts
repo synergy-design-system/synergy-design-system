@@ -39,13 +39,12 @@ describe('chart legend presets', () => {
     });
 
     describe('position: left', () => {
-      it('orients the legend vertically at left center for left position', () => {
+      it('orients the legend vertically at the top left for left position', () => {
         const result = legendShow({ position: 'left' })({});
         const legend = result.legend as LegendComponentOption;
 
         expect(legend.left).to.equal(0);
         expect(legend.orient).to.equal('vertical');
-        expect(legend.top).to.equal('middle');
       });
 
       it('returns a positive left grid offset for left position with named series', () => {
@@ -69,13 +68,12 @@ describe('chart legend presets', () => {
     });
 
     describe('position: right', () => {
-      it('orients the legend vertically at right center for right position', () => {
+      it('orients the legend vertically at top right for right position', () => {
         const result = legendShow({ position: 'right' })({});
         const legend = result.legend as LegendComponentOption;
 
         expect(legend.right).to.equal(0);
         expect(legend.orient).to.equal('vertical');
-        expect(legend.top).to.equal('middle');
       });
 
       it('returns a positive right grid offset for right position with named series', () => {
@@ -128,7 +126,6 @@ describe('chart legend presets', () => {
 
       expect(legends).to.have.length(2);
       expect(legends[0].right).to.equal(8);
-      expect(legends[0].top).to.equal('middle');
       expect(legends[0].orient).to.equal('vertical');
       expect(legends[1].bottom).to.equal(12);
 

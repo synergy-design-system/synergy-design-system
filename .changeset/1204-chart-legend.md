@@ -5,4 +5,4 @@
 ---
 
 feat: ✨ Adds synergy styled chart legend and legend preset function (#1204)
-The preset function is an convenience function for positioning the legend.
+The preset function is an convenience function for showing and positioning the legend.

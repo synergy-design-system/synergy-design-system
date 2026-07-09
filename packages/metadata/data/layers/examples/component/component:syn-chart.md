@@ -504,7 +504,7 @@ To add icons to axis labels, use the handle methods axesAddXLabelIcons() and axe
 
 ## Show Legend Top
 
-The default is, that both axes lines as well as the split lines are hidden.
+The default position of the legend is top. The legend can be positioned at the top of the chart by using the handle method legendShow() or legendShow({ position: 'top' }).
 
 ```html
 <syn-chart id="chart-show-legend-top"></syn-chart>
@@ -548,7 +548,7 @@ The default is, that both axes lines as well as the split lines are hidden.
 
 ## Show Legend Left
 
-The default is, that both axes lines as well as the split lines are hidden.
+The legend can be positioned at the left of the chart by using the handle method legendShow({ position: 'left' }).
 
 ```html
 <syn-chart id="chart-show-legend-left"></syn-chart>
@@ -592,7 +592,7 @@ The default is, that both axes lines as well as the split lines are hidden.
 
 ## Show Legend Right
 
-The default is, that both axes lines as well as the split lines are hidden.
+The legend can be positioned at the right of the chart by using the handle method legendShow({ position: 'right' }).
 
 ```html
 <syn-chart id="chart-show-legend-right"></syn-chart>
@@ -636,7 +636,7 @@ The default is, that both axes lines as well as the split lines are hidden.
 
 ## Show Legend Bottom
 
-The default is, that both axes lines as well as the split lines are hidden.
+The legend can be positioned at the bottom of the chart by using the handle method legendShow({ position: 'bottom' }).
 
 ```html
 <syn-chart id="chart-show-legend-bottom"></syn-chart>

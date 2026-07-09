@@ -267,6 +267,12 @@ The sections below document the handle preset functions available in `chart.conf
 Axis index behavior:
 If index options are omitted, presets are applied to all configured axes of the targeted type.
 
+### Legend presets
+
+| Preset function | Options                            | Description                                                                                                                                           |
+| --------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `legendShow`    | `LegendPresetOptions` _(optional)_ | Shows the legend on the specified position (top, bottom, left, right) with Synergy defaults and adjusts grid spacing to prevent legend/chart overlap. |
+
 ---
 
 ## Bundle Size

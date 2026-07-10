@@ -20,6 +20,7 @@ export default css`
 
   .fieldset {
     border: none;
+    color: var(--syn-typography-color-text);
     margin: 0;
     padding: 0;
   }
@@ -33,8 +34,12 @@ export default css`
   }
 
   .description {
-    font-size: var(--syn-font-size-medium);
-    margin: 0 0 var(--syn-font-size-large);
+    font: var(--syn-body-medium-regular);
+    margin: 0 0 var(--syn-spacing-large);
+  }
+
+  .fieldset--has-description.fieldset--has-legend .legend {
+    margin-bottom: var(--syn-spacing-medium);
   }
 
   .fields {

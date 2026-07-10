@@ -20,15 +20,20 @@ export default css`
   .form-control-input {
     display: flex;
     flex-direction: column;
-    gap: var(--syn-spacing-2x-small); /* We use 2x-small because the checkbox already has inner padding! */
+    
+    /*
+     * We use 2x-small because the checkbox already has inner padding!
+     * @todo: Exchange this with --syn-spacing-x-small in #1323
+     */
+    gap: var(--syn-spacing-2x-small);
   }
 
-  .form-control--has-help-text.form-control--radio-group .form-control__help-text {
+  .form-control--has-help-text.form-control--checkbox-group .form-control__help-text {
     margin-top: var(--syn-spacing-x-small);
   }
 
   /**
-   * Allow checkbox-groups to be displayed in a row when using syn-radio-button.
+   * Allow checkbox-groups to be displayed in a row.
    */
   .form-control--is-horizontal .form-control-input {
     flex-flow: row wrap;

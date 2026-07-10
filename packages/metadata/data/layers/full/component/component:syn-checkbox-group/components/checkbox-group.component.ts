@@ -20,7 +20,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @status stable
  * @since 3.x.x
  *
- * @slot - The default slot where `<syn-checkbox> elements are placed.
+ * @slot - The default slot where `<syn-checkbox>` and `<syn-switch>` elements are placed.
  * @slot label - The checkbox group's label. Required for proper accessibility. Alternatively, you can use the `label`
  *  attribute.
  * @slot help-text - Text that describes how to use the checkbox group. Alternatively, you can use the `help-text` attribute.
@@ -29,8 +29,6 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  * @csspart form-control-label - The label's wrapper.
  * @csspart form-control-input - The input's wrapper.
  * @csspart form-control-help-text - The help text's wrapper.
- * @csspart button-group - The button group that wraps radio buttons.
- * @csspart button-group__base - The button group's `base` part.
  */
 @enableDefaultSettings('SynCheckboxGroup')
 export default class SynCheckboxGroup extends SynergyElement {
@@ -55,8 +53,8 @@ export default class SynCheckboxGroup extends SynergyElement {
   /**
    * The layout of the checkbox group. This determines how the checkboxes are displayed.
    *
-   * - `horizontal`: Radios are displayed in a row.
-   * - `vertical`: Radios are displayed in a column.
+   * - `horizontal`: Checkboxes are displayed in a row.
+   * - `vertical`: Checkboxes are displayed in a column.
    */
   @property({ reflect: true }) layout: 'horizontal' | 'vertical' = 'vertical';
 
@@ -175,7 +173,12 @@ export default class SynCheckboxGroup extends SynergyElement {
     // Call focus for the checked checkbox
     // If no checkbox is checked, focus the first one that is not disabled
     if (checkboxToFocus) {
-      checkboxToFocus.focus(options);
+      checkboxToFocus.focus({
+        ...options,
+        // Force the visible focus indicator even after pointer interaction (e.g. label click),
+        // because checkbox/switch focus styles are tied to :focus-visible.
+        focusVisible: true,
+      });
     }
   }
 
@@ -205,7 +208,6 @@ export default class SynCheckboxGroup extends SynergyElement {
         })}
         aria-labelledby="label"
         aria-describedby="help-text"
-        aria-errormessage="error-message"
       >
         <label
           part="form-control-label"

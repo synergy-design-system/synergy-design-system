@@ -376,7 +376,12 @@ export default class SynRadioGroup extends SynergyElement implements SynergyForm
     // Call focus for the checked radio
     // If no radio is checked, focus the first one that is not disabled
     if (radioToFocus) {
-      radioToFocus.focus(options);
+      radioToFocus.focus({
+        ...options,
+        // Force the visible focus indicator even after pointer interaction (e.g. label click),
+        // because radio focus styles are tied to :focus-visible.
+        focusVisible: true,
+      });
     }
   }
 

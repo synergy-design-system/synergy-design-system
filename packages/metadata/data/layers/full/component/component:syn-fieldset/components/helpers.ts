@@ -4,7 +4,7 @@ import type SynRadioGroup from '../radio-group/radio-group.component.js';
 
 /**
  * Get all form elements within a given context.
- * This includes both native form elements and custom Synform components.
+ * This includes both native form elements and custom synergy form enabled components.
  * @param context The element to check in
  * @returns List of all form elements within the context
  */
@@ -19,6 +19,7 @@ export const getFormElements = (context: Element): Element[] => {
     // Synergy elements
     'syn-button',
     'syn-checkbox',
+    'syn-checkbox-group',
     'syn-combobox',
     'syn-dropdown',
     'syn-fieldset',

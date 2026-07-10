@@ -26,7 +26,7 @@
     },
     {
       "default": "'vertical'",
-      "description": "The layout of the checkbox group. This determines how the checkboxes are displayed.\n\n- `horizontal`: Radios are displayed in a row.\n- `vertical`: Radios are displayed in a column.",
+      "description": "The layout of the checkbox group. This determines how the checkboxes are displayed.\n\n- `horizontal`: Checkboxes are displayed in a row.\n- `vertical`: Checkboxes are displayed in a column.",
       "fieldName": "layout",
       "name": "layout",
       "reflects": true,
@@ -42,14 +42,6 @@
     }
   ],
   "cssParts": [
-    {
-      "description": "The button group that wraps radio buttons.",
-      "name": "button-group"
-    },
-    {
-      "description": "The button group's `base` part.",
-      "name": "button-group__base"
-    },
     {
       "description": "The form control that wraps the label, input, and help text.",
       "name": "form-control"
@@ -125,7 +117,7 @@
     {
       "access": "public",
       "default": "'vertical'",
-      "description": "The layout of the checkbox group. This determines how the checkboxes are displayed.\n\n- `horizontal`: Radios are displayed in a row.\n- `vertical`: Radios are displayed in a column.",
+      "description": "The layout of the checkbox group. This determines how the checkboxes are displayed.\n\n- `horizontal`: Checkboxes are displayed in a row.\n- `vertical`: Checkboxes are displayed in a column.",
       "name": "layout",
       "type": "'horizontal' | 'vertical'"
     },
@@ -140,7 +132,7 @@
   "since": "3.x.x",
   "slots": [
     {
-      "description": "The default slot where `<syn-checkbox> elements are placed.",
+      "description": "The default slot where `<syn-checkbox>` and `<syn-switch>` elements are placed.",
       "name": ""
     },
     {

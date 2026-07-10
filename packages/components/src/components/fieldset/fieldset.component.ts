@@ -124,10 +124,11 @@ export default class SynFieldset extends SynergyElement {
   }
 
   private syncDisabledState() {
-    const elements = getFormElements(this);
-    for (let i = 0; i < elements.length; i += 1) {
-      const el = elements[i];
-      if (isDisabledElement(el)) {
+    Array
+      .from(getFormElements(this))
+      .filter(isDisabledElement)
+      .forEach(el => {
+        /* eslint-disable no-param-reassign */
         if (this.disabled) {
           if (!el.disabled) {
             this.forcedDisabledElements.add(el);
@@ -139,8 +140,8 @@ export default class SynFieldset extends SynergyElement {
         if (!this.disabled && this.forcedDisabledElements.has(el)) {
           el.disabled = false;
         }
-      }
-    }
+        /* eslint-enable no-param-reassign */
+      });
   }
 
   connectedCallback() {
@@ -190,7 +191,11 @@ export default class SynFieldset extends SynergyElement {
 
     return html`
       <fieldset
-        class="fieldset"
+        class=${classMap({
+          fieldset: true,
+          'fieldset--has-description': hasDescription,
+          'fieldset--has-legend': hasLegend,
+        })}
         ?disabled=${this.disabled}
         aria-describedby=${ifDefined(hasDescription ? 'description' : undefined)}
         part="base"

@@ -22,7 +22,7 @@ Checkbox groups are used to group multiple checkboxes together.
 
 ## Available Slots
 
-- `(default)`: The default slot where `<syn-checkbox> elements are placed.
+- `(default)`: The default slot where `<syn-checkbox>` and `<syn-switch>` elements are placed.
 - `label`: The checkbox group's label. Required for proper accessibility. Alternatively, you can use the `label` attribute.
 - `help-text`: Text that describes how to use the checkbox group. Alternatively, you can use the `help-text` attribute.
 
@@ -67,8 +67,8 @@ default: `'vertical'`
 
 The layout of the checkbox group. This determines how the checkboxes are displayed.
 
-- `horizontal`: Radios are displayed in a row.
-- `vertical`: Radios are displayed in a column.
+- `horizontal`: Checkboxes are displayed in a row.
+- `vertical`: Checkboxes are displayed in a column.
 
 ### size
 
@@ -91,8 +91,6 @@ Will automatically set focus on the first checkbox in the group that is not disa
 
 ## Available CSS Parts
 
-- `button-group`: The button group that wraps radio buttons.
-- `button-group__base`: The button group's `base` part.
 - `form-control`: The form control that wraps the label, input, and help text.
 - `form-control-help-text`: The help text's wrapper.
 - `form-control-input`: The input's wrapper.

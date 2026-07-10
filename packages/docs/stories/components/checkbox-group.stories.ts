@@ -181,7 +181,9 @@ export const Focus: Story = {
   },
   render: () => html`
     <syn-checkbox-group label="This is a label" help-text="Choose the most appropriate option.">
-      ${createCheckboxes(3)}
+      ${createCheckboxes(3, {
+        checked: [1],
+      })}
     </syn-checkbox-group>
   `,
 };

@@ -78,6 +78,7 @@
     "@synergy-design-system/tokens": "workspace:*",
     "@types/mocha": "^10.0.10",
     "@types/sinon": "^21.0.1",
+    "@typescript/lib-dom": "npm:@types/web@^0.0.352",
     "@typescript-eslint/eslint-plugin": "^8.61.1",
     "@typescript-eslint/parser": "^8.61.1",
     "@web/dev-server-esbuild": "^1.0.5",

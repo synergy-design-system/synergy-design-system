@@ -1,0 +1,43 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "@synergy-design-system/fonts",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-fonts-1.0.8-28bd3993-d562-4f16-aebd-686e22944a8b",
+  "creationInfo": {
+    "created": "2026-07-10T10:00:46.209Z",
+    "creators": [
+      "Tool: pnpm"
+    ]
+  },
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-RootPackage",
+      "name": "@synergy-design-system/fonts",
+      "versionInfo": "1.0.8",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40synergy-design-system/fonts@1.0.8"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Fonts for Synergy, the SICK Design System",
+      "supplier": "Person: SICK Global UX Foundation",
+      "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relatedSpdxElement": "SPDXRef-RootPackage",
+      "relationshipType": "DESCRIBES"
+    }
+  ]
+}

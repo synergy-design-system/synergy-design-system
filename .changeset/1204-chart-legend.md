@@ -4,5 +4,6 @@
 "@synergy-design-system/metadata": minor
 ---
 
-feat: ✨ Adds synergy styled chart legend and legend preset function (#1204)
-The preset function is an convenience function for showing and positioning the legend.
+feat: ✨ Adds a Synergy-styled chart legend and a legend preset helper (#1204)
+- The *legendShow* preset helper makes it easier to show and position the legend.
+- The config merge behavior has been updated: arrays are no longer fully replaced by the latest value. For example, a *series* array is now merged by index instead of being overwritten.

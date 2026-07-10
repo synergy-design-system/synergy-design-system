@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.20.0
+
+### Minor Changes
+
+- Released on: 2026-07-10
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
 ## 3.19.0
 
 ### Minor Changes

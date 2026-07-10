@@ -821,7 +821,7 @@
           "type": "text"
         }
       },
-      "layout-vertical": {
+      "vertical-layout": {
         "title": {
           "value": "Vertical layout",
           "type": "text"
@@ -831,7 +831,7 @@
           "type": "text"
         }
       },
-      "layout-horizontal": {
+      "horizontal-layout": {
         "title": {
           "value": "Horizontal layout",
           "type": "text"
@@ -848,6 +848,16 @@
         },
         "description": {
           "value": "Use the label attribute to give the checkbox-group an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
+      "checked": {
+        "title": {
+          "value": "Checked",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the checked attribute on the corresponding syn-checkbox elements to set the checked state.",
           "type": "text"
         }
       },
@@ -868,6 +878,26 @@
         },
         "description": {
           "value": "The focus event gives the user feedback that one of the Checkboxes has been focused by the keyboard interaction.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute on the corresponding syn-checkbox elements to set the disabled state.",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "title": {
+          "value": "Readonly",
+          "type": "text"
+        },
+        "description": {
+          "value": "Checkboxes can be displayed in a read-only state by applying the readonly attribute to the selected checkbox inside the checkbox group.",
           "type": "text"
         }
       },
@@ -2411,13 +2441,13 @@
           "type": "text"
         }
       },
-      "horizontal": {
+      "horizontal-layout": {
         "title": {
-          "value": "Horizontal alignment",
+          "value": "Horizontal layout",
           "type": "text"
         },
         "description": {
-          "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation.",
+          "value": "Use a horizontal layout to display the radios in a row.",
           "type": "text"
         }
       }

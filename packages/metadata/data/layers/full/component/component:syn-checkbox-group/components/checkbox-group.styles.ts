@@ -20,7 +20,7 @@ export default css`
   .form-control-input {
     display: flex;
     flex-direction: column;
-    gap: var(--syn-spacing-x-small);
+    gap: var(--syn-spacing-2x-small); /* We use 2x-small because the checkbox already has inner padding! */
   }
 
   .form-control--has-help-text.form-control--radio-group .form-control__help-text {
@@ -32,6 +32,6 @@ export default css`
    */
   .form-control--is-horizontal .form-control-input {
     flex-flow: row wrap;
-    gap: var(--syn-spacing-medium);
+    gap: var(--syn-spacing-2x-small) var(--syn-spacing-medium);
   }
 `;

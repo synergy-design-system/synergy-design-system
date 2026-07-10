@@ -57,7 +57,7 @@
             "type": "text",
             "value": "Use a vertical layout to display the checkboxes in a column."
           },
-          "name": "layout-vertical",
+          "name": "vertical-layout",
           "title": {
             "type": "text",
             "value": "Vertical layout"
@@ -68,7 +68,7 @@
             "type": "text",
             "value": "Use a horizontal layout to display the checkboxes in a row."
           },
-          "name": "layout-horizontal",
+          "name": "horizontal-layout",
           "title": {
             "type": "text",
             "value": "Horizontal layout"
@@ -83,6 +83,17 @@
           "title": {
             "type": "text",
             "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the checked attribute on the corresponding syn-checkbox elements to set the checked state."
+          },
+          "name": "checked",
+          "title": {
+            "type": "text",
+            "value": "Checked"
           }
         },
         {
@@ -105,6 +116,28 @@
           "title": {
             "type": "text",
             "value": "Focus"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute on the corresponding syn-checkbox elements to set the disabled state."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Checkboxes can be displayed in a read-only state by applying the readonly attribute to the selected checkbox inside the checkbox group."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Readonly"
           }
         },
         {

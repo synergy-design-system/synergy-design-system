@@ -63,9 +63,9 @@ export const inputIntents: IntentDefinition[] = [
   },
   {
     category: 'input',
-    description: 'Use when related checkbox controls should be grouped under a shared label and optional help text.',
+    description: 'Use when related checkbox or switch controls should be grouped under a shared label and optional help text.',
     id: 'input.grouping.checkbox',
-    userGoal: 'Understand and complete related checkboxes as one coherent section.',
+    userGoal: 'Understand and complete related checkboxes or switches as one coherent section.',
   },
   {
     category: 'input',

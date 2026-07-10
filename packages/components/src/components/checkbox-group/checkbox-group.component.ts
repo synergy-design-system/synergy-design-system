@@ -5,6 +5,7 @@ import {
 import { classMap } from 'lit/directives/class-map.js';
 import { property, query } from 'lit/decorators.js';
 import type SynCheckbox from '../checkbox/checkbox.component.js';
+import type SynSwitch from '../switch/switch.component.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import formControlStyles from '../../styles/form-control.styles.js';
@@ -90,15 +91,29 @@ export default class SynCheckboxGroup extends SynergyElement {
   }
 
   private syncCheckboxes() {
-    if (customElements.get('syn-checkbox')) {
+    const hasCheckboxChildren = !!this.querySelector('syn-checkbox');
+    const hasSwitchChildren = !!this.querySelector('syn-switch');
+    const checkboxDefined = !!customElements.get('syn-checkbox');
+    const switchDefined = !!customElements.get('syn-switch');
+    const canSyncCheckboxes = !hasCheckboxChildren || checkboxDefined;
+    const canSyncSwitches = !hasSwitchChildren || switchDefined;
+
+    if (canSyncCheckboxes && canSyncSwitches) {
       this.syncCheckboxElements().catch(() => undefined);
-    } else {
+      return;
+    }
+
+    if (hasCheckboxChildren && !checkboxDefined) {
       customElements.whenDefined('syn-checkbox').then(() => this.syncCheckboxes()).catch(() => undefined);
+    }
+
+    if (hasSwitchChildren && !switchDefined) {
+      customElements.whenDefined('syn-switch').then(() => this.syncCheckboxes()).catch(() => undefined);
     }
   }
 
   private getAllCheckboxes() {
-    return [...this.querySelectorAll<SynCheckbox>('syn-checkbox')];
+    return [...this.querySelectorAll<SynCheckbox | SynSwitch>('syn-checkbox, syn-switch')];
   }
 
   private handleKeyDown(event: KeyboardEvent) {
@@ -115,9 +130,15 @@ export default class SynCheckboxGroup extends SynergyElement {
     }
 
     const path = event.composedPath();
-    const currentCheckbox = path.find(
-      element => element instanceof HTMLElement && element.tagName.toLowerCase() === 'syn-checkbox',
-    ) as SynCheckbox | undefined;
+    const currentCheckbox = path.find(element => {
+      if (!element || !(element instanceof HTMLElement)) {
+        return false;
+      }
+
+      const tagName = element.tagName.toLowerCase();
+
+      return tagName === 'syn-checkbox' || tagName === 'syn-switch';
+    }) as SynCheckbox | SynSwitch | undefined;
 
     const checkedCheckbox = availableCheckboxes.find(checkbox => checkbox.checked);
     const currentIndex = availableCheckboxes.indexOf(currentCheckbox ?? checkedCheckbox ?? availableCheckboxes[0]);

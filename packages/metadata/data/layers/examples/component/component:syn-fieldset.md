@@ -8,16 +8,12 @@ Fieldset is a component used to group related form controls and labels. It provi
   legend="Legend"
   layout="two-columns"
 >
-  <syn-input name="item-1" label="Item 1"></syn-input>
-  <syn-input name="item-2" label="Item 2"></syn-input>
-  <syn-input name="item-3" label="Item 3"></syn-input>
-  <syn-radio-group layout="horizontal" name="item-4" label="Item 4">
-    <syn-radio name="radio-1" value="1">Option 1</syn-radio>
-    <syn-radio name="radio-2" value="2">Option 2</syn-radio>
-    <syn-radio name="radio-3" value="3">Option 3</syn-radio>
-  </syn-radio-group>
-  <syn-input name="item-5" label="Item 5"></syn-input>
-  <syn-textarea name="item-6" label="Item 6"></syn-textarea>
+  <syn-input name="item-1" label="Item 1"></syn-input
+  ><syn-input name="item-2" label="Item 2"></syn-input
+  ><syn-input name="item-3" label="Item 3"></syn-input
+  ><syn-input name="item-4" label="Item 4"></syn-input
+  ><syn-input name="item-5" label="Item 5"></syn-input
+  ><syn-input name="item-6" label="Item 6"></syn-input>
 </syn-fieldset>
 ```
 

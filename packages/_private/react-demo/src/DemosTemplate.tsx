@@ -21,19 +21,13 @@ export const DemosTemplate = ({ demos }: DemosTemplateProps) => {
   return (
     <syn-tab-group
       className="demo-tab-group"
-      onsyn-tab-show={(e) => {
+      onsyn-tab-show={e => {
         const { name } = e.detail;
         if (!demoNames.has(name)) {
           return;
         }
 
         (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
-
-        const dialog = document.querySelector('syn-dialog');
-        if (dialog) {
-          dialog.open = name === 'Dialog';
-        }
-
         setActiveDemo(name);
       }}
       placement='end'

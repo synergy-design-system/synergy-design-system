@@ -107,6 +107,6 @@ export default css`
    */
   .form-control--is-horizontal:not(.form-control--has-button-group) .form-control-input {
     flex-flow: row wrap;
-    gap: var(--syn-spacing-medium);
+    gap: var(--syn-spacing-x-small) var(--syn-spacing-medium);
   }
 `;

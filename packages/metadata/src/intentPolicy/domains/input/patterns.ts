@@ -76,12 +76,13 @@ export const inputPatterns: IntentUsagePattern[] = [
     target: { id: 'component:syn-checkbox', kind: 'component', name: 'syn-checkbox' },
   },
   {
-    description: 'Group related checkbox controls in one form-scoped section with shared labeling and optional help text.',
+    description: 'Group related checkbox or switch controls in one form-scoped section with shared labeling and optional help text.',
     intent: 'input.grouping.checkbox',
     notes: [
-      'Use when related checkbox options need shared context in forms.',
+      'Use when related checkbox or switch options need shared context in forms.',
+      'Prefer syn-switch for binary options that apply immediately; use syn-checkbox for deferred selection.',
       'Provide group labeling through the label property or label slot.',
-      'Keep option-level guidance in child checkbox labels; use group help text for additional context.',
+      'Keep option-level guidance in child checkbox or switch labels; use group help text for additional context.',
     ],
     priority: 60,
     structure: {
@@ -90,8 +91,8 @@ export const inputPatterns: IntentUsagePattern[] = [
         contentRules: [{
           code: 'CHECKBOX_GROUP_LABEL_REQUIRED',
           kind: 'requiredAnyContentSource',
-          message: 'Checkbox groups should provide a label, either through the label property or the label slot.',
-          rationale: 'A group label gives related checkboxes a shared accessible context and improves scanability.',
+          message: 'Grouped checkbox/switch controls should provide a label, either through the label property or the label slot.',
+          rationale: 'A group label gives related checkboxes or switches a shared accessible context and improves scanability.',
           severity: 'warning',
           sources: [
             { kind: 'prop', prop: 'label' },
@@ -105,11 +106,12 @@ export const inputPatterns: IntentUsagePattern[] = [
     targetRole: 'container',
   },
   {
-    description: 'Multi-select option set represented as grouped checkboxes in a single form control context.',
+    description: 'Multi-select option set represented as grouped checkboxes or switches in a single form control context.',
     intent: 'input.selection.multiple',
     notes: [
       'Use when users may select none, one, or multiple options.',
-      'Selection state belongs to child syn-checkbox controls; syn-checkbox-group provides structure and shared guidance.',
+      'Prefer syn-switch for binary options that apply immediately; use syn-checkbox for deferred selection.',
+      'Selection state belongs to child syn-checkbox or syn-switch controls; syn-checkbox-group provides structure and shared guidance.',
       'Prefer vertical layout for longer labels and better readability.',
     ],
     priority: 70,
@@ -119,8 +121,8 @@ export const inputPatterns: IntentUsagePattern[] = [
         contentRules: [{
           code: 'CHECKBOX_GROUP_LABEL_REQUIRED',
           kind: 'requiredAnyContentSource',
-          message: 'Checkbox groups should provide a label, either through the label property or the label slot.',
-          rationale: 'A group label gives related checkboxes a shared accessible context and improves scanability.',
+          message: 'Grouped checkbox/switch controls should provide a label, either through the label property or the label slot.',
+          rationale: 'A group label gives related checkboxes or switches a shared accessible context and improves scanability.',
           severity: 'warning',
           sources: [
             { kind: 'prop', prop: 'label' },

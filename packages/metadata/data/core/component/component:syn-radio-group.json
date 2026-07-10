@@ -188,12 +188,12 @@
         {
           "description": {
             "type": "text",
-            "value": "Use the horizontal attribute to indicate that an element is used in a horizontal navigation."
+            "value": "Use a horizontal layout to display the radios in a row."
           },
-          "name": "horizontal",
+          "name": "horizontal-layout",
           "title": {
             "type": "text",
-            "value": "Horizontal alignment"
+            "value": "Horizontal layout"
           }
         }
       ],

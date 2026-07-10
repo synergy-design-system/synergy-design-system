@@ -38,12 +38,6 @@ export class DemosTemplateComponent {
     }
 
     (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
-
-    const dialog = document.querySelector('syn-dialog');
-    if (dialog) {
-      dialog.open = name === 'Dialog';
-    }
-
     this.activeDemo = name;
   }
 }

@@ -13,6 +13,7 @@ import { getTranslation } from '../../src/translations.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 import '../../../components/src/components/checkbox/checkbox.js';
+import '../../../components/src/components/checkbox-group/checkbox-group.js';
 import '../../../components/src/components/fieldset/fieldset.js';
 import '../../../components/src/components/textarea/textarea.js';
 import '../../../components/src/components/input/input.js';

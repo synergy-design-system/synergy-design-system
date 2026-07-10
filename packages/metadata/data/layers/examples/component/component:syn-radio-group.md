@@ -210,9 +210,9 @@ Radio buttons offer an alternate way to display radio controls. In this case, an
 
 ---
 
-## Horizontal
+## Horizontal Layout
 
-Use the horizontal attribute to indicate that an element is used in a horizontal navigation.
+Use a horizontal layout to display the radios in a row.
 
 ```html
 <div

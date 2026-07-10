@@ -7,14 +7,16 @@
 "@synergy-design-system/vue": minor
 ---
 
-feat: ✨ syn-fieldset (#794)
+feat: ✨ syn-fieldset, syn-checkbox-group (#794)
+
+#### `<syn-fieldset>`
 
 Adds a new `<syn-fieldset>` component for grouping related form controls with semantic markup and accessibility support.
 
-- Supports `legend` and `description` via attributes and named slots.
-- Adds configurable `layout` (`one-column`/`two-columns`) and `item-spacing` (`normal`/`dense`).
-- Syncs disabled state to nested form controls.
+#### `<syn-radio-group>`
 
 Adds a new property `layout` to `<syn-radio-group>`. This can be used to display slotted `<syn-radio>` elements horizontally.
+
+#### `<syn-checkbox-group>`
 
 Adds a new `<syn-checkbox-group>` component for grouping related checkboxes with semantic markup.

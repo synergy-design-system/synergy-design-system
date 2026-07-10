@@ -21,12 +21,6 @@ const showTab = (e: SynTabShowEvent) => {
   }
 
   (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
-
-  const dialog = document.querySelector('syn-dialog');
-  if (dialog) {
-    dialog.open = name === 'Dialog';
-  }
-
   activeDemo.value = name;
 };
 </script>

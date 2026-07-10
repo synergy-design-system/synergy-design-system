@@ -179,7 +179,9 @@ export default class SynFieldset extends SynergyElement {
       this.syncDisabledState();
     }
 
-    this.scheduleGroupedControlLayoutSync();
+    if (_changedProperties.has('layout') || _changedProperties.has('disableAutoGroupLayout')) {
+      this.scheduleGroupedControlLayoutSync();
+    }
   }
 
   render() {

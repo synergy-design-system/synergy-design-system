@@ -13,8 +13,23 @@ import {
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
-const createCheckboxes = (count: number = 3) => Array.from({ length: count }, (_, i) => html`
-  <syn-checkbox name="checkbox-${i + 1}" value="checkbox-${i + 1}">Option</syn-checkbox>
+const capitalizeFirstLetter = (value: string) => `${value[0].toUpperCase()}${value.slice(1)}`;
+
+const createCheckboxes = (
+  count: number = 3,
+  options: {
+    checked?: number[];
+    disabled?: number[];
+    readonly?: number[];
+  } = {},
+) => Array.from({ length: count }, (_, i) => html`
+  <syn-checkbox
+    ?checked="${options.checked?.includes(i)}"
+    ?disabled="${options.disabled?.includes(i)}"
+    ?readonly="${options.readonly?.includes(i)}"
+    name="checkbox-${i + 1}"
+    value="checkbox-${i + 1}"
+  >Option</syn-checkbox>
 `);
 
 const { argTypes } = storybookDefaults('syn-checkbox-group');
@@ -72,11 +87,11 @@ export const Default: Story = {
   render: (args) => generateTemplate({ args }),
 };
 
-export const LayoutVertical: Story = {
+export const VerticalLayout: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('checkbox-group', 'layout-vertical'),
+        story: generateStoryDescription('checkbox-group', 'vertical-layout'),
       },
     },
   },
@@ -87,11 +102,11 @@ export const LayoutVertical: Story = {
   `,
 };
 
-export const LayoutHorizontal: Story = {
+export const HorizontalLayout: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('checkbox-group', 'layout-horizontal'),
+        story: generateStoryDescription('checkbox-group', 'horizontal-layout'),
       },
     },
   },
@@ -112,7 +127,24 @@ export const Labels: Story = {
   },
   render: () => html`
     <syn-checkbox-group label="This is a label">
-      ${createCheckboxes(11)}
+      ${createCheckboxes(3)}
+    </syn-checkbox-group>
+  `,
+};
+
+export const Checked: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox-group', 'checked'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-checkbox-group label="This is a label">
+      ${createCheckboxes(3, {
+        checked: [1],
+      })}
     </syn-checkbox-group>
   `,
 };
@@ -154,6 +186,40 @@ export const Focus: Story = {
   `,
 };
 
+export const Disabled: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox-group', 'disabled'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-checkbox-group label="This is a label">
+      ${createCheckboxes(3, {
+        disabled: [1],
+      })}
+    </syn-checkbox-group>
+  `,
+};
+
+export const Readonly: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('checkbox-group', 'readonly'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-checkbox-group label="This is a label">
+      ${createCheckboxes(3, {
+        readonly: [1],
+      })}
+    </syn-checkbox-group>
+  `,
+};
+
 export const Sizes: Story = {
   parameters: {
     docs: {
@@ -163,19 +229,56 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
-      ${['small', 'medium', 'large'].map(size => html`
-        <syn-checkbox-group label="This is a label" help-text="Choose the most appropriate option." size="${size}">
-          ${createCheckboxes(2)}
-        </syn-checkbox-group>
+    <div class="demo-checkbox-group-grid">
+      ${(['small', 'medium', 'large'] as const).map(size => html`
+        <div class="demo-checkbox-group-tile">
+          <syn-checkbox-group
+            label="${`${capitalizeFirstLetter(size)} size vertical`}"
+            size="${size}"
+            layout="vertical"
+          >
+            ${createCheckboxes(2)}
+          </syn-checkbox-group>
+        </div>
+        <div class="demo-checkbox-group-tile">
+          <syn-checkbox-group
+            label="${`${capitalizeFirstLetter(size)} size horizontal`}"
+            size="${size}"
+            layout="horizontal"
+          >
+            ${createCheckboxes(2)}
+          </syn-checkbox-group>
+        </div>
       `)}
     </div>
+    <style>
+    .demo-checkbox-group-grid {
+      column-gap: var(--syn-spacing-large);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    .demo-checkbox-group-tile {
+      background: var(--syn-page-background);
+      padding: var(--syn-spacing-large);
+      box-sizing: border-box;
+      height: 100%;
+    }
+    </style>
   `,
 };
-
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
-}, 200);
+  VerticalLayout,
+  HorizontalLayout,
+  Labels,
+  Checked,
+  HelpText,
+  Disabled,
+  Readonly,
+  Sizes,
+}, 400);
 /* eslint-enable sort-keys */

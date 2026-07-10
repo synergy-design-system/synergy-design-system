@@ -326,11 +326,11 @@ export const RadioButtons: Story = {
   `,
 };
 
-export const Horizontal: Story = {
+export const HorizontalLayout: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('radio-group', 'horizontal'),
+        story: generateStoryDescription('radio-group', 'horizontal-layout'),
       },
     },
   },
@@ -363,6 +363,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Readonly,
   Sizes,
   RadioButtons,
-  Horizontal,
+  HorizontalLayout,
 }, 400);
 /* eslint-enable sort-keys */

@@ -1,4 +1,6 @@
 import { FIELDSET_TWO_COLUMN_BREAKPOINT } from './constants.js';
+import type SynCheckboxGroup from '../checkbox-group/checkbox-group.component.js';
+import type SynRadioGroup from '../radio-group/radio-group.component.js';
 
 /**
  * Get all form elements within a given context.
@@ -66,19 +68,12 @@ export const applyGroupedControlLayout = (
   context: Element,
   targetLayout: GroupedControlLayout,
 ) => {
-  const groups = context.querySelectorAll<HTMLElement>(GROUPED_CONTROL_SELECTOR);
+  const groups = context.querySelectorAll<SynCheckboxGroup | SynRadioGroup>(GROUPED_CONTROL_SELECTOR);
 
-  groups.forEach((group) => {
-    if ('layout' in group) {
-      const typedGroup = group as HTMLElement & { layout: string };
-      if (typedGroup.layout !== targetLayout) {
-        typedGroup.layout = targetLayout;
-      }
-      return;
-    }
-
-    if (group.getAttribute('layout') !== targetLayout) {
-      group.setAttribute('layout', targetLayout);
+  groups.forEach(group => {
+    if (group.layout !== targetLayout) {
+      // eslint-disable-next-line no-param-reassign
+      group.layout = targetLayout;
     }
   });
 };

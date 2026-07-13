@@ -19,12 +19,13 @@ import type { LegendOptions } from './types.js';
  * @see https://echarts.apache.org/en/option.html#legend
  * @see https://echarts.apache.org/en/option.html#grid
  */
-export const legendShow = (options: LegendOptions = {}): ConfigModifier => (config) => {
-  const position = options.position ?? 'top';
-  const legendOptions = options.legendOptions ?? {};
+export const legendShow = ({
+  position = 'top',
+  legendOptions = {},
+  gridOptions = {},
+}: LegendOptions = {}): ConfigModifier => (config) => {
   const legendConfig = mergeDeep(getLegendConfigForPosition(position), legendOptions) as NonNullable<ECConfig['legend']>;
 
-  const gridOptions = options.gridOptions ?? {};
   const gridFromSeriesNames = getGridForLegendPosition(position, legendConfig, config);
   const grid = mergeDeep(gridFromSeriesNames, gridOptions) as NonNullable<ECConfig['grid']>;
   return mergeConfigs(config, {

@@ -1,21 +1,14 @@
 import type { LegendComponentOption } from 'echarts/types/dist/echarts.js';
 import type { ECConfig } from '../../types.js';
 import { measureMaxTextWidth } from '../axes/utilities.js';
+import { LEGEND } from '../constants.js';
 import { getRealStyleValue, getRealValueWithoutUnit } from '../../themes/utilities.js';
 import type { LegendPosition } from './types.js';
 import { colorSvgDataUrl } from '../utilities.js';
-
-const VISIBILITY_ICON = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M7.99984 3C4.6665 3 1.81984 5.07333 0.666504 8C1.81984 10.9267 4.6665 13 7.99984 13C11.3332 13 14.1798 10.9267 15.3332 8C14.1798 5.07333 11.3332 3 7.99984 3ZM7.99984 11.3333C6.15984 11.3333 4.6665 9.84 4.6665 8C4.6665 6.16 6.15984 4.66667 7.99984 4.66667C9.83984 4.66667 11.3332 6.16 11.3332 8C11.3332 9.84 9.83984 11.3333 7.99984 11.3333ZM7.99984 6C6.89317 6 5.99984 6.89333 5.99984 8C5.99984 9.10667 6.89317 10 7.99984 10C9.1065 10 9.99984 9.10667 9.99984 8C9.99984 6.89333 9.1065 6 7.99984 6Z" fill="#0D0D0D"/>
-</svg>
-`;
-const VISIBILITY_OFF_ICON = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M8.00326 4.33329C9.84326 4.33329 11.3366 5.82663 11.3366 7.66663C11.3366 8.09996 11.2499 8.50663 11.0966 8.88663L13.0433 10.8333C14.0499 9.99329 14.8433 8.90663 15.3299 7.66663C14.1766 4.73996 11.3299 2.66663 7.99659 2.66663C7.06326 2.66663 6.16992 2.83329 5.34326 3.13329L6.78326 4.57329C7.16326 4.41996 7.56992 4.33329 8.00326 4.33329ZM1.33659 2.51329L3.16326 4.33996C2.05659 5.19996 1.18992 6.34663 0.669922 7.66663C1.82326 10.5933 4.66992 12.6666 8.00326 12.6666C9.03659 12.6666 10.0233 12.4666 10.9233 12.1066L11.2033 12.3866L13.1566 14.3333L14.0033 13.4866L2.18326 1.66663L1.33659 2.51329ZM5.02326 6.19996L6.05659 7.23329C6.02326 7.37329 6.00326 7.51996 6.00326 7.66663C6.00326 8.77329 6.89659 9.66663 8.00326 9.66663C8.14992 9.66663 8.29659 9.64663 8.43659 9.61329L9.46992 10.6466C9.02326 10.8666 8.52992 11 8.00326 11C6.16326 11 4.66992 9.50663 4.66992 7.66663C4.66992 7.13996 4.80326 6.64663 5.02326 6.19996ZM7.89659 5.67996L9.99659 7.77996L10.0099 7.67329C10.0099 6.56663 9.11659 5.67329 8.00992 5.67329L7.89659 5.67996Z" fill="#0D0D0D"/>
-</svg>
-`;
+import { icons } from '../../../icon/sick2025-system-icons.js';
 
 const getVisibilityIconDataUrl = (isVisible: boolean): string => {
-  const svg = isVisible ? VISIBILITY_ICON : VISIBILITY_OFF_ICON;
+  const svg = isVisible ? icons.eye : icons['eye-slash'];
   const dataUrl = `data:image/svg+xml;base64,${btoa(svg)}`;
   return colorSvgDataUrl(dataUrl, getRealStyleValue('--syn-typography-color-text-quiet'));
 };
@@ -115,8 +108,7 @@ const calculateLegendWidth = (legendStyle: NonNullable<ECConfig['legend']>, seri
   const maxTextWidth = measureMaxTextWidth(seriesNames, fontShorthand);
   const defaultLegendStyle = getDefaultLegendStyles();
   const itemWidth = legendItem?.itemWidth ?? defaultLegendStyle.itemWidth;
-  // 6px additional padding between legend item and text + 20px for the visibilitiy icon width and spacing
-  return maxTextWidth + itemWidth + 6 + 20;
+  return maxTextWidth + itemWidth + LEGEND.ICON_TEXT_GAP + LEGEND.VISIBILITY_ICON_SPACE;
 };
 
 /**
@@ -140,7 +132,7 @@ export const getGridForLegendPosition = (position: LegendPosition, legendStyle: 
   // Early return for top and bottom positions, as we don't need to calculate the width for those positions
   if (position === 'top' || position === 'bottom') {
     return {
-      [position]: 80,
+      [position]: LEGEND.GRID_OFFSET,
     };
   }
 
@@ -162,7 +154,7 @@ export const getGridForLegendPosition = (position: LegendPosition, legendStyle: 
   // If there is no position set, the default is left
   const hasLeftYAxis = yAxis.find(axis => axis?.position !== 'right');
   const hasRightYAxis = yAxis.find(axis => axis?.position === 'right');
-  const axisOffset = (position === 'left' ? hasLeftYAxis : hasRightYAxis) ? 80 : 0;
+  const axisOffset = (position === 'left' ? hasLeftYAxis : hasRightYAxis) ? LEGEND.GRID_OFFSET : 0;
 
   return {
     [position]: verticalWidth + axisOffset,

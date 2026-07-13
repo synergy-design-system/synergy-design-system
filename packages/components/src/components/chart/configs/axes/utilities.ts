@@ -3,6 +3,7 @@ import {
 } from '../../themes/utilities.js';
 import type { ECConfig } from '../../types.js';
 import { colorSvgDataUrl, mergeConfigs } from '../utilities.js';
+import { AXIS } from '../constants.js';
 import type {
   AxisKey,
   AxisLabel,
@@ -213,7 +214,7 @@ const getYAxisLabelEffectiveWidth = (
     ? measureMaxTextWidth(texts, getFontShorthand(labelsStyle))
     : 0;
 
-  return measured > 0 ? measured : 30;
+  return measured > 0 ? measured : AXIS.LABEL_FALLBACK_WIDTH;
 };
 
 /**
@@ -234,26 +235,26 @@ const createPositionConfig = (
     case 'bottom':
       return {
         formatter: (value: string, i: number) => `{label|${value}}\n{icon_${i}|}`,
-        padding: [0, 0, 4, 0],
+        padding: [0, 0, AXIS.LABEL_ICON_PADDING, 0],
         width: undefined,
       };
     case 'right':
       return {
         formatter: (value: string, i: number) => `{label|${value}}{icon_${i}|}`,
-        padding: [0, 4, 0, 0],
+        padding: [0, AXIS.LABEL_ICON_PADDING, 0, 0],
         width: undefined,
       };
     case 'top':
       return {
         formatter: (value: string, i: number) => `{icon_${i}|}\n{label|${value}}`,
-        padding: [4, 0, 0, 0],
+        padding: [AXIS.LABEL_ICON_PADDING, 0, 0, 0],
         width: undefined,
       };
     default:
       return {
         align: 'left' as const,
         formatter: (value: string, i: number) => `{icon_${i}|}{label|${value}}`,
-        padding: [0, 0, 0, 4],
+        padding: [0, 0, 0, AXIS.LABEL_ICON_PADDING],
         width: getYAxisLabelEffectiveWidth(labelsStyle, config),
       };
   }
@@ -319,7 +320,7 @@ export const buildAxisLabelConfigWithIcon = ({
 
 const getDefaultXAxisStyle = () => ({
   'axisLabel.margin': getRealValueWithoutUnit('--syn-spacing-small'),
-  nameGap: 32,
+  nameGap: AXIS.X_NAME_GAP,
   nameLocation: 'center',
 });
 

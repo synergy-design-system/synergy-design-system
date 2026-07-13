@@ -1,4 +1,5 @@
 import { PALETTE_TOKENS } from '../chart.palettes.js';
+import { THEME } from '../configs/constants.js';
 import { getRealStyleValue } from './utilities.js';
 import { getDefaultAxisStyles } from '../configs/axes/utilities.js';
 import { getDefaultLegendStyles } from '../configs/legend/utilities.js';
@@ -20,7 +21,7 @@ export const synergyLightTheme = {
     bottom: 0,
     left: 0,
     // This is needed otherwise the last splitLine of the xAxis is cut off
-    right: 1,
+    right: THEME.GRID_RIGHT_INSET,
     top: 0,
   },
   legend: legendCommonStyles,

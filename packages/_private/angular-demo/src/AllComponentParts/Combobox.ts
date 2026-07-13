@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import type { SynChangeEvent, SynCombobox } from '@synergy-design-system/components';
 import { SynComboboxComponent } from '@synergy-design-system/angular/components/combobox';
 import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
@@ -196,12 +196,13 @@ import {
   `,
 })
 export class Combobox implements OnInit {
+  private readonly cdr = inject(ChangeDetectorRef);
+
   levels: SelectItem[] = [];
   delimiterItems = mockData('selectItemsWithSpace');
   numericItems = mockData('selectItemsMixedValue');
   cb632Value: string = '';
-  // @ts-ignore
-  asyncValue: string;
+  asyncValue = '';
 
 
   setcb632Value(e: SynChangeEvent) {
@@ -213,12 +214,18 @@ export class Combobox implements OnInit {
   }
 
   ngOnInit(): void {
-    mockAsyncData('selectItems').then((items) => {
-      this.levels = items;
-    });
-    mockAsyncData('valueWithSpace').then((value) => {
-      this.asyncValue = value;
-    });
+    this.loadAsyncData().catch(() => undefined);
+  }
+
+  private async loadAsyncData(): Promise<void> {
+    const [levels, asyncValue] = await Promise.all([
+      mockAsyncData('selectItems'),
+      mockAsyncData('valueWithSpace'),
+    ]);
+
+    this.levels = levels;
+    this.asyncValue = asyncValue;
+    this.cdr.detectChanges();
   }
 }
 

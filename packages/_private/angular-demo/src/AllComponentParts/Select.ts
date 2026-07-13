@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { SynSelectComponent } from '@synergy-design-system/angular/components/select';
 import { SynOptionComponent } from '@synergy-design-system/angular/components/option';
 import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
@@ -155,20 +155,27 @@ import {
   `
 })
 export class Select implements OnInit {
+  private readonly cdr = inject(ChangeDetectorRef);
+
   levels: SelectItem[] = [];
   numericItems = mockData('selectItemsMixedValue');
   delimiterItems = mockData('selectItemsWithSpace');
-  // @ts-ignore
-  asyncValue: string;
+  asyncValue = '';
 
 
   ngOnInit(): void {
-    mockAsyncData('selectItems').then((items) => {
-      this.levels = items;
-    });
-    mockAsyncData('valueWithSpace').then((value) => {
-      this.asyncValue = value;
-    });
+    this.loadAsyncData().catch(() => undefined);
+  }
+
+  private async loadAsyncData(): Promise<void> {
+    const [levels, asyncValue] = await Promise.all([
+      mockAsyncData('selectItems'),
+      mockAsyncData('valueWithSpace'),
+    ]);
+
+    this.levels = levels;
+    this.asyncValue = asyncValue;
+    this.cdr.detectChanges();
   }
 
   updateSelectRegressions1265(e: Event): void {

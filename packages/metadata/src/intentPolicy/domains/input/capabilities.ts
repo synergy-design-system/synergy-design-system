@@ -39,6 +39,10 @@ export const inputCapabilities: IntentCapability[] = [
   },
   {
     categories: ['input'],
+    target: { id: 'component:syn-radio', kind: 'component', name: 'syn-radio' },
+  },
+  {
+    categories: ['input'],
     target: { id: 'component:syn-file', kind: 'component', name: 'syn-file' },
   },
   {
@@ -48,5 +52,13 @@ export const inputCapabilities: IntentCapability[] = [
   {
     categories: ['input'],
     target: { id: 'component:syn-fieldset', kind: 'component', name: 'syn-fieldset' },
+  },
+  {
+    categories: ['input'],
+    target: { id: 'component:syn-option', kind: 'component', name: 'syn-option' },
+  },
+  {
+    categories: ['input'],
+    target: { id: 'component:syn-optgroup', kind: 'component', name: 'syn-optgroup' },
   },
 ];

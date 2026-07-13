@@ -2,11 +2,71 @@ import type { IntentUsagePattern } from '../../types.js';
 
 export const inputPatterns: IntentUsagePattern[] = [
   {
-    description: 'Single-line input for compact text or numeric values.',
+    description: 'Single-line input for compact textual values.',
     intent: 'input.text.short',
     preset: {
       props: {
         type: 'text',
+      },
+    },
+    target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
+  },
+  {
+    description: 'Single-line email entry field with email-specific input behavior.',
+    intent: 'input.text.email',
+    preset: {
+      props: {
+        type: 'email',
+      },
+    },
+    target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
+  },
+  {
+    description: 'Single-line telephone entry field with phone-oriented input behavior.',
+    intent: 'input.text.telephone',
+    preset: {
+      props: {
+        type: 'tel',
+      },
+    },
+    target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
+  },
+  {
+    description: 'Single-line URL entry field with web-address-oriented input behavior.',
+    intent: 'input.text.url',
+    preset: {
+      props: {
+        type: 'url',
+      },
+    },
+    target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
+  },
+  {
+    description: 'Single-line search field for querying or filtering content.',
+    intent: 'input.text.search',
+    preset: {
+      props: {
+        type: 'search',
+      },
+    },
+    target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
+  },
+  {
+    description: 'Single-line masked text field for passwords and other sensitive text values.',
+    intent: 'input.text.secret',
+    preset: {
+      props: {
+        type: 'password',
+      },
+    },
+    target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
+  },
+  {
+    description: 'Single-line input field for direct numeric entry.',
+    intent: 'input.number.field',
+    preset: {
+      props: {
+        type: 'number',
       },
     },
     target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
@@ -48,9 +108,14 @@ export const inputPatterns: IntentUsagePattern[] = [
   {
     description: 'Searchable selection with real-time filtering for larger option sets.',
     intent: 'input.selection.searchable',
+    target: { id: 'component:syn-combobox', kind: 'component', name: 'syn-combobox' },
+  },
+  {
+    description: 'Searchable multi-selection with real-time filtering for larger option sets.',
+    intent: 'input.selection.searchable.multiple',
     preset: {
       props: {
-        autocomplete: 'list',
+        multiple: true,
       },
     },
     target: { id: 'component:syn-combobox', kind: 'component', name: 'syn-combobox' },
@@ -155,6 +220,17 @@ export const inputPatterns: IntentUsagePattern[] = [
     targetRole: 'item',
   },
   {
+    description: 'Single selectable radio option used within a radio-group.',
+    intent: 'input.selection.single',
+    notes: [
+      'Use inside syn-radio-group to provide one explicit selection among related options.',
+      'Provide a default selected value at group level, as recommended in component usage rules.',
+    ],
+    priority: 15,
+    target: { id: 'component:syn-radio', kind: 'component', name: 'syn-radio' },
+    targetRole: 'item',
+  },
+  {
     description: 'File attachment or upload control with optional multi-file mode.',
     intent: 'input.file.upload',
     preset: {
@@ -165,15 +241,78 @@ export const inputPatterns: IntentUsagePattern[] = [
     target: { id: 'component:syn-file', kind: 'component', name: 'syn-file' },
   },
   {
-    description: 'Bounded numeric selection through a slider control.',
-    intent: 'input.range.slider',
+    description: 'Bounded single-value numeric selection through a slider control for fast, approximate adjustment.',
+    intent: 'input.number.range',
     target: { id: 'component:syn-range', kind: 'component', name: 'syn-range' },
+  },
+  {
+    description: 'Bounded numeric interval selection through a multi-knob slider control for fast, approximate bound adjustment.',
+    intent: 'input.number.range.interval',
+    notes: [
+      'Use when users need to select both lower and upper bounds in one control.',
+      'Prefer this over single-value sliders when filtering or constraining results by a value range.',
+    ],
+    target: { id: 'component:syn-range', kind: 'component', name: 'syn-range' },
+  },
+  {
+    description: 'Date input field for selecting or entering a calendar date.',
+    intent: 'input.date.day',
+    preset: {
+      props: {
+        type: 'date',
+      },
+    },
+    target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
+  },
+  {
+    description: 'Time input field for selecting or entering a time value.',
+    intent: 'input.date.time',
+    preset: {
+      props: {
+        type: 'time',
+      },
+    },
+    target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
+  },
+  {
+    description: 'Combined date-time input field for selecting or entering local date and time values.',
+    intent: 'input.date.datetime-local',
+    preset: {
+      props: {
+        type: 'datetime-local',
+      },
+    },
+    target: { id: 'component:syn-input', kind: 'component', name: 'syn-input' },
   },
   {
     description: 'Grouped select options organized through optgroup labels.',
     intent: 'input.selection.grouped-options',
     notes: ['Use syn-optgroup to cluster related syn-option entries under clear labels.'],
+    priority: 90,
     target: { id: 'component:syn-select', kind: 'component', name: 'syn-select' },
+    targetRole: 'container',
+  },
+  {
+    description: 'Grouped option container used to label and organize related select options.',
+    intent: 'input.selection.grouped-options',
+    notes: ['Use syn-optgroup inside syn-select to group related option entries under a shared label.'],
+    priority: 80,
+    target: { id: 'component:syn-optgroup', kind: 'component', name: 'syn-optgroup' },
+    targetRole: 'container',
+  },
+  {
+    description: 'Selectable option item used within select or optgroup structures for single-choice selection.',
+    intent: 'input.selection.single',
+    priority: 10,
+    target: { id: 'component:syn-option', kind: 'component', name: 'syn-option' },
+    targetRole: 'item',
+  },
+  {
+    description: 'Selectable option item used within select or optgroup structures for multiple-choice selection.',
+    intent: 'input.selection.multiple',
+    priority: 10,
+    target: { id: 'component:syn-option', kind: 'component', name: 'syn-option' },
+    targetRole: 'item',
   },
   {
     description: 'Group related form controls in a semantic section using legend and optional supporting description.',

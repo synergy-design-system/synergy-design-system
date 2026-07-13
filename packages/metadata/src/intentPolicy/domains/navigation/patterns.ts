@@ -156,12 +156,44 @@ export const navigationPatterns: IntentUsagePattern[] = [
     description: 'In-page section navigation through related tabs.',
     intent: 'navigation.tabs.section',
     notes: ['Prefer concise tab labels and keep tab count manageable (typically up to six).'],
+    priority: 100,
     target: { id: 'component:syn-tab-group', kind: 'component', name: 'syn-tab-group' },
+    targetRole: 'container',
+  },
+  {
+    description: 'Single navigable tab item used to activate one related content panel.',
+    intent: 'navigation.tabs.section',
+    priority: 20,
+    target: { id: 'component:syn-tab', kind: 'component', name: 'syn-tab' },
+    targetRole: 'item',
+  },
+  {
+    description: 'Content panel associated with one tab in a tab-group navigation flow.',
+    intent: 'navigation.tabs.section',
+    priority: 10,
+    target: { id: 'component:syn-tab-panel', kind: 'component', name: 'syn-tab-panel' },
+    targetRole: 'item',
   },
   {
     description: 'Action-oriented menu with logical grouping and keyboard access.',
     intent: 'navigation.menu.actions',
+    priority: 100,
     target: { id: 'component:syn-menu', kind: 'component', name: 'syn-menu' },
+    targetRole: 'container',
+  },
+  {
+    description: 'Selectable action or destination entry inside a menu.',
+    intent: 'navigation.menu.actions',
+    priority: 30,
+    target: { id: 'component:syn-menu-item', kind: 'component', name: 'syn-menu-item' },
+    targetRole: 'item',
+  },
+  {
+    description: 'Non-interactive grouping label used to organize related menu items.',
+    intent: 'navigation.menu.actions',
+    priority: 10,
+    target: { id: 'component:syn-menu-label', kind: 'component', name: 'syn-menu-label' },
+    targetRole: 'item',
   },
   {
     description: 'Compact trigger-based reveal of related options or destinations.',
@@ -197,6 +229,33 @@ export const navigationPatterns: IntentUsagePattern[] = [
   {
     description: 'Single destination entry within side navigation structures.',
     intent: 'navigation.sidenav.menu',
+    priority: 10,
+    target: { id: 'component:syn-nav-item', kind: 'component', name: 'syn-nav-item' },
+    targetRole: 'item',
+  },
+  {
+    description: 'Priority navigation bar placed in the header navigation slot to keep key destinations visible while overflowing secondary entries.',
+    intent: 'navigation.prio.menu',
+    notes: [
+      'Place syn-prio-nav in the navigation slot of syn-header.',
+      'Use this as the main page navigation within header shell layouts.',
+    ],
+    priority: 100,
+    structure: {
+      children: [
+        {
+          component: 'syn-prio-nav',
+          slot: 'navigation',
+        },
+      ],
+      component: 'syn-header',
+    },
+    target: { id: 'component:syn-prio-nav', kind: 'component', name: 'syn-prio-nav' },
+    targetRole: 'container',
+  },
+  {
+    description: 'Priority navigation entry within a responsive overflow-capable navigation bar.',
+    intent: 'navigation.prio.menu',
     priority: 10,
     target: { id: 'component:syn-nav-item', kind: 'component', name: 'syn-nav-item' },
     targetRole: 'item',

@@ -17,6 +17,7 @@
   },
   "exports": {
     ".": {
+      "types": "./src/sick-intl/font.d.ts",
       "import": "./src/sick-intl/font.css",
       "default": "./src/sick-intl/font.css"
     },

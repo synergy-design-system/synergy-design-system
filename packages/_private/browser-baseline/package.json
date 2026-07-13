@@ -41,6 +41,6 @@
     "@types/node": "^24.13.2",
     "eslint": "^9.39.4",
     "eslint-plugin-import": "^2.32.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }

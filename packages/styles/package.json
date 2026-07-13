@@ -5,12 +5,16 @@
   },
   "description": "Utility classes and helpers for applications using the Synergy Design System",
   "exports": {
-    ".": "./dist/index.css",
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./dist/index.css"
+    },
     "./package.json": "./package.json",
     "./*.css": "./dist/*.css"
   },
   "files": [
     "dist",
+    "index.d.ts",
     "CHANGELOG.md",
     "README.md"
   ],

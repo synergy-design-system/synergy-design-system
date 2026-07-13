@@ -1,13 +1,20 @@
+const styleTokenCache = new Map<string, string>();
+
 /**
  * Resolves a CSS custom property token to its computed value on the document body.
+ * Results are cached per token
  *
  * @param token CSS custom property name, e.g. --syn-color-primary.
  * @returns Trimmed computed value or an empty string when the token is not defined.
  */
 export const getRealStyleValue = (token: string): string => {
-  const computedStyles = getComputedStyle(document.body);
-  const value = computedStyles.getPropertyValue(token).trim();
-  return value || '';
+  if (styleTokenCache.has(token)) {
+    return styleTokenCache.get(token)!;
+  }
+  const value = getComputedStyle(document.body).getPropertyValue(token).trim();
+  const resolved = value || '';
+  styleTokenCache.set(token, resolved);
+  return resolved;
 };
 
 /**

@@ -26,6 +26,23 @@ describe('chart theme utilities', () => {
 
       expect(getRealStyleValue('--syn-missing-token')).to.equal('');
     });
+
+    it('caches computed values per token', () => {
+      let getComputedStyleCallCount = 0;
+
+      globalThis.getComputedStyle = ((_) => {
+        getComputedStyleCallCount += 1;
+
+        return {
+          getPropertyValue: (token: string) => (token === '--syn-cached-token' ? '  32px  ' : ''),
+        };
+      }) as typeof getComputedStyle;
+
+      getRealStyleValue('--syn-cached-token');
+      getRealStyleValue('--syn-cached-token');
+
+      expect(getComputedStyleCallCount).to.equal(1);
+    });
   });
 
   describe('getRealValueWithoutUnit', () => {

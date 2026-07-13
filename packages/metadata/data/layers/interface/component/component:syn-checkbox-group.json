@@ -2,7 +2,7 @@
   "attributes": [
     {
       "default": "''",
-      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element.\nThis property allows you to specify the `id` of a `<form>` element to associate all of the slotted checkboxes and radios with.\n\nPlease note that this property does not associate the checkbox group itself with a form, only the slotted checkboxes and radios.",
       "fieldName": "form",
       "name": "form",
       "reflects": true,
@@ -96,7 +96,7 @@
     {
       "access": "public",
       "default": "''",
-      "description": "By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you\nto place the form control outside of a form and associate it with the form that has this `id`. The form must be in\nthe same document or shadow root for this to work.",
+      "description": "By default, form controls are associated with the nearest containing `<form>` element.\nThis property allows you to specify the `id` of a `<form>` element to associate all of the slotted checkboxes and radios with.\n\nPlease note that this property does not associate the checkbox group itself with a form, only the slotted checkboxes and radios.",
       "name": "form",
       "type": "string"
     },

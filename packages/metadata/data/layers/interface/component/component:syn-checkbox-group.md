@@ -35,9 +35,10 @@ reflects: yes
 type: `string`
 default: `''`
 
-By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
-to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
-the same document or shadow root for this to work.
+By default, form controls are associated with the nearest containing `<form>` element.
+This property allows you to specify the `id` of a `<form>` element to associate all of the slotted checkboxes and radios with.
+
+Please note that this property does not associate the checkbox group itself with a form, only the slotted checkboxes and radios.
 
 ### helpText
 

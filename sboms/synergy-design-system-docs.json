@@ -1,0 +1,43 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "@synergy-design-system/docs",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-docs-0.1.0-188e7263-f6aa-43c9-95de-92936d9f8d45",
+  "creationInfo": {
+    "created": "2026-07-10T12:21:50.150Z",
+    "creators": [
+      "Tool: pnpm"
+    ]
+  },
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-RootPackage",
+      "name": "@synergy-design-system/docs",
+      "versionInfo": "0.1.0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "primaryPackagePurpose": "LIBRARY",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40synergy-design-system/docs@0.1.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Storybook demo for static assets and components of the Synergy Design System",
+      "supplier": "Person: SICK Global UX Foundation",
+      "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relatedSpdxElement": "SPDXRef-RootPackage",
+      "relationshipType": "DESCRIBES"
+    }
+  ]
+}

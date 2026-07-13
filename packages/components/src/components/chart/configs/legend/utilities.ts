@@ -1,9 +1,9 @@
-import type { LegendComponentOption } from 'echarts/types/dist/echarts.js';
+import type { LegendComponentOption } from 'echarts/types/dist/shared.js';
 import type { ECConfig } from '../../types.js';
 import { measureMaxTextWidth } from '../axes/utilities.js';
 import { LEGEND } from '../constants.js';
 import { getRealStyleValue, getRealValueWithoutUnit } from '../../themes/utilities.js';
-import type { LegendPosition } from './types.js';
+import type { LegendOption, LegendPosition } from './types.js';
 import { colorSvgDataUrl } from '../utilities.js';
 import { icons } from '../../../icon/sick2025-system-icons.js';
 
@@ -64,8 +64,8 @@ export const getDefaultLegendStyles = () => ({
  * @param {LegendPosition} position Legend position.
  * @returns Legend config fragment that places the legend for the requested position.
  */
-export const getLegendConfigForPosition = (position: LegendPosition): NonNullable<ECConfig['legend']> => {
-  const legendByPosition: Record<LegendPosition, NonNullable<ECConfig['legend']>> = {
+export const getLegendConfigForPosition = (position: LegendPosition): LegendComponentOption => {
+  const legendByPosition: Record<LegendPosition, LegendComponentOption> = {
     bottom: { bottom: 0 },
     left: { left: 0, orient: 'vertical' },
     right: { orient: 'vertical', right: 0 },
@@ -98,16 +98,15 @@ const getFontShorthand = (labelsStyle: LegendComponentOption['textStyle'] | unde
  * The width is based on the longest series name text width, the configured legend item width,
  * and a small fixed gap between item marker and label.
  *
- * @param {NonNullable<ECConfig['legend']>} legendStyle Legend config (single object or array; first item is used).
+ * @param {LegendComponentOption} legendStyle Effective legend config used for size calculations.
  * @param {string[]} seriesNames Series names used to determine max label width.
  * @returns Calculated legend width in pixels.
  */
-const calculateLegendWidth = (legendStyle: NonNullable<ECConfig['legend']>, seriesNames: string[]): number => {
-  const legendItem = Array.isArray(legendStyle) ? legendStyle[0] : legendStyle;
-  const fontShorthand = getFontShorthand(legendItem?.textStyle);
+const calculateLegendWidth = (legendStyle: LegendComponentOption, seriesNames: string[]): number => {
+  const fontShorthand = getFontShorthand(legendStyle?.textStyle);
   const maxTextWidth = measureMaxTextWidth(seriesNames, fontShorthand);
   const defaultLegendStyle = getDefaultLegendStyles();
-  const itemWidth = legendItem?.itemWidth ?? defaultLegendStyle.itemWidth;
+  const itemWidth = legendStyle?.itemWidth ?? defaultLegendStyle.itemWidth;
   return maxTextWidth + itemWidth + LEGEND.ICON_TEXT_GAP + LEGEND.VISIBILITY_ICON_SPACE;
 };
 
@@ -119,17 +118,18 @@ const calculateLegendWidth = (legendStyle: NonNullable<ECConfig['legend']>, seri
  * exists on the same side.
  *
  * @param {LegendPosition} position Legend position.
- * @param {NonNullable<ECConfig['legend']>} legendStyle Effective legend style used for size calculations.
+ * @param {LegendComponentOption} legendStyle Effective legend style used for size calculations.
  * @param {ECConfig} config Current chart config used to derive series names and y-axis placement.
  * @returns Grid offset object for the requested position, or an empty object when no offset is required.
  */
-export const getGridForLegendPosition = (position: LegendPosition, legendStyle: NonNullable<ECConfig['legend']>, config: ECConfig): NonNullable<ECConfig['grid']> => {
+export const getGridForLegendPosition = (position: LegendPosition, legendStyle: LegendComponentOption, config: ECConfig): NonNullable<ECConfig['grid']> => {
   const series = config?.series;
   if (!series) {
     return {};
   }
 
   // Early return for top and bottom positions, as we don't need to calculate the width for those positions
+
   if (position === 'top' || position === 'bottom') {
     return {
       [position]: LEGEND.GRID_OFFSET,
@@ -159,4 +159,22 @@ export const getGridForLegendPosition = (position: LegendPosition, legendStyle: 
   return {
     [position]: verticalWidth + axisOffset,
   };
+};
+
+/**
+ * Normalizes the requested legend position and falls back to the default position for invalid values.
+ *
+ * @param {LegendPosition | LegendOption | undefined} positionOrOptions Position string or full legend options object.
+ * @returns A valid legend position.
+ */
+export const normalizeLegendPosition = (
+  positionOrOptions?: LegendPosition | LegendOption,
+): LegendPosition => {
+  const position = typeof positionOrOptions === 'string'
+    ? positionOrOptions
+    : positionOrOptions?.position;
+
+  return (position === undefined || !['top', 'left', 'right', 'bottom'].includes(position))
+    ? LEGEND.DEFAULT_POSITION
+    : position;
 };

@@ -14,6 +14,7 @@ export const THEME = {
 
 /** Legend constants */
 export const LEGEND = {
+  DEFAULT_POSITION: 'top',
   /** Shared spacing used when positioned legends need to stay clear of chart content. */
   GRID_OFFSET: 80,
   /** Horizontal gap between a vertical legend icon and its label text. */

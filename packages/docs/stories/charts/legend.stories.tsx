@@ -73,7 +73,7 @@ export const ShowLegendTop: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .legendShow({ position: 'top'});
+          .legendShow();
       });
     </script>
   `,
@@ -108,7 +108,7 @@ export const ShowLegendLeft: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .legendShow({ position: 'left' });
+          .legendShow('left');
       });
     </script>
   `,
@@ -143,7 +143,7 @@ export const ShowLegendRight: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .legendShow({ position: 'right'});
+          .legendShow({ position: 'right' });
       });
     </script>
   `,
@@ -178,7 +178,7 @@ export const ShowLegendBottom: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .legendShow({ position: 'bottom'});
+          .legendShow('bottom');
       });
     </script>
   `,

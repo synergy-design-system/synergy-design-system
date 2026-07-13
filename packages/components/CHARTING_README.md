@@ -304,9 +304,32 @@ If index options are omitted, presets are applied to all configured axes of the 
 
 ### Legend presets
 
-| Preset function | Options                            | Description                                                                                                                                           |
-| --------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `legendShow`    | `LegendPresetOptions` _(optional)_ | Shows the legend on the specified position (top, bottom, left, right) with Synergy defaults and adjusts grid spacing to prevent legend/chart overlap. |
+| Preset function | Options                                                                          | Description                                                                                                                                                                                                                                                                |
+| --------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `legendShow`    | `positionOrOptions?: LegendPresetOption`<br><br>`gridOptions?: ECConfig['grid']` | Shows the legend with Synergy defaults and adds matching grid spacing so the legend does not overlap the chart. Supports position string input (`'top'`, `'bottom'`, `'left'`, `'right'`) or object input (`{ position, legend }`) and optional additional grid overrides. |
+
+Use `legendShow` for single-legend setups.
+For charts with multiple legends, use `legendsShow`.
+
+Examples:
+
+```ts
+// Default: top legend
+chart.config = handle => handle.baseConfig(baseConfig).legendShow();
+
+// String position + grid override
+chart.config = handle =>
+  handle.baseConfig(baseConfig).legendShow("top", { left: 24 });
+
+// Object syntax with custom legend options
+chart.config = handle =>
+  handle.baseConfig(baseConfig).legendShow({
+    position: "right",
+    legend: {
+      top: "center",
+    },
+  });
+```
 
 ---
 

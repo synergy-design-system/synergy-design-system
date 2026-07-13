@@ -538,8 +538,7 @@ The default position of the legend is top. The legend can be positioned at the t
   };
 
   charts.forEach((chart) => {
-    chart.config = (handle) =>
-      handle.baseConfig(baseConfig).legendShow({ position: "top" });
+    chart.config = (handle) => handle.baseConfig(baseConfig).legendShow();
   });
 </script>
 ```
@@ -582,8 +581,7 @@ The legend can be positioned at the left of the chart by using the handle method
   };
 
   charts.forEach((chart) => {
-    chart.config = (handle) =>
-      handle.baseConfig(baseConfig).legendShow({ position: "left" });
+    chart.config = (handle) => handle.baseConfig(baseConfig).legendShow("left");
   });
 </script>
 ```
@@ -671,7 +669,7 @@ The legend can be positioned at the bottom of the chart by using the handle meth
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle.baseConfig(baseConfig).legendShow({ position: "bottom" });
+      handle.baseConfig(baseConfig).legendShow("bottom");
   });
 </script>
 ```

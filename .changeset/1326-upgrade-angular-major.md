@@ -1,5 +1,12 @@
 ---
+"@synergy-design-system/assets": minor
 "@synergy-design-system/angular": minor
+"@synergy-design-system/components": minor
+"@synergy-design-system/fonts": minor
+"@synergy-design-system/mcp": minor
+"@synergy-design-system/metadata": minor
+"@synergy-design-system/styles": minor
+"@synergy-design-system/tokens": minor
 ---
 
 feat: ✨ Enable support for Angular 22 (#1326)

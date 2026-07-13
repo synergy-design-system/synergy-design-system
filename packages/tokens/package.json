@@ -19,7 +19,7 @@
     "eslint-import-resolver-typescript": "^4.4.5",
     "style-dictionary": "^5.5.0",
     "stylelint": "^17.13.0",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "exports": {
     ".": {

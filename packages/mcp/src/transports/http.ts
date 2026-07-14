@@ -173,11 +173,13 @@ export async function createHttpTransport(
       });
 
       nodeServer.on('listening', () => {
-        process.stdout.write(`${getSynergyLogo()}`);
-        process.stdout.write(
-          `[synergy-mcp] ✓ ${protocol.toUpperCase()} server started at ${protocol}://${host}:${port}\n`,
-        );
-        process.stdout.write(`[synergy-mcp] ✓ MCP endpoint: ${protocol}://${host}:${port}/mcp\n`);
+        if (!config.silent) {
+          process.stdout.write(`${getSynergyLogo()}`);
+          process.stdout.write(
+            `[synergy-mcp] ✓ ${protocol.toUpperCase()} server started at ${protocol}://${host}:${port}\n`,
+          );
+          process.stdout.write(`[synergy-mcp] ✓ MCP endpoint: ${protocol}://${host}:${port}/mcp\n`);
+        }
         resolve();
       });
 
@@ -189,7 +191,9 @@ export async function createHttpTransport(
         if (error) {
           reject(error);
         } else {
-          process.stdout.write('[synergy-mcp] ✓ Server stopped\n');
+          if (!config.silent) {
+            process.stdout.write('[synergy-mcp] ✓ Server stopped\n');
+          }
           resolve();
         }
       });

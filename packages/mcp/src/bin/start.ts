@@ -75,6 +75,13 @@ try {
     };
   }
 
+  if (parsedArgs.silent !== undefined) {
+    config = {
+      ...config,
+      silent: parsedArgs.silent,
+    };
+  }
+
   // Persist the final resolved config (including CLI overrides) for middleware/tool runtime.
   setRuntimeConfig(config);
 

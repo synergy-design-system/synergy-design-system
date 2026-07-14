@@ -125,6 +125,43 @@ export const withToolLoggingMiddleware: ToolMiddleware<Record<string, unknown>> 
  * Middleware that logs prompt execution details.
  * Token counting is based on the resolved prompt text payload.
  */
+/**
+ * Middleware that logs resource read details, including duration and success/failure.
+ * Reads the URI from the args object (key: 'uri') that resourceHandler injects.
+ */
+export const withResourceLoggingMiddleware: ToolMiddleware<Record<string, unknown>> = (
+  next,
+  context,
+) => async (args) => {
+  if (!isAnyLoggingEnabled(context.config)) {
+    return next(args);
+  }
+
+  const startedAt = process.hrtime.bigint();
+  let success = false;
+  let errorMessage: string | undefined;
+
+  try {
+    const result = await next(args);
+    success = true;
+    return result;
+  } catch (error) {
+    errorMessage = error instanceof Error ? error.message : String(error);
+    throw error;
+  } finally {
+    const durationMs = Number(process.hrtime.bigint() - startedAt) / 1_000_000;
+
+    await logOperation({
+      durationMs,
+      errorMessage,
+      kind: 'resource',
+      name: context.toolName,
+      parameters: { uri: args.uri },
+      success,
+    });
+  }
+};
+
 export const withPromptLoggingMiddleware: ToolMiddleware<Record<string, unknown>> = (
   next,
   context,

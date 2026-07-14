@@ -98,6 +98,17 @@ export const McpRuntimeConfigSchema = z.object({
     .default(9119),
 
   /**
+   * Suppresses non-essential startup/status output on stdout.
+   * Useful in container environments where only protocol output and explicit
+   * structured logs should be emitted.
+   *
+   * Note: This does not disable protocol output in stdio mode and does not
+   * affect explicit logging providers (e.g. logging.stdout).
+   * @default false
+   */
+  silent: z.boolean().default(false),
+
+  /**
    * TLS configuration for HTTPS mode.
    * Both keyPath and certPath must be provided together to enable HTTPS.
    * If provided, the HTTP server will use HTTPS instead.

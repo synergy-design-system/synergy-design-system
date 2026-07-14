@@ -49,6 +49,9 @@ syn-mcp --interface http --log-stdout
 
 # Use both providers simultaneously
 syn-mcp --interface http --log ./logs --log-stdout
+
+# Suppress non-essential startup/status output
+syn-mcp --silent
 ```
 
 Available CLI flags:
@@ -61,6 +64,7 @@ Available CLI flags:
 - `--host <address>`: HTTP bind address (default: `127.0.0.1`)
 - `--log <value>`: Local tool-call log directory path, or `false` / `null` to disable
 - `--log-stdout`: Emit tool-call logs as JSONL to stdout (incompatible with `--interface stdio`)
+- `--silent`: Suppress non-essential startup/status output (logo, startup banner, endpoint line)
 - `--tls-key <path>`: Path to TLS private key file (enables HTTPS)
 - `--tls-cert <path>`: Path to TLS certificate file (enables HTTPS)
 - `--compression <none|toon>`: Response compression mode (default: `none`; experimental)
@@ -137,6 +141,10 @@ Example:
 
   // Include custom ai rules for each tool.
   "includeAiRules": true,
+
+  // Suppress non-essential startup/status output on stdout.
+  // Does not affect MCP protocol traffic or configured logging providers.
+  "silent": false,
 
   // Optional logging providers
   "logging": {
@@ -253,6 +261,9 @@ syn-mcp --config ./synergy-mcp.json --host 0.0.0.0
 
 # Config enables logging, but CLI disables it for this run
 syn-mcp --config ./synergy-mcp.json --log false
+
+# Config shows startup banner, but CLI suppresses it for this run
+syn-mcp --config ./synergy-mcp.json --silent
 ```
 
 #### Tool-call logging
@@ -286,7 +297,8 @@ syn-mcp --interface http --log ./logs --log-stdout
 Each entry includes:
 
 - `timestamp`
-- `toolName`
+- `kind` (`tool`, `prompt`, `resource`)
+- `name`
 - `parameters`
 - `durationMs`
 - `sessionId` (`stdio` when no session id exists)
@@ -321,12 +333,13 @@ The MCP package declares tiktoken as both a dev dependency (for build/test) and 
 ```json
 {
   "durationMs": 187.69,
+  "kind": "tool",
+  "name": "asset-list",
   "parameters": {},
   "sessionId": "stdio",
   "success": true,
   "timestamp": "2026-04-22T09:21:47.533Z",
   "tokenCount": 421,
-  "toolName": "asset-list",
   "transport": "stdio"
 }
 ```
@@ -337,6 +350,7 @@ Notes:
 - Use `--log <path>` or set `logging.localFile.path` in config to enable local file logging.
 - `--log false` and `--log null` explicitly disable local file logging.
 - Use `--log-stdout` or set `logging.stdout.enabled: true` to enable stdout logging (HTTP mode only).
+- Use `--silent` or set `silent: true` to suppress non-essential startup/status output.
 - Token counting is always optional and non-blocking; the server runs fine without it.
 
 #### HTTP Server Endpoint

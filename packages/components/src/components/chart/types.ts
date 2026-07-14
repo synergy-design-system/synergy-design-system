@@ -48,7 +48,7 @@ export type {
 } from './configs/axes/types.js';
 
 export type {
-  LegendPresetOption,
+  LegendShowOption,
   LegendOption,
   LegendPosition,
 } from './configs/legend/types.js';

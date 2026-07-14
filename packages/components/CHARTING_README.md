@@ -304,12 +304,9 @@ If index options are omitted, presets are applied to all configured axes of the 
 
 ### Legend presets
 
-| Preset function | Options                                                                          | Description                                                                                                                                                                                                                                                                |
-| --------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `legendShow`    | `positionOrOptions?: LegendPresetOption`<br><br>`gridOptions?: ECConfig['grid']` | Shows the legend with Synergy defaults and adds matching grid spacing so the legend does not overlap the chart. Supports position string input (`'top'`, `'bottom'`, `'left'`, `'right'`) or object input (`{ position, legend }`) and optional additional grid overrides. |
-
-Use `legendShow` for single-legend setups.
-For charts with multiple legends, use `legendsShow`.
+| Preset function | Options                                                                        | Description                                                                                                                                                                                                                                                                |
+| --------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `legendShow`    | `positionOrOptions?: LegendShowOption`<br><br>`gridOptions?: ECConfig['grid']` | Shows the legend with Synergy defaults and adds matching grid spacing so the legend does not overlap the chart. Supports position string input (`'top'`, `'bottom'`, `'left'`, `'right'`) or object input (`{ position, legend }`) and optional additional grid overrides. |
 
 Examples:
 

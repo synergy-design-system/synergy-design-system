@@ -5,16 +5,13 @@ import {
   mergeDeep,
 } from '../utilities.js';
 import type { ECConfig } from '../../types.js';
-import type { LegendPresetOption } from './types.js';
+import type { LegendShowOption } from './types.js';
 import { getGridForLegendPosition, getLegendConfigForPosition, normalizeLegendPosition } from './utilities.js';
 
 /**
  * Shows and positions a chart legend and automatically adds matching grid spacing.
  *
- * Use this preset for single-legend setups.
- * For charts with multiple legends, use the `legendsShow` preset.
- *
- * @param {LegendPresetOption} [positionOrOptions] Legend position or preset options used to derive legend placement and optional legend overrides.
+ * @param {LegendShowOption} [positionOrOptions] Legend position or preset options used to derive legend placement and optional legend overrides.
  * @param {ECConfig['grid']} [gridOptions] Grid config merged with the calculated legend spacing.
  *
  * @example legendShow() //  uses the default top position.
@@ -26,7 +23,7 @@ import { getGridForLegendPosition, getLegendConfigForPosition, normalizeLegendPo
  * @see https://echarts.apache.org/en/option.html#grid
  */
 export const legendShow = (
-  positionOrOptions?: LegendPresetOption,
+  positionOrOptions?: LegendShowOption,
   gridOptions?: ECConfig['grid'],
 ): ConfigModifier => (config) => {
   const position = normalizeLegendPosition(positionOrOptions);

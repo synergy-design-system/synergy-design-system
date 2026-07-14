@@ -29,4 +29,4 @@ export type LegendOption = {
  * Supports either a position string (`'top'`, `'bottom'`, `'left'`, `'right'`)
  * or an options object with `position` and optional `legend` overrides.
  */
-export type LegendPresetOption = LegendOption | LegendPosition;
+export type LegendShowOption = LegendOption | LegendPosition;

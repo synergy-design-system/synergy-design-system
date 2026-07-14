@@ -10,6 +10,7 @@ import {
   withToolLoggingMiddleware,
 } from '../middleware/index.js';
 import { getRuntimeConfig } from './config.js';
+import { logOperation } from './logger.js';
 
 /**
  * MetadataFile type representing a structured metadata file.
@@ -214,4 +215,43 @@ export const promptHandler = <TArgs extends Record<string, unknown>>(
   }
 
   return toPromptResponseFromEntries(result, promptName, args, options);
+};
+
+/**
+ * Wraps a resource handler with execution logging while keeping the resource
+ * implementation focused on business logic.
+ */
+export const resourceHandler = <TResult>(
+  resourceName: string,
+  handler: (uri: URL) => Promise<TResult>,
+) => async (uri: URL): Promise<TResult> => {
+  if (!getRuntimeConfig().logging) {
+    return handler(uri);
+  }
+
+  const startedAt = process.hrtime.bigint();
+  let success = false;
+  let errorMessage: string | undefined;
+
+  try {
+    const result = await handler(uri);
+    success = true;
+    return result;
+  } catch (error) {
+    errorMessage = error instanceof Error ? error.message : String(error);
+    throw error;
+  } finally {
+    const durationMs = Number(process.hrtime.bigint() - startedAt) / 1_000_000;
+
+    await logOperation({
+      durationMs,
+      errorMessage,
+      kind: 'resource',
+      name: resourceName,
+      parameters: {
+        uri: uri.toString(),
+      },
+      success,
+    });
+  }
 };

@@ -54,6 +54,8 @@ export default class SynChart extends SynergyElement {
 
   private resolvedConfig: ECConfig = {};
 
+  static #tokenWarmUpDone = false;
+
   /**
    * The ECharts configuration input.
    *
@@ -157,10 +159,15 @@ export default class SynChart extends SynergyElement {
   connectedCallback() {
     super.connectedCallback();
     /**
-     * We need to fill up the token cache with the current theme values, so that the chart can be rendered correctly on first render.
+     * We need to fill up the token cache with the current theme values, so that the chart can be rendered correctly.
      * This is needed before setting the theme, so the cache is used there.
+     * We use static property to ensure that the cache is only filled once per page load, and not for every chart instance.
      */
-    warmupStyleTokenCache();
+    if(!SynChart.#tokenWarmUpDone) {
+      const count = warmupStyleTokenCache();
+      SynChart.#tokenWarmUpDone = count > 0;
+    }
+
     registerTheme('default', getSynergyLightTheme());
     /**
      * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.

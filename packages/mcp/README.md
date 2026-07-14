@@ -328,6 +328,101 @@ For public or containerized deployments, bind to all interfaces explicitly:
 syn-mcp --interface http --host 0.0.0.0
 ```
 
+## Docker and Kubernetes
+
+The MCP package is container-ready and can be deployed as an HTTP service in Kubernetes.
+
+### Container runtime contract
+
+- Protocol: HTTP
+- Port: `9119` (override with `PORT`)
+- MCP endpoint: `/mcp`
+- Default config path: `/config/synergy-mcp.json`
+- TLS, certificates, ingress, and DNS are handled outside the container (for example via Kubernetes ingress/controllers).
+
+### Build image from release tarballs
+
+The Docker image uses packed release artifacts for Synergy packages to avoid npm propagation timing issues.
+
+For repeatable local builds, use the helper script in `packages/mcp/docker`:
+
+```bash
+./packages/mcp/docker/build-local.sh /path/to/custom/ca.crt synergy-design-system/mcp:local
+```
+
+The script:
+
+- checks that `colima`, `docker`, and `pnpm` exist
+- validates that the CA file exists
+- installs the CA into Colima
+- restarts Colima and verifies Docker base-image access
+- builds and packs the required Synergy packages
+- builds the MCP Docker image with the CA mounted as a BuildKit secret
+
+If your network does not require a custom CA, you can still build manually.
+
+Manual fallback:
+
+```bash
+cd packages/mcp
+
+pnpm --dir ../.. --filter @synergy-design-system/assets build
+pnpm --dir ../.. --filter @synergy-design-system/metadata build
+pnpm --dir ../.. --filter @synergy-design-system/mcp build
+
+mkdir -p artifacts
+
+pnpm --dir ../.. --filter @synergy-design-system/assets pack --pack-destination packages/mcp/artifacts
+pnpm --dir ../.. --filter @synergy-design-system/metadata pack --pack-destination packages/mcp/artifacts
+pnpm --dir ../.. --filter @synergy-design-system/mcp pack --pack-destination packages/mcp/artifacts
+
+docker build -t synergy-design-system/mcp:3.20.0 .
+```
+
+If your network uses TLS interception (for example a corporate firewall), pass your CA certificate as a BuildKit secret during build:
+
+```bash
+docker build \
+  --progress=plain \
+  --secret id=corp_ca,src=/path/to/ca.crt \
+  -t synergy-design-system/mcp:3.20.0 \
+  .
+```
+
+The `corp_ca` file is mounted only for the npm install step and is not persisted in image layers.
+
+### Run with injected config
+
+```bash
+docker run \
+  -p 9119:9119 \
+  -v "$(pwd)/synergy-mcp.json:/config/synergy-mcp.json:ro" \
+  synergy-design-system/mcp:3.20.0
+```
+
+The container starts MCP using:
+
+```bash
+syn-mcp --interface http --host 0.0.0.0 --port 9119 --config /config/synergy-mcp.json
+```
+
+If the config file is not mounted, the server starts with built-in defaults and still listens on HTTP.
+
+### Kubernetes config injection
+
+Mount a `ConfigMap` or `Secret` at `/config` so the container can read `/config/synergy-mcp.json`.
+
+Example mount shape:
+
+```yaml
+volumeMounts:
+  - name: mcp-config
+    mountPath: /config
+    readOnly: true
+```
+
+For production, pin deployments to immutable version tags (for example `synergy-design-system/mcp:3.20.0`) instead of `latest`.
+
 Example deployment patterns:
 
 ```bash

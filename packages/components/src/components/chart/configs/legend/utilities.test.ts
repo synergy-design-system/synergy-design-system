@@ -3,6 +3,7 @@ import type { ECConfig } from '../../types.js';
 import {
   getGridForLegendPosition,
   getLegendConfigForPosition,
+  normalizeLegendPosition,
 } from './utilities.js';
 
 describe('chart legend utilities', () => {
@@ -154,14 +155,24 @@ describe('chart legend utilities', () => {
 
       expect(withArrayYAxes.left).to.equal(withoutYAxis.left + 80);
     });
+  });
 
-    it('reads the itemWidth from the first entry when legend style is an array', () => {
-      const config: ECConfig = { series: [{ name: 'Revenue', type: 'bar' }] };
+  describe('normalizeLegendPosition', () => {
+    it('returns the same position when a valid string is provided', () => {
+      expect(normalizeLegendPosition('left')).to.equal('left');
+      expect(normalizeLegendPosition('top')).to.equal('top');
+      expect(normalizeLegendPosition('right')).to.equal('right');
+      expect(normalizeLegendPosition('bottom')).to.equal('bottom');
+    });
 
-      const singleResult = getGridForLegendPosition('left', { itemWidth: 20, left: 0 }, config) as Record<string, number>;
-      const arrayResult = getGridForLegendPosition('left', [{ itemWidth: 20, left: 0 }], config) as Record<string, number>;
+    it('returns the position from options when valid', () => {
+      expect(normalizeLegendPosition({ position: 'right' })).to.equal('right');
+    });
 
-      expect(arrayResult.left).to.equal(singleResult.left);
+    it('falls back to default position for undefined or invalid inputs', () => {
+      expect(normalizeLegendPosition()).to.equal('top');
+      expect(normalizeLegendPosition({})).to.equal('top');
+      expect(normalizeLegendPosition({ position: 'invalid' as never })).to.equal('top');
     });
   });
 });

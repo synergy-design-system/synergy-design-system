@@ -16,8 +16,9 @@ import styles from './chart.styles.js';
 import { type ChartPalette, PALETTE_TOKENS } from './chart.palettes.js';
 import { resolveConfigInput } from './configs/config.js';
 import type { ChartConfigType, ECConfig } from './types.js';
-import { synergyLightTheme } from './themes/light.js';
+import { getSynergyLightTheme } from './themes/light.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
+import { warmupStyleTokenCache } from './themes/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -155,7 +156,12 @@ export default class SynChart extends SynergyElement {
 
   connectedCallback() {
     super.connectedCallback();
-    registerTheme('default', synergyLightTheme);
+    /**
+     * We need to fill up the token cache with the current theme values, so that the chart can be rendered correctly on first render.
+     * This is needed before setting the theme, so the cache is used there.
+     */
+    warmupStyleTokenCache();
+    registerTheme('default', getSynergyLightTheme());
     /**
      * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.
      * This is needed because ECharts does not provide a way to set specific styles for x and y axis, only for axis types.

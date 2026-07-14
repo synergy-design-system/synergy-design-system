@@ -33,7 +33,7 @@
     "lint": "pnpm run /^lint:.*/"
   },
   "dependencies": {
-    "browserslist": "^4.28.2"
+    "browserslist": "^4.28.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",

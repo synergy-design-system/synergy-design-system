@@ -11,7 +11,7 @@
     "typescript": "^6.0.3"
   },
   "dependencies": {
-    "@changesets/changelog-github": "^0.6.0",
+    "@changesets/changelog-github": "^0.7.0",
     "@changesets/read": "^0.6.7",
     "@changesets/write": "^0.4.0",
     "@manypkg/get-packages": "^3.1.0"

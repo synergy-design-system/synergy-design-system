@@ -61,3 +61,6 @@ CHANGELOG.md
 
 # Github internal stuff
 .github
+
+# #1090: Ignore generated sboms
+sboms/

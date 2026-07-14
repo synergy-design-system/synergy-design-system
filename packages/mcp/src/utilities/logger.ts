@@ -1,4 +1,5 @@
 import { createLocalFileLoggerProvider } from './local-file-logger.js';
+import { createStdoutLoggerProvider } from './stdout-logger.js';
 import { createLoggerService } from './logging-service.js';
 import { getLoggingContext } from './logging-context.js';
 import type { McpRuntimeConfig } from './config.js';
@@ -12,6 +13,11 @@ export const initializeLogger = (config: McpRuntimeConfig): void => {
   const localPath = config.logging.localFile.path;
   if (localPath) {
     providerFactories.push(createLocalFileLoggerProvider(localPath));
+  }
+
+  // Enable stdout logging if configured and the interface is not stdio to avoid duplicate logs in stdio mode.
+  if (config.logging.stdout.enabled && config.interface !== 'stdio') {
+    providerFactories.push(createStdoutLoggerProvider());
   }
 
   loggerService = createLoggerService(providerFactories);

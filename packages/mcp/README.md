@@ -43,6 +43,12 @@ syn-mcp --log ./logs
 
 # Explicitly disable logging (also disabled when omitted)
 syn-mcp --log false
+
+# Emit tool-call logs as JSONL to stdout (HTTP mode only)
+syn-mcp --interface http --log-stdout
+
+# Use both providers simultaneously
+syn-mcp --interface http --log ./logs --log-stdout
 ```
 
 Available CLI flags:
@@ -54,6 +60,7 @@ Available CLI flags:
 - `--port <number>`: HTTP server port (default: `9119`, only used with `--interface http`)
 - `--host <address>`: HTTP bind address (default: `127.0.0.1`)
 - `--log <value>`: Local tool-call log directory path, or `false` / `null` to disable
+- `--log-stdout`: Emit tool-call logs as JSONL to stdout (incompatible with `--interface stdio`)
 - `--tls-key <path>`: Path to TLS private key file (enables HTTPS)
 - `--tls-cert <path>`: Path to TLS certificate file (enables HTTPS)
 - `--compression <none|toon>`: Response compression mode (default: `none`; experimental)
@@ -137,6 +144,12 @@ Example:
       // Base folder for logs (YY-MM-DD/SESSION.json)
       // Set to null to disable local file logging
       "path": "./logs",
+    },
+    "stdout": {
+      // Emit each tool-call log entry as a JSONL line to stdout.
+      // Only supported when interface is "http".
+      // Combining this with interface "stdio" is an error (stdout carries the MCP wire protocol).
+      "enabled": false,
     },
   },
 
@@ -244,9 +257,31 @@ syn-mcp --config ./synergy-mcp.json --log false
 
 #### Tool-call logging
 
-Tool-call logging is provider-based. The built-in local file provider writes one JSON entry per line to:
+Tool-call logging is provider-based. Multiple providers can be active simultaneously. The following providers are available:
+
+##### Local file provider
+
+Writes one JSONL entry per line to:
 
 - `YY-MM-DD/SESSION.json`
+
+Enable via `--log <path>` or `logging.localFile.path` in config.
+
+##### Stdout provider
+
+Emits each tool-call log entry as a JSONL line to stdout. Intended for containerised deployments (Kubernetes, Docker) where log aggregators collect from stdout.
+
+Enable via `--log-stdout` or `logging.stdout.enabled: true` in config.
+
+> **Note:** Stdout logging requires `interface: http`. Enabling it together with `interface: stdio` is an error — in stdio mode stdout carries the MCP wire protocol and mixing log lines into it would corrupt the stream. The server will log an error to stderr and exit.
+
+Both providers can run at the same time:
+
+```bash
+syn-mcp --interface http --log ./logs --log-stdout
+```
+
+##### Log entry fields
 
 Each entry includes:
 
@@ -299,8 +334,9 @@ The MCP package declares tiktoken as both a dev dependency (for build/test) and 
 Notes:
 
 - Logging is disabled by default.
-- Use `--log <path>` or set `logging.localFile.path` in config to enable.
+- Use `--log <path>` or set `logging.localFile.path` in config to enable local file logging.
 - `--log false` and `--log null` explicitly disable local file logging.
+- Use `--log-stdout` or set `logging.stdout.enabled: true` to enable stdout logging (HTTP mode only).
 - Token counting is always optional and non-blocking; the server runs fine without it.
 
 #### HTTP Server Endpoint

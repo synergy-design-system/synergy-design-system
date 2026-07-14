@@ -4,6 +4,7 @@
  * Respects logging config: early-exits if logging is disabled to avoid token counting overhead.
  */
 import { logToolCall } from '../utilities/logger.js';
+import { isAnyLoggingEnabled } from '../utilities/config.js';
 import {
   countTextTokens,
   toTextPayload,
@@ -56,7 +57,7 @@ export const withToolLoggingMiddleware: ToolMiddleware<Record<string, unknown>> 
   context,
 ) => async (args) => {
   // Early exit if logging is not enabled to avoid token counting overhead.
-  if (context.config.logging.localFile.path === null) {
+  if (!isAnyLoggingEnabled(context.config)) {
     return next(args);
   }
 
@@ -117,7 +118,7 @@ export const withPromptLoggingMiddleware: ToolMiddleware<Record<string, unknown>
   next,
   context,
 ) => async (args) => {
-  if (context.config.logging.localFile.path === null) {
+  if (!isAnyLoggingEnabled(context.config)) {
     return next(args);
   }
 

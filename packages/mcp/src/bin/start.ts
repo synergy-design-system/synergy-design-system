@@ -55,6 +55,19 @@ try {
     };
   }
 
+  if (parsedArgs.logStdout !== undefined) {
+    config = {
+      ...config,
+      logging: {
+        ...config.logging,
+        stdout: {
+          ...config.logging.stdout,
+          enabled: parsedArgs.logStdout,
+        },
+      },
+    };
+  }
+
   if (parsedArgs.compression !== undefined) {
     config = {
       ...config,

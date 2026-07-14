@@ -27,6 +27,7 @@ export interface ParsedArgs {
   host?: string;
   interface?: 'stdio' | 'http';
   logPath?: string | null;
+  logStdout?: boolean;
   port?: number;
   tlsKeyPath?: string;
   tlsCertPath?: string;
@@ -94,6 +95,10 @@ export const parseCommandLineArgs = (args: string[] = process.argv.slice(2)): Pa
       : rawValue;
   }
 
+  if (args.includes('--log-stdout')) {
+    result.logStdout = true;
+  }
+
   const tlsKeyIndex = args.indexOf('--tls-key');
   if (tlsKeyIndex >= 0 && tlsKeyIndex + 1 < args.length) {
     result.tlsKeyPath = args[tlsKeyIndex + 1];
@@ -149,6 +154,7 @@ OPTIONS:
     --host <address>        HTTP bind address (default: 127.0.0.1)
     --port <number>         HTTP server port (default: 9119, used with --interface http)
     --log <value>           Tool-call logs directory path, or "false"/"null" to disable
+    --log-stdout            Emit tool-call logs as JSONL to stdout
     --tls-key <path>        Path to TLS private key file (enables HTTPS)
     --tls-cert <path>       Path to TLS certificate file (enables HTTPS)
     --compression <mode>    Response compression: none (default) or toon
@@ -163,6 +169,7 @@ EXAMPLES:
     syn-mcp --interface http --host 0.0.0.0  # Listen on all IPv4 interfaces
     syn-mcp --log ./logs                  # Write tool-call logs to ./logs
     syn-mcp --log false                   # Disable tool-call logging
+    syn-mcp --log-stdout                  # Emit tool-call logs as JSONL to stdout
     syn-mcp --interface http --tls-key ./key.pem --tls-cert ./cert.pem  # Start HTTPS server
 
 CONFIGURATION FILE:
@@ -175,6 +182,9 @@ CONFIGURATION FILE:
       "logging": {
         "localFile": {
           "path": "./logs"
+        },
+        "stdout": {
+          "enabled": false
         }
       },
       "tls": {

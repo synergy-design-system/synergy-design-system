@@ -1,6 +1,6 @@
 import { appendFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
-import type { LoggerProvider, ToolLogEvent } from './logging-types.js';
+import type { LogEvent, LoggerProvider } from './logging-types.js';
 
 const sanitizeSessionId = (sessionId: string): string => sessionId
   .trim()
@@ -15,7 +15,7 @@ const toDateFolder = (isoTimestamp: string): string => {
 };
 
 export const createLocalFileLoggerProvider = (baseDirectory: string): LoggerProvider => ({
-  log: async (event: ToolLogEvent) => {
+  log: async (event: LogEvent) => {
     const dateFolder = toDateFolder(event.timestamp);
     const filename = `${sanitizeSessionId(event.sessionId)}.json`;
     const directory = join(baseDirectory, dateFolder);

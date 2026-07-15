@@ -12,7 +12,7 @@ import {
 import { readFileSync } from 'node:fs';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { getMetadataInfo } from '@synergy-design-system/metadata';
+import { getMetadataInfo, getSynergyLogo } from '@synergy-design-system/metadata';
 import { runWithLoggingContext } from '../utilities/logging-context.js';
 import type { McpRuntimeConfig } from '../utilities/config.js';
 import type { TransportInstance } from './index.js';
@@ -173,10 +173,13 @@ export async function createHttpTransport(
       });
 
       nodeServer.on('listening', () => {
-        process.stdout.write(
-          `[synergy-mcp] ✓ ${protocol.toUpperCase()} server started at ${protocol}://${host}:${port}\n`,
-        );
-        process.stdout.write(`[synergy-mcp] ✓ MCP endpoint: ${protocol}://${host}:${port}/mcp\n`);
+        if (!config.silent) {
+          process.stdout.write(`${getSynergyLogo()}`);
+          process.stdout.write(
+            `[synergy-mcp] ✓ ${protocol.toUpperCase()} server started at ${protocol}://${host}:${port}\n`,
+          );
+          process.stdout.write(`[synergy-mcp] ✓ MCP endpoint: ${protocol}://${host}:${port}/mcp\n`);
+        }
         resolve();
       });
 
@@ -188,7 +191,9 @@ export async function createHttpTransport(
         if (error) {
           reject(error);
         } else {
-          process.stdout.write('[synergy-mcp] ✓ Server stopped\n');
+          if (!config.silent) {
+            process.stdout.write('[synergy-mcp] ✓ Server stopped\n');
+          }
           resolve();
         }
       });

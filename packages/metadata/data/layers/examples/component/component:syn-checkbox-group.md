@@ -122,7 +122,9 @@ The focus event gives the user feedback that one of the Checkboxes has been focu
   label="This is a label"
   help-text="Choose the most appropriate option."
 >
-  <syn-checkbox name="checkbox-1" value="checkbox-1">Option</syn-checkbox>
+  <syn-checkbox disabled="" name="checkbox-1" value="checkbox-1"
+    >Option</syn-checkbox
+  >
 
   <syn-checkbox checked="" name="checkbox-2" value="checkbox-2"
     >Option</syn-checkbox
@@ -139,10 +141,12 @@ The focus event gives the user feedback that one of the Checkboxes has been focu
 Use the disabled attribute on the corresponding syn-checkbox elements to set the disabled state.
 
 ```html
-<syn-checkbox-group label="This is a label">
-  <syn-checkbox name="checkbox-1" value="checkbox-1">Option</syn-checkbox>
+<syn-checkbox-group label="This is a disabled">
+  <syn-checkbox disabled="" name="checkbox-1" value="checkbox-1"
+    >Option</syn-checkbox
+  >
 
-  <syn-checkbox disabled="" name="checkbox-2" value="checkbox-2"
+  <syn-checkbox checked="" disabled="" name="checkbox-2" value="checkbox-2"
     >Option</syn-checkbox
   >
 
@@ -158,9 +162,11 @@ Checkboxes can be displayed in a read-only state by applying the readonly attrib
 
 ```html
 <syn-checkbox-group label="This is a label">
-  <syn-checkbox name="checkbox-1" value="checkbox-1">Option</syn-checkbox>
+  <syn-checkbox readonly="" name="checkbox-1" value="checkbox-1"
+    >Option</syn-checkbox
+  >
 
-  <syn-checkbox readonly="" name="checkbox-2" value="checkbox-2"
+  <syn-checkbox checked="" readonly="" name="checkbox-2" value="checkbox-2"
     >Option</syn-checkbox
   >
 

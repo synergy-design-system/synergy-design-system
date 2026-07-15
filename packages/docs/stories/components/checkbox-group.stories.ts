@@ -183,6 +183,7 @@ export const Focus: Story = {
     <syn-checkbox-group label="This is a label" help-text="Choose the most appropriate option.">
       ${createCheckboxes(3, {
         checked: [1],
+        disabled: [0],
       })}
     </syn-checkbox-group>
   `,
@@ -197,9 +198,10 @@ export const Disabled: Story = {
     },
   },
   render: () => html`
-    <syn-checkbox-group label="This is a label">
+    <syn-checkbox-group label="This is a disabled">
       ${createCheckboxes(3, {
-        disabled: [1],
+        checked: [1],
+        disabled: [0, 1],
       })}
     </syn-checkbox-group>
   `,
@@ -216,7 +218,8 @@ export const Readonly: Story = {
   render: () => html`
     <syn-checkbox-group label="This is a label">
       ${createCheckboxes(3, {
-        readonly: [1],
+        checked: [1],
+        readonly: [0, 1],
       })}
     </syn-checkbox-group>
   `,

@@ -34,6 +34,10 @@ export const legendShow = (
 
   if (positionOrOptions && typeof positionOrOptions === 'object' && 'legend' in positionOrOptions) {
     const legendOptions = positionOrOptions.legend || {};
+    // if selectedMode is disabled (this means legend items are not toggleable and therefore the visibility of the series is fixed), we need to remove the visibility icon. We only need it as indicator when the user can toggle the visibility of the series.
+    if(legendOptions.selectedMode === false) {
+      legendOptions.formatter = legendOptions.formatter || ((name: string) => name);
+    }
     legendConfig = mergeDeep(defaultLegendConfig, legendOptions) as LegendComponentOption;
   }
 

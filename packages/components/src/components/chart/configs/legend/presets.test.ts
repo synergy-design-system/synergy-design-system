@@ -151,5 +151,36 @@ describe('chart legend presets', () => {
         expect(gridWithLongerName.right).to.be.greaterThan(grid.right as number);
       });
     });
+
+    describe('selectedMode: false', () => {
+      it('adds an formatter without visibility icon handling when selectedMode is disabled', () => {
+        const result = legendShow({
+          legend: { selectedMode: false },
+          position: 'top',
+        })(config);
+        const legend = result.legend as LegendComponentOption;
+
+        expect(legend.selectedMode).to.equal(false);
+        expect(legend.formatter).to.be.a('function');
+        expect((legend.formatter as (name: string) => string)('Series A')).to.equal('Series A');
+      });
+
+      it('keeps a provided formatter when selectedMode is disabled', () => {
+        const customFormatter = (name: string): string => `custom-${name}`;
+
+        const result = legendShow({
+          legend: {
+            formatter: customFormatter,
+            selectedMode: false,
+          },
+          position: 'top',
+        })(config);
+        const legend = result.legend as LegendComponentOption;
+
+        expect(legend.selectedMode).to.equal(false);
+        expect(legend.formatter).to.equal(customFormatter);
+        expect((legend.formatter as (name: string) => string)('Series A')).to.equal('custom-Series A');
+      });
+    });
   });
 });

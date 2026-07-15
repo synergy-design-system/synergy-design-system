@@ -26,6 +26,24 @@
       justify-content: right;
       margin: var(--syn-spacing-2x-large) 0;
     }
+
+    /* Special responsive handling for the topics checkbox group, which is displayed in a grid on larger screens */
+    #topics {
+      container-type: inline-size;
+    }
+
+    #topics::part(form-control-input) {
+      gap: var(--syn-spacing-x-small);
+      display: grid;
+    }
+
+    @container (min-width: 640px) {
+      #topics::part(form-control-input) {
+        grid-auto-flow: column;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+      }
+    }
   }
 </style>
 <div class="synergy-form-demo">
@@ -36,39 +54,36 @@
   </p>
 
   <form method="post" id="syn-form-demo">
-    <syn-fieldset
-      id="topics"
-      layout="two-columns"
-      style="--item-gap: var(--syn-spacing-x-small)"
-      legend="Topic"
-    >
-      <syn-checkbox name="topic[0]" value="Inquiry/offer">
-        Inquiry/offer
-      </syn-checkbox>
+    <syn-fieldset legend="Topic">
+      <syn-checkbox-group id="topics">
+        <syn-checkbox name="topic[0]" value="Inquiry/offer">
+          Inquiry/offer
+        </syn-checkbox>
 
-      <syn-checkbox name="topic[1]" value="Orders/invoices">
-        Orders/invoices
-      </syn-checkbox>
+        <syn-checkbox name="topic[1]" value="Orders/invoices">
+          Orders/invoices
+        </syn-checkbox>
 
-      <syn-checkbox name="topic[2]" value="Returns/complaint">
-        Returns/complaint
-      </syn-checkbox>
+        <syn-checkbox name="topic[2]" value="Returns/complaint">
+          Returns/complaint
+        </syn-checkbox>
 
-      <syn-checkbox name="topic[3]" value="Documentation/CAD">
-        Documentation/CAD
-      </syn-checkbox>
+        <syn-checkbox name="topic[3]" value="Documentation/CAD">
+          Documentation/CAD
+        </syn-checkbox>
 
-      <syn-checkbox name="topic[4]" value="Accessories selection">
-        Accessories selection
-      </syn-checkbox>
+        <syn-checkbox name="topic[4]" value="Accessories selection">
+          Accessories selection
+        </syn-checkbox>
 
-      <syn-checkbox name="topic[5]" value="Application review">
-        Application review
-      </syn-checkbox>
+        <syn-checkbox name="topic[5]" value="Application review">
+          Application review
+        </syn-checkbox>
 
-      <syn-checkbox name="topic[6]" value="Commissioning support">
-        Commissioning support
-      </syn-checkbox>
+        <syn-checkbox name="topic[6]" value="Commissioning support">
+          Commissioning support
+        </syn-checkbox>
+      </syn-checkbox-group>
     </syn-fieldset>
 
     <syn-fieldset

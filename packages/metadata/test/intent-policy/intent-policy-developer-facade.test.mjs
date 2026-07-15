@@ -638,6 +638,8 @@ describe('intent policy developer facade', () => {
         'component:syn-radio-group',
         'component:syn-select',
         'component:syn-radio-button',
+        'component:syn-radio',
+        'component:syn-option',
       ]);
     } finally {
       await fixture.cleanup();

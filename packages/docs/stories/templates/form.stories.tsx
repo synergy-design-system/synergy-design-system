@@ -87,6 +87,24 @@ export const ContactForm = {
         justify-content: right;
         margin: var(--syn-spacing-2x-large) 0;
       }
+
+      /* Special responsive handling for the topics checkbox group, which is displayed in a grid on larger screens */
+      #topics {
+        container-type: inline-size
+      }
+
+      #topics::part(form-control-input) {
+        gap: var(--syn-spacing-x-small);
+        display: grid;
+      }
+
+      @container (min-width: 640px) {
+        #topics::part(form-control-input) {
+          grid-auto-flow: column;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr 1fr;
+        }
+      }
     }
     </style>
     <div class="synergy-form-demo">
@@ -95,17 +113,14 @@ export const ContactForm = {
 
       <form method="post" id="syn-form-demo">
         
-        <syn-fieldset
-          id="topics"
-          layout="two-columns"
-          legend="${getTranslation('contactForm.topicLabel')}"
-          style="--item-gap: var(--syn-spacing-x-small)"
-        >
-          ${(getTranslation('contactForm.topics') as string[]).map((topic, index) => html`
-            <syn-checkbox name="topic[${index}]" value="${topic}">
-              ${topic}
-            </syn-checkbox>
-          `)}
+        <syn-fieldset legend="${getTranslation('contactForm.topicLabel')}">
+          <syn-checkbox-group id="topics">
+            ${(getTranslation('contactForm.topics') as string[]).map((topic, index) => html`
+              <syn-checkbox name="topic[${index}]" value="${topic}">
+                ${topic}
+              </syn-checkbox>
+            `)}
+          </syn-checkbox-group>
         </syn-fieldset>
 
         <syn-fieldset

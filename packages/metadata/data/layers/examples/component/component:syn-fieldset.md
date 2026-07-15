@@ -8,12 +8,12 @@ Fieldset is a component used to group related form controls and labels. It provi
   legend="Legend"
   layout="two-columns"
 >
-  <syn-input name="item-1" label="Item 1"></syn-input
-  ><syn-input name="item-2" label="Item 2"></syn-input
-  ><syn-input name="item-3" label="Item 3"></syn-input
-  ><syn-input name="item-4" label="Item 4"></syn-input
-  ><syn-input name="item-5" label="Item 5"></syn-input
-  ><syn-input name="item-6" label="Item 6"></syn-input>
+  <syn-input name="item-1" label="Item 1"></syn-input>
+  <syn-input name="item-2" label="Item 2"></syn-input>
+  <syn-input name="item-3" label="Item 3"></syn-input>
+  <syn-input name="item-4" label="Item 4"></syn-input>
+  <syn-input name="item-5" label="Item 5"></syn-input>
+  <syn-input name="item-6" label="Item 6"></syn-input>
 </syn-fieldset>
 ```
 
@@ -29,17 +29,12 @@ The one-column layout applies to container widths below 640px and stacks the nes
   layout="one-column"
   legend="One column layout"
 >
-  <syn-input name="item-1" label="Item 1"> </syn-input>
-
-  <syn-input name="item-2" label="Item 2"> </syn-input>
-
-  <syn-input name="item-3" label="Item 3"> </syn-input>
-
-  <syn-input name="item-4" label="Item 4"> </syn-input>
-
-  <syn-input name="item-5" label="Item 5"> </syn-input>
-
-  <syn-input name="item-6" label="Item 6"> </syn-input>
+  <syn-input name="item-1" label="Item 1"></syn-input>
+  <syn-input name="item-2" label="Item 2"></syn-input>
+  <syn-input name="item-3" label="Item 3"></syn-input>
+  <syn-input name="item-4" label="Item 4"></syn-input>
+  <syn-input name="item-5" label="Item 5"></syn-input>
+  <syn-input name="item-6" label="Item 6"></syn-input>
 </syn-fieldset>
 ```
 
@@ -55,17 +50,12 @@ For container widths of 640px or above, the nested elements within each row swit
   layout="two-columns"
   legend="Two column layout"
 >
-  <syn-input name="item-1" label="Item 1"> </syn-input>
-
-  <syn-input name="item-2" label="Item 2"> </syn-input>
-
-  <syn-input name="item-3" label="Item 3"> </syn-input>
-
-  <syn-input name="item-4" label="Item 4"> </syn-input>
-
-  <syn-input name="item-5" label="Item 5"> </syn-input>
-
-  <syn-input name="item-6" label="Item 6"> </syn-input>
+  <syn-input name="item-1" label="Item 1"></syn-input>
+  <syn-input name="item-2" label="Item 2"></syn-input>
+  <syn-input name="item-3" label="Item 3"></syn-input>
+  <syn-input name="item-4" label="Item 4"></syn-input>
+  <syn-input name="item-5" label="Item 5"></syn-input>
+  <syn-input name="item-6" label="Item 6"></syn-input>
 </syn-fieldset>
 ```
 
@@ -77,16 +67,11 @@ Enable the disabled toggle to disable all nested elements simultaneously.
 
 ```html
 <syn-fieldset disabled="" layout="two-columns" legend="Disabled fieldset">
-  <syn-input name="item-1" label="Item 1"> </syn-input>
-
-  <syn-input name="item-2" label="Item 2"> </syn-input>
-
-  <syn-input name="item-3" label="Item 3"> </syn-input>
-
-  <syn-input name="item-4" label="Item 4"> </syn-input>
-
-  <syn-input name="item-5" label="Item 5"> </syn-input>
-
-  <syn-input name="item-6" label="Item 6"> </syn-input>
+  <syn-input name="item-1" label="Item 1"></syn-input>
+  <syn-input name="item-2" label="Item 2"></syn-input>
+  <syn-input name="item-3" label="Item 3"></syn-input>
+  <syn-input name="item-4" label="Item 4"></syn-input>
+  <syn-input name="item-5" label="Item 5"></syn-input>
+  <syn-input name="item-6" label="Item 6"></syn-input>
 </syn-fieldset>
 ```

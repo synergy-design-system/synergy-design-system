@@ -22,12 +22,7 @@ const createFields = (
 ): Array<string | ReturnType<typeof html>> => Array.from(
   { length: amount },
   (_, i) => (asLit
-    ? html`
-      <syn-input
-        name="item-${i + 1}"
-        label="Item ${i + 1}">
-      </syn-input>
-    `
+    ? html`<syn-input name="item-${i + 1}" label="Item ${i + 1}"></syn-input>\n`
     : `<syn-input name="item-${i + 1}" label="Item ${i + 1}"></syn-input>`
   ),
 );
@@ -52,7 +47,7 @@ const meta: Meta = {
     {
       name: 'default',
       type: 'slot',
-      value: createFields(6, false).map(String).join(''),
+      value: createFields(6, false).map(String).join('\n'),
     },
   ], defaultArgs),
   argTypes,

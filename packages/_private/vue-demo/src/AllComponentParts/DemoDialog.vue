@@ -3,11 +3,15 @@ import { SynVueDialog, SynVueButton } from '@synergy-design-system/vue';
 </script>
 <template>
   <SynVueDialog
-    :open="false"
+    :open="true"
     label="Dialog"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    <SynVueButton variant="filled" slot="footer">
+    <SynVueButton
+      @click="(e: MouseEvent) => (e.target as HTMLElement).closest('syn-dialog')?.hide()"
+      variant="filled"
+      slot="footer"
+    >
       Close
     </SynVueButton>
   </SynVueDialog>

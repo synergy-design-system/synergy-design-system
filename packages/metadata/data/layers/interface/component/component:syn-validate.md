@@ -35,7 +35,9 @@ reflects: no
 type: `string`
 default: `''`
 
-Custom validation message to be displayed when the input is invalid. Will override the default browser validation message. Set to an empty string to reset the validation message.
+Custom validation message to be displayed when the input is invalid.
+Will override the default browser validation message.
+Set to an empty string to reset the validation message.
 
 ### eager
 
@@ -44,7 +46,13 @@ reflects: no
 type: `boolean`
 default: `false`
 
-Set this to true to validate the input immediately when it is rendered. Best used with a `variant` of `inline`. When setting eager, the input will not be focused automatically. When using a `variant` of `native` the browser will focus the last eager field as it is using a tooltip. In this case it is better to just provide one eager field.
+Set this to true to validate the input immediately when it is rendered.
+Best used with a `variant` of `inline`.
+When setting eager, the input will not be focused automatically.
+
+When using a `variant` of `native` the browser will focus
+the last eager field as it is using a tooltip.
+In this case it is better to just provide one eager field.
 
 ### hideIcon
 
@@ -62,7 +70,13 @@ reflects: yes
 type: `string`
 default: `''`
 
-Defines the events that trigger the validation. `invalid` will always automatically be included. You may also use the `live` keyword to validate on every input change. `live` will make sure to listen to the `invalid`, `input` and `blur` events. Please have a look at the [documentation for native form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation) and [the use of form invalid events](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event) for further information.
+Defines the events that trigger the validation.
+`invalid` will always automatically be included.
+You may also use the `live` keyword to validate on every input change.
+`live` will make sure to listen to the `invalid`, `input` and `blur` events.
+
+Please have a look at the [documentation for native form validation](https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation)
+and [the use of form invalid events](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event) for further information.
 
 ### variant
 
@@ -71,7 +85,13 @@ reflects: yes
 type: `'native' | 'tooltip' | 'inline'`
 default: `'native'`
 
-The variant that should be used to show validation alerts. The following variants are supported: - **native** (default): Uses the native browser validation, usually a browser tooltip. - **tooltip**: Show the validation message as a tooltip using a `<syn-tooltip>`. - **inline**: Show the validation message underneath the element, using a `<syn-alert>`
+The variant that should be used to show validation alerts.
+
+The following variants are supported:
+
+- **native** (default): Uses the native browser validation, usually a browser tooltip.
+- **tooltip**: Show the validation message as a tooltip using a `<syn-tooltip>`.
+- **inline**: Show the validation message underneath the element, using a `<syn-alert>`
 
 ## Available Methods
 

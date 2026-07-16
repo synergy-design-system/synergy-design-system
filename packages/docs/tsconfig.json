@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "declaration": true,
-    "declarationDir": "lib/types",
-    "outDir": "lib",
+    "rootDir": "..",
+    "declaration": false,
     "allowSyntheticDefaultImports": true,
     "target": "ESNext",
     "useDefineForClassFields": false,
@@ -16,7 +15,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
-    "noEmit": false,
+    "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,

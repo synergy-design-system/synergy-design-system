@@ -61,7 +61,9 @@ reflects: yes
 type: `string`
 default: `''`
 
-By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you to place the form control outside of a form and associate it with the form that has this `id`. The form must be in the same document or shadow root for this to work.
+By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+the same document or shadow root for this to work.
 
 ### helpText
 
@@ -79,7 +81,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Draws the checkbox in an indeterminate state. This is usually applied to checkboxes that represents a "select all/none" behavior when associated checkboxes have a mix of checked and unchecked states.
+Draws the checkbox in an indeterminate state. This is usually applied to checkboxes that represents a "select
+all/none" behavior when associated checkboxes have a mix of checked and unchecked states.
 
 ### name
 

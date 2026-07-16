@@ -1,0 +1,124 @@
+{
+  "attributes": [
+    {
+      "default": "''",
+      "description": "The description for the fieldset. This is displayed below the legend.\nIf not provided, the fieldset will not have a description.",
+      "fieldName": "description",
+      "name": "description",
+      "reflects": true,
+      "type": "string"
+    },
+    {
+      "default": "false",
+      "description": "Disables automatic grouped control layout syncing.\nWhen true, nested grouped controls keep their own layout configuration.",
+      "fieldName": "disableAutoGroupLayout",
+      "name": "disable-auto-group-layout",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "false",
+      "description": "Whether the fieldset is disabled.\nWhen true, all form controls inside the fieldset are disabled",
+      "fieldName": "disabled",
+      "name": "disabled",
+      "reflects": true,
+      "type": "boolean"
+    },
+    {
+      "default": "'one-column'",
+      "description": "The layout of the fieldset. This determines how the fields are displayed.\nDefaults to `one-column`.\n\n- `one-column`: All fields are displayed in a single column.\n- `two-columns`: Fields are displayed in two columns. Will automatically fall back to one-column if the fieldset is too narrow to display two columns.",
+      "fieldName": "layout",
+      "name": "layout",
+      "reflects": true,
+      "type": "'one-column' | 'two-columns'"
+    },
+    {
+      "default": "''",
+      "description": "The legend for the fieldset. This is displayed as the title of the fieldset.\nIf not provided, the fieldset will not have a legend.",
+      "fieldName": "legend",
+      "name": "legend",
+      "reflects": true,
+      "type": "string"
+    }
+  ],
+  "cssParts": [
+    {
+      "description": "The component's base wrapper.",
+      "name": "base"
+    },
+    {
+      "description": "The component's description element.",
+      "name": "description"
+    },
+    {
+      "description": "The container for the fieldset's fields.",
+      "name": "field-container"
+    },
+    {
+      "description": "The component's legend element.",
+      "name": "legend"
+    }
+  ],
+  "dependencies": [],
+  "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-fieldset--docs",
+  "events": [],
+  "figmaComponentId": "50975-46749",
+  "figmaDocsId": "50945-47173",
+  "methods": [],
+  "properties": [
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The description for the fieldset. This is displayed below the legend.\nIf not provided, the fieldset will not have a description.",
+      "name": "description",
+      "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Disables automatic grouped control layout syncing.\nWhen true, nested grouped controls keep their own layout configuration.",
+      "name": "disableAutoGroupLayout",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "false",
+      "description": "Whether the fieldset is disabled.\nWhen true, all form controls inside the fieldset are disabled",
+      "name": "disabled",
+      "type": "boolean"
+    },
+    {
+      "access": "public",
+      "default": "'one-column'",
+      "description": "The layout of the fieldset. This determines how the fields are displayed.\nDefaults to `one-column`.\n\n- `one-column`: All fields are displayed in a single column.\n- `two-columns`: Fields are displayed in two columns. Will automatically fall back to one-column if the fieldset is too narrow to display two columns.",
+      "name": "layout",
+      "type": "'one-column' | 'two-columns'"
+    },
+    {
+      "access": "public",
+      "default": "''",
+      "description": "The legend for the fieldset. This is displayed as the title of the fieldset.\nIf not provided, the fieldset will not have a legend.",
+      "name": "legend",
+      "type": "string"
+    }
+  ],
+  "since": "3.x.x",
+  "slots": [
+    {
+      "description": "The fieldset's main content. Place form controls inside the fieldset to group them together.",
+      "name": ""
+    },
+    {
+      "description": "Add a legend to the fieldset. This is displayed as the title of the fieldset. Alternatively, you can use the `legend` attribute.",
+      "name": "legend"
+    },
+    {
+      "description": "Add a description to the fieldset. This is displayed below the legend and provides additional information about the fieldset. Alternatively, you can use the `description` attribute.",
+      "name": "description"
+    }
+  ],
+  "sourceModulePath": "components/fieldset/fieldset.js",
+  "status": "stable",
+  "summary": "Fieldsets are used to group related elements in a form.",
+  "tagName": "syn-fieldset"
+}

@@ -8,6 +8,7 @@
     "component:syn-dialog",
     "component:syn-divider",
     "component:syn-drawer",
+    "component:syn-fieldset",
     "component:syn-popup"
   ]
 }

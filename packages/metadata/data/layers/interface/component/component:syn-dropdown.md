@@ -34,7 +34,8 @@ reflects: -
 type: `HTMLElement | undefined`
 default: none
 
-The dropdown will close when the user interacts outside of this element (e.g. clicking). Useful for composing other components that use a dropdown internally.
+The dropdown will close when the user interacts outside of this element (e.g. clicking). Useful for composing other
+components that use a dropdown internally.
 
 ### disabled
 
@@ -61,7 +62,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Indicates whether or not the dropdown is open. You can toggle this attribute to show and hide the dropdown, or you can use the `show()` and `hide()` methods and this attribute will reflect the dropdown's open state.
+Indicates whether or not the dropdown is open. You can toggle this attribute to show and hide the dropdown, or you
+can use the `show()` and `hide()` methods and this attribute will reflect the dropdown's open state.
 
 ### placement
 
@@ -81,7 +83,8 @@ type: `| 'top'
     | 'left-end'`
 default: `'bottom-start'`
 
-The preferred placement of the dropdown panel. Note that the actual placement may vary as needed to keep the panel inside of the viewport.
+The preferred placement of the dropdown panel. Note that the actual placement may vary as needed to keep the panel
+inside of the viewport.
 
 ### skidding
 
@@ -99,7 +102,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-By default, the dropdown is closed when an item is selected. This attribute will keep it open instead. Useful for dropdowns that allow for multiple interactions.
+By default, the dropdown is closed when an item is selected. This attribute will keep it open instead. Useful for
+dropdowns that allow for multiple interactions.
 
 ### sync
 

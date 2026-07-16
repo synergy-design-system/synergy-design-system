@@ -151,6 +151,23 @@ instead.
   }
 
   /**
+* The layout of the radio group.
+* This determines how the radios are displayed.
+This only applies to `syn-radio` elements.
+`syn-radio-button` items are rendered in their own button-group and will always render vertically.
+
+- `horizontal`: Radios are displayed in a row.
+- `vertical`: Radios are displayed in a column.
+ */
+  @Input()
+  set layout(v: SynRadioGroup['layout']) {
+    this._ngZone.runOutsideAngular(() => (this.nativeElement.layout = v));
+  }
+  get layout(): SynRadioGroup['layout'] {
+    return this.nativeElement.layout;
+  }
+
+  /**
 * By default, form controls are associated with the nearest containing `<form>` element.
 * This attribute allows you
 to place the form control outside of a form and associate it with the form that has this `id`.

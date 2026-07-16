@@ -1,0 +1,291 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/form"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynCheckboxGroupComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-checkbox-group",
+        "sourcePath": "packages/angular/components/checkbox-group/checkbox-group.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynCheckboxGroup",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox-group--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "3.x.x",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynCheckboxGroupJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynCheckboxGroup",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/checkbox-group.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueCheckboxGroup",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueCheckboxGroup.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "50279-41408",
+      "figmaDocsId": "50279-43830",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Checkbox groups are used to visually group multiple checkboxes."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Checkbox Group"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use a vertical layout to display the checkboxes in a column."
+          },
+          "name": "vertical-layout",
+          "title": {
+            "type": "text",
+            "value": "Vertical layout"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use a horizontal layout to display the checkboxes in a row."
+          },
+          "name": "horizontal-layout",
+          "title": {
+            "type": "text",
+            "value": "Horizontal layout"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label attribute to give the checkbox-group an accessible label. For labels that contain HTML, use the label slot instead."
+          },
+          "name": "labels",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the checked attribute on the corresponding syn-checkbox elements to set the checked state."
+          },
+          "name": "checked",
+          "title": {
+            "type": "text",
+            "value": "Checked"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\n\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management."
+          },
+          "name": "help-text",
+          "title": {
+            "type": "text",
+            "value": "Help Text"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The focus event gives the user feedback that one of the Checkboxes has been focused by the keyboard interaction."
+          },
+          "name": "focus",
+          "title": {
+            "type": "text",
+            "value": "Focus"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute on the corresponding syn-checkbox elements to set the disabled state."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Checkboxes can be displayed in a read-only state by applying the readonly attribute to the selected checkbox inside the checkbox group."
+          },
+          "name": "readonly",
+          "title": {
+            "type": "text",
+            "value": "Readonly"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The size of checkboxes will be determined by the checkbox group’s size attribute."
+          },
+          "name": "sizes",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        }
+      ],
+      "storySourcePath": "components.checkbox-group",
+      "storyTags": [
+        "Form"
+      ]
+    },
+    "rules": {
+      "accessibility": [
+        "Ensure that the group label is short and descriptive, as assistive technologies announce it when users enter the group.",
+        "Provide a clear label for every checkbox option and avoid ambiguous wording.",
+        "Ensure checkbox options are easily tappable on touch devices and that disabled states remain understandable in context."
+      ],
+      "component": "syn-checkbox-group",
+      "related": {
+        "components": [
+          "syn-checkbox"
+        ],
+        "templates": [
+          "Forms"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Group related checkboxes together in syn-checkbox-group to provide shared context and improve scannability.",
+            "Provide a group label that describes the decision category and use help text when users need additional guidance.",
+            "Use checkboxes in this group when users may select none, one, or multiple options."
+          ],
+          "id": "grouping_and_labels",
+          "name": "Grouping and Labels"
+        },
+        {
+          "content": [
+            "Do not use checkbox-group when users must select exactly one option; use syn-radio-group instead.",
+            "Allow empty groups when selection is optional and avoid forcing a default checked state unless business rules require it.",
+            "Do not disable all choices in a group; if no option is currently applicable, consider hiding the group or explaining why options are unavailable."
+          ],
+          "id": "selection_behavior",
+          "name": "Selection Behavior"
+        },
+        {
+          "content": [
+            "Use vertical layout as the default for most form scenarios, especially with longer labels or supporting help text.",
+            "Use horizontal layout only when options are short, similar in length, and sufficient horizontal space is available.",
+            "For long option lists, keep labels concise and consider splitting options into multiple logical groups to reduce scanning effort."
+          ],
+          "id": "layout",
+          "name": "Layout"
+        }
+      ],
+      "useCases": [
+        "Collect multiple independent selections in forms, such as feature preferences or notification channels.",
+        "Present optional add-ons where users can choose any combination of available options.",
+        "Capture consent combinations (for example, different communication or policy confirmations).",
+        "Offer grouped filter criteria where users may activate multiple filters at once."
+      ]
+    },
+    "sourceModulePath": "components/checkbox-group/checkbox-group.js",
+    "summary": "Checkbox groups are used to group multiple checkboxes together."
+  },
+  "id": "component:syn-checkbox-group",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component:syn-checkbox-group.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox-group/angular/checkbox-group.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox-group/components/checkbox-group.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox-group/components/checkbox-group.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox-group/components/checkbox-group.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox-group/react/checkbox-group.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox-group/vue/SynVueCheckboxGroup.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component:syn-checkbox-group/react/SynCheckboxGroupJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-checkbox-group.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component:syn-checkbox-group.md"
+      }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component:syn-checkbox-group.md"
+      }
+    ]
+  },
+  "name": "syn-checkbox-group",
+  "package": "components",
+  "relations": [],
+  "since": "3.x.x",
+  "sources": [
+    "packages/angular/components/checkbox-group/checkbox-group.component.ts",
+    "packages/components/src/components/checkbox-group/checkbox-group.component.ts",
+    "packages/components/src/components/checkbox-group/checkbox-group.styles.ts",
+    "packages/components/src/components/checkbox-group/checkbox-group.ts",
+    "packages/react/src/components/checkbox-group.ts",
+    "packages/vue/src/components/SynVueCheckboxGroup.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "checkbox-group",
+    "component",
+    "react",
+    "syn-checkbox-group",
+    "vue"
+  ]
+}

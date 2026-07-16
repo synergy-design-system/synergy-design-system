@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# AI discovery
+# Prefer the LLM discovery file for machine-readable documentation indexing.
+# The file contains canonical entry points to HTML pages and AI markdown pages.
+Sitemap: /sitemap.xml
+LLM-Index: /llms.txt

@@ -28,7 +28,8 @@ reflects: no
 type: `string`
 default: `''`
 
-An alternate description to use for assistive devices. If omitted, the icon will be considered presentational and ignored by assistive devices.
+An alternate description to use for assistive devices. If omitted, the icon will be considered presentational and
+ignored by assistive devices.
 
 ### library
 
@@ -55,7 +56,8 @@ reflects: no
 type: `string | undefined`
 default: none
 
-An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and can result in XSS attacks.
+An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and
+can result in XSS attacks.
 
 ## Available CSS Parts
 

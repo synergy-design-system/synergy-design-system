@@ -43,12 +43,14 @@ import type {
   SynButtonGroup,
   SynCard,
   SynCheckbox,
+  SynCheckboxGroup,
   SynCombobox,
   SynDetails,
   SynDialog,
   SynDivider,
   SynDrawer,
   SynDropdown,
+  SynFieldset,
   SynFile,
   SynHeader,
   SynIcon,
@@ -307,6 +309,25 @@ export type SynCustomElement<
     ['syn-input', SynInputEvent],
     ['syn-invalid', SynInvalidEvent],
   ]
+>;
+/**
+ * @summary Checkbox groups are used to group multiple checkboxes together.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox-group--docs
+ * @status stable
+ * @since 3.x.x
+ *
+ * @slot - The default slot where `<syn-checkbox>` and `<syn-switch>` elements are placed.
+ * @slot label - The checkbox group's label. Required for proper accessibility. Alternatively, you can use the `label`
+ *  attribute.
+ * @slot help-text - Text that describes how to use the checkbox group. Alternatively, you can use the `help-text` attribute.
+ *
+ * @csspart form-control - The form control that wraps the label, input, and help text.
+ * @csspart form-control-label - The label's wrapper.
+ * @csspart form-control-input - The input's wrapper.
+ * @csspart form-control-help-text - The help text's wrapper.
+ */ export type SynCheckboxGroupJSXElement = SynCustomElement<
+  SynCheckboxGroup,
+  []
 >;
 /**
  * @summary A combobox component that combines the functionality of a text input with a dropdown listbox,
@@ -593,6 +614,23 @@ export type SynCustomElement<
     ['syn-after-hide', SynAfterHideEvent],
   ]
 >;
+/**
+ * @summary Fieldsets are used to group related elements in a form.
+ * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-fieldset--docs
+ * @status stable
+ * @since 3.x.x
+ *
+ * @slot - The fieldset's main content. Place form controls inside the fieldset to group them together.
+ * @slot legend - Add a legend to the fieldset. This is displayed as the title of the fieldset. Alternatively, you can use the `legend` attribute.
+ * @slot description - Add a description to the fieldset. This is displayed below the legend and provides additional information about the fieldset. Alternatively, you can use the `description` attribute.
+ *
+ * @csspart base - The component's base wrapper.
+ * @csspart legend - The component's legend element.
+ * @csspart description - The component's description element.
+ * @csspart field-container - The container for the fieldset's fields.
+ *
+ * @cssproperty --item-gap - The gap between the fields in the fieldset. Defaults to `--syn-spacing-large`
+ */ export type SynFieldsetJSXElement = SynCustomElement<SynFieldset, []>;
 /**
  * @summary File controls allow selecting an arbitrary number of files for uploading.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs
@@ -1768,6 +1806,22 @@ declare module 'react' {
        * @csspart form-control-help-text - The help text's wrapper.
        */ 'syn-checkbox': SynCheckboxJSXElement;
       /**
+       * @summary Checkbox groups are used to group multiple checkboxes together.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox-group--docs
+       * @status stable
+       * @since 3.x.x
+       *
+       * @slot - The default slot where `<syn-checkbox>` and `<syn-switch>` elements are placed.
+       * @slot label - The checkbox group's label. Required for proper accessibility. Alternatively, you can use the `label`
+       *  attribute.
+       * @slot help-text - Text that describes how to use the checkbox group. Alternatively, you can use the `help-text` attribute.
+       *
+       * @csspart form-control - The form control that wraps the label, input, and help text.
+       * @csspart form-control-label - The label's wrapper.
+       * @csspart form-control-input - The input's wrapper.
+       * @csspart form-control-help-text - The help text's wrapper.
+       */ 'syn-checkbox-group': SynCheckboxGroupJSXElement;
+      /**
        * @summary A combobox component that combines the functionality of a text input with a dropdown listbox,
        * allowing users to either select from predefined options or enter custom values (when not restricted).
        *
@@ -2001,6 +2055,23 @@ declare module 'react' {
        * @animation dropdown.show - The animation to use when showing the dropdown.
        * @animation dropdown.hide - The animation to use when hiding the dropdown.
        */ 'syn-dropdown': SynDropdownJSXElement;
+      /**
+       * @summary Fieldsets are used to group related elements in a form.
+       * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-fieldset--docs
+       * @status stable
+       * @since 3.x.x
+       *
+       * @slot - The fieldset's main content. Place form controls inside the fieldset to group them together.
+       * @slot legend - Add a legend to the fieldset. This is displayed as the title of the fieldset. Alternatively, you can use the `legend` attribute.
+       * @slot description - Add a description to the fieldset. This is displayed below the legend and provides additional information about the fieldset. Alternatively, you can use the `description` attribute.
+       *
+       * @csspart base - The component's base wrapper.
+       * @csspart legend - The component's legend element.
+       * @csspart description - The component's description element.
+       * @csspart field-container - The container for the fieldset's fields.
+       *
+       * @cssproperty --item-gap - The gap between the fields in the fieldset. Defaults to `--syn-spacing-large`
+       */ 'syn-fieldset': SynFieldsetJSXElement;
       /**
        * @summary File controls allow selecting an arbitrary number of files for uploading.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-file--docs

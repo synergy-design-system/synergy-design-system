@@ -318,7 +318,7 @@ export const generateScreenshotStory = (
       ${Object.entries(stories).map(([storyName, story]) => {
         const name = story.name ?? sentenceCase(storyName);
         return html`
-          <div style='height: ${heightPx}px; margin: var(--syn-spacing-small);'>
+          <div style='min-height: ${heightPx}px; margin: var(--syn-spacing-small);'>
             <h3 data-chromatic="ignore" style='${additionalStylesHeading}'>${name}</h3>
             ${story.render?.(args, context)}
           </div>

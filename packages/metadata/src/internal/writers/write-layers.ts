@@ -198,6 +198,15 @@ const formatCell = (value: string | undefined): string => {
   return value.replace(/\|/g, '\\|').replace(/\n/g, ' ');
 };
 
+const formatMarkdownBlock = (value: string | undefined): string => {
+  if (!value || value.trim().length === 0) {
+    return '-';
+  }
+
+  // Keep line breaks to preserve authored markdown lists/paragraphs.
+  return value.trim();
+};
+
 const renderAttributeCell = (attribute: InterfaceAttribute | undefined): string => {
   if (!attribute) {
     return '-';
@@ -322,7 +331,7 @@ reflects: ${renderReflectsCell(mappedAttribute)}
 type: \`${prop.type}\`
 default: ${formattedDefault}
 
-${formatCell(prop.description)}
+${formatMarkdownBlock(prop.description)}
       `.trim();
     })
     .join('\n');
@@ -342,7 +351,7 @@ reflects: ${renderReflectsCell(attr)}
 type: \`${attr.type}\`
 default: ${formattedDefault}
 
-${formatCell(attr.description)}
+${formatMarkdownBlock(attr.description)}
     `.trim();
   }).join('\n');
 

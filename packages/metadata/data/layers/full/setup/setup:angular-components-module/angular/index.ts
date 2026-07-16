@@ -12,12 +12,14 @@ export { SynButtonComponent } from '@synergy-design-system/angular/components/bu
 export { SynButtonGroupComponent } from '@synergy-design-system/angular/components/button-group';
 export { SynCardComponent } from '@synergy-design-system/angular/components/card';
 export { SynCheckboxComponent } from '@synergy-design-system/angular/components/checkbox';
+export { SynCheckboxGroupComponent } from '@synergy-design-system/angular/components/checkbox-group';
 export { SynComboboxComponent } from '@synergy-design-system/angular/components/combobox';
 export { SynDetailsComponent } from '@synergy-design-system/angular/components/details';
 export { SynDialogComponent } from '@synergy-design-system/angular/components/dialog';
 export { SynDividerComponent } from '@synergy-design-system/angular/components/divider';
 export { SynDrawerComponent } from '@synergy-design-system/angular/components/drawer';
 export { SynDropdownComponent } from '@synergy-design-system/angular/components/dropdown';
+export { SynFieldsetComponent } from '@synergy-design-system/angular/components/fieldset';
 export { SynFileComponent } from '@synergy-design-system/angular/components/file';
 export { SynHeaderComponent } from '@synergy-design-system/angular/components/header';
 export { SynIconButtonComponent } from '@synergy-design-system/angular/components/icon-button';

@@ -2,7 +2,7 @@
   "attributes": [
     {
       "default": "''",
-      "description": "The legend for the fieldset. This is displayed as the title of the fieldset.\nIf not provided, the fieldset will not have a description.",
+      "description": "The description for the fieldset. This is displayed below the legend.\nIf not provided, the fieldset will not have a description.",
       "fieldName": "description",
       "name": "description",
       "reflects": true,
@@ -69,7 +69,7 @@
     {
       "access": "public",
       "default": "''",
-      "description": "The legend for the fieldset. This is displayed as the title of the fieldset.\nIf not provided, the fieldset will not have a description.",
+      "description": "The description for the fieldset. This is displayed below the legend.\nIf not provided, the fieldset will not have a description.",
       "name": "description",
       "type": "string"
     },

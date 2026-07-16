@@ -66,7 +66,7 @@ export default class SynFieldset extends SynergyElement {
   };
 
   /**
-   * The legend for the fieldset. This is displayed as the title of the fieldset.
+    * The description for the fieldset. This is displayed below the legend.
    * If not provided, the fieldset will not have a description.
    */
   @property({ reflect: true, type: String }) description = '';

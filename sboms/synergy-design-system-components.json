@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/components",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.17.0-e88f0274-fd60-49c3-b7b2-267a494b739d",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.18.0-23675676-2929-4f78-8315-b7aa2875ed52",
   "creationInfo": {
-    "created": "2026-07-15T11:54:46.289Z",
+    "created": "2026-07-16T13:16:52.802Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.17.0",
+      "versionInfo": "3.18.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.17.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.18.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -58,33 +58,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-1",
-      "name": "composed-offset-position",
-      "versionInfo": "0.0.6",
-      "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/composed-offset-position@0.0.6"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "This provides a set of ponyfills to achieve the same behavior of `offsetParent`, `offsetLeft` and `offsetTop` before the `offsetParent` spec was changed.",
-      "homepage": "https://github.com/jcfranco/composed-offset-position#readme",
-      "supplier": "Person: jcfranco",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-echarts-6.1.0-2",
+      "SPDXID": "SPDXRef-Package-echarts-6.1.0-1",
       "name": "echarts",
       "versionInfo": "6.1.0",
       "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
@@ -109,7 +83,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-3.3.3-3",
+      "SPDXID": "SPDXRef-Package-lit-3.3.3-2",
       "name": "lit",
       "versionInfo": "3.3.3",
       "downloadLocation": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz",
@@ -131,6 +105,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "7f272ebd983f864a68ccbd34966d691091f99cdfe5afd65777a9892361d2378f81cdcf8b0cd74402927a1c56cf91d14d1cbbcea65208b89bf1912e17531aa2af"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-3",
+      "name": "composed-offset-position",
+      "versionInfo": "0.0.6",
+      "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/composed-offset-position@0.0.6"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "This provides a set of ponyfills to achieve the same behavior of `offsetParent`, `offsetLeft` and `offsetTop` before the `offsetParent` spec was changed.",
+      "homepage": "https://github.com/jcfranco/composed-offset-position#readme",
+      "supplier": "Person: jcfranco",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
         }
       ]
     },
@@ -238,33 +238,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-8",
-      "name": "lit-element",
-      "versionInfo": "4.2.2",
-      "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit-element@4.2.2"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A simple base class for creating fast, lightweight web components",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-9",
+      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
       "name": "@lit/reactive-element",
       "versionInfo": "2.1.2",
       "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
@@ -286,6 +260,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-9",
+      "name": "lit-element",
+      "versionInfo": "4.2.2",
+      "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lit-element@4.2.2"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "A simple base class for creating fast, lightweight web components",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
         }
       ]
     },
@@ -380,17 +380,17 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-1",
+      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-2",
+      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-3",
+      "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -404,32 +404,32 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-2",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-1",
       "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-2",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-1",
       "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
-      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-9",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-2",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
-      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-8",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-2",
+      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-2",
       "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-10",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-8",
+      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
       "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-11",
       "relationshipType": "DEPENDS_ON"
     },

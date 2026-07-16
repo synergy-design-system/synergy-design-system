@@ -1,5 +1,30 @@
 # Changelog
 
+## 3.18.0
+
+### Minor Changes
+
+- [#1314](https://github.com/synergy-design-system/synergy-design-system/pull/1314) [`e65eb05`](https://github.com/synergy-design-system/synergy-design-system/commit/e65eb057c399592b7c9e993158c80e6ccca2fe88) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-16
+
+  feat: ✨ syn-fieldset, syn-checkbox-group ([#794](https://github.com/synergy-design-system/synergy-design-system/issues/794))
+
+  #### `<syn-fieldset>`
+
+  Adds a new `<syn-fieldset>` component for grouping related form controls with semantic markup and accessibility support.
+
+  #### `<syn-radio-group>`
+
+  Adds a new property `layout` to `<syn-radio-group>`. This can be used to display slotted `<syn-radio>` elements horizontally.
+
+  #### `<syn-checkbox-group>`
+
+  Adds a new `<syn-checkbox-group>` component for grouping related checkboxes with semantic markup.
+
+### Patch Changes
+
+- Updated dependencies [[`e65eb05`](https://github.com/synergy-design-system/synergy-design-system/commit/e65eb057c399592b7c9e993158c80e6ccca2fe88)]:
+  - @synergy-design-system/tokens@3.18.0
+
 ## 3.17.0
 
 ### Minor Changes

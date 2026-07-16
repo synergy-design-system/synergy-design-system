@@ -4,6 +4,7 @@
   "onlyChanged": true,
   "storybookBaseDir": "packages/docs",
   "untraced": [
+    "sboms/**",
     "packages/_private/**",
     "packages/angular/**",
     "packages/react/**",

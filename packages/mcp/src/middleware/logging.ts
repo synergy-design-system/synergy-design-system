@@ -3,12 +3,12 @@
  * Records tool call duration, token count, success/error state, and parameters.
  * Respects logging config: early-exits if logging is disabled to avoid token counting overhead.
  */
-import { logToolCall } from '../utilities/logger.js';
+import { logOperation } from '../utilities/logger.js';
+import { isAnyLoggingEnabled } from '../utilities/config.js';
 import {
   countTextTokens,
   toTextPayload,
 } from '../utilities/token-counter.js';
-import { toContentArray } from '../utilities/metadata.js';
 import type { PromptResponse } from '../types/prompt-response.js';
 import type {
   ToolMiddleware,
@@ -44,6 +44,17 @@ const toPromptTextPayload = (result: unknown[]): string => {
   return lines.join('\n\n');
 };
 
+const toToolTextPayload = (result: unknown[]): string => {
+  const textEntries = result
+    .filter(Boolean)
+    .map(entry => ({
+      text: typeof entry === 'string' ? entry : JSON.stringify(entry),
+      type: 'text' as const,
+    }));
+
+  return toTextPayload(textEntries);
+};
+
 /**
  * Middleware that logs details about tool execution, including duration, success/failure, token count, and parameters.
  * It checks the logging configuration and skips logging (and token counting) if logging is disabled to optimize performance.
@@ -56,7 +67,7 @@ export const withToolLoggingMiddleware: ToolMiddleware<Record<string, unknown>> 
   context,
 ) => async (args) => {
   // Early exit if logging is not enabled to avoid token counting overhead.
-  if (context.config.logging.localFile.path === null) {
+  if (!isAnyLoggingEnabled(context.config)) {
     return next(args);
   }
 
@@ -69,9 +80,9 @@ export const withToolLoggingMiddleware: ToolMiddleware<Record<string, unknown>> 
     const content = await next(args);
     success = true;
 
-    // Normalize to ToolResponse content before token counting so metrics match the final response shape.
-    // This keeps logging robust even if middleware order changes later.
-    const textPayload = toTextPayload(toContentArray(content).content);
+    // Normalize to ToolResponse-like text content before token counting so metrics
+    // match the final response shape even if middleware order changes later.
+    const textPayload = toToolTextPayload(content);
     tokenCount = await countTextTokens(textPayload);
 
     return content;
@@ -98,13 +109,14 @@ export const withToolLoggingMiddleware: ToolMiddleware<Record<string, unknown>> 
       }
     });
 
-    await logToolCall({
+    await logOperation({
       durationMs,
       errorMessage,
+      kind: 'tool',
+      name: context.toolName,
       parameters: loggableParameters,
       success,
       tokenCount,
-      toolName: context.toolName,
     });
   }
 };
@@ -113,11 +125,48 @@ export const withToolLoggingMiddleware: ToolMiddleware<Record<string, unknown>> 
  * Middleware that logs prompt execution details.
  * Token counting is based on the resolved prompt text payload.
  */
+/**
+ * Middleware that logs resource read details, including duration and success/failure.
+ * Reads the URI from the args object (key: 'uri') that resourceHandler injects.
+ */
+export const withResourceLoggingMiddleware: ToolMiddleware<Record<string, unknown>> = (
+  next,
+  context,
+) => async (args) => {
+  if (!isAnyLoggingEnabled(context.config)) {
+    return next(args);
+  }
+
+  const startedAt = process.hrtime.bigint();
+  let success = false;
+  let errorMessage: string | undefined;
+
+  try {
+    const result = await next(args);
+    success = true;
+    return result;
+  } catch (error) {
+    errorMessage = error instanceof Error ? error.message : String(error);
+    throw error;
+  } finally {
+    const durationMs = Number(process.hrtime.bigint() - startedAt) / 1_000_000;
+
+    await logOperation({
+      durationMs,
+      errorMessage,
+      kind: 'resource',
+      name: context.toolName,
+      parameters: { uri: args.uri },
+      success,
+    });
+  }
+};
+
 export const withPromptLoggingMiddleware: ToolMiddleware<Record<string, unknown>> = (
   next,
   context,
 ) => async (args) => {
-  if (context.config.logging.localFile.path === null) {
+  if (!isAnyLoggingEnabled(context.config)) {
     return next(args);
   }
 
@@ -153,13 +202,14 @@ export const withPromptLoggingMiddleware: ToolMiddleware<Record<string, unknown>
       }
     });
 
-    await logToolCall({
+    await logOperation({
       durationMs,
       errorMessage,
+      kind: 'prompt',
+      name: context.toolName,
       parameters: loggableParameters,
       success,
       tokenCount,
-      toolName: `prompt:${context.toolName}`,
     });
   }
 };

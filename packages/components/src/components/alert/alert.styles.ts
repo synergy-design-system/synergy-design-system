@@ -15,6 +15,7 @@ export default css`
     --variant-color-background: var(--syn-alert-informative-color-background);
     --variant-color-icon: var(--syn-alert-informative-color-icon);
     --variant-color-indicator: var(--syn-alert-informative-color-indicator);
+    --variant-color-text: var(--syn-typography-color-text);
 
     /* Defines special settings for sizes */
     --size-font-size: var(--syn-font-size-medium);
@@ -30,7 +31,7 @@ export default css`
     border-left: 0;
     border-radius: var(--syn-border-radius-none);
     box-sizing: content-box;
-    color: var(--syn-typography-color-text);
+    color: var(--variant-color-text);
     display: flex;
     font-family: var(--syn-font-sans);
     font-size: var(--size-font-size);
@@ -121,6 +122,7 @@ export default css`
     --variant-color-background: var(--syn-alert-warning-color-background);
     --variant-color-icon: var(--syn-alert-warning-color-icon);
     --variant-color-indicator: var(--syn-alert-warning-color-indicator);
+    --variant-color-text: var(--syn-alert-warning-color-text);
   }
 
   .alert--critical {
@@ -128,6 +130,7 @@ export default css`
     --variant-color-background: var(--syn-alert-critical-color-background);
     --variant-color-icon: var(--syn-alert-critical-color-icon);
     --variant-color-indicator: var(--syn-alert-critical-color-indicator);
+    --variant-color-text: var(--syn-alert-critical-color-text);
   }
 
   /** TODO: Major: Remove .alert--danger */

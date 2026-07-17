@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.16.0
+ * @synergy-design-system/tokens version 3.18.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -7,26 +7,38 @@
 :root, .syn-sick2018-dark {
   color-scheme: dark;
 
+  --syn-alert-critical-color-background: var(--syn-panel-background-color);
+  --syn-alert-critical-color-border: var(--syn-panel-border-color);
+  --syn-alert-critical-color-icon: var(--syn-color-critical-400);
+  --syn-alert-critical-color-indicator: var(--syn-color-critical-400);
+  --syn-alert-critical-color-text: var(--syn-typography-color-text);
   --syn-alert-error-color-background: var(--syn-panel-background-color);
   --syn-alert-error-color-border: var(--syn-panel-border-color);
   --syn-alert-error-color-icon: var(--syn-color-error-600);
   --syn-alert-error-color-indicator: var(--syn-color-error-600);
+  --syn-alert-error-color-text: var(--syn-typography-color-text);
   --syn-alert-informative-color-background: var(--syn-panel-background-color);
   --syn-alert-informative-color-border: var(--syn-panel-border-color);
   --syn-alert-informative-color-icon: var(--syn-color-info-600);
   --syn-alert-informative-color-indicator: var(--syn-color-info-600);
+  --syn-alert-informative-color-text: var(--syn-typography-color-text);
   --syn-alert-neutral-color-background: var(--syn-panel-background-color);
   --syn-alert-neutral-color-border: var(--syn-panel-border-color);
   --syn-alert-neutral-color-icon: var(--syn-color-neutral-800);
   --syn-alert-neutral-color-indicator: var(--syn-color-neutral-800);
+  --syn-alert-neutral-color-text: var(--syn-typography-color-text);
   --syn-alert-success-color-background: var(--syn-panel-background-color);
   --syn-alert-success-color-border: var(--syn-panel-border-color);
   --syn-alert-success-color-icon: var(--syn-color-success-500);
   --syn-alert-success-color-indicator: var(--syn-color-success-500);
+  --syn-alert-success-color-text: var(--syn-typography-color-text);
   --syn-alert-warning-color-background: var(--syn-panel-background-color);
   --syn-alert-warning-color-border: var(--syn-panel-border-color);
-  --syn-alert-warning-color-icon: var(--syn-color-warning-400);
-  --syn-alert-warning-color-indicator: var(--syn-color-warning-400);
+  --syn-alert-warning-color-icon: var(--syn-color-warning-600);
+  --syn-alert-warning-color-indicator: var(--syn-color-warning-600);
+  --syn-alert-warning-color-text: var(--syn-typography-color-text);
+  --syn-badge-critical-color-background: var(--syn-color-critical-400);
+  --syn-badge-critical-color-text: var(--syn-typography-color-text-inverted);
   --syn-badge-error-color-background: var(--syn-color-error-600);
   --syn-badge-error-color-text: var(--syn-typography-color-text-inverted);
   --syn-badge-informative-color-background: var(--syn-color-info-600);
@@ -35,8 +47,8 @@
   --syn-badge-neutral-color-text: var(--syn-typography-color-text-inverted);
   --syn-badge-success-color-background: var(--syn-color-success-500);
   --syn-badge-success-color-text: var(--syn-typography-color-text);
-  --syn-badge-warning-color-background: var(--syn-color-warning-400);
-  --syn-badge-warning-color-text: var(--syn-typography-color-text);
+  --syn-badge-warning-color-background: var(--syn-color-warning-600);
+  --syn-badge-warning-color-text: var(--syn-typography-color-text-inverted);
   --syn-border-radius-circle: 9999px;
   --syn-border-radius-large: 8px;
   --syn-border-radius-medium: 8px;
@@ -364,6 +376,7 @@
   --syn-radio-button-border-radius-large: var(--syn-border-radius-none);
   --syn-radio-button-border-radius-medium: var(--syn-border-radius-none);
   --syn-radio-button-border-radius-small: var(--syn-border-radius-none);
+  --syn-radio-button-spacing-small: 6px;
   --syn-range-color-inactive: var(--syn-color-neutral-200);
   --syn-range-error-color: var(--syn-color-error-700);
   --syn-range-tick-color: var(--syn-color-neutral-400);

@@ -6,6 +6,31 @@
 /**
  * @type {string}
  */
+export const SynAlertCriticalColorBackground = 'var(--syn-alert-critical-color-background)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertCriticalColorBorder = 'var(--syn-alert-critical-color-border)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertCriticalColorIcon = 'var(--syn-alert-critical-color-icon)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertCriticalColorIndicator = 'var(--syn-alert-critical-color-indicator)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertCriticalColorText = 'var(--syn-alert-critical-color-text)';
+
+/**
+ * @type {string}
+ */
 export const SynAlertErrorColorBackground = 'var(--syn-alert-error-color-background)';
 
 /**
@@ -22,6 +47,11 @@ export const SynAlertErrorColorIcon = 'var(--syn-alert-error-color-icon)';
  * @type {string}
  */
 export const SynAlertErrorColorIndicator = 'var(--syn-alert-error-color-indicator)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertErrorColorText = 'var(--syn-alert-error-color-text)';
 
 /**
  * @type {string}
@@ -46,6 +76,11 @@ export const SynAlertInformativeColorIndicator = 'var(--syn-alert-informative-co
 /**
  * @type {string}
  */
+export const SynAlertInformativeColorText = 'var(--syn-alert-informative-color-text)';
+
+/**
+ * @type {string}
+ */
 export const SynAlertNeutralColorBackground = 'var(--syn-alert-neutral-color-background)';
 
 /**
@@ -62,6 +97,11 @@ export const SynAlertNeutralColorIcon = 'var(--syn-alert-neutral-color-icon)';
  * @type {string}
  */
 export const SynAlertNeutralColorIndicator = 'var(--syn-alert-neutral-color-indicator)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertNeutralColorText = 'var(--syn-alert-neutral-color-text)';
 
 /**
  * @type {string}
@@ -86,6 +126,11 @@ export const SynAlertSuccessColorIndicator = 'var(--syn-alert-success-color-indi
 /**
  * @type {string}
  */
+export const SynAlertSuccessColorText = 'var(--syn-alert-success-color-text)';
+
+/**
+ * @type {string}
+ */
 export const SynAlertWarningColorBackground = 'var(--syn-alert-warning-color-background)';
 
 /**
@@ -102,6 +147,21 @@ export const SynAlertWarningColorIcon = 'var(--syn-alert-warning-color-icon)';
  * @type {string}
  */
 export const SynAlertWarningColorIndicator = 'var(--syn-alert-warning-color-indicator)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertWarningColorText = 'var(--syn-alert-warning-color-text)';
+
+/**
+ * @type {string}
+ */
+export const SynBadgeCriticalColorBackground = 'var(--syn-badge-critical-color-background)';
+
+/**
+ * @type {string}
+ */
+export const SynBadgeCriticalColorText = 'var(--syn-badge-critical-color-text)';
 
 /**
  * @type {string}
@@ -1787,6 +1847,11 @@ export const SynRadioButtonBorderRadiusMedium = 'var(--syn-radio-button-border-r
  * @type {string}
  */
 export const SynRadioButtonBorderRadiusSmall = 'var(--syn-radio-button-border-radius-small)';
+
+/**
+ * @type {string}
+ */
+export const SynRadioButtonSpacingSmall = 'var(--syn-radio-button-spacing-small)';
 
 /**
  * @type {string}

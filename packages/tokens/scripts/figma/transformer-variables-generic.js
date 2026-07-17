@@ -357,6 +357,7 @@ const resolveValue = (variablesData, variable, modeId) => {
   const {
     name, valuesByMode, resolvedType, scopes = [],
   } = variable;
+  const variableId = variable.id;
   const cleanName = name.toLowerCase();
 
   const modeValuesMap = /** @type {Record<string, any>} */ (valuesByMode);
@@ -366,7 +367,8 @@ const resolveValue = (variablesData, variable, modeId) => {
 
   if (typeof modeValue === 'object' && 'type' in modeValue && modeValue.type === 'VARIABLE_ALIAS') {
     const aliasObject = /** @type {{ id: string; type: string }} */ (modeValue);
-    const resolved = buildSdReferenceForAlias(variablesData, aliasObject.id);
+    const aliasTargetId = aliasObject.id;
+    const resolved = buildSdReferenceForAlias(variablesData, aliasTargetId);
 
     if (!resolved) {
       return undefined;
@@ -382,7 +384,27 @@ const resolveValue = (variablesData, variable, modeId) => {
     }
 
     // No public SD reference available – fall back to the resolved concrete value.
-    modeValue = resolveAliasToConcreteValue(variablesData, aliasObject.id, modeId);
+    modeValue = resolveAliasToConcreteValue(variablesData, aliasTargetId, modeId);
+
+    if (resolvedType === 'COLOR') {
+      const hasRgbChannels = typeof modeValue === 'object'
+        && modeValue !== null
+        && 'r' in modeValue
+        && 'g' in modeValue
+        && 'b' in modeValue;
+
+      if (!hasRgbChannels) {
+        throw new Error([
+          'Unable to resolve COLOR alias to an RGBA object.',
+          `variable: ${name}`,
+          `variableId: ${variableId}`,
+          `modeId: ${modeId}`,
+          `aliasTargetId: ${aliasTargetId}`,
+          `resolvedValueType: ${typeof modeValue}`,
+          `resolvedValue: ${JSON.stringify(modeValue)}`,
+        ].join(' '));
+      }
+    }
   }
 
   if (resolvedType === 'FLOAT') {
@@ -390,6 +412,23 @@ const resolveValue = (variablesData, variable, modeId) => {
     finalValue = floatResult.value;
     type = floatResult.type;
   } else if (resolvedType === 'COLOR') {
+    const hasRgbChannels = typeof modeValue === 'object'
+      && modeValue !== null
+      && 'r' in modeValue
+      && 'g' in modeValue
+      && 'b' in modeValue;
+
+    if (!hasRgbChannels) {
+      throw new Error([
+        'Expected COLOR value to be an RGBA object before formatting.',
+        `variable: ${name}`,
+        `variableId: ${variableId}`,
+        `modeId: ${modeId}`,
+        `rawValueType: ${typeof modeValue}`,
+        `rawValue: ${JSON.stringify(modeValue)}`,
+      ].join(' '));
+    }
+
     finalValue = formatColor(/** @type {Color} */(modeValue));
     type = 'color';
   } else if (scopes.includes('FONT_FAMILY')) {

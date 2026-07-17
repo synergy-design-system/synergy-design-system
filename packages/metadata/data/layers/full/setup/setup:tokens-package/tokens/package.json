@@ -62,6 +62,7 @@
   },
   "scripts": {
     "build": "pnpm clean && node scripts/build.js",
+    "build:nocharts": "SKIP_CHARTING=true dotenvx -q run pnpm build:_all",
     "build:all": "dotenvx -q run pnpm build:_all",
     "build:_all": "pnpm clean && pnpm fetch:figma && pnpm build:figma && pnpm build",
     "build:figma": "pnpm run build:variables && pnpm run build:styles",

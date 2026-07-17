@@ -2,26 +2,38 @@
  * @synergy-design-system/tokens version 3.18.0
  * SICK Global UX Foundation
  */
+$SynAlertCriticalColorBackground: var(--syn-alert-critical-color-background) !default;
+$SynAlertCriticalColorBorder: var(--syn-alert-critical-color-border) !default;
+$SynAlertCriticalColorIcon: var(--syn-alert-critical-color-icon) !default;
+$SynAlertCriticalColorIndicator: var(--syn-alert-critical-color-indicator) !default;
+$SynAlertCriticalColorText: var(--syn-alert-critical-color-text) !default;
 $SynAlertErrorColorBackground: var(--syn-alert-error-color-background) !default;
 $SynAlertErrorColorBorder: var(--syn-alert-error-color-border) !default;
 $SynAlertErrorColorIcon: var(--syn-alert-error-color-icon) !default;
 $SynAlertErrorColorIndicator: var(--syn-alert-error-color-indicator) !default;
+$SynAlertErrorColorText: var(--syn-alert-error-color-text) !default;
 $SynAlertInformativeColorBackground: var(--syn-alert-informative-color-background) !default;
 $SynAlertInformativeColorBorder: var(--syn-alert-informative-color-border) !default;
 $SynAlertInformativeColorIcon: var(--syn-alert-informative-color-icon) !default;
 $SynAlertInformativeColorIndicator: var(--syn-alert-informative-color-indicator) !default;
+$SynAlertInformativeColorText: var(--syn-alert-informative-color-text) !default;
 $SynAlertNeutralColorBackground: var(--syn-alert-neutral-color-background) !default;
 $SynAlertNeutralColorBorder: var(--syn-alert-neutral-color-border) !default;
 $SynAlertNeutralColorIcon: var(--syn-alert-neutral-color-icon) !default;
 $SynAlertNeutralColorIndicator: var(--syn-alert-neutral-color-indicator) !default;
+$SynAlertNeutralColorText: var(--syn-alert-neutral-color-text) !default;
 $SynAlertSuccessColorBackground: var(--syn-alert-success-color-background) !default;
 $SynAlertSuccessColorBorder: var(--syn-alert-success-color-border) !default;
 $SynAlertSuccessColorIcon: var(--syn-alert-success-color-icon) !default;
 $SynAlertSuccessColorIndicator: var(--syn-alert-success-color-indicator) !default;
+$SynAlertSuccessColorText: var(--syn-alert-success-color-text) !default;
 $SynAlertWarningColorBackground: var(--syn-alert-warning-color-background) !default;
 $SynAlertWarningColorBorder: var(--syn-alert-warning-color-border) !default;
 $SynAlertWarningColorIcon: var(--syn-alert-warning-color-icon) !default;
 $SynAlertWarningColorIndicator: var(--syn-alert-warning-color-indicator) !default;
+$SynAlertWarningColorText: var(--syn-alert-warning-color-text) !default;
+$SynBadgeCriticalColorBackground: var(--syn-badge-critical-color-background) !default;
+$SynBadgeCriticalColorText: var(--syn-badge-critical-color-text) !default;
 $SynBadgeErrorColorBackground: var(--syn-badge-error-color-background) !default;
 $SynBadgeErrorColorText: var(--syn-badge-error-color-text) !default;
 $SynBadgeInformativeColorBackground: var(--syn-badge-informative-color-background) !default;
@@ -359,6 +371,7 @@ $SynRadioButtonBorderColor: var(--syn-radio-button-border-color) !default;
 $SynRadioButtonBorderRadiusLarge: var(--syn-radio-button-border-radius-large) !default;
 $SynRadioButtonBorderRadiusMedium: var(--syn-radio-button-border-radius-medium) !default;
 $SynRadioButtonBorderRadiusSmall: var(--syn-radio-button-border-radius-small) !default;
+$SynRadioButtonSpacingSmall: var(--syn-radio-button-spacing-small) !default;
 $SynRangeColorInactive: var(--syn-range-color-inactive) !default;
 $SynRangeErrorColor: var(--syn-range-error-color) !default;
 $SynRangeTickColor: var(--syn-range-tick-color) !default;

@@ -1,19 +1,21 @@
-/* eslint-disable */
+/* eslint-disable @typescript-eslint/no-floating-promises */
+import {
+  type CSSResultGroup,
+  html,
+} from 'lit';
+import { classMap } from 'lit/directives/class-map.js';
+import { property, query } from 'lit/decorators.js';
 import { animateTo, stopAnimations } from '../../internal/animate.js';
 import { blurActiveElement } from '../../internal/closeActiveElement.js';
-import { classMap } from 'lit/directives/class-map.js';
 import { getAnimation, setDefaultAnimation } from '../../utilities/animation-registry.js';
 import { HasSlotController } from '../../internal/slot.js';
-import { html } from 'lit';
 import { LocalizeController } from '../../utilities/localize.js';
-import { property, query, state } from 'lit/decorators.js';
 import { waitForEvent } from '../../internal/event.js';
 import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import SynIconButton from '../icon-button/icon-button.component.js';
 import styles from './alert.styles.js';
-import type { CSSResultGroup } from 'lit';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -44,12 +46,15 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
 @enableDefaultSettings('SynAlert')
 export default class SynAlert extends SynergyElement {
   static styles: CSSResultGroup = [componentStyles, styles];
-  static dependencies = { 'syn-icon-button': SynIconButton };
+
+  static dependencies = {
+    'syn-icon-button': SynIconButton,
+  };
 
   private autoHideTimeout: number;
-  private remainingTimeInterval: number;
-  private countdownAnimation?: Animation;
+
   private readonly hasSlotController = new HasSlotController(this, 'icon', 'suffix');
+
   private readonly localize = new LocalizeController(this);
 
   private static currentToastStack: HTMLDivElement;
@@ -57,7 +62,7 @@ export default class SynAlert extends SynergyElement {
   private static get toastStack() {
     if (!this.currentToastStack) {
       this.currentToastStack = Object.assign(document.createElement('div'), {
-        className: 'syn-toast-stack'
+        className: 'syn-toast-stack',
       });
     }
     return this.currentToastStack;
@@ -65,16 +70,14 @@ export default class SynAlert extends SynergyElement {
 
   @query('[part~="base"]') base: HTMLElement;
 
-  @query('.alert__countdown-elapsed') countdownElement: HTMLElement;
-
   /**
    * Indicates whether or not the alert is open. You can toggle this attribute to show and hide the alert, or you can
    * use the `show()` and `hide()` methods and this attribute will reflect the alert's open state.
    */
-  @property({ type: Boolean, reflect: true }) open = false;
+  @property({ reflect: true, type: Boolean }) open = false;
 
   /** Enables a close button that allows the user to dismiss the alert. */
-  @property({ type: Boolean, reflect: true }) closable = false;
+  @property({ reflect: true, type: Boolean }) closable = false;
 
   /** The alert's theme variant. */
   @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
@@ -89,56 +92,28 @@ export default class SynAlert extends SynergyElement {
   /** The alert's size. */
   @property({ reflect: true }) size: 'small' | 'medium' | 'large' = 'medium';
 
-  /**
-   * Enables a countdown that indicates the remaining time the alert will be displayed.
-   * Typically used to indicate the remaining time before a whole app refresh.
-   */
-  private countdown? : 'rtl' | 'ltr';
-
-  @state() private remainingTime = this.duration;
-
   firstUpdated() {
     this.base.hidden = !this.open;
   }
 
   private restartAutoHide() {
-    this.handleCountdownChange();
     clearTimeout(this.autoHideTimeout);
-    clearInterval(this.remainingTimeInterval);
     if (this.open && this.duration < Infinity) {
-      this.autoHideTimeout = window.setTimeout(() => this.hide(), this.duration);
-      this.remainingTime = this.duration;
-      this.remainingTimeInterval = window.setInterval(() => {
-        this.remainingTime -= 100;
-      }, 100);
+      this.autoHideTimeout = window.setTimeout(() => {
+        this.hide();
+      }, this.duration);
     }
   }
 
   private pauseAutoHide() {
-    this.countdownAnimation?.pause();
     clearTimeout(this.autoHideTimeout);
-    clearInterval(this.remainingTimeInterval);
   }
 
   private resumeAutoHide() {
     if (this.duration < Infinity) {
-      this.autoHideTimeout = window.setTimeout(() => this.hide(), this.remainingTime);
-      this.remainingTimeInterval = window.setInterval(() => {
-        this.remainingTime -= 100;
-      }, 100);
-      this.countdownAnimation?.play();
-    }
-  }
-
-  private handleCountdownChange() {
-    if (this.open && this.duration < Infinity && this.countdown) {
-      const { countdownElement } = this;
-      const start = '100%';
-      const end = '0';
-      this.countdownAnimation = countdownElement.animate([{ width: start }, { width: end }], {
-        duration: this.duration,
-        easing: 'linear'
-      });
+      this.autoHideTimeout = window.setTimeout(() => {
+        this.hide();
+      }, this.duration);
     }
   }
 
@@ -168,7 +143,6 @@ export default class SynAlert extends SynergyElement {
       this.emit('syn-hide');
 
       clearTimeout(this.autoHideTimeout);
-      clearInterval(this.remainingTimeInterval);
 
       await stopAnimations(this.base);
       const { keyframes, options } = getAnimation(this, 'alert.hide', { dir: this.localize.dir() });
@@ -211,7 +185,6 @@ export default class SynAlert extends SynergyElement {
    */
   async toast() {
     return new Promise<void>(resolve => {
-      this.handleCountdownChange();
       if (SynAlert.toastStack.parentElement === null) {
         document.body.append(SynAlert.toastStack);
       }
@@ -236,28 +209,29 @@ export default class SynAlert extends SynergyElement {
             SynAlert.toastStack.remove();
           }
         },
-        { once: true }
+        { once: true },
       );
     });
   }
 
   render() {
+    /* eslint-disable @typescript-eslint/unbound-method */
     return html`
       <div
         part="base"
         class=${classMap({
           alert: true,
-          'alert--open': this.open,
-          'alert--small': this.size === 'small',
-          'alert--medium': this.size === 'medium',
-          'alert--large': this.size === 'large',
           'alert--closable': this.closable,
+          'alert--danger': this.variant === 'danger',
           'alert--has-icon': this.hasSlotController.test('icon'),
-          'alert--primary': this.variant === 'primary',
-          'alert--success': this.variant === 'success',
+          'alert--large': this.size === 'large',
+          'alert--medium': this.size === 'medium',
           'alert--neutral': this.variant === 'neutral',
+          'alert--open': this.open,
+          'alert--primary': this.variant === 'primary',
+          'alert--small': this.size === 'small',
+          'alert--success': this.variant === 'success',
           'alert--warning': this.variant === 'warning',
-          'alert--danger': this.variant === 'danger'
         })}
         role="alert"
         aria-hidden=${this.open ? 'false' : 'true'}
@@ -286,37 +260,24 @@ export default class SynAlert extends SynergyElement {
             `
           : ''}
 
-        <div role="timer" class="alert__timer">${this.remainingTime}</div>
-
-        ${this.countdown
-          ? html`
-              <div
-                class=${classMap({
-                  alert__countdown: true,
-                  'alert__countdown--ltr': this.countdown === 'ltr'
-                })}
-              >
-                <div class="alert__countdown-elapsed"></div>
-              </div>
-            `
-          : ''}
       </div>
     `;
+    /* eslint-enable @typescript-eslint/unbound-method */
   }
 }
 
 setDefaultAnimation('alert.show', {
   keyframes: [
     { opacity: 0, scale: 0.8 },
-    { opacity: 1, scale: 1 }
+    { opacity: 1, scale: 1 },
   ],
-  options: { duration: 250, easing: 'ease' }
+  options: { duration: 250, easing: 'ease' },
 });
 
 setDefaultAnimation('alert.hide', {
   keyframes: [
     { opacity: 1, scale: 1 },
-    { opacity: 0, scale: 0.8 }
+    { opacity: 0, scale: 0.8 },
   ],
-  options: { duration: 250, easing: 'ease' }
+  options: { duration: 250, easing: 'ease' },
 });

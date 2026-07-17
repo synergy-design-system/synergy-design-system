@@ -10,6 +10,7 @@ import { SynVueBadge } from '@synergy-design-system/vue';
     <SynVueBadge variant="success">success</SynVueBadge>
     <SynVueBadge variant="neutral">neutral</SynVueBadge>
     <SynVueBadge variant="warning">warning</SynVueBadge>
-    <SynVueBadge variant="danger">danger</SynVueBadge>
+    <SynVueBadge variant="critical">critical</SynVueBadge>
+    <SynVueBadge variant="error">error</SynVueBadge>
   </div>
 </template>

@@ -69,6 +69,30 @@ export const feedbackIntents: IntentDefinition[] = [
   },
   {
     category: 'feedback',
+    description: 'Use badges to communicate compact positive or completed states inline.',
+    id: 'feedback.badge.success',
+    userGoal: 'Expose concise success states without interrupting surrounding content.',
+  },
+  {
+    category: 'feedback',
+    description: 'Use badges to communicate compact cautionary or attention-needed states inline.',
+    id: 'feedback.badge.warning',
+    userGoal: 'Expose concise warning states that users should notice quickly.',
+  },
+  {
+    category: 'feedback',
+    description: 'Use badges to communicate compact urgent or high-severity states inline.',
+    id: 'feedback.badge.critical',
+    userGoal: 'Expose concise critical states that require immediate awareness.',
+  },
+  {
+    category: 'feedback',
+    description: 'Use badges to communicate compact failed or problematic states inline.',
+    id: 'feedback.badge.error',
+    userGoal: 'Expose concise error states without expanding into a full notification.',
+  },
+  {
+    category: 'feedback',
     description: 'Use tag labels to communicate categorization or state in compact form.',
     id: 'feedback.tag.label',
     userGoal: 'Help users identify and scan categories or states quickly.',

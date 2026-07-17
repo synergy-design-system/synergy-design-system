@@ -32,7 +32,7 @@ describe('<syn-badge>', () => {
     });
   });
 
-  ['primary', 'success', 'neutral', 'warning', 'danger'].forEach(variant => {
+  ['primary', 'success', 'neutral', 'warning', 'critical', 'error', 'danger'].forEach(variant => {
     describe(`when passed a variant attribute ${variant}`, () => {
       before(async () => {
         el = await fixture<SynBadge>(html`<syn-badge variant="${variant}">Badge</syn-badge>`);

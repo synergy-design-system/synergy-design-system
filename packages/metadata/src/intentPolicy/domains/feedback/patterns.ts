@@ -117,6 +117,46 @@ export const feedbackPatterns: IntentUsagePattern[] = [
     target: { id: 'component:syn-badge', kind: 'component', name: 'syn-badge' },
   },
   {
+    description: 'Compact badge for positive or completed states.',
+    intent: 'feedback.badge.success',
+    preset: {
+      props: {
+        variant: 'success',
+      },
+    },
+    target: { id: 'component:syn-badge', kind: 'component', name: 'syn-badge' },
+  },
+  {
+    description: 'Compact badge for cautionary or attention-needed states.',
+    intent: 'feedback.badge.warning',
+    preset: {
+      props: {
+        variant: 'warning',
+      },
+    },
+    target: { id: 'component:syn-badge', kind: 'component', name: 'syn-badge' },
+  },
+  {
+    description: 'Compact badge for urgent or high-severity states.',
+    intent: 'feedback.badge.critical',
+    preset: {
+      props: {
+        variant: 'critical',
+      },
+    },
+    target: { id: 'component:syn-badge', kind: 'component', name: 'syn-badge' },
+  },
+  {
+    description: 'Compact badge for failed or problematic states.',
+    intent: 'feedback.badge.error',
+    preset: {
+      props: {
+        variant: 'error',
+      },
+    },
+    target: { id: 'component:syn-badge', kind: 'component', name: 'syn-badge' },
+  },
+  {
     description: 'Compact categorical or state labeling using tags.',
     intent: 'feedback.tag.label',
     priority: 0,

@@ -1,13 +1,13 @@
-/* eslint-disable */
+import {
+  type CSSResultGroup,
+  html,
+} from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
-import { html } from 'lit';
 import { property } from 'lit/decorators.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import { LocalizeController } from '../../utilities/localize.js';
 import styles from './badge.styles.js';
-import customStyles from './badge.custom.styles.js';
-import type { CSSResultGroup } from 'lit';
 import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator.js';
 
 /**
@@ -22,12 +22,12 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynBadge')
 export default class SynBadge extends SynergyElement {
-  
   private readonly localize = new LocalizeController(this);
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   /** The badge's theme variant. */
-  @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
+  @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'critical' | 'error' | 'danger' = 'primary';
 
   render() {
     return html`
@@ -35,11 +35,13 @@ export default class SynBadge extends SynergyElement {
         part="base"
         class=${classMap({
           badge: true,
+          'badge--critical': this.variant === 'critical',
+          'badge--danger': this.variant === 'danger', // @todo: Major: Remove .badge--danger
+          'badge--error': this.variant === 'error',
+          'badge--neutral': this.variant === 'neutral',
           'badge--primary': this.variant === 'primary',
           'badge--success': this.variant === 'success',
-          'badge--neutral': this.variant === 'neutral',
           'badge--warning': this.variant === 'warning',
-          'badge--danger': this.variant === 'danger',
         })}
         role="status"
       >
@@ -48,7 +50,7 @@ export default class SynBadge extends SynergyElement {
             ${this.localize.term(
               (this.variant === 'primary' || this.variant === 'neutral')
                 ? 'notification'
-                : this.variant
+                : this.variant,
               )}
           </span>
         </slot>

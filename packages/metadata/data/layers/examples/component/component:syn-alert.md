@@ -198,7 +198,7 @@ To display an alert as a toast notification, or “toast”, create the alert an
   </syn-alert>
 
   <syn-alert variant="warning" duration="3000" closable="">
-    <syn-icon slot="icon" name="warning"></syn-icon>
+    <syn-icon slot="icon" name="emergency_home"></syn-icon>
     <strong>Your session has ended</strong><br />
     Please login again to continue.
   </syn-alert>

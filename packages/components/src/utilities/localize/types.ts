@@ -6,7 +6,9 @@ export interface Translation {
   $dir: 'ltr' | 'rtl';
 
   closeMenu: string;
+  critical: string;
   danger: string;
+  error: string;
   fileButtonText: string;
   fileButtonTextMultiple: string;
   fileDragDrop: string;

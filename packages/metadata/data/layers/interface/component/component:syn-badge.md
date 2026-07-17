@@ -30,7 +30,7 @@ Badges are used to draw attention and display statuses or counts.
 
 attribute: `variant`
 reflects: yes
-type: `'primary' | 'success' | 'neutral' | 'warning' | 'danger'`
+type: `'primary' | 'success' | 'neutral' | 'warning' | 'critical' | 'error' | 'danger'`
 default: `'primary'`
 
 The badge's theme variant.

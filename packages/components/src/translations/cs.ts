@@ -33,7 +33,9 @@ const translation: Translation = {
 
   // Synergy custom translations start
   closeMenu: 'Zavřít menu',
+  critical: 'Kritické',
   danger: 'Nebezpečí',
+  error: 'Chyba',
   fileButtonText: 'Vybrat soubor',
   fileButtonTextMultiple: 'Vybrat soubory',
   fileDragDrop: 'Přetáhněte nebo vyberte soubor',

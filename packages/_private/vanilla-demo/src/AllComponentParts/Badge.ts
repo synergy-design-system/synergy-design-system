@@ -8,6 +8,7 @@ export const Badge = () => html`
     <syn-badge variant="success">success</syn-badge>
     <syn-badge variant="neutral">neutral</syn-badge>
     <syn-badge variant="warning">warning</syn-badge>
-    <syn-badge variant="danger">danger</syn-badge>
+    <syn-badge variant="critical">critical</syn-badge>
+    <syn-badge variant="error">error</syn-badge>
   </div>
 `;

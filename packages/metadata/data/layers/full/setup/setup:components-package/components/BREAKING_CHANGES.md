@@ -15,7 +15,7 @@ As all our wrappers are based on this package, the changes also hold true for al
 
 <h3 id="syn-alert-v4">`<syn-alert>`</h3>
 
-#### ⚠️ Removed deprecated `variant` value `danger` 
+#### ⚠️ Removed deprecated `variant` value `danger`
 
 **Associated Ticket(s)**:
 
@@ -47,7 +47,7 @@ Synergy introduced a new variant `error` that has a similar appearance.
 
 <h3 id="syn-badge-v4">`<syn-badge>`</h3>
 
-#### ⚠️ Removed deprecated `variant` value `danger` 
+#### ⚠️ Removed deprecated `variant` value `danger`
 
 **Associated Ticket(s)**:
 

@@ -98,14 +98,26 @@ export const Variants: Story = {
       </syn-alert>
 
       <syn-alert variant="warning" open>
+        <syn-icon slot="icon" name="emergency_home"></syn-icon>
+        <strong>Your session has ended</strong><br />
+        Please login again to continue.
+      </syn-alert>
+
+      <syn-alert variant="critical" open>
         <syn-icon slot="icon" name="warning"></syn-icon>
         <strong>Your session has ended</strong><br />
         Please login again to continue.
       </syn-alert>
 
-      <syn-alert variant="danger" open>
+      <syn-alert variant="error" open>
         <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
         <strong>Your account has been deleted</strong><br />
+        We're very sorry to see you go!
+      </syn-alert>
+
+      <syn-alert variant="danger" open>
+        <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
+        <strong>Your account has been deleted*</strong><br />
         We're very sorry to see you go!
       </syn-alert>
     </div>
@@ -165,7 +177,7 @@ export const Sizes: Story = {
   },
   render: () => html`
     <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
-      ${['small', 'medium', 'large'].map(size => html`
+      ${(['small', 'medium', 'large'] as const).map(size => html`
         <syn-alert variant="primary" size=${size} open>
           <syn-icon slot="icon" name="info"></syn-icon>
           <strong>This is size ${size}</strong><br />
@@ -225,7 +237,8 @@ export const ToastNotifications: Story = {
         <syn-button data-variant="success">Success</syn-button>
         <syn-button data-variant="neutral">Neutral</syn-button>
         <syn-button data-variant="warning">Warning</syn-button>
-        <syn-button data-variant="danger">Danger</syn-button>
+        <syn-button data-variant="critical">Critical</syn-button>
+        <syn-button data-variant="error">Error</syn-button>
       </div>
 
       <syn-alert variant="primary" duration="3000" closable>
@@ -247,12 +260,18 @@ export const ToastNotifications: Story = {
       </syn-alert>
 
       <syn-alert variant="warning" duration="3000" closable>
+        <syn-icon slot="icon" name="emergency_home"></syn-icon>
+        <strong>Your session has ended</strong><br />
+        Please login again to continue.
+      </syn-alert>
+
+      <syn-alert variant="critical" duration="3000" closable>
         <syn-icon slot="icon" name="warning"></syn-icon>
         <strong>Your session has ended</strong><br />
         Please login again to continue.
       </syn-alert>
 
-      <syn-alert variant="danger" duration="3000" closable>
+      <syn-alert variant="error" duration="3000" closable>
         <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
         <strong>Your account has been deleted</strong><br />
         We're very sorry to see you go!
@@ -262,7 +281,7 @@ export const ToastNotifications: Story = {
     <script type="module">
     const container = document.querySelector('.alert-toast');
 
-    ['primary', 'success', 'neutral', 'warning', 'danger'].map(variant => {
+    ['primary', 'success', 'neutral', 'warning', 'critical', 'error'].map(variant => {
       const button = container.querySelector(\`syn-button[data-variant="\${variant}"]\`);
       const alert = container.querySelector(\`syn-alert[variant="\${variant}"]\`);
 
@@ -346,13 +365,26 @@ const Toast = {
       </syn-alert>
 
       <syn-alert variant="warning" open closable>
+        <syn-icon slot="icon" name="emergency_home"></syn-icon>
+        <strong>Your session has ended</strong><br />
+        Please login again to continue.
+      </syn-alert>
+
+      <syn-alert variant="critical" open closable>
         <syn-icon slot="icon" name="warning"></syn-icon>
-        Your session has ended
+        <strong>Your session has ended</strong><br />
+        Please login again to continue.
+      </syn-alert>
+
+      <syn-alert variant="error" open closable>
+        <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
+        Your account has been deleted
       </syn-alert>
 
       <syn-alert variant="danger" open closable>
         <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
-        Your account has been deleted
+        <strong>Your account has been deleted*</strong><br />
+        We're very sorry to see you go!
       </syn-alert>
     </div>
   `,
@@ -366,5 +398,5 @@ export const Screenshot: Story = generateScreenshotStory({
   WithoutIcons,
   Sizes,
   Toast,
-}, 550);
+}, 100);
 /* eslint-enable sort-keys */

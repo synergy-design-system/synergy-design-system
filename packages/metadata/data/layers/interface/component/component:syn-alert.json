@@ -37,7 +37,7 @@
       "fieldName": "variant",
       "name": "variant",
       "reflects": true,
-      "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+      "type": "'primary' | 'success' | 'neutral' | 'warning' | 'critical' | 'error' | 'danger'"
     }
   ],
   "cssParts": [
@@ -133,12 +133,6 @@
     },
     {
       "access": "public",
-      "description": "",
-      "name": "countdownElement",
-      "type": "HTMLElement"
-    },
-    {
-      "access": "public",
       "default": "Infinity",
       "description": "The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with\nthe alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`, meaning\nthe alert will not close on its own.",
       "name": "duration"
@@ -162,7 +156,7 @@
       "default": "'primary'",
       "description": "The alert's theme variant.",
       "name": "variant",
-      "type": "'primary' | 'success' | 'neutral' | 'warning' | 'danger'"
+      "type": "'primary' | 'success' | 'neutral' | 'warning' | 'critical' | 'error' | 'danger'"
     }
   ],
   "since": "1.20.0",

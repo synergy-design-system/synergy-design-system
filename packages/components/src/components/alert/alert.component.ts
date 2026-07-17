@@ -80,7 +80,7 @@ export default class SynAlert extends SynergyElement {
   @property({ reflect: true, type: Boolean }) closable = false;
 
   /** The alert's theme variant. */
-  @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'danger' = 'primary';
+  @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'critical' | 'error' | 'danger' = 'primary';
 
   /**
    * The length of time, in milliseconds, the alert will show before closing itself. If the user interacts with
@@ -222,7 +222,9 @@ export default class SynAlert extends SynergyElement {
         class=${classMap({
           alert: true,
           'alert--closable': this.closable,
-          'alert--danger': this.variant === 'danger',
+          'alert--critical': this.variant === 'critical',
+          'alert--danger': this.variant === 'danger', // @todo: Major: Remove .alert--danger
+          'alert--error': this.variant === 'error',
           'alert--has-icon': this.hasSlotController.test('icon'),
           'alert--large': this.size === 'large',
           'alert--medium': this.size === 'medium',

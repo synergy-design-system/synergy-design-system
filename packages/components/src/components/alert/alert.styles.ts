@@ -123,7 +123,16 @@ export default css`
     --variant-color-indicator: var(--syn-alert-warning-color-indicator);
   }
 
-  .alert--danger {
+  .alert--critical {
+    --variant-color-border: var(--syn-alert-critical-color-border);
+    --variant-color-background: var(--syn-alert-critical-color-background);
+    --variant-color-icon: var(--syn-alert-critical-color-icon);
+    --variant-color-indicator: var(--syn-alert-critical-color-indicator);
+  }
+
+  /** TODO: Major: Remove .alert--danger */
+  .alert--danger,
+  .alert--error {
     --variant-color-border: var(--syn-alert-error-color-border);
     --variant-color-background: var(--syn-alert-error-color-background);
     --variant-color-icon: var(--syn-alert-error-color-icon);

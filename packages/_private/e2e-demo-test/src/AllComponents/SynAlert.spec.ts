@@ -4,7 +4,7 @@ import { createTestCases } from '../helpers.js';
 
 test.describe('<SynAlert />', () => {
   createTestCases(({ name, port }) => {
-    test(`${name}: should support 5 different variants`, async ({ page }) => {
+    test(`${name}: should support 6 different variants`, async ({ page }) => {
       const AllComponents = new AllComponentsPage(page, port);
       await AllComponents.loadInitialPage();
 
@@ -12,7 +12,7 @@ test.describe('<SynAlert />', () => {
       await AllComponents.activateItem('alertLink');
       await expect(AllComponents.getLocator('alertContent')).toBeVisible();
 
-      await expect(AllComponents.getLocator('alertAll')).toHaveCount(5);
+      await expect(AllComponents.getLocator('alertAll')).toHaveCount(6);
 
       // Check that all alerts have a different variants
       const alerts = await AllComponents.getLocator('alertAll');
@@ -20,7 +20,7 @@ test.describe('<SynAlert />', () => {
         const variants = a.map((alert) => alert.getAttribute('variant'));
         return variants;
       });
-      expect(availableVariants).toEqual(['primary', 'success', 'neutral', 'warning', 'danger']);
+      expect(availableVariants).toEqual(['primary', 'success', 'neutral', 'warning', 'critical', 'error']);
     }); // Test accessibility
   }); // End frameworks
 }); // </syn-alert>

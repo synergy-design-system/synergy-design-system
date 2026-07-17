@@ -38,14 +38,26 @@ Set the variant attribute to change the alert’s variant.
   </syn-alert>
 
   <syn-alert variant="warning" open="">
+    <syn-icon slot="icon" name="emergency_home"></syn-icon>
+    <strong>Your session has ended</strong><br />
+    Please login again to continue.
+  </syn-alert>
+
+  <syn-alert variant="critical" open="">
     <syn-icon slot="icon" name="warning"></syn-icon>
     <strong>Your session has ended</strong><br />
     Please login again to continue.
   </syn-alert>
 
-  <syn-alert variant="danger" open="">
+  <syn-alert variant="error" open="">
     <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
     <strong>Your account has been deleted</strong><br />
+    We're very sorry to see you go!
+  </syn-alert>
+
+  <syn-alert variant="danger" open="">
+    <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
+    <strong>Your account has been deleted*</strong><br />
     We're very sorry to see you go!
   </syn-alert>
 </div>
@@ -163,7 +175,8 @@ To display an alert as a toast notification, or “toast”, create the alert an
     <syn-button data-variant="success">Success</syn-button>
     <syn-button data-variant="neutral">Neutral</syn-button>
     <syn-button data-variant="warning">Warning</syn-button>
-    <syn-button data-variant="danger">Danger</syn-button>
+    <syn-button data-variant="critical">Critical</syn-button>
+    <syn-button data-variant="error">Error</syn-button>
   </div>
 
   <syn-alert variant="primary" duration="3000" closable="">
@@ -190,7 +203,13 @@ To display an alert as a toast notification, or “toast”, create the alert an
     Please login again to continue.
   </syn-alert>
 
-  <syn-alert variant="danger" duration="3000" closable="">
+  <syn-alert variant="critical" duration="3000" closable="">
+    <syn-icon slot="icon" name="warning"></syn-icon>
+    <strong>Your session has ended</strong><br />
+    Please login again to continue.
+  </syn-alert>
+
+  <syn-alert variant="error" duration="3000" closable="">
     <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
     <strong>Your account has been deleted</strong><br />
     We're very sorry to see you go!
@@ -200,14 +219,16 @@ To display an alert as a toast notification, or “toast”, create the alert an
 <script type="module">
   const container = document.querySelector(".alert-toast");
 
-  ["primary", "success", "neutral", "warning", "danger"].map((variant) => {
-    const button = container.querySelector(
-      `syn-button[data-variant="${variant}"]`,
-    );
-    const alert = container.querySelector(`syn-alert[variant="${variant}"]`);
+  ["primary", "success", "neutral", "warning", "critical", "error"].map(
+    (variant) => {
+      const button = container.querySelector(
+        `syn-button[data-variant="${variant}"]`,
+      );
+      const alert = container.querySelector(`syn-alert[variant="${variant}"]`);
 
-    button.addEventListener("click", () => alert.toast());
-  });
+      button.addEventListener("click", () => alert.toast());
+    },
+  );
 </script>
 ```
 

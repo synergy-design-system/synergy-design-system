@@ -24,6 +24,94 @@ export const feedbackPatterns: IntentUsagePattern[] = [
     target: { id: 'component:syn-alert', kind: 'component', name: 'syn-alert' },
   },
   {
+    description: 'Inline alert for communicating application or validation errors.',
+    intent: 'feedback.error.inline',
+    preset: {
+      props: {
+        duration: 0,
+        variant: 'error',
+      },
+    },
+    target: { id: 'component:syn-alert', kind: 'component', name: 'syn-alert' },
+  },
+  {
+    description: 'Inline alert for critical system states requiring immediate attention.',
+    intent: 'feedback.critical.inline',
+    preset: {
+      props: {
+        duration: 0,
+        variant: 'critical',
+      },
+    },
+    target: { id: 'component:syn-alert', kind: 'component', name: 'syn-alert' },
+  },
+  {
+    description: 'Inline alert for warnings or cautions requiring user attention.',
+    intent: 'feedback.warning.inline',
+    preset: {
+      props: {
+        duration: 0,
+        variant: 'warning',
+      },
+    },
+    target: { id: 'component:syn-alert', kind: 'component', name: 'syn-alert' },
+  },
+  {
+    description: 'Inline alert for positive outcomes or successful operations.',
+    intent: 'feedback.success.inline',
+    preset: {
+      props: {
+        duration: 0,
+        variant: 'success',
+      },
+    },
+    target: { id: 'component:syn-alert', kind: 'component', name: 'syn-alert' },
+  },
+  {
+    description: 'Toast alert for brief error notifications.',
+    intent: 'feedback.error.toast',
+    preset: {
+      props: {
+        duration: 4000,
+        variant: 'error',
+      },
+    },
+    target: { id: 'component:syn-alert', kind: 'component', name: 'syn-alert' },
+  },
+  {
+    description: 'Toast alert for critical system state notifications.',
+    intent: 'feedback.critical.toast',
+    preset: {
+      props: {
+        duration: 4000,
+        variant: 'critical',
+      },
+    },
+    target: { id: 'component:syn-alert', kind: 'component', name: 'syn-alert' },
+  },
+  {
+    description: 'Toast alert for warning notifications.',
+    intent: 'feedback.warning.toast',
+    preset: {
+      props: {
+        duration: 4000,
+        variant: 'warning',
+      },
+    },
+    target: { id: 'component:syn-alert', kind: 'component', name: 'syn-alert' },
+  },
+  {
+    description: 'Toast alert for success notifications.',
+    intent: 'feedback.success.toast',
+    preset: {
+      props: {
+        duration: 4000,
+        variant: 'success',
+      },
+    },
+    target: { id: 'component:syn-alert', kind: 'component', name: 'syn-alert' },
+  },
+  {
     description: 'Compact status or count feedback using badge visuals.',
     intent: 'feedback.badge.status',
     target: { id: 'component:syn-badge', kind: 'component', name: 'syn-badge' },

@@ -34,7 +34,14 @@ import { SynVueAlert, SynVueIcon } from '@synergy-design-system/vue';
       Please login again to continue.
     </SynVueAlert>
 
-    <SynVueAlert variant="danger" open>
+    <SynVueAlert variant="critical" open>
+      <SynVueIcon slot="icon" name="warning" />
+      <strong>Your session has ended</strong>
+      <br />
+      Please login again to continue.
+    </SynVueAlert>
+
+    <SynVueAlert variant="error" open>
       <SynVueIcon slot="icon" name="status-error" library="system" />
       <strong>Your account has been deleted</strong>
       <br />

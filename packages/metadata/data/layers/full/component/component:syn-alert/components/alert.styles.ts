@@ -78,10 +78,6 @@ export default css`
     padding-inline-start: var(--size-icon-padding-inline);
   }
 
-  .alert--has-countdown {
-    border-bottom: none;
-  }
-
   .alert__message {
     align-self: center;
     display: block;
@@ -101,45 +97,6 @@ export default css`
     font-size: var(--size-icon-size);
     margin-block: calc(var(--syn-spacing-x-small) - var(--syn-panel-border-width));
     margin-inline-end: var(--syn-spacing-x-small);
-  }
-
-  .alert__countdown {
-    background-color: var(--syn-panel-border-color);
-    bottom: 0;
-    display: flex;
-    height: calc(var(--syn-panel-border-width) * 3);
-    left: 0;
-    position: absolute;
-    width: 100%;
-  }
-
-  .alert__countdown--ltr {
-    justify-content: flex-end;
-  }
-
-  .alert__countdown .alert__countdown-elapsed {
-    height: 100%;
-    width: 0;
-  }
-
-  .alert--primary .alert__countdown-elapsed {
-    background-color: var(--syn-color-primary-600);
-  }
-
-  .alert--success .alert__countdown-elapsed {
-    background-color: var(--syn-color-success-600);
-  }
-
-  .alert--neutral .alert__countdown-elapsed {
-    background-color: var(--syn-color-neutral-600);
-  }
-
-  .alert--warning .alert__countdown-elapsed {
-    background-color: var(--syn-color-warning-600);
-  }
-
-  .alert--danger .alert__countdown-elapsed {
-    background-color: var(--syn-color-danger-600);
   }
 
   /**
@@ -166,7 +123,16 @@ export default css`
     --variant-color-indicator: var(--syn-alert-warning-color-indicator);
   }
 
-  .alert--danger {
+  .alert--critical {
+    --variant-color-border: var(--syn-alert-critical-color-border);
+    --variant-color-background: var(--syn-alert-critical-color-background);
+    --variant-color-icon: var(--syn-alert-critical-color-icon);
+    --variant-color-indicator: var(--syn-alert-critical-color-indicator);
+  }
+
+  /** TODO: Major: Remove .alert--danger */
+  .alert--danger,
+  .alert--error {
     --variant-color-border: var(--syn-alert-error-color-border);
     --variant-color-background: var(--syn-alert-error-color-background);
     --variant-color-icon: var(--syn-alert-error-color-icon);
@@ -195,9 +161,5 @@ export default css`
     --size-message-padding: var(--syn-spacing-medium-large) var(--syn-spacing-large) var(--syn-spacing-medium-large) var(--syn-spacing-medium-large);
     --size-icon-padding-block: var(--syn-spacing-medium-large);
     --size-icon-padding-inline: var(--syn-spacing-medium-large);
-  }
-
-  .alert__timer {
-    display: none;
   }
 `;

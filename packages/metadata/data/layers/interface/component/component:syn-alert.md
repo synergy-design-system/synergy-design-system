@@ -70,7 +70,7 @@ The alert's size.
 
 attribute: `variant`
 reflects: yes
-type: `'primary' | 'success' | 'neutral' | 'warning' | 'danger'`
+type: `'primary' | 'success' | 'neutral' | 'warning' | 'critical' | 'error' | 'danger'`
 default: `'primary'`
 
 The alert's theme variant.

@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/react",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.17.0-8d2807bb-751b-4fd5-a746-81b70b4a1593",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.18.0-387a1cf5-a23a-4a8d-8204-23889aaad42e",
   "creationInfo": {
-    "created": "2026-07-10T12:21:50.263Z",
+    "created": "2026-07-16T13:16:52.939Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/react",
-      "versionInfo": "3.17.0",
+      "versionInfo": "3.18.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.17.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.18.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.17.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.18.0-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.17.0",
+      "versionInfo": "3.18.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.17.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.18.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -51,16 +51,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.17.0-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.18.0-1",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.17.0",
+      "versionInfo": "3.18.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.17.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.18.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -199,32 +199,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--types-react-19.2.17-7",
-      "name": "@types/react",
-      "versionInfo": "19.2.17",
-      "downloadLocation": "https://registry.npmjs.org/@types/react/-/react-19.2.17.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/react@19.2.17"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "TypeScript definitions for react",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "3177e6a9a54f115824053fda6346860a44565ad072898417a37c5d43caf9473b85acf8919fc19aaf6b5075749443618a5776e45dc91e93cf55f3040163643f03"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--floating-ui-core-1.7.5-8",
+      "SPDXID": "SPDXRef-Package--floating-ui-core-1.7.5-7",
       "name": "@floating-ui/core",
       "versionInfo": "1.7.5",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.7.5.tgz",
@@ -246,6 +221,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "d488785935b2c34fa52b214c7011c66dbe54e45b6e1c9bae8e8cb2af9cd36964b911831e4fa25bd80b8379fb6c0ac12e7213be98cda28f9faaf5cae1c9dccb85"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--types-react-19.2.17-8",
+      "name": "@types/react",
+      "versionInfo": "19.2.17",
+      "downloadLocation": "https://registry.npmjs.org/@types/react/-/react-19.2.17.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40types/react@19.2.17"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "TypeScript definitions for react",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "3177e6a9a54f115824053fda6346860a44565ad072898417a37c5d43caf9473b85acf8919fc19aaf6b5075749443618a5776e45dc91e93cf55f3040163643f03"
         }
       ]
     },
@@ -302,32 +302,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-zrender-6.1.0-11",
-      "name": "zrender",
-      "versionInfo": "6.1.0",
-      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/zrender@6.1.0"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
-      "homepage": "https://github.com/ecomfe/zrender#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-12",
+      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-11",
       "name": "@lit/reactive-element",
       "versionInfo": "2.1.2",
       "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
@@ -349,6 +324,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-zrender-6.1.0-12",
+      "name": "zrender",
+      "versionInfo": "6.1.0",
+      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/zrender@6.1.0"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
+      "homepage": "https://github.com/ecomfe/zrender#readme",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
         }
       ]
     },
@@ -490,12 +490,12 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.17.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.18.0-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.17.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.18.0-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -504,33 +504,33 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.17.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.18.0-0",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.7.6-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.17.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.18.0-0",
       "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.17.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.18.0-0",
       "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-5",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.17.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.18.0-0",
       "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--lit-react-1.0.8-2",
-      "relatedSpdxElement": "SPDXRef-Package--types-react-19.2.17-7",
+      "relatedSpdxElement": "SPDXRef-Package--types-react-19.2.17-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.7.6-3",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.7.5-8",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.7.5-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -545,12 +545,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-echarts-6.1.0-5",
-      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-11",
+      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-12",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-6",
-      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-12",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -564,12 +564,12 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--types-react-19.2.17-7",
+      "spdxElementId": "SPDXRef-Package--types-react-19.2.17-8",
       "relatedSpdxElement": "SPDXRef-Package-csstype-3.2.3-15",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-12",
+      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-11",
       "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-16",
       "relationshipType": "DEPENDS_ON"
     },

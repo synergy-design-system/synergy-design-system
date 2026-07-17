@@ -12,7 +12,7 @@ import '@synergy-design-system/tokens/charts/themes/sick2025_dark.css';
 import '@synergy-design-system/tokens/charts/themes/sick2025_light.css';
 import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
-import './app.css';
+import '@synergy-design-system/demo-utilities/styles/app.css';
 
 import { createApp } from 'vue';
 import { createWebHistory, createRouter } from 'vue-router'
@@ -36,8 +36,6 @@ const frameworkSpecificDemo = Object
 const complexBugsDemo = Object
   .entries(ComplexBugs)
   .map(([name, Component]) => [name.replace('Demo', ''), Component]);
-
-  console.log(complexBugsDemo);
 
 const routes = [
   { path: '/', component: HomeView },

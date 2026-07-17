@@ -36,7 +36,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Appends a chevron to the right side of a navigation item. Only used if `horizontal` is false.
+Appends a chevron to the right side of a navigation item.
+Only used if `horizontal` is false.
 
 ### childrenSlot
 
@@ -72,7 +73,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Toggle to true to show a divider above the element. Only available when horizontal is false.
+Toggle to true to show a divider above the element.
+Only available when horizontal is false.
 
 ### horizontal
 
@@ -90,7 +92,11 @@ reflects: yes
 type: `string`
 default: none
 
-The navigation item's href target. If provided, the navigation item will use an anchor tag otherwise it will use a button tag. If the 'children' slot is provided, the navigation item will ignore the 'href' and use accordion behavior.
+The navigation item's href target.
+If provided, the navigation item will use an anchor tag otherwise it will use a button tag.
+
+If the 'children' slot is provided, the navigation item will ignore the 'href' and use
+accordion behavior.
 
 ### open
 
@@ -99,7 +105,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Reflects HTML details element state and allows control from parent. Only used if `horizontal` is false and `children` is defined.
+Reflects HTML details element state and allows control from parent.
+Only used if `horizontal` is false and `children` is defined.
 
 ### rel
 
@@ -108,7 +115,14 @@ reflects: no
 type: `string`
 default: `'noreferrer noopener'`
 
-When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the default is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a specific tab/window, this will prevent that from working correctly. You can remove or change the default value by setting the attribute to an empty string or a value of your choice, respectively.
+When using `href`, this attribute will map to the underlying link's `rel` attribute.
+Unlike regular links, the default is `noreferrer noopener` to prevent security exploits.
+
+However, if you're using `target` to point to a specific tab/window,
+this will prevent that from working correctly.
+
+You can remove or change the default value by setting the attribute
+to an empty string or a value of your choice, respectively.
 
 ### target
 

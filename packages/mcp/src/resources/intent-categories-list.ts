@@ -2,6 +2,7 @@ import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   experimental_listIntentCategories as listIntentCategories,
 } from '@synergy-design-system/metadata';
+import { resourceHandler } from '../utilities/metadata.js';
 
 const RESOURCE_URI = 'synergy://intent-categories/list';
 
@@ -19,7 +20,7 @@ export const intentCategoriesListResource = (server: McpServer) => {
       mimeType: 'application/json',
       title: 'Available intent categories',
     },
-    async (_uri) => {
+    resourceHandler('intent-categories-list', async (_uri) => {
       const categories = await listIntentCategories();
 
       return {
@@ -31,6 +32,6 @@ export const intentCategoriesListResource = (server: McpServer) => {
           },
         ],
       };
-    },
+    }),
   );
 };

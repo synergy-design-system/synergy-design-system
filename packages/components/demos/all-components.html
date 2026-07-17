@@ -461,6 +461,36 @@
 
             <syn-tab
               slot="nav"
+              id="tab-Checkbox-group"
+              panel="Checkbox Group"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-7"
+            >
+              Checkbox Group
+            </syn-tab>
+            <syn-tab-panel
+              name="Checkbox Group"
+              id="syn-tab-panel-checkbox-group"
+              role="tabpanel"
+              aria-labelledby="tab-Checkbox-group"
+            >
+              <div style="display: contents;" id="tab-content-Checkbox-Group">
+                <syn-checkbox-group
+                  help-text="This is a checkbox group with a label and description."
+                  label="Checkbox Group Legend"
+                >
+                  <syn-checkbox>Checkbox 1</syn-checkbox>
+                  <syn-checkbox>Checkbox 2</syn-checkbox>
+                  <syn-checkbox>Checkbox 3</syn-checkbox>
+                </syn-checkbox-group>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
               id="tab-Combobox"
               panel="Combobox"
               role="tab"
@@ -713,6 +743,37 @@
                     </syn-menu>
                   </syn-dropdown>
                 </div>
+              </div>
+            </syn-tab-panel>
+
+            <syn-tab
+              slot="nav"
+              id="tab-Fieldset"
+              panel="Fieldset"
+              role="tab"
+              aria-disabled="false"
+              aria-selected="false"
+              tabindex="-1"
+              aria-controls="syn-tab-panel-fieldset"
+            >
+              Fieldset
+            </syn-tab>
+            <syn-tab-panel
+              name="Fieldset"
+              id="syn-tab-panel-fieldset"
+              role="tabpanel"
+              
+              aria-labelledby="tab-Fieldset"
+            >
+              <div style="display: contents" id="tab-content-Fieldset">
+                <syn-fieldset
+                  description="This is a fieldset with a legend and description."
+                  legend="Fieldset Legend"
+                >
+                  <syn-input label="Input 1"></syn-input>
+                  <syn-input label="Input 2"></syn-input>
+                  <syn-input label="Input 3"></syn-input>
+                </syn-fieldset>
               </div>
             </syn-tab-panel>
 

@@ -1,5 +1,6 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { listStyles } from '@synergy-design-system/metadata';
+import { resourceHandler } from '../utilities/metadata.js';
 
 const RESOURCE_URI = 'synergy://styles/list';
 
@@ -17,7 +18,7 @@ export const stylesListResource = (server: McpServer) => {
       mimeType: 'application/json',
       title: 'Available styles',
     },
-    async (_uri) => {
+    resourceHandler('styles-list', async (_uri) => {
       const styles = await listStyles({
         includeLayerRefs: false,
         includeSources: false,
@@ -35,6 +36,6 @@ export const stylesListResource = (server: McpServer) => {
           },
         ],
       };
-    },
+    }),
   );
 };

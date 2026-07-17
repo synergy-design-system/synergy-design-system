@@ -93,7 +93,13 @@ describe('intent policy renderers', () => {
       intent: 'action.grouped',
     });
 
+    const singleSelection = renderIntentFromRegistry({
+      framework: 'react-web-components',
+      intent: 'input.selection.single',
+    });
+
     expect(iconAction).to.equal('<syn-icon-button>CONTENT</syn-icon-button>');
     expect(groupedAction).to.equal('<syn-button-group>CONTENT</syn-button-group>');
+    expect(singleSelection).to.equal('<syn-radio-group>CONTENT</syn-radio-group>');
   });
 });

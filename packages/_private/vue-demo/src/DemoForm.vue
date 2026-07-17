@@ -4,8 +4,10 @@ import {
   SynVueAlert,
   SynVueButton,
   SynVueCheckbox,
+  SynVueCheckboxGroup,
   SynVueCombobox,
   SynVueDivider,
+  SynVueFieldset,
   SynVueFile,
   SynVueIcon,
   SynVueInput,
@@ -29,7 +31,6 @@ import {
   statusSuccess,
   statusWarning,
 } from '@synergy-design-system/demo-utilities';
-import DemoFieldset from './DemoFieldset.vue';
 
 const nationalities = mockData('nationalities');
 
@@ -91,7 +92,7 @@ const synChange = () => {
     </SynVueAlert>
 
     <!-- PersonalInformation -->
-    <DemoFieldset legend="Personal Information">
+    <SynVueFieldset legend="Personal Information">
 
       <SynVueRadioGroup
         id="radiogroup-gender"
@@ -175,13 +176,13 @@ const synChange = () => {
         </SynVueOption>
       </SynVueCombobox>
 
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /PersonalInformation -->
 
     <SynVueDivider />
 
     <!-- Security -->
-    <DemoFieldset legend="Security">
+    <SynVueFieldset legend="Security">
       <SynVueInput
         id="input-password"
         label="Provide a secure password"
@@ -204,13 +205,13 @@ const synChange = () => {
         type="number"
         v-model="formData.code"
       />
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /Security -->
 
     <SynVueDivider />
 
     <!-- Topics -->
-    <DemoFieldset legend="Topics">
+    <SynVueFieldset legend="Topics">
       <SynVueSelect
         clearable
         id="topics"
@@ -245,13 +246,13 @@ const synChange = () => {
           {{ framework.label }}
         </SynVueOption>
       </SynVueCombobox>
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /Topics -->
 
     <SynVueDivider />
 
     <!-- Happiness -->
-    <DemoFieldset id="happiness-fields" legend="Happiness">
+    <SynVueFieldset id="happiness-fields" legend="Happiness">
       <SynVueRange
         id="happiness"
         label="How happy are you with the Synergy Design System?"
@@ -282,13 +283,13 @@ const synChange = () => {
           <SynVueRangeTick>6.000 €</SynVueRangeTick>
         </nav>
       </SynVueRange>
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /.Happiness -->
 
     <SynVueDivider />
 
     <!-- Experience -->
-    <DemoFieldset legend="Experience">
+    <SynVueFieldset legend="Experience">
       <SynVueRadioGroup
         id="experience"
         label="How experienced are you with the Synergy Design System?"
@@ -301,13 +302,13 @@ const synChange = () => {
         <SynVueRadio :value=3>I am a Synergy Design System expert</SynVueRadio>
         <SynVueRadio :value=4>I am the creator of the Synergy Design System</SynVueRadio>
       </SynVueRadioGroup>
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /Experience -->
 
     <SynVueDivider />
 
     <!-- Marketing -->
-    <DemoFieldset legend="Please inform me about the following technologies">
+    <SynVueCheckboxGroup label="Please inform me about the following technologies">
       <SynVueCheckbox
         id="checkbox-newsletter-default"
         name="newsletterStandard"
@@ -367,7 +368,11 @@ const synChange = () => {
       >
         I am interested in the Synergy UX Program
       </SynVueSwitch>
+    </SynVueCheckboxGroup>
 
+    <SynVueDivider />
+
+    <SynVueFieldset legend="Please inform me about the following technologies">
       <SynVueRadioGroup
         id="preferred-contact-method"
         label="Preferred contact method"
@@ -378,13 +383,13 @@ const synChange = () => {
         <SynVueRadioButton value="phone" readonly>Phone</SynVueRadioButton>
         <SynVueRadioButton value="other">Other</SynVueRadioButton>
       </SynVueRadioGroup>
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /Marketing -->
 
     <SynVueDivider />
 
     <!-- AdditionalInformation -->
-    <DemoFieldset legend="Additional Information">
+    <SynVueFieldset legend="Additional Information">
       <SynVueTextarea
         id="additional-info"
         label="Comment"
@@ -403,7 +408,7 @@ const synChange = () => {
         name="files"
         v-model="formData.files"
       />
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /AdditionalInformation -->
 
     <SynVueDivider />
@@ -418,44 +423,4 @@ const synChange = () => {
   </form>
 </template>
 
-<style scoped>
-form syn-divider {
-  --spacing: var(--syn-spacing-2x-large);
-}
 
-form .syn-fieldset:last-of-type {
-  margin-bottom: 0;
-}
-
-.syn-legend {
-  font-size: var(--syn-font-size-large);
-  margin-bottom: var(--syn-spacing-medium);
-}
-
-.syn-submit-buttons {
-  align-items: center;
-  border: none;
-  display: flex;
-  flex-direction: row;
-  gap: var(--syn-spacing-large);
-  margin: 0 0 var(--syn-spacing-2x-large) 0;
-  padding: 0;
-  justify-content: center;
-}
-
-/* Special overrides */
-#happiness-fields syn-range nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-#radiogroup-gender::part(form-control-input) {
-  display: flex;
-  gap: var(--syn-spacing-medium);
-}
-
-#input-nationality::part(listbox) {
-  max-height: min(var(--auto-size-available-height), 300px);
-}
-</style>

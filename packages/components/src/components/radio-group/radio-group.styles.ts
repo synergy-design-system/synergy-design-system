@@ -100,4 +100,13 @@ export default css`
     --syn-readonly-border-color: transparent;
     --syn-color-neutral-0: var(--syn-readonly-color-text);
   }
+
+  /**
+   * #794: Allow radio-groups to be displayed in a row when using syn-radio-button.
+   * Will not apply to syn-radio-button, which is always displayed in a column.
+   */
+  .form-control--is-horizontal:not(.form-control--has-button-group) .form-control-input {
+    flex-flow: row wrap;
+    gap: var(--syn-spacing-x-small) var(--syn-spacing-medium);
+  }
 `;

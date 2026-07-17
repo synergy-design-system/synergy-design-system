@@ -13,6 +13,8 @@ import { getTranslation } from '../../src/translations.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 import '../../../components/src/components/checkbox/checkbox.js';
+import '../../../components/src/components/checkbox-group/checkbox-group.js';
+import '../../../components/src/components/fieldset/fieldset.js';
 import '../../../components/src/components/textarea/textarea.js';
 import '../../../components/src/components/input/input.js';
 import '../../../components/src/components/select/select.js';
@@ -70,78 +72,39 @@ export const ContactForm = {
       h1 {
         margin: 0 0 var(--syn-spacing-medium) 0;
       }
-    }
 
-
-    .synergy-form-demo > p {
-      margin: 0 0 var(--syn-spacing-2x-large) 0;
-    }
-
-    em {
-      font-size: var(--syn-font-size-x-small);
-      font-style: normal;
-    }
-
-    fieldset {
-      border: none;
-      margin: 0 0 var(--syn-spacing-2x-large) 0;
-      padding: 0;
-    }
-
-    fieldset legend {
-      font: var(--syn-heading-large);
-      margin-bottom: var(--syn-spacing-large);
-    }
-
-    fieldset legend + p {
-      font-size: var(--syn-font-size-medium);
-      margin: 0 0 var(--syn-font-size-large) 0;
-    }
-
-    .fields {
-      container-type: inline-size;
-      display: flex;
-      flex-flow: wrap;
-      margin-bottom: var(--syn-spacing-2x-large);
-      gap: var(--syn-spacing-large);
-    }
-
-    .fields > * {
-      flex-basis: 100%;
-    }
-
-    @container (min-width: 640px) {
-      .fields > * {
-        flex-basis: calc(50% - calc(var(--syn-spacing-large) / 2));
+      > p {
+        margin: 0 0 var(--syn-spacing-2x-large) 0;
       }
-    }
 
-    /*
-     * The form control inputs are using a css grid to be displayed.
-     * We just let them flow automatically mobile and arrange them
-     * in two columns when space is wide enough
-     */
-    #topics-wrapper {
-      container-type: inline-size;
-    }
+      em {
+        font-size: var(--syn-font-size-x-small);
+        font-style: normal;
+      }
 
-    #topics {
-      gap: var(--syn-spacing-x-small);
-      display: grid;
-    }
+      .submit-actions {
+        display: flex;
+        justify-content: right;
+        margin: var(--syn-spacing-2x-large) 0;
+      }
 
-    @container (min-width: 640px) {
+      /* Special responsive handling for the topics checkbox group, which is displayed in a grid on larger screens */
       #topics {
-        grid-auto-flow: column;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
+        container-type: inline-size
       }
-    }
 
-    .submit-actions {
-      display: flex;
-      justify-content: right;
-      margin-bottom: var(--syn-spacing-2x-large);
+      #topics::part(form-control-input) {
+        gap: var(--syn-spacing-x-small);
+        display: grid;
+      }
+
+      @container (min-width: 640px) {
+        #topics::part(form-control-input) {
+          grid-auto-flow: column;
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: 1fr 1fr 1fr 1fr;
+        }
+      }
     }
     </style>
     <div class="synergy-form-demo">
@@ -150,59 +113,60 @@ export const ContactForm = {
 
       <form method="post" id="syn-form-demo">
         
-        <fieldset id="topics-wrapper">
-          <legend>${getTranslation('contactForm.topicLabel')}</legend>
-          <div id="topics">
+        <syn-fieldset legend="${getTranslation('contactForm.topicLabel')}">
+          <syn-checkbox-group id="topics">
             ${(getTranslation('contactForm.topics') as string[]).map((topic, index) => html`
               <syn-checkbox name="topic[${index}]" value="${topic}">
                 ${topic}
               </syn-checkbox>
             `)}
-          </div>
-        </fieldset>
+          </syn-checkbox-group>
+        </syn-fieldset>
 
-        <fieldset>
-          <legend>${getTranslation('contactForm.requestLabel')}</legend>
-          <p>
-            ${getTranslation('contactForm.requestContent')}
-          </p>
-
+        <syn-fieldset
+          description="${getTranslation('contactForm.requestContent')}"
+          layout="one-column"
+          legend="${getTranslation('contactForm.requestLabel')}"
+        >
           <syn-textarea
             label="${getTranslation('contactForm.messageLabel')}"
             name="message"
             required
           ></syn-textarea>
-        </fieldset>
+        </syn-fieldset>
 
-        <fieldset>
-          <legend>${getTranslation('contactForm.contactDetailsLabel')}</legend>
-          <div class="fields">
-            <syn-input label="${getTranslation('contactForm.customerNumberLabel')}" name="customerNr"></syn-input>
-            <syn-input label="${getTranslation('contactForm.companyNameLabel')}" name="companyName" required></syn-input>
-            <syn-input label="${getTranslation('contactForm.addressLabel')}" name="address" required></syn-input>
-            <syn-input label="${getTranslation('contactForm.zipLabel')}" name="zip" required></syn-input>
-            <syn-input label="${getTranslation('contactForm.cityLabel')}" name="city" required></syn-input>
+        <syn-fieldset
+          layout="two-columns"
+          legend="${getTranslation('contactForm.contactDetailsLabel')}"
+        >
+          <syn-input label="${getTranslation('contactForm.customerNumberLabel')}" name="customerNr"></syn-input>
+          <syn-input label="${getTranslation('contactForm.companyNameLabel')}" name="companyName" required></syn-input>
+          <syn-input label="${getTranslation('contactForm.addressLabel')}" name="address" required></syn-input>
+          <syn-input label="${getTranslation('contactForm.zipLabel')}" name="zip" required></syn-input>
+          <syn-input label="${getTranslation('contactForm.cityLabel')}" name="city" required></syn-input>
 
-            <syn-select label="${getTranslation('contactForm.countryLabel')}" name="country" required>
-              ${(getTranslation('contactForm.countries') as string[]).map((country, index) => html`
-                <syn-option value=${index}>${country}</syn-option>
-              `)}
-            </syn-select>
+          <syn-select label="${getTranslation('contactForm.countryLabel')}" name="country" required>
+            ${(getTranslation('contactForm.countries') as string[]).map((country, index) => html`
+              <syn-option value=${index}>${country}</syn-option>
+            `)}
+          </syn-select>
 
-            <syn-combobox label="${getTranslation('contactForm.referenceContactLabel')}" name="salesPerson" required>
-              <syn-option>Max Mustermann</syn-option>
-              <syn-option>John Doe</syn-option>
-              <syn-option>Jane Row</syn-option>
-              <syn-option>Average Joe</syn-option>
-            </syn-combobox>
-            <syn-input type="tel" label="${getTranslation('contactForm.phoneLabel')}" name="phone"></syn-input>
-            <syn-input type="tel" label="${getTranslation('contactForm.faxLabel')}" name="fax"></syn-input>
-            <syn-input type="email" label="${getTranslation('contactForm.emailLabel')}" name="mail" required></syn-input>
-          </div>
+          <syn-combobox label="${getTranslation('contactForm.referenceContactLabel')}" name="salesPerson" required>
+            <syn-option>Max Mustermann</syn-option>
+            <syn-option>John Doe</syn-option>
+            <syn-option>Jane Row</syn-option>
+            <syn-option>Average Joe</syn-option>
+          </syn-combobox>
+          <syn-input type="tel" label="${getTranslation('contactForm.phoneLabel')}" name="phone"></syn-input>
+          <syn-input type="tel" label="${getTranslation('contactForm.faxLabel')}" name="fax"></syn-input>
+          <syn-input type="email" label="${getTranslation('contactForm.emailLabel')}" name="mail" required></syn-input>
+        </syn-fieldset>
+
+        <syn-fieldset>
           <syn-checkbox name="subscribeNewsletter">
             ${getTranslation('contactForm.newsletterLabel')}
           </syn-checkbox>
-        </fieldset>
+        </syn-fieldset>
 
         <div class="submit-actions">
           <syn-button type="submit" variant="filled">${getTranslation('contactForm.submitLabel')}</syn-button>
@@ -308,6 +272,12 @@ export const MultipleFilesUploadForm: Story = {
         h1 {
           margin: 0 0 var(--syn-spacing-medium) 0;
         }
+
+        .submit-actions {
+          display: flex;
+          justify-content: right;
+          margin-top: var(--syn-spacing-2x-large);
+        }
       }
 
       .uploaded-files {
@@ -378,12 +348,6 @@ export const MultipleFilesUploadForm: Story = {
             bottom: 0;
           }
         }
-      }
-
-      .submit-actions {
-        display: flex;
-        justify-content: right;
-        margin-top: var(--syn-spacing-2x-large);
       }
     </style>
 

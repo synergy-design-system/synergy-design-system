@@ -39,19 +39,41 @@ describe('intent policy developer facade', () => {
       'component:syn-button.json',
     );
     const synButtonCorePath = path.join(root, 'core', 'component', 'component:syn-button.json');
+    const synFieldsetInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component:syn-fieldset.json');
+    const sourceSynFieldsetInterfaceLayerPath = path.join(
+      metadataPackageDir,
+      'data',
+      'layers',
+      'interface',
+      'component',
+      'component:syn-fieldset.json',
+    );
+    const synFieldsetCorePath = path.join(root, 'core', 'component', 'component:syn-fieldset.json');
 
     const index = {
       builtAt: '2026-05-18T00:00:00.000Z',
-      entities: [{
-        corePath: 'data/core/component/component:syn-button.json',
-        id: 'component:syn-button',
-        kind: 'component',
-        layers: {
-          interface: 1,
+      entities: [
+        {
+          corePath: 'data/core/component/component:syn-button.json',
+          id: 'component:syn-button',
+          kind: 'component',
+          layers: {
+            interface: 1,
+          },
+          name: 'syn-button',
+          search: ['component:syn-button', 'syn-button'],
         },
-        name: 'syn-button',
-        search: ['component:syn-button', 'syn-button'],
-      }],
+        {
+          corePath: 'data/core/component/component:syn-fieldset.json',
+          id: 'component:syn-fieldset',
+          kind: 'component',
+          layers: {
+            interface: 1,
+          },
+          name: 'syn-fieldset',
+          search: ['component:syn-fieldset', 'syn-fieldset'],
+        },
+      ],
       version: '1.0.0',
     };
 
@@ -67,12 +89,29 @@ describe('intent policy developer facade', () => {
       name: 'syn-button',
     };
 
+    const synFieldsetCoreEntity = {
+      id: 'component:syn-fieldset',
+      kind: 'component',
+      layers: {
+        interface: [{
+          layer: 'interface',
+          path: 'data/layers/interface/component/component:syn-fieldset.json',
+        }],
+      },
+      name: 'syn-fieldset',
+    };
+
     await writeFile(path.join(root, 'index.json'), JSON.stringify(index));
     await writeFile(
       synButtonInterfaceLayerPath,
       await readFile(sourceSynButtonInterfaceLayerPath, 'utf8'),
     );
+    await writeFile(
+      synFieldsetInterfaceLayerPath,
+      await readFile(sourceSynFieldsetInterfaceLayerPath, 'utf8'),
+    );
     await writeFile(synButtonCorePath, JSON.stringify(synButtonCoreEntity));
+    await writeFile(synFieldsetCorePath, JSON.stringify(synFieldsetCoreEntity));
 
     return {
       cleanup: async () => {
@@ -232,6 +271,223 @@ describe('intent policy developer facade', () => {
     }
   });
 
+  it('warns when fieldset grouping intent omits both legend property and legend slot', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-fieldset',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.fieldset',
+        structure: {
+          children: [{
+            component: 'syn-input',
+          }],
+          component: 'syn-fieldset',
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.valid).to.equal(true);
+      expect(response.data.issues.map((issue) => issue.code)).to.include('FIELDSET_LEGEND_REQUIRED');
+      expect(response.data.issues.find((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED')?.severity).to.equal('warning');
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('accepts fieldset grouping intent when legend property is provided', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-fieldset',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.fieldset',
+        structure: {
+          children: [{
+            component: 'syn-input',
+          }],
+          component: 'syn-fieldset',
+          props: {
+            legend: 'Contact details',
+          },
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.issues.some((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED')).to.equal(false);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('accepts fieldset grouping intent when legend slot content is provided', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-fieldset',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.fieldset',
+        structure: {
+          children: [
+            {
+              component: 'text',
+              slot: 'legend',
+              text: 'Contact details',
+            },
+            {
+              component: 'syn-input',
+            },
+          ],
+          component: 'syn-fieldset',
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.issues.some((issue) => issue.code === 'FIELDSET_LEGEND_REQUIRED')).to.equal(false);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('warns when checkbox grouping intent omits both label property and label slot', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-checkbox-group',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.checkbox',
+        structure: {
+          children: [{
+            component: 'syn-checkbox',
+          }],
+          component: 'syn-checkbox-group',
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.valid).to.equal(true);
+      expect(response.data.issues.map((issue) => issue.code)).to.include('CHECKBOX_GROUP_LABEL_REQUIRED');
+      expect(response.data.issues.find((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED')?.severity).to.equal('warning');
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('accepts checkbox grouping intent when label property is provided', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-checkbox-group',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.checkbox',
+        structure: {
+          children: [{
+            component: 'syn-checkbox',
+          }],
+          component: 'syn-checkbox-group',
+          props: {
+            label: 'Preferences',
+          },
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.issues.some((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED')).to.equal(false);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('accepts checkbox grouping intent when label slot content is provided', async () => {
+    const { experimental_validateComponent } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_validateComponent({
+        component: 'syn-checkbox-group',
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intent: 'input.grouping.checkbox',
+        structure: {
+          children: [
+            {
+              component: 'text',
+              slot: 'label',
+              text: 'Preferences',
+            },
+            {
+              component: 'syn-checkbox',
+            },
+          ],
+          component: 'syn-checkbox-group',
+        },
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.issues.some((issue) => issue.code === 'CHECKBOX_GROUP_LABEL_REQUIRED')).to.equal(false);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('returns only syn-fieldset for fieldset grouping intent', async () => {
+    const { experimental_getIntentOptions } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_getIntentOptions({
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intentId: 'input.grouping.fieldset',
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.bestDefaultTargetId).to.equal('component:syn-fieldset');
+      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+        'component:syn-fieldset',
+      ]);
+      expect(response.data.nonRenderableCandidates.some((candidate) => candidate.targetId === 'component:syn-checkbox-group')).to.equal(false);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
   it('validates structural composition and node-level rules for confirmation dialog intent', async () => {
     const { experimental_validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
@@ -357,6 +613,83 @@ describe('intent policy developer facade', () => {
       expect(response.data.renderableTargets.map((target) => target.targetId)).to.include('style:syn-link-list');
       expect(response.data.nonRenderableCandidates.length).to.be.greaterThan(0);
       expect(response.data.nonRenderableCandidates.some((candidate) => candidate.reasonCode === 'PATTERN_NOT_FOUND')).to.equal(true);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('prioritizes radio-group over select and radio-button for input.selection.single', async () => {
+    const { experimental_getIntentOptions } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_getIntentOptions({
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intentId: 'input.selection.single',
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.bestDefaultTargetId).to.equal('component:syn-radio-group');
+      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+        'component:syn-radio-group',
+        'component:syn-select',
+        'component:syn-radio-button',
+        'component:syn-radio',
+        'component:syn-option',
+      ]);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('returns syn-combobox for input.selection.searchable.multiple intent', async () => {
+    const { experimental_getIntentOptions } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_getIntentOptions({
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intentId: 'input.selection.searchable.multiple',
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.bestDefaultTargetId).to.equal('component:syn-combobox');
+      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+        'component:syn-combobox',
+      ]);
+    } finally {
+      await fixture.cleanup();
+    }
+  });
+
+  it('returns syn-validate as renderable target for generic validation feedback intent', async () => {
+    const { experimental_getIntentOptions } = await loadPublicApi();
+    const fixture = await createFixtureDataDir();
+
+    try {
+      const response = await experimental_getIntentOptions({
+        framework: 'react-web-components',
+        includePhases: ['experimental'],
+        intentId: 'feedback.validation.generic',
+      }, {
+        dataDir: fixture.dataDir,
+      });
+
+      expect(response.errors).to.equal(undefined);
+      expect(response.data).to.not.equal(null);
+      expect(response.data.bestDefaultTargetId).to.equal('component:syn-validate');
+      expect(response.data.renderableTargets.map((target) => target.targetId)).to.deep.equal([
+        'component:syn-validate',
+      ]);
+      expect(response.data.nonRenderableCandidates).to.deep.equal([]);
     } finally {
       await fixture.cleanup();
     }

@@ -301,6 +301,70 @@ describe('when a size is applied', () => {
   });
 });
 
+describe('when using layout alignment', () => {
+  it('should not apply horizontal class by default', async () => {
+    const radioGroup = await fixture<SynRadioGroup>(html`
+      <syn-radio-group>
+        <syn-radio value="1"></syn-radio>
+        <syn-radio value="2"></syn-radio>
+      </syn-radio-group>
+    `);
+    const fieldset = radioGroup.shadowRoot!.querySelector('fieldset.form-control')!;
+
+    expect(radioGroup.layout).to.equal('vertical');
+    expect(fieldset.classList.contains('form-control--is-horizontal')).to.equal(false);
+  });
+
+  it('should apply horizontal class when layout is horizontal', async () => {
+    const radioGroup = await fixture<SynRadioGroup>(html`
+      <syn-radio-group layout="horizontal">
+        <syn-radio value="1"></syn-radio>
+        <syn-radio value="2"></syn-radio>
+      </syn-radio-group>
+    `);
+    const fieldset = radioGroup.shadowRoot!.querySelector('fieldset.form-control')!;
+
+    expect(fieldset.classList.contains('form-control--is-horizontal')).to.equal(true);
+  });
+
+  it('should toggle horizontal class when layout changes at runtime', async () => {
+    const radioGroup = await fixture<SynRadioGroup>(html`
+      <syn-radio-group>
+        <syn-radio value="1"></syn-radio>
+        <syn-radio value="2"></syn-radio>
+      </syn-radio-group>
+    `);
+    const fieldset = radioGroup.shadowRoot!.querySelector('fieldset.form-control')!;
+
+    expect(fieldset.classList.contains('form-control--is-horizontal')).to.equal(false);
+
+    radioGroup.layout = 'horizontal';
+    await radioGroup.updateComplete;
+
+    expect(fieldset.classList.contains('form-control--is-horizontal')).to.equal(true);
+
+    radioGroup.layout = 'vertical';
+    await radioGroup.updateComplete;
+
+    expect(fieldset.classList.contains('form-control--is-horizontal')).to.equal(false);
+  });
+
+  it('should keep horizontal class with radio-button groups', async () => {
+    const radioGroup = await fixture<SynRadioGroup>(html`
+      <syn-radio-group layout="horizontal">
+        <syn-radio-button value="1">One</syn-radio-button>
+        <syn-radio-button value="2">Two</syn-radio-button>
+      </syn-radio-group>
+    `);
+    const fieldset = radioGroup.shadowRoot!.querySelector('fieldset.form-control')!;
+
+    await radioGroup.updateComplete;
+
+    expect(fieldset.classList.contains('form-control--is-horizontal')).to.equal(true);
+    expect(fieldset.classList.contains('form-control--has-button-group')).to.equal(true);
+  });
+});
+
 describe('when handling focus', () => {
   const doAction = async (instance: SynRadioGroup, type: string) => {
     if (type === 'focus') {

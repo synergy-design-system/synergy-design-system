@@ -23,11 +23,22 @@ import {
   type PublicResponse,
 } from '../types.js';
 import type {
+  IntentContentRule,
+  IntentContentSource,
   IntentPhase,
   IntentPropRule,
   IntentStructureNode,
 } from '../../intentPolicy/types.js';
 import { createMetadataStore } from '../store.js';
+
+type IntentOptionTargetRole = 'standalone' | 'container' | 'item';
+
+type IntentOptionPatternLike = {
+  phase?: IntentPhase;
+  priority?: number;
+  description?: string;
+  targetRole?: IntentOptionTargetRole;
+};
 
 /**
  * @experimental Intent policy query options may evolve during rollout.
@@ -562,9 +573,11 @@ export type IntentOptionsQuery = {
 export type IntentOption = {
   phase?: IntentPhase;
   previewCode: string;
+  priority?: number;
   reason: string;
   targetId: string;
   targetName?: string;
+  targetRole?: IntentOptionTargetRole;
 };
 
 /**
@@ -705,6 +718,60 @@ const getTargetIdentity = (target: IntentTargetRef): string => target.id
   ?? target.selector
   ?? `${target.kind}:unknown`;
 
+const getIntentTargetRoleWeight = (targetRole?: IntentOptionTargetRole): number => {
+  switch (targetRole ?? 'standalone') {
+    case 'standalone':
+      return 3;
+    case 'container':
+      return 2;
+    case 'item':
+      return 1;
+    default:
+      return 0;
+  }
+};
+
+const compareIntentOptions = (a: Pick<IntentOption, 'priority' | 'targetId' | 'targetRole'>, b: Pick<IntentOption, 'priority' | 'targetId' | 'targetRole'>): number => {
+  const roleWeightDifference = getIntentTargetRoleWeight(b.targetRole) - getIntentTargetRoleWeight(a.targetRole);
+  if (roleWeightDifference !== 0) {
+    return roleWeightDifference;
+  }
+
+  const priorityDifference = (b.priority ?? 0) - (a.priority ?? 0);
+  if (priorityDifference !== 0) {
+    return priorityDifference;
+  }
+
+  return a.targetId.localeCompare(b.targetId);
+};
+
+const hasMeaningfulContentValue = (value: IntentPresetValue | undefined): boolean => {
+  if (typeof value === 'string') {
+    return value.trim().length > 0;
+  }
+
+  return value !== undefined && value !== null;
+};
+
+const hasContentForSource = (
+  source: IntentContentSource,
+  node: IntentStructureNode,
+): boolean => {
+  if (source.kind === 'prop') {
+    return hasMeaningfulContentValue(node.props?.[source.prop]);
+  }
+
+  if (source.kind === 'text') {
+    return typeof node.text === 'string' && node.text.trim().length > 0;
+  }
+
+  if (source.kind === 'children') {
+    return (node.children?.length ?? 0) > 0;
+  }
+
+  return (node.children ?? []).some((child) => child.slot === source.slot);
+};
+
 const evaluateNodePropRules = (
   rules: IntentPropRule[],
   props: Record<string, IntentPresetValue> | undefined,
@@ -768,6 +835,47 @@ const evaluateNodePropRules = (
       code: rule.code,
       message: rule.message,
       path: `${nodePath}.props.${rule.prop}`,
+      rationale: rule.rationale,
+      severity: rule.severity ?? 'warning',
+      suggestedFix: rule.suggestedFix,
+    });
+  }
+};
+
+const evaluateNodeContentRules = (
+  rules: IntentContentRule[],
+  node: IntentStructureNode,
+  nodePath: string,
+  issues: ComponentValidationIssue[],
+): void => {
+  for (const rule of rules) {
+    if (rule.kind === 'requiredContent') {
+      const hasTextContent = typeof node.text === 'string' && node.text.trim().length > 0;
+      const hasChildren = (node.children?.length ?? 0) > 0;
+
+      if (!hasTextContent && !hasChildren) {
+        issues.push({
+          code: rule.code,
+          message: rule.message,
+          path: `${nodePath}.children`,
+          rationale: rule.rationale,
+          severity: 'error',
+          suggestedFix: rule.suggestedFix,
+        });
+      }
+
+      continue;
+    }
+
+    const isSatisfied = rule.sources.some((source) => hasContentForSource(source, node));
+    if (isSatisfied) {
+      continue;
+    }
+
+    issues.push({
+      code: rule.code,
+      message: rule.message,
+      path: `${nodePath}.children`,
       rationale: rule.rationale,
       severity: rule.severity ?? 'warning',
       suggestedFix: rule.suggestedFix,
@@ -857,21 +965,7 @@ const validateStructureNode = async (
   evaluateNodePropRules(expected.config?.propRules ?? [], actualWithDefaults.props, nodePath, issues, strictRequiredEquals);
 
   if (strictRequiredEquals) {
-    for (const rule of expected.config?.contentRules ?? []) {
-      const hasTextContent = typeof actualWithDefaults.text === 'string' && actualWithDefaults.text.trim().length > 0;
-      const hasChildren = (actualWithDefaults.children?.length ?? 0) > 0;
-
-      if (!hasTextContent && !hasChildren) {
-        issues.push({
-          code: rule.code,
-          message: rule.message,
-          path: `${nodePath}.children`,
-          rationale: rule.rationale,
-          severity: 'error',
-          suggestedFix: rule.suggestedFix,
-        });
-      }
-    }
+    evaluateNodeContentRules(expected.config?.contentRules ?? [], actualWithDefaults, nodePath, issues);
   }
 
   if (expected.component === 'text' && expected.text && actualWithDefaults.text !== expected.text) {
@@ -1354,17 +1448,20 @@ export const getIntentOptions = async (
       continue;
     }
 
-    const pattern = resolveUsagePatternFromRegistry(capability.target, intent.id, phases);
+    const pattern = resolveUsagePatternFromRegistry(capability.target, intent.id, phases) as IntentOptionPatternLike | null;
+
     renderableTargets.push({
       phase: pattern?.phase,
       previewCode: snippet,
+      priority: pattern?.priority,
       reason: pattern?.description ?? `Renderable option for intent "${intent.id}".`,
       targetId,
       targetName: capability.target.name,
+      targetRole: pattern?.targetRole,
     });
   }
 
-  renderableTargets.sort((a, b) => a.targetId.localeCompare(b.targetId));
+  renderableTargets.sort(compareIntentOptions);
   const limitedTargets = renderableTargets.slice(0, query.maxAlternatives ?? 5);
 
   return {

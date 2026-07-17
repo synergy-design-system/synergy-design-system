@@ -14,6 +14,7 @@ const currentPath = normalizePathForNavigation(Astro.url.pathname, basePath);
 const logoHref = withBasePath('/', basePath);
 const faviconSvgHref = withBasePath('/favicon.svg', basePath);
 const aiPolicyHref = withBasePath('/llms.txt', basePath);
+const sitemapHref = withBasePath('/sitemap.xml', basePath);
 ---
 
 <script>
@@ -130,6 +131,7 @@ if (document.readyState === 'loading') {
 		<link rel="icon" type="image/svg+xml" href={faviconSvgHref} />
 		<meta name="generator" content={Astro.generator} />
 		<link rel="ai-policy" href={aiPolicyHref}>
+		<link rel="sitemap" type="application/xml" href={sitemapHref} />
 		<title>Synergy Design System - Design System Specification</title>
 	</head>
 	<body>

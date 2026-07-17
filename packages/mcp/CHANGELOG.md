@@ -1,5 +1,38 @@
 # Changelog
 
+## 3.22.0
+
+### Minor Changes
+
+- Released on: 2026-07-16
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`e65eb05`](https://github.com/synergy-design-system/synergy-design-system/commit/e65eb057c399592b7c9e993158c80e6ccca2fe88)]:
+  - @synergy-design-system/metadata@3.22.0
+
+## 3.21.0
+
+### Minor Changes
+
+- [#1329](https://github.com/synergy-design-system/synergy-design-system/pull/1329) [`0d302ad`](https://github.com/synergy-design-system/synergy-design-system/commit/0d302ad1f6316c04e08772ce366446e76ac7cf44) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-15
+
+  feat: ✨ Add a new docker image to the mcp server ([#1321](https://github.com/synergy-design-system/synergy-design-system/issues/1321))
+
+  This release adds more abilities to the Synergy MCP-Server:
+
+  - Adds support to create docker containers
+  - Allows middleware compression for mcp resources
+  - Adds the ability to log to stdout for easier usage in k8s environments
+  - Adds ability to silence log outputs
+
+### Patch Changes
+
+- Updated dependencies [[`0d302ad`](https://github.com/synergy-design-system/synergy-design-system/commit/0d302ad1f6316c04e08772ce366446e76ac7cf44)]:
+  - @synergy-design-system/metadata@3.21.0
+
 ## 3.20.0
 
 ### Minor Changes

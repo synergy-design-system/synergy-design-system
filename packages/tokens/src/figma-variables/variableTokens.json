@@ -285,8 +285,8 @@
         "VariableID:36102:6346",
         "VariableID:36102:6347",
         "VariableID:36102:6348",
-        "VariableID:36102:6355",
         "VariableID:36102:6349",
+        "VariableID:36102:6355",
         "VariableID:36102:6350",
         "VariableID:24741:120375",
         "VariableID:24741:120376",
@@ -353,8 +353,8 @@
         "VariableID:36102:6183",
         "VariableID:36102:6190",
         "VariableID:36102:6188",
-        "VariableID:36331:6163",
         "VariableID:36102:6187",
+        "VariableID:36331:6163",
         "VariableID:36331:6164",
         "VariableID:36331:6165",
         "VariableID:36102:6189",
@@ -467,6 +467,7 @@
         "VariableID:41094:277061",
         "VariableID:41094:278099",
         "VariableID:44126:435331",
+        "VariableID:49764:49058",
         "VariableID:44126:435332",
         "VariableID:44847:42739",
         "VariableID:44847:42740",
@@ -484,8 +485,8 @@
         "VariableID:36102:6221",
         "VariableID:36102:6223",
         "VariableID:36102:6224",
-        "VariableID:36102:6222",
         "VariableID:36102:6225",
+        "VariableID:36102:6222",
         "VariableID:40079:55934",
         "VariableID:40079:55935",
         "VariableID:40159:345830",
@@ -24300,9 +24301,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24334,9 +24333,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24368,9 +24365,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24402,9 +24397,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24436,9 +24429,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24470,9 +24461,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24504,9 +24493,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24538,9 +24525,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24572,9 +24557,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24606,9 +24589,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24640,9 +24621,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24674,9 +24653,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24708,9 +24685,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24742,9 +24717,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24776,9 +24749,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24810,9 +24781,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24844,9 +24813,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24878,9 +24845,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24912,9 +24877,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24946,9 +24909,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -24980,9 +24941,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25014,9 +24973,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25048,9 +25005,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25082,9 +25037,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25116,9 +25069,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25150,9 +25101,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25184,9 +25133,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25218,9 +25165,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25252,9 +25197,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25286,9 +25229,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25320,9 +25261,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25354,9 +25293,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -25388,9 +25325,7 @@
       "remote": false,
       "resolvedType": "COLOR",
       "scopes": [
-        "FRAME_FILL",
-        "SHAPE_FILL",
-        "STROKE_COLOR"
+        "ALL_SCOPES"
       ],
       "valuesByMode": {
         "28:3": {
@@ -26728,6 +26663,26 @@
           "g": 0.003921568859368563,
           "r": 0.23529411852359772
         }
+      },
+      "variableCollectionId": "VariableCollectionId:28:527"
+    },
+    "VariableID:49764:49058": {
+      "codeSyntax": {},
+      "description": "",
+      "hiddenFromPublishing": false,
+      "id": "VariableID:49764:49058",
+      "key": "6bd299a6d1c61efc5ed091cc22a93dcac1219e2f",
+      "name": "component/radio-button/spacing/small",
+      "remote": false,
+      "resolvedType": "FLOAT",
+      "scopes": [
+        "ALL_SCOPES"
+      ],
+      "valuesByMode": {
+        "28:3": 6,
+        "36102:0": 6,
+        "36102:1": 6,
+        "36102:2": 6
       },
       "variableCollectionId": "VariableCollectionId:28:527"
     },

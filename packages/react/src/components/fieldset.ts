@@ -14,7 +14,7 @@ Component.define('syn-fieldset');
  * @summary Fieldsets are used to group related elements in a form.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-fieldset--docs
  * @status stable
- * @since 3.x.x
+ * @since 3.18.x
  *
  * @slot - The fieldset's main content. Place form controls inside the fieldset to group them together.
  * @slot legend - Add a legend to the fieldset. This is displayed as the title of the fieldset. Alternatively, you can use the `legend` attribute.

@@ -1791,6 +1791,11 @@ export const SynRadioButtonBorderRadiusSmall = 'var(--syn-radio-button-border-ra
 /**
  * @type {string}
  */
+export const SynRadioButtonSpacingSmall = 'var(--syn-radio-button-spacing-small)';
+
+/**
+ * @type {string}
+ */
 export const SynRangeColorInactive = 'var(--syn-range-color-inactive)';
 
 /**

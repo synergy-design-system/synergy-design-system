@@ -364,6 +364,7 @@
   --syn-radio-button-border-radius-large: var(--syn-border-radius-small);
   --syn-radio-button-border-radius-medium: var(--syn-border-radius-small);
   --syn-radio-button-border-radius-small: var(--syn-border-radius-small);
+  --syn-radio-button-spacing-small: 6px;
   --syn-range-color-inactive: var(--syn-color-neutral-300);
   --syn-range-error-color: var(--syn-color-error-600);
   --syn-range-tick-color: var(--syn-color-neutral-600);

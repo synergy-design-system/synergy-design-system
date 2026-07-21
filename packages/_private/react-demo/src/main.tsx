@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 
 // Load fonts
 import '@synergy-design-system/fonts';
+import '@synergy-design-system/demo-utilities/styles/app.css';
 import '@synergy-design-system/demo-utilities/styles/font.css';
 
 import '@synergy-design-system/demo-utilities/styles/demo-template.css';
@@ -16,7 +17,6 @@ import '@synergy-design-system/components/index.css';
 import '@synergy-design-system/styles';
 import { enableSettingEmitEvents } from '@synergy-design-system/components';
 
-import './app.css';
 import { App } from './App.js';
 
 enableSettingEmitEvents(true);

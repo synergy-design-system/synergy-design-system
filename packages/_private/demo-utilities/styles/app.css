@@ -1,0 +1,81 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--syn-page-background-color-muted);
+  color: var(--syn-color-neutral-900);
+  font-family: var(--syn-font-sans);
+  font-size: var(--syn-font-size-medium);
+}
+
+#root,
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.custom-logo syn-icon {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+/* Safari fix for ##623 */
+.custom-logo syn-icon::part(svg) {
+  width: auto;
+}
+
+.meta-navigation {
+  align-items: center;
+  display: flex;
+}
+
+/* Form Wrappers */
+form syn-divider {
+  --spacing: var(--syn-spacing-2x-large);
+}
+
+.syn-submit-buttons {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: var(--syn-spacing-large);
+  justify-content: center;
+  margin: 0 0 var(--syn-spacing-2x-large) 0;
+}
+
+/* Special overrides */
+#radiogroup-gender::part(form-control-input) {
+  display: flex;
+  gap: var(--syn-spacing-medium);
+}
+
+#happiness-fields syn-range nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#input-nationality::part(listbox) {
+  max-height: min(var(--auto-size-available-height), 300px);
+}
+
+.main {
+  background: var(--syn-page-background-color);
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.content {
+  box-sizing: border-box;
+  flex-grow: 1;
+  height: 100%;
+  overflow-y: auto;
+  padding: var(--syn-spacing-medium) var(--syn-spacing-large);
+}

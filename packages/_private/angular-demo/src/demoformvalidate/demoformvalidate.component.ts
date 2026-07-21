@@ -12,7 +12,7 @@ import {
   statusWarning,
 } from '@synergy-design-system/demo-utilities';
 import { UsedSynergyComponentsModule } from '../modules/used-synergy.module';
-import { DemoFieldSetModule } from '../modules/demofieldset.module';
+import { SynFieldsetComponent } from '@synergy-design-system/angular/components/fieldset';
 
 const initialMockData = mockData('initialValidateFormData');
 
@@ -36,11 +36,11 @@ console.log(mockData('initialValidateFormData'));
 @Component({
   selector: 'demo-form-validate',
   standalone: true,
-  styleUrls: ['./demoformvalidate.component.css'],
+  styleUrls: [],
   templateUrl: './demoformvalidate.component.html',
   imports: [
     UsedSynergyComponentsModule,
-    DemoFieldSetModule,
+    SynFieldsetComponent,
     ReactiveFormsModule,
   ],
 })

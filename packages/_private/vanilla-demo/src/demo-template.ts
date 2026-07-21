@@ -21,15 +21,40 @@ class DemoTemplate extends LitElement {
   @property({ attribute: false })
   regressions!: Regressions;
 
+  @property({ attribute: false })
+  activeDemo = '';
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.activeDemo = this.demos[0]?.[0] || '';
+  }
+
+  updated(changedProperties: Map<string, unknown>) {
+    if (changedProperties.has('demos')) {
+      this.activeDemo = this.demos[0]?.[0] || '';
+    }
+  }
+
+  private handleTabShow = (e: Event) => {
+    const { name } = (e as CustomEvent<{ name: string }>).detail;
+    const demoNames = new Set(this.demos.map(([demoName]) => demoName));
+    if (!demoNames.has(name)) {
+      return;
+    }
+
+    (e.target as HTMLElement).parentElement?.scrollTo(0, 0);
+    this.activeDemo = name;
+  };
+
   render() {
-    const activeDemo = this.demos[0]?.[0] || '';
+    const activeDemo = this.activeDemo || this.demos[0]?.[0] || '';
 
     if (this.demos.length === 0) {
       return html`<span> There are no demos available.</span>`;
     }
 
     return html`
-     <syn-tab-group class="demo-tab-group" placement="end">
+     <syn-tab-group class="demo-tab-group" placement="end" @syn-tab-show=${this.handleTabShow}>
         ${this.demos.map(([name, Component]) => html`
           <syn-tab
             ?active=${name === activeDemo}
@@ -43,11 +68,13 @@ class DemoTemplate extends LitElement {
             ?active=${name === activeDemo}
             name=${name}
           >
-            <div id="tab-content-${name}">
-              <h1 class="syn-heading--3x-large">${name}</h1>
-              <syn-divider></syn-divider>
-              ${html`${Component((this.regressions && this.regressions.has(name)) ? (this.regressions.get(name) || []) : [])}`}
-            </div>
+            ${name === activeDemo ? html`
+              <div id="tab-content-${name}">
+                <h1 class="syn-heading--3x-large">${name}</h1>
+                <syn-divider></syn-divider>
+                ${html`${Component((this.regressions && this.regressions.has(name)) ? (this.regressions.get(name) || []) : [])}`}
+              </div>
+            ` : null}
           </syn-tab-panel>
         `)}
       </syn-tab-group>

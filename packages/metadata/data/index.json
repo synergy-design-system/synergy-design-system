@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-07-14T14:05:42.754Z",
+  "builtAt": "2026-07-21T06:07:36.176Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -328,6 +328,28 @@
       ]
     },
     {
+      "corePath": "data/core/component/component:syn-checkbox-group.json",
+      "id": "component:syn-checkbox-group",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 7,
+        "interface": 2,
+        "rules": 1
+      },
+      "name": "syn-checkbox-group",
+      "search": [
+        "component:syn-checkbox-group",
+        "syn-checkbox-group",
+        "angular",
+        "checkbox-group",
+        "component",
+        "react",
+        "syn-checkbox-group",
+        "vue"
+      ]
+    },
+    {
       "corePath": "data/core/component/component:syn-combobox.json",
       "id": "component:syn-combobox",
       "kind": "component",
@@ -456,6 +478,28 @@
         "dropdown",
         "react",
         "syn-dropdown",
+        "vue"
+      ]
+    },
+    {
+      "corePath": "data/core/component/component:syn-fieldset.json",
+      "id": "component:syn-fieldset",
+      "kind": "component",
+      "layers": {
+        "examples": 1,
+        "full": 9,
+        "interface": 2,
+        "rules": 1
+      },
+      "name": "syn-fieldset",
+      "search": [
+        "component:syn-fieldset",
+        "syn-fieldset",
+        "angular",
+        "component",
+        "fieldset",
+        "react",
+        "syn-fieldset",
         "vue"
       ]
     },

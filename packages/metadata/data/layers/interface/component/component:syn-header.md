@@ -39,7 +39,14 @@ reflects: yes
 type: `'hidden' | 'open' | 'closed'`
 default: `'hidden'`
 
-Defines the current visibility and icon of the burger-menu icon. The menu button is added automatically if the component finds a syn-side-nav in variant="default". The following values can be used: - hidden: The burger menu is not visible - open: The burger menu is visible and shows the close icon - closed: The burger menu is visible and shows the open icon
+Defines the current visibility and icon of the burger-menu icon.
+The menu button is added automatically if the component finds a syn-side-nav in
+variant="default".
+The following values can be used:
+
+- hidden: The burger menu is not visible
+- open: The burger menu is visible and shows the close icon
+- closed: The burger menu is visible and shows the open icon
 
 ### label
 
@@ -57,7 +64,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Makes the header stick to the top of the viewport when scrolling. Also applies a shadow to the header when scrolling.
+Makes the header stick to the top of the viewport when scrolling.
+Also applies a shadow to the header when scrolling.
 
 ## Available Methods
 

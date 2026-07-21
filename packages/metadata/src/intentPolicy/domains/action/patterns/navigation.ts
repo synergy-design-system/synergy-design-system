@@ -3,6 +3,7 @@ import type { IntentUsagePattern } from '../../../types.js';
 export const actionNavigationPattern: IntentUsagePattern = {
   description: 'Navigation action uses href and text variant.',
   intent: 'action.navigation',
+  priority: 0,
   structure: {
     component: 'syn-button',
     config: {
@@ -38,4 +39,5 @@ export const actionNavigationPattern: IntentUsagePattern = {
     },
   },
   target: { id: 'component:syn-button', kind: 'component', name: 'syn-button' },
+  targetRole: 'standalone',
 };

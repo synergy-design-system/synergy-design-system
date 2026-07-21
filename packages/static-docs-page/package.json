@@ -14,13 +14,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^5.0.7",
+    "@astrojs/react": "^6.0.1",
     "@synergy-design-system/components": "workspace:^",
     "@synergy-design-system/fonts": "workspace:^",
     "@synergy-design-system/react": "workspace:^",
     "@synergy-design-system/styles": "workspace:^",
     "@synergy-design-system/tokens": "workspace:^",
-    "astro": "^6.4.8",
+    "astro": "^7.0.7",
+    "astro-expressive-code": "^0.44.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },

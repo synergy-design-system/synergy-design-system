@@ -1,4 +1,5 @@
 ---
+import { Code } from 'astro-expressive-code/components';
 import {
 	getDataForStyle,
 	getStyleMetadata,
@@ -119,7 +120,7 @@ const codeSamples = examples.flatMap((entry) => parseStyleCodeSamples(entry.cont
 							<syn-details summary={`${sample.title} [${sample.language}]`}>
 								<article>
 									<p><strong>Source:</strong> {sample.sourcePath}</p>
-									<pre><code>{sample.code}</code></pre>
+									<Code code={sample.code} lang={sample.language || 'text'} />
 								</article>
 							</syn-details>
 						))}

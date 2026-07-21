@@ -1,5 +1,50 @@
 # Changelog
 
+## 3.23.0
+
+### Minor Changes
+
+- [#1327](https://github.com/synergy-design-system/synergy-design-system/pull/1327) [`d660ae7`](https://github.com/synergy-design-system/synergy-design-system/commit/d660ae710f3ba94eda2263f1c3af71695e317b58) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-21
+
+  feat: ✨ Enable support for Angular 22 ([#1326](https://github.com/synergy-design-system/synergy-design-system/issues/1326))
+
+  This release adds support for `angular` version 22. It also updates typescript to version 6 for all packages.
+
+## 3.22.0
+
+### Minor Changes
+
+- [#1314](https://github.com/synergy-design-system/synergy-design-system/pull/1314) [`e65eb05`](https://github.com/synergy-design-system/synergy-design-system/commit/e65eb057c399592b7c9e993158c80e6ccca2fe88) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-16
+
+  feat: ✨ syn-fieldset, syn-checkbox-group ([#794](https://github.com/synergy-design-system/synergy-design-system/issues/794))
+
+  #### `<syn-fieldset>`
+
+  Adds a new `<syn-fieldset>` component for grouping related form controls with semantic markup and accessibility support.
+
+  #### `<syn-radio-group>`
+
+  Adds a new property `layout` to `<syn-radio-group>`. This can be used to display slotted `<syn-radio>` elements horizontally.
+
+  #### `<syn-checkbox-group>`
+
+  Adds a new `<syn-checkbox-group>` component for grouping related checkboxes with semantic markup.
+
+## 3.21.0
+
+### Minor Changes
+
+- [#1329](https://github.com/synergy-design-system/synergy-design-system/pull/1329) [`0d302ad`](https://github.com/synergy-design-system/synergy-design-system/commit/0d302ad1f6316c04e08772ce366446e76ac7cf44) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-15
+
+  feat: ✨ Add a new docker image to the mcp server ([#1321](https://github.com/synergy-design-system/synergy-design-system/issues/1321))
+
+  This release adds more abilities to the Synergy MCP-Server:
+
+  - Adds support to create docker containers
+  - Allows middleware compression for mcp resources
+  - Adds the ability to log to stdout for easier usage in k8s environments
+  - Adds ability to silence log outputs
+
 ## 3.20.0
 
 ### Minor Changes

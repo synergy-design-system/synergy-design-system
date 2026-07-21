@@ -40,6 +40,8 @@ export default meta;
 
 type Story = StoryObj;
 
+const capitalizeFirstLetter = (value: string) => `${value[0].toUpperCase()}${value.slice(1)}`;
+
 export const Default: Story = {
   args: overrideArgs([
     {
@@ -187,20 +189,45 @@ export const Sizes: Story = {
     },
   },
   render: () => html`
-    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
-      <syn-radio-group label="Small size" size="small">
-        <syn-radio value="1">Option</syn-radio>
-        <syn-radio value="2">Option</syn-radio>
-      </syn-radio-group>
-      <syn-radio-group label="Medium size" size="medium">
-        <syn-radio value="1">Option</syn-radio>
-        <syn-radio value="2">Option</syn-radio>
-      </syn-radio-group>
-      <syn-radio-group label="Large size" size="large">
-        <syn-radio value="1">Option</syn-radio>
-        <syn-radio value="2">Option</syn-radio>
-      </syn-radio-group>
+    <div class="demo-radio-group-grid">
+      ${(['small', 'medium', 'large'] as const).map(size => html`
+        <div class="demo-radio-group-tile">
+          <syn-radio-group
+            label="${`${capitalizeFirstLetter(size)} size vertical`}"
+            size="${size}"
+            layout="vertical"
+          >
+            <syn-radio value="1">Option</syn-radio>
+            <syn-radio value="2">Option</syn-radio>
+          </syn-radio-group>
+        </div>
+        <div class="demo-radio-group-tile">
+          <syn-radio-group
+            label="${`${capitalizeFirstLetter(size)} size horizontal`}"
+            size="${size}"
+            layout="horizontal"
+          >
+            <syn-radio value="1">Option</syn-radio>
+            <syn-radio value="2">Option</syn-radio>
+          </syn-radio-group>
+        </div>
+      `)}
     </div>
+    <style>
+    .demo-radio-group-grid {
+      column-gap: var(--syn-spacing-large);
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: start;
+    }
+
+    .demo-radio-group-tile {
+      background: var(--syn-page-background);
+      padding: var(--syn-spacing-large);
+      box-sizing: border-box;
+      height: 100%;
+    }
+    </style>
   `,
 };
 
@@ -326,6 +353,32 @@ export const RadioButtons: Story = {
   `,
 };
 
+export const HorizontalLayout: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('radio-group', 'horizontal-layout'),
+      },
+    },
+  },
+  render: () => html`
+    <div style="display: flex; flex-direction: column; gap: var(--syn-spacing-large);">
+      <syn-radio-group layout="horizontal" label="Small size" size="small">
+        <syn-radio value="1">Option</syn-radio>
+        <syn-radio value="2">Option</syn-radio>
+      </syn-radio-group>
+      <syn-radio-group layout="horizontal" label="Medium size" size="medium">
+        <syn-radio value="1">Option</syn-radio>
+        <syn-radio value="2">Option</syn-radio>
+      </syn-radio-group>
+      <syn-radio-group layout="horizontal" label="Large size" size="large">
+        <syn-radio value="1">Option</syn-radio>
+        <syn-radio value="2">Option</syn-radio>
+      </syn-radio-group>
+    </div>
+  `,
+};
+
 // Bundled screenshot story
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
@@ -337,5 +390,6 @@ export const Screenshot: Story = generateScreenshotStory({
   Readonly,
   Sizes,
   RadioButtons,
+  HorizontalLayout,
 }, 400);
 /* eslint-enable sort-keys */

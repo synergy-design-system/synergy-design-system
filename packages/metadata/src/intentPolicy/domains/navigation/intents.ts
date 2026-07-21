@@ -43,4 +43,10 @@ export const navigationIntents: IntentDefinition[] = [
     id: 'navigation.sidenav.menu',
     userGoal: 'Move between major sections in an app shell efficiently.',
   },
+  {
+    category: 'navigation',
+    description: 'Use priority navigation bars to expose primary destinations and automatically overflow secondary items.',
+    id: 'navigation.prio.menu',
+    userGoal: 'Reach high-priority destinations quickly while keeping overflow destinations accessible.',
+  },
 ];

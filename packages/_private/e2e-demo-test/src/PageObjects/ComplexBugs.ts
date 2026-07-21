@@ -10,5 +10,10 @@ export class ComplexBugsPage extends PageObject {
     }
     const foundLocator = this.getLocator(locator);
     await foundLocator.click();
+
+    const panelName = await foundLocator.evaluate((ele: HTMLElement & { panel?: string }) => ele.panel || ele.getAttribute('panel') || '');
+    if (!panelName) {
+      throw new Error(`Unable to resolve panel for locator: ${String(locator)}`);
+    }
   }
 }

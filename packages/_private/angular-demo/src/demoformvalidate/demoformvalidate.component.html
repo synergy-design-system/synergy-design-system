@@ -19,7 +19,7 @@
   }
 
   <!-- PersonalInformation -->
-  <demo-fieldset legend="Personal Information">
+  <syn-fieldset legend="Personal Information">
 
     <syn-validate variant="inline">
       <syn-radio-group
@@ -150,13 +150,13 @@
       </syn-combobox>
     </syn-validate>
 
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /PersonalInformation -->
 
   <syn-divider />
 
   <!-- Security -->
-  <demo-fieldset legend="Security">
+  <syn-fieldset legend="Security">
     <syn-validate variant="inline" on="input blur">
       <syn-input
         formControlName="password"
@@ -183,13 +183,13 @@
         type="number"
       />
     </syn-validate>
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /Security -->
 
    <syn-divider />
 
   <!-- Topics -->
-  <demo-fieldset legend="Topics">
+  <syn-fieldset legend="Topics">
     <syn-select
       clearable
       formControlName="topics"
@@ -224,13 +224,13 @@
         <syn-option [value]="framework.value">{{framework.label}}</syn-option>
       }
     </syn-combobox>
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /Topics -->
 
   <syn-divider />
 
   <!-- Happiness -->
-  <demo-fieldset id="happiness-fields" legend="Happiness">
+  <syn-fieldset id="happiness-fields" legend="Happiness">
     <syn-validate variant="inline" on="live">
       <syn-range
         formControlName="happiness"
@@ -275,13 +275,13 @@
       </nav>
     </syn-range>
 
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /.Happiness -->
 
   <syn-divider />
 
   <!-- Marketing -->
-  <demo-fieldset legend="Please inform me about the following technologies">
+  <syn-fieldset legend="Please inform me about the following technologies">
     <syn-validate variant="inline">
       <syn-checkbox
         formControlName="newsletterStandard"
@@ -302,13 +302,13 @@
         I am interested in the Synergy Beta Program
       </syn-switch>
     </syn-validate>
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /Marketing -->
 
   <syn-divider />
 
   <!-- AdditionalInformation -->
-  <demo-fieldset legend="Additional Information">
+  <syn-fieldset legend="Additional Information">
     <syn-validate variant="inline" on="live">
       <syn-textarea
         id="additional-info"
@@ -332,7 +332,7 @@
         name="files"
       />
     </syn-validate>
-  </demo-fieldset>
+  </syn-fieldset>
   <!-- /AdditionalInformation -->
 
   <syn-divider />

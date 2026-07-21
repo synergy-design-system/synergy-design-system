@@ -1,5 +1,47 @@
 # @synergy-design-system/angular
 
+## 3.19.0
+
+### Minor Changes
+
+- [#1327](https://github.com/synergy-design-system/synergy-design-system/pull/1327) [`d660ae7`](https://github.com/synergy-design-system/synergy-design-system/commit/d660ae710f3ba94eda2263f1c3af71695e317b58) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-21
+
+  feat: ✨ Enable support for Angular 22 ([#1326](https://github.com/synergy-design-system/synergy-design-system/issues/1326))
+
+  This release adds support for `angular` version 22. It also updates typescript to version 6 for all packages.
+
+### Patch Changes
+
+- Updated dependencies [[`d660ae7`](https://github.com/synergy-design-system/synergy-design-system/commit/d660ae710f3ba94eda2263f1c3af71695e317b58)]:
+  - @synergy-design-system/components@3.19.0
+  - @synergy-design-system/tokens@3.19.0
+
+## 3.18.0
+
+### Minor Changes
+
+- [#1314](https://github.com/synergy-design-system/synergy-design-system/pull/1314) [`e65eb05`](https://github.com/synergy-design-system/synergy-design-system/commit/e65eb057c399592b7c9e993158c80e6ccca2fe88) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-16
+
+  feat: ✨ syn-fieldset, syn-checkbox-group ([#794](https://github.com/synergy-design-system/synergy-design-system/issues/794))
+
+  #### `<syn-fieldset>`
+
+  Adds a new `<syn-fieldset>` component for grouping related form controls with semantic markup and accessibility support.
+
+  #### `<syn-radio-group>`
+
+  Adds a new property `layout` to `<syn-radio-group>`. This can be used to display slotted `<syn-radio>` elements horizontally.
+
+  #### `<syn-checkbox-group>`
+
+  Adds a new `<syn-checkbox-group>` component for grouping related checkboxes with semantic markup.
+
+### Patch Changes
+
+- Updated dependencies [[`e65eb05`](https://github.com/synergy-design-system/synergy-design-system/commit/e65eb057c399592b7c9e993158c80e6ccca2fe88)]:
+  - @synergy-design-system/components@3.18.0
+  - @synergy-design-system/tokens@3.18.0
+
 ## 3.17.0
 
 ### Minor Changes

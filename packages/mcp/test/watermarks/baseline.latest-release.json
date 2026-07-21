@@ -1,6 +1,6 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-07-10T12:21:49.041Z",
+  "generatedAt": "2026-07-21T06:07:49.073Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
@@ -26,7 +26,7 @@
     },
     {
       "id": "component-info:interface:syn-button",
-      "tokens": 1555
+      "tokens": 1562
     },
     {
       "id": "component-info:examples:syn-button",
@@ -46,11 +46,11 @@
     },
     {
       "id": "component-info:interface:syn-input",
-      "tokens": 3028
+      "tokens": 3037
     },
     {
       "id": "component-info:interface:syn-combobox",
-      "tokens": 2437
+      "tokens": 2447
     },
     {
       "id": "styles-info:syn-body",

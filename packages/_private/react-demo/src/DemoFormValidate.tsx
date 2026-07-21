@@ -34,7 +34,6 @@ import {
   statusSuccess,
   statusWarning,
 } from '@synergy-design-system/demo-utilities';
-import { DemoFieldset } from './DemoFieldset.js';
 
 type FormEnabledElements = HTMLElement & {
   checked?: boolean;
@@ -120,7 +119,7 @@ export const DemoFormValidate = () => {
       )}
 
       {/* PersonalInformation */}
-      <DemoFieldset legend="Personal Information">
+      <syn-fieldset legend="Personal Information">
 
         <SynValidate variant="inline">
           <SynRadioGroup
@@ -253,13 +252,13 @@ export const DemoFormValidate = () => {
           </SynCombobox>
         </SynValidate>
 
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /PersonalInformation */}
 
       <SynDivider />
 
       {/* Security */}
-      <DemoFieldset legend="Security">
+      <syn-fieldset legend="Security">
         <SynValidate variant="inline" on="input blur">
           <SynInput
             id="input-password"
@@ -286,13 +285,13 @@ export const DemoFormValidate = () => {
             value={formData.code}
           />
         </SynValidate>
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /Security */}
 
       <syn-divider />
 
       {/* Topics */}
-      <DemoFieldset legend="Topics">
+      <syn-fieldset legend="Topics">
         <syn-select
           clearable
           id="topics"
@@ -329,13 +328,13 @@ export const DemoFormValidate = () => {
             </syn-option>
           ))}
         </syn-combobox>
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /Topics */}
 
       <SynDivider />
 
       {/* Happiness */}
-      <DemoFieldset id="happiness-fields" legend="Happiness">
+      <syn-fieldset id="happiness-fields" legend="Happiness">
         <SynValidate variant="inline" on="input blur">
           <SynRange
             id="happiness"
@@ -381,13 +380,13 @@ export const DemoFormValidate = () => {
 
         </SynValidate>
 
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /Happiness */}
 
       <SynDivider />
 
       {/* Marketing */}
-      <DemoFieldset legend="Please inform me about the following technologies">
+      <syn-fieldset legend="Please inform me about the following technologies">
         <SynValidate variant="inline">
           <SynCheckbox
             checked={formData.newsletterStandard}
@@ -409,13 +408,13 @@ export const DemoFormValidate = () => {
             I am interested in the Synergy Beta Program
           </SynSwitch>
         </SynValidate>
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /Marketing */}
 
       <SynDivider />
 
       { /* AdditionalInformation */ }
-      <DemoFieldset legend="Additional Information">
+      <syn-fieldset legend="Additional Information">
         <SynValidate variant="inline" on="input blur">
           <SynTextarea
             id="additional-info"
@@ -439,7 +438,7 @@ export const DemoFormValidate = () => {
             name="files"
           />
         </SynValidate>
-      </DemoFieldset>
+      </syn-fieldset>
 
       { /* /AdditionalInformation */ }
 

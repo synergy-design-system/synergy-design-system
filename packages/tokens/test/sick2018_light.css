@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.16.0
+ * @synergy-design-system/tokens version 3.20.0
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -364,6 +364,7 @@
   --syn-radio-button-border-radius-large: var(--syn-border-radius-none);
   --syn-radio-button-border-radius-medium: var(--syn-border-radius-none);
   --syn-radio-button-border-radius-small: var(--syn-border-radius-none);
+  --syn-radio-button-spacing-small: 6px;
   --syn-range-color-inactive: var(--syn-color-neutral-200);
   --syn-range-error-color: var(--syn-color-error-700);
   --syn-range-tick-color: var(--syn-color-neutral-400);

@@ -102,7 +102,7 @@
       "type": "string"
     }
   ],
-  "since": "3.x.x",
+  "since": "3.18.0",
   "slots": [
     {
       "description": "The fieldset's main content. Place form controls inside the fieldset to group them together.",

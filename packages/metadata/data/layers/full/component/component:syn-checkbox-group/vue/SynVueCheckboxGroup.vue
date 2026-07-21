@@ -9,7 +9,7 @@
  * @summary Checkbox groups are used to group multiple checkboxes together.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox-group--docs
  * @status stable
- * @since 3.x.x
+ * @since 3.18.0
  *
  * @slot - The default slot where `<syn-checkbox>` and `<syn-switch>` elements are placed.
  * @slot label - The checkbox group's label. Required for proper accessibility. Alternatively, you can use the `label`

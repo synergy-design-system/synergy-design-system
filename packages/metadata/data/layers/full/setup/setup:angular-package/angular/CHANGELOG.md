@@ -1,5 +1,43 @@
 # @synergy-design-system/angular
 
+## 3.20.1
+
+### Patch Changes
+
+- [#1332](https://github.com/synergy-design-system/synergy-design-system/pull/1332) [`36f8aa3`](https://github.com/synergy-design-system/synergy-design-system/commit/36f8aa38e885aece229481a161e01021bbdcf367) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-21
+
+  fix: 🐛 `<syn-radio-button>` uses wrong spacings between items ([#1318](https://github.com/synergy-design-system/synergy-design-system/issues/1318))
+
+  This release fixes an issue with `<syn-radio-button>` that used incorrect spacing values for all sizes.
+
+- Updated dependencies [[`36f8aa3`](https://github.com/synergy-design-system/synergy-design-system/commit/36f8aa38e885aece229481a161e01021bbdcf367)]:
+  - @synergy-design-system/components@3.20.1
+  - @synergy-design-system/tokens@3.20.1
+
+## 3.20.0
+
+### Patch Changes
+
+- Updated dependencies [[`977fd96`](https://github.com/synergy-design-system/synergy-design-system/commit/977fd96cd3ee302c05df6c838c57b23efa7ead29), [`977fd96`](https://github.com/synergy-design-system/synergy-design-system/commit/977fd96cd3ee302c05df6c838c57b23efa7ead29)]:
+  - @synergy-design-system/tokens@3.20.0
+  - @synergy-design-system/components@3.20.0
+
+## 3.19.0
+
+### Minor Changes
+
+- [#1327](https://github.com/synergy-design-system/synergy-design-system/pull/1327) [`d660ae7`](https://github.com/synergy-design-system/synergy-design-system/commit/d660ae710f3ba94eda2263f1c3af71695e317b58) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-21
+
+  feat: ✨ Enable support for Angular 22 ([#1326](https://github.com/synergy-design-system/synergy-design-system/issues/1326))
+
+  This release adds support for `angular` version 22. It also updates typescript to version 6 for all packages.
+
+### Patch Changes
+
+- Updated dependencies [[`d660ae7`](https://github.com/synergy-design-system/synergy-design-system/commit/d660ae710f3ba94eda2263f1c3af71695e317b58)]:
+  - @synergy-design-system/components@3.19.0
+  - @synergy-design-system/tokens@3.19.0
+
 ## 3.18.0
 
 ### Minor Changes

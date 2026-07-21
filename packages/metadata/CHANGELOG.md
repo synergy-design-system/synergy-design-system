@@ -1,5 +1,35 @@
 # Changelog
 
+## 3.25.0
+
+### Patch Changes
+
+- [#1332](https://github.com/synergy-design-system/synergy-design-system/pull/1332) [`36f8aa3`](https://github.com/synergy-design-system/synergy-design-system/commit/36f8aa38e885aece229481a161e01021bbdcf367) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-21
+
+  fix: 🐛 `<syn-radio-button>` uses wrong spacings between items ([#1318](https://github.com/synergy-design-system/synergy-design-system/issues/1318))
+
+  This release fixes an issue with `<syn-radio-button>` that used incorrect spacing values for all sizes.
+
+## 3.24.0
+
+### Minor Changes
+
+- [#1319](https://github.com/synergy-design-system/synergy-design-system/pull/1319) [`977fd96`](https://github.com/synergy-design-system/synergy-design-system/commit/977fd96cd3ee302c05df6c838c57b23efa7ead29) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-07-21
+
+  feat: ✨ Adds a Synergy-styled chart legend and a legend preset helper ([#1204](https://github.com/synergy-design-system/synergy-design-system/issues/1204))
+  - The _legendShow_ preset helper makes it easier to show and position the legend.
+  - The config merge behavior has been updated: arrays are no longer fully replaced by the latest value. For example, a _series_ array is now merged by index instead of being overwritten.
+
+## 3.23.0
+
+### Minor Changes
+
+- [#1327](https://github.com/synergy-design-system/synergy-design-system/pull/1327) [`d660ae7`](https://github.com/synergy-design-system/synergy-design-system/commit/d660ae710f3ba94eda2263f1c3af71695e317b58) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-21
+
+  feat: ✨ Enable support for Angular 22 ([#1326](https://github.com/synergy-design-system/synergy-design-system/issues/1326))
+
+  This release adds support for `angular` version 22. It also updates typescript to version 6 for all packages.
+
 ## 3.22.0
 
 ### Minor Changes

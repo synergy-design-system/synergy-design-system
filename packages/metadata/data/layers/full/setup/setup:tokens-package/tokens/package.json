@@ -5,10 +5,10 @@
   },
   "description": "Design tokens for Synergy, the SICK Design System",
   "devDependencies": {
-    "@dotenvx/dotenvx": "^1.75.1",
+    "@dotenvx/dotenvx": "^2.6.0",
     "@figma-export/cli": "^6.4.0",
     "@figma-export/types": "^6.4.0",
-    "@figma/rest-api-spec": "^0.37.0",
+    "@figma/rest-api-spec": "^0.41.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@tamtamchik/json-deep-sort": "^1.5.0",
@@ -18,8 +18,8 @@
     "eslint": "^9.39.4",
     "eslint-import-resolver-typescript": "^4.4.5",
     "style-dictionary": "^5.5.0",
-    "stylelint": "^17.13.0",
-    "typescript": "^5.9.3"
+    "stylelint": "^17.14.0",
+    "typescript": "^6.0.3"
   },
   "exports": {
     ".": {
@@ -71,6 +71,7 @@
     "fetch:styles": "figma-export use-config",
     "fetch:variables": "node scripts/figma/fetch-variables.js",
     "clean": "node scripts/clean.js",
+    "copy:test-css": "for f in dist/themes/*_*\\.css; do cp \"$f\" \"test/$(basename \"$f\")\"; done && for f in dist/charts/themes/*_*\\.css; do n=$(basename \"$f\" .css); cp \"$f\" \"test/${n}_charts.css\"; done",
     "lint:css": "stylelint \"dist/**/*.css\"",
     "lint:js": "eslint scripts dist/js",
     "lint:types": "tsc --noEmit",
@@ -82,5 +83,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "3.18.0"
+  "version": "3.20.1"
 }

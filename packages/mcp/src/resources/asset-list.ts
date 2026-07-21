@@ -1,6 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { listAssets } from '@synergy-design-system/metadata';
-import { resourceHandler } from '../utilities/metadata.js';
 
 const RESOURCE_URI = 'synergy://assets/list';
 
@@ -18,7 +17,7 @@ export const assetListResource = (server: McpServer) => {
       mimeType: 'application/json',
       title: 'Available icon sets',
     },
-    resourceHandler('asset-list', async (_uri) => {
+    async (_uri) => {
       const allAssets = await listAssets();
       const assets = allAssets.data
         .map(asset => ({
@@ -39,6 +38,6 @@ export const assetListResource = (server: McpServer) => {
           },
         ],
       };
-    }),
+    },
   );
 };

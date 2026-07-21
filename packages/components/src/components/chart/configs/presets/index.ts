@@ -1,4 +1,5 @@
 import * as axes from '../axes/presets.js';
+import * as legend from '../legend/presets.js';
 
 /**
  * Namespace containing all chart config preset functions.
@@ -9,4 +10,5 @@ import * as axes from '../axes/presets.js';
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
 export const ChartPresets = {
   ...axes,
-} as typeof axes;
+  ...legend,
+} as typeof axes & typeof legend;

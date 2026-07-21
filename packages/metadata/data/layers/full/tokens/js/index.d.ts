@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.18.0
+ * @synergy-design-system/tokens version 3.20.1
  * SICK Global UX Foundation
  */
 
@@ -1787,6 +1787,11 @@ export const SynRadioButtonBorderRadiusMedium: string;
  * Maps to the css variable `--syn-radio-button-border-radius-small`
  */
 export const SynRadioButtonBorderRadiusSmall: string;
+
+/**
+ * Maps to the css variable `--syn-radio-button-spacing-small`
+ */
+export const SynRadioButtonSpacingSmall: string;
 
 /**
  * Maps to the css variable `--syn-range-color-inactive`

@@ -18,7 +18,7 @@ Checkbox groups are used to group multiple checkboxes together.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 3.x.x
+- **Since:** 3.18.0
 
 ## Available Slots
 

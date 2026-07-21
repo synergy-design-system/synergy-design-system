@@ -19,7 +19,7 @@
     "@types/node": "^24.13.2",
     "eslint": "^9.39.4",
     "tiktoken": "^1.0.22",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "optionalDependencies": {
     "@toon-format/toon": "^2.3.0",
@@ -69,5 +69,5 @@
     "test:watch": "node --experimental-strip-types --test --watch test/e2e/*.test.ts"
   },
   "type": "module",
-  "version": "3.22.0"
+  "version": "3.25.0"
 }

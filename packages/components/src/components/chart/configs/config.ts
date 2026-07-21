@@ -49,13 +49,13 @@ export class ChartConfigBuilder {
    */
   #registerPresetHandleMethod<K extends keyof typeof ChartPresets>(modifierName: K): void {
     const modifier = ChartPresets[modifierName];
-    type PresetOptions = Parameters<(typeof ChartPresets)[K]>[0];
-    const typedModifier = modifier as (options: PresetOptions) => ConfigModifier;
+    type PresetArgs = Parameters<(typeof ChartPresets)[K]>;
+    const typedModifier = modifier as (...args: PresetArgs) => ConfigModifier;
 
     Object.defineProperty(this, modifierName, {
       configurable: true,
       enumerable: false,
-      value: (options: PresetOptions) => this.#with(typedModifier(options)),
+      value: (...args: PresetArgs) => this.#with(typedModifier(...args)),
       writable: false,
     });
   }

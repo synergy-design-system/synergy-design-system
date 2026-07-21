@@ -3,7 +3,6 @@ import type { XAXisOption, YAXisOption } from 'echarts/types/dist/shared';
 import {
   applyAxisDefaultsPreprocessor,
   buildAxisLabelConfigWithIcon,
-  colorSvgDataUrl,
   extractYAxisLabelTexts,
   measureMaxTextWidth,
   updateAxisConfig,
@@ -18,21 +17,6 @@ function decodeBase64DataUrl(dataUrl: string): string {
 }
 
 describe('chart axis utilities', () => {
-  describe('colorSvgDataUrl', () => {
-    it('replaces currentColor inside a valid SVG data URL', () => {
-      const result = colorSvgDataUrl(svgDataUrl, '#ff0000');
-
-      expect(decodeBase64DataUrl(result)).to.include('#ff0000');
-      expect(decodeBase64DataUrl(result)).to.not.include('currentColor');
-    });
-
-    it('returns the original value for malformed data URLs', () => {
-      const malformed = 'data:image/svg+xml;base64,%%%';
-
-      expect(colorSvgDataUrl(malformed, '#ff0000')).to.equal(malformed);
-    });
-  });
-
   describe('extractYAxisLabelTexts', () => {
     it('reads explicit labels from all configured y-axes', () => {
       const result = extractYAxisLabelTexts({

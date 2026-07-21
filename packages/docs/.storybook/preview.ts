@@ -160,7 +160,8 @@ const preview: Preview = {
     options: {
       storySort: {
         // Special sorting for Charts subsections
-        order: ['Charts', ['Getting Started', 'Overview', 'syn-chart', 'Features']],
+        // We need to explicitly set the *Welcome* page first, as otherwise the initial loaded page would be the Charting
+        order: ['Welcome', 'Charts', ['Getting Started', 'Overview', 'syn-chart', 'Features']],
       },
     },
     // Configures the viewports addon to make sure

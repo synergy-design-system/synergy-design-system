@@ -2,7 +2,8 @@ import {
   getRealStyleValue, getRealValueWithoutUnit, normalizeArray, setDefaultValueIfNotAvailable,
 } from '../../themes/utilities.js';
 import type { ECConfig } from '../../types.js';
-import { mergeConfigs } from '../utilities.js';
+import { colorSvgDataUrl, mergeConfigs } from '../utilities.js';
+import { AXIS } from '../constants.js';
 import type {
   AxisKey,
   AxisLabel,
@@ -11,25 +12,6 @@ import type {
   AxisOption,
   AxisUpdateOptions,
 } from './types.js';
-
-/**
- * Colors an SVG data URL by replacing `currentColor` with the provided color string.
- * Returns the original data URL unchanged if decoding or re-encoding fails.
- *
- * @param dataUrl - A data URL containing a base64-encoded SVG image.
- * @param color - The replacement color (e.g. `#ff0000` or `red`).
- * @returns A new SVG data URL with `currentColor` substituted.
- */
-export function colorSvgDataUrl(dataUrl: string, color: string): string {
-  try {
-    const [, base64] = dataUrl.split(',');
-    if (!base64) return dataUrl;
-    const svg = atob(base64).replace(/currentColor/gi, color);
-    return `data:image/svg+xml;base64,${btoa(svg)}`;
-  } catch {
-    return dataUrl;
-  }
-}
 
 const getDataFromAxis = (axis: unknown): string[] => {
   if (
@@ -178,7 +160,7 @@ export const updateAxisConfig = <T extends AxisKey>(
 /**
  * Default styles for axis labels
  */
-const getDefaultAxisLabelStyle = (): AxisLabelRich => ({
+const getDefaultAxisLabelStyle = () => ({
   color: getRealStyleValue('--syn-typography-color-text-quiet'),
   fontFamily: getRealStyleValue('--syn-font-sans'),
   fontSize: getRealStyleValue('--syn-font-size-x-small'),
@@ -232,7 +214,7 @@ const getYAxisLabelEffectiveWidth = (
     ? measureMaxTextWidth(texts, getFontShorthand(labelsStyle))
     : 0;
 
-  return measured > 0 ? measured : 30;
+  return measured > 0 ? measured : AXIS.LABEL_FALLBACK_WIDTH;
 };
 
 /**
@@ -253,26 +235,26 @@ const createPositionConfig = (
     case 'bottom':
       return {
         formatter: (value: string, i: number) => `{label|${value}}\n{icon_${i}|}`,
-        padding: [0, 0, 4, 0],
+        padding: [0, 0, AXIS.LABEL_ICON_PADDING, 0],
         width: undefined,
       };
     case 'right':
       return {
         formatter: (value: string, i: number) => `{label|${value}}{icon_${i}|}`,
-        padding: [0, 4, 0, 0],
+        padding: [0, AXIS.LABEL_ICON_PADDING, 0, 0],
         width: undefined,
       };
     case 'top':
       return {
         formatter: (value: string, i: number) => `{icon_${i}|}\n{label|${value}}`,
-        padding: [4, 0, 0, 0],
+        padding: [AXIS.LABEL_ICON_PADDING, 0, 0, 0],
         width: undefined,
       };
     default:
       return {
         align: 'left' as const,
         formatter: (value: string, i: number) => `{icon_${i}|}{label|${value}}`,
-        padding: [0, 0, 0, 4],
+        padding: [0, 0, 0, AXIS.LABEL_ICON_PADDING],
         width: getYAxisLabelEffectiveWidth(labelsStyle, config),
       };
   }
@@ -338,7 +320,7 @@ export const buildAxisLabelConfigWithIcon = ({
 
 const getDefaultXAxisStyle = () => ({
   'axisLabel.margin': getRealValueWithoutUnit('--syn-spacing-small'),
-  nameGap: 32,
+  nameGap: AXIS.X_NAME_GAP,
   nameLocation: 'center',
 });
 
@@ -388,15 +370,10 @@ export const applyAxisDefaultsPreprocessor = (option: ECConfig) => {
  * Default styling for all axes.
  * This is done as function to ensure that the real style values are read at runtime and not at build time, which allows them to be dynamic based on the current theme.
  */
-export const axisCommonStyles = () => ({
+export const getDefaultAxisStyles = () => ({
   // This ensures that the number of ticks on multiple axes are the same
   alignTicks: true,
-  axisLabel: {
-    color: getRealStyleValue('--syn-typography-color-text-quiet'),
-    fontFamily: getRealStyleValue('--syn-font-sans'),
-    fontSize: getRealStyleValue('--syn-font-size-x-small'),
-    fontWeight: getRealStyleValue('--syn-font-weight-normal'),
-  },
+  axisLabel: getDefaultAxisLabelStyle(),
   axisLine: {
     lineStyle: {
       color: getRealStyleValue('--syn-chart-grid-lines-color-emphasize'),

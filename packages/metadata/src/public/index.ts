@@ -14,7 +14,6 @@ import {
 
 export { clearMetadataStoreCache, createMetadataStore, getMetadataInfo } from './store.js';
 export { generateSkillBundle } from './skill-bundle.js';
-export { getSynergyLogo } from './branding.js';
 export type { SkillBundleOptions } from './skill-bundle.js';
 export { getAssetMetadata, listAssets, searchIcons } from './domains/assets.js';
 export { listComponentClusters, listComponentsByCluster } from './domains/clusters.js';

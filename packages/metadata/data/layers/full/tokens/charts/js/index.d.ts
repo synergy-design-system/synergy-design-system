@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.18.0
+ * @synergy-design-system/tokens version 3.20.2
  * SICK Global UX Foundation
  */
 
@@ -62,6 +62,11 @@ export const SynChartCategorical08: string;
  * Maps to the css variable `--syn-chart-categorical-09`
  */
 export const SynChartCategorical09: string;
+
+/**
+ * Maps to the css variable `--syn-chart-disabled-color`
+ */
+export const SynChartDisabledColor: string;
 
 /**
  * Maps to the css variable `--syn-chart-grid-lines-color`

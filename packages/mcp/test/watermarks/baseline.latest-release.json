@@ -1,6 +1,6 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-07-16T13:16:51.704Z",
+  "generatedAt": "2026-07-21T11:20:54.222Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
@@ -31,6 +31,10 @@
     {
       "id": "component-info:examples:syn-button",
       "tokens": 1925
+    },
+    {
+      "id": "component-info:examples:syn-chart",
+      "tokens": 5310
     },
     {
       "id": "component-info:full:syn-button",
@@ -66,7 +70,7 @@
     },
     {
       "id": "token-info:css:sick2025-light",
-      "tokens": 8591
+      "tokens": 8603
     },
     {
       "id": "prompt:explain-component-rules:syn-accordion",

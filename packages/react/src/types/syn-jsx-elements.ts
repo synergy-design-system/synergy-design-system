@@ -314,7 +314,7 @@ export type SynCustomElement<
  * @summary Checkbox groups are used to group multiple checkboxes together.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox-group--docs
  * @status stable
- * @since 3.x.x
+ * @since 3.18.0
  *
  * @slot - The default slot where `<syn-checkbox>` and `<syn-switch>` elements are placed.
  * @slot label - The checkbox group's label. Required for proper accessibility. Alternatively, you can use the `label`
@@ -618,7 +618,7 @@ export type SynCustomElement<
  * @summary Fieldsets are used to group related elements in a form.
  * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-fieldset--docs
  * @status stable
- * @since 3.x.x
+ * @since 3.18.0
  *
  * @slot - The fieldset's main content. Place form controls inside the fieldset to group them together.
  * @slot legend - Add a legend to the fieldset. This is displayed as the title of the fieldset. Alternatively, you can use the `legend` attribute.
@@ -1809,7 +1809,7 @@ declare module 'react' {
        * @summary Checkbox groups are used to group multiple checkboxes together.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox-group--docs
        * @status stable
-       * @since 3.x.x
+       * @since 3.18.0
        *
        * @slot - The default slot where `<syn-checkbox>` and `<syn-switch>` elements are placed.
        * @slot label - The checkbox group's label. Required for proper accessibility. Alternatively, you can use the `label`
@@ -2059,7 +2059,7 @@ declare module 'react' {
        * @summary Fieldsets are used to group related elements in a form.
        * @documentation https://synergy-design-system.github.io/?path=/docs/components-syn-fieldset--docs
        * @status stable
-       * @since 3.x.x
+       * @since 3.18.0
        *
        * @slot - The fieldset's main content. Place form controls inside the fieldset to group them together.
        * @slot legend - Add a legend to the fieldset. This is displayed as the title of the fieldset. Alternatively, you can use the `legend` attribute.

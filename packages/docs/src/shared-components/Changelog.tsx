@@ -9,7 +9,7 @@ type Props = {
 
 export const ChangelogFormatter: FC<Props> = ({ children }) => (
   <Markdown
-    className="syn-body--medium synergy-changelog"
+    className="syn-body--medium synergy-changelog syn-sick2025-light"
     options={{
       overrides: {
         h1: {

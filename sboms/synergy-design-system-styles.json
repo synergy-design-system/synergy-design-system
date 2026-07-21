@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/styles",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-styles-2.2.0-1d0aa547-adeb-4aa7-a202-cc3f0c35b2b9",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-styles-2.2.0-c4152059-cf44-44ca-99d3-0d23876b9de6",
   "creationInfo": {
-    "created": "2026-07-21T11:11:23.822Z",
+    "created": "2026-07-21T11:20:55.733Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.20.1-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.20.2-0",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.20.1",
+      "versionInfo": "3.20.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.20.1"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.20.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -60,7 +60,7 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.20.1-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.20.2-0",
       "relationshipType": "DEPENDS_ON"
     }
   ]

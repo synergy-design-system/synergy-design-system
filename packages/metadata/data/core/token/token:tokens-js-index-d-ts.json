@@ -17,7 +17,7 @@
   "name": "index.d.ts",
   "package": "tokens",
   "relations": [],
-  "since": "3.20.1",
+  "since": "3.20.2",
   "sources": [
     "packages/tokens/dist/js/index.d.ts"
   ],

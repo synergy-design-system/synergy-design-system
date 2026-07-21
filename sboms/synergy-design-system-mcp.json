@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/mcp",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-mcp-3.25.0-ca3b7dbe-e52c-4295-bdd2-025b50b073b2",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-mcp-3.26.0-9bc50807-6901-42ca-90ff-ebb892a331c9",
   "creationInfo": {
-    "created": "2026-07-21T11:11:23.565Z",
+    "created": "2026-07-21T11:20:55.473Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/mcp",
-      "versionInfo": "3.25.0",
+      "versionInfo": "3.26.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/mcp@3.25.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/mcp@3.26.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -52,16 +52,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-metadata-3.25.0-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-metadata-3.26.0-1",
       "name": "@synergy-design-system/metadata",
-      "versionInfo": "3.25.0",
+      "versionInfo": "3.26.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/metadata@3.25.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/metadata@3.26.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -71,33 +71,7 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
-      "name": "@modelcontextprotocol/sdk",
-      "versionInfo": "1.29.0",
-      "downloadLocation": "https://registry.npmjs.org/@modelcontextprotocol/sdk/-/sdk-1.29.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40modelcontextprotocol/sdk@1.29.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Model Context Protocol implementation for TypeScript",
-      "homepage": "https://modelcontextprotocol.io",
-      "supplier": "Person: Anthropic, PBC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "ce8dfb99903d8495a950b824469a307b07b3d72e8c2f91ac5c93d8f05234b4104277bec712fcdae230ea44a397807367f3aecf5460b24ddceaa73d22ceee598d"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-zod-4.4.3-3",
+      "SPDXID": "SPDXRef-Package-zod-4.4.3-2",
       "name": "zod",
       "versionInfo": "4.4.3",
       "downloadLocation": "https://registry.npmjs.org/zod/-/zod-4.4.3.tgz",
@@ -119,6 +93,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "cad10d163209165d94c1882575eda37215b61f09b818914b0e249759d4eb25004837d15cca9ee7e0387124489634024c575fc1a967d6fe4920ef55037072724d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
+      "name": "@modelcontextprotocol/sdk",
+      "versionInfo": "1.29.0",
+      "downloadLocation": "https://registry.npmjs.org/@modelcontextprotocol/sdk/-/sdk-1.29.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40modelcontextprotocol/sdk@1.29.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Model Context Protocol implementation for TypeScript",
+      "homepage": "https://modelcontextprotocol.io",
+      "supplier": "Person: Anthropic, PBC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "ce8dfb99903d8495a950b824469a307b07b3d72e8c2f91ac5c93d8f05234b4104277bec712fcdae230ea44a397807367f3aecf5460b24ddceaa73d22ceee598d"
         }
       ]
     },
@@ -304,33 +304,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-cross-spawn-7.0.6-11",
-      "name": "cross-spawn",
-      "versionInfo": "7.0.6",
-      "downloadLocation": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/cross-spawn@7.0.6"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Cross platform child_process#spawn and child_process#spawnSync",
-      "homepage": "https://github.com/moxystudio/node-cross-spawn",
-      "supplier": "Person: André Cruz",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "b95d903963f69d6ceccb668ca7c69189b862f5d9731791e0879487681f4e893184c834e2249cb1d2ecb9d505ddc966ed00736e6b85c9cd429c6b73b3294777bc"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-eventsource-3.0.7-12",
+      "SPDXID": "SPDXRef-Package-eventsource-3.0.7-11",
       "name": "eventsource",
       "versionInfo": "3.0.7",
       "downloadLocation": "https://registry.npmjs.org/eventsource/-/eventsource-3.0.7.tgz",
@@ -352,6 +326,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "0914f5593cae4280fbef5196e7a5c464543f66849f5a27756a52860d832692ddb297c517ad5478a6ca6a58d11ca8abd523383a3c096d5a3c5c4923eb6e803888"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-cross-spawn-7.0.6-12",
+      "name": "cross-spawn",
+      "versionInfo": "7.0.6",
+      "downloadLocation": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/cross-spawn@7.0.6"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Cross platform child_process#spawn and child_process#spawnSync",
+      "homepage": "https://github.com/moxystudio/node-cross-spawn",
+      "supplier": "Person: André Cruz",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "b95d903963f69d6ceccb668ca7c69189b862f5d9731791e0879487681f4e893184c834e2249cb1d2ecb9d505ddc966ed00736e6b85c9cd429c6b73b3294777bc"
         }
       ]
     },
@@ -382,33 +382,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-hono-4.12.26-14",
-      "name": "hono",
-      "versionInfo": "4.12.26",
-      "downloadLocation": "https://registry.npmjs.org/hono/-/hono-4.12.26.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/hono@4.12.26"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Web framework built on Web Standards",
-      "homepage": "https://hono.dev",
-      "supplier": "Person: Yusuke Wada",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "bb266da6763133d0a643b42c4249cce3337c11fb4daa138dd6a61e20a33449eebb08211ed9ce38c721944700746b15f67c10eed5da87ac701cd6198d4fc21393"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-express-5.2.1-15",
+      "SPDXID": "SPDXRef-Package-express-5.2.1-14",
       "name": "express",
       "versionInfo": "5.2.1",
       "downloadLocation": "https://registry.npmjs.org/express/-/express-5.2.1.tgz",
@@ -434,7 +408,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-express-rate-limit-8.5.2-16",
+      "SPDXID": "SPDXRef-Package-express-rate-limit-8.5.2-15",
       "name": "express-rate-limit",
       "versionInfo": "8.5.2",
       "downloadLocation": "https://registry.npmjs.org/express-rate-limit/-/express-rate-limit-8.5.2.tgz",
@@ -456,6 +430,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "e4a6f7e22a4d5faf780c7e3cbcdf62ada935431df49dbd0f2d81d77c9830e18123882dd91266498703a9f957e2098c05cef153741f50900ad84b99176b6731d8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-hono-4.12.26-16",
+      "name": "hono",
+      "versionInfo": "4.12.26",
+      "downloadLocation": "https://registry.npmjs.org/hono/-/hono-4.12.26.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hono@4.12.26"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Web framework built on Web Standards",
+      "homepage": "https://hono.dev",
+      "supplier": "Person: Yusuke Wada",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "bb266da6763133d0a643b42c4249cce3337c11fb4daa138dd6a61e20a33449eebb08211ed9ce38c721944700746b15f67c10eed5da87ac701cd6198d4fc21393"
         }
       ]
     },
@@ -642,33 +642,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-json-schema-traverse-1.0.0-24",
-      "name": "json-schema-traverse",
-      "versionInfo": "1.0.0",
-      "downloadLocation": "https://registry.npmjs.org/json-schema-traverse/-/json-schema-traverse-1.0.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/json-schema-traverse@1.0.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Traverse JSON Schema passing each schema object to callback",
-      "homepage": "https://github.com/epoberezkin/json-schema-traverse#readme",
-      "supplier": "Person: Evgeny Poberezkin",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "34cf3f3fd9f75e35e12199f594b86415a0024ce5114178d6855e0103f4673aff31be0aadaa9017f483b89914314b1d51968e2dab37aa6f4b0e96bb9a3b2dddba"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-require-from-string-2.0.2-25",
+      "SPDXID": "SPDXRef-Package-require-from-string-2.0.2-24",
       "name": "require-from-string",
       "versionInfo": "2.0.2",
       "downloadLocation": "https://registry.npmjs.org/require-from-string/-/require-from-string-2.0.2.tgz",
@@ -690,6 +664,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "5dfd2759ee91b1ece214cbbe029f5b8a251b9a996ae92f7fa7eef0ed85cffc904786b5030d48706bebc0372b9bbaa7d9593bde53ffc36151ac0c6ed128bfef13"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-json-schema-traverse-1.0.0-25",
+      "name": "json-schema-traverse",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "https://registry.npmjs.org/json-schema-traverse/-/json-schema-traverse-1.0.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/json-schema-traverse@1.0.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Traverse JSON Schema passing each schema object to callback",
+      "homepage": "https://github.com/epoberezkin/json-schema-traverse#readme",
+      "supplier": "Person: Evgeny Poberezkin",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "34cf3f3fd9f75e35e12199f594b86415a0024ce5114178d6855e0103f4673aff31be0aadaa9017f483b89914314b1d51968e2dab37aa6f4b0e96bb9a3b2dddba"
         }
       ]
     },
@@ -1232,7 +1232,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-parseurl-1.3.3-47",
+      "SPDXID": "SPDXRef-Package-once-1.4.0-47",
+      "name": "once",
+      "versionInfo": "1.4.0",
+      "downloadLocation": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/once@1.4.0"
+        }
+      ],
+      "licenseConcluded": "ISC",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "description": "Run a function exactly one time",
+      "homepage": "https://github.com/isaacs/once#readme",
+      "supplier": "Person: Isaac Z. Schlueter",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "94d689808fb643951140191c7042874d038f697754c67659125413658d0c15402e684a9ed44f8dcaf81dcff688c8d8ba67d3333b976fd47f27e7cfc610ba77fb"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-parseurl-1.3.3-48",
       "name": "parseurl",
       "versionInfo": "1.3.3",
       "downloadLocation": "https://registry.npmjs.org/parseurl/-/parseurl-1.3.3.tgz",
@@ -1257,7 +1283,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-proxy-addr-2.0.7-48",
+      "SPDXID": "SPDXRef-Package-proxy-addr-2.0.7-49",
       "name": "proxy-addr",
       "versionInfo": "2.0.7",
       "downloadLocation": "https://registry.npmjs.org/proxy-addr/-/proxy-addr-2.0.7.tgz",
@@ -1279,32 +1305,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "96542c30b4940d43d3e388ddad4fcedfbaa59e27e2b433fe670ae699972848ac8b2afb59c69c95d27dbf6c3fcde2d040019fe024475953b28cadaa0ad7e5d802"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-once-1.4.0-49",
-      "name": "once",
-      "versionInfo": "1.4.0",
-      "downloadLocation": "https://registry.npmjs.org/once/-/once-1.4.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/once@1.4.0"
-        }
-      ],
-      "licenseConcluded": "ISC",
-      "licenseDeclared": "ISC",
-      "copyrightText": "NOASSERTION",
-      "description": "Run a function exactly one time",
-      "homepage": "https://github.com/isaacs/once#readme",
-      "supplier": "Person: Isaac Z. Schlueter",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "94d689808fb643951140191c7042874d038f697754c67659125413658d0c15402e684a9ed44f8dcaf81dcff688c8d8ba67d3333b976fd47f27e7cfc610ba77fb"
         }
       ]
     },
@@ -1334,33 +1334,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-range-parser-1.2.1-51",
-      "name": "range-parser",
-      "versionInfo": "1.2.1",
-      "downloadLocation": "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/range-parser@1.2.1"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Range header field string parser",
-      "homepage": "https://github.com/jshttp/range-parser#readme",
-      "supplier": "Person: TJ Holowaychuk",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "1eb82cc7ea2baa8ca09e68456ca68713a736f7a27e1d30105e8c4417a80dba944e9a6189468cb37c6ddc700bdea8206bc2bff6cb143905577f1939796a03b04a"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-router-2.2.0-52",
+      "SPDXID": "SPDXRef-Package-router-2.2.0-51",
       "name": "router",
       "versionInfo": "2.2.0",
       "downloadLocation": "https://registry.npmjs.org/router/-/router-2.2.0.tgz",
@@ -1382,6 +1356,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "9cb4eb50a9b653288beeb9616a9bbf665e3917036091919a0a965b2076a30d883094908eccb4a4f9c20f027b04a95f79e468c82c99ca6dd402d6754fcfe80061"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-range-parser-1.2.1-52",
+      "name": "range-parser",
+      "versionInfo": "1.2.1",
+      "downloadLocation": "https://registry.npmjs.org/range-parser/-/range-parser-1.2.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/range-parser@1.2.1"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Range header field string parser",
+      "homepage": "https://github.com/jshttp/range-parser#readme",
+      "supplier": "Person: TJ Holowaychuk",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "1eb82cc7ea2baa8ca09e68456ca68713a736f7a27e1d30105e8c4417a80dba944e9a6189468cb37c6ddc700bdea8206bc2bff6cb143905577f1939796a03b04a"
         }
       ]
     },
@@ -1514,33 +1514,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-bytes-3.1.2-58",
-      "name": "bytes",
-      "versionInfo": "3.1.2",
-      "downloadLocation": "https://registry.npmjs.org/bytes/-/bytes-3.1.2.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/bytes@3.1.2"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Utility to parse a string bytes to bytes and vice-versa",
-      "homepage": "https://github.com/visionmedia/bytes.js#readme",
-      "supplier": "Person: TJ Holowaychuk",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "fcd7fb4f2cd3c7a4b7c9124e6ce015efde7aafc72bdbe3a3f000b976df3048fdc1400a1e5f9f0da07c8253c3fccc690d5d2b634d28ba7f33ba174a4175c61b12"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-iconv-lite-0.7.2-59",
+      "SPDXID": "SPDXRef-Package-iconv-lite-0.7.2-58",
       "name": "iconv-lite",
       "versionInfo": "0.7.2",
       "downloadLocation": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.7.2.tgz",
@@ -1562,6 +1536,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "8a6f438c40d0e79b3d7cbe04633380bf4c8caa6301499a7a1b456f1724cc3ca5b1892047523f4d5bfaaa2e65d4c17aeb33b02fa9295309fbea45bd1c33cc98ab"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-bytes-3.1.2-59",
+      "name": "bytes",
+      "versionInfo": "3.1.2",
+      "downloadLocation": "https://registry.npmjs.org/bytes/-/bytes-3.1.2.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/bytes@3.1.2"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Utility to parse a string bytes to bytes and vice-versa",
+      "homepage": "https://github.com/visionmedia/bytes.js#readme",
+      "supplier": "Person: TJ Holowaychuk",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "fcd7fb4f2cd3c7a4b7c9124e6ce015efde7aafc72bdbe3a3f000b976df3048fdc1400a1e5f9f0da07c8253c3fccc690d5d2b634d28ba7f33ba174a4175c61b12"
         }
       ]
     },
@@ -1848,58 +1848,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-forwarded-0.2.0-71",
-      "name": "forwarded",
-      "versionInfo": "0.2.0",
-      "downloadLocation": "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/forwarded@0.2.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Parse HTTP X-Forwarded-For header",
-      "homepage": "https://github.com/jshttp/forwarded#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "6ee446d1fa41b511d24c238049eea10f6e7cb44b9b16844b6f864d03a3713151cdc3680e7301e8f70c9a6e5ccccce039cfdc40f4bd4a36393f36de8c4fd698a3"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-ipaddr.js-1.9.1-72",
-      "name": "ipaddr.js",
-      "versionInfo": "1.9.1",
-      "downloadLocation": "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/ipaddr.js@1.9.1"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "A library for manipulating IPv4 and IPv6 addresses in JavaScript.",
-      "homepage": "https://github.com/whitequark/ipaddr.js#readme",
-      "supplier": "Person: whitequark",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "d0a23feb4ef1a31493a07ec68cdd457d26cba14d3e6ed4e2723b1049642587f859ca437c2a998c7fbb98c0f5b747e6a467a47fc35f199574870585e26143cede"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-wrappy-1.0.2-73",
+      "SPDXID": "SPDXRef-Package-wrappy-1.0.2-71",
       "name": "wrappy",
       "versionInfo": "1.0.2",
       "downloadLocation": "https://registry.npmjs.org/wrappy/-/wrappy-1.0.2.tgz",
@@ -1925,33 +1874,58 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-is-promise-4.0.0-74",
-      "name": "is-promise",
-      "versionInfo": "4.0.0",
-      "downloadLocation": "https://registry.npmjs.org/is-promise/-/is-promise-4.0.0.tgz",
+      "SPDXID": "SPDXRef-Package-forwarded-0.2.0-72",
+      "name": "forwarded",
+      "versionInfo": "0.2.0",
+      "downloadLocation": "https://registry.npmjs.org/forwarded/-/forwarded-0.2.0.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/is-promise@4.0.0"
+          "referenceLocator": "pkg:npm/forwarded@0.2.0"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Test whether an object looks like a promises-a+ promise",
-      "homepage": "https://github.com/then/is-promise#readme",
-      "supplier": "Person: ForbesLindesay",
+      "description": "Parse HTTP X-Forwarded-For header",
+      "homepage": "https://github.com/jshttp/forwarded#readme",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "86fa6823a928ae124c9de8f6f3975283a9eed7e7babb1b3bcc6dc16009b96f2a83b2024d5b0c7333acfa8998808104784c9df42660533b0a99530dd69721f701"
+          "checksumValue": "6ee446d1fa41b511d24c238049eea10f6e7cb44b9b16844b6f864d03a3713151cdc3680e7301e8f70c9a6e5ccccce039cfdc40f4bd4a36393f36de8c4fd698a3"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-side-channel-1.1.1-75",
+      "SPDXID": "SPDXRef-Package-ipaddr.js-1.9.1-73",
+      "name": "ipaddr.js",
+      "versionInfo": "1.9.1",
+      "downloadLocation": "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-1.9.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ipaddr.js@1.9.1"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "A library for manipulating IPv4 and IPv6 addresses in JavaScript.",
+      "homepage": "https://github.com/whitequark/ipaddr.js#readme",
+      "supplier": "Person: whitequark",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "d0a23feb4ef1a31493a07ec68cdd457d26cba14d3e6ed4e2723b1049642587f859ca437c2a998c7fbb98c0f5b747e6a467a47fc35f199574870585e26143cede"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-side-channel-1.1.1-74",
       "name": "side-channel",
       "versionInfo": "1.1.1",
       "downloadLocation": "https://registry.npmjs.org/side-channel/-/side-channel-1.1.1.tgz",
@@ -1977,7 +1951,58 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-media-typer-1.1.0-76",
+      "SPDXID": "SPDXRef-Package-is-promise-4.0.0-75",
+      "name": "is-promise",
+      "versionInfo": "4.0.0",
+      "downloadLocation": "https://registry.npmjs.org/is-promise/-/is-promise-4.0.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/is-promise@4.0.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Test whether an object looks like a promises-a+ promise",
+      "homepage": "https://github.com/then/is-promise#readme",
+      "supplier": "Person: ForbesLindesay",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "86fa6823a928ae124c9de8f6f3975283a9eed7e7babb1b3bcc6dc16009b96f2a83b2024d5b0c7333acfa8998808104784c9df42660533b0a99530dd69721f701"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-path-to-regexp-8.4.2-76",
+      "name": "path-to-regexp",
+      "versionInfo": "8.4.2",
+      "downloadLocation": "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-8.4.2.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/path-to-regexp@8.4.2"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Express style path to RegExp utility",
+      "homepage": "https://github.com/pillarjs/path-to-regexp#readme",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a9172e21d3faf4d3e6e2a6c008af9a0e8808e42043322d6329ed2bcb9ad2409cfc2552ec0bb8d5f17a622631912cba25dcdf91e6284661cacf2d39e8ea901d04"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-media-typer-1.1.0-77",
       "name": "media-typer",
       "versionInfo": "1.1.0",
       "downloadLocation": "https://registry.npmjs.org/media-typer/-/media-typer-1.1.0.tgz",
@@ -1999,31 +2024,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "6a2b27ac33f818d7b4e9470a1675796df30d3c1530e23b0b19a5b059f9c7defd361a706e5d7d8c0959f945bad6a348f7a5ccd48a561b96aedf43b370dade572b"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-path-to-regexp-8.4.2-77",
-      "name": "path-to-regexp",
-      "versionInfo": "8.4.2",
-      "downloadLocation": "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-8.4.2.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/path-to-regexp@8.4.2"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Express style path to RegExp utility",
-      "homepage": "https://github.com/pillarjs/path-to-regexp#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a9172e21d3faf4d3e6e2a6c008af9a0e8808e42043322d6329ed2bcb9ad2409cfc2552ec0bb8d5f17a622631912cba25dcdf91e6284661cacf2d39e8ea901d04"
         }
       ]
     },
@@ -2080,33 +2080,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-side-channel-list-1.0.1-80",
-      "name": "side-channel-list",
-      "versionInfo": "1.0.1",
-      "downloadLocation": "https://registry.npmjs.org/side-channel-list/-/side-channel-list-1.0.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/side-channel-list@1.0.1"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Store information about any JS value in a side channel, using a linked list",
-      "homepage": "https://github.com/ljharb/side-channel-list#readme",
-      "supplier": "Person: Jordan Harband",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "9a39ffd1b8bfa145118dce5797b21a5a2fce24926e9aea0915025f0c3c8ee3afa1056b1f69533ae53047ab67a864187397d11c8713a28e991b442f12541414d3"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-object-inspect-1.13.4-81",
+      "SPDXID": "SPDXRef-Package-object-inspect-1.13.4-80",
       "name": "object-inspect",
       "versionInfo": "1.13.4",
       "downloadLocation": "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.4.tgz",
@@ -2128,6 +2102,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "5baee22e5e09d845c41936df78709f7eb8c37e2b6f2c0360d14957df01545124f1f762974457a0307515812a84fb0be101b8b85aa8c683d733cac4d5d84a5b7b"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-side-channel-list-1.0.1-81",
+      "name": "side-channel-list",
+      "versionInfo": "1.0.1",
+      "downloadLocation": "https://registry.npmjs.org/side-channel-list/-/side-channel-list-1.0.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/side-channel-list@1.0.1"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Store information about any JS value in a side channel, using a linked list",
+      "homepage": "https://github.com/ljharb/side-channel-list#readme",
+      "supplier": "Person: Jordan Harband",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "9a39ffd1b8bfa145118dce5797b21a5a2fce24926e9aea0915025f0c3c8ee3afa1056b1f69533ae53047ab67a864187397d11c8713a28e991b442f12541414d3"
         }
       ]
     },
@@ -2262,33 +2262,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-es-define-property-1.0.1-87",
-      "name": "es-define-property",
-      "versionInfo": "1.0.1",
-      "downloadLocation": "https://registry.npmjs.org/es-define-property/-/es-define-property-1.0.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/es-define-property@1.0.1"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "`Object.defineProperty`, but not IE 8's broken one.",
-      "homepage": "https://github.com/ljharb/es-define-property#readme",
-      "supplier": "Person: Jordan Harband",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "7b79d17e07d4678acd18bdb7da05205f4e90372c9ecf4e0a76316b17e2d34683979ab3a014a0e0e0109db235bc1274faf5ea9d606991a49c223d560dac2696de"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-es-object-atoms-1.1.2-88",
+      "SPDXID": "SPDXRef-Package-es-object-atoms-1.1.2-87",
       "name": "es-object-atoms",
       "versionInfo": "1.1.2",
       "downloadLocation": "https://registry.npmjs.org/es-object-atoms/-/es-object-atoms-1.1.2.tgz",
@@ -2310,6 +2284,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "1d6701a0de8d8a57aab52c9d2b616a1db4bf2e80ddda9aab9d01cbc89cc18f890ea7f932d8c58c37af78c4e7e42bcfd29d4b16d831fb11fc9597274a0ac9b567"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-es-define-property-1.0.1-88",
+      "name": "es-define-property",
+      "versionInfo": "1.0.1",
+      "downloadLocation": "https://registry.npmjs.org/es-define-property/-/es-define-property-1.0.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/es-define-property@1.0.1"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "`Object.defineProperty`, but not IE 8's broken one.",
+      "homepage": "https://github.com/ljharb/es-define-property#readme",
+      "supplier": "Person: Jordan Harband",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "7b79d17e07d4678acd18bdb7da05205f4e90372c9ecf4e0a76316b17e2d34683979ab3a014a0e0e0109db235bc1274faf5ea9d606991a49c223d560dac2696de"
         }
       ]
     },
@@ -2366,7 +2366,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-gopd-1.2.0-91",
+      "SPDXID": "SPDXRef-Package-has-symbols-1.1.0-91",
+      "name": "has-symbols",
+      "versionInfo": "1.1.0",
+      "downloadLocation": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/has-symbols@1.1.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Determine if the JS environment has Symbol support. Supports spec, or shams.",
+      "homepage": "https://github.com/ljharb/has-symbols#readme",
+      "supplier": "Person: Jordan Harband",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "d5c0cd77027625aa2199bdec8383a629a301c2e0b8f2c6278b91d4c360efb02f0b8c64cb2bd87e79bd57e91cae3877b8853d142c25baf22a26863528294aa53d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-gopd-1.2.0-92",
       "name": "gopd",
       "versionInfo": "1.2.0",
       "downloadLocation": "https://registry.npmjs.org/gopd/-/gopd-1.2.0.tgz",
@@ -2392,7 +2418,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-hasown-2.0.4-92",
+      "SPDXID": "SPDXRef-Package-hasown-2.0.4-93",
       "name": "hasown",
       "versionInfo": "2.0.4",
       "downloadLocation": "https://registry.npmjs.org/hasown/-/hasown-2.0.4.tgz",
@@ -2414,32 +2440,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "4f651b7db044177db089ea5722c3254d6f7e743602eb0321fedfef600e2db8e30aa96cff9f7bebd4d152c508b23fece4da65eca0c03f8bfeea57a2cabadd6dd4"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-has-symbols-1.1.0-93",
-      "name": "has-symbols",
-      "versionInfo": "1.1.0",
-      "downloadLocation": "https://registry.npmjs.org/has-symbols/-/has-symbols-1.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/has-symbols@1.1.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Determine if the JS environment has Symbol support. Supports spec, or shams.",
-      "homepage": "https://github.com/ljharb/has-symbols#readme",
-      "supplier": "Person: Jordan Harband",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "d5c0cd77027625aa2199bdec8383a629a301c2e0b8f2c6278b91d4c360efb02f0b8c64cb2bd87e79bd57e91cae3877b8853d142c25baf22a26863528294aa53d"
         }
       ]
     },
@@ -2509,17 +2509,17 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-metadata-3.25.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-metadata-3.26.0-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "relatedSpdxElement": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-zod-4.4.3-3",
+      "relatedSpdxElement": "SPDXRef-Package-zod-4.4.3-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -2533,82 +2533,82 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package--hono-node-server-1.19.14-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package-ajv-8.20.0-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package-ajv-formats-3.0.1-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package-content-type-1.0.5-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package-cors-2.8.6-10",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
-      "relatedSpdxElement": "SPDXRef-Package-cross-spawn-7.0.6-11",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
+      "relatedSpdxElement": "SPDXRef-Package-cross-spawn-7.0.6-12",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
-      "relatedSpdxElement": "SPDXRef-Package-eventsource-3.0.7-12",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
+      "relatedSpdxElement": "SPDXRef-Package-eventsource-3.0.7-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package-eventsource-parser-3.1.0-13",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
-      "relatedSpdxElement": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
+      "relatedSpdxElement": "SPDXRef-Package-express-5.2.1-14",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
-      "relatedSpdxElement": "SPDXRef-Package-express-rate-limit-8.5.2-16",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
+      "relatedSpdxElement": "SPDXRef-Package-express-rate-limit-8.5.2-15",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
-      "relatedSpdxElement": "SPDXRef-Package-hono-4.12.26-14",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
+      "relatedSpdxElement": "SPDXRef-Package-hono-4.12.26-16",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package-jose-6.2.3-17",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package-json-schema-typed-8.0.2-18",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package-pkce-challenge-5.0.1-19",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package-raw-body-3.0.2-20",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-2",
+      "spdxElementId": "SPDXRef-Package--modelcontextprotocol-sdk-1.29.0-3",
       "relatedSpdxElement": "SPDXRef-Package-zod-to-json-schema-3.25.2-21",
       "relationshipType": "DEPENDS_ON"
     },
@@ -2624,12 +2624,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-ajv-8.20.0-7",
-      "relatedSpdxElement": "SPDXRef-Package-json-schema-traverse-1.0.0-24",
+      "relatedSpdxElement": "SPDXRef-Package-json-schema-traverse-1.0.0-25",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-ajv-8.20.0-7",
-      "relatedSpdxElement": "SPDXRef-Package-require-from-string-2.0.2-25",
+      "relatedSpdxElement": "SPDXRef-Package-require-from-string-2.0.2-24",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -2643,163 +2643,163 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-cross-spawn-7.0.6-11",
+      "spdxElementId": "SPDXRef-Package-cross-spawn-7.0.6-12",
       "relatedSpdxElement": "SPDXRef-Package-path-key-3.1.1-28",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-cross-spawn-7.0.6-11",
+      "spdxElementId": "SPDXRef-Package-cross-spawn-7.0.6-12",
       "relatedSpdxElement": "SPDXRef-Package-shebang-command-2.0.0-29",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-cross-spawn-7.0.6-11",
+      "spdxElementId": "SPDXRef-Package-cross-spawn-7.0.6-12",
       "relatedSpdxElement": "SPDXRef-Package-which-2.0.2-30",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-accepts-2.0.0-31",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-body-parser-2.3.0-32",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-content-disposition-1.1.0-33",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-cookie-0.7.2-34",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-cookie-signature-1.2.2-35",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-debug-4.4.3-36",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-depd-2.0.0-37",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-encodeurl-2.0.0-38",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-escape-html-1.0.3-39",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-etag-1.8.1-40",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-finalhandler-2.1.1-41",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-fresh-2.0.0-42",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-http-errors-2.0.1-43",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-merge-descriptors-2.0.0-44",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-mime-types-3.0.2-45",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-on-finished-2.4.1-46",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
-      "relatedSpdxElement": "SPDXRef-Package-once-1.4.0-49",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
+      "relatedSpdxElement": "SPDXRef-Package-once-1.4.0-47",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
-      "relatedSpdxElement": "SPDXRef-Package-parseurl-1.3.3-47",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
+      "relatedSpdxElement": "SPDXRef-Package-parseurl-1.3.3-48",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
-      "relatedSpdxElement": "SPDXRef-Package-proxy-addr-2.0.7-48",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
+      "relatedSpdxElement": "SPDXRef-Package-proxy-addr-2.0.7-49",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-qs-6.15.2-50",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
-      "relatedSpdxElement": "SPDXRef-Package-range-parser-1.2.1-51",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
+      "relatedSpdxElement": "SPDXRef-Package-range-parser-1.2.1-52",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
-      "relatedSpdxElement": "SPDXRef-Package-router-2.2.0-52",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
+      "relatedSpdxElement": "SPDXRef-Package-router-2.2.0-51",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-send-1.2.1-53",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-serve-static-2.2.1-54",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-statuses-2.0.2-55",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-5.2.1-15",
+      "spdxElementId": "SPDXRef-Package-express-5.2.1-14",
       "relatedSpdxElement": "SPDXRef-Package-type-is-2.1.0-56",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-express-rate-limit-8.5.2-16",
+      "spdxElementId": "SPDXRef-Package-express-rate-limit-8.5.2-15",
       "relatedSpdxElement": "SPDXRef-Package-ip-address-10.2.0-57",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-raw-body-3.0.2-20",
-      "relatedSpdxElement": "SPDXRef-Package-bytes-3.1.2-58",
+      "relatedSpdxElement": "SPDXRef-Package-bytes-3.1.2-59",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-raw-body-3.0.2-20",
-      "relatedSpdxElement": "SPDXRef-Package-iconv-lite-0.7.2-59",
+      "relatedSpdxElement": "SPDXRef-Package-iconv-lite-0.7.2-58",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -2858,67 +2858,67 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-proxy-addr-2.0.7-48",
-      "relatedSpdxElement": "SPDXRef-Package-forwarded-0.2.0-71",
+      "spdxElementId": "SPDXRef-Package-once-1.4.0-47",
+      "relatedSpdxElement": "SPDXRef-Package-wrappy-1.0.2-71",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-proxy-addr-2.0.7-48",
-      "relatedSpdxElement": "SPDXRef-Package-ipaddr.js-1.9.1-72",
+      "spdxElementId": "SPDXRef-Package-proxy-addr-2.0.7-49",
+      "relatedSpdxElement": "SPDXRef-Package-forwarded-0.2.0-72",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-once-1.4.0-49",
-      "relatedSpdxElement": "SPDXRef-Package-wrappy-1.0.2-73",
+      "spdxElementId": "SPDXRef-Package-proxy-addr-2.0.7-49",
+      "relatedSpdxElement": "SPDXRef-Package-ipaddr.js-1.9.1-73",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-qs-6.15.2-50",
-      "relatedSpdxElement": "SPDXRef-Package-side-channel-1.1.1-75",
+      "relatedSpdxElement": "SPDXRef-Package-side-channel-1.1.1-74",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-router-2.2.0-52",
-      "relatedSpdxElement": "SPDXRef-Package-is-promise-4.0.0-74",
+      "spdxElementId": "SPDXRef-Package-router-2.2.0-51",
+      "relatedSpdxElement": "SPDXRef-Package-is-promise-4.0.0-75",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-router-2.2.0-52",
-      "relatedSpdxElement": "SPDXRef-Package-path-to-regexp-8.4.2-77",
+      "spdxElementId": "SPDXRef-Package-router-2.2.0-51",
+      "relatedSpdxElement": "SPDXRef-Package-path-to-regexp-8.4.2-76",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-type-is-2.1.0-56",
-      "relatedSpdxElement": "SPDXRef-Package-media-typer-1.1.0-76",
+      "relatedSpdxElement": "SPDXRef-Package-media-typer-1.1.0-77",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-iconv-lite-0.7.2-59",
+      "spdxElementId": "SPDXRef-Package-iconv-lite-0.7.2-58",
       "relatedSpdxElement": "SPDXRef-Package-safer-buffer-2.1.2-78",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-side-channel-1.1.1-75",
+      "spdxElementId": "SPDXRef-Package-side-channel-1.1.1-74",
       "relatedSpdxElement": "SPDXRef-Package-es-errors-1.3.0-79",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-side-channel-1.1.1-75",
-      "relatedSpdxElement": "SPDXRef-Package-object-inspect-1.13.4-81",
+      "spdxElementId": "SPDXRef-Package-side-channel-1.1.1-74",
+      "relatedSpdxElement": "SPDXRef-Package-object-inspect-1.13.4-80",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-side-channel-1.1.1-75",
-      "relatedSpdxElement": "SPDXRef-Package-side-channel-list-1.0.1-80",
+      "spdxElementId": "SPDXRef-Package-side-channel-1.1.1-74",
+      "relatedSpdxElement": "SPDXRef-Package-side-channel-list-1.0.1-81",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-side-channel-1.1.1-75",
+      "spdxElementId": "SPDXRef-Package-side-channel-1.1.1-74",
       "relatedSpdxElement": "SPDXRef-Package-side-channel-map-1.0.1-82",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-side-channel-1.1.1-75",
+      "spdxElementId": "SPDXRef-Package-side-channel-1.1.1-74",
       "relatedSpdxElement": "SPDXRef-Package-side-channel-weakmap-1.0.2-83",
       "relationshipType": "DEPENDS_ON"
     },
@@ -2939,12 +2939,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-get-intrinsic-1.3.0-85",
-      "relatedSpdxElement": "SPDXRef-Package-es-define-property-1.0.1-87",
+      "relatedSpdxElement": "SPDXRef-Package-es-define-property-1.0.1-88",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-get-intrinsic-1.3.0-85",
-      "relatedSpdxElement": "SPDXRef-Package-es-object-atoms-1.1.2-88",
+      "relatedSpdxElement": "SPDXRef-Package-es-object-atoms-1.1.2-87",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -2959,17 +2959,17 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-get-intrinsic-1.3.0-85",
-      "relatedSpdxElement": "SPDXRef-Package-gopd-1.2.0-91",
+      "relatedSpdxElement": "SPDXRef-Package-gopd-1.2.0-92",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-get-intrinsic-1.3.0-85",
-      "relatedSpdxElement": "SPDXRef-Package-has-symbols-1.1.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-has-symbols-1.1.0-91",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-get-intrinsic-1.3.0-85",
-      "relatedSpdxElement": "SPDXRef-Package-hasown-2.0.4-92",
+      "relatedSpdxElement": "SPDXRef-Package-hasown-2.0.4-93",
       "relationshipType": "DEPENDS_ON"
     },
     {

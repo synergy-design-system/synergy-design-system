@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.26.0
+
+### Patch Changes
+
+- [#1333](https://github.com/synergy-design-system/synergy-design-system/pull/1333) [`e3ca473`](https://github.com/synergy-design-system/synergy-design-system/commit/e3ca47322a563a06637e18823d8be7df08346dea) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-21
+
+  fix: 🐛 `<syn-checkbox>` takes too much vertical space ([#1323](https://github.com/synergy-design-system/synergy-design-system/issues/1323))
+
+  Removed an unneeded inner margin that caused `<syn-checkbox>` to use up too much vertical space.
+
 ## 3.25.0
 
 ### Patch Changes

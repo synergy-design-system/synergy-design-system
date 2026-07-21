@@ -8,8 +8,10 @@ import {
 } from '@storybook/addon-docs/blocks';
 import { html, render } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
+import '../../../components/src/components/alert/alert.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/dialog/dialog.js';
+import '../../../components/src/components/header/header.js';
 import '../../../components/src/components/fieldset/fieldset.js';
 import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/input/input.js';
@@ -20,6 +22,19 @@ import '../../../components/src/components/tooltip/tooltip.js';
 import '../../../components/src/components/validate/validate.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
+
+type DialogFeatureFlags = {
+  allowAdd: boolean;
+  allowDelete: boolean;
+  allowEdit: boolean;
+};
+
+type DialogInitialView = 'add' | 'delete' | 'none';
+
+type DialogTemplateConfig = {
+  features: DialogFeatureFlags;
+  initialView?: DialogInitialView;
+};
 
 const meta: Meta = {
   parameters: {
@@ -41,6 +56,10 @@ const meta: Meta = {
           <Stories title="" />
         </>
       ),
+      story: {
+        iframeHeight: 800,
+        inline: false,
+      },
     },
   },
   tags: ['Structure'],
@@ -48,200 +67,271 @@ const meta: Meta = {
 };
 export default meta;
 
-export const ConfirmationDialog = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('dialog', 'confirmation', 'templates'),
-      },
+const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplateConfig) => () => {
+  const initialData = Array.from({ length: 3 }, (_, index) => ({
+    description: `Description for Item ${index + 1}`,
+    id: index + 1,
+    name: `Item ${index + 1}`,
+    status: 'active',
+  }));
+
+  const container = document.createElement('div');
+  // container.style.minHeight = '450px';
+
+  let state = {
+    currentItemId: null as null | number,
+    data: [...initialData],
+    deleteDialogOpen: false,
+    editDialogOpen: false,
+    editingDraft: null as null | {
+      description: string;
+      id: number;
+      name: string;
+      status: string;
     },
-  },
-  render: () => {
-    const initialData = Array.from({ length: 3 }, (_, index) => ({
-      description: `Description for Item ${index + 1}`,
-      id: index + 1,
-      name: `Item ${index + 1}`,
-      status: 'active',
-    }));
+  };
 
-    const container = document.createElement('div');
-    container.style.minHeight = '450px';
-
-    let state = {
-      currentItemId: null as null | number,
-      data: [...initialData],
-      deleteDialogOpen: false,
-      editDialogOpen: false,
-      editingDraft: null as null | {
-        description: string;
-        id: number;
-        name: string;
-        status: string;
-      },
+  if (initialView === 'delete' && features.allowDelete && initialData[0]) {
+    state = {
+      ...state,
+      currentItemId: initialData[0].id,
+      deleteDialogOpen: true,
     };
+  }
 
-    let view = () => html``;
-
-    const setState = (patch: Partial<typeof state>) => {
-      state = { ...state, ...patch };
-      render(view(), container);
-    };
-
-    const closeDialog = () => {
-      setState({
-        currentItemId: null,
-        deleteDialogOpen: false,
-        editDialogOpen: false,
-        editingDraft: null,
-      });
-    };
-
-    const openDelete = (itemId: number) => {
-      setState({
-        currentItemId: itemId,
-        deleteDialogOpen: true,
-        editDialogOpen: false,
-        editingDraft: null,
-      });
-    };
-
-    const openEdit = (itemId?: number) => {
-      const item = typeof itemId === 'number'
-        ? state.data.find(currentItem => currentItem.id === itemId)
-        : null;
-
-      const nextItemId = state.data.length > 0
-        ? Math.max(...state.data.map(currentItem => currentItem.id)) + 1
-        : 1;
-
-      const editingDraft = item ?? {
+  if (initialView === 'add' && features.allowAdd) {
+    state = {
+      ...state,
+      currentItemId: state.data.length + 1,
+      editDialogOpen: true,
+      editingDraft: {
         description: '',
-        id: nextItemId,
+        id: state.data.length + 1,
         name: '',
         status: 'pending',
-      };
+      },
+    };
+  }
 
-      if (typeof itemId === 'number' && !item) {
-        return;
-      }
+  let view = () => html``;
 
-      setState({
-        currentItemId: editingDraft.id,
-        deleteDialogOpen: false,
-        editDialogOpen: true,
-        editingDraft,
-      });
+  const setState = (patch: Partial<typeof state>) => {
+    state = { ...state, ...patch };
+    render(view(), container);
+  };
+
+  const notifyChange = (
+    message: string,
+    variant: 'success' | 'warning' = 'success',
+  ) => {
+    const icon = variant === 'warning' ? 'warning' : 'check_circle';
+    const alert = Object.assign(document.createElement('syn-alert'), {
+      closable: true,
+      duration: 3000,
+      innerHTML: `
+        <syn-icon name="${icon}" slot="icon"></syn-icon>
+        ${message}
+        ${variant === 'warning' ? '<div>Click <strong>Undo</strong> to revert this change.</div>' : ''}
+      `,
+      variant,
+    });
+
+    document.body.append(alert);
+    return alert.toast();
+  };
+
+  const closeDialog = () => {
+    setState({
+      currentItemId: null,
+      deleteDialogOpen: false,
+      editDialogOpen: false,
+      editingDraft: null,
+    });
+  };
+
+  const openDelete = (itemId: number) => {
+    if (!features.allowDelete) {
+      return;
+    }
+
+    setState({
+      currentItemId: itemId,
+      deleteDialogOpen: true,
+      editDialogOpen: false,
+      editingDraft: null,
+    });
+  };
+
+  const openEdit = (itemId?: number) => {
+    if (typeof itemId === 'number' && !features.allowEdit) {
+      return;
+    }
+
+    if (typeof itemId !== 'number' && !features.allowAdd) {
+      return;
+    }
+
+    const item = typeof itemId === 'number'
+      ? state.data.find(currentItem => currentItem.id === itemId)
+      : null;
+
+    const nextItemId = state.data.length > 0
+      ? Math.max(...state.data.map(currentItem => currentItem.id)) + 1
+      : 1;
+
+    const editingDraft = item ?? {
+      description: '',
+      id: nextItemId,
+      name: '',
+      status: 'pending',
     };
 
-    const confirmDelete = () => {
-      if (!state.currentItemId) {
-        return;
-      }
+    if (typeof itemId === 'number' && !item) {
+      return;
+    }
 
-      setState({ data: state.data.filter(item => item.id !== state.currentItemId) });
-      closeDialog();
+    setState({
+      currentItemId: editingDraft.id,
+      deleteDialogOpen: false,
+      editDialogOpen: true,
+      editingDraft,
+    });
+  };
+
+  const confirmDelete = () => {
+    if (!state.currentItemId || !features.allowDelete) {
+      return;
+    }
+
+    const nextData = state.data.filter(item => item.id !== state.currentItemId);
+    setState({ data: nextData.length > 0 ? nextData : [...initialData] });
+    notifyChange('Item successfully deleted', 'warning').catch(() => undefined);
+    closeDialog();
+  };
+
+  const submitEdit = (formData: FormData) => {
+    const itemId = Number(formData.get('id'));
+    const nameEntry = formData.get('name');
+    const descriptionEntry = formData.get('description');
+    const statusEntry = formData.get('status');
+
+    const itemName = typeof nameEntry === 'string' ? nameEntry : '';
+    const itemDescription = typeof descriptionEntry === 'string' ? descriptionEntry : '';
+    const itemStatus = typeof statusEntry === 'string' ? statusEntry : 'pending';
+
+    const existingItem = state.data.find(item => item.id === itemId);
+    const updatedItem = {
+      description: itemDescription,
+      id: itemId,
+      name: itemName,
+      status: itemStatus,
     };
 
-    const submitEdit = (formData: FormData) => {
-      const itemId = Number(formData.get('id'));
-      const nameEntry = formData.get('name');
-      const descriptionEntry = formData.get('description');
-      const statusEntry = formData.get('status');
+    if (!existingItem && !features.allowAdd) {
+      return;
+    }
 
-      const itemName = typeof nameEntry === 'string' ? nameEntry : '';
-      const itemDescription = typeof descriptionEntry === 'string' ? descriptionEntry : '';
-      const itemStatus = typeof statusEntry === 'string' ? statusEntry : 'pending';
+    if (existingItem && !features.allowEdit) {
+      return;
+    }
 
-      const existingItem = state.data.find(item => item.id === itemId);
-      const updatedItem = {
-        description: itemDescription,
-        id: itemId,
-        name: itemName,
-        status: itemStatus,
-      };
+    setState({
+      data: existingItem
+        ? state.data.map(item => (item.id === itemId ? updatedItem : item))
+        : [...state.data, updatedItem],
+    });
 
-      setState({
-        data: existingItem
-          ? state.data.map(item => (item.id === itemId ? updatedItem : item))
-          : [...state.data, updatedItem],
-      });
-      closeDialog();
-    };
+    if (existingItem) {
+      notifyChange('Item successfully updated').catch(() => undefined);
+    } else {
+      notifyChange('Item successfully added').catch(() => undefined);
+    }
 
-    const onRequestClose = (e: Event) => {
-      const customEvent = e as CustomEvent<{ source: string }>;
-      if (customEvent.detail.source === 'overlay') {
-        customEvent.preventDefault();
-        return;
-      }
+    closeDialog();
+  };
 
-      closeDialog();
-    };
+  const onRequestClose = (e: Event) => {
+    const customEvent = e as CustomEvent<{ source: string }>;
+    if (customEvent.detail.source === 'overlay') {
+      customEvent.preventDefault();
+      return;
+    }
 
-    const onSubmit = (e: Event) => {
-      const submitEvent = e as SubmitEvent;
-      submitEvent.preventDefault();
-      submitEvent.stopPropagation();
+    closeDialog();
+  };
 
-      const form = submitEvent.target as HTMLFormElement;
-      if (!form.checkValidity()) {
-        return;
-      }
+  const onSubmit = (e: Event) => {
+    const submitEvent = e as SubmitEvent;
+    submitEvent.preventDefault();
+    submitEvent.stopPropagation();
 
-      submitEdit(new FormData(form));
-    };
+    const form = submitEvent.target as HTMLFormElement;
+    if (!form.checkValidity()) {
+      return;
+    }
 
-    const updateEditSubmitState = (form: HTMLFormElement) => {
-      const submitButton = container.querySelector('#edit-submit-button');
-      const submitTooltip = container.querySelector('#edit-submit-tooltip');
-      if (!submitButton || !submitTooltip) {
-        return;
-      }
+    submitEdit(new FormData(form));
+  };
 
-      const isValid = form.checkValidity();
+  const updateEditSubmitState = (form: HTMLFormElement) => {
+    const submitButton = container.querySelector('#edit-submit-button');
+    const submitTooltip = container.querySelector('#edit-submit-tooltip');
+    if (!submitButton || !submitTooltip) {
+      return;
+    }
 
-      if (isValid) {
-        submitButton.removeAttribute('disabled');
-        submitTooltip.setAttribute('disabled', '');
-        return;
-      }
+    const isValid = form.checkValidity();
 
-      submitButton.setAttribute('disabled', '');
-      submitTooltip.removeAttribute('disabled');
-    };
+    if (isValid) {
+      submitButton.removeAttribute('disabled');
+      submitTooltip.setAttribute('disabled', '');
+      return;
+    }
 
-    const onEditFormValidityChange = (e: Event) => {
-      const form = e.currentTarget as HTMLFormElement;
-      updateEditSubmitState(form);
-    };
+    submitButton.setAttribute('disabled', '');
+    submitTooltip.removeAttribute('disabled');
+  };
 
-    const getEditDialogLabel = (
-      editingItem: typeof state.editingDraft,
-      isEditExistingItem: boolean,
-    ) => {
-      if (!editingItem) {
-        return 'Edit Item';
-      }
+  const onEditFormValidityChange = (e: Event) => {
+    const form = e.currentTarget as HTMLFormElement;
+    updateEditSubmitState(form);
+  };
 
-      return isEditExistingItem
-        ? `Edit ${editingItem.name}`
-        : `Add ${editingItem.name}`;
-    };
+  const getEditDialogLabel = (
+    editingItem: typeof state.editingDraft,
+    isEditExistingItem: boolean,
+  ) => {
+    if (!editingItem) {
+      return 'Edit Item';
+    }
 
-    // eslint-disable-next-line complexity
-    view = () => {
-      const editingItem = state.editingDraft;
-      const isEditExistingItem = editingItem
-        ? state.data.some(item => item.id === editingItem.id)
-        : false;
-      const editDialogLabel = getEditDialogLabel(editingItem, isEditExistingItem);
-      const editConfirmLabel = isEditExistingItem ? 'Save changes' : 'Add Item';
-      const isEditFormValid = Boolean(editingItem?.name?.trim());
-      const deleteDialogLabel = state.currentItemId
-        ? `Delete Item ${state.currentItemId}?`
-        : 'Delete Item';
+    if (!isEditExistingItem && !editingItem.name.trim()) {
+      return 'Add Item';
+    }
 
-      return html`
+    return isEditExistingItem
+      ? `Edit ${editingItem.name}`
+      : `Add ${editingItem.name}`;
+  };
+
+  // eslint-disable-next-line complexity
+  view = () => {
+    const editingItem = state.editingDraft;
+    const isEditExistingItem = editingItem
+      ? state.data.some(item => item.id === editingItem.id)
+      : false;
+    const editDialogLabel = getEditDialogLabel(editingItem, isEditExistingItem);
+    const editConfirmLabel = isEditExistingItem ? 'Save changes' : 'Add Item';
+    const isEditFormValid = Boolean(editingItem?.name?.trim()) && Boolean(editingItem?.status?.trim());
+    const deleteDialogLabel = state.currentItemId
+      ? `Delete Item ${state.currentItemId}?`
+      : 'Delete Item';
+
+    return html`
+      <syn-header>
+        <span slot="label">Dialog Template</span>
+      </syn-header>
+      <main>
         <table class="item-table syn-table--default">
           <thead>
             <th class="table-id">Id</th>
@@ -262,6 +352,7 @@ export const ConfirmationDialog = {
                     data-id=${item.id}
                     variant="text"
                     size="small"
+                    ?disabled=${!features.allowEdit}
                     @click=${() => openEdit(item.id)}
                   >
                     <syn-icon name="edit" label="Edit"></syn-icon>
@@ -270,6 +361,7 @@ export const ConfirmationDialog = {
                     data-id=${item.id}
                     variant="text"
                     size="small"
+                    ?disabled=${!features.allowDelete}
                     @click=${() => openDelete(item.id)}
                   >
                     <syn-icon name="delete" label="Delete"></syn-icon>
@@ -284,6 +376,7 @@ export const ConfirmationDialog = {
                 <syn-button
                   variant="filled"
                   size="small"
+                  ?disabled=${!features.allowAdd}
                   @click=${() => openEdit()}
                 >
                   Add Item
@@ -292,8 +385,10 @@ export const ConfirmationDialog = {
             </tr>
           </tfoot>
         </table>
+      </main>
 
-        <!-- Edit Dialog. Will show a form that allows to edit an item -->
+      ${features.allowEdit ? html`
+        <!-- Edit and Add Dialog Form Example -->
         <syn-dialog
           class="edit-dialog"
           .label=${editDialogLabel}
@@ -363,8 +458,10 @@ export const ConfirmationDialog = {
             </syn-tooltip>
           </nav>
         </syn-dialog>
+      ` : ''}
 
-        <!-- Confirmation Dialog. Will show a confirmation message before deleting an item -->
+      ${features.allowDelete ? html`
+        <!-- Confirmation Dialog Example -->
         <syn-dialog
           class="confirmation-dialog"
           .label=${deleteDialogLabel}
@@ -378,44 +475,85 @@ export const ConfirmationDialog = {
             <syn-button variant="filled" @click=${confirmDelete}>Confirm</syn-button>
           </nav>
         </syn-dialog>
+      ` : ''}
 
-        <style>
-        .item-table {
-          width: 600px;
-          
-          td {
-            vertical-align: middle;
-          }
+      <style>
+      main {
+        background: var(--syn-page-background-color);
+        padding: var(--syn-spacing-large);
+      }
 
-          .table-id {
-            text-align: right;
-          }
+      .item-table {
+        width: 100%;
 
-          .table-action {
-            text-align: right;
-            white-space: nowrap;
-          }
-
-          tfoot th {
-            text-align: right;
-          }
-
-          .edit-submit-tooltip-trigger {
-            display: inline-flex;
-          }
+        td {
+          vertical-align: middle;
         }
 
-        .status-help-text {
-          ul {
-            margin-bottom: 0;
-            padding-inline-start: 2rem;
-          }
+        .table-id {
+          text-align: right;
         }
-        </style>
-      `;
-    };
 
-    render(view(), container);
-    return container;
+        .table-action {
+          text-align: right;
+          white-space: nowrap;
+        }
+
+        tfoot th {
+          text-align: right;
+        }
+
+        .edit-submit-tooltip-trigger {
+          display: inline-flex;
+        }
+      }
+
+      .status-help-text {
+        ul {
+          margin-bottom: 0;
+          padding-inline-start: 2rem;
+        }
+      }
+      </style>
+    `;
+  };
+
+  render(view(), container);
+  return container;
+};
+
+export const ConfirmationDialogs = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('dialog', 'confirmation', 'templates'),
+      },
+    },
   },
+  render: createDialogTemplate({
+    features: {
+      allowAdd: false,
+      allowDelete: true,
+      allowEdit: false,
+    },
+    initialView: 'delete',
+  }),
+};
+
+export const FormDialogs = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Form-focused dialog pattern for create and edit flows. Structure the dialog around required inputs and gate the primary submit action by form validity so incomplete data cannot be submitted. Keep a clear secondary Cancel action so users can always exit without saving. In this example, Add and Edit are enabled, while destructive delete is intentionally separated and disabled.',
+      },
+    },
+  },
+  render: createDialogTemplate({
+    features: {
+      allowAdd: true,
+      allowDelete: false,
+      allowEdit: true,
+    },
+    initialView: 'add',
+  }),
 };

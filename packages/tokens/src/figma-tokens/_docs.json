@@ -4977,7 +4977,17 @@
           "type": "text"
         },
         "description": {
-          "value": "Use this pattern to confirm a user action. Confirmation dialogs are used to ensure that users do not accidentally perform an action that may have significant consequences, such as deleting important data or making irreversible changes. \n\nThe confirmation dialog typically presents the user with a clear message about the action they are about to take, along with options to either proceed or cancel. This helps prevent mistakes and provides an opportunity for users to reconsider their decision before committing to it. Click the trash icon of a given row to open the confirmation dialog and confirm or cancel the deletion of that row.",
+          "value": "Use this pattern to confirm a user action. Confirmation dialogs are used to ensure that users do not accidentally perform an action that may have significant consequences, such as deleting important data or making irreversible changes. \n\nThe confirmation dialog typically presents the user with a clear message about the action they are about to take, along with options to either proceed or cancel. This helps prevent mistakes and provides an opportunity for users to reconsider their decision before committing to it.",
+          "type": "text"
+        }
+      },
+      "forms": {
+        "title": {
+          "value": "Forms in Dialogs",
+          "type": "text"
+        },
+        "description": {
+          "value": "",
           "type": "text"
         }
       }

@@ -55,30 +55,10 @@ try {
     };
   }
 
-  if (parsedArgs.logStdout !== undefined) {
-    config = {
-      ...config,
-      logging: {
-        ...config.logging,
-        stdout: {
-          ...config.logging.stdout,
-          enabled: parsedArgs.logStdout,
-        },
-      },
-    };
-  }
-
   if (parsedArgs.compression !== undefined) {
     config = {
       ...config,
       compression: parsedArgs.compression,
-    };
-  }
-
-  if (parsedArgs.silent !== undefined) {
-    config = {
-      ...config,
-      silent: parsedArgs.silent,
     };
   }
 

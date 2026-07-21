@@ -28,14 +28,12 @@ import {
 
 type LoggedEvent = {
   durationMs: number;
-  errorMessage?: string;
-  kind: 'tool' | 'prompt' | 'resource';
-  name: string;
   parameters: Record<string, unknown>;
   sessionId: string;
   success: boolean;
   timestamp: string;
   tokenCount?: number;
+  toolName: string;
   transport: 'http' | 'stdio';
 };
 
@@ -84,7 +82,7 @@ after(async () => {
   }));
 });
 
-describe('operation logging (local file provider)', () => {
+describe('tool call logging (local file provider)', () => {
   it('writes stdio tool calls to date/session JSON files', async () => {
     const logDir = await mkdtemp(join(tmpdir(), 'synergy-mcp-logs-'));
     temporaryPaths.push(logDir);
@@ -113,7 +111,7 @@ describe('operation logging (local file provider)', () => {
     assert.ok(files.some(file => file.endsWith('/stdio.json')));
 
     const entries = await readLoggedEvents(logDir);
-    const event = entries.find(entry => entry.kind === 'tool' && entry.name === 'asset-list');
+    const event = entries.find(entry => entry.toolName === 'asset-list');
 
     assert.ok(event);
     assert.equal(event.transport, 'stdio');
@@ -160,7 +158,7 @@ describe('operation logging (local file provider)', () => {
     }
 
     const entries = await readLoggedEvents(logDir);
-    const event = entries.find(entry => entry.kind === 'tool' && entry.name === 'asset-list' && entry.transport === 'http');
+    const event = entries.find(entry => entry.toolName === 'asset-list' && entry.transport === 'http');
 
     assert.ok(event);
     assert.notEqual(event.sessionId, 'stdio');
@@ -197,7 +195,7 @@ describe('operation logging (local file provider)', () => {
     }
 
     const entries = await readLoggedEvents(logDir);
-    const event = entries.find(entry => entry.kind === 'tool' && entry.name === 'asset-list' && entry.transport === 'http');
+    const event = entries.find(entry => entry.toolName === 'asset-list' && entry.transport === 'http');
 
     assert.ok(event);
     assert.notEqual(event.sessionId, 'stdio');
@@ -264,7 +262,7 @@ describe('operation logging (local file provider)', () => {
 
     const expectedTokenCount = await countTextTokens(responsePayload);
     const entries = await readLoggedEvents(logDir);
-    const event = entries.find(entry => entry.kind === 'tool' && entry.name === 'asset-list');
+    const event = entries.find(entry => entry.toolName === 'asset-list');
 
     assert.ok(event);
     assert.equal(event.success, true);
@@ -299,7 +297,7 @@ describe('operation logging (local file provider)', () => {
     }
 
     const entries = await readLoggedEvents(logDir);
-    const event = entries.find(entry => entry.kind === 'prompt' && entry.name === 'explain-component-rules');
+    const event = entries.find(entry => entry.toolName === 'prompt:explain-component-rules');
 
     assert.ok(event);
     assert.equal(event.success, true);
@@ -307,41 +305,5 @@ describe('operation logging (local file provider)', () => {
     assert.equal(typeof event.durationMs, 'number');
     assert.ok(event.durationMs >= 0);
     assert.equal(typeof event.tokenCount, 'number');
-  });
-
-  it('writes resource reads to the log output', async () => {
-    const logDir = await mkdtemp(join(tmpdir(), 'synergy-mcp-resource-logs-'));
-    temporaryPaths.push(logDir);
-
-    const configPath = await writeTempConfig({
-      logging: {
-        localFile: {
-          path: logDir,
-        },
-      },
-    });
-    temporaryPaths.push(configPath);
-
-    const session = await createClientSession({ configPath });
-    try {
-      const resources = await session.client.readResource({
-        uri: 'synergy://assets/list',
-      });
-
-      assert.equal(Array.isArray(resources.contents), true);
-      assert.equal(resources.contents.length > 0, true);
-    } finally {
-      await session.close();
-    }
-
-    const entries = await readLoggedEvents(logDir);
-    const event = entries.find(entry => entry.kind === 'resource' && entry.name === 'asset-list');
-
-    assert.ok(event);
-    assert.equal(event.success, true);
-    assert.deepEqual(event.parameters, { uri: 'synergy://assets/list' });
-    assert.equal(typeof event.durationMs, 'number');
-    assert.ok(event.durationMs >= 0);
-    assert.equal(event.tokenCount, undefined);
   });
 });

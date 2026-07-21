@@ -18,7 +18,7 @@ Fieldsets are used to group related elements in a form.
 ## Usage Information
 
 - **Status:** stable
-- **Since:** 3.18.x
+- **Since:** 3.18.0
 
 ## Available Slots
 

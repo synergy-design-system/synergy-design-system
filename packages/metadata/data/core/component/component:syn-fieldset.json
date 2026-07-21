@@ -18,7 +18,7 @@
           "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-fieldset--docs",
           "events": [],
           "packageName": "@synergy-design-system/react",
-          "since": "3.18.x",
+          "since": "3.18.0",
           "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
           "status": "stable",
           "subpathExport": "./types/latest",
@@ -234,7 +234,7 @@
   "name": "syn-fieldset",
   "package": "components",
   "relations": [],
-  "since": "3.18.x",
+  "since": "3.18.0",
   "sources": [
     "packages/angular/components/fieldset/fieldset.component.ts",
     "packages/components/src/components/fieldset/constants.ts",

@@ -129,7 +129,7 @@
       "type": "'small' | 'medium' | 'large'"
     }
   ],
-  "since": "3.18.x",
+  "since": "3.18.0",
   "slots": [
     {
       "description": "The default slot where `<syn-checkbox>` and `<syn-switch>` elements are placed.",

@@ -41,7 +41,7 @@ export const runEsBuildComponents = job('Synergy: Running esbuild...', async (di
     ],
     sourcemap: true,
     splitting: true,
-    target: 'es2017',
+    target: 'es2020',
   };
 
   return esbuild.build(esbuildConfig);

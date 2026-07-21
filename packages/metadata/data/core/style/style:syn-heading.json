@@ -21,7 +21,7 @@
   "name": "syn-heading",
   "package": "styles",
   "relations": [],
-  "since": "2.1.2",
+  "since": "2.2.0",
   "sources": [
     "packages/styles/src/typography/heading.css"
   ],

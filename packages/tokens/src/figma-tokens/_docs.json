@@ -4899,6 +4899,28 @@
           "type": "text"
         }
       }
+    },
+    "dialog": {
+      "default": {
+        "title": {
+          "value": "Dialog",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of the `<syn-dialog>` component in various contexts.",
+          "type": "text"
+        }
+      },
+      "confirmation": {
+        "title": {
+          "value": "Confirmation Dialogs",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use this pattern to confirm a user action. Confirmation dialogs are used to ensure that users do not accidentally perform an action that may have significant consequences, such as deleting important data or making irreversible changes. \n\nThe confirmation dialog typically presents the user with a clear message about the action they are about to take, along with options to either proceed or cancel. This helps prevent mistakes and provides an opportunity for users to reconsider their decision before committing to it.",
+          "type": "text"
+        }
+      }
     }
   }
 }

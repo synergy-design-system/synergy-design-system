@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/react",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.20.0-627f4f83-03e0-4cd0-812d-e434b2a1075e",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.20.1-e457852e-4a8c-4651-b8f5-0c9dce1f5f62",
   "creationInfo": {
-    "created": "2026-07-21T09:34:11.308Z",
+    "created": "2026-07-21T11:11:23.597Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/react",
-      "versionInfo": "3.20.0",
+      "versionInfo": "3.20.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.20.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.20.1"
         }
       ],
       "licenseConcluded": "MIT",
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.20.1-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.20.0",
+      "versionInfo": "3.20.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.20.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.20.1"
         }
       ],
       "licenseConcluded": "MIT",
@@ -51,16 +51,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.20.0-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.20.1-1",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.20.0",
+      "versionInfo": "3.20.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.20.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.20.1"
         }
       ],
       "licenseConcluded": "MIT",
@@ -490,12 +490,12 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.20.1-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.20.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.20.1-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -504,22 +504,22 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.1-0",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.1-0",
       "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.1-0",
       "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-5",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.1-0",
       "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-6",
       "relationshipType": "DEPENDS_ON"
     },

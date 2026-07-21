@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.20.1
+
+### Patch Changes
+
+- [#1332](https://github.com/synergy-design-system/synergy-design-system/pull/1332) [`36f8aa3`](https://github.com/synergy-design-system/synergy-design-system/commit/36f8aa38e885aece229481a161e01021bbdcf367) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-21
+
+  fix: 🐛 `<syn-radio-button>` uses wrong spacings between items ([#1318](https://github.com/synergy-design-system/synergy-design-system/issues/1318))
+
+  This release fixes an issue with `<syn-radio-button>` that used incorrect spacing values for all sizes.
+
 ## 3.20.0
 
 ### Minor Changes

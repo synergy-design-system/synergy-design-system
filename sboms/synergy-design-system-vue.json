@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/vue",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.19.0-acb593a8-da01-4bc4-8753-f66a0a8706a6",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.20.0-ab565cfb-1392-4c83-b7fa-66be275fd65f",
   "creationInfo": {
-    "created": "2026-07-21T06:07:50.541Z",
+    "created": "2026-07-21T09:34:11.557Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/vue",
-      "versionInfo": "3.19.0",
+      "versionInfo": "3.20.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/vue@3.19.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/vue@3.20.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.19.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.19.0",
+      "versionInfo": "3.20.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.19.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.20.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -51,16 +51,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.19.0-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.20.0-1",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.19.0",
+      "versionInfo": "3.20.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.19.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.20.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -96,7 +96,32 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-3",
+      "SPDXID": "SPDXRef-Package-echarts-6.1.0-3",
+      "name": "echarts",
+      "versionInfo": "6.1.0",
+      "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/echarts@6.1.0"
+        }
+      ],
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "description": "Apache ECharts is a powerful, interactive charting and data visualization library for browser",
+      "homepage": "https://echarts.apache.org",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "ab4c9a14f8200bd15476c587e1b95abd15859b176b22875b92828d02326e74023a080f6034fc47b55d917193447a9655964e32bc16243a46e4e87215a48c8764"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-4",
       "name": "composed-offset-position",
       "versionInfo": "0.0.6",
       "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
@@ -122,33 +147,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.7.6-3",
-      "name": "@floating-ui/dom",
-      "versionInfo": "1.7.6",
-      "downloadLocation": "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.7.6.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40floating-ui/dom@1.7.6"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Floating UI for the web",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "f60652008e57337ebcf343cf326ffff5d7e2127818a02e809b68b3112d45178d3a605b23bf204c99e2768384808eedf15b0b6eca735114bdacf61831a4b23949"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lit-3.3.3-4",
+      "SPDXID": "SPDXRef-Package-lit-3.3.3-5",
       "name": "lit",
       "versionInfo": "3.3.3",
       "downloadLocation": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz",
@@ -186,11 +185,12 @@
           "referenceLocator": "pkg:npm/%40floating-ui/core@1.8.0"
         }
       ],
-      "licenseConcluded": "Apache-2.0",
-      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Apache ECharts is a powerful, interactive charting and data visualization library for browser",
-      "homepage": "https://echarts.apache.org",
+      "description": "Positioning library for floating elements: tooltips, popovers, dropdowns, and more",
+      "homepage": "https://floating-ui.com",
+      "supplier": "Person: atomiks",
       "checksums": [
         {
           "algorithm": "SHA512",
@@ -260,24 +260,23 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40floating-ui/core@1.7.5"
+          "referenceLocator": "pkg:npm/zrender@6.1.0"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
       "copyrightText": "NOASSERTION",
-      "description": "Positioning library for floating elements: tooltips, popovers, dropdowns, and more",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
+      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
+      "homepage": "https://github.com/ecomfe/zrender#readme",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "d488785935b2c34fa52b214c7011c66dbe54e45b6e1c9bae8e8cb2af9cd36964b911831e4fa25bd80b8379fb6c0ac12e7213be98cda28f9faaf5cae1c9dccb85"
+          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
+      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-10",
       "name": "@lit/reactive-element",
       "versionInfo": "2.1.2",
       "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
@@ -303,7 +302,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-9",
+      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-11",
       "name": "lit-element",
       "versionInfo": "4.2.2",
       "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
@@ -329,7 +328,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-10",
+      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-12",
       "name": "lit-html",
       "versionInfo": "3.3.3",
       "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
@@ -355,58 +354,32 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-tslib-2.3.0-11",
-      "name": "tslib",
-      "versionInfo": "2.3.0",
-      "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
+      "SPDXID": "SPDXRef-Package--types-trusted-types-2.0.7-13",
+      "name": "@types/trusted-types",
+      "versionInfo": "2.0.7",
+      "downloadLocation": "https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.7.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/tslib@2.3.0"
+          "referenceLocator": "pkg:npm/%40types/trusted-types@2.0.7"
         }
       ],
-      "licenseConcluded": "0BSD",
-      "licenseDeclared": "0BSD",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Runtime library for TypeScript helper functions",
-      "homepage": "https://www.typescriptlang.org/",
-      "supplier": "Person: Microsoft Corp.",
+      "description": "TypeScript definitions for trusted-types",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/trusted-types",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
+          "checksumValue": "49c68f767d5d41cce06e5d101537933a65471542eddfde17260390368c95859eabdaf2e730b25f04f779dd2079d93ff71b7e95235fe0d8c65a5f47300ee5ec7f"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-zrender-6.1.0-12",
-      "name": "zrender",
-      "versionInfo": "6.1.0",
-      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/zrender@6.1.0"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
-      "homepage": "https://github.com/ecomfe/zrender#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-13",
+      "SPDXID": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-14",
       "name": "@lit-labs/ssr-dom-shim",
       "versionInfo": "1.6.0",
       "downloadLocation": "https://registry.npmjs.org/@lit-labs/ssr-dom-shim/-/ssr-dom-shim-1.6.0.tgz",
@@ -430,31 +403,6 @@
           "checksumValue": "5476f400b3cc4e580a8cceb2231c6840d9e92b250a2c3d3857379076c89790caa4bd89401f1abd82518b9a06dbf3cf7fd46b288523808ef418a22069a5716aad"
         }
       ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--types-trusted-types-2.0.7-14",
-      "name": "@types/trusted-types",
-      "versionInfo": "2.0.7",
-      "downloadLocation": "https://registry.npmjs.org/@types/trusted-types/-/trusted-types-2.0.7.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/trusted-types@2.0.7"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "TypeScript definitions for trusted-types",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/trusted-types",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "49c68f767d5d41cce06e5d101537933a65471542eddfde17260390368c95859eabdaf2e730b25f04f779dd2079d93ff71b7e95235fe0d8c65a5f47300ee5ec7f"
-        }
-      ]
     }
   ],
   "relationships": [
@@ -465,31 +413,31 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.19.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.19.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.20.0-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.19.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.19.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-3",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
+      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.19.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-4",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
+      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.19.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.20.0-0",
       "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-5",
       "relationshipType": "DEPENDS_ON"
     },
@@ -504,38 +452,38 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-3",
       "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-4",
-      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-9",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-3",
+      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-4",
-      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-10",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-10",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-5",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-11",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
+      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-5",
-      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-12",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
+      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-12",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
-      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-13",
+      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-10",
+      "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-14",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-10",
-      "relatedSpdxElement": "SPDXRef-Package--types-trusted-types-2.0.7-14",
+      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-12",
+      "relatedSpdxElement": "SPDXRef-Package--types-trusted-types-2.0.7-13",
       "relationshipType": "DEPENDS_ON"
     }
   ]

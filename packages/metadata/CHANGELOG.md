@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.24.0
+
+### Minor Changes
+
+- [#1319](https://github.com/synergy-design-system/synergy-design-system/pull/1319) [`977fd96`](https://github.com/synergy-design-system/synergy-design-system/commit/977fd96cd3ee302c05df6c838c57b23efa7ead29) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-07-21
+
+  feat: ✨ Adds a Synergy-styled chart legend and a legend preset helper ([#1204](https://github.com/synergy-design-system/synergy-design-system/issues/1204))
+  - The _legendShow_ preset helper makes it easier to show and position the legend.
+  - The config merge behavior has been updated: arrays are no longer fully replaced by the latest value. For example, a _series_ array is now merged by index instead of being overwritten.
+
 ## 3.23.0
 
 ### Minor Changes

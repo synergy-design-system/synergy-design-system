@@ -707,6 +707,16 @@
           "type": "text"
         }
       },
+      "legend-non-interactive": {
+        "title": {
+          "value": "Non-interactive Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, the legend is interactive. Users can click on a legend item to toggle the visibility of the corresponding series in the chart. To make the legend non-interactive, use the *selectedMode: false* option.",
+          "type": "text"
+        }
+      },
       "default": {
         "title": {
           "value": "Chart",

@@ -184,11 +184,47 @@ export const ShowLegendBottom: Story = {
   `,
 };
 
+export const NonInteractiveLegend: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'legend-non-interactive'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="chart-non-interactive-legend"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#chart-non-interactive-legend');
+
+      const baseConfig = {
+        series: [
+          { data: [150, 230, 224, 218, 135, 147, 260], type: 'line', name: 'Series A' },
+          { data: [120, 282, 251, 234, 290, 430, 310], type: 'line', name: 'Series B' },
+          { data: [320, 332, 301, 334, 390, 330, 320], type: 'line', name: 'Series C' },
+        ],
+        xAxis: {
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          type: 'category', name: 'Days',
+        },
+        yAxis: { type: 'value', name: 'Values' },
+      };
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+          .baseConfig(baseConfig)
+          .legendShow({ position: 'top', legend: { selectedMode: false} });
+      });
+    </script>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   ShowLegendTop,
   ShowLegendLeft,
   ShowLegendRight,
   ShowLegendBottom,
+  NonInteractiveLegend,
 }, 700);
 /* eslint-enable sort-keys */

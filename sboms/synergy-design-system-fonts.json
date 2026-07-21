@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/fonts",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-fonts-1.0.8-eb2c5583-2739-4182-859b-5ec2764cc72d",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-fonts-1.1.0-11dfc0de-b1b9-45ed-bb67-f42cdedf9392",
   "creationInfo": {
-    "created": "2026-07-16T13:16:52.823Z",
+    "created": "2026-07-21T06:07:50.187Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/fonts",
-      "versionInfo": "1.0.8",
+      "versionInfo": "1.1.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/fonts@1.0.8"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/fonts@1.1.0"
         }
       ],
       "licenseConcluded": "MIT",

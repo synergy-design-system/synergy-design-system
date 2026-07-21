@@ -40,7 +40,7 @@
     "lint": "pnpm run /^lint:.*/"
   },
   "type": "module",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@synergy-design-system/stylelint-config-syn": "workspace:^",

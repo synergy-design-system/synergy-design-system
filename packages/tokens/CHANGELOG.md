@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.19.0
+
+### Minor Changes
+
+- [#1327](https://github.com/synergy-design-system/synergy-design-system/pull/1327) [`d660ae7`](https://github.com/synergy-design-system/synergy-design-system/commit/d660ae710f3ba94eda2263f1c3af71695e317b58) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-21
+
+  feat: ✨ Enable support for Angular 22 ([#1326](https://github.com/synergy-design-system/synergy-design-system/issues/1326))
+
+  This release adds support for `angular` version 22. It also updates typescript to version 6 for all packages.
+
 ## 3.18.0
 
 ### Minor Changes

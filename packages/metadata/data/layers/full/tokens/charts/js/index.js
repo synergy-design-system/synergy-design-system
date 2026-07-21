@@ -66,6 +66,11 @@ export const SynChartCategorical09 = 'var(--syn-chart-categorical-09)';
 /**
  * @type {string}
  */
+export const SynChartDisabledColor = 'var(--syn-chart-disabled-color)';
+
+/**
+ * @type {string}
+ */
 export const SynChartGridLinesColor = 'var(--syn-chart-grid-lines-color)';
 
 /**

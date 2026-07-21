@@ -2563,7 +2563,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-sass-1.101.0-100",
+      "SPDXID": "SPDXRef-Package-sass-1.101.0-99",
       "name": "sass",
       "versionInfo": "1.101.0",
       "downloadLocation": "https://registry.npmjs.org/sass/-/sass-1.101.0.tgz",
@@ -2854,19 +2854,18 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/sisteransi@1.0.5"
+          "referenceLocator": "pkg:npm/%40types/estree@1.0.9"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "ANSI escape codes for some terminal swag",
-      "homepage": "https://github.com/terkelg/sisteransi#readme",
-      "supplier": "Person: Terkel Gjervig",
+      "description": "TypeScript definitions for estree",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/estree",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "6cb186951d50c417329e7d9de589835f83068e566fcb631104344d1cb27c548ea5ebef45522c9314d27422f78e48fd1b7178150cf45c7c6a80d298daa94a5f56"
+          "checksumValue": "1a174f832d5e978fc898fd395f4e54c38730dbf33ddc10949a712f599352b650b310a304e05924f98a680393a21cd426a12ec269f6fc5dadcfc9af26d50af37a"
         }
       ]
     },
@@ -6026,12 +6025,12 @@
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "TypeScript definitions for @babel/template",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/babel__template",
+      "description": "TypeScript definitions for @babel/generator",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/babel__generator",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "87f354692c86e44cb1048a7c611c68e1131edbfa9082fca8c11c1533385884108e35b5bc3d4b20e2590532b86066151ee73dcbdcc88b0eebf227f09a3dad80f0"
+          "checksumValue": "b9f15dd978bdd8e0153d8b32f8fe27eff53b7baf1f7b1d3e11ef20486f4a5fb7a8d3ce025a2438b1dc64b6f765d1b38fba95ed5493d8d7dce4e84c16a9443c96"
         }
       ]
     },
@@ -7951,19 +7950,19 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/tiny-inflate@1.0.3"
+          "referenceLocator": "pkg:npm/micromark-util-types@2.0.2"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "A tiny inflate implementation",
-      "homepage": "https://github.com/devongovett/tiny-inflate",
-      "supplier": "Person: Devon Govett",
+      "description": "micromark utility with a couple of typescript types",
+      "homepage": "https://github.com/micromark/micromark/tree/main#readme",
+      "supplier": "Person: Titus Wormer",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "a646357e3d5c2876f6b1e583cb4075e87796c9cce5240f7f596deeddce33fcd8960ec3b70ce5390fb9e14cb13d085d325effd064563bb042668f6e1d2be46bab"
+          "checksumValue": "630d04092a49a15885d6a4d4e030ba370b42e1a586b75124cda401f0a3cfc82451f33f5359e5741db1051933be658d70076db39b19c9aa13f24e93950a97874c"
         }
       ]
     },
@@ -11179,7 +11178,7 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-react-19.2.7-8",
+      "relatedSpdxElement": "SPDXRef-Package-react-19.2.7-6",
       "relationshipType": "DEPENDS_ON"
     },
     {

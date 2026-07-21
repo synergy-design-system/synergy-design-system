@@ -7,8 +7,6 @@ import {
   withCompressionMiddleware,
   withErrorHandlingMiddleware,
   withPromptLoggingMiddleware,
-  withResourceCompressionMiddleware,
-  withResourceLoggingMiddleware,
   withToolLoggingMiddleware,
 } from '../middleware/index.js';
 import { getRuntimeConfig } from './config.js';
@@ -54,13 +52,6 @@ const toolMiddlewareStack: ToolMiddleware<Record<string, unknown>>[] = [
 const promptMiddlewareStack: ToolMiddleware<Record<string, unknown>>[] = [
   ...baseMiddlewareStack,
   withPromptLoggingMiddleware,
-];
-
-// Resources do not use withErrorHandlingMiddleware: errors should propagate
-// naturally so the MCP SDK can surface them to the client correctly.
-const resourceMiddlewareStack: ToolMiddleware<Record<string, unknown>>[] = [
-  withResourceCompressionMiddleware,
-  withResourceLoggingMiddleware,
 ];
 
 type PromptDescriptionResolver<TArgs extends Record<string, unknown>> =
@@ -223,35 +214,4 @@ export const promptHandler = <TArgs extends Record<string, unknown>>(
   }
 
   return toPromptResponseFromEntries(result, promptName, args, options);
-};
-
-/**
- * Wraps a resource handler through the middleware pipeline (logging, and any
- * future cross-cutting concerns) while keeping resource implementations focused
- * on business logic.
- *
- * The URI is adapted into the middleware args shape as `{ uri: string }` and
- * unwrapped back to a URL before calling the inner handler.
- */
-export const resourceHandler = <TResult>(
-  resourceName: string,
-  handler: (uri: URL) => Promise<TResult>,
-) => async (uri: URL): Promise<TResult> => {
-  const adaptedHandler = async (args: Record<string, unknown>): Promise<unknown[]> => {
-    const result = await handler(new URL(args.uri as string));
-    return [result];
-  };
-
-  const rawHandler = composeMiddlewares(
-    adaptedHandler,
-    resourceMiddlewareStack,
-    {
-      config: getRuntimeConfig(),
-      options: {},
-      toolName: resourceName,
-    },
-  );
-
-  const result = await rawHandler({ uri: uri.toString() });
-  return result[0] as TResult;
 };

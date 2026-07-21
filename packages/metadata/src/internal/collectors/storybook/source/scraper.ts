@@ -213,6 +213,11 @@ export class StorybookScraper {
     this.config = config;
   }
 
+  private getStoryIdsForItem(item: string): string[] {
+    const storyIds = this.config.generateStoryIds(item);
+    return Array.from(new Set(storyIds.filter(Boolean)));
+  }
+
   /**
    * Initialize the browser instance. Called on first scrape.
    */
@@ -398,8 +403,15 @@ export class StorybookScraper {
 
     try {
       const scrapedPages = await Promise.all(items.map(async (item) => {
-        const storyId = this.config.generateStoryId(item);
-        const stories = await this.scrapeStoryDocs(storyId, baseUrl);
+        const storyIds = this.config.generateStoryIds(item);
+
+        const storyResults = await Promise.all(storyIds.map(async (storyId) => ({
+          stories: await this.scrapeStoryDocs(storyId, baseUrl),
+          storyId,
+        })));
+
+        const stories = storyResults.flatMap(result => result.stories);
+
         return {
           item,
           stories,
@@ -410,18 +422,18 @@ export class StorybookScraper {
         if (stories.length > 0) {
           return false;
         }
+        const docsStoryIds = this.config.generateStoryIds(item);
 
-        const docsStoryId = this.config.generateStoryId(item);
-        return isDefaultOrScreenshotOnlyDocsStory(docsStoryId);
+        return docsStoryIds.every(docsStoryId => isDefaultOrScreenshotOnlyDocsStory(docsStoryId));
       });
 
       const failedPages = scrapedPages.filter(({ item, stories }) => {
         if (stories.length > 0) {
           return false;
         }
+        const docsStoryIds = this.config.generateStoryIds(item);
 
-        const docsStoryId = this.config.generateStoryId(item);
-        return !isDefaultOrScreenshotOnlyDocsStory(docsStoryId);
+        return docsStoryIds.some(docsStoryId => !isDefaultOrScreenshotOnlyDocsStory(docsStoryId));
       });
 
       if (ignorableEmptyPages.length > 0) {

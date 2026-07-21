@@ -2,9 +2,10 @@ import '../../../dist/components/chart/chart.js';
 import { expect, fixture, html } from '@open-wc/testing';
 import type { SeriesOption } from 'echarts';
 import type { XAXisOption, YAXisOption } from 'echarts/types/dist/shared';
+import { getRealStyleValue, invalidateStyleTokenCache } from '../../../dist/components/chart/themes/utilities.js';
 import type SynChart from './chart.component.js';
 import { PALETTE_TOKENS } from './chart.palettes.js';
-import type { ECConfig } from './types.js';
+import type { ChartConfigCallback, ECConfig } from './types.js';
 
 async function createChart(template = html`<syn-chart></syn-chart>`): Promise<SynChart> {
   return fixture<SynChart>(template);
@@ -190,7 +191,7 @@ describe('<syn-chart>', () => {
       const instance = el.getInstance()!;
       const config: ECConfig = {
         series: [{ data: [150, 230], type: 'line' }],
-        xAxis: { data: ['Mon', 'Tue'], type: 'category'},
+        xAxis: { data: ['Mon', 'Tue'], type: 'category' },
         yAxis: { type: 'value' },
       };
       el.config = config;
@@ -219,5 +220,74 @@ describe('<syn-chart>', () => {
       expect(xAxis.nameLocation).to.equal('start');
       expect(yAxis.nameLocation).to.equal('center');
     });
+  });
+
+  describe('registerLegendListener()', () => {
+    const baseConfig: ECConfig = {
+      series: [
+        { data: [1, 2, 3], name: 'Series A', type: 'line' },
+        { data: [4, 5, 6], name: 'Series B', type: 'line' },
+      ],
+      xAxis: { data: ['Mon', 'Tue', 'Wed'], type: 'category' },
+      yAxis: { type: 'value' },
+    };
+
+    it('updates the legend formatter to hideIcon or showIcon depending of the series visibility state', async () => {
+      const configWithLegend: ChartConfigCallback = (handle) => handle.baseConfig(baseConfig).legendShow();
+      const el = await createChart(html`<syn-chart .config=${configWithLegend}></syn-chart>`);
+      await el.updateComplete;
+      const instance = el.getInstance()!;
+
+      // Toggle Series A off — this fires legendselectchanged with selected['Series A'] = false
+      instance.dispatchAction({ name: 'Series A', type: 'legendToggleSelect' });
+
+      const option = instance.getOption();
+      const legend = firstOf(option.legend) as { formatter: (name: string) => string };
+      const { formatter } = legend;
+
+      expect(formatter('Series A')).to.equal('Series A  {hideIcon|}');
+      expect(formatter('Series B')).to.equal('Series B  {showIcon|}');
+    });
+
+    it('restores the showIcon formatter when a hidden series is toggled back on', async () => {
+      const configWithLegend: ChartConfigCallback = (handle) => handle.baseConfig(baseConfig).legendShow();
+      const el = await createChart(html`<syn-chart .config=${configWithLegend}></syn-chart>`);
+
+      await el.updateComplete;
+      const instance = el.getInstance()!;
+
+      // Toggle off then on again
+      instance.dispatchAction({ name: 'Series A', type: 'legendToggleSelect' });
+      instance.dispatchAction({ name: 'Series A', type: 'legendToggleSelect' });
+
+      const option = instance.getOption();
+      const legend = firstOf(option.legend) as { formatter?: (name: string) => string };
+      expect(legend.formatter!('Series A')).to.equal('Series A  {showIcon|}');
+    });
+  });
+
+  it('tokens cache is warmed up only once across chart instances', async () => {
+    const token = '--syn-test-warmup-token';
+
+    invalidateStyleTokenCache();
+    document.body.style.setProperty(token, 'rgb(255, 0, 0)');
+
+    const firstChart = await createChart();
+    await firstChart.updateComplete;
+
+    // read cached value after first instance setup.
+    expect(getRealStyleValue(token)).to.equal('rgb(255, 0, 0)');
+
+    // If warmup runs again for the second chart, this changed token would overwrite cache.
+    document.body.style.setProperty(token, 'rgb(0, 0, 255)');
+    const secondChart = await createChart();
+    await secondChart.updateComplete;
+
+    expect(getRealStyleValue(token)).to.equal('rgb(255, 0, 0)');
+
+    firstChart.remove();
+    secondChart.remove();
+    document.body.style.removeProperty(token);
+    invalidateStyleTokenCache();
   });
 });

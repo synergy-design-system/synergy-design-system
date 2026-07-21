@@ -12,13 +12,13 @@ type Mergeable = Record<string, unknown>;
 /**
  * A single partial config contribution that can participate in a merge.
  */
-type ConfigLayer = Partial<ECConfig> | undefined;
+type ConfigLayer = Partial<ECConfig> | null | undefined;
 
 /**
  * Determines whether a value can be merged recursively.
  *
- * Arrays are intentionally excluded because config arrays are replaced instead
- * of merged item-by-item.
+ * Arrays are intentionally excluded because they use a dedicated merge
+ * strategy.
  *
  * @param value The value to inspect.
  * @returns True when the value is a non-null plain object.
@@ -26,45 +26,119 @@ type ConfigLayer = Partial<ECConfig> | undefined;
 const isMergeableObject = (value: unknown): value is Mergeable => typeof value === 'object' && value !== null && !Array.isArray(value);
 
 /**
+ * Merges an object into the first entry of an array.
+ *
+ * @param arrayValue Base array to keep.
+ * @param objectValue Object to merge into index 0.
+ * @param objectAsSource Whether the object comes from the source layer.
+ * @param mergeValue Recursive merge callback.
+ * @returns A merged array.
+ */
+const mergeArrayWithObject = (
+  arrayValue: unknown[],
+  objectValue: Mergeable,
+  objectAsSource: boolean,
+  mergeValue: (targetValue: unknown, sourceValue: unknown) => unknown,
+): unknown[] => {
+  const mergedArray = arrayValue.slice();
+  const firstEntry = mergedArray[0];
+
+  if (isMergeableObject(firstEntry)) {
+    mergedArray[0] = objectAsSource
+      ? mergeValue(firstEntry, objectValue)
+      : mergeValue(objectValue, firstEntry);
+    return mergedArray;
+  }
+
+  mergedArray[0] = objectValue;
+  return mergedArray;
+};
+
+/**
+ * Merges two arrays by index.
+ *
+ * @param targetArray Existing array value.
+ * @param sourceArray Incoming array value.
+ * @param mergeValue Recursive merge callback.
+ * @returns A merged array preserving non-overlapping entries.
+ */
+const mergeArraysByIndex = (
+  targetArray: unknown[],
+  sourceArray: unknown[],
+  mergeValue: (targetValue: unknown, sourceValue: unknown) => unknown,
+): unknown[] => {
+  const maxLength = Math.max(targetArray.length, sourceArray.length);
+
+  return Array.from({ length: maxLength }, (_, index) => {
+    if (index >= sourceArray.length) {
+      return targetArray[index];
+    }
+
+    if (index >= targetArray.length) {
+      return sourceArray[index];
+    }
+
+    return mergeValue(targetArray[index], sourceArray[index]);
+  });
+};
+
+type DeepMergeInput = object | unknown[];
+
+/**
  * Deep-merges two config objects into a new object.
  *
- * Nested plain objects are merged recursively. Arrays are copied from the
- * source and replace any existing target arrays.
+ * Nested plain objects are merged recursively. Arrays are merged by index and
+ * preserve non-overlapping entries.
  *
  * @param target The existing accumulated config object.
  * @param source The next config layer to merge into the target.
  * @returns A new merged object.
  */
-const mergeDeep = (target: Mergeable, source: Mergeable): Mergeable => {
-  const merged = { ...target };
+export function mergeDeep(target: DeepMergeInput, source: DeepMergeInput): DeepMergeInput {
+  if(!target) return source;
+  if(!source) return target;
 
-  Object.entries(source).forEach(([key, sourceValue]) => {
-    const targetValue = merged[key];
-
+  const mergeValue = (targetValue: unknown, sourceValue: unknown): unknown => {
     if (Array.isArray(sourceValue)) {
-      // Arrays are replaced by the most recent layer.
-      merged[key] = sourceValue.slice();
-      return;
+      if (Array.isArray(targetValue)) {
+        return mergeArraysByIndex(targetValue, sourceValue, mergeValue);
+      }
+
+      if (isMergeableObject(targetValue)) {
+        return mergeArrayWithObject(sourceValue, targetValue, false, mergeValue);
+      }
+
+      return sourceValue.slice();
+    }
+
+    if (Array.isArray(targetValue) && isMergeableObject(sourceValue)) {
+      return mergeArrayWithObject(targetValue, sourceValue, true, mergeValue);
     }
 
     if (isMergeableObject(targetValue) && isMergeableObject(sourceValue)) {
-      merged[key] = mergeDeep(targetValue, sourceValue);
-      return;
+      const mergedObject = { ...targetValue };
+
+      Object.entries(sourceValue).forEach(([key, nextSourceValue]) => {
+        const nextTargetValue = mergedObject[key];
+        mergedObject[key] = mergeValue(nextTargetValue, nextSourceValue);
+      });
+
+      return mergedObject;
     }
 
-    merged[key] = sourceValue;
-  });
+    return sourceValue;
+  };
 
-  return merged;
-};
+  return mergeValue(target, source) as DeepMergeInput;
+}
 
 /**
  * Merges multiple config layers into a single ECConfig.
  *
- * Nested plain objects are deep-merged recursively. Arrays are always
- * replaced by the rightmost (latest) value that provides them. Undefined
- * or null layers are silently ignored, allowing conditional config layers
- * to be passed without pre-filtering.
+ * Nested plain objects are deep-merged recursively. Arrays are merged by
+ * index, and object/array conflicts merge the object into the first array
+ * element. Undefined or null layers are silently ignored, allowing
+ * conditional config layers to be passed without pre-filtering.
  *
  * This is the primary low-level helper used inside ConfigModifier functions
  * and builder operations. When no layers are provided, returns an empty object.
@@ -88,7 +162,7 @@ const mergeDeep = (target: Mergeable, source: Mergeable): Mergeable => {
  */
 export const mergeConfigs = (
   ...layers: ConfigLayer[]
-): ECConfig => layers.reduce<ECConfig>((acc, layer) => (layer ? mergeDeep(acc, layer) : acc), {});
+): ECConfig => layers.reduce<ECConfig>((acc, layer) => (layer == null ? acc : mergeDeep(acc, layer) as ECConfig), {});
 
 // ---------------------------------------------------------------------------
 // Composition API
@@ -122,3 +196,27 @@ export type ConfigModifier = (config: ECConfig) => ECConfig;
  */
 export const compose = (...modifiers: ConfigModifier[]): ConfigModifier => (config) => modifiers
   .reduce<ECConfig>((acc, modifier) => mergeConfigs(acc, modifier(acc)), config);
+
+export const getAsArray = <T>(value: T | T[]): T[] => (Array.isArray(value) ? value : [value]);
+
+/**
+ * Colors an SVG data URL by replacing `currentColor` with the provided color string. If current color is not available the value of "fill" attribute will be replaced with the provided color string.
+ * Returns the original data URL unchanged if decoding or re-encoding fails.
+ *
+ * @param dataUrl - A data URL containing a base64-encoded SVG image.
+ * @param color - The replacement color (e.g. `#ff0000` or `red`).
+ * @returns A new SVG data URL with `currentColor` substituted.
+ */
+export function colorSvgDataUrl(dataUrl: string, color: string): string {
+  try {
+    const [, base64] = dataUrl.split(',');
+    if (!base64) return dataUrl;
+    const decodedSvg = atob(base64);
+    const hasCurrentColor = decodedSvg.includes('currentColor');
+
+    const svg = hasCurrentColor ? decodedSvg.replace(/currentColor/gi, color) : decodedSvg.replace(/fill="[^"]*"/gi, `fill="${color}"`);
+    return `data:image/svg+xml;base64,${btoa(svg)}`;
+  } catch {
+    return dataUrl;
+  }
+}

@@ -46,3 +46,9 @@ export type {
   AxesUpdateOptions,
   AxisLabelIconOptions,
 } from './configs/axes/types.js';
+
+export type {
+  LegendShowOption,
+  LegendOption,
+  LegendPosition,
+} from './configs/legend/types.js';

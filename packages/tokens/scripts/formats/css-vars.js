@@ -124,6 +124,9 @@ export const cssVariableFormatter = {
       // Can be removed as soon as it is gone in Figma.
       'readonly-opacity-color',
 
+      // TODO: Don't know where this is coming from
+      'radio-button-spacing-small',
+
       // For now remove all chart tokens, which are not needed in the chart component
       'chart-background-color',
       'chart-opacity-10',

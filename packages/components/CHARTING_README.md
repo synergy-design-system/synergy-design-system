@@ -210,8 +210,43 @@ This callback receives a typed handle with preset helper functions. The handle i
 - Calls are applied in the order they are called.
 - Later handle calls override conflicting values from earlier calls.
 - Nested objects are merged deeply.
-- Arrays (for example `series`) are replaced by the latest value, not merged item-by-item.
+- Arrays are merged by index.
+- Non-overlapping array entries are preserved from both sides.
+- If an array is merged with an object, the object is merged into index `0` of that array.
 - If you call `baseConfig()` multiple times, the latest call becomes the new base.
+
+Example of the merge mechanism:
+
+```js
+const base = {
+  xAxis: { type: "category", name: "Days", axisLabel: { show: true } },
+  series: [
+    { type: "line", name: "A", data: [1, 2, 3] },
+    { type: "line", name: "B", data: [3, 2, 1] },
+  ],
+};
+
+const patch = {
+  xAxis: [{ name: "Months", axisLabel: { color: "red" } }, { name: "Secondary axis" }],
+  series: [{ data: [10, 20, 30] }],
+};
+
+// Result of mergeConfigs(base, patch) (simplified)
+{
+  xAxis: [
+    {
+      type: "category",
+      name: "Months",
+      axisLabel: { show: true, color: "red" },
+    },
+    { name: "Secondary axis" },
+  ],
+  series: [
+    { type: "line", name: "A", data: [10, 20, 30] },
+    { type: "line", name: "B", data: [3, 2, 1] },
+  ],
+}
+```
 
 You can call handle methods either by **chaining** or by **sequential calls** — both approaches are equivalent:
 
@@ -266,6 +301,32 @@ The sections below document the handle preset functions available in `chart.conf
 
 Axis index behavior:
 If index options are omitted, presets are applied to all configured axes of the targeted type.
+
+### Legend presets
+
+| Preset function | Options                                                                        | Description                                                                                                                                                                                                                                                                |
+| --------------- | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `legendShow`    | `positionOrOptions?: LegendShowOption`<br><br>`gridOptions?: ECConfig['grid']` | Shows the legend with Synergy defaults and adds matching grid spacing so the legend does not overlap the chart. Supports position string input (`'top'`, `'bottom'`, `'left'`, `'right'`) or object input (`{ position, legend }`) and optional additional grid overrides. |
+
+Examples:
+
+```ts
+// Default: top legend
+chart.config = handle => handle.baseConfig(baseConfig).legendShow();
+
+// String position + grid override
+chart.config = handle =>
+  handle.baseConfig(baseConfig).legendShow("top", { left: 24 });
+
+// Object syntax with custom legend options
+chart.config = handle =>
+  handle.baseConfig(baseConfig).legendShow({
+    position: "right",
+    legend: {
+      top: "center",
+    },
+  });
+```
 
 ---
 

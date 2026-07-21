@@ -96,7 +96,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-3",
+      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-4",
       "name": "composed-offset-position",
       "versionInfo": "0.0.6",
       "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
@@ -239,9 +239,8 @@
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Utilities for Floating UI",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
+      "description": "TypeScript definitions for react",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react",
       "checksums": [
         {
           "algorithm": "SHA512",

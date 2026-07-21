@@ -1,6 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { listComponents } from '@synergy-design-system/metadata';
-import { resourceHandler } from '../utilities/metadata.js';
 
 const RESOURCE_URI = 'synergy://components/list';
 
@@ -18,7 +17,7 @@ export const componentListResource = (server: McpServer) => {
       mimeType: 'application/json',
       title: 'Component list',
     },
-    resourceHandler('component-list', async (_uri) => {
+    async (_uri) => {
       const components = await listComponents({
         includeLayerRefs: false,
         includeSources: false,
@@ -36,6 +35,6 @@ export const componentListResource = (server: McpServer) => {
           },
         ],
       };
-    }),
+    },
   );
 };

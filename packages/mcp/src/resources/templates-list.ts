@@ -1,6 +1,5 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { listTemplates } from '@synergy-design-system/metadata';
-import { resourceHandler } from '../utilities/metadata.js';
 
 const RESOURCE_URI = 'synergy://templates/list';
 
@@ -18,7 +17,7 @@ export const templatesListResource = (server: McpServer) => {
       mimeType: 'application/json',
       title: 'Available templates',
     },
-    resourceHandler('templates-list', async (_uri) => {
+    async (_uri) => {
       const response = await listTemplates();
       const templates = response.data
         .map(template => template.name)
@@ -33,6 +32,6 @@ export const templatesListResource = (server: McpServer) => {
           },
         ],
       };
-    }),
+    },
   );
 };

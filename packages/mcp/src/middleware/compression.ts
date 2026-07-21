@@ -7,74 +7,6 @@
 import { encodeToToon } from '../utilities/compression.js';
 import type { ToolMiddleware } from './types.js';
 
-type MiddlewareResultEntry = unknown;
-type MiddlewareResult = MiddlewareResultEntry[];
-type EntryTransformer = (entry: MiddlewareResultEntry) => Promise<MiddlewareResultEntry>;
-
-const transformResultEntries = async (
-  result: MiddlewareResult,
-  transform: EntryTransformer,
-): Promise<MiddlewareResult> => Promise.all(result.map(transform));
-
-const createCompressionMiddleware = (
-  transform: EntryTransformer,
-): ToolMiddleware<Record<string, unknown>> => (next, context) => async (args) => {
-  const result = await next(args);
-
-  return context.config.compression === 'toon'
-    ? transformResultEntries(result, transform)
-    : result;
-};
-
-const transformToolEntry: EntryTransformer = async (entry) => {
-  // Strings (e.g., AI rules prefix) pass through unchanged
-  if (typeof entry === 'string') {
-    return entry;
-  }
-
-  // Non-strings get encoded to toon format
-  return encodeToToon(entry);
-};
-
-const transformResourceEntry: EntryTransformer = async (entry) => {
-  if (!entry || typeof entry !== 'object') {
-    return entry;
-  }
-
-  const maybeResourceResult = entry as {
-    contents?: Array<Record<string, unknown>>;
-  };
-
-  if (!Array.isArray(maybeResourceResult.contents)) {
-    return entry;
-  }
-
-  const nextContents = await Promise.all(
-    maybeResourceResult.contents.map(async (content) => {
-      const { text } = content;
-      if (typeof text !== 'string') {
-        return content;
-      }
-
-      try {
-        const parsed: unknown = JSON.parse(text);
-        const compressedText = await encodeToToon(parsed);
-        return {
-          ...content,
-          text: compressedText,
-        };
-      } catch {
-        return content;
-      }
-    }),
-  );
-
-  return {
-    ...maybeResourceResult,
-    contents: nextContents,
-  };
-};
-
 /**
  * Middleware that compresses tool response payloads using toon format encoding.
  *
@@ -87,17 +19,26 @@ const transformResourceEntry: EntryTransformer = async (entry) => {
  * This middleware should run before the logging middleware so that token counts
  * reflect the compressed payload size.
  */
-export const withCompressionMiddleware = createCompressionMiddleware(transformToolEntry);
+export const withCompressionMiddleware: ToolMiddleware<Record<string, unknown>> = (next, context) => async (args) => {
+  const result = await next(args);
 
-/**
- * Middleware that compresses resource read payloads using toon format encoding.
- *
- * Resource handlers return MCP read-resource results in the form:
- * `{ contents: [{ ..., text: string }] }`.
- *
- * When `compression` is set to `'toon'`, each `contents[].text` entry is
- * converted from pretty JSON text to toon-encoded text where possible.
- *
- * If parsing fails for an entry (non-JSON text), that entry is left unchanged.
- */
-export const withResourceCompressionMiddleware = createCompressionMiddleware(transformResourceEntry);
+  // Early exit if compression is disabled
+  if (!context.config.compression || context.config.compression === 'none') {
+    return result;
+  }
+
+  // Compression mode is 'toon': process each entry
+  const compressed = await Promise.all(
+    result.map(async (entry) => {
+      // Strings (e.g., AI rules prefix) pass through unchanged
+      if (typeof entry === 'string') {
+        return entry;
+      }
+
+      // Non-strings get encoded to toon format
+      return encodeToToon(entry);
+    }),
+  );
+
+  return compressed;
+};

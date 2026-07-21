@@ -16,8 +16,9 @@ import styles from './chart.styles.js';
 import { type ChartPalette, PALETTE_TOKENS } from './chart.palettes.js';
 import { resolveConfigInput } from './configs/config.js';
 import type { ChartConfigType, ECConfig } from './types.js';
-import { synergyLightTheme } from './themes/light.js';
+import { getSynergyLightTheme } from './themes/light.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
+import { warmupStyleTokenCache } from './themes/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -52,6 +53,8 @@ export default class SynChart extends SynergyElement {
   private resizeObserver: ResizeObserver;
 
   private resolvedConfig: ECConfig = {};
+
+  static #tokenWarmUpDone = false;
 
   /**
    * The ECharts configuration input.
@@ -155,7 +158,17 @@ export default class SynChart extends SynergyElement {
 
   connectedCallback() {
     super.connectedCallback();
-    registerTheme('default', synergyLightTheme);
+    /**
+     * We need to fill up the token cache with the current theme values, so that the chart can be rendered correctly.
+     * This is needed before setting the theme, so the cache is used there.
+     * We use static property to ensure that the cache is only filled once per page load, and not for every chart instance.
+     */
+    if(!SynChart.#tokenWarmUpDone) {
+      const count = warmupStyleTokenCache();
+      SynChart.#tokenWarmUpDone = count > 0;
+    }
+
+    registerTheme('default', getSynergyLightTheme());
     /**
      * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.
      * This is needed because ECharts does not provide a way to set specific styles for x and y axis, only for axis types.
@@ -163,10 +176,27 @@ export default class SynChart extends SynergyElement {
     registerPreprocessor(applyAxisDefaultsPreprocessor);
   }
 
+  private registerLegendListener() {
+    this.chartInstance?.on('legendselectchanged', (params: { selected: Record<string, boolean> }) => {
+      const legendFormatter = (name: string) => {
+        const isVisible = params.selected[name];
+        const icon = isVisible ? 'showIcon' : 'hideIcon';
+        return `${name}  {${icon}|}`;
+      };
+
+      this.chartInstance?.setOption({
+        legend: {
+          formatter: legendFormatter,
+        },
+      });
+    });
+  }
+
   // Initialize echarts instance and resize observer
   protected firstUpdated(_changedProperties: PropertyValues): void {
     if (this.chartContainer !== null && this.chartContainer !== undefined) {
       this.chartInstance = init(this.chartContainer, 'default');
+      this.registerLegendListener();
 
       // Resize observer
       this.resizeObserver = new ResizeObserver(() => {

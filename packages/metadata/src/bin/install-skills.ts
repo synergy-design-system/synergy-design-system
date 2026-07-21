@@ -8,7 +8,25 @@
  *   npx @synergy-design-system/metadata install-skills --path=/absolute/path
  */
 import { resolve } from 'node:path';
-import { generateSkillBundle, getSynergyLogo } from '../public/index.js';
+import { generateSkillBundle } from '../public/index.js';
+
+const SYNERGY_LOGO = `
+  +------------------------------+
+  |----+++++++--------+++++++----|
+  |---++------+*---*-+------++---|
+  |---++---------%*---------++---|
+  |---++---------++---------++---|
+  |---++-----*+++**+++%-----*+---|
+  |----**----*---++---*----++----|
+  |------****%********%****------|
+  |----++----*---++---*----**----|
+  |---+*-----%+++**+++*-----++---|
+  |---++---------++---------++---|
+  |---++---------*%---------++---|
+  |---++------+-*---*+------++---|
+  |----+++++++--------+++++++----|
+  +------------------------------+
+`;
 
 interface CliOptions {
   path?: string;
@@ -48,7 +66,7 @@ async function main() {
 
     await generateSkillBundle({ outputPath: absolutePath });
 
-    console.log(getSynergyLogo());
+    console.log(SYNERGY_LOGO);
     console.log('✓ Synergy skills installed successfully\n');
     console.log('Next steps:');
     console.log('  1. In VS Code, reference the skill with: @synergy-component');

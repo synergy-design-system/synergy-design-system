@@ -74,11 +74,11 @@ export default css`
   }
 
   .form-control--has-button-group syn-button-group::part(base) {
-    --radiogroup-padding: calc(var(--syn-spacing-x-small) - 1px);
+    --radiogroup-padding: var(--syn-spacing-x-small);
 
     border: 1px solid var(--syn-input-border-color);
     border-radius: var(--syn-input-border-radius-large);
-    gap: var(--radiogroup-padding);
+    gap: var(--syn-spacing-x-small);
     padding: var(--radiogroup-padding);
   }
 
@@ -88,7 +88,7 @@ export default css`
   }
 
   .form-control--has-button-group syn-button-group[size="small"]::part(base) {
-    --radiogroup-padding: calc(var(--syn-spacing-2x-small) + var(--syn-input-width));
+    --radiogroup-padding: var(--syn-radio-button-spacing-small);
   }
 
   /**

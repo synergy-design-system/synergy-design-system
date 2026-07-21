@@ -6,13 +6,23 @@ interface StorybookEntry {
   importPath?: string;
 }
 
+const resolveComponentName = (prefix: string, baseId: string): string => {
+  if (prefix === 'charts' && baseId.startsWith('charts-features-')) {
+    return 'syn-chart';
+  }
+
+  return baseId
+    .replace(`${prefix}-`, '')
+    .replace(/-overview$/, '');
+};
+
 /**
  * Get stories from Storybook output based on a prefix.
  * @param prefix Prefix to filter stories by
  * @returns List of stories matching the prefix
  */
-const getStoriesFromStorybook = (prefix: string): Record<string, string> => {
-  const byComponent = new Map<string, { priority: number; storyId: string }>();
+const getStoriesFromStorybook = (prefix: string): Record<string, string[]> => {
+  const byComponent = new Map<string, Array<{ priority: number; storyId: string }>>();
 
   Object
     .entries(storybookOutput.entries)
@@ -26,22 +36,28 @@ const getStoriesFromStorybook = (prefix: string): Record<string, string> => {
         return;
       }
       const isStoriesFileDocs = !!story.importPath && /\.stories\.[cm]?[jt]sx?$/.test(story.importPath);
-      const componentName = baseId
-        .replace(`${prefix}-`, '')
-        .replace(/-overview$/, '');
-      const priority = isStoriesFileDocs ? 3 : 2;
+      const componentName = resolveComponentName(prefix, baseId);
+      const isDirectComponentDocs = baseId === `${prefix}-${componentName}`;
+      let priority = isStoriesFileDocs ? 3 : 2;
 
-      const existing = byComponent.get(componentName);
-      if (!existing || priority > existing.priority) {
-        byComponent.set(componentName, {
-          priority,
-          storyId: docsId,
-        });
+      if (isDirectComponentDocs) {
+        priority = 4;
       }
+
+      if(!byComponent.get(componentName)) {
+        byComponent.set(componentName, []);
+      }
+      byComponent.get(componentName)?.push({ priority, storyId: docsId });
     });
 
   const foundStories = Object.fromEntries(
-    Array.from(byComponent.entries()).map(([componentName, value]) => [componentName, value.storyId]),
+    Array.from(byComponent.entries()).map(([componentName, values]) => {
+      const orderedStoryIds = values
+        .sort((a, b) => b.priority - a.priority || a.storyId.localeCompare(b.storyId))
+        .map((value) => value.storyId);
+
+      return [componentName, Array.from(new Set(orderedStoryIds))];
+    }),
   );
 
   return foundStories;
@@ -73,7 +89,7 @@ ${story.example}
 export const componentScrapingConfig: ScrapingConfig = {
   formatContent: (_component: string, stories) => formatStoriesAsMarkdown(stories),
   generateEntityId: (component: string) => `component:${component}`,
-  generateStoryId: (component: string) => componentStories[component],
+  generateStoryIds: (component: string) => componentStories[component] ?? [],
   getItems: async () => Promise.resolve(Object.keys(componentStories)),
   kind: 'component',
 };
@@ -84,7 +100,7 @@ export const componentScrapingConfig: ScrapingConfig = {
 export const stylesScrapingConfig: ScrapingConfig = {
   formatContent: (_style: string, stories) => formatStoriesAsMarkdown(stories),
   generateEntityId: (style: string) => `style:${style}`,
-  generateStoryId: (component: string) => styleStories[component],
+  generateStoryIds: (component: string) => styleStories[component] ?? [],
   getItems: async () => Promise.resolve(Object.keys(styleStories)),
   kind: 'style',
 };
@@ -95,7 +111,7 @@ export const stylesScrapingConfig: ScrapingConfig = {
 export const templateScrapingConfig: ScrapingConfig = {
   formatContent: (_template: string, stories) => formatStoriesAsMarkdown(stories),
   generateEntityId: (template: string) => `template:${template}`,
-  generateStoryId: (component: string) => templateStories[component],
+  generateStoryIds: (component: string) => templateStories[component] ?? [],
   getItems: async () => Promise.resolve(Object.keys(templateStories)),
   kind: 'template',
 };

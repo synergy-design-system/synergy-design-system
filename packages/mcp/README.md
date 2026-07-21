@@ -43,15 +43,6 @@ syn-mcp --log ./logs
 
 # Explicitly disable logging (also disabled when omitted)
 syn-mcp --log false
-
-# Emit tool-call logs as JSONL to stdout (HTTP mode only)
-syn-mcp --interface http --log-stdout
-
-# Use both providers simultaneously
-syn-mcp --interface http --log ./logs --log-stdout
-
-# Suppress non-essential startup/status output
-syn-mcp --silent
 ```
 
 Available CLI flags:
@@ -63,8 +54,6 @@ Available CLI flags:
 - `--port <number>`: HTTP server port (default: `9119`, only used with `--interface http`)
 - `--host <address>`: HTTP bind address (default: `127.0.0.1`)
 - `--log <value>`: Local tool-call log directory path, or `false` / `null` to disable
-- `--log-stdout`: Emit tool-call logs as JSONL to stdout (incompatible with `--interface stdio`)
-- `--silent`: Suppress non-essential startup/status output (logo, startup banner, endpoint line)
 - `--tls-key <path>`: Path to TLS private key file (enables HTTPS)
 - `--tls-cert <path>`: Path to TLS certificate file (enables HTTPS)
 - `--compression <none|toon>`: Response compression mode (default: `none`; experimental)
@@ -142,22 +131,12 @@ Example:
   // Include custom ai rules for each tool.
   "includeAiRules": true,
 
-  // Suppress non-essential startup/status output on stdout.
-  // Does not affect MCP protocol traffic or configured logging providers.
-  "silent": false,
-
   // Optional logging providers
   "logging": {
     "localFile": {
       // Base folder for logs (YY-MM-DD/SESSION.json)
       // Set to null to disable local file logging
       "path": "./logs",
-    },
-    "stdout": {
-      // Emit each tool-call log entry as a JSONL line to stdout.
-      // Only supported when interface is "http".
-      // Combining this with interface "stdio" is an error (stdout carries the MCP wire protocol).
-      "enabled": false,
     },
   },
 
@@ -261,44 +240,18 @@ syn-mcp --config ./synergy-mcp.json --host 0.0.0.0
 
 # Config enables logging, but CLI disables it for this run
 syn-mcp --config ./synergy-mcp.json --log false
-
-# Config shows startup banner, but CLI suppresses it for this run
-syn-mcp --config ./synergy-mcp.json --silent
 ```
 
 #### Tool-call logging
 
-Tool-call logging is provider-based. Multiple providers can be active simultaneously. The following providers are available:
-
-##### Local file provider
-
-Writes one JSONL entry per line to:
+Tool-call logging is provider-based. The built-in local file provider writes one JSON entry per line to:
 
 - `YY-MM-DD/SESSION.json`
-
-Enable via `--log <path>` or `logging.localFile.path` in config.
-
-##### Stdout provider
-
-Emits each tool-call log entry as a JSONL line to stdout. Intended for containerised deployments (Kubernetes, Docker) where log aggregators collect from stdout.
-
-Enable via `--log-stdout` or `logging.stdout.enabled: true` in config.
-
-> **Note:** Stdout logging requires `interface: http`. Enabling it together with `interface: stdio` is an error — in stdio mode stdout carries the MCP wire protocol and mixing log lines into it would corrupt the stream. The server will log an error to stderr and exit.
-
-Both providers can run at the same time:
-
-```bash
-syn-mcp --interface http --log ./logs --log-stdout
-```
-
-##### Log entry fields
 
 Each entry includes:
 
 - `timestamp`
-- `kind` (`tool`, `prompt`, `resource`)
-- `name`
+- `toolName`
 - `parameters`
 - `durationMs`
 - `sessionId` (`stdio` when no session id exists)
@@ -333,13 +286,12 @@ The MCP package declares tiktoken as both a dev dependency (for build/test) and 
 ```json
 {
   "durationMs": 187.69,
-  "kind": "tool",
-  "name": "asset-list",
   "parameters": {},
   "sessionId": "stdio",
   "success": true,
   "timestamp": "2026-04-22T09:21:47.533Z",
   "tokenCount": 421,
+  "toolName": "asset-list",
   "transport": "stdio"
 }
 ```
@@ -347,10 +299,8 @@ The MCP package declares tiktoken as both a dev dependency (for build/test) and 
 Notes:
 
 - Logging is disabled by default.
-- Use `--log <path>` or set `logging.localFile.path` in config to enable local file logging.
+- Use `--log <path>` or set `logging.localFile.path` in config to enable.
 - `--log false` and `--log null` explicitly disable local file logging.
-- Use `--log-stdout` or set `logging.stdout.enabled: true` to enable stdout logging (HTTP mode only).
-- Use `--silent` or set `silent: true` to suppress non-essential startup/status output.
 - Token counting is always optional and non-blocking; the server runs fine without it.
 
 #### HTTP Server Endpoint
@@ -377,101 +327,6 @@ For public or containerized deployments, bind to all interfaces explicitly:
 ```bash
 syn-mcp --interface http --host 0.0.0.0
 ```
-
-## Docker and Kubernetes
-
-The MCP package is container-ready and can be deployed as an HTTP service in Kubernetes.
-
-### Container runtime contract
-
-- Protocol: HTTP
-- Port: `9119` (override with `PORT`)
-- MCP endpoint: `/mcp`
-- Default config path: `/config/synergy-mcp.json`
-- TLS, certificates, ingress, and DNS are handled outside the container (for example via Kubernetes ingress/controllers).
-
-### Build image from release tarballs
-
-The Docker image uses packed release artifacts for Synergy packages to avoid npm propagation timing issues.
-
-For repeatable local builds, use the helper script in `packages/mcp/docker`:
-
-```bash
-./packages/mcp/docker/build-local.sh /path/to/custom/ca.crt synergy-design-system/mcp:local
-```
-
-The script:
-
-- checks that `colima`, `docker`, and `pnpm` exist
-- validates that the CA file exists
-- installs the CA into Colima
-- restarts Colima and verifies Docker base-image access
-- builds and packs the required Synergy packages
-- builds the MCP Docker image with the CA mounted as a BuildKit secret
-
-If your network does not require a custom CA, you can still build manually.
-
-Manual fallback:
-
-```bash
-cd packages/mcp
-
-pnpm --dir ../.. --filter @synergy-design-system/assets build
-pnpm --dir ../.. --filter @synergy-design-system/metadata build
-pnpm --dir ../.. --filter @synergy-design-system/mcp build
-
-mkdir -p artifacts
-
-pnpm --dir ../.. --filter @synergy-design-system/assets pack --pack-destination packages/mcp/artifacts
-pnpm --dir ../.. --filter @synergy-design-system/metadata pack --pack-destination packages/mcp/artifacts
-pnpm --dir ../.. --filter @synergy-design-system/mcp pack --pack-destination packages/mcp/artifacts
-
-docker build -t synergy-design-system/mcp:3.20.0 .
-```
-
-If your network uses TLS interception (for example a corporate firewall), pass your CA certificate as a BuildKit secret during build:
-
-```bash
-docker build \
-  --progress=plain \
-  --secret id=corp_ca,src=/path/to/ca.crt \
-  -t synergy-design-system/mcp:3.20.0 \
-  .
-```
-
-The `corp_ca` file is mounted only for the npm install step and is not persisted in image layers.
-
-### Run with injected config
-
-```bash
-docker run \
-  -p 9119:9119 \
-  -v "$(pwd)/synergy-mcp.json:/config/synergy-mcp.json:ro" \
-  synergy-design-system/mcp:3.20.0
-```
-
-The container starts MCP using:
-
-```bash
-syn-mcp --interface http --host 0.0.0.0 --port 9119 --config /config/synergy-mcp.json
-```
-
-If the config file is not mounted, the server starts with built-in defaults and still listens on HTTP.
-
-### Kubernetes config injection
-
-Mount a `ConfigMap` or `Secret` at `/config` so the container can read `/config/synergy-mcp.json`.
-
-Example mount shape:
-
-```yaml
-volumeMounts:
-  - name: mcp-config
-    mountPath: /config
-    readOnly: true
-```
-
-For production, pin deployments to immutable version tags (for example `synergy-design-system/mcp:3.20.0`) instead of `latest`.
 
 Example deployment patterns:
 

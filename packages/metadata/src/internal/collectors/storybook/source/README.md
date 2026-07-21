@@ -72,7 +72,7 @@ const customConfig = {
   kind: "component",
   getItems: async () => ["item1", "item2"],
   generateEntityId: item => `component:${item}`,
-  generateStoryId: item => `my-${item}--docs`,
+  generateStoryIds: item => [`my-${item}--docs`],
   formatContent: (item, stories) =>
     `# ${item}\n\n${stories.map(s => s.description).join("\n")}`,
 };
@@ -100,7 +100,7 @@ interface ScrapingConfig {
   kind: "component" | "style" | "template"; // Output artifact kind
   getItems: () => Promise<string[]> | string[]; // Function to get items to scrape
   generateEntityId: (item: string) => string; // Generate canonical entity ID from item
-  generateStoryId: (item: string) => string; // Generate story ID from item
+  generateStoryIds: (item: string) => string[]; // Generate story IDs from item
   formatContent: (item: string, stories: ScrapedStory[]) => string; // Format content
 }
 ```
@@ -112,7 +112,7 @@ const myCustomConfig: ScrapingConfig = {
   kind: "component",
   getItems: async () => ["example1", "example2"],
   generateEntityId: example => `component:${example}`,
-  generateStoryId: example => `examples-${example}--docs`,
+  generateStoryIds: example => [`examples-${example}--docs`],
   formatContent: (example, stories) => {
     return stories
       .map(

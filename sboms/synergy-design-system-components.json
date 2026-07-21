@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/components",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.19.0-cf772275-e5ce-4cfd-905f-2480cefce95d",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.20.2-88089bf0-6927-43bb-9776-7cce0ca1a214",
   "creationInfo": {
-    "created": "2026-07-21T06:07:50.173Z",
+    "created": "2026-07-21T11:20:55.373Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.19.0",
+      "versionInfo": "3.20.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.19.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.20.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -238,33 +238,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-8",
-      "name": "lit-element",
-      "versionInfo": "4.2.2",
-      "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit-element@4.2.2"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A simple base class for creating fast, lightweight web components",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-9",
+      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
       "name": "@lit/reactive-element",
       "versionInfo": "2.1.2",
       "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
@@ -286,6 +260,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-9",
+      "name": "lit-element",
+      "versionInfo": "4.2.2",
+      "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lit-element@4.2.2"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "A simple base class for creating fast, lightweight web components",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
         }
       ]
     },
@@ -415,12 +415,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
-      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-9",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
-      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-8",
+      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -429,7 +429,7 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-element-4.2.2-8",
+      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-8",
       "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-11",
       "relationshipType": "DEPENDS_ON"
     },

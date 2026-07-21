@@ -56,6 +56,12 @@
         "value": "{color.data.teal.800}"
       }
     },
+    "disabled": {
+      "color": {
+        "type": "color",
+        "value": "{color.neutral.400}"
+      }
+    },
     "grid-lines": {
       "color": {
         "type": "color",

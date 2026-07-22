@@ -1,30 +1,23 @@
 import fs from 'node:fs';
 import { styleText } from 'node:util';
-import { pascalCase, split } from 'change-case';
-import { createFolder, createHeaderComment, joinConsecutiveNumbers } from '../helpers.js';
+import { join } from 'node:path';
+import { cssVariableToTokenName, parseCssVariableNames } from '../css-variable-utils.js';
+import { createFolder, createHeaderComment } from '../helpers.js';
 
 /**
  * Creates scss exports from the provided css file
- *
- * @param {string[]} header The header to prepend to the output
- * @param {string} inputFile Path to the input file
- * @param {string} outputFile Path to the output file
  */
-export const createSCSS = (header, inputFile, outputFile) => {
+/** @type {import('../types.d.ts').CreateFileOutputFn} */
+export const createSCSS = (header, themesDir, buildPath) => {
+  const inputFile = join(themesDir, 'light.css');
+
+  const outputFile = join(buildPath, 'scss', '_tokens.scss');
   createFolder(outputFile);
   const contents = fs.readFileSync(inputFile).toString();
-  const foundItems = Array.from(contents.matchAll(/--[A-Za-z0-9-]*:/g))
-    .map(match => match[0])
-    .map(cssVar => {
-      const varName = cssVar.replace('--', '').replace(':', '');
-      return [
-        pascalCase(varName, {
-          mergeAmbiguousCharacters: true,
-          split: (value) => joinConsecutiveNumbers(split(value)),
-        }),
-        cssVar.replace(':', ''),
-      ];
-    })
+  /** @type {Array<[string, string]>} */
+  const foundItems = parseCssVariableNames(contents)
+    .map(cssVar => [cssVariableToTokenName(cssVar), cssVar]);
+  const scssExports = foundItems
     .map(([sassVar, cssVar]) => `
       $${sassVar}: var(${cssVar}) !default;
     `.trim())
@@ -32,7 +25,7 @@ export const createSCSS = (header, inputFile, outputFile) => {
 
   const output = `
 ${createHeaderComment(header)}
-${foundItems}
+${scssExports}
   `.trim();
 
   fs.writeFileSync(outputFile, `${output}\n`, {

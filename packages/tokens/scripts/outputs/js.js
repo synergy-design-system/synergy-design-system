@@ -1,30 +1,23 @@
 import fs from 'node:fs';
 import { styleText } from 'node:util';
-import { pascalCase, split } from 'change-case';
-import { createFolder, createHeaderComment, joinConsecutiveNumbers } from '../helpers.js';
+import { join } from 'node:path';
+import {
+  cssVariableToTokenName, parseCssVariableNames,
+} from '../css-variable-utils.js';
+import { createFolder, createHeaderComment } from '../helpers.js';
 
 /**
  * Creates JavaScript exports from the provided css file
- *
- * @param {string[]} header The header to prepend to the output
- * @param {string} inputFile Path to the input file
- * @param {string} outputFile Path to the output file
  */
-export const createJS = (header, inputFile, outputFile) => {
+/** @type {import('../types.d.ts').CreateFileOutputFn} */
+export const createJS = (header, themesDir, buildPath) => {
+  const inputFile = join(themesDir, 'light.css');
+  const outputFile = join(buildPath, 'js', 'index.js');
   createFolder(outputFile);
   const contents = fs.readFileSync(inputFile).toString();
-  const foundItems = Array.from(contents.matchAll(/--[A-Za-z0-9-]*:/g))
-    .map(match => match[0])
-    .map(cssVar => {
-      const varName = cssVar.replace('--', '').replace(':', '');
-      return [
-        pascalCase(varName, {
-          mergeAmbiguousCharacters: true,
-          split: (value) => joinConsecutiveNumbers(split(value)),
-        }),
-        cssVar.replace(':', ''),
-      ];
-    });
+  /** @type {Array<[string, string]>} */
+  const foundItems = parseCssVariableNames(contents)
+    .map(cssVar => [cssVariableToTokenName(cssVar), cssVar]);
 
   // Create the list of javascript exports
   const jsExports = foundItems.map(([jsVar, cssVar]) => `

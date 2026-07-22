@@ -55,10 +55,9 @@ import {
 
 const includePhases = ["stable"] as const;
 
-const categories = await listIntentCategories(
-  metadataStoreOptions,
-  { includePhases: [...includePhases] },
-);
+const categories = await listIntentCategories(metadataStoreOptions, {
+  includePhases: [...includePhases],
+});
 
 const componentGuide = await getComponentGuide(
   {

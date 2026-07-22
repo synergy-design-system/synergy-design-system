@@ -8,6 +8,24 @@ This guide holds the required information for migrating from one major version o
 
 ---
 
+## Version 4.0
+
+<h3 id="metadata-source-intent">BREAKING! Intent-Tools and Resources no longer experimental</h3>
+
+**Associated Ticket(s)**:
+
+- [#1334](https://github.com/synergy-design-system/synergy-design-system/issues/1334)
+
+**Reason**:
+
+The MCP intent tools are stable for quite a while now.
+
+**Migration Steps**:
+
+- Remove the removed `experimentalFeatures` section from your custom config.
+
+---
+
 ## Version 3.0
 
 <h3 id="metadata-source-v3">BREAKING! MCP data source moved to the metadata package</h3>

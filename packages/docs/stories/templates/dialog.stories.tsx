@@ -1,5 +1,9 @@
 import React from 'react';
-import type { Meta } from '@storybook/web-components-vite';
+import type {
+  SynDialog,
+  SynRequestCloseEvent,
+} from '@synergy-design-system/components';
+import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
 import {
   Description,
   Stories,
@@ -8,8 +12,10 @@ import {
 } from '@storybook/addon-docs/blocks';
 import { html, render } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
+import '../../../components/src/components/accordion/accordion.js';
 import '../../../components/src/components/alert/alert.js';
 import '../../../components/src/components/button/button.js';
+import '../../../components/src/components/details/details.js';
 import '../../../components/src/components/dialog/dialog.js';
 import '../../../components/src/components/header/header.js';
 import '../../../components/src/components/fieldset/fieldset.js';
@@ -17,6 +23,7 @@ import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/input/input.js';
 import '../../../components/src/components/option/option.js';
 import '../../../components/src/components/select/select.js';
+import '../../../components/src/components/switch/switch.js';
 import '../../../components/src/components/textarea/textarea.js';
 import '../../../components/src/components/tooltip/tooltip.js';
 import '../../../components/src/components/validate/validate.js';
@@ -76,7 +83,6 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
   }));
 
   const container = document.createElement('div');
-  // container.style.minHeight = '450px';
 
   let state = {
     currentItemId: null as null | number,
@@ -250,10 +256,9 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
     closeDialog();
   };
 
-  const onRequestClose = (e: Event) => {
-    const customEvent = e as CustomEvent<{ source: string }>;
-    if (customEvent.detail.source === 'overlay') {
-      customEvent.preventDefault();
+  const onRequestClose = (e: SynRequestCloseEvent) => {
+    if (e.detail.source === 'overlay') {
+      e.preventDefault();
       return;
     }
 
@@ -522,7 +527,7 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
   return container;
 };
 
-export const ConfirmationDialogs = {
+export const ConfirmationDialogs: Story = {
   parameters: {
     docs: {
       description: {
@@ -540,11 +545,11 @@ export const ConfirmationDialogs = {
   }),
 };
 
-export const FormDialogs = {
+export const FormDialogs: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Form-focused dialog pattern for create and edit flows. Structure the dialog around required inputs and gate the primary submit action by form validity so incomplete data cannot be submitted. Keep a clear secondary Cancel action so users can always exit without saving. In this example, Add and Edit are enabled, while destructive delete is intentionally separated and disabled.',
+        story: generateStoryDescription('dialog', 'forms', 'templates'),
       },
     },
   },
@@ -556,4 +561,423 @@ export const FormDialogs = {
     },
     initialView: 'add',
   }),
+};
+
+export const ComplexFormDialog: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('dialog', 'complex-form', 'templates'),
+      },
+    },
+  },
+  render: () => {
+    const cookies = [
+      // Strictly necessary and functional cookies
+      {
+        category: 'Strictly necessary and functional cookies',
+        description: 'These cookies are necessary for our website to function properly and for using basic website functions. They allow us to determine if you are registered in the online shop and to ensure that you can access secure areas of the website.',
+        enabled: true,
+        id: 'strictly-necessary-cookies',
+        issuer: 'SICK AG, Erwin-Sick-Straße 1, 79183 Waldkirch, Germany',
+        name: 'Strictly necessary cookies',
+        recipient: 'SICK AG, Erwin-Sick-Straße 1, 79183 Waldkirch, Germany',
+        required: true,
+        values: [
+          {
+            description: 'This cookie stores the access token of the user after a successful login.',
+            domains: ['*.sick.com'],
+            duration: '1 Day',
+            id: 'strictly-necessary-cookies-acceleratorGUID',
+            name: 'acceleratorSecureGUID',
+          },
+          {
+            description: 'This cookie stores the access token of the user after a successful login.',
+            domains: ['*.sick.com'],
+            duration: '1 Day',
+            id: 'strictly-necessary-cookies-country',
+            name: 'country',
+          },
+          {
+            description: 'When the "Personalization" module is used, the following information is additionally retained from the log data on the basis of the user and/or session ID transmitted by the store in order to enable personalized search results: The user and/or session ID transmitted by the Shop for the Tracking, Analytics and Personalization modules. The interactions in the search result assigned to the user and/or session ID.',
+            domains: [],
+            duration: 'Session',
+            id: 'strictly-necessary-cookies-ff-sessionid',
+            name: 'FF_SESSION_ID',
+          },
+          {
+            description: 'This cookie stores the language selection of the user.',
+            domains: [],
+            duration: '5 Years',
+            id: 'strictly-necessary-cookies-language',
+            name: 'language',
+          },
+        ],
+      },
+      {
+        category: 'Strictly necessary and functional cookies',
+        description: 'The SICK ID makes available a central user account through which you can register for various digital services offered by companies of the SICK Group and/or utilize these.',
+        enabled: true,
+        id: 'sick-id',
+        issuer: 'SICK AG, Erwin-Sick-Straße 1, 79183 Waldkirch, Germany',
+        name: 'SICK ID',
+        recipient: 'SICK AG, Erwin-Sick-Straße 1, 79183 Waldkirch, Germany',
+        required: true,
+        values: [
+          {
+            description: 'This cookie stores the assignment of the user to a session of the authentication server (session ID), which bundles several related requests to the server and assigns them to a session.',
+            domains: ['id.sick.com'],
+            duration: 'Session',
+            id: 'sick-id-auth-session-id',
+            name: 'AUTH_SESSION_ID, AUTH_SESSION_ID_LEGACY',
+          },
+          {
+            description: 'This cookie stores an encrypted token so that the authentication session can be restarted if a client timeout occurs. Is created when a new authentication session is started.',
+            domains: [],
+            duration: 'Session',
+            id: 'sick-id-restart',
+            name: 'KC_RESTART',
+          },
+          {
+            description: 'This cookie stores the ID token of the user and is used for single sign-on between different applications. When logging in, the system first checks whether the KEYCLOAK_IDENTITY cookie is present and validates the JSON Web token.',
+            domains: [],
+            duration: 'Session',
+            id: 'sick-id-keycloack-identity',
+            name: 'KEYCLOAK_IDENTITY',
+          },
+        ],
+      },
+      {
+        category: 'Strictly necessary and functional cookies',
+        description: 'We use the tag management system Tealium iQ, a service of Tealium Inc., 11085 Torreyana Road, San Diego, CA 92121, USA, (Tealium), for the dynamic customization of parts of the website. This enables us to monitor the data entry of every provider tag and give our website visitors the opportunity to make decisions about third-party provider access and cookies themselves. Data transferred to Tealium is transferred to the USA and thus to a country outside the EU and the EEA under protection of Standard Contractual Clauses. The legal basis is a legitimate interest under Art. 6 (1) f) GDPR, namely pursuance of our business purposes.',
+        enabled: true,
+        id: 'tealium-iq',
+        issuer: 'SICK AG, Erwin-Sick-Straße 1, 79183 Waldkirch, Germany',
+        name: 'Tealium iQ (Tag Management System)',
+        recipient: 'Tealium Inc., 11095 Torreyana Road, San Diego, CA 92121, USA',
+        required: true,
+        values: [
+          {
+            description: 'This cookie stores whether and which cookies the user agrees to by the cookie settings on our pages.',
+            domains: ['*.sick.com'],
+            duration: '180 Days',
+            id: 'tealium-iq-consentmgr',
+            name: 'CONSENTMGR',
+          },
+          {
+            description: 'This cookie is used to manage and ensure the correct integration of website and marketing tools or targeting pixels. Anonymous action-related values are generated in the cookie, which do not allow any personal reference but make actions derivable, such as the frequent visit of a unique website within a session or the start time and the duration of stay on our websites.',
+            domains: [],
+            duration: '1 Year',
+            id: 'tealium-iq-utag_main',
+            name: 'utag_main',
+          },
+        ],
+      },
+      {
+        category: 'Strictly necessary and functional cookies',
+        description: 'We use Google Tag Manager, a service provided by Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Ireland). Google Tag Manager is used solely for managing and triggering website tags via an interface. Google Tag Manager itself does not set cookies and does not process personal data. Any data processing only takes place through the individual tags implemented via the Tag Manager (e.g., Google Analytics 4, Google Ads). The activation of these tags is based on your consent via our cookie / consent management platform (Art. 6(1)(a) GDPR). If you do not provide consent for statistical or marketing tools, only technically necessary tags will be activated. Data Controller: Google Ireland Limited, Gordon House, 4 Barrow Street, Dublin, D04 E5W5, Ireland Contact of Google’s Data Protection Officer: https://support.google.com/policies/contact/general_privacy_form Additional Information: • Privacy Policy: https://business.safety.google/privacy/ • Cookie Policy: https://policies.google.com/technologies/cookies International Data Transfers: In the context of Google services, data may be transferred to third countries (e.g., the United States). Google relies on the EU Standard Contractual Clauses as legal safeguards for such transfers.',
+        enabled: true,
+        id: 'google-tag-manager',
+        issuer: '',
+        name: 'Google Tag Manager',
+        recipient: '',
+        required: true,
+      },
+      {
+        category: 'Strictly necessary and functional cookies',
+        description: 'We use the chat software from Lime Connect (Userlike) GmbH, Im Mediapark 8, 14. OG, 50670 Cologne, Germany. Lime Connect uses cookies to provide you with a personal real-time chat. You can find Lime Connect privacy policy here: https://www.Lime Connect.com/en/terms#privacy-policy',
+        enabled: true,
+        id: 'lime-connect-chat',
+        issuer: 'SICK AG, Erwin-Sick-Straße 1, 79183 Waldkirch, Germany',
+        name: 'Lime Connect Chat',
+        recipient: 'Lime Connect (Userlike) GmbH, Im Mediapark 8, 14. OG, 50670 Köln, Germany',
+        required: true,
+        values: [
+          {
+            description: 'In addition to technical details about the Messenger status, the cookie contains IDs for existing contacts so that they can be recognized ("reauth", "uuid", "token"). Furthermore, we set a LocalStorage variable with the same name, this contains technical information about the widget and its status. Furthermore, it reflects the number of page visits and page views ("page_impressions", "visits"). Furthermore, we set an email and name variable with the email and name of your logged in user account.',
+            domains: ['www.sick.com'],
+            duration: '1 Year',
+            id: 'lime-connect-chat-uslk_umm',
+            name: 'uslk_umm_{organization-id}_s',
+          },
+        ],
+      },
+      // End: Strictly necessary and functional cookies
+
+      // Marketing
+      {
+        category: 'Marketing Coookies',
+        description: 'We use these cookies of the Adobe Analytics web analysis tool to collect general, non-personal information about the use of the website, such as the number and duration of visits and which browsers and screen resolutions are used to view the site. We use this information to optimize our website. If wish to opt out of the anonymous data aggregation and analysis, you can install the following Adobe Opt-Out-Cookies on your computer: http://www.112.2o7.net/optout.html?omniture=1&popup=1&locale=en_US&optout=1&second=1&second_has_cookie=1',
+        enabled: false,
+        id: 'adobe-analytics',
+        issuer: 'SICK AG, Erwin-Sick-Straße 1, 79183 Waldkirch, Germany',
+        name: 'Adobe Analytics',
+        recipient: 'Adobe Systems Software Ireland Limited, 4-6 Riverwalk, City West Business Campus, Saggart, Dublin 24, Irland',
+        required: false,
+        values: [
+          {
+            description: 'This cookie stores if cookies have been enabled by the user.',
+            domains: ['*.sick.com'],
+            duration: 'Session',
+            id: 'adobe-analytics-s_cc',
+            name: 's_cc',
+          },
+          {
+            description: 'This cookie stores a random, uniquely generated ID to recognize a user\'s return visit to the site (Unique Visitor ID, time/date stamp) when the default s_vi cookie is not available due to third-party cookie restrictions.',
+            domains: [],
+            duration: '5 years',
+            id: 'adobe-analytics-s_fid',
+            name: 's_fid',
+          },
+          {
+            description: 'This cookie stores information about the previous link clicked by the user.',
+            domains: [],
+            duration: 'Session',
+            id: 'adobe-analytics-s_sq',
+            name: 's_sq',
+          },
+        ],
+      },
+      {
+        category: 'Marketing Coookies',
+        description: 'Website / App Feedback from Qualtrics (Qualtrics LLC, 333 W. River Park Drive, Provo, UT 84604, USA; “Qualtrics”) stores certain data inside cookies. This includes the Site History cookie, Prevent Repeated Display cookie, a cookie that tells us that we have a Pop Under, a cookie that stores history data if localStorage is disabled, and a cookie that tracks user events. We use these cookies to enable us to provide pop-up questionnaires to you or enable you to provide feedback using surveys.',
+        enabled: false,
+        id: 'qualtrics',
+        issuer: 'SICK AG, Erwin-Sick-Straße 1, 79183 Waldkirch, Germany',
+        name: 'Qualtrics Website-/App-Feedback',
+        recipient: 'Qualtrics LLC, 333 W. River Park Drive, Provo, UT 84604, USA',
+        required: false,
+        values: [
+          {
+            description: 'Appears when the Prevent multiple submissions option is enabled. The purpose of this cookie is to record the survey taken and prevent the user from taking the survey again. This cookie allows Qualtrics to keep track of when an incomplete survey should be recorded as a response.',
+            domains: ['www.sick.com'],
+            duration: '1 Year',
+            id: 'qualtrics-qst',
+            name: 'QST',
+          },
+          {
+            description: 'The Survey ID cookie appears when you have both Allow respondents to finish later and Prevent multiple submissions disabled in the survey options before starting a survey session.',
+            domains: [],
+            duration: 'Session',
+            id: 'qualtrics-surveyid',
+            name: 'surveyid',
+          },
+          {
+            description: 'This cookie is placed when you start a survey session on the same browser where you are working on another one.',
+            domains: [],
+            duration: '1 Year',
+            id: 'qualtrics-query-parameters',
+            name: '{sessionid-hash}-{query-parameters}',
+          },
+        ],
+      },
+    ];
+
+    const groupedCookies = cookies.reduce((acc, cookie) => {
+      if (!acc[cookie.category]) {
+        acc[cookie.category] = [];
+      }
+      acc[cookie.category].push(cookie);
+      return acc;
+    }, {} as Record<string, typeof cookies>);
+
+    return html`
+      <syn-header label="Complex Cookie Banner"></syn-header>
+      <main>
+        <syn-button
+          @click=${async () => {
+            await document.querySelector<SynDialog>('.cookie-banner-dialog')?.show();
+          }}
+          variant="filled"
+        >
+          Open cookie banner
+        </syn-button>
+
+        <!-- Example of a complex form dialog with accordion and details components -->
+        <syn-dialog
+          class="cookie-banner-dialog"
+          open
+          label="Settings for cookies"
+          @syn-request-close=${(e: SynRequestCloseEvent) => {
+            if (e.detail.source === 'overlay' || e.detail.source === 'keyboard') {
+              e.preventDefault();
+            }
+          }}
+        >
+          <form method="post">
+            <syn-fieldset description="Please choose which cookies you would like to enable. You can change the settings at any time.">
+              <syn-accordion>
+                ${Object.entries(groupedCookies).map(([group, categories]) => html`
+                  <syn-details summary="${group}" open>
+                    <table class="syn-table--default cookie-table">
+                      <thead>
+                        <th class="cookie-column">Cookie</th>
+                        <th class="purpose-column">Purpose</th>
+                        <th class="enabled-column">Enabled</th>
+                      </thead>
+                      <tbody>
+                        ${categories.map(category => html`
+                          <tr>
+                            <td>${category.name}</td>
+                            <td>
+                              <p class="cookie-description">${category.description}</p>
+                              ${(category.values?.length ?? 0) > 0
+                                ? html`
+                                  <syn-button
+                                    class="cookie-details-toggle"
+                                    @click=${(e: MouseEvent) => {
+                                      const target = e.currentTarget as HTMLElement;
+                                      const id = target.getAttribute('data-id');
+                                      const relatedTarget = document.querySelector<HTMLTableRowElement>(`#details-${id}`);
+
+                                      if (!relatedTarget) {
+                                        return;
+                                      }
+
+                                      relatedTarget.style.display = relatedTarget.style.display === 'none' ? 'table-row' : 'none';
+                                    }}
+                                    data-id="${category.id}"
+                                    variant="text"
+                                    size="small"
+                                  >
+                                    Show details
+                                  </syn-button>
+                                ` : ''
+                              }
+                            </td>
+                            <td>
+                              <syn-switch
+                                ?checked=${category.enabled}
+                                id="${category.id}"
+                                name="${category.name}"
+                                ?readonly=${category.required}
+                              ></syn-switch>
+                            </td>
+                          </tr>
+
+                          <!-- Cookie details -->
+                          ${(category.values?.length ?? 0) > 0
+                            ? html`
+                              <tr id="details-${category.id}" style="display: none;">
+                                <td class="cookie-details" colspan="3">
+                                  <table>
+                                    <thead>
+                                      <tr>
+                                        <th>Cookie name</th>
+                                        <th>Purpose of processing</th>
+                                        <th>Responsible party</th>
+                                        <th>Recipient of data</th>
+                                        <th>Duration of processing</th>
+                                        <th>Applicable domains</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      ${category.values!.map((value, index) => html`
+                                        <tr>
+                                          <td>${value.name}</td>
+                                          <td>${value.description}</td>
+                                          ${index === 0
+                                            ? html`<td rowspan="${category.values!.length}">${category.issuer}</td>`
+                                            : ''
+                                          }
+                                          ${index === 0
+                                            ? html`<td rowspan="${category.values!.length}">${category.recipient}</td>`
+                                            : ''
+                                          }
+                                          <td>${value.duration}</td>
+                                          <td>${value.domains.join(', ')}</td>
+                                        </tr>
+                                      `)}
+                                    </tbody>
+                                  </table>
+                                </td>
+                              </tr>
+                            `
+                            : ''
+                          }
+                        `)}
+                      </tbody>
+                    </table>
+                  </syn-details>
+                `)}
+              </syn-accordion>
+            </syn-fieldset>
+          </form>
+
+          <nav slot="footer">
+            <a
+              class="syn-link syn-link--medium"
+              href="https://www.sick.com/de/de/sick-datenschutzerklaerung/w/dataprotection"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Privacy Policy
+            </a>
+            <syn-button variant="text">Save settings</syn-button>
+            <syn-button variant="filled">Allow and continue</syn-button>
+          </nav>
+        </syn-dialog>
+      </main>
+      <style>
+      main {
+        background: var(--syn-page-background-color);
+        padding: var(--syn-spacing-large);
+      }
+
+      .cookie-banner-dialog {
+        --width: 80%;
+
+        /* Hide the close button for this example, since we want to force the user to make a choice */
+        &::part(close-button) {
+          display: none;
+        }
+
+        .cookie-table {
+          .cookie-column,
+          tbody tr td:first-of-type {
+            font: var(--syn-body-small-semibold);
+            width: 15%;
+          }
+
+          .purpose-column {
+            width: 100%;
+          }
+
+          .enabled-column {
+            text-align: right;
+          }
+
+          tbody tr td:last-of-type {
+            text-align: right;
+          }
+
+          .cookie-description {
+            margin: 0;
+          }
+
+          /* Synergy Text Buttons have some spacing around them, so we need to adjust their position to match the text start */
+          .cookie-details-toggle {
+            position: relative;
+            margin-top: var(--syn-spacing-small);
+            margin-left: calc(var(--syn-spacing-small) * -1);
+          }
+
+          .cookie-details {
+            padding: 0;
+            background: red;
+          }
+        }
+
+        nav[slot="footer"] {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          & > :first-child {
+            margin-right: auto;
+          }
+        }
+      }
+      </style>
+    `;
+  },
 };

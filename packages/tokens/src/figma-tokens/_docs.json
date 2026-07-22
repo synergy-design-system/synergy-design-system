@@ -4987,7 +4987,7 @@
           "type": "text"
         },
         "description": {
-          "value": "",
+          "value": "Form-focused dialog pattern for create and edit flows. Structure the dialog around required inputs and gate the primary submit action by form validity so incomplete data cannot be submitted. Keep a clear secondary Cancel action so users can always exit without saving. In this example, Add and Edit are enabled, while destructive delete is intentionally separated and disabled.",
           "type": "text"
         }
       }

@@ -2,10 +2,10 @@ import '../../../dist/components/chart/chart.js';
 import { expect, fixture, html } from '@open-wc/testing';
 import type { SeriesOption } from 'echarts';
 import type { XAXisOption, YAXisOption } from 'echarts/types/dist/shared';
-import { getRealStyleValue, invalidateStyleTokenCache } from '../../../dist/components/chart/themes/utilities.js';
 import type SynChart from './chart.component.js';
 import { PALETTE_TOKENS } from './chart.palettes.js';
 import type { ChartConfigCallback, ECConfig } from './types.js';
+import { getRealStyleValue } from './themes/utilities.js';
 
 async function createChart(template = html`<syn-chart></syn-chart>`): Promise<SynChart> {
   return fixture<SynChart>(template);
@@ -134,7 +134,7 @@ describe('<syn-chart>', () => {
         expect(el.palette).to.equal(palette);
         const instance = el.getInstance()!;
         const option = instance.getOption();
-        const expectedColors = PALETTE_TOKENS[palette].map(token => getComputedStyle(el).getPropertyValue(token).trim());
+        const expectedColors = PALETTE_TOKENS[palette].map(token => getRealStyleValue(token));
         expect(option.color).to.deep.equal(expectedColors);
       });
     });
@@ -168,7 +168,7 @@ describe('<syn-chart>', () => {
       // Series A has explicit per-series color overrides – these must be preserved
       expect(series[0].color).to.deep.equal(['#7CFC00'], 'Series A should use its custom color');
       expect(series[1].color).to.be.undefined;
-      const paletteColors = PALETTE_TOKENS.categorical.map(token => getComputedStyle(el).getPropertyValue(token).trim());
+      const paletteColors = PALETTE_TOKENS.categorical.map(token => getRealStyleValue(token));
       expect(option.color).to.deep.equal(paletteColors, 'Global option.color should reflect the categorical palette for series without explicit color');
     });
   });
@@ -264,30 +264,5 @@ describe('<syn-chart>', () => {
       const legend = firstOf(option.legend) as { formatter?: (name: string) => string };
       expect(legend.formatter!('Series A')).to.equal('Series A  {showIcon|}');
     });
-  });
-
-  it('tokens cache is warmed up only once across chart instances', async () => {
-    const token = '--syn-test-warmup-token';
-
-    invalidateStyleTokenCache();
-    document.body.style.setProperty(token, 'rgb(255, 0, 0)');
-
-    const firstChart = await createChart();
-    await firstChart.updateComplete;
-
-    // read cached value after first instance setup.
-    expect(getRealStyleValue(token)).to.equal('rgb(255, 0, 0)');
-
-    // If warmup runs again for the second chart, this changed token would overwrite cache.
-    document.body.style.setProperty(token, 'rgb(0, 0, 255)');
-    const secondChart = await createChart();
-    await secondChart.updateComplete;
-
-    expect(getRealStyleValue(token)).to.equal('rgb(255, 0, 0)');
-
-    firstChart.remove();
-    secondChart.remove();
-    document.body.style.removeProperty(token);
-    invalidateStyleTokenCache();
   });
 });

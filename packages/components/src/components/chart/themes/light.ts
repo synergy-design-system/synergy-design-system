@@ -4,9 +4,7 @@ import { getRealStyleValue } from './utilities.js';
 import { getDefaultAxisStyles } from '../configs/axes/utilities.js';
 import { getDefaultLegendStyles } from '../configs/legend/utilities.js';
 
-// TODO: Do we want to work with getComputedStyle, or just add a light / dark theme with explicit hex colors?
-// To be able to use SSR we probably need to go with explicit colors in the theme
-const getCategoricalColors = () => PALETTE_TOKENS.categorical.map(getRealStyleValue).filter(Boolean);
+const getCategoricalColors = () => PALETTE_TOKENS.categorical.map((token) => getRealStyleValue(token)).filter(Boolean);
 
 // Synergy ECharts Theme
 export const getSynergyLightTheme = () => ({
@@ -25,10 +23,10 @@ export const getSynergyLightTheme = () => ({
   logAxis: getDefaultAxisStyles(),
   // Global font style
   textStyle: {
-    color: getRealStyleValue('--syn-typography-color-text'),
-    fontFamily: getRealStyleValue('--syn-font-sans'),
-    fontSize: getRealStyleValue('--syn-font-size-small'),
-    fontWeight: getRealStyleValue('--syn-font-weight-normal'),
+    color: getRealStyleValue('SynTypographyColorText'),
+    fontFamily: getRealStyleValue('SynFontSans'),
+    fontSize: getRealStyleValue('SynFontSizeSmall'),
+    fontWeight: getRealStyleValue('SynFontWeightNormal'),
   },
   timeAxis: getDefaultAxisStyles(),
   valueAxis: getDefaultAxisStyles(),

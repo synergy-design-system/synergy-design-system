@@ -70,7 +70,7 @@ export const axesShowSplitLines = ({ xAxisIndex, yAxisIndex }: AxesUpdateOptions
 export const axesHideXLabels = ({ axisIndex }: AxisUpdateOptions = {}): ConfigModifier => (config) => ({
   xAxis: updateAxisConfig(config, 'xAxis', {
     axisLabel: { show: false },
-    nameGap: getRealValueWithoutUnit('--syn-spacing-small'),
+    nameGap: getRealValueWithoutUnit('SynSpacingSmall'),
   }, { axisIndex }),
 });
 
@@ -106,7 +106,7 @@ const axesAddLabelIcons = <T extends AxisKey>(
   options: AxisLabelIconOptions<T>,
 ): ConfigModifier => (config) => {
   const defaults = {
-    iconColor: getRealStyleValue('--syn-color-neutral-950'),
+    iconColor: getRealStyleValue('SynColorNeutral950'),
     iconPosition: axisKey === 'xAxis' ? 'top' : 'left',
   } as const;
 

@@ -18,7 +18,7 @@ import { resolveConfigInput } from './configs/config.js';
 import type { ChartConfigType, ECConfig } from './types.js';
 import { getSynergyLightTheme } from './themes/light.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
-import { warmupStyleTokenCache } from './themes/utilities.js';
+import { getRealStyleValue } from './themes/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -53,8 +53,6 @@ export default class SynChart extends SynergyElement {
   private resizeObserver: ResizeObserver;
 
   private resolvedConfig: ECConfig = {};
-
-  static #tokenWarmUpDone = false;
 
   /**
    * The ECharts configuration input.
@@ -130,10 +128,8 @@ export default class SynChart extends SynergyElement {
     if (Array.isArray(this.resolvedConfig.color) && this.resolvedConfig.color.length > 0) return;
 
     const tokens = PALETTE_TOKENS[this.palette];
-    const computedStyles = getComputedStyle(this);
     const colors = tokens
-      .map(token => computedStyles.getPropertyValue(token).trim())
-      .filter(Boolean);
+      .map(token => getRealStyleValue(token));
 
     if (colors.length > 0) {
       const oldOption = this.chartInstance.getOption();
@@ -158,16 +154,6 @@ export default class SynChart extends SynergyElement {
 
   connectedCallback() {
     super.connectedCallback();
-    /**
-     * We need to fill up the token cache with the current theme values, so that the chart can be rendered correctly.
-     * This is needed before setting the theme, so the cache is used there.
-     * We use static property to ensure that the cache is only filled once per page load, and not for every chart instance.
-     */
-    if(!SynChart.#tokenWarmUpDone) {
-      const count = warmupStyleTokenCache();
-      SynChart.#tokenWarmUpDone = count > 0;
-    }
-
     registerTheme('default', getSynergyLightTheme());
     /**
      * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.

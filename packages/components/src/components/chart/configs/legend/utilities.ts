@@ -10,31 +10,31 @@ import { icons } from '../../../icon/sick2025-system-icons.js';
 const getVisibilityIconDataUrl = (isVisible: boolean): string => {
   const svg = isVisible ? icons.eye : icons['eye-slash'];
   const dataUrl = `data:image/svg+xml;base64,${btoa(svg)}`;
-  return colorSvgDataUrl(dataUrl, getRealStyleValue('--syn-typography-color-text-quiet'));
+  return colorSvgDataUrl(dataUrl, getRealStyleValue('SynTypographyColorTextQuiet'));
 };
 
 /**
  * Returns the default legend label text style based on Synergy design tokens.
  */
 const getDefaultLegendTextStyle = () => ({
-  color: getRealStyleValue('--syn-typography-color-text-quiet'),
-  fontFamily: getRealStyleValue('--syn-font-sans'),
-  fontSize: getRealStyleValue('--syn-font-size-small'),
-  fontWeight: getRealStyleValue('--syn-font-weight-normal'),
+  color: getRealStyleValue('SynTypographyColorTextQuiet'),
+  fontFamily: getRealStyleValue('SynFontSans'),
+  fontSize: getRealStyleValue('SynFontSizeSmall'),
+  fontWeight: getRealStyleValue('SynFontWeightNormal'),
   rich: {
     hideIcon: {
       backgroundColor: {
         image: getVisibilityIconDataUrl(false),
       },
-      height: getRealValueWithoutUnit('--syn-spacing-medium'),
-      width: getRealValueWithoutUnit('--syn-spacing-medium'),
+      height: getRealValueWithoutUnit('SynSpacingMedium'),
+      width: getRealValueWithoutUnit('SynSpacingMedium'),
     },
     showIcon: {
       backgroundColor: {
         image: getVisibilityIconDataUrl(true),
       },
-      height: getRealValueWithoutUnit('--syn-spacing-medium'),
-      width: getRealValueWithoutUnit('--syn-spacing-medium'),
+      height: getRealValueWithoutUnit('SynSpacingMedium'),
+      width: getRealValueWithoutUnit('SynSpacingMedium'),
     },
   },
 });
@@ -44,14 +44,14 @@ const getDefaultLegendTextStyle = () => ({
  */
 export const getDefaultLegendStyles = () => ({
   formatter: (name: string) => `${name}  {showIcon|}`,
-  inactiveColor: getRealStyleValue('--syn-chart-disabled-color'),
-  itemGap: getRealValueWithoutUnit('--syn-spacing-small'),
-  itemHeight: getRealValueWithoutUnit('--syn-spacing-small'),
-  itemWidth: getRealValueWithoutUnit('--syn-spacing-x-large'),
+  inactiveColor: getRealStyleValue('SynChartDisabledColor'),
+  itemGap: getRealValueWithoutUnit('SynSpacingSmall'),
+  itemHeight: getRealValueWithoutUnit('SynSpacingSmall'),
+  itemWidth: getRealValueWithoutUnit('SynSpacingXLarge'),
   // The default legend position is top left
   left: 0,
   lineStyle: {
-    inactiveColor: getRealStyleValue('--syn-chart-disabled-color'),
+    inactiveColor: getRealStyleValue('SynChartDisabledColor'),
   },
   textStyle: getDefaultLegendTextStyle(),
   // The default legend position is top left

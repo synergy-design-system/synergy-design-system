@@ -161,18 +161,18 @@ export const updateAxisConfig = <T extends AxisKey>(
  * Default styles for axis labels
  */
 const getDefaultAxisLabelStyle = () => ({
-  color: getRealStyleValue('--syn-typography-color-text-quiet'),
-  fontFamily: getRealStyleValue('--syn-font-sans'),
-  fontSize: getRealStyleValue('--syn-font-size-x-small'),
-  fontWeight: getRealStyleValue('--syn-font-weight-normal') as AxisLabelRich['fontWeight'],
+  color: getRealStyleValue('SynTypographyColorTextQuiet'),
+  fontFamily: getRealStyleValue('SynFontSans'),
+  fontSize: getRealStyleValue('SynFontSizeXSmall'),
+  fontWeight: getRealStyleValue('SynFontWeightNormal') as AxisLabelRich['fontWeight'],
 });
 
 /**
  * Default styles for axis label icons
  */
 const getDefaultAxisIconStyle = (): AxisLabelRich => ({
-  height: getRealValueWithoutUnit('--syn-spacing-large'),
-  width: getRealValueWithoutUnit('--syn-spacing-large'),
+  height: getRealValueWithoutUnit('SynSpacingLarge'),
+  width: getRealValueWithoutUnit('SynSpacingLarge'),
 });
 
 /**
@@ -319,16 +319,16 @@ export const buildAxisLabelConfigWithIcon = ({
 };
 
 const getDefaultXAxisStyle = () => ({
-  'axisLabel.margin': getRealValueWithoutUnit('--syn-spacing-small'),
+  'axisLabel.margin': getRealValueWithoutUnit('SynSpacingSmall'),
   nameGap: AXIS.X_NAME_GAP,
   nameLocation: 'center',
 });
 
 const getDefaultYAxisStyle = () => ({
-  'axisLabel.margin': getRealValueWithoutUnit('--syn-spacing-medium'),
-  nameGap: getRealValueWithoutUnit('--syn-spacing-medium'),
+  'axisLabel.margin': getRealValueWithoutUnit('SynSpacingMedium'),
+  nameGap: getRealValueWithoutUnit('SynSpacingMedium'),
   'nameTextStyle.align': 'right',
-  'nameTextStyle.padding': [0, getRealValueWithoutUnit('--syn-spacing-medium'), 0, 0],
+  'nameTextStyle.padding': [0, getRealValueWithoutUnit('SynSpacingMedium'), 0, 0],
 });
 
 /**
@@ -376,8 +376,8 @@ export const getDefaultAxisStyles = () => ({
   axisLabel: getDefaultAxisLabelStyle(),
   axisLine: {
     lineStyle: {
-      color: getRealStyleValue('--syn-chart-grid-lines-color-emphasize'),
-      width: getRealValueWithoutUnit('--syn-border-width-medium'),
+      color: getRealStyleValue('SynChartGridLinesColorEmphasize'),
+      width: getRealValueWithoutUnit('SynBorderWidthMedium'),
     },
     show: false,
   },
@@ -386,13 +386,13 @@ export const getDefaultAxisStyles = () => ({
     },
   },
   nameTextStyle: {
-    color: getRealStyleValue('--syn-typography-color-text'),
-    fontSize: getRealStyleValue('--syn-font-size-small'),
-    fontWeight: getRealStyleValue('--syn-font-weight-bold'),
+    color: getRealStyleValue('SynTypographyColorText'),
+    fontSize: getRealStyleValue('SynFontSizeSmall'),
+    fontWeight: getRealStyleValue('SynFontWeightBold'),
   },
   splitLine: {
     lineStyle: {
-      color: getRealStyleValue('--syn-chart-grid-lines-color'),
+      color: getRealStyleValue('SynChartGridLinesColor'),
     },
     show: false,
   },

@@ -3,9 +3,9 @@
  * SICK Global UX Foundation
  */
 
-export type ResolvedTokenModeValue = string | null;
+type ResolvedTokenModeValue = string | null;
 
-export interface ResolvedTokenModes {
+interface ResolvedTokenModes {
   light: ResolvedTokenModeValue;
   dark: ResolvedTokenModeValue;
 }

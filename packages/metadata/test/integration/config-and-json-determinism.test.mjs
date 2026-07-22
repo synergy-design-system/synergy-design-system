@@ -31,7 +31,7 @@ describe('config loader integration', () => {
       await mkdir(storybookDir, { recursive: true });
 
       await writeFile(
-        path.join(overridesDir, 'component:syn-accordion.json'),
+        path.join(overridesDir, 'component__syn-accordion.json'),
         JSON.stringify({
           storySourcePath: 'components.accordion',
           storyTags: ['Structure'],

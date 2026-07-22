@@ -1,8 +1,8 @@
 {
-  "builtAt": "2026-07-21T11:20:40.675Z",
+  "builtAt": "2026-07-22T07:13:05.898Z",
   "entities": [
     {
-      "corePath": "data/core/asset/asset:sick2018-icons.json",
+      "corePath": "data/core/asset/asset__sick2018-icons.json",
       "id": "asset:sick2018-icons",
       "kind": "asset",
       "layers": {
@@ -18,7 +18,7 @@
       ]
     },
     {
-      "corePath": "data/core/asset/asset:sick2018-logos.json",
+      "corePath": "data/core/asset/asset__sick2018-logos.json",
       "id": "asset:sick2018-logos",
       "kind": "asset",
       "layers": {},
@@ -32,7 +32,7 @@
       ]
     },
     {
-      "corePath": "data/core/asset/asset:sick2018-system-icons.json",
+      "corePath": "data/core/asset/asset__sick2018-system-icons.json",
       "id": "asset:sick2018-system-icons",
       "kind": "asset",
       "layers": {},
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "corePath": "data/core/asset/asset:sick2025-icons-fill.json",
+      "corePath": "data/core/asset/asset__sick2025-icons-fill.json",
       "id": "asset:sick2025-icons-fill",
       "kind": "asset",
       "layers": {
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "corePath": "data/core/asset/asset:sick2025-icons-outline.json",
+      "corePath": "data/core/asset/asset__sick2025-icons-outline.json",
       "id": "asset:sick2025-icons-outline",
       "kind": "asset",
       "layers": {
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "corePath": "data/core/asset/asset:sick2025-logos.json",
+      "corePath": "data/core/asset/asset__sick2025-logos.json",
       "id": "asset:sick2025-logos",
       "kind": "asset",
       "layers": {},
@@ -94,7 +94,7 @@
       ]
     },
     {
-      "corePath": "data/core/asset/asset:sick2025-system-icons.json",
+      "corePath": "data/core/asset/asset__sick2025-system-icons.json",
       "id": "asset:sick2025-system-icons",
       "kind": "asset",
       "layers": {},
@@ -108,7 +108,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-accordion.json",
+      "corePath": "data/core/component/component__syn-accordion.json",
       "id": "component:syn-accordion",
       "kind": "component",
       "layers": {
@@ -130,7 +130,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-alert.json",
+      "corePath": "data/core/component/component__syn-alert.json",
       "id": "component:syn-alert",
       "kind": "component",
       "layers": {
@@ -152,7 +152,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-badge.json",
+      "corePath": "data/core/component/component__syn-badge.json",
       "id": "component:syn-badge",
       "kind": "component",
       "layers": {
@@ -174,7 +174,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-breadcrumb.json",
+      "corePath": "data/core/component/component__syn-breadcrumb.json",
       "id": "component:syn-breadcrumb",
       "kind": "component",
       "layers": {
@@ -196,7 +196,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-breadcrumb-item.json",
+      "corePath": "data/core/component/component__syn-breadcrumb-item.json",
       "id": "component:syn-breadcrumb-item",
       "kind": "component",
       "layers": {
@@ -218,7 +218,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-button.json",
+      "corePath": "data/core/component/component__syn-button.json",
       "id": "component:syn-button",
       "kind": "component",
       "layers": {
@@ -240,7 +240,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-button-group.json",
+      "corePath": "data/core/component/component__syn-button-group.json",
       "id": "component:syn-button-group",
       "kind": "component",
       "layers": {
@@ -262,7 +262,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-card.json",
+      "corePath": "data/core/component/component__syn-card.json",
       "id": "component:syn-card",
       "kind": "component",
       "layers": {
@@ -284,7 +284,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-chart.json",
+      "corePath": "data/core/component/component__syn-chart.json",
       "id": "component:syn-chart",
       "kind": "component",
       "layers": {
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-checkbox.json",
+      "corePath": "data/core/component/component__syn-checkbox.json",
       "id": "component:syn-checkbox",
       "kind": "component",
       "layers": {
@@ -328,7 +328,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-checkbox-group.json",
+      "corePath": "data/core/component/component__syn-checkbox-group.json",
       "id": "component:syn-checkbox-group",
       "kind": "component",
       "layers": {
@@ -350,7 +350,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-combobox.json",
+      "corePath": "data/core/component/component__syn-combobox.json",
       "id": "component:syn-combobox",
       "kind": "component",
       "layers": {
@@ -372,7 +372,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-details.json",
+      "corePath": "data/core/component/component__syn-details.json",
       "id": "component:syn-details",
       "kind": "component",
       "layers": {
@@ -394,7 +394,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-dialog.json",
+      "corePath": "data/core/component/component__syn-dialog.json",
       "id": "component:syn-dialog",
       "kind": "component",
       "layers": {
@@ -416,7 +416,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-divider.json",
+      "corePath": "data/core/component/component__syn-divider.json",
       "id": "component:syn-divider",
       "kind": "component",
       "layers": {
@@ -438,7 +438,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-drawer.json",
+      "corePath": "data/core/component/component__syn-drawer.json",
       "id": "component:syn-drawer",
       "kind": "component",
       "layers": {
@@ -460,7 +460,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-dropdown.json",
+      "corePath": "data/core/component/component__syn-dropdown.json",
       "id": "component:syn-dropdown",
       "kind": "component",
       "layers": {
@@ -482,7 +482,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-fieldset.json",
+      "corePath": "data/core/component/component__syn-fieldset.json",
       "id": "component:syn-fieldset",
       "kind": "component",
       "layers": {
@@ -504,7 +504,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-file.json",
+      "corePath": "data/core/component/component__syn-file.json",
       "id": "component:syn-file",
       "kind": "component",
       "layers": {
@@ -526,7 +526,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-header.json",
+      "corePath": "data/core/component/component__syn-header.json",
       "id": "component:syn-header",
       "kind": "component",
       "layers": {
@@ -548,7 +548,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-icon.json",
+      "corePath": "data/core/component/component__syn-icon.json",
       "id": "component:syn-icon",
       "kind": "component",
       "layers": {
@@ -570,7 +570,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-icon-button.json",
+      "corePath": "data/core/component/component__syn-icon-button.json",
       "id": "component:syn-icon-button",
       "kind": "component",
       "layers": {
@@ -592,7 +592,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-input.json",
+      "corePath": "data/core/component/component__syn-input.json",
       "id": "component:syn-input",
       "kind": "component",
       "layers": {
@@ -614,7 +614,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-menu.json",
+      "corePath": "data/core/component/component__syn-menu.json",
       "id": "component:syn-menu",
       "kind": "component",
       "layers": {
@@ -636,7 +636,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-menu-item.json",
+      "corePath": "data/core/component/component__syn-menu-item.json",
       "id": "component:syn-menu-item",
       "kind": "component",
       "layers": {
@@ -658,7 +658,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-menu-label.json",
+      "corePath": "data/core/component/component__syn-menu-label.json",
       "id": "component:syn-menu-label",
       "kind": "component",
       "layers": {
@@ -680,7 +680,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-nav-item.json",
+      "corePath": "data/core/component/component__syn-nav-item.json",
       "id": "component:syn-nav-item",
       "kind": "component",
       "layers": {
@@ -702,7 +702,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-optgroup.json",
+      "corePath": "data/core/component/component__syn-optgroup.json",
       "id": "component:syn-optgroup",
       "kind": "component",
       "layers": {
@@ -724,7 +724,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-option.json",
+      "corePath": "data/core/component/component__syn-option.json",
       "id": "component:syn-option",
       "kind": "component",
       "layers": {
@@ -746,7 +746,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-pagination.json",
+      "corePath": "data/core/component/component__syn-pagination.json",
       "id": "component:syn-pagination",
       "kind": "component",
       "layers": {
@@ -768,7 +768,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-popup.json",
+      "corePath": "data/core/component/component__syn-popup.json",
       "id": "component:syn-popup",
       "kind": "component",
       "layers": {
@@ -790,7 +790,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-prio-nav.json",
+      "corePath": "data/core/component/component__syn-prio-nav.json",
       "id": "component:syn-prio-nav",
       "kind": "component",
       "layers": {
@@ -812,7 +812,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-progress-bar.json",
+      "corePath": "data/core/component/component__syn-progress-bar.json",
       "id": "component:syn-progress-bar",
       "kind": "component",
       "layers": {
@@ -834,7 +834,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-progress-ring.json",
+      "corePath": "data/core/component/component__syn-progress-ring.json",
       "id": "component:syn-progress-ring",
       "kind": "component",
       "layers": {
@@ -856,7 +856,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-radio.json",
+      "corePath": "data/core/component/component__syn-radio.json",
       "id": "component:syn-radio",
       "kind": "component",
       "layers": {
@@ -878,7 +878,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-radio-button.json",
+      "corePath": "data/core/component/component__syn-radio-button.json",
       "id": "component:syn-radio-button",
       "kind": "component",
       "layers": {
@@ -900,7 +900,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-radio-group.json",
+      "corePath": "data/core/component/component__syn-radio-group.json",
       "id": "component:syn-radio-group",
       "kind": "component",
       "layers": {
@@ -922,7 +922,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-range.json",
+      "corePath": "data/core/component/component__syn-range.json",
       "id": "component:syn-range",
       "kind": "component",
       "layers": {
@@ -944,7 +944,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-range-tick.json",
+      "corePath": "data/core/component/component__syn-range-tick.json",
       "id": "component:syn-range-tick",
       "kind": "component",
       "layers": {
@@ -966,7 +966,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-select.json",
+      "corePath": "data/core/component/component__syn-select.json",
       "id": "component:syn-select",
       "kind": "component",
       "layers": {
@@ -988,7 +988,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-side-nav.json",
+      "corePath": "data/core/component/component__syn-side-nav.json",
       "id": "component:syn-side-nav",
       "kind": "component",
       "layers": {
@@ -1010,7 +1010,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-spinner.json",
+      "corePath": "data/core/component/component__syn-spinner.json",
       "id": "component:syn-spinner",
       "kind": "component",
       "layers": {
@@ -1032,7 +1032,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-switch.json",
+      "corePath": "data/core/component/component__syn-switch.json",
       "id": "component:syn-switch",
       "kind": "component",
       "layers": {
@@ -1054,7 +1054,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-tab.json",
+      "corePath": "data/core/component/component__syn-tab.json",
       "id": "component:syn-tab",
       "kind": "component",
       "layers": {
@@ -1076,7 +1076,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-tab-group.json",
+      "corePath": "data/core/component/component__syn-tab-group.json",
       "id": "component:syn-tab-group",
       "kind": "component",
       "layers": {
@@ -1098,7 +1098,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-tab-panel.json",
+      "corePath": "data/core/component/component__syn-tab-panel.json",
       "id": "component:syn-tab-panel",
       "kind": "component",
       "layers": {
@@ -1120,7 +1120,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-tag.json",
+      "corePath": "data/core/component/component__syn-tag.json",
       "id": "component:syn-tag",
       "kind": "component",
       "layers": {
@@ -1142,7 +1142,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-tag-group.json",
+      "corePath": "data/core/component/component__syn-tag-group.json",
       "id": "component:syn-tag-group",
       "kind": "component",
       "layers": {
@@ -1164,7 +1164,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-textarea.json",
+      "corePath": "data/core/component/component__syn-textarea.json",
       "id": "component:syn-textarea",
       "kind": "component",
       "layers": {
@@ -1186,7 +1186,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-tooltip.json",
+      "corePath": "data/core/component/component__syn-tooltip.json",
       "id": "component:syn-tooltip",
       "kind": "component",
       "layers": {
@@ -1208,7 +1208,7 @@
       ]
     },
     {
-      "corePath": "data/core/component/component:syn-validate.json",
+      "corePath": "data/core/component/component__syn-validate.json",
       "id": "component:syn-validate",
       "kind": "component",
       "layers": {
@@ -1230,7 +1230,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:angular-components-module.json",
+      "corePath": "data/core/setup/setup__angular-components-module.json",
       "id": "setup:angular-components-module",
       "kind": "setup",
       "layers": {
@@ -1247,7 +1247,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:angular-forms-module.json",
+      "corePath": "data/core/setup/setup__angular-forms-module.json",
       "id": "setup:angular-forms-module",
       "kind": "setup",
       "layers": {
@@ -1265,7 +1265,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:angular-package.json",
+      "corePath": "data/core/setup/setup__angular-package.json",
       "id": "setup:angular-package",
       "kind": "setup",
       "layers": {
@@ -1281,7 +1281,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:angular-validators-module.json",
+      "corePath": "data/core/setup/setup__angular-validators-module.json",
       "id": "setup:angular-validators-module",
       "kind": "setup",
       "layers": {
@@ -1299,7 +1299,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:assets-package.json",
+      "corePath": "data/core/setup/setup__assets-package.json",
       "id": "setup:assets-package",
       "kind": "setup",
       "layers": {
@@ -1314,7 +1314,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:components-package.json",
+      "corePath": "data/core/setup/setup__components-package.json",
       "id": "setup:components-package",
       "kind": "setup",
       "layers": {
@@ -1330,7 +1330,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:fonts-package.json",
+      "corePath": "data/core/setup/setup__fonts-package.json",
       "id": "setup:fonts-package",
       "kind": "setup",
       "layers": {
@@ -1345,7 +1345,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:react-package.json",
+      "corePath": "data/core/setup/setup__react-package.json",
       "id": "setup:react-package",
       "kind": "setup",
       "layers": {
@@ -1361,7 +1361,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:styles-package.json",
+      "corePath": "data/core/setup/setup__styles-package.json",
       "id": "setup:styles-package",
       "kind": "setup",
       "layers": {
@@ -1376,7 +1376,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:synergy-migrations.json",
+      "corePath": "data/core/setup/setup__synergy-migrations.json",
       "id": "setup:synergy-migrations",
       "kind": "setup",
       "layers": {
@@ -1392,7 +1392,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:tokens-package.json",
+      "corePath": "data/core/setup/setup__tokens-package.json",
       "id": "setup:tokens-package",
       "kind": "setup",
       "layers": {
@@ -1407,7 +1407,7 @@
       ]
     },
     {
-      "corePath": "data/core/setup/setup:vue-package.json",
+      "corePath": "data/core/setup/setup__vue-package.json",
       "id": "setup:vue-package",
       "kind": "setup",
       "layers": {
@@ -1423,7 +1423,7 @@
       ]
     },
     {
-      "corePath": "data/core/style/style:syn-body.json",
+      "corePath": "data/core/style/style__syn-body.json",
       "id": "style:syn-body",
       "kind": "style",
       "layers": {
@@ -1443,7 +1443,7 @@
       ]
     },
     {
-      "corePath": "data/core/style/style:syn-heading.json",
+      "corePath": "data/core/style/style__syn-heading.json",
       "id": "style:syn-heading",
       "kind": "style",
       "layers": {
@@ -1463,7 +1463,7 @@
       ]
     },
     {
-      "corePath": "data/core/style/style:syn-link.json",
+      "corePath": "data/core/style/style__syn-link.json",
       "id": "style:syn-link",
       "kind": "style",
       "layers": {
@@ -1483,7 +1483,7 @@
       ]
     },
     {
-      "corePath": "data/core/style/style:syn-link-list.json",
+      "corePath": "data/core/style/style__syn-link-list.json",
       "id": "style:syn-link-list",
       "kind": "style",
       "layers": {
@@ -1503,7 +1503,7 @@
       ]
     },
     {
-      "corePath": "data/core/style/style:syn-table.json",
+      "corePath": "data/core/style/style__syn-table.json",
       "id": "style:syn-table",
       "kind": "style",
       "layers": {
@@ -1523,7 +1523,7 @@
       ]
     },
     {
-      "corePath": "data/core/style/style:syn-table-cell.json",
+      "corePath": "data/core/style/style__syn-table-cell.json",
       "id": "style:syn-table-cell",
       "kind": "style",
       "layers": {
@@ -1543,7 +1543,7 @@
       ]
     },
     {
-      "corePath": "data/core/style/style:syn-weight.json",
+      "corePath": "data/core/style/style__syn-weight.json",
       "id": "style:syn-weight",
       "kind": "style",
       "layers": {
@@ -1563,7 +1563,7 @@
       ]
     },
     {
-      "corePath": "data/core/template/template:appshell.json",
+      "corePath": "data/core/template/template__appshell.json",
       "id": "template:appshell",
       "kind": "template",
       "layers": {
@@ -1577,7 +1577,7 @@
       ]
     },
     {
-      "corePath": "data/core/template/template:breadcrumb.json",
+      "corePath": "data/core/template/template__breadcrumb.json",
       "id": "template:breadcrumb",
       "kind": "template",
       "layers": {
@@ -1591,7 +1591,7 @@
       ]
     },
     {
-      "corePath": "data/core/template/template:footer.json",
+      "corePath": "data/core/template/template__footer.json",
       "id": "template:footer",
       "kind": "template",
       "layers": {
@@ -1605,7 +1605,7 @@
       ]
     },
     {
-      "corePath": "data/core/template/template:forms.json",
+      "corePath": "data/core/template/template__forms.json",
       "id": "template:forms",
       "kind": "template",
       "layers": {
@@ -1619,7 +1619,7 @@
       ]
     },
     {
-      "corePath": "data/core/template/template:loading-screen.json",
+      "corePath": "data/core/template/template__loading-screen.json",
       "id": "template:loading-screen",
       "kind": "template",
       "layers": {
@@ -1633,7 +1633,7 @@
       ]
     },
     {
-      "corePath": "data/core/template/template:localization.json",
+      "corePath": "data/core/template/template__localization.json",
       "id": "template:localization",
       "kind": "template",
       "layers": {
@@ -1647,7 +1647,7 @@
       ]
     },
     {
-      "corePath": "data/core/template/template:table.json",
+      "corePath": "data/core/template/template__table.json",
       "id": "template:table",
       "kind": "template",
       "layers": {
@@ -1661,7 +1661,7 @@
       ]
     },
     {
-      "corePath": "data/core/template/template:tag-group.json",
+      "corePath": "data/core/template/template__tag-group.json",
       "id": "template:tag-group",
       "kind": "template",
       "layers": {
@@ -1675,7 +1675,7 @@
       ]
     },
     {
-      "corePath": "data/core/template/template:tooltip.json",
+      "corePath": "data/core/template/template__tooltip.json",
       "id": "template:tooltip",
       "kind": "template",
       "layers": {
@@ -1689,7 +1689,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-charts-js-index-d-ts.json",
+      "corePath": "data/core/token/token__tokens-charts-js-index-d-ts.json",
       "id": "token:tokens-charts-js-index-d-ts",
       "kind": "token",
       "layers": {
@@ -1706,7 +1706,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-charts-js-index-js.json",
+      "corePath": "data/core/token/token__tokens-charts-js-index-js.json",
       "id": "token:tokens-charts-js-index-js",
       "kind": "token",
       "layers": {
@@ -1723,7 +1723,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-charts-scss-tokens-scss.json",
+      "corePath": "data/core/token/token__tokens-charts-scss-tokens-scss.json",
       "id": "token:tokens-charts-scss-tokens-scss",
       "kind": "token",
       "layers": {
@@ -1740,7 +1740,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-charts-themes-sick2025-dark-css.json",
+      "corePath": "data/core/token/token__tokens-charts-themes-sick2025-dark-css.json",
       "id": "token:tokens-charts-themes-sick2025-dark-css",
       "kind": "token",
       "layers": {
@@ -1757,7 +1757,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-charts-themes-sick2025-light-css.json",
+      "corePath": "data/core/token/token__tokens-charts-themes-sick2025-light-css.json",
       "id": "token:tokens-charts-themes-sick2025-light-css",
       "kind": "token",
       "layers": {
@@ -1774,7 +1774,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-figma-variables-sick2018-dark-json.json",
+      "corePath": "data/core/token/token__tokens-figma-variables-sick2018-dark-json.json",
       "id": "token:tokens-figma-variables-sick2018-dark-json",
       "kind": "token",
       "layers": {
@@ -1791,7 +1791,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-figma-variables-sick2018-light-json.json",
+      "corePath": "data/core/token/token__tokens-figma-variables-sick2018-light-json.json",
       "id": "token:tokens-figma-variables-sick2018-light-json",
       "kind": "token",
       "layers": {
@@ -1808,7 +1808,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-figma-variables-sick2025-dark-json.json",
+      "corePath": "data/core/token/token__tokens-figma-variables-sick2025-dark-json.json",
       "id": "token:tokens-figma-variables-sick2025-dark-json",
       "kind": "token",
       "layers": {
@@ -1825,7 +1825,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-figma-variables-sick2025-light-json.json",
+      "corePath": "data/core/token/token__tokens-figma-variables-sick2025-light-json.json",
       "id": "token:tokens-figma-variables-sick2025-light-json",
       "kind": "token",
       "layers": {
@@ -1842,7 +1842,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-js-index-d-ts.json",
+      "corePath": "data/core/token/token__tokens-js-index-d-ts.json",
       "id": "token:tokens-js-index-d-ts",
       "kind": "token",
       "layers": {
@@ -1859,7 +1859,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-js-index-js.json",
+      "corePath": "data/core/token/token__tokens-js-index-js.json",
       "id": "token:tokens-js-index-js",
       "kind": "token",
       "layers": {
@@ -1876,7 +1876,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-scss-tokens-scss.json",
+      "corePath": "data/core/token/token__tokens-scss-tokens-scss.json",
       "id": "token:tokens-scss-tokens-scss",
       "kind": "token",
       "layers": {
@@ -1893,7 +1893,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-themes-sick2018-dark-css.json",
+      "corePath": "data/core/token/token__tokens-themes-sick2018-dark-css.json",
       "id": "token:tokens-themes-sick2018-dark-css",
       "kind": "token",
       "layers": {
@@ -1910,7 +1910,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-themes-sick2018-light-css.json",
+      "corePath": "data/core/token/token__tokens-themes-sick2018-light-css.json",
       "id": "token:tokens-themes-sick2018-light-css",
       "kind": "token",
       "layers": {
@@ -1927,7 +1927,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-themes-sick2025-dark-css.json",
+      "corePath": "data/core/token/token__tokens-themes-sick2025-dark-css.json",
       "id": "token:tokens-themes-sick2025-dark-css",
       "kind": "token",
       "layers": {
@@ -1944,7 +1944,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-themes-sick2025-light-css.json",
+      "corePath": "data/core/token/token__tokens-themes-sick2025-light-css.json",
       "id": "token:tokens-themes-sick2025-light-css",
       "kind": "token",
       "layers": {
@@ -1961,7 +1961,7 @@
       ]
     },
     {
-      "corePath": "data/core/utility/utility:fonts-sick-intl.json",
+      "corePath": "data/core/utility/utility__fonts-sick-intl.json",
       "id": "utility:fonts-sick-intl",
       "kind": "utility",
       "layers": {

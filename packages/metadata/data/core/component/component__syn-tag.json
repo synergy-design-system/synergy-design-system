@@ -1,0 +1,222 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynTagComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tag",
+        "sourcePath": "packages/angular/components/tag/tag.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynTag",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tag--docs",
+          "events": [
+            {
+              "name": "syn-remove",
+              "type": "SynRemoveEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.2.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTagJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTag",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tag.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueTag",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTag.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "2842-16750",
+      "figmaDocsId": "41163-156701",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Tags are used as labels to organize things or to indicate a selection."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Tag"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change a tab’s size."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the removable attribute to add a remove button to the tag."
+          },
+          "name": "removable",
+          "title": {
+            "type": "text",
+            "value": "Removable"
+          }
+        }
+      ],
+      "storySourcePath": "components.tag",
+      "storyTags": [
+        "Feedback",
+        "Tags",
+        "Filter"
+      ]
+    },
+    "rules": {
+      "accessibility": [
+        "Ensure each tag has a short, meaningful text label that can be understood without visual context alone.",
+        "For removable tags, ensure the remove action is clearly announced by assistive technologies and communicates which tag will be removed.",
+        "Provide visible focus indication for any interactive tag or remove control and keep focus order consistent with surrounding controls.",
+        "When tags are presented as a set (for example, active filters), provide group context with a clear label via syn-tag-group or an equivalent labeled container.",
+        "After a tag is removed, move focus predictably to a logical next element and provide feedback about the updated state when relevant."
+      ],
+      "component": "syn-tag",
+      "related": {
+        "components": [
+          "syn-tag-group"
+        ],
+        "templates": [
+          "Tag Group"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use the \"removable\" attribute to include a small close \"x\" button next to the label.",
+            "Avoid using a standalone, non-removable tag, as its selected/unselected state could be unclear. Apply the \"removable\" attribute for those cases."
+          ],
+          "id": "behavior",
+          "name": "Behavior"
+        },
+        {
+          "content": [
+            "Try to keep a similar text length for all labels, and specially avoid excessively long ones. If necessary, truncate the label and show the full text in a tooltip on hover.",
+            "Don't use tags to indicate the status of a task, use syn-status-badge instead."
+          ],
+          "id": "labels",
+          "name": "Labels"
+        }
+      ],
+      "useCases": [
+        "Label and categorize items to help users filter and find relevant content.",
+        "Highlight important keywords or attributes associated with an item.",
+        "Allow users to filter content dynamically by clicking on tags.",
+        "Display topics or categories associated with an article, post or product."
+      ]
+    },
+    "sourceModulePath": "components/tag/tag.js",
+    "summary": "Tags are used as labels to organize things or to indicate a selection."
+  },
+  "id": "component:syn-tag",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tag.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tag/angular/tag.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tag/components/tag.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tag/components/tag.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tag/components/tag.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tag/components/tag.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tag/react/tag.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tag/vue/SynVueTag.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tag/react/SynTagJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-tag.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-tag.md"
+      }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component__syn-tag.md"
+      }
+    ]
+  },
+  "name": "syn-tag",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "1.2.0",
+  "sources": [
+    "packages/angular/components/tag/tag.component.ts",
+    "packages/components/src/components/tag/tag.component.ts",
+    "packages/components/src/components/tag/tag.custom.styles.ts",
+    "packages/components/src/components/tag/tag.styles.ts",
+    "packages/components/src/components/tag/tag.ts",
+    "packages/react/src/components/tag.ts",
+    "packages/vue/src/components/SynVueTag.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "syn-tag",
+    "tag",
+    "vue"
+  ]
+}

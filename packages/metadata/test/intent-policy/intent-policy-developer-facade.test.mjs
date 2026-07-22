@@ -29,32 +29,32 @@ describe('intent policy developer facade', () => {
     await mkdir(path.join(root, 'core', 'component'), { recursive: true });
     await mkdir(path.join(root, 'layers', 'interface', 'component'), { recursive: true });
 
-    const synButtonInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component:syn-button.json');
+    const synButtonInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component__syn-button.json');
     const sourceSynButtonInterfaceLayerPath = path.join(
       metadataPackageDir,
       'data',
       'layers',
       'interface',
       'component',
-      'component:syn-button.json',
+      'component__syn-button.json',
     );
-    const synButtonCorePath = path.join(root, 'core', 'component', 'component:syn-button.json');
-    const synFieldsetInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component:syn-fieldset.json');
+    const synButtonCorePath = path.join(root, 'core', 'component', 'component__syn-button.json');
+    const synFieldsetInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component__syn-fieldset.json');
     const sourceSynFieldsetInterfaceLayerPath = path.join(
       metadataPackageDir,
       'data',
       'layers',
       'interface',
       'component',
-      'component:syn-fieldset.json',
+      'component__syn-fieldset.json',
     );
-    const synFieldsetCorePath = path.join(root, 'core', 'component', 'component:syn-fieldset.json');
+    const synFieldsetCorePath = path.join(root, 'core', 'component', 'component__syn-fieldset.json');
 
     const index = {
       builtAt: '2026-05-18T00:00:00.000Z',
       entities: [
         {
-          corePath: 'data/core/component/component:syn-button.json',
+          corePath: 'data/core/component/component__syn-button.json',
           id: 'component:syn-button',
           kind: 'component',
           layers: {
@@ -64,7 +64,7 @@ describe('intent policy developer facade', () => {
           search: ['component:syn-button', 'syn-button'],
         },
         {
-          corePath: 'data/core/component/component:syn-fieldset.json',
+          corePath: 'data/core/component/component__syn-fieldset.json',
           id: 'component:syn-fieldset',
           kind: 'component',
           layers: {
@@ -83,7 +83,7 @@ describe('intent policy developer facade', () => {
       layers: {
         interface: [{
           layer: 'interface',
-          path: 'data/layers/interface/component/component:syn-button.json',
+          path: 'data/layers/interface/component/component__syn-button.json',
         }],
       },
       name: 'syn-button',
@@ -95,7 +95,7 @@ describe('intent policy developer facade', () => {
       layers: {
         interface: [{
           layer: 'interface',
-          path: 'data/layers/interface/component/component:syn-fieldset.json',
+          path: 'data/layers/interface/component/component__syn-fieldset.json',
         }],
       },
       name: 'syn-fieldset',

@@ -1,0 +1,206 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynTabComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-tab",
+        "sourcePath": "packages/angular/components/tab/tab.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynTab",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-tab--docs",
+          "events": [
+            {
+              "name": "syn-close",
+              "type": "SynCloseEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "2.1.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynTabJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynTab",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/tab.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueTab",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueTab.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "20730-47184",
+      "figmaDocsId": "42207-338162",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Tabs are used inside tab groups to represent and activate tab panels."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Tab"
+          }
+        }
+      ],
+      "storySourcePath": "components.tab",
+      "storyTags": [
+        "Navigation"
+      ]
+    },
+    "rules": {
+      "accessibility": [
+        "Use syn-tab only inside syn-tab-group together with matching syn-tab-panel elements to preserve correct tab and tabpanel semantics.",
+        "Ensure every tab has a concise, unique label so users can identify sections quickly with both visual and assistive technologies.",
+        "Use disabled tabs only when users are informed why content is unavailable, and avoid disabling tabs that are required to complete core tasks.",
+        "When tabs are closable, ensure closing a tab moves focus predictably to the next logical tab and keeps users oriented in the updated set."
+      ],
+      "component": "syn-tab",
+      "related": {
+        "components": [
+          "syn-tab-group",
+          "syn-tab-panel"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use tabs to switch between related sections within the same context, not for unrelated destinations.",
+            "Keep one tab active at all times and align each tab panel value with a corresponding tab-panel name.",
+            "Prefer short labels (one to three words) and avoid wrapping labels to multiple lines where possible."
+          ],
+          "id": "structure_and_mapping",
+          "name": "Structure and Mapping"
+        },
+        {
+          "content": [
+            "Use default activation for faster navigation when content updates are lightweight.",
+            "Use manual activation when panel content is heavy, expensive to load, or likely to cause disorientation during arrow-key navigation.",
+            "Avoid adding too many tabs in one row; if overflow is common, verify scrolling tabs remain understandable and easy to navigate."
+          ],
+          "id": "interaction_model",
+          "name": "Interaction Model"
+        },
+        {
+          "content": [
+            "Use closable tabs only when users create temporary or user-managed views (for example document tabs).",
+            "When closing tabs, also remove or update the related panel and immediately show a logical fallback tab.",
+            "Do not use closable tabs for essential navigation where accidental removal would block user progress."
+          ],
+          "id": "closable_tabs",
+          "name": "Closable Tabs"
+        }
+      ],
+      "useCases": [
+        "Switch between related settings categories within a single page.",
+        "Organize product detail content such as overview, specifications, and resources.",
+        "Provide document-style workspaces with optional closable tabs for temporary views.",
+        "Separate dashboard subviews without full page navigation."
+      ]
+    },
+    "sourceModulePath": "components/tab/tab.js",
+    "summary": "Tabs are used inside [tab groups](/components/tab-group) to represent and activate [tab panels](/components/tab-panel)."
+  },
+  "id": "component:syn-tab",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-tab.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tab/angular/tab.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tab/components/tab.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tab/components/tab.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tab/components/tab.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tab/components/tab.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tab/react/tab.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tab/vue/SynVueTab.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-tab/react/SynTabJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-tab.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-tab.md"
+      }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component__syn-tab.md"
+      }
+    ]
+  },
+  "name": "syn-tab",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon-button",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "2.1.0",
+  "sources": [
+    "packages/angular/components/tab/tab.component.ts",
+    "packages/components/src/components/tab/tab.component.ts",
+    "packages/components/src/components/tab/tab.custom.styles.ts",
+    "packages/components/src/components/tab/tab.styles.ts",
+    "packages/components/src/components/tab/tab.ts",
+    "packages/react/src/components/tab.ts",
+    "packages/vue/src/components/SynVueTab.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "react",
+    "syn-tab",
+    "tab",
+    "vue"
+  ]
+}

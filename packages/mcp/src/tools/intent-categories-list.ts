@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   type IntentPhase,
-  experimental_listIntentCategories as listIntentCategories,
+  listIntentCategories,
 } from '@synergy-design-system/metadata';
 import {
   INTENT_DEFAULT_PHASES,
@@ -18,7 +18,7 @@ type IntentCategoriesListDefaults = {
 };
 
 /**
- * Lists available intent categories from the experimental intent policy layer.
+ * Lists available intent categories from the intent policy layer.
  * @param server The MCP server instance used for tool registration.
  */
 export const intentCategoriesListTool = (server: McpServer) => {

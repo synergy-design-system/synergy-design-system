@@ -145,12 +145,6 @@ Example:
   // "toon": Encode structured data to compact toon text format
   "compression": "none",
 
-  // Experimental feature toggles
-  "experimentalFeatures": {
-    // Enables experimental intent policy tools
-    "intentTools": true,
-  },
-
   // Default parameters for each endpoint can be overridden
   "tools": {
     "assetInfo": {
@@ -200,20 +194,9 @@ Example:
 }
 ```
 
-#### Enabling Experimental Intent Endpoints
+#### Intent Endpoints
 
-Intent tools are experimental and disabled by default.
-Enable them explicitly with:
-
-```jsonc
-{
-  "experimentalFeatures": {
-    "intentTools": true,
-  },
-}
-```
-
-When enabled, these additional features become available:
+Intent tools and resources are available by default:
 
 #### Resources
 
@@ -359,9 +342,7 @@ This lets you change per-tool defaults without modifying the MCP server code.
 
 ## Available Resources
 
-The MCP server currently registers 5 stable resources by default. Resources expose static, read-only data that does not change during server runtime. Clients that support MCP resources can read them directly without calling a tool.
-
-When `experimentalFeatures.intentTools` is enabled, 1 additional intent resource is registered.
+The MCP server currently registers 6 stable resources by default. Resources expose static, read-only data that does not change during server runtime. Clients that support MCP resources can read them directly without calling a tool.
 
 Resource identifier reference (exact values used by the server):
 
@@ -370,7 +351,7 @@ Resource identifier reference (exact values used by the server):
 - `synergy://component-clusters/list` → name: `component-clusters-list`
 - `synergy://styles/list` → name: `styles-list`
 - `synergy://templates/list` → name: `templates-list`
-- `synergy://intent-categories/list` → name: `intent-categories-list` (experimental)
+- `synergy://intent-categories/list` → name: `intent-categories-list`
 
 ### 1. `synergy://components/list`
 
@@ -458,15 +439,13 @@ Resource identifier reference (exact values used by the server):
 ["app-shell", "dashboard", "form", ...]
 ```
 
-### 6. `synergy://intent-categories/list` (experimental)
+### 6. `synergy://intent-categories/list`
 
 **Name:** `intent-categories-list`
 
 **MIME type:** `application/json`
 
 **Description:** Available intent categories in the Synergy intent policy layer.
-
-**Registration:** Only available when `experimentalFeatures.intentTools` is `true`.
 
 **Example:**
 
@@ -749,24 +728,22 @@ Example prompts:
 - "Generate a custom Synergy 2025 sprite sheet for my selected icons"
 - "Build an SVG sprite sheet from this icon list"
 
-### Experimental Tools (Intent Policy)
+### Intent Policy Tools
 
-The following endpoints are experimental and are only registered when `experimentalFeatures.intentTools` is set to `true`.
-
-### 18. `intent-categories-list` (experimental)
+### 18. `intent-categories-list`
 
 **Description:** List available intent categories in the intent policy layer.
 
 **Parameters:**
 
-- `includePhases` (array, optional): Intent phases to include. Defaults to runtime config `tools.intentCategoriesList.includePhases` (`["experimental"]` by default).
+- `includePhases` (array, optional): Intent phases to include. Defaults to runtime config `tools.intentCategoriesList.includePhases` (`["stable"]` by default).
 
 **Example prompts:**
 
 - "List intent categories"
-- "Show experimental intent categories"
+- "Show stable intent categories"
 
-### 19. `intent-component-guide` (experimental)
+### 19. `intent-component-guide`
 
 **Description:** Answer the question: What can I do with a component in the intent system?
 
@@ -781,7 +758,7 @@ The following endpoints are experimental and are only registered when `experimen
 - "What can I do with syn-button?"
 - "Show intent guide for syn-button in react-web-components"
 
-### 20. `intent-component-validate` (experimental)
+### 20. `intent-component-validate`
 
 **Description:** Answer the question: Do I use a component correctly for a specific intent?
 
@@ -798,7 +775,7 @@ The following endpoints are experimental and are only registered when `experimen
 - "Do I use syn-button right for action.submit?"
 - "Validate this syn-button markup for action.submit: <syn-button type=\"submit\" variant=\"filled\">Send</syn-button>"
 
-### 21. `intent-task-recommendations` (experimental)
+### 21. `intent-task-recommendations`
 
 **Description:** Answer the question: What does Synergy provide for a specific task intent?
 
@@ -817,7 +794,7 @@ The following endpoints are experimental and are only registered when `experimen
 - "What does Synergy provide to submit a form?"
 - "Recommend components for action.submit"
 
-### 22. `intent-options` (experimental)
+### 22. `intent-options`
 
 **Description:** Answer the question: What are my renderable options for a specific intent?
 
@@ -1133,7 +1110,7 @@ The MCP server is intentionally small:
 - `src/bin/start.ts` parses CLI arguments, loads optional runtime config, resolves overrides, and starts the selected transport.
 - `src/transports/` contains the transport factory and runtime implementations for stdio and HTTP/HTTPS.
 - `src/server.ts` creates the `McpServer` instance and registers all exported tools from `src/tools/index.ts` and all exported resources from `src/resources/index.ts`.
-- `src/server.ts` applies feature-flag gating generically: exports whose factory names start with `intent` are only registered when `experimentalFeatures.intentTools` is enabled.
+- `src/server.ts` creates the `McpServer` instance and registers all exported tools/resources.
 - Tool implementations in `src/tools/` call the public APIs of `@synergy-design-system/metadata` to retrieve data.
 - Resource implementations in `src/resources/` expose static, read-only data that does not change during server runtime. Resources bypass the tool middleware pipeline entirely — no compression, logging, or error wrapping is applied.
 - Utilities in `src/utilities/` handle runtime config, MCP response shaping, DaVinci migration extraction, and package migration document loading.

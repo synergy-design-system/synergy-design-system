@@ -62,7 +62,7 @@ export const buildDocsIndex = async (): Promise<DocsIndexSection[]> => {
     meta.listComponents({}, metadataStoreOptions),
     meta.listTemplates({}, metadataStoreOptions),
     meta.listStyles({}, metadataStoreOptions),
-    meta.experimental_listIntentCategories(metadataStoreOptions, {
+    meta.listIntentCategories(metadataStoreOptions, {
       includePhases: ['experimental'],
     }),
   ]);

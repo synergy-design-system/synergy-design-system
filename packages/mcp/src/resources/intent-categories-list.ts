@@ -1,6 +1,6 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
-  experimental_listIntentCategories as listIntentCategories,
+  listIntentCategories,
 } from '@synergy-design-system/metadata';
 
 const RESOURCE_URI = 'synergy://intent-categories/list';

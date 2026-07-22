@@ -29,7 +29,7 @@ Boundary rules:
 - It does not mutate canonical component metadata objects.
 - It does not write or persist anything into generated data artifacts.
 
-Developer interface (experimental):
+Developer interface:
 
 - The primary integration surface is the public facade at `../public/domains/intent-policy.ts`.
 - Use these high-level APIs for application-facing guidance and validation:
@@ -46,21 +46,21 @@ Intent options behavior:
 
 ```ts
 import {
-  experimental_findComponentsForTask,
-  experimental_getComponentGuide,
-  experimental_getIntentOptions,
-  experimental_listIntentCategories,
-  experimental_validateComponent,
+  findComponentsForTask,
+  getComponentGuide,
+  getIntentOptions,
+  listIntentCategories,
+  validateComponent,
 } from "@synergy-design-system/metadata";
 
-const includePhases = ["experimental"] as const;
+const includePhases = ["stable"] as const;
 
-const categories = await experimental_listIntentCategories(
+const categories = await listIntentCategories(
   metadataStoreOptions,
   { includePhases: [...includePhases] },
 );
 
-const componentGuide = await experimental_getComponentGuide(
+const componentGuide = await getComponentGuide(
   {
     component: "syn-button",
     framework: "react-web-components",
@@ -69,7 +69,7 @@ const componentGuide = await experimental_getComponentGuide(
   metadataStoreOptions,
 );
 
-const componentValidation = await experimental_validateComponent(
+const componentValidation = await validateComponent(
   {
     component: "syn-button",
     framework: "react-web-components",
@@ -82,7 +82,7 @@ const componentValidation = await experimental_validateComponent(
   metadataStoreOptions,
 );
 
-const confirmationLint = await experimental_validateComponent(
+const confirmationLint = await validateComponent(
   {
     component: "syn-dialog",
     framework: "react-web-components",
@@ -118,7 +118,7 @@ const confirmationLint = await experimental_validateComponent(
   metadataStoreOptions,
 );
 
-const taskRecommendations = await experimental_findComponentsForTask(
+const taskRecommendations = await findComponentsForTask(
   {
     framework: "react-web-components",
     includePhases: [...includePhases],
@@ -127,7 +127,7 @@ const taskRecommendations = await experimental_findComponentsForTask(
   metadataStoreOptions,
 );
 
-const intentOptions = await experimental_getIntentOptions(
+const intentOptions = await getIntentOptions(
   {
     framework: "react-web-components",
     includePhases: [...includePhases],
@@ -140,10 +140,10 @@ const intentOptions = await experimental_getIntentOptions(
 Example with diagnostics enabled for intent options:
 
 ```ts
-const intentOptionsWithDiagnostics = await experimental_getIntentOptions(
+const intentOptionsWithDiagnostics = await getIntentOptions(
   {
     framework: "react-web-components",
-    includePhases: ["experimental"],
+    includePhases: ["stable"],
     includeDiagnostics: true,
     intentId: "navigation.link-list.grouped",
   },

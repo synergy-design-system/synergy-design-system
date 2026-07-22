@@ -21,19 +21,6 @@ export const McpRuntimeConfigSchema = z.object({
   compression: z.enum(['none', 'toon']).default('none'),
 
   /**
-   * Experimental feature toggles.
-   *
-   * Tools or capabilities guarded by these flags are disabled unless
-   * explicitly enabled.
-   *
-   * Known keys:
-   * - intentTools: Enables experimental intent MCP tools.
-   *
-   * @default {}
-   */
-  experimentalFeatures: z.record(z.string(), z.boolean()).default({}),
-
-  /**
    * HTTP server host/interface when interface is 'http'.
    * Use 127.0.0.1 for local-only access or 0.0.0.0 to listen on all IPv4 interfaces.
    * @default '127.0.0.1'
@@ -163,7 +150,7 @@ export const McpRuntimeConfigSchema = z.object({
     intentCategoriesList: z.object({
       /**
        * Default intent phases when none are provided by the caller.
-       * @default ['experimental']
+      * @default ['experimental']
        */
       includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
     }).default({ includePhases: [...INTENT_DEFAULT_PHASES] }),
@@ -176,7 +163,7 @@ export const McpRuntimeConfigSchema = z.object({
       framework: z.enum(INTENT_FRAMEWORK_VALUES).default(INTENT_DEFAULT_FRAMEWORK),
       /**
        * Default intent phases when none are provided by the caller.
-       * @default ['experimental']
+      * @default ['experimental']
        */
       includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
     }).default({
@@ -192,7 +179,7 @@ export const McpRuntimeConfigSchema = z.object({
       framework: z.enum(INTENT_FRAMEWORK_VALUES).default(INTENT_DEFAULT_FRAMEWORK),
       /**
        * Default intent phases when none are provided by the caller.
-       * @default ['experimental']
+      * @default ['experimental']
        */
       includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
     }).default({
@@ -213,7 +200,7 @@ export const McpRuntimeConfigSchema = z.object({
       includeDiagnostics: z.boolean().default(false),
       /**
        * Default intent phases when none are provided by the caller.
-       * @default ['experimental']
+      * @default ['experimental']
        */
       includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
       /**
@@ -241,7 +228,7 @@ export const McpRuntimeConfigSchema = z.object({
       framework: z.enum(INTENT_FRAMEWORK_VALUES).default(INTENT_DEFAULT_FRAMEWORK),
       /**
        * Default intent phases when none are provided by the caller.
-       * @default ['experimental']
+      * @default ['experimental']
        */
       includePhases: z.array(z.enum(INTENT_PHASE_VALUES)).default([...INTENT_DEFAULT_PHASES]),
       /**

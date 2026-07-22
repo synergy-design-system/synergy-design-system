@@ -1,8 +1,8 @@
 import {
-	experimental_getIntentCategory,
-	experimental_getIntentOptions,
-	experimental_listIntentCategories,
-	experimental_listIntents,
+	getIntentCategory,
+	getIntentOptions,
+	listIntentCategories,
+	listIntents,
 	type IntentTargetRef,
 } from '@synergy-design-system/metadata';
 import { withBasePath } from '../../../utils/basePath';
@@ -58,7 +58,7 @@ const renderLink = (label: string, target: IntentTargetRef): string => {
 const renderCodeBlock = (code: string): string => `\`\`\`html\n${code.trimEnd()}\n\`\`\``;
 
 export async function getStaticPaths() {
-	const result = await experimental_listIntentCategories(metadataStoreOptions);
+	const result = await listIntentCategories(metadataStoreOptions);
 
 	return result.data.map(category => ({
 		params: { id: category.id },
@@ -72,7 +72,7 @@ export const GET = async ({ params }: { params: { id?: string } }): Promise<Resp
 		throw new Error('Missing intent policy route parameter.');
 	}
 
-	const category = await experimental_getIntentCategory(id, {}, metadataStoreOptions);
+	const category = await getIntentCategory(id, {}, metadataStoreOptions);
 	if (!category.data) {
 		return new Response(`Intent policy category not found: ${id}`, {
 			headers: {
@@ -82,7 +82,7 @@ export const GET = async ({ params }: { params: { id?: string } }): Promise<Resp
 		});
 	}
 
-	const intents = await experimental_listIntents({
+	const intents = await listIntents({
 		category: id,
 		includePhases: ['experimental'],
 	}, metadataStoreOptions);
@@ -97,7 +97,7 @@ export const GET = async ({ params }: { params: { id?: string } }): Promise<Resp
 
 	const variantData = await Promise.all(intents.data.map(async intent => {
 		const optionsByFramework = await Promise.all(renderFrameworks.map(async framework => {
-			const options = await experimental_getIntentOptions({
+			const options = await getIntentOptions({
 				framework,
 				includePhases: ['experimental'],
 				intentId: intent.id,

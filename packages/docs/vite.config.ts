@@ -1,5 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable import/no-relative-packages */
 import fs from 'fs';
 import path from 'path';
 import { defineConfig } from 'vite';

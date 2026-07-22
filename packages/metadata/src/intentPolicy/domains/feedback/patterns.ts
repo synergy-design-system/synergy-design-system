@@ -31,12 +31,16 @@ export const feedbackPatterns: IntentUsagePattern[] = [
   {
     description: 'Compact categorical or state labeling using tags.',
     intent: 'feedback.tag.label',
+    priority: 0,
     target: { id: 'component:syn-tag', kind: 'component', name: 'syn-tag' },
+    targetRole: 'standalone',
   },
   {
     description: 'Grouped tags for concise display of multiple labels or states.',
     intent: 'feedback.tag.label',
+    priority: -10,
     target: { id: 'component:syn-tag-group', kind: 'component', name: 'syn-tag-group' },
+    targetRole: 'container',
   },
   {
     description: 'Generic validation feedback for incorrect or missing user input.',

@@ -25,6 +25,14 @@
       "type": "string"
     },
     {
+      "default": "'vertical'",
+      "description": "The layout of the radio group. This determines how the radios are displayed.\nThis only applies to `syn-radio` elements.\n`syn-radio-button` items are rendered in their own button-group and will always render vertically.\n\n- `horizontal`: Radios are displayed in a row.\n- `vertical`: Radios are displayed in a column.",
+      "fieldName": "layout",
+      "name": "layout",
+      "reflects": true,
+      "type": "'horizontal' | 'vertical'"
+    },
+    {
       "default": "'option'",
       "description": "The name of the radio group, submitted as a name/value pair with form data.",
       "fieldName": "name",
@@ -191,6 +199,13 @@
       "description": "The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot\ninstead.",
       "name": "label",
       "type": "string"
+    },
+    {
+      "access": "public",
+      "default": "'vertical'",
+      "description": "The layout of the radio group. This determines how the radios are displayed.\nThis only applies to `syn-radio` elements.\n`syn-radio-button` items are rendered in their own button-group and will always render vertically.\n\n- `horizontal`: Radios are displayed in a row.\n- `vertical`: Radios are displayed in a column.",
+      "name": "layout",
+      "type": "'horizontal' | 'vertical'"
     },
     {
       "access": "public",

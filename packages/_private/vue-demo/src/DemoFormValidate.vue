@@ -6,6 +6,7 @@ import {
   SynVueCombobox,
   SynVueCheckbox,
   SynVueDivider,
+  SynVueFieldset,
   SynVueFile,
   SynVueIcon,
   SynVueInput,
@@ -29,7 +30,6 @@ import {
   statusSuccess,
   statusWarning,
 } from '@synergy-design-system/demo-utilities';
-import DemoFieldset from './DemoFieldset.vue';
 
 const nationalities = mockData('nationalities');
 
@@ -91,7 +91,7 @@ const synChange = () => {
     </SynVueAlert>
 
     <!-- PersonalInformation -->
-    <DemoFieldset legend="Personal Information">
+    <SynVueFieldset legend="Personal Information">
 
       <SynVueValidate variant="inline">
         <SynVueRadioGroup
@@ -218,13 +218,13 @@ const synChange = () => {
         </SynVueCombobox>
       </SynVueValidate>
 
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /PersonalInformation -->
 
     <SynVueDivider />
 
     <!-- Security -->
-    <DemoFieldset legend="Security">
+    <SynVueFieldset legend="Security">
       <SynVueValidate variant="inline" on="input blur">
         <SynVueInput
           id="input-password"
@@ -251,13 +251,13 @@ const synChange = () => {
           v-model="formData.code"
         />
       </SynVueValidate>
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /Security -->
 
     <SynVueDivider />
 
     <!-- Topics -->
-    <DemoFieldset legend="Topics">
+    <SynVueFieldset legend="Topics">
       <SynVueSelect
         clearable
         id="topics"
@@ -292,13 +292,13 @@ const synChange = () => {
           {{ framework.label }}
         </SynVueOption>
       </SynVueCombobox>
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /Topics -->
 
     <SynVueDivider />
 
     <!-- Happiness -->
-    <DemoFieldset id="happiness-fields" legend="Happiness">
+    <SynVueFieldset id="happiness-fields" legend="Happiness">
       <SynVueValidate variant="inline" on="live">
         <SynVueRange
           id="happiness"
@@ -342,13 +342,13 @@ const synChange = () => {
           <SynVueRangeTick>6.000 €</SynVueRangeTick>
         </nav>
       </SynVueRange>
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /.Happiness -->
 
     <SynVueDivider />
 
     <!-- Marketing -->
-    <DemoFieldset legend="Please inform me about the following technologies">
+    <SynVueFieldset legend="Please inform me about the following technologies">
       <SynVueValidate variant="inline">
         <SynVueCheckbox
           id="checkbox-newsletter-default"
@@ -369,13 +369,13 @@ const synChange = () => {
           I am interested in the Synergy Beta Program
         </SynVueSwitch>
       </SynVueValidate>
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /Marketing -->
 
     <SynVueDivider />
 
     <!-- AdditionalInformation -->
-    <DemoFieldset legend="Additional Information">
+    <SynVueFieldset legend="Additional Information">
       <SynVueValidate variant="inline" on="live">
         <SynVueTextarea
           id="additional-info"
@@ -399,7 +399,7 @@ const synChange = () => {
           v-model="formData.files"
         />
       </SynVueValidate>
-    </DemoFieldset>
+    </SynVueFieldset>
     <!-- /AdditionalInformation -->
 
     <SynVueDivider />
@@ -414,44 +414,4 @@ const synChange = () => {
   </form>
 </template>
 
-<style scoped>
-form syn-divider {
-  --spacing: var(--syn-spacing-2x-large);
-}
 
-form .syn-fieldset:last-of-type {
-  margin-bottom: 0;
-}
-
-.syn-legend {
-  font-size: var(--syn-font-size-large);
-  margin-bottom: var(--syn-spacing-medium);
-}
-
-.syn-submit-buttons {
-  align-items: center;
-  border: none;
-  display: flex;
-  flex-direction: row;
-  gap: var(--syn-spacing-large);
-  margin: 0 0 var(--syn-spacing-2x-large) 0;
-  padding: 0;
-  justify-content: center;
-}
-
-/* Special overrides */
-#happiness-fields syn-range nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-#radiogroup-gender::part(form-control-input) {
-  display: flex;
-  gap: var(--syn-spacing-medium);
-}
-
-#input-nationality::part(listbox) {
-  max-height: min(var(--auto-size-available-height), 300px);
-}
-</style>

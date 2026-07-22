@@ -9,11 +9,15 @@ export const Dialog = (regressions: RegressionFns = []) => {
 
   return html`
     <syn-dialog
-      ?open=${false}
+      open
       label="Dialog"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      <syn-button variant="filled" slot="footer">
+      <syn-button
+        @click=${(e: MouseEvent) => (e.target as HTMLElement).closest('syn-dialog')?.hide()}
+        variant="filled"
+        slot="footer"
+      >
         Close
       </syn-button>
     </syn-dialog>

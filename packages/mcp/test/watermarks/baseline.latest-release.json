@@ -1,6 +1,6 @@
 {
   "encoding": "o200k_base",
-  "generatedAt": "2026-07-10T12:21:49.041Z",
+  "generatedAt": "2026-07-21T11:20:54.222Z",
   "source": "current-worktree",
   "version": 1,
   "watermarks": [
@@ -26,7 +26,7 @@
     },
     {
       "id": "component-info:interface:syn-button",
-      "tokens": 1555
+      "tokens": 1562
     },
     {
       "id": "component-info:examples:syn-button",
@@ -34,7 +34,7 @@
     },
     {
       "id": "component-info:examples:syn-chart",
-      "tokens": 4938
+      "tokens": 5310
     },
     {
       "id": "component-info:full:syn-button",
@@ -46,11 +46,11 @@
     },
     {
       "id": "component-info:interface:syn-input",
-      "tokens": 3028
+      "tokens": 3037
     },
     {
       "id": "component-info:interface:syn-combobox",
-      "tokens": 2437
+      "tokens": 2447
     },
     {
       "id": "styles-info:syn-body",
@@ -70,7 +70,7 @@
     },
     {
       "id": "token-info:css:sick2025-light",
-      "tokens": 8591
+      "tokens": 8603
     },
     {
       "id": "prompt:explain-component-rules:syn-accordion",

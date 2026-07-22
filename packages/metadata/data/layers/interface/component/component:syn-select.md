@@ -57,7 +57,8 @@ reflects: no
 type: `string`
 default: `' '`
 
-The delimiter to use when setting the value when `multiple` is enabled. The default is a space, but you can set it to a comma or other character.
+The delimiter to use when setting the value when `multiple` is enabled.
+The default is a space, but you can set it to a comma or other character.
 
 ### disabled
 
@@ -75,7 +76,9 @@ reflects: yes
 type: `string`
 default: `''`
 
-By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you to place the form control outside of a form and associate it with the form that has this `id`. The form must be in the same document or shadow root for this to work.
+By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+the same document or shadow root for this to work.
 
 ### getTag
 
@@ -84,7 +87,9 @@ reflects: no
 type: `(option: SynOption, index: number) => TemplateResult | string | HTMLElement`
 default: none
 
-A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second is the current tag's index. The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at the specified value.
+A function that customizes the tags to be rendered when multiple=true. The first argument is the option, the second
+is the current tag's index. The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
+the specified value.
 
 ### helpText
 
@@ -111,7 +116,8 @@ reflects: no
 type: `number`
 default: `3`
 
-The maximum number of selected options to show when `multiple` is true. After the maximum, "+n" will be shown to indicate the number of additional items that are selected. Set to 0 to remove the limit.
+The maximum number of selected options to show when `multiple` is true. After the maximum, "+n" will be shown to
+indicate the number of additional items that are selected. Set to 0 to remove the limit.
 
 ### multiple
 
@@ -138,7 +144,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Indicates whether or not the select is open. You can toggle this attribute to show and hide the menu, or you can use the `show()` and `hide()` methods and this attribute will reflect the select's open state.
+Indicates whether or not the select is open. You can toggle this attribute to show and hide the menu, or you can
+use the `show()` and `hide()` methods and this attribute will reflect the select's open state.
 
 ### placeholder
 
@@ -156,7 +163,8 @@ reflects: yes
 type: `'top' | 'bottom'`
 default: `'bottom'`
 
-The preferred placement of the select's menu. Note that the actual placement may vary as needed to keep the listbox inside of the viewport.
+The preferred placement of the select's menu. Note that the actual placement may vary as needed to keep the listbox
+inside of the viewport.
 
 ### readonly
 
@@ -192,7 +200,9 @@ reflects: no
 type: `undefined`
 default: none
 
-The current value of the select, submitted as a name/value pair with form data. When `multiple` is enabled, the value attribute will be a space-delimited list of values based on the options selected, and the value property will be an array. **For this reason, values must not contain spaces.**
+The current value of the select, submitted as a name/value pair with form data. When `multiple` is enabled, the
+value attribute will be a space-delimited list of values based on the options selected, and the value property will
+be an array. **For this reason, values must not contain spaces.**
 
 ## Available Methods
 

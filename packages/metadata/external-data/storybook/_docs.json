@@ -810,6 +810,108 @@
         }
       }
     },
+    "checkbox-group": {
+      "default": {
+        "title": {
+          "value": "Checkbox Group",
+          "type": "text"
+        },
+        "description": {
+          "value": "Checkbox groups are used to visually group multiple checkboxes.",
+          "type": "text"
+        }
+      },
+      "vertical-layout": {
+        "title": {
+          "value": "Vertical layout",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use a vertical layout to display the checkboxes in a column.",
+          "type": "text"
+        }
+      },
+      "horizontal-layout": {
+        "title": {
+          "value": "Horizontal layout",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use a horizontal layout to display the checkboxes in a row.",
+          "type": "text"
+        }
+      },
+      "labels": {
+        "title": {
+          "value": "Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the label attribute to give the checkbox-group an accessible label. For labels that contain HTML, use the label slot instead.",
+          "type": "text"
+        }
+      },
+      "checked": {
+        "title": {
+          "value": "Checked",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the checked attribute on the corresponding syn-checkbox elements to set the checked state.",
+          "type": "text"
+        }
+      },
+      "help-text": {
+        "title": {
+          "value": "Help Text",
+          "type": "text"
+        },
+        "description": {
+          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\n\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+          "type": "text"
+        }
+      },
+      "focus": {
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        },
+        "description": {
+          "value": "The focus event gives the user feedback that one of the Checkboxes has been focused by the keyboard interaction.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the disabled attribute on the corresponding syn-checkbox elements to set the disabled state.",
+          "type": "text"
+        }
+      },
+      "readonly": {
+        "title": {
+          "value": "Readonly",
+          "type": "text"
+        },
+        "description": {
+          "value": "Checkboxes can be displayed in a read-only state by applying the readonly attribute to the selected checkbox inside the checkbox group.",
+          "type": "text"
+        }
+      },
+      "sizes": {
+        "title": {
+          "value": "Sizes",
+          "type": "text"
+        },
+        "description": {
+          "value": "The size of checkboxes will be determined by the checkbox group’s size attribute.",
+          "type": "text"
+        }
+      }
+    },
     "color-picker": {
       "title": {
         "value": "Color Picker",
@@ -1180,6 +1282,48 @@
         },
         "warning": {
           "value": "As a UX best practice, avoid using more than one level of submenus when possible.",
+          "type": "text"
+        }
+      }
+    },
+    "fieldset": {
+      "default": {
+        "title": {
+          "value": "Fieldset",
+          "type": "text"
+        },
+        "description": {
+          "value": "Fieldset is a component used to group related form controls and labels. It provides a visual and semantic grouping for better accessibility and organization.",
+          "type": "text"
+        }
+      },
+      "one-column-layout": {
+        "title": {
+          "value": "One-column Layout",
+          "type": "text"
+        },
+        "description": {
+          "value": "The one-column layout applies to container widths below 640px and stacks the nested elements within a row. Overall, please make sure that no more than two items are nested within a single row.",
+          "type": "text"
+        }
+      },
+      "two-column-layout": {
+        "title": {
+          "value": "Two-column Layout",
+          "type": "text"
+        },
+        "description": {
+          "value": "For container widths of 640px or above, the nested elements within each row switch to a horizontal layout.\n\nThis layout is ideal for forms with multiple fields, as it allows for a more compact and organized presentation of the form controls.\n\nWill automatically switch to a one-column layout for container widths below 640px.",
+          "type": "text"
+        }
+      },
+      "disabled": {
+        "title": {
+          "value": "Disabled",
+          "type": "text"
+        },
+        "description": {
+          "value": "Enable the disabled toggle to disable all nested elements simultaneously.",
           "type": "text"
         }
       }
@@ -2105,6 +2249,16 @@
           "type": "text"
         }
       },
+      "focus": {
+        "description": {
+          "value": "The focus event gives the user feedback that the radio button has been focused by the keyboard interaction.",
+          "type": "text"
+        },
+        "title": {
+          "value": "Focus",
+          "type": "text"
+        }
+      },
       "disabled": {
         "description": {
           "value": "Use the disabled attribute to disable a radio button.",
@@ -2284,6 +2438,16 @@
         },
         "description": {
           "value": "Radio buttons offer an alternate way to display radio controls. In this case, an internal button group is used to group the buttons into a single, cohesive control.",
+          "type": "text"
+        }
+      },
+      "horizontal-layout": {
+        "title": {
+          "value": "Horizontal layout",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use a horizontal layout to display the radios in a row.",
           "type": "text"
         }
       }
@@ -3465,7 +3629,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the *children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.\n\nNote:\nSince there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided.",
+          "value": "Use the children attribute to indicate that a chevron should be shown. In development this will be handled automatically as soon as an element has children.\n\nNote:\nSince there should be no double use of functionality, a link cannot be mixed with an accordion behavior. The accordion always has priority, which means that if the href attribute is used at the same time as children, the link functionality is ignored and only the accordion behavior is provided.",
           "type": "text"
         }
       },

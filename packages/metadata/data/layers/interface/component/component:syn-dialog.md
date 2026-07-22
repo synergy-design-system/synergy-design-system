@@ -36,7 +36,8 @@ reflects: yes
 type: `string`
 default: `''`
 
-The dialog's label as displayed in the header. You should always include a relevant label even when using `no-header`, as it is required for proper accessibility. If you need to display HTML, use the `label` slot instead.
+The dialog's label as displayed in the header. You should always include a relevant label even when using
+`no-header`, as it is required for proper accessibility. If you need to display HTML, use the `label` slot instead.
 
 ### modal
 
@@ -54,7 +55,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Disables the header. This will also remove the default close button, so please ensure you provide an easy, accessible way for users to dismiss the dialog.
+Disables the header. This will also remove the default close button, so please ensure you provide an easy,
+accessible way for users to dismiss the dialog.
 
 ### open
 
@@ -63,7 +65,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Indicates whether or not the dialog is open. You can toggle this attribute to show and hide the dialog, or you can use the `show()` and `hide()` methods and this attribute will reflect the dialog's open state.
+Indicates whether or not the dialog is open. You can toggle this attribute to show and hide the dialog, or you can
+use the `show()` and `hide()` methods and this attribute will reflect the dialog's open state.
 
 ## Available Methods
 

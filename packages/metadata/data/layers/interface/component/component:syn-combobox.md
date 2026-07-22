@@ -58,7 +58,8 @@ reflects: no
 type: `string`
 default: `' '`
 
-The delimiter to use when setting the value when `multiple` is enabled. The default is a space ' ', but you can set it to a comma or other character(s).
+The delimiter to use when setting the value when `multiple` is enabled.
+The default is a space ' ', but you can set it to a comma or other character(s).
 
 ### disabled
 
@@ -76,7 +77,8 @@ reflects: no
 type: `(option: SynOption, queryString: string) => boolean`
 default: none
 
-A function used to filter options in the combobox component. The default filter method is a case- and diacritic-insensitive string comparison.
+A function used to filter options in the combobox component.
+The default filter method is a case- and diacritic-insensitive string comparison.
 
 ### form
 
@@ -85,7 +87,10 @@ reflects: yes
 type: `string`
 default: `''`
 
-By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you to place the form control outside of a form and associate it with the form that has this `id`. The form must be in the same document or shadow root for this to work.
+By default, form controls are associated with the nearest containing `<form>` element.
+This attribute allows you to place the form control outside of a form and associate it
+with the form that has this `id`.
+The form must be in the same document or shadow root for this to work.
 
 ### getOption
 
@@ -94,7 +99,11 @@ reflects: no
 type: `OptionRenderer`
 default: `defaultOptionRenderer`
 
-A function that customizes the rendered option. The first argument is the option, the second is the query string, which is typed into the combobox. The function should return either a Lit TemplateResult or a string containing trusted HTML to render in the shown list of filtered options. If the query string should be highlighted use the `highlightOptionRenderer` function.
+A function that customizes the rendered option. The first argument is the option, the second
+is the query string, which is typed into the combobox.
+The function should return either a Lit TemplateResult or a string containing trusted HTML
+to render in the shown list of filtered options.
+If the query string should be highlighted use the `highlightOptionRenderer` function.
 
 ### getTag
 
@@ -103,7 +112,9 @@ reflects: no
 type: `(option: SynOption, index: number) => TemplateResult | string | HTMLElement`
 default: none
 
-A function that customizes the tags to be rendered when `multiple` is true. The first argument is the option, the second is the current tag's index. The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at the specified value.
+A function that customizes the tags to be rendered when `multiple` is true. The first argument is the option, the second
+is the current tag's index. The function should return either a Lit TemplateResult or a string containing trusted HTML of the symbol to render at
+the specified value.
 
 ### helpText
 
@@ -139,7 +150,8 @@ reflects: no
 type: `number`
 default: `3`
 
-The maximum number of selected options to show when `multiple` is true. After the maximum, "+n" will be shown to indicate the number of additional items that are selected. Set to 0 to remove the limit.
+The maximum number of selected options to show when `multiple` is true. After the maximum, "+n" will be shown to
+indicate the number of additional items that are selected. Set to 0 to remove the limit.
 
 ### multiple
 
@@ -148,7 +160,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Allows more than one option to be selected. If `multiple` is set, the combobox will always be `restricted` to the available options
+Allows more than one option to be selected.
+If `multiple` is set, the combobox will always be `restricted` to the available options
 
 ### name
 
@@ -166,7 +179,9 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Indicates whether or not the combobox is open. You can toggle this attribute to show and hide the listbox, or you can use the `show()` and `hide()` methods and this attribute will reflect the combobox's open state.
+Indicates whether or not the combobox is open.
+You can toggle this attribute to show and hide the listbox, or you can use the `show()`
+and `hide()` methods and this attribute will reflect the combobox's open state.
 
 ### placeholder
 
@@ -184,7 +199,8 @@ reflects: yes
 type: `'top' | 'bottom'`
 default: `'bottom'`
 
-The preferred placement of the combobox's menu. Note that the actual placement may vary as needed to keep the listbox inside of the viewport.
+The preferred placement of the combobox's menu.
+Note that the actual placement may vary as needed to keep the listbox inside of the viewport.
 
 ### readonly
 
@@ -211,7 +227,9 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-When set to `true`, restricts the combobox to only allow selection from the available options. Users will not be able to enter custom values that are not present in the list. This will always be true, if `multiple` is active.
+When set to `true`, restricts the combobox to only allow selection from the available options.
+Users will not be able to enter custom values that are not present in the list.
+This will always be true, if `multiple` is active.
 
 ### size
 
@@ -229,7 +247,9 @@ reflects: no
 type: `undefined`
 default: none
 
-The current value of the combobox, submitted as a name/value pair with form data. When `multiple` is enabled, the value attribute will be a list of values separated by the delimiter, based on the options selected, and the value property will be an array. **For this reason, values must not contain the delimiter character.**
+The current value of the combobox, submitted as a name/value pair with form data. When `multiple` is enabled, the
+value attribute will be a list of values separated by the delimiter, based on the options selected, and the value property will
+be an array. **For this reason, values must not contain the delimiter character.**
 
 ## Available Methods
 

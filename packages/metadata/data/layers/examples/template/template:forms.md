@@ -11,77 +11,39 @@
     h1 {
       margin: 0 0 var(--syn-spacing-medium) 0;
     }
-  }
 
-  .synergy-form-demo > p {
-    margin: 0 0 var(--syn-spacing-2x-large) 0;
-  }
-
-  em {
-    font-size: var(--syn-font-size-x-small);
-    font-style: normal;
-  }
-
-  fieldset {
-    border: none;
-    margin: 0 0 var(--syn-spacing-2x-large) 0;
-    padding: 0;
-  }
-
-  fieldset legend {
-    font: var(--syn-heading-large);
-    margin-bottom: var(--syn-spacing-large);
-  }
-
-  fieldset legend + p {
-    font-size: var(--syn-font-size-medium);
-    margin: 0 0 var(--syn-font-size-large) 0;
-  }
-
-  .fields {
-    container-type: inline-size;
-    display: flex;
-    flex-flow: wrap;
-    margin-bottom: var(--syn-spacing-2x-large);
-    gap: var(--syn-spacing-large);
-  }
-
-  .fields > * {
-    flex-basis: 100%;
-  }
-
-  @container (min-width: 640px) {
-    .fields > * {
-      flex-basis: calc(50% - calc(var(--syn-spacing-large) / 2));
+    > p {
+      margin: 0 0 var(--syn-spacing-2x-large) 0;
     }
-  }
 
-  /*
-   * The form control inputs are using a css grid to be displayed.
-   * We just let them flow automatically mobile and arrange them
-   * in two columns when space is wide enough
-   */
-  #topics-wrapper {
-    container-type: inline-size;
-  }
+    em {
+      font-size: var(--syn-font-size-x-small);
+      font-style: normal;
+    }
 
-  #topics {
-    gap: var(--syn-spacing-x-small);
-    display: grid;
-  }
+    .submit-actions {
+      display: flex;
+      justify-content: right;
+      margin: var(--syn-spacing-2x-large) 0;
+    }
 
-  @container (min-width: 640px) {
+    /* Special responsive handling for the topics checkbox group, which is displayed in a grid on larger screens */
     #topics {
-      grid-auto-flow: column;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr;
+      container-type: inline-size;
     }
-  }
 
-  .submit-actions {
-    display: flex;
-    justify-content: right;
-    margin-bottom: var(--syn-spacing-2x-large);
+    #topics::part(form-control-input) {
+      gap: var(--syn-spacing-x-small);
+      display: grid;
+    }
+
+    @container (min-width: 640px) {
+      #topics::part(form-control-input) {
+        grid-auto-flow: column;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+      }
+    }
   }
 </style>
 <div class="synergy-form-demo">
@@ -92,9 +54,8 @@
   </p>
 
   <form method="post" id="syn-form-demo">
-    <fieldset id="topics-wrapper">
-      <legend>Topic</legend>
-      <div id="topics">
+    <syn-fieldset legend="Topic">
+      <syn-checkbox-group id="topics">
         <syn-checkbox name="topic[0]" value="Inquiry/offer">
           Inquiry/offer
         </syn-checkbox>
@@ -122,61 +83,57 @@
         <syn-checkbox name="topic[6]" value="Commissioning support">
           Commissioning support
         </syn-checkbox>
-      </div>
-    </fieldset>
+      </syn-checkbox-group>
+    </syn-fieldset>
 
-    <fieldset>
-      <legend>Question</legend>
-      <p>
-        It is very helpful if the description is as precise as possible to
-        enable us to process your enquiry correctly. When describing
-        applications, please specify the material/dimensions/speed, if
-        applicable.
-      </p>
-
+    <syn-fieldset
+      layout="one-column"
+      description="It is very helpful if the description is as precise as possible to enable us to process your enquiry correctly. When describing applications, please specify the material/dimensions/speed, if applicable."
+      legend="Question"
+    >
       <syn-textarea name="message" required="" label="Message"></syn-textarea>
-    </fieldset>
+    </syn-fieldset>
 
-    <fieldset>
-      <legend>Contact Details</legend>
-      <div class="fields">
-        <syn-input name="customerNr" label="Customer Number"></syn-input>
-        <syn-input
-          name="companyName"
-          required=""
-          label="Company name"
-        ></syn-input>
-        <syn-input name="address" required="" label="Address"></syn-input>
-        <syn-input name="zip" required="" label="Postal Code"></syn-input>
-        <syn-input name="city" required="" label="City"></syn-input>
+    <syn-fieldset layout="two-columns" legend="Contact Details">
+      <syn-input name="customerNr" label="Customer Number"></syn-input>
+      <syn-input
+        name="companyName"
+        required=""
+        label="Company name"
+      ></syn-input>
+      <syn-input name="address" required="" label="Address"></syn-input>
+      <syn-input name="zip" required="" label="Postal Code"></syn-input>
+      <syn-input name="city" required="" label="City"></syn-input>
 
-        <syn-select name="country" required="" label="Country">
-          <syn-option value="0">Deutschland</syn-option>
+      <syn-select name="country" required="" label="Country">
+        <syn-option value="0">Deutschland</syn-option>
 
-          <syn-option value="1">USA</syn-option>
+        <syn-option value="1">USA</syn-option>
 
-          <syn-option value="2">China</syn-option>
-        </syn-select>
+        <syn-option value="2">China</syn-option>
+      </syn-select>
 
-        <syn-combobox
-          name="salesPerson"
-          required=""
-          label="Your reference contact"
-        >
-          <syn-option>Max Mustermann</syn-option>
-          <syn-option>John Doe</syn-option>
-          <syn-option>Jane Row</syn-option>
-          <syn-option>Average Joe</syn-option>
-        </syn-combobox>
-        <syn-input type="tel" name="phone" label="Phone number"></syn-input>
-        <syn-input type="tel" name="fax" label="Fax number"></syn-input>
-        <syn-input
-          type="email"
-          name="mail"
-          required=""
-          label="E-Mail address"
-        ></syn-input>
-      </div>
+      <syn-combobox
+        name="salesPerson"
+        required=""
+        label="Your reference contact"
+      >
+        <syn-option>Max Mustermann</syn-option>
+        <syn-option>John Doe</syn-option>
+        <syn-option>Jane Row</syn-option>
+        <syn-option>Average Joe</syn-option>
+      </syn-combobox>
+      <syn-input type="tel" name="phone" label="Phone number"></syn-input>
+      <syn-input type="tel" name="fax" label="Fax number"></syn-input>
+      <syn-input
+        type="email"
+        name="mail"
+        required=""
+        label="E-Mail address"
+      ></syn-input>
+    </syn-fieldset>
+
+    <syn-fieldset>
       <syn-checkbox name="subscribeNewsletter">
         Yes, I would like to receive up-to-date and interesting information on
         solutions with products, systems and services from SICK by email on a
@@ -184,7 +141,7 @@
         consent, I can use the unsubscribe link in every newsletter / email at
         any time.
       </syn-checkbox>
-    </fieldset>
+    </syn-fieldset>
 
     <div class="submit-actions">
       <syn-button type="submit" variant="filled">Send</syn-button>
@@ -282,6 +239,12 @@
     h1 {
       margin: 0 0 var(--syn-spacing-medium) 0;
     }
+
+    .submit-actions {
+      display: flex;
+      justify-content: right;
+      margin-top: var(--syn-spacing-2x-large);
+    }
   }
 
   .uploaded-files {
@@ -352,12 +315,6 @@
         bottom: 0;
       }
     }
-  }
-
-  .submit-actions {
-    display: flex;
-    justify-content: right;
-    margin-top: var(--syn-spacing-2x-large);
   }
 </style>
 

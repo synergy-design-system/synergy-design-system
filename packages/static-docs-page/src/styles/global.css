@@ -60,6 +60,10 @@ main {
       margin: 0 0 var(--syn-spacing-medium);
     }
 
+    syn-card h3[slot="header"] {
+      margin: 0;
+    }
+
     h4 {
       margin: 0 0 var(--syn-spacing-small);
     }

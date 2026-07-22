@@ -20,6 +20,7 @@ Checkboxes allow the user to toggle an option on or off.
 ### Interaction and Usage
 
 - Ensure each selection operates independently unless used for bulk actions.
+- When multiple related checkbox options are shown together, prefer wrapping them in syn-checkbox-group for shared labeling and guidance.
 - List selections in a logical order, such as alphabetical or numerical.
 - Refrain from using a single checkbox when the action should take effect immediately - use syn-switch instead.
 
@@ -28,6 +29,10 @@ Checkboxes allow the user to toggle an option on or off.
 - Checkboxes should always look like checkboxes to meet user's expectations.
 - Nesting other interactive elements like links inside labels should be avoided.
 - An error-text with a warning icon should be placed underneath an invalid checkbox. Error messages should always provide hints for solutions.
+
+## Related Components
+
+- syn-checkbox-group
 
 ## Related Templates
 

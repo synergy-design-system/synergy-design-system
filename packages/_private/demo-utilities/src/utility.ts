@@ -138,6 +138,7 @@ export const setGlobalSize = (size: AllowedSizes) => {
       SynButton: size,
       SynButtonGroup: size,
       SynCheckbox: size,
+      SynCheckboxGroup: size,
       SynCombobox: size,
       SynDetails: size,
       SynFile: size,

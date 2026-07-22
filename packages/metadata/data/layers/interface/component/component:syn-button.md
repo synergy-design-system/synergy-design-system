@@ -62,7 +62,8 @@ reflects: no
 type: `string`
 default: none
 
-The "form owner" to associate the button with. If omitted, the closest containing form will be used instead. The value of this attribute must be an id of a form in the same document or shadow root as the button.
+The "form owner" to associate the button with. If omitted, the closest containing form will be used instead. The
+value of this attribute must be an id of a form in the same document or shadow root as the button.
 
 ### formAction
 
@@ -134,7 +135,8 @@ reflects: no
 type: `string`
 default: `''`
 
-The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter. This attribute is ignored when `href` is present.
+The name of the button, submitted as a name/value pair with form data, but only when this button is the submitter.
+This attribute is ignored when `href` is present.
 
 ### rel
 
@@ -143,7 +145,10 @@ reflects: no
 type: `string`
 default: `'noreferrer noopener'`
 
-When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the default is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a specific tab/window, this will prevent that from working correctly. You can remove or change the default value by setting the attribute to an empty string or a value of your choice, respectively.
+When using `href`, this attribute will map to the underlying link's `rel` attribute. Unlike regular links, the
+default is `noreferrer noopener` to prevent security exploits. However, if you're using `target` to point to a
+specific tab/window, this will prevent that from working correctly. You can remove or change the default value by
+setting the attribute to an empty string or a value of your choice, respectively.
 
 ### size
 
@@ -170,7 +175,8 @@ reflects: no
 type: `'button' | 'submit' | 'reset'`
 default: `'button'`
 
-The type of button. Note that the default value is `button` instead of `submit`, which is opposite of how native `<button>` elements behave. When the type is `submit`, the button will submit the surrounding form.
+The type of button. Note that the default value is `button` instead of `submit`, which is opposite of how native
+`<button>` elements behave. When the type is `submit`, the button will submit the surrounding form.
 
 ### value
 
@@ -179,7 +185,8 @@ reflects: no
 type: `string`
 default: `''`
 
-The value of the button, submitted as a pair with the button's name as part of the form data, but only when this button is the submitter. This attribute is ignored when `href` is present.
+The value of the button, submitted as a pair with the button's name as part of the form data, but only when this
+button is the submitter. This attribute is ignored when `href` is present.
 
 ### variant
 

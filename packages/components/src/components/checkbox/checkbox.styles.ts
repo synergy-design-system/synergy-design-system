@@ -8,34 +8,29 @@ export default css`
   }
 
   .checkbox {
+    --cb-font-size: var(--syn-input-font-size-medium);
+    --toggle-size: var(--syn-toggle-size-medium);
+
     align-items: flex-start;
     color: var(--syn-input-label-color);
     cursor: pointer;
     display: inline-flex;
     font-family: var(--syn-input-font-family);
+    font-size: var(--cb-font-size);
     font-weight: var(--syn-input-font-weight);
-    padding: var(--syn-spacing-2x-small) 0; /* #1083: This adds spacing around multi-line labels */
+    padding: 0;
     position: relative;
     vertical-align: middle;
   }
 
   .checkbox--small {
+    --cb-font-size: var(--syn-input-font-size-small);
     --toggle-size: var(--syn-toggle-size-small);
-
-    font-size: var(--syn-input-font-size-small);
-    padding: var(--syn-spacing-3x-small) 0;
-  }
-
-  .checkbox--medium {
-    --toggle-size: var(--syn-toggle-size-medium);
-
-    font-size: var(--syn-input-font-size-medium);
   }
 
   .checkbox--large {
+    --cb-font-size: var(--syn-input-font-size-large);
     --toggle-size: var(--syn-toggle-size-large);
-
-    font-size: var(--syn-input-font-size-large);
   }
 
   .checkbox__control {

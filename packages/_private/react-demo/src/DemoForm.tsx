@@ -14,7 +14,6 @@ import type {
   SynCheckbox,
   SynFile,
 } from '@synergy-design-system/components';
-import { DemoFieldset } from './DemoFieldset.js';
 
 type FormEnabledElements = HTMLElement & {
   checked?: boolean;
@@ -99,7 +98,7 @@ export const DemoForm = () => {
       )}
 
       {/* PersonalInformation */}
-      <DemoFieldset legend="Personal Information">
+      <syn-fieldset legend="Personal Information">
 
         <syn-radio-group
           id="radiogroup-gender"
@@ -186,13 +185,13 @@ export const DemoForm = () => {
           ))}
         </syn-combobox>
 
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /PersonalInformation */}
 
       <syn-divider />
 
       {/* Security */}
-      <DemoFieldset legend="Security">
+      <syn-fieldset legend="Security">
         <syn-input
           id="input-password"
           label="Provide a secure password"
@@ -215,13 +214,13 @@ export const DemoForm = () => {
           type="number"
           value={formData.code}
         />
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /Security */}
 
       <syn-divider />
 
       {/* Topics */}
-      <DemoFieldset legend="Topics">
+      <syn-fieldset legend="Topics">
         <syn-select
           clearable
           id="topics"
@@ -258,13 +257,13 @@ export const DemoForm = () => {
             </syn-option>
           ))}
         </syn-combobox>
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /Topics */}
 
       <syn-divider />
 
       {/* Happiness */}
-      <DemoFieldset id="happiness-fields" legend="Happiness">
+      <syn-fieldset id="happiness-fields" legend="Happiness">
         <syn-range
           id="happiness"
           label="How happy are you with the Synergy Design System?"
@@ -296,13 +295,13 @@ export const DemoForm = () => {
           </nav>
         </syn-range>
 
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /Happiness */}
 
       <syn-divider />
 
       {/* Experience */}
-      <DemoFieldset legend="Experience">
+      <syn-fieldset legend="Experience">
         <syn-radio-group
           id="experience"
           label="How experienced are you with the Synergy Design System?"
@@ -315,13 +314,13 @@ export const DemoForm = () => {
           <syn-radio value={3}>I am a Synergy Design System expert</syn-radio>
           <syn-radio value={4}>I am the creator of the Synergy Design System</syn-radio>
         </syn-radio-group>
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /Experience */}
 
       <syn-divider />
 
       {/* Marketing */}
-      <DemoFieldset legend="Please inform me about the following technologies">
+      <syn-checkbox-group label="Please inform me about the following technologies">
         <syn-checkbox
           checked={formData.newsletterStandard}
           id="checkbox-newsletter-default"
@@ -380,7 +379,11 @@ export const DemoForm = () => {
         >
           I am interested in the Synergy UX Program
         </syn-switch>
+      </syn-checkbox-group>
 
+      <syn-divider />
+
+      <syn-fieldset legend="Please inform me about the following technologies">
         <syn-radio-group
           id="preferred-contact-method"
           label="Preferred contact method"
@@ -391,13 +394,13 @@ export const DemoForm = () => {
           <syn-radio-button value="phone" readonly>Phone</syn-radio-button>
           <syn-radio-button value="other">Other</syn-radio-button>
         </syn-radio-group>
-      </DemoFieldset>
+      </syn-fieldset>
       {/* /Marketing */}
 
       <syn-divider />
 
       { /* AdditionalInformation */ }
-      <DemoFieldset legend="Additional Information">
+      <syn-fieldset legend="Additional Information">
         <syn-textarea
           id="additional-info"
           label="Comment"
@@ -417,14 +420,14 @@ export const DemoForm = () => {
           multiple
           name="files"
         />
-      </DemoFieldset>
+      </syn-fieldset>
 
       { /* /AdditionalInformation */ }
 
       <syn-divider />
 
       {/* Actions */}
-      <div className="syn-fieldset syn-submit-buttons">
+      <div className="syn-submit-buttons">
         <syn-button variant="outline" type="reset">Reset</syn-button>
         <syn-button variant="filled" type="submit">Send</syn-button>
       </div>

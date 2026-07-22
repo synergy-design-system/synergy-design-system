@@ -3,7 +3,7 @@
 /** @type {import('../../src/config/types.js').ComponentRules} */
 export default {
   accessibility: [
-    'Use syn-radio inside syn-radio-group so assistive technologies can interpret options as one exclusive choice set.',
+    'syn-radio is not a standalone control; always use syn-radio inside syn-radio-group so assistive technologies can interpret options as one exclusive choice set.',
     'Ensure each radio has a clear, unique visible label; avoid ambiguous labels such as "Option 1" without context.',
     'Use disabled or readonly states only when users can still understand why an option is unavailable.',
   ],
@@ -19,6 +19,7 @@ export default {
   usageGuidelines: [
     {
       content: [
+        'Do not use syn-radio on its own; slot it into syn-radio-group to get correct keyboard behavior, semantics, and form participation.',
         'Use radios when users must select exactly one option from a small, predefined list.',
         'Keep options mutually exclusive and avoid overlapping meanings between choices.',
         'Present options in a stable order and keep wording parallel to make comparison easier.',

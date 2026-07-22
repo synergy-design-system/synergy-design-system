@@ -29,7 +29,8 @@ reflects: yes
 type: `'currentColor' | 'primary' | 'neutral'`
 default: `'currentColor'`
 
-The color of the icon button. The default "currentColor" makes it possible to easily style the icon button from outside without any CSS variables.
+The color of the icon button.
+The default "currentColor" makes it possible to easily style the icon button from outside without any CSS variables.
 
 ### disabled
 
@@ -65,7 +66,8 @@ reflects: no
 type: `string`
 default: `''`
 
-A description that gets read by assistive devices. For optimal accessibility, you should always include a label that describes what the icon button does.
+A description that gets read by assistive devices. For optimal accessibility, you should always include a label
+that describes what the icon button does.
 
 ### library
 
@@ -101,7 +103,8 @@ reflects: no
 type: `string | undefined`
 default: none
 
-An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and can result in XSS attacks.
+An external URL of an SVG file. Be sure you trust the content you are including, as it will be executed as code and
+can result in XSS attacks.
 
 ### target
 

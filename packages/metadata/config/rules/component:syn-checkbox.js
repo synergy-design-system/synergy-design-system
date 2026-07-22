@@ -10,6 +10,7 @@ export default {
   component: 'syn-checkbox',
   related: {
     components: [
+      'syn-checkbox-group',
     ],
     templates: [
       'Forms',
@@ -27,6 +28,7 @@ export default {
     {
       content: [
         'Ensure each selection operates independently unless used for bulk actions.',
+        'When multiple related checkbox options are shown together, prefer wrapping them in syn-checkbox-group for shared labeling and guidance.',
         'List selections in a logical order, such as alphabetical or numerical.',
         'Refrain from using a single checkbox when the action should take effect immediately - use syn-switch instead.',
       ],

@@ -105,6 +105,14 @@ const SynCheckbox = {
 /**
  * @type {import('html-validate').MetaElement}
  */
+const SynCheckboxGroup = {
+  flow: true,
+  sectioning: true,
+};
+
+/**
+ * @type {import('html-validate').MetaElement}
+ */
 const SynCombobox = {
   attributes: {
     hoist: {
@@ -163,6 +171,14 @@ const SynDropdown = {
   },
   flow: true,
   focusable: true,
+};
+
+/**
+ * @type {import('html-validate').MetaElement}
+ */
+const SynFieldset = {
+  flow: true,
+  sectioning: true,
 };
 
 /**
@@ -503,12 +519,14 @@ export const rules = {
   SynButtonGroup,
   SynCard,
   SynCheckbox,
+  SynCheckboxGroup,
   SynCombobox,
   SynDetails,
   SynDialog,
   SynDivider,
   SynDrawer,
   SynDropdown,
+  SynFieldset,
   SynFile,
   SynHeader,
   SynIcon,

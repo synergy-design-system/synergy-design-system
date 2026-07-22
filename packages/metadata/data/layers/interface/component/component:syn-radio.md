@@ -51,7 +51,8 @@ reflects: yes
 type: `'small' | 'medium' | 'large'`
 default: `'medium'`
 
-The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this attribute can typically be omitted.
+The radio's size. When used inside a radio group, the size will be determined by the radio group's size so this
+attribute can typically be omitted.
 
 ### value
 

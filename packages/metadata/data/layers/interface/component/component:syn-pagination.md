@@ -36,7 +36,8 @@ reflects: yes
 type: `number`
 default: `1`
 
-The current page number. The default value is 1. The component will emit a `syn-pagination-page-changed` event whenever the page changes, allowing you to respond to page changes in your application.
+The current page number. The default value is 1.
+The component will emit a `syn-pagination-page-changed` event whenever the page changes, allowing you to respond to page changes in your application.
 
 ### disabled
 
@@ -63,7 +64,8 @@ reflects: yes
 type: `number`
 default: `25`
 
-The number of items to display per page. The default value is 25. The component will emit a `syn-pagination-page-size-changed` event whenever the page size changes, allowing you to respond to page size changes in your application.
+The number of items to display per page. The default value is 25.
+The component will emit a `syn-pagination-page-size-changed` event whenever the page size changes, allowing you to respond to page size changes in your application.
 
 ### pageSizeOptions
 
@@ -72,7 +74,8 @@ reflects: no
 type: `number[]`
 default: `[10, 25, 50, 100]`
 
-An array of numbers representing the available options for the number of items to display per page. The default value is [10, 25, 50, 100]. The component will use this array to populate the rows-per-page selector, allowing users to choose from the specified options.
+An array of numbers representing the available options for the number of items to display per page. The default value is [10, 25, 50, 100].
+The component will use this array to populate the rows-per-page selector, allowing users to choose from the specified options.
 
 ### size
 
@@ -99,7 +102,9 @@ reflects: yes
 type: `'full' | 'compact'`
 default: `'full'`
 
-The pagination variant to use. The "full" variant includes comprehensive controls for navigating between pages and adjusting the number of displayed rows, while the "compact" variant offers a streamlined interface with essential navigation controls. The default value is "full".
+The pagination variant to use. The "full" variant includes comprehensive controls for navigating between pages and adjusting the number of displayed rows,
+while the "compact" variant offers a streamlined interface with essential navigation controls.
+The default value is "full".
 
 ## Available CSS Parts
 

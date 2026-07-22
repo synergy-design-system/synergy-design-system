@@ -36,7 +36,8 @@ reflects: no
 type: `string | undefined`
 default: none
 
-Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered internally. When unset, a button will be rendered instead.
+Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered
+internally. When unset, a button will be rendered instead.
 
 ### rel
 

@@ -108,6 +108,7 @@ export const defaultConfig = {
     }),
   ],
   server: {
+    forwardConsole: false,
     port: 5173,
   },
 };
@@ -137,6 +138,7 @@ export const withSpriteSheetGenerator = {
     }),
   ],
   server: {
+    forwardConsole: false,
     port: 5173,
   },
 };

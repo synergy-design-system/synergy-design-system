@@ -12,6 +12,7 @@ export { default as SynBreadcrumb } from './components/breadcrumb/breadcrumb.js'
 export { default as SynButtonGroup } from './components/button-group/button-group.js';
 export { default as SynButton } from './components/button/button.js';
 export { default as SynCard } from './components/card/card.js';
+export { default as SynCheckboxGroup } from './components/checkbox-group/checkbox-group.js';
 export { default as SynCheckbox } from './components/checkbox/checkbox.js';
 export { default as SynCombobox } from './components/combobox/combobox.js';
 export { default as SynDetails } from './components/details/details.js';
@@ -19,6 +20,7 @@ export { default as SynDialog } from './components/dialog/dialog.js';
 export { default as SynDivider } from './components/divider/divider.js';
 export { default as SynDrawer } from './components/drawer/drawer.js';
 export { default as SynDropdown } from './components/dropdown/dropdown.js';
+export { default as SynFieldset } from './components/fieldset/fieldset.js';
 export { default as SynFile } from './components/file/file.js';
 export { default as SynHeader } from './components/header/header.js';
 export { default as SynIconButton } from './components/icon-button/icon-button.js';

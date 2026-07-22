@@ -34,7 +34,8 @@ reflects: no
 type: `string`
 default: `''`
 
-The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by screen readers and other assistive devices to provide more context for users.
+The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by
+screen readers and other assistive devices to provide more context for users.
 
 ## Available CSS Parts
 

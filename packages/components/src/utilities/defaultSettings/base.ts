@@ -14,6 +14,7 @@ import type SynAlert from "../../components/alert/alert.js";
 import type SynBadge from "../../components/badge/badge.js";
 import type SynButtonGroup from "../../components/button-group/button-group.js";
 import type SynButton from "../../components/button/button.js";
+import type SynCheckboxGroup from "../../components/checkbox-group/checkbox-group.js";
 import type SynCheckbox from "../../components/checkbox/checkbox.js";
 import type SynCombobox from "../../components/combobox/combobox.js";
 import type SynDetails from "../../components/details/details.js";
@@ -75,6 +76,7 @@ export type ComponentNamesWithDefaultValues =
   | "SynButton"
   | "SynButtonGroup"
   | "SynCheckbox"
+  | "SynCheckboxGroup"
   | "SynCombobox"
   | "SynDetails"
   | "SynFile"
@@ -121,6 +123,7 @@ export type SynDefaultSettings = {
     SynButton?: AllowedValueForDefaultSetting<SynButton, "size">;
     SynButtonGroup?: AllowedValueForDefaultSetting<SynButtonGroup, "size">;
     SynCheckbox?: AllowedValueForDefaultSetting<SynCheckbox, "size">;
+    SynCheckboxGroup?: AllowedValueForDefaultSetting<SynCheckboxGroup, "size">;
     SynCombobox?: AllowedValueForDefaultSetting<SynCombobox, "size">;
     SynDetails?: AllowedValueForDefaultSetting<SynDetails, "size">;
     SynFile?: AllowedValueForDefaultSetting<SynFile, "size">;
@@ -168,6 +171,7 @@ export const defaultSettings: SynDefaultSettings = {
     SynButton: "medium",
     SynButtonGroup: "medium",
     SynCheckbox: "medium",
+    SynCheckboxGroup: "medium",
     SynCombobox: "medium",
     SynDetails: "medium",
     SynFile: "medium",
@@ -213,6 +217,7 @@ export const INITIAL_DEFAULT_SETTINGS: SynDefaultSettings = {
     SynButton: "medium",
     SynButtonGroup: "medium",
     SynCheckbox: "medium",
+    SynCheckboxGroup: "medium",
     SynCombobox: "medium",
     SynDetails: "medium",
     SynFile: "medium",

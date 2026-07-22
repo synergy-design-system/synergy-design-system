@@ -41,6 +41,15 @@ export default {
       id: 'selection_behavior',
       name: 'Selection Behavior',
     },
+    {
+      content: [
+        'Use the vertical layout as the default for most form scenarios, especially when labels are longer or when readability is more important than compactness.',
+        'Use horizontal layout only when options are short, similar in length, and there is sufficient horizontal space.',
+        'The layout setting applies to `syn-radio` options. `syn-radio-button` items are rendered in their own button-group and are not affected by this layout switch.',
+      ],
+      id: 'layout',
+      name: 'Layout',
+    },
   ],
   useCases: [
     'Present options in forms where only one selection is allowed (e.g., gender selection, payment methods).',

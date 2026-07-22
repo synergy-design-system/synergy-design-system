@@ -66,7 +66,6 @@ export function enableDefaultSettings(name: ComponentNamesWithDefaultValues) {
       removeGlobalEventNotification(this);
     }
 
-    // eslint-disable-next-line complexity
     requestUpdate(propName?: PropertyKey, oldValue?: unknown, options?: PropertyDeclaration) {
       super.requestUpdate(propName, oldValue, options);
 

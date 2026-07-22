@@ -28,7 +28,25 @@ reflects: -
 type: `ChartConfigType`
 default: `{}`
 
-The ECharts configuration input. This property accepts either: - a plain `ECConfig` object, or - a callback that receives a typed preset handle and applies chart presets. The resolved result maps 1:1 to the ECharts `option` parameter passed to `setOption()`. Consult the [ECharts option documentation](https://echarts.apache.org/en/option.html) and assign either the object directly or build it through the handle. > **Note:** Currently only **line charts** (`series[].type: 'line'`) are supported. > Support for additional chart types (bar, pie, etc.) will be added in future releases or can be requested. Assigning a new config input completely replaces the previous chart configuration (`notMerge: true`). To update only parts of the chart, access the underlying ECharts instance directly and call `setOption()` with custom merge options.
+The ECharts configuration input.
+
+This property accepts either:
+
+- a plain `ECConfig` object, or
+- a callback that receives a typed preset handle and applies chart presets.
+
+The resolved result maps 1:1 to the ECharts `option` parameter passed to
+`setOption()`.
+Consult the [ECharts option documentation](https://echarts.apache.org/en/option.html)
+and assign either the object directly or build it through the handle.
+
+> **Note:** Currently only **line charts** (`series[].type: 'line'`) are supported.
+> Support for additional chart types (bar, pie, etc.) will be added in future releases or can be requested.
+
+Assigning a new config input completely replaces the previous chart
+configuration (`notMerge: true`).
+To update only parts of the chart, access the underlying ECharts instance directly and
+call `setOption()` with custom merge options.
 
 ### palette
 
@@ -37,7 +55,16 @@ reflects: yes
 type: `ChartPalette`
 default: `'categorical'`
 
-The color palette to apply to chart series. - `categorical` (default) — 12 distinct colors for comparing unrelated data series - `sequential-01` … `sequential-07` — 10-step single-hue ramps: `01`=primary, `02`=accent, `03`=muted, `04`=purple, `05`=teal, `06`=magenta, `07`=neutral - `sequential-status-critical`, `sequential-status-error`, `sequential-status-info`, `sequential-status-success`, `sequential-status-warning` — 10-step status ramps The palette sets the ECharts `color` array. If `config.color` is explicitly provided, it takes precedence over the palette.
+The color palette to apply to chart series.
+
+- `categorical` (default) — 12 distinct colors for comparing unrelated data series
+- `sequential-01` … `sequential-07` — 10-step single-hue ramps:
+  `01`=primary, `02`=accent, `03`=muted, `04`=purple, `05`=teal, `06`=magenta, `07`=neutral
+- `sequential-status-critical`, `sequential-status-error`, `sequential-status-info`,
+  `sequential-status-success`, `sequential-status-warning` — 10-step status ramps
+
+The palette sets the ECharts `color` array. If `config.color` is explicitly provided,
+it takes precedence over the palette.
 
 ## Available Methods
 

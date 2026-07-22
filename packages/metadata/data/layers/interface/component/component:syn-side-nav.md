@@ -37,7 +37,8 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-By default, the side-nav traps the focus if in variant="default" and open. To disable the focus trapping, set this attribute.
+By default, the side-nav traps the focus if in variant="default" and open.
+To disable the focus trapping, set this attribute.
 
 ### open
 
@@ -46,7 +47,25 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Indicates whether or not the side-nav is open. You can toggle this attribute to show and hide the side-nav, or you can use the `show()` and `hide()` methods and this attribute will reflect the side-nav's open state. Depending on the "variant" attribute, the behavior will differ. **Default**: With `open` will show the side-nav with an overlay. Without `open`, the side-nav will be hidden. **Rail**: With `open` will show the whole side-nav with an overlay for touch devices or without an overlay for non-touch devices. Without `open`, the side-nav will only show the prefix of nav-item's. **Sticky**: With `open` will show the whole side-nav with an overlay for touch devices or without an overlay for non-touch devices. Without `open`, the side-nav will only show the prefix of nav-item's.
+Indicates whether or not the side-nav is open.
+You can toggle this attribute to show and hide the side-nav, or you can use the `show()` and
+`hide()` methods and this attribute will reflect the side-nav's open state.
+
+Depending on the "variant" attribute, the behavior will differ.
+
+**Default**:
+With `open` will show the side-nav with an overlay.
+Without `open`, the side-nav will be hidden.
+
+**Rail**:
+With `open` will show the whole side-nav with an overlay for touch devices
+or without an overlay for non-touch devices.
+Without `open`, the side-nav will only show the prefix of nav-item's.
+
+**Sticky**:
+With `open` will show the whole side-nav with an overlay for touch devices
+or without an overlay for non-touch devices.
+Without `open`, the side-nav will only show the prefix of nav-item's.
 
 ### variant
 
@@ -55,7 +74,23 @@ reflects: yes
 type: `'default' | 'rail' | 'sticky'`
 default: `'default'`
 
-The variant that should be used to show the side navigation. The following variants are supported: - **default** (default): Always shows the whole content and additionally an overlay. This makes especially sense for applications, where you navigate to a place and stay there for a longer time. - **rail**: Only show the prefix of navigation items in closed state. This will open on hover on the rail navigation. On touch devices the navigation opens on click and shows an overlay. Note: The rail variant is only an option if all Navigation Items on the first level have an Icon. If this is not the case you should use a burger navigation. - **sticky**: The side-nav has a pin button to show the side-nav in small (icon only) and full width. This variant is only possible for non-nested navigation items. Note: The sticky variant is only an option if all Navigation Items on the first level have an Icon and if there are only "first level" items.
+The variant that should be used to show the side navigation.
+
+The following variants are supported:
+
+- **default** (default): Always shows the whole content and additionally an overlay.
+  This makes especially sense for applications, where you navigate to a place and stay
+  there for a longer time.
+- **rail**: Only show the prefix of navigation items in closed state.
+  This will open on hover on the rail navigation.
+  On touch devices the navigation opens on click and shows an overlay.
+  Note: The rail variant is only an option if all Navigation Items on the first level
+  have an Icon.
+  If this is not the case you should use a burger navigation.
+- **sticky**: The side-nav has a pin button to show the side-nav in small (icon only)
+  and full width. This variant is only possible for non-nested navigation items.
+  Note: The sticky variant is only an option if all Navigation Items on the first level
+  have an Icon and if there are only "first level" items.
 
 ## Available Methods
 

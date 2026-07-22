@@ -13,6 +13,10 @@ const COMPONENT_UPDATE_ORDER: Partial<Record<ComponentNamesWithDefaultValues, {
     dependsOn: ['SynButton', 'SynRadioButton'],
     priority: 10,
   },
+  SynCheckboxGroup: {
+    dependsOn: ['SynCheckbox', 'SynSwitch'],
+    priority: 10,
+  },
   SynRadioGroup: {
     dependsOn: ['SynRadio', 'SynRadioButton'],
     priority: 10,

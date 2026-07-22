@@ -2,6 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "lib/types",
+    "rootDir": ".",
     "outDir": "lib",
     "allowSyntheticDefaultImports": true,
     "target": "ESNext",

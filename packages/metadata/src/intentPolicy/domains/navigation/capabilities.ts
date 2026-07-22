@@ -27,7 +27,23 @@ export const navigationCapabilities: IntentCapability[] = [
   },
   {
     categories: ['navigation'],
+    target: { id: 'component:syn-tab', kind: 'component', name: 'syn-tab' },
+  },
+  {
+    categories: ['navigation'],
+    target: { id: 'component:syn-tab-panel', kind: 'component', name: 'syn-tab-panel' },
+  },
+  {
+    categories: ['navigation'],
     target: { id: 'component:syn-menu', kind: 'component', name: 'syn-menu' },
+  },
+  {
+    categories: ['navigation'],
+    target: { id: 'component:syn-menu-item', kind: 'component', name: 'syn-menu-item' },
+  },
+  {
+    categories: ['navigation'],
+    target: { id: 'component:syn-menu-label', kind: 'component', name: 'syn-menu-label' },
   },
   {
     categories: ['navigation'],
@@ -52,5 +68,9 @@ export const navigationCapabilities: IntentCapability[] = [
   {
     categories: ['navigation'],
     target: { id: 'component:syn-nav-item', kind: 'component', name: 'syn-nav-item' },
+  },
+  {
+    categories: ['navigation'],
+    target: { id: 'component:syn-prio-nav', kind: 'component', name: 'syn-prio-nav' },
   },
 ];

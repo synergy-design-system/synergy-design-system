@@ -36,7 +36,8 @@ reflects: no
 type: `string`
 default: `''`
 
-Comma separated list of supported file types [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept)
+Comma separated list of supported file types
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept)
 
 ### capture
 
@@ -45,7 +46,10 @@ reflects: no
 type: `'user' | 'environment'`
 default: none
 
-Specifies the types of files that the server accepts. Can be set either to user or environment. Works only when not using a droparea! [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
+Specifies the types of files that the server accepts.
+Can be set either to user or environment.
+Works only when not using a droparea!
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/capture)
 
 ### defaultValue
 
@@ -81,7 +85,10 @@ reflects: no
 type: `undefined`
 default: none
 
-The selected files as a FileList object containing a list of File objects. The FileList behaves like an array, so you can get the number of selected files via its length property. [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files)
+The selected files as a FileList object containing a list of File objects.
+The FileList behaves like an array, so you can get the number of selected files
+via its length property.
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#getting_information_on_selected_files)
 
 ### form
 
@@ -90,7 +97,10 @@ reflects: yes
 type: `string`
 default: `''`
 
-By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you to place the form control outside of a form and associate it with the form that has this `id`. The form must be in the same document or shadow root for this to work.
+By default, form controls are associated with the nearest containing `<form>` element.
+This attribute allows you to place the form control outside of a form and associate it
+with the form that has this `id`. The form must be in the same document
+or shadow root for this to work.
 
 ### helpText
 
@@ -99,7 +109,8 @@ reflects: no
 type: `string`
 default: `''`
 
-The file control's help text. If you need to display HTML, use the `help-text` slot instead.
+The file control's help text.
+If you need to display HTML, use the `help-text` slot instead.
 
 ### hideValue
 
@@ -126,7 +137,9 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Indicates whether the user can select more than one file. Has no effect if webkitdirectory is set. [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
+Indicates whether the user can select more than one file.
+Has no effect if webkitdirectory is set.
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#multiple)
 
 ### name
 
@@ -171,7 +184,11 @@ reflects: no
 type: `undefined`
 default: none
 
-The value of the file control contains a string that represents the path of the selected file. If multiple files are selected, the value represents the first file in the list. If no file is selected, the value is an empty string. Beware that the only valid value when setting a file control is an empty string! [see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value)
+The value of the file control contains a string that represents the path of the selected file.
+If multiple files are selected, the value represents the first file in the list.
+If no file is selected, the value is an empty string.
+Beware that the only valid value when setting a file control is an empty string!
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#value)
 
 ### webkitdirectory
 
@@ -180,7 +197,11 @@ reflects: yes
 type: `boolean`
 default: `false`
 
-Indicates that the file control should let the user select directories instead of files. When a directory is selected, the directory and its entire hierarchy of contents are included in the set of selected items. Note: This is a non-standard attribute but is supported in the major browsers. [see MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)
+Indicates that the file control should let the user select directories instead of files.
+When a directory is selected, the directory and its entire hierarchy of contents are included
+in the set of selected items.
+Note: This is a non-standard attribute but is supported in the major browsers.
+[see MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)
 
 ## Available Methods
 

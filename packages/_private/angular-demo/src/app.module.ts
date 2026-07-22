@@ -17,7 +17,6 @@ import {
   SynNavItemRouterLinkDirective,
   SynNavItemRouterLinkActiveDirective,
 } from './directives';
-import { DemoFieldSetModule } from './modules/demofieldset.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { DemoFieldSetModule } from './modules/demofieldset.module';
     SidenavSwitchComponent,
     SizeSwitchComponent,
     DemoFormValidate,
-    DemoFieldSetModule,
 ],
   providers: [],
   bootstrap: [AppComponent],

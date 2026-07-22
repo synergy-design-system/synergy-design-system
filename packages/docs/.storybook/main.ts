@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import type { StorybookConfig } from '@storybook/web-components-vite';
 
 // @ts-expect-error - This is a local plugin, not published to npm, so TypeScript can't find types for it.
@@ -30,7 +31,22 @@ const config: StorybookConfig = {
     name: '@storybook/web-components-vite',
     options: {},
   },
+  // This is needed to make sure that the Storybook preview iframe has the correct NODE_ENV set, as some transitive browser bundles still probe process.env in browser runtime.
+  previewHead: (head, { configType }) => {
+    const nodeEnv = configType === 'PRODUCTION' ? 'production' : 'development';
 
+    return `${head}
+<script>
+if (typeof globalThis.process === 'undefined') {
+  globalThis.process = { env: {} };
+}
+if (typeof globalThis.process.env === 'undefined') {
+  globalThis.process.env = {};
+}
+globalThis.process.env.NODE_ENV = '${nodeEnv}';
+globalThis.process.env.node_env = '${nodeEnv}';
+</script>`;
+  },
   staticDirs: [
     '../public',
     // 2018 icons are available at /assets/sick2018/wallpaper.svg
@@ -50,7 +66,6 @@ const config: StorybookConfig = {
       to: '/',
     },
   ],
-
   stories: [
     '../stories/Welcome.mdx',
     '../stories/Prerequisites.mdx',
@@ -75,25 +90,40 @@ const config: StorybookConfig = {
     // "../src/**/*.mdx",
     // "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
-  viteFinal: (cfg) => ({
-    ...cfg,
-    build: {
-      ...cfg.build,
-      // This prevents an error with top level await statements
-      // that prevents bundling via `pnpm build`.
-      // @see https://github.com/vitejs/vite/issues/6985
-      target: 'esnext',
-    },
-    server: {
-      ...cfg.server,
-      fs: {
-        ...cfg.server?.fs,
-        // This fixes a problem we have since vite 8.0.16, as they no longer allow fetching files with colon in the file path see: https://github.com/vitejs/vite/pull/22572
-        // But we need this for our metadata files, which are named e.g. "component:syn-button.js". This is only a problem for the local development server, as the production build does not have this issue.
-        strict: process.env.NODE_ENV === 'production',
+  viteFinal: (cfg, { configType }) => {
+    const nodeEnv = configType === 'PRODUCTION' ? 'production' : 'development';
+
+    return {
+      ...cfg,
+      build: {
+        ...cfg.build,
+        // This prevents an error with top level await statements
+        // that prevents bundling via `pnpm build`.
+        // @see https://github.com/vitejs/vite/issues/6985
+        target: 'esnext',
       },
-    },
-  }),
+      define: {
+        ...cfg.define,
+        // Some transitive browser bundles still probe process.env in browser runtime.
+        'process.env': JSON.stringify({
+          NODE_ENV: nodeEnv,
+          node_env: nodeEnv,
+        }),
+        'process.env.NODE_DEBUG': false,
+        'process.env.NODE_ENV': JSON.stringify(nodeEnv),
+        'process.env.node_env': JSON.stringify(nodeEnv),
+      },
+      server: {
+        ...cfg.server,
+        fs: {
+          ...cfg.server?.fs,
+          // This fixes a problem we have since vite 8.0.16, as they no longer allow fetching files with colon in the file path see: https://github.com/vitejs/vite/pull/22572
+          // But we need this for our metadata files, which are named e.g. "component:syn-button.js". This is only a problem for the local development server, as the production build does not have this issue.
+          strict: nodeEnv === 'production',
+        },
+      },
+    };
+  },
 };
 
 export default config;

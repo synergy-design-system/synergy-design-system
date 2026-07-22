@@ -4,7 +4,12 @@ import {
   resolveUsagePatternFromRegistry,
 } from '../resolution.js';
 import { renderIntentUsagePattern } from '../renderers/index.js';
-import type { IntentPhase, IntentTargetRef } from '../types.js';
+import type {
+  IntentPhase,
+  IntentTargetRef,
+  IntentTargetRole,
+  IntentUsagePattern,
+} from '../types.js';
 import type { FrameworkProfile } from '../intermediate-representation/types.js';
 
 /**
@@ -16,6 +21,35 @@ export type RenderIntentQuery = {
   includePhases?: IntentPhase[];
   intent: string;
   target?: IntentTargetRef;
+};
+
+const getIntentTargetRoleWeight = (targetRole?: IntentTargetRole): number => {
+  switch (targetRole ?? 'standalone') {
+    case 'standalone':
+      return 3;
+    case 'container':
+      return 2;
+    case 'item':
+      return 1;
+    default:
+      return 0;
+  }
+};
+
+const compareIntentPatterns = (a: IntentUsagePattern, b: IntentUsagePattern): number => {
+  const roleWeightDifference = getIntentTargetRoleWeight(b.targetRole) - getIntentTargetRoleWeight(a.targetRole);
+  if (roleWeightDifference !== 0) {
+    return roleWeightDifference;
+  }
+
+  const priorityDifference = (b.priority ?? 0) - (a.priority ?? 0);
+  if (priorityDifference !== 0) {
+    return priorityDifference;
+  }
+
+  const aTargetId = a.target.id ?? a.target.name ?? a.target.selector ?? `${a.target.kind}:unknown`;
+  const bTargetId = b.target.id ?? b.target.name ?? b.target.selector ?? `${b.target.kind}:unknown`;
+  return aTargetId.localeCompare(bTargetId);
 };
 
 /**
@@ -41,18 +75,17 @@ export const renderIntentFromRegistry = (
 
   if (!pattern && !explicitTarget) {
     const candidateCapabilities = listCapabilitiesForIntentFromRegistry(query.intent, query.includePhases);
-
-    for (const capability of candidateCapabilities) {
-      const candidatePattern = resolveUsagePatternFromRegistry(
+    const candidatePatterns = candidateCapabilities
+      .map((capability) => resolveUsagePatternFromRegistry(
         normalizeTargetRef(capability.target),
         query.intent,
         query.includePhases,
-      );
+      ))
+      .filter((candidatePattern): candidatePattern is IntentUsagePattern => candidatePattern !== null)
+      .sort(compareIntentPatterns);
 
-      if (candidatePattern) {
-        pattern = candidatePattern;
-        break;
-      }
+    if (candidatePatterns.length > 0) {
+      [pattern] = candidatePatterns;
     }
   }
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import type { SynDialog } from '@synergy-design-system/components';
 import { SynDialogComponent } from '@synergy-design-system/angular/components/dialog';
 import { SynButtonComponent } from '@synergy-design-system/angular/components/button';
 
@@ -11,14 +12,25 @@ import { SynButtonComponent } from '@synergy-design-system/angular/components/bu
   ],
   template: `
     <syn-dialog
-      [open]="false"
+      [open]="true"
       label="Dialog"
     >
       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-      <syn-button variant="filled" slot="footer">
+      <syn-button
+        variant="filled"
+        slot="footer"
+        (click)="closeDialog($event)"
+      >
         Close
       </syn-button>
     </syn-dialog>
   `,
 })
-export class Dialog {}
+export class Dialog {
+  closeDialog(event: Event) {
+    const parentDialog = (event.target as HTMLElement).closest('syn-dialog') as SynDialog;
+    if (parentDialog) {
+      parentDialog.hide();
+    }
+  }
+}

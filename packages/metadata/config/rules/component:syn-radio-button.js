@@ -3,6 +3,7 @@
 /** @type {import('../../src/config/types.js').ComponentRules} */
 export default {
   accessibility: [
+    'syn-radio-button is not a standalone control; use it only inside syn-radio-group so assistive technologies interpret it as part of one exclusive choice set.',
     'Provide meaningful alternative text for icon-only radio buttons using the label attribute.',
     'Communicate the group\'s function—such as filtering or view switching—through clear context or labels.',
     'Ensure each button option has a unique, non-ambiguous label to help assistive technology users understand their choices.',
@@ -20,6 +21,7 @@ export default {
   usageGuidelines: [
     {
       content: [
+        'Do not use syn-radio-button on its own; it must be slotted into syn-radio-group.',
         'Use syn-radio-button when you need button-style appearance for single option selection.',
         'Use syn-radio for traditional radio button appearance.',
         'Both work as form inputs when slotted inside syn-radio-group; the difference is visual presentation.',

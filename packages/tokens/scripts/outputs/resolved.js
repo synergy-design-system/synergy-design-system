@@ -13,6 +13,23 @@ const VAR_REFERENCE_PATTERN = /var\(\s*(--syn-[A-Za-z0-9-_]+)\s*\)/g;
 const RESOLVED_VALUE_CACHE = new Map();
 
 /**
+ * Converts a resolved CSS token value into a quoted JavaScript string literal.
+ *
+ * Values that contain single quotes (e.g. font-family stacks with font names like `'SICK Intl'`)
+ * are serialized using `JSON.stringify`, which produces a double-quoted string to avoid
+ * escaping conflicts. All other values are wrapped in single quotes.
+ *
+ * @param {string | null} value - The resolved CSS value to stringify.
+ * @returns {string} A quoted string literal ready to be embedded in JS source output.
+ */
+const stringifyValue = (value) => {
+  if (typeof value === 'string' && value.includes("'")) {
+    return JSON.stringify(value);
+  }
+  return `'${value}'`;
+};
+
+/**
  * @param {string} mode
  * @param {string} cssVariable
  * @returns {string}
@@ -95,9 +112,10 @@ export const createResolvedJS = (header, themesDir, buildPath) => {
       dark: resolveVariableValue(cssVariable, darkVariables, 'dark'),
       jsTokenName: cssVariableToTokenName(cssVariable),
       light: resolveVariableValue(cssVariable, lightVariables, 'light'),
-    }));
+    }))
+    .sort((a, b) => a.jsTokenName.localeCompare(b.jsTokenName, 'en', { numeric: true }));
 
-  const jsExports = resolvedEntries.map(({ jsTokenName, light, dark }) => `  ${jsTokenName}: { dark: ${JSON.stringify(dark)}, light: ${JSON.stringify(light)} },`);
+  const jsExports = resolvedEntries.map(({ jsTokenName, light, dark }) => `  ${jsTokenName}: { dark: ${stringifyValue(dark)}, light: ${stringifyValue(light)} },`);
 
   const jsOutput = `
 ${createHeaderComment(header)}

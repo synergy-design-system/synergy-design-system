@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-07-21T11:20:40.675Z",
+  "builtAt": "2026-07-22T10:55:12.035Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset:sick2018-icons.json",
@@ -1723,6 +1723,40 @@
       ]
     },
     {
+      "corePath": "data/core/token/token:tokens-charts-js-resolved-d-ts.json",
+      "id": "token:tokens-charts-js-resolved-d-ts",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "resolved.d.ts",
+      "search": [
+        "token:tokens-charts-js-resolved-d-ts",
+        "resolved.d.ts",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-charts-js-resolved-js.json",
+      "id": "token:tokens-charts-js-resolved-js",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "resolved.js",
+      "search": [
+        "token:tokens-charts-js-resolved-js",
+        "resolved.js",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
       "corePath": "data/core/token/token:tokens-charts-scss-tokens-scss.json",
       "id": "token:tokens-charts-scss-tokens-scss",
       "kind": "token",
@@ -1869,6 +1903,40 @@
       "search": [
         "token:tokens-js-index-js",
         "index.js",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-js-resolved-d-ts.json",
+      "id": "token:tokens-js-resolved-d-ts",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "resolved.d.ts",
+      "search": [
+        "token:tokens-js-resolved-d-ts",
+        "resolved.d.ts",
+        "artifact",
+        "token",
+        "tokens",
+        "dist"
+      ]
+    },
+    {
+      "corePath": "data/core/token/token:tokens-js-resolved-js.json",
+      "id": "token:tokens-js-resolved-js",
+      "kind": "token",
+      "layers": {
+        "full": 1
+      },
+      "name": "resolved.js",
+      "search": [
+        "token:tokens-js-resolved-js",
+        "resolved.js",
         "artifact",
         "token",
         "tokens",

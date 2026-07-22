@@ -30,6 +30,11 @@
     "./package.json": {
       "default": "./package.json"
     },
+    "./resolved": {
+      "types": "./dist/js/resolved.d.ts",
+      "import": "./dist/js/resolved.js",
+      "default": "./dist/js/resolved.js"
+    },
     "./themes/*": "./dist/themes/*",
     "./scss/*": "./dist/scss/*",
     "./charts/themes/*": "./dist/charts/themes/*",
@@ -38,6 +43,11 @@
       "types": "./dist/charts/js/index.d.ts",
       "import": "./dist/charts/js/index.js",
       "default": "./dist/charts/js/index.js"
+    },
+    "./charts/resolved": {
+      "types": "./dist/charts/js/resolved.d.ts",
+      "import": "./dist/charts/js/resolved.js",
+      "default": "./dist/charts/js/resolved.js"
     }
   },
   "files": [

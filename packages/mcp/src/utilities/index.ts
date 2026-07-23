@@ -11,4 +11,5 @@ export * from './intent.js';
 export * from './token-counter.js';
 export * from './rules.js';
 export * from './server.js';
+export * from './stdout-logger.js';
 export * from './cli.js';

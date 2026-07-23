@@ -82,9 +82,6 @@ const createRuntimeConfig = async (): Promise<string> => {
   const dir = await mkdir(join(tmpdir(), `synergy-mcp-watermark-${Date.now()}`), { recursive: true });
   const configPath = join(dir!, 'synergy-mcp.json');
   await writeFile(configPath, JSON.stringify({
-    experimentalFeatures: {
-      intentTools: true,
-    },
     includeAiRules: false,
   }), 'utf8');
   return configPath;

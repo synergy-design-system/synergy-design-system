@@ -59,5 +59,7 @@ export const encodeToToon = async (value: unknown): Promise<string> => {
     return JSON.stringify(value);
   }
 
-  return encoder(value);
+  return encoder(value, {
+    delimiter: '|',
+  });
 };

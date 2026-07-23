@@ -45,6 +45,7 @@
     "dist/index.d.ts",
     "dist/index.js",
     "dist/public/**",
+    "dist/internal/core/**",
     "dist/intentPolicy/**",
     "dist/bin/**",
     "README.md",

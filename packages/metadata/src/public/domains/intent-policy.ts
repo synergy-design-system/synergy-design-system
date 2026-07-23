@@ -40,26 +40,17 @@ type IntentOptionPatternLike = {
   targetRole?: IntentOptionTargetRole;
 };
 
-/**
- * @experimental Intent policy query options may evolve during rollout.
- */
 export type IntentListQueryOptions = {
   category?: string;
   includePhases?: IntentPhase[];
 };
 
-/**
- * @experimental Intent policy query options may evolve during rollout.
- */
 export type IntentResolutionQuery = {
   includePhases?: IntentPhase[];
   intent: string;
   target: IntentTargetRef;
 };
 
-/**
- * @experimental Intent policy query options may evolve during rollout.
- */
 export type IntentRenderQuery = {
   content?: string;
   framework: FrameworkProfile;
@@ -68,16 +59,10 @@ export type IntentRenderQuery = {
   target?: IntentTargetRef;
 };
 
-/**
- * @experimental Intent policy query options may evolve during rollout.
- */
 export type IntentPhaseQueryOptions = {
   includePhases?: IntentPhase[];
 };
 
-/**
- * @experimental Intent policy query options may evolve during rollout.
- */
 export type IntentCategoryQueryOptions = {
   includePhases?: IntentPhase[];
 };
@@ -109,9 +94,7 @@ const resolveGuidePhases = (includePhases?: IntentPhase[]): IntentPhase[] => {
 };
 
 /**
- * List all available intent categories.
- *
- * @experimental This API is still under active design.
+ * List available intent categories, optionally filtered by phase.
  */
 export const listIntentCategories = async (
   storeOptions: MetadataStoreOptions = {},
@@ -128,9 +111,7 @@ export const listIntentCategories = async (
 };
 
 /**
- * Return one intent category by its ID.
- *
- * @experimental This API is still under active design.
+ * Return a single intent category by category ID.
  */
 export const getIntentCategory = async (
   categoryId: string,
@@ -179,9 +160,7 @@ export const getIntentCategory = async (
 };
 
 /**
- * List intents, optionally filtered by category.
- *
- * @experimental This API is still under active design.
+ * List intents, with optional category and phase filtering.
  */
 export const listIntents = async (
   options: IntentListQueryOptions = {},
@@ -198,9 +177,7 @@ export const listIntents = async (
 };
 
 /**
- * List all capabilities (targets) that support a given intent.
- *
- * @experimental This API is still under active design.
+ * List targets/capabilities that support the specified intent.
  */
 export const listIntentCapabilities = async (
   intentId: string,
@@ -231,9 +208,7 @@ export const listIntentCapabilities = async (
 };
 
 /**
- * Return capability categories for one target.
- *
- * @experimental This API is still under active design.
+ * Return intent capability metadata for a target reference.
  */
 export const getTargetCapabilities = async (
   target: IntentTargetRef,
@@ -279,9 +254,7 @@ export const getTargetCapabilities = async (
 };
 
 /**
- * Resolve one target + intent pair to a usage pattern/preset.
- *
- * @experimental This API is still under active design.
+ * Resolve a target and intent into a concrete usage pattern.
  */
 export const resolveIntent = async (
   query: IntentResolutionQuery,
@@ -380,9 +353,7 @@ export const resolveIntent = async (
 };
 
 /**
- * Render one target + intent pair to framework-specific component markup.
- *
- * @experimental This API is still under active design.
+ * Render framework-specific markup for a resolved intent context.
  */
 export const renderIntent = async (
   query: IntentRenderQuery,
@@ -437,14 +408,8 @@ export const renderIntent = async (
   };
 };
 
-/**
- * @experimental Validation severity levels for component usage checks.
- */
 export type ComponentValidationSeverity = 'error' | 'info' | 'warning';
 
-/**
- * @experimental Validation issue emitted by validateComponent.
- */
 export type ComponentValidationIssue = {
   code: string;
   message: string;
@@ -454,9 +419,6 @@ export type ComponentValidationIssue = {
   suggestedFix?: string;
 };
 
-/**
- * @experimental Query payload for validateComponent.
- */
 export type ValidateComponentQuery = {
   component: string;
   framework: FrameworkProfile;
@@ -466,9 +428,6 @@ export type ValidateComponentQuery = {
   structure?: IntentStructureNode;
 };
 
-/**
- * @experimental validateComponent response payload.
- */
 export type ValidateComponentResult = {
   component: string;
   framework: FrameworkProfile;
@@ -477,18 +436,12 @@ export type ValidateComponentResult = {
   valid: boolean;
 };
 
-/**
- * @experimental Query payload for getComponentGuide.
- */
 export type ComponentGuideQuery = {
   component: string;
   framework: FrameworkProfile;
   includePhases?: IntentPhase[];
 };
 
-/**
- * @experimental Supported intent summary for one component.
- */
 export type ComponentGuideIntent = {
   category: string;
   description: string;
@@ -496,9 +449,6 @@ export type ComponentGuideIntent = {
   phase?: IntentPhase;
 };
 
-/**
- * @experimental Recommended usage snippet for one component + intent.
- */
 export type ComponentGuideUsage = {
   description: string;
   intentId: string;
@@ -506,9 +456,6 @@ export type ComponentGuideUsage = {
   snippet: string;
 };
 
-/**
- * @experimental getComponentGuide response payload.
- */
 export type ComponentGuideResult = {
   commonMisuses: ComponentValidationIssue[];
   component: string;
@@ -518,9 +465,6 @@ export type ComponentGuideResult = {
   supportedIntents: ComponentGuideIntent[];
 };
 
-/**
- * @experimental Query payload for findComponentsForTask.
- */
 export type FindComponentsForTaskQuery = {
   constraints?: {
     avoidTargets?: string[];
@@ -533,9 +477,6 @@ export type FindComponentsForTaskQuery = {
   taskId: string;
 };
 
-/**
- * @experimental One ranked recommendation for a task.
- */
 export type TaskRecommendation = {
   intentId: string;
   rank: number;
@@ -544,9 +485,6 @@ export type TaskRecommendation = {
   why: string;
 };
 
-/**
- * @experimental findComponentsForTask response payload.
- */
 export type FindComponentsForTaskResult = {
   alternatives: TaskRecommendation[];
   framework: FrameworkProfile;
@@ -555,9 +493,6 @@ export type FindComponentsForTaskResult = {
   taskId: string;
 };
 
-/**
- * @experimental Query payload for getIntentOptions.
- */
 export type IntentOptionsQuery = {
   content?: string;
   framework: FrameworkProfile;
@@ -567,9 +502,6 @@ export type IntentOptionsQuery = {
   maxAlternatives?: number;
 };
 
-/**
- * @experimental One renderable option for an intent.
- */
 export type IntentOption = {
   phase?: IntentPhase;
   previewCode: string;
@@ -580,18 +512,12 @@ export type IntentOption = {
   targetRole?: IntentOptionTargetRole;
 };
 
-/**
- * @experimental One non-renderable candidate for an intent.
- */
 export type NonRenderableIntentCandidate = {
   detail: string;
   reasonCode: string;
   targetId: string;
 };
 
-/**
- * @experimental getIntentOptions response payload.
- */
 export type IntentOptionsResult = {
   bestDefaultTargetId: string | null;
   framework: FrameworkProfile;
@@ -1042,9 +968,7 @@ const validateStructureNode = async (
 };
 
 /**
- * Validate whether a component usage aligns with intent-policy guidance.
- *
- * @experimental This API is still under active design.
+ * Validate component usage against intent-policy rules and structure guidance.
  */
 export const validateComponent = async (
   query: ValidateComponentQuery,
@@ -1139,9 +1063,7 @@ export const validateComponent = async (
 };
 
 /**
- * Return developer-focused usage guidance for one component.
- *
- * @experimental This API is still under active design.
+ * Return developer-oriented guidance for a component in the intent system.
  */
 export const getComponentGuide = async (
   query: ComponentGuideQuery,
@@ -1275,9 +1197,7 @@ export const getComponentGuide = async (
 };
 
 /**
- * Find component recommendations for a task mapped to an intent ID.
- *
- * @experimental This API is still under active design.
+ * Find ranked component recommendations for a task represented by an intent ID.
  */
 export const findComponentsForTask = async (
   query: FindComponentsForTaskQuery,
@@ -1378,9 +1298,7 @@ export const findComponentsForTask = async (
 };
 
 /**
- * Return renderable options for one intent and framework.
- *
- * @experimental This API is still under active design.
+ * Return renderable target options for an intent and framework.
  */
 export const getIntentOptions = async (
   query: IntentOptionsQuery,

@@ -1,5 +1,6 @@
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { listComponentClusters } from '@synergy-design-system/metadata';
+import { resourceHandler } from '../utilities/metadata.js';
 
 const RESOURCE_URI = 'synergy://component-clusters/list';
 
@@ -17,7 +18,7 @@ export const componentClustersListRessource = (server: McpServer) => {
       mimeType: 'application/json',
       title: 'Available component clusters',
     },
-    async (_uri) => {
+    resourceHandler('component-clusters-list', async (_uri) => {
       const clusters = await listComponentClusters();
       const data = clusters.data.map(cluster => ({
         description: cluster.description,
@@ -34,6 +35,6 @@ export const componentClustersListRessource = (server: McpServer) => {
           },
         ],
       };
-    },
+    }),
   );
 };

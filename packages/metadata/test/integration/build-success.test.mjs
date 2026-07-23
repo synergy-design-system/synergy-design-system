@@ -41,154 +41,154 @@ describe('metadata build integration', () => {
         outputDir,
         'core',
         'component',
-        'component:syn-accordion.json',
+        'component__syn-accordion.json',
       );
       const alertPath = path.join(
         outputDir,
         'core',
         'component',
-        'component:syn-alert.json',
+        'component__syn-alert.json',
       );
       const accordionInterfacePath = path.join(
         outputDir,
         'layers',
         'interface',
         'component',
-        'component:syn-accordion.json',
+        'component__syn-accordion.json',
       );
       const accordionInterfaceMarkdownPath = path.join(
         outputDir,
         'layers',
         'interface',
         'component',
-        'component:syn-accordion.md',
+        'component__syn-accordion.md',
       );
       const accordionRulesMarkdownPath = path.join(
         outputDir,
         'layers',
         'rules',
         'component',
-        'component:syn-accordion.md',
+        'component__syn-accordion.md',
       );
       const reactSetupPath = path.join(
         outputDir,
         'core',
         'setup',
-        'setup:react-package.json',
+        'setup__react-package.json',
       );
       const angularPackageSetupPath = path.join(
         outputDir,
         'core',
         'setup',
-        'setup:angular-package.json',
+        'setup__angular-package.json',
       );
       const angularComponentsModuleSetupPath = path.join(
         outputDir,
         'core',
         'setup',
-        'setup:angular-components-module.json',
+        'setup__angular-components-module.json',
       );
       const angularFormsModuleSetupPath = path.join(
         outputDir,
         'core',
         'setup',
-        'setup:angular-forms-module.json',
+        'setup__angular-forms-module.json',
       );
       const angularValidatorsModuleSetupPath = path.join(
         outputDir,
         'core',
         'setup',
-        'setup:angular-validators-module.json',
+        'setup__angular-validators-module.json',
       );
       const vueSetupPath = path.join(
         outputDir,
         'core',
         'setup',
-        'setup:vue-package.json',
+        'setup__vue-package.json',
       );
       const tokensSetupPath = path.join(
         outputDir,
         'core',
         'setup',
-        'setup:tokens-package.json',
+        'setup__tokens-package.json',
       );
       const stylesSetupPath = path.join(
         outputDir,
         'core',
         'setup',
-        'setup:styles-package.json',
+        'setup__styles-package.json',
       );
       const fontsSetupPath = path.join(
         outputDir,
         'core',
         'setup',
-        'setup:fonts-package.json',
+        'setup__fonts-package.json',
       );
       const assetsSetupPath = path.join(
         outputDir,
         'core',
         'setup',
-        'setup:assets-package.json',
+        'setup__assets-package.json',
       );
       const sick2018IconsPath = path.join(
         outputDir,
         'core',
         'asset',
-        'asset:sick2018-icons.json',
+        'asset__sick2018-icons.json',
       );
       const sick2025IconsFillPath = path.join(
         outputDir,
         'core',
         'asset',
-        'asset:sick2025-icons-fill.json',
+        'asset__sick2025-icons-fill.json',
       );
       const sick2025IconsOutlinePath = path.join(
         outputDir,
         'core',
         'asset',
-        'asset:sick2025-icons-outline.json',
+        'asset__sick2025-icons-outline.json',
       );
       const sick2018LogosPath = path.join(
         outputDir,
         'core',
         'asset',
-        'asset:sick2018-logos.json',
+        'asset__sick2018-logos.json',
       );
       const sick2025LogosPath = path.join(
         outputDir,
         'core',
         'asset',
-        'asset:sick2025-logos.json',
+        'asset__sick2025-logos.json',
       );
       const sick2018SystemIconsPath = path.join(
         outputDir,
         'core',
         'asset',
-        'asset:sick2018-system-icons.json',
+        'asset__sick2018-system-icons.json',
       );
       const sick2025SystemIconsPath = path.join(
         outputDir,
         'core',
         'asset',
-        'asset:sick2025-system-icons.json',
+        'asset__sick2025-system-icons.json',
       );
       const tokenFigmaArtifactPath = path.join(
         outputDir,
         'core',
         'token',
-        'token:tokens-figma-variables-sick2018-dark-json.json',
+        'token__tokens-figma-variables-sick2018-dark-json.json',
       );
       const stylesLinkPath = path.join(
         outputDir,
         'core',
         'style',
-        'style:syn-link.json',
+        'style__syn-link.json',
       );
       const fontsArtifactPath = path.join(
         outputDir,
         'core',
         'utility',
-        'utility:fonts-sick-intl.json',
+        'utility__fonts-sick-intl.json',
       );
 
       await access(indexPath);
@@ -258,8 +258,8 @@ describe('metadata build integration', () => {
       expect(accordionJson.custom).to.have.nested.property('frameworks.angular.componentName', 'SynAccordionComponent');
       expect(accordionJson.custom).to.have.nested.property('frameworks.angular.selector', 'syn-accordion');
       expect(accordionJson.custom).to.not.have.property('interfaceSnapshot');
-      expect(accordionJson.layers.interface.some((ref) => ref.path === 'layers/interface/component/component:syn-accordion.json')).to.equal(true);
-      expect(accordionJson.layers.rules.some((ref) => ref.path === 'layers/rules/component/component:syn-accordion.md')).to.equal(true);
+      expect(accordionJson.layers.interface.some((ref) => ref.path === 'layers/interface/component/component__syn-accordion.json')).to.equal(true);
+      expect(accordionJson.layers.rules.some((ref) => ref.path === 'layers/rules/component/component__syn-accordion.md')).to.equal(true);
       expect(accordionJson.sources).to.include('packages/vue/src/components/SynVueAccordion.vue');
       expect(accordionJson.sources).to.include('packages/react/src/components/accordion.ts');
       expect(accordionJson.sources).to.include('packages/angular/components/accordion/accordion.component.ts');

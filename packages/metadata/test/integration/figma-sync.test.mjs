@@ -24,7 +24,7 @@ describe('code-connect figma override sync', () => {
       await mkdir(codeConnectDir, { recursive: true });
 
       await writeFile(
-        path.join(overridesDir, 'component:syn-accordion.json'),
+        path.join(overridesDir, 'component__syn-accordion.json'),
         JSON.stringify({
           figmaComponentId: '41094-279501',
           storyTags: ['Structure'],
@@ -48,7 +48,7 @@ describe('code-connect figma override sync', () => {
 
       const summary = await syncCodeConnectFigmaOverrides(configDir, tempRoot);
       const syncedOverride = JSON.parse(
-        await readFile(path.join(overridesDir, 'component:syn-accordion.json'), 'utf8'),
+        await readFile(path.join(overridesDir, 'component__syn-accordion.json'), 'utf8'),
       );
 
       expect(summary.updatedCount).to.equal(1);

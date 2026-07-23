@@ -27,16 +27,16 @@ describe('intent policy api (separate from integration tests)', () => {
   };
 
   it('lists intent categories and intents via explicit opt-in API', async () => {
-    const { experimental_listIntentCategories, experimental_listIntents } = await loadPublicApi();
+    const { listIntentCategories, listIntents } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const categories = await experimental_listIntentCategories({ dataDir: fixture.dataDir });
+      const categories = await listIntentCategories({ dataDir: fixture.dataDir });
       expect(categories.errors).to.equal(undefined);
       expect(categories.data.map((entry) => entry.id)).to.include('action');
       expect(categories.data.map((entry) => entry.id)).to.include('structure');
 
-      const actionIntents = await experimental_listIntents({ category: 'action' }, { dataDir: fixture.dataDir });
+      const actionIntents = await listIntents({ category: 'action' }, { dataDir: fixture.dataDir });
       expect(actionIntents.errors).to.equal(undefined);
       expect(actionIntents.data.every((entry) => entry.category === 'action')).to.equal(true);
       expect(actionIntents.data.map((entry) => entry.id)).to.include('action.submit');
@@ -46,11 +46,11 @@ describe('intent policy api (separate from integration tests)', () => {
   });
 
   it('resolves property-based intent presets for syn-button', async () => {
-    const { experimental_resolveIntent } = await loadPublicApi();
+    const { resolveIntent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_resolveIntent({
+      const response = await resolveIntent({
         target: { id: 'component:syn-button', kind: 'component', name: 'syn-button' },
         intent: 'action.submit',
       }, {
@@ -74,11 +74,11 @@ describe('intent policy api (separate from integration tests)', () => {
   });
 
   it('resolves structural usage patterns for confirmation dialogs', async () => {
-    const { experimental_resolveIntent } = await loadPublicApi();
+    const { resolveIntent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_resolveIntent({
+      const response = await resolveIntent({
         target: { id: 'component:syn-dialog', kind: 'component', name: 'syn-dialog' },
         intent: 'structure.confirmation',
       }, {
@@ -99,15 +99,15 @@ describe('intent policy api (separate from integration tests)', () => {
   });
 
   it('returns deterministic errors for unknown or incompatible queries', async () => {
-    const { experimental_getTargetCapabilities, experimental_resolveIntent } = await loadPublicApi();
+    const { getTargetCapabilities, resolveIntent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const unknownComponent = await experimental_getTargetCapabilities({id: 'component:syn-unknown', kind: 'component', name: 'syn-unknown'}, { dataDir: fixture.dataDir });
+      const unknownComponent = await getTargetCapabilities({id: 'component:syn-unknown', kind: 'component', name: 'syn-unknown'}, { dataDir: fixture.dataDir });
       expect(unknownComponent.data).to.equal(null);
       expect(unknownComponent.errors?.[0]?.code).to.equal('NOT_FOUND');
 
-      const incompatible = await experimental_resolveIntent({
+      const incompatible = await resolveIntent({
         target: { id: 'component:syn-dialog', kind: 'component', name: 'syn-dialog' },
         intent: 'action.submit',
       }, {

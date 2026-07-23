@@ -26,7 +26,11 @@ export default class SynBadge extends SynergyElement {
 
   static styles: CSSResultGroup = [componentStyles, styles];
 
-  /** The badge's theme variant. */
+  /**
+   * The badge's theme variant.
+   *
+   * The `danger` variant is deprecated and will be removed in a future release. Use `error` instead.
+   */
   @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'critical' | 'error' | 'danger' = 'primary';
 
   render() {

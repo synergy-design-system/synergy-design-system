@@ -2,7 +2,7 @@
   "attributes": [
     {
       "default": "'primary'",
-      "description": "The badge's theme variant.",
+      "description": "The badge's theme variant.\n\nThe `danger` variant is deprecated and will be removed in a future release. Use `error` instead.",
       "fieldName": "variant",
       "name": "variant",
       "reflects": true,
@@ -25,7 +25,7 @@
     {
       "access": "public",
       "default": "'primary'",
-      "description": "The badge's theme variant.",
+      "description": "The badge's theme variant.\n\nThe `danger` variant is deprecated and will be removed in a future release. Use `error` instead.",
       "name": "variant",
       "type": "'primary' | 'success' | 'neutral' | 'warning' | 'critical' | 'error' | 'danger'"
     }

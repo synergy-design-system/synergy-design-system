@@ -385,26 +385,6 @@ const resolveValue = (variablesData, variable, modeId) => {
 
     // No public SD reference available – fall back to the resolved concrete value.
     modeValue = resolveAliasToConcreteValue(variablesData, aliasTargetId, modeId);
-
-    if (resolvedType === 'COLOR') {
-      const hasRgbChannels = typeof modeValue === 'object'
-        && modeValue !== null
-        && 'r' in modeValue
-        && 'g' in modeValue
-        && 'b' in modeValue;
-
-      if (!hasRgbChannels) {
-        throw new Error([
-          'Unable to resolve COLOR alias to an RGBA object.',
-          `variable: ${name}`,
-          `variableId: ${variableId}`,
-          `modeId: ${modeId}`,
-          `aliasTargetId: ${aliasTargetId}`,
-          `resolvedValueType: ${typeof modeValue}`,
-          `resolvedValue: ${JSON.stringify(modeValue)}`,
-        ].join(' '));
-      }
-    }
   }
 
   if (resolvedType === 'FLOAT') {

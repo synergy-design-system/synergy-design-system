@@ -79,7 +79,11 @@ export default class SynAlert extends SynergyElement {
   /** Enables a close button that allows the user to dismiss the alert. */
   @property({ reflect: true, type: Boolean }) closable = false;
 
-  /** The alert's theme variant. */
+  /**
+   * The alert's theme variant.
+   *
+   * The `danger` variant is deprecated and will be removed in a future release. Use `error` instead.
+   */
   @property({ reflect: true }) variant: 'primary' | 'success' | 'neutral' | 'warning' | 'critical' | 'error' | 'danger' = 'primary';
 
   /**

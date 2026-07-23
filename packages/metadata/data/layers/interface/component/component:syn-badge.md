@@ -35,6 +35,8 @@ default: `'primary'`
 
 The badge's theme variant.
 
+The `danger` variant is deprecated and will be removed in a future release. Use `error` instead.
+
 ## Available CSS Parts
 
 - `base`: The component's base wrapper.

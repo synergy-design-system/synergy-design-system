@@ -105,8 +105,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the alert'
   }
 
   /**
-   * The alert's theme variant.
-   */
+* The alert's theme variant.
+
+The `danger` variant is deprecated and will be removed in a future release.
+* Use `error` instead.
+ */
   @Input()
   set variant(v: SynAlert['variant']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));

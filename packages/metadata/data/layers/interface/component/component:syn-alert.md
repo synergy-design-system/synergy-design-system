@@ -75,6 +75,8 @@ default: `'primary'`
 
 The alert's theme variant.
 
+The `danger` variant is deprecated and will be removed in a future release. Use `error` instead.
+
 ## Available Methods
 
 ### hide()

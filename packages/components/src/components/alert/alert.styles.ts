@@ -92,7 +92,7 @@ export default css`
   .alert__close-button {
     align-items: flex-start;
     align-self: start; /* #1135: Fix alignment for the close icon */
-    color: var(--syn-typography-color-text);
+    color: var(--variant-color-text);
     display: flex;
     flex: 0 0 auto;
     font-size: var(--size-icon-size);
@@ -108,6 +108,7 @@ export default css`
     --variant-color-background: var(--syn-alert-success-color-background);
     --variant-color-icon: var(--syn-alert-success-color-icon);
     --variant-color-indicator: var(--syn-alert-success-color-indicator);
+    --variant-color-text: var(--syn-alert-success-color-text);
   }
 
   .alert--neutral {
@@ -115,6 +116,7 @@ export default css`
     --variant-color-background: var(--syn-alert-neutral-color-background);
     --variant-color-icon: var(--syn-alert-neutral-color-icon);
     --variant-color-indicator: var(--syn-alert-neutral-color-indicator);
+    --variant-color-text: var(--syn-alert-neutral-color-text);
   }
 
   .alert--warning {
@@ -140,6 +142,7 @@ export default css`
     --variant-color-background: var(--syn-alert-error-color-background);
     --variant-color-icon: var(--syn-alert-error-color-icon);
     --variant-color-indicator: var(--syn-alert-error-color-indicator);
+    --variant-color-text: var(--syn-alert-error-color-text);
   }
 
   /* #1119: Alert Sizes */

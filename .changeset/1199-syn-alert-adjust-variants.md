@@ -1,10 +1,8 @@
 ---
-"@synergy-design-system/angular": minor
+"@synergy-design-system/assets": minor
 "@synergy-design-system/components": minor
 "@synergy-design-system/metadata": minor
-"@synergy-design-system/react": minor
 "@synergy-design-system/tokens": minor
-"@synergy-design-system/vue": minor
 ---
 
 feat: ✨ Add new critical and error variants for `<syn-alert>` and `<syn-badge>` (#1199)

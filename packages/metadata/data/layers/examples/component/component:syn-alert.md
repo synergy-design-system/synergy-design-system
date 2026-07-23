@@ -20,31 +20,25 @@ Set the variant attribute to change the alert’s variant.
   style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium)"
 >
   <syn-alert variant="primary" open="" id="something">
-    <syn-icon slot="icon" name="info"></syn-icon>
+    <syn-icon slot="icon" name="status-informative" library="system"></syn-icon>
     <strong>This is super informative</strong><br />
     You can tell by how pretty the alert is.
   </syn-alert>
 
   <syn-alert variant="success" open="">
-    <syn-icon slot="icon" name="check_circle"></syn-icon>
+    <syn-icon slot="icon" name="status-success" library="system"></syn-icon>
     <strong>Your changes have been saved</strong><br />
     You can safely exit the app now.
   </syn-alert>
 
-  <syn-alert variant="neutral" open="">
-    <syn-icon slot="icon" name="settings"></syn-icon>
-    <strong>Your settings have been updated</strong><br />
-    Settings will take effect on next login.
-  </syn-alert>
-
   <syn-alert variant="warning" open="">
-    <syn-icon slot="icon" name="emergency_home"></syn-icon>
+    <syn-icon slot="icon" name="status-warning" library="system"></syn-icon>
     <strong>Your session has ended</strong><br />
     Please login again to continue.
   </syn-alert>
 
   <syn-alert variant="critical" open="">
-    <syn-icon slot="icon" name="warning"></syn-icon>
+    <syn-icon slot="icon" name="status-critical" library="system"></syn-icon>
     <strong>Your session has ended</strong><br />
     Please login again to continue.
   </syn-alert>
@@ -59,6 +53,12 @@ Set the variant attribute to change the alert’s variant.
     <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
     <strong>Your account has been deleted*</strong><br />
     We're very sorry to see you go!
+  </syn-alert>
+
+  <syn-alert variant="neutral" open="">
+    <syn-icon slot="icon" name="status-neutral" library="system"></syn-icon>
+    <strong>Your settings have been updated</strong><br />
+    Settings will take effect on next login.
   </syn-alert>
 </div>
 <style>
@@ -173,38 +173,38 @@ To display an alert as a toast notification, or “toast”, create the alert an
   <div style="display: flex; gap: var(--syn-spacing-small)">
     <syn-button data-variant="primary">Primary</syn-button>
     <syn-button data-variant="success">Success</syn-button>
-    <syn-button data-variant="neutral">Neutral</syn-button>
     <syn-button data-variant="warning">Warning</syn-button>
     <syn-button data-variant="critical">Critical</syn-button>
     <syn-button data-variant="error">Error</syn-button>
+    <syn-button data-variant="neutral">Neutral</syn-button>
   </div>
 
   <syn-alert variant="primary" duration="3000" closable="">
-    <syn-icon slot="icon" name="info"></syn-icon>
+    <syn-icon slot="icon" name="status-informative" library="system"></syn-icon>
     <strong>This is super informative</strong><br />
     You can tell by how pretty the alert is.
   </syn-alert>
 
   <syn-alert variant="success" duration="3000" closable="">
-    <syn-icon slot="icon" name="check_circle"></syn-icon>
+    <syn-icon slot="icon" name="status-success" library="system"></syn-icon>
     <strong>Your changes have been saved</strong><br />
     You can safely exit the app now.
   </syn-alert>
 
   <syn-alert variant="neutral" duration="3000" closable="">
-    <syn-icon slot="icon" name="settings"></syn-icon>
+    <syn-icon slot="icon" name="status-neutral" library="system"></syn-icon>
     <strong>Your settings have been updated</strong><br />
     Settings will take effect on next login.
   </syn-alert>
 
   <syn-alert variant="warning" duration="3000" closable="">
-    <syn-icon slot="icon" name="emergency_home"></syn-icon>
+    <syn-icon slot="icon" name="status-warning" library="system"></syn-icon>
     <strong>Your session has ended</strong><br />
     Please login again to continue.
   </syn-alert>
 
   <syn-alert variant="critical" duration="3000" closable="">
-    <syn-icon slot="icon" name="warning"></syn-icon>
+    <syn-icon slot="icon" name="status-critical" library="system"></syn-icon>
     <strong>Your session has ended</strong><br />
     Please login again to continue.
   </syn-alert>

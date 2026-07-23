@@ -141,9 +141,9 @@ export const WithEmptyContent: Story = {
     <div style="display: flex; position: relative; gap: var(--syn-spacing-3x-large);">
       <syn-popup
         active
-        distance="-8"
+        distance="-3"
         placement="right-start"
-        skidding="-10"
+        skidding="-12"
       >
         <syn-icon
           name="wallpaper"
@@ -155,9 +155,9 @@ export const WithEmptyContent: Story = {
 
       <syn-popup
         active
-        distance="-8"
+        distance="-10"
         placement="right-start"
-        skidding="-10"
+        skidding="-14"
       >
         <syn-icon
           name="wallpaper"

@@ -10,7 +10,7 @@ This guide holds the required information for migrating from one major version o
 
 ## Version 4.0
 
-<h3 id="metadata-source-v4">BREAKING! File renames for static files in `data`</h3>
+<h3 id="metadata-source-v4">File renames for static files in `data`</h3>
 
 **Associated Ticket(s)**:
 
@@ -28,7 +28,7 @@ We chose to exchange the `:` with a new delimiter `__`.
 
 ---
 
-<h3 id="metadata-source-intent">BREAKING! Intent-Tools are no longer experimental</h3>
+<h3 id="metadata-source-intent">Intent-Tools are no longer experimental</h3>
 
 **Associated Ticket(s)**:
 

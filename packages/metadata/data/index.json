@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-07-24T07:59:12.050Z",
+  "builtAt": "2026-07-24T08:04:24.019Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset__sick2018-icons.json",
@@ -1723,7 +1723,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-charts-js-resolved-d-ts.json",
+      "corePath": "data/core/token/token__tokens-charts-js-resolved-d-ts.json",
       "id": "token:tokens-charts-js-resolved-d-ts",
       "kind": "token",
       "layers": {
@@ -1740,7 +1740,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-charts-js-resolved-js.json",
+      "corePath": "data/core/token/token__tokens-charts-js-resolved-js.json",
       "id": "token:tokens-charts-js-resolved-js",
       "kind": "token",
       "layers": {
@@ -1757,7 +1757,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-charts-scss-tokens-scss.json",
+      "corePath": "data/core/token/token__tokens-charts-scss-tokens-scss.json",
       "id": "token:tokens-charts-scss-tokens-scss",
       "kind": "token",
       "layers": {
@@ -1910,7 +1910,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-js-resolved-d-ts.json",
+      "corePath": "data/core/token/token__tokens-js-resolved-d-ts.json",
       "id": "token:tokens-js-resolved-d-ts",
       "kind": "token",
       "layers": {
@@ -1927,7 +1927,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-js-resolved-js.json",
+      "corePath": "data/core/token/token__tokens-js-resolved-js.json",
       "id": "token:tokens-js-resolved-js",
       "kind": "token",
       "layers": {
@@ -1944,7 +1944,7 @@
       ]
     },
     {
-      "corePath": "data/core/token/token:tokens-scss-tokens-scss.json",
+      "corePath": "data/core/token/token__tokens-scss-tokens-scss.json",
       "id": "token:tokens-scss-tokens-scss",
       "kind": "token",
       "layers": {

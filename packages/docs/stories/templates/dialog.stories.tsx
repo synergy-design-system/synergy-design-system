@@ -2,6 +2,7 @@ import React from 'react';
 import type {
   SynDialog,
   SynRequestCloseEvent,
+  SynSwitch,
 } from '@synergy-design-system/components';
 import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
 import {
@@ -130,12 +131,12 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
     message: string,
     variant: 'success' | 'warning' = 'success',
   ) => {
-    const icon = variant === 'warning' ? 'warning' : 'check_circle';
+    const icon = variant === 'warning' ? 'status-warning' : 'status-success';
     const alert = Object.assign(document.createElement('syn-alert'), {
       closable: true,
       duration: 3000,
       innerHTML: `
-        <syn-icon name="${icon}" slot="icon"></syn-icon>
+        <syn-icon slot="icon" name="${icon}" library="system"></syn-icon>
         ${message}
         ${variant === 'warning' ? '<div>Click <strong>Undo</strong> to revert this change.</div>' : ''}
       `,
@@ -211,7 +212,7 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
 
     const nextData = state.data.filter(item => item.id !== state.currentItemId);
     setState({ data: nextData.length > 0 ? nextData : [...initialData] });
-    notifyChange('Item successfully deleted', 'warning').catch(() => undefined);
+    notifyChange('Item successfully deleted', 'success').catch(() => undefined);
     closeDialog();
   };
 
@@ -477,7 +478,7 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
 
           <nav slot="footer">
             <syn-button variant="text" @click=${closeDialog}>Cancel</syn-button>
-            <syn-button variant="filled" @click=${confirmDelete}>Confirm</syn-button>
+            <syn-button variant="filled" @click=${confirmDelete}>Delete</syn-button>
           </nav>
         </syn-dialog>
       ` : ''}
@@ -706,7 +707,7 @@ export const ComplexFormDialog: Story = {
 
       // Marketing
       {
-        category: 'Marketing Coookies',
+        category: 'Marketing Cookies',
         description: 'We use these cookies of the Adobe Analytics web analysis tool to collect general, non-personal information about the use of the website, such as the number and duration of visits and which browsers and screen resolutions are used to view the site. We use this information to optimize our website. If wish to opt out of the anonymous data aggregation and analysis, you can install the following Adobe Opt-Out-Cookies on your computer: http://www.112.2o7.net/optout.html?omniture=1&popup=1&locale=en_US&optout=1&second=1&second_has_cookie=1',
         enabled: false,
         id: 'adobe-analytics',
@@ -739,7 +740,7 @@ export const ComplexFormDialog: Story = {
         ],
       },
       {
-        category: 'Marketing Coookies',
+        category: 'Marketing Cookies',
         description: 'Website / App Feedback from Qualtrics (Qualtrics LLC, 333 W. River Park Drive, Provo, UT 84604, USA; “Qualtrics”) stores certain data inside cookies. This includes the Site History cookie, Prevent Repeated Display cookie, a cookie that tells us that we have a Pop Under, a cookie that stores history data if localStorage is disabled, and a cookie that tracks user events. We use these cookies to enable us to provide pop-up questionnaires to you or enable you to provide feedback using surveys.',
         enabled: false,
         id: 'qualtrics',
@@ -783,7 +784,7 @@ export const ComplexFormDialog: Story = {
 
     return html`
       <syn-header label="Complex Cookie Banner"></syn-header>
-      <main>
+      <main class="cookie-banner-template">
         <syn-button
           @click=${async () => {
             await document.querySelector<SynDialog>('.cookie-banner-dialog')?.show();
@@ -808,7 +809,7 @@ export const ComplexFormDialog: Story = {
             <syn-fieldset description="Please choose which cookies you would like to enable. You can change the settings at any time.">
               <syn-accordion>
                 ${Object.entries(groupedCookies).map(([group, categories]) => html`
-                  <syn-details summary="${group}" open>
+                  <syn-details summary="${group}">
                     <table class="syn-table--default cookie-table">
                       <thead>
                         <th class="cookie-column">Cookie</th>
@@ -818,7 +819,28 @@ export const ComplexFormDialog: Story = {
                       <tbody>
                         ${categories.map(category => html`
                           <tr>
-                            <td>${category.name}</td>
+                            <td>
+                              ${!category.required
+                                ? html`
+                                  <label
+                                    @click=${(e: MouseEvent) => {
+                                      const target = e.currentTarget as HTMLLabelElement;
+                                      const checkbox = document.querySelector<SynSwitch>(`#${target.htmlFor}`);
+
+                                      if (!checkbox) {
+                                        return;
+                                      }
+
+                                      checkbox.checked = !checkbox.checked;
+                                    }}
+                                    for="${`switch-${category.id}`}"
+                                  >
+                                    ${category.name}
+                                  </label>
+                                `
+                                : html`${category.name}`
+                              }
+                            </td>
                             <td>
                               <p class="cookie-description">${category.description}</p>
                               ${(category.values?.length ?? 0) > 0
@@ -834,7 +856,17 @@ export const ComplexFormDialog: Story = {
                                         return;
                                       }
 
-                                      relatedTarget.style.display = relatedTarget.style.display === 'none' ? 'table-row' : 'none';
+                                      const currentStyle = relatedTarget.style.display;
+                                      let newStyle = 'none';
+                                      let buttonText = 'Show details';
+
+                                      if (currentStyle === 'none') {
+                                        newStyle = 'table-row';
+                                        buttonText = 'Hide details';
+                                      }
+
+                                      target.textContent = buttonText;
+                                      relatedTarget.style.display = newStyle;
                                     }}
                                     data-id="${category.id}"
                                     variant="text"
@@ -846,12 +878,18 @@ export const ComplexFormDialog: Story = {
                               }
                             </td>
                             <td>
-                              <syn-switch
-                                ?checked=${category.enabled}
-                                id="${category.id}"
-                                name="${category.name}"
-                                ?readonly=${category.required}
-                              ></syn-switch>
+                              <syn-tooltip
+                                content=${category.required ? 'This cookie is required and cannot be disabled.' : ''}
+                                ?disabled=${!category.required}
+                                trigger="hover"
+                              >
+                                <syn-switch
+                                  ?checked=${category.enabled}
+                                  id="${`switch-${category.id}`}"
+                                  name="${category.name}"
+                                  ?readonly=${category.required}
+                                ></syn-switch>
+                              </syn-tooltip>
                             </td>
                           </tr>
 
@@ -863,12 +901,12 @@ export const ComplexFormDialog: Story = {
                                   <table>
                                     <thead>
                                       <tr>
-                                        <th>Cookie name</th>
-                                        <th>Purpose of processing</th>
-                                        <th>Responsible party</th>
-                                        <th>Recipient of data</th>
-                                        <th>Duration of processing</th>
-                                        <th>Applicable domains</th>
+                                        <td>Cookie name</td>
+                                        <td>Purpose of processing</td>
+                                        <td>Responsible party</td>
+                                        <td>Recipient of data</td>
+                                        <td>Duration of processing</td>
+                                        <td>Applicable domains</td>
                                       </tr>
                                     </thead>
                                     <tbody>
@@ -919,8 +957,10 @@ export const ComplexFormDialog: Story = {
         </syn-dialog>
       </main>
       <style>
-      main {
+      .cookie-banner-template {
         background: var(--syn-page-background-color);
+        container-type: inline-size;
+        container-name: cookie-banner-template;
         padding: var(--syn-spacing-large);
       }
 
@@ -933,14 +973,14 @@ export const ComplexFormDialog: Story = {
         }
 
         .cookie-table {
+          > tbody > tr:not([id^="details-"]):has(~ tr:not([id^="details-"])) > td {
+            border-bottom: var(--syn-border-width-small) solid var(--syn-table-border-color);
+          }
+
           .cookie-column,
           tbody tr td:first-of-type {
             font: var(--syn-body-small-semibold);
-            width: 15%;
-          }
-
-          .purpose-column {
-            width: 100%;
+            width: 200px;
           }
 
           .enabled-column {
@@ -962,9 +1002,16 @@ export const ComplexFormDialog: Story = {
             margin-left: calc(var(--syn-spacing-small) * -1);
           }
 
+          label {
+            cursor: pointer;
+          }
+
           .cookie-details {
             padding: 0;
-            background: red;
+
+            table {
+              border-spacing: 0;
+            }
           }
         }
 
@@ -975,6 +1022,12 @@ export const ComplexFormDialog: Story = {
           & > :first-child {
             margin-right: auto;
           }
+        }
+      }
+
+      @container cookie-banner-template (max-width: 800px) {
+        .cookie-banner-dialog {
+          --width: 400px;
         }
       }
       </style>

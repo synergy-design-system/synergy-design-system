@@ -1,5 +1,18 @@
 # Changelog
 
+## 4.0.0
+
+### Major Changes
+
+- [#1337](https://github.com/synergy-design-system/synergy-design-system/pull/1337) [`30fc766`](https://github.com/synergy-design-system/synergy-design-system/commit/30fc76608279713ce7d080eff1573963150e23f0) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-23
+
+  major: 💥 Metadata and MCP adjustments ([#1334](https://github.com/synergy-design-system/synergy-design-system/issues/1334))
+
+  This release adds some breaking changes to the Metadata and MCP packages:
+
+  - Paths in the local filesystem do not include `:` anymore because of Windows incompatibilities (breaking!).
+  - The Metadata Intent Engine now is no longer experimental
+
 ## 3.26.0
 
 ### Patch Changes

@@ -7,6 +7,7 @@ import { join } from 'node:path';
 import { type Result, err, ok } from '../core/result.js';
 import { type Context } from '../core/context.js';
 import { type WriteError } from '../core/errors.js';
+import { decodeEntityIdFromPath } from '../core/entity-paths.js';
 import { type EntityLayers } from './write-layers.js';
 
 export interface CleanupOptions {
@@ -142,7 +143,7 @@ export async function cleanupOrphanedFiles(
     for (const filePath of actualCoreFiles) {
       // Extract entity ID from path: data/core/{kind}/{id}.json
       const fileName = filePath.substring(filePath.lastIndexOf('/') + 1);
-      const entityId = fileName.replace(/\.json$/, '');
+      const entityId = decodeEntityIdFromPath(fileName.replace(/\.json$/, ''));
 
       if (!coreEntityIds.has(entityId)) {
         orphanedCoreFiles.push(filePath);

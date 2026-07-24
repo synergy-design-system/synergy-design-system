@@ -42,7 +42,7 @@ describe('storybook examples sync', () => {
         'layers',
         'examples',
         'component',
-        'component:syn-accordion.md',
+        'component__syn-accordion.md',
       );
 
       await mkdir(path.dirname(staleAccordionExamplePath), { recursive: true });
@@ -85,7 +85,7 @@ describe('storybook examples sync', () => {
         outputDir,
         'core',
         'component',
-        'component:syn-accordion.json',
+        'component__syn-accordion.json',
       );
       const accordionCore = JSON.parse(await readFile(accordionCorePath, 'utf8'));
       expect(accordionCore.layers).to.not.have.property('examples');
@@ -95,7 +95,7 @@ describe('storybook examples sync', () => {
         'layers',
         'examples',
         'component',
-        'component:syn-alert.md',
+        'component__syn-alert.md',
       );
       await access(alertExamplePath);
 
@@ -103,10 +103,10 @@ describe('storybook examples sync', () => {
         outputDir,
         'core',
         'component',
-        'component:syn-alert.json',
+        'component__syn-alert.json',
       );
       const alertCore = JSON.parse(await readFile(alertCorePath, 'utf8'));
-      expect(alertCore.layers.examples.some((ref) => ref.path === 'layers/examples/component/component:syn-alert.md')).to.equal(true);
+      expect(alertCore.layers.examples.some((ref) => ref.path === 'layers/examples/component/component__syn-alert.md')).to.equal(true);
     } finally {
       await rm(tempRoot, { force: true, recursive: true });
     }

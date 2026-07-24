@@ -45,6 +45,7 @@
     "dist/index.d.ts",
     "dist/index.js",
     "dist/public/**",
+    "dist/internal/core/**",
     "dist/intentPolicy/**",
     "dist/bin/**",
     "README.md",
@@ -82,5 +83,5 @@
   },
   "types": "./dist/index.d.ts",
   "type": "module",
-  "version": "3.26.0"
+  "version": "4.0.0"
 }

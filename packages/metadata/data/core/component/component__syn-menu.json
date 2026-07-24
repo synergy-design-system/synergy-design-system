@@ -1,0 +1,224 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynMenuComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-menu",
+        "sourcePath": "packages/angular/components/menu/menu.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynMenu",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-menu--docs",
+          "events": [
+            {
+              "name": "syn-select",
+              "type": "SynSelectEvent"
+            }
+          ],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.12.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynMenuJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynMenu",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/menu.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueMenu",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueMenu.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "11516-365094",
+      "figmaDocsId": "41203-442314",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Menus provide a list of options for the user to choose from.\n\nYou can use menu items, menu labels, and dividers to compose a menu. Menus support keyboard interactions, including type-to-select an option."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Menu"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Menus work really well when used inside dropdowns."
+          },
+          "name": "dropdown",
+          "title": {
+            "type": "text",
+            "value": "In Dropdowns"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To create a submenu, nest an <syn-menu slot=\"submenu\"> in any menu item."
+          },
+          "name": "submenu",
+          "title": {
+            "type": "text",
+            "value": "Submenus"
+          }
+        }
+      ],
+      "storySourcePath": "components.menu",
+      "storyTags": [
+        "Navigation"
+      ]
+    },
+    "rules": {
+      "accessibility": [
+        "Keyboard Navigation: Ensure the menu can be opened, navigated, and closed using keyboard shortcuts (e.g., arrow keys to move between items, Enter to select, Esc to close).",
+        "Screen Reader Compatibility: Use appropriate ARIA roles, such as role=\"menu\" for the menu container, role=\"menuitem\" for each item, and aria-haspopup=\"true\" for any submenu trigger. Provide descriptive, concise labels for each menu item.",
+        "Focus Management: Ensure that focus is automatically directed to the first menu item when the menu is opened. When the menu is closed, focus should return to the element that triggered the menu (e.g., button or link).",
+        "Visible Focus Indicators: Ensure all interactive menu items have visible focus states for keyboard and screen reader users. This could be through a color change, outline, or other visual indicators.",
+        "Limit Nested Menus: Avoid deep nesting of menus. Restrict the depth of nested menus to improve usability for screen readers and keyboard navigation.",
+        "Accessible Shortcuts: If the menu includes keyboard shortcuts or accelerators, ensure these are clearly communicated in the UI (e.g., with tooltips or labels like \"Ctrl + S\" for save) and accessible to screen readers.",
+        "Descriptive State Announcements: For dynamic menu behaviors (e.g., opening/closing or item selection), ensure that screen readers announce changes in state, such as \"Menu opened\" or \"Option selected.\" Use ARIA live regions or alerts as needed."
+      ],
+      "component": "syn-menu",
+      "related": {
+        "components": [
+          "syn-menu-item",
+          "syn-dropdown"
+        ],
+        "templates": [
+          "AppShell"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Ensure the menu is easy to access and appears consistently across the platform.",
+            "Provide visual feedback (e.g., hover, active state) to indicate interactivity.",
+            "Ensure the menu is responsive and adapts well to different screen sizes and devices."
+          ],
+          "id": "behavior",
+          "name": "Behavior"
+        },
+        {
+          "content": [
+            "Use clear, descriptive labels to ensure users know what to expect.",
+            "Use icons alongside text for better visual identification of actions.",
+            "Avoid overwhelming users with too many menu items. Keep it concise and focused."
+          ],
+          "id": "labels_and_value_display",
+          "name": "Labels and Value Display"
+        },
+        {
+          "content": [
+            "Organize menu items in a logical, hierarchical order to enhance navigation.",
+            "Prioritize frequently used functions at the top of the menu for quicker access.",
+            "Don't use multiple menus with similar content on the same screen. Keep the navigation consistent and clear."
+          ],
+          "id": "structure_and_organization",
+          "name": "Structure and Organization"
+        }
+      ],
+      "useCases": [
+        "Navigate between different sections or pages.",
+        "Access various functions or features quickly.",
+        "Switch between user account settings or preferences.",
+        "Provide shortcuts for frequently used tasks."
+      ]
+    },
+    "sourceModulePath": "components/menu/menu.js",
+    "summary": "Menus provide a list of options for the user to choose from."
+  },
+  "id": "component:syn-menu",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-menu.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-menu/angular/menu.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-menu/components/menu.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-menu/components/menu.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-menu/components/menu.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-menu/react/menu.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-menu/vue/SynVueMenu.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-menu/react/SynMenuJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-menu.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-menu.md"
+      }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component__syn-menu.md"
+      }
+    ]
+  },
+  "name": "syn-menu",
+  "package": "components",
+  "relations": [],
+  "since": "1.12.0",
+  "sources": [
+    "packages/angular/components/menu/menu.component.ts",
+    "packages/components/src/components/menu/menu.component.ts",
+    "packages/components/src/components/menu/menu.styles.ts",
+    "packages/components/src/components/menu/menu.ts",
+    "packages/react/src/components/menu.ts",
+    "packages/vue/src/components/SynVueMenu.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "menu",
+    "react",
+    "syn-menu",
+    "vue"
+  ]
+}

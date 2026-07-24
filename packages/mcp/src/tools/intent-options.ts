@@ -2,7 +2,7 @@ import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import {
   type IntentPhase,
-  experimental_getIntentOptions as getIntentOptions,
+  getIntentOptions,
 } from '@synergy-design-system/metadata';
 import {
   INTENT_DEFAULT_FRAMEWORK,

@@ -2,6 +2,7 @@ import {
   readdir, rename, unlink, writeFile,
 } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
+import { encodeEntityIdForPath } from '../../core/entity-paths.js';
 import { ensureDir } from '../../writers/fs-utils.js';
 import { type StorybookArtifactKind, type StorybookExampleArtifact } from './types.js';
 
@@ -48,7 +49,7 @@ export async function writeStorybookArtifacts(
 
   for (const artifact of artifacts) {
     const expectedFiles = expectedByKind.get(artifact.kind) ?? new Set<string>();
-    expectedFiles.add(`${artifact.entityId}.md`);
+    expectedFiles.add(`${encodeEntityIdForPath(artifact.entityId)}.md`);
     expectedByKind.set(artifact.kind, expectedFiles);
   }
 
@@ -63,7 +64,7 @@ export async function writeStorybookArtifacts(
       'layers',
       'examples',
       artifact.kind,
-      `${artifact.entityId}.md`,
+      `${encodeEntityIdForPath(artifact.entityId)}.md`,
     );
     const tempPath = `${filePath}.tmp-${process.pid}-${Date.now()}`;
     const content = `${artifact.content.trimEnd()}\n`;

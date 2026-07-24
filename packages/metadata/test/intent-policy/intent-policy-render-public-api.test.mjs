@@ -46,12 +46,12 @@ describe('intent policy render public api', () => {
     };
   };
 
-  it('exports experimental_renderIntent and renders action.primary for react-web-components', async () => {
-    const { experimental_renderIntent } = await loadPublicApi();
+  it('exports renderIntent and renders action.primary for react-web-components', async () => {
+    const { renderIntent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_renderIntent({
+      const response = await renderIntent({
         framework: 'react-web-components',
         intent: 'action.primary',
         target: {
@@ -71,11 +71,11 @@ describe('intent policy render public api', () => {
   });
 
   it('renders with automatic target resolution when target is omitted', async () => {
-    const { experimental_renderIntent } = await loadPublicApi();
+    const { renderIntent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_renderIntent({
+      const response = await renderIntent({
         framework: 'react-web-components',
         intent: 'action.grouped',
       }, {

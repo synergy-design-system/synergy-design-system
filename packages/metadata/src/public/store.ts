@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { toEntityFilePath } from '../internal/core/entity-paths.js';
 import {
   type LayerName,
   type MetadataEntity,
@@ -151,7 +152,7 @@ const matchesQuery = (
   return true;
 };
 
-const buildCoreEntityPath = (dataDir: string, entry: MetadataIndexEntry): string => join(dataDir, entry.corePath.replace(/^data\//, ''));
+const buildCoreEntityPath = (dataDir: string, entry: MetadataIndexEntry): string => toEntityFilePath(dataDir, entry.corePath);
 
 /**
  * Create a metadata store that can query entities and read layer files.
@@ -252,7 +253,7 @@ export const createMetadataStore = (options: MetadataStoreOptions = {}): Metadat
    * Read the UTF-8 content for a layer file reference.
    */
   const readLayerFile = async (ref: MetadataLayerRef): Promise<string> => {
-    const filePath = join(dataDir, ref.path.replace(/^data\//, ''));
+    const filePath = toEntityFilePath(dataDir, ref.path);
     return getCachedText(
       layerContentCacheByPath,
       layerContentInflightByPath,

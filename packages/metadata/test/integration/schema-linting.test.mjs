@@ -96,7 +96,7 @@ describe('schema linting', () => {
 
   it('generated schemas match entity data structure', async () => {
     // Load a sample entity
-    const samplePath = join(coreDir, 'component', 'component:syn-accordion.json');
+    const samplePath = join(coreDir, 'component', 'component__syn-accordion.json');
     const content = await readFile(samplePath, 'utf8');
     const entity = JSON.parse(content);
 
@@ -114,7 +114,7 @@ describe('schema linting', () => {
   });
 
   it('layer references point to real files', async () => {
-    const samplePath = join(coreDir, 'component', 'component:syn-accordion.json');
+    const samplePath = join(coreDir, 'component', 'component__syn-accordion.json');
     const content = await readFile(samplePath, 'utf8');
     const entity = JSON.parse(content);
 

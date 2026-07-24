@@ -196,9 +196,6 @@ describe('config: intent tool defaults from config', () => {
 
   before(async () => {
     configPath = await writeTempConfig({
-      experimentalFeatures: {
-        intentTools: true,
-      },
       includeAiRules: false,
       tools: {
         intentComponentGuide: {

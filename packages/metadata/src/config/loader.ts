@@ -1,6 +1,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { decodeEntityIdFromPath } from '../internal/core/entity-paths.js';
 import {
   type Cluster,
   ClusterSchema,
@@ -30,7 +31,7 @@ async function loadRules(configDir: string): Promise<Map<string, ComponentRules>
       const fileUrl = pathToFileURL(filePath).href;
       const mod = await import(fileUrl) as { default: unknown };
       const parsed = ComponentRulesSchema.parse(mod.default);
-      const entityId = file.replace('.js', '');
+      const entityId = decodeEntityIdFromPath(file.replace('.js', ''));
       rules.set(entityId, parsed);
     }
   } catch {
@@ -85,7 +86,7 @@ export async function loadConfig(configDir: string): Promise<ConfigContext> {
       const content = await readFile(filePath, 'utf-8');
       const data = parseJsonUnknown(content);
       const parsed = ComponentOverrideSchema.parse(data);
-      const entityId = file.replace('.json', '');
+      const entityId = decodeEntityIdFromPath(file.replace('.json', ''));
       context.overrides.set(entityId, parsed);
     }
   } catch {

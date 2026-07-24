@@ -5,6 +5,7 @@
 import { type Result, ok } from '../core/result.js';
 import { type Context } from '../core/context.js';
 import { type CoreEntity } from '../schemas/index.js';
+import { encodeEntityIdForPath } from '../core/entity-paths.js';
 
 /**
  * Index entry for fast lookup and search.
@@ -41,7 +42,7 @@ export function buildIndex(
     const aliasToken = toSearchToken(entity.custom?.alias);
 
     return {
-      corePath: `data/core/${entity.kind}/${entity.id}.json`,
+      corePath: `data/core/${entity.kind}/${encodeEntityIdForPath(entity.id)}.json`,
       id: entity.id,
       kind: entity.kind,
       layers: Object.fromEntries(

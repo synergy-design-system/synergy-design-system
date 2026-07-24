@@ -26,9 +26,11 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   props: {
     defaultSlot: figma.string('*value'),
     variant: figma.enum('variant', {
+      critical: 'critical',
       danger: 'danger',
       // Omitted primary as this is the default in the component
       // default: 'primary',
+      error: 'error',
       neutral: 'neutral',
       primary: 'primary',
       success: 'success',

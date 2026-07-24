@@ -70,10 +70,12 @@ The alert's size.
 
 attribute: `variant`
 reflects: yes
-type: `'primary' | 'success' | 'neutral' | 'warning' | 'danger'`
+type: `'primary' | 'success' | 'neutral' | 'warning' | 'critical' | 'error' | 'danger'`
 default: `'primary'`
 
 The alert's theme variant.
+
+The `danger` variant is deprecated and will be removed in a future release. Use `error` instead.
 
 ## Available Methods
 

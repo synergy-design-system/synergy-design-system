@@ -50,11 +50,13 @@ export default {
     },
     {
       content: [
-        'Primary variant: Use for general informational messages that don\'t require urgent attention.',
-        'Success variant: Use to confirm that an action was completed successfully.',
-        'Warning variant: Use when an action has unexpected consequences or requires user attention.',
-        'Danger variant: Use for critical errors, destructive actions, or situations requiring immediate response.',
-        'Neutral variant: Use for updates or system messages that are neither positive nor negative.',
+        '**Primary** variant: Use for general informational messages that don\'t require urgent attention.',
+        '**Success** variant: Use to confirm that an action was completed successfully.',
+        '**Warning** variant: Use when an action has unexpected consequences or requires user attention.',
+        '**Critical** variant: Use for urgent issues that require immediate user attention or action.',
+        '**Error** variant: Use for critical errors, destructive actions, or situations requiring immediate response.',
+        '~~**Danger** variant~~: Do not use. This variant is deprecated and will be removed in a future major release. Use the error variant instead.',
+        '**Neutral** variant: Use for updates or system messages that are neither positive nor negative.',
       ],
       id: 'variants',
       name: 'Variants & When to Use Them',

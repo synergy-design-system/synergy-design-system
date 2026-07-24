@@ -24,7 +24,9 @@ const translation: Translation = {
 
   // Synergy custom translations start
   closeMenu: 'Fermer le menu',
+  critical: 'Critique',
   danger: 'Danger',
+  error: 'Erreur',
   fileButtonText: 'Sélectionner un fichier',
   fileButtonTextMultiple: 'Sélectionner des fichiers',
   fileDragDrop: 'Glisser ou sélectionner un fichier',

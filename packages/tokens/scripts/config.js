@@ -53,6 +53,18 @@ export const COMPONENTS_COLLECTION_NAME = 'Synergy Themes';
 export const CHART_COLLECTION_NAME = 'Charts';
 
 /**
+ * Returns true when charting fetch should be skipped.
+ */
+export const shouldSkipChartingFetch = () => process.env.SKIP_CHARTING === 'true'
+  || process.env.SKIP_CHARTING_FETCH === 'true';
+
+/**
+ * Returns true when charting transform should be skipped.
+ */
+export const shouldSkipChartingTransform = () => process.env.SKIP_CHARTING === 'true'
+  || process.env.SKIP_CHARTING_TRANSFORM === 'true';
+
+/**
  * List of static changed to variables for specific themes and modes.
  * @type {{ global: OutputVariableChangeList } & Record<string, OutputVariableChangeList>}
  */

@@ -14,9 +14,12 @@
  * @typedef {import('@figma/rest-api-spec').GetLocalVariablesResponse['meta']} VariablesAndCollections
  */
 import variablesJson from '../../src/figma-variables/variableTokens.json' with { type: 'json' };
-import chartsJson from '../../src/figma-charts/chartTokens.json' with { type: 'json' };
 import {
-  CHARTS_OUTPUT_DIR, CHART_COLLECTION_NAME, COMPONENTS_COLLECTION_NAME, COMPONENTS_OUTPUT_DIR,
+  CHARTS_OUTPUT_DIR,
+  CHART_COLLECTION_NAME,
+  COMPONENTS_COLLECTION_NAME,
+  COMPONENTS_OUTPUT_DIR,
+  shouldSkipChartingTransform,
 } from '../config.js';
 import { transformFigmaVariables } from './transformer-variables-generic.js';
 
@@ -26,8 +29,13 @@ transformFigmaVariables({
   variablesData: /** @type {VariablesAndCollections} */ (variablesJson),
 });
 
-transformFigmaVariables({
-  collectionName: CHART_COLLECTION_NAME,
-  outputDir: CHARTS_OUTPUT_DIR,
-  variablesData: /** @type {VariablesAndCollections} */ (chartsJson),
-});
+if (shouldSkipChartingTransform()) {
+  console.log('Skipping charting variable transform (SKIP_CHARTING/SKIP_CHARTING_TRANSFORM=true).');
+} else {
+  const chartsJson = (await import('../../src/figma-charts/chartTokens.json', { with: { type: 'json' } })).default;
+  transformFigmaVariables({
+    collectionName: CHART_COLLECTION_NAME,
+    outputDir: CHARTS_OUTPUT_DIR,
+    variablesData: /** @type {VariablesAndCollections} */ (chartsJson),
+  });
+}

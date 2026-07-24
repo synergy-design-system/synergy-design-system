@@ -17,7 +17,9 @@ Set the variant attribute to change the badge’s variant.
   <syn-badge variant="primary">primary</syn-badge>
   <syn-badge variant="success">success</syn-badge>
   <syn-badge variant="warning">warning</syn-badge>
-  <syn-badge variant="danger">danger</syn-badge>
+  <syn-badge variant="critical">critical</syn-badge>
+  <syn-badge variant="error">error</syn-badge>
+  <syn-badge variant="danger">danger*</syn-badge>
   <syn-badge variant="neutral">neutral</syn-badge>
 </div>
 ```
@@ -42,7 +44,7 @@ One of the most common use cases for badges is attaching them to buttons. DEV: T
 
   <syn-button>
     Errors
-    <syn-badge variant="danger" pill="">6</syn-badge>
+    <syn-badge variant="error" pill="">6</syn-badge>
   </syn-button>
 </div>
 ```
@@ -58,13 +60,13 @@ When including badges in menu items, use the suffix slot to make sure they’r
   <syn-menu-label>Messages</syn-menu-label>
   <syn-menu-item
     >Comments
-    <syn-badge slot="suffix" variant="neutral" pill=""
+    <syn-badge slot="suffix" variant="primary" pill=""
       >4</syn-badge
     ></syn-menu-item
   >
   <syn-menu-item
     >Replies
-    <syn-badge slot="suffix" variant="neutral" pill=""
+    <syn-badge slot="suffix" variant="primary" pill=""
       >12</syn-badge
     ></syn-menu-item
   >
@@ -81,7 +83,7 @@ Badges can be used without content to just show an status indicator.
 <div
   style="display: flex; position: relative; gap: var(--syn-spacing-3x-large)"
 >
-  <syn-popup active="" distance="-8" placement="right-start" skidding="-10">
+  <syn-popup active="" distance="-3" placement="right-start" skidding="-12">
     <syn-icon
       name="wallpaper"
       style="font-size: var(--syn-font-size-x-large)"
@@ -90,7 +92,7 @@ Badges can be used without content to just show an status indicator.
     <syn-badge></syn-badge>
   </syn-popup>
 
-  <syn-popup active="" distance="-8" placement="right-start" skidding="-10">
+  <syn-popup active="" distance="-10" placement="right-start" skidding="-14">
     <syn-icon
       name="wallpaper"
       style="font-size: var(--syn-font-size-x-large)"

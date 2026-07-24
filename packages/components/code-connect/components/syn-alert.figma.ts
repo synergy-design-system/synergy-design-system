@@ -17,7 +17,9 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
   links: [],
   props: {
     variant: figma.enum('variant', {
+      critical: 'critical',
       danger: 'danger',
+      error: 'error',
       neutral: 'neutral',
       primary: 'primary',
       success: 'success',
@@ -81,6 +83,8 @@ figma.connect('https://www.figma.com/design/bZFqk9urD3NlghGUKrkKCR/Synergy-Digit
     }),
     variant: figma.nestedProps('_helper/color/syn-alert', {
       variant: figma.enum('variant', {
+        critical: 'critical',
+        error: 'error',
         danger: 'danger',
         neutral: 'neutral',
         primary: 'primary',

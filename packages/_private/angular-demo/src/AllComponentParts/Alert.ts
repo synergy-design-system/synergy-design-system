@@ -39,7 +39,14 @@ import { SynIconComponent } from '@synergy-design-system/angular/components/icon
         Please login again to continue.
       </syn-alert>
 
-      <syn-alert variant="danger" open>
+      <syn-alert variant="critical" open>
+        <syn-icon slot="icon" name="warning" />
+        <strong>Your session has ended</strong>
+        <br />
+        Please login again to continue.
+      </syn-alert>
+
+      <syn-alert variant="error" open>
         <syn-icon slot="icon" name="status-error" library="system" />
         <strong>Your account has been deleted</strong>
         <br />

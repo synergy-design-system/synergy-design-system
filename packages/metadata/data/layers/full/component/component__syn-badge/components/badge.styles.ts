@@ -1,52 +1,82 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
   :host {
     display: inline-flex;
   }
 
   .badge {
-    display: inline-flex;
+    /* Defines the used back- and foreground color for variants. Defaults to primary */
+    --variant-color-text: var(--syn-badge-informative-color-text);
+    --variant-color-background: var(--syn-badge-informative-color-background);
+
     align-items: center;
-    justify-content: center;
-    font-size: max(12px, 0.75em);
-    font-weight: var(--syn-font-weight-semibold);
-    letter-spacing: var(--syn-letter-spacing-normal);
-    line-height: 1;
-    border-radius: var(--syn-border-radius-small);
-    border: solid 1px var(--syn-color-neutral-0);
-    white-space: nowrap;
-    padding: 0.35em 0.6em;
-    user-select: none;
-    -webkit-user-select: none;
+    background-color: var(--variant-color-background);
+    border-radius: var(--syn-border-radius-pill);
+    color: var(--variant-color-text);
     cursor: inherit;
+    display: inline-flex;
+    font: var(--syn-body-small-bold);
+    height: var(--syn-spacing-large);
+    justify-content: center;
+    letter-spacing: var(--syn-letter-spacing-normal);
+    line-height: var(--syn-spacing-large);
+    min-width: var(--syn-spacing-large);
+    padding: 0 var(--syn-spacing-x-small);
+    /* stylelint-disable-next-line property-no-vendor-prefix */
+    -webkit-user-select: none;
+    user-select: none;
+    white-space: nowrap;
   }
 
   /* Variant modifiers */
-  .badge--primary {
-    background-color: var(--syn-color-primary-600);
-    color: var(--syn-color-neutral-0);
-  }
-
   .badge--success {
-    background-color: var(--syn-color-success-600);
-    color: var(--syn-color-neutral-0);
+    --variant-color-background: var(--syn-badge-success-color-background);
+    --variant-color-text: var(--syn-badge-success-color-text);
   }
 
   .badge--neutral {
-    background-color: var(--syn-color-neutral-600);
-    color: var(--syn-color-neutral-0);
+    --variant-color-background: var(--syn-badge-neutral-color-background);
+    --variant-color-text: var(--syn-badge-neutral-color-text);
   }
 
   .badge--warning {
-    background-color: var(--syn-color-warning-600);
-    color: var(--syn-color-neutral-0);
+    --variant-color-background: var(--syn-badge-warning-color-background);
+    --variant-color-text: var(--syn-badge-warning-color-text);
   }
 
-  .badge--danger {
-    background-color: var(--syn-color-danger-600);
-    color: var(--syn-color-neutral-0);
+  .badge--critical {
+    --variant-color-background: var(--syn-badge-critical-color-background);
+    --variant-color-text: var(--syn-badge-critical-color-text);
+  }
+
+  /* @todo: Major: Remove .badge--danger */
+  .badge--danger,
+  .badge--error {
+    --variant-color-background: var(--syn-badge-error-color-background);
+    --variant-color-text: var(--syn-badge-error-color-text);
+  }
+
+  /**
+   * Special treatment: If the badge is empty, show it as a dot only
+   */
+  :host(:empty) .badge {
+    height: var(--syn-spacing-x-small);
+    min-width: initial;
+    padding: 0;
+    width: var(--syn-spacing-x-small);
+  }
+
+  .visually-hidden {
+    border: 0;
+    /* stylelint-disable-next-line property-no-deprecated */
+    clip: rect(0, 0, 0, 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
   }
 `;

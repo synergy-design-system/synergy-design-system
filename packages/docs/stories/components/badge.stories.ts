@@ -76,7 +76,9 @@ export const Variants: Story = {
       <syn-badge variant="primary">primary</syn-badge>
       <syn-badge variant="success">success</syn-badge>
       <syn-badge variant="warning">warning</syn-badge>
-      <syn-badge variant="danger">danger</syn-badge>
+      <syn-badge variant="critical">critical</syn-badge>
+      <syn-badge variant="error">error</syn-badge>
+      <syn-badge variant="danger">danger*</syn-badge>
       <syn-badge variant="neutral">neutral</syn-badge>
     </div>
   `,
@@ -104,7 +106,7 @@ export const WithButtons: Story = {
 
       <syn-button>
         Errors
-        <syn-badge variant="danger" pill>6</syn-badge>
+        <syn-badge variant="error" pill>6</syn-badge>
       </syn-button>
     </div>
   `,
@@ -121,8 +123,8 @@ export const WithMenuItems: Story = {
   render: () => html`
     <syn-menu style="max-width: 228px;">
       <syn-menu-label>Messages</syn-menu-label>
-      <syn-menu-item>Comments <syn-badge slot="suffix" variant="neutral" pill>4</syn-badge></syn-menu-item>
-      <syn-menu-item>Replies <syn-badge slot="suffix" variant="neutral" pill>12</syn-badge></syn-menu-item>
+      <syn-menu-item>Comments <syn-badge slot="suffix" variant="primary" pill>4</syn-badge></syn-menu-item>
+      <syn-menu-item>Replies <syn-badge slot="suffix" variant="primary" pill>12</syn-badge></syn-menu-item>
     </syn-menu>
   `,
 };
@@ -139,9 +141,9 @@ export const WithEmptyContent: Story = {
     <div style="display: flex; position: relative; gap: var(--syn-spacing-3x-large);">
       <syn-popup
         active
-        distance="-8"
+        distance="-3"
         placement="right-start"
-        skidding="-10"
+        skidding="-12"
       >
         <syn-icon
           name="wallpaper"
@@ -153,9 +155,9 @@ export const WithEmptyContent: Story = {
 
       <syn-popup
         active
-        distance="-8"
+        distance="-10"
         placement="right-start"
-        skidding="-10"
+        skidding="-14"
       >
         <syn-icon
           name="wallpaper"

@@ -61,8 +61,11 @@ use the `show()` and `hide()` methods and this attribute will reflect the alert'
   closable?: SynAlert['closable'];
 
   /**
-   * The alert's theme variant.
-   */
+* The alert's theme variant.
+
+The `danger` variant is deprecated and will be removed in a future release.
+* Use `error` instead.
+ */
   variant?: SynAlert['variant'];
 
   /**

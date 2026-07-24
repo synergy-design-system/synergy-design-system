@@ -24,7 +24,9 @@ const translation: Translation = {
 
   // Synergy custom translations start
   closeMenu: 'Sulje valikko',
+  critical: 'Kriittinen',
   danger: 'Vaara',
+  error: 'Virhe',
   fileButtonText: 'Valitse tiedosto',
   fileButtonTextMultiple: 'Valitse tiedostot',
   fileDragDrop: 'Vedä tai valitse tiedosto',

@@ -9,6 +9,74 @@ As all our wrappers are based on this package, the changes also hold true for al
 
 ---
 
+## Version 4.0 (Upcoming, no release date yet!)
+
+> ⚠️ **Important**: When upgrading to Synergy v4.0, update all `@synergy-design-system/*` packages to their respective v3.x versions (or v2.x for `@synergy-design-system/assets`) to ensure compatibility.
+
+<h3 id="syn-alert-v4">`<syn-alert>`</h3>
+
+#### ⚠️ Removed deprecated `variant` value `danger`
+
+**Associated Ticket(s)**:
+
+- [#1199](https://github.com/synergy-design-system/synergy-design-system/issues/1199)
+
+**Reason**:
+
+The `danger` variant was marked as deprecated in Synergy version 3.
+Its naming did not align well with other variants.
+Synergy introduced a new variant `error` that has a similar appearance.
+
+**Migration Steps**:
+
+- Exchange all occurrences of `variant="danger"` with `variant="error"` in your code.
+
+**Example (before)**:
+
+```html
+<syn-alert variant="danger"></syn-alert>
+```
+
+**Example (after)**:
+
+```html
+<syn-alert variant="error"></syn-alert>
+```
+
+---
+
+<h3 id="syn-badge-v4">`<syn-badge>`</h3>
+
+#### ⚠️ Removed deprecated `variant` value `danger`
+
+**Associated Ticket(s)**:
+
+- [#1199](https://github.com/synergy-design-system/synergy-design-system/issues/1199)
+
+**Reason**:
+
+The `danger` variant was marked as deprecated in Synergy version 3.
+Its naming did not align well with other variants.
+Synergy introduced a new variant `error` that has a similar appearance.
+
+**Migration Steps**:
+
+- Exchange all occurrences of `variant="danger"` with `variant="error"` in your code.
+
+**Example (before)**:
+
+```html
+<syn-badge variant="danger"></syn-badge>
+```
+
+**Example (after)**:
+
+```html
+<syn-badge variant="error"></syn-badge>
+```
+
+---
+
 ## Version 3.0
 
 > ⚠️ **Important**: When upgrading to Synergy v3.0, update all `@synergy-design-system/*` packages to their respective v3.x versions (or v2.x for `@synergy-design-system/assets`) to ensure compatibility.

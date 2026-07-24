@@ -178,8 +178,13 @@ export const RulesHelper: React.FC<RulesHelperProps> = ({ children, forItem }) =
   });
 
   useEffect(() => {
-    const loadRule = ruleModulesByItem[forItem];
-    const loadCoreComponent = coreComponentModulesByItem[forItem];
+    // #1334: Breaking Change: We now use "__" as a separator in the file system for entity IDs instead of ":"
+    // to avoid issues with file paths on some operating systems.
+    // This means that the entity ID "component:syn-button" is now stored as "component__syn-button" in the file system.
+    // The rules helper will automatically handle this change when loading rules for components or styles.
+    const moduleId = forItem.replace(':', '__');
+    const loadRule = ruleModulesByItem[moduleId];
+    const loadCoreComponent = coreComponentModulesByItem[moduleId];
 
     if (!loadRule) {
       setRuleData({ content: null, coreMetadata: null, status: 'error' });

@@ -1,7 +1,4 @@
 import assert from 'node:assert/strict';
-import { unlink, writeFile } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
 import {
   after,
   before,
@@ -15,12 +12,6 @@ import {
 
 const RESOURCE_URI = 'synergy://intent-categories/list';
 
-const writeTempConfig = async (content: unknown): Promise<string> => {
-  const filePath = join(tmpdir(), `synergy-mcp-intent-resource-${Date.now()}-${Math.random().toString(36).slice(2)}.json`);
-  await writeFile(filePath, JSON.stringify(content), 'utf8');
-  return filePath;
-};
-
 describe('intent-categories-list resource (default config)', () => {
   let session: ClientSession;
 
@@ -32,31 +23,10 @@ describe('intent-categories-list resource (default config)', () => {
     await session.close();
   });
 
-  it('is not listed when intent tools are disabled', async () => {
+  it('is listed by default', async () => {
     const response = await session.client.listResources();
     const uris = response.resources.map((resource) => resource.uri);
-    assert.ok(!uris.includes(RESOURCE_URI), `Did not expect ${RESOURCE_URI} in resources list`);
-  });
-});
-
-describe('intent-categories-list resource (experimental intent tools enabled)', () => {
-  let session: ClientSession;
-  let configPath: string;
-
-  before(async () => {
-    configPath = await writeTempConfig({
-      experimentalFeatures: {
-        intentTools: true,
-      },
-    });
-    session = await createClientSession({ configPath });
-  });
-
-  after(async () => {
-    await session.close();
-    await unlink(configPath).catch(() => {
-      /* ignore cleanup errors */
-    });
+    assert.ok(uris.includes(RESOURCE_URI), `Expected ${RESOURCE_URI} in resources list`);
   });
 
   it('is listed in resources/list', async () => {

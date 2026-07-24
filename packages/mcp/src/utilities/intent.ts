@@ -14,7 +14,7 @@ export const INTENT_PHASE_VALUES = [
 ] as const satisfies readonly IntentPhase[];
 
 /**
- * Default intent phases to include when listing intent categories, focusing on those that are still in development and may be subject to change.
+ * Default intent phases to include when listing intent categories.
  */
 export const INTENT_DEFAULT_PHASES = ['experimental'] as const satisfies readonly IntentPhase[];
 

@@ -40,7 +40,7 @@ describe('metadata cleanup integration', () => {
         'layers',
         'full',
         'component',
-        'component:syn-accordion',
+        'component__syn-accordion',
       );
       const originalAccordionFiles = await readdir(accordionFullDir, { recursive: true });
       expect(originalAccordionFiles.length).to.be.greaterThan(0);
@@ -103,7 +103,7 @@ describe('metadata cleanup integration', () => {
         outputDir,
         'core',
         'component',
-        'component:orphaned-old-component.json',
+        'component__orphaned-old-component.json',
       );
       await mkdir(path.dirname(orphanedEntityPath), { recursive: true });
       await writeFile(orphanedEntityPath, JSON.stringify({ id: 'orphaned' }));
@@ -238,7 +238,7 @@ describe('metadata cleanup integration', () => {
     try {
       const outputDir = path.join(tempRoot, 'data');
       const templateExamplesDir = path.join(outputDir, 'layers', 'examples', 'template');
-      const templateExamplePath = path.join(templateExamplesDir, 'template:appshell.md');
+      const templateExamplePath = path.join(templateExamplesDir, 'template__appshell.md');
 
       // Simulate artifacts created by a previous build:all run.
       await mkdir(templateExamplesDir, { recursive: true });
@@ -257,7 +257,7 @@ describe('metadata cleanup integration', () => {
         outputDir,
         'core',
         'template',
-        'template:appshell.json',
+        'template__appshell.json',
       );
 
       // Example file should not be removed by cleanup.
@@ -267,7 +267,7 @@ describe('metadata cleanup integration', () => {
 
       const templateCoreJson = JSON.parse(await readFile(templateCorePath, 'utf8'));
       expect(templateCoreJson.id).to.equal('template:appshell');
-      expect(templateCoreJson.layers.examples[0].path).to.equal('layers/examples/template/template:appshell.md');
+      expect(templateCoreJson.layers.examples[0].path).to.equal('layers/examples/template/template__appshell.md');
     } finally {
       await rm(tempRoot, { recursive: true, force: true });
     }

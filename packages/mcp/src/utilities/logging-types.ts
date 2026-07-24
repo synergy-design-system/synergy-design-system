@@ -1,22 +1,25 @@
 export type LoggingTransport = 'http' | 'stdio';
 
-export type ToolLogEvent = {
+export type LogOperationKind = 'tool' | 'prompt' | 'resource';
+
+export type LogEvent = {
   durationMs: number;
   errorMessage?: string;
+  kind: LogOperationKind;
+  name: string;
   parameters: Record<string, unknown>;
   sessionId: string;
   success: boolean;
   timestamp: string;
   tokenCount?: number;
-  toolName: string;
   transport: LoggingTransport;
 };
 
 export interface LoggerProvider {
-  log: (event: ToolLogEvent) => Promise<void>;
+  log: (event: LogEvent) => Promise<void>;
 }
 
 export interface LoggerService {
   enabled: boolean;
-  log: (event: ToolLogEvent) => Promise<void>;
+  log: (event: LogEvent) => Promise<void>;
 }

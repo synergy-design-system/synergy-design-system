@@ -21,15 +21,12 @@ const writeTempConfig = async (content: unknown): Promise<string> => {
   return filePath;
 };
 
-describe('intent tools (experimental suite)', () => {
+describe('intent tools', () => {
   let configPath: string;
   let session: ClientSession;
 
   before(async () => {
     configPath = await writeTempConfig({
-      experimentalFeatures: {
-        intentTools: true,
-      },
       includeAiRules: false,
     });
 

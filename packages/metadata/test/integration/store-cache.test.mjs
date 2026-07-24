@@ -18,8 +18,8 @@ const createFixtureDataDir = async () => {
   await mkdir(layerInterfaceDir, { recursive: true });
 
   const entityId = 'component:syn-cached-fixture';
-  const corePath = `data/core/component/${entityId}.json`;
-  const layerPath = `layers/interface/component/${entityId}.md`;
+  const corePath = 'data/core/component/component__syn-cached-fixture.json';
+  const layerPath = 'layers/interface/component/component__syn-cached-fixture.md';
 
   const initialEntity = {
     id: entityId,
@@ -61,12 +61,12 @@ const createFixtureDataDir = async () => {
   };
 
   await writeFile(path.join(root, 'index.json'), JSON.stringify(index));
-  await writeFile(path.join(componentCoreDir, `${entityId}.json`), JSON.stringify(initialEntity));
-  await writeFile(path.join(layerInterfaceDir, `${entityId}.md`), 'interface-v1');
+  await writeFile(path.join(componentCoreDir, 'component__syn-cached-fixture.json'), JSON.stringify(initialEntity));
+  await writeFile(path.join(layerInterfaceDir, 'component__syn-cached-fixture.md'), 'interface-v1');
 
   const writeUpdatedFiles = async () => {
-    await writeFile(path.join(componentCoreDir, `${entityId}.json`), JSON.stringify(updatedEntity));
-    await writeFile(path.join(layerInterfaceDir, `${entityId}.md`), 'interface-v2');
+    await writeFile(path.join(componentCoreDir, 'component__syn-cached-fixture.json'), JSON.stringify(updatedEntity));
+    await writeFile(path.join(layerInterfaceDir, 'component__syn-cached-fixture.md'), 'interface-v2');
   };
 
   return {

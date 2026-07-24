@@ -1,0 +1,10 @@
+.git
+.gitignore
+node_modules
+logs
+mcp-logs
+test
+src
+dist
+artifacts/*.log
+.DS_Store

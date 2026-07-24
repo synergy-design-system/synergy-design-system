@@ -809,7 +809,7 @@ export const ComplexFormDialog: Story = {
             <syn-fieldset description="Please choose which cookies you would like to enable. You can change the settings at any time.">
               <syn-accordion>
                 ${Object.entries(groupedCookies).map(([group, categories]) => html`
-                  <syn-details summary="${group}">
+                  <syn-details summary="${group}" open>
                     <table class="syn-table--default cookie-table">
                       <thead>
                         <th class="cookie-column">Cookie</th>
@@ -898,36 +898,37 @@ export const ComplexFormDialog: Story = {
                             ? html`
                               <tr id="details-${category.id}" style="display: none;">
                                 <td class="cookie-details" colspan="3">
-                                  <table>
-                                    <thead>
-                                      <tr>
-                                        <td>Cookie name</td>
-                                        <td>Purpose of processing</td>
-                                        <td>Responsible party</td>
-                                        <td>Recipient of data</td>
-                                        <td>Duration of processing</td>
-                                        <td>Applicable domains</td>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      ${category.values!.map((value, index) => html`
+                                  <div class="cookie-details-list">
+                                    <table class="cookie-details-table syn-table--default">
+                                      <thead>
                                         <tr>
-                                          <td>${value.name}</td>
-                                          <td>${value.description}</td>
-                                          ${index === 0
-                                            ? html`<td rowspan="${category.values!.length}">${category.issuer}</td>`
-                                            : ''
-                                          }
-                                          ${index === 0
-                                            ? html`<td rowspan="${category.values!.length}">${category.recipient}</td>`
-                                            : ''
-                                          }
-                                          <td>${value.duration}</td>
-                                          <td>${value.domains.join(', ')}</td>
+                                          <th>Cookie name</th>
+                                          <th>Purpose of processing</th>
+                                          <th>Responsible party</th>
+                                          <th>Recipient of data</th>
+                                          <th>Duration of processing</th>
+                                          <th>Applicable domains</th>
                                         </tr>
-                                      `)}
-                                    </tbody>
-                                  </table>
+                                      </thead>
+                                      <tbody>
+                                        ${category.values!.map((value, index) => html`
+                                          <tr>
+                                            <td data-column-label="Cookie name">${value.name}</td>
+                                            <td data-column-label="Purpose of processing">${value.description}</td>
+                                            ${index === 0
+                                              ? html`
+                                                <td data-column-label="Responsible party" rowspan="${category.values!.length}">${category.issuer}</td>
+                                                <td data-column-label="Recipient of data" rowspan="${category.values!.length}">${category.recipient}</td>
+                                              `
+                                              : ''
+                                            }
+                                            <td data-column-label="Duration of processing">${value.duration}</td>
+                                            <td data-column-label="Applicable domains">${value.domains.join(', ')}</td>
+                                          </tr>
+                                        `)}
+                                      </tbody>
+                                    </table>
+                                  </div>
                                 </td>
                               </tr>
                             `
@@ -965,7 +966,7 @@ export const ComplexFormDialog: Story = {
       }
 
       .cookie-banner-dialog {
-        --width: 80%;
+        --width: 1024px;
 
         /* Hide the close button for this example, since we want to force the user to make a choice */
         &::part(close-button) {
@@ -1006,11 +1007,34 @@ export const ComplexFormDialog: Story = {
             cursor: pointer;
           }
 
+          /* Remove gap in switch when it does not use a label */
+          syn-switch:not([label])::part(label) {
+            display: none;
+          }
+
           .cookie-details {
             padding: 0;
 
-            table {
+            .cookie-details-list {
+              display: grid;
+              gap: var(--syn-spacing-small);
+            }
+
+            .cookie-details-table {
+              width: 100%;
+              border-bottom: var(--syn-border-width-small) solid var(--syn-table-border-color);
               border-spacing: 0;
+              margin-bottom: var(--syn-spacing-medium);
+
+              th,
+              td {
+                background: var(--syn-table-background-color);
+                vertical-align: top;
+              }
+
+              th {
+                font: var(--syn-body-small-semibold);
+              }
             }
           }
         }
@@ -1025,9 +1049,117 @@ export const ComplexFormDialog: Story = {
         }
       }
 
-      @container cookie-banner-template (max-width: 800px) {
+      /* Mobile views */
+      @container cookie-banner-template (max-width: 500px) {
         .cookie-banner-dialog {
-          --width: 400px;
+          &::part(panel) {
+            max-height: 95dvh;
+          }
+
+          nav[slot="footer"] {
+            align-items: center;
+            column-gap: var(--syn-spacing-small);
+            flex-wrap: wrap;
+            row-gap: var(--syn-spacing-small);
+
+            & > :first-child {
+              flex-basis: 100%;
+              margin: 0 var(--syn-spacing-medium);
+              text-align: left;
+            }
+          }
+        }
+      }
+
+      @container cookie-banner-template (max-width: 1024px) {
+        .cookie-banner-dialog {
+          --width: 100%;
+
+          .cookie-table {
+            display: flex;
+            flex-direction: column;
+
+            .cookie-details-table {
+              width: 100%;
+
+              thead {
+                display: none;
+              }
+
+              tbody,
+              tbody tr {
+                display: block;
+              }
+
+              tbody tr {
+                border-bottom: var(--syn-border-width-small) solid var(--syn-table-border-color);
+                display: flex;
+                flex-direction: column;
+                gap: var(--syn-spacing-2x-small);
+                height: auto;
+                padding-bottom: var(--syn-spacing-small);
+                margin-bottom: var(--syn-spacing-small);
+              }
+
+              tbody tr > td {
+                align-items: baseline;
+                column-gap: var(--syn-spacing-small);
+                display: grid;
+                grid-template-columns: 180px minmax(0, 1fr);
+                height: auto;
+                min-height: 0;
+                overflow: visible;
+                white-space: normal;
+                text-align: start;
+                padding: 0;
+              }
+
+              tbody tr > td::before {
+                content: attr(data-column-label);
+                font: var(--syn-body-small-semibold);
+              }
+            }
+
+            > thead {
+              display: none;
+            }
+
+            > tbody > tr {
+              border-bottom: var(--syn-border-width-small) solid var(--syn-table-border-color);
+              margin-bottom: var(--syn-spacing-medium);
+
+              > td {
+                width: 100% !important;
+                border: none !important;
+                padding: 0;
+              }
+
+              &:not([id^="details-"]) {
+                align-items: baseline;
+                column-gap: var(--syn-spacing-medium);
+                display: grid;
+                grid-template-columns: 1fr auto;
+                grid-template-areas:
+                  'name switch'
+                  'description description';
+              }
+
+              &:not([id^="details-"]) > td:nth-of-type(1) {
+                grid-area: name;
+              }
+
+              &:not([id^="details-"]) > td:nth-of-type(2) {
+                height: auto;
+                grid-area: description;
+                grid-column: 1 / -1;
+                padding-top: var(--syn-spacing-small);
+              }
+
+              &:not([id^="details-"]) > td:nth-of-type(3) {
+                grid-area: switch;
+              }
+            }
+          }
         }
       }
       </style>

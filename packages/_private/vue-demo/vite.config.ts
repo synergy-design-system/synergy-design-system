@@ -22,7 +22,13 @@ export default defineConfig({
         },
       ],
     }),
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: tag => tag.startsWith('syn-'),
+        },
+      },
+    }),
   ],
   resolve: {
     alias: {

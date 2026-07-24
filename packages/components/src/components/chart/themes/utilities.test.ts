@@ -4,10 +4,15 @@ import {
   getRealValueWithoutUnit,
   normalizeArray,
   setDefaultValueIfNotAvailable,
+  setGlobalThemeStore,
 } from './utilities.js';
 
 describe('chart theme utilities', () => {
   describe('getRealStyleValue', () => {
+    afterEach(() => {
+      setGlobalThemeStore('light');
+    });
+
     it('returns the light token value by default', () => {
       expect(getRealStyleValue('SynAlertErrorColorBorder')).to.equal('#ffe3e4');
     });
@@ -15,9 +20,28 @@ describe('chart theme utilities', () => {
     it('returns the dark token value when dark mode is requested', () => {
       expect(getRealStyleValue('SynAlertErrorColorBorder', 'dark')).to.equal('#450709');
     });
+
+    it('resolves to light when auto mode is used and global store is light', () => {
+      setGlobalThemeStore('light');
+      expect(getRealStyleValue('SynAlertErrorColorBorder', 'auto')).to.equal('#ffe3e4');
+    });
+
+    it('resolves to dark when auto mode is used and global store is dark', () => {
+      setGlobalThemeStore('dark');
+      expect(getRealStyleValue('SynAlertErrorColorBorder', 'auto')).to.equal('#450709');
+    });
+
+    it('uses auto mode by default (falls back to global store)', () => {
+      setGlobalThemeStore('dark');
+      expect(getRealStyleValue('SynAlertErrorColorBorder')).to.equal('#450709');
+    });
   });
 
   describe('getRealValueWithoutUnit', () => {
+    afterEach(() => {
+      setGlobalThemeStore('light');
+    });
+
     it('parses numeric values from light token strings', () => {
       expect(getRealValueWithoutUnit('SynSpacingLarge')).to.equal(24);
     });

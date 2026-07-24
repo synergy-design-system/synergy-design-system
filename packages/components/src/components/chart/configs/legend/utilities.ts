@@ -2,58 +2,62 @@ import type { LegendComponentOption } from 'echarts/types/dist/shared.js';
 import type { ECConfig } from '../../types.js';
 import { measureMaxTextWidth } from '../axes/utilities.js';
 import { LEGEND } from '../constants.js';
-import { getRealStyleValue, getRealValueWithoutUnit } from '../../themes/utilities.js';
+import { type ThemeMode, getRealStyleValue, getRealValueWithoutUnit } from '../../themes/utilities.js';
 import type { LegendOption, LegendPosition } from './types.js';
 import { colorSvgDataUrl } from '../utilities.js';
 import { icons } from '../../../icon/sick2025-system-icons.js';
 
-const getVisibilityIconDataUrl = (isVisible: boolean): string => {
+const getVisibilityIconDataUrl = (isVisible: boolean, mode: ThemeMode = 'auto'): string => {
   const svg = isVisible ? icons.eye : icons['eye-slash'];
   const dataUrl = `data:image/svg+xml;base64,${btoa(svg)}`;
-  return colorSvgDataUrl(dataUrl, getRealStyleValue('SynTypographyColorTextQuiet'));
+  return colorSvgDataUrl(dataUrl, getRealStyleValue('SynTypographyColorTextQuiet', mode));
 };
 
 /**
  * Returns the default legend label text style based on Synergy design tokens.
+ *
+ * @param {ThemeMode} mode Theme mode
  */
-const getDefaultLegendTextStyle = () => ({
-  color: getRealStyleValue('SynTypographyColorTextQuiet'),
-  fontFamily: getRealStyleValue('SynFontSans'),
-  fontSize: getRealStyleValue('SynFontSizeSmall'),
-  fontWeight: getRealStyleValue('SynFontWeightNormal'),
+const getDefaultLegendTextStyle = (mode: ThemeMode = 'auto') => ({
+  color: getRealStyleValue('SynTypographyColorTextQuiet', mode),
+  fontFamily: getRealStyleValue('SynFontSans', mode),
+  fontSize: getRealStyleValue('SynFontSizeSmall', mode),
+  fontWeight: getRealStyleValue('SynFontWeightNormal', mode),
   rich: {
     hideIcon: {
       backgroundColor: {
-        image: getVisibilityIconDataUrl(false),
+        image: getVisibilityIconDataUrl(false, mode),
       },
-      height: getRealValueWithoutUnit('SynSpacingMedium'),
-      width: getRealValueWithoutUnit('SynSpacingMedium'),
+      height: getRealValueWithoutUnit('SynSpacingMedium', mode),
+      width: getRealValueWithoutUnit('SynSpacingMedium', mode),
     },
     showIcon: {
       backgroundColor: {
-        image: getVisibilityIconDataUrl(true),
+        image: getVisibilityIconDataUrl(true, mode),
       },
-      height: getRealValueWithoutUnit('SynSpacingMedium'),
-      width: getRealValueWithoutUnit('SynSpacingMedium'),
+      height: getRealValueWithoutUnit('SynSpacingMedium', mode),
+      width: getRealValueWithoutUnit('SynSpacingMedium', mode),
     },
   },
 });
 
 /**
  * The default common legend styles based on Synergy design tokens.
+ *
+ * @param {ThemeMode} mode Theme mode
  */
-export const getDefaultLegendStyles = () => ({
+export const getDefaultLegendStyles = (mode: ThemeMode = 'auto') => ({
   formatter: (name: string) => `${name}  {showIcon|}`,
-  inactiveColor: getRealStyleValue('SynChartDisabledColor'),
-  itemGap: getRealValueWithoutUnit('SynSpacingSmall'),
-  itemHeight: getRealValueWithoutUnit('SynSpacingSmall'),
-  itemWidth: getRealValueWithoutUnit('SynSpacingXLarge'),
+  inactiveColor: getRealStyleValue('SynChartDisabledColor', mode),
+  itemGap: getRealValueWithoutUnit('SynSpacingSmall', mode),
+  itemHeight: getRealValueWithoutUnit('SynSpacingSmall', mode),
+  itemWidth: getRealValueWithoutUnit('SynSpacingXLarge', mode),
   // The default legend position is top left
   left: 0,
   lineStyle: {
-    inactiveColor: getRealStyleValue('SynChartDisabledColor'),
+    inactiveColor: getRealStyleValue('SynChartDisabledColor', mode),
   },
-  textStyle: getDefaultLegendTextStyle(),
+  textStyle: getDefaultLegendTextStyle(mode),
   // The default legend position is top left
   top: 0,
 });
@@ -80,10 +84,11 @@ export const getLegendConfigForPosition = (position: LegendPosition): LegendComp
  * This helper resolves missing values from the Synergy defaults so legend item text widths can be calculated.
  *
  * @param {LegendComponentOption['textStyle'] | undefined} labelsStyle Legend label text style override.
+ * @param {ThemeMode} mode Theme mode.
  * @returns A CSS font shorthand string suitable for `CanvasRenderingContext2D.font`.
  */
-const getFontShorthand = (labelsStyle: LegendComponentOption['textStyle'] | undefined): string => {
-  const defaultTextStyle = getDefaultLegendTextStyle();
+const getFontShorthand = (labelsStyle: LegendComponentOption['textStyle'] | undefined, mode: ThemeMode = 'auto'): string => {
+  const defaultTextStyle = getDefaultLegendTextStyle(mode);
   const fontSizeValue = labelsStyle?.fontSize ?? defaultTextStyle.fontSize;
   const fontSize = typeof fontSizeValue === 'number' ? `${fontSizeValue}px` : String(fontSizeValue);
   const fontFamily = String(labelsStyle?.fontFamily ?? defaultTextStyle.fontFamily);
@@ -95,17 +100,18 @@ const getFontShorthand = (labelsStyle: LegendComponentOption['textStyle'] | unde
 /**
  * Calculates the horizontal space required for a vertical legend.
  *
- * The width is based on the longest series name text width, the configured legend item width,
- * and a small fixed gap between item marker and label.
+ * The width is based on the longest series name, the configured item width, and the fixed gaps
+ * reserved for the item marker and the visibility icon.
  *
  * @param {LegendComponentOption} legendStyle Effective legend config used for size calculations.
  * @param {string[]} seriesNames Series names used to determine max label width.
+ * @param {ThemeMode} mode Theme mode used to resolve the design tokens.
  * @returns Calculated legend width in pixels.
  */
-const calculateLegendWidth = (legendStyle: LegendComponentOption, seriesNames: string[]): number => {
-  const fontShorthand = getFontShorthand(legendStyle?.textStyle);
+const calculateLegendWidth = (legendStyle: LegendComponentOption, seriesNames: string[], mode: ThemeMode = 'auto'): number => {
+  const fontShorthand = getFontShorthand(legendStyle?.textStyle, mode);
   const maxTextWidth = measureMaxTextWidth(seriesNames, fontShorthand);
-  const defaultLegendStyle = getDefaultLegendStyles();
+  const defaultLegendStyle = getDefaultLegendStyles(mode);
   const itemWidth = legendStyle?.itemWidth ?? defaultLegendStyle.itemWidth;
   return maxTextWidth + itemWidth + LEGEND.ICON_TEXT_GAP + LEGEND.VISIBILITY_ICON_SPACE;
 };
@@ -120,9 +126,16 @@ const calculateLegendWidth = (legendStyle: LegendComponentOption, seriesNames: s
  * @param {LegendPosition} position Legend position.
  * @param {LegendComponentOption} legendStyle Effective legend style used for size calculations.
  * @param {ECConfig} config Current chart config used to derive series names and y-axis placement.
+ * @param {ThemeMode} mode Theme mode
  * @returns Grid offset object for the requested position, or an empty object when no offset is required.
  */
-export const getGridForLegendPosition = (position: LegendPosition, legendStyle: LegendComponentOption, config: ECConfig): NonNullable<ECConfig['grid']> => {
+export const getGridForLegendPosition = (
+  position: LegendPosition,
+  legendStyle: LegendComponentOption,
+  config: ECConfig,
+  mode: ThemeMode = 'auto',
+// eslint-disable-next-line complexity
+): NonNullable<ECConfig['grid']> => {
   const series = config?.series;
   if (!series) {
     return {};
@@ -145,7 +158,7 @@ export const getGridForLegendPosition = (position: LegendPosition, legendStyle: 
     return {};
   }
 
-  const verticalWidth = calculateLegendWidth(legendStyle, seriesNames);
+  const verticalWidth = calculateLegendWidth(legendStyle, seriesNames, mode);
 
   // we need to add some additional spacing to left and / or right, because otherwise the legend overlaps with the chart
   // This is because we need to take into account where the y-axis is, as it affects the available space for the legend.

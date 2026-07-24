@@ -15,6 +15,29 @@ function firstOf<T>(value: T | T[]): T {
   return Array.isArray(value) ? value[0] : value;
 }
 
+function getAxisThemeColors(chart: SynChart) {
+  const option = chart.getInstance()!.getOption();
+  const xAxis = firstOf(option.xAxis) as XAXisOption;
+  const yAxis = firstOf(option.yAxis) as YAXisOption;
+
+  return {
+    xAxisLabelColor: xAxis.axisLabel?.color,
+    xAxisNameColor: xAxis.nameTextStyle?.color,
+    xAxisSplitLineColor: xAxis.splitLine?.lineStyle?.color,
+    yAxisLabelColor: yAxis.axisLabel?.color,
+    yAxisNameColor: yAxis.nameTextStyle?.color,
+    yAxisSplitLineColor: yAxis.splitLine?.lineStyle?.color,
+  };
+}
+
+function getExpectedGeneralThemeColors(mode: 'light' | 'dark') {
+  return {
+    axisLabelColor: getRealStyleValue('SynTypographyColorTextQuiet', mode),
+    gridColor: getRealStyleValue('SynChartGridLinesColor', mode),
+    nameColor: getRealStyleValue('SynTypographyColorText', mode),
+  };
+}
+
 describe('<syn-chart>', () => {
   it('is accessible', async () => {
     const chart = await createChart();
@@ -170,6 +193,91 @@ describe('<syn-chart>', () => {
       expect(series[1].color).to.be.undefined;
       const paletteColors = PALETTE_TOKENS.categorical.map(token => getRealStyleValue(token));
       expect(option.color).to.deep.equal(paletteColors, 'Global option.color should reflect the categorical palette for series without explicit color');
+    });
+  });
+
+  describe('Theme mode change', () => {
+    it('should change palette colors from light to dark when the theme class changes', async () => {
+      const previousBodyClass = document.body.className;
+
+      try {
+        document.body.classList.remove('syn-sick2025-light', 'syn-sick2025-dark');
+        document.body.classList.add('syn-sick2025-light');
+
+        const el = await createChart(html`<syn-chart palette="categorical"></syn-chart>`);
+        await el.updateComplete;
+        const instance = el.getInstance()!;
+
+        const lightColors = PALETTE_TOKENS.categorical.map(token => getRealStyleValue(token, 'light'));
+        const colorsBeforeThemeSwitch = instance.getOption().color as string[];
+        expect(colorsBeforeThemeSwitch).to.deep.equal(lightColors);
+
+        document.body.classList.replace('syn-sick2025-light', 'syn-sick2025-dark');
+        await el.updateComplete;
+
+        const darkColors = PALETTE_TOKENS.categorical.map(token => getRealStyleValue(token, 'dark'));
+        const colorsAfterThemeSwitch = instance.getOption().color as string[];
+
+        expect(colorsAfterThemeSwitch).to.not.deep.equal(colorsBeforeThemeSwitch);
+        expect(colorsAfterThemeSwitch).to.deep.equal(darkColors);
+
+        el.remove();
+      } finally {
+        document.body.className = previousBodyClass;
+      }
+    });
+
+    it('should change general theme colors from light to dark when the theme class changes', async () => {
+      const previousBodyClass = document.body.className;
+
+      try {
+        document.body.classList.remove('syn-sick2025-light', 'syn-sick2025-dark');
+        document.body.classList.add('syn-sick2025-light');
+
+        const config: ECConfig = {
+          series: [{ data: [11, 22, 33], type: 'line' }],
+          xAxis: {
+            data: ['Jan', 'Feb', 'Mar'],
+            name: 'Months',
+            splitLine: { show: true },
+            type: 'category',
+          },
+          yAxis: {
+            name: 'Revenue',
+            splitLine: { show: true },
+            type: 'value',
+          },
+        };
+
+        const el = await createChart(html`<syn-chart .config=${config}></syn-chart>`);
+        await el.updateComplete;
+        const lightColors = getAxisThemeColors(el);
+        const expectedLightColors = getExpectedGeneralThemeColors('light');
+
+        expect(lightColors.xAxisLabelColor).to.equal(expectedLightColors.axisLabelColor);
+        expect(lightColors.yAxisLabelColor).to.equal(expectedLightColors.axisLabelColor);
+        expect(lightColors.xAxisNameColor).to.equal(expectedLightColors.nameColor);
+        expect(lightColors.yAxisNameColor).to.equal(expectedLightColors.nameColor);
+        expect(lightColors.xAxisSplitLineColor).to.equal(expectedLightColors.gridColor);
+        expect(lightColors.yAxisSplitLineColor).to.equal(expectedLightColors.gridColor);
+
+        document.body.classList.replace('syn-sick2025-light', 'syn-sick2025-dark');
+        await el.updateComplete;
+
+        const darkColors = getAxisThemeColors(el);
+        const expectedDarkColors = getExpectedGeneralThemeColors('dark');
+
+        expect(darkColors.xAxisLabelColor).to.equal(expectedDarkColors.axisLabelColor);
+        expect(darkColors.yAxisLabelColor).to.equal(expectedDarkColors.axisLabelColor);
+        expect(darkColors.xAxisNameColor).to.equal(expectedDarkColors.nameColor);
+        expect(darkColors.yAxisNameColor).to.equal(expectedDarkColors.nameColor);
+        expect(darkColors.xAxisSplitLineColor).to.equal(expectedDarkColors.gridColor);
+        expect(darkColors.yAxisSplitLineColor).to.equal(expectedDarkColors.gridColor);
+
+        el.remove();
+      } finally {
+        document.body.className = previousBodyClass;
+      }
     });
   });
 

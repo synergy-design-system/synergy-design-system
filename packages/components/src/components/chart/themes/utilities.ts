@@ -10,6 +10,15 @@ const ResolvedTokens = {
   ...ComponentTokens,
 };
 
+export type ThemeMode = 'light' | 'dark' | 'auto';
+export type Themes = Exclude<ThemeMode, 'auto'>;
+
+let globalThemeStore: Themes = 'light';
+
+export const setGlobalThemeStore = (theme: Themes) => {
+  globalThemeStore = theme;
+};
+
 /**
  * All valid token keys supported by the merged token dictionary.
 */
@@ -22,10 +31,14 @@ export type ResolvedTokensName = keyof typeof ChartTokens | keyof typeof Compone
  * @param mode Theme mode to resolve, defaults to light.
  * @returns Token value for the selected mode or an empty string when the token has no value.
  */
-export const getRealStyleValue = (token: ResolvedTokensName, mode: 'light' | 'dark' = 'light'): string => {
-  // TODO: do we need to have a fallback with getComputedStyle for people who do not use the suggested version of tokens package?
-  // export const tokenNameToCssVariable = (tokenName: ResolvedTokensName) => `--${kebabCase(tokenName, { split: splitSeparateNumbers })}`;
-  const value = ResolvedTokens[token][mode];
+export const getRealStyleValue = (token: ResolvedTokensName, mode: ThemeMode = 'auto'): string => {
+  let currentMode: Themes;
+  if(mode === 'auto') {
+    currentMode = globalThemeStore;
+  } else {
+    currentMode = mode;
+  }
+  const value = ResolvedTokens[token][currentMode];
 
   const resolved = value || '';
   return resolved;
@@ -38,7 +51,7 @@ export const getRealStyleValue = (token: ResolvedTokensName, mode: 'light' | 'da
  * @param mode Theme mode to resolve, defaults to light.
  * @returns Parsed floating-point number from the token value of the selected mode.
  */
-export const getRealValueWithoutUnit = (token: ResolvedTokensName, mode: 'light' | 'dark' = 'light'): number => {
+export const getRealValueWithoutUnit = (token: ResolvedTokensName, mode: ThemeMode = 'auto'): number => {
   const value = getRealStyleValue(token, mode);
   return parseFloat(value);
 };

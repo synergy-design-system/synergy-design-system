@@ -1,0 +1,38 @@
+import { PALETTE_TOKENS } from '../chart.palettes.js';
+import { THEME } from '../configs/constants.js';
+import { type Themes, getRealStyleValue } from './utilities.js';
+import { getDefaultAxisStyles } from '../configs/axes/utilities.js';
+import { getDefaultLegendStyles } from '../configs/legend/utilities.js';
+
+const getCategoricalColors = (mode: Themes) => PALETTE_TOKENS.categorical.map((token) => getRealStyleValue(token, mode)).filter(Boolean);
+
+/**
+ * Builds the default Synergy ECharts theme for the requested color mode.
+ *
+ * @param {Themes} mode Theme mode used to resolve the design tokens.
+ */
+// Synergy ECharts Theme
+export const getSynergyTheme = (mode: Themes = 'light') => ({
+  categoryAxis: getDefaultAxisStyles(mode),
+  // Default color palette for charts, is categorical by default but can be overridden by setting the palette property on the chart component or by directly setting config.color
+  color: getCategoricalColors(mode),
+  darkMode: 'auto',
+  grid: {
+    bottom: 0,
+    left: 0,
+    // This is needed otherwise the last splitLine of the xAxis is cut off
+    right: THEME.GRID_RIGHT_INSET,
+    top: 0,
+  },
+  legend: getDefaultLegendStyles(mode),
+  logAxis: getDefaultAxisStyles(mode),
+  // Global font style
+  textStyle: {
+    color: getRealStyleValue('SynTypographyColorText', mode),
+    fontFamily: getRealStyleValue('SynFontSans', mode),
+    fontSize: getRealStyleValue('SynFontSizeSmall', mode),
+    fontWeight: getRealStyleValue('SynFontWeightNormal', mode),
+  },
+  timeAxis: getDefaultAxisStyles(mode),
+  valueAxis: getDefaultAxisStyles(mode),
+});

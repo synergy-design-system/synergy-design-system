@@ -4990,6 +4990,16 @@
           "value": "Form-focused dialog pattern for create and edit flows. Structure the dialog around required inputs and gate the primary submit action by form validity so incomplete data cannot be submitted. Keep a clear secondary Cancel action so users can always exit without saving. In this example, Add and Edit are enabled, while destructive delete is intentionally separated and disabled.",
           "type": "text"
         }
+      },
+      "responsive": {
+        "title": {
+          "value": "Responsive Dialogs",
+          "type": "text"
+        },
+        "description": {
+          "value": "Example demonstrating responsive dialog behavior. The dialog is designed to adapt to different screen sizes and orientations, ensuring a consistent and user-friendly experience across devices. On smaller screens, the dialog may take up the full width of the viewport, while on larger screens, it may be centered with a fixed width. This responsiveness helps maintain usability and accessibility for all users.",
+          "type": "text"
+        }
       }
     }
   }

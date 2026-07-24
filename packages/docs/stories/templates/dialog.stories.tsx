@@ -564,11 +564,11 @@ export const FormDialogs: Story = {
   }),
 };
 
-export const ComplexFormDialog: Story = {
+export const ResponsiveDialog: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('dialog', 'complex-form', 'templates'),
+        story: generateStoryDescription('dialog', 'responsive', 'templates'),
       },
     },
   },
@@ -809,7 +809,7 @@ export const ComplexFormDialog: Story = {
             <syn-fieldset description="Please choose which cookies you would like to enable. You can change the settings at any time.">
               <syn-accordion>
                 ${Object.entries(groupedCookies).map(([group, categories]) => html`
-                  <syn-details summary="${group}" open>
+                  <syn-details summary="${group}">
                     <table class="syn-table--default cookie-table">
                       <thead>
                         <th class="cookie-column">Cookie</th>
@@ -818,8 +818,8 @@ export const ComplexFormDialog: Story = {
                       </thead>
                       <tbody>
                         ${categories.map(category => html`
-                          <tr>
-                            <td>
+                          <tr class="cookie-row">
+                            <td class="cookie-name-cell">
                               ${!category.required
                                 ? html`
                                   <label
@@ -841,7 +841,7 @@ export const ComplexFormDialog: Story = {
                                 : html`${category.name}`
                               }
                             </td>
-                            <td>
+                            <td class="cookie-purpose-cell">
                               <p class="cookie-description">${category.description}</p>
                               ${(category.values?.length ?? 0) > 0
                                 ? html`
@@ -850,7 +850,8 @@ export const ComplexFormDialog: Story = {
                                     @click=${(e: MouseEvent) => {
                                       const target = e.currentTarget as HTMLElement;
                                       const id = target.getAttribute('data-id');
-                                      const relatedTarget = document.querySelector<HTMLTableRowElement>(`#details-${id}`);
+                                      const dialog = target.closest('syn-dialog');
+                                      const relatedTarget = dialog?.querySelector<HTMLTableRowElement>(`#details-${id}`);
 
                                       if (!relatedTarget) {
                                         return;
@@ -877,7 +878,7 @@ export const ComplexFormDialog: Story = {
                                 ` : ''
                               }
                             </td>
-                            <td>
+                            <td class="cookie-switch-cell">
                               <syn-tooltip
                                 content=${category.required ? 'This cookie is required and cannot be disabled.' : ''}
                                 ?disabled=${!category.required}
@@ -896,7 +897,7 @@ export const ComplexFormDialog: Story = {
                           <!-- Cookie details -->
                           ${(category.values?.length ?? 0) > 0
                             ? html`
-                              <tr id="details-${category.id}" style="display: none;">
+                              <tr class="cookie-details-row" id="details-${category.id}" style="display: none;">
                                 <td class="cookie-details" colspan="3">
                                   <div class="cookie-details-list">
                                     <table class="cookie-details-table syn-table--default">
@@ -943,7 +944,7 @@ export const ComplexFormDialog: Story = {
             </syn-fieldset>
           </form>
 
-          <nav slot="footer">
+          <nav slot="footer" class="cookie-footer">
             <a
               class="syn-link syn-link--medium"
               href="https://www.sick.com/de/de/sick-datenschutzerklaerung/w/dataprotection"
@@ -966,6 +967,9 @@ export const ComplexFormDialog: Story = {
       }
 
       .cookie-banner-dialog {
+        --cookie-details-label-width: 180px;
+        --cookie-row-border: var(--syn-border-width-small) solid var(--syn-table-border-color);
+        --cookie-summary-label-width: 200px;
         --width: 1024px;
 
         /* Hide the close button for this example, since we want to force the user to make a choice */
@@ -974,21 +978,21 @@ export const ComplexFormDialog: Story = {
         }
 
         .cookie-table {
-          > tbody > tr:not([id^="details-"]):has(~ tr:not([id^="details-"])) > td {
-            border-bottom: var(--syn-border-width-small) solid var(--syn-table-border-color);
+          > tbody > tr.cookie-row:has(~ tr.cookie-row) > td {
+            border-bottom: var(--cookie-row-border);
           }
 
           .cookie-column,
-          tbody tr td:first-of-type {
+          .cookie-name-cell {
             font: var(--syn-body-small-semibold);
-            width: 200px;
+            width: var(--cookie-summary-label-width);
           }
 
           .enabled-column {
             text-align: right;
           }
 
-          tbody tr td:last-of-type {
+          .cookie-switch-cell {
             text-align: right;
           }
 
@@ -1022,7 +1026,7 @@ export const ComplexFormDialog: Story = {
 
             .cookie-details-table {
               width: 100%;
-              border-bottom: var(--syn-border-width-small) solid var(--syn-table-border-color);
+              border-bottom: var(--cookie-row-border);
               border-spacing: 0;
               margin-bottom: var(--syn-spacing-medium);
 
@@ -1039,7 +1043,7 @@ export const ComplexFormDialog: Story = {
           }
         }
 
-        nav[slot="footer"] {
+        .cookie-footer {
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -1056,7 +1060,7 @@ export const ComplexFormDialog: Story = {
             max-height: 95dvh;
           }
 
-          nav[slot="footer"] {
+          .cookie-footer {
             align-items: center;
             column-gap: var(--syn-spacing-small);
             flex-wrap: wrap;
@@ -1092,7 +1096,7 @@ export const ComplexFormDialog: Story = {
               }
 
               tbody tr {
-                border-bottom: var(--syn-border-width-small) solid var(--syn-table-border-color);
+                border-bottom: var(--cookie-row-border);
                 display: flex;
                 flex-direction: column;
                 gap: var(--syn-spacing-2x-small);
@@ -1105,7 +1109,7 @@ export const ComplexFormDialog: Story = {
                 align-items: baseline;
                 column-gap: var(--syn-spacing-small);
                 display: grid;
-                grid-template-columns: 180px minmax(0, 1fr);
+                grid-template-columns: var(--cookie-details-label-width) minmax(0, 1fr);
                 height: auto;
                 min-height: 0;
                 overflow: visible;
@@ -1125,7 +1129,7 @@ export const ComplexFormDialog: Story = {
             }
 
             > tbody > tr {
-              border-bottom: var(--syn-border-width-small) solid var(--syn-table-border-color);
+              border-bottom: var(--cookie-row-border);
               margin-bottom: var(--syn-spacing-medium);
 
               > td {
@@ -1134,7 +1138,7 @@ export const ComplexFormDialog: Story = {
                 padding: 0;
               }
 
-              &:not([id^="details-"]) {
+              &.cookie-row {
                 align-items: baseline;
                 column-gap: var(--syn-spacing-medium);
                 display: grid;
@@ -1144,18 +1148,18 @@ export const ComplexFormDialog: Story = {
                   'description description';
               }
 
-              &:not([id^="details-"]) > td:nth-of-type(1) {
+              &.cookie-row > .cookie-name-cell {
                 grid-area: name;
               }
 
-              &:not([id^="details-"]) > td:nth-of-type(2) {
+              &.cookie-row > .cookie-purpose-cell {
                 height: auto;
                 grid-area: description;
                 grid-column: 1 / -1;
                 padding-top: var(--syn-spacing-small);
               }
 
-              &:not([id^="details-"]) > td:nth-of-type(3) {
+              &.cookie-row > .cookie-switch-cell {
                 grid-area: switch;
               }
             }
@@ -1164,5 +1168,37 @@ export const ComplexFormDialog: Story = {
       }
       </style>
     `;
+  },
+};
+
+export const ResponsiveDialogTablet = {
+  ...ResponsiveDialog,
+  globals: {
+    viewport: { value: 'tablet' },
+  },
+  name: '↳ Tablet',
+  parameters: {
+    controls: {
+      exclude: ['default'],
+    },
+    docs: {
+      disable: true,
+    },
+  },
+};
+
+export const ResponsiveDialogSmartphone = {
+  ...ResponsiveDialog,
+  globals: {
+    viewport: { value: 'mobile2' },
+  },
+  name: '↳ Smartphone',
+  parameters: {
+    controls: {
+      exclude: ['default'],
+    },
+    docs: {
+      disable: true,
+    },
   },
 };

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-07-23T11:59:51.203Z",
+  "builtAt": "2026-07-24T09:56:48.888Z",
   "entities": [
     {
       "corePath": "data/core/asset/asset__sick2018-icons.json",
@@ -1587,6 +1587,20 @@
       "search": [
         "template:breadcrumb",
         "Breadcrumb",
+        "template"
+      ]
+    },
+    {
+      "corePath": "data/core/template/template__dialog.json",
+      "id": "template:dialog",
+      "kind": "template",
+      "layers": {
+        "examples": 1
+      },
+      "name": "Dialog",
+      "search": [
+        "template:dialog",
+        "Dialog",
         "template"
       ]
     },

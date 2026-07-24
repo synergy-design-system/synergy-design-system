@@ -657,6 +657,66 @@
           "type": "text"
         }
       },
+      "legend-default": {
+        "title": {
+          "value": "Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "The legend provides a clear overview of all data series displayed in the chart. Each item reflects the series’ label, color, and visual style, ensuring users can quickly understand how values are grouped and represented. \n\nDepending on the selected chart type, the legend adapts its appearance. Line charts display a small line preview showing the stroke style, while bar charts use a solid color swatch that matches the bar fill. This makes it easy to distinguish series at a glance, regardless of the visualization style.",
+          "type": "text"
+        }
+      },
+      "legend-top": {
+        "title": {
+          "value": "Legend on Top",
+          "type": "text"
+        },
+        "description": {
+          "value": "The default position of the legend is top. The legend can be positioned at the top of the chart by using the handle method `legendShow()` or `legendShow({ position: 'top' })`.",
+          "type": "text"
+        }
+      },
+      "legend-left": {
+        "title": {
+          "value": "Legend on Left",
+          "type": "text"
+        },
+        "description": {
+          "value": "The legend can be positioned at the left of the chart by using the handle method `legendShow({ position: 'left' })`.",
+          "type": "text"
+        }
+      },
+      "legend-right": {
+        "title": {
+          "value": "Legend on Right",
+          "type": "text"
+        },
+        "description": {
+          "value": "The legend can be positioned at the right of the chart by using the handle method `legendShow({ position: 'right' })`.",
+          "type": "text"
+        }
+      },
+      "legend-bottom": {
+        "title": {
+          "value": "Legend on Bottom",
+          "type": "text"
+        },
+        "description": {
+          "value": "The legend can be positioned at the bottom of the chart by using the handle method `legendShow({ position: 'bottom' })`.",
+          "type": "text"
+        }
+      },
+      "legend-non-interactive": {
+        "title": {
+          "value": "Non-interactive Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, the legend is interactive. Users can click on a legend item to toggle the visibility of the corresponding series in the chart. To make the legend non-interactive, use the *selectedMode: false* option.",
+          "type": "text"
+        }
+      },
       "default": {
         "title": {
           "value": "Chart",
@@ -867,7 +927,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to a switch with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\n\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
+          "value": "Add descriptive help text to a checkbox-group with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\n\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",  
           "type": "text"
         }
       },
@@ -4896,6 +4956,48 @@
         },
         "description": {
           "value": "These examples demonstrate the use of syn-breadcrumb in desktop and mobile views. \n\nOn desktop, if there's room, always show the full breadcrumb trail.\n\nIf the viewport has not enough space for all breadcrumb items, it is possible to display a truncated version of the breadcrumb and move the items between Home and the parent page into a dropdown menu. \n\nAlternatively, an even shorter version can display only the name/link of the parent page and the prefix icon with the back arrow to navigate one level up.\n\nFor more information on breadcrumbs, visit Nielsen Norman Group: https://www.nngroup.com/articles/breadcrumbs/",
+          "type": "text"
+        }
+      }
+    },
+    "dialog": {
+      "default": {
+        "title": {
+          "value": "Dialog",
+          "type": "text"
+        },
+        "description": {
+          "value": "These examples demonstrate the usage of the `<syn-dialog>` component in various contexts.",
+          "type": "text"
+        }
+      },
+      "confirmation": {
+        "title": {
+          "value": "Confirmation Dialogs",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use this pattern to confirm a user action. Confirmation dialogs are used to ensure that users do not accidentally perform an action that may have significant consequences, such as deleting important data or making irreversible changes. \n\nThe confirmation dialog typically presents the user with a clear message about the action they are about to take, along with options to either proceed or cancel. This helps prevent mistakes and provides an opportunity for users to reconsider their decision before committing to it.",
+          "type": "text"
+        }
+      },
+      "forms": {
+        "title": {
+          "value": "Forms in Dialogs",
+          "type": "text"
+        },
+        "description": {
+          "value": "Form-focused dialog pattern for create and edit flows. Structure the dialog around required inputs and gate the primary submit action by form validity so incomplete data cannot be submitted. Keep a clear secondary Cancel action so users can always exit without saving. In this example, Add and Edit are enabled, while destructive delete is intentionally separated and disabled.",
+          "type": "text"
+        }
+      },
+      "responsive": {
+        "title": {
+          "value": "Responsive Dialogs",
+          "type": "text"
+        },
+        "description": {
+          "value": "Example demonstrating responsive dialog behavior. The dialog is designed to adapt to different screen sizes and orientations, ensuring a consistent and user-friendly experience across devices. On smaller screens, the dialog may take up the full width of the viewport, while on larger screens, it may be centered with a fixed width. This responsiveness helps maintain usability and accessibility for all users.",
           "type": "text"
         }
       }

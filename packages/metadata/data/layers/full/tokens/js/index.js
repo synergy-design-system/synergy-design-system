@@ -1,7 +1,32 @@
 /**
- * @synergy-design-system/tokens version 3.20.2
+ * @synergy-design-system/tokens version 3.21.0
  * SICK Global UX Foundation
  */
+
+/**
+ * @type {string}
+ */
+export const SynAlertCriticalColorBackground = 'var(--syn-alert-critical-color-background)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertCriticalColorBorder = 'var(--syn-alert-critical-color-border)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertCriticalColorIcon = 'var(--syn-alert-critical-color-icon)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertCriticalColorIndicator = 'var(--syn-alert-critical-color-indicator)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertCriticalColorText = 'var(--syn-alert-critical-color-text)';
 
 /**
  * @type {string}
@@ -26,6 +51,11 @@ export const SynAlertErrorColorIndicator = 'var(--syn-alert-error-color-indicato
 /**
  * @type {string}
  */
+export const SynAlertErrorColorText = 'var(--syn-alert-error-color-text)';
+
+/**
+ * @type {string}
+ */
 export const SynAlertInformativeColorBackground = 'var(--syn-alert-informative-color-background)';
 
 /**
@@ -42,6 +72,11 @@ export const SynAlertInformativeColorIcon = 'var(--syn-alert-informative-color-i
  * @type {string}
  */
 export const SynAlertInformativeColorIndicator = 'var(--syn-alert-informative-color-indicator)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertInformativeColorText = 'var(--syn-alert-informative-color-text)';
 
 /**
  * @type {string}
@@ -66,6 +101,11 @@ export const SynAlertNeutralColorIndicator = 'var(--syn-alert-neutral-color-indi
 /**
  * @type {string}
  */
+export const SynAlertNeutralColorText = 'var(--syn-alert-neutral-color-text)';
+
+/**
+ * @type {string}
+ */
 export const SynAlertSuccessColorBackground = 'var(--syn-alert-success-color-background)';
 
 /**
@@ -86,6 +126,11 @@ export const SynAlertSuccessColorIndicator = 'var(--syn-alert-success-color-indi
 /**
  * @type {string}
  */
+export const SynAlertSuccessColorText = 'var(--syn-alert-success-color-text)';
+
+/**
+ * @type {string}
+ */
 export const SynAlertWarningColorBackground = 'var(--syn-alert-warning-color-background)';
 
 /**
@@ -102,6 +147,21 @@ export const SynAlertWarningColorIcon = 'var(--syn-alert-warning-color-icon)';
  * @type {string}
  */
 export const SynAlertWarningColorIndicator = 'var(--syn-alert-warning-color-indicator)';
+
+/**
+ * @type {string}
+ */
+export const SynAlertWarningColorText = 'var(--syn-alert-warning-color-text)';
+
+/**
+ * @type {string}
+ */
+export const SynBadgeCriticalColorBackground = 'var(--syn-badge-critical-color-background)';
+
+/**
+ * @type {string}
+ */
+export const SynBadgeCriticalColorText = 'var(--syn-badge-critical-color-text)';
 
 /**
  * @type {string}

@@ -553,7 +553,7 @@ export default class SynValidate extends SynergyElement {
         exportparts="base:alert__base,message:alert__message,icon:alert__icon"
         part="alert"
         size=${ifDefined(this.alertSize)}
-        variant="danger"
+        variant="error"
       >
         ${!this.hideIcon
           ? html`<syn-icon slot="icon" name="status-error" library="system"></syn-icon>`

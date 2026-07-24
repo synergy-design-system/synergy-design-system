@@ -21,6 +21,7 @@
       "placeholder.svg",
       "previous-page.svg",
       "radio.svg",
+      "status-critical.svg",
       "status-error.svg",
       "status-informative.svg",
       "status-neutral.svg",
@@ -41,7 +42,7 @@
   "name": "sick2018 System Icons",
   "package": "assets",
   "relations": [],
-  "since": "2.2.0",
+  "since": "2.3.0",
   "sources": [],
   "status": "stable",
   "tags": [

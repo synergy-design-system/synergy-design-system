@@ -1,7 +1,32 @@
 /**
- * @synergy-design-system/tokens version 3.20.2
+ * @synergy-design-system/tokens version 3.21.0
  * SICK Global UX Foundation
  */
+
+/**
+ * Maps to the css variable `--syn-alert-critical-color-background`
+ */
+export const SynAlertCriticalColorBackground: string;
+
+/**
+ * Maps to the css variable `--syn-alert-critical-color-border`
+ */
+export const SynAlertCriticalColorBorder: string;
+
+/**
+ * Maps to the css variable `--syn-alert-critical-color-icon`
+ */
+export const SynAlertCriticalColorIcon: string;
+
+/**
+ * Maps to the css variable `--syn-alert-critical-color-indicator`
+ */
+export const SynAlertCriticalColorIndicator: string;
+
+/**
+ * Maps to the css variable `--syn-alert-critical-color-text`
+ */
+export const SynAlertCriticalColorText: string;
 
 /**
  * Maps to the css variable `--syn-alert-error-color-background`
@@ -24,6 +49,11 @@ export const SynAlertErrorColorIcon: string;
 export const SynAlertErrorColorIndicator: string;
 
 /**
+ * Maps to the css variable `--syn-alert-error-color-text`
+ */
+export const SynAlertErrorColorText: string;
+
+/**
  * Maps to the css variable `--syn-alert-informative-color-background`
  */
 export const SynAlertInformativeColorBackground: string;
@@ -42,6 +72,11 @@ export const SynAlertInformativeColorIcon: string;
  * Maps to the css variable `--syn-alert-informative-color-indicator`
  */
 export const SynAlertInformativeColorIndicator: string;
+
+/**
+ * Maps to the css variable `--syn-alert-informative-color-text`
+ */
+export const SynAlertInformativeColorText: string;
 
 /**
  * Maps to the css variable `--syn-alert-neutral-color-background`
@@ -64,6 +99,11 @@ export const SynAlertNeutralColorIcon: string;
 export const SynAlertNeutralColorIndicator: string;
 
 /**
+ * Maps to the css variable `--syn-alert-neutral-color-text`
+ */
+export const SynAlertNeutralColorText: string;
+
+/**
  * Maps to the css variable `--syn-alert-success-color-background`
  */
 export const SynAlertSuccessColorBackground: string;
@@ -84,6 +124,11 @@ export const SynAlertSuccessColorIcon: string;
 export const SynAlertSuccessColorIndicator: string;
 
 /**
+ * Maps to the css variable `--syn-alert-success-color-text`
+ */
+export const SynAlertSuccessColorText: string;
+
+/**
  * Maps to the css variable `--syn-alert-warning-color-background`
  */
 export const SynAlertWarningColorBackground: string;
@@ -102,6 +147,21 @@ export const SynAlertWarningColorIcon: string;
  * Maps to the css variable `--syn-alert-warning-color-indicator`
  */
 export const SynAlertWarningColorIndicator: string;
+
+/**
+ * Maps to the css variable `--syn-alert-warning-color-text`
+ */
+export const SynAlertWarningColorText: string;
+
+/**
+ * Maps to the css variable `--syn-badge-critical-color-background`
+ */
+export const SynBadgeCriticalColorBackground: string;
+
+/**
+ * Maps to the css variable `--syn-badge-critical-color-text`
+ */
+export const SynBadgeCriticalColorText: string;
 
 /**
  * Maps to the css variable `--syn-badge-error-color-background`

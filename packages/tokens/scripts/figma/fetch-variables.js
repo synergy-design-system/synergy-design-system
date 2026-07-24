@@ -19,6 +19,7 @@ import {
   FIGMA_FETCHED_CHARTING_VARIABLES_PATH,
   FIGMA_FETCHED_VARIABLES_PATH,
   FIGMA_VARIABLES_DIR,
+  shouldSkipChartingFetch,
 } from '../config.js';
 import { fetchFigmaVariables } from './figma-client.js';
 
@@ -53,13 +54,17 @@ fetchFigmaVariables({
 const DEFAULT_CHARTING_FILE_ID = '9IpXnDH4GFziUH9sOpnK8V';
 const chartingFileId = process.env.FIGMA_CHARTING_FILE_ID || DEFAULT_CHARTING_FILE_ID;
 
-if (!process.env.FIGMA_CHARTING_FILE_ID) {
-  console.log('No FIGMA_CHARTING_FILE_ID provided, using default branch ID:', chartingFileId);
-}
+if (shouldSkipChartingFetch()) {
+  console.log('Skipping charting variable fetch (SKIP_CHARTING/SKIP_CHARTING_FETCH=true).');
+} else {
+  if (!process.env.FIGMA_CHARTING_FILE_ID) {
+    console.log('No FIGMA_CHARTING_FILE_ID provided, using default branch ID:', chartingFileId);
+  }
 
-fetchFigmaVariables({
-  figmaFileId: chartingFileId,
-  figmaToken,
-  outputDir: FIGMA_CHARTS_DIR,
-  outputPath: FIGMA_FETCHED_CHARTING_VARIABLES_PATH,
-}).catch(console.error);
+  fetchFigmaVariables({
+    figmaFileId: chartingFileId,
+    figmaToken,
+    outputDir: FIGMA_CHARTS_DIR,
+    outputPath: FIGMA_FETCHED_CHARTING_VARIABLES_PATH,
+  }).catch(console.error);
+}

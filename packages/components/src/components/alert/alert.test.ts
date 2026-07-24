@@ -372,7 +372,7 @@ describe('<syn-alert>', () => {
   });
 
   describe('alert variants', () => {
-    const variants = ['primary', 'success', 'neutral', 'warning', 'danger'];
+    const variants = ['primary', 'success', 'neutral', 'warning', 'critical', 'error', 'danger'];
 
     variants.forEach(variant => {
       it(`adapts to the variant: ${variant}`, async () => {
@@ -380,6 +380,25 @@ describe('<syn-alert>', () => {
 
         const alertContainer = getAlertContainer(alert);
         expect(alertContainer).to.have.class(`alert--${variant}`);
+      });
+    });
+  });
+
+  describe('when using the size attribute', () => {
+    it('sets the default size to "medium" per default', async () => {
+      const el = await fixture<SynAlert>(html` <syn-alert>Alert message</syn-alert> `);
+      expect(el.size).to.equal('medium');
+    });
+
+    [
+      'small',
+      'medium',
+      'large',
+    ].forEach(size => {
+      it(`sets the size to "${size}" when the size attribute is set to "${size}"`, async () => {
+        const el = await fixture<SynAlert>(html` <syn-alert size="${size}">Alert message</syn-alert> `);
+        expect(el.size).to.equal(size);
+        expect(el.shadowRoot!.querySelector('.alert')).to.have.class(`alert--${size}`);
       });
     });
   });

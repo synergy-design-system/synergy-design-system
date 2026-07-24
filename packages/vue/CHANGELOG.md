@@ -1,5 +1,23 @@
 # @synergy-design-system/vue
 
+## 3.21.0
+
+### Minor Changes
+
+- [#1331](https://github.com/synergy-design-system/synergy-design-system/pull/1331) [`28e38f9`](https://github.com/synergy-design-system/synergy-design-system/commit/28e38f9eec536ca14b4f1ad597977500bc0d501a) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-07-24
+
+  feat: ✨ Add new critical and error variants for `<syn-alert>` and `<syn-badge>` ([#1199](https://github.com/synergy-design-system/synergy-design-system/issues/1199))
+
+  This release adds the new `critical` and `error` variants to alerts and badges.
+  It also deprecates the `danger` variant. Please use `error` in the future.
+  The `danger` variant will still be available in Synergy Version 3, but removed in Synergy 4.
+
+### Patch Changes
+
+- Updated dependencies [[`28e38f9`](https://github.com/synergy-design-system/synergy-design-system/commit/28e38f9eec536ca14b4f1ad597977500bc0d501a)]:
+  - @synergy-design-system/components@3.21.0
+  - @synergy-design-system/tokens@3.21.0
+
 ## 3.20.2
 
 ### Patch Changes

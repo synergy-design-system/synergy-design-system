@@ -2,10 +2,10 @@
 import { Code } from 'astro-expressive-code/components'
 import { type SynBadge } from '@synergy-design-system/components';
 import {
-	experimental_listIntentCategories,
-	experimental_getIntentCategory,
-	experimental_getIntentOptions,
-	experimental_listIntents,
+	listIntentCategories,
+	getIntentCategory,
+	getIntentOptions,
+	listIntents,
 	type IntentTargetRef,
 } from '@synergy-design-system/metadata';
 import Layout from '../../layouts/Layout.astro';
@@ -16,7 +16,7 @@ import { getIntentTargetPath } from '../../utils/intentTargetPath';
 import { metadataStoreOptions } from '../../utils/metadataStoreOptions';
 
 export async function getStaticPaths() {
-	const result = await experimental_listIntentCategories(metadataStoreOptions);
+	const result = await listIntentCategories(metadataStoreOptions);
 
 	return result.data.map(category => ({
 		params: { id: category.id },
@@ -37,9 +37,9 @@ if (!categoryId) {
 	throw new Error('Missing intent policy category id for route.');
 }
 
-const category = await experimental_getIntentCategory(categoryId, {}, metadataStoreOptions);
+const category = await getIntentCategory(categoryId, {}, metadataStoreOptions);
 
-const intents = await experimental_listIntents({
+const intents = await listIntents({
 	category: categoryId,
 	includePhases: ['experimental'],
 }, metadataStoreOptions);
@@ -56,7 +56,7 @@ const variantsByIntentId = new Map(
 	await Promise.all(intents.data.map(async intent => {
 		const defaultTargetIds = new Set<string>();
 		const variantResults = await Promise.all(renderFrameworks.map(async framework => {
-			const options = await experimental_getIntentOptions({
+			const options = await getIntentOptions({
 				framework,
 				includePhases: ['experimental'],
 				intentId: intent.id,

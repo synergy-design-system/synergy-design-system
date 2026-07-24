@@ -1,4 +1,4 @@
-import type { LoggerProvider, LoggerService, ToolLogEvent } from './logging-types.js';
+import type { LogEvent, LoggerProvider, LoggerService } from './logging-types.js';
 
 const providerError = (index: number, error: unknown) => {
   process.stderr.write(
@@ -18,7 +18,7 @@ export const createLoggerService = (providers: LoggerProvider[]): LoggerService 
 
   return {
     enabled: true,
-    log: async (event: ToolLogEvent) => {
+    log: async (event: LogEvent) => {
       const results = await Promise.allSettled(providers.map(provider => provider.log(event)));
       results.forEach((result, index) => {
         if (result.status === 'rejected') {

@@ -1,5 +1,6 @@
 import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
+import { decodeEntityIdFromPath } from '../core/entity-paths.js';
 import { type CoreEntity } from '../schemas/core-entity.js';
 
 /**
@@ -18,11 +19,15 @@ export const createTemplateEntities = async (
 
     // Find all template markdown files and create metadata entities
     files.forEach((file) => {
-      if (!file.startsWith('template:') || !file.endsWith('.md')) {
+      if (!file.endsWith('.md')) {
         return;
       }
 
-      const entityId = file.replace('.md', '');
+      const entityId = decodeEntityIdFromPath(file.replace('.md', ''));
+      if (!entityId.startsWith('template:')) {
+        return;
+      }
+
       const templateName = entityId.replace('template:', '');
 
       const entity: CoreEntity = {

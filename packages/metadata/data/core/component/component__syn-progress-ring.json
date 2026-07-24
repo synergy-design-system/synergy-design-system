@@ -1,0 +1,245 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/feedback"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynProgressRingComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-progress-ring",
+        "sourcePath": "packages/angular/components/progress-ring/progress-ring.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynProgressRing",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-progress-ring--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.18.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynProgressRingJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynProgressRing",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/progress-ring.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueProgressRing",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueProgressRing.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "16193-20867",
+      "figmaDocsId": "41203-296727",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Progress rings are used to show the progress of a determinate operation in a circular fashion."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Progress Ring"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the --size custom property to set the diameter of the progress ring."
+          },
+          "name": "size",
+          "title": {
+            "type": "text",
+            "value": "Size"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the --track-width and --indicator-width custom properties to set the width of the progress ring’s track and indicator."
+          },
+          "name": "track-indicator-width",
+          "title": {
+            "type": "text",
+            "value": "Track and Indicator Width"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To change the color, use the --track-color and --indicator-color custom properties."
+          },
+          "name": "color"
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the label attribute to label the progress ring and tell assistive devices how to announce it."
+          },
+          "name": "labels",
+          "title": {
+            "type": "text",
+            "value": "Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the default slot to show a label inside the progress ring. To display the value correctly, you should keep to a minimum width of 85 pixels."
+          },
+          "name": "show-values",
+          "title": {
+            "type": "text",
+            "value": "Showing Values"
+          }
+        }
+      ],
+      "storySourcePath": "components.progress-ring",
+      "storyTags": [
+        "Feedback"
+      ]
+    },
+    "rules": {
+      "accessibility": [
+        "Provide clear labels for ring progress when meaning is not obvious from context.",
+        "Use determinate values for measurable tasks and avoid ambiguous visual states.",
+        "Ensure color choices meet contrast requirements against the background."
+      ],
+      "component": "syn-progress-ring",
+      "related": {
+        "components": [
+          "syn-progress-bar",
+          "syn-spinner"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use progress rings when a compact circular indicator fits the layout better than a bar.",
+            "Use determinate mode when the progress value is known.",
+            "Avoid using rings for long verbose progress explanations."
+          ],
+          "id": "mode",
+          "name": "Progress Semantics"
+        },
+        {
+          "content": [
+            "Adjust size based on container density and reading distance.",
+            "Use track and indicator width values that keep the ring legible at small sizes.",
+            "Keep sizing consistent across similar components in one view."
+          ],
+          "id": "sizing",
+          "name": "Size and Stroke"
+        },
+        {
+          "content": [
+            "Include labels or nearby text describing the operation.",
+            "Show percentage values when users need exact feedback.",
+            "Use concise text to avoid crowding around the ring."
+          ],
+          "id": "labels",
+          "name": "Labels and Values"
+        }
+      ],
+      "useCases": [
+        "Compact progress indication in cards or widgets.",
+        "Show operation progress in dashboards and modal dialogs.",
+        "Indicate completion state in space constrained UI areas."
+      ]
+    },
+    "sourceModulePath": "components/progress-ring/progress-ring.js",
+    "summary": "Progress rings are used to show the progress of a determinate operation in a circular fashion."
+  },
+  "id": "component:syn-progress-ring",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-progress-ring.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-progress-ring/angular/progress-ring.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-progress-ring/components/progress-ring.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-progress-ring/components/progress-ring.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-progress-ring/components/progress-ring.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-progress-ring/components/progress-ring.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-progress-ring/react/progress-ring.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-progress-ring/vue/SynVueProgressRing.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-progress-ring/react/SynProgressRingJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-progress-ring.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-progress-ring.md"
+      }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component__syn-progress-ring.md"
+      }
+    ]
+  },
+  "name": "syn-progress-ring",
+  "package": "components",
+  "relations": [],
+  "since": "1.18.0",
+  "sources": [
+    "packages/angular/components/progress-ring/progress-ring.component.ts",
+    "packages/components/src/components/progress-ring/progress-ring.component.ts",
+    "packages/components/src/components/progress-ring/progress-ring.custom.styles.ts",
+    "packages/components/src/components/progress-ring/progress-ring.styles.ts",
+    "packages/components/src/components/progress-ring/progress-ring.ts",
+    "packages/react/src/components/progress-ring.ts",
+    "packages/vue/src/components/SynVueProgressRing.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "component",
+    "progress-ring",
+    "react",
+    "syn-progress-ring",
+    "vue"
+  ]
+}

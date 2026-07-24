@@ -36,8 +36,8 @@ describe('public metadata api', () => {
       id: 'component:syn-fixture',
       kind: 'component',
       layers: {
-        full: [{ layer: 'full', path: 'layers/full/component/component:syn-fixture.ts' }],
-        interface: [{ layer: 'interface', path: 'layers/interface/component/component:syn-fixture.md' }],
+        full: [{ layer: 'full', path: 'layers/full/component/component__syn-fixture.ts' }],
+        interface: [{ layer: 'interface', path: 'layers/interface/component/component__syn-fixture.md' }],
       },
       name: 'Fixture',
       package: 'components',
@@ -52,7 +52,7 @@ describe('public metadata api', () => {
       builtAt: '2026-01-01T00:00:00.000Z',
       entities: [
         {
-          corePath: 'data/core/component/component:syn-fixture.json',
+          corePath: 'data/core/component/component__syn-fixture.json',
           id: component.id,
           kind: component.kind,
           layers: {
@@ -68,7 +68,7 @@ describe('public metadata api', () => {
     };
 
     await writeFile(path.join(root, 'index.json'), JSON.stringify(index));
-    await writeFile(path.join(coreDir, 'component:syn-fixture.json'), JSON.stringify(component));
+  await writeFile(path.join(coreDir, 'component__syn-fixture.json'), JSON.stringify(component));
 
     return {
       cleanup: async () => {

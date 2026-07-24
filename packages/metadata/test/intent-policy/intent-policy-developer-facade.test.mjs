@@ -29,32 +29,32 @@ describe('intent policy developer facade', () => {
     await mkdir(path.join(root, 'core', 'component'), { recursive: true });
     await mkdir(path.join(root, 'layers', 'interface', 'component'), { recursive: true });
 
-    const synButtonInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component:syn-button.json');
+    const synButtonInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component__syn-button.json');
     const sourceSynButtonInterfaceLayerPath = path.join(
       metadataPackageDir,
       'data',
       'layers',
       'interface',
       'component',
-      'component:syn-button.json',
+      'component__syn-button.json',
     );
-    const synButtonCorePath = path.join(root, 'core', 'component', 'component:syn-button.json');
-    const synFieldsetInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component:syn-fieldset.json');
+    const synButtonCorePath = path.join(root, 'core', 'component', 'component__syn-button.json');
+    const synFieldsetInterfaceLayerPath = path.join(root, 'layers', 'interface', 'component', 'component__syn-fieldset.json');
     const sourceSynFieldsetInterfaceLayerPath = path.join(
       metadataPackageDir,
       'data',
       'layers',
       'interface',
       'component',
-      'component:syn-fieldset.json',
+      'component__syn-fieldset.json',
     );
-    const synFieldsetCorePath = path.join(root, 'core', 'component', 'component:syn-fieldset.json');
+    const synFieldsetCorePath = path.join(root, 'core', 'component', 'component__syn-fieldset.json');
 
     const index = {
       builtAt: '2026-05-18T00:00:00.000Z',
       entities: [
         {
-          corePath: 'data/core/component/component:syn-button.json',
+          corePath: 'data/core/component/component__syn-button.json',
           id: 'component:syn-button',
           kind: 'component',
           layers: {
@@ -64,7 +64,7 @@ describe('intent policy developer facade', () => {
           search: ['component:syn-button', 'syn-button'],
         },
         {
-          corePath: 'data/core/component/component:syn-fieldset.json',
+          corePath: 'data/core/component/component__syn-fieldset.json',
           id: 'component:syn-fieldset',
           kind: 'component',
           layers: {
@@ -83,7 +83,7 @@ describe('intent policy developer facade', () => {
       layers: {
         interface: [{
           layer: 'interface',
-          path: 'data/layers/interface/component/component:syn-button.json',
+          path: 'data/layers/interface/component/component__syn-button.json',
         }],
       },
       name: 'syn-button',
@@ -95,7 +95,7 @@ describe('intent policy developer facade', () => {
       layers: {
         interface: [{
           layer: 'interface',
-          path: 'data/layers/interface/component/component:syn-fieldset.json',
+          path: 'data/layers/interface/component/component__syn-fieldset.json',
         }],
       },
       name: 'syn-fieldset',
@@ -125,11 +125,11 @@ describe('intent policy developer facade', () => {
   };
 
   it('validates component usage against intent rules', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-button',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -151,11 +151,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('uses metadata property defaults during strict structure validation', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-button',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -186,11 +186,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('keeps explicit property values over metadata defaults', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-button',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -222,11 +222,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('returns component guide for supported intents and usages', async () => {
-    const { experimental_getComponentGuide } = await loadPublicApi();
+    const { getComponentGuide } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_getComponentGuide({
+      const response = await getComponentGuide({
         component: 'syn-button',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -244,11 +244,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('emits contextual warning when submit intent is disabled', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-button',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -272,11 +272,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('warns when fieldset grouping intent omits both legend property and legend slot', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-fieldset',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -302,11 +302,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('accepts fieldset grouping intent when legend property is provided', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-fieldset',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -333,11 +333,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('accepts fieldset grouping intent when legend slot content is provided', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-fieldset',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -368,11 +368,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('warns when checkbox grouping intent omits both label property and label slot', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-checkbox-group',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -398,11 +398,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('accepts checkbox grouping intent when label property is provided', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-checkbox-group',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -429,11 +429,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('accepts checkbox grouping intent when label slot content is provided', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-checkbox-group',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -464,11 +464,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('returns only syn-fieldset for fieldset grouping intent', async () => {
-    const { experimental_getIntentOptions } = await loadPublicApi();
+    const { getIntentOptions } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_getIntentOptions({
+      const response = await getIntentOptions({
         framework: 'react-web-components',
         includePhases: ['experimental'],
         intentId: 'input.grouping.fieldset',
@@ -489,11 +489,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('validates structural composition and node-level rules for confirmation dialog intent', async () => {
-    const { experimental_validateComponent } = await loadPublicApi();
+    const { validateComponent } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_validateComponent({
+      const response = await validateComponent({
         component: 'syn-dialog',
         framework: 'react-web-components',
         includePhases: ['experimental'],
@@ -549,11 +549,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('finds component recommendations for an intent task', async () => {
-    const { experimental_findComponentsForTask } = await loadPublicApi();
+    const { findComponentsForTask } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_findComponentsForTask({
+      const response = await findComponentsForTask({
         framework: 'react-web-components',
         includePhases: ['experimental'],
         taskId: 'action.submit',
@@ -571,11 +571,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('returns only renderable options by default for an intent', async () => {
-    const { experimental_getIntentOptions } = await loadPublicApi();
+    const { getIntentOptions } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_getIntentOptions({
+      const response = await getIntentOptions({
         framework: 'react-web-components',
         includePhases: ['experimental'],
         intentId: 'action.grouped',
@@ -594,11 +594,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('returns non-renderable diagnostics when includeDiagnostics is enabled', async () => {
-    const { experimental_getIntentOptions } = await loadPublicApi();
+    const { getIntentOptions } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_getIntentOptions({
+      const response = await getIntentOptions({
         framework: 'react-web-components',
         includeDiagnostics: true,
         includePhases: ['experimental'],
@@ -619,11 +619,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('prioritizes radio-group over select and radio-button for input.selection.single', async () => {
-    const { experimental_getIntentOptions } = await loadPublicApi();
+    const { getIntentOptions } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_getIntentOptions({
+      const response = await getIntentOptions({
         framework: 'react-web-components',
         includePhases: ['experimental'],
         intentId: 'input.selection.single',
@@ -647,11 +647,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('returns syn-combobox for input.selection.searchable.multiple intent', async () => {
-    const { experimental_getIntentOptions } = await loadPublicApi();
+    const { getIntentOptions } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_getIntentOptions({
+      const response = await getIntentOptions({
         framework: 'react-web-components',
         includePhases: ['experimental'],
         intentId: 'input.selection.searchable.multiple',
@@ -671,11 +671,11 @@ describe('intent policy developer facade', () => {
   });
 
   it('returns syn-validate as renderable target for generic validation feedback intent', async () => {
-    const { experimental_getIntentOptions } = await loadPublicApi();
+    const { getIntentOptions } = await loadPublicApi();
     const fixture = await createFixtureDataDir();
 
     try {
-      const response = await experimental_getIntentOptions({
+      const response = await getIntentOptions({
         framework: 'react-web-components',
         includePhases: ['experimental'],
         intentId: 'feedback.validation.generic',

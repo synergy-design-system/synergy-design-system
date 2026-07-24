@@ -1,0 +1,242 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/navigation"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynBreadcrumbComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-breadcrumb",
+        "sourcePath": "packages/angular/components/breadcrumb/breadcrumb.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynBreadcrumb",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-breadcrumb--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "1.26.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "stable",
+          "subpathExport": "./types/latest",
+          "typeName": "SynBreadcrumbJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynBreadcrumb",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/breadcrumb.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueBreadcrumb",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueBreadcrumb.vue"
+      }
+    },
+    "override": {
+      "figmaComponentId": "18458-27241",
+      "figmaDocsId": "41137-748938",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy. Breadcrumbs are usually placed before a page’s main content with the current page shown last to indicate the user’s position in the navigation."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Breadcrumb"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, breadcrumb items are rendered as buttons so you can use them to navigate single-page applications. In this case, you’ll need to add event listeners to handle clicks.\n\nFor websites, you’ll probably want to use links instead. You can make any breadcrumb item a link by applying an href attribute to it. Now, when the user activates it, they’ll be taken to the corresponding page — no event listeners required."
+          },
+          "name": "links",
+          "title": {
+            "type": "text",
+            "value": "Breadcrumb Links"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the prefix slot to add content before any breadcrumb item."
+          },
+          "name": "prefix",
+          "title": {
+            "type": "text",
+            "value": "Prefixes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the suffix slot to add content after any breadcrumb item."
+          },
+          "name": "suffix",
+          "title": {
+            "type": "text",
+            "value": "Suffixes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Dropdown menus can be placed in a prefix or suffix slot to provide additional options."
+          },
+          "name": "menu",
+          "title": {
+            "type": "text",
+            "value": "With Dropdowns"
+          }
+        }
+      ],
+      "storySourcePath": "components.breadcrumb",
+      "storyTags": [
+        "Navigation"
+      ]
+    },
+    "rules": {
+      "accessibility": [
+        "Dynamically update breadcrumbs and announce changes with aria-live for screen readers.",
+        "Provide clear labels for breadcrumb items to ensure screen readers convey the navigation path effectively."
+      ],
+      "component": "syn-breadcrumb",
+      "related": {
+        "components": [
+          "syn-breadcrumb-item"
+        ],
+        "templates": [
+          "Breadcrumb"
+        ]
+      },
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use clear and descriptive labels that accurately represent each page or section in the navigation path.",
+            "Keep breadcrumb trails short and easy to read to avoid overwhelming users.",
+            "The final breadcrumb item should be non-clickable, as it represents the current page or location."
+          ],
+          "id": "content_and_labeling",
+          "name": "Content and Labeling"
+        },
+        {
+          "content": [
+            "Ensure breadcrumbs are placed consistently across pages to align with user expectations.",
+            "Use breadcrumbs primarily in structured, multi-level navigation contexts. Avoid implementing them for non-hierarchical or dynamically generated paths, where they may confuse rather than assist users."
+          ],
+          "id": "placement_and_consistency",
+          "name": "Placement and Consistency"
+        },
+        {
+          "content": [
+            "On mobile devices breadcrumb must be shortened to only provide a link to the higher-level page."
+          ],
+          "id": "responsiveness",
+          "name": "Responsiveness"
+        }
+      ],
+      "useCases": [
+        "Clarify user location within the website or app hierarchy, improving orientation.",
+        "Allow easy navigation back to previous pages or higher-level sections.",
+        "Enhance discoverability by displaying category paths or product hierarchy levels.",
+        "Simplify backtracking from filtered or search result pages to broader content areas."
+      ]
+    },
+    "sourceModulePath": "components/breadcrumb/breadcrumb.js",
+    "summary": "Breadcrumbs provide a group of links so users can easily navigate a website's hierarchy."
+  },
+  "id": "component:syn-breadcrumb",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-breadcrumb.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-breadcrumb/angular/breadcrumb.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-breadcrumb/components/breadcrumb.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-breadcrumb/components/breadcrumb.custom.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-breadcrumb/components/breadcrumb.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-breadcrumb/components/breadcrumb.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-breadcrumb/react/breadcrumb.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-breadcrumb/vue/SynVueBreadcrumb.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-breadcrumb/react/SynBreadcrumbJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-breadcrumb.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-breadcrumb.md"
+      }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component__syn-breadcrumb.md"
+      }
+    ]
+  },
+  "name": "syn-breadcrumb",
+  "package": "components",
+  "relations": [
+    {
+      "id": "component:syn-icon",
+      "type": "dependsOn"
+    }
+  ],
+  "since": "1.26.0",
+  "sources": [
+    "packages/angular/components/breadcrumb/breadcrumb.component.ts",
+    "packages/components/src/components/breadcrumb/breadcrumb.component.ts",
+    "packages/components/src/components/breadcrumb/breadcrumb.custom.styles.ts",
+    "packages/components/src/components/breadcrumb/breadcrumb.styles.ts",
+    "packages/components/src/components/breadcrumb/breadcrumb.ts",
+    "packages/react/src/components/breadcrumb.ts",
+    "packages/vue/src/components/SynVueBreadcrumb.vue"
+  ],
+  "status": "stable",
+  "tags": [
+    "angular",
+    "breadcrumb",
+    "component",
+    "react",
+    "syn-breadcrumb",
+    "vue"
+  ]
+}

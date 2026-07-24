@@ -19,6 +19,7 @@ import {
 import type { ComponentRules } from '../../config/types.js';
 import { buildFigmaComponentUrl, buildFigmaDocsUrl } from '../../config/figma.js';
 import { formatGeneratedMarkdown } from '../core/markdown.js';
+import { encodeEntityIdForPath } from '../core/entity-paths.js';
 import { ensureDir, writeJsonAtomic } from './fs-utils.js';
 
 export interface EntityLayers {
@@ -498,6 +499,8 @@ export async function writeLayerAssets(
 
       // Create entity's layer directory
       let entityLayerDir: string;
+      const encodedEntityId = encodeEntityIdForPath(entity.id);
+
       if (isGroupedTokenEntity) {
         entityLayerDir = join(layersDir, 'full', 'tokens');
       } else if (isGroupedStyleEntity) {
@@ -507,7 +510,7 @@ export async function writeLayerAssets(
       } else if (isGroupedAssetEntity) {
         entityLayerDir = join(layersDir, 'full', 'assets');
       } else {
-        entityLayerDir = join(layersDir, 'full', entity.kind, entity.id);
+        entityLayerDir = join(layersDir, 'full', entity.kind, encodedEntityId);
       }
       await ensureDir(entityLayerDir);
 
@@ -586,8 +589,8 @@ export async function writeLayerAssets(
       // Write canonical component interface snapshot JSON.
       const interfaceSnapshot = getComponentInterfaceSnapshot(entity);
       if (interfaceSnapshot) {
-        const interfacePath = join(layersDir, 'interface', entity.kind, `${entity.id}.json`);
-        const interfaceMarkdownPath = join(layersDir, 'interface', entity.kind, `${entity.id}.md`);
+        const interfacePath = join(layersDir, 'interface', entity.kind, `${encodedEntityId}.json`);
+        const interfaceMarkdownPath = join(layersDir, 'interface', entity.kind, `${encodedEntityId}.md`);
         await ensureDir(dirname(interfacePath));
 
         // Get enriched override if config is available
@@ -625,7 +628,7 @@ export async function writeLayerAssets(
 
       const rules = getComponentRules(entity);
       if (rules) {
-        const rulesPath = join(layersDir, 'rules', entity.kind, `${entity.id}.md`);
+        const rulesPath = join(layersDir, 'rules', entity.kind, `${encodedEntityId}.md`);
         const summary = typeof entity.custom?.summary === 'string' ? entity.custom.summary : undefined;
 
         await ensureDir(dirname(rulesPath));
@@ -644,7 +647,7 @@ export async function writeLayerAssets(
 
       // Discover generated examples files (from storybook scraper) for this entity
       const examplesLayerRefs: LayerRef[] = [];
-      const examplesFilePath = join(layersDir, 'examples', entity.kind, `${entity.id}.md`);
+      const examplesFilePath = join(layersDir, 'examples', entity.kind, `${encodedEntityId}.md`);
       try {
         await access(examplesFilePath);
         examplesLayerRefs.push({

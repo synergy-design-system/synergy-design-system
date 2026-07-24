@@ -8,9 +8,43 @@ This guide holds the required information for migrating from one major version o
 
 ---
 
+## Version 4.0
+
+<h3 id="metadata-source-intent">Intent-Tools and Resources no longer experimental</h3>
+
+**Associated Ticket(s)**:
+
+- [#1334](https://github.com/synergy-design-system/synergy-design-system/issues/1334)
+
+**Reason**:
+
+The MCP intent tools are stable for quite a while now.
+
+**Migration Steps**:
+
+- Remove the `experimentalFeatures` section from your custom config.
+
+**Example (before)**:
+
+```json
+{
+  "experimentalFeatures": {
+    "intentTools": true
+  }
+}
+```
+
+**Example (after)**:
+
+```json
+{}
+```
+
+---
+
 ## Version 3.0
 
-<h3 id="metadata-source-v3">BREAKING! MCP data source moved to the metadata package</h3>
+<h3 id="metadata-source-v3">MCP data source moved to the metadata package</h3>
 
 #### ⚠️ The MCP server no longer reads from the local metadata folder structure
 
@@ -30,7 +64,7 @@ The MCP server now reads data from `@synergy-design-system/metadata` instead of 
 
 ---
 
-<h3 id="davinci-tool-rename-v3">BREAKING! DaVinci migration tool names changed</h3>
+<h3 id="davinci-tool-rename-v3">DaVinci migration tool names changed</h3>
 
 #### ⚠️ DaVinci migration endpoints were renamed for consistency
 
@@ -71,7 +105,7 @@ Tool naming was standardized to the `*-info` and `*-list` convention used across
 
 ---
 
-<h3 id="setup-tool-replacement-v3">BREAKING! framework-info and font-info were removed</h3>
+<h3 id="setup-tool-replacement-v3">framework-info and font-info were removed</h3>
 
 #### ⚠️ Setup guidance is now served through a single setup endpoint
 
@@ -129,7 +163,7 @@ Framework and package setup content is now consolidated under one endpoint to si
 
 ---
 
-<h3 id="version-tool-removal-v3">BREAKING! version endpoint was removed</h3>
+<h3 id="version-tool-removal-v3">version endpoint was removed</h3>
 
 #### ⚠️ MCP clients can no longer call a dedicated version tool
 
@@ -150,7 +184,7 @@ The dedicated `version` tool was removed from the MCP tool surface. It did not p
 
 ## Version 2.0
 
-<h3 id="fs-layout-v2">BREAKING! Default iconset in asset-info</h3>
+<h3 id="fs-layout-v2">Default iconset in asset-info</h3>
 
 #### ⚠️ Introducing a new filesystem structure
 

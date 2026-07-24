@@ -1,6 +1,7 @@
 import { readFile, readdir } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { type Logger } from '../internal/core/context.js';
+import { decodeEntityIdFromPath } from '../internal/core/entity-paths.js';
 import { writeJsonAtomic } from '../internal/writers/fs-utils.js';
 import { extractFigmaNodeId } from './figma.js';
 
@@ -132,11 +133,16 @@ export async function syncCodeConnectFigmaOverrides(
   let updatedCount = 0;
 
   for (const fileName of overrideFiles) {
-    if (!fileName.endsWith('.json') || !fileName.startsWith('component:')) {
+    if (!fileName.endsWith('.json')) {
       continue;
     }
 
-    const tagName = fileName.slice('component:'.length, -'.json'.length);
+    const entityId = decodeEntityIdFromPath(fileName.slice(0, -'.json'.length));
+    if (!entityId.startsWith('component:')) {
+      continue;
+    }
+
+    const tagName = entityId.slice('component:'.length);
     const overridePath = join(overridesDir, fileName);
     const codeConnectPath = join(codeConnectDir, `${tagName}.figma.ts`);
 

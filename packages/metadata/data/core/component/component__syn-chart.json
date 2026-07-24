@@ -1,0 +1,326 @@
+{
+  "custom": {
+    "clusters": [
+      "components-by-tag/data-visualization"
+    ],
+    "frameworks": {
+      "angular": {
+        "componentName": "SynChartComponent",
+        "exportPath": "packages/angular/index.ts",
+        "packageName": "@synergy-design-system/angular",
+        "selector": "syn-chart",
+        "sourcePath": "packages/angular/components/chart/chart.component.ts"
+      },
+      "react": {
+        "jsx": {
+          "componentName": "SynChart",
+          "documentation": "https://synergy-design-system.github.io/?path=/docs/charting-syn-chart--docs",
+          "events": [],
+          "packageName": "@synergy-design-system/react",
+          "since": "3.15.0",
+          "sourcePath": "packages/react/src/types/syn-jsx-elements.ts",
+          "status": "experimental",
+          "subpathExport": "./types/latest",
+          "typeName": "SynChartJSXElement"
+        },
+        "wrapper": {
+          "componentName": "SynChart",
+          "exportPath": "packages/react/src/index.ts",
+          "packageName": "@synergy-design-system/react",
+          "sourcePath": "packages/react/src/components/chart.ts"
+        }
+      },
+      "vue": {
+        "componentName": "SynVueChart",
+        "exportPath": "packages/vue/src/index.ts",
+        "packageName": "@synergy-design-system/vue",
+        "sourcePath": "packages/vue/src/components/SynVueChart.vue"
+      }
+    },
+    "override": {
+      "figmaDocsId": "https://www.figma.com/design/9IpXnDH4GFziUH9sOpnK8V/Chart-Library?node-id=0-1&p=f&t=PkQKC2p7WIr2k0og-0",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "The chart’s axes define the visual structure of the data and can be customized to match different visualization needs. Both the horizontal and vertical axes support flexible configuration options, allowing you to control how reference lines and labels are displayed.\n\nYou can choose to show only horizontal grid lines, only vertical grid lines, or both, depending on the level of visual guidance you want to provide. "
+          },
+          "name": "axes-default",
+          "title": {
+            "type": "text",
+            "value": "Axes"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The default is, that both axes lines as well as the split lines are hidden."
+          },
+          "name": "axes-split-lines-hidden",
+          "title": {
+            "type": "text",
+            "value": "Hidden Axes Split Lines"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "If you want to display both axes lines and split lines, use the handle method `axesShowSplitLines()`."
+          },
+          "name": "axes-split-lines-visible",
+          "title": {
+            "type": "text",
+            "value": "Visible Axes Split Lines"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To show only horizontal split lines, use the handle method `axesShowYSplitLines()`."
+          },
+          "name": "axes-horizontal-split-lines",
+          "title": {
+            "type": "text",
+            "value": "Horizontal Split Lines Only"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To show only vertical split lines, use the handle method `axesShowXSplitLines()`."
+          },
+          "name": "axes-vertical-split-lines",
+          "title": {
+            "type": "text",
+            "value": "Vertical Split Lines Only"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "If you want to hide the axis labels, use the handle method `axesHideLabels()`."
+          },
+          "name": "axes-labels-hidden",
+          "title": {
+            "type": "text",
+            "value": "Hidden Axis Labels"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To show axes split lines but hide axis labels, combine `axesShowSplitLines()` and `axesHideLabels()`."
+          },
+          "name": "axes-lines-visible-labels-hidden",
+          "title": {
+            "type": "text",
+            "value": "Visible Axes Lines with Hidden Values"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "To add icons to axis labels, use the handle methods `axesAddXLabelIcons()` and `axesAddYLabelIcons()`."
+          },
+          "name": "axes-labels-with-icons",
+          "title": {
+            "type": "text",
+            "value": "Axes Labels with Icons"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The default story demonstrates a basic line chart configuration. The chart is configured via the `config` property, which accepts an object that maps directly to the ECharts option configuration."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Chart"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The `config` property is the main way to configure the chart. It accepts an object that maps 1:1 to the ECharts option configuration. Assigning a new object to this property will update the chart with the new configuration."
+          },
+          "name": "config",
+          "title": {
+            "type": "text",
+            "value": "Config"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the `palette` attribute to apply a Synergy design token color palette to chart series. `categorical` (12 distinct colors for comparing unrelated data series), `sequential-01`–`sequential-07` (10-step single-hue ramps), and `sequential-status-critical/error/info/success/warning` (10-step status ramps). If `option.color` is explicitly set, it takes precedence over the `palette` attribute."
+          },
+          "name": "palette",
+          "title": {
+            "type": "text",
+            "value": "Palette"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use `getInstance()` to access the underlying ECharts instance directly and work with its full native API. This is useful when the `config` property alone is not sufficient — for example to listen to ECharts events, trigger actions, or call `setOption()` with custom merge behavior. This example attaches a click listener via the native ECharts API. Click any data point to see the event payload logged to the browser console."
+          },
+          "name": "get-instance",
+          "title": {
+            "type": "text",
+            "value": "Get Instance"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "You can use multiple charts in one `<syn-chart>` instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the `color` property directly on the series object — allowing fine-grained control over individual chart series colors.\n\n**Important:** The `color` property does **not** support CSS variables (e.g. `var(--syn-sequential-05-80)`). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using `getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim()` and pass the resolved value instead."
+          },
+          "name": "multiple-charts",
+          "title": {
+            "type": "text",
+            "value": "Multiple Charts"
+          }
+        }
+      ],
+      "storySourcePath": "components.chart",
+      "storyTags": [
+        "Data Visualization"
+      ]
+    },
+    "rules": {
+      "accessibility": [
+        "Do not rely on color alone to distinguish data series; use labels, markers, or patterns where helpful.",
+        "Provide a text alternative or data table for users who cannot interpret visualizations reliably.",
+        "Ensure chart context is available in surrounding text, including what is shown and why it matters."
+      ],
+      "component": "syn-chart",
+      "usageGuidelines": [
+        {
+          "content": [
+            "Use charts when visual pattern recognition (trends, peaks, outliers) is more helpful than raw tables.",
+            "Keep the chart goal specific and clear (for example trend over time, comparison, distribution).",
+            "Avoid using charts when exact value lookup is the primary task; provide a table or value list as a complement."
+          ],
+          "id": "data-and-purpose",
+          "name": "Data and Purpose"
+        },
+        {
+          "content": [
+            "Use clear axis labels, units, and legends so users can understand the data context immediately.",
+            "Limit the number of simultaneously visible series to reduce visual noise.",
+            "Choose palettes that maintain sufficient contrast between series and background.",
+            "Avoid excessive decoration and effects that do not add analytical value."
+          ],
+          "id": "visual-clarity",
+          "name": "Visual Clarity"
+        },
+        {
+          "content": [
+            "Ensure labels, tooltips, and legends remain readable at small viewport sizes.",
+            "Prevent overlapping labels and crowded markers by simplifying or reducing displayed data where needed.",
+            "Keep chart dimensions appropriate for the amount and complexity of the data shown."
+          ],
+          "id": "responsiveness-and-density",
+          "name": "Responsiveness and Density"
+        }
+      ],
+      "useCases": [
+        "Display time-based trends such as sensor values, throughput, or production metrics.",
+        "Compare multiple data series in dashboards to identify differences and anomalies.",
+        "Present historical data to support analysis, reporting, and decision-making.",
+        "Visualize key performance indicators where users need a fast visual overview."
+      ]
+    },
+    "sourceModulePath": "components/chart/chart.js",
+    "summary": "The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)"
+  },
+  "id": "component:syn-chart",
+  "kind": "component",
+  "layers": {
+    "examples": [
+      {
+        "layer": "examples",
+        "path": "layers/examples/component/component__syn-chart.md"
+      }
+    ],
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-chart/angular/chart.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-chart/components/chart.component.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-chart/components/chart.palettes.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-chart/components/chart.styles.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-chart/components/chart.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-chart/components/types.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-chart/react/chart.ts"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-chart/vue/SynVueChart.vue"
+      },
+      {
+        "layer": "full",
+        "path": "layers/full/component/component__syn-chart/react/SynChartJSXElement.ts"
+      }
+    ],
+    "interface": [
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-chart.json"
+      },
+      {
+        "layer": "interface",
+        "path": "layers/interface/component/component__syn-chart.md"
+      }
+    ],
+    "rules": [
+      {
+        "layer": "rules",
+        "path": "layers/rules/component/component__syn-chart.md"
+      }
+    ]
+  },
+  "name": "syn-chart",
+  "package": "components",
+  "relations": [],
+  "since": "3.15.0",
+  "sources": [
+    "packages/angular/components/chart/chart.component.ts",
+    "packages/components/src/components/chart/chart.component.ts",
+    "packages/components/src/components/chart/chart.palettes.ts",
+    "packages/components/src/components/chart/chart.styles.ts",
+    "packages/components/src/components/chart/chart.ts",
+    "packages/components/src/components/chart/types.ts",
+    "packages/react/src/components/chart.ts",
+    "packages/vue/src/components/SynVueChart.vue"
+  ],
+  "status": "experimental",
+  "tags": [
+    "angular",
+    "chart",
+    "component",
+    "react",
+    "syn-chart",
+    "vue"
+  ]
+}

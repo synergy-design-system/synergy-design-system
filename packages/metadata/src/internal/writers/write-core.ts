@@ -6,6 +6,7 @@ import { type Result, err, ok } from '../core/result.js';
 import { type Context } from '../core/context.js';
 import { type CoreEntity, validateCoreEntity } from '../schemas/index.js';
 import { type WriteError } from '../core/errors.js';
+import { encodeEntityIdForPath } from '../core/entity-paths.js';
 import { writeJsonAtomic } from './fs-utils.js';
 
 /**
@@ -45,7 +46,7 @@ export async function writeCoreEntities(
 
   try {
     for (const entity of sortedEntities) {
-      const filePath = join(outputDir, 'core', entity.kind, `${entity.id}.json`);
+      const filePath = join(outputDir, 'core', entity.kind, `${encodeEntityIdForPath(entity.id)}.json`);
       await writeJsonAtomic(filePath, entity);
       writtenEntityIds.add(entity.id);
     }

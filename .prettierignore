@@ -64,3 +64,6 @@ CHANGELOG.md
 
 # #1090: Ignore generated sboms
 sboms/
+
+# #1334: Docker logs are generated and should not be formatted
+packages/mcp/docker/

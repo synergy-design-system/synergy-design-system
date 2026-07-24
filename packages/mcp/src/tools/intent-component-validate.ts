@@ -4,7 +4,7 @@ import {
   type IntentPhase,
   type IntentPresetValue,
   type IntentStructureNode,
-  experimental_validateComponent as validateComponent,
+  validateComponent,
 } from '@synergy-design-system/metadata';
 import {
   INTENT_DEFAULT_FRAMEWORK,

@@ -350,41 +350,43 @@ const Toast = {
     </style>
     <div class="syn-toast-stack">
       <syn-alert variant="primary" open closable>
-        <syn-icon slot="icon" name="info"></syn-icon>
+        <syn-icon slot="icon" name="status-informative" library="system"></syn-icon>
         This is super informative
       </syn-alert>
 
       <syn-alert variant="success" open closable>
-        <syn-icon slot="icon" name="check_circle"></syn-icon>
+        <syn-icon slot="icon" name="status-success" library="system"></syn-icon>
         Your changes have been saved
       </syn-alert>
 
-      <syn-alert variant="neutral" open closable>
-        <syn-icon slot="icon" name="settings"></syn-icon>
-        Your settings have been updated
-      </syn-alert>
-
       <syn-alert variant="warning" open closable>
-        <syn-icon slot="icon" name="emergency_home"></syn-icon>
+        <syn-icon slot="icon" name="status-warning" library="system"></syn-icon>
         <strong>Your session has ended</strong><br />
         Please login again to continue.
       </syn-alert>
 
       <syn-alert variant="critical" open closable>
-        <syn-icon slot="icon" name="warning"></syn-icon>
+        <syn-icon slot="icon" name="status-critical" library="system"></syn-icon>
         <strong>Your session has ended</strong><br />
         Please login again to continue.
       </syn-alert>
 
       <syn-alert variant="error" open closable>
         <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
-        Your account has been deleted
+        <strong>Your account has been deleted</strong><br />
+        We're very sorry to see you go!
       </syn-alert>
 
       <syn-alert variant="danger" open closable>
         <syn-icon slot="icon" name="status-error" library="system"></syn-icon>
         <strong>Your account has been deleted*</strong><br />
         We're very sorry to see you go!
+      </syn-alert>
+
+      <syn-alert variant="neutral" open closable>
+        <syn-icon slot="icon" name="status-neutral" library="system"></syn-icon>
+        <strong>Your settings have been updated</strong><br />
+        Settings will take effect on next login.
       </syn-alert>
     </div>
   `,

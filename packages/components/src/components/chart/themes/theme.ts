@@ -1,6 +1,6 @@
 import { PALETTE_TOKENS } from '../chart.palettes.js';
 import { THEME } from '../configs/constants.js';
-import { type Themes, getRealStyleValue } from './utilities.js';
+import { type Themes, getRealStyleValue, getRealValueWithoutUnit } from './utilities.js';
 import { getDefaultAxisStyles } from '../configs/axes/utilities.js';
 import { getDefaultLegendStyles } from '../configs/legend/utilities.js';
 
@@ -25,6 +25,10 @@ export const getSynergyTheme = (mode: Themes = 'light') => ({
     top: 0,
   },
   legend: getDefaultLegendStyles(mode),
+  // Default line series styles
+  line: {
+    symbolSize: getRealValueWithoutUnit('SynSpacingXSmall', mode),
+  },
   logAxis: getDefaultAxisStyles(mode),
   // Global font style
   textStyle: {

@@ -2,6 +2,7 @@
  * @synergy-design-system/tokens version 3.20.2
  * SICK Global UX Foundation
  */
+$SynChartBackgroundColor: var(--syn-chart-background-color) !default;
 $SynChartCategorical10: var(--syn-chart-categorical-10) !default;
 $SynChartCategorical11: var(--syn-chart-categorical-11) !default;
 $SynChartCategorical12: var(--syn-chart-categorical-12) !default;
@@ -17,6 +18,7 @@ $SynChartCategorical09: var(--syn-chart-categorical-09) !default;
 $SynChartDisabledColor: var(--syn-chart-disabled-color) !default;
 $SynChartGridLinesColor: var(--syn-chart-grid-lines-color) !default;
 $SynChartGridLinesColorEmphasize: var(--syn-chart-grid-lines-color-emphasize) !default;
+$SynChartRangeSelectionColor: var(--syn-chart-range-selection-color) !default;
 $SynChartSequential01_10: var(--syn-chart-sequential-01-10) !default;
 $SynChartSequential01_20: var(--syn-chart-sequential-01-20) !default;
 $SynChartSequential01_30: var(--syn-chart-sequential-01-30) !default;

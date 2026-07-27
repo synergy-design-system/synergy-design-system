@@ -1,5 +1,6 @@
 import { expect } from '@open-wc/testing';
 import {
+  getHexWithOpacity,
   getRealStyleValue,
   getRealValueWithoutUnit,
   normalizeArray,
@@ -98,6 +99,32 @@ describe('chart theme utilities', () => {
       setDefaultValueIfNotAvailable(target, 'visible', true);
 
       expect(target).to.deep.equal({ visible: true });
+    });
+  });
+
+  describe('getHexWithOpacity', () => {
+    it('appends 00 alpha for 0 opacity', () => {
+      expect(getHexWithOpacity('#112233', 0)).to.equal('#11223300');
+    });
+
+    it('appends FF alpha for 1 opacity', () => {
+      expect(getHexWithOpacity('#112233', 1)).to.equal('#112233FF');
+    });
+
+    it('rounds opacity to the nearest alpha byte and returns uppercase hex', () => {
+      expect(getHexWithOpacity('#112233', 0.5)).to.equal('#11223380');
+    });
+
+    it('throws when opacity is below 0', () => {
+      expect(() => getHexWithOpacity('#112233', -0.01)).to.throw('Opacity must be a number between 0 and 1');
+    });
+
+    it('throws when opacity is above 1', () => {
+      expect(() => getHexWithOpacity('#112233', 1.01)).to.throw('Opacity must be a number between 0 and 1');
+    });
+
+    it('throws when opacity is not finite', () => {
+      expect(() => getHexWithOpacity('#112233', Number.NaN)).to.throw('Opacity must be a number between 0 and 1');
     });
   });
 });

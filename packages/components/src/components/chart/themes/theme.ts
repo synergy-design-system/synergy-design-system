@@ -2,6 +2,7 @@ import { PALETTE_TOKENS } from '../chart.palettes.js';
 import { THEME } from '../configs/constants.js';
 import { type Themes, getRealStyleValue, getRealValueWithoutUnit } from './utilities.js';
 import { getDefaultAxisStyles } from '../configs/axes/utilities.js';
+import { getDataZoomStyles } from '../configs/data-zoom/utilities.js';
 import { getDefaultLegendStyles } from '../configs/legend/utilities.js';
 
 const getCategoricalColors = (mode: Themes) => PALETTE_TOKENS.categorical.map((token) => getRealStyleValue(token, mode)).filter(Boolean);
@@ -17,10 +18,12 @@ export const getSynergyTheme = (mode: Themes = 'light') => ({
   // Default color palette for charts, is categorical by default but can be overridden by setting the palette property on the chart component or by directly setting config.color
   color: getCategoricalColors(mode),
   darkMode: 'auto',
+  // Default style for the zoom slider on the bottom of the chart
+  dataZoom: getDataZoomStyles(mode),
   grid: {
     bottom: 0,
     left: 0,
-    // This is needed otherwise the last splitLine of the xAxis is cut off
+    // This is needed otherwise the last splitLine of the xAxis or the dataZoom slider is cut off
     right: THEME.GRID_RIGHT_INSET,
     top: 0,
   },

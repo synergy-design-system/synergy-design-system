@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.20.0
+ * @synergy-design-system/tokens version 3.20.2
  * SICK Global UX Foundation
  * Do not edit directly, this file was auto-generated.
  */
@@ -7,6 +7,7 @@
 :root, .syn-sick2025-dark, .syn-theme-dark {
   color-scheme: dark;
 
+  --syn-chart-background-color: var(--syn-color-neutral-50);
   --syn-chart-categorical-10: var(--syn-color-data-purple-500);
   --syn-chart-categorical-11: var(--syn-color-neutral-950);
   --syn-chart-categorical-12: var(--syn-color-data-magenta-600);
@@ -22,6 +23,7 @@
   --syn-chart-disabled-color: var(--syn-color-neutral-400);
   --syn-chart-grid-lines-color: var(--syn-color-neutral-300);
   --syn-chart-grid-lines-color-emphasize: var(--syn-color-neutral-400);
+  --syn-chart-range-selection-color: var(--syn-color-neutral-600);
   --syn-chart-sequential-01-10: var(--syn-color-primary-100);
   --syn-chart-sequential-01-20: var(--syn-color-primary-200);
   --syn-chart-sequential-01-30: var(--syn-color-primary-300);

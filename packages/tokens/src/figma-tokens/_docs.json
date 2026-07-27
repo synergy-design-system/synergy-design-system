@@ -803,7 +803,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The line series supports a variety of symbols and can change symbol sizes.",
+          "value": "The line series supports a variety of symbols.",
           "type": "text"
         }
       },
@@ -853,7 +853,7 @@
           "type": "text"
         },
         "description": {
-          "value": "When having large data sets or dense series where users need to inspect local trends without leaving the chart context, the `dataZoom` option with `type: 'slider'` can be used to add a slider control to the chart. This allows users to zoom and pan through large datasets while maintaining context. The slider can be customized in terms of position, size, and appearance.",
+          "value": "When having large data sets or dense series where users need to inspect local trends without leaving the chart context, the `dataZoom` option with `type: 'slider'` can be used to add a slider control to the chart. This allows users to zoom and pan through large datasets while maintaining context. The slider can be customized in terms of position, size and appearance. For more information have a look at the [ECharts documentation](https://echarts.apache.org/en/option.html#dataZoom-slider)",
           "type": "text"
         }
       }

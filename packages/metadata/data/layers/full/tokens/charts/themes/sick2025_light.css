@@ -7,6 +7,7 @@
 :root, .syn-sick2025-light, .syn-theme-light {
   color-scheme: light;
 
+  --syn-chart-background-color: var(--syn-color-neutral-0);
   --syn-chart-categorical-10: var(--syn-color-data-purple-700);
   --syn-chart-categorical-11: var(--syn-color-neutral-500);
   --syn-chart-categorical-12: var(--syn-color-data-magenta-500);
@@ -22,6 +23,7 @@
   --syn-chart-disabled-color: var(--syn-color-neutral-400);
   --syn-chart-grid-lines-color: var(--syn-color-neutral-100);
   --syn-chart-grid-lines-color-emphasize: var(--syn-color-neutral-200);
+  --syn-chart-range-selection-color: var(--syn-color-neutral-500);
   --syn-chart-sequential-01-10: var(--syn-color-primary-100);
   --syn-chart-sequential-01-20: var(--syn-color-primary-200);
   --syn-chart-sequential-01-30: var(--syn-color-primary-300);

@@ -4,6 +4,7 @@
  */
 
 export const ResolvedTokens = {
+  SynChartBackgroundColor: { dark: '#00051a', light: '#ffffff' },
   SynChartCategorical01: { dark: '#066fff', light: '#005aff' },
   SynChartCategorical02: { dark: '#a5e1b9', light: '#2d9c60' },
   SynChartCategorical03: { dark: '#ab988c', light: '#8d7269' },
@@ -19,6 +20,7 @@ export const ResolvedTokens = {
   SynChartDisabledColor: { dark: '#404769', light: '#999999' },
   SynChartGridLinesColor: { dark: '#262f55', light: '#e7e7e7' },
   SynChartGridLinesColorEmphasize: { dark: '#404769', light: '#cccccc' },
+  SynChartRangeSelectionColor: { dark: '#5f678e', light: '#868686' },
   SynChartSequential01_10: { dark: '#0d3f9b', light: '#dae7ff' },
   SynChartSequential01_20: { dark: '#0845c5', light: '#ccdeff' },
   SynChartSequential01_30: { dark: '#005aff', light: '#91bbff' },

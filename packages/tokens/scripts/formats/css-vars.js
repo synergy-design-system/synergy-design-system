@@ -125,14 +125,12 @@ export const cssVariableFormatter = {
       'readonly-opacity-color',
 
       // For now remove all chart tokens, which are not needed in the chart component
-      'chart-background-color',
       'chart-opacity-10',
       'chart-opacity-20',
       'chart-opacity-40',
       'chart-pattern-color',
       'chart-pattern-color-inverted',
       'chart-plot-line-color',
-      'chart-range-selection-color',
       'chart-range-selection-number',
       'chart-stroke-weight-default',
       'chart-stroke-weight-thin',

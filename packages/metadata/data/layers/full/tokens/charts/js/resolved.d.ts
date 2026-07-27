@@ -11,6 +11,7 @@ interface ResolvedTokenModes {
 }
 
 export declare const ResolvedTokens: {
+  SynChartBackgroundColor: ResolvedTokenModes;
   SynChartCategorical01: ResolvedTokenModes;
   SynChartCategorical02: ResolvedTokenModes;
   SynChartCategorical03: ResolvedTokenModes;
@@ -26,6 +27,7 @@ export declare const ResolvedTokens: {
   SynChartDisabledColor: ResolvedTokenModes;
   SynChartGridLinesColor: ResolvedTokenModes;
   SynChartGridLinesColorEmphasize: ResolvedTokenModes;
+  SynChartRangeSelectionColor: ResolvedTokenModes;
   SynChartSequential01_10: ResolvedTokenModes;
   SynChartSequential01_20: ResolvedTokenModes;
   SynChartSequential01_30: ResolvedTokenModes;

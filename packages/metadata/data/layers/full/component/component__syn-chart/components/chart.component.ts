@@ -8,6 +8,7 @@ import { property } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
 import { LineChart } from 'echarts/charts.js';
 import {
+  DataZoomComponent,
   GridComponent, LegendComponent, TitleComponent, TooltipComponent,
 } from 'echarts/components.js';
 import SynergyElement from '../../internal/synergy-element.js';
@@ -28,6 +29,7 @@ use([
   TooltipComponent,
   LegendComponent,
   GridComponent,
+  DataZoomComponent,
 ]);
 
 /**

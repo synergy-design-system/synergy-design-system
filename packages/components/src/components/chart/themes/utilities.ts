@@ -99,3 +99,15 @@ export const setDefaultValueIfNotAvailable = (target: Record<string, unknown>, k
     }
   });
 };
+
+export const getHexWithOpacity = (hexColor: string, opacity: number) => {
+  if (!Number.isFinite(opacity) || opacity < 0 || opacity > 1) {
+    throw new Error(`Opacity must be a number between 0 and 1. Received: ${opacity}`);
+  }
+  const alpha = Math.round(opacity * 255)
+    .toString(16)
+    .padStart(2, '0')
+    .toUpperCase();
+
+  return `${hexColor}${alpha}`;
+};

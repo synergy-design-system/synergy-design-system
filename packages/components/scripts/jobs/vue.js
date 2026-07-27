@@ -23,9 +23,12 @@ export const runCreateVueWrappers = async ({
   const outDir = path.join(vuePackageDir, './src');
   const distDir = path.join(vuePackageDir, './dist');
   const componentDir = path.join(vuePackageDir, '/src/components');
+  const typesDir = path.join(vuePackageDir, '/src/types');
 
-  await createRunPrepare('Vue: Cleaning up artifacts...')(outDir, componentDir, distDir);
+  await createRunPrepare('Vue: Cleaning up artifacts...')(outDir, componentDir, typesDir, distDir);
+  await jobs.runCreateTypeCore(typesDir);
   await jobs.runCreateWrappers(metadata, outDir);
+  await jobs.runCreateIntrinsicElements(metadata, typesDir);
   await runFormat(outDir);
 
   await jobs.runVueBuild();

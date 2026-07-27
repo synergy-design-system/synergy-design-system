@@ -294,9 +294,13 @@ ${exports}
   });
 
   const frameworkIndex = createFrameworkIndex(headerComment, index, true);
+  const frameworkIndexWithTypes = frameworkIndex.replace(
+    headerComment,
+    `${headerComment}\nexport type { SynVueNativeElementAugmentation } from './types/synergy.js';`,
+  );
 
   // Generate the index file
-  fs.writeFileSync(path.join(outDir, 'index.ts'), frameworkIndex, 'utf8');
+  fs.writeFileSync(path.join(outDir, 'index.ts'), frameworkIndexWithTypes, 'utf8');
 
   // Generate the chart export file. This is needed so we are able to create a dts file for the chart component, which is not part of the default exports.
   const chartIndex = createFrameworkIndex(headerComment, chart, true);

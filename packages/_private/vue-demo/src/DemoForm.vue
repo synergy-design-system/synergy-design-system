@@ -1,27 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import {
-  SynVueAlert,
-  SynVueButton,
-  SynVueCheckbox,
-  SynVueCheckboxGroup,
-  SynVueCombobox,
-  SynVueDivider,
-  SynVueFieldset,
-  SynVueFile,
-  SynVueIcon,
-  SynVueInput,
-  SynVueOptgroup,
-  SynVueOption,
-  SynVueRadio,
-  SynVueRadioButton,
-  SynVueRange,
-  SynVueRangeTick,
-  SynVueRadioGroup,
-  SynVueSelect,
-  SynVueSwitch,
-  SynVueTextarea,
-} from '@synergy-design-system/vue';
 import { serialize, highlightOptionRenderer } from '@synergy-design-system/components';
 import {
   type FormStatus,
@@ -79,51 +57,51 @@ const synChange = () => {
     @reset="reset"
     @submit="submit"
     @syn-change="synChange"
+    v-syn-form-model="formData"
     ref="formRef"
   >
-    <SynVueAlert
+
+    <syn-alert
       v-if="formStatus.type !== 'warning'"
       class="form-validation-message"
       :open="true"
       :variant="formStatus.type"
     >
-      <SynVueIcon slot="icon" :name="formStatus.icon" />
+      <syn-icon slot="icon" :name="formStatus.icon" />
       {{ formStatus.message }}
-    </SynVueAlert>
+    </syn-alert>
 
     <!-- PersonalInformation -->
-    <SynVueFieldset legend="Personal Information">
+    <syn-fieldset legend="Personal Information">
 
-      <SynVueRadioGroup
+      <syn-radio-group
         id="radiogroup-gender"
         name="gender"
         label="Please tell us your gender"
         required
-        v-model="formData.gender"
       >
-        <SynVueRadio value="f">Female</SynVueRadio>
-        <SynVueRadio value="m">Male</SynVueRadio>
-        <SynVueRadio value="other">Other</SynVueRadio>
-      </SynVueRadioGroup>
+        <syn-radio value="f">Female</syn-radio>
+        <syn-radio value="m">Male</syn-radio>
+        <syn-radio value="other">Other</syn-radio>
+      </syn-radio-group>
 
-      <SynVueSelect
+      <syn-select
         id="select-role"
         label="Current position"
         name="role"
         required
-        v-model="formData.role"
       >
-        <SynVueOptgroup label="Developers">
-          <SynVueOption value="backend">Backend Developer</SynVueOption>
-          <SynVueOption value="frontend">Frontend Developer</SynVueOption>
-        </SynVueOptgroup>
-        <SynVueOptgroup label="Other">
-          <SynVueOption value="lead">Team Lead</SynVueOption>
-          <SynVueOption value="other">Other (please specify in comment section below)</SynVueOption>
-        </SynVueOptgroup>
-      </SynVueSelect>
+        <syn-optgroup label="Developers">
+          <syn-option value="backend">Backend Developer</syn-option>
+          <syn-option value="frontend">Frontend Developer</syn-option>
+        </syn-optgroup>
+        <syn-optgroup label="Other">
+          <syn-option value="lead">Team Lead</syn-option>
+          <syn-option value="other">Other (please specify in comment section below)</syn-option>
+        </syn-optgroup>
+      </syn-select>
 
-      <SynVueInput
+      <syn-input
         id="input-text"
         label="Name"
         :minlength="5"
@@ -131,59 +109,54 @@ const synChange = () => {
         name="name"
         placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
         required
-        v-model="formData.name"
         type="text"
       />
 
-      <SynVueInput
+      <syn-input
         id="input-email"
         label="E-Mail"
         name="email"
         placeholder="Please insert your E-mail address"
         required
-        v-model="formData.email"
         type="email"
       />
 
-      <SynVueInput
+      <syn-input
         id="input-phone"
         label="Phone"
         name="phone"
         placeholder="Please provide your phone number"
         required
-        v-model="formData.phone"
         type="tel"
       />
 
-      <SynVueInput
+      <syn-input
         id="input-date"
         label="Date of birth"
         name="date"
-        v-model="formData.date"
         type="date"
       />
 
-      <SynVueCombobox
+      <syn-combobox
         id="input-nationality"
         label="Nationality"
         name="nationality"
         required
-        v-model="formData.nationality"
         :getOption="highlightOptionRenderer"
       >
-        <SynVueOption v-for="nationality in nationalities" :key="nationality">
+        <syn-option v-for="nationality in nationalities" :key="nationality">
           {{ nationality }}
-        </SynVueOption>
-      </SynVueCombobox>
+        </syn-option>
+      </syn-combobox>
 
-    </SynVueFieldset>
+    </syn-fieldset>
     <!-- /PersonalInformation -->
 
-    <SynVueDivider />
+    <syn-divider />
 
     <!-- Security -->
-    <SynVueFieldset legend="Security">
-      <SynVueInput
+    <syn-fieldset legend="Security">
+      <syn-input
         id="input-password"
         label="Provide a secure password"
         name="password"
@@ -192,10 +165,11 @@ const synChange = () => {
         placeholder="Please provide at least one uppercase and lowercase letter and a number"
         required
         type="password"
-        v-model="formData.password"
+        :value.prop="initialFormData.password"
+        :defaultValue.prop="initialFormData.password"
       />
 
-      <SynVueInput
+      <syn-input
         id="input-number"
         label="Please provide a fallback numeric value that may be used for password recovery"
         min="1000"
@@ -203,202 +177,194 @@ const synChange = () => {
         name="code"
         placeholder="Please choose a value with four digits, e.g. 1234"
         type="number"
-        v-model="formData.code"
       />
-    </SynVueFieldset>
+    </syn-fieldset>
     <!-- /Security -->
 
-    <SynVueDivider />
+    <syn-divider />
 
     <!-- Topics -->
-    <SynVueFieldset legend="Topics">
-      <SynVueSelect
+    <syn-fieldset legend="Topics">
+      <syn-select
         clearable
         id="topics"
         label="I am interested in the following technologies"
         multiple
         name="topics"
-        v-model="formData.topics"
       >
-        <SynVueOptgroup label="Frontend">
-          <SynVueOption value="angular">Angular</SynVueOption>
-          <SynVueOption value="react">React.js</SynVueOption>
-          <SynVueOption value="vanilla">Vanilla.js</SynVueOption>
-          <SynVueOption value="vue">Vue</SynVueOption>
-        </SynVueOptgroup>
-        <SynVueOptgroup label="Backend">
-          <SynVueOption value="node">Node.js</SynVueOption>
-          <SynVueOption value="Python">Python</SynVueOption>
-        </SynVueOptgroup>
-      </SynVueSelect>
+        <syn-optgroup label="Frontend">
+          <syn-option value="angular">Angular</syn-option>
+          <syn-option value="react">React.js</syn-option>
+          <syn-option value="vanilla">Vanilla.js</syn-option>
+          <syn-option value="vue">Vue</syn-option>
+        </syn-optgroup>
+        <syn-optgroup label="Backend">
+          <syn-option value="node">Node.js</syn-option>
+          <syn-option value="Python">Python</syn-option>
+        </syn-optgroup>
+      </syn-select>
 
-      <SynVueCombobox
+      <syn-combobox
         id="testing-frameworks"
         label="Which testing frameworks do you use?"
         multiple
         name="testing"
         placeholder="Select testing frameworks"
-        v-model="formData.testing"
         :getOption="highlightOptionRenderer"
         required
       >
-        <SynVueOption v-for="framework in testingFrameworks" :key="framework.value" :value="framework.value">
+        <syn-option v-for="framework in testingFrameworks" :key="framework.value" :value="framework.value">
           {{ framework.label }}
-        </SynVueOption>
-      </SynVueCombobox>
-    </SynVueFieldset>
+        </syn-option>
+      </syn-combobox>
+    </syn-fieldset>
     <!-- /Topics -->
 
-    <SynVueDivider />
+    <syn-divider />
 
     <!-- Happiness -->
-    <SynVueFieldset id="happiness-fields" legend="Happiness">
-      <SynVueRange
+    <syn-fieldset id="happiness-fields" legend="Happiness">
+      <syn-range
         id="happiness"
         label="How happy are you with the Synergy Design System?"
         :max="10"
         :min="0"
         name="happiness"
-        v-model="formData.happiness"
+        :value.prop="initialFormData.happiness"
+        :defaultValue.prop="initialFormData.happiness"
       >
         <nav slot="ticks">
-          <SynVueRangeTick>🤮</SynVueRangeTick>
-          <SynVueRangeTick>🥱</SynVueRangeTick>
-          <SynVueRangeTick>😍</SynVueRangeTick>
+          <syn-range-tick>🤮</syn-range-tick>
+          <syn-range-tick>🥱</syn-range-tick>
+          <syn-range-tick>😍</syn-range-tick>
         </nav>
-      </SynVueRange>
+      </syn-range>
 
-      <SynVueRange
+      <syn-range
         id="donations"
         label="I would donate between"
         :max="6000"
         :min="0"
         name="donations"
-        v-model="formData.donations"
         restrict-movement
+        :value.prop="initialFormData.donations"
+        :defaultValue.prop="initialFormData.donations"
         :tooltipFormatter="(value: number) => formatter.format(value)"
       >
         <nav slot="ticks">
-          <SynVueRangeTick>0 €</SynVueRangeTick>
-          <SynVueRangeTick>6.000 €</SynVueRangeTick>
+          <syn-range-tick>0 €</syn-range-tick>
+          <syn-range-tick>6.000 €</syn-range-tick>
         </nav>
-      </SynVueRange>
-    </SynVueFieldset>
+      </syn-range>
+    </syn-fieldset>
     <!-- /.Happiness -->
 
-    <SynVueDivider />
+    <syn-divider />
 
     <!-- Experience -->
-    <SynVueFieldset legend="Experience">
-      <SynVueRadioGroup
+    <syn-fieldset legend="Experience">
+      <syn-radio-group
         id="experience"
         label="How experienced are you with the Synergy Design System?"
         name="experience"
-        v-model="formData.experience"
+        :value.prop="initialFormData.experience"
+        :defaultValue.prop="initialFormData.experience"
       >
-        <SynVueRadio :value=0>I have never used it</SynVueRadio>
-        <SynVueRadio :value=1 id="experience-little">I have used it a little</SynVueRadio>
-        <SynVueRadio :value=2>I have used it a lot</SynVueRadio>
-        <SynVueRadio :value=3>I am a Synergy Design System expert</SynVueRadio>
-        <SynVueRadio :value=4>I am the creator of the Synergy Design System</SynVueRadio>
-      </SynVueRadioGroup>
-    </SynVueFieldset>
+        <syn-radio :value.prop="0">I have never used it</syn-radio>
+        <syn-radio :value.prop="1" id="experience-little">I have used it a little</syn-radio>
+        <syn-radio :value.prop="2">I have used it a lot</syn-radio>
+        <syn-radio :value.prop="3">I am a Synergy Design System expert</syn-radio>
+        <syn-radio :value.prop="4">I am the creator of the Synergy Design System</syn-radio>
+      </syn-radio-group>
+    </syn-fieldset>
     <!-- /Experience -->
 
-    <SynVueDivider />
+    <syn-divider />
 
     <!-- Marketing -->
-    <SynVueCheckboxGroup label="Please inform me about the following technologies">
-      <SynVueCheckbox
+    <syn-checkbox-group label="Please inform me about the following technologies">
+      <syn-checkbox
         id="checkbox-newsletter-default"
         name="newsletterStandard"
-        v-model="formData.newsletterStandard"
       >
         Please subscribe me to the synergy newsletter
-      </SynVueCheckbox>
-      <SynVueCheckbox
+      </syn-checkbox>
+      <syn-checkbox
         readonly
         id="checkbox-newsletter-ui"
         name="newsletterUI"
-        v-model="formData.newsletterUI"
       >
         Please subscribe me to the synergy UI newsletter
-      </SynVueCheckbox>
+      </syn-checkbox>
 
-      <SynVueCheckbox
+      <syn-checkbox
         id="checkbox-newsletter-angular"
         name="newsletterAngular"
-        v-model="formData.newsletterAngular"
       >
         Please subscribe me to all things related to angular
-      </SynVueCheckbox>
-      <SynVueCheckbox
+      </syn-checkbox>
+      <syn-checkbox
         id="checkbox-newsletter-react"
         name="newsletterReact"
-        v-model="formData.newsletterReact"
       >
         Please subscribe me to all things related to react
-      </SynVueCheckbox>
-      <SynVueCheckbox
+      </syn-checkbox>
+      <syn-checkbox
         id="checkbox-newsletter-vanilla"
         name="newsletterVanilla"
-        v-model="formData.newsletterVanilla"
       >
         Please subscribe me to all things related to vanilla.js
-      </SynVueCheckbox>
-      <SynVueCheckbox
+      </syn-checkbox>
+      <syn-checkbox
         id="checkbox-newsletter-vue"
         name="newsletterVue"
-        v-model="formData.newsletterVue"
       >
         Please subscribe me to all things related to vue
-      </SynVueCheckbox>
-      <SynVueSwitch
+      </syn-checkbox>
+      <syn-switch
         id="checkbox-newsletter-beta"
         name="newsletterBeta"
-        v-model="formData.newsletterBeta"
       >
         I am interested in the Synergy Beta Program
-      </SynVueSwitch>
-      <SynVueSwitch
+      </syn-switch>
+      <syn-switch
         id="checkbox-newsletter-ux"
         name="newsletterUX"
         readonly
-        v-model="formData.newsletterUX"
       >
         I am interested in the Synergy UX Program
-      </SynVueSwitch>
-    </SynVueCheckboxGroup>
+      </syn-switch>
+    </syn-checkbox-group>
 
-    <SynVueDivider />
+    <syn-divider />
 
-    <SynVueFieldset legend="Please inform me about the following technologies">
-      <SynVueRadioGroup
+    <syn-fieldset legend="Please inform me about the following technologies">
+      <syn-radio-group
         id="preferred-contact-method"
         label="Preferred contact method"
         name="preferredContactMethod"
-        v-model="formData.preferredContactMethod"
+        :value.prop="initialFormData.preferredContactMethod"
+        :defaultValue.prop="initialFormData.preferredContactMethod"
       >
-        <SynVueRadioButton value="email">E-Mail</SynVueRadioButton>
-        <SynVueRadioButton value="phone" readonly>Phone</SynVueRadioButton>
-        <SynVueRadioButton value="other">Other</SynVueRadioButton>
-      </SynVueRadioGroup>
-    </SynVueFieldset>
+        <syn-radio-button value="email">E-Mail</syn-radio-button>
+        <syn-radio-button value="phone" readonly>Phone</syn-radio-button>
+        <syn-radio-button value="other">Other</syn-radio-button>
+      </syn-radio-group>
+    </syn-fieldset>
     <!-- /Marketing -->
 
-    <SynVueDivider />
+    <syn-divider />
 
     <!-- AdditionalInformation -->
-    <SynVueFieldset legend="Additional Information">
-      <SynVueTextarea
+    <syn-fieldset legend="Additional Information">
+      <syn-textarea
         id="additional-info"
         label="Comment"
         name="comment"
         placeholder="Please provide additional information that might be helpful for your inquiry"
         :rows="10"
-        v-model="formData.comment"
       />
-      <SynVueFile
+      <syn-file
         accept="image/*"
         droparea
         help-text="Please upload images only"
@@ -406,17 +372,16 @@ const synChange = () => {
         label="Optional Screenshot(s)"
         multiple
         name="files"
-        v-model="formData.files"
       />
-    </SynVueFieldset>
+    </syn-fieldset>
     <!-- /AdditionalInformation -->
 
-    <SynVueDivider />
+    <syn-divider />
 
     <!-- Actions -->
     <div class="syn-submit-buttons">
-      <SynVueButton variant="outline" type="reset">Reset</SynVueButton>
-      <SynVueButton variant="filled" type="submit">Send</SynVueButton>
+      <syn-button variant="outline" type="reset">Reset</syn-button>
+      <syn-button variant="filled" type="submit">Send</syn-button>
     </div>
     <!-- /Actions -->
 

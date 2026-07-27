@@ -320,8 +320,6 @@ type SynTooltipEvents = [
 
 type SynValidateEvents = [];
 
-export type SynVueNativeElementAugmentation = true;
-
 declare module 'vue' {
   interface GlobalComponents {
     /**

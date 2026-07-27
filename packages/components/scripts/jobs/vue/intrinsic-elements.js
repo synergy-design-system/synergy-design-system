@@ -78,8 +78,6 @@ export const runCreateIntrinsicElements = job('Vue: Creating native intrinsic el
     '',
     eventTypes,
     '',
-    'export type SynVueNativeElementAugmentation = true;',
-    '',
     "declare module 'vue' {",
     '  interface GlobalComponents {',
     globalComponentEntries,

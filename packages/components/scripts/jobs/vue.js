@@ -28,6 +28,7 @@ export const runCreateVueWrappers = async ({
   await createRunPrepare('Vue: Cleaning up artifacts...')(outDir, componentDir, typesDir, distDir);
   await jobs.runCreateTypeCore(typesDir);
   await jobs.runCreateWrappers(metadata, outDir);
+  await jobs.runCreatePlugins(outDir);
   await jobs.runCreateIntrinsicElements(metadata, typesDir);
   await runFormat(outDir);
 

@@ -296,7 +296,7 @@ ${exports}
   const frameworkIndex = createFrameworkIndex(headerComment, index, true);
   const frameworkIndexWithTypes = frameworkIndex.replace(
     headerComment,
-    `${headerComment}\nexport type { SynVueNativeElementAugmentation } from './types/synergy.js';`,
+    `${headerComment}\nexport type {\n  SynElementProps,\n  SynEventMap,\n  SynEventTuple,\n  SynIntrinsicElement,\n  SynTemplateProps,\n  SynVueElement,\n  SynNativeHTMLProps,\n  VueEmit,\n} from './types/core.js';\nexport type {} from './types/synergy.js';\nexport * from './plugins/index.js';`,
   );
 
   // Generate the index file

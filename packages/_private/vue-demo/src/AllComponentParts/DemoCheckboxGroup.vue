@@ -1,14 +1,10 @@
-<script setup lang="ts">
-import { SynVueCheckbox, SynVueCheckboxGroup } from '@synergy-design-system/vue';
-</script>
-
 <template>
-  <SynVueCheckboxGroup
+  <syn-checkbox-group
     help-text="This is a checkbox group with a label and description."
     label="Checkbox Group Legend"
   >
-    <SynVueCheckbox>Checkbox 1</SynVueCheckbox>
-    <SynVueCheckbox>Checkbox 2</SynVueCheckbox>
-    <SynVueCheckbox>Checkbox 3</SynVueCheckbox>
-  </SynVueCheckboxGroup>
+    <syn-checkbox>Checkbox 1</syn-checkbox>
+    <syn-checkbox>Checkbox 2</syn-checkbox>
+    <syn-checkbox>Checkbox 3</syn-checkbox>
+  </syn-checkbox-group>
 </template>

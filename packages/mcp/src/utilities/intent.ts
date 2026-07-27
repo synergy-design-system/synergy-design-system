@@ -23,6 +23,7 @@ export const INTENT_FRAMEWORK_VALUES = [
   'react-web-components',
   'angular',
   'vue',
+  'vue-web-components',
   'vanilla',
 ] as const satisfies readonly FrameworkProfile[];
 

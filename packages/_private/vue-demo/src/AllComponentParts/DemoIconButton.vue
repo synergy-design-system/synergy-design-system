@@ -1,22 +1,18 @@
-<script setup lang="ts">
-import { SynVueIconButton } from '@synergy-design-system/vue';
-</script>
-
 <template>
   <div>
-    <SynVueIconButton
+    <syn-icon-button
       name="wallpaper"
       label="Wallpaper"
       color="neutral"
       size="small"
     />
-    <SynVueIconButton
+    <syn-icon-button
       name="wallpaper"
       label="Wallpaper"
       color="neutral"
       size="medium"
     />
-    <SynVueIconButton
+    <syn-icon-button
       name="wallpaper"
       label="Wallpaper"
       color="neutral"

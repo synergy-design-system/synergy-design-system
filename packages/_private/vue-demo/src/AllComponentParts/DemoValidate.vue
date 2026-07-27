@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import { SynVueValidate, SynVueInput } from '@synergy-design-system/vue';
 import { ref } from 'vue';
+import type SynInput from '@synergy-design-system/components/components/input/input.component.js';
 
 const errorMessage = ref<string>('');
-const inputRef = ref<InstanceType<typeof SynVueInput>>();
+const inputRef = ref<SynInput>();
 
 const setError = (message: string) => {
   errorMessage.value = message;
   Promise.resolve().then(() => {
-    inputRef.value?.nativeElement?.dispatchEvent(new CustomEvent('revalidate', { bubbles: true}));
+    inputRef.value?.dispatchEvent(new CustomEvent('revalidate', { bubbles: true}));
   });
 };
 
 </script>
 
 <template>
-  <SynVueValidate eager variant="inline" on="live">
-    <SynVueInput
+  <syn-validate eager variant="inline" on="live">
+    <syn-input
       label="Invalid input"
       type="email"
       value=""
       required
     />
-  </SynVueValidate>
+  </syn-validate>
 
-  <SynVueValidate data-testid="validate-915" on="revalidate" variant="inline" :custom-validation-message="errorMessage">
-    <SynVueInput
+  <syn-validate data-testid="validate-915" on="revalidate" variant="inline" :custom-validation-message="errorMessage">
+    <syn-input
       label="Incorrect state with custom event #915" 
       @syn-change="setError('Invalid value')"
       ref="inputRef"
     />
-  </SynVueValidate>
+  </syn-validate>
 </template>

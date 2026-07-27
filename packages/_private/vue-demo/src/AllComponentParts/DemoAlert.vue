@@ -1,51 +1,47 @@
-<script setup lang="ts">
-import { SynVueAlert, SynVueIcon } from '@synergy-design-system/vue';
-</script>
-
 <template>
   <div
     style="display: flex; flex-direction: column; gap: var(--syn-spacing-medium);"
   >
-    <SynVueAlert variant="primary" open>
-      <SynVueIcon slot="icon" name="info" />
+    <syn-alert variant="primary" open>
+      <syn-icon slot="icon" name="info" />
       <strong>This is super informative</strong>
       <br />
       You can tell by how pretty the alert is.
-    </SynVueAlert>
+    </syn-alert>
 
-    <SynVueAlert variant="success" open>
-      <SynVueIcon slot="icon" name="check_circle" />
+    <syn-alert variant="success" open>
+      <syn-icon slot="icon" name="check_circle" />
       <strong>Your changes have been saved</strong>
       <br />
       You can safely exit the app now.
-    </SynVueAlert>
+    </syn-alert>
 
-    <SynVueAlert variant="neutral" open>
-      <SynVueIcon slot="icon" name="settings" />
+    <syn-alert variant="neutral" open>
+      <syn-icon slot="icon" name="settings" />
       <strong>Your settings have been updated</strong>
       <br />
       Settings will take effect on next login.
-    </SynVueAlert>
+    </syn-alert>
 
-    <SynVueAlert variant="warning" open>
-      <SynVueIcon slot="icon" name="warning" />
+    <syn-alert variant="warning" open>
+      <syn-icon slot="icon" name="warning" />
       <strong>Your session has ended</strong>
       <br />
       Please login again to continue.
-    </SynVueAlert>
+    </syn-alert>
 
-    <SynVueAlert variant="critical" open>
-      <SynVueIcon slot="icon" name="warning" />
+    <syn-alert variant="critical" open>
+      <syn-icon slot="icon" name="warning" />
       <strong>Your session has ended</strong>
       <br />
       Please login again to continue.
-    </SynVueAlert>
+    </syn-alert>
 
-    <SynVueAlert variant="error" open>
-      <SynVueIcon slot="icon" name="status-error" library="system" />
+    <syn-alert variant="error" open>
+      <syn-icon slot="icon" name="status-error" library="system" />
       <strong>Your account has been deleted</strong>
       <br />
       We&apos;re very sorry to see you go!
-    </SynVueAlert>
+    </syn-alert>
   </div>
 </template>

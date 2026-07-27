@@ -1,9 +1,5 @@
-<script setup lang="ts">
-import { SynVueProgressRing } from '@synergy-design-system/vue';
-</script>
-
 <template>
-  <SynVueProgressRing :value=50>
+  <syn-progress-ring :value=50>
     50%
-  </SynVueProgressRing>
+  </syn-progress-ring>
 </template>

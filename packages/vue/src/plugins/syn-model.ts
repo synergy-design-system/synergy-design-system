@@ -114,11 +114,7 @@ type SynNamedControl = HTMLElement & {
   name?: string;
 };
 
-const applyValue = (
-  control: HTMLElement,
-  prop: string,
-  value: unknown,
-) => {
+const applyValue = (control: HTMLElement, prop: string, value: unknown) => {
   if (typeof value === 'undefined') {
     return;
   }
@@ -147,9 +143,11 @@ const reapplyValueAfterDefine = (
       Reflect.set(control, prop, value);
     });
 
-    const updateComplete = (control as {
-      updateComplete?: Promise<unknown>;
-    }).updateComplete;
+    const updateComplete = (
+      control as {
+        updateComplete?: Promise<unknown>;
+      }
+    ).updateComplete;
 
     if (updateComplete && typeof updateComplete.then === 'function') {
       void updateComplete.then(() => {
@@ -327,9 +325,11 @@ const createSynFormModelDirective = (
       const tagNameForDefine = control.tagName.toLowerCase();
       if (tagNameForDefine.includes('-')) {
         void customElements.whenDefined(tagNameForDefine).then(() => {
-          const updateComplete = (control as {
-            updateComplete?: Promise<unknown>;
-          }).updateComplete;
+          const updateComplete = (
+            control as {
+              updateComplete?: Promise<unknown>;
+            }
+          ).updateComplete;
 
           if (updateComplete && typeof updateComplete.then === 'function') {
             void updateComplete.then(() => {

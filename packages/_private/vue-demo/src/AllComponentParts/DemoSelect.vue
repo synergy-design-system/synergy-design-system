@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { SynVueButton, SynVueSelect, SynVueOption } from '@synergy-design-system/vue';
 import {
   type SelectItem,
   mockAsyncData,
@@ -21,41 +20,41 @@ onMounted(async () => {
 </script>
 
 <template>
-  <SynVueSelect :value="'2'" data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level.">
-    <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
-  </SynVueSelect>
+  <syn-select :value="'2'" data-testid="select-level-813" label="Experience" help-text="Please tell us your skill level.">
+    <syn-option v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</syn-option>
+  </syn-select>
   
   <form>
-    <SynVueSelect value="option-1" data-testid="select-form-813">
-      <SynVueOption value="option-1">Option 1</SynVueOption>
-      <SynVueOption value="option-2">Option 2</SynVueOption>
-      <SynVueOption value="option-3">Option 3</SynVueOption>
-    </SynVueSelect>
-    <SynVueButton type="reset">reset</SynVueButton>
+    <syn-select value="option-1" data-testid="select-form-813">
+      <syn-option value="option-1">Option 1</syn-option>
+      <syn-option value="option-2">Option 2</syn-option>
+      <syn-option value="option-3">Option 3</syn-option>
+    </syn-select>
+    <syn-button type="reset">reset</syn-button>
   </form>
 
   <div>
-    <SynVueSelect
+    <syn-select
       data-testid="select-805-single-select"
       help-text="Please tell us your skill level."
       label="Mixed integer and string values (Single Select)"
       :value=1
     >
-      <SynVueOption v-for="item in numericItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
-    </SynVueSelect>
+      <syn-option v-for="item in numericItems" :value="item.value" :key="item.value"> {{ item.label }}</syn-option>
+    </syn-select>
 
-    <SynVueSelect
+    <syn-select
       data-testid="select-805-multi-select"
       help-text="Please tell us your skill level."
       label="Mixed integer and string values (multi Select)"
       multiple
       :value="[1, 'three']"
     >
-      <SynVueOption v-for="item in numericItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
-    </SynVueSelect>
+      <syn-option v-for="item in numericItems" :value="item.value" :key="item.value"> {{ item.label }}</syn-option>
+    </syn-select>
   </div>
 
-  <SynVueSelect
+  <syn-select
     data-testid="select-540-delimiter"
     delimiter="|"
     help-text="This select uses a custom delimiter"
@@ -63,77 +62,77 @@ onMounted(async () => {
     multiple
     value="1|2"
   >
-    <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
-  </SynVueSelect>
+    <syn-option v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</syn-option>
+  </syn-select>
 
-  <SynVueSelect
+  <syn-select
     data-testid="select-847-multiple"
     help-text="Normal value binding and async options"
     label="Multiple with async options"
     multiple
     value="1 2"
   >
-    <SynVueOption v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</SynVueOption>
-  </SynVueSelect>
+    <syn-option v-for="level in levels" :value="level.value" :key="level.value"> {{ level.label }}</syn-option>
+  </syn-select>
 
-  <SynVueSelect
+  <syn-select
     data-testid="select-885-value-zero-string"
     label="Select should allow to select value of string(zero)"
     value="0"
   >
-    <SynVueOption value="0">Zero (string)</SynVueOption>
-  </SynVueSelect>
+    <syn-option value="0">Zero (string)</syn-option>
+  </syn-select>
 
-  <SynVueSelect
+  <syn-select
     data-testid="select-885-value-zero-number"
     label="Select should allow to select value of number(zero)"
     :value="0"
   >
-    <SynVueOption :value="0">Zero (numeric)</SynVueOption>
-  </SynVueSelect>
+    <syn-option :value="0">Zero (numeric)</syn-option>
+  </syn-select>
 
-  <SynVueSelect data-testid="select-1036-subsequently-changed-delimiter" label="Subsequently changed delimiter">
-    <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
-  </SynVueSelect>
+  <syn-select data-testid="select-1036-subsequently-changed-delimiter" label="Subsequently changed delimiter">
+    <syn-option v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</syn-option>
+  </syn-select>
 
-  <SynVueSelect
+  <syn-select
     data-testid="select-1056-async-delimiter-change-with-pre-value"
     value="Option 2"
     label="Async changed delimiter with pre value"
   >
-    <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
-  </SynVueSelect>
+    <syn-option v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</syn-option>
+  </syn-select>
 
-  <SynVueSelect
+  <syn-select
     data-testid="select-1056-async-delimiter-change-with-async-pre-value"
     :value="asyncValue"
     label="Async changed delimiter with pre value"
   >
-    <SynVueOption v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</SynVueOption>
-  </SynVueSelect>
+    <syn-option v-for="item in delimiterItems" :value="item.value" :key="item.value"> {{ item.label }}</syn-option>
+  </syn-select>
 
-  <SynVueSelect
+  <syn-select
     data-testid="select-1177-readonly-select"
     label="Readonly Select"
     readonly
     value="option-1"
   >
-    <SynVueOption value="option-1">Option 1</SynVueOption>
-    <SynVueOption value="option-2">Option 2</SynVueOption>
-    <SynVueOption value="option-3">Option 3</SynVueOption>
-  </SynVueSelect>
+    <syn-option value="option-1">Option 1</syn-option>
+    <syn-option value="option-2">Option 2</syn-option>
+    <syn-option value="option-3">Option 3</syn-option>
+  </syn-select>
 
-  <SynVueSelect
+  <syn-select
     data-testid="select-1265-dynamic-option-changes"
     label="Dynamic Option Changes"
     value="option-2"
   >
-    <SynVueOption value="option-1">Option 1</SynVueOption>
-    <SynVueOption value="option-2">Option 2</SynVueOption>
-    <SynVueOption value="option-3">Option 2</SynVueOption>
-  </SynVueSelect>
+    <syn-option value="option-1">Option 1</syn-option>
+    <syn-option value="option-2">Option 2</syn-option>
+    <syn-option value="option-3">Option 2</syn-option>
+  </syn-select>
 
-  <SynVueButton data-testid="select-1265-dynamic-option-button" @click="updateSelectRegressions1265">
+  <syn-button data-testid="select-1265-dynamic-option-button" @click="updateSelectRegressions1265">
     Dynamically change option 2 to "Changed Option 2"
-  </SynVueButton>
+  </syn-button>
 </template>

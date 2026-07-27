@@ -19,6 +19,10 @@
     "./chart": {
       "types": "./dist/chart.d.ts",
       "import": "./dist/chart.js"
+    },
+    "./plugins/*": {
+      "types": "./dist/plugins/*.d.ts",
+      "import": "./dist/plugins/*.js"
     }
   },
   "scripts": {

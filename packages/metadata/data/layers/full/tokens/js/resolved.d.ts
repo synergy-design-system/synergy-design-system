@@ -1,5 +1,5 @@
 /**
- * @synergy-design-system/tokens version 3.20.2
+ * @synergy-design-system/tokens version 3.21.0
  * SICK Global UX Foundation
  */
 
@@ -11,26 +11,38 @@ interface ResolvedTokenModes {
 }
 
 export declare const ResolvedTokens: {
+  SynAlertCriticalColorBackground: ResolvedTokenModes;
+  SynAlertCriticalColorBorder: ResolvedTokenModes;
+  SynAlertCriticalColorIcon: ResolvedTokenModes;
+  SynAlertCriticalColorIndicator: ResolvedTokenModes;
+  SynAlertCriticalColorText: ResolvedTokenModes;
   SynAlertErrorColorBackground: ResolvedTokenModes;
   SynAlertErrorColorBorder: ResolvedTokenModes;
   SynAlertErrorColorIcon: ResolvedTokenModes;
   SynAlertErrorColorIndicator: ResolvedTokenModes;
+  SynAlertErrorColorText: ResolvedTokenModes;
   SynAlertInformativeColorBackground: ResolvedTokenModes;
   SynAlertInformativeColorBorder: ResolvedTokenModes;
   SynAlertInformativeColorIcon: ResolvedTokenModes;
   SynAlertInformativeColorIndicator: ResolvedTokenModes;
+  SynAlertInformativeColorText: ResolvedTokenModes;
   SynAlertNeutralColorBackground: ResolvedTokenModes;
   SynAlertNeutralColorBorder: ResolvedTokenModes;
   SynAlertNeutralColorIcon: ResolvedTokenModes;
   SynAlertNeutralColorIndicator: ResolvedTokenModes;
+  SynAlertNeutralColorText: ResolvedTokenModes;
   SynAlertSuccessColorBackground: ResolvedTokenModes;
   SynAlertSuccessColorBorder: ResolvedTokenModes;
   SynAlertSuccessColorIcon: ResolvedTokenModes;
   SynAlertSuccessColorIndicator: ResolvedTokenModes;
+  SynAlertSuccessColorText: ResolvedTokenModes;
   SynAlertWarningColorBackground: ResolvedTokenModes;
   SynAlertWarningColorBorder: ResolvedTokenModes;
   SynAlertWarningColorIcon: ResolvedTokenModes;
   SynAlertWarningColorIndicator: ResolvedTokenModes;
+  SynAlertWarningColorText: ResolvedTokenModes;
+  SynBadgeCriticalColorBackground: ResolvedTokenModes;
+  SynBadgeCriticalColorText: ResolvedTokenModes;
   SynBadgeErrorColorBackground: ResolvedTokenModes;
   SynBadgeErrorColorText: ResolvedTokenModes;
   SynBadgeInformativeColorBackground: ResolvedTokenModes;

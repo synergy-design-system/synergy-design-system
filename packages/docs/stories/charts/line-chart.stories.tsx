@@ -397,101 +397,6 @@ export const CustomLineAndSymbolColors: Story = {
   `,
 };
 
-export const IntegratedZooming: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('chart', 'line-series-integrated-zooming'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-chart id="line-series-integrated-zooming"></syn-chart>
-    <script type="module">
-      const charts = document.querySelectorAll('#line-series-integrated-zooming');
-
-      const baseConfig = {
-        xAxis: {
-          data: Array.from({ length: 30 }, (_, i) => {
-            const d = new Date(2026, 0, 1 + i);
-            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-          }),
-          type: 'category', name: 'Date',
-        },
-        yAxis: { type: 'value', name: 'Values' },
-        dataZoom: [{
-          type: 'inside',
-          start: 30,
-          end: 70,
-        }],
-      };
-
-
-      charts.forEach(chart => {
-        chart.config = handle => handle
-          .baseConfig(baseConfig)
-          .seriesLine([
-            {
-              data: [820, 932, 901, 934, 1290, 1330, 1320, 620, 732, 701, 734, 1090, 1130, 1120, 420, 532, 501, 534, 890, 930, 920, 320, 432, 401, 434, 790, 830, 820, 220, 332],
-            },
-            {
-              data: [450, 680, 550, 890, 720, 850, 610, 1100, 950, 820, 1050, 650, 780, 560, 920, 1200, 680, 750, 1040, 590, 875, 1150, 740, 920, 680, 1080, 620, 950, 1220, 750],
-            },
-          ])
-      });
-    </script>
-  `,
-};
-
-export const SliderZooming: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('chart', 'line-series-slider-zooming'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-chart id="line-series-slider-zooming"></syn-chart>
-    <script type="module">
-      const charts = document.querySelectorAll('#line-series-slider-zooming');
-
-      const baseConfig = {
-        xAxis: {
-          data: Array.from({ length: 30 }, (_, i) => {
-            const d = new Date(2026, 0, 1 + i);
-            return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-          }),
-          type: 'category', name: 'Date',
-        },
-        yAxis: { type: 'value', name: 'Values' },
-        dataZoom: [{
-          type: 'slider',
-          start: 30,
-          end: 70,
-        }],
-        grid: {
-          bottom: 120,
-        }
-      };
-
-
-      charts.forEach(chart => {
-        chart.config = handle => handle
-          .baseConfig(baseConfig)
-          .seriesLine([
-            {
-              data: [820, 932, 901, 934, 1290, 1330, 1320, 620, 732, 701, 734, 1090, 1130, 1120, 420, 532, 501, 534, 890, 930, 920, 320, 432, 401, 434, 790, 830, 820, 220, 332],
-            },
-            {
-              data: [450, 680, 550, 890, 720, 850, 610, 1100, 950, 820, 1050, 650, 780, 560, 920, 1200, 680, 750, 1040, 590, 875, 1150, 740, 920, 680, 1080, 620, 950, 1220, 750],
-            },
-          ])
-      });
-    </script>
-  `,
-};
-
 export const Tooltip: Story = {
   parameters: {
     chromatic: {
@@ -507,9 +412,13 @@ export const Tooltip: Story = {
     const chart = canvasElement.querySelector('#line-series-tooltip') as SynChart;
     if (!chart) return;
 
+    const instance = chart.getInstance()!;
     await chart.updateComplete;
 
-    const instance = chart.getInstance()!;
+    // Wait for the chart to be ready to dispatch the action
+    // eslint-disable-next-line no-promise-executor-return
+    await new Promise(resolve => setTimeout(resolve, 100));
+
     instance.dispatchAction({
       type: 'showTip',
       x: 250,
@@ -546,6 +455,44 @@ export const Tooltip: Story = {
   `,
 };
 
+export const PositiveAndNegativeValues: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'line-chart-positive-and-negative-values'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="line-series-positive-and-negative-values"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#line-series-positive-and-negative-values');
+
+      const baseConfig = {
+        xAxis: {
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          type: 'category', name: 'Days',
+        },
+        yAxis: { type: 'value', name: 'Values' },
+      };
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+          .baseConfig(baseConfig)
+          .axesShowSplitLines()
+          .seriesLine([
+          {
+            data: [-820, 932, -901, 934, -1290, 1330, 1320],
+          },
+          {
+            data: [620, -32, -701, 734, 1090, -1130, 1120],
+          },
+        ])
+      });
+    </script>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
@@ -555,7 +502,6 @@ export const Screenshot: Story = generateScreenshotStory({
   MultipleLineWidthsAndSymbolSizes,
   MultipleSymbolStyles,
   CustomLineAndSymbolColors,
-  IntegratedZooming,
-  SliderZooming,
+  PositiveAndNegativeValues,
 }, 700);
 /* eslint-enable sort-keys */

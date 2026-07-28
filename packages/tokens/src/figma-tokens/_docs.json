@@ -856,6 +856,16 @@
           "value": "When having large data sets or dense series where users need to inspect local trends without leaving the chart context, the `dataZoom` option with `type: 'slider'` can be used to add a slider control to the chart. This allows users to zoom and pan through large datasets while maintaining context. The slider can be customized in terms of position, size and appearance. For more information have a look at the [ECharts documentation](https://echarts.apache.org/en/option.html#dataZoom-slider)",
           "type": "text"
         }
+      },
+      "line-series-tooltip": {
+        "title": {
+          "value": "Line Series Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "A tooltip in a chart gives users quick, on-demand details about the data they are exploring. Use the `tooltipShow` preset to enable the tooltip.",
+          "type": "text"
+        }
       }
     },
     "checkbox": {

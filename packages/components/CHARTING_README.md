@@ -328,6 +328,42 @@ chart.config = handle =>
   });
 ```
 
+### Tooltip presets
+
+| Preset function | Options                            | Description                                |
+| --------------- | ---------------------------------- | ------------------------------------------ |
+| `tooltipShow`   | `ECConfig['tooltip']` _(optional)_ | Enables tooltip and merges passed options. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle.baseConfig(baseConfig).tooltipShow({
+    valueFormatter: value => `${value} kWh`,
+  });
+```
+
+### Line series presets
+
+| Preset function | Options              | Description                                                         |
+| --------------- | -------------------- | ------------------------------------------------------------------- |
+| `seriesLine`    | `LineSeriesOption[]` | Sets `series` entries as line series and merges each passed option. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+      yAxis: { type: "value" },
+    })
+    .seriesLine([
+      { name: "Revenue", data: [120, 200, 150] },
+      { name: "Cost", data: [80, 140, 130] },
+    ]);
+```
+
 ---
 
 ## Bundle Size

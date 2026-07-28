@@ -130,14 +130,12 @@ export const cssVariableFormatter = {
       'chart-opacity-40',
       'chart-pattern-color',
       'chart-pattern-color-inverted',
-      'chart-plot-line-color',
       'chart-range-selection-number',
       'chart-stroke-weight-default',
       'chart-stroke-weight-thin',
       'chart-stroke-weight-thick',
       'chart-track-color',
       'chart-tooltip-background-color',
-      'chart-tooltip-color',
     ].map(v => `${prefix}${v}`);
 
     /**

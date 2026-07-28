@@ -1,4 +1,5 @@
 import { expect } from '@open-wc/testing';
+import { ResolvedTokens } from '@synergy-design-system/tokens/resolved';
 import {
   getHexWithOpacity,
   getRealStyleValue,
@@ -15,26 +16,26 @@ describe('chart theme utilities', () => {
     });
 
     it('returns the light token value by default', () => {
-      expect(getRealStyleValue('SynAlertErrorColorBorder')).to.equal('#ffe3e4');
+      expect(getRealStyleValue('SynAlertErrorColorBorder')).to.equal(ResolvedTokens.SynAlertErrorColorBorder.light);
     });
 
     it('returns the dark token value when dark mode is requested', () => {
-      expect(getRealStyleValue('SynAlertErrorColorBorder', 'dark')).to.equal('#450709');
+      expect(getRealStyleValue('SynAlertErrorColorBorder', 'dark')).to.equal(ResolvedTokens.SynAlertErrorColorBorder.dark);
     });
 
     it('resolves to light when auto mode is used and global store is light', () => {
       setGlobalThemeStore('light');
-      expect(getRealStyleValue('SynAlertErrorColorBorder', 'auto')).to.equal('#ffe3e4');
+      expect(getRealStyleValue('SynAlertErrorColorBorder', 'auto')).to.equal(ResolvedTokens.SynAlertErrorColorBorder.light);
     });
 
     it('resolves to dark when auto mode is used and global store is dark', () => {
       setGlobalThemeStore('dark');
-      expect(getRealStyleValue('SynAlertErrorColorBorder', 'auto')).to.equal('#450709');
+      expect(getRealStyleValue('SynAlertErrorColorBorder', 'auto')).to.equal(ResolvedTokens.SynAlertErrorColorBorder.dark);
     });
 
     it('uses auto mode by default (falls back to global store)', () => {
       setGlobalThemeStore('dark');
-      expect(getRealStyleValue('SynAlertErrorColorBorder')).to.equal('#450709');
+      expect(getRealStyleValue('SynAlertErrorColorBorder')).to.equal(ResolvedTokens.SynAlertErrorColorBorder.dark);
     });
   });
 

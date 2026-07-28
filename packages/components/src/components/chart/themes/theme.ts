@@ -15,6 +15,8 @@ const getCategoricalColors = (mode: Themes) => PALETTE_TOKENS.categorical.map((t
  */
 // Synergy ECharts Theme
 export const getSynergyTheme = (mode: Themes = 'light') => ({
+  // Remove the starting animation for chart series
+  animationDuration: 0,
   categoryAxis: getDefaultAxisStyles(mode),
   // Default color palette for charts, is categorical by default but can be overridden by setting the palette property on the chart component or by directly setting config.color
   color: getCategoricalColors(mode),

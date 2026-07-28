@@ -25,7 +25,7 @@ const meta: Meta = {
       disableSnapshot: false,
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('16648-52486'),
+    design: generateFigmaPluginObject('41127-616893'),
     docs: {
       description: {
         component: generateStoryDescription('application-shell', 'default', 'templates'),

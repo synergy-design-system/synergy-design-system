@@ -39,7 +39,7 @@ const meta: Meta = {
     },
     // This is needed as otherwise the `id` attribute is shown in the docs table
     controls: {exclude: ['id']},
-    design: generateFigmaPluginObject('41094-279501'),
+    design: generateFigmaPluginObject('0-1', true),
     docs: {
       description: {
         component:

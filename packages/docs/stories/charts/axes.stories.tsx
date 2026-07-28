@@ -24,7 +24,7 @@ const meta: Meta = {
       modes: Chromatic_Modes_Sick_2025,
       pauseAnimationAtEnd: false,
     },
-    design: generateFigmaPluginObject('41094-279501'),
+    design: generateFigmaPluginObject('2038-12066', true),
     docs: {
       description: {
         component: generateStoryDescription('chart', 'axes-default'),

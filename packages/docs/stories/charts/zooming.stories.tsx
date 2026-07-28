@@ -22,7 +22,7 @@ const meta: Meta = {
       modes: Chromatic_Modes_Sick_2025,
       pauseAnimationAtEnd: false,
     },
-    design: generateFigmaPluginObject('41094-279501'),
+    design: generateFigmaPluginObject('3322-8526', true),
     docs: {
       description: {
         component: generateStoryDescription('chart', 'zooming-default'),
@@ -137,9 +137,7 @@ export const SliderZooming: Story = {
   `,
 };
 
-/* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   IntegratedZooming,
   SliderZooming,
 }, 700);
-/* eslint-enable sort-keys */

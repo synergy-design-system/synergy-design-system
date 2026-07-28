@@ -8,6 +8,7 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import '../../../components/src/components/chart/chart.js';
+import type SynChart from '../../../components/src/components/chart/chart.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -38,7 +39,7 @@ const meta: Meta = {
     },
   },
   tags: ['Charting', 'Data Visualization'],
-  title: 'Charts/Features/Line Chart',
+  title: 'Charts/Series Types/Line Chart',
 };
 export default meta;
 
@@ -493,11 +494,27 @@ export const SliderZooming: Story = {
 
 export const Tooltip: Story = {
   parameters: {
+    chromatic: {
+      disableSnapshot: false,
+    },
     docs: {
       description: {
         story: generateStoryDescription('chart', 'line-series-tooltip'),
       },
     },
+  },
+  play: async ({ canvasElement }) => {
+    const chart = canvasElement.querySelector('#line-series-tooltip') as SynChart;
+    if (!chart) return;
+
+    await chart.updateComplete;
+
+    const instance = chart.getInstance()!;
+    instance.dispatchAction({
+      type: 'showTip',
+      x: 250,
+      y: 50,
+    });
   },
   render: () => html`
     <syn-chart id="line-series-tooltip"></syn-chart>

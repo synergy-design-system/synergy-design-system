@@ -86,6 +86,11 @@ export const SynChartGridLinesColorEmphasize = 'var(--syn-chart-grid-lines-color
 /**
  * @type {string}
  */
+export const SynChartPlotLineColor = 'var(--syn-chart-plot-line-color)';
+
+/**
+ * @type {string}
+ */
 export const SynChartRangeSelectionColor = 'var(--syn-chart-range-selection-color)';
 
 /**
@@ -687,3 +692,8 @@ export const SynChartSequentialStatusWarning90 = 'var(--syn-chart-sequential-sta
  * @type {string}
  */
 export const SynChartSequentialStatusWarning100 = 'var(--syn-chart-sequential-status-warning-100)';
+
+/**
+ * @type {string}
+ */
+export const SynChartTooltipColor = 'var(--syn-chart-tooltip-color)';

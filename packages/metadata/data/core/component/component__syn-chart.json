@@ -347,6 +347,17 @@
             "type": "text",
             "value": "Line Series Slider Zooming"
           }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "A tooltip in a chart gives users quick, on-demand details about the data they are exploring. Use the `tooltipShow` preset to enable the tooltip."
+          },
+          "name": "line-series-tooltip",
+          "title": {
+            "type": "text",
+            "value": "Line Series Tooltip"
+          }
         }
       ],
       "storySourcePath": "components.chart",

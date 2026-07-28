@@ -20,6 +20,7 @@ export const ResolvedTokens = {
   SynChartDisabledColor: { dark: '#404769', light: '#999999' },
   SynChartGridLinesColor: { dark: '#262f55', light: '#e7e7e7' },
   SynChartGridLinesColorEmphasize: { dark: '#404769', light: '#cccccc' },
+  SynChartPlotLineColor: { dark: '#e9ebf1', light: '#000000' },
   SynChartRangeSelectionColor: { dark: '#5f678e', light: '#868686' },
   SynChartSequential01_10: { dark: '#0d3f9b', light: '#dae7ff' },
   SynChartSequential01_20: { dark: '#0845c5', light: '#ccdeff' },
@@ -141,4 +142,5 @@ export const ResolvedTokens = {
   SynChartSequentialStatusWarning80: { dark: '#ffe67c', light: '#89540a' },
   SynChartSequentialStatusWarning90: { dark: '#fff5c6', light: '#74450f' },
   SynChartSequentialStatusWarning100: { dark: '#fffbeb', light: '#442404' },
+  SynChartTooltipColor: { dark: '#0e1633', light: '#ffffff' },
 };

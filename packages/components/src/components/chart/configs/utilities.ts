@@ -84,6 +84,21 @@ const mergeArraysByIndex = (
 
 type DeepMergeInput = object | unknown[];
 
+export type ArrayMergeStrategy = 'merge' | 'append';
+
+export type MergeDeepOptions = {
+  arrayStrategy?: ArrayMergeStrategy;
+};
+
+const isMergeDeepOptions = (value: unknown): value is MergeDeepOptions => {
+  if (!isMergeableObject(value) || !('arrayStrategy' in value)) {
+    return false;
+  }
+
+  const strategy = value.arrayStrategy;
+  return strategy === 'merge' || strategy === 'append';
+};
+
 /**
  * Deep-merges two config objects into a new object.
  *
@@ -92,15 +107,22 @@ type DeepMergeInput = object | unknown[];
  *
  * @param target The existing accumulated config object.
  * @param source The next config layer to merge into the target.
+ * @param options Merge behavior options.
  * @returns A new merged object.
  */
-export function mergeDeep(target: DeepMergeInput, source: DeepMergeInput): DeepMergeInput {
-  if(!target) return source;
-  if(!source) return target;
+export function mergeDeep(target: DeepMergeInput, source: DeepMergeInput, options: MergeDeepOptions = {}): DeepMergeInput {
+  if (!target) return source;
+  if (!source) return target;
+
+  const { arrayStrategy = 'merge' } = options;
 
   const mergeValue = (targetValue: unknown, sourceValue: unknown): unknown => {
     if (Array.isArray(sourceValue)) {
       if (Array.isArray(targetValue)) {
+        if (arrayStrategy === 'append') {
+          return (targetValue as unknown[]).concat(sourceValue as unknown[]);
+        }
+
         return mergeArraysByIndex(targetValue, sourceValue, mergeValue);
       }
 
@@ -144,6 +166,7 @@ export function mergeDeep(target: DeepMergeInput, source: DeepMergeInput): DeepM
  * and builder operations. When no layers are provided, returns an empty object.
  *
  * @param layers Variable number of config layers to merge, applied left-to-right.
+ * @param options Optional merge behavior passed as the final argument.
  * @returns The fully merged chart configuration.
  *
  * @example
@@ -158,11 +181,24 @@ export function mergeDeep(target: DeepMergeInput, source: DeepMergeInput): DeepM
  *   shouldAddTitle ? { title: { text: 'My Chart' } } : undefined,
  *   { yAxis: { name: 'Values' } }
  * );
+ *
+ * // Append arrays instead of index-based merging
+ * const appendedSeries = mergeConfigs(
+ *   { series: [{ id: 'base' }] },
+ *   { series: [{ id: 'latest' }] },
+ *   { arrayStrategy: 'append' }
+ * );
  * ```
  */
 export const mergeConfigs = (
-  ...layers: ConfigLayer[]
-): ECConfig => layers.reduce<ECConfig>((acc, layer) => (layer == null ? acc : mergeDeep(acc, layer) as ECConfig), {});
+  ...inputs: (ConfigLayer | MergeDeepOptions)[]
+): ECConfig => {
+  const lastInput = inputs.at(-1);
+  const options = isMergeDeepOptions(lastInput) ? lastInput : undefined;
+  const layers = (options == null ? inputs : inputs.slice(0, -1)) as ConfigLayer[];
+
+  return layers.reduce<ECConfig>((acc, layer) => (layer == null ? acc : mergeDeep(acc, layer, options) as ECConfig), {});
+};
 
 // ---------------------------------------------------------------------------
 // Composition API

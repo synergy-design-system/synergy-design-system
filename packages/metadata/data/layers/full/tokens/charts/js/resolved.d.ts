@@ -27,6 +27,7 @@ export declare const ResolvedTokens: {
   SynChartDisabledColor: ResolvedTokenModes;
   SynChartGridLinesColor: ResolvedTokenModes;
   SynChartGridLinesColorEmphasize: ResolvedTokenModes;
+  SynChartPlotLineColor: ResolvedTokenModes;
   SynChartRangeSelectionColor: ResolvedTokenModes;
   SynChartSequential01_10: ResolvedTokenModes;
   SynChartSequential01_20: ResolvedTokenModes;
@@ -148,4 +149,5 @@ export declare const ResolvedTokens: {
   SynChartSequentialStatusWarning80: ResolvedTokenModes;
   SynChartSequentialStatusWarning90: ResolvedTokenModes;
   SynChartSequentialStatusWarning100: ResolvedTokenModes;
+  SynChartTooltipColor: ResolvedTokenModes;
 };

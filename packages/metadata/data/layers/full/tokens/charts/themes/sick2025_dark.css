@@ -23,6 +23,7 @@
   --syn-chart-disabled-color: var(--syn-color-neutral-400);
   --syn-chart-grid-lines-color: var(--syn-color-neutral-300);
   --syn-chart-grid-lines-color-emphasize: var(--syn-color-neutral-400);
+  --syn-chart-plot-line-color: var(--syn-color-neutral-1000);
   --syn-chart-range-selection-color: var(--syn-color-neutral-600);
   --syn-chart-sequential-01-10: var(--syn-color-primary-100);
   --syn-chart-sequential-01-20: var(--syn-color-primary-200);
@@ -144,4 +145,5 @@
   --syn-chart-sequential-status-warning-80: var(--syn-color-warning-800);
   --syn-chart-sequential-status-warning-90: var(--syn-color-warning-900);
   --syn-chart-sequential-status-warning-100: var(--syn-color-warning-950);
+  --syn-chart-tooltip-color: var(--syn-color-neutral-200);
 }

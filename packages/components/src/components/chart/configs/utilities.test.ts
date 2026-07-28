@@ -74,6 +74,46 @@ describe('mergeDeep', () => {
     ]);
   });
 
+  it('appends arrays when array strategy is append', () => {
+    const merged = mergeDeep(
+      [{ data: [1, 2], id: 'base', type: 'line' }],
+      [
+        { data: [3, 4], id: 'latest-1', type: 'line' },
+        { data: [5, 6], id: 'latest-2', type: 'bar' },
+      ],
+      { arrayStrategy: 'append' },
+    );
+
+    expect(merged).to.deep.equal([
+      { data: [1, 2], id: 'base', type: 'line' },
+      { data: [3, 4], id: 'latest-1', type: 'line' },
+      { data: [5, 6], id: 'latest-2', type: 'bar' },
+    ]);
+  });
+
+  it('appends nested arrays when array strategy is append', () => {
+    const merged = mergeDeep(
+      {
+        series: [{ id: 'base-0', type: 'line' }],
+      },
+      {
+        series: [
+          { data: [1, 2, 3], id: 'latest-0' },
+          { id: 'latest-1', type: 'scatter' },
+        ],
+      },
+      { arrayStrategy: 'append' },
+    );
+
+    expect(merged).to.deep.equal({
+      series: [
+        { id: 'base-0', type: 'line' },
+        { data: [1, 2, 3], id: 'latest-0' },
+        { id: 'latest-1', type: 'scatter' },
+      ],
+    });
+  });
+
   it('merges object and array conflicts into the first array index', () => {
     const objectIntoArray = mergeDeep(
       {
@@ -209,6 +249,27 @@ describe('mergeConfigs', () => {
       {
         data: [3, 4], id: 'a', name: 'Latest', type: 'line',
       },
+    ]);
+  });
+
+  it('appends arrays when configured with append strategy', () => {
+    const merged = mergeConfigs(
+      {
+        series: [{ id: 'base', type: 'line' }],
+      },
+      {
+        series: [
+          { id: 'latest-1', type: 'bar' },
+          { id: 'latest-2', type: 'scatter' },
+        ],
+      },
+      { arrayStrategy: 'append' },
+    );
+
+    expect(merged.series).to.deep.equal([
+      { id: 'base', type: 'line' },
+      { id: 'latest-1', type: 'bar' },
+      { id: 'latest-2', type: 'scatter' },
     ]);
   });
 

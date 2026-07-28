@@ -1,13 +1,35 @@
 {
   "alert": {
-    "error": {
+    "critical": {
       "color-background": {
         "type": "color",
-        "value": "{namur.error.color-background}"
+        "value": "{color.critical.300}"
       },
       "color-border": {
         "type": "color",
-        "value": "{namur.error.color-background}"
+        "value": "{color.critical.300}"
+      },
+      "color-icon": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      },
+      "color-indicator": {
+        "type": "color",
+        "value": "{color.critical.300}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      }
+    },
+    "error": {
+      "color-background": {
+        "type": "color",
+        "value": "{color.error.200}"
+      },
+      "color-border": {
+        "type": "color",
+        "value": "{color.error.200}"
       },
       "color-icon": {
         "type": "color",
@@ -15,17 +37,21 @@
       },
       "color-indicator": {
         "type": "color",
-        "value": "{namur.error.color}"
+        "value": "{color.error.200}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text}"
       }
     },
     "informative": {
       "color-background": {
         "type": "color",
-        "value": "{namur.info.color-background}"
+        "value": "{color.info.200}"
       },
       "color-border": {
         "type": "color",
-        "value": "{namur.info.color-background}"
+        "value": "{color.info.200}"
       },
       "color-icon": {
         "type": "color",
@@ -33,7 +59,11 @@
       },
       "color-indicator": {
         "type": "color",
-        "value": "{namur.info.color}"
+        "value": "{color.info.200}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text}"
       }
     },
     "neutral": {
@@ -51,17 +81,21 @@
       },
       "color-indicator": {
         "type": "color",
-        "value": "{namur.neutral.color}"
+        "value": "{namur.neutral.color-background}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text}"
       }
     },
     "success": {
       "color-background": {
         "type": "color",
-        "value": "{namur.success.color-background}"
+        "value": "{color.success.100}"
       },
       "color-border": {
         "type": "color",
-        "value": "{namur.success.color-background}"
+        "value": "{color.success.100}"
       },
       "color-icon": {
         "type": "color",
@@ -69,25 +103,33 @@
       },
       "color-indicator": {
         "type": "color",
-        "value": "{namur.success.color}"
+        "value": "{color.success.100}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text}"
       }
     },
     "warning": {
       "color-background": {
         "type": "color",
-        "value": "{namur.warning.color-background}"
+        "value": "{color.warning.500}"
       },
       "color-border": {
         "type": "color",
-        "value": "{namur.warning.color-background}"
+        "value": "{color.warning.500}"
       },
       "color-icon": {
         "type": "color",
-        "value": "{typography.color.text}"
+        "value": "{typography.color.text-inverted}"
       },
       "color-indicator": {
         "type": "color",
-        "value": "{namur.warning.color}"
+        "value": "{color.warning.500}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
       }
     }
   },
@@ -102,6 +144,16 @@
     }
   },
   "badge": {
+    "critical": {
+      "color-background": {
+        "type": "color",
+        "value": "{namur.critical.color}"
+      },
+      "color-text": {
+        "type": "color",
+        "value": "{typography.color.text-inverted}"
+      }
+    },
     "error": {
       "color-background": {
         "type": "color",
@@ -1489,13 +1541,13 @@
       },
       "color-background": {
         "type": "color",
-        "value": "{color.critical.100}"
+        "value": "{color.critical.50}"
       }
     },
     "error": {
       "color": {
         "type": "color",
-        "value": "{color.error.500}"
+        "value": "{color.error.600}"
       },
       "color-background": {
         "type": "color",

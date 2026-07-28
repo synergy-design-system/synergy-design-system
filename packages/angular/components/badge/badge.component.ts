@@ -41,8 +41,11 @@ export class SynBadgeComponent {
   }
 
   /**
-   * The badge's theme variant.
-   */
+* The badge's theme variant.
+
+The `danger` variant is deprecated and will be removed in a future release.
+* Use `error` instead.
+ */
   @Input()
   set variant(v: SynBadge['variant']) {
     this._ngZone.runOutsideAngular(() => (this.nativeElement.variant = v));

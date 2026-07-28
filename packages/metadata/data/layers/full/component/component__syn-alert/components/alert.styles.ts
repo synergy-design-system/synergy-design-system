@@ -15,6 +15,7 @@ export default css`
     --variant-color-background: var(--syn-alert-informative-color-background);
     --variant-color-icon: var(--syn-alert-informative-color-icon);
     --variant-color-indicator: var(--syn-alert-informative-color-indicator);
+    --variant-color-text: var(--syn-typography-color-text);
 
     /* Defines special settings for sizes */
     --size-font-size: var(--syn-font-size-medium);
@@ -30,7 +31,7 @@ export default css`
     border-left: 0;
     border-radius: var(--syn-border-radius-none);
     box-sizing: content-box;
-    color: var(--syn-typography-color-text);
+    color: var(--variant-color-text);
     display: flex;
     font-family: var(--syn-font-sans);
     font-size: var(--size-font-size);
@@ -78,10 +79,6 @@ export default css`
     padding-inline-start: var(--size-icon-padding-inline);
   }
 
-  .alert--has-countdown {
-    border-bottom: none;
-  }
-
   .alert__message {
     align-self: center;
     display: block;
@@ -95,51 +92,12 @@ export default css`
   .alert__close-button {
     align-items: flex-start;
     align-self: start; /* #1135: Fix alignment for the close icon */
-    color: var(--syn-typography-color-text);
+    color: var(--variant-color-text);
     display: flex;
     flex: 0 0 auto;
     font-size: var(--size-icon-size);
     margin-block: calc(var(--syn-spacing-x-small) - var(--syn-panel-border-width));
     margin-inline-end: var(--syn-spacing-x-small);
-  }
-
-  .alert__countdown {
-    background-color: var(--syn-panel-border-color);
-    bottom: 0;
-    display: flex;
-    height: calc(var(--syn-panel-border-width) * 3);
-    left: 0;
-    position: absolute;
-    width: 100%;
-  }
-
-  .alert__countdown--ltr {
-    justify-content: flex-end;
-  }
-
-  .alert__countdown .alert__countdown-elapsed {
-    height: 100%;
-    width: 0;
-  }
-
-  .alert--primary .alert__countdown-elapsed {
-    background-color: var(--syn-color-primary-600);
-  }
-
-  .alert--success .alert__countdown-elapsed {
-    background-color: var(--syn-color-success-600);
-  }
-
-  .alert--neutral .alert__countdown-elapsed {
-    background-color: var(--syn-color-neutral-600);
-  }
-
-  .alert--warning .alert__countdown-elapsed {
-    background-color: var(--syn-color-warning-600);
-  }
-
-  .alert--danger .alert__countdown-elapsed {
-    background-color: var(--syn-color-danger-600);
   }
 
   /**
@@ -150,6 +108,7 @@ export default css`
     --variant-color-background: var(--syn-alert-success-color-background);
     --variant-color-icon: var(--syn-alert-success-color-icon);
     --variant-color-indicator: var(--syn-alert-success-color-indicator);
+    --variant-color-text: var(--syn-alert-success-color-text);
   }
 
   .alert--neutral {
@@ -157,6 +116,7 @@ export default css`
     --variant-color-background: var(--syn-alert-neutral-color-background);
     --variant-color-icon: var(--syn-alert-neutral-color-icon);
     --variant-color-indicator: var(--syn-alert-neutral-color-indicator);
+    --variant-color-text: var(--syn-alert-neutral-color-text);
   }
 
   .alert--warning {
@@ -164,13 +124,25 @@ export default css`
     --variant-color-background: var(--syn-alert-warning-color-background);
     --variant-color-icon: var(--syn-alert-warning-color-icon);
     --variant-color-indicator: var(--syn-alert-warning-color-indicator);
+    --variant-color-text: var(--syn-alert-warning-color-text);
   }
 
-  .alert--danger {
+  .alert--critical {
+    --variant-color-border: var(--syn-alert-critical-color-border);
+    --variant-color-background: var(--syn-alert-critical-color-background);
+    --variant-color-icon: var(--syn-alert-critical-color-icon);
+    --variant-color-indicator: var(--syn-alert-critical-color-indicator);
+    --variant-color-text: var(--syn-alert-critical-color-text);
+  }
+
+  /** TODO: Major: Remove .alert--danger */
+  .alert--danger,
+  .alert--error {
     --variant-color-border: var(--syn-alert-error-color-border);
     --variant-color-background: var(--syn-alert-error-color-background);
     --variant-color-icon: var(--syn-alert-error-color-icon);
     --variant-color-indicator: var(--syn-alert-error-color-indicator);
+    --variant-color-text: var(--syn-alert-error-color-text);
   }
 
   /* #1119: Alert Sizes */
@@ -195,9 +167,5 @@ export default css`
     --size-message-padding: var(--syn-spacing-medium-large) var(--syn-spacing-large) var(--syn-spacing-medium-large) var(--syn-spacing-medium-large);
     --size-icon-padding-block: var(--syn-spacing-medium-large);
     --size-icon-padding-inline: var(--syn-spacing-medium-large);
-  }
-
-  .alert__timer {
-    display: none;
   }
 `;

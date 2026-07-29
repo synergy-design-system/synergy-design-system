@@ -1,14 +1,22 @@
 import { expect } from '@open-wc/testing';
 import {
-  colorSvgDataUrl, compose, getAsArray, mergeConfigs, mergeDeep,
+  colorSvgDataUrl, colorSvgImageUri, compose, getAsArray, mergeConfigs, mergeDeep,
 } from './utilities.js';
 
 const svgWithCurrentColor = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
 const svgWithFillAttr = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9IiMwMDAwMDAiLz48L3N2Zz4=';
+const imageSvgWithCurrentColor = `image://data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg"><path fill="currentColor"/></svg>')}`;
+const imageSvgWithFillAttr = `image://data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg"><path fill="#000000"/></svg>')}`;
 
 function decodeBase64DataUrl(dataUrl: string): string {
   const [, base64 = ''] = dataUrl.split(',');
   return atob(base64);
+}
+
+function decodeImageSvgUri(imageUri: string): string {
+  const urlData = imageUri.slice(8);
+  const [, encodedSvg = ''] = urlData.split(',');
+  return decodeURIComponent(encodedSvg);
 }
 
 describe('mergeDeep', () => {
@@ -362,6 +370,32 @@ describe('colorSvgDataUrl', () => {
 
   it('returns the original value when there is no base64 segment', () => {
     expect(colorSvgDataUrl('data:image/svg+xml;base64,', '#ff0000')).to.equal('data:image/svg+xml;base64,');
+  });
+});
+
+describe('colorSvgImageUri', () => {
+  it('replaces currentColor inside a valid image-prefixed SVG URI', () => {
+    const result = colorSvgImageUri(imageSvgWithCurrentColor, '#ff0000');
+
+    expect(decodeImageSvgUri(result)).to.include('#ff0000');
+    expect(decodeImageSvgUri(result)).to.not.include('currentColor');
+  });
+
+  it('replaces fill attribute value when currentColor is not present', () => {
+    const result = colorSvgImageUri(imageSvgWithFillAttr, '#aabbcc');
+
+    expect(decodeImageSvgUri(result)).to.include('#aabbcc');
+    expect(decodeImageSvgUri(result)).to.not.include('#000000');
+  });
+
+  it('returns the original value for malformed encoded SVG payloads', () => {
+    const malformed = 'image://data:image/svg+xml,%%%';
+
+    expect(colorSvgImageUri(malformed, '#ff0000')).to.equal(malformed);
+  });
+
+  it('returns the original value when there is no encoded SVG segment', () => {
+    expect(colorSvgImageUri('image://data:image/svg+xml,', '#ff0000')).to.equal('image://data:image/svg+xml,');
   });
 });
 

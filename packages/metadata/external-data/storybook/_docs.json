@@ -777,6 +777,16 @@
           "type": "text"
         }
       },
+      "line-chart-preset": {
+        "title": {
+          "value": "Line Chart Preset",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line chart can be configured with the `seriesLine` preset function.",
+          "type": "text"
+        }
+      },
       "line-series-hidden-lines": {
         "title": {
           "value": "Hidden Line Series",

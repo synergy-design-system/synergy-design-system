@@ -7,7 +7,7 @@ interface StorybookEntry {
 }
 
 const resolveComponentName = (prefix: string, baseId: string): string => {
-  if (prefix === 'charts' && baseId.startsWith('charts-features-')) {
+  if (prefix === 'charts' && (baseId.startsWith('charts-features-') || baseId.startsWith('charts-series-types-'))) {
     return 'syn-chart';
   }
 

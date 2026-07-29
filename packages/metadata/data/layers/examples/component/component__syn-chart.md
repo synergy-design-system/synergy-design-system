@@ -832,3 +832,438 @@ The data zoom slider (the dataZoom option with type: 'inside') allows users to d
   });
 </script>
 ```
+
+---
+
+## Default
+
+The line chart can be configured with the seriesLine preset function.
+
+```html
+<syn-chart id="line-series-default"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#line-series-default");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesLine([
+        {
+          data: [820, 932, 901, 934, 1290, 1330, 1320],
+        },
+        {
+          data: [620, 732, 701, 734, 1090, 1130, 1120],
+        },
+      ]);
+  });
+</script>
+```
+
+---
+
+## Curved Line
+
+The line series supports curved lines. Use the smooth property to enable smooth curves for the line series.
+
+```html
+<syn-chart id="line-series-curved"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#line-series-curved");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  const lineData = [
+    [820, 932, 901, 934, 1290, 1330, 1320],
+    [620, 732, 701, 734, 1090, 1130, 1120],
+  ];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesLine(
+        lineData.map((data) => ({
+          data,
+          smooth: true,
+        })),
+      );
+  });
+</script>
+```
+
+---
+
+## Hidden Line
+
+The lines of line series can be hidden. When hidden, only the symbols remain, which is useful for minimal or simplified data displays.
+
+```html
+<syn-chart id="line-series-hidden"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#line-series-hidden");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  const lineData = [
+    [820, 932, 901, 934, 1290, 1330, 1320],
+    [620, 732, 701, 734, 1090, 1130, 1120],
+  ];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesLine(
+        lineData.map((data) => ({
+          data,
+          lineStyle: {
+            width: 0,
+          },
+        })),
+      );
+  });
+</script>
+```
+
+---
+
+## Multiple Line Styles
+
+The line series supports a variety of styles, including line width and line type (solid, dashed, dotted). When combining multiple line charts, ensure there’s sufficient visual differentiation, for example, by using distinct line styles.
+
+```html
+<syn-chart id="line-series-styles"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#line-series-styles");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  const lineData = [
+    [820, 932, 901, 934, 1290, 1330, 1320],
+    [620, 732, 701, 734, 1090, 1130, 1120],
+  ];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesLine([
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            name: "Solid Line",
+          },
+          {
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+            name: "Dashed Line",
+            lineStyle: {
+              type: "dashed",
+            },
+          },
+          {
+            data: [420, 532, 501, 534, 890, 930, 920],
+            name: "Dotted Line",
+            lineStyle: {
+              type: "dotted",
+            },
+          },
+        ])
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Multiple Line Widths And Symbol Sizes
+
+The line widths and symbol sizes can be adjusted to the needs.
+
+```html
+<syn-chart id="line-series-widths"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#line-series-widths");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  const lineData = [
+    [820, 932, 901, 934, 1290, 1330, 1320],
+    [620, 732, 701, 734, 1090, 1130, 1120],
+  ];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesLine([
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            name: "Default",
+          },
+          {
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+            name: "Width: 4",
+            lineStyle: {
+              width: 4,
+            },
+            symbolSize: 10,
+          },
+          {
+            data: [420, 532, 501, 534, 890, 930, 920],
+            name: "Width: 8",
+            lineStyle: {
+              width: 8,
+            },
+            symbolSize: 12,
+          },
+          {
+            data: [220, 332, 301, 334, 690, 730, 720],
+            name: "Width: 12",
+            lineStyle: {
+              width: 12,
+            },
+            symbolSize: 16,
+          },
+        ])
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Multiple Symbol Styles
+
+The line series supports a variety of symbols.
+
+```html
+<syn-chart id="line-series-symbols"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#line-series-symbols");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  const lineData = [
+    [820, 932, 901, 934, 1290, 1330, 1320],
+    [620, 732, 701, 734, 1090, 1130, 1120],
+  ];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesLine([
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            name: "Empty circle symbol",
+          },
+          {
+            data: [720, 832, 801, 834, 1190, 1230, 1220],
+            name: "Circle symbol",
+            symbol: "circle",
+          },
+          {
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+            name: "Diamond symbol",
+            symbol: "diamond",
+          },
+          {
+            data: [520, 632, 601, 634, 990, 1030, 1020],
+            name: "Triangle symbol",
+            symbol: "triangle",
+          },
+          {
+            data: [420, 532, 501, 534, 890, 930, 920],
+            name: "Rect symbol",
+            symbol: "rect",
+          },
+          {
+            data: [320, 432, 401, 434, 790, 830, 820],
+            name: "Pin symbol",
+            symbol: "pin",
+          },
+          {
+            data: [220, 332, 301, 334, 690, 730, 720],
+            name: "Arrow symbol",
+            symbol: "arrow",
+          },
+          {
+            data: [120, 232, 201, 234, 590, 630, 620],
+            name: "Round rect symbol",
+            symbol: "roundRect",
+          },
+          {
+            data: [20, 132, 101, 134, 490, 530, 520],
+            name: "None symbol",
+            symbol: "none",
+          },
+        ])
+        .legendShow({}, { top: 140 });
+  });
+</script>
+```
+
+---
+
+## Custom Line And Symbol Colors
+
+The colors of the lines and symbols can be customized.
+
+```html
+<syn-chart id="line-series-custom-colors"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#line-series-custom-colors");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  const lineData = [
+    [820, 932, 901, 934, 1290, 1330, 1320],
+    [620, 732, 701, 734, 1090, 1130, 1120],
+  ];
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).seriesLine([
+        {
+          data: [620, 732, 701, 734, 1090, 1130, 1120],
+          lineStyle: {
+            color: "#6ad88f",
+          },
+          itemStyle: {
+            color: "#6ad88f",
+          },
+        },
+        {
+          data: [420, 532, 501, 534, 890, 930, 920],
+          lineStyle: {
+            color: "#d19800",
+          },
+          itemStyle: {
+            color: "#d19800",
+          },
+        },
+      ]);
+  });
+</script>
+```
+
+---
+
+## Tooltip
+
+The tooltip provides contextual information when users hover or focus on data points within a chart. It displays values, labels without obstructing the view of the visualization. Use the tooltipShow preset to enable the tooltip.
+
+```html
+<syn-chart id="line-series-tooltip"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#line-series-tooltip");
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .tooltipShow()
+        .seriesLine([
+          {
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+          },
+          {
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+          },
+        ]);
+  });
+</script>
+```
+
+---
+
+## Positive And Negative Values
+
+Line charts can display both positive and negative values.
+
+```html
+<syn-chart id="line-series-positive-and-negative-values"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll(
+    "#line-series-positive-and-negative-values",
+  );
+
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: "category",
+      name: "Days",
+    },
+    yAxis: { type: "value", name: "Values" },
+  };
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .axesShowSplitLines()
+        .seriesLine([
+          {
+            data: [-820, 932, -901, 934, -1290, 1330, 1320],
+          },
+          {
+            data: [620, -32, -701, 734, 1090, -1130, 1120],
+          },
+        ]);
+  });
+</script>
+```

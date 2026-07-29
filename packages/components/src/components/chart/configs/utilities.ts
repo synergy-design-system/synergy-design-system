@@ -236,6 +236,34 @@ export const compose = (...modifiers: ConfigModifier[]): ConfigModifier => (conf
 export const getAsArray = <T>(value: T | T[]): T[] => (Array.isArray(value) ? value : [value]);
 
 /**
+ * Colors an `image://` prefixed SVG URI with URL-encoded SVG by replacing `currentColor` with the provided color string.
+ * If current color is not available, the value of "fill" attribute will be replaced with the provided color string.
+ * Returns the original URI unchanged if decoding or re-encoding fails.
+ *
+ * @param imageUri - An `image://` URI with URL-encoded SVG (e.g., `image://data:image/svg+xml,%3Csvg...%3E`).
+ * @param color - The replacement color (e.g. `#ff0000` or `red`).
+ * @returns A new `image://` URI with `currentColor` substituted.
+ */
+export function colorSvgImageUri(imageUri: string, color: string): string {
+  try {
+    const urlData = imageUri.slice(8); // Remove 'image://' prefix
+    const [, encodedSvg] = urlData.split(',');
+    if (!encodedSvg) return imageUri;
+
+    const decodedSvg = decodeURIComponent(encodedSvg);
+    const hasCurrentColor = decodedSvg.includes('currentColor');
+
+    const svg = hasCurrentColor
+      ? decodedSvg.replace(/currentColor/gi, color)
+      : decodedSvg.replace(/fill="[^"]*"/gi, `fill="${color}"`);
+
+    return `image://data:image/svg+xml,${encodeURIComponent(svg)}`;
+  } catch {
+    return imageUri;
+  }
+}
+
+/**
  * Colors an SVG data URL by replacing `currentColor` with the provided color string. If current color is not available the value of "fill" attribute will be replaced with the provided color string.
  * Returns the original data URL unchanged if decoding or re-encoding fails.
  *

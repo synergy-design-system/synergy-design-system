@@ -49,7 +49,7 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'line-chart-default'),
+        story: generateStoryDescription('chart', 'line-chart-preset'),
       },
     },
   },

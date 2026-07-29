@@ -263,6 +263,17 @@
         {
           "description": {
             "type": "text",
+            "value": "The line chart can be configured with the `seriesLine` preset function."
+          },
+          "name": "line-chart-preset",
+          "title": {
+            "type": "text",
+            "value": "Line Chart Preset"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
             "value": "The lines of line series can be hidden. When hidden, only the symbols remain, which is useful for minimal or simplified data displays."
           },
           "name": "line-series-hidden-lines",

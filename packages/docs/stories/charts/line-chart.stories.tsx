@@ -7,6 +7,7 @@ import {
   Subtitle,
   Title,
 } from '@storybook/addon-docs/blocks';
+import isChromatic from 'chromatic';
 import '../../../components/src/components/chart/chart.js';
 import type SynChart from '../../../components/src/components/chart/chart.js';
 import {
@@ -409,21 +410,25 @@ export const Tooltip: Story = {
     },
   },
   play: async ({ canvasElement }) => {
-    const chart = canvasElement.querySelector('#line-series-tooltip') as SynChart;
-    if (!chart) return;
+    // Only run this code when running in Chromatic, as it is used to show the tooltip for the snapshot.
+    if (isChromatic()) {
+      const chart = canvasElement.querySelector<SynChart>('#line-series-tooltip');
+      if (!chart) return;
+      const instance = chart.getInstance()!;
 
-    const instance = chart.getInstance()!;
-    await chart.updateComplete;
+      const finishedPromise = new Promise<void>(resolve => {
+        instance.on('finished', () => {
+          instance.dispatchAction({
+            type: 'showTip',
+            x: 320,
+            y: 50,
+          });
+          resolve();
+        });
+      });
 
-    // Wait for the chart to be ready to dispatch the action
-    // eslint-disable-next-line no-promise-executor-return
-    await new Promise(resolve => setTimeout(resolve, 100));
-
-    instance.dispatchAction({
-      type: 'showTip',
-      x: 250,
-      y: 50,
-    });
+      await finishedPromise;
+    }
   },
   render: () => html`
     <syn-chart id="line-series-tooltip"></syn-chart>
@@ -441,7 +446,7 @@ export const Tooltip: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .tooltipShow()
+          .tooltipShow({alwaysShowContent: true})
           .seriesLine([
           {
             data: [820, 932, 901, 934, 1290, 1330, 1320],
@@ -449,7 +454,7 @@ export const Tooltip: Story = {
           {
             data: [620, 732, 701, 734, 1090, 1130, 1120],
           },
-        ])
+        ]);
       });
     </script>
   `,

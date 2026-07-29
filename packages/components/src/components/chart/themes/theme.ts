@@ -33,6 +33,8 @@ export const getSynergyTheme = (mode: Themes = 'light') => ({
   legend: getDefaultLegendStyles(mode),
   // Default line series styles
   line: {
+    // Currently there is a bug in ECharts with symbol type 'none', where in the legend a filled circle is shown. This is a known bug in ECharts (https://github.com/apache/echarts/issues/20958)
+    symbol: 'none',
     symbolSize: getRealValueWithoutUnit('SynSpacingXSmall', mode),
   },
   logAxis: getDefaultAxisStyles(mode),

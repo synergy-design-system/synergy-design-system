@@ -9,12 +9,12 @@ export const getDataZoomStyles = (mode: Themes = 'light') => ({
   dataBackground: {
     areaStyle: {
       // TODO: need to wait for design feedback if this is the correct color
-      color: getRealStyleValue('SynColorPrimary200', mode),
-      opacity: 0.5,
+      color: getRealStyleValue('SynChartCategorical01', mode),
+      opacity: 0.2,
     },
     lineStyle: {
       // TODO: need to wait for design feedback if this is the correct color
-      color: getRealStyleValue('SynColorPrimary600', mode),
+      color: getRealStyleValue('SynChartCategorical01', mode),
     },
   },
   // The area that represents the selected data range

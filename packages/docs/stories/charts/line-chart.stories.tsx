@@ -446,7 +446,7 @@ export const Tooltip: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
-          .tooltipShow({alwaysShowContent: true})
+          .tooltipShow()
           .seriesLine([
           {
             data: [820, 932, 901, 934, 1290, 1330, 1320],

@@ -20,7 +20,6 @@ export const getSynergyTheme = (mode: Themes = 'light') => ({
   categoryAxis: getDefaultAxisStyles(mode),
   // Default color palette for charts, is categorical by default but can be overridden by setting the palette property on the chart component or by directly setting config.color
   color: getCategoricalColors(mode),
-  darkMode: 'auto',
   // Default style for the zoom slider on the bottom of the chart
   dataZoom: getDataZoomStyles(mode),
   grid: {

@@ -21,7 +21,6 @@ const meta: Meta = {
   parameters: {
     chromatic: {
       modes: Chromatic_Modes_Sick_2025,
-      pauseAnimationAtEnd: false,
     },
     design: generateFigmaPluginObject('2038-13673', true),
     docs: {

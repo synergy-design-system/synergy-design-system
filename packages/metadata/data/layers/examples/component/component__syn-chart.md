@@ -964,11 +964,6 @@ The line series supports a variety of styles, including line width and line type
     yAxis: { type: "value", name: "Values" },
   };
 
-  const lineData = [
-    [820, 932, 901, 934, 1290, 1330, 1320],
-    [620, 732, 701, 734, 1090, 1130, 1120],
-  ];
-
   charts.forEach((chart) => {
     chart.config = (handle) =>
       handle
@@ -1017,11 +1012,6 @@ The line widths and symbol sizes can be adjusted to the needs.
     },
     yAxis: { type: "value", name: "Values" },
   };
-
-  const lineData = [
-    [820, 932, 901, 934, 1290, 1330, 1320],
-    [620, 732, 701, 734, 1090, 1130, 1120],
-  ];
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
@@ -1085,11 +1075,6 @@ The line series supports a variety of symbols.
     },
     yAxis: { type: "value", name: "Values" },
   };
-
-  const lineData = [
-    [820, 932, 901, 934, 1290, 1330, 1320],
-    [620, 732, 701, 734, 1090, 1130, 1120],
-  ];
 
   charts.forEach((chart) => {
     chart.config = (handle) =>

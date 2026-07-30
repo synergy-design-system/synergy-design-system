@@ -23,7 +23,6 @@ const meta: Meta = {
   parameters: {
     chromatic: {
       modes: Chromatic_Modes_Sick_2025,
-      pauseAnimationAtEnd: false,
     },
     design: generateFigmaPluginObject('23-861', true),
     docs: {
@@ -179,8 +178,6 @@ export const MultipleLineStyles: Story = {
         yAxis: { type: 'value', name: 'Values' },
       };
 
-      const lineData = [[820, 932, 901, 934, 1290, 1330, 1320], [620, 732, 701, 734, 1090, 1130, 1120]];
-
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
@@ -230,8 +227,6 @@ export const MultipleLineWidthsAndSymbolSizes: Story = {
         },
         yAxis: { type: 'value', name: 'Values' },
       };
-
-      const lineData = [[820, 932, 901, 934, 1290, 1330, 1320], [620, 732, 701, 734, 1090, 1130, 1120]];
 
       charts.forEach(chart => {
         chart.config = handle => handle
@@ -296,8 +291,6 @@ export const MultipleSymbolStyles: Story = {
         },
         yAxis: { type: 'value', name: 'Values' },
       };
-
-      const lineData = [[820, 932, 901, 934, 1290, 1330, 1320], [620, 732, 701, 734, 1090, 1130, 1120]];
 
       charts.forEach(chart => {
         chart.config = handle => handle

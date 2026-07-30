@@ -56,6 +56,7 @@ export default class SynChart extends SynergyElement {
 
   private resolvedConfig: ECConfig = {};
 
+  // TODO: check if a global mutation observer is a better solution for theme changes, as it will be created for every chart instance. Needs to be checked with the real theme switch handling, if mutation observer does make sense at all.
   private themeObserver: MutationObserver;
 
   /**

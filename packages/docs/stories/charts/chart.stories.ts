@@ -36,7 +36,6 @@ const meta: Meta = {
   parameters: {
     chromatic: {
       modes: Chromatic_Modes_Sick_2025,
-      pauseAnimationAtEnd: false,
     },
     // This is needed as otherwise the `id` attribute is shown in the docs table
     controls: {exclude: ['id']},

@@ -81,12 +81,12 @@ Then import the required Synergy custom elements and use them natively:
 
 ```html
 <script setup lang="ts">
-import "@synergy-design-system/components/components/button/button.js";
-import "@synergy-design-system/components/components/input/input.js";
+  import "@synergy-design-system/components/components/button/button.js";
+  import "@synergy-design-system/components/components/input/input.js";
 
-const onChange = (e: Event) => {
-  console.log(e);
-};
+  const onChange = (e: Event) => {
+    console.log(e);
+  };
 </script>
 
 <template>
@@ -302,34 +302,29 @@ import { createApp } from "vue";
 import { SynModelPlugin } from "@synergy-design-system/vue";
 import App from "./App.vue";
 
-createApp(App)
-  .use(SynModelPlugin)
-  .mount("#app");
+createApp(App).use(SynModelPlugin).mount("#app");
 ```
 
 Then use one of the directives:
 
 ```html
 <script setup lang="ts">
-import { ref } from "vue";
+  import { ref } from "vue";
 
-const name = ref("");
-const formData = ref({
-  name: "",
-  email: "",
-});
+  const name = ref("");
+  const formData = ref({
+    name: "",
+    email: "",
+  });
 
-const updateName = (value: unknown) => {
-  name.value = String(value ?? "");
-};
+  const updateName = (value: unknown) => {
+    name.value = String(value ?? "");
+  };
 </script>
 
 <template>
   <!-- Single control -->
-  <syn-input
-    name="name"
-    v-syn-model="{ value: name, update: updateName }"
-  />
+  <syn-input name="name" v-syn-model="{ value: name, update: updateName }" />
 
   <!-- Whole form (maps by control name attribute) -->
   <form v-syn-form-model="formData">

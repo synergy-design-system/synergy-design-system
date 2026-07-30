@@ -57,7 +57,6 @@ const synChange = () => {
     @reset="reset"
     @submit="submit"
     @syn-change="synChange"
-    v-syn-form-model="formData"
     ref="formRef"
   >
 
@@ -79,6 +78,7 @@ const synChange = () => {
         name="gender"
         label="Please tell us your gender"
         required
+        v-model="formData.gender"
       >
         <syn-radio value="f">Female</syn-radio>
         <syn-radio value="m">Male</syn-radio>
@@ -90,6 +90,7 @@ const synChange = () => {
         label="Current position"
         name="role"
         required
+        v-model="formData.role"
       >
         <syn-optgroup label="Developers">
           <syn-option value="backend">Backend Developer</syn-option>
@@ -110,6 +111,7 @@ const synChange = () => {
         placeholder="Please insert a value for the regular text input (between 5 and 20 Characters)"
         required
         type="text"
+        v-model="formData.name"
       />
 
       <syn-input
@@ -119,6 +121,7 @@ const synChange = () => {
         placeholder="Please insert your E-mail address"
         required
         type="email"
+        v-model="formData.email"
       />
 
       <syn-input
@@ -128,6 +131,7 @@ const synChange = () => {
         placeholder="Please provide your phone number"
         required
         type="tel"
+        v-model="formData.phone"
       />
 
       <syn-input
@@ -135,6 +139,7 @@ const synChange = () => {
         label="Date of birth"
         name="date"
         type="date"
+        v-model="formData.date"
       />
 
       <syn-combobox
@@ -143,6 +148,7 @@ const synChange = () => {
         name="nationality"
         required
         :getOption="highlightOptionRenderer"
+        v-model="formData.nationality"
       >
         <syn-option v-for="nationality in nationalities" :key="nationality">
           {{ nationality }}
@@ -165,8 +171,7 @@ const synChange = () => {
         placeholder="Please provide at least one uppercase and lowercase letter and a number"
         required
         type="password"
-        :value.prop="initialFormData.password"
-        :defaultValue.prop="initialFormData.password"
+        v-model="formData.password"
       />
 
       <syn-input
@@ -177,6 +182,7 @@ const synChange = () => {
         name="code"
         placeholder="Please choose a value with four digits, e.g. 1234"
         type="number"
+        v-model="formData.code"
       />
     </syn-fieldset>
     <!-- /Security -->
@@ -191,6 +197,7 @@ const synChange = () => {
         label="I am interested in the following technologies"
         multiple
         name="topics"
+        v-model="formData.topics"
       >
         <syn-optgroup label="Frontend">
           <syn-option value="angular">Angular</syn-option>
@@ -212,6 +219,7 @@ const synChange = () => {
         placeholder="Select testing frameworks"
         :getOption="highlightOptionRenderer"
         required
+        v-model="formData.testing"
       >
         <syn-option v-for="framework in testingFrameworks" :key="framework.value" :value="framework.value">
           {{ framework.label }}
@@ -230,8 +238,7 @@ const synChange = () => {
         :max="10"
         :min="0"
         name="happiness"
-        :value.prop="initialFormData.happiness"
-        :defaultValue.prop="initialFormData.happiness"
+        v-model="formData.happiness"
       >
         <nav slot="ticks">
           <syn-range-tick>🤮</syn-range-tick>
@@ -247,8 +254,7 @@ const synChange = () => {
         :min="0"
         name="donations"
         restrict-movement
-        :value.prop="initialFormData.donations"
-        :defaultValue.prop="initialFormData.donations"
+        v-model="formData.donations"
         :tooltipFormatter="(value: number) => formatter.format(value)"
       >
         <nav slot="ticks">
@@ -267,14 +273,13 @@ const synChange = () => {
         id="experience"
         label="How experienced are you with the Synergy Design System?"
         name="experience"
-        :value.prop="initialFormData.experience"
-        :defaultValue.prop="initialFormData.experience"
+        v-model="formData.experience"
       >
-        <syn-radio :value.prop="0">I have never used it</syn-radio>
-        <syn-radio :value.prop="1" id="experience-little">I have used it a little</syn-radio>
-        <syn-radio :value.prop="2">I have used it a lot</syn-radio>
-        <syn-radio :value.prop="3">I am a Synergy Design System expert</syn-radio>
-        <syn-radio :value.prop="4">I am the creator of the Synergy Design System</syn-radio>
+        <syn-radio :value="0">I have never used it</syn-radio>
+        <syn-radio :value="1" id="experience-little">I have used it a little</syn-radio>
+        <syn-radio :value="2">I have used it a lot</syn-radio>
+        <syn-radio :value="3">I am a Synergy Design System expert</syn-radio>
+        <syn-radio :value="4">I am the creator of the Synergy Design System</syn-radio>
       </syn-radio-group>
     </syn-fieldset>
     <!-- /Experience -->
@@ -286,6 +291,7 @@ const synChange = () => {
       <syn-checkbox
         id="checkbox-newsletter-default"
         name="newsletterStandard"
+        v-model="formData.newsletterStandard"
       >
         Please subscribe me to the synergy newsletter
       </syn-checkbox>
@@ -293,6 +299,7 @@ const synChange = () => {
         readonly
         id="checkbox-newsletter-ui"
         name="newsletterUI"
+        v-model="formData.newsletterUI"
       >
         Please subscribe me to the synergy UI newsletter
       </syn-checkbox>
@@ -300,30 +307,35 @@ const synChange = () => {
       <syn-checkbox
         id="checkbox-newsletter-angular"
         name="newsletterAngular"
+        v-model="formData.newsletterAngular"
       >
         Please subscribe me to all things related to angular
       </syn-checkbox>
       <syn-checkbox
         id="checkbox-newsletter-react"
         name="newsletterReact"
+        v-model="formData.newsletterReact"
       >
         Please subscribe me to all things related to react
       </syn-checkbox>
       <syn-checkbox
         id="checkbox-newsletter-vanilla"
         name="newsletterVanilla"
+        v-model="formData.newsletterVanilla"
       >
         Please subscribe me to all things related to vanilla.js
       </syn-checkbox>
       <syn-checkbox
         id="checkbox-newsletter-vue"
         name="newsletterVue"
+        v-model="formData.newsletterVue"
       >
         Please subscribe me to all things related to vue
       </syn-checkbox>
       <syn-switch
         id="checkbox-newsletter-beta"
         name="newsletterBeta"
+        v-model="formData.newsletterBeta"
       >
         I am interested in the Synergy Beta Program
       </syn-switch>
@@ -331,6 +343,7 @@ const synChange = () => {
         id="checkbox-newsletter-ux"
         name="newsletterUX"
         readonly
+        v-model="formData.newsletterUX"
       >
         I am interested in the Synergy UX Program
       </syn-switch>
@@ -343,8 +356,7 @@ const synChange = () => {
         id="preferred-contact-method"
         label="Preferred contact method"
         name="preferredContactMethod"
-        :value.prop="initialFormData.preferredContactMethod"
-        :defaultValue.prop="initialFormData.preferredContactMethod"
+        v-model="formData.preferredContactMethod"
       >
         <syn-radio-button value="email">E-Mail</syn-radio-button>
         <syn-radio-button value="phone" readonly>Phone</syn-radio-button>
@@ -363,6 +375,7 @@ const synChange = () => {
         name="comment"
         placeholder="Please provide additional information that might be helpful for your inquiry"
         :rows="10"
+        v-model="formData.comment"
       />
       <syn-file
         accept="image/*"
@@ -372,6 +385,7 @@ const synChange = () => {
         label="Optional Screenshot(s)"
         multiple
         name="files"
+        v-model="formData.files"
       />
     </syn-fieldset>
     <!-- /AdditionalInformation -->

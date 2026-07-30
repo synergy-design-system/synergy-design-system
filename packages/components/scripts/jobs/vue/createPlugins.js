@@ -21,36 +21,8 @@ const createBindingsMap = () => Object.fromEntries(
 );
 
 const createPluginSource = (bindingsMap) => `${headerComment}
-import type {
-  App,
-  Directive,
-  DirectiveBinding,
-  ObjectDirective,
-  Plugin,
-} from 'vue';
-
-/**
- * Value contract for v-syn-model.
- *
- * Use this when binding a single native Synergy control to local Vue state.
- *
- * Example:
- * "<syn-input v-syn-model="{ value: state.name, update: v => (state.name = v as string) }" />"
- */
-export type SynBindingValue = {
-  /** Current value that should be pushed into the native element property. */
-  value: unknown;
-  /** Callback that receives the next value emitted by the native element event. */
-  update: (newValue: unknown) => void;
-};
-
-/**
- * Shape for v-syn-form-model.
- *
- * Keys are expected to match form control "name" attributes.
- * The directive uses the name attribute as lookup key and synchronizes values both ways.
- */
-export type SynFormModel = Record<string, unknown>;
+import { createElementVNode, defineComponent, mergeProps } from 'vue';
+import type { App, Plugin } from 'vue';
 
 /**
  * Runtime mapping between a native Synergy tag and its binding metadata.
@@ -58,10 +30,13 @@ export type SynFormModel = Record<string, unknown>;
  * - "event": event name to listen for updates
  * - "prop": native element property to read/write
  */
-export type SynBindingsMap = Record<string, {
-  event: string;
-  prop: string;
-}>;
+export type SynBindingsMap = Record<
+  string,
+  {
+    event: string;
+    prop: string;
+  }
+>;
 
 /**
  * Built-in bindings for known two-way capable Synergy controls.
@@ -70,277 +45,92 @@ export type SynBindingsMap = Record<string, {
  */
 export const DEFAULT_SYN_BINDINGS: SynBindingsMap = ${JSON.stringify(bindingsMap, null, 2)};
 
-const LISTENER_SYMBOL = Symbol('synModelListener');
-const FORM_LISTENERS_SYMBOL = Symbol('synModelFormListeners');
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
 
-type SynBindableElement = HTMLElement & {
-  [LISTENER_SYMBOL]?: {
-    event: string;
-    handler: EventListener;
-  };
-};
+/**
+ * Convert a kebab-case tag name to PascalCase component name.
+ * 'syn-input' → 'SynInput'
+ */
+const toPascalCase = (tagName: string): string => tagName
+  .split('-')
+  .filter(Boolean)
+  .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+  .join('');
 
-type SynFormBoundElement = HTMLElement & {
-  [FORM_LISTENERS_SYMBOL]?: Array<{
-    control: HTMLElement;
-    event: string;
-    handler: EventListener;
-  }>;
-};
+/**
+ * Convert a Synergy event name to a Vue on-prop name.
+ * 'syn-input' → 'onSyn-input'
+ * 'syn-change' → 'onSyn-change'
+ *
+ * Vue's DOM event patcher reverses this via hyphenate(name.slice(2)).toLowerCase()
+ * so the native element ends up with addEventListener('syn-input', ...).
+ */
+const toEventProp = (event: string): string => \`on\${event.charAt(0).toUpperCase()}\${event.slice(1)}\`;
 
-type SynNamedControl = HTMLElement & {
-  name?: string;
-};
+// ---------------------------------------------------------------------------
+// Thin component factory
+// ---------------------------------------------------------------------------
 
-const applyValue = (
-  control: HTMLElement,
+/**
+ * Creates a thin transparent Vue component for a Synergy custom element.
+ *
+ * The component:
+ * - Accepts modelValue prop, mapped to the element's native two-way property
+ * - Emits update:modelValue when the Synergy event fires (enabling v-model)
+ * - Also re-emits the original Synergy event so callers can still listen to it
+ * - Renders the native element via createElementVNode, which creates an ELEMENT
+ *   vnode (ShapeFlag.ELEMENT) and bypasses Vue's component registry lookup,
+ *   avoiding infinite recursion even though the tag name is registered as a component
+ * - Forwards all other attrs to the native element (inheritAttrs: false)
+ */
+const createSynComponent = (
+  tagName: string,
+  event: string,
   prop: string,
-  value: unknown,
-) => {
-  if (typeof value === 'undefined') {
-    return;
-  }
+) => defineComponent({
+  name: toPascalCase(tagName),
+  inheritAttrs: false,
+  props: {
+    modelValue: {
+      default: undefined,
+    },
+  },
+  emits: ['update:modelValue', event],
+  setup(props, { emit, attrs, slots }) {
+    const eventProp = toEventProp(event);
 
-  Reflect.set(control, prop, value);
-};
-
-const reapplyValueAfterDefine = (
-  control: HTMLElement,
-  prop: string,
-  value: unknown,
-) => {
-  if (typeof value === 'undefined') {
-    return;
-  }
-
-  const tagName = control.tagName.toLowerCase();
-  if (!tagName.includes('-')) {
-    return;
-  }
-
-  void customElements.whenDefined(tagName).then(() => {
-    Reflect.set(control, prop, value);
-
-    requestAnimationFrame(() => {
-      Reflect.set(control, prop, value);
-    });
-
-    const updateComplete = (control as {
-      updateComplete?: Promise<unknown>;
-    }).updateComplete;
-
-    if (updateComplete && typeof updateComplete.then === 'function') {
-      void updateComplete.then(() => {
-        Reflect.set(control, prop, value);
-      });
-    }
-  });
-};
-
-const isRecord = (value: unknown): value is Record<string, unknown> => !!value && typeof value === 'object';
-
-const setModelValueByName = (model: SynFormModel, name: string, value: unknown) => {
-  if (typeof model[name] !== 'undefined') {
-    model[name] = value;
-  }
-};
-
-const removeFormListeners = (el: SynFormBoundElement) => {
-  const listeners = el[FORM_LISTENERS_SYMBOL];
-  if (!listeners) {
-    return;
-  }
-
-  listeners.forEach(({ control, event, handler }) => {
-    control.removeEventListener(event, handler);
-  });
-
-  delete el[FORM_LISTENERS_SYMBOL];
-};
-
-const removeListener = (el: SynBindableElement) => {
-  const listener = el[LISTENER_SYMBOL];
-  if (!listener) {
-    return;
-  }
-
-  el.removeEventListener(listener.event, listener.handler);
-  delete el[LISTENER_SYMBOL];
-};
-
-const createSynModelDirective = (bindingsMap: SynBindingsMap): ObjectDirective<SynBindableElement, SynBindingValue> => {
-  const applyDirective = (el: SynBindableElement, binding: DirectiveBinding<SynBindingValue>) => {
-    removeListener(el);
-
-    const config = bindingsMap[el.tagName.toLowerCase()];
-    if (!config) {
-      return;
-    }
-
-    const bindingValue = binding.value;
-    if (!bindingValue || typeof bindingValue.update !== 'function') {
-      return;
-    }
-
-    const { event, prop } = config;
-    let isHydrated = false;
-
-    applyValue(el, prop, bindingValue.value);
-    reapplyValueAfterDefine(el, prop, bindingValue.value);
-
-    queueMicrotask(() => {
-      isHydrated = true;
-    });
-
-    requestAnimationFrame(() => {
-      isHydrated = true;
-    });
-
-    const handler: EventListener = (nativeEvent) => {
-      if (!nativeEvent.isTrusted) {
-        return;
+    const handleEvent = (e: Event) => {
+      if (e.target) {
+        emit('update:modelValue', Reflect.get(e.target, prop));
       }
-
-      if (!isHydrated) {
-        return;
-      }
-
-      const target = nativeEvent.target;
-      if (!target || typeof target !== 'object') {
-        return;
-      }
-
-      const nextValue = Reflect.get(target, prop);
-      bindingValue.update(nextValue);
+      emit(event, e);
     };
 
-    el.addEventListener(event, handler);
-    el[LISTENER_SYMBOL] = { event, handler };
-  };
+    return () => createElementVNode(
+      tagName,
+      mergeProps(
+        attrs,
+        // Only assert the native property when modelValue is explicitly bound.
+        // Leaving it absent lets pass-through attrs like :value work as-is.
+        props.modelValue !== undefined ? { [prop]: props.modelValue } : {},
+        { [eventProp]: handleEvent },
+      ),
+      slots.default?.() ?? null,
+    );
+  },
+});
 
-  return {
-    mounted: applyDirective,
-    updated: applyDirective,
-    beforeUnmount: removeListener,
-  };
-};
-
-const createSynFormModelDirective = (bindingsMap: SynBindingsMap): ObjectDirective<SynFormBoundElement, SynFormModel> => {
-  const applyDirective = (el: SynFormBoundElement, binding: DirectiveBinding<SynFormModel>) => {
-    removeFormListeners(el);
-
-    const model = binding.value;
-    if (!isRecord(model)) {
-      return;
-    }
-
-    const listeners: Array<{
-      control: HTMLElement;
-      event: string;
-      handler: EventListener;
-    }> = [];
-
-    const controls = Array.from(el.querySelectorAll<SynNamedControl>('*[name]'));
-
-    controls.forEach((control) => {
-      const tagName = control.tagName.toLowerCase();
-      const config = bindingsMap[tagName];
-      const controlName = control.name;
-
-      if (!config || !controlName) {
-        return;
-      }
-
-      const { event, prop } = config;
-
-      const currentModelValue = model[controlName];
-      applyValue(control, prop, currentModelValue);
-      reapplyValueAfterDefine(control, prop, currentModelValue);
-
-      const handler: EventListener = (nativeEvent) => {
-        if (!nativeEvent.isTrusted) {
-          return;
-        }
-
-        const target = nativeEvent.target;
-        if (!target || typeof target !== 'object') {
-          return;
-        }
-
-        const nextValue = Reflect.get(target, prop);
-        setModelValueByName(model, controlName, nextValue);
-      };
-
-      let listenerAttached = false;
-      const attachListener = () => {
-        if (listenerAttached) {
-          return;
-        }
-
-        control.addEventListener(event, handler);
-        listeners.push({ control, event, handler });
-        listenerAttached = true;
-      };
-
-      queueMicrotask(attachListener);
-      requestAnimationFrame(attachListener);
-
-      const tagNameForDefine = control.tagName.toLowerCase();
-      if (tagNameForDefine.includes('-')) {
-        void customElements.whenDefined(tagNameForDefine).then(() => {
-          const updateComplete = (control as {
-            updateComplete?: Promise<unknown>;
-          }).updateComplete;
-
-          if (updateComplete && typeof updateComplete.then === 'function') {
-            void updateComplete.then(() => {
-              attachListener();
-            });
-            return;
-          }
-
-          attachListener();
-        });
-      }
-    });
-
-    el[FORM_LISTENERS_SYMBOL] = listeners;
-  };
-
-  return {
-    mounted: (el, binding) => {
-      applyDirective(el, binding);
-
-      queueMicrotask(() => {
-        applyDirective(el, binding);
-      });
-
-      requestAnimationFrame(() => {
-        applyDirective(el, binding);
-      });
-    },
-    updated: applyDirective,
-    beforeUnmount: removeFormListeners,
-  };
-};
+// ---------------------------------------------------------------------------
+// Plugin factory
+// ---------------------------------------------------------------------------
 
 export type CreateSynModelPluginOptions = {
   /**
-   * Directive name for single-control binding.
-   *
-  * Default: syn-model
-   */
-  directiveName?: string;
-  /**
-   * Directive name for form-level name-based binding.
-   *
-  * Default: syn-form-model
-   */
-  formDirectiveName?: string;
-  /**
    * Optional binding map overrides.
    *
-   * Use this to add custom elements or override event or property mappings.
+   * Use this to add custom elements or override the default event/property mapping.
    */
   bindings?: SynBindingsMap;
 };
@@ -348,32 +138,61 @@ export type CreateSynModelPluginOptions = {
 /**
  * Creates the Synergy Vue native binding plugin.
  *
- * Registered directives:
- * - v-syn-model for single-control binding
- * - v-syn-form-model for form-level name-based binding
+ * Registers each Synergy control from the bindings map as a transparent Vue
+ * component so that standard v-model works directly on native syn-* tags —
+ * no wrapper imports needed.
  *
- * Example:
- * app.use(createSynModelPlugin())
+ * Usage:
+ *   app.use(createSynModelPlugin())
+ *
+ * Template:
+ *   <syn-input v-model="myValue" />
+ *   <syn-select v-model="selectedOption" />
  */
 export const createSynModelPlugin = (
   options: CreateSynModelPluginOptions = {},
 ): Plugin => ({
   install(app: App) {
-    const directiveName = options.directiveName || 'syn-model';
-    const formDirectiveName = options.formDirectiveName || 'syn-form-model';
-    const bindings = { ...DEFAULT_SYN_BINDINGS, ...(options.bindings || {}) };
+    const bindings = { ...DEFAULT_SYN_BINDINGS, ...(options.bindings ?? {}) };
 
-    app.directive(directiveName, createSynModelDirective(bindings) as Directive);
-    app.directive(formDirectiveName, createSynFormModelDirective(bindings) as Directive);
+    Object
+      .entries(bindings)
+      .forEach(([tagName, { event, prop }]) => {
+        app.component(
+          toPascalCase(tagName),
+          createSynComponent(tagName, event, prop),
+        );
+      });
   },
 });
 
 /**
- * Default plugin instance using default directive names.
- *
+ * Default plugin instance.
  * Equivalent to createSynModelPlugin().
  */
 export const SynModelPlugin = createSynModelPlugin();
+
+/**
+ * Factory that returns an isCustomElement predicate for Vue's template compiler.
+ *
+ * Call without arguments (or with \`true\`) for type-only / no-plugin usage —
+ * all syn-* elements are treated as native custom elements (no warnings).
+ *
+ * Pass \`false\` when using SynModelPlugin — the plugin's elements are resolved
+ * as Vue components, enabling standard v-model support. All other syn-*
+ * elements remain native custom elements.
+ *
+ * @example Without SynModelPlugin (type-only, default):
+ * isCustomElement: synIsCustomElement()
+ *
+ * @example With SynModelPlugin:
+ * isCustomElement: synIsCustomElement(false)
+ */
+export const synIsCustomElement = (nativeOnly = true) => (tag: string): boolean => {
+  if (!tag.startsWith('syn-')) return false;
+  if (nativeOnly) return true;
+  return !(tag in DEFAULT_SYN_BINDINGS);
+};
 `;
 
 const createPluginIndexSource = () => `${headerComment}

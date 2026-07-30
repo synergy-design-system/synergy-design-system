@@ -103,7 +103,7 @@ This enables automatic type checks and autocompletion for Synergy intrinsic elem
 2. Ensure your TypeScript setup loads `@synergy-design-system/vue` once (for example via `env.d.ts`).
 3. Replace wrapper components with native counterparts (for example `<SynVueButton>` -> `<syn-button>`).
 4. Keep custom event names in native form (for example `@syn-change`).
-5. For native custom elements, prefer property bindings (`.prop`) for typed values such as numbers or arrays where needed.
+5. For two-way data binding on form controls, add `SynModelPlugin` and configure `synIsCustomElement` in `vite.config.ts` (see [section 10.1](#101-two-way-binding-for-native-syn--elements-via-plugin)).
 6. Run `vue-tsc` and your tests to verify behavior.
 
 ---
@@ -292,9 +292,35 @@ You may use it in one of the following ways:
 
 #### 10.1. Two way binding for native `syn-*` elements via plugin
 
-When using native Synergy components (instead of `SynVue*` wrappers), you can use the provided plugin directives for two way binding.
+When using native `syn-*` elements instead of `SynVue*` wrappers, you can enable standard `v-model` support via `SynModelPlugin`. The plugin registers transparent Vue components for supported Synergy form controls so `v-model` works with no extra syntax.
 
-First, register the plugin once in your app entry:
+**Step 1: Configure the Vue template compiler in `vite.config.ts`**
+
+Import `synIsCustomElement` to tell the compiler which `syn-*` elements the plugin handles (resolved as Vue components) and which remain native pass-throughs (suppressing warnings):
+
+```ts
+// vite.config.ts
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import { synIsCustomElement } from "@synergy-design-system/vue";
+
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: synIsCustomElement(false),
+        },
+      },
+    }),
+  ],
+});
+```
+
+> If you are **not** using `SynModelPlugin` (type-only usage, no v-model), omit the argument or pass `true`:
+> `isCustomElement: synIsCustomElement()` — this suppresses warnings for all `syn-*` elements.
+
+**Step 2: Register the plugin in your app entry**
 
 ```ts
 // src/main.ts
@@ -305,36 +331,43 @@ import App from "./App.vue";
 createApp(App).use(SynModelPlugin).mount("#app");
 ```
 
-Then use one of the directives:
+**Step 3: Use `v-model` directly on native elements**
+
+All supported Synergy form controls now accept standard `v-model` bindings — exactly as you would with `SynVue*` wrappers:
 
 ```html
 <script setup lang="ts">
   import { ref } from "vue";
 
   const name = ref("");
-  const formData = ref({
-    name: "",
+  const formValues = ref({
     email: "",
+    agreed: false,
+    rating: 5,
   });
-
-  const updateName = (value: unknown) => {
-    name.value = String(value ?? "");
-  };
 </script>
 
 <template>
-  <!-- Single control -->
-  <syn-input name="name" v-syn-model="{ value: name, update: updateName }" />
-
-  <!-- Whole form (maps by control name attribute) -->
-  <form v-syn-form-model="formData">
-    <syn-input name="name" />
-    <syn-input name="email" type="email" />
-  </form>
+  <syn-input v-model="name" label="Name" required />
+  <syn-input v-model="formValues.email" label="E-Mail" type="email" />
+  <syn-checkbox v-model="formValues.agreed">Agree to terms</syn-checkbox>
+  <syn-range v-model="formValues.rating" :min="0" :max="10" />
 </template>
 ```
 
-`v-syn-form-model` binds known Synergy form controls by their `name` attribute and keeps values in sync with your model object.
+The following elements support `v-model` via the plugin:
+
+| Element           | Bound property |
+| ----------------- | -------------- |
+| `syn-input`       | `value`        |
+| `syn-textarea`    | `value`        |
+| `syn-select`      | `value`        |
+| `syn-combobox`    | `value`        |
+| `syn-radio-group` | `value`        |
+| `syn-range`       | `value`        |
+| `syn-checkbox`    | `checked`      |
+| `syn-switch`      | `checked`      |
+| `syn-file`        | `files`        |
 
 ### 11. Using the chart component
 

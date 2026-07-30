@@ -937,6 +937,7 @@ The lines of line series can be hidden. When hidden, only the symbols remain, wh
           lineStyle: {
             width: 0,
           },
+          symbol: "circle",
         })),
       );
   });
@@ -1030,6 +1031,7 @@ The line widths and symbol sizes can be adjusted to the needs.
           {
             data: [820, 932, 901, 934, 1290, 1330, 1320],
             name: "Default",
+            symbol: "emptyCircle",
           },
           {
             data: [620, 732, 701, 734, 1090, 1130, 1120],
@@ -1037,6 +1039,7 @@ The line widths and symbol sizes can be adjusted to the needs.
             lineStyle: {
               width: 4,
             },
+            symbol: "emptyCircle",
             symbolSize: 10,
           },
           {
@@ -1045,6 +1048,7 @@ The line widths and symbol sizes can be adjusted to the needs.
             lineStyle: {
               width: 8,
             },
+            symbol: "emptyCircle",
             symbolSize: 12,
           },
           {
@@ -1053,6 +1057,7 @@ The line widths and symbol sizes can be adjusted to the needs.
             lineStyle: {
               width: 12,
             },
+            symbol: "emptyCircle",
             symbolSize: 16,
           },
         ])
@@ -1094,6 +1099,7 @@ The line series supports a variety of symbols.
           {
             data: [820, 932, 901, 934, 1290, 1330, 1320],
             name: "Empty circle symbol",
+            symbol: "emptyCircle",
           },
           {
             data: [720, 832, 801, 834, 1190, 1230, 1220],
@@ -1137,57 +1143,6 @@ The line series supports a variety of symbols.
           },
         ])
         .legendShow({}, { top: 140 });
-  });
-</script>
-```
-
----
-
-## Custom Line And Symbol Colors
-
-The colors of the lines and symbols can be customized.
-
-```html
-<syn-chart id="line-series-custom-colors"></syn-chart>
-<script type="module">
-  const charts = document.querySelectorAll("#line-series-custom-colors");
-
-  const baseConfig = {
-    xAxis: {
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-      type: "category",
-      name: "Days",
-    },
-    yAxis: { type: "value", name: "Values" },
-  };
-
-  const lineData = [
-    [820, 932, 901, 934, 1290, 1330, 1320],
-    [620, 732, 701, 734, 1090, 1130, 1120],
-  ];
-
-  charts.forEach((chart) => {
-    chart.config = (handle) =>
-      handle.baseConfig(baseConfig).seriesLine([
-        {
-          data: [620, 732, 701, 734, 1090, 1130, 1120],
-          lineStyle: {
-            color: "#6ad88f",
-          },
-          itemStyle: {
-            color: "#6ad88f",
-          },
-        },
-        {
-          data: [420, 532, 501, 534, 890, 930, 920],
-          lineStyle: {
-            color: "#d19800",
-          },
-          itemStyle: {
-            color: "#d19800",
-          },
-        },
-      ]);
   });
 </script>
 ```

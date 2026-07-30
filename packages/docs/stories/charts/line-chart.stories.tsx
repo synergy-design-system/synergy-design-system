@@ -148,7 +148,8 @@ export const HiddenLine: Story = {
             data,
             lineStyle: {
               width: 0,
-            }
+            },
+            symbol: 'circle',
           })));
       });
     </script>
@@ -237,6 +238,7 @@ export const MultipleLineWidthsAndSymbolSizes: Story = {
             {
               data: [820, 932, 901, 934, 1290, 1330, 1320],
               name: 'Default',
+              symbol: 'emptyCircle',
             },
             {
               data: [620, 732, 701, 734, 1090, 1130, 1120],
@@ -244,6 +246,7 @@ export const MultipleLineWidthsAndSymbolSizes: Story = {
               lineStyle: {
                 width: 4,
               },
+              symbol: 'emptyCircle',
               symbolSize: 10,
             },
             {
@@ -252,6 +255,7 @@ export const MultipleLineWidthsAndSymbolSizes: Story = {
               lineStyle: {
                 width: 8,
               },
+              symbol: 'emptyCircle',
               symbolSize: 12,
             },
             {
@@ -260,6 +264,7 @@ export const MultipleLineWidthsAndSymbolSizes: Story = {
               lineStyle: {
                 width: 12,
               },
+              symbol: 'emptyCircle',
               symbolSize: 16,
             }
           ])
@@ -299,6 +304,7 @@ export const MultipleSymbolStyles: Story = {
             {
               data: [820, 932, 901, 934, 1290, 1330, 1320],
               name: 'Empty circle symbol',
+              symbol: 'emptyCircle',
             },
             {
               data: [720, 832, 801, 834, 1190, 1230, 1220],
@@ -342,57 +348,6 @@ export const MultipleSymbolStyles: Story = {
             },
           ])
           .legendShow( {}, { top: 140 });
-      });
-    </script>
-  `,
-};
-
-export const CustomLineAndSymbolColors: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: generateStoryDescription('chart', 'line-series-custom-colors'),
-      },
-    },
-  },
-  render: () => html`
-    <syn-chart id="line-series-custom-colors"></syn-chart>
-    <script type="module">
-      const charts = document.querySelectorAll('#line-series-custom-colors');
-
-      const baseConfig = {
-        xAxis: {
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-          type: 'category', name: 'Days',
-        },
-        yAxis: { type: 'value', name: 'Values' },
-      };
-
-      const lineData = [[820, 932, 901, 934, 1290, 1330, 1320], [620, 732, 701, 734, 1090, 1130, 1120]];
-
-      charts.forEach(chart => {
-        chart.config = handle => handle
-          .baseConfig(baseConfig)
-          .seriesLine([
-            {
-              data: [620, 732, 701, 734, 1090, 1130, 1120],
-              lineStyle: {
-                color: '#6ad88f',
-              },
-              itemStyle: {
-                color: '#6ad88f',
-              },
-            },
-            {
-              data: [420, 532, 501, 534, 890, 930, 920],
-              lineStyle: {
-                color: '#d19800',
-              },
-              itemStyle: {
-                color: '#d19800',
-              },
-            },
-          ])
       });
     </script>
   `,
@@ -506,7 +461,6 @@ export const Screenshot: Story = generateScreenshotStory({
   MultipleLineStyles,
   MultipleLineWidthsAndSymbolSizes,
   MultipleSymbolStyles,
-  CustomLineAndSymbolColors,
   PositiveAndNegativeValues,
 }, 700);
 /* eslint-enable sort-keys */

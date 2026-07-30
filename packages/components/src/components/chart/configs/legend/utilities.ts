@@ -2,7 +2,7 @@ import type { LegendComponentOption } from 'echarts/types/dist/shared.js';
 import type { ECConfig } from '../../types.js';
 import { measureMaxTextWidth } from '../axes/utilities.js';
 import { LEGEND } from '../constants.js';
-import { type ThemeMode, getRealStyleValue, getRealValueWithoutUnit } from '../../themes/utilities.js';
+import { type ThemeMode, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
 import type { LegendOption, LegendPosition } from './types.js';
 import { colorSvgDataUrl } from '../utilities.js';
 import { icons } from '../../../icon/sick2025-system-icons.js';
@@ -10,7 +10,7 @@ import { icons } from '../../../icon/sick2025-system-icons.js';
 const getVisibilityIconDataUrl = (isVisible: boolean, mode: ThemeMode = 'auto'): string => {
   const svg = isVisible ? icons.eye : icons['eye-slash'];
   const dataUrl = `data:image/svg+xml;base64,${btoa(svg)}`;
-  return colorSvgDataUrl(dataUrl, getRealStyleValue('SynTypographyColorTextQuiet', mode));
+  return colorSvgDataUrl(dataUrl, style('SynTypographyColorTextQuiet', mode));
 };
 
 /**
@@ -19,24 +19,24 @@ const getVisibilityIconDataUrl = (isVisible: boolean, mode: ThemeMode = 'auto'):
  * @param {ThemeMode} mode Theme mode
  */
 const getDefaultLegendTextStyle = (mode: ThemeMode = 'auto') => ({
-  color: getRealStyleValue('SynTypographyColorTextQuiet', mode),
-  fontFamily: getRealStyleValue('SynFontSans', mode),
-  fontSize: getRealStyleValue('SynFontSizeSmall', mode),
-  fontWeight: getRealStyleValue('SynFontWeightNormal', mode),
+  color: style('SynTypographyColorTextQuiet', mode),
+  fontFamily: style('SynFontSans', mode),
+  fontSize: style('SynFontSizeSmall', mode),
+  fontWeight: style('SynFontWeightNormal', mode),
   rich: {
     hideIcon: {
       backgroundColor: {
         image: getVisibilityIconDataUrl(false, mode),
       },
-      height: getRealValueWithoutUnit('SynSpacingMedium', mode),
-      width: getRealValueWithoutUnit('SynSpacingMedium', mode),
+      height: styleWithoutUnit('SynSpacingMedium', mode),
+      width: styleWithoutUnit('SynSpacingMedium', mode),
     },
     showIcon: {
       backgroundColor: {
         image: getVisibilityIconDataUrl(true, mode),
       },
-      height: getRealValueWithoutUnit('SynSpacingMedium', mode),
-      width: getRealValueWithoutUnit('SynSpacingMedium', mode),
+      height: styleWithoutUnit('SynSpacingMedium', mode),
+      width: styleWithoutUnit('SynSpacingMedium', mode),
     },
   },
 });
@@ -48,14 +48,14 @@ const getDefaultLegendTextStyle = (mode: ThemeMode = 'auto') => ({
  */
 export const getDefaultLegendStyles = (mode: ThemeMode = 'auto') => ({
   formatter: (name: string) => `${name}  {showIcon|}`,
-  inactiveColor: getRealStyleValue('SynChartDisabledColor', mode),
-  itemGap: getRealValueWithoutUnit('SynSpacingSmall', mode),
-  itemHeight: getRealValueWithoutUnit('SynSpacingSmall', mode),
-  itemWidth: getRealValueWithoutUnit('SynSpacingXLarge', mode),
+  inactiveColor: style('SynChartDisabledColor', mode),
+  itemGap: styleWithoutUnit('SynSpacingSmall', mode),
+  itemHeight: styleWithoutUnit('SynSpacingSmall', mode),
+  itemWidth: styleWithoutUnit('SynSpacingXLarge', mode),
   // The default legend position is top left
   left: 0,
   lineStyle: {
-    inactiveColor: getRealStyleValue('SynChartDisabledColor', mode),
+    inactiveColor: style('SynChartDisabledColor', mode),
   },
   textStyle: getDefaultLegendTextStyle(mode),
   // The default legend position is top left

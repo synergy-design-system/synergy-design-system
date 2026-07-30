@@ -1,6 +1,6 @@
 import {
-  type ThemeMode, getRealStyleValue, getRealValueWithoutUnit, normalizeArray,
-  setDefaultValueIfNotAvailable,
+  type ThemeMode, normalizeArray, setDefaultValueIfNotAvailable, getRealStyleValue as style,
+  getRealValueWithoutUnit as styleWithoutUnit,
 } from '../../themes/utilities.js';
 import type { ECConfig } from '../../types.js';
 import { colorSvgDataUrl, mergeConfigs } from '../utilities.js';
@@ -164,10 +164,10 @@ export const updateAxisConfig = <T extends AxisKey>(
  * @param mode - Theme mode
  */
 const getDefaultAxisLabelStyle = (mode: ThemeMode = 'auto') => ({
-  color: getRealStyleValue('SynTypographyColorTextQuiet', mode),
-  fontFamily: getRealStyleValue('SynFontSans', mode),
-  fontSize: getRealStyleValue('SynFontSizeXSmall', mode),
-  fontWeight: getRealStyleValue('SynFontWeightNormal', mode) as AxisLabelRich['fontWeight'],
+  color: style('SynTypographyColorTextQuiet', mode),
+  fontFamily: style('SynFontSans', mode),
+  fontSize: style('SynFontSizeXSmall', mode),
+  fontWeight: style('SynFontWeightNormal', mode) as AxisLabelRich['fontWeight'],
 });
 
 /**
@@ -176,8 +176,8 @@ const getDefaultAxisLabelStyle = (mode: ThemeMode = 'auto') => ({
  * @param mode - Theme mode
  */
 const getDefaultAxisIconStyle = (mode: ThemeMode = 'auto'): AxisLabelRich => ({
-  height: getRealValueWithoutUnit('SynSpacingLarge', mode),
-  width: getRealValueWithoutUnit('SynSpacingLarge', mode),
+  height: styleWithoutUnit('SynSpacingLarge', mode),
+  width: styleWithoutUnit('SynSpacingLarge', mode),
 });
 
 /**
@@ -329,16 +329,16 @@ export const buildAxisLabelConfigWithIcon = ({
 };
 
 const getDefaultXAxisStyle = (mode: ThemeMode = 'auto') => ({
-  'axisLabel.margin': getRealValueWithoutUnit('SynSpacingSmall', mode),
+  'axisLabel.margin': styleWithoutUnit('SynSpacingSmall', mode),
   nameGap: AXIS.X_NAME_GAP,
   nameLocation: 'center',
 });
 
 const getDefaultYAxisStyle = (mode: ThemeMode = 'auto') => ({
-  'axisLabel.margin': getRealValueWithoutUnit('SynSpacingMedium', mode),
-  nameGap: getRealValueWithoutUnit('SynSpacingMedium', mode),
+  'axisLabel.margin': styleWithoutUnit('SynSpacingMedium', mode),
+  nameGap: styleWithoutUnit('SynSpacingMedium', mode),
   'nameTextStyle.align': 'right',
-  'nameTextStyle.padding': [0, getRealValueWithoutUnit('SynSpacingMedium', mode), 0, 0],
+  'nameTextStyle.padding': [0, styleWithoutUnit('SynSpacingMedium', mode), 0, 0],
 });
 
 /**
@@ -390,24 +390,24 @@ export const getDefaultAxisStyles = (mode: ThemeMode = 'auto') => ({
   axisLabel: getDefaultAxisLabelStyle(mode),
   axisLine: {
     lineStyle: {
-      color: getRealStyleValue('SynChartGridLinesColorEmphasize', mode),
-      width: getRealValueWithoutUnit('SynBorderWidthMedium', mode),
+      color: style('SynChartGridLinesColorEmphasize', mode),
+      width: styleWithoutUnit('SynBorderWidthMedium', mode),
     },
     show: false,
   },
   minorSplitLine: {
     lineStyle: {
-      color: getRealStyleValue('SynChartGridLinesColorEmphasize', mode),
+      color: style('SynChartGridLinesColorEmphasize', mode),
     },
   },
   nameTextStyle: {
-    color: getRealStyleValue('SynTypographyColorText', mode),
-    fontSize: getRealStyleValue('SynFontSizeSmall', mode),
-    fontWeight: getRealStyleValue('SynFontWeightBold', mode),
+    color: style('SynTypographyColorText', mode),
+    fontSize: style('SynFontSizeSmall', mode),
+    fontWeight: style('SynFontWeightBold', mode),
   },
   splitLine: {
     lineStyle: {
-      color: getRealStyleValue('SynChartGridLinesColor', mode),
+      color: style('SynChartGridLinesColor', mode),
     },
     show: false,
   },

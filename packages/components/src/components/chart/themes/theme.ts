@@ -1,12 +1,12 @@
 import { PALETTE_TOKENS } from '../chart.palettes.js';
 import { THEME } from '../configs/constants.js';
-import { type Themes, getRealStyleValue, getRealValueWithoutUnit } from './utilities.js';
+import { type Themes, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from './utilities.js';
 import { getDefaultAxisStyles } from '../configs/axes/utilities.js';
 import { getDataZoomStyles } from '../configs/data-zoom/utilities.js';
 import { getDefaultLegendStyles } from '../configs/legend/utilities.js';
 import { getDefaultTooltipStyle } from '../configs/tooltip/utilities.js';
 
-const getCategoricalColors = (mode: Themes) => PALETTE_TOKENS.categorical.map((token) => getRealStyleValue(token, mode)).filter(Boolean);
+const getCategoricalColors = (mode: Themes) => PALETTE_TOKENS.categorical.map((token) => style(token, mode)).filter(Boolean);
 
 /**
  * Builds the default Synergy ECharts theme for the requested color mode.
@@ -34,15 +34,15 @@ export const getSynergyTheme = (mode: Themes = 'light') => ({
   line: {
     // Currently there is a bug in ECharts with symbol type 'none', where in the legend a filled circle is shown. This is a known bug in ECharts (https://github.com/apache/echarts/issues/20958)
     symbol: 'none',
-    symbolSize: getRealValueWithoutUnit('SynSpacingXSmall', mode),
+    symbolSize: styleWithoutUnit('SynSpacingXSmall', mode),
   },
   logAxis: getDefaultAxisStyles(mode),
   // Global font style
   textStyle: {
-    color: getRealStyleValue('SynTypographyColorText', mode),
-    fontFamily: getRealStyleValue('SynFontSans', mode),
-    fontSize: getRealStyleValue('SynFontSizeSmall', mode),
-    fontWeight: getRealStyleValue('SynFontWeightNormal', mode),
+    color: style('SynTypographyColorText', mode),
+    fontFamily: style('SynFontSans', mode),
+    fontSize: style('SynFontSizeSmall', mode),
+    fontWeight: style('SynFontWeightNormal', mode),
   },
   timeAxis: getDefaultAxisStyles(mode),
   tooltip: getDefaultTooltipStyle(mode),

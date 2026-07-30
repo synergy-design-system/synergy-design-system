@@ -1,4 +1,4 @@
-import { type ThemeMode, getRealStyleValue, getRealValueWithoutUnit } from '../../themes/utilities.js';
+import { type ThemeMode, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
 
 /**
  * The default common tooltip style based on Synergy design tokens.
@@ -14,21 +14,21 @@ export const getDefaultTooltipStyle = (mode: ThemeMode = 'auto') => ({
       show: false,
     },
     lineStyle: {
-      color: getRealStyleValue('SynChartPlotLineColor', mode),
+      color: style('SynChartPlotLineColor', mode),
       type: 'solid',
     },
   },
-  backgroundColor: getRealStyleValue('SynTooltipColor', mode),
-  borderColor: getRealStyleValue('SynPanelBorderColor', mode),
-  borderWidth: getRealValueWithoutUnit('SynBorderWidthSmall', mode),
+  backgroundColor: style('SynTooltipColor', mode),
+  borderColor: style('SynPanelBorderColor', mode),
+  borderWidth: styleWithoutUnit('SynBorderWidthSmall', mode),
   // Overwrite the default box-shadow of the tooltip to use the design token for shadows
-  extraCssText: `box-shadow: ${getRealStyleValue('SynShadowLarge', mode)};`,
-  padding: getRealValueWithoutUnit('SynTooltipPadding', mode),
+  extraCssText: `box-shadow: ${style('SynShadowLarge', mode)};`,
+  padding: styleWithoutUnit('SynTooltipPadding', mode),
   textStyle: {
-    color: getRealStyleValue('SynTypographyColorTextQuiet', mode),
-    fontFamily: getRealStyleValue('SynFontSans', mode),
-    fontSize: getRealValueWithoutUnit('SynFontSizeSmall', mode),
-    fontWeight: getRealStyleValue('SynFontWeightNormal', mode),
+    color: style('SynTypographyColorTextQuiet', mode),
+    fontFamily: style('SynFontSans', mode),
+    fontSize: styleWithoutUnit('SynFontSizeSmall', mode),
+    fontWeight: style('SynFontWeightNormal', mode),
   },
   trigger: 'axis',
 });

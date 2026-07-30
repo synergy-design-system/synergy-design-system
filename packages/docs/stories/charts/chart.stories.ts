@@ -11,6 +11,7 @@ import {
 } from '../../src/helpers/component.js';
 import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
+import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitForFinishedCharts.js';
 
 const { overrideArgs } = storybookHelpers('syn-chart');
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-chart');
@@ -53,6 +54,7 @@ const meta: Meta = {
       },
     },
   },
+  play: waitForFinishedChartPlayFunction,
   tags: ['Charting', 'Data Visualization'],
   title: 'Charts/syn-chart',
 };

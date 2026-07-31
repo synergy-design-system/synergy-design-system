@@ -21,8 +21,17 @@ const createBindingsMap = () => Object.fromEntries(
 );
 
 const createPluginSource = (bindingsMap) => `${headerComment}
-import { createElementVNode, defineComponent, mergeProps } from 'vue';
-import type { App, Plugin } from 'vue';
+import {
+  createElementVNode,
+  defineComponent,
+  mergeProps,
+  ref,
+} from 'vue';
+import type {
+  App,
+  Plugin,
+  VNodeRef,
+} from 'vue';
 
 /**
  * Runtime mapping between a native Synergy tag and its binding metadata.
@@ -98,7 +107,8 @@ const createSynComponent = (
     },
   },
   emits: ['update:modelValue', event],
-  setup(props, { emit, attrs, slots }) {
+  setup(props, { emit, attrs, expose, slots }) {
+    const nativeElement = ref<HTMLElement | null>(null);
     const eventProp = toEventProp(event);
 
     const handleEvent = (e: Event) => {
@@ -108,6 +118,16 @@ const createSynComponent = (
       emit(event, e);
     };
 
+    const setNativeElement: VNodeRef = (element) => {
+      nativeElement.value = element as HTMLElement | null;
+    };
+
+    expose({
+      dispatchEvent: (eventToDispatch: Event) =>
+        nativeElement.value?.dispatchEvent(eventToDispatch) ?? false,
+      nativeElement,
+    });
+
     return () => createElementVNode(
       tagName,
       mergeProps(
@@ -115,7 +135,10 @@ const createSynComponent = (
         // Only assert the native property when modelValue is explicitly bound.
         // Leaving it absent lets pass-through attrs like :value work as-is.
         props.modelValue !== undefined ? { [prop]: props.modelValue } : {},
-        { [eventProp]: handleEvent },
+        {
+          [eventProp]: handleEvent,
+          ref: setNativeElement,
+        },
       ),
       slots.default?.() ?? null,
     );

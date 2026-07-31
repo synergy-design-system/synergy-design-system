@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import type SynInput from '@synergy-design-system/components/components/input/input.component.js';
+import type { SynInput } from '@synergy-design-system/components';
 
 const errorMessage = ref<string>('');
 const inputRef = ref<SynInput>();

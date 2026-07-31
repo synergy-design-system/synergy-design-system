@@ -1,77 +1,58 @@
-const styleTokenCache = new Map<string, string>();
+import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
+import { ResolvedTokens as ComponentTokens } from '@synergy-design-system/tokens/resolved';
 
 /**
- * Resolves a CSS custom property token to its computed value on the document body.
- * Results are cached per token
- *
- * @param token CSS custom property name, e.g. --syn-color-primary.
- * @returns Trimmed computed value or an empty string when the token is not defined.
+ * Combined token dictionary used by chart theme utilities.
+ * Chart-specific tokens are merged with component tokens.
  */
-export const getRealStyleValue = (token: string): string => {
-  if (styleTokenCache.has(token)) {
-    return styleTokenCache.get(token)!;
+const ResolvedTokens = {
+  ...ChartTokens,
+  ...ComponentTokens,
+};
+
+export type ThemeMode = 'light' | 'dark' | 'auto';
+export type Themes = Exclude<ThemeMode, 'auto'>;
+
+let globalThemeStore: Themes = 'light';
+
+export const setGlobalThemeStore = (theme: Themes) => {
+  globalThemeStore = theme;
+};
+
+/**
+ * All valid token keys supported by the merged token dictionary.
+*/
+export type ResolvedTokensName = keyof typeof ChartTokens | keyof typeof ComponentTokens;
+
+/**
+ * Resolves a token name to its theme value from the merged chart/component token maps.
+ *
+ * @param token Token key, e.g. SynColorPrimary500.
+ * @param mode Theme mode to resolve, defaults to light.
+ * @returns Token value for the selected mode or an empty string when the token has no value.
+ */
+export const getRealStyleValue = (token: ResolvedTokensName, mode: ThemeMode = 'auto'): string => {
+  let currentMode: Themes;
+  if(mode === 'auto') {
+    currentMode = globalThemeStore;
+  } else {
+    currentMode = mode;
   }
-  const value = getComputedStyle(document.body).getPropertyValue(token).trim();
+  const value = ResolvedTokens[token][currentMode];
+
   const resolved = value || '';
-  styleTokenCache.set(token, resolved);
   return resolved;
 };
 
 /**
- * Clears all cached style token values.
- * Call this when the page theme changes to prevent stale values from being returned.
- */
-export const invalidateStyleTokenCache = (): void => {
-  styleTokenCache.clear();
-};
-
-/**
- * Pre-fills the style token cache by reading matching custom properties in a single
- * getComputedStyle pass. Call once per theme to amortize the read cost across all
- * subsequent token accesses.
+ * Resolves a token value and parses its numeric part.
  *
- * @param target Element to read computed styles from. Defaults to document.body.
- * @param options.includeOnly Explicit list of token names to warm up. Takes precedence over prefix.
- * @param options.prefix Only cache tokens whose name starts with this string. Defaults to '--syn-'.
- * @returns Number of tokens written to the cache.
+ * @param token Token key.
+ * @param mode Theme mode to resolve, defaults to light.
+ * @returns Parsed floating-point number from the token value of the selected mode.
  */
-export const warmupStyleTokenCache = (
-  target: Element = document.body,
-  options: { includeOnly?: string[]; prefix?: string } = {},
-): number => {
-  if (typeof window === 'undefined' || !target) {
-    return 0;
-  }
-  const { includeOnly, prefix = '--syn-' } = options;
-  const computed = getComputedStyle(target);
-  let count = 0;
-
-  if (includeOnly) {
-    includeOnly.forEach((token) => {
-      styleTokenCache.set(token, computed.getPropertyValue(token).trim() || '');
-      count += 1;
-    });
-    return count;
-  }
-
-  for (let i = 0; i < computed.length; i += 1) {
-    const name = computed.item(i);
-    if (name.startsWith(prefix)) {
-      styleTokenCache.set(name, computed.getPropertyValue(name).trim() || '');
-      count += 1;
-    }
-  }
-  return count;
-};
-
-/**
- * Resolves a CSS custom property token and parses the numeric part from the value.
- *
- * @param token CSS custom property name.
- * @returns Parsed floating-point number from the computed style value.
- */
-export const getRealValueWithoutUnit = (token: string): number => {
-  const value = getRealStyleValue(token);
+export const getRealValueWithoutUnit = (token: ResolvedTokensName, mode: ThemeMode = 'auto'): number => {
+  const value = getRealStyleValue(token, mode);
   return parseFloat(value);
 };
 
@@ -117,4 +98,16 @@ export const setDefaultValueIfNotAvailable = (target: Record<string, unknown>, k
       currentObj = currentObj[key] as Record<string, unknown>;
     }
   });
+};
+
+export const getHexWithOpacity = (hexColor: string, opacity: number) => {
+  if (!Number.isFinite(opacity) || opacity < 0 || opacity > 1) {
+    throw new Error(`Opacity must be a number between 0 and 1. Received: ${opacity}`);
+  }
+  const alpha = Math.round(opacity * 255)
+    .toString(16)
+    .padStart(2, '0')
+    .toUpperCase();
+
+  return `${hexColor}${alpha}`;
 };

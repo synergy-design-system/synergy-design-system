@@ -4,5 +4,5 @@
 </script>
 
 <template>
-  <SynVueChart :config="mockData('lineChartConfig')" />
+  <SynVueChart :config="mockData('lineChartConfigObject')" />
 </template>

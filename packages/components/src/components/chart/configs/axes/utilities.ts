@@ -1,5 +1,6 @@
 import {
-  getRealStyleValue, getRealValueWithoutUnit, normalizeArray, setDefaultValueIfNotAvailable,
+  type ThemeMode, normalizeArray, setDefaultValueIfNotAvailable, getRealStyleValue as style,
+  getRealValueWithoutUnit as styleWithoutUnit,
 } from '../../themes/utilities.js';
 import type { ECConfig } from '../../types.js';
 import { colorSvgDataUrl, mergeConfigs } from '../utilities.js';
@@ -158,21 +159,25 @@ export const updateAxisConfig = <T extends AxisKey>(
 };
 
 /**
- * Default styles for axis labels
+ * Default text styles for axis labels.
+ *
+ * @param mode - Theme mode
  */
-const getDefaultAxisLabelStyle = () => ({
-  color: getRealStyleValue('--syn-typography-color-text-quiet'),
-  fontFamily: getRealStyleValue('--syn-font-sans'),
-  fontSize: getRealStyleValue('--syn-font-size-x-small'),
-  fontWeight: getRealStyleValue('--syn-font-weight-normal') as AxisLabelRich['fontWeight'],
+const getDefaultAxisLabelStyle = (mode: ThemeMode = 'auto') => ({
+  color: style('SynTypographyColorTextQuiet', mode),
+  fontFamily: style('SynFontSans', mode),
+  fontSize: style('SynFontSizeXSmall', mode),
+  fontWeight: style('SynFontWeightNormal', mode) as AxisLabelRich['fontWeight'],
 });
 
 /**
- * Default styles for axis label icons
+ * Default styles for axis label icons.
+ *
+ * @param mode - Theme mode
  */
-const getDefaultAxisIconStyle = (): AxisLabelRich => ({
-  height: getRealValueWithoutUnit('--syn-spacing-large'),
-  width: getRealValueWithoutUnit('--syn-spacing-large'),
+const getDefaultAxisIconStyle = (mode: ThemeMode = 'auto'): AxisLabelRich => ({
+  height: styleWithoutUnit('SynSpacingLarge', mode),
+  width: styleWithoutUnit('SynSpacingLarge', mode),
 });
 
 /**
@@ -180,10 +185,11 @@ const getDefaultAxisIconStyle = (): AxisLabelRich => ({
  * This helper resolves missing values from the Synergy defaults so y-axis label widths can be measured consistently.
  *
  * @param labelsStyle - Optional rich-text overrides for the label part.
+ * @param mode - Theme mode
  * @returns A CSS font shorthand string suitable for `CanvasRenderingContext2D.font`.
  */
-const getFontShorthand = (labelsStyle: AxisLabelRich | undefined): string => {
-  const defaultAxisLabelStyle = getDefaultAxisLabelStyle();
+const getFontShorthand = (labelsStyle: AxisLabelRich | undefined, mode: ThemeMode = 'auto'): string => {
+  const defaultAxisLabelStyle = getDefaultAxisLabelStyle(mode);
   const fontSizeValue = labelsStyle?.fontSize ?? defaultAxisLabelStyle.fontSize;
   const fontSize = typeof fontSizeValue === 'number' ? `${fontSizeValue}px` : String(fontSizeValue);
   const fontFamily = String(labelsStyle?.fontFamily ?? defaultAxisLabelStyle.fontFamily);
@@ -201,17 +207,19 @@ const getFontShorthand = (labelsStyle: AxisLabelRich | undefined): string => {
  *
  * @param labelsStyle - Optional rich-text overrides for the label part.
  * @param config - The current chart config used to derive y-axis label candidates.
+ * @param mode - Theme mode
  * @returns An explicit width value for the label block.
  */
 const getYAxisLabelEffectiveWidth = (
   labelsStyle: AxisLabelRich | undefined,
   config: ECConfig,
+  mode: ThemeMode = 'auto',
 ): number | string | undefined => {
   if (labelsStyle?.width !== undefined) return labelsStyle.width;
 
   const texts = extractYAxisLabelTexts(config);
   const measured = texts.length > 0
-    ? measureMaxTextWidth(texts, getFontShorthand(labelsStyle))
+    ? measureMaxTextWidth(texts, getFontShorthand(labelsStyle, mode))
     : 0;
 
   return measured > 0 ? measured : AXIS.LABEL_FALLBACK_WIDTH;
@@ -224,12 +232,14 @@ const getYAxisLabelEffectiveWidth = (
  * @param iconPosition - Desired icon placement relative to the label text.
  * @param labelsStyle - Optional rich-text overrides for the label part.
  * @param config - The current chart config, used when width auto-calculation is required.
+ * @param mode - Theme mode
  * @returns Formatter, padding and optional width for the rich label definition.
  */
 const createPositionConfig = (
   iconPosition: AxisLabelIconsConfig['iconPosition'],
   labelsStyle: AxisLabelRich | undefined,
   config: ECConfig,
+  mode: ThemeMode = 'auto',
 ) => {
   switch (iconPosition) {
     case 'bottom':
@@ -255,7 +265,7 @@ const createPositionConfig = (
         align: 'left' as const,
         formatter: (value: string, i: number) => `{icon_${i}|}{label|${value}}`,
         padding: [0, 0, 0, AXIS.LABEL_ICON_PADDING],
-        width: getYAxisLabelEffectiveWidth(labelsStyle, config),
+        width: getYAxisLabelEffectiveWidth(labelsStyle, config, mode),
       };
   }
 };
@@ -318,17 +328,17 @@ export const buildAxisLabelConfigWithIcon = ({
   };
 };
 
-const getDefaultXAxisStyle = () => ({
-  'axisLabel.margin': getRealValueWithoutUnit('--syn-spacing-small'),
+const getDefaultXAxisStyle = (mode: ThemeMode = 'auto') => ({
+  'axisLabel.margin': styleWithoutUnit('SynSpacingSmall', mode),
   nameGap: AXIS.X_NAME_GAP,
   nameLocation: 'center',
 });
 
-const getDefaultYAxisStyle = () => ({
-  'axisLabel.margin': getRealValueWithoutUnit('--syn-spacing-medium'),
-  nameGap: getRealValueWithoutUnit('--syn-spacing-medium'),
+const getDefaultYAxisStyle = (mode: ThemeMode = 'auto') => ({
+  'axisLabel.margin': styleWithoutUnit('SynSpacingMedium', mode),
+  nameGap: styleWithoutUnit('SynSpacingMedium', mode),
   'nameTextStyle.align': 'right',
-  'nameTextStyle.padding': [0, getRealValueWithoutUnit('--syn-spacing-medium'), 0, 0],
+  'nameTextStyle.padding': [0, styleWithoutUnit('SynSpacingMedium', mode), 0, 0],
 });
 
 /**
@@ -367,32 +377,37 @@ export const applyAxisDefaultsPreprocessor = (option: ECConfig) => {
 };
 
 /**
- * Default styling for all axes.
- * This is done as function to ensure that the real style values are read at runtime and not at build time, which allows them to be dynamic based on the current theme.
+ * Shared default style object for all axis types.
+ *
+ * This is implemented as a function so token values are resolved at runtime
+ * instead of build time, allowing theme changes to be reflected dynamically.
+ *
+ * @param mode - Theme mode
  */
-export const getDefaultAxisStyles = () => ({
+export const getDefaultAxisStyles = (mode: ThemeMode = 'auto') => ({
   // This ensures that the number of ticks on multiple axes are the same
   alignTicks: true,
-  axisLabel: getDefaultAxisLabelStyle(),
+  axisLabel: getDefaultAxisLabelStyle(mode),
   axisLine: {
     lineStyle: {
-      color: getRealStyleValue('--syn-chart-grid-lines-color-emphasize'),
-      width: getRealValueWithoutUnit('--syn-border-width-medium'),
+      color: style('SynChartGridLinesColorEmphasize', mode),
+      width: styleWithoutUnit('SynBorderWidthMedium', mode),
     },
     show: false,
   },
   minorSplitLine: {
     lineStyle: {
+      color: style('SynChartGridLinesColorEmphasize', mode),
     },
   },
   nameTextStyle: {
-    color: getRealStyleValue('--syn-typography-color-text'),
-    fontSize: getRealStyleValue('--syn-font-size-small'),
-    fontWeight: getRealStyleValue('--syn-font-weight-bold'),
+    color: style('SynTypographyColorText', mode),
+    fontSize: style('SynFontSizeSmall', mode),
+    fontWeight: style('SynFontWeightBold', mode),
   },
   splitLine: {
     lineStyle: {
-      color: getRealStyleValue('--syn-chart-grid-lines-color'),
+      color: style('SynChartGridLinesColor', mode),
     },
     show: false,
   },

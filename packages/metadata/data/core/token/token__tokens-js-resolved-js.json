@@ -1,0 +1,31 @@
+{
+  "custom": {
+    "artifactPath": "js/resolved.js",
+    "format": "javascript",
+    "sourceType": "dist"
+  },
+  "id": "token:tokens-js-resolved-js",
+  "kind": "token",
+  "layers": {
+    "full": [
+      {
+        "layer": "full",
+        "path": "layers/full/tokens/js/resolved.js"
+      }
+    ]
+  },
+  "name": "resolved.js",
+  "package": "tokens",
+  "relations": [],
+  "since": "3.21.0",
+  "sources": [
+    "packages/tokens/dist/js/resolved.js"
+  ],
+  "status": "stable",
+  "tags": [
+    "artifact",
+    "token",
+    "tokens",
+    "dist"
+  ]
+}

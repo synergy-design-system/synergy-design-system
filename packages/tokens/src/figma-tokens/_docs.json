@@ -766,6 +766,136 @@
           "value": "You can use multiple charts in one `<syn-chart>` instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the `color` property directly on the series object — allowing fine-grained control over individual chart series colors.\n\n**Important:** The `color` property does **not** support CSS variables (e.g. `var(--syn-sequential-05-80)`). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using `getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim()` and pass the resolved value instead.",
           "type": "text"
         }
+      },
+      "line-chart-default": {
+        "title": {
+          "value": "Line Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Line charts offer a clear way to visualize trends, changes and directional movements over time or across categories. By connecting individual data points, they highlight patterns such as growth, decline or stability at a glance, making them ideal for dashboards, KPI overviews and lightweight data summaries. \n\nThe component provides flexible styling options that adapt to different visual needs, from straight linear segments to smooth curved lines. Combined with optional symbols, line charts can be tailored to emphasize exactly the level of detail or simplicity required in your layout.",
+          "type": "text"
+        }
+      },
+      "line-chart-preset": {
+        "title": {
+          "value": "Line Chart Preset",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line chart can be configured with the `seriesLine` preset function.",
+          "type": "text"
+        }
+      },
+      "line-series-hidden-lines": {
+        "title": {
+          "value": "Hidden Line Series",
+          "type": "text"
+        },
+        "description": {
+          "value": "The lines of line series can be hidden. When hidden, only the symbols remain, which is useful for minimal or simplified data displays.",
+          "type": "text"
+        }
+      },
+      "line-series-styles": {
+        "title": {
+          "value": "Line Series Styles",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line series supports a variety of styles, including line width and line type (solid, dashed, dotted). When combining multiple line charts, ensure there’s sufficient visual differentiation, for example, by using distinct line styles.",
+          "type": "text"
+        }
+      },
+      "line-series-symbols": {
+        "title": {
+          "value": "Line Series Symbols",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line series supports a variety of symbols.",
+          "type": "text"
+        }
+      },
+      "line-series-curved": {
+        "title": {
+          "value": "Curved Line Series",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line series supports curved lines. Use the `smooth` property to enable smooth curves for the line series.",
+          "type": "text"
+        }
+      },
+      "line-series-widths-symbol-sizes": {
+        "title": {
+          "value": "Line Series Widths",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line widths and symbol sizes can be adjusted to the needs.",
+          "type": "text"
+        }
+      },
+      "line-series-custom-colors": {
+        "title": {
+          "value": "Line Series Custom Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "The colors of the lines and symbols can be customized.",
+          "type": "text"
+        }
+      },
+      "line-series-tooltip": {
+        "title": {
+          "value": "Line Series Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "The tooltip provides contextual information when users hover or focus on data points within a chart. It displays values, labels without obstructing the view of the visualization. Use the `tooltipShow` preset to enable the tooltip.",
+          "type": "text"
+        }
+      },
+      "line-chart-positive-and-negative-values": {
+        "title": {
+          "value": "Line Chart with Positive and Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Line charts can display both positive and negative values.",
+          "type": "text"
+        }
+      },
+      "zooming-default": {
+        "title": {
+          "value": "Zooming and Panning",
+          "type": "text"
+        },
+        "description": {
+          "value": "Zooming and panning allow users to focus on specific areas of a chart, especially when dealing with large datasets or dense series. The `dataZoom` option provides two types of zooming: integrated zooming and slider zooming. Integrated zooming enables direct interaction within the plotting area, while slider zooming allows users to define a specific data zoom level using handles and a selection bar.",
+          "type": "text"
+        }
+      },
+      "integrated-zooming": {
+        "title": {
+          "value": "Integrated Zooming",
+          "type": "text"
+        },
+        "description": {
+          "value": "When having large data sets or dense series where users need to inspect local trends without leaving the chart context, the `dataZoom` option with `type: 'inside'` can be used. It enables direct interaction inside the plotting area: \n\n- mouse drag to pan\n\n- mouse wheel to zoom\n\n There are possibilities to customize the zooming behavior, for example, to restrict zooming to a specific axis, to set minimum and maximum zoom levels or to add an additional key for zooming. For more information have a look at the [ECharts documentation](https://echarts.apache.org/en/option.html#dataZoom-inside)",
+          "type": "text"
+        }
+      },
+      "slider-zooming": {
+        "title": {
+          "value": "Slider Zooming",
+          "type": "text"
+        },
+        "description": {
+          "value": "The data zoom slider (the `dataZoom` option with `type: 'inside'`) allows users to define a specific data zoom level within a chart by dragging the left and right handles or moving the entire selection bar. It's commonly used in dashboards and analytics tools to filter, zoom, or focus on a subset of data without losing context of the full dataset. The component consists of three interactive elements: \n\n- Left handle: Defines the start of the selected zoom\n\n- Right handle: Defines the end of the selected zoom\n\n- Selection bar (center): Moves the entire zoom without changing its width\n\nThe slider can be customized in terms of position, size and appearance. For more information have a look at the [ECharts documentation](https://echarts.apache.org/en/option.html#dataZoom-slider)",
+          "type": "text"
+        }
       }
     },
     "checkbox": {
@@ -927,7 +1057,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Add descriptive help text to a checkbox-group with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\n\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",  
+          "value": "Add descriptive help text to a checkbox-group with the help-text attribute. For help texts that contain HTML, use the help-text slot instead.\n\nThe help-text attribute should not be used to display error messages. To handle validation and error messaging, use syn-validate for proper error management.",
           "type": "text"
         }
       },

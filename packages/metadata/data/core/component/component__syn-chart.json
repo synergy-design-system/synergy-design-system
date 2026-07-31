@@ -131,6 +131,72 @@
         {
           "description": {
             "type": "text",
+            "value": "The legend provides a clear overview of all data series displayed in the chart. Each item reflects the series’ label, color, and visual style, ensuring users can quickly understand how values are grouped and represented. \n\nDepending on the selected chart type, the legend adapts its appearance. Line charts display a small line preview showing the stroke style, while bar charts use a solid color swatch that matches the bar fill. This makes it easy to distinguish series at a glance, regardless of the visualization style."
+          },
+          "name": "legend-default",
+          "title": {
+            "type": "text",
+            "value": "Legend"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The default position of the legend is top. The legend can be positioned at the top of the chart by using the handle method `legendShow()` or `legendShow({ position: 'top' })`."
+          },
+          "name": "legend-top",
+          "title": {
+            "type": "text",
+            "value": "Legend on Top"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The legend can be positioned at the left of the chart by using the handle method `legendShow({ position: 'left' })`."
+          },
+          "name": "legend-left",
+          "title": {
+            "type": "text",
+            "value": "Legend on Left"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The legend can be positioned at the right of the chart by using the handle method `legendShow({ position: 'right' })`."
+          },
+          "name": "legend-right",
+          "title": {
+            "type": "text",
+            "value": "Legend on Right"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The legend can be positioned at the bottom of the chart by using the handle method `legendShow({ position: 'bottom' })`."
+          },
+          "name": "legend-bottom",
+          "title": {
+            "type": "text",
+            "value": "Legend on Bottom"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "By default, the legend is interactive. Users can click on a legend item to toggle the visibility of the corresponding series in the chart. To make the legend non-interactive, use the *selectedMode: false* option."
+          },
+          "name": "legend-non-interactive",
+          "title": {
+            "type": "text",
+            "value": "Non-interactive Legend"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
             "value": "The default story demonstrates a basic line chart configuration. The chart is configured via the `config` property, which accepts an object that maps directly to the ECharts option configuration."
           },
           "name": "default",
@@ -181,6 +247,149 @@
           "title": {
             "type": "text",
             "value": "Multiple Charts"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Line charts offer a clear way to visualize trends, changes and directional movements over time or across categories. By connecting individual data points, they highlight patterns such as growth, decline or stability at a glance, making them ideal for dashboards, KPI overviews and lightweight data summaries. \n\nThe component provides flexible styling options that adapt to different visual needs, from straight linear segments to smooth curved lines. Combined with optional symbols, line charts can be tailored to emphasize exactly the level of detail or simplicity required in your layout."
+          },
+          "name": "line-chart-default",
+          "title": {
+            "type": "text",
+            "value": "Line Chart"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The line chart can be configured with the `seriesLine` preset function."
+          },
+          "name": "line-chart-preset",
+          "title": {
+            "type": "text",
+            "value": "Line Chart Preset"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The lines of line series can be hidden. When hidden, only the symbols remain, which is useful for minimal or simplified data displays."
+          },
+          "name": "line-series-hidden-lines",
+          "title": {
+            "type": "text",
+            "value": "Hidden Line Series"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The line series supports a variety of styles, including line width and line type (solid, dashed, dotted). When combining multiple line charts, ensure there’s sufficient visual differentiation, for example, by using distinct line styles."
+          },
+          "name": "line-series-styles",
+          "title": {
+            "type": "text",
+            "value": "Line Series Styles"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The line series supports a variety of symbols."
+          },
+          "name": "line-series-symbols",
+          "title": {
+            "type": "text",
+            "value": "Line Series Symbols"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The line series supports curved lines. Use the `smooth` property to enable smooth curves for the line series."
+          },
+          "name": "line-series-curved",
+          "title": {
+            "type": "text",
+            "value": "Curved Line Series"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The line widths and symbol sizes can be adjusted to the needs."
+          },
+          "name": "line-series-widths-symbol-sizes",
+          "title": {
+            "type": "text",
+            "value": "Line Series Widths"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The colors of the lines and symbols can be customized."
+          },
+          "name": "line-series-custom-colors",
+          "title": {
+            "type": "text",
+            "value": "Line Series Custom Colors"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The tooltip provides contextual information when users hover or focus on data points within a chart. It displays values, labels without obstructing the view of the visualization. Use the `tooltipShow` preset to enable the tooltip."
+          },
+          "name": "line-series-tooltip",
+          "title": {
+            "type": "text",
+            "value": "Line Series Tooltip"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Line charts can display both positive and negative values."
+          },
+          "name": "line-chart-positive-and-negative-values",
+          "title": {
+            "type": "text",
+            "value": "Line Chart with Positive and Negative Values"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Zooming and panning allow users to focus on specific areas of a chart, especially when dealing with large datasets or dense series. The `dataZoom` option provides two types of zooming: integrated zooming and slider zooming. Integrated zooming enables direct interaction within the plotting area, while slider zooming allows users to define a specific data zoom level using handles and a selection bar."
+          },
+          "name": "zooming-default",
+          "title": {
+            "type": "text",
+            "value": "Zooming and Panning"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "When having large data sets or dense series where users need to inspect local trends without leaving the chart context, the `dataZoom` option with `type: 'inside'` can be used. It enables direct interaction inside the plotting area: \n\n- mouse drag to pan\n\n- mouse wheel to zoom\n\n There are possibilities to customize the zooming behavior, for example, to restrict zooming to a specific axis, to set minimum and maximum zoom levels or to add an additional key for zooming. For more information have a look at the [ECharts documentation](https://echarts.apache.org/en/option.html#dataZoom-inside)"
+          },
+          "name": "integrated-zooming",
+          "title": {
+            "type": "text",
+            "value": "Integrated Zooming"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The data zoom slider (the `dataZoom` option with `type: 'inside'`) allows users to define a specific data zoom level within a chart by dragging the left and right handles or moving the entire selection bar. It's commonly used in dashboards and analytics tools to filter, zoom, or focus on a subset of data without losing context of the full dataset. The component consists of three interactive elements: \n\n- Left handle: Defines the start of the selected zoom\n\n- Right handle: Defines the end of the selected zoom\n\n- Selection bar (center): Moves the entire zoom without changing its width\n\nThe slider can be customized in terms of position, size and appearance. For more information have a look at the [ECharts documentation](https://echarts.apache.org/en/option.html#dataZoom-slider)"
+          },
+          "name": "slider-zooming",
+          "title": {
+            "type": "text",
+            "value": "Slider Zooming"
           }
         }
       ],

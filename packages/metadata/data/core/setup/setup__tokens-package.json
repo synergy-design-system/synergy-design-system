@@ -4,11 +4,15 @@
       "dist": [
         "packages/tokens/dist/charts/js/index.d.ts",
         "packages/tokens/dist/charts/js/index.js",
+        "packages/tokens/dist/charts/js/resolved.d.ts",
+        "packages/tokens/dist/charts/js/resolved.js",
         "packages/tokens/dist/charts/scss/_tokens.scss",
         "packages/tokens/dist/charts/themes/sick2025_dark.css",
         "packages/tokens/dist/charts/themes/sick2025_light.css",
         "packages/tokens/dist/js/index.d.ts",
         "packages/tokens/dist/js/index.js",
+        "packages/tokens/dist/js/resolved.d.ts",
+        "packages/tokens/dist/js/resolved.js",
         "packages/tokens/dist/scss/_tokens.scss",
         "packages/tokens/dist/themes/sick2018_dark.css",
         "packages/tokens/dist/themes/sick2018_light.css",
@@ -25,9 +29,11 @@
     "exports": [
       ".",
       "./charts",
+      "./charts/resolved",
       "./charts/scss/*",
       "./charts/themes/*",
       "./package.json",
+      "./resolved",
       "./scss/*",
       "./themes/*"
     ],

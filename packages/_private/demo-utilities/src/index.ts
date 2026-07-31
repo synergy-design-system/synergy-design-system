@@ -4,3 +4,5 @@ export * from './status.js';
 export * from './utility.js';
 
 export type * from './types.js';
+
+export * as charts from './charts.js';

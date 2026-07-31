@@ -1,5 +1,7 @@
 import * as axes from '../axes/presets.js';
 import * as legend from '../legend/presets.js';
+import * as lineSeries from '../line-series/presets.js';
+import * as tooltip from '../tooltip/presets.js';
 
 /**
  * Namespace containing all chart config preset functions.
@@ -11,4 +13,6 @@ import * as legend from '../legend/presets.js';
 export const ChartPresets = {
   ...axes,
   ...legend,
-} as typeof axes & typeof legend;
+  ...lineSeries,
+  ...tooltip,
+} as typeof axes & typeof legend & typeof lineSeries & typeof tooltip;

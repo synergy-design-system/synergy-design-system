@@ -4,7 +4,7 @@ import { styleText } from 'node:util';
 import StyleDictionary from 'style-dictionary';
 import { register } from '@tokens-studio/sd-transforms';
 import { cssVariableFormatter } from '../formats/index.js';
-import { createJS, createSCSS } from '../outputs/index.js';
+import { createJS, createResolvedJS, createSCSS } from '../outputs/index.js';
 import {
   addFallbackFonts,
   addMissingQuotesForStrings,
@@ -36,6 +36,9 @@ const initStyleDictionary = async () => {
  * @typedef {import('style-dictionary').File['filter']} Filter
  */
 /**
+ * @typedef {import('../types.d.ts').CreateFileOutputFn} CreateFileOutputFn
+ */
+/**
  * @typedef {Object} ThemeInfo
  * @property {string} theme - Full theme name, e.g. "sick2025-light"
  * @property {string[]} [additionalSources] - If the theme JSON depends on additional JSON files, list them here
@@ -55,8 +58,7 @@ const initStyleDictionary = async () => {
  * @property {(theme: string, mode: string) => ThemeInfo} getThemeInformation - Returns theme metadata
  * @property {(themesDir: string) => void} [postProcess] - Optional post-processing step (e.g. addMissingTokens)
  * @property {(themesDir: string) => void} [copyToDefault] - Optional copy step for light/dark aliases
- * @property {boolean} [createJsOutput=true] - Whether to create JS/TS exports
- * @property {boolean} [createScssOutput=true] - Whether to create SCSS exports
+ * @property {Array<CreateFileOutputFn>} [additionalOutputsCreators] - Additional output creators to run after the CSS build (e.g. JS/SCSS/resolved)
  */
 
 /**
@@ -101,8 +103,7 @@ export const runBuildPipeline = async (config) => {
   const {
     buildPath,
     copyToDefault,
-    createJsOutput = true,
-    createScssOutput = true,
+    additionalOutputsCreators = [createJS, createSCSS, createResolvedJS],
     filter,
     getThemeInformation,
     postProcess,
@@ -190,21 +191,12 @@ export const runBuildPipeline = async (config) => {
   }
 
   const fileHeader = await StyleDictionary.hooks.fileHeaders[fileHeaderName]();
-  const lightCssFile = join(themesDir, 'light.css');
 
-  if (createJsOutput) {
-    createJS(
+  additionalOutputsCreators.forEach((creator) => {
+    creator(
       fileHeader,
-      lightCssFile,
-      join(buildPath, 'js', 'index.js'),
+      themesDir,
+      buildPath,
     );
-  }
-
-  if (createScssOutput) {
-    createSCSS(
-      fileHeader,
-      lightCssFile,
-      join(buildPath, 'scss', '_tokens.scss'),
-    );
-  }
+  });
 };

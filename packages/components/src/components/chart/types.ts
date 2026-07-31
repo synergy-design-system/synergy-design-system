@@ -52,3 +52,7 @@ export type {
   LegendOption,
   LegendPosition,
 } from './configs/legend/types.js';
+
+export type {
+  LineSeriesOption,
+} from './configs/line-series/types.js';

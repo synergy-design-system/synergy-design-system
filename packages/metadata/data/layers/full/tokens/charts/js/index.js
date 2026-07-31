@@ -6,6 +6,11 @@
 /**
  * @type {string}
  */
+export const SynChartBackgroundColor = 'var(--syn-chart-background-color)';
+
+/**
+ * @type {string}
+ */
 export const SynChartCategorical10 = 'var(--syn-chart-categorical-10)';
 
 /**
@@ -77,6 +82,16 @@ export const SynChartGridLinesColor = 'var(--syn-chart-grid-lines-color)';
  * @type {string}
  */
 export const SynChartGridLinesColorEmphasize = 'var(--syn-chart-grid-lines-color-emphasize)';
+
+/**
+ * @type {string}
+ */
+export const SynChartPlotLineColor = 'var(--syn-chart-plot-line-color)';
+
+/**
+ * @type {string}
+ */
+export const SynChartRangeSelectionColor = 'var(--syn-chart-range-selection-color)';
 
 /**
  * @type {string}
@@ -677,3 +692,8 @@ export const SynChartSequentialStatusWarning90 = 'var(--syn-chart-sequential-sta
  * @type {string}
  */
 export const SynChartSequentialStatusWarning100 = 'var(--syn-chart-sequential-status-warning-100)';
+
+/**
+ * @type {string}
+ */
+export const SynChartTooltipColor = 'var(--syn-chart-tooltip-color)';

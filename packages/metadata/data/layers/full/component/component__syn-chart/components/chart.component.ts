@@ -8,6 +8,7 @@ import { property } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
 import { LineChart } from 'echarts/charts.js';
 import {
+  DataZoomComponent,
   GridComponent, LegendComponent, TitleComponent, TooltipComponent,
 } from 'echarts/components.js';
 import SynergyElement from '../../internal/synergy-element.js';
@@ -16,9 +17,9 @@ import styles from './chart.styles.js';
 import { type ChartPalette, PALETTE_TOKENS } from './chart.palettes.js';
 import { resolveConfigInput } from './configs/config.js';
 import type { ChartConfigType, ECConfig } from './types.js';
-import { getSynergyLightTheme } from './themes/light.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
-import { warmupStyleTokenCache } from './themes/utilities.js';
+import { getRealStyleValue, setGlobalThemeStore } from './themes/utilities.js';
+import { getSynergyTheme } from './themes/theme.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -28,6 +29,7 @@ use([
   TooltipComponent,
   LegendComponent,
   GridComponent,
+  DataZoomComponent,
 ]);
 
 /**
@@ -54,7 +56,8 @@ export default class SynChart extends SynergyElement {
 
   private resolvedConfig: ECConfig = {};
 
-  static #tokenWarmUpDone = false;
+  // TODO: check if a global mutation observer is a better solution for theme changes, as it will be created for every chart instance. Needs to be checked with the real theme switch handling, if mutation observer does make sense at all.
+  private themeObserver: MutationObserver;
 
   /**
    * The ECharts configuration input.
@@ -130,10 +133,8 @@ export default class SynChart extends SynergyElement {
     if (Array.isArray(this.resolvedConfig.color) && this.resolvedConfig.color.length > 0) return;
 
     const tokens = PALETTE_TOKENS[this.palette];
-    const computedStyles = getComputedStyle(this);
     const colors = tokens
-      .map(token => computedStyles.getPropertyValue(token).trim())
-      .filter(Boolean);
+      .map(token => getRealStyleValue(token));
 
     if (colors.length > 0) {
       const oldOption = this.chartInstance.getOption();
@@ -158,17 +159,35 @@ export default class SynChart extends SynergyElement {
 
   connectedCallback() {
     super.connectedCallback();
-    /**
-     * We need to fill up the token cache with the current theme values, so that the chart can be rendered correctly.
-     * This is needed before setting the theme, so the cache is used there.
-     * We use static property to ensure that the cache is only filled once per page load, and not for every chart instance.
-     */
-    if(!SynChart.#tokenWarmUpDone) {
-      const count = warmupStyleTokenCache();
-      SynChart.#tokenWarmUpDone = count > 0;
-    }
+    registerTheme('default', getSynergyTheme('light'));
+    registerTheme('dark', getSynergyTheme('dark'));
 
-    registerTheme('default', getSynergyLightTheme());
+    // Add mutation observer to detect changes of light dark mode and get the current mode to apply the correct theme
+    // TODO: this is currently only a first prototype for theme switch. We need to add a more robust solution, which might also check if any other parent element has a synergy theme class.
+    // Therefore the global theme story might not be the best solution, but maybe a chart instance theme store?
+    this.themeObserver = new MutationObserver((entries) => {
+      const themeChanged = entries.some((entry) => {
+        const oldTheme = entry.oldValue?.split(' ').find((cls) => cls.includes('syn-sick2025-'));
+        const newTheme = (entry.target as HTMLElement).classList.value.split(' ').find((cls) => cls.includes('syn-sick2025-'));
+        return oldTheme !== newTheme;
+      });
+      if (themeChanged) {
+        if(this.chartInstance) {
+          const newTheme = document.body.classList.value.split(' ').find((cls) => cls.includes('syn-sick2025-'));
+          setGlobalThemeStore(newTheme === 'syn-sick2025-dark' ? 'dark' : 'light');
+          // We need to re-resolve the config as otherwise the theme change will not be applied to the config if they contain synergy tokens
+          this.resolvedConfig = resolveConfigInput(this.config);
+          // We need to reapply the config as otherwise the theme change will not be applied.
+          // See caveat section of https://echarts.apache.org/en/api.html#echartsInstance.setTheme
+          this.chartInstance.setOption(this.resolvedConfig, { notMerge: true });
+          this.chartInstance.setTheme(newTheme === 'syn-sick2025-dark' ? 'dark' : 'default');
+
+          this.applyPalette();
+        }
+      }
+    });
+    this.themeObserver.observe(document.body, { attributeFilter: ['class'], attributeOldValue: true });
+
     /**
      * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.
      * This is needed because ECharts does not provide a way to set specific styles for x and y axis, only for axis types.
@@ -217,6 +236,7 @@ export default class SynChart extends SynergyElement {
   disconnectedCallback(): void {
     super.disconnectedCallback();
     this.resizeObserver?.disconnect();
+    this.themeObserver?.disconnect();
     this.chartInstance?.dispose();
   }
 

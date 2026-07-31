@@ -4,6 +4,11 @@
  */
 
 /**
+ * Maps to the css variable `--syn-chart-background-color`
+ */
+export const SynChartBackgroundColor: string;
+
+/**
  * Maps to the css variable `--syn-chart-categorical-10`
  */
 export const SynChartCategorical10: string;
@@ -77,6 +82,16 @@ export const SynChartGridLinesColor: string;
  * Maps to the css variable `--syn-chart-grid-lines-color-emphasize`
  */
 export const SynChartGridLinesColorEmphasize: string;
+
+/**
+ * Maps to the css variable `--syn-chart-plot-line-color`
+ */
+export const SynChartPlotLineColor: string;
+
+/**
+ * Maps to the css variable `--syn-chart-range-selection-color`
+ */
+export const SynChartRangeSelectionColor: string;
 
 /**
  * Maps to the css variable `--syn-chart-sequential-01-10`
@@ -677,3 +692,8 @@ export const SynChartSequentialStatusWarning90: string;
  * Maps to the css variable `--syn-chart-sequential-status-warning-100`
  */
 export const SynChartSequentialStatusWarning100: string;
+
+/**
+ * Maps to the css variable `--syn-chart-tooltip-color`
+ */
+export const SynChartTooltipColor: string;

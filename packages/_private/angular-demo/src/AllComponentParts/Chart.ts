@@ -13,5 +13,5 @@ import { mockData } from '@synergy-design-system/demo-utilities';
   `,
 })
 export class Chart {
-  lineChartConfig = mockData('lineChartConfig');
+  lineChartConfig = mockData('lineChartConfigObject');
 }

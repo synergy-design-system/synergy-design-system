@@ -101,7 +101,7 @@ const meta: Meta = {
       disableSnapshot: false,
       modes: Chromatic_Modes_Sick_2025,
     },
-    design: generateFigmaPluginObject('0-0'),
+    design: generateFigmaPluginObject('50084-14822'),
     docs: {
       description: {
         component: generateStoryDescription('loading-screen', 'default', 'templates'),

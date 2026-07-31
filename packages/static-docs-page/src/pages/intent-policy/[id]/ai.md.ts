@@ -3,6 +3,7 @@ import {
 	getIntentOptions,
 	listIntentCategories,
 	listIntents,
+	type FrameworkProfile,
 	type IntentTargetRef,
 } from '@synergy-design-system/metadata';
 import { withBasePath } from '../../../utils/basePath';
@@ -93,7 +94,8 @@ export const GET = async ({ params }: { params: { id?: string } }): Promise<Resp
 		'react-web-components',
 		'angular',
 		'vue',
-	] as const;
+		'vue-web-components',
+	] as const satisfies readonly FrameworkProfile[];
 
 	const variantData = await Promise.all(intents.data.map(async intent => {
 		const optionsByFramework = await Promise.all(renderFrameworks.map(async framework => {

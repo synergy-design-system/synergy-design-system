@@ -338,7 +338,7 @@ export const TWOWAY_BINDING_ENABLED_ELEMENTS = [
   'textarea',
   'combobox',
   'range',
-];
+].sort();
 
 /**
  * Check if a given component is enabled for two way data binding

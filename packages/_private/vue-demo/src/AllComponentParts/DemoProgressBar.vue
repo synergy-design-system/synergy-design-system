@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { SynVueProgressBar } from '@synergy-design-system/vue';
-</script>
-
 <template>
-  <SynVueProgressBar indeterminate />
+  <syn-progress-bar indeterminate />
 </template>

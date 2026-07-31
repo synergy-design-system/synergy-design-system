@@ -1,18 +1,26 @@
 <script setup lang="ts">
-import { SynVueDialog, SynVueButton } from '@synergy-design-system/vue';
+const closeDialog = (event: MouseEvent) => {
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) {
+    return;
+  }
+
+  target.closest('syn-dialog')?.hide();
+};
 </script>
+
 <template>
-  <SynVueDialog
+  <syn-dialog
     :open="true"
     label="Dialog"
   >
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    <SynVueButton
-      @click="(e: MouseEvent) => (e.target as HTMLElement).closest('syn-dialog')?.hide()"
+    <syn-button
+      @click="closeDialog"
       variant="filled"
       slot="footer"
     >
       Close
-    </SynVueButton>
-  </SynVueDialog>
+    </syn-button>
+  </syn-dialog>
 </template>

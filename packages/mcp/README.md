@@ -895,7 +895,7 @@ Example prompts:
 **Parameters:**
 
 - `component` (string, required): Component tag, for example `syn-button`.
-- `framework` (string, optional): `react-wrapper`, `react-web-components`, `angular`, `vue`, or `vanilla`. Defaults to runtime config `tools.intentComponentGuide.framework`.
+- `framework` (string, optional): `react-wrapper`, `react-web-components`, `angular`, `vue`, `vue-web-components`, or `vanilla`. Defaults to runtime config `tools.intentComponentGuide.framework`.
 - `includePhases` (array, optional): Defaults to runtime config `tools.intentComponentGuide.includePhases`.
 
 **Example prompts:**

@@ -27,5 +27,10 @@ export const resolveFrameworkComponentName = (
     return `SynVue${normalizedComponent}`;
   }
 
+  // Native web-component framework profiles keep the original syn-* tag name.
+  if (framework === 'react-web-components' || framework === 'vue-web-components') {
+    return componentName;
+  }
+
   return componentName;
 };

@@ -23,8 +23,14 @@ If you want to see a usage example, please check out our [test Vue repository](h
 Run the following steps to install the required packages.
 
 ```bash
-# Install the base library and required css files
+# Install wrapper components and required css files
 npm install --save @synergy-design-system/vue @synergy-design-system/tokens
+
+# Native components + type-only wrappers:
+# @synergy-design-system/vue only provides TypeScript support here,
+# therefore installing it as a devDependency is sufficient.
+npm install --save-dev @synergy-design-system/vue
+npm install --save @synergy-design-system/components
 
 # Optional: Install the styles utility package
 npm install --save @synergy-design-system/styles
@@ -55,7 +61,54 @@ import App from "./App.vue";
 createApp(App).mount("#app");
 ```
 
-### 4. Importing and rendering components
+### 4. Using native Synergy components in Vue (type-only wrappers)
+
+Vue has first-class support for custom elements, so you can use native `syn-*` elements directly.
+For TypeScript template support and autocompletion, this package also provides type-only wrappers.
+
+When using this native + type-only approach, `@synergy-design-system/vue` is only needed for TypeScript declarations and can be installed as a `devDependency`.
+
+For TypeScript projects, make sure the module augmentation is loaded once in your project.
+You can do this in an `env.d.ts` file (recommended in Vue/Vite projects):
+
+```ts
+/// <reference types="vite/client" />
+
+import "@synergy-design-system/vue";
+```
+
+Then import the required Synergy custom elements and use them natively:
+
+```html
+<script setup lang="ts">
+  import "@synergy-design-system/components/components/button/button.js";
+  import "@synergy-design-system/components/components/input/input.js";
+
+  const onChange = (e: Event) => {
+    console.log(e);
+  };
+</script>
+
+<template>
+  <syn-button type="submit">Submit me</syn-button>
+  <syn-input name="my-input" required @syn-change="onChange" />
+</template>
+```
+
+This enables automatic type checks and autocompletion for Synergy intrinsic elements in Vue templates.
+
+#### 4.1. Migrating from Vue wrappers to native components
+
+1. Upgrade `@synergy-design-system/vue` to the latest version.
+2. Ensure your TypeScript setup loads `@synergy-design-system/vue` once (for example via `env.d.ts`).
+3. Replace wrapper components with native counterparts (for example `<SynVueButton>` -> `<syn-button>`).
+4. Keep custom event names in native form (for example `@syn-change`).
+5. For two-way data binding on form controls, add `SynModelPlugin` and configure `synIsCustomElement` in `vite.config.ts` (see [section 10.1](#101-two-way-binding-for-native-syn--elements-via-plugin)).
+6. Run `vue-tsc` and your tests to verify behavior.
+
+---
+
+### 5. Importing and rendering components
 
 You may now use the components by importing them from the `@synergy-design-system/vue` package and rendering them in your own Vue components.
 
@@ -72,7 +125,7 @@ You may now use the components by importing them from the `@synergy-design-syste
 </template>
 ```
 
-### 5. Usage of the components
+### 6. Usage of the components
 
 All information about which components exist as well as the available properties, events and usage of a component, can be found at `components` in our [documentation](https://synergy-design-system.github.io/?path=/docs/components).
 The documentation is written for no specific web framework but only vanilla html and javascript.
@@ -92,7 +145,7 @@ The naming of the components for Vue changes from kebab-case to PascalCase with 
 <SynVueButton> My Button </SynVueButton>
 ```
 
-### 6. Usage of attributes
+### 7. Usage of attributes
 
 The attribute naming of the components are the same as in the documentation.
 
@@ -114,7 +167,7 @@ The attribute naming of the components are the same as in the documentation.
 />
 ```
 
-### 7. Usage of events
+### 8. Usage of events
 
 Custom events are named in the documentation as following: `syn-change`, `syn-clear`, ...
 They stay the same for the Vue components:
@@ -154,7 +207,7 @@ An example for how these types can be used in case of event handling, is shown b
 </template>
 ```
 
-### 8. Obtaining a reference to the underlying native element (e.g. for usage of methods)
+### 9. Obtaining a reference to the underlying native element (e.g. for usage of methods)
 
 Sometimes, there is a need to interact directly with the underlying native web-component. For this reason, the library exposes a `nativeElement` property for all vue components.
 
@@ -177,7 +230,7 @@ Sometimes, there is a need to interact directly with the underlying native web-c
 </template>
 ```
 
-### 9. Using two way databinding
+### 10. Using two way databinding
 
 We support [Vue two way data binding](https://vuejs.org/guide/components/v-model.html) for form components out of the box.
 You may use it in one of the following ways:
@@ -237,7 +290,86 @@ You may use it in one of the following ways:
 </template>
 ```
 
-### 10. Using the chart component
+#### 10.1. Two way binding for native `syn-*` elements via plugin
+
+When using native `syn-*` elements instead of `SynVue*` wrappers, you can enable standard `v-model` support via `SynModelPlugin`. The plugin registers transparent Vue components for supported Synergy form controls so `v-model` works with no extra syntax.
+
+**Step 1: Configure the Vue template compiler in `vite.config.ts`**
+
+Import `synIsCustomElement` to tell the compiler which `syn-*` elements the plugin handles (resolved as Vue components) and which remain native pass-throughs (suppressing warnings):
+
+```ts
+// vite.config.ts
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import { synIsCustomElement } from "@synergy-design-system/vue";
+
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: synIsCustomElement(false),
+        },
+      },
+    }),
+  ],
+});
+```
+
+> If you are **not** using `SynModelPlugin` (type-only usage, no v-model), omit the argument or pass `true`:
+> `isCustomElement: synIsCustomElement()` — this suppresses warnings for all `syn-*` elements.
+
+**Step 2: Register the plugin in your app entry**
+
+```ts
+// src/main.ts
+import { createApp } from "vue";
+import { SynModelPlugin } from "@synergy-design-system/vue";
+import App from "./App.vue";
+
+createApp(App).use(SynModelPlugin).mount("#app");
+```
+
+**Step 3: Use `v-model` directly on native elements**
+
+All supported Synergy form controls now accept standard `v-model` bindings — exactly as you would with `SynVue*` wrappers:
+
+```html
+<script setup lang="ts">
+  import { ref } from "vue";
+
+  const name = ref("");
+  const formValues = ref({
+    email: "",
+    agreed: false,
+    rating: 5,
+  });
+</script>
+
+<template>
+  <syn-input v-model="name" label="Name" required />
+  <syn-input v-model="formValues.email" label="E-Mail" type="email" />
+  <syn-checkbox v-model="formValues.agreed">Agree to terms</syn-checkbox>
+  <syn-range v-model="formValues.rating" :min="0" :max="10" />
+</template>
+```
+
+The following elements support `v-model` via the plugin:
+
+| Element           | Bound property |
+| ----------------- | -------------- |
+| `syn-input`       | `value`        |
+| `syn-textarea`    | `value`        |
+| `syn-select`      | `value`        |
+| `syn-combobox`    | `value`        |
+| `syn-radio-group` | `value`        |
+| `syn-range`       | `value`        |
+| `syn-checkbox`    | `checked`      |
+| `syn-switch`      | `checked`      |
+| `syn-file`        | `files`        |
+
+### 11. Using the chart component
 
 For details on chart components, see the [chart overview](https://synergy-design-system.github.io/?path=/docs/charts-overview--docs) and the [Vue-specific chart documentation](https://synergy-design-system.github.io/?path=/docs/charts-overview--docs#vue).
 

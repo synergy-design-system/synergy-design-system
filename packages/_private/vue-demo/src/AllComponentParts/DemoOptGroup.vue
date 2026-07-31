@@ -1,25 +1,21 @@
-<script setup lang="ts">
-import { SynVueSelect, SynVueOptgroup, SynVueOption } from '@synergy-design-system/vue';
-</script>
-
 <template>
-  <SynVueSelect>
-    <SynVueOptgroup label="Section 1">
-      <SynVueOption value="1">Option 1</SynVueOption>
-      <SynVueOption value="2">Option 2</SynVueOption>
-      <SynVueOption value="3">Option 3</SynVueOption>
-    </SynVueOptgroup>
+  <syn-select>
+    <syn-optgroup label="Section 1">
+      <syn-option value="1">Option 1</syn-option>
+      <syn-option value="2">Option 2</syn-option>
+      <syn-option value="3">Option 3</syn-option>
+    </syn-optgroup>
 
-    <SynVueOptgroup label="Section 2">
-      <SynVueOption value="4">Option 4</SynVueOption>
-      <SynVueOption value="5" disabled>Option 5</SynVueOption>
-      <SynVueOption value="6">Option 6</SynVueOption>
-    </SynVueOptgroup>
+    <syn-optgroup label="Section 2">
+      <syn-option value="4">Option 4</syn-option>
+      <syn-option value="5" disabled>Option 5</syn-option>
+      <syn-option value="6">Option 6</syn-option>
+    </syn-optgroup>
 
-    <SynVueOptgroup disabled label="Section 3">
-      <SynVueOption value="4">Option 7</SynVueOption>
-      <SynVueOption disabled value="5">Option 8</SynVueOption>
-      <SynVueOption value="6">Option 9</SynVueOption>
-    </SynVueOptgroup>
-  </SynVueSelect>
+    <syn-optgroup disabled label="Section 3">
+      <syn-option value="4">Option 7</syn-option>
+      <syn-option disabled value="5">Option 8</syn-option>
+      <syn-option value="6">Option 9</syn-option>
+    </syn-optgroup>
+  </syn-select>
 </template>

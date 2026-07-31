@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/static-docs-page",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-static-docs-page-0.0.1-851f01b6-b24a-48c9-92af-aa2f025e0fd4",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-static-docs-page-0.0.1-c7d84946-8bff-49e3-ba58-5242db91e13a",
   "creationInfo": {
-    "created": "2026-07-24T10:10:27.852Z",
+    "created": "2026-07-31T07:38:22.611Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.21.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.22.0-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.21.0",
+      "versionInfo": "3.22.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.21.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.22.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -70,16 +70,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-react-3.21.0-2",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-react-3.22.0-2",
       "name": "@synergy-design-system/react",
-      "versionInfo": "3.21.0",
+      "versionInfo": "3.22.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.21.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.22.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -108,16 +108,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.21.0-4",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.22.0-4",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.21.0",
+      "versionInfo": "3.22.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.21.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.22.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -332,33 +332,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-3.3.3-13",
-      "name": "lit",
-      "versionInfo": "3.3.3",
-      "downloadLocation": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit@3.3.3"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A library for building fast, lightweight web components",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "7f272ebd983f864a68ccbd34966d691091f99cdfe5afd65777a9892361d2378f81cdcf8b0cd74402927a1c56cf91d14d1cbbcea65208b89bf1912e17531aa2af"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--lit-react-1.0.8-14",
+      "SPDXID": "SPDXRef-Package--lit-react-1.0.8-13",
       "name": "@lit/react",
       "versionInfo": "1.0.8",
       "downloadLocation": "https://registry.npmjs.org/@lit/react/-/react-1.0.8.tgz",
@@ -384,7 +358,58 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-15",
+      "SPDXID": "SPDXRef-Package-lit-3.3.3-14",
+      "name": "lit",
+      "versionInfo": "3.3.3",
+      "downloadLocation": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lit@3.3.3"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "A library for building fast, lightweight web components",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "7f272ebd983f864a68ccbd34966d691091f99cdfe5afd65777a9892361d2378f81cdcf8b0cd74402927a1c56cf91d14d1cbbcea65208b89bf1912e17531aa2af"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--types-react-19.2.17-15",
+      "name": "@types/react",
+      "versionInfo": "19.2.17",
+      "downloadLocation": "https://registry.npmjs.org/@types/react/-/react-19.2.17.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40types/react@19.2.17"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "TypeScript definitions for react",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "3177e6a9a54f115824053fda6346860a44565ad072898417a37c5d43caf9473b85acf8919fc19aaf6b5075749443618a5776e45dc91e93cf55f3040163643f03"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-16",
       "name": "@astrojs/internal-helpers",
       "versionInfo": "0.10.1",
       "downloadLocation": "https://registry.npmjs.org/@astrojs/internal-helpers/-/internal-helpers-0.10.1.tgz",
@@ -410,58 +435,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--types-react-19.2.17-16",
-      "name": "@types/react",
-      "versionInfo": "19.2.17",
-      "downloadLocation": "https://registry.npmjs.org/@types/react/-/react-19.2.17.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/react@19.2.17"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "TypeScript definitions for react",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "3177e6a9a54f115824053fda6346860a44565ad072898417a37c5d43caf9473b85acf8919fc19aaf6b5075749443618a5776e45dc91e93cf55f3040163643f03"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--vitejs-plugin-react-5.2.0-17",
-      "name": "@vitejs/plugin-react",
-      "versionInfo": "5.2.0",
-      "downloadLocation": "https://registry.npmjs.org/@vitejs/plugin-react/-/plugin-react-5.2.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40vitejs/plugin-react@5.2.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "The default Vite plugin for React projects",
-      "homepage": "https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#readme",
-      "supplier": "Person: Evan You",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "6262a47e13808b7c2c0753e126ae52723dc65cc9f75afb50fc90b4c68a29b87a1749d9ad752b4ea45ad8693d6489ed9880505c21eeb844eccc6118c2ad839d63"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--types-react-dom-19.2.3-18",
+      "SPDXID": "SPDXRef-Package--types-react-dom-19.2.3-17",
       "name": "@types/react-dom",
       "versionInfo": "19.2.3",
       "downloadLocation": "https://registry.npmjs.org/@types/react-dom/-/react-dom-19.2.3.tgz",
@@ -482,6 +456,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "8e9d8bfde63a7e7f8a81555000ea9822d6c5d1563f600a5ee4ccf61746b29123bc831df56d8099caf49e6310872afcc71b97998dcfb3c9a4b906b056c9adbe91"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-ultrahtml-1.7.0-18",
+      "name": "ultrahtml",
+      "versionInfo": "1.7.0",
+      "downloadLocation": "https://registry.npmjs.org/ultrahtml/-/ultrahtml-1.7.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ultrahtml@1.7.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "homepage": "https://github.com/natemoo-re/ultrahtml#README",
+      "supplier": "Person: Nate Moore",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "db145dd151e801013833ebc5fc3bc5141ee9515d19c535b54cb8bb9474169c5fd26f94cf784515fe5fa1c5c36718ed346571a7474be808c99844a41ffabbc9da"
         }
       ]
     },
@@ -511,27 +510,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-ultrahtml-1.7.0-20",
-      "name": "ultrahtml",
-      "versionInfo": "1.7.0",
-      "downloadLocation": "https://registry.npmjs.org/ultrahtml/-/ultrahtml-1.7.0.tgz",
+      "SPDXID": "SPDXRef-Package--vitejs-plugin-react-5.2.0-20",
+      "name": "@vitejs/plugin-react",
+      "versionInfo": "5.2.0",
+      "downloadLocation": "https://registry.npmjs.org/@vitejs/plugin-react/-/plugin-react-5.2.0.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/ultrahtml@1.7.0"
+          "referenceLocator": "pkg:npm/%40vitejs/plugin-react@5.2.0"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "homepage": "https://github.com/natemoo-re/ultrahtml#README",
-      "supplier": "Person: Nate Moore",
+      "description": "The default Vite plugin for React projects",
+      "homepage": "https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#readme",
+      "supplier": "Person: Evan You",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "db145dd151e801013833ebc5fc3bc5141ee9515d19c535b54cb8bb9474169c5fd26f94cf784515fe5fa1c5c36718ed346571a7474be808c99844a41ffabbc9da"
+          "checksumValue": "6262a47e13808b7c2c0753e126ae52723dc65cc9f75afb50fc90b4c68a29b87a1749d9ad752b4ea45ad8693d6489ed9880505c21eeb844eccc6118c2ad839d63"
         }
       ]
     },
@@ -562,32 +562,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--astrojs-markdown-satteri-0.3.3-22",
-      "name": "@astrojs/markdown-satteri",
-      "versionInfo": "0.3.3",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/markdown-satteri/-/markdown-satteri-0.3.3.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/markdown-satteri@0.3.3"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "homepage": "https://astro.build",
-      "supplier": "Person: withastro",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "2e37b7dc8b6d77c5101a06c821642f84f923e57e5ce1bd6c6676565f725057f016a5f6ee406c558b638db7af9273275cc1f4787a08a5b25116c9cccc725ac9d6"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-rs-0.3.1-23",
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-rs-0.3.1-22",
       "name": "@astrojs/compiler-rs",
       "versionInfo": "0.3.1",
       "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-rs/-/compiler-rs-0.3.1.tgz",
@@ -608,6 +583,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "693ef1920b1b3684ba9eb898e6a2a96e284ae37b251473b8d62aa01c24dd3af9f589f690c4b09ce725f2fba1b302d89a7e8682d7303b3b055709732cbd464e92"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--astrojs-markdown-satteri-0.3.3-23",
+      "name": "@astrojs/markdown-satteri",
+      "versionInfo": "0.3.3",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/markdown-satteri/-/markdown-satteri-0.3.3.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/markdown-satteri@0.3.3"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "homepage": "https://astro.build",
+      "supplier": "Person: withastro",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "2e37b7dc8b6d77c5101a06c821642f84f923e57e5ce1bd6c6676565f725057f016a5f6ee406c558b638db7af9273275cc1f4787a08a5b25116c9cccc725ac9d6"
         }
       ]
     },
@@ -766,7 +766,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-axobject-query-4.1.0-30",
+      "SPDXID": "SPDXRef-Package-aria-query-5.3.2-30",
+      "name": "aria-query",
+      "versionInfo": "5.3.2",
+      "downloadLocation": "https://registry.npmjs.org/aria-query/-/aria-query-5.3.2.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/aria-query@5.3.2"
+        }
+      ],
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "description": "Programmatic access to the ARIA specification",
+      "homepage": "https://github.com/A11yance/aria-query#readme",
+      "supplier": "Person: Jesse Beach",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "08e44ea676a86a9d44d85d34d12eb6afa03ad2e1d99e696fa2685fc93d8395372b6353ab04a9f65211fbaa7e704c2f7332f0f4018edcb1d3d237028ffbb5a243"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-axobject-query-4.1.0-31",
       "name": "axobject-query",
       "versionInfo": "4.1.0",
       "downloadLocation": "https://registry.npmjs.org/axobject-query/-/axobject-query-4.1.0.tgz",
@@ -792,7 +818,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-ci-info-4.4.0-31",
+      "SPDXID": "SPDXRef-Package-ci-info-4.4.0-32",
       "name": "ci-info",
       "versionInfo": "4.4.0",
       "downloadLocation": "https://registry.npmjs.org/ci-info/-/ci-info-4.4.0.tgz",
@@ -814,32 +840,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "efb3d2c1eadc09953615ce2c5fde1e17c93c3f1b5ee890302f8fc80992c58c92ea7a0b3b902b80b2aaa3ffbd0d405e93bc3a6016392e6d0076156d9965d76f42"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-aria-query-5.3.2-32",
-      "name": "aria-query",
-      "versionInfo": "5.3.2",
-      "downloadLocation": "https://registry.npmjs.org/aria-query/-/aria-query-5.3.2.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/aria-query@5.3.2"
-        }
-      ],
-      "licenseConcluded": "Apache-2.0",
-      "licenseDeclared": "Apache-2.0",
-      "copyrightText": "NOASSERTION",
-      "description": "Programmatic access to the ARIA specification",
-      "homepage": "https://github.com/A11yance/aria-query#readme",
-      "supplier": "Person: Jesse Beach",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "08e44ea676a86a9d44d85d34d12eb6afa03ad2e1d99e696fa2685fc93d8395372b6353ab04a9f65211fbaa7e704c2f7332f0f4018edcb1d3d237028ffbb5a243"
         }
       ]
     },
@@ -896,32 +896,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-diff-8.0.4-35",
-      "name": "diff",
-      "versionInfo": "8.0.4",
-      "downloadLocation": "https://registry.npmjs.org/diff/-/diff-8.0.4.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/diff@8.0.4"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A JavaScript text diff implementation.",
-      "homepage": "https://github.com/kpdecker/jsdiff#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "0cf8b41668e2494e44bd0574fbe1850ce27d012414545879903f8ecce9d8762ee7dd6a66f6159619f07f3b66e57c770c5532f95a44174a74622bd99a921adc9f"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-cookie-1.1.1-36",
+      "SPDXID": "SPDXRef-Package-cookie-1.1.1-35",
       "name": "cookie",
       "versionInfo": "1.1.1",
       "downloadLocation": "https://registry.npmjs.org/cookie/-/cookie-1.1.1.tgz",
@@ -943,6 +918,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "7a2f00a2cee36b4c1e469173267100f541c9ffb5d09aa8256d1c277f60138dc07d5aaf3be15287f647e38e2acce94854dbf1397c561a77297284595d72a4a275"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-diff-8.0.4-36",
+      "name": "diff",
+      "versionInfo": "8.0.4",
+      "downloadLocation": "https://registry.npmjs.org/diff/-/diff-8.0.4.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/diff@8.0.4"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "A JavaScript text diff implementation.",
+      "homepage": "https://github.com/kpdecker/jsdiff#readme",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "0cf8b41668e2494e44bd0574fbe1850ce27d012414545879903f8ecce9d8762ee7dd6a66f6159619f07f3b66e57c770c5532f95a44174a74622bd99a921adc9f"
         }
       ]
     },
@@ -1076,33 +1076,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-get-tsconfig-5.0.0-beta.4-42",
-      "name": "get-tsconfig",
-      "versionInfo": "5.0.0-beta.4",
-      "downloadLocation": "https://registry.npmjs.org/get-tsconfig/-/get-tsconfig-5.0.0-beta.4.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/get-tsconfig@5.0.0-beta.4"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Find and parse the tsconfig.json file from a directory path",
-      "homepage": "https://github.com/privatenumber/get-tsconfig#readme",
-      "supplier": "Person: Hiroki Osame",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "ee717b0bd7c83c510c1e010c11f80894ef700dd67c0b21f0dbbad67221597c7bc70d178888f86c62eccf457b1fbc10aa172d65f11472c9657b40b33e661509b1"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-github-slugger-2.0.0-43",
+      "SPDXID": "SPDXRef-Package-github-slugger-2.0.0-42",
       "name": "github-slugger",
       "versionInfo": "2.0.0",
       "downloadLocation": "https://registry.npmjs.org/github-slugger/-/github-slugger-2.0.0.tgz",
@@ -1124,6 +1098,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "21a390f69b98b63ae4abb63462097d283667adffda89425852955ff3dcbc9326b16d11bb6354ab5ff8daba6aeff35bdceb5fa488c7a6a6e8ec337630ef0e6a73"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-get-tsconfig-5.0.0-beta.4-43",
+      "name": "get-tsconfig",
+      "versionInfo": "5.0.0-beta.4",
+      "downloadLocation": "https://registry.npmjs.org/get-tsconfig/-/get-tsconfig-5.0.0-beta.4.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/get-tsconfig@5.0.0-beta.4"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Find and parse the tsconfig.json file from a directory path",
+      "homepage": "https://github.com/privatenumber/get-tsconfig#readme",
+      "supplier": "Person: Hiroki Osame",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "ee717b0bd7c83c510c1e010c11f80894ef700dd67c0b21f0dbbad67221597c7bc70d178888f86c62eccf457b1fbc10aa172d65f11472c9657b40b33e661509b1"
         }
       ]
     },
@@ -2108,7 +2108,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--types-hast-3.0.5-82",
+      "SPDXID": "SPDXRef-Package-csstype-3.2.3-82",
+      "name": "csstype",
+      "versionInfo": "3.2.3",
+      "downloadLocation": "https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/csstype@3.2.3"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Strict TypeScript and Flow types for style based on MDN data",
+      "homepage": "https://github.com/frenic/csstype#readme",
+      "supplier": "Person: Fredrik Nicol",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "cf51c629c632db103c00641fc2b9f43c0cbe3c1ed7fc64a3dd45495bda8aca7e37c566be825e675e6538aaa2cc4735952c50bc2aeb145fc4ffd240a2398a4021"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--types-hast-3.0.5-83",
       "name": "@types/hast",
       "versionInfo": "3.0.5",
       "downloadLocation": "https://registry.npmjs.org/@types/hast/-/hast-3.0.5.tgz",
@@ -2133,7 +2159,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--types-mdast-4.0.4-83",
+      "SPDXID": "SPDXRef-Package--types-mdast-4.0.4-84",
       "name": "@types/mdast",
       "versionInfo": "4.0.4",
       "downloadLocation": "https://registry.npmjs.org/@types/mdast/-/mdast-4.0.4.tgz",
@@ -2158,7 +2184,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-retext-smartypants-6.2.0-84",
+      "SPDXID": "SPDXRef-Package-retext-smartypants-6.2.0-85",
       "name": "retext-smartypants",
       "versionInfo": "6.2.0",
       "downloadLocation": "https://registry.npmjs.org/retext-smartypants/-/retext-smartypants-6.2.0.tgz",
@@ -2184,7 +2210,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-unified-11.0.5-85",
+      "SPDXID": "SPDXRef-Package-unified-11.0.5-86",
       "name": "unified",
       "versionInfo": "11.0.5",
       "downloadLocation": "https://registry.npmjs.org/unified/-/unified-11.0.5.tgz",
@@ -2206,32 +2232,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "c4abc684f5b0de4f3842387c6c8dd97898ea9f269d2be18416d6b349f66ffeb29e4e44e3389868ea616a87648cf7a888719a24c623a983bf066b34d283cf8a1c"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-csstype-3.2.3-86",
-      "name": "csstype",
-      "versionInfo": "3.2.3",
-      "downloadLocation": "https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/csstype@3.2.3"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Strict TypeScript and Flow types for style based on MDN data",
-      "homepage": "https://github.com/frenic/csstype#readme",
-      "supplier": "Person: Fredrik Nicol",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "cf51c629c632db103c00641fc2b9f43c0cbe3c1ed7fc64a3dd45495bda8aca7e37c566be825e675e6538aaa2cc4735952c50bc2aeb145fc4ffd240a2398a4021"
         }
       ]
     },
@@ -2589,33 +2589,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-terser-5.46.2-101",
-      "name": "terser",
-      "versionInfo": "5.46.2",
-      "downloadLocation": "https://registry.npmjs.org/terser/-/terser-5.46.2.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/terser@5.46.2"
-        }
-      ],
-      "licenseConcluded": "BSD-2-Clause",
-      "licenseDeclared": "BSD-2-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "JavaScript parser, mangler/compressor and beautifier toolkit for ES6+",
-      "homepage": "https://terser.org",
-      "supplier": "Person: Mihai Bazon",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "bb17e8f5f3dc4a02c36286ffc3516e2f473df4c5a22439effb9a97490739f8a8b936354db188bae883673050637fab85cfa3a75f5da988940f1782298c94cd4f"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-yaml-2.9.0-102",
+      "SPDXID": "SPDXRef-Package-yaml-2.9.0-101",
       "name": "yaml",
       "versionInfo": "2.9.0",
       "downloadLocation": "https://registry.npmjs.org/yaml/-/yaml-2.9.0.tgz",
@@ -2641,27 +2615,54 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-satteri-0.9.5-103",
-      "name": "satteri",
-      "versionInfo": "0.9.5",
-      "downloadLocation": "https://registry.npmjs.org/satteri/-/satteri-0.9.5.tgz",
+      "SPDXID": "SPDXRef-Package-terser-5.46.2-102",
+      "name": "terser",
+      "versionInfo": "5.46.2",
+      "downloadLocation": "https://registry.npmjs.org/terser/-/terser-5.46.2.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/satteri@0.9.5"
+          "referenceLocator": "pkg:npm/terser@5.46.2"
+        }
+      ],
+      "licenseConcluded": "BSD-2-Clause",
+      "licenseDeclared": "BSD-2-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "JavaScript parser, mangler/compressor and beautifier toolkit for ES6+",
+      "homepage": "https://terser.org",
+      "supplier": "Person: Mihai Bazon",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "bb17e8f5f3dc4a02c36286ffc3516e2f473df4c5a22439effb9a97490739f8a8b936354db188bae883673050637fab85cfa3a75f5da988940f1782298c94cd4f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "name": "@astrojs/compiler-binding",
+      "versionInfo": "0.3.1",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding/-/compiler-binding-0.3.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding@0.3.1"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "High-performance Markdown and MDX processing",
-      "homepage": "https://github.com/bruits/satteri#readme",
+      "description": "Astro Compiler",
+      "homepage": "https://astro.build",
+      "supplier": "Person: Astro contributors",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "66e59597ebe733ae32fbf4ed5fc2a8b2fd9cd345be84b4228b09c42fa1f450a555af116a330e03d822471d06a8b9577cf4e021b4105f8d62ea84a8b74d5515e3"
+          "checksumValue": "0da0148f6f402015365dd27cbb071a6fc956e4eda993da58f005e470cc34b30efb9d56b7a1e4d845c3be0ef6dba687b17fa4e131cd0531660243fc0dd7f4fba1"
         }
       ]
     },
@@ -2692,28 +2693,27 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
-      "name": "@astrojs/compiler-binding",
-      "versionInfo": "0.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding/-/compiler-binding-0.3.1.tgz",
+      "SPDXID": "SPDXRef-Package-satteri-0.9.5-105",
+      "name": "satteri",
+      "versionInfo": "0.9.5",
+      "downloadLocation": "https://registry.npmjs.org/satteri/-/satteri-0.9.5.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding@0.3.1"
+          "referenceLocator": "pkg:npm/satteri@0.9.5"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Astro Compiler",
-      "homepage": "https://astro.build",
-      "supplier": "Person: Astro contributors",
+      "description": "High-performance Markdown and MDX processing",
+      "homepage": "https://github.com/bruits/satteri#readme",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "0da0148f6f402015365dd27cbb071a6fc956e4eda993da58f005e470cc34b30efb9d56b7a1e4d845c3be0ef6dba687b17fa4e131cd0531660243fc0dd7f4fba1"
+          "checksumValue": "66e59597ebe733ae32fbf4ed5fc2a8b2fd9cd345be84b4228b09c42fa1f450a555af116a330e03d822471d06a8b9577cf4e021b4105f8d62ea84a8b74d5515e3"
         }
       ]
     },
@@ -2845,32 +2845,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--types-estree-1.0.9-111",
-      "name": "@types/estree",
-      "versionInfo": "1.0.9",
-      "downloadLocation": "https://registry.npmjs.org/@types/estree/-/estree-1.0.9.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/estree@1.0.9"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "TypeScript definitions for estree",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/estree",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "1a174f832d5e978fc898fd395f4e54c38730dbf33ddc10949a712f599352b650b310a304e05924f98a680393a21cd426a12ec269f6fc5dadcfc9af26d50af37a"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-sisteransi-1.0.5-112",
+      "SPDXID": "SPDXRef-Package-sisteransi-1.0.5-111",
       "name": "sisteransi",
       "versionInfo": "1.0.5",
       "downloadLocation": "https://registry.npmjs.org/sisteransi/-/sisteransi-1.0.5.tgz",
@@ -2892,6 +2867,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "6cb186951d50c417329e7d9de589835f83068e566fcb631104344d1cb27c548ea5ebef45522c9314d27422f78e48fd1b7178150cf45c7c6a80d298daa94a5f56"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--types-estree-1.0.9-112",
+      "name": "@types/estree",
+      "versionInfo": "1.0.9",
+      "downloadLocation": "https://registry.npmjs.org/@types/estree/-/estree-1.0.9.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40types/estree@1.0.9"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "TypeScript definitions for estree",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/estree",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "1a174f832d5e978fc898fd395f4e54c38730dbf33ddc10949a712f599352b650b310a304e05924f98a680393a21cd426a12ec269f6fc5dadcfc9af26d50af37a"
         }
       ]
     },
@@ -3264,28 +3264,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-estree-walker-2.0.2-129",
-      "name": "estree-walker",
-      "versionInfo": "2.0.2",
-      "downloadLocation": "https://registry.npmjs.org/estree-walker/-/estree-walker-2.0.2.tgz",
+      "SPDXID": "SPDXRef-Package-rollup-4.62.2-129",
+      "name": "rollup",
+      "versionInfo": "4.62.2",
+      "downloadLocation": "https://registry.npmjs.org/rollup/-/rollup-4.62.2.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/estree-walker@2.0.2"
+          "referenceLocator": "pkg:npm/rollup@4.62.2"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Traverse an ESTree-compliant AST",
-      "homepage": "https://github.com/Rich-Harris/estree-walker#readme",
+      "description": "Next-generation ES module bundler",
+      "homepage": "https://rollupjs.org/",
       "supplier": "Person: Rich Harris",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "45f924fcca7f0cbec95637b7bb5f05c45ba34254cd476aba41f312301ec0bc2071f753468ff6dade409fcdad1fe9d5436f0ed89517ff9c3ae7ee942b082c90ff"
+          "checksumValue": "4459eb5b89615c0decddea870d9bcdeb9e20f0e4e3cd17eaa4844961ccc2181e87ce985c915022fd0878b5b3d46d1b838bbb352e5bfc83f36ca4b92db58de04c"
         }
       ]
     },
@@ -3497,7 +3497,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-process-ancestry-0.1.0-139",
+      "SPDXID": "SPDXRef-Package-estree-walker-2.0.2-139",
+      "name": "estree-walker",
+      "versionInfo": "2.0.2",
+      "downloadLocation": "https://registry.npmjs.org/estree-walker/-/estree-walker-2.0.2.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/estree-walker@2.0.2"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Traverse an ESTree-compliant AST",
+      "homepage": "https://github.com/Rich-Harris/estree-walker#readme",
+      "supplier": "Person: Rich Harris",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "45f924fcca7f0cbec95637b7bb5f05c45ba34254cd476aba41f312301ec0bc2071f753468ff6dade409fcdad1fe9d5436f0ed89517ff9c3ae7ee942b082c90ff"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-process-ancestry-0.1.0-140",
       "name": "process-ancestry",
       "versionInfo": "0.1.0",
       "downloadLocation": "https://registry.npmjs.org/process-ancestry/-/process-ancestry-0.1.0.tgz",
@@ -3519,32 +3545,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "b46a895bf527725a5801215c33a5e1f03f25fc132d690f7e0921b4be525225371d30ce250d1bf873a1f43dd72c7ed79df9b55ccdd6127e4d9f76e920da042466"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-rollup-4.62.2-140",
-      "name": "rollup",
-      "versionInfo": "4.62.2",
-      "downloadLocation": "https://registry.npmjs.org/rollup/-/rollup-4.62.2.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/rollup@4.62.2"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Next-generation ES module bundler",
-      "homepage": "https://rollupjs.org/",
-      "supplier": "Person: Rich Harris",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "4459eb5b89615c0decddea870d9bcdeb9e20f0e4e3cd17eaa4844961ccc2181e87ce985c915022fd0878b5b3d46d1b838bbb352e5bfc83f36ca4b92db58de04c"
         }
       ]
     },
@@ -3625,33 +3625,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--babel-parser-7.29.7-144",
-      "name": "@babel/parser",
-      "versionInfo": "7.29.7",
-      "downloadLocation": "https://registry.npmjs.org/@babel/parser/-/parser-7.29.7.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40babel/parser@7.29.7"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "A JavaScript parser",
-      "homepage": "https://babel.dev/docs/en/next/babel-parser",
-      "supplier": "Person: The Babel Team",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "8673919e33ffd4fff31449dda1e5fe9feb7547059126226933f8ceec55b7d8a9fdaf9fac241d8958e758a382fa93bf23d79782c18dc69bfef7eb807510cc2d36"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--jridgewell-sourcemap-codec-1.5.5-145",
+      "SPDXID": "SPDXRef-Package--jridgewell-sourcemap-codec-1.5.5-144",
       "name": "@jridgewell/sourcemap-codec",
       "versionInfo": "1.5.5",
       "downloadLocation": "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz",
@@ -3677,33 +3651,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--babel-types-7.29.7-146",
-      "name": "@babel/types",
+      "SPDXID": "SPDXRef-Package--babel-parser-7.29.7-145",
+      "name": "@babel/parser",
       "versionInfo": "7.29.7",
-      "downloadLocation": "https://registry.npmjs.org/@babel/types/-/types-7.29.7.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@babel/parser/-/parser-7.29.7.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40babel/types@7.29.7"
+          "referenceLocator": "pkg:npm/%40babel/parser@7.29.7"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Babel Types is a Lodash-esque utility library for AST nodes",
-      "homepage": "https://babel.dev/docs/en/next/babel-types",
+      "description": "A JavaScript parser",
+      "homepage": "https://babel.dev/docs/en/next/babel-parser",
       "supplier": "Person: The Babel Team",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "e33048c693f3a30899a6eb28164c865706a4751254cae1f93f143f3ebaa085f7455966acbe709d3df4171eb7a70da8be8322c046e9598d9a3008e8fa7e34f8a4"
+          "checksumValue": "8673919e33ffd4fff31449dda1e5fe9feb7547059126226933f8ceec55b7d8a9fdaf9fac241d8958e758a382fa93bf23d79782c18dc69bfef7eb807510cc2d36"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-source-map-js-1.2.1-147",
+      "SPDXID": "SPDXRef-Package-source-map-js-1.2.1-146",
       "name": "source-map-js",
       "versionInfo": "1.2.1",
       "downloadLocation": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz",
@@ -3725,6 +3699,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "51758c2a12cec1529bef6f0852d40f5f17d853ebac7726ed52b2bff2e184f0240cbeb84ea70bf30c1c23d108522fb31073bbc8b084811bc550f3e203431a5f40"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--babel-types-7.29.7-147",
+      "name": "@babel/types",
+      "versionInfo": "7.29.7",
+      "downloadLocation": "https://registry.npmjs.org/@babel/types/-/types-7.29.7.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40babel/types@7.29.7"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Babel Types is a Lodash-esque utility library for AST nodes",
+      "homepage": "https://babel.dev/docs/en/next/babel-types",
+      "supplier": "Person: The Babel Team",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "e33048c693f3a30899a6eb28164c865706a4751254cae1f93f143f3ebaa085f7455966acbe709d3df4171eb7a70da8be8322c046e9598d9a3008e8fa7e34f8a4"
         }
       ]
     },
@@ -4247,33 +4247,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-chokidar-5.0.0-168",
-      "name": "chokidar",
-      "versionInfo": "5.0.0",
-      "downloadLocation": "https://registry.npmjs.org/chokidar/-/chokidar-5.0.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/chokidar@5.0.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Minimal and efficient cross-platform file watching library",
-      "homepage": "https://github.com/paulmillr/chokidar",
-      "supplier": "Person: Paul Miller",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "4d0326737c3ee40c63a4bf22222c1e6c5ef77510c5e1f04889e02a1a7f5118259a115c10e856f67067b7d589ecd11448ce28b982827563bc5b330a354f132997"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-anymatch-3.1.3-169",
+      "SPDXID": "SPDXRef-Package-anymatch-3.1.3-168",
       "name": "anymatch",
       "versionInfo": "3.1.3",
       "downloadLocation": "https://registry.npmjs.org/anymatch/-/anymatch-3.1.3.tgz",
@@ -4295,6 +4269,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "28c45e154af4078b7e0fe381923477298aafa1ca765da4b33b9e54701ea681031ddca6dc13e9964f2bd557b0ffcec7446cd9d5e9a71952eb64887417bd3af547"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-chokidar-5.0.0-169",
+      "name": "chokidar",
+      "versionInfo": "5.0.0",
+      "downloadLocation": "https://registry.npmjs.org/chokidar/-/chokidar-5.0.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/chokidar@5.0.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Minimal and efficient cross-platform file watching library",
+      "homepage": "https://github.com/paulmillr/chokidar",
+      "supplier": "Person: Paul Miller",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "4d0326737c3ee40c63a4bf22222c1e6c5ef77510c5e1f04889e02a1a7f5118259a115c10e856f67067b7d589ecd11448ce28b982827563bc5b330a354f132997"
         }
       ]
     },
@@ -4816,28 +4816,27 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-detect-libc-2.1.2-192",
-      "name": "detect-libc",
-      "versionInfo": "2.1.2",
-      "downloadLocation": "https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz",
+      "SPDXID": "SPDXRef-Package--img-colour-1.1.0-192",
+      "name": "@img/colour",
+      "versionInfo": "1.1.0",
+      "downloadLocation": "https://registry.npmjs.org/@img/colour/-/colour-1.1.0.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/detect-libc@2.1.2"
+          "referenceLocator": "pkg:npm/%40img/colour@1.1.0"
         }
       ],
-      "licenseConcluded": "Apache-2.0",
-      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Node.js module to detect the C standard library (libc) implementation family and version",
-      "homepage": "https://github.com/lovell/detect-libc#readme",
-      "supplier": "Person: Lovell Fuller",
+      "description": "The ESM-only 'color' package made compatible for use with CommonJS runtimes",
+      "homepage": "https://github.com/lovell/colour#readme",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "06d8f604e38ef37a375b21f9f5ef0c817b3111055c6ab9143a9118aee6c1d2eaf09cdd74c90dfae2bb22072535d67665a966199b4e62fe87fb8a8e26ce2841b5"
+          "checksumValue": "4ddefaabb8f9ee8fed2d57604bbe3a7180117d2cb193c8847d1c5ec0bf61e0e3336216d6e1301ca69974993e1ecaa5dd761e8bfe3c2833be66a3b8b16bfa4279"
         }
       ]
     },
@@ -4980,27 +4979,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--img-colour-1.1.0-199",
-      "name": "@img/colour",
-      "versionInfo": "1.1.0",
-      "downloadLocation": "https://registry.npmjs.org/@img/colour/-/colour-1.1.0.tgz",
+      "SPDXID": "SPDXRef-Package-detect-libc-2.1.2-199",
+      "name": "detect-libc",
+      "versionInfo": "2.1.2",
+      "downloadLocation": "https://registry.npmjs.org/detect-libc/-/detect-libc-2.1.2.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40img/colour@1.1.0"
+          "referenceLocator": "pkg:npm/detect-libc@2.1.2"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
       "copyrightText": "NOASSERTION",
-      "description": "The ESM-only 'color' package made compatible for use with CommonJS runtimes",
-      "homepage": "https://github.com/lovell/colour#readme",
+      "description": "Node.js module to detect the C standard library (libc) implementation family and version",
+      "homepage": "https://github.com/lovell/detect-libc#readme",
+      "supplier": "Person: Lovell Fuller",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "4ddefaabb8f9ee8fed2d57604bbe3a7180117d2cb193c8847d1c5ec0bf61e0e3336216d6e1301ca69974993e1ecaa5dd761e8bfe3c2833be66a3b8b16bfa4279"
+          "checksumValue": "06d8f604e38ef37a375b21f9f5ef0c817b3111055c6ab9143a9118aee6c1d2eaf09cdd74c90dfae2bb22072535d67665a966199b4e62fe87fb8a8e26ce2841b5"
         }
       ]
     },
@@ -5184,33 +5184,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-unist-util-visit-5.1.0-207",
-      "name": "unist-util-visit",
-      "versionInfo": "5.1.0",
-      "downloadLocation": "https://registry.npmjs.org/unist-util-visit/-/unist-util-visit-5.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/unist-util-visit@5.1.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "unist utility to visit nodes",
-      "homepage": "https://github.com/syntax-tree/unist-util-visit#readme",
-      "supplier": "Person: Titus Wormer",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "9bebc87727823a976bfd07900aed84cf15ffa21812f0a6e73c38059e2e1d42c7d20ada73f14a83c98e468d1aeef0f0cab989fb16ad7d8f5090fa7252b0628ece"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-nlcst-to-string-4.0.0-208",
+      "SPDXID": "SPDXRef-Package-nlcst-to-string-4.0.0-207",
       "name": "nlcst-to-string",
       "versionInfo": "4.0.0",
       "downloadLocation": "https://registry.npmjs.org/nlcst-to-string/-/nlcst-to-string-4.0.0.tgz",
@@ -5232,6 +5206,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "60a2c109c51828083414d94e053e9a23dd6a1664a214a8a5ba4eb9e56ccf17e0c3300d36a88cb2f2e891a88f105ed705a44be5975d8ba4be4c5ea126019f9d70"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-unist-util-visit-5.1.0-208",
+      "name": "unist-util-visit",
+      "versionInfo": "5.1.0",
+      "downloadLocation": "https://registry.npmjs.org/unist-util-visit/-/unist-util-visit-5.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/unist-util-visit@5.1.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "unist utility to visit nodes",
+      "homepage": "https://github.com/syntax-tree/unist-util-visit#readme",
+      "supplier": "Person: Titus Wormer",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "9bebc87727823a976bfd07900aed84cf15ffa21812f0a6e73c38059e2e1d42c7d20ada73f14a83c98e468d1aeef0f0cab989fb16ad7d8f5090fa7252b0628ece"
         }
       ]
     },
@@ -5288,33 +5288,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-is-plain-obj-4.1.0-211",
-      "name": "is-plain-obj",
-      "versionInfo": "4.1.0",
-      "downloadLocation": "https://registry.npmjs.org/is-plain-obj/-/is-plain-obj-4.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/is-plain-obj@4.1.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Check if a value is a plain object",
-      "homepage": "https://github.com/sindresorhus/is-plain-obj#readme",
-      "supplier": "Person: Sindre Sorhus",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "f8f822faf32e50d909c84c62301b792251683322a7af9ce127852ca73e7c58e841179428219905c8d1c86c102d1f0cd502093946d9dd54db0344deb5fe6983aa"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-extend-3.0.2-212",
+      "SPDXID": "SPDXRef-Package-extend-3.0.2-211",
       "name": "extend",
       "versionInfo": "3.0.2",
       "downloadLocation": "https://registry.npmjs.org/extend/-/extend-3.0.2.tgz",
@@ -5336,6 +5310,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "7e3aae0b9f5c0fb0b25babab3572b4141b9f9197288861bcd304ee3ee8d7e7dd1c0794ed967db4136501e12fd601156a8577df665d8b3604be81074f2088a6fe"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-is-plain-obj-4.1.0-212",
+      "name": "is-plain-obj",
+      "versionInfo": "4.1.0",
+      "downloadLocation": "https://registry.npmjs.org/is-plain-obj/-/is-plain-obj-4.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/is-plain-obj@4.1.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Check if a value is a plain object",
+      "homepage": "https://github.com/sindresorhus/is-plain-obj#readme",
+      "supplier": "Person: Sindre Sorhus",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "f8f822faf32e50d909c84c62301b792251683322a7af9ce127852ca73e7c58e841179428219905c8d1c86c102d1f0cd502093946d9dd54db0344deb5fe6983aa"
         }
       ]
     },
@@ -6612,7 +6612,32 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-image-size-0.5.5-265",
+      "SPDXID": "SPDXRef-Package-graceful-fs-4.2.11-265",
+      "name": "graceful-fs",
+      "versionInfo": "4.2.11",
+      "downloadLocation": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/graceful-fs@4.2.11"
+        }
+      ],
+      "licenseConcluded": "ISC",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "description": "A drop-in replacement for fs, making various improvements.",
+      "homepage": "https://github.com/isaacs/node-graceful-fs#readme",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "45b279fe398570d342703579a3d7939c12c9fc7b33595d0fef76dcf857f89d2feb263f98692e881b288e2f45680585fe9755ab97793ade1fcaac7fa7849d17bd"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-image-size-0.5.5-266",
       "name": "image-size",
       "versionInfo": "0.5.5",
       "downloadLocation": "https://registry.npmjs.org/image-size/-/image-size-0.5.5.tgz",
@@ -6634,31 +6659,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "e930c09433d9c54142bfe7ee3a42285d3fd5fdfdd06eaf1edfba7e60e898ad4bf7bfd71cdffeb1efc55d7cf80555a07d75961e2d47ca80745e6e9926fe83f655"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-graceful-fs-4.2.11-266",
-      "name": "graceful-fs",
-      "versionInfo": "4.2.11",
-      "downloadLocation": "https://registry.npmjs.org/graceful-fs/-/graceful-fs-4.2.11.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/graceful-fs@4.2.11"
-        }
-      ],
-      "licenseConcluded": "ISC",
-      "licenseDeclared": "ISC",
-      "copyrightText": "NOASSERTION",
-      "description": "A drop-in replacement for fs, making various improvements.",
-      "homepage": "https://github.com/isaacs/node-graceful-fs#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "45b279fe398570d342703579a3d7939c12c9fc7b33595d0fef76dcf857f89d2feb263f98692e881b288e2f45680585fe9755ab97793ade1fcaac7fa7849d17bd"
         }
       ]
     },
@@ -6767,32 +6767,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--parcel-watcher-2.5.6-271",
-      "name": "@parcel/watcher",
-      "versionInfo": "2.5.6",
-      "downloadLocation": "https://registry.npmjs.org/@parcel/watcher/-/watcher-2.5.6.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40parcel/watcher@2.5.6"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "A native C++ Node module for querying and subscribing to filesystem events. Used by Parcel 2.",
-      "homepage": "https://github.com/parcel-bundler/watcher#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "b66999de543101efe4ffeacd9d74116b0278363c4eda1aa238b4c7bd6721b466542e9e11c857a1e9a5385dd3980457b6284d684a1413bf801b94eb3688eacd9d"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-immutable-5.1.9-272",
+      "SPDXID": "SPDXRef-Package-immutable-5.1.9-271",
       "name": "immutable",
       "versionInfo": "5.1.9",
       "downloadLocation": "https://registry.npmjs.org/immutable/-/immutable-5.1.9.tgz",
@@ -6814,6 +6789,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "9bc9d57b3debc2b8265b1b4b32dd596170762efece2989ff762b32c409520d8025292945a0f3df20098033f339c6a2f89b80bfc003f0ed2dbf08d6948a2d47c6"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--parcel-watcher-2.5.6-272",
+      "name": "@parcel/watcher",
+      "versionInfo": "2.5.6",
+      "downloadLocation": "https://registry.npmjs.org/@parcel/watcher/-/watcher-2.5.6.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40parcel/watcher@2.5.6"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "A native C++ Node module for querying and subscribing to filesystem events. Used by Parcel 2.",
+      "homepage": "https://github.com/parcel-bundler/watcher#readme",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "b66999de543101efe4ffeacd9d74116b0278363c4eda1aa238b4c7bd6721b466542e9e11c857a1e9a5385dd3980457b6284d684a1413bf801b94eb3688eacd9d"
         }
       ]
     },
@@ -6844,7 +6844,99 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-acorn-8.17.0-274",
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-darwin-arm64-0.3.1-274",
+      "name": "@astrojs/compiler-binding-darwin-arm64",
+      "versionInfo": "0.3.1",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-darwin-arm64/-/compiler-binding-darwin-arm64-0.3.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-darwin-arm64@0.3.1"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "2049841767d42254c7b69784fe2b3210654e075e1c13287f2d938562deb09f78cdc95a5d0bc691e4e67e47315447f7fef190ccd4b68cc192afa00ede33225e17"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-darwin-x64-0.3.1-275",
+      "name": "@astrojs/compiler-binding-darwin-x64",
+      "versionInfo": "0.3.1",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-darwin-x64/-/compiler-binding-darwin-x64-0.3.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-darwin-x64@0.3.1"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "185da42318e93c32ec9fde336d934cb31126914f36f10aa798cee48902676a8a12de3988f88ee493afa823a129c0eb0addf7a608c75c9bec263ac12ab46ae68d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-linux-arm64-gnu-0.3.1-276",
+      "name": "@astrojs/compiler-binding-linux-arm64-gnu",
+      "versionInfo": "0.3.1",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-arm64-gnu/-/compiler-binding-linux-arm64-gnu-0.3.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-linux-arm64-gnu@0.3.1"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "5c92f748398eb55aea1610a2acd707c04f75f887ac26a960368db7238a96f505187f0ce6fd3059b87eb57e0aac6f5b6d811d66318cfaa283d6b3424387032aa5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-linux-arm64-musl-0.3.1-277",
+      "name": "@astrojs/compiler-binding-linux-arm64-musl",
+      "versionInfo": "0.3.1",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-arm64-musl/-/compiler-binding-linux-arm64-musl-0.3.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-linux-arm64-musl@0.3.1"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "c6a13c0556c3a01b9e2bf078ef0df43ed915a1f51624a1a4c2831513e10e30b7f5d6b9e800dc4801d03d14fa98fab9e0e28348e677471acae2d723e3da4f2f65"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-acorn-8.17.0-278",
       "name": "acorn",
       "versionInfo": "8.17.0",
       "downloadLocation": "https://registry.npmjs.org/acorn/-/acorn-8.17.0.tgz",
@@ -6869,16 +6961,16 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--bruits-satteri-darwin-arm64-0.9.5-275",
-      "name": "@bruits/satteri-darwin-arm64",
-      "versionInfo": "0.9.5",
-      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-darwin-arm64/-/satteri-darwin-arm64-0.9.5.tgz",
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-linux-x64-musl-0.3.1-279",
+      "name": "@astrojs/compiler-binding-linux-x64-musl",
+      "versionInfo": "0.3.1",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-x64-musl/-/compiler-binding-linux-x64-musl-0.3.1.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40bruits/satteri-darwin-arm64@0.9.5"
+          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-linux-x64-musl@0.3.1"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -6887,21 +6979,21 @@
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "8b0e27660c7dbf7d255a8fcc4e7810aa2d6923bf0a2340e79129be95524661d98f2e00320cd2628158691b8dbf22ae7903a7352e5f2aeba963cb2462414c70a3"
+          "checksumValue": "d7aab47d87fb9296e674e6d911e64912ea7c850bffc2180dc158eb4af4fcba6acac0b0d29cd216890a66d3d95042ee9bc1e641d17c88bc7c253e2b6f2610be86"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--bruits-satteri-darwin-x64-0.9.5-276",
-      "name": "@bruits/satteri-darwin-x64",
-      "versionInfo": "0.9.5",
-      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-darwin-x64/-/satteri-darwin-x64-0.9.5.tgz",
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-wasm32-wasi-0.3.1-280",
+      "name": "@astrojs/compiler-binding-wasm32-wasi",
+      "versionInfo": "0.3.1",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-wasm32-wasi/-/compiler-binding-wasm32-wasi-0.3.1.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40bruits/satteri-darwin-x64@0.9.5"
+          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-wasm32-wasi@0.3.1"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -6910,21 +7002,21 @@
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "e93dba67929fddc156d8f4a593da7bcd3ef2571bee052889bd8cb3f6ef0a8d8c0c4ea6722033a3db00f2369c4a578fbac94546eeb75dab6430bc6ffc2c9036f9"
+          "checksumValue": "701e39eac848c03bff3eb553fb6406ecb1677691e45607b91e3a800ca66019a01cf491d592d0ad8d2adc764450fb7b5b90f6b334a6932d18d72c88b3d8d231f6"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--bruits-satteri-linux-arm64-gnu-0.9.5-277",
-      "name": "@bruits/satteri-linux-arm64-gnu",
-      "versionInfo": "0.9.5",
-      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-linux-arm64-gnu/-/satteri-linux-arm64-gnu-0.9.5.tgz",
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-win32-arm64-msvc-0.3.1-281",
+      "name": "@astrojs/compiler-binding-win32-arm64-msvc",
+      "versionInfo": "0.3.1",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-win32-arm64-msvc/-/compiler-binding-win32-arm64-msvc-0.3.1.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40bruits/satteri-linux-arm64-gnu@0.9.5"
+          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-win32-arm64-msvc@0.3.1"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -6933,21 +7025,21 @@
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "bb9d62775eee27034430af67065202b2ae94df573e5d5a90b9e541930448cd91be80ca52f1338972db798795b3df767cc6731d4ddf9a76d002573d321e01ae38"
+          "checksumValue": "babffdf887ffc9313af6699e5f932a4999dd2f41cecb1ebb19e359532dcdef055d5a92f3f544c95f0c964b8511d8f5101e2b60863b0ce71a17d067b9e9645541"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--bruits-satteri-linux-arm64-musl-0.9.5-278",
-      "name": "@bruits/satteri-linux-arm64-musl",
-      "versionInfo": "0.9.5",
-      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-linux-arm64-musl/-/satteri-linux-arm64-musl-0.9.5.tgz",
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-win32-x64-msvc-0.3.1-282",
+      "name": "@astrojs/compiler-binding-win32-x64-msvc",
+      "versionInfo": "0.3.1",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-win32-x64-msvc/-/compiler-binding-win32-x64-msvc-0.3.1.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40bruits/satteri-linux-arm64-musl@0.9.5"
+          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-win32-x64-msvc@0.3.1"
         }
       ],
       "licenseConcluded": "NOASSERTION",
@@ -6956,129 +7048,12 @@
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "bf7f47c62c060b946a9b4d4792c3fafb963ec4a2cf96cb95160220a44028f92890db673e9895614b7bbb67a78f00a7612f9349a0ad71abbd242f3dcbd77021a5"
+          "checksumValue": "9345be9030730e43593aabb8904943bc23886cac3952df52d566752ab8f729380db8111134a5ec30cb112cb71b81f74c75b7bb6d37a440bb2166baef998a66c0"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-source-map-support-0.5.21-279",
-      "name": "source-map-support",
-      "versionInfo": "0.5.21",
-      "downloadLocation": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.21.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/source-map-support@0.5.21"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Fixes stack traces for files with source maps",
-      "homepage": "https://github.com/evanw/node-source-map-support#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "b811d4dcbddccec232617297f3c7ddac6a2fc5d482a13183459e92617b524712d95331e0e4fffae87b7aba85251eef4466877e8a75e12a8dea420c17513ff2d7"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--bruits-satteri-linux-x64-musl-0.9.5-280",
-      "name": "@bruits/satteri-linux-x64-musl",
-      "versionInfo": "0.9.5",
-      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-linux-x64-musl/-/satteri-linux-x64-musl-0.9.5.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40bruits/satteri-linux-x64-musl@0.9.5"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "6e2704aa094b973fbe996c800da6683f4258db4b38bc37cb8da3d8810a82f8d238cd92d338e8354f8181f1aaad73cdb63ea8e2f12401992ad36fb0ab3fc8b4f1"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--bruits-satteri-wasm32-wasi-0.9.5-281",
-      "name": "@bruits/satteri-wasm32-wasi",
-      "versionInfo": "0.9.5",
-      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-wasm32-wasi/-/satteri-wasm32-wasi-0.9.5.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40bruits/satteri-wasm32-wasi@0.9.5"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "cdab80b8cc1f3e728f5247780058b1445a577602b03f698a831ac8228da02735b4fd99de17d75b1e72e4a234a96819c20a9ed550bd61222e56599bc1d42aa601"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--bruits-satteri-win32-arm64-msvc-0.9.5-282",
-      "name": "@bruits/satteri-win32-arm64-msvc",
-      "versionInfo": "0.9.5",
-      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-win32-arm64-msvc/-/satteri-win32-arm64-msvc-0.9.5.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40bruits/satteri-win32-arm64-msvc@0.9.5"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "4ab7c4ecd12c8198c1bd4ddcf9147aa1046ed13a17639b952446e2797105d184dcb48576cc05656da32358bb6cd3be100a08776be5c75a447f956876547d8b52"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--bruits-satteri-win32-x64-msvc-0.9.5-283",
-      "name": "@bruits/satteri-win32-x64-msvc",
-      "versionInfo": "0.9.5",
-      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-win32-x64-msvc/-/satteri-win32-x64-msvc-0.9.5.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40bruits/satteri-win32-x64-msvc@0.9.5"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "e4ac3d640b53192f161e2cf29fe0898638df210af0fbb8dc6687699a95c98de7e73b5e4cf147b1222e89476139b61cafb261f284be990c3314351e1b2893dde2"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-commander-2.20.3-284",
+      "SPDXID": "SPDXRef-Package-commander-2.20.3-283",
       "name": "commander",
       "versionInfo": "2.20.3",
       "downloadLocation": "https://registry.npmjs.org/commander/-/commander-2.20.3.tgz",
@@ -7104,241 +7079,242 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-darwin-arm64-0.3.1-285",
-      "name": "@astrojs/compiler-binding-darwin-arm64",
-      "versionInfo": "0.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-darwin-arm64/-/compiler-binding-darwin-arm64-0.3.1.tgz",
+      "SPDXID": "SPDXRef-Package-source-map-support-0.5.21-284",
+      "name": "source-map-support",
+      "versionInfo": "0.5.21",
+      "downloadLocation": "https://registry.npmjs.org/source-map-support/-/source-map-support-0.5.21.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-darwin-arm64@0.3.1"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "2049841767d42254c7b69784fe2b3210654e075e1c13287f2d938562deb09f78cdc95a5d0bc691e4e67e47315447f7fef190ccd4b68cc192afa00ede33225e17"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-darwin-x64-0.3.1-286",
-      "name": "@astrojs/compiler-binding-darwin-x64",
-      "versionInfo": "0.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-darwin-x64/-/compiler-binding-darwin-x64-0.3.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-darwin-x64@0.3.1"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "185da42318e93c32ec9fde336d934cb31126914f36f10aa798cee48902676a8a12de3988f88ee493afa823a129c0eb0addf7a608c75c9bec263ac12ab46ae68d"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-linux-arm64-gnu-0.3.1-287",
-      "name": "@astrojs/compiler-binding-linux-arm64-gnu",
-      "versionInfo": "0.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-arm64-gnu/-/compiler-binding-linux-arm64-gnu-0.3.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-linux-arm64-gnu@0.3.1"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "5c92f748398eb55aea1610a2acd707c04f75f887ac26a960368db7238a96f505187f0ce6fd3059b87eb57e0aac6f5b6d811d66318cfaa283d6b3424387032aa5"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-linux-arm64-musl-0.3.1-288",
-      "name": "@astrojs/compiler-binding-linux-arm64-musl",
-      "versionInfo": "0.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-arm64-musl/-/compiler-binding-linux-arm64-musl-0.3.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-linux-arm64-musl@0.3.1"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "c6a13c0556c3a01b9e2bf078ef0df43ed915a1f51624a1a4c2831513e10e30b7f5d6b9e800dc4801d03d14fa98fab9e0e28348e677471acae2d723e3da4f2f65"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--types-estree-jsx-1.0.5-289",
-      "name": "@types/estree-jsx",
-      "versionInfo": "1.0.5",
-      "downloadLocation": "https://registry.npmjs.org/@types/estree-jsx/-/estree-jsx-1.0.5.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/estree-jsx@1.0.5"
+          "referenceLocator": "pkg:npm/source-map-support@0.5.21"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "TypeScript definitions for estree-jsx",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/estree-jsx",
+      "description": "Fixes stack traces for files with source maps",
+      "homepage": "https://github.com/evanw/node-source-map-support#readme",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "e7609c515345c9f6f503600ba1c430fc377505014d992764b82dc1919ea2aa174c7d0cfb25638546e2459683b38e4fba5a28d4e7a9bda0a5c501773ba374e8c2"
+          "checksumValue": "b811d4dcbddccec232617297f3c7ddac6a2fc5d482a13183459e92617b524712d95331e0e4fffae87b7aba85251eef4466877e8a75e12a8dea420c17513ff2d7"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-linux-x64-musl-0.3.1-290",
-      "name": "@astrojs/compiler-binding-linux-x64-musl",
-      "versionInfo": "0.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-x64-musl/-/compiler-binding-linux-x64-musl-0.3.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-linux-x64-musl@0.3.1"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "d7aab47d87fb9296e674e6d911e64912ea7c850bffc2180dc158eb4af4fcba6acac0b0d29cd216890a66d3d95042ee9bc1e641d17c88bc7c253e2b6f2610be86"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-wasm32-wasi-0.3.1-291",
-      "name": "@astrojs/compiler-binding-wasm32-wasi",
-      "versionInfo": "0.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-wasm32-wasi/-/compiler-binding-wasm32-wasi-0.3.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-wasm32-wasi@0.3.1"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "701e39eac848c03bff3eb553fb6406ecb1677691e45607b91e3a800ca66019a01cf491d592d0ad8d2adc764450fb7b5b90f6b334a6932d18d72c88b3d8d231f6"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-win32-arm64-msvc-0.3.1-292",
-      "name": "@astrojs/compiler-binding-win32-arm64-msvc",
-      "versionInfo": "0.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-win32-arm64-msvc/-/compiler-binding-win32-arm64-msvc-0.3.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-win32-arm64-msvc@0.3.1"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "babffdf887ffc9313af6699e5f932a4999dd2f41cecb1ebb19e359532dcdef055d5a92f3f544c95f0c964b8511d8f5101e2b60863b0ce71a17d067b9e9645541"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-win32-x64-msvc-0.3.1-293",
-      "name": "@astrojs/compiler-binding-win32-x64-msvc",
-      "versionInfo": "0.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-win32-x64-msvc/-/compiler-binding-win32-x64-msvc-0.3.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-win32-x64-msvc@0.3.1"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "9345be9030730e43593aabb8904943bc23886cac3952df52d566752ab8f729380db8111134a5ec30cb112cb71b81f74c75b7bb6d37a440bb2166baef998a66c0"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--bruits-satteri-linux-x64-gnu-0.9.5-294",
-      "name": "@bruits/satteri-linux-x64-gnu",
+      "SPDXID": "SPDXRef-Package--bruits-satteri-darwin-arm64-0.9.5-285",
+      "name": "@bruits/satteri-darwin-arm64",
       "versionInfo": "0.9.5",
-      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-linux-x64-gnu/-/satteri-linux-x64-gnu-0.9.5.tgz",
+      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-darwin-arm64/-/satteri-darwin-arm64-0.9.5.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40bruits/satteri-linux-x64-gnu@0.9.5"
+          "referenceLocator": "pkg:npm/%40bruits/satteri-darwin-arm64@0.9.5"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "8b0e27660c7dbf7d255a8fcc4e7810aa2d6923bf0a2340e79129be95524661d98f2e00320cd2628158691b8dbf22ae7903a7352e5f2aeba963cb2462414c70a3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--bruits-satteri-darwin-x64-0.9.5-286",
+      "name": "@bruits/satteri-darwin-x64",
+      "versionInfo": "0.9.5",
+      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-darwin-x64/-/satteri-darwin-x64-0.9.5.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40bruits/satteri-darwin-x64@0.9.5"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "e93dba67929fddc156d8f4a593da7bcd3ef2571bee052889bd8cb3f6ef0a8d8c0c4ea6722033a3db00f2369c4a578fbac94546eeb75dab6430bc6ffc2c9036f9"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--bruits-satteri-linux-arm64-gnu-0.9.5-287",
+      "name": "@bruits/satteri-linux-arm64-gnu",
+      "versionInfo": "0.9.5",
+      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-linux-arm64-gnu/-/satteri-linux-arm64-gnu-0.9.5.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40bruits/satteri-linux-arm64-gnu@0.9.5"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "bb9d62775eee27034430af67065202b2ae94df573e5d5a90b9e541930448cd91be80ca52f1338972db798795b3df767cc6731d4ddf9a76d002573d321e01ae38"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--bruits-satteri-linux-arm64-musl-0.9.5-288",
+      "name": "@bruits/satteri-linux-arm64-musl",
+      "versionInfo": "0.9.5",
+      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-linux-arm64-musl/-/satteri-linux-arm64-musl-0.9.5.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40bruits/satteri-linux-arm64-musl@0.9.5"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "bf7f47c62c060b946a9b4d4792c3fafb963ec4a2cf96cb95160220a44028f92890db673e9895614b7bbb67a78f00a7612f9349a0ad71abbd242f3dcbd77021a5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-linux-x64-gnu-0.3.1-289",
+      "name": "@astrojs/compiler-binding-linux-x64-gnu",
+      "versionInfo": "0.3.1",
+      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-x64-gnu/-/compiler-binding-linux-x64-gnu-0.3.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-linux-x64-gnu@0.3.1"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "High-performance Markdown and MDX processing",
-      "homepage": "https://github.com/bruits/satteri#readme",
+      "description": "Astro Compiler",
+      "homepage": "https://astro.build",
+      "supplier": "Person: Astro contributors",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "177b8ef2e169de900fe59197b6dc2f879ec64bbb3494bf79ded9cd772236811c8fe2438e929ea9c86a23349cc28e40ef588d82bdbf6236b2a89376aa40f6ae03"
+          "checksumValue": "d72d12b54d6a882b83147deb99b4495dcc5d7c7c453eb112d5177e44b7dfa2cbd447b236707e521794859c137dbd7a73a649b2125666dd8af8ee22413cdeef54"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-prismjs-1.30.0-295",
+      "SPDXID": "SPDXRef-Package--bruits-satteri-linux-x64-musl-0.9.5-290",
+      "name": "@bruits/satteri-linux-x64-musl",
+      "versionInfo": "0.9.5",
+      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-linux-x64-musl/-/satteri-linux-x64-musl-0.9.5.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40bruits/satteri-linux-x64-musl@0.9.5"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "6e2704aa094b973fbe996c800da6683f4258db4b38bc37cb8da3d8810a82f8d238cd92d338e8354f8181f1aaad73cdb63ea8e2f12401992ad36fb0ab3fc8b4f1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--bruits-satteri-wasm32-wasi-0.9.5-291",
+      "name": "@bruits/satteri-wasm32-wasi",
+      "versionInfo": "0.9.5",
+      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-wasm32-wasi/-/satteri-wasm32-wasi-0.9.5.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40bruits/satteri-wasm32-wasi@0.9.5"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "cdab80b8cc1f3e728f5247780058b1445a577602b03f698a831ac8228da02735b4fd99de17d75b1e72e4a234a96819c20a9ed550bd61222e56599bc1d42aa601"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--bruits-satteri-win32-arm64-msvc-0.9.5-292",
+      "name": "@bruits/satteri-win32-arm64-msvc",
+      "versionInfo": "0.9.5",
+      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-win32-arm64-msvc/-/satteri-win32-arm64-msvc-0.9.5.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40bruits/satteri-win32-arm64-msvc@0.9.5"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "4ab7c4ecd12c8198c1bd4ddcf9147aa1046ed13a17639b952446e2797105d184dcb48576cc05656da32358bb6cd3be100a08776be5c75a447f956876547d8b52"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--bruits-satteri-win32-x64-msvc-0.9.5-293",
+      "name": "@bruits/satteri-win32-x64-msvc",
+      "versionInfo": "0.9.5",
+      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-win32-x64-msvc/-/satteri-win32-x64-msvc-0.9.5.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40bruits/satteri-win32-x64-msvc@0.9.5"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "e4ac3d640b53192f161e2cf29fe0898638df210af0fbb8dc6687699a95c98de7e73b5e4cf147b1222e89476139b61cafb261f284be990c3314351e1b2893dde2"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-prismjs-1.30.0-294",
       "name": "prismjs",
       "versionInfo": "1.30.0",
       "downloadLocation": "https://registry.npmjs.org/prismjs/-/prismjs-1.30.0.tgz",
@@ -7360,6 +7336,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "0c4bd5d99176af6ffadd5fad2bc850beb4766469f5d2cac76d7be24e572fecaa73c3c8d688d4ea6d58233b7218f11c6bace505f153cc410172b18618bf4619c7"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--types-estree-jsx-1.0.5-295",
+      "name": "@types/estree-jsx",
+      "versionInfo": "1.0.5",
+      "downloadLocation": "https://registry.npmjs.org/@types/estree-jsx/-/estree-jsx-1.0.5.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40types/estree-jsx@1.0.5"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "TypeScript definitions for estree-jsx",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/estree-jsx",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "e7609c515345c9f6f503600ba1c430fc377505014d992764b82dc1919ea2aa174c7d0cfb25638546e2459683b38e4fba5a28d4e7a9bda0a5c501773ba374e8c2"
         }
       ]
     },
@@ -7755,28 +7756,27 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--astrojs-compiler-binding-linux-x64-gnu-0.3.1-313",
-      "name": "@astrojs/compiler-binding-linux-x64-gnu",
-      "versionInfo": "0.3.1",
-      "downloadLocation": "https://registry.npmjs.org/@astrojs/compiler-binding-linux-x64-gnu/-/compiler-binding-linux-x64-gnu-0.3.1.tgz",
+      "SPDXID": "SPDXRef-Package--bruits-satteri-linux-x64-gnu-0.9.5-313",
+      "name": "@bruits/satteri-linux-x64-gnu",
+      "versionInfo": "0.9.5",
+      "downloadLocation": "https://registry.npmjs.org/@bruits/satteri-linux-x64-gnu/-/satteri-linux-x64-gnu-0.9.5.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40astrojs/compiler-binding-linux-x64-gnu@0.3.1"
+          "referenceLocator": "pkg:npm/%40bruits/satteri-linux-x64-gnu@0.9.5"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Astro Compiler",
-      "homepage": "https://astro.build",
-      "supplier": "Person: Astro contributors",
+      "description": "High-performance Markdown and MDX processing",
+      "homepage": "https://github.com/bruits/satteri#readme",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "d72d12b54d6a882b83147deb99b4495dcc5d7c7c453eb112d5177e44b7dfa2cbd447b236707e521794859c137dbd7a73a649b2125666dd8af8ee22413cdeef54"
+          "checksumValue": "177b8ef2e169de900fe59197b6dc2f879ec64bbb3494bf79ded9cd772236811c8fe2438e929ea9c86a23349cc28e40ef588d82bdbf6236b2a89376aa40f6ae03"
         }
       ]
     },
@@ -8201,33 +8201,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-nth-check-2.1.1-331",
-      "name": "nth-check",
-      "versionInfo": "2.1.1",
-      "downloadLocation": "https://registry.npmjs.org/nth-check/-/nth-check-2.1.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/nth-check@2.1.1"
-        }
-      ],
-      "licenseConcluded": "BSD-2-Clause",
-      "licenseDeclared": "BSD-2-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "Parses and compiles CSS nth-checks to highly optimized functions.",
-      "homepage": "https://github.com/fb55/nth-check",
-      "supplier": "Person: Felix Boehm",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "96a8eb8e668ea009d67cc9813cbf97367ca7661dbeb30c625f7594134b38c841c8ea6f80c2b2b65193a2988465dd7ff841cb55a92f008998c5ab2386acc5dbff"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-domutils-3.2.2-332",
+      "SPDXID": "SPDXRef-Package-domutils-3.2.2-331",
       "name": "domutils",
       "versionInfo": "3.2.2",
       "downloadLocation": "https://registry.npmjs.org/domutils/-/domutils-3.2.2.tgz",
@@ -8253,33 +8227,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-css-tree-2.2.1-333",
-      "name": "css-tree",
-      "versionInfo": "2.2.1",
-      "downloadLocation": "https://registry.npmjs.org/css-tree/-/css-tree-2.2.1.tgz",
+      "SPDXID": "SPDXRef-Package-nth-check-2.1.1-332",
+      "name": "nth-check",
+      "versionInfo": "2.1.1",
+      "downloadLocation": "https://registry.npmjs.org/nth-check/-/nth-check-2.1.1.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/css-tree@2.2.1"
+          "referenceLocator": "pkg:npm/nth-check@2.1.1"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
+      "licenseConcluded": "BSD-2-Clause",
+      "licenseDeclared": "BSD-2-Clause",
       "copyrightText": "NOASSERTION",
-      "description": "A tool set for CSS: fast detailed parser (CSS → AST), walker (AST traversal), generator (AST → CSS) and lexer (validation and matching) based on specs and browser implementations",
-      "homepage": "https://github.com/csstree/csstree#readme",
-      "supplier": "Person: Roman Dvornov",
+      "description": "Parses and compiles CSS nth-checks to highly optimized functions.",
+      "homepage": "https://github.com/fb55/nth-check",
+      "supplier": "Person: Felix Boehm",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "380d2620bcc67359023824897ab39ea83c434381ce87e1bc35b38914e4e0382ce9c3b7c206e6e4d1f132c69f0080e2ff8ef2e0600fee57470c6dee3712517524"
+          "checksumValue": "96a8eb8e668ea009d67cc9813cbf97367ca7661dbeb30c625f7594134b38c841c8ea6f80c2b2b65193a2988465dd7ff841cb55a92f008998c5ab2386acc5dbff"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-mdn-data-2.27.1-334",
+      "SPDXID": "SPDXRef-Package-mdn-data-2.27.1-333",
       "name": "mdn-data",
       "versionInfo": "2.27.1",
       "downloadLocation": "https://registry.npmjs.org/mdn-data/-/mdn-data-2.27.1.tgz",
@@ -8305,33 +8279,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-readdirp-5.0.0-335",
-      "name": "readdirp",
-      "versionInfo": "5.0.0",
-      "downloadLocation": "https://registry.npmjs.org/readdirp/-/readdirp-5.0.0.tgz",
+      "SPDXID": "SPDXRef-Package-css-tree-2.2.1-334",
+      "name": "css-tree",
+      "versionInfo": "2.2.1",
+      "downloadLocation": "https://registry.npmjs.org/css-tree/-/css-tree-2.2.1.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/readdirp@5.0.0"
+          "referenceLocator": "pkg:npm/css-tree@2.2.1"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Recursive version of fs.readdir with small RAM & CPU footprint",
-      "homepage": "https://github.com/paulmillr/readdirp",
-      "supplier": "Person: Thorsten Lorenz",
+      "description": "A tool set for CSS: fast detailed parser (CSS → AST), walker (AST traversal), generator (AST → CSS) and lexer (validation and matching) based on specs and browser implementations",
+      "homepage": "https://github.com/csstree/csstree#readme",
+      "supplier": "Person: Roman Dvornov",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "f6efd7435a6fad0b58c8ca597bb0d72afda9e4236fc95c33501eae84b0274301cc4a028c051eb695cec01e58da7ad79e1d79f5d574c068b2d4559615672b9105"
+          "checksumValue": "380d2620bcc67359023824897ab39ea83c434381ce87e1bc35b38914e4e0382ce9c3b7c206e6e4d1f132c69f0080e2ff8ef2e0600fee57470c6dee3712517524"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-normalize-path-3.0.0-336",
+      "SPDXID": "SPDXRef-Package-normalize-path-3.0.0-335",
       "name": "normalize-path",
       "versionInfo": "3.0.0",
       "downloadLocation": "https://registry.npmjs.org/normalize-path/-/normalize-path-3.0.0.tgz",
@@ -8357,7 +8331,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-picomatch-2.3.2-337",
+      "SPDXID": "SPDXRef-Package-picomatch-2.3.2-336",
       "name": "picomatch",
       "versionInfo": "2.3.2",
       "downloadLocation": "https://registry.npmjs.org/picomatch/-/picomatch-2.3.2.tgz",
@@ -8379,6 +8353,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "57bfaf404274e99f9ce6d4b27bc4be9c751f239d71a172178c743df5c42d294910aaa3b590efca08951f657b81e3b87f60194385a8761f785d5065e7f227b4a0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-readdirp-5.0.0-337",
+      "name": "readdirp",
+      "versionInfo": "5.0.0",
+      "downloadLocation": "https://registry.npmjs.org/readdirp/-/readdirp-5.0.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/readdirp@5.0.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Recursive version of fs.readdir with small RAM & CPU footprint",
+      "homepage": "https://github.com/paulmillr/readdirp",
+      "supplier": "Person: Thorsten Lorenz",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "f6efd7435a6fad0b58c8ca597bb0d72afda9e4236fc95c33501eae84b0274301cc4a028c051eb695cec01e58da7ad79e1d79f5d574c068b2d4559615672b9105"
         }
       ]
     },
@@ -8710,33 +8710,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-unist-util-visit-parents-6.0.2-351",
-      "name": "unist-util-visit-parents",
-      "versionInfo": "6.0.2",
-      "downloadLocation": "https://registry.npmjs.org/unist-util-visit-parents/-/unist-util-visit-parents-6.0.2.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/unist-util-visit-parents@6.0.2"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "unist utility to recursively walk over nodes, with ancestral information",
-      "homepage": "https://github.com/syntax-tree/unist-util-visit-parents#readme",
-      "supplier": "Person: Titus Wormer",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "828875b354c1aea4aaba449cf30ae3c1684bd21889c6003c9b8905c46950fbc1584370bf9b5d45713b386187a6ed5ebae0084756f82840b93cf744ac76caf621"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-dequal-2.0.3-352",
+      "SPDXID": "SPDXRef-Package-dequal-2.0.3-351",
       "name": "dequal",
       "versionInfo": "2.0.3",
       "downloadLocation": "https://registry.npmjs.org/dequal/-/dequal-2.0.3.tgz",
@@ -8758,6 +8732,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "d237bea8f28710ca21bdf453084a370ab3c6e9c033018826ccacb1462612483912e9e1897725499bb59a600e4409a003f702c1d93e0411eca603968555c61708"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-unist-util-visit-parents-6.0.2-352",
+      "name": "unist-util-visit-parents",
+      "versionInfo": "6.0.2",
+      "downloadLocation": "https://registry.npmjs.org/unist-util-visit-parents/-/unist-util-visit-parents-6.0.2.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/unist-util-visit-parents@6.0.2"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "unist utility to recursively walk over nodes, with ancestral information",
+      "homepage": "https://github.com/syntax-tree/unist-util-visit-parents#readme",
+      "supplier": "Person: Titus Wormer",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "828875b354c1aea4aaba449cf30ae3c1684bd21889c6003c9b8905c46950fbc1584370bf9b5d45713b386187a6ed5ebae0084756f82840b93cf744ac76caf621"
         }
       ]
     },
@@ -9378,28 +9378,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-is-glob-4.0.3-378",
-      "name": "is-glob",
-      "versionInfo": "4.0.3",
-      "downloadLocation": "https://registry.npmjs.org/is-glob/-/is-glob-4.0.3.tgz",
+      "SPDXID": "SPDXRef-Package-iconv-lite-0.6.3-378",
+      "name": "iconv-lite",
+      "versionInfo": "0.6.3",
+      "downloadLocation": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.6.3.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/is-glob@4.0.3"
+          "referenceLocator": "pkg:npm/iconv-lite@0.6.3"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Returns `true` if the given string looks like a glob pattern or an extglob pattern. This makes it easy to create code that only uses external modules like node-glob when necessary, resulting in much faster code execution and initialization time, and a better user experience.",
-      "homepage": "https://github.com/micromatch/is-glob",
-      "supplier": "Person: Jon Schlinkert",
+      "description": "Convert character encodings in pure javascript.",
+      "homepage": "https://github.com/ashtuchkin/iconv-lite",
+      "supplier": "Person: Alexander Shtuchkin",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "c5e9526b21c7dfa66013b6568658bba56df884d6cd97c3a3bf92959a4243e2105d0f7b61f137e4f6f61ab0b33e99758e6611648197f184b4a7af046be1e9524a"
+          "checksumValue": "e1f0a4efdc2c84c773329dab1f4eaa5ab244e22a25a8b842507f8e8ae22053ef91074fbde0d9432fcd5ab4eec65f9e6e50ab9ea34b711cdb6f13223a0fb59d33"
         }
       ]
     },
@@ -9496,28 +9496,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-iconv-lite-0.6.3-383",
-      "name": "iconv-lite",
-      "versionInfo": "0.6.3",
-      "downloadLocation": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.6.3.tgz",
+      "SPDXID": "SPDXRef-Package-is-glob-4.0.3-383",
+      "name": "is-glob",
+      "versionInfo": "4.0.3",
+      "downloadLocation": "https://registry.npmjs.org/is-glob/-/is-glob-4.0.3.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/iconv-lite@0.6.3"
+          "referenceLocator": "pkg:npm/is-glob@4.0.3"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Convert character encodings in pure javascript.",
-      "homepage": "https://github.com/ashtuchkin/iconv-lite",
-      "supplier": "Person: Alexander Shtuchkin",
+      "description": "Returns `true` if the given string looks like a glob pattern or an extglob pattern. This makes it easy to create code that only uses external modules like node-glob when necessary, resulting in much faster code execution and initialization time, and a better user experience.",
+      "homepage": "https://github.com/micromatch/is-glob",
+      "supplier": "Person: Jon Schlinkert",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "e1f0a4efdc2c84c773329dab1f4eaa5ab244e22a25a8b842507f8e8ae22053ef91074fbde0d9432fcd5ab4eec65f9e6e50ab9ea34b711cdb6f13223a0fb59d33"
+          "checksumValue": "c5e9526b21c7dfa66013b6568658bba56df884d6cd97c3a3bf92959a4243e2105d0f7b61f137e4f6f61ab0b33e99758e6611648197f184b4a7af046be1e9524a"
         }
       ]
     },
@@ -10366,7 +10366,30 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-yallist-3.1.1-417",
+      "SPDXID": "SPDXRef-Package--emnapi-core-1.11.2-417",
+      "name": "@emnapi/core",
+      "versionInfo": "1.11.2",
+      "downloadLocation": "https://registry.npmjs.org/@emnapi/core/-/core-1.11.2.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40emnapi/core@1.11.2"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "4c2f0c913b9952d7134a215eb82d24b0287d408279f85db532f6785a7e0e45f61a149ff476c8ae76fe6d5647a3830665c10dfd8cbf565837b6973f31d1682538"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-yallist-3.1.1-418",
       "name": "yallist",
       "versionInfo": "3.1.1",
       "downloadLocation": "https://registry.npmjs.org/yallist/-/yallist-3.1.1.tgz",
@@ -10388,29 +10411,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "6b850641a58f1f9f663975189c01b67b09dc412e22e05e374efdc9a0033eb365430264bd36c2bc1a90cc2eb0873e4b054fb8772ba4cea14367da96fb4685f1e2"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--emnapi-core-1.11.2-418",
-      "name": "@emnapi/core",
-      "versionInfo": "1.11.2",
-      "downloadLocation": "https://registry.npmjs.org/@emnapi/core/-/core-1.11.2.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40emnapi/core@1.11.2"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "4c2f0c913b9952d7134a215eb82d24b0287d408279f85db532f6785a7e0e45f61a149ff476c8ae76fe6d5647a3830665c10dfd8cbf565837b6973f31d1682538"
         }
       ]
     },
@@ -10441,33 +10441,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-is-extglob-2.1.1-420",
-      "name": "is-extglob",
-      "versionInfo": "2.1.1",
-      "downloadLocation": "https://registry.npmjs.org/is-extglob/-/is-extglob-2.1.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/is-extglob@2.1.1"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Returns true if a string has an extglob.",
-      "homepage": "https://github.com/jonschlinkert/is-extglob",
-      "supplier": "Person: Jon Schlinkert",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "49b29b00d90deb4dd58b88c466fe3d2de549327e321b0b1bcd9c28ac4a32122badb0dde725875b3b7eb37e1189e90103a4e6481640ed9eae494719af9778eca1"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-safer-buffer-2.1.2-421",
+      "SPDXID": "SPDXRef-Package-safer-buffer-2.1.2-420",
       "name": "safer-buffer",
       "versionInfo": "2.1.2",
       "downloadLocation": "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz",
@@ -10489,6 +10463,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "619a372bcd920fb462ca2d04d4440fa232f3ee4a5ea6749023d2323db1c78355d75debdbe5d248eeda72376003c467106c71bbbdcc911e4d1c6f0a9c42b894b6"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-is-extglob-2.1.1-421",
+      "name": "is-extglob",
+      "versionInfo": "2.1.1",
+      "downloadLocation": "https://registry.npmjs.org/is-extglob/-/is-extglob-2.1.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/is-extglob@2.1.1"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Returns true if a string has an extglob.",
+      "homepage": "https://github.com/jonschlinkert/is-extglob",
+      "supplier": "Person: Jon Schlinkert",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "49b29b00d90deb4dd58b88c466fe3d2de549327e321b0b1bcd9c28ac4a32122badb0dde725875b3b7eb37e1189e90103a4e6481640ed9eae494719af9778eca1"
         }
       ]
     },
@@ -10805,33 +10805,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-hast-util-is-element-3.0.0-434",
-      "name": "hast-util-is-element",
-      "versionInfo": "3.0.0",
-      "downloadLocation": "https://registry.npmjs.org/hast-util-is-element/-/hast-util-is-element-3.0.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/hast-util-is-element@3.0.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "hast utility to check if a node is a (certain) element",
-      "homepage": "https://github.com/syntax-tree/hast-util-is-element#readme",
-      "supplier": "Person: Titus Wormer",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "55a97d9a7bf6216a4b6cd3ea73fa547a6f9aec8a63d9a1da702c2035f4e22b4bc92a5d0b17ee016b8fafd683c71697f76cb626adeab4fe5dc6b9df52e4e1f8da"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-hast-util-to-string-3.0.1-435",
+      "SPDXID": "SPDXRef-Package-hast-util-to-string-3.0.1-434",
       "name": "hast-util-to-string",
       "versionInfo": "3.0.1",
       "downloadLocation": "https://registry.npmjs.org/hast-util-to-string/-/hast-util-to-string-3.0.1.tgz",
@@ -10853,6 +10827,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "5de9505530d6bea725ddac517c8d3149ea152b3c8814fc2c00648b22c29d24a40c5c36094b8598ac1345ffc27b45d84870523604e1e00227e082cbecc69ff7f8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-hast-util-is-element-3.0.0-435",
+      "name": "hast-util-is-element",
+      "versionInfo": "3.0.0",
+      "downloadLocation": "https://registry.npmjs.org/hast-util-is-element/-/hast-util-is-element-3.0.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-is-element@3.0.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "hast utility to check if a node is a (certain) element",
+      "homepage": "https://github.com/syntax-tree/hast-util-is-element#readme",
+      "supplier": "Person: Titus Wormer",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "55a97d9a7bf6216a4b6cd3ea73fa547a6f9aec8a63d9a1da702c2035f4e22b4bc92a5d0b17ee016b8fafd683c71697f76cb626adeab4fe5dc6b9df52e4e1f8da"
         }
       ]
     },
@@ -10986,33 +10986,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-micromark-util-symbol-2.0.1-441",
-      "name": "micromark-util-symbol",
-      "versionInfo": "2.0.1",
-      "downloadLocation": "https://registry.npmjs.org/micromark-util-symbol/-/micromark-util-symbol-2.0.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/micromark-util-symbol@2.0.1"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "micromark utility with symbols",
-      "homepage": "https://github.com/micromark/micromark/tree/main#readme",
-      "supplier": "Person: Titus Wormer",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "bece6df00a5ab9df4ddbc9200ab45474479de1427ec1636f89c1cb3f109af4436562e018df5334113cb9cb5bc0df762834f0c54e08446e787a79f684f21e31d1"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-micromark-util-encode-2.0.1-442",
+      "SPDXID": "SPDXRef-Package-micromark-util-encode-2.0.1-441",
       "name": "micromark-util-encode",
       "versionInfo": "2.0.1",
       "downloadLocation": "https://registry.npmjs.org/micromark-util-encode/-/micromark-util-encode-2.0.1.tgz",
@@ -11034,6 +11008,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "737715c76cb82aa527c28a5c3bd6ff482768d8eebb2f0249fd4caa19f6e281a85f7a02fd9b2a041680d8660913edfdfa4f46cbaccf6165301a0321fe3c20178f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-micromark-util-symbol-2.0.1-442",
+      "name": "micromark-util-symbol",
+      "versionInfo": "2.0.1",
+      "downloadLocation": "https://registry.npmjs.org/micromark-util-symbol/-/micromark-util-symbol-2.0.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/micromark-util-symbol@2.0.1"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "micromark utility with symbols",
+      "homepage": "https://github.com/micromark/micromark/tree/main#readme",
+      "supplier": "Person: Titus Wormer",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "bece6df00a5ab9df4ddbc9200ab45474479de1427ec1636f89c1cb3f109af4436562e018df5334113cb9cb5bc0df762834f0c54e08446e787a79f684f21e31d1"
         }
       ]
     },
@@ -11124,7 +11124,7 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.21.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.22.0-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11134,7 +11134,7 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-react-3.21.0-2",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-react-3.22.0-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11144,22 +11144,22 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.21.0-4",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.22.0-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.21.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.21.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.22.0-2",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.22.0-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.21.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.21.0-4",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.22.0-2",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.22.0-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--synergy-design-system-styles-2.2.0-3",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.21.0-4",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.22.0-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11188,48 +11188,48 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.21.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.0-0",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-10",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.21.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.0-0",
       "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.21.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.0-0",
       "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-12",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.21.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-13",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.0-0",
+      "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-14",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.21.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--lit-react-1.0.8-14",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package--astrojs-react-6.0.1-5",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-15",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.22.0-2",
+      "relatedSpdxElement": "SPDXRef-Package--lit-react-1.0.8-13",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--astrojs-react-6.0.1-5",
-      "relatedSpdxElement": "SPDXRef-Package--types-react-19.2.17-16",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-16",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--astrojs-react-6.0.1-5",
-      "relatedSpdxElement": "SPDXRef-Package--types-react-dom-19.2.3-18",
+      "relatedSpdxElement": "SPDXRef-Package--types-react-19.2.17-15",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--astrojs-react-6.0.1-5",
-      "relatedSpdxElement": "SPDXRef-Package--vitejs-plugin-react-5.2.0-17",
+      "relatedSpdxElement": "SPDXRef-Package--types-react-dom-19.2.3-17",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package--astrojs-react-6.0.1-5",
+      "relatedSpdxElement": "SPDXRef-Package--vitejs-plugin-react-5.2.0-20",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11239,7 +11239,7 @@
     },
     {
       "spdxElementId": "SPDXRef-Package--astrojs-react-6.0.1-5",
-      "relatedSpdxElement": "SPDXRef-Package-ultrahtml-1.7.0-20",
+      "relatedSpdxElement": "SPDXRef-Package-ultrahtml-1.7.0-18",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11249,12 +11249,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.0.7-6",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-rs-0.3.1-23",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-rs-0.3.1-22",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.0.7-6",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-markdown-satteri-0.3.3-22",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-markdown-satteri-0.3.3-23",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11289,17 +11289,17 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.0.7-6",
-      "relatedSpdxElement": "SPDXRef-Package-aria-query-5.3.2-32",
+      "relatedSpdxElement": "SPDXRef-Package-aria-query-5.3.2-30",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.0.7-6",
-      "relatedSpdxElement": "SPDXRef-Package-axobject-query-4.1.0-30",
+      "relatedSpdxElement": "SPDXRef-Package-axobject-query-4.1.0-31",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.0.7-6",
-      "relatedSpdxElement": "SPDXRef-Package-ci-info-4.4.0-31",
+      "relatedSpdxElement": "SPDXRef-Package-ci-info-4.4.0-32",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11314,12 +11314,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.0.7-6",
-      "relatedSpdxElement": "SPDXRef-Package-cookie-1.1.1-36",
+      "relatedSpdxElement": "SPDXRef-Package-cookie-1.1.1-35",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.0.7-6",
-      "relatedSpdxElement": "SPDXRef-Package-diff-8.0.4-35",
+      "relatedSpdxElement": "SPDXRef-Package-diff-8.0.4-36",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11349,12 +11349,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.0.7-6",
-      "relatedSpdxElement": "SPDXRef-Package-get-tsconfig-5.0.0-beta.4-42",
+      "relatedSpdxElement": "SPDXRef-Package-get-tsconfig-5.0.0-beta.4-43",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.0.7-6",
-      "relatedSpdxElement": "SPDXRef-Package-github-slugger-2.0.0-43",
+      "relatedSpdxElement": "SPDXRef-Package-github-slugger-2.0.0-42",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11533,72 +11533,72 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-13",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-14",
       "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-79",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-13",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-14",
       "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-80",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-13",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-14",
       "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-81",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-15",
-      "relatedSpdxElement": "SPDXRef-Package--types-hast-3.0.5-82",
+      "spdxElementId": "SPDXRef-Package--types-react-19.2.17-15",
+      "relatedSpdxElement": "SPDXRef-Package-csstype-3.2.3-82",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-15",
-      "relatedSpdxElement": "SPDXRef-Package--types-mdast-4.0.4-83",
+      "spdxElementId": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-16",
+      "relatedSpdxElement": "SPDXRef-Package--types-hast-3.0.5-83",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-15",
-      "relatedSpdxElement": "SPDXRef-Package-retext-smartypants-6.2.0-84",
+      "spdxElementId": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-16",
+      "relatedSpdxElement": "SPDXRef-Package--types-mdast-4.0.4-84",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-15",
-      "relatedSpdxElement": "SPDXRef-Package-unified-11.0.5-85",
+      "spdxElementId": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-16",
+      "relatedSpdxElement": "SPDXRef-Package-retext-smartypants-6.2.0-85",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--types-react-19.2.17-16",
-      "relatedSpdxElement": "SPDXRef-Package-csstype-3.2.3-86",
+      "spdxElementId": "SPDXRef-Package--astrojs-internal-helpers-0.10.1-16",
+      "relatedSpdxElement": "SPDXRef-Package-unified-11.0.5-86",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-17",
+      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-20",
       "relatedSpdxElement": "SPDXRef-Package--babel-core-7.29.7-87",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-17",
+      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-20",
       "relatedSpdxElement": "SPDXRef-Package--babel-plugin-transform-react-jsx-self-7.29.7-88",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-17",
+      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-20",
       "relatedSpdxElement": "SPDXRef-Package--babel-plugin-transform-react-jsx-source-7.29.7-89",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-17",
+      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-20",
       "relatedSpdxElement": "SPDXRef-Package--rolldown-pluginutils-1.0.0-rc.3-90",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-17",
+      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-20",
       "relatedSpdxElement": "SPDXRef-Package--types-babel--core-7.20.5-91",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-17",
+      "spdxElementId": "SPDXRef-Package--vitejs-plugin-react-5.2.0-20",
       "relatedSpdxElement": "SPDXRef-Package-react-refresh-0.18.0-92",
       "relationshipType": "DEPENDS_ON"
     },
@@ -11644,27 +11644,27 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-vite-8.1.4-21",
-      "relatedSpdxElement": "SPDXRef-Package-terser-5.46.2-101",
+      "relatedSpdxElement": "SPDXRef-Package-terser-5.46.2-102",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-vite-8.1.4-21",
-      "relatedSpdxElement": "SPDXRef-Package-yaml-2.9.0-102",
+      "relatedSpdxElement": "SPDXRef-Package-yaml-2.9.0-101",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-markdown-satteri-0.3.3-22",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-rs-0.3.1-22",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package--astrojs-markdown-satteri-0.3.3-23",
       "relatedSpdxElement": "SPDXRef-Package--astrojs-prism-4.0.2-104",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-markdown-satteri-0.3.3-22",
-      "relatedSpdxElement": "SPDXRef-Package-satteri-0.9.5-103",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-rs-0.3.1-23",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
+      "spdxElementId": "SPDXRef-Package--astrojs-markdown-satteri-0.3.3-23",
+      "relatedSpdxElement": "SPDXRef-Package-satteri-0.9.5-105",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11694,27 +11694,27 @@
     },
     {
       "spdxElementId": "SPDXRef-Package--clack-prompts-1.7.0-26",
-      "relatedSpdxElement": "SPDXRef-Package-sisteransi-1.0.5-112",
+      "relatedSpdxElement": "SPDXRef-Package-sisteransi-1.0.5-111",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--rollup-pluginutils-5.4.0-28",
-      "relatedSpdxElement": "SPDXRef-Package--types-estree-1.0.9-111",
+      "relatedSpdxElement": "SPDXRef-Package--types-estree-1.0.9-112",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--rollup-pluginutils-5.4.0-28",
-      "relatedSpdxElement": "SPDXRef-Package-estree-walker-2.0.2-129",
+      "relatedSpdxElement": "SPDXRef-Package-estree-walker-2.0.2-139",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--rollup-pluginutils-5.4.0-28",
-      "relatedSpdxElement": "SPDXRef-Package-rollup-4.62.2-140",
+      "relatedSpdxElement": "SPDXRef-Package-rollup-4.62.2-129",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-am-i-vibing-0.4.0-29",
-      "relatedSpdxElement": "SPDXRef-Package-process-ancestry-0.1.0-139",
+      "relatedSpdxElement": "SPDXRef-Package-process-ancestry-0.1.0-140",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11848,7 +11848,7 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-get-tsconfig-5.0.0-beta.4-42",
+      "spdxElementId": "SPDXRef-Package-get-tsconfig-5.0.0-beta.4-43",
       "relatedSpdxElement": "SPDXRef-Package-resolve-pkg-maps-1.0.0-142",
       "relationshipType": "DEPENDS_ON"
     },
@@ -11859,22 +11859,22 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-magic-string-0.30.21-48",
-      "relatedSpdxElement": "SPDXRef-Package--jridgewell-sourcemap-codec-1.5.5-145",
+      "relatedSpdxElement": "SPDXRef-Package--jridgewell-sourcemap-codec-1.5.5-144",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-magicast-0.5.3-49",
-      "relatedSpdxElement": "SPDXRef-Package--babel-parser-7.29.7-144",
+      "relatedSpdxElement": "SPDXRef-Package--babel-parser-7.29.7-145",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-magicast-0.5.3-49",
-      "relatedSpdxElement": "SPDXRef-Package--babel-types-7.29.7-146",
+      "relatedSpdxElement": "SPDXRef-Package--babel-types-7.29.7-147",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-magicast-0.5.3-49",
-      "relatedSpdxElement": "SPDXRef-Package-source-map-js-1.2.1-147",
+      "relatedSpdxElement": "SPDXRef-Package-source-map-js-1.2.1-146",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11979,12 +11979,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-unstorage-1.17.5-66",
-      "relatedSpdxElement": "SPDXRef-Package-anymatch-3.1.3-169",
+      "relatedSpdxElement": "SPDXRef-Package-anymatch-3.1.3-168",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-unstorage-1.17.5-66",
-      "relatedSpdxElement": "SPDXRef-Package-chokidar-5.0.0-168",
+      "relatedSpdxElement": "SPDXRef-Package-chokidar-5.0.0-169",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12014,12 +12014,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-sharp-0.35.3-71",
-      "relatedSpdxElement": "SPDXRef-Package--img-colour-1.1.0-199",
+      "relatedSpdxElement": "SPDXRef-Package--img-colour-1.1.0-192",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-sharp-0.35.3-71",
-      "relatedSpdxElement": "SPDXRef-Package-detect-libc-2.1.2-192",
+      "relatedSpdxElement": "SPDXRef-Package-detect-libc-2.1.2-199",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12163,52 +12163,52 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--types-hast-3.0.5-82",
+      "spdxElementId": "SPDXRef-Package--types-hast-3.0.5-83",
       "relatedSpdxElement": "SPDXRef-Package--types-unist-3.0.3-205",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-retext-smartypants-6.2.0-84",
+      "spdxElementId": "SPDXRef-Package-retext-smartypants-6.2.0-85",
       "relatedSpdxElement": "SPDXRef-Package--types-nlcst-2.0.3-206",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-retext-smartypants-6.2.0-84",
-      "relatedSpdxElement": "SPDXRef-Package-nlcst-to-string-4.0.0-208",
+      "spdxElementId": "SPDXRef-Package-retext-smartypants-6.2.0-85",
+      "relatedSpdxElement": "SPDXRef-Package-nlcst-to-string-4.0.0-207",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-retext-smartypants-6.2.0-84",
-      "relatedSpdxElement": "SPDXRef-Package-unist-util-visit-5.1.0-207",
+      "spdxElementId": "SPDXRef-Package-retext-smartypants-6.2.0-85",
+      "relatedSpdxElement": "SPDXRef-Package-unist-util-visit-5.1.0-208",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unified-11.0.5-85",
+      "spdxElementId": "SPDXRef-Package-unified-11.0.5-86",
       "relatedSpdxElement": "SPDXRef-Package-bail-2.0.2-209",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unified-11.0.5-85",
+      "spdxElementId": "SPDXRef-Package-unified-11.0.5-86",
       "relatedSpdxElement": "SPDXRef-Package-devlop-1.1.0-210",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unified-11.0.5-85",
-      "relatedSpdxElement": "SPDXRef-Package-extend-3.0.2-212",
+      "spdxElementId": "SPDXRef-Package-unified-11.0.5-86",
+      "relatedSpdxElement": "SPDXRef-Package-extend-3.0.2-211",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unified-11.0.5-85",
-      "relatedSpdxElement": "SPDXRef-Package-is-plain-obj-4.1.0-211",
+      "spdxElementId": "SPDXRef-Package-unified-11.0.5-86",
+      "relatedSpdxElement": "SPDXRef-Package-is-plain-obj-4.1.0-212",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unified-11.0.5-85",
+      "spdxElementId": "SPDXRef-Package-unified-11.0.5-86",
       "relatedSpdxElement": "SPDXRef-Package-trough-2.2.0-213",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unified-11.0.5-85",
+      "spdxElementId": "SPDXRef-Package-unified-11.0.5-86",
       "relatedSpdxElement": "SPDXRef-Package-vfile-6.0.3-214",
       "relationshipType": "DEPENDS_ON"
     },
@@ -12464,12 +12464,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-less-4.6.6-99",
-      "relatedSpdxElement": "SPDXRef-Package-graceful-fs-4.2.11-266",
+      "relatedSpdxElement": "SPDXRef-Package-graceful-fs-4.2.11-265",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-less-4.6.6-99",
-      "relatedSpdxElement": "SPDXRef-Package-image-size-0.5.5-265",
+      "relatedSpdxElement": "SPDXRef-Package-image-size-0.5.5-266",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12494,132 +12494,132 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-sass-1.101.0-100",
-      "relatedSpdxElement": "SPDXRef-Package-immutable-5.1.9-272",
+      "relatedSpdxElement": "SPDXRef-Package-immutable-5.1.9-271",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-sass-1.101.0-100",
-      "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-terser-5.46.2-101",
+      "spdxElementId": "SPDXRef-Package-terser-5.46.2-102",
       "relatedSpdxElement": "SPDXRef-Package--jridgewell-source-map-0.3.11-273",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-terser-5.46.2-101",
-      "relatedSpdxElement": "SPDXRef-Package-acorn-8.17.0-274",
+      "spdxElementId": "SPDXRef-Package-terser-5.46.2-102",
+      "relatedSpdxElement": "SPDXRef-Package-acorn-8.17.0-278",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-terser-5.46.2-101",
-      "relatedSpdxElement": "SPDXRef-Package-commander-2.20.3-284",
+      "spdxElementId": "SPDXRef-Package-terser-5.46.2-102",
+      "relatedSpdxElement": "SPDXRef-Package-commander-2.20.3-283",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-terser-5.46.2-101",
-      "relatedSpdxElement": "SPDXRef-Package-source-map-support-0.5.21-279",
+      "spdxElementId": "SPDXRef-Package-terser-5.46.2-102",
+      "relatedSpdxElement": "SPDXRef-Package-source-map-support-0.5.21-284",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-103",
-      "relatedSpdxElement": "SPDXRef-Package--types-estree-jsx-1.0.5-289",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-darwin-arm64-0.3.1-274",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-103",
-      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-darwin-arm64-0.9.5-275",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-darwin-x64-0.3.1-275",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-103",
-      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-darwin-x64-0.9.5-276",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-linux-arm64-gnu-0.3.1-276",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-103",
-      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-linux-arm64-gnu-0.9.5-277",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-linux-arm64-musl-0.3.1-277",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-103",
-      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-linux-arm64-musl-0.9.5-278",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-linux-x64-gnu-0.3.1-289",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-103",
-      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-linux-x64-gnu-0.9.5-294",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-linux-x64-musl-0.3.1-279",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-103",
-      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-linux-x64-musl-0.9.5-280",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-wasm32-wasi-0.3.1-280",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-103",
-      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-wasm32-wasi-0.9.5-281",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-win32-arm64-msvc-0.3.1-281",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-103",
-      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-win32-arm64-msvc-0.9.5-282",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-103",
-      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-win32-x64-msvc-0.9.5-283",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-103",
+      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-win32-x64-msvc-0.3.1-282",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--astrojs-prism-4.0.2-104",
-      "relatedSpdxElement": "SPDXRef-Package-prismjs-1.30.0-295",
+      "relatedSpdxElement": "SPDXRef-Package-prismjs-1.30.0-294",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-darwin-arm64-0.3.1-285",
+      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-105",
+      "relatedSpdxElement": "SPDXRef-Package--types-estree-jsx-1.0.5-295",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-darwin-x64-0.3.1-286",
+      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-105",
+      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-darwin-arm64-0.9.5-285",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-linux-arm64-gnu-0.3.1-287",
+      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-105",
+      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-darwin-x64-0.9.5-286",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-linux-arm64-musl-0.3.1-288",
+      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-105",
+      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-linux-arm64-gnu-0.9.5-287",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-linux-x64-gnu-0.3.1-313",
+      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-105",
+      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-linux-arm64-musl-0.9.5-288",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-linux-x64-musl-0.3.1-290",
+      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-105",
+      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-linux-x64-gnu-0.9.5-313",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-wasm32-wasi-0.3.1-291",
+      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-105",
+      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-linux-x64-musl-0.9.5-290",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-win32-arm64-msvc-0.3.1-292",
+      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-105",
+      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-wasm32-wasi-0.9.5-291",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-0.3.1-105",
-      "relatedSpdxElement": "SPDXRef-Package--astrojs-compiler-binding-win32-x64-msvc-0.3.1-293",
+      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-105",
+      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-win32-arm64-msvc-0.9.5-292",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-satteri-0.9.5-105",
+      "relatedSpdxElement": "SPDXRef-Package--bruits-satteri-win32-x64-msvc-0.9.5-293",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12633,137 +12633,137 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-android-arm-eabi-4.62.2-296",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-android-arm64-4.62.2-297",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-darwin-arm64-4.62.2-298",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-darwin-x64-4.62.2-299",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-freebsd-arm64-4.62.2-300",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-freebsd-x64-4.62.2-301",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-arm-gnueabihf-4.62.2-302",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-arm-musleabihf-4.62.2-303",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-arm64-gnu-4.62.2-304",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-arm64-musl-4.62.2-305",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-loong64-gnu-4.62.2-306",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-loong64-musl-4.62.2-307",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-ppc64-gnu-4.62.2-308",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-ppc64-musl-4.62.2-309",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-riscv64-gnu-4.62.2-310",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-riscv64-musl-4.62.2-311",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-s390x-gnu-4.62.2-312",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-x64-gnu-4.62.2-323",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-linux-x64-musl-4.62.2-314",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-openbsd-x64-4.62.2-315",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-openharmony-arm64-4.62.2-316",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-win32-arm64-msvc-4.62.2-317",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-win32-ia32-msvc-4.62.2-318",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-win32-x64-gnu-4.62.2-319",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-140",
+      "spdxElementId": "SPDXRef-Package-rollup-4.62.2-129",
       "relatedSpdxElement": "SPDXRef-Package--rollup-rollup-win32-x64-msvc-4.62.2-320",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--babel-types-7.29.7-146",
+      "spdxElementId": "SPDXRef-Package--babel-types-7.29.7-147",
       "relatedSpdxElement": "SPDXRef-Package--babel-helper-string-parser-7.29.7-324",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--babel-types-7.29.7-146",
+      "spdxElementId": "SPDXRef-Package--babel-types-7.29.7-147",
       "relatedSpdxElement": "SPDXRef-Package--babel-helper-validator-identifier-7.29.7-325",
       "relationshipType": "DEPENDS_ON"
     },
@@ -12794,37 +12794,37 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-css-select-5.2.2-159",
-      "relatedSpdxElement": "SPDXRef-Package-domutils-3.2.2-332",
+      "relatedSpdxElement": "SPDXRef-Package-domutils-3.2.2-331",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-css-select-5.2.2-159",
-      "relatedSpdxElement": "SPDXRef-Package-nth-check-2.1.1-331",
+      "relatedSpdxElement": "SPDXRef-Package-nth-check-2.1.1-332",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-css-tree-3.2.1-160",
-      "relatedSpdxElement": "SPDXRef-Package-mdn-data-2.27.1-334",
+      "relatedSpdxElement": "SPDXRef-Package-mdn-data-2.27.1-333",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-csso-5.0.5-162",
-      "relatedSpdxElement": "SPDXRef-Package-css-tree-2.2.1-333",
+      "relatedSpdxElement": "SPDXRef-Package-css-tree-2.2.1-334",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-chokidar-5.0.0-168",
-      "relatedSpdxElement": "SPDXRef-Package-readdirp-5.0.0-335",
+      "spdxElementId": "SPDXRef-Package-anymatch-3.1.3-168",
+      "relatedSpdxElement": "SPDXRef-Package-normalize-path-3.0.0-335",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-anymatch-3.1.3-169",
-      "relatedSpdxElement": "SPDXRef-Package-normalize-path-3.0.0-336",
+      "spdxElementId": "SPDXRef-Package-anymatch-3.1.3-168",
+      "relatedSpdxElement": "SPDXRef-Package-picomatch-2.3.2-336",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-anymatch-3.1.3-169",
-      "relatedSpdxElement": "SPDXRef-Package-picomatch-2.3.2-337",
+      "spdxElementId": "SPDXRef-Package-chokidar-5.0.0-169",
+      "relatedSpdxElement": "SPDXRef-Package-readdirp-5.0.0-337",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12888,18 +12888,18 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unist-util-visit-5.1.0-207",
+      "spdxElementId": "SPDXRef-Package-unist-util-visit-5.1.0-208",
       "relatedSpdxElement": "SPDXRef-Package-unist-util-is-6.0.1-350",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unist-util-visit-5.1.0-207",
-      "relatedSpdxElement": "SPDXRef-Package-unist-util-visit-parents-6.0.2-351",
+      "spdxElementId": "SPDXRef-Package-unist-util-visit-5.1.0-208",
+      "relatedSpdxElement": "SPDXRef-Package-unist-util-visit-parents-6.0.2-352",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-devlop-1.1.0-210",
-      "relatedSpdxElement": "SPDXRef-Package-dequal-2.0.3-352",
+      "relatedSpdxElement": "SPDXRef-Package-dequal-2.0.3-351",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12989,92 +12989,92 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-needle-3.5.0-269",
-      "relatedSpdxElement": "SPDXRef-Package-iconv-lite-0.6.3-383",
+      "relatedSpdxElement": "SPDXRef-Package-iconv-lite-0.6.3-378",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
-      "relatedSpdxElement": "SPDXRef-Package-is-glob-4.0.3-378",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
+      "relatedSpdxElement": "SPDXRef-Package-is-glob-4.0.3-383",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package-node-addon-api-7.1.1-384",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-android-arm64-2.5.6-370",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-darwin-arm64-2.5.6-371",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-darwin-x64-2.5.6-372",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-freebsd-x64-2.5.6-373",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-linux-arm-glibc-2.5.6-374",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-linux-arm-musl-2.5.6-375",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-linux-arm64-glibc-2.5.6-376",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-linux-arm64-musl-2.5.6-377",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-linux-x64-glibc-2.5.6-385",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-linux-x64-musl-2.5.6-379",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-win32-arm64-2.5.6-380",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-win32-ia32-2.5.6-381",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-271",
+      "spdxElementId": "SPDXRef-Package--parcel-watcher-2.5.6-272",
       "relatedSpdxElement": "SPDXRef-Package--parcel-watcher-win32-x64-2.5.6-382",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-source-map-support-0.5.21-279",
-      "relatedSpdxElement": "SPDXRef-Package-buffer-from-1.1.2-386",
+      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-wasm32-wasi-0.3.1-280",
+      "relatedSpdxElement": "SPDXRef-Package--napi-rs-wasm-runtime-1.1.6-364",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--astrojs-compiler-binding-wasm32-wasi-0.3.1-291",
-      "relatedSpdxElement": "SPDXRef-Package--napi-rs-wasm-runtime-1.1.6-364",
+      "spdxElementId": "SPDXRef-Package-source-map-support-0.5.21-284",
+      "relatedSpdxElement": "SPDXRef-Package-buffer-from-1.1.2-386",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13143,12 +13143,12 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-domutils-3.2.2-332",
+      "spdxElementId": "SPDXRef-Package-domutils-3.2.2-331",
       "relatedSpdxElement": "SPDXRef-Package-dom-serializer-2.0.0-401",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-css-tree-2.2.1-333",
+      "spdxElementId": "SPDXRef-Package-css-tree-2.2.1-334",
       "relatedSpdxElement": "SPDXRef-Package-mdn-data-2.0.28-402",
       "relationshipType": "DEPENDS_ON"
     },
@@ -13219,7 +13219,7 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-lru-cache-5.1.1-361",
-      "relatedSpdxElement": "SPDXRef-Package-yallist-3.1.1-417",
+      "relatedSpdxElement": "SPDXRef-Package-yallist-3.1.1-418",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13238,18 +13238,18 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-is-glob-4.0.3-378",
-      "relatedSpdxElement": "SPDXRef-Package-is-extglob-2.1.1-420",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-iconv-lite-0.6.3-383",
-      "relatedSpdxElement": "SPDXRef-Package-safer-buffer-2.1.2-421",
+      "spdxElementId": "SPDXRef-Package-iconv-lite-0.6.3-378",
+      "relatedSpdxElement": "SPDXRef-Package-safer-buffer-2.1.2-420",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--napi-rs-wasm-runtime-1.1.6-364",
-      "relatedSpdxElement": "SPDXRef-Package--emnapi-core-1.11.2-418",
+      "relatedSpdxElement": "SPDXRef-Package--emnapi-core-1.11.2-417",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-is-glob-4.0.3-383",
+      "relatedSpdxElement": "SPDXRef-Package-is-extglob-2.1.1-421",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13314,12 +13314,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-hast-util-select-6.0.4-404",
-      "relatedSpdxElement": "SPDXRef-Package-hast-util-to-string-3.0.1-435",
+      "relatedSpdxElement": "SPDXRef-Package-hast-util-to-string-3.0.1-434",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-hast-util-to-text-4.0.2-405",
-      "relatedSpdxElement": "SPDXRef-Package-hast-util-is-element-3.0.0-434",
+      "relatedSpdxElement": "SPDXRef-Package-hast-util-is-element-3.0.0-435",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13349,12 +13349,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-micromark-util-sanitize-uri-2.0.1-423",
-      "relatedSpdxElement": "SPDXRef-Package-micromark-util-encode-2.0.1-442",
+      "relatedSpdxElement": "SPDXRef-Package-micromark-util-encode-2.0.1-441",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-micromark-util-sanitize-uri-2.0.1-423",
-      "relatedSpdxElement": "SPDXRef-Package-micromark-util-symbol-2.0.1-441",
+      "relatedSpdxElement": "SPDXRef-Package-micromark-util-symbol-2.0.1-442",
       "relationshipType": "DEPENDS_ON"
     },
     {

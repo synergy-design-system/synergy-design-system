@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.22.0
+
+### Minor Changes
+
+- [#1343](https://github.com/synergy-design-system/synergy-design-system/pull/1343) [`37121ac`](https://github.com/synergy-design-system/synergy-design-system/commit/37121ac3153c4e990e9841d18d83735d840391eb) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-07-31
+
+  feat: ✨ Add new chart tokens and resolved token exports ([#1218](https://github.com/synergy-design-system/synergy-design-system/issues/1218))
+  This release introduces additional chart-specific design tokens and a new export format for consuming resolved token values directly in JavaScript.
+
+  #### New chart tokens
+  - `--syn-chart-background-color`
+  - `--syn-chart-range-selection-color`
+  - `--syn-chart-plot-line-color`
+  - `--syn-chart-tooltip-color`
+
+  #### New resolved token export
+
+  Added new JavaScript exports that provide resolved token values, enabling direct consumption of actual token values without requiring CSS variable resolution at runtime.
+
 ## 3.21.0
 
 ### Minor Changes

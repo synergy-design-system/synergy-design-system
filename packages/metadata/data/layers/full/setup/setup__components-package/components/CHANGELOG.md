@@ -1,5 +1,36 @@
 # Changelog
 
+## 3.22.0
+
+### Minor Changes
+
+- [#1343](https://github.com/synergy-design-system/synergy-design-system/pull/1343) [`37121ac`](https://github.com/synergy-design-system/synergy-design-system/commit/37121ac3153c4e990e9841d18d83735d840391eb) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-07-31
+
+  feat: ✨ Adds line series support to `<syn-chart>` ([#1218](https://github.com/synergy-design-system/synergy-design-system/issues/1218))
+
+  This release introduces support for line charts and extends the chart configuration API with new presets and improved merge capabilities.
+
+  #### New theming support
+  - line charts
+  - data zoom control
+  - tooltips
+
+  #### Preset API enhancements
+  - `seriesLine(...)` for creating line series
+  - `tooltipShow(...)` for enabling tooltips
+
+  #### Improved configuration merging
+
+  Enhanced the configuration merge behavior with an optional array merge strategy.
+
+  - Arrays continue to be merged by index by default.
+  - `seriesLine(...)` now uses `arrayStrategy: 'append'`, ensuring that new series are appended to the existing series array rather than merged by index.
+
+### Patch Changes
+
+- Updated dependencies [[`37121ac`](https://github.com/synergy-design-system/synergy-design-system/commit/37121ac3153c4e990e9841d18d83735d840391eb)]:
+  - @synergy-design-system/tokens@3.22.0
+
 ## 3.21.0
 
 ### Minor Changes

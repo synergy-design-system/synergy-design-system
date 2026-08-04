@@ -8,7 +8,6 @@
     "@chromatic-com/storybook": "^5.2.1",
     "@open-wc/testing-helpers": "^3.0.1",
     "@storybook/addon-a11y": "^10.5.5",
-    "@storybook/addon-designs": "^11.1.4",
     "@storybook/addon-docs": "^10.5.5",
     "@storybook/addon-links": "^10.5.5",
     "@storybook/addon-themes": "^10.5.5",

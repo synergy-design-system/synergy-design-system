@@ -11,7 +11,6 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import '../../src/validate-demo-radio.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-validate');
@@ -59,7 +58,6 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('41310-284767'),
     docs: {
       description: {
         component: generateStoryDescription('validate', 'default'),

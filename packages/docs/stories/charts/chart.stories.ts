@@ -9,7 +9,6 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
 import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitForFinishedCharts.js';
 
@@ -39,7 +38,6 @@ const meta: Meta = {
     },
     // This is needed as otherwise the `id` attribute is shown in the docs table
     controls: {exclude: ['id']},
-    design: generateFigmaPluginObject('0-1', true),
     docs: {
       description: {
         component:

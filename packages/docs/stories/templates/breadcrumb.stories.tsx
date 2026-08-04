@@ -17,7 +17,6 @@ import '../../../components/src/components/icon/icon.js';
 import '../../../components/src/components/menu/menu.js';
 import '../../../components/src/components/menu-item/menu-item.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const createSharedStyles = () => html`
@@ -54,7 +53,6 @@ const meta: Meta = {
       disableSnapshot: false,
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('41127-616895'),
     docs: {
       description: {
         component: generateStoryDescription('breadcrumb', 'default', 'templates'),

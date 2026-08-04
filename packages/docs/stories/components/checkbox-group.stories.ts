@@ -10,7 +10,6 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const capitalizeFirstLetter = (value: string) => `${value[0].toUpperCase()}${value.slice(1)}`;
@@ -59,7 +58,6 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('50279-39073'),
     docs: {
       description: {
         component: generateStoryDescription('checkbox-group', 'default'),

@@ -9,7 +9,6 @@ import {
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import {
   createDemoNavigation, createFooter, createHeader,
   createMainContent, createSharedStyles, createSideNav,
@@ -25,7 +24,6 @@ const meta: Meta = {
       disableSnapshot: false,
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('41127-616893'),
     docs: {
       description: {
         component: generateStoryDescription('application-shell', 'default', 'templates'),

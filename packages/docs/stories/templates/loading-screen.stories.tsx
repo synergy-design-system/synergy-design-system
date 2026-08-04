@@ -9,7 +9,6 @@ import {
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import {
   Chromatic_Modes_Sick_2025,
   SICK_2025_DARK,
@@ -101,7 +100,6 @@ const meta: Meta = {
       disableSnapshot: false,
       modes: Chromatic_Modes_Sick_2025,
     },
-    design: generateFigmaPluginObject('50084-14822'),
     docs: {
       description: {
         component: generateStoryDescription('loading-screen', 'default', 'templates'),

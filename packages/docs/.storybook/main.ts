@@ -10,12 +10,6 @@ const config: StorybookConfig = {
     '@storybook/addon-a11y',
     '@storybook/addon-themes',
     '@chromatic-com/storybook',
-    {
-      name: '@storybook/addon-designs',
-      options: {
-        renderTarget: 'tab',
-      },
-    },
     '@storybook/addon-docs',
   ],
 

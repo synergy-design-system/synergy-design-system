@@ -14,7 +14,6 @@ import {
   generateScreenshotStory,
   generateStoryDescription,
 } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
 import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitForFinishedCharts.js';
 
@@ -24,7 +23,6 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_Sick_2025,
     },
-    design: generateFigmaPluginObject('23-861', true),
     docs: {
       description: {
         component: generateStoryDescription('chart', 'line-chart-default'),

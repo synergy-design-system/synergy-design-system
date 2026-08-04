@@ -9,7 +9,7 @@
     "_build": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint:html": "html-validate index.html",
-    "lint:js": "eslint .",
+    "lint:js": "eslint src",
     "lint": "pnpm run /^lint:.*/",
     "format.eslint": "pnpm lint:js --fix",
     "format": "prettier --write src/"
@@ -22,27 +22,27 @@
     "@synergy-design-system/styles": "workspace:*",
     "@synergy-design-system/tokens": "workspace:*",
     "@synergy-design-system/vue": "workspace:*",
-    "vue": "^3.5.39",
-    "vue-router": "^5.1.0"
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
+    "@eslint/js": "^9.39.5",
     "@tsconfig/node24": "^24.0.4",
-    "@types/node": "^24.13.2",
-    "@typescript-eslint/eslint-plugin": "^8.63.0",
-    "@typescript-eslint/parser": "^8.63.0",
-    "@vitejs/plugin-vue": "^6.0.7",
+    "@types/node": "^24.13.3",
+    "@typescript-eslint/eslint-plugin": "^8.65.0",
+    "@typescript-eslint/parser": "^8.65.0",
+    "@vitejs/plugin-vue": "^6.0.8",
     "@vue/tsconfig": "^0.9.1",
-    "eslint": "^9.39.4",
-    "eslint-plugin-vue": "^10.9.2",
-    "globals": "^17.7.0",
-    "html-validate": "^11.5.6",
-    "prettier": "^3.9.5",
+    "eslint": "^9.39.5",
+    "eslint-plugin-vue": "^10.10.0",
+    "globals": "^17.9.0",
+    "html-validate": "^11.6.1",
+    "prettier": "^3.9.6",
     "typescript": "~6.0.3",
-    "vite": "^8.1.4",
+    "vite": "^8.2.0",
     "vite-plugin-static-copy": "^4.1.1",
     "vue-eslint-parser": "^10.4.1",
-    "vue-tsc": "^3.3.7"
+    "vue-tsc": "^3.3.9"
   },
   "type": "module"
 }

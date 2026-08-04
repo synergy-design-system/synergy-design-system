@@ -36,10 +36,10 @@
     "@synergy-design-system/tokens": "workspace:*"
   },
   "devDependencies": {
-    "@angular/core": "^22.0.0",
-    "@angular/forms": "^22.0.0",
+    "@angular/core": "^22.1.0",
+    "@angular/forms": "^22.1.0",
     "@synergy-design-system/components": "workspace:*",
-    "ng-packagr": "^22.0.0",
+    "ng-packagr": "^22.1.0",
     "tslib": "^2.8.1",
     "typescript": "~6.0.3"
   },

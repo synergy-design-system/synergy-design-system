@@ -10,7 +10,6 @@ import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
 import { getTranslation } from '../../src/translations.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/icon/icon.js';
@@ -156,7 +155,6 @@ const meta: Meta = {
       disableSnapshot: false,
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('41127-616898'),
     docs: {
       description: {
         component: generateStoryDescription('table', 'default', 'templates'),

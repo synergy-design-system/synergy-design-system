@@ -9,7 +9,6 @@ import {
 import { html } from 'lit';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import {
   createDemoNavigation, createFooter, createHeader,
   createMainContent, createSharedStyles, createSideNav,
@@ -24,7 +23,6 @@ const meta: Meta = {
       ...storyBookPreviewConfig?.parameters?.chromatic,
       disableSnapshot: false,
     },
-    design: generateFigmaPluginObject('41127-616896'),
     docs: {
       chromatic: {
         modes: Chromatic_Modes_All,

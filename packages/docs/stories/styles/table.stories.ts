@@ -7,7 +7,6 @@ import {
   storybookHelpers,
 } from '../../src/helpers/component.js';
 import { type RenderArgs, renderStyles } from '../../src/helpers/styles.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-table');
@@ -110,7 +109,6 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('41227-220286'),
     docs: {
       description: {
         component: tableDocs,

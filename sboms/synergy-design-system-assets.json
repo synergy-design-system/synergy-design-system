@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/assets",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-assets-2.3.0-0eb254ea-b6a8-43c8-9232-2fe37a948899",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-assets-2.3.1-706a1879-4d39-4e38-b6a9-5c9a39d6cfaf",
   "creationInfo": {
-    "created": "2026-07-31T07:38:22.247Z",
+    "created": "2026-08-04T12:08:47.025Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/assets",
-      "versionInfo": "2.3.0",
+      "versionInfo": "2.3.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/assets@2.3.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/assets@2.3.1"
         }
       ],
       "licenseConcluded": "MIT",

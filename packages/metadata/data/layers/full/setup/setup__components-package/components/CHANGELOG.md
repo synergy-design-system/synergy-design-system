@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.22.1
+
+### Patch Changes
+
+- [#1349](https://github.com/synergy-design-system/synergy-design-system/pull/1349) [`d918fd6`](https://github.com/synergy-design-system/synergy-design-system/commit/d918fd67909e19ee12f80ef71406aff31a2b4ad1) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-04
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+- Updated dependencies [[`d918fd6`](https://github.com/synergy-design-system/synergy-design-system/commit/d918fd67909e19ee12f80ef71406aff31a2b4ad1)]:
+  - @synergy-design-system/tokens@3.22.1
+
 ## 3.22.0
 
 ### Minor Changes

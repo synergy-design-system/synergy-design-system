@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/components",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.22.0-ed98ee63-4a33-4be0-9e4a-e173721d98ee",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.22.1-caf7e947-114f-4261-b648-8a18c66536d5",
   "creationInfo": {
-    "created": "2026-07-31T07:38:22.280Z",
+    "created": "2026-08-04T12:08:47.058Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.22.0",
+      "versionInfo": "3.22.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.22.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.22.1"
         }
       ],
       "licenseConcluded": "MIT",
@@ -264,33 +264,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-9",
-      "name": "lit-html",
-      "versionInfo": "3.3.3",
-      "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit-html@3.3.3"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "HTML templates literals in JavaScript",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "7a5f0cea32b6a37457067ad21d7dd92abb0df33115eb7a521314ced70609cfb427746619f37e777b66b93cf5fea877b66866b27e7721426900a2369601110e20"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-10",
+      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-9",
       "name": "lit-element",
       "versionInfo": "4.2.2",
       "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
@@ -312,6 +286,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-10",
+      "name": "lit-html",
+      "versionInfo": "3.3.3",
+      "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lit-html@3.3.3"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "HTML templates literals in JavaScript",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "7a5f0cea32b6a37457067ad21d7dd92abb0df33115eb7a521314ced70609cfb427746619f37e777b66b93cf5fea877b66866b27e7721426900a2369601110e20"
         }
       ]
     },
@@ -420,12 +420,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
-      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-10",
+      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-3",
-      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-9",
+      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-10",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -434,7 +434,7 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-9",
+      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-10",
       "relatedSpdxElement": "SPDXRef-Package--types-trusted-types-2.0.7-12",
       "relationshipType": "DEPENDS_ON"
     }

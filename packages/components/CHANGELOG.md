@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.22.2
+
+### Patch Changes
+
+- [#1350](https://github.com/synergy-design-system/synergy-design-system/pull/1350) [`d7e8c2a`](https://github.com/synergy-design-system/synergy-design-system/commit/d7e8c2a77e6511733330c02f307abc8f7d4ca0b5) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-05
+
+  fix: 🐛 Indentation of nested nav-items in side-nav was not shown correctly in newer Chrome versions (>149) ([#1348](https://github.com/synergy-design-system/synergy-design-system/issues/1348))
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.22.2
+
 ## 3.22.1
 
 ### Patch Changes

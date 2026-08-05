@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/fonts",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-fonts-1.1.1-80c9cf91-d69f-4e3e-b381-552be94ce078",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-fonts-1.1.1-4886c706-acdb-4a0a-9d05-5949f7eaf0bf",
   "creationInfo": {
-    "created": "2026-08-04T12:08:47.074Z",
+    "created": "2026-08-05T11:20:47.073Z",
     "creators": [
       "Tool: pnpm"
     ]

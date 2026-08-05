@@ -17,7 +17,7 @@
   "name": "resolved.d.ts",
   "package": "tokens",
   "relations": [],
-  "since": "3.22.1",
+  "since": "3.22.2",
   "sources": [
     "packages/tokens/dist/js/resolved.d.ts"
   ],

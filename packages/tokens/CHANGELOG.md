@@ -1,5 +1,7 @@
 # Changelog
 
+## 3.22.2
+
 ## 3.22.1
 
 ### Patch Changes

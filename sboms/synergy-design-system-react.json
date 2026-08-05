@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/react",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.22.1-c29175bd-67f1-41d1-917c-bc3ba438dc56",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.22.2-122bdcc5-c945-428a-94ca-5fbf35b407b3",
   "creationInfo": {
-    "created": "2026-08-04T12:08:47.181Z",
+    "created": "2026-08-05T11:20:47.178Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/react",
-      "versionInfo": "3.22.1",
+      "versionInfo": "3.22.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.22.1"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.22.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.22.1-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.22.2-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.22.1",
+      "versionInfo": "3.22.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.22.1"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.22.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -51,16 +51,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.22.1-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.22.2-1",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.22.1",
+      "versionInfo": "3.22.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.22.1"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.22.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -224,33 +224,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-8",
-      "name": "@floating-ui/core",
-      "versionInfo": "1.8.0",
-      "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.8.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40floating-ui/core@1.8.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Positioning library for floating elements: tooltips, popovers, dropdowns, and more",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "d02219e62b69b3ff31ec11bc744221b39dc1bc2507d8f0a8a20b5a930453badf80ae6e7cb09a2827402e6612f0d87258211e5c30b34f0524bbdbcb0f868da485"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--floating-ui-utils-0.2.12-9",
+      "SPDXID": "SPDXRef-Package--floating-ui-utils-0.2.12-8",
       "name": "@floating-ui/utils",
       "versionInfo": "0.2.12",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.12.tgz",
@@ -272,6 +246,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "1e90a8f2d996ccb55a779b36775f44840cf9ceaaeb43ab3af6a77a9a83cc42f90eb92c034f562045f59256e7387a79eaae0bf7387a6988e18c43ba02d77c88c3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-9",
+      "name": "@floating-ui/core",
+      "versionInfo": "1.8.0",
+      "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.8.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40floating-ui/core@1.8.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Positioning library for floating elements: tooltips, popovers, dropdowns, and more",
+      "homepage": "https://floating-ui.com",
+      "supplier": "Person: atomiks",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "d02219e62b69b3ff31ec11bc744221b39dc1bc2507d8f0a8a20b5a930453badf80ae6e7cb09a2827402e6612f0d87258211e5c30b34f0524bbdbcb0f868da485"
         }
       ]
     },
@@ -302,32 +302,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-zrender-6.1.0-11",
-      "name": "zrender",
-      "versionInfo": "6.1.0",
-      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/zrender@6.1.0"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
-      "homepage": "https://github.com/ecomfe/zrender#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-12",
+      "SPDXID": "SPDXRef-Package--lit-reactive-element-2.1.2-11",
       "name": "@lit/reactive-element",
       "versionInfo": "2.1.2",
       "downloadLocation": "https://registry.npmjs.org/@lit/reactive-element/-/reactive-element-2.1.2.tgz",
@@ -349,6 +324,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "a5b0838953279ded6561421a60d379c2bc105c3b47698b60ed81053de5be870b3a538ed6785bc84865167a43c629638fd7282bb3479fd28d5524c9357b1a2ce4"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-zrender-6.1.0-12",
+      "name": "zrender",
+      "versionInfo": "6.1.0",
+      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/zrender@6.1.0"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
+      "homepage": "https://github.com/ecomfe/zrender#readme",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
         }
       ]
     },
@@ -490,12 +490,12 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.22.1-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.22.2-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.22.1-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.22.2-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -504,22 +504,22 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.1-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.2-0",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.1-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.2-0",
       "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.1-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.2-0",
       "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-5",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.1-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.22.2-0",
       "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-6",
       "relationshipType": "DEPENDS_ON"
     },
@@ -530,12 +530,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-8",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-9",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -545,12 +545,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-echarts-6.1.0-5",
-      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-11",
+      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-12",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-6",
-      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-12",
+      "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -569,7 +569,7 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-12",
+      "spdxElementId": "SPDXRef-Package--lit-reactive-element-2.1.2-11",
       "relatedSpdxElement": "SPDXRef-Package--lit-labs-ssr-dom-shim-1.6.0-16",
       "relationshipType": "DEPENDS_ON"
     },

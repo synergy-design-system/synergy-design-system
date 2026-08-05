@@ -440,15 +440,7 @@ describe('<syn-side-nav>', () => {
     });
   });
 
-  it('should show an indentation for nested nav-items (#708)', async () => {
-    // TODO: for now this test is skipped for chromium, as since version 151 there is a bug that causes the indentation to be NAN for all nav-items. See https://github.com/synergy-design-system/synergy-design-system/issues/1348
-    // remove the skip as soon as the bug is fixed
-    if (navigator.userAgent.includes('Chrome')) {
-      // eslint-disable-next-line no-console
-      console.warn('Skipping Chrome test for indentation due to bug in Chromium 151+');
-      return;
-    }
-
+  it('should show an indentation for nested nav-items (#708, #1348)', async () => {
     const sideNav = await fixture<SynSideNav>(html`
       <syn-side-nav>
         <syn-nav-item id="first">

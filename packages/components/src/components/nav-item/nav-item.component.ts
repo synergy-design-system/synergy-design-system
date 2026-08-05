@@ -401,20 +401,20 @@ export default class SynNavItem extends SynergyElement {
         aria-disabled=${this.disabled}
         @blur=${this.handleBlur}
         class=${classMap({
-      'nav-item': true,
-      'nav-item--current': this.current || showCurrentIndicatorForNested,
-      'nav-item--disabled': this.disabled,
-      'nav-item--focused': this.hasFocus,
-      'nav-item--has-content': this.hasSlotController.test('[default]'),
-      'nav-item--has-prefix': this.hasSlotController.test('prefix'),
-      'nav-item--has-suffix': this.hasSlotController.test('suffix'),
-      'nav-item--horizontal': this.horizontal,
-      'nav-item--is-link': isLink,
-      'nav-item--multi-line': this.isMultiLine,
-      'nav-item--show-prefix-only': this.showPrefixOnly,
-      'nav-item--vertical': !this.horizontal,
-      'nav-item-is-accordion': isAccordion,
-    })}
+          'nav-item': true,
+          'nav-item--current': this.current || showCurrentIndicatorForNested,
+          'nav-item--disabled': this.disabled,
+          'nav-item--focused': this.hasFocus,
+          'nav-item--has-content': this.hasSlotController.test('[default]'),
+          'nav-item--has-prefix': this.hasSlotController.test('prefix'),
+          'nav-item--has-suffix': this.hasSlotController.test('suffix'),
+          'nav-item--horizontal': this.horizontal,
+          'nav-item--is-link': isLink,
+          'nav-item--multi-line': this.isMultiLine,
+          'nav-item--show-prefix-only': this.showPrefixOnly,
+          'nav-item--vertical': !this.horizontal,
+          'nav-item-is-accordion': isAccordion,
+        })}
         @click=${clickAction}
         ?disabled=${ifDefined(isLink ? undefined : this.disabled)}
         @focus=${this.handleFocus}
@@ -427,9 +427,9 @@ export default class SynNavItem extends SynergyElement {
       >
 
         ${this.divider && !this.horizontal
-        ? html`<syn-divider class="divider" part="divider"></syn-divider>`
-        : ''
-      }
+          ? html`<syn-divider class="divider" part="divider"></syn-divider>`
+          : ''
+        }
 
         <div class="nav-item__content" part="content-wrapper">
           <slot name="prefix" part="prefix" class="nav-item__prefix"></slot>
@@ -443,21 +443,21 @@ export default class SynNavItem extends SynergyElement {
           ${hasChevron ? html`
             <syn-icon
               class=${classMap({
-        'nav-item__chevron': true,
-        'nav-item__chevron-open': this.open,
-      })}
+                'nav-item__chevron': true,
+                'nav-item__chevron-open': this.open,
+              })}
               library="system"
               name="chevron-down"
               part="chevron"
             /></syn-icon>`
-        : ''}
+          : ''}
 
           <div
             class=${classMap({
-          'current-indicator': true,
-          'current-indicator--disabled': this.disabled,
-          'current-indicator--visible': this.current || showCurrentIndicatorForNested,
-        })}
+              'current-indicator': true,
+              'current-indicator--disabled': this.disabled,
+              'current-indicator--visible': this.current || showCurrentIndicatorForNested,
+            })}
             part="current-indicator"
           >
           </div>

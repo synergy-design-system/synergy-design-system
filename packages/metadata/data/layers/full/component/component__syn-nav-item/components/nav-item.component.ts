@@ -243,24 +243,21 @@ export default class SynNavItem extends SynergyElement {
    */
   private handleSlotChange() {
     const computedStyle = getComputedStyle(this);
-    const lengthStyle = computedStyle.length;
+    // Use the current level of the component
+    const level = computedStyle.getPropertyValue('--indentation');
 
-    // This workaround is needed for firefox.
+    // This workaround is needed for firefox and chrome (version > 149 https://github.com/synergy-design-system/synergy-design-system/issues/1348).
     // When the nav-item is used inside a custom-element with a custom-element in it
-    // (e.g syn-side-nav with integrated syn-drawer), the getComputedStyle property is not yet there
+    // (e.g syn-side-nav with integrated syn-drawer), the styles of getComputedStyle are not yet there
     // Moving it in the next render cycle works.
-    // Probably related to the firefox special behavior. See: https://caniuse.com/mdn-api_window_getcomputedstyle
-    if (lengthStyle === 0) {
-      setTimeout(() => {
+    if (level === '') {
+      requestAnimationFrame(() => {
         this.handleSlotChange();
       });
       return;
     }
 
     this.handleCurrentMarkedChild();
-
-    // Use the current level of the component
-    const level = computedStyle.getPropertyValue('--indentation');
 
     // We allow at most 3 levels
     const nextLevel = Math.min(parseInt(level, 10) + 1, 2);

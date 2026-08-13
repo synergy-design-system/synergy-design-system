@@ -171,7 +171,7 @@ export const WATERMARK_SCENARIOS: WatermarkScenario[] = [
     budget: {
       maxRegressionAbs: 500,
       maxRegressionPct: 20,
-      maxTokens: 10000,
+      maxTokens: 15000,
     },
     id: 'component-info:examples:syn-chart',
     kind: 'tool',

@@ -22,7 +22,7 @@ import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
 import { getRealStyleValue, setGlobalThemeStore } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
 import type SynChartAxis from '../chart-axis/chart-axis.component.js';
-import type SynChartSeries from '../chart-series/chart-series.component.js';
+import type SynChartData from '../chart-series/chart-series.component.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -44,7 +44,7 @@ use([
  *
  * @csspart base - The component's base wrapper.
  */
-export default class SynChart extends SynergyElement {
+export default class SynChartPartial extends SynergyElement {
   static styles: CSSResultGroup = [
     componentStyles,
     styles,
@@ -66,6 +66,8 @@ export default class SynChart extends SynergyElement {
   private themeObserver: MutationObserver;
 
   private renderScheduled = false;
+
+  private renderScheduleMap: Map<string, boolean> = new Map();
 
   /**
    * The ECharts configuration input.
@@ -155,40 +157,43 @@ export default class SynChart extends SynergyElement {
     }
   }
 
-  private buildSubComponentDataConfig(element: SynChartSeries): Record<string, unknown> | undefined {
-    const {
-      axisIndex,
-      data,
-      name,
-      type,
-    } = element;
+  private buildSubComponentDataConfig(element: SynChartData): ECConfig {
+    const { data, name, type } = element;
 
     if (data.length === 0) {
-      return undefined;
+      return {};
     }
 
     return {
-      data,
-      name,
-      type,
-      ...(axisIndex !== undefined ? { yAxisIndex: axisIndex } : {}),
+      series: [{
+        data,
+        name,
+        type,
+      }],
     };
   }
 
-  private buildSubComponentAxisConfig(element: SynChartAxis): { axis: 'x' | 'y'; config: Record<string, unknown>; index?: number } {
-    const { axis, data, index } = element;
+  private buildSubComponentAxisConfig(element: SynChartAxis): ECConfig {
+    const { axis, data } = element;
     const type = element.type ?? (axis === 'x' ? 'category' : 'value');
-    const resolvedAxis = axis === 'y' ? 'y' : 'x';
 
     const config = {
       type,
-      ...(data.length > 0 ? { data } : {}),
+      ...(data ? { data } : {})
     };
 
+    if (axis === 'x') {
+      return {
+        xAxis: {
+          ...config,
+        },
+      };
+    }
+
     return {
-      axis: resolvedAxis,
-      config,
-      index,
+      yAxis: {
+        ...config,
+      },
     };
   }
 
@@ -198,53 +203,23 @@ export default class SynChart extends SynergyElement {
     }
 
     const slottedElements = [...this.defaultSlot.assignedElements({ flatten: true })] as HTMLElement[];
-    const xAxes: Record<string, unknown>[] = [];
-    const yAxes: Record<string, unknown>[] = [];
-    const series: Record<string, unknown>[] = [];
-    let hasIndexedXAxis = false;
-    let hasIndexedYAxis = false;
+    let componentConfig: ECConfig = {};
 
     slottedElements.forEach((element) => {
       const tagName = element.tagName.toLowerCase();
 
       if (tagName === 'syn-chart-series') {
-        const subComponentDataConfig = this.buildSubComponentDataConfig(element);
-        if (subComponentDataConfig) {
-          series.push(subComponentDataConfig);
-        }
+        componentConfig = mergeConfigs(
+          componentConfig,
+          this.buildSubComponentDataConfig(element as SynChartData),
+          { arrayStrategy: 'append' },
+        );
       }
 
       if (tagName === 'syn-chart-axis') {
-        const { axis, config, index } = this.buildSubComponentAxisConfig(element as SynChartAxis);
-        const targetAxes = axis === 'x' ? xAxes : yAxes;
-
-        if (index !== undefined) {
-          targetAxes[index] = config;
-          if (axis === 'x') {
-            hasIndexedXAxis = true;
-          } else {
-            hasIndexedYAxis = true;
-          }
-          return;
-        }
-
-        targetAxes.push(config);
+        componentConfig = mergeConfigs(componentConfig, this.buildSubComponentAxisConfig(element as SynChartAxis));
       }
     });
-
-    const componentConfig: ECConfig = {};
-
-    if (series.length > 0) {
-      componentConfig.series = series;
-    }
-
-    if (xAxes.length > 0) {
-      componentConfig.xAxis = (hasIndexedXAxis || xAxes.length > 1) ? xAxes : xAxes[0];
-    }
-
-    if (yAxes.length > 0) {
-      componentConfig.yAxis = (hasIndexedYAxis || yAxes.length > 1) ? yAxes : yAxes[0];
-    }
 
     return componentConfig;
   }
@@ -312,7 +287,7 @@ export default class SynChart extends SynergyElement {
     });
 
     this.themeObserver.observe(document.body, { attributeFilter: ['class'], attributeOldValue: true });
-    this.addEventListener('syn-chart-subcomponent-change', this.handleSlotChange);
+    this.addEventListener('syn-chart-subcomponent-change', this.handleSubComponentChange);
 
     /**
      * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.
@@ -358,6 +333,35 @@ export default class SynChart extends SynergyElement {
       this.applyPalette();
     }
   }
+
+  // TODO: Sollte man nur das data als partielles Update machen, oder alles? 
+  // we would also need like an unique id for each sub somponent do correctly do the map. For now do it without renderScheduleMap
+  private schedulePartialChartUpdate = (event: CustomEvent) => {
+    const element = event.target as HTMLElement;
+    const subcomponent = element.tagName.toLowerCase();
+    // const key = `${subcomponent}-${property}`;
+    if (subcomponent !== 'syn-chart-series') return;
+    // if (this.renderScheduleMap.get(key)) return;
+    // this.renderScheduleMap.set(key, true);
+
+    // requestAnimationFrame(() => {
+    //   this.renderScheduleMap.set(key, false);
+    if (subcomponent === 'syn-chart-series') {
+      const data = this.buildSubComponentDataConfig(element as SynChartData);
+      this.chartInstance.setOption(data, { notMerge: false });
+    }
+    // });
+  };
+
+  private handleSubComponentChange = (event: CustomEvent) => {
+    const target = event.target as HTMLElement;
+    const subcomponent = target.tagName.toLowerCase();
+    if (subcomponent === 'syn-chart-series') {
+      this.schedulePartialChartUpdate(event);
+    }else {
+      this.scheduleRenderChart();
+    }
+  };
 
   private scheduleRenderChart = () => {
     if (this.renderScheduled) return;

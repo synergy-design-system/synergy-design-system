@@ -40,18 +40,27 @@ import docsPreviewIframeThemer from '../src/docs-preview-iframe-themer/index.js'
 import docsCodeOptimizer from '../src/docs-code-optimizer/index.js';
 
 // Filter out all private members and readonly properties from the manifest
-const filteredManifest = (manifest: Package): Package => ({
-  ...manifest,
-  modules: manifest.modules.map((module) => ({
-    ...module,
-    declarations: (module.declarations as ClassDeclaration[])?.map((declaration) => ({
-      ...declaration,
-      members: (declaration.members as ClassMember[]).filter(
-        (member: ClassMember) => member.description && member.privacy !== 'private',
-      ),
-    })),
-  })),
-});
+const filteredManifest = (manifest: Package): Package => {
+  try {
+    return {
+      ...manifest,
+      modules: manifest.modules.map((module) => ({
+        ...module,
+        declarations: (module.declarations as ClassDeclaration[])?.map((declaration) => {
+          return {
+          ...declaration,
+          members: (declaration.members as ClassMember[]).filter(
+            (member: ClassMember) => member.description && member.privacy !== 'private',
+          ),
+        }}),
+      })),
+    };
+  } catch (error) {
+    return manifest; // Return the original manifest if an error occurs
+  }
+
+
+};
 const componentsManifestFiltered = filteredManifest(componentsManifest as Package);
 const stylesManifestFiltered = filteredManifest(stylesManifest as Package);
 

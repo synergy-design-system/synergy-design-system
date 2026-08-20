@@ -1,4 +1,5 @@
 import type { PieSeriesOption } from 'echarts/types/dist/shared.js';
+import type { GraphicComponentImageOption, GraphicComponentTextOption } from 'echarts/types/src/component/graphic/GraphicModel.js';
 
 /**
  * Visual and textual settings for the optional trend indicator.
@@ -25,6 +26,36 @@ export type GaugeSectionsOptions = {
 };
 
 /**
+ * ECharts override options for a gauge text graphic element.
+ */
+export type GaugeGraphicTextOption = Partial<Omit<GraphicComponentTextOption, 'type'>>;
+
+/**
+ * ECharts override options for a gauge image graphic element.
+ */
+export type GaugeGraphicImageOption = Partial<Omit<GraphicComponentImageOption, 'type'>>;
+
+/**
+ * ECharts override options for gauge pie series and gauge graphic elements.
+ */
+export type GaugeSeriesOverridesOptions = {
+  /** ECharts pie series overrides for the progress arc. */
+  gaugeSeries?: PieSeriesOption;
+  /** ECharts pie series overrides for the optional outer sections ring. */
+  sectionsSeries?: PieSeriesOption;
+  /** ECharts graphic overrides for the value label. Overriding `fontSize` disables responsive text sizing. */
+  valueText?: GaugeGraphicTextOption;
+  /** ECharts graphic overrides for the unit label. Overriding `fontSize` disables responsive text sizing. */
+  unitText?: GaugeGraphicTextOption;
+  /** ECharts graphic overrides for the center icon image. Overriding `width` or `height` disables responsive icon sizing. */
+  iconImage?: GaugeGraphicImageOption;
+  /** ECharts graphic overrides for the minimum label. Overriding `fontSize` disables responsive text sizing. */
+  minText?: GaugeGraphicTextOption;
+  /** ECharts graphic overrides for the maximum label. Overriding `fontSize` disables responsive text sizing. */
+  maxText?: GaugeGraphicTextOption;
+};
+
+/**
  * Makes selected keys required while preserving the remaining type shape.
  */
 type WithRequired<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
@@ -41,14 +72,12 @@ export type GaugeSeriesPresetOptions = {
   icon?: string;
   /** Color of the progress arc that displays the current value. */
   progressColor?: string;
-  /** ECharts pie series overrides for the progress arc. */
-  gaugeSeries?: PieSeriesOption;
   /** Maximum value for the gauge */
   max?: number;
   /** Minimum value for the gauge */
   min?: number;
-  /** ECharts pie series overrides for the optional outer sections ring. */
-  sectionsSeries?: PieSeriesOption;
+  /** ECharts overrides for gauge pie series and graphic elements. */
+  overrides?: GaugeSeriesOverridesOptions;
   /** Outer gauge section boundaries and colors. */
   sections?: GaugeSectionsOptions;
   /** Enables rendering of the outer section ring. */
@@ -61,6 +90,12 @@ export type GaugeSeriesPresetOptions = {
   unit?: string;
   /** Current gauge value. */
   value?: number;
+  /** Formatter applied to the displayed gauge value. */
+  valueFormatter?: (value: number) => string;
+  /** Formatter applied to the displayed minimum label. */
+  minFormatter?: (value: number) => string;
+  /** Formatter applied to the displayed maximum label`. */
+  maxFormatter?: (value: number) => string;
 };
 
 /**
@@ -72,6 +107,7 @@ export type ResolvedGaugeSeriesPresetOptions = Override<
     'max' | 'min' | 'showSections' | 'showTrend' | 'unit' | 'value'
   >,
   {
+    overrides: GaugeSeriesOverridesOptions;
     sections: WithRequired<GaugeSectionsOptions, 'boundaries' | 'colors'>;
     trend: WithRequired<
       GaugeTrendOptions,

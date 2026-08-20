@@ -152,11 +152,39 @@ export const Icon: Story = {
   `,
 };
 
+export const ValueFormatting: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'gauge-series-formatter'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="gauge-formatter"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#gauge-formatter');
+
+      charts.forEach(chart => {
+         charts.forEach(chart => {
+            chart.config = handle => handle
+            .seriesGauge({
+              valueFormatter: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 2 }).format(value),
+              minFormatter: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
+              maxFormatter: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
+            });
+          });
+      });
+    </script>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   Sections,
   TrendIndicator,
   Icon,
+  ValueFormatting,
 }, 700);
 /* eslint-enable sort-keys */

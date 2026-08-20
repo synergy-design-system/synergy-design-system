@@ -43,8 +43,14 @@ import {
  * @param {string} [options.trend.iconUp] Icon data URL used for upward trends.
  * @param {string} [options.trend.iconDown] Icon data URL used for downward trends.
  * @param {string} [options.trend.value] Trend label text shown in the indicator pill.
- * @param {PieSeriesOption} [options.sectionsSeries] ECharts overrides for the outer arc pie series.
- * @param {PieSeriesOption} [options.gaugeSeries] ECharts overrides for the main progress pie series.
+ * @param {GaugeSeriesOverridesOptions} [options.overrides] ECharts overrides for gauge series and gauge graphic elements.
+ * @param {PieSeriesOption} [options.overrides.sectionsSeries] ECharts overrides for the outer arc pie series.
+ * @param {PieSeriesOption} [options.overrides.gaugeSeries] ECharts overrides for the main progress pie series.
+ * @param {GaugeGraphicTextOption} [options.overrides.valueText] ECharts graphic overrides for the value label. Overriding `fontSize` disables responsive text sizing.
+ * @param {GaugeGraphicTextOption} [options.overrides.unitText] ECharts graphic overrides for the unit label. Overriding `fontSize` disables responsive text sizing.
+ * @param {GaugeGraphicImageOption} [options.overrides.iconImage] ECharts graphic overrides for the center icon image. Overriding `width` or `height` disables responsive icon sizing.
+ * @param {GaugeGraphicTextOption} [options.overrides.minText] ECharts graphic overrides for the minimum label. Overriding `fontSize` disables responsive text sizing.
+ * @param {GaugeGraphicTextOption} [options.overrides.maxText] ECharts graphic overrides for the maximum label. Overriding `fontSize` disables responsive text sizing.
  *
  * @see https://echarts.apache.org/en/option.html#series-pie
  * @see https://echarts.apache.org/en/option.html#graphic.elements-text

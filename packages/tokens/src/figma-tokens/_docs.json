@@ -946,6 +946,16 @@
           "value": "Use the `icon` option to render an SVG image below the unit label, or below the value when no unit is set.",
           "type": "text"
         }
+      },
+      "gauge-series-formatter": {
+        "title": {
+          "value": "Gauge Series Value Formatting",
+          "type": "text"
+        },
+        "description": {
+          "value": "The gauge series supports custom value formatting using `valueFormatter`, `minFormatter`, and `maxFormatter` options.",
+          "type": "text"
+        }
       }
     },
     "checkbox": {

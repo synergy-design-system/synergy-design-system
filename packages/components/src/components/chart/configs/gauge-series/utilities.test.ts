@@ -297,17 +297,72 @@ describe('buildPieSeries', () => {
 
   describe('mergeDeep integration', () => {
     it('merges gaugeSeries overrides into the progress series', () => {
-      const { progress } = buildPieSeries({ gaugeSeries: { endAngle: 180, startAngle: 0 } });
+      const { progress } = buildPieSeries({ overrides: { gaugeSeries: { endAngle: 180, startAngle: 0 } } });
 
       expect(progress.startAngle).to.equal(0);
       expect(progress.endAngle).to.equal(180);
     });
 
     it('merges sectionsSeries overrides into the sections series', () => {
-      const { sections } = buildPieSeries({ sectionsSeries: { endAngle: 180, startAngle: 0 } });
+      const { sections } = buildPieSeries({ overrides: { sectionsSeries: { endAngle: 180, startAngle: 0 } } });
 
       expect(sections.startAngle).to.equal(0);
       expect(sections.endAngle).to.equal(180);
+    });
+
+    it('merges value, unit, min and max label overrides into graphic text elements', () => {
+      const { graphic } = buildPieSeries({
+        max: 200,
+        min: -10,
+        overrides: {
+          maxText: { right: 'left', style: { fill: '#445566' } },
+          minText: { style: { fill: '#112233' } },
+          unitText: { left: 'left', style: { fill: '#abcdef' } },
+          valueText: { left: 'right', style: { fill: '#123456' } },
+        },
+        unit: 'kWh',
+        value: 42,
+      });
+
+      const graphics = graphic as GraphicComponentOption[];
+      const textElements = graphics.filter((el) => el.type === 'text') as GraphicComponentTextOption[];
+
+      const valueElement = textElements.find((element) => element.style?.text === '42');
+      const unitElement = textElements.find((element) => element.style?.text === 'kWh');
+      const minElement = textElements.find((element) => element.style?.text === '-10');
+      const maxElement = textElements.find((element) => element.style?.text === '200');
+
+      expect(valueElement?.left).to.equal('right');
+      expect(valueElement?.style?.fill).to.equal('#123456');
+      expect(unitElement?.left).to.equal('left');
+      expect(unitElement?.style?.fill).to.equal('#abcdef');
+      expect(minElement?.style?.fill).to.equal('#112233');
+      expect(maxElement?.style?.fill).to.equal('#445566');
+      expect(maxElement?.right).to.equal('left');
+    });
+
+    it('merges icon image overrides into the center icon graphic element', () => {
+      const { graphic } = buildPieSeries({
+        icon: svgDataUrl,
+        overrides: {
+          iconImage: {
+            left: 'left',
+            style: {
+              height: 12,
+              width: 34,
+            },
+            top: 123,
+          },
+        },
+      });
+
+      const graphics = graphic as GraphicComponentOption[];
+      const image = graphics.find((el) => el.type === 'image') as GraphicComponentImageOption;
+
+      expect(image.left).to.equal('left');
+      expect(image.top).to.equal(123);
+      expect(image.style?.height).to.equal(12);
+      expect(image.style?.width).to.equal(34);
     });
   });
 });

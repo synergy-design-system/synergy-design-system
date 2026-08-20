@@ -1,5 +1,6 @@
 import type { PieSeriesOption } from 'echarts/types/dist/shared.js';
 import type { MediaUnit } from 'echarts/types/src/util/types.js';
+import type { GraphicComponentImageOption, GraphicComponentTextOption } from 'echarts/types/src/component/graphic/GraphicModel.js';
 import {
   measureTextWidth,
   getRealStyleValue as style,
@@ -9,6 +10,8 @@ import { GAUGE_SERIES } from '../constants.js';
 import { colorSvgDataUrl, mergeDeep } from '../utilities.js';
 import type { ECConfig } from '../../types.js';
 import type {
+  GaugeGraphicImageOption,
+  GaugeGraphicTextOption,
   GaugeSeriesPresetOptions,
   PieDataItem,
   ResolvedGaugeSeriesPresetOptions,
@@ -19,10 +22,13 @@ const DEFAULT_SECTION_COLORS = [
   style('SynNamurWarningColor'),
   style('SynNamurErrorColor'),
 ];
-
+const valueToString = (value: number): string => String(value);
 const DEFAULT_SERIES_GAUGE_OPTIONS = {
   max: GAUGE_SERIES.MAX_VALUE,
+  maxFormatter: valueToString,
   min: GAUGE_SERIES.MIN_VALUE,
+  minFormatter: valueToString,
+  overrides: {},
   sections: {
     boundaries: GAUGE_SERIES.SECTIONS_BOUNDARIES,
     colors: DEFAULT_SECTION_COLORS,
@@ -36,6 +42,7 @@ const DEFAULT_SERIES_GAUGE_OPTIONS = {
     value: 'XX,XX',
   },
   unit: '',
+  valueFormatter: valueToString,
 };
 
 const SHARED_PIE_SERIES_OPTION: PieSeriesOption = {
@@ -278,8 +285,17 @@ const createGraphicElement = (
   trendLabelValue: string,
   trendIconDataUrl: string,
   breakpoint: number,
+  valueFormatter: (value: number) => string,
+  minFormatter: (value: number) => string,
+  maxFormatter: (value: number) => string,
+  valueText: GaugeGraphicTextOption | undefined,
+  unitText: GaugeGraphicTextOption | undefined,
+  iconImage: GaugeGraphicImageOption | undefined,
+  minText: GaugeGraphicTextOption | undefined,
+  maxText: GaugeGraphicTextOption | undefined,
   icon?: string,
-) => {
+// eslint-disable-next-line complexity
+): ECConfig['graphic'] => {
   // Scale factor based on the breakpoint. The "normal" styles are applied between 260 and 330
   const factor = breakpoint / GAUGE_SERIES.BREAKPOINT_DEFAULT;
   const iconSize = styleWithoutUnit('SynFontSize2xLarge') * factor; // 24
@@ -296,71 +312,77 @@ const createGraphicElement = (
     fontWeight: styleWithoutUnit('SynFontWeightBold'),
   };
 
+  const valueLabelElement = mergeDeep({
+    left: 'center',
+    style: {
+      ...sharedFontStyles,
+      fontSize: valueFontSize,
+      fontWeight: styleWithoutUnit('SynFontWeightLight'),
+      text: valueFormatter(value),
+    },
+    top: GAUGE_SERIES.LABEL_VALUE_TOP,
+    type: 'text',
+  }, valueText || {}) as GraphicComponentTextOption;
+
+  const unitLabelElement = mergeDeep({
+    left: 'center',
+    style: {
+      ...sharedFontStyles,
+      fontSize: unitFontSize,
+      text: unit,
+    },
+    top: GAUGE_SERIES.LABEL_UNIT_TOP,
+    type: 'text',
+  }, unitText || {}) as GraphicComponentTextOption;
+
+  const iconImageElement = mergeDeep({
+    left: 'center',
+    style: {
+      height: iconSize,
+      image: colorSvgDataUrl(icon ?? '', style('SynTypographyColorText')),
+      width: iconSize,
+    },
+    top: (unit !== '' ? GAUGE_SERIES.LABEL_ICON_TOP_WITH_UNIT : GAUGE_SERIES.LABEL_ICON_TOP_WITHOUT_UNIT),
+    type: 'image',
+  }, iconImage || {}) as GraphicComponentImageOption;
+
+  const minLabelElement = mergeDeep({
+    left: GAUGE_SERIES.LABEL_MIN_MAX_HORIZONTAL,
+    style: {
+      ...sharedFontStyles,
+      fontSize: minMaxFontSize,
+      text: minFormatter(min),
+    },
+    top: GAUGE_SERIES.LABEL_MIN_MAX_TOP,
+    type: 'text',
+  }, minText || {}) as GraphicComponentTextOption;
+
+  const maxLabelElement = mergeDeep({
+    right: GAUGE_SERIES.LABEL_MIN_MAX_HORIZONTAL,
+    style: {
+      ...sharedFontStyles,
+      fontSize: minMaxFontSize,
+      text: maxFormatter(max),
+    },
+    top: GAUGE_SERIES.LABEL_MIN_MAX_TOP,
+    type: 'text',
+  }, maxText || {}) as GraphicComponentTextOption;
+
   return [
     // Main value
-    {
-      left: 'center',
-      style: {
-        ...sharedFontStyles,
-        fontSize: valueFontSize,
-        fontWeight: styleWithoutUnit('SynFontWeightLight'),
-        text: String(value),
-      },
-      top: GAUGE_SERIES.LABEL_VALUE_TOP,
-      type: 'text',
-    },
+    valueLabelElement,
     // Unit label (omitted when empty)
     ...(unit !== ''
-      ? [
-        {
-          left: 'center',
-          style: {
-            ...sharedFontStyles,
-            fontSize: unitFontSize,
-            text: unit,
-          },
-          top: GAUGE_SERIES.LABEL_UNIT_TOP,
-          type: 'text',
-        },
-      ]
+      ? [unitLabelElement]
       : []),
     // Center icon (optional, shown below unit or below value when no unit is set)
     ...(icon !== undefined
-      ? [
-        {
-          left: 'center',
-          style: {
-            height: iconSize,
-            image: colorSvgDataUrl(icon, style('SynTypographyColorText')),
-            width: iconSize,
-          },
-          top: (unit !== '' ? GAUGE_SERIES.LABEL_ICON_TOP_WITH_UNIT : GAUGE_SERIES.LABEL_ICON_TOP_WITHOUT_UNIT),
-          type: 'image',
-        },
-      ]
+      ? [iconImageElement]
       : []),
     // Min label
-    {
-      left: GAUGE_SERIES.LABEL_MIN_MAX_HORIZONTAL,
-      style: {
-        ...sharedFontStyles,
-        fontSize: minMaxFontSize,
-        text: String(min),
-      },
-      top: GAUGE_SERIES.LABEL_MIN_MAX_TOP,
-      type: 'text',
-    },
+    minLabelElement,
     // Max label
-    {
-      right: GAUGE_SERIES.LABEL_MIN_MAX_HORIZONTAL,
-      style: {
-        ...sharedFontStyles,
-        fontSize: minMaxFontSize,
-        text: String(max),
-      },
-      top: GAUGE_SERIES.LABEL_MIN_MAX_TOP,
-      type: 'text',
-    },
+    maxLabelElement,
     ...(showTrend
       ? (() => {
         const trendValueFont = `${style('SynFontWeightBold')} ${trendValueFontSize}px ${style('SynFontSans')}`;
@@ -441,6 +463,14 @@ const createMediaGraphics = (
   showTrend: boolean,
   trendLabelValue: string,
   trendIconDataUrl: string,
+  valueFormatter: (value: number) => string,
+  minFormatter: (value: number) => string,
+  maxFormatter: (value: number) => string,
+  valueText: GaugeGraphicTextOption | undefined,
+  unitText: GaugeGraphicTextOption | undefined,
+  iconImage: GaugeGraphicImageOption | undefined,
+  minText: GaugeGraphicTextOption | undefined,
+  maxText: GaugeGraphicTextOption | undefined,
   icon?: string,
 ) => GAUGE_SERIES.BREAKPOINTS.map((breakpoint, index) => {
   let query;
@@ -457,7 +487,25 @@ const createMediaGraphics = (
 
   return {
     option: {
-      graphic: createGraphicElement(value, min, max, unit, showTrend, trendLabelValue, trendIconDataUrl, breakpoint, icon),
+      graphic: createGraphicElement(
+        value,
+        min,
+        max,
+        unit,
+        showTrend,
+        trendLabelValue,
+        trendIconDataUrl,
+        breakpoint,
+        valueFormatter,
+        minFormatter,
+        maxFormatter,
+        valueText,
+        unitText,
+        iconImage,
+        minText,
+        maxText,
+        icon,
+      ),
     },
     query,
   };
@@ -480,10 +528,27 @@ export const buildPieSeries = (
   sections: PieSeriesOption;
 } => {
   const {
-    gaugeSeries, icon, min, max, progressColor, sections, sectionsSeries, showSections, showTrend, trend, unit, value,
+    icon,
+    maxFormatter,
+    min,
+    minFormatter,
+    max,
+    overrides,
+    progressColor,
+    sections,
+    showSections,
+    showTrend,
+    trend,
+    unit,
+    value,
+    valueFormatter,
   }: ResolvedGaugeSeriesPresetOptions = {
     ...DEFAULT_SERIES_GAUGE_OPTIONS,
     ...options,
+    overrides: {
+      ...DEFAULT_SERIES_GAUGE_OPTIONS.overrides,
+      ...options.overrides,
+    },
     sections: {
       ...DEFAULT_SERIES_GAUGE_OPTIONS.sections,
       ...options.sections,
@@ -494,6 +559,16 @@ export const buildPieSeries = (
     },
     value: getValue(options),
   };
+
+  const {
+    gaugeSeries,
+    iconImage,
+    maxText,
+    minText,
+    sectionsSeries,
+    unitText,
+    valueText,
+  } = overrides;
 
   const resolvedSections = buildSectionsFromBoundariesAndColors(sections.boundaries, sections.colors);
 
@@ -516,9 +591,34 @@ export const buildPieSeries = (
     trend.value,
     trendIconDataUrl,
     GAUGE_SERIES.BREAKPOINT_DEFAULT,
+    valueFormatter,
+    minFormatter,
+    maxFormatter,
+    valueText,
+    unitText,
+    iconImage,
+    minText,
+    maxText,
     icon,
   );
-  const media = createMediaGraphics(clampedValue, min, max, unit, showTrend, trend.value, trendIconDataUrl, icon);
+  const media = createMediaGraphics(
+    clampedValue,
+    min,
+    max,
+    unit,
+    showTrend,
+    trend.value,
+    trendIconDataUrl,
+    valueFormatter,
+    minFormatter,
+    maxFormatter,
+    valueText,
+    unitText,
+    iconImage,
+    minText,
+    maxText,
+    icon,
+  );
 
   return {
     graphic,

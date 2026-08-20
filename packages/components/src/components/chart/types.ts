@@ -58,6 +58,9 @@ export type {
 } from './configs/line-series/types.js';
 
 export type {
+  GaugeGraphicImageOption,
+  GaugeGraphicTextOption,
+  GaugeSeriesOverridesOptions,
   GaugeSectionsOptions,
   PieSeriesOption,
   GaugeSeriesPresetOptions,

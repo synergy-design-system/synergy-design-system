@@ -837,6 +837,102 @@ The data zoom slider (the dataZoom option with type: 'inside') allows users to d
 
 ## Default
 
+The gauge chart can be configured with the seriesGauge preset function.
+
+```html
+<syn-chart id="gauge-series-preset"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-series-preset");
+
+  charts.forEach((chart) => {
+    charts.forEach((chart) => {
+      chart.config = (handle) => handle.seriesGauge({ value: 80 });
+    });
+  });
+</script>
+```
+
+---
+
+## Sections
+
+The gauge series supports showing an outer sections ring. Use showSections: true together with sections.boundaries or sections.colors to render a color-coded outer ring around the gauge, where each adjacent pair of boundary values defines a segment. When no progressColor is set, the progress arc automatically adopts the color of the segment containing the current value.
+
+```html
+<syn-chart id="gauge-sections"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-sections");
+
+  charts.forEach((chart) => {
+    charts.forEach((chart) => {
+      chart.config = (handle) =>
+        handle.seriesGauge({
+          showSections: true,
+          sections: {
+            boundaries: [0, 20, 70, 100],
+          },
+          value: 80,
+        });
+    });
+  });
+</script>
+```
+
+---
+
+## Trend Indicator
+
+Use showTrend: true together with trend.value to render a small pill trend indicator above the gauge value; set trend.direction to 'up' (default) or 'down' to control the directional icon, and optionally provide trend.iconUp or trend.iconDown with a custom data URL to replace the default icons.
+
+```html
+<syn-chart id="gauge-trend"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-trend");
+
+  charts.forEach((chart) => {
+    charts.forEach((chart) => {
+      chart.config = (handle) =>
+        handle.seriesGauge({
+          showTrend: true,
+          trend: {
+            value: "5",
+          },
+          value: 80,
+        });
+    });
+  });
+</script>
+```
+
+---
+
+## Icon
+
+Use the icon option to render an SVG image below the unit label, or below the value when no unit is set.
+
+```html
+<syn-chart id="gauge-icon"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-icon");
+
+  charts.forEach((chart) => {
+    charts.forEach((chart) => {
+      chart.config = (handle) =>
+        handle.seriesGauge({
+          unit: "°C",
+          icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+          showSections: true,
+          value: 80,
+        });
+    });
+  });
+</script>
+```
+
+---
+
+## Default
+
 The line chart can be configured with the seriesLine preset function.
 
 ```html

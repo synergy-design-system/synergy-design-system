@@ -56,3 +56,10 @@ export type {
 export type {
   LineSeriesOption,
 } from './configs/line-series/types.js';
+
+export type {
+  GaugeSectionsOptions,
+  PieSeriesOption,
+  GaugeSeriesPresetOptions,
+  GaugeTrendOptions,
+} from './configs/gauge-series/types.js';

@@ -40,3 +40,54 @@ export const DATA_ZOOM = {
   /** Inner icon of the move handle. */
   MOVE_HANDLE_ICON: 'image://data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%228%22%20viewBox%3D%220%200%2010%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20x%3D%220%22%20y%3D%221%22%20width%3D%222%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22white%22/%3E%3Crect%20x%3D%224%22%20y%3D%221%22%20width%3D%222%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22white%22/%3E%3Crect%20x%3D%228%22%20y%3D%221%22%20width%3D%222%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22white%22/%3E%3C/svg%3E',
 } as const;
+
+/** Gauge series constants */
+export const GAUGE_SERIES = {
+  /** Baseline height used for the default graphic layout and responsive scaling. */
+  BREAKPOINT_DEFAULT: 330,
+  /**
+   * Chart-height breakpoints used to override the central gauge labels responsively.
+   *
+   * The list must stay in descending order so the generated ECharts media queries
+   * apply the expected max-height override.
+  */
+  BREAKPOINTS: [800, 700, 600, 500, 450, 400, 330, 260, 230, 190],
+  /** End angle of the semicircular gauge arc, in degrees. */
+  END_ANGLE: -30,
+  /** Inner radius of the progress ring. */
+  GAUGE_INNER_RADIUS: '73%',
+  /** Outer radius of the progress ring. */
+  GAUGE_OUTER_RADIUS: '89%',
+  /** Top position of the optional center icon when the unit label is visible. */
+  LABEL_ICON_TOP_WITH_UNIT: '64%',
+  /** Top position of the optional center icon when the unit label is hidden. */
+  LABEL_ICON_TOP_WITHOUT_UNIT: '52%',
+  /** Shared horizontal inset for the min/max labels. */
+  LABEL_MIN_MAX_HORIZONTAL: '29%',
+  /** Top position of the min/max labels */
+  LABEL_MIN_MAX_TOP: '74%',
+  /** Top position of the optional unit label below the main value. */
+  LABEL_UNIT_TOP: '54%',
+  /** Top position of the central gauge value label. */
+  LABEL_VALUE_TOP: '40%',
+  /** Default maximum value for the gauge. */
+  MAX_VALUE: 100,
+  /** Default minimum value for the gauge. */
+  MIN_VALUE: 0,
+  /** Default section boundaries used for the optional outer threshold ring. */
+  SECTIONS_BOUNDARIES: [0, 20, 60, 100] as Array<number>,
+  /** Fraction of the gauge range reserved for transparent separators between section slices. */
+  SECTIONS_GAP_RATIO: 0.005,
+  /** Inner radius of the optional outer threshold ring. */
+  SECTIONS_INNER_RADIUS: '93%',
+  /** Outer radius of the optional outer threshold ring. */
+  SECTIONS_OUTER_RADIUS: '97%',
+  /** Start angle of the semicircular gauge arc, in degrees. */
+  START_ANGLE: 210,
+  /** Default SVG data URL used when the trend indicator points downward. */
+  TREND_ICON_DOWN: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMS4yNSA0LjV2MTIuMTI3bC01LjY5Ni01LjY5Nkw0LjUgMTJsNy41IDcuNSA3LjUtNy41LTEuMDU0LTEuMDctNS42OTYgNS42OTdWNC41eiIvPjwvc3ZnPg==',
+  /** Default SVG data URL used when the trend indicator points upward. */
+  TREND_ICON_UP: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMS4yNSAxOS41VjcuMzczbC01LjY5NiA1LjY5Nkw0LjUgMTIgMTIgNC41bDcuNSA3LjUtMS4wNTQgMS4wNy01LjY5Ni01LjY5N1YxOS41eiIvPjwvc3ZnPg==',
+  /** Top position of the optional trend pill above the main value. */
+  TREND_TOP: '26%',
+} as const;

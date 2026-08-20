@@ -79,4 +79,27 @@ describe('resolveConfigInput', () => {
     expect(xAxis.axisLabel?.show).to.equal(false);
     expect(xAxis.splitLine?.show).to.equal(true);
   });
+
+  it('supports gauge series presets via handle methods', () => {
+    const result = resolveConfigInput((handle) => {
+      handle.seriesGauge({
+        showSections: true,
+        unit: '%',
+        value: 55,
+      });
+    });
+
+    const series = result.series as Array<{
+      data?: Array<{ itemStyle?: { color?: string }; value?: number }>;
+      type?: string;
+    }>;
+
+    expect(series).to.be.an('array').with.lengthOf(2);
+    expect(series[0].type).to.equal('pie');
+    expect(series[1].type).to.equal('pie');
+    expect(series[1].data?.[0].value).to.equal(55);
+    expect(series[1].data?.[1].value).to.equal(45);
+    expect(result).to.haveOwnProperty('media');
+    expect(result).to.haveOwnProperty('graphic');
+  });
 });

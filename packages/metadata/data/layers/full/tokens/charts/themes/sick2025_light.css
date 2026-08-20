@@ -146,4 +146,5 @@
   --syn-chart-sequential-status-warning-90: var(--syn-color-warning-900);
   --syn-chart-sequential-status-warning-100: var(--syn-color-warning-950);
   --syn-chart-tooltip-color: var(--syn-color-neutral-0);
+  --syn-chart-track-color: var(--syn-color-neutral-100);
 }

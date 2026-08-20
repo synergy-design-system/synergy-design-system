@@ -6,9 +6,10 @@ import { html } from 'lit';
 import type { CSSResultGroup, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
-import { LineChart } from 'echarts/charts.js';
+import { GaugeChart, LineChart, PieChart } from 'echarts/charts.js';
 import {
   DataZoomComponent,
+  GraphicComponent,
   GridComponent, LegendComponent, TitleComponent, TooltipComponent,
 } from 'echarts/components.js';
 import SynergyElement from '../../internal/synergy-element.js';
@@ -25,11 +26,14 @@ import { getSynergyTheme } from './themes/theme.js';
 use([
   CanvasRenderer,
   LineChart,
+  GaugeChart,
   TitleComponent,
   TooltipComponent,
   LegendComponent,
   GridComponent,
   DataZoomComponent,
+  GraphicComponent,
+  PieChart,
 ]);
 
 /**
@@ -137,7 +141,8 @@ export default class SynChart extends SynergyElement {
       .map(token => getRealStyleValue(token));
 
     if (colors.length > 0) {
-      const oldOption = this.chartInstance.getOption();
+      // Instead of the this.chartInstance.getOption(), we need to use the resolvedConfig, as the getOption() omits the "media" property
+      const oldOption = {...this.resolvedConfig};
       if (!oldOption) return;
 
       oldOption.color = colors;

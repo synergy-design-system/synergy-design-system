@@ -255,7 +255,7 @@ export function colorSvgImageUri(imageUri: string, color: string): string {
 
     const svg = hasCurrentColor
       ? decodedSvg.replace(/currentColor/gi, color)
-      : decodedSvg.replace(/fill="[^"]*"/gi, `fill="${color}"`);
+      : decodedSvg.replace(/fill=(?:"[^"]*"|'[^']*')/gi, `fill="${color}"`);
 
     return `image://data:image/svg+xml,${encodeURIComponent(svg)}`;
   } catch {
@@ -278,7 +278,7 @@ export function colorSvgDataUrl(dataUrl: string, color: string): string {
     const decodedSvg = atob(base64);
     const hasCurrentColor = decodedSvg.includes('currentColor');
 
-    const svg = hasCurrentColor ? decodedSvg.replace(/currentColor/gi, color) : decodedSvg.replace(/fill="[^"]*"/gi, `fill="${color}"`);
+    const svg = hasCurrentColor ? decodedSvg.replace(/currentColor/gi, color) : decodedSvg.replace(/fill=(?:"[^"]*"|'[^']*')/gi, `fill="${color}"`);
     return `data:image/svg+xml;base64,${btoa(svg)}`;
   } catch {
     return dataUrl;

@@ -1,20 +1,10 @@
 import type { PieSeriesOption } from 'echarts/types/dist/shared.js';
-import type { MediaUnit } from 'echarts/types/src/util/types.js';
-import type { GraphicComponentImageOption, GraphicComponentTextOption } from 'echarts/types/src/component/graphic/GraphicModel.js';
-import {
-  measureTextWidth,
-  getRealStyleValue as style,
-  getRealValueWithoutUnit as styleWithoutUnit,
-} from '../../themes/utilities.js';
+import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
 import { GAUGE_SERIES } from '../constants.js';
 import { colorSvgDataUrl, mergeDeep } from '../utilities.js';
 import type { ECConfig } from '../../types.js';
 import type {
-  GaugeGraphicImageOption,
-  GaugeGraphicTextOption,
-  GaugeSeriesPresetOptions,
-  PieDataItem,
-  ResolvedGaugeSeriesPresetOptions,
+  GaugeSeriesPresetOptions, GraphicComponentImageOption, GraphicComponentTextOption, PieDataItem, ResolvedGaugeSeriesPresetOptions,
 } from './types.js';
 
 const DEFAULT_SECTION_COLORS = [
@@ -22,12 +12,15 @@ const DEFAULT_SECTION_COLORS = [
   style('SynNamurWarningColor'),
   style('SynNamurErrorColor'),
 ];
-const valueToString = (value: number): string => String(value);
+
 const DEFAULT_SERIES_GAUGE_OPTIONS = {
+  formatter: {
+    max: String,
+    min: String,
+    value: String,
+  },
   max: GAUGE_SERIES.MAX_VALUE,
-  maxFormatter: valueToString,
   min: GAUGE_SERIES.MIN_VALUE,
-  minFormatter: valueToString,
   overrides: {},
   sections: {
     boundaries: GAUGE_SERIES.SECTIONS_BOUNDARIES,
@@ -42,7 +35,6 @@ const DEFAULT_SERIES_GAUGE_OPTIONS = {
     value: 'XX,XX',
   },
   unit: '',
-  valueFormatter: valueToString,
 };
 
 const SHARED_PIE_SERIES_OPTION: PieSeriesOption = {
@@ -74,10 +66,7 @@ const clamp = (value: number, min: number, max: number): number => Math.min(max,
  * @returns The color for the requested segment.
  */
 const getColorForSection = (colors: readonly string[], segmentIndex: number): string => {
-  let resolvedColors = [...colors];
-  if (resolvedColors.length === 0) {
-    resolvedColors = [...DEFAULT_SECTION_COLORS];
-  }
+  const resolvedColors = colors.length > 0 ? colors : DEFAULT_SECTION_COLORS;
   // If there are fewer colors than segments, repeat the colors from the start
   const colorIndex = segmentIndex % resolvedColors.length;
   return resolvedColors[colorIndex];
@@ -131,7 +120,7 @@ const buildSectionsFromBoundariesAndColors = (
  * @param max Gauge maximum.
  * @returns Pie slices for the section series including transparent gap slices.
  */
-const buildSectionsPieData = (
+const createSectionsPieData = (
   sections: Array<{ color: string; end: number; start: number }>,
   min: number,
   max: number,
@@ -218,7 +207,7 @@ const createSectionsPieSeries = (
   sections: Array<{ color: string; end: number; start: number }>,
 ): PieSeriesOption => ({
   ...SHARED_PIE_SERIES_OPTION,
-  data: buildSectionsPieData(sections, min, max),
+  data: createSectionsPieData(sections, min, max),
   radius: [GAUGE_SERIES.SECTIONS_INNER_RADIUS, GAUGE_SERIES.SECTIONS_OUTER_RADIUS],
 });
 
@@ -246,56 +235,162 @@ const createProgressPieSeries = (
 });
 
 /**
- * Resolves the gauge value from options.
- * If no value is given, it defaults to the midpoint between min and max.
+ * Resolves the gauge value.
+ * If no explicit value is given, it defaults to the midpoint between min and max.
  *
- * @param options Gauge preset options.
- * @returns Resolved gauge value.
+ * @param value Optional explicitly configured gauge value.
+ * @param min Gauge minimum.
+ * @param max Gauge maximum.
+ * @returns Resolved gauge value, defaulting to the midpoint between {@link min} and {@link max}.
  */
-const getValue = (options: GaugeSeriesPresetOptions): number => {
-  if (options.value !== undefined) {
-    return options.value;
-  }
-  const min = options.min ?? DEFAULT_SERIES_GAUGE_OPTIONS.min;
-  const max = options.max ?? DEFAULT_SERIES_GAUGE_OPTIONS.max;
-  return (min + max) / 2;
+const getValue = (
+  value: number | undefined,
+  min: number,
+  max: number,
+): number => value ?? (min + max) / 2;
+
+/**
+ * Creates a text-based graphic element with shared typography defaults.
+ *
+ * @param options Basic text element settings like position, size and content.
+ * @param overrides Optional ECharts graphic overrides for this text element.
+ * @returns A merged text graphic element option.
+ */
+const createTextGraphicElement = (
+  options: {
+    fontSize: number;
+    fontWeight?: number;
+    left?: string;
+    right?: string;
+    text: string;
+    top: number | string;
+  },
+  overrides: Partial<GraphicComponentTextOption> | undefined,
+): GraphicComponentTextOption => {
+  const sharedFontStyles = {
+    fill: style('SynTypographyColorText'),
+    fontFamily: style('SynFontSans'),
+    fontWeight: options.fontWeight ?? styleWithoutUnit('SynFontWeightBold'),
+  };
+  return mergeDeep({
+    ...(options.left ? { left: options.left } : {}),
+    ...(options.right ? { right: options.right } : {}),
+    style: {
+      ...sharedFontStyles,
+      fontSize: options.fontSize,
+      text: options.text,
+    },
+    top: options.top,
+    type: 'text',
+  }, overrides ?? {}) as GraphicComponentTextOption;
+};
+
+/**
+ * Creates an image-based graphic element.
+ *
+ * @param options Basic image element settings like position, dimensions and source.
+ * @param overrides Optional ECharts graphic overrides for this image element.
+ * @returns A merged image graphic element option.
+ */
+const createImageGraphicElement = (
+  options: {
+    height: number;
+    image: string;
+    left?: string;
+    top: number | string;
+    width: number;
+  },
+  overrides: Partial<GraphicComponentImageOption> | undefined,
+): GraphicComponentImageOption => mergeDeep({
+  left: options.left,
+  style: {
+    height: options.height,
+    image: options.image,
+    width: options.width,
+  },
+  top: options.top,
+  type: 'image',
+}, overrides ?? {}) as GraphicComponentImageOption;
+
+/**
+ * Creates the trend indicator group shown above the center value.
+ * The group contains a pill background, trend icon and trend value label.
+ *
+ * @param options Fully resolved gauge options containing trend data.
+ * @param trendIconSize Icon size.
+ * @param trendValueFontSize Font size for the trend label.
+ * @param trendVerticalPadding Vertical inner spacing of the trend pill.
+ * @returns A grouped graphic element containing all trend indicator parts.
+ */
+const createTrendGraphicElement = (
+  options: ResolvedGaugeSeriesPresetOptions,
+  trendIconSize: number,
+  trendValueFontSize: number,
+  trendVerticalPadding: number,
+) => {
+  const trendIcon = options.trend.direction === 'down' ? options.trend.iconDown : options.trend.iconUp;
+  const trendValueFont = `${style('SynFontWeightBold')} ${trendValueFontSize}px ${style('SynFontSans')}`;
+  const valueWidth = measureTextWidth(String(options.trend.value), trendValueFont);
+  const trendHorizontalPadding = styleWithoutUnit('SynSpacingXSmall');
+  const trendPillHeight = trendIconSize + (trendVerticalPadding * 2);
+  const trendPillWidth = (trendHorizontalPadding * 2) + trendIconSize + trendVerticalPadding + valueWidth;
+
+  return {
+    children: [
+      {
+        shape: {
+          height: trendPillHeight,
+          r: styleWithoutUnit('SynBorderRadiusPill'),
+          width: trendPillWidth,
+          x: 0,
+          y: 0,
+        },
+        style: {
+          fill: style('SynChartTrackColor'),
+        },
+        type: 'rect',
+        x: 0,
+        y: 0,
+      },
+      {
+        style: {
+          height: trendIconSize,
+          image: colorSvgDataUrl(trendIcon, style('SynTypographyColorText')),
+          width: trendIconSize,
+        },
+        type: 'image',
+        x: trendHorizontalPadding,
+        y: trendVerticalPadding,
+      },
+      {
+        style: {
+          fill: style('SynTypographyColorText'),
+          font: trendValueFont,
+          text: options.trend.value,
+        },
+        type: 'text',
+        x: trendIconSize + trendHorizontalPadding + trendVerticalPadding,
+        /**
+         * ZRender measures text from the baseline rather than the visual center.
+         * This small correction of 2px aligns the trend value label visually within its pill.
+         */
+        y: (trendPillHeight - trendValueFontSize) / 2 + 2,
+      },
+    ],
+    left: 'center',
+    top: GAUGE_SERIES.TREND_TOP,
+    type: 'group',
+  };
 };
 
 /**
  * Creates the graphic elements for labels and optional trend indicator.
  * The content is scaled according to the provided breakpoint.
  *
- * @param value Current gauge value.
- * @param min Gauge minimum.
- * @param max Gauge maximum.
- * @param unit Unit label shown below the value.
- * @param showTrend Whether to render the trend pill.
- * @param trendLabelValue Trend label text.
- * @param trendIconDataUrl Data URL of the trend icon.
- * @param breakpoint Breakpoint used to scale typography and spacing.
- * @param icon Optional SVG data URL rendered below the unit, or below the value when no unit is set.
- * @returns ZRender graphic element descriptors for the gauge center labels.
+ * @param options Options controlling the gauge graphic layout and content.
+ * @returns Graphic element descriptors for the gauge labels and icons.
  */
-const createGraphicElement = (
-  value: number,
-  min: number,
-  max: number,
-  unit: string,
-  showTrend: boolean,
-  trendLabelValue: string,
-  trendIconDataUrl: string,
-  breakpoint: number,
-  valueFormatter: (value: number) => string,
-  minFormatter: (value: number) => string,
-  maxFormatter: (value: number) => string,
-  valueText: GaugeGraphicTextOption | undefined,
-  unitText: GaugeGraphicTextOption | undefined,
-  iconImage: GaugeGraphicImageOption | undefined,
-  minText: GaugeGraphicTextOption | undefined,
-  maxText: GaugeGraphicTextOption | undefined,
-  icon?: string,
-// eslint-disable-next-line complexity
-): ECConfig['graphic'] => {
+const createGraphicElement = (options: ResolvedGaugeSeriesPresetOptions, breakpoint: number): ECConfig['graphic'] => {
   // Scale factor based on the breakpoint. The "normal" styles are applied between 260 and 330
   const factor = breakpoint / GAUGE_SERIES.BREAKPOINT_DEFAULT;
   const iconSize = styleWithoutUnit('SynFontSize2xLarge') * factor; // 24
@@ -306,210 +401,79 @@ const createGraphicElement = (
   const unitFontSize = styleWithoutUnit('SynFontSizeMedium') * factor;
   const valueFontSize = styleWithoutUnit('SynFontSize3xLarge') * factor; // 40
 
-  const sharedFontStyles = {
-    fill: style('SynTypographyColorText'),
-    fontFamily: style('SynFontSans'),
-    fontWeight: styleWithoutUnit('SynFontWeightBold'),
-  };
-
-  const valueLabelElement = mergeDeep({
+  const valueLabelElement = createTextGraphicElement({
+    fontSize: valueFontSize,
+    fontWeight: styleWithoutUnit('SynFontWeightLight'),
     left: 'center',
-    style: {
-      ...sharedFontStyles,
-      fontSize: valueFontSize,
-      fontWeight: styleWithoutUnit('SynFontWeightLight'),
-      text: valueFormatter(value),
-    },
+    text: options.formatter.value(options.value),
     top: GAUGE_SERIES.LABEL_VALUE_TOP,
-    type: 'text',
-  }, valueText || {}) as GraphicComponentTextOption;
+  }, options.overrides.valueText);
 
-  const unitLabelElement = mergeDeep({
-    left: 'center',
-    style: {
-      ...sharedFontStyles,
-      fontSize: unitFontSize,
-      text: unit,
-    },
-    top: GAUGE_SERIES.LABEL_UNIT_TOP,
-    type: 'text',
-  }, unitText || {}) as GraphicComponentTextOption;
-
-  const iconImageElement = mergeDeep({
-    left: 'center',
-    style: {
-      height: iconSize,
-      image: colorSvgDataUrl(icon ?? '', style('SynTypographyColorText')),
-      width: iconSize,
-    },
-    top: (unit !== '' ? GAUGE_SERIES.LABEL_ICON_TOP_WITH_UNIT : GAUGE_SERIES.LABEL_ICON_TOP_WITHOUT_UNIT),
-    type: 'image',
-  }, iconImage || {}) as GraphicComponentImageOption;
-
-  const minLabelElement = mergeDeep({
+  const minLabelElement = createTextGraphicElement({
+    fontSize: minMaxFontSize,
     left: GAUGE_SERIES.LABEL_MIN_MAX_HORIZONTAL,
-    style: {
-      ...sharedFontStyles,
-      fontSize: minMaxFontSize,
-      text: minFormatter(min),
-    },
+    text: options.formatter.min(options.min),
     top: GAUGE_SERIES.LABEL_MIN_MAX_TOP,
-    type: 'text',
-  }, minText || {}) as GraphicComponentTextOption;
+  }, options.overrides.minText);
 
-  const maxLabelElement = mergeDeep({
+  const maxLabelElement = createTextGraphicElement({
+    fontSize: minMaxFontSize,
     right: GAUGE_SERIES.LABEL_MIN_MAX_HORIZONTAL,
-    style: {
-      ...sharedFontStyles,
-      fontSize: minMaxFontSize,
-      text: maxFormatter(max),
-    },
+    text: options.formatter.max(options.max),
     top: GAUGE_SERIES.LABEL_MIN_MAX_TOP,
-    type: 'text',
-  }, maxText || {}) as GraphicComponentTextOption;
+  }, options.overrides.maxText);
 
-  return [
-    // Main value
+  const graphicElements: ECConfig['graphic'] = [
     valueLabelElement,
-    // Unit label (omitted when empty)
-    ...(unit !== ''
-      ? [unitLabelElement]
-      : []),
-    // Center icon (optional, shown below unit or below value when no unit is set)
-    ...(icon !== undefined
-      ? [iconImageElement]
-      : []),
-    // Min label
     minLabelElement,
-    // Max label
     maxLabelElement,
-    ...(showTrend
-      ? (() => {
-        const trendValueFont = `${style('SynFontWeightBold')} ${trendValueFontSize}px ${style('SynFontSans')}`;
-        const valueWidth = measureTextWidth(String(trendLabelValue), trendValueFont);
-        const trendHorizontalPadding = styleWithoutUnit('SynSpacingXSmall');
-        // The gap between the trend icon and the trend value label and the spacing on top and bottom of the content
-        const trendPillHeight = trendIconSize + (trendVerticalPadding * 2);
-        const trendPillWidth = (trendHorizontalPadding * 2) + trendIconSize + trendVerticalPadding + valueWidth;
-        return [{
-          children: [
-            // Shared pill background for icon + value
-            {
-              shape: {
-                height: trendPillHeight,
-                r: styleWithoutUnit('SynBorderRadiusPill'),
-                width: trendPillWidth,
-                x: 0,
-                y: 0,
-              },
-              style: {
-                fill: style('SynChartTrackColor'),
-              },
-              type: 'rect',
-              x: 0,
-              y: 0,
-            },
-            // Trend icon
-            {
-              style: {
-                height: trendIconSize,
-                image: colorSvgDataUrl(trendIconDataUrl, style('SynTypographyColorText')),
-                width: trendIconSize,
-              },
-              type: 'image',
-              x: trendHorizontalPadding,
-              y: trendVerticalPadding,
-            },
-            // Trend value label inside shared pill
-            {
-              style: {
-                fill: style('SynTypographyColorText'),
-                font: trendValueFont,
-                text: trendLabelValue,
-              },
-              type: 'text',
-              x: trendIconSize + trendHorizontalPadding + trendVerticalPadding,
-              // not sure why we need +2 here. It seems like zrender does not center the text vertically
-              y: (trendPillHeight - trendValueFontSize) / 2 + 2,
-            },
-          ],
-          left: 'center',
-          top: GAUGE_SERIES.TREND_TOP,
-          type: 'group',
-        }];
-      })()
-      : []),
   ];
+
+  if (options.unit !== '') {
+    graphicElements.push(createTextGraphicElement({
+      fontSize: unitFontSize,
+      left: 'center',
+      text: options.unit,
+      top: GAUGE_SERIES.LABEL_UNIT_TOP,
+    }, options.overrides.unitText));
+  }
+  if (options.icon !== undefined && options.icon !== '') {
+    graphicElements.push(createImageGraphicElement({
+      height: iconSize,
+      image: colorSvgDataUrl(options.icon, style('SynTypographyColorText')),
+      left: 'center',
+      top: (options.unit !== '' ? GAUGE_SERIES.LABEL_ICON_TOP_WITH_UNIT : GAUGE_SERIES.LABEL_ICON_TOP_WITHOUT_UNIT),
+      width: iconSize,
+    }, options.overrides.iconImage as Partial<GraphicComponentImageOption> | undefined));
+  }
+
+  if (options.showTrend) {
+    graphicElements.push(createTrendGraphicElement(
+      options,
+      trendIconSize,
+      trendValueFontSize,
+      trendVerticalPadding,
+    ));
+  }
+
+  return graphicElements;
 };
 
 /**
  * Builds responsive media graphics variants for gauge labels.
+ * Breakpoints are applied from smallest to largest so that each successive
+ * `minHeight` rule overrides the previous one via ECharts media cascade,
+ * ensuring the largest matching breakpoint always wins.
  *
- * @param value Current gauge value.
- * @param min Gauge minimum.
- * @param max Gauge maximum.
- * @param unit Unit label shown below the value.
- * @param showTrend Whether to render the trend pill.
- * @param trendLabelValue Trend label text.
- * @param trendIconDataUrl Data URL of the trend icon.
- * @param icon Optional SVG data URL rendered below the unit or value.
+ * @param opts Options forwarded to {@link createGraphicElement} for every breakpoint.
  * @returns Media query entries with breakpoint-specific graphic options.
  */
 const createMediaGraphics = (
-  value: number,
-  min: number,
-  max: number,
-  unit: string,
-  showTrend: boolean,
-  trendLabelValue: string,
-  trendIconDataUrl: string,
-  valueFormatter: (value: number) => string,
-  minFormatter: (value: number) => string,
-  maxFormatter: (value: number) => string,
-  valueText: GaugeGraphicTextOption | undefined,
-  unitText: GaugeGraphicTextOption | undefined,
-  iconImage: GaugeGraphicImageOption | undefined,
-  minText: GaugeGraphicTextOption | undefined,
-  maxText: GaugeGraphicTextOption | undefined,
-  icon?: string,
-) => GAUGE_SERIES.BREAKPOINTS.map((breakpoint, index) => {
-  let query;
-
-  if (index === 0) {
-    query = {
-      minHeight: breakpoint,
-    };
-  } else {
-    query = {
-      maxHeight: breakpoint,
-    };
-  }
-
-  return {
-    option: {
-      graphic: createGraphicElement(
-        value,
-        min,
-        max,
-        unit,
-        showTrend,
-        trendLabelValue,
-        trendIconDataUrl,
-        breakpoint,
-        valueFormatter,
-        minFormatter,
-        maxFormatter,
-        valueText,
-        unitText,
-        iconImage,
-        minText,
-        maxText,
-        icon,
-      ),
-    },
-    query,
-  };
-});
+  options: ResolvedGaugeSeriesPresetOptions,
+): ECConfig['media'] => GAUGE_SERIES.BREAKPOINTS.map((breakpoint) => ({
+  option: { graphic: createGraphicElement(options, breakpoint) },
+  query: { minHeight: breakpoint },
+}));
 
 /**
  * Builds all pie-based gauge series artifacts (sections, progress and center graphics)
@@ -523,28 +487,17 @@ export const buildPieSeries = (
   options: GaugeSeriesPresetOptions,
 ): {
   graphic: ECConfig['graphic'];
-  media: MediaUnit[];
+  media: ECConfig['media'];
   progress: PieSeriesOption;
   sections: PieSeriesOption;
 } => {
-  const {
-    icon,
-    maxFormatter,
-    min,
-    minFormatter,
-    max,
-    overrides,
-    progressColor,
-    sections,
-    showSections,
-    showTrend,
-    trend,
-    unit,
-    value,
-    valueFormatter,
-  }: ResolvedGaugeSeriesPresetOptions = {
+  const resolvedOptions: ResolvedGaugeSeriesPresetOptions = {
     ...DEFAULT_SERIES_GAUGE_OPTIONS,
     ...options,
+    formatter: {
+      ...DEFAULT_SERIES_GAUGE_OPTIONS.formatter,
+      ...options.formatter,
+    },
     overrides: {
       ...DEFAULT_SERIES_GAUGE_OPTIONS.overrides,
       ...options.overrides,
@@ -557,73 +510,33 @@ export const buildPieSeries = (
       ...DEFAULT_SERIES_GAUGE_OPTIONS.trend,
       ...options.trend,
     },
-    value: getValue(options),
+    value: getValue(options.value, options.min ?? DEFAULT_SERIES_GAUGE_OPTIONS.min, options.max ?? DEFAULT_SERIES_GAUGE_OPTIONS.max),
   };
 
-  const {
-    gaugeSeries,
-    iconImage,
-    maxText,
-    minText,
-    sectionsSeries,
-    unitText,
-    valueText,
-  } = overrides;
-
-  const resolvedSections = buildSectionsFromBoundariesAndColors(sections.boundaries, sections.colors);
+  const resolvedSections = buildSectionsFromBoundariesAndColors(resolvedOptions.sections.boundaries, resolvedOptions.sections.colors);
 
   // Clamp to a valid value in the range [min, max] to avoid rendering issues with the pie series
-  const clampedValue = clamp(value, min, max);
-  const resolvedProgressColor = getProgressColor(progressColor, resolvedSections, clampedValue, showSections);
+  const clampedValue = clamp(resolvedOptions.value, resolvedOptions.min, resolvedOptions.max);
+  // Exchange the value with the clamped value
+  resolvedOptions.value = clampedValue;
 
-  const trendIconDataUrl = trend.direction === 'down'
-    ? trend.iconDown
-    : trend.iconUp;
+  const resolvedProgressColor = getProgressColor(
+    resolvedOptions.progressColor,
+    resolvedSections,
+    resolvedOptions.value,
+    resolvedOptions.showSections,
+  );
 
-  const resolvedSectionSeries = createSectionsPieSeries(min, max, resolvedSections);
-  const progressSeries = createProgressPieSeries(min, max, clampedValue, resolvedProgressColor);
-  const graphic = createGraphicElement(
-    clampedValue,
-    min,
-    max,
-    unit,
-    showTrend,
-    trend.value,
-    trendIconDataUrl,
-    GAUGE_SERIES.BREAKPOINT_DEFAULT,
-    valueFormatter,
-    minFormatter,
-    maxFormatter,
-    valueText,
-    unitText,
-    iconImage,
-    minText,
-    maxText,
-    icon,
-  );
-  const media = createMediaGraphics(
-    clampedValue,
-    min,
-    max,
-    unit,
-    showTrend,
-    trend.value,
-    trendIconDataUrl,
-    valueFormatter,
-    minFormatter,
-    maxFormatter,
-    valueText,
-    unitText,
-    iconImage,
-    minText,
-    maxText,
-    icon,
-  );
+  const resolvedSectionSeries = createSectionsPieSeries(resolvedOptions.min, resolvedOptions.max, resolvedSections);
+  const progressSeries = createProgressPieSeries(resolvedOptions.min, resolvedOptions.max, resolvedOptions.value, resolvedProgressColor);
+
+  const graphic = createGraphicElement(resolvedOptions, GAUGE_SERIES.BREAKPOINT_DEFAULT);
+  const media = createMediaGraphics(resolvedOptions);
 
   return {
     graphic,
     media,
-    progress: mergeDeep(progressSeries, gaugeSeries ?? {}) as PieSeriesOption,
-    sections: mergeDeep(resolvedSectionSeries, sectionsSeries ?? {}) as PieSeriesOption,
+    progress: mergeDeep(progressSeries, resolvedOptions.overrides.gaugeSeries ?? {}) as PieSeriesOption,
+    sections: mergeDeep(resolvedSectionSeries, resolvedOptions.overrides.sectionsSeries ?? {}) as PieSeriesOption,
   };
 };

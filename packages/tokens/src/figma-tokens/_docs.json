@@ -953,7 +953,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The gauge series supports custom value formatting using `valueFormatter`, `minFormatter`, and `maxFormatter` options.",
+          "value": "The gauge series supports custom value formatting using `formatter.value`, `formatter.min`, and `formatter.max` options.",
           "type": "text"
         }
       }

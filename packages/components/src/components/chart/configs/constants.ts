@@ -46,12 +46,9 @@ export const GAUGE_SERIES = {
   /** Baseline height used for the default graphic layout and responsive scaling. */
   BREAKPOINT_DEFAULT: 330,
   /**
-   * Chart-height breakpoints used to override the central gauge labels responsively.
-   *
-   * The list must stay in descending order so the generated ECharts media queries
-   * apply the expected max-height override.
-  */
-  BREAKPOINTS: [800, 700, 600, 500, 450, 400, 330, 260, 230, 190],
+   * Chart-height breakpoints used to override the gauge graphic elements responsively.
+   */
+  BREAKPOINTS: [190, 230, 260, 330, 400, 450, 500, 600, 700, 800],
   /** End angle of the semicircular gauge arc, in degrees. */
   END_ANGLE: -30,
   /** Inner radius of the progress ring. */

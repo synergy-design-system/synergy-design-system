@@ -1,11 +1,12 @@
 import { expect } from '@open-wc/testing';
 import type { PieDataItemOption } from 'echarts/types/src/chart/pie/PieSeries.js';
-import type { GraphicComponentGroupOption, GraphicComponentImageOption, GraphicComponentTextOption } from 'echarts/types/src/component/graphic/GraphicModel.js';
 import type { GraphicComponentOption } from 'echarts/types/dist/echarts';
+import type { GraphicComponentGroupOption } from 'echarts/types/src/component/graphic/GraphicModel.js';
 import { buildPieSeries } from './utilities.js';
 import { GAUGE_SERIES } from '../constants.js';
 import { colorSvgDataUrl } from '../utilities.js';
 import { getRealStyleValue } from '../../themes/utilities.js';
+import type { GraphicComponentImageOption, GraphicComponentTextOption } from './types.js';
 
 const getColors = (data: PieDataItemOption[]) => data.map((item) => item.itemStyle?.color);
 const getValues = (data: PieDataItemOption[]) => data.map((item) => item.value);
@@ -48,6 +49,24 @@ describe('buildPieSeries', () => {
     expect(sections.type).to.equal('pie');
     expect(seriesValue).to.deep.equal([19.5, 0.5, 39.5, 0.5, 40]);
     expect(seriesColor).to.deep.equal(['#4fc275', 'transparent', '#f2c500', 'transparent', '#ff696d']);
+  });
+
+  describe('formatter', () => {
+    it('uses custom formatter functions for value, min and max labels', () => {
+      const { graphic } = buildPieSeries({
+        formatter: {
+          max: (value) => `max:${value}`,
+          min: (value) => `min:${value}`,
+          value: (value) => `value:${value}`,
+        },
+        max: 130,
+        min: 10,
+        value: 65,
+      });
+
+      const texts = getGraphicTexts(graphic as GraphicComponentOption[]);
+      expect(texts).to.include.members(['value:65', 'min:10', 'max:130']);
+    });
   });
 
   describe('value clamping', () => {
@@ -327,18 +346,18 @@ describe('buildPieSeries', () => {
       const graphics = graphic as GraphicComponentOption[];
       const textElements = graphics.filter((el) => el.type === 'text') as GraphicComponentTextOption[];
 
-      const valueElement = textElements.find((element) => element.style?.text === '42');
-      const unitElement = textElements.find((element) => element.style?.text === 'kWh');
-      const minElement = textElements.find((element) => element.style?.text === '-10');
-      const maxElement = textElements.find((element) => element.style?.text === '200');
+      const valueElement = textElements.find((element) => element.style!.text === '42')!;
+      const unitElement = textElements.find((element) => element.style!.text === 'kWh')!;
+      const minElement = textElements.find((element) => element.style!.text === '-10')!;
+      const maxElement = textElements.find((element) => element.style!.text === '200')!;
 
-      expect(valueElement?.left).to.equal('right');
-      expect(valueElement?.style?.fill).to.equal('#123456');
-      expect(unitElement?.left).to.equal('left');
-      expect(unitElement?.style?.fill).to.equal('#abcdef');
-      expect(minElement?.style?.fill).to.equal('#112233');
-      expect(maxElement?.style?.fill).to.equal('#445566');
-      expect(maxElement?.right).to.equal('left');
+      expect(valueElement.left).to.equal('right');
+      expect(valueElement.style?.fill).to.equal('#123456');
+      expect(unitElement.left).to.equal('left');
+      expect(unitElement.style?.fill).to.equal('#abcdef');
+      expect(minElement.style?.fill).to.equal('#112233');
+      expect(maxElement.style?.fill).to.equal('#445566');
+      expect(maxElement.right).to.equal('left');
     });
 
     it('merges icon image overrides into the center icon graphic element', () => {

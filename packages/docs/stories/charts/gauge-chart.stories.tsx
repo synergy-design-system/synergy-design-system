@@ -169,9 +169,11 @@ export const ValueFormatting: Story = {
          charts.forEach(chart => {
             chart.config = handle => handle
             .seriesGauge({
-              valueFormatter: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 2 }).format(value),
-              minFormatter: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
-              maxFormatter: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
+              formatter: {
+                max: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
+                min: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
+                value: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 2 }).format(value),
+              },
             });
           });
       });

@@ -1,5 +1,10 @@
 import type { PieSeriesOption } from 'echarts/types/dist/shared.js';
-import type { GraphicComponentImageOption, GraphicComponentTextOption } from 'echarts/types/src/component/graphic/GraphicModel.js';
+import type { GraphicComponentOption } from 'echarts/types/dist/option.js';
+import type { ECConfig } from '../../types.js';
+
+type GraphicElement = NonNullable<GraphicComponentOption>;
+export type GraphicComponentImageOption = Extract<GraphicElement, { type?: 'image' }>;
+export type GraphicComponentTextOption = Extract<GraphicElement, { type?: 'text' }>;
 
 /**
  * Visual and textual settings for the optional trend indicator.
@@ -26,6 +31,18 @@ export type GaugeSectionsOptions = {
 };
 
 /**
+ * Formatter functions for gauge value labels.
+ */
+export type GaugeFormatterOptions = {
+  /** Formatter applied to the displayed gauge value. */
+  value?: (value: number) => string;
+  /** Formatter applied to the displayed minimum label. */
+  min?: (value: number) => string;
+  /** Formatter applied to the displayed maximum label. */
+  max?: (value: number) => string;
+};
+
+/**
  * ECharts override options for a gauge text graphic element.
  */
 export type GaugeGraphicTextOption = Partial<Omit<GraphicComponentTextOption, 'type'>>;
@@ -48,7 +65,7 @@ export type GaugeSeriesOverridesOptions = {
   /** ECharts graphic overrides for the unit label. Overriding `fontSize` disables responsive text sizing. */
   unitText?: GaugeGraphicTextOption;
   /** ECharts graphic overrides for the center icon image. Overriding `width` or `height` disables responsive icon sizing. */
-  iconImage?: GaugeGraphicImageOption;
+  iconImage?: ECConfig['graphic'];
   /** ECharts graphic overrides for the minimum label. Overriding `fontSize` disables responsive text sizing. */
   minText?: GaugeGraphicTextOption;
   /** ECharts graphic overrides for the maximum label. Overriding `fontSize` disables responsive text sizing. */
@@ -68,6 +85,8 @@ type Override<T, R> = Omit<T, keyof R> & R;
  * Configures a gauge chart preset used by the Synergy chart component.
  */
 export type GaugeSeriesPresetOptions = {
+  /** Formatter functions for the displayed gauge labels. */
+  formatter?: GaugeFormatterOptions;
   /** SVG data URL rendered as an image below the unit label, or below the value when no unit is set. */
   icon?: string;
   /** Color of the progress arc that displays the current value. */
@@ -90,12 +109,6 @@ export type GaugeSeriesPresetOptions = {
   unit?: string;
   /** Current gauge value. */
   value?: number;
-  /** Formatter applied to the displayed gauge value. */
-  valueFormatter?: (value: number) => string;
-  /** Formatter applied to the displayed minimum label. */
-  minFormatter?: (value: number) => string;
-  /** Formatter applied to the displayed maximum label`. */
-  maxFormatter?: (value: number) => string;
 };
 
 /**
@@ -107,6 +120,7 @@ export type ResolvedGaugeSeriesPresetOptions = Override<
     'max' | 'min' | 'showSections' | 'showTrend' | 'unit' | 'value'
   >,
   {
+    formatter: WithRequired<GaugeFormatterOptions, 'max' | 'min' | 'value'>;
     overrides: GaugeSeriesOverridesOptions;
     sections: WithRequired<GaugeSectionsOptions, 'boundaries' | 'colors'>;
     trend: WithRequired<

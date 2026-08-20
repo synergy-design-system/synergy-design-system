@@ -1,14 +1,6 @@
-import type { ECConfig } from '../../types.js';
-import {
-  type ConfigModifier,
-  mergeConfigs,
-} from '../utilities.js';
-import type {
-  GaugeSeriesPresetOptions,
-} from './types.js';
-import {
-  buildPieSeries,
-} from './utilities.js';
+import { type ConfigModifier, mergeConfigs } from '../utilities.js';
+import type { GaugeSeriesPresetOptions } from './types.js';
+import { buildPieSeries } from './utilities.js';
 
 /**
  * Adds a pie-based gauge preset with an optional outer sections ring.
@@ -27,6 +19,10 @@ import {
  * @param {number} [options.max] Maximum value for the gauge scale.
  * @param {number} [options.value] Current gauge value. Defaults to the midpoint between `min` and `max`.
  * @param {string} [options.unit] Unit displayed below the gauge value.
+ * @param {GaugeFormatterOptions} [options.formatter] Formatter functions for the displayed gauge labels.
+ * @param {(value: number) => string} [options.formatter.value] Formatter applied to the displayed gauge value.
+ * @param {(value: number) => string} [options.formatter.min] Formatter applied to the displayed minimum label.
+ * @param {(value: number) => string} [options.formatter.max] Formatter applied to the displayed maximum label.
  * @param {string} [options.progressColor] Gauge progress color.
  * When `showSections` is `true` and this option is omitted, the color is
  * automatically derived from the section that contains the current value.
@@ -69,7 +65,7 @@ export const seriesGauge = (options: GaugeSeriesPresetOptions = {}): ConfigModif
     series: options.showSections
       ? [sections, progress]
       : [progress],
-  } as ECConfig;
+  };
 
   return mergeConfigs(config, seriesConfig, { arrayStrategy: 'append' });
 };

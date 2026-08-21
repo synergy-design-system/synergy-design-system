@@ -419,6 +419,41 @@ chart.config = handle =>
 // ]
 ```
 
+### Gauge series presets
+
+| Preset function | Options                                 | Description                                                                                                                                                  |
+| --------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `seriesGauge`   | `GaugeSeriesPresetOptions` _(optional)_ | Adds a pie-based gauge preset. Renders the gauge progress arc and optional outer sections ring, plus value/unit/min/max labels and optional trend indicator. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle.seriesGauge({
+    min: 10,
+    max: 120,
+    value: 72,
+    unit: "%",
+    showSections: true,
+    sections: {
+      boundaries: [10, 40, 70, 120],
+      colors: ["#d92f2f", "#f5a623", "#2f9e44"],
+    },
+    showTrend: true,
+    trend: {
+      direction: "down",
+      value: "6.5%",
+    },
+  });
+```
+
+Array merge strategy:
+
+- `seriesGauge({...})` uses `arrayStrategy: 'append'`.
+- Generated gauge entries are appended to `series`.
+- Generated gauge labels and icons are appended to `graphic`.
+- Generated responsive gauge media configurations are appended to `media`.
+
 ---
 
 ## Bundle Size

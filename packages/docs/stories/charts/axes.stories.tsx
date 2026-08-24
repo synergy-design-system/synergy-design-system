@@ -11,9 +11,7 @@ import {
   Title,
 } from '@storybook/addon-docs/blocks';
 import '../../../components/src/components/chart/chart.js';
-import {
-  numberFormatter, numberShorthandFormatter, unitFormatter,
-} from '../../../components/src/components/chart/configs/axes/formatter.js';
+import { formatter } from '../../../components/src/components/chart/index.js';
 import {
   generateScreenshotStory,
   generateStoryDescription,
@@ -23,15 +21,11 @@ import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitFor
 
 declare global {
   interface Window {
-    unitFormatter: typeof unitFormatter;
-    numberShorthandFormatter: typeof numberShorthandFormatter;
-    numberFormatter: typeof numberFormatter;
+    formatter: typeof formatter;
   }
 }
 
-window.unitFormatter = unitFormatter;
-window.numberShorthandFormatter = numberShorthandFormatter;
-window.numberFormatter = numberFormatter;
+window.formatter = formatter;
 
 const meta: Meta = {
   component: 'syn-chart',
@@ -555,6 +549,96 @@ export const MultipleYAxes: Story = {
   `,
 };
 
+export const MultipleSharedYAxes: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'axes-multiple-shared-y-axes'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="chart-multiple-shared-y-axes"></syn-chart>
+    <script type="module">
+
+
+      const baseConfig = {
+        xAxis: {
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          name: 'Days',
+          type: 'category',
+        },
+        yAxis: [
+          {
+            name: 'Temperature (°C)',
+            type: 'value',
+  
+          },
+          {
+            name: 'Precipitation (mm)',
+            type: 'value',
+            position: 'right',
+          },
+        ]
+      };
+
+      const charts = document.querySelectorAll('#chart-multiple-shared-y-axes');
+      charts.forEach(chart => {
+        chart.config = handle => handle
+          .baseConfig(baseConfig)
+          .seriesLine([
+            {
+              data: [18, 21, 23, 25, 22, 19, 17],
+              name: 'Temperature Deutschland',
+              yAxisIndex: 0,
+              symbol: 'rect',
+              itemStyle: {
+                color: '#005aff',
+              },
+            },
+            {
+              data: [22, 24, 27, 29, 26, 23, 20],
+              yAxisIndex: 0,
+              name: 'Temperature Frankreich',
+              symbol: 'rect',
+              itemStyle: {
+                color: '#005aff',
+              },
+              lineStyle: {
+                type: 'dashed',
+              }
+            },
+            {
+              data: [5, 0, 2, 12, 18, 8, 3],
+              yAxisIndex: 1,
+              name: 'Precipitation Deutschland',
+              symbol: 'dotted',
+               itemStyle: {
+                color: '#2d9c60',
+              },
+            
+            },
+            {
+              data: [2, 0, 0, 8, 14, 6, 1],
+              yAxisIndex: 1,
+              name: 'Precipitation Frankreich',
+              symbol: 'circle',
+               itemStyle: {
+                color: '#2d9c60',
+              },
+              lineStyle: {
+                type: 'dotted',
+              }
+            },
+          ])
+          .axesShowSplitLines()
+          .legendShow();
+      });
+
+    </script>
+  `,
+};
+
 export const AxesLabelFormatting: Story = {
   parameters: {
     docs: {
@@ -576,22 +660,22 @@ export const AxesLabelFormatting: Story = {
     </div>
     <syn-chart id="chart-axis-label-formatter"></syn-chart>
     <script type="module">
-      // import { unitFormatter, numberFormatter, numberShorthandFormatter } from '../../../components/src/components/chart/configs/axes/formatter.js';
+      // import { formatter } from '../../../components/src/components/chart/index.js';
 
       const setConfig = (formatterSelect) => {
         let labelFormatter;
         switch (formatterSelect.value) {
         case 'celsius':
-          labelFormatter = unitFormatter('°C');
+          labelFormatter = formatter.unitFormatter('°C');
           break;
         case 'shorthand':
-          labelFormatter = numberShorthandFormatter();
+          labelFormatter = formatter.numberShorthandFormatter();
           break;
         case 'shorthand-min':
-          labelFormatter = numberShorthandFormatter(undefined, { minimumFractionDigits: 2 });
+          labelFormatter = formatter.numberShorthandFormatter(undefined, { minimumFractionDigits: 2 });
           break;
         case 'number-min-max':
-          labelFormatter = numberFormatter(undefined, { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 });
+          labelFormatter = formatter.numberFormatter(undefined, { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 });
           break;
         default:
           labelFormatter = undefined;
@@ -785,6 +869,7 @@ export const Screenshot: Story = generateScreenshotStory({
   AxesPositioning,
   MinMaxValues,
   MultipleYAxes,
+  MultipleSharedYAxes,
   AxesLabelFormatting,
   CategoryAxesLabelGreedily,
   CategoryAxesLabelEvenly,

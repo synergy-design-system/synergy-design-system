@@ -683,7 +683,17 @@
           "type": "text"
         },
         "description": {
-          "value": "To add multiple y-axes to the chart, define an array of y-axis configurations under the `yAxis` option. Every y-axes is automatically positioned on the left side if not specified otherwise.",
+          "value": "To add multiple y-axes to the chart, define an array of y-axis configurations under the `yAxis` option. Shared y-axes are positioned on the left side by default, and you can specify the position for each axis individually.",
+          "type": "text"
+        }
+      },
+      "axes-multiple-shared-y-axes": {
+        "title": {
+          "value": "Multiple Shared Y-Axes",
+          "type": "text"
+        },
+        "description": {
+          "value": "This chart compares two metrics (temperature, precipitation) for two countries (Germany, France) using a single shared axis approach, encoded through visual channels that do not depend on color perception at all:\n\n **1. Line style and marker shape = country** \nGermany is drawn with solid lines and filled square/circle markers; France is drawn with dotted lines. This distinction is fully readable in grayscale or black-and-white print, since it relies on stroke pattern and shape rather than hue. \n\n**2. Legend labels = explicit redundant encoding**\nRather than expecting the reader to decode line style or marker shape from a key, each legend entry spells out both dimensions in text: \"Temperature Germany\", \"Preciptation France\". This turns the legend itself into a self-sufficient lookup table, so no single visual channel has to carry the full weight of disambiguation.\n\nColor is still used in this chart (blue/green) to make the two metrics faster to tell apart on screen, but it is treated as a supporting cue only and never as the sole means of distinguishing a series. Every distinction the chart makes is also carried by line style, marker shape, or the legend text, so the chart remains fully legible if color is removed entirely (e.g. printed in black and white, or viewed by a colorblind user).",
           "type": "text"
         }
       },

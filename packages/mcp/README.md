@@ -4,12 +4,23 @@ The `@synergy-design-system/mcp` package provides a Model Context Protocol (MCP)
 
 Data is provided via the low level `@synergy-design-system/metadata` package.
 
+## Features
+
+- **Metadata-backed component docs**: Retrieve component data directly from `@synergy-design-system/metadata`.
+- **Setup guidance**: Return package setup instructions for components, framework adapters, tokens, styles, fonts, assets, and migrations.
+- **Asset and icon discovery**: Browse icon sets and search icons across the Synergy asset libraries.
+- **Token access**: Read CSS, JavaScript, and Sass token outputs.
+- **Styles and templates**: Retrieve CSS utility guidance and static template content.
+- **Migration guidance**: Access both DaVinci migration guides and Synergy package migration documents.
+- **AI response rules**: Optionally prepends package-local guidance files from `rules/` to selected tool responses.
+- **stdio and HTTP transports**: Ready for editor, assistant, CLI, and containerised deployments.
+
 ## Quick Start
 
 ### Installation
 
 ```bash
-npm install --save-dev @synergy-design-system/mcp
+npm install --save @synergy-design-system/mcp
 ```
 
 ### Running the Server
@@ -52,6 +63,9 @@ syn-mcp --interface http --log ./logs --log-stdout
 
 # Suppress non-essential startup/status output
 syn-mcp --silent
+
+# Enable experimental toon format compression for responses
+syn-mcp --compression toon
 ```
 
 Available CLI flags:
@@ -85,9 +99,6 @@ To integrate with VS Code and AI assistants, add this configuration to your `set
     },
   },
 }
-
-# Enable experimental toon format compression for responses
-syn-mcp --compression toon
 ```
 
 ### Claude Desktop Integration
@@ -105,18 +116,18 @@ For Claude Desktop, add this to `claude_desktop_config.json`:
 }
 ```
 
-### Runtime Configuration
+## Configuration
 
 The server can read optional runtime defaults from a `synergy-mcp.json` file passed via `--config`.
 
-#### Server Interface
+### Server Interface
 
 You can run the server in two modes:
 
 - **stdio** (default): Communicate via stdin/stdout with the parent process. This is the recommended mode for editor and CLI integrations.
 - **http**: Run as an HTTP/HTTPS server listening on a specified port. This enables standalone deployments.
 
-#### Configuration File
+### Configuration File
 
 Example:
 
@@ -215,23 +226,9 @@ Example:
 }
 ```
 
-#### Intent Endpoints
+This lets you change per-tool defaults without modifying the MCP server code. Intent tools and resources are enabled by default; see [Reference](#available-resources) for the full inventory.
 
-Intent tools and resources are available by default:
-
-#### Resources
-
-- `synergy://intent-categories/list`
-
-#### Tools
-
-- `intent-categories-list`
-- `intent-component-guide`
-- `intent-component-validate`
-- `intent-task-recommendations`
-- `intent-options`
-
-#### CLI Override Precedence
+### CLI Override Precedence
 
 CLI flags take precedence over configuration file values:
 
@@ -249,8 +246,7 @@ syn-mcp --config ./synergy-mcp.json --log false
 syn-mcp --config ./synergy-mcp.json --silent
 ```
 
-#### Tool-call logging
-
+### Tool-call logging
 Tool-call logging is provider-based. Multiple providers can be active simultaneously. The following providers are available:
 
 ##### Local file provider
@@ -336,7 +332,9 @@ Notes:
 - Use `--silent` or set `silent: true` to suppress non-essential startup/status output.
 - Token counting is always optional and non-blocking; the server runs fine without it.
 
-#### HTTP Server Endpoint
+## Deployment
+
+### HTTP Server Endpoint
 
 When running in HTTP mode, the MCP protocol is served at the `/mcp` path:
 
@@ -347,7 +345,7 @@ https://127.0.0.1:3000/mcp
 
 Non-`/mcp` paths return HTTP 404.
 
-#### Metadata cache behavior in HTTP mode
+### Metadata cache behavior in HTTP mode
 
 The MCP server reads data via `@synergy-design-system/metadata`, which now uses a process-local cache for index, entity, and layer file reads.
 In HTTP mode this reduces repeated filesystem reads across requests and sessions inside the same process.
@@ -361,11 +359,11 @@ For public or containerized deployments, bind to all interfaces explicitly:
 syn-mcp --interface http --host 0.0.0.0
 ```
 
-## Docker and Kubernetes
+### Docker and Kubernetes
 
 The MCP package is container-ready and can be deployed as an HTTP service in Kubernetes.
 
-### Container runtime contract
+#### Container runtime contract
 
 - Protocol: HTTP
 - Port: `9119` (override with `PORT`)
@@ -373,20 +371,39 @@ The MCP package is container-ready and can be deployed as an HTTP service in Kub
 - Default config path: `/config/synergy-mcp.json`
 - TLS, certificates, ingress, and DNS are handled outside the container (for example via Kubernetes ingress/controllers).
 
-### Prebuilt images
+#### Prebuilt images
 
-Every release publishes the image to the GitHub Container Registry and mirrors it to Docker Hub. Both registries carry a `latest` tag and an immutable tag matching the npm package version.
+Every release publishes the image to the GitHub Container Registry and mirrors it to Docker Hub. Both registries carry a `latest` tag and an immutable tag matching the npm package version, for example `4.3.0`. Pin the version tag for reproducible deployments.
 
 ```bash
 docker pull ghcr.io/synergy-design-system/mcp:latest
 docker pull sickdavinci/synergy-mcp:latest
 ```
 
+Start it:
+
 ```bash
-docker run --rm -p 9119:9119 ghcr.io/synergy-design-system/mcp:latest
+docker run --rm -d --name synergy-mcp -p 9119:9119 ghcr.io/synergy-design-system/mcp:latest
 ```
 
-### Build image from release tarballs
+The server listens on `http://127.0.0.1:9119/mcp`. Point an MCP client at it:
+
+```json
+{
+  "servers": {
+    "synergy": {
+      "type": "http",
+      "url": "http://127.0.0.1:9119/mcp"
+    }
+  }
+}
+```
+
+To change defaults, mount a config file as described in [Run with injected config](#run-with-injected-config). Stop the container with `docker rm -f synergy-mcp`.
+
+The published images are `linux/amd64`. On Apple Silicon they run under emulation, which is fine for local use but slower to start.
+
+#### Build image from release tarballs
 
 The Docker image uses packed release artifacts for Synergy packages to avoid npm propagation timing issues.
 
@@ -432,19 +449,23 @@ If your network uses TLS interception (for example a corporate firewall), pass y
 docker build \
   --progress=plain \
   --secret id=corp_ca,src=/path/to/ca.crt \
-  -t synergy-design-system/mcp:3.20.0 \
+  -t synergy-design-system/mcp:local \
   .
 ```
 
-The `corp_ca` file is mounted only for the npm install step and is not persisted in image layers.
+The `corp_ca` file is mounted only for the npm install step and is not persisted in image layers. The release tarballs are bind-mounted for the same step rather than copied, so they do not end up in a layer either.
 
-### Run with injected config
+#### Image contents
+
+The image installs `@synergy-design-system/assets`, `@synergy-design-system/metadata` and `@synergy-design-system/mcp` globally, then removes `assets/src`. Those ~9600 raw SVG files are already inlined as strings into `assets/dist`, which is what `create-spritesheet` reads, so nothing in the server needs them. Deep imports such as `@synergy-design-system/assets/sick2025/<icon>.svg` therefore do not resolve inside the container; use the npm package directly if you need the raw files.
+
+#### Run with injected config
 
 ```bash
 docker run \
   -p 9119:9119 \
   -v "$(pwd)/synergy-mcp.json:/config/synergy-mcp.json:ro" \
-  synergy-design-system/mcp:3.20.0
+  synergy-design-system/mcp:local
 ```
 
 The container starts MCP using:
@@ -455,7 +476,7 @@ syn-mcp --interface http --host 0.0.0.0 --port 9119 --config /config/synergy-mcp
 
 If the config file is not mounted, the server starts with built-in defaults and still listens on HTTP.
 
-### Kubernetes config injection
+#### Kubernetes config injection
 
 Mount a `ConfigMap` or `Secret` at `/config` so the container can read `/config/synergy-mcp.json`.
 
@@ -468,7 +489,7 @@ volumeMounts:
     readOnly: true
 ```
 
-For production, pin deployments to immutable version tags (for example `synergy-design-system/mcp:3.20.0`) instead of `latest`.
+For production, pin deployments to immutable version tags (for example `ghcr.io/synergy-design-system/mcp:4.3.0`) instead of `latest`.
 
 Example deployment patterns:
 
@@ -486,37 +507,13 @@ In general:
 - Use `127.0.0.1` when the server should only be reachable through the local machine or a reverse proxy on the same host.
 - Use `0.0.0.0` when the runtime environment needs the process to accept traffic from outside its own network namespace, such as Docker, Kubernetes, ECS, or EC2.
 
-This lets you change per-tool defaults without modifying the MCP server code.
-
-## Features
-
-- **Metadata-backed component docs**: Retrieve component data directly from `@synergy-design-system/metadata`.
-- **Setup guidance**: Return package setup instructions for components, framework adapters, tokens, styles, fonts, assets, and migrations.
-- **Asset and icon discovery**: Browse icon sets and search icons across the Synergy asset libraries.
-- **Token access**: Read CSS, JavaScript, and Sass token outputs.
-- **Styles and templates**: Retrieve CSS utility guidance and static template content.
-- **Migration guidance**: Access both DaVinci migration guides and Synergy package migration documents.
-- **AI response rules**: Optionally prepends package-local guidance files from `rules/` to selected tool responses.
-- **MCP stdio transport**: Ready for editor, assistant, and CLI integrations.
-
 ## Available Resources
 
-The MCP server currently registers 6 stable resources by default. Resources expose static, read-only data that does not change during server runtime. Clients that support MCP resources can read them directly without calling a tool.
-
-Resource identifier reference (exact values used by the server):
-
-- `synergy://components/list` → name: `component-list`
-- `synergy://assets/list` → name: `asset-list`
-- `synergy://component-clusters/list` → name: `component-clusters-list`
-- `synergy://styles/list` → name: `styles-list`
-- `synergy://templates/list` → name: `templates-list`
-- `synergy://intent-categories/list` → name: `intent-categories-list`
+The MCP server currently registers 6 stable resources by default. Resources expose static, read-only data that does not change during server runtime. Clients that support MCP resources can read them directly without calling a tool. All resources use the `application/json` MIME type.
 
 ### 1. `synergy://components/list`
 
 **Name:** `component-list`
-
-**MIME type:** `application/json`
 
 **Description:** A sorted JSON array of all available component names in the Synergy Design System.
 
@@ -529,8 +526,6 @@ Resource identifier reference (exact values used by the server):
 ### 2. `synergy://assets/list`
 
 **Name:** `asset-list`
-
-**MIME type:** `application/json`
 
 **Description:** All available icon sets in the Synergy Design System, grouped by theme. Each entry includes `id`, `name`, `since`, `theme`, and `iconCount`.
 
@@ -554,8 +549,6 @@ Resource identifier reference (exact values used by the server):
 
 **Name:** `component-clusters-list`
 
-**MIME type:** `application/json`
-
 **Description:** All available component clusters in the Synergy Design System. Each entry includes `id`, `name`, and `description`.
 
 **Example:**
@@ -574,8 +567,6 @@ Resource identifier reference (exact values used by the server):
 
 **Name:** `styles-list`
 
-**MIME type:** `application/json`
-
 **Description:** A sorted JSON array of all available style names in the Synergy Design System.
 
 **Example:**
@@ -588,8 +579,6 @@ Resource identifier reference (exact values used by the server):
 
 **Name:** `templates-list`
 
-**MIME type:** `application/json`
-
 **Description:** A sorted JSON array of all available template names in the Synergy Design System.
 
 **Example:**
@@ -601,8 +590,6 @@ Resource identifier reference (exact values used by the server):
 ### 6. `synergy://intent-categories/list`
 
 **Name:** `intent-categories-list`
-
-**MIME type:** `application/json`
 
 **Description:** Available intent categories in the Synergy intent policy layer.
 
@@ -622,15 +609,13 @@ Resource identifier reference (exact values used by the server):
 
 ## Available Tools
 
-The MCP server currently registers 17 stable tools by default.
+The MCP server registers 22 tools by default: 17 core tools and 5 intent policy tools.
+
+Parameter schemas are not duplicated here. Call `tools/list` against a running server for the authoritative input schema of every tool, including defaults resolved from your runtime config.
 
 ### 1. `component-list`
 
 **Description:** Outputs a list of all available components in the Synergy Design System.
-
-**Parameters:**
-
-- `cluster` (string, optional): Cluster id to filter by, for example `components-by-tag/structure`.
 
 **Example prompts:**
 
@@ -644,8 +629,6 @@ The MCP server currently registers 17 stable tools by default.
 **Description:** Outputs all available component clusters in the Synergy Design System.
 
 **Note:** The corresponding MCP resource uses the pluralized name `component-clusters-list` at URI `synergy://component-clusters/list`.
-
-**Parameters:** None
 
 **Example prompts:**
 
@@ -669,12 +652,6 @@ Example prompts:
 
 **Description:** Get information about the usage of a specific component in the Synergy Design System.
 
-**Parameters:**
-
-- `component` (string, required): The component name. Must start with `syn-`, for example `syn-button`.
-- `framework` (string, optional): `react`, `vue`, `angular`, or `vanilla`. Defaults to the runtime config value, which is `vanilla` by default.
-- `layer` (string, optional): `full`, `examples`, `interface`, or `rules`. Defaults to the runtime config value, which is `full` by default. `examples` and `interface` are currently only available for vanilla components. `rules` returns component usage, design, and accessibility guidance.
-
 **Example prompts:**
 
 - "How do I use syn-button in React?"
@@ -686,8 +663,6 @@ Example prompts:
 
 **Description:** Get the available icon sets in the Synergy Design System.
 
-**Parameters:** None
-
 **Example prompts:**
 
 - "What icon sets are available?"
@@ -697,12 +672,6 @@ Example prompts:
 ### 5. `asset-info`
 
 **Description:** Get information about available icons in the Synergy Design System.
-
-**Parameters:**
-
-- `filter` (string, optional): Filter icon names by substring. Supports comma-separated search terms such as `home,search,menu`.
-- `iconset` (string, optional): One of `legacy`, `v2`, `synergy2018`, `brand2018`, `sick2018`, `current`, `default`, `brand2025`, `sick2025`, `synergy2025`, `new`, `next`, or `v3`. Defaults to the runtime config value, which is `current` by default.
-- `limit` (number, optional): Maximum number of icons to return. When using multiple filters, the limit applies per filter term.
 
 **Example prompts:**
 
@@ -714,11 +683,6 @@ Example prompts:
 
 **Description:** Get raw design token file contents from the Synergy Design System.
 
-**Parameters:**
-
-- `type` (string, optional): `javascript`, `css`, or `sass`. Defaults to the runtime config value, which is `css` by default.
-- `theme` (string, optional): `sick2025-light`, `sick2025-dark`, `sick2018-light`, or `sick2018-dark`. This is only relevant for CSS token output.
-
 **Example prompts:**
 
 - "Show me the CSS tokens for sick2025-light"
@@ -728,8 +692,6 @@ Example prompts:
 ### 7. `tokens-list`
 
 **Description:** Outputs a list of available token output types and CSS themes in the Synergy Design System.
-
-**Parameters:** None
 
 **Example prompts:**
 
@@ -741,8 +703,6 @@ Example prompts:
 
 **Description:** Outputs a list of available CSS classes and styles in the Synergy Design System.
 
-**Parameters:** None
-
 **Example prompts:**
 
 - "What styles are available in Synergy?"
@@ -752,10 +712,6 @@ Example prompts:
 ### 9. `styles-info`
 
 **Description:** Get information about CSS utilities available in the Synergy Design System.
-
-**Parameters:**
-
-- `style` (string, required): The style name to retrieve.
 
 **Example prompts:**
 
@@ -767,8 +723,6 @@ Example prompts:
 
 **Description:** Outputs a list of available static templates built with the Synergy Design System.
 
-**Parameters:** None
-
 **Example prompts:**
 
 - "What templates are available in Synergy?"
@@ -778,10 +732,6 @@ Example prompts:
 ### 11. `template-info`
 
 **Description:** Get a specific template in the Synergy Design System.
-
-**Parameters:**
-
-- `template` (string, required): The template name to retrieve.
 
 **Example prompts:**
 
@@ -793,10 +743,6 @@ Example prompts:
 
 **Description:** Get a list of all components that have migration information from DaVinci to Synergy.
 
-**Parameters:**
-
-- `package` (string, optional): `components` or `charts`. Defaults to the runtime config value, which is `components` by default. Currently only `components` is available.
-
 **Example prompts:**
 
 - "What DaVinci components can be migrated to Synergy?"
@@ -807,11 +753,6 @@ Example prompts:
 
 **Description:** Get information about the migration of a specific component from DaVinci to Synergy.
 
-**Parameters:**
-
-- `component` (string, required): Name of the DaVinci component. Must start with `davinci-`, for example `davinci-button`.
-- `package` (string, optional): `components` or `charts`. Defaults to the runtime config value, which is `components` by default. Currently only `components` is available.
-
 **Example prompts:**
 
 - "How do I migrate from davinci-button to Synergy?"
@@ -821,10 +762,6 @@ Example prompts:
 ### 14. `migration-list`
 
 **Description:** List available migration documents for a Synergy package in a compact, token-efficient format.
-
-**Parameters:**
-
-- `synergyPackage` (string, optional): `assets`, `components`, `styles`, or `tokens`. Defaults to the runtime config value, which is `components` by default.
 
 **Behavior:**
 
@@ -840,11 +777,6 @@ Example prompts:
 ### 15. `migration-info`
 
 **Description:** Get detailed migration documentation for a Synergy package. Use together with `migration-list` to fetch only the documents you need.
-
-**Parameters:**
-
-- `filename` (string, optional): Specific migration document filename to return. Especially useful for the `components` package.
-- `synergyPackage` (string, optional): `assets`, `components`, `styles`, or `tokens`. Defaults to the runtime config value, which is `components` by default.
 
 **Behavior:**
 
@@ -862,11 +794,6 @@ Example prompts:
 
 **Description:** Get setup information for a Synergy package. Framework packages automatically include base components setup.
 
-**Parameters:**
-
-- `package` (string, required): `components`, `react`, `vue`, `angular`, `tokens`, `styles`, `fonts`, `assets`, or `migrations`.
-- `includeLimitations` (boolean, optional): Include known limitations and issues. Defaults to the runtime config value, which is `true` by default.
-
 **Example prompts:**
 
 - "How do I set up Synergy for React?"
@@ -877,10 +804,6 @@ Example prompts:
 
 **Description:** Creates a SVG sprite sheet for a provided set of icons. Only works with the Synergy 2025 icon set.
 
-**Parameters:**
-
-- `icons` (array, required): The icons to include in the sprite sheet. Must be valid icon keys from the Synergy 2025 icon set.
-
 **Example prompts:**
 
 - "Create a spritesheet containing these icons: star, home, settings"
@@ -889,82 +812,45 @@ Example prompts:
 
 ### Intent Policy Tools
 
-### 18. `intent-categories-list`
+#### 18. `intent-categories-list`
 
 **Description:** List available intent categories in the intent policy layer.
-
-**Parameters:**
-
-- `includePhases` (array, optional): Intent phases to include. Defaults to runtime config `tools.intentCategoriesList.includePhases` (`["stable"]` by default).
 
 **Example prompts:**
 
 - "List intent categories"
 - "Show stable intent categories"
 
-### 19. `intent-component-guide`
+#### 19. `intent-component-guide`
 
 **Description:** Answer the question: What can I do with a component in the intent system?
-
-**Parameters:**
-
-- `component` (string, required): Component tag, for example `syn-button`.
-- `framework` (string, optional): `react-wrapper`, `react-web-components`, `angular`, `vue`, or `vanilla`. Defaults to runtime config `tools.intentComponentGuide.framework`.
-- `includePhases` (array, optional): Defaults to runtime config `tools.intentComponentGuide.includePhases`.
 
 **Example prompts:**
 
 - "What can I do with syn-button?"
 - "Show intent guide for syn-button in react-web-components"
 
-### 20. `intent-component-validate`
+#### 20. `intent-component-validate`
 
 **Description:** Answer the question: Do I use a component correctly for a specific intent?
-
-**Parameters:**
-
-- `component` (string, required): Component tag, for example `syn-button`.
-- `intent` (string, required): Intent id, for example `action.submit`.
-- `markup` (string, required): Template/markup source to lint. The tool derives structure internally.
-- `framework` (string, optional): Defaults to runtime config `tools.intentComponentValidate.framework`.
-- `includePhases` (array, optional): Defaults to runtime config `tools.intentComponentValidate.includePhases`.
 
 **Example prompts:**
 
 - "Do I use syn-button right for action.submit?"
 - "Validate this syn-button markup for action.submit: <syn-button type=\"submit\" variant=\"filled\">Send</syn-button>"
 
-### 21. `intent-task-recommendations`
+#### 21. `intent-task-recommendations`
 
 **Description:** Answer the question: What does Synergy provide for a specific task intent?
-
-**Parameters:**
-
-- `taskId` (string, required): Intent id representing the task.
-- `framework` (string, optional): Defaults to runtime config `tools.intentTaskRecommendations.framework`.
-- `includePhases` (array, optional): Defaults to runtime config `tools.intentTaskRecommendations.includePhases`.
-- `maxAlternatives` (number, optional): Defaults to runtime config `tools.intentTaskRecommendations.maxAlternatives`.
-- `preferredTargets` (array, optional): Preferred target ids.
-- `avoidTargets` (array, optional): Target ids to avoid.
-- `content` (string, optional): Optional snippet content.
 
 **Example prompts:**
 
 - "What does Synergy provide to submit a form?"
 - "Recommend components for action.submit"
 
-### 22. `intent-options`
+#### 22. `intent-options`
 
 **Description:** Answer the question: What are my renderable options for a specific intent?
-
-**Parameters:**
-
-- `intentId` (string, required): Intent id to resolve.
-- `framework` (string, optional): Defaults to runtime config `tools.intentOptions.framework`.
-- `includePhases` (array, optional): Defaults to runtime config `tools.intentOptions.includePhases`.
-- `includeDiagnostics` (boolean, optional): Defaults to runtime config `tools.intentOptions.includeDiagnostics`.
-- `maxAlternatives` (number, optional): Defaults to runtime config `tools.intentOptions.maxAlternatives`.
-- `content` (string, optional): Optional preview content.
 
 **Example prompts:**
 
@@ -979,10 +865,6 @@ The MCP server currently registers 2 prompts.
 
 **Description:** Explains the usage rules, design guidelines, and accessibility considerations for a Synergy component.
 
-**Parameters:**
-
-- `component` (string, required): The component name. Must start with `syn-`, for example `syn-button`.
-
 **Example prompts:**
 
 - "Explain the rules for syn-button"
@@ -992,11 +874,6 @@ The MCP server currently registers 2 prompts.
 ### 2. `create-spritesheet`
 
 **Description:** Generates a task-specific instruction prompt for creating an SVG sprite sheet from icon usage found in a folder, including registration and usage guidance.
-
-**Parameters:**
-
-- `name` (string, optional): The name of the generated sprite sheet. If not provided, the sprite sheet will be registered as the default library.
-- `path` (string, required): The path that should be searched for occurrences of `syn-icon` and `syn-icon-button` elements. Will search the project root if omitted.
 
 **Example prompts:**
 
@@ -1269,7 +1146,6 @@ The MCP server is intentionally small:
 - `src/bin/start.ts` parses CLI arguments, loads optional runtime config, resolves overrides, and starts the selected transport.
 - `src/transports/` contains the transport factory and runtime implementations for stdio and HTTP/HTTPS.
 - `src/server.ts` creates the `McpServer` instance and registers all exported tools from `src/tools/index.ts` and all exported resources from `src/resources/index.ts`.
-- `src/server.ts` creates the `McpServer` instance and registers all exported tools/resources.
 - Tool implementations in `src/tools/` call the public APIs of `@synergy-design-system/metadata` to retrieve data.
 - Resource implementations in `src/resources/` expose static, read-only data that does not change during server runtime. Resources bypass the tool middleware pipeline entirely — no compression, logging, or error wrapping is applied.
 - Utilities in `src/utilities/` handle runtime config, MCP response shaping, DaVinci migration extraction, and package migration document loading.

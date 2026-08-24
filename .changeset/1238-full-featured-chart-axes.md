@@ -1,6 +1,7 @@
 ---
 "@synergy-design-system/components": minor
 "@synergy-design-system/metadata": minor
+"@synergy-design-system/mcp": minor
 "@synergy-design-system/tokens": minor
 ---
 

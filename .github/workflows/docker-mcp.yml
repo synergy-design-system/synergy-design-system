@@ -1,0 +1,199 @@
+name: MCP Docker Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      push_image:
+        description: 'Push the image to GHCR and Docker Hub after the smoke test passed'
+        required: false
+        default: false
+        type: boolean
+  push:
+    # The release commit is tagged [skip ci]; releases enter via docker-mcp-release.yml
+    branches-ignore:
+      - "main"
+    paths:
+      - "packages/mcp/**"
+      - "packages/metadata/**"
+      - "packages/assets/**"
+      - ".github/workflows/docker-mcp.yml"
+  workflow_call:
+    inputs:
+      push_image:
+        required: false
+        default: false
+        type: boolean
+      ref:
+        description: 'Git ref to build from'
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  GHCR_IMAGE: ghcr.io/synergy-design-system/mcp
+  DOCKERHUB_IMAGE: sickdavinci/synergy-mcp
+  LOCAL_IMAGE: synergy-design-system/mcp:ci
+
+jobs:
+  build:
+    name: Build, test and publish MCP container
+    runs-on: ubuntu-latest
+    env:
+      # Promoted to env so steps can check whether the Docker Hub mirror is configured
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+          persist-credentials: false
+
+      # TEMPORARY: workflow_dispatch is unavailable until this file lands on main,
+      # so a `[push image]` marker in the commit message enables publishing from a
+      # feature branch. Remove this fallback once the workflow is merged.
+      - name: Determine push mode
+        id: mode
+        env:
+          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          EVENT_NAME: ${{ github.event_name }}
+          PUSH_INPUT: ${{ inputs.push_image }}
+        run: |
+          set -euo pipefail
+          if [ "${PUSH_INPUT}" = "true" ]; then
+            echo "push=true" >> "$GITHUB_OUTPUT"
+            echo "dev=false" >> "$GITHUB_OUTPUT"
+          elif [ "${EVENT_NAME}" = "push" ] && printf '%s' "${COMMIT_MESSAGE}" | grep -qF '[push image]'; then
+            echo "push=true" >> "$GITHUB_OUTPUT"
+            echo "dev=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "push=false" >> "$GITHUB_OUTPUT"
+            echo "dev=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+        with:
+          install-command: 'PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=true pnpm install'
+
+      - name: Read MCP version
+        id: version
+        run: echo "version=$(node -p "require('./packages/mcp/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      # Marker pushes only get a dev-<sha> tag so they cannot claim latest/<version>
+      - name: Resolve image tags
+        id: tags
+        env:
+          DEV: ${{ steps.mode.outputs.dev }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          set -euo pipefail
+          if [ "${DEV}" = "true" ]; then
+            echo "list=dev-${GITHUB_SHA:0:7}" >> "$GITHUB_OUTPUT"
+          else
+            echo "list=${VERSION} latest" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Pack release tarballs
+        run: pnpm -C packages/mcp run docker:pack
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Single-arch build so the exact image we smoke test is the one we push
+      - name: Build image
+        uses: docker/build-push-action@v6
+        with:
+          context: packages/mcp
+          file: packages/mcp/Dockerfile
+          platforms: linux/amd64
+          load: true
+          push: false
+          tags: ${{ env.LOCAL_IMAGE }}
+          # source label auto-links the GHCR package to this repository
+          labels: |
+            org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}
+            org.opencontainers.image.description=MCP Server for the Synergy Design System
+            org.opencontainers.image.version=${{ steps.version.outputs.version }}
+            org.opencontainers.image.licenses=MIT
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Start container
+        run: docker run -d --name syn-mcp-smoke -p 9119:9119 "${LOCAL_IMAGE}"
+
+      - name: Smoke test container
+        run: node packages/mcp/docker/smoke-test.mjs http://127.0.0.1:9119/mcp
+
+      - name: Container logs
+        if: always()
+        run: |
+          docker logs syn-mcp-smoke || true
+          docker rm -f syn-mcp-smoke || true
+
+      - name: Login to GitHub Container Registry
+        if: steps.mode.outputs.push == 'true'
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push to GitHub Container Registry
+        if: steps.mode.outputs.push == 'true'
+        env:
+          TAGS: ${{ steps.tags.outputs.list }}
+        run: |
+          set -euo pipefail
+          for tag in ${TAGS}; do
+            docker tag "${LOCAL_IMAGE}" "${GHCR_IMAGE}:${tag}"
+            docker push "${GHCR_IMAGE}:${tag}"
+          done
+
+      - name: Login to Docker Hub
+        id: dockerhub_login
+        if: steps.mode.outputs.push == 'true' && env.DOCKERHUB_USERNAME != ''
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Mirror to Docker Hub
+        if: steps.dockerhub_login.outcome == 'success'
+        env:
+          TAGS: ${{ steps.tags.outputs.list }}
+        run: |
+          set -euo pipefail
+          for tag in ${TAGS}; do
+            docker tag "${LOCAL_IMAGE}" "${DOCKERHUB_IMAGE}:${tag}"
+            docker push "${DOCKERHUB_IMAGE}:${tag}"
+          done
+
+      - name: Summary
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          PUSHED: ${{ steps.mode.outputs.push }}
+          DOCKERHUB_PUSHED: ${{ steps.dockerhub_login.outcome }}
+          TAGS: ${{ steps.tags.outputs.list }}
+        run: |
+          {
+            echo "### MCP container \`${VERSION}\`"
+            echo ""
+            if [ "${PUSHED}" = "true" ]; then
+              for tag in ${TAGS}; do
+                echo "- \`${GHCR_IMAGE}:${tag}\`"
+              done
+              if [ "${DOCKERHUB_PUSHED}" = "success" ]; then
+                for tag in ${TAGS}; do
+                  echo "- \`${DOCKERHUB_IMAGE}:${tag}\`"
+                done
+              else
+                echo "- Docker Hub mirror skipped (secret \`DOCKERHUB_USERNAME\` is not configured)"
+              fi
+            else
+              echo "Built and smoke tested only — nothing was pushed."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

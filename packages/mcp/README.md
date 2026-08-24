@@ -373,6 +373,19 @@ The MCP package is container-ready and can be deployed as an HTTP service in Kub
 - Default config path: `/config/synergy-mcp.json`
 - TLS, certificates, ingress, and DNS are handled outside the container (for example via Kubernetes ingress/controllers).
 
+### Prebuilt images
+
+Every release publishes the image to the GitHub Container Registry and mirrors it to Docker Hub. Both registries carry a `latest` tag and an immutable tag matching the npm package version.
+
+```bash
+docker pull ghcr.io/synergy-design-system/mcp:latest
+docker pull sickdavinci/synergy-mcp:latest
+```
+
+```bash
+docker run --rm -p 9119:9119 ghcr.io/synergy-design-system/mcp:latest
+```
+
 ### Build image from release tarballs
 
 The Docker image uses packed release artifacts for Synergy packages to avoid npm propagation timing issues.
@@ -403,13 +416,14 @@ pnpm --dir ../.. --filter @synergy-design-system/assets build
 pnpm --dir ../.. --filter @synergy-design-system/metadata build
 pnpm --dir ../.. --filter @synergy-design-system/mcp build
 
-mkdir -p artifacts
+# Packs assets, metadata and mcp into packages/mcp/artifacts, then builds the image
+pnpm run docker:build
+```
 
-pnpm --dir ../.. --filter @synergy-design-system/assets pack --pack-destination packages/mcp/artifacts
-pnpm --dir ../.. --filter @synergy-design-system/metadata pack --pack-destination packages/mcp/artifacts
-pnpm --dir ../.. --filter @synergy-design-system/mcp pack --pack-destination packages/mcp/artifacts
+Once the container is running, verify it with a real MCP session:
 
-docker build -t synergy-design-system/mcp:3.20.0 .
+```bash
+pnpm run docker:smoke
 ```
 
 If your network uses TLS interception (for example a corporate firewall), pass your CA certificate as a BuildKit secret during build:

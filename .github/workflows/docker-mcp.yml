@@ -52,23 +52,24 @@ jobs:
           ref: ${{ inputs.ref || github.ref }}
           persist-credentials: false
 
-      # TEMPORARY: workflow_dispatch is unavailable until this file lands on main,
-      # so a `[push image]` marker in the commit message enables publishing from a
-      # feature branch. Remove this fallback once the workflow is merged.
       - name: Determine push mode
         id: mode
         env:
-          COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
-          EVENT_NAME: ${{ github.event_name }}
+          # Uncomment together with the marker branch below to publish from a feature branch
+          # COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
+          # EVENT_NAME: ${{ github.event_name }}
           PUSH_INPUT: ${{ inputs.push_image }}
         run: |
           set -euo pipefail
           if [ "${PUSH_INPUT}" = "true" ]; then
             echo "push=true" >> "$GITHUB_OUTPUT"
             echo "dev=false" >> "$GITHUB_OUTPUT"
-          elif [ "${EVENT_NAME}" = "push" ] && printf '%s' "${COMMIT_MESSAGE}" | grep -qF '[push image]'; then
-            echo "push=true" >> "$GITHUB_OUTPUT"
-            echo "dev=true" >> "$GITHUB_OUTPUT"
+          # Debug escape hatch: publishes a dev-<sha> tag when the head commit message
+          # contains `[push image]`. Never claims latest/<version>. Re-enable this branch
+          # (and the two env vars above) to test publishing from a feature branch.
+          # elif [ "${EVENT_NAME}" = "push" ] && printf '%s' "${COMMIT_MESSAGE}" | grep -qF '[push image]'; then
+          #   echo "push=true" >> "$GITHUB_OUTPUT"
+          #   echo "dev=true" >> "$GITHUB_OUTPUT"
           else
             echo "push=false" >> "$GITHUB_OUTPUT"
             echo "dev=false" >> "$GITHUB_OUTPUT"

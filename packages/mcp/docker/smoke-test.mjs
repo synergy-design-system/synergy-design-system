@@ -64,6 +64,16 @@ const run = async () => {
     }
 
     console.log('✅ Tool call "component-list" returned content');
+
+    // Guards the assets package, which is pruned down to dist/ in the image
+    const spritesheet = await client.callTool({ arguments: { icons: ['123'] }, name: 'create-spritesheet' });
+    const spritesheetText = JSON.stringify(spritesheet);
+
+    if (spritesheet.isError || !spritesheetText.includes('<svg')) {
+      throw new Error(`Calling "create-spritesheet" did not return SVG markup: ${spritesheetText.slice(0, 300)}`);
+    }
+
+    console.log('✅ Tool call "create-spritesheet" returned SVG markup');
     console.log('✅ MCP container smoke test passed');
   } finally {
     await Promise.allSettled([client.close(), transport.close()]);

@@ -1,5 +1,16 @@
 # Changelog
 
+## 4.4.0
+
+### Minor Changes
+
+- [#1353](https://github.com/synergy-design-system/synergy-design-system/pull/1353) [`2cc1f57`](https://github.com/synergy-design-system/synergy-design-system/commit/2cc1f57be40706d7a02eda06c1042037b6eb6f3d) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-25
+
+  feat: ✨ full featured chart axes ([#1238](https://github.com/synergy-design-system/synergy-design-system/issues/1238))
+
+  Added full featured axes theming and usage examples.
+  Also added formatter utility functions for specific use cases (e.g. `numberShorthandFormatter` for abbreviation of numbers).
+
 ## 4.3.0
 
 ### Patch Changes

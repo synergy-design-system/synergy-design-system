@@ -1,5 +1,13 @@
 # @synergy-design-system/react
 
+## 3.23.0
+
+### Patch Changes
+
+- Updated dependencies [[`2cc1f57`](https://github.com/synergy-design-system/synergy-design-system/commit/2cc1f57be40706d7a02eda06c1042037b6eb6f3d)]:
+  - @synergy-design-system/components@3.23.0
+  - @synergy-design-system/tokens@3.23.0
+
 ## 3.22.2
 
 ### Patch Changes

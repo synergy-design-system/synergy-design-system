@@ -89,17 +89,10 @@ describe('resolveConfigInput', () => {
       });
     });
 
-    const series = result.series as Array<{
-      data?: Array<{ itemStyle?: { color?: string }; value?: number }>;
-      type?: string;
-    }>;
+    const series = result.series as Array<{ data?: number[]; type?: string }>;
 
-    expect(series).to.be.an('array').with.lengthOf(2);
-    expect(series[0].type).to.equal('pie');
-    expect(series[1].type).to.equal('pie');
-    expect(series[1].data?.[0].value).to.equal(55);
-    expect(series[1].data?.[1].value).to.equal(45);
-    expect(result).to.haveOwnProperty('media');
-    expect(result).to.haveOwnProperty('graphic');
+    expect(series).to.be.an('array').with.lengthOf(1);
+    expect(series[0].type).to.equal('synergyGauge');
+    expect(series[0].data?.[0]).to.equal(55);
   });
 });

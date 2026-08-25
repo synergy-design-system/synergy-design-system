@@ -1,34 +1,4 @@
-import type { PieSeriesOption } from 'echarts/types/dist/shared.js';
-import type { GraphicComponentOption } from 'echarts/types/dist/option.js';
-import type { ECConfig } from '../../types.js';
-
-type GraphicElement = NonNullable<GraphicComponentOption>;
-export type GraphicComponentImageOption = Extract<GraphicElement, { type?: 'image' }>;
-export type GraphicComponentTextOption = Extract<GraphicElement, { type?: 'text' }>;
-
-/**
- * Visual and textual settings for the optional trend indicator.
- */
-export type GaugeTrendOptions = {
-  /** Trend direction that controls indicator styling and semantics. */
-  direction?: 'up' | 'down';
-  /** Data URL used as icon source when the trend direction is `up`. */
-  iconUp?: string;
-  /** Data URL used as icon source when the trend direction is `down`. */
-  iconDown?: string;
-  /** Text displayed next to the trend indicator icon. */
-  value?: string;
-};
-
-/**
- * Boundary and color definitions for outer gauge sections.
- */
-export type GaugeSectionsOptions = {
-  /** Boundary values for outer gauge sections (for example `[0, 20, 60, 100]`). */
-  boundaries?: number[];
-  /** Colors for section ranges. Colors are repeated cyclically when fewer colors than ranges are provided. */
-  colors?: string[];
-};
+import type { ZRColor } from 'echarts/types/dist/shared.js';
 
 /**
  * Formatter functions for gauge value labels.
@@ -43,33 +13,49 @@ export type GaugeFormatterOptions = {
 };
 
 /**
- * ECharts override options for a gauge text graphic element.
+ * Boundary and color definitions for outer gauge sections.
  */
-export type GaugeGraphicTextOption = Partial<Omit<GraphicComponentTextOption, 'type'>>;
-
+export type GaugeSectionsOptions = {
+  /** Boundary values for outer gauge sections (for example `[0, 20, 60, 100]`). */
+  boundaries?: number[];
+  /** Colors for section ranges. Colors are repeated cyclically when fewer colors than ranges are provided. */
+  colors?: string[];
+};
 /**
- * ECharts override options for a gauge image graphic element.
+ * Visual and textual settings for the optional trend indicator.
  */
-export type GaugeGraphicImageOption = Partial<Omit<GraphicComponentImageOption, 'type'>>;
+export type GaugeTrendOptions = {
+  /** Trend direction that controls indicator styling and semantics. */
+  direction?: 'up' | 'down';
+  /** Data URL used as icon source when the trend direction is `up`. */
+  iconUp?: string;
+  /** Data URL used as icon source when the trend direction is `down`. */
+  iconDown?: string;
+  /** Text displayed next to the trend indicator icon. */
+  value?: string;
+};
 
-/**
- * ECharts override options for gauge pie series and gauge graphic elements.
- */
-export type GaugeSeriesOverridesOptions = {
-  /** ECharts pie series overrides for the progress arc. */
-  gaugeSeries?: PieSeriesOption;
-  /** ECharts pie series overrides for the optional outer sections ring. */
-  sectionsSeries?: PieSeriesOption;
-  /** ECharts graphic overrides for the value label. Overriding `fontSize` disables responsive text sizing. */
-  valueText?: GaugeGraphicTextOption;
-  /** ECharts graphic overrides for the unit label. Overriding `fontSize` disables responsive text sizing. */
-  unitText?: GaugeGraphicTextOption;
-  /** ECharts graphic overrides for the center icon image. Overriding `width` or `height` disables responsive icon sizing. */
-  iconImage?: ECConfig['graphic'];
-  /** ECharts graphic overrides for the minimum label. Overriding `fontSize` disables responsive text sizing. */
-  minText?: GaugeGraphicTextOption;
-  /** ECharts graphic overrides for the maximum label. Overriding `fontSize` disables responsive text sizing. */
-  maxText?: GaugeGraphicTextOption;
+export type GaugeSeriesConfig = {
+  /** Color of progress arc */
+  color?: string;
+  /** Background color of progress arc */
+  backgroundColor?: string;
+  /** Outer gauge section boundaries and colors. */
+  sections?: GaugeSectionsOptions;
+  /** Enables rendering of the outer section ring. */
+  showSections?: boolean;
+  /** Enables rendering of the trend indicator above to the value. */
+  showTrend?: boolean;
+  /** Unit label rendered beneath the numeric value (for example "%" or "kWh"). */
+  unit?: string,
+  /** SVG data URL rendered as an image below the unit label, or below the value when no unit is set. */
+  icon?: string;
+  min?: number;
+  max?: number;
+  /** Formatter functions for the displayed gauge labels. */
+  formatter?: GaugeFormatterOptions;
+  /** Detailed configuration for the trend indicator. */
+  trend?: GaugeTrendOptions;
 };
 
 /**
@@ -80,48 +66,16 @@ type WithRequired<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
  * Overrides properties of a type with another type, while preserving the remaining type shape.
  */
 type Override<T, R> = Omit<T, keyof R> & R;
-
-/**
- * Configures a gauge chart preset used by the Synergy chart component.
- */
-export type GaugeSeriesPresetOptions = {
-  /** Formatter functions for the displayed gauge labels. */
-  formatter?: GaugeFormatterOptions;
-  /** SVG data URL rendered as an image below the unit label, or below the value when no unit is set. */
-  icon?: string;
-  /** Color of the progress arc that displays the current value. */
-  progressColor?: string;
-  /** Maximum value for the gauge */
-  max?: number;
-  /** Minimum value for the gauge */
-  min?: number;
-  /** ECharts overrides for gauge pie series and graphic elements. */
-  overrides?: GaugeSeriesOverridesOptions;
-  /** Outer gauge section boundaries and colors. */
-  sections?: GaugeSectionsOptions;
-  /** Enables rendering of the outer section ring. */
-  showSections?: boolean;
-  /** Enables rendering of the trend indicator above to the value. */
-  showTrend?: boolean;
-  /** Detailed configuration for the trend indicator. */
-  trend?: GaugeTrendOptions;
-  /** Unit label rendered beneath the numeric value (for example "%" or "kWh"). */
-  unit?: string;
-  /** Current gauge value. */
-  value?: number;
-};
-
 /**
  * Fully normalized gauge preset options after defaults are resolved.
  */
-export type ResolvedGaugeSeriesPresetOptions = Override<
+export type ResolvedGaugeSeriesConfig = Override<
   WithRequired<
-    GaugeSeriesPresetOptions,
-    'max' | 'min' | 'showSections' | 'showTrend' | 'unit' | 'value'
+    GaugeSeriesConfig,
+    'max' | 'min' | 'showSections' | 'showTrend' | 'unit' | 'icon' | 'backgroundColor'
   >,
   {
     formatter: WithRequired<GaugeFormatterOptions, 'max' | 'min' | 'value'>;
-    overrides: GaugeSeriesOverridesOptions;
     sections: WithRequired<GaugeSectionsOptions, 'boundaries' | 'colors'>;
     trend: WithRequired<
       GaugeTrendOptions,
@@ -130,11 +84,70 @@ export type ResolvedGaugeSeriesPresetOptions = Override<
   }
 >;
 
-export type PieDataItem = {
-  /** Slice fill style. Undefined color lets ECharts use its defaults. */
-  itemStyle: { color: string | undefined };
-  /** Numeric size of the pie slice. */
+export type Point = {
+  x: number;
+  y: number;
+};
+
+export type Sector = {
+  centerX: number;
+  centerY: number;
+  innerRadius: number;
+  outerRadius: number;
+  startAngle: number;
+  endAngle: number;
+  color: ZRColor;
+  z: number;
+};
+
+export type TextInput = {
+  text: string;
+  x: number;
+  y: number;
+  fontSize: number;
+  fontWeight?: number | string;
+  align?: 'left' | 'center' | 'right';
+  verticalAlign?: 'top' | 'middle' | 'bottom';
+  z?: number;
+};
+
+export type ImageInput = {
+  image: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  z?: number;
+};
+
+export type SynergyGaugeSeriesOption = {
+  type: 'synergyGauge';
+  name?: string;
+  color?: string;
+  data?: number[];
+} & GaugeSeriesConfig;
+
+/**
+ * Input options for the `seriesGauge` preset.
+ *
+ * `value` is a convenience alias for setting the first data item. When both
+ * `data` and `value` are provided, `data` takes precedence.
+ */
+export type GaugeSeriesPresetOptions = Omit<SynergyGaugeSeriesOption, 'data' | 'type'> & {
+  /** Current value of the gauge */
   value: number;
 };
 
-export type { PieSeriesOption };
+export type GaugeModelOption = {
+  type: 'synergyGauge';
+  data?: number[];
+};
+
+/**
+ * Add the `synergyGauge` series type to the ECharts module.
+ */
+declare module 'echarts/types/dist/shared.js' {
+  interface RegisteredSeriesOption {
+    synergyGauge: SynergyGaugeSeriesOption;
+  }
+}

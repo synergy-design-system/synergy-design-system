@@ -913,7 +913,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The gauge chart can be configured with the `seriesGauge` preset function.",
+          "value": "The gauge chart can either be configured via config with `type: 'synergyGauge'` or with the `seriesGauge` preset function.",
           "type": "text"
         }
       },

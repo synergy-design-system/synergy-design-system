@@ -6,10 +6,11 @@ import { html } from 'lit';
 import type { CSSResultGroup, PropertyValues } from 'lit';
 import { property } from 'lit/decorators.js';
 import { query } from 'lit/decorators/query.js';
-import { GaugeChart, LineChart, PieChart } from 'echarts/charts.js';
+import {
+  GaugeChart, LineChart,
+} from 'echarts/charts.js';
 import {
   DataZoomComponent,
-  GraphicComponent,
   GridComponent, LegendComponent, TitleComponent, TooltipComponent,
 } from 'echarts/components.js';
 import SynergyElement from '../../internal/synergy-element.js';
@@ -21,6 +22,7 @@ import type { ChartConfigType, ECConfig } from './types.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
 import { getRealStyleValue, setGlobalThemeStore } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
+import { gaugeInstall } from './configs/gauge-series/install.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -32,8 +34,8 @@ use([
   LegendComponent,
   GridComponent,
   DataZoomComponent,
-  GraphicComponent,
-  PieChart,
+  // @ts-expect-error - I don't know where this typescript error comes from
+  gaugeInstall,
 ]);
 
 /**

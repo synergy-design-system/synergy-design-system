@@ -58,8 +58,14 @@ export const Default: Story = {
 
       charts.forEach(chart => {
          charts.forEach(chart => {
-            chart.config = handle => handle
-            .seriesGauge({ value: 80 });
+            chart.config = {
+              series: [
+                {
+                  type: 'synergyGauge',
+                  data: [45],
+                }
+              ]
+            };
           });
       });
     </script>
@@ -87,7 +93,7 @@ export const Sections: Story = {
               sections: {
                 boundaries: [0, 20, 70, 100],
               },
-              value: 80,  
+              value: 80,
             });
           });
       });
@@ -114,7 +120,7 @@ export const TrendIndicator: Story = {
             .seriesGauge({
               showTrend: true,
               trend: {
-                value: '5'
+                value: '5',
               },
               value: 80,  
             });
@@ -169,12 +175,51 @@ export const ValueFormatting: Story = {
          charts.forEach(chart => {
             chart.config = handle => handle
             .seriesGauge({
+              value: 80,
               formatter: {
                 max: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
                 min: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
                 value: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 2 }).format(value),
               },
             });
+          });
+      });
+    </script>
+  `,
+};
+export const SynergyGaugeComponent: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: 'Gauge rendered via dedicated ECharts series type "synergyGauge".',
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="gauge-synergy-component"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#gauge-synergy-component');
+
+      charts.forEach(chart => {
+         charts.forEach(chart => {
+            chart.config = {
+              series: [
+                {
+                  type: 'synergyGauge',
+                  data: [45],
+                  showTrend: true,
+                  trend: { value: 'dsf' },
+                  unit: 'gha',
+                  showSections: true,
+                  sections: {
+                    colors: ['magenta', 'orange']
+                  },
+                  icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+
+                  
+                }
+              ]
+            };
           });
       });
     </script>
@@ -188,5 +233,6 @@ export const Screenshot: Story = generateScreenshotStory({
   TrendIndicator,
   Icon,
   ValueFormatting,
+  SynergyGaugeComponent,
 }, 700);
 /* eslint-enable sort-keys */

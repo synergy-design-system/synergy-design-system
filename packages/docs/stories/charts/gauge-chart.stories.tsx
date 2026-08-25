@@ -57,16 +57,14 @@ export const Default: Story = {
       const charts = document.querySelectorAll('#gauge-series-preset');
 
       charts.forEach(chart => {
-         charts.forEach(chart => {
-            chart.config = {
-              series: [
-                {
-                  type: 'synergyGauge',
-                  data: [45],
-                }
-              ]
-            };
-          });
+        chart.config = {
+          series: [
+            {
+              type: 'synergyGauge',
+              data: [45],
+            }
+          ]
+        };
       });
     </script>
   `,
@@ -86,16 +84,14 @@ export const Sections: Story = {
       const charts = document.querySelectorAll('#gauge-sections');
 
       charts.forEach(chart => {
-         charts.forEach(chart => {
-            chart.config = handle => handle
-            .seriesGauge({
-              showSections: true,
-              sections: {
-                boundaries: [0, 20, 70, 100],
-              },
-              value: 80,
-            });
-          });
+        chart.config = handle => handle
+          .seriesGauge({
+            showSections: true,
+            sections: {
+              boundaries: [0, 20, 70, 100],
+            },
+            value: 80,
+        });
       });
     </script>
   `,
@@ -115,15 +111,13 @@ export const TrendIndicator: Story = {
       const charts = document.querySelectorAll('#gauge-trend');
 
       charts.forEach(chart => {
-         charts.forEach(chart => {
-            chart.config = handle => handle
-            .seriesGauge({
-              showTrend: true,
-              trend: {
-                value: '5',
-              },
-              value: 80,  
-            });
+        chart.config = handle => handle
+          .seriesGauge({
+            showTrend: true,
+            trend: {
+              value: '5',
+            },
+            value: 80,  
           });
       });
     </script>
@@ -144,14 +138,12 @@ export const Icon: Story = {
       const charts = document.querySelectorAll('#gauge-icon');
 
       charts.forEach(chart => {
-         charts.forEach(chart => {
-            chart.config = handle => handle
-            .seriesGauge({
-              unit: '°C',
-              icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
-              showSections: true,
-              value: 80,  
-            });
+        chart.config = handle => handle
+          .seriesGauge({
+            unit: '°C',
+            icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+            showSections: true,
+            value: 80,  
           });
       });
     </script>
@@ -172,17 +164,15 @@ export const ValueFormatting: Story = {
       const charts = document.querySelectorAll('#gauge-formatter');
 
       charts.forEach(chart => {
-         charts.forEach(chart => {
-            chart.config = handle => handle
-            .seriesGauge({
-              value: 80,
-              formatter: {
-                max: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
-                min: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
-                value: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 2 }).format(value),
-              },
-            });
-          });
+        chart.config = handle => handle
+          .seriesGauge({
+            value: 80,
+            formatter: {
+              max: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
+              min: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(value),
+              value: (value) => Intl.NumberFormat(undefined, { minimumFractionDigits: 2 }).format(value),
+            },
+        });
       });
     </script>
   `,
@@ -201,26 +191,24 @@ export const SynergyGaugeComponent: Story = {
       const charts = document.querySelectorAll('#gauge-synergy-component');
 
       charts.forEach(chart => {
-         charts.forEach(chart => {
-            chart.config = {
-              series: [
-                {
-                  type: 'synergyGauge',
-                  data: [45],
-                  showTrend: true,
-                  trend: { value: 'dsf' },
-                  unit: 'gha',
-                  showSections: true,
-                  sections: {
-                    colors: ['magenta', 'orange']
-                  },
-                  icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+        chart.config = {
+          series: [
+            {
+              type: 'synergyGauge',
+              data: [45],
+              showTrend: true,
+              trend: { value: 'dsf' },
+              unit: 'gha',
+              showSections: true,
+              sections: {
+                colors: ['magenta', 'orange']
+              },
+              icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
 
-                  
-                }
-              ]
-            };
-          });
+              
+            }
+          ]
+        };
       });
     </script>
   `,

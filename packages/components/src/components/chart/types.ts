@@ -56,3 +56,15 @@ export type {
 export type {
   LineSeriesOption,
 } from './configs/line-series/types.js';
+
+export type {
+  DonutSeriesConfig,
+  DonutSeriesPresetOptions,
+  SynergyDonutSeriesOption,
+} from './configs/donut-series/types.js';
+
+export type {
+  SegmentChartSeriesConfig,
+  SegmentChartSeriesPresetOptions,
+  SynergySegmentChartSeriesOption,
+} from './configs/segment-chart-series/types.js';

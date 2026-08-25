@@ -247,6 +247,7 @@ syn-mcp --config ./synergy-mcp.json --silent
 ```
 
 ### Tool-call logging
+
 Tool-call logging is provider-based. Multiple providers can be active simultaneously. The following providers are available:
 
 ##### Local file provider

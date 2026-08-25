@@ -57,18 +57,16 @@ export const Default: Story = {
       const charts = document.querySelectorAll('#segment-chart-preset');
 
       charts.forEach(chart => {
-         charts.forEach(chart => {
-            chart.config = {
-              series: [
-                {
-                  type: 'synergySegmentChart',
-                  data: [5, 10, 50, 80, 100],
-                  weights: [1, 1, 1.5, 1.2, 1.6],
-                  segmentLabels: ['5%', '10%', '50%', '80%', '100%'],
-                }
-              ]
-            };
-          });
+        chart.config = {
+          series: [
+            {
+              type: 'synergySegmentChart',
+              data: [5, 10, 50, 80, 100],
+              weights: [1, 1, 1.5, 1.2, 1.6],
+              segmentLabels: ['5%', '10%', '50%', '80%', '100%'],
+            }
+          ]
+        };
       });
     </script>
   `,
@@ -88,17 +86,15 @@ export const NoGap: Story = {
       const charts = document.querySelectorAll('#segment-chart-no-gap');
 
       charts.forEach(chart => {
-         charts.forEach(chart => {
-            chart.config = handle => handle
-            .seriesSegmentChart({
-              data: [0.9, 1, 0.2, 0.1, 0.5, 0.9, 0.1, 0, 0.2, 1, 0.3, 0.7, 0.4, 0.1, 0.3, 0.2],
-              weights: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-              min: 0,
-              max: 1,
-              gap: 0,
-              icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
-            });
-          });
+        chart.config = handle => handle
+        .seriesSegmentChart({
+          data: [0.9, 1, 0.2, 0.1, 0.5, 0.9, 0.1, 0, 0.2, 1, 0.3, 0.7, 0.4, 0.1, 0.3, 0.2],
+          weights: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+          min: 0,
+          max: 1,
+          gap: 0,
+          icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+        });
       });
     </script>
   `,
@@ -118,15 +114,13 @@ export const HalfCircle: Story = {
       const charts = document.querySelectorAll('#segment-chart-half');
 
       charts.forEach(chart => {
-         charts.forEach(chart => {
-            chart.config = handle => handle
-            .seriesSegmentChart({
-              data: [5, 10, 50, 80, 100],
-              weights: [1, 1, 1.5, 1.2, 1.6],
-              segmentLabels: ['5%', '10%', '50%', '80%', '100%'],
-              gap: 0.5,
-            });
-          });
+        chart.config = handle => handle
+        .seriesSegmentChart({
+          data: [5, 10, 50, 80, 100],
+          weights: [1, 1, 1.5, 1.2, 1.6],
+          segmentLabels: ['5%', '10%', '50%', '80%', '100%'],
+          gap: 0.5,
+        });
       });
     </script>
   `,
@@ -146,20 +140,18 @@ export const CustomStyling: Story = {
       const charts = document.querySelectorAll('#segment-chart-custom');
 
       charts.forEach(chart => {
-         charts.forEach(chart => {
-            chart.config = handle => handle
-            .seriesSegmentChart({
-              data: [100, 30, 0, 100],
-              weights: [1, 1, 1, 1],
-              mainLabel: 'Contamination',
-              icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
-              segmentLabels: ['one', 'two', 'three', 'four'],
-              segmentColors: ['#D98CAE', 'transparent', '#E8E8E8', '#7C9A6B'],
-              segmentBackgroundColors: ['#2E2E38', '#2E2E38', '#E8E8E8', '#2E2E38'],
-              segmentOutlineColor: ['#C7A75B', '#D6293E', undefined, undefined],
-              segmentLabelColors: ['#C7226B', '#D6293E', '#9AA0A6', '#4C7A3D'],
-            });
-          });
+        chart.config = handle => handle
+        .seriesSegmentChart({
+          data: [100, 30, 0, 100],
+          weights: [1, 1, 1, 1],
+          mainLabel: 'Contamination',
+          icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+          segmentLabels: ['one', 'two', 'three', 'four'],
+          segmentColors: ['#D98CAE', 'transparent', '#E8E8E8', '#7C9A6B'],
+          segmentBackgroundColors: ['#2E2E38', '#2E2E38', '#E8E8E8', '#2E2E38'],
+          segmentOutlineColor: ['#C7A75B', '#D6293E', undefined, undefined],
+          segmentLabelColors: ['#C7226B', '#D6293E', '#9AA0A6', '#4C7A3D'],
+        });
       });
     </script>
   `,

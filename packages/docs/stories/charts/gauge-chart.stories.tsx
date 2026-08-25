@@ -117,7 +117,7 @@ export const TrendIndicator: Story = {
             trend: {
               value: '5',
             },
-            value: 80,  
+            value: 80,
           });
       });
     </script>
@@ -143,7 +143,7 @@ export const Icon: Story = {
             unit: '°C',
             icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
             showSections: true,
-            value: 80,  
+            value: 80,
           });
       });
     </script>
@@ -177,42 +177,6 @@ export const ValueFormatting: Story = {
     </script>
   `,
 };
-export const SynergyGaugeComponent: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: 'Gauge rendered via dedicated ECharts series type "synergyGauge".',
-      },
-    },
-  },
-  render: () => html`
-    <syn-chart id="gauge-synergy-component"></syn-chart>
-    <script type="module">
-      const charts = document.querySelectorAll('#gauge-synergy-component');
-
-      charts.forEach(chart => {
-        chart.config = {
-          series: [
-            {
-              type: 'synergyGauge',
-              data: [45],
-              showTrend: true,
-              trend: { value: 'dsf' },
-              unit: 'gha',
-              showSections: true,
-              sections: {
-                colors: ['magenta', 'orange']
-              },
-              icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
-
-              
-            }
-          ]
-        };
-      });
-    </script>
-  `,
-};
 
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
@@ -221,6 +185,5 @@ export const Screenshot: Story = generateScreenshotStory({
   TrendIndicator,
   Icon,
   ValueFormatting,
-  SynergyGaugeComponent,
 }, 700);
 /* eslint-enable sort-keys */

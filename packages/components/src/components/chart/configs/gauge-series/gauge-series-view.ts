@@ -19,6 +19,7 @@ import { colorSvgDataUrl } from '../utilities.js';
 const FULL_CIRCLE = Math.PI * 2;
 const RADIAN = Math.PI / 180;
 
+/** Returns the default resolved configuration for a Synergy gauge series. */
 const getDefaultGaugeConfig = (): ResolvedGaugeSeriesConfig => ({
   backgroundColor: style('SynChartTrackColor'),
   color: undefined,
@@ -45,20 +46,25 @@ const getDefaultGaugeConfig = (): ResolvedGaugeSeriesConfig => ({
   unit: '',
 });
 
+/** Clamps `value` so it falls within the inclusive range `[minimum, maximum]`. */
 const clamp = (value: number, minimum: number, maximum: number): number => Math.min(Math.max(value, minimum), maximum);
 
+/** Normalizes an angle in radians to the range `[0, 2π)`. */
 const normalizeAngle = (angle: number): number => {
   const normalized = angle % FULL_CIRCLE;
   return normalized < 0 ? normalized + FULL_CIRCLE : normalized;
 };
 
+/** Linearly interpolates between `start` and `end` by the normalized `progress` factor (0–1). */
 const interpolate = (start: number, end: number, progress: number): number => start + ((end - start) * progress);
 
+/** Converts polar coordinates (center + radius + angle in radians) to a Cartesian `Point`. */
 const polarPoint = (centerX: number, centerY: number, radius: number, angle: number): Point => ({
   x: centerX + (Math.cos(angle) * radius),
   y: centerY + (Math.sin(angle) * radius),
 });
 
+/** Creates an ECharts `Sector` graphic element from the given sector descriptor. */
 const createSector = ({
   centerX, centerY, innerRadius, outerRadius, startAngle, endAngle, color, z,
 }: Sector): graphic.Sector => new graphic.Sector({
@@ -78,6 +84,7 @@ const createSector = ({
   z,
 });
 
+/** Creates an ECharts `Text` graphic element styled with the current design-token values. */
 const createText = ({
   text,
   x,
@@ -105,6 +112,7 @@ const createText = ({
   })
 );
 
+/** Creates an ECharts `Image` graphic element positioned at the given coordinates. */
 const createImage = ({
   image, x, y, width, height, z = 10,
 }: ImageInput): graphic.Image => (
@@ -121,6 +129,11 @@ const createImage = ({
   })
 );
 
+/**
+ * Normalizes and validates a raw boundaries array, clamping every entry to `[minimum, maximum]`
+ * and ensuring both endpoints are present. Falls back to `[minimum, maximum]` when the input is
+ * absent or has fewer than two entries.
+ */
 const getSectionBoundaries = (boundaries: number[] | undefined, minimum: number, maximum: number): number[] => {
   if (!boundaries || boundaries.length < 2) {
     return [minimum, maximum];
@@ -144,6 +157,11 @@ const getSectionBoundaries = (boundaries: number[] | undefined, minimum: number,
   return unique;
 };
 
+/**
+ * Resolves the fill color for the progress arc. When sections are visible and no explicit
+ * `color` override is set, the color of the section that contains `value` is returned.
+ * Otherwise falls back to `config.color`.
+ */
 const getAutoProgressColor = (
   config: ResolvedGaugeSeriesConfig,
   value: number,
@@ -172,6 +190,10 @@ const getAutoProgressColor = (
   return config.color;
 };
 
+/**
+ * Builds the outer colored-section ring as an array of `Sector` elements. Each segment
+ * receives a small gap on its shared boundary with adjacent segments.
+ */
 const createSections = ({
   config, centerX, centerY, startAngle, endAngle, outerRadius, sectionThickness,
 }: {
@@ -224,6 +246,10 @@ const createSections = ({
   return elements;
 };
 
+/**
+ * Builds the trend-indicator pill that appears above the value label. The pill contains a
+ * directional icon (up/down) and the formatted trend value string.
+ */
 const createTrendElement = ({
   config,
   centerX,
@@ -250,7 +276,7 @@ const createTrendElement = ({
   const pillWidth = (horizontalPadding * 2) + iconSize + verticalPadding + valueWidth;
 
   const pillX = centerX - (pillWidth / 2);
-  const pillY = centerY - (pillHeight / 2) - (valueFontSize + (8 * factor));
+  const pillY = centerY - (pillHeight / 2) - (valueFontSize + horizontalPadding);
 
   const contentStartX = pillX + horizontalPadding;
   const iconY = pillY + ((pillHeight - iconSize) / 2);
@@ -299,6 +325,17 @@ const createTrendElement = ({
   return group;
 };
 
+/**
+ * Assembles the complete gauge visualization as an ECharts `Group`. This includes the
+ * background arc, progress arc, optional section ring, value/unit labels, min/max labels,
+ * optional icon, and optional trend indicator.
+ *
+ * @param rawValue   - The raw data value to display.
+ * @param inputConfig - User-supplied gauge series configuration.
+ * @param width       - Available render width in pixels.
+ * @param height      - Available render height in pixels.
+ * @param paletteColor - Fallback color taken from the ECharts color palette.
+ */
 const buildGaugeGroup = (
   rawValue: number,
   inputConfig: GaugeSeriesConfig,
@@ -427,8 +464,9 @@ const buildGaugeGroup = (
     y: centerY,
   }));
 
-  // Between the value and the unit/icon we add a 12px gap, scaled by the factor.
-  let nextContentY = centerY + (valueFontSize / 2) + (12 * factor);
+  const contentGap = (styleWithoutUnit('SynSpacingSmall') * factor);
+  // Between the value and the unit/icon we add a gap, scaled by the factor.
+  let nextContentY = centerY + (valueFontSize / 2) + contentGap;
 
   // Unit label
   if (config.unit) {
@@ -440,7 +478,7 @@ const buildGaugeGroup = (
       y: nextContentY,
     }));
 
-    nextContentY += unitFontSize + (12 * factor);
+    nextContentY += unitFontSize + contentGap;
   }
 
   // Icon image
@@ -468,7 +506,7 @@ const buildGaugeGroup = (
     fontSize: minMaxFontSize,
     text: formattedMinimum,
     x: minimumPoint.x + (minTextWidth / 2),
-    y: minimumPoint.y + (12 * factor),
+    y: minimumPoint.y + contentGap,
   }));
 
   // Maximum label
@@ -477,7 +515,7 @@ const buildGaugeGroup = (
     fontSize: minMaxFontSize,
     text: formattedMaximum,
     x: maximumPoint.x - (maxTextWidth / 2),
-    y: maximumPoint.y + (12 * factor),
+    y: maximumPoint.y + contentGap,
   }));
 
   return root;
@@ -488,6 +526,10 @@ export class SynergyGaugeView extends ChartView {
 
   type = SynergyGaugeView.type;
 
+  /**
+   * ECharts render lifecycle hook. Clears the previous frame and redraws the gauge
+   * based on the current series model data and options.
+   */
   // @ts-expect-error - I don't know where this typescript error comes from. Even in echarts itself it is available..
   render(seriesModel: SynergyGaugeSeriesModel, ecModel: GlobalModel, api: ExtensionAPI): void {
     const { group } = this;

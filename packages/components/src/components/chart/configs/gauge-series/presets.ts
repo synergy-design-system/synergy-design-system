@@ -3,14 +3,11 @@ import { GAUGE_SERIES } from '../constants.js';
 import type { GaugeSeriesPresetOptions, SynergyGaugeSeriesOption } from './types.js';
 
 /**
- * Adds a custom `synergyGauge` series.
+ * Adds a `synergyGauge` series.
  *
- * The preset forwards all supported gauge config fields to the custom series.
+ * The preset forwards all supported gauge config fields to the synergy gauge.
  * For convenience, it accepts a `value` option that is converted into the first
- * `data` entry when no explicit `data` array is provided.
- *
- * If neither `value` nor `data` is provided, a default value at the midpoint
- * between `min` and `max` is used.
+ * `data` entry of the generated series option.
  *
  * @param {GaugeSeriesPresetOptions} [options] Preset options.
  * @param {number} [options.value] Current value of the gauge.
@@ -35,8 +32,6 @@ import type { GaugeSeriesPresetOptions, SynergyGaugeSeriesOption } from './types
  * @param {string} [options.trend.iconUp] Icon data URL used for upward trends.
  * @param {string} [options.trend.iconDown] Icon data URL used for downward trends.
  * @param {string} [options.trend.value] Trend label text shown in the indicator pill.
- *
- * @see https://echarts.apache.org/en/option.html#series
  */
 export const seriesGauge = (options: GaugeSeriesPresetOptions): ConfigModifier => (config) => {
   const { value, ...seriesConfig } = options;

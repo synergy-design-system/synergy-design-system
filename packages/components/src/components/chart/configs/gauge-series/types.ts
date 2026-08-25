@@ -50,7 +50,9 @@ export type GaugeSeriesConfig = {
   unit?: string,
   /** SVG data URL rendered as an image below the unit label, or below the value when no unit is set. */
   icon?: string;
+  /** Minimum value of the gauge scale. Defaults to `0`. */
   min?: number;
+  /** Maximum value of the gauge scale. Defaults to `100`. */
   max?: number;
   /** Formatter functions for the displayed gauge labels. */
   formatter?: GaugeFormatterOptions;

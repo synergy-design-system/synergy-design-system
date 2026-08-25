@@ -14,6 +14,7 @@ import type {
 } from './types.js';
 import { GAUGE_SERIES } from '../constants.js';
 import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
+import { colorSvgDataUrl } from '../utilities.js';
 
 const FULL_CIRCLE = Math.PI * 2;
 const RADIAN = Math.PI / 180;
@@ -274,9 +275,10 @@ const createTrendElement = ({
   }));
 
   if (iconSource) {
+    const coloredIcon = colorSvgDataUrl(iconSource, style('SynTypographyColorText'));
     group.add(createImage({
       height: iconSize,
-      image: iconSource,
+      image: coloredIcon,
       width: iconSize,
       x: contentStartX,
       y: iconY,

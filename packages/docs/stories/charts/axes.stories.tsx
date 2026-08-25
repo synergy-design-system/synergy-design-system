@@ -549,16 +549,16 @@ export const MultipleYAxes: Story = {
   `,
 };
 
-export const MultipleSharedYAxes: Story = {
+export const MultipleSeriesPerYAxis: Story = {
   parameters: {
     docs: {
       description: {
-        story: generateStoryDescription('chart', 'axes-multiple-shared-y-axes'),
+        story: generateStoryDescription('chart', 'axes-multiple-series-per-y-axis'),
       },
     },
   },
   render: () => html`
-    <syn-chart id="chart-multiple-shared-y-axes"></syn-chart>
+    <syn-chart id="chart-multiple-series-per-y-axis"></syn-chart>
     <script type="module">
 
 
@@ -582,7 +582,7 @@ export const MultipleSharedYAxes: Story = {
         ]
       };
 
-      const charts = document.querySelectorAll('#chart-multiple-shared-y-axes');
+      const charts = document.querySelectorAll('#chart-multiple-series-per-y-axis');
       charts.forEach(chart => {
         chart.config = handle => handle
           .baseConfig(baseConfig)
@@ -655,6 +655,7 @@ export const AxesLabelFormatting: Story = {
         <syn-option value="shorthand">Shorthand labels formatter</syn-option>
         <syn-option value="shorthand-min">Shorthand labels with min fraction formatter</syn-option>
         <syn-option value="number-min-max">Number with min / max fraction formatter</syn-option>
+        <syn-option value="chain">Chain multiple formatter</syn-option>
         <syn-option value="none">No formatter</syn-option>
       </syn-select>
     </div>
@@ -676,6 +677,9 @@ export const AxesLabelFormatting: Story = {
           break;
         case 'number-min-max':
           labelFormatter = formatter.numberFormatter(undefined, { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 });
+          break;
+        case 'chain': 
+          labelFormatter = (value) => formatter.unitFormatter('°C')(formatter.numberShorthandFormatter('en-GB')(value));
           break;
         default:
           labelFormatter = undefined;
@@ -733,7 +737,7 @@ export const CategoryAxesLabelGreedily: Story = {
         <syn-option value="default">Default</syn-option>
       </syn-select>
     </div>
-    <syn-chart id="chart-axis-greedily"></syn-chart>
+    <syn-chart style="max-width: 450px" id="chart-axis-greedily"></syn-chart>
     <script type="module">
       const setConfig = (select) => {
         const charts = document.querySelectorAll('#chart-axis-greedily');
@@ -751,13 +755,13 @@ export const CategoryAxesLabelGreedily: Story = {
             series: [{ data: [1500, 2300, 2541, 2184, 1352, 1479, 2605], type: 'line' }],
             xAxis: {
               data: [
-                'France',
-                'Germany',
-                'South Africa',
-                'United Kingdom',
-                'Portugal',
-                'Bosnia and Herzegovina',
-                'Malaysia',
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
               ],
               name: 'Days',
               type: 'category',
@@ -798,7 +802,7 @@ export const CategoryAxesLabelEvenly: Story = {
     },
   },
   render: () => html`
-    <syn-chart id="chart-axis-evenly"></syn-chart>
+    <syn-chart style="max-width: 450px" id="chart-axis-evenly"></syn-chart>
     <script type="module">
 
       // Calculate the available width for each axis label based on the chart width and the number of labels
@@ -816,13 +820,13 @@ export const CategoryAxesLabelEvenly: Story = {
           series: [{ data: [1500, 2300, 2541, 2184, 1352, 1479, 2605], type: 'line' }],
           xAxis: {
             data: [
-              'France',
-              'Germany',
-              'South Africa',
-              'United Kingdom',
-              'Portugal',
-              'Bosnia and Herzegovina',
-              'Malaysia',
+                'January',
+                'February',
+                'March',
+                'April',
+                'May',
+                'June',
+                'July',
             ],
             name: 'Days',
             type: 'category',
@@ -869,7 +873,7 @@ export const Screenshot: Story = generateScreenshotStory({
   AxesPositioning,
   MinMaxValues,
   MultipleYAxes,
-  MultipleSharedYAxes,
+  MultipleSeriesPerYAxis,
   AxesLabelFormatting,
   CategoryAxesLabelGreedily,
   CategoryAxesLabelEvenly,

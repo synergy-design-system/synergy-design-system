@@ -727,12 +727,12 @@ To add multiple y-axes to the chart, define an array of y-axis configurations un
 
 ---
 
-## Multiple Shared Y Axes
+## Multiple Series Per Y Axis
 
 This chart compares two metrics (temperature, precipitation) for two countries (Germany, France) using a single shared axis approach, encoded through visual channels that do not depend on color perception at all: 1. Line style and marker shape = country Germany is drawn with solid lines and filled square/circle markers; France is drawn with dotted lines. This distinction is fully readable in grayscale or black-and-white print, since it relies on stroke pattern and shape rather than hue. 2. Legend labels = explicit redundant encodingRather than expecting the reader to decode line style or marker shape from a key, each legend entry spells out both dimensions in text: "Temperature Germany", "Preciptation France". This turns the legend itself into a self-sufficient lookup table, so no single visual channel has to carry the full weight of disambiguation.Color is still used in this chart (blue/green) to make the two metrics faster to tell apart on screen, but it is treated as a supporting cue only and never as the sole means of distinguishing a series. Every distinction the chart makes is also carried by line style, marker shape, or the legend text, so the chart remains fully legible if color is removed entirely (e.g. printed in black and white, or viewed by a colorblind user).
 
 ```html
-<syn-chart id="chart-multiple-shared-y-axes"></syn-chart>
+<syn-chart id="chart-multiple-series-per-y-axis"></syn-chart>
 <script type="module">
   const baseConfig = {
     xAxis: {
@@ -753,7 +753,7 @@ This chart compares two metrics (temperature, precipitation) for two countries (
     ],
   };
 
-  const charts = document.querySelectorAll("#chart-multiple-shared-y-axes");
+  const charts = document.querySelectorAll("#chart-multiple-series-per-y-axis");
   charts.forEach((chart) => {
     chart.config = (handle) =>
       handle
@@ -831,6 +831,7 @@ The axes labels can be formatted via the axisLabel.formatter option. You can cus
     <syn-option value="number-min-max"
       >Number with min / max fraction formatter</syn-option
     >
+    <syn-option value="chain">Chain multiple formatter</syn-option>
     <syn-option value="none">No formatter</syn-option>
   </syn-select>
 </div>
@@ -858,6 +859,12 @@ The axes labels can be formatted via the axisLabel.formatter option. You can cus
           currency: "EUR",
           minimumFractionDigits: 2,
         });
+        break;
+      case "chain":
+        labelFormatter = (value) =>
+          formatter.unitFormatter("°C")(
+            formatter.numberShorthandFormatter("en-GB")(value),
+          );
         break;
       default:
         labelFormatter = undefined;
@@ -918,7 +925,7 @@ The default behavior of ECharts for justifiying axes labels is to avoid overlapp
     <syn-option value="default">Default</syn-option>
   </syn-select>
 </div>
-<syn-chart id="chart-axis-greedily"></syn-chart>
+<syn-chart style="max-width: 450px" id="chart-axis-greedily"></syn-chart>
 <script type="module">
   const setConfig = (select) => {
     const charts = document.querySelectorAll("#chart-axis-greedily");
@@ -938,13 +945,13 @@ The default behavior of ECharts for justifiying axes labels is to avoid overlapp
         ],
         xAxis: {
           data: [
-            "France",
-            "Germany",
-            "South Africa",
-            "United Kingdom",
-            "Portugal",
-            "Bosnia and Herzegovina",
-            "Malaysia",
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
           ],
           name: "Days",
           type: "category",
@@ -981,7 +988,7 @@ The default behavior of ECharts for justifiying axes labels is to avoid overlapp
 When all axis labels should remain visible and be distributed evenly along the axis, configure the labels to use a fixed amount of space per tick. If the available space becomes insufficient, labels are automatically truncated. This behavior can be achieved with axisLabel.interval = 0, axisLabel.width (calculated based on the available space per tick), and axisLabel.overflow = 'truncate'. To keep the layout responsive, recalculate the label width on window resize and update the chart configuration accordingly. This does only work for axis of type category.
 
 ```html
-<syn-chart id="chart-axis-evenly"></syn-chart>
+<syn-chart style="max-width: 450px" id="chart-axis-evenly"></syn-chart>
 <script type="module">
   // Calculate the available width for each axis label based on the chart width and the number of labels
   const getAxisLabelWidth = (chart) => {
@@ -999,15 +1006,7 @@ When all axis labels should remain visible and be distributed evenly along the a
         { data: [1500, 2300, 2541, 2184, 1352, 1479, 2605], type: "line" },
       ],
       xAxis: {
-        data: [
-          "France",
-          "Germany",
-          "South Africa",
-          "United Kingdom",
-          "Portugal",
-          "Bosnia and Herzegovina",
-          "Malaysia",
-        ],
+        data: ["January", "February", "March", "April", "May", "June", "July"],
         name: "Days",
         type: "category",
         axisLabel: {

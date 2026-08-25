@@ -687,9 +687,9 @@
           "type": "text"
         }
       },
-      "axes-multiple-shared-y-axes": {
+      "axes-multiple-series-per-y-axis": {
         "title": {
-          "value": "Multiple Shared Y-Axes",
+          "value": "Multiple Series per Y-Axis",
           "type": "text"
         },
         "description": {

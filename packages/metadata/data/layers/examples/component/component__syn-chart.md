@@ -372,8 +372,7 @@ To show axes split lines but hide axis labels, combine axesShowSplitLines() and 
     "#chart-lines-visible-values-hidden",
   );
   charts.forEach((chart) => {
-    chart.config = (handle) =>
-      handle.baseConfig(baseConfig).axesHideLabels().axesHideLabels();
+    chart.config = (handle) => handle.baseConfig(baseConfig).axesHideLabels();
   });
 </script>
 ```
@@ -498,6 +497,545 @@ To add icons to axis labels, use the handle methods axesAddXLabelIcons() and axe
     margin-bottom: var(--syn-spacing-large);
   }
 </style>
+```
+
+---
+
+## Axes Positioning
+
+The default position of the y-axis is left and for the x-axis is bottom. The axes can be positioned at the top, bottom, left or right of the chart by using the position option.
+
+```html
+<div
+  style="
+    display: flex;
+    gap: var(--syn-spacing-large);
+    margin-bottom: var(--syn-spacing-large);
+  "
+>
+  <syn-select value="bottom" label="x-axis position" id="x-axis-position">
+    <syn-option value="top">Top</syn-option>
+    <syn-option value="bottom">Bottom</syn-option>
+  </syn-select>
+  <syn-select value="left" label="y-axis position" id="y-axis-position">
+    <syn-option value="left">Left</syn-option>
+    <syn-option value="right">Right</syn-option>
+  </syn-select>
+</div>
+<syn-chart id="chart-axis-position"></syn-chart>
+<script type="module">
+  const setConfig = (xAxisSelect, yAxisSelect) => {
+    const baseConfig = {
+      series: [{ data: [150, 230, 224, 218, 135, 147, 260], type: "line" }],
+      xAxis: {
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        name: "Days",
+        type: "category",
+        position: xAxisSelect ? xAxisSelect.value : undefined,
+      },
+      yAxis: {
+        name: "Values",
+        type: "value",
+        position: yAxisSelect ? yAxisSelect.value : undefined,
+      },
+    };
+
+    const charts = document.querySelectorAll("#chart-axis-position");
+    charts.forEach((chart) => {
+      chart.config = (handle) =>
+        handle.baseConfig(baseConfig).axesShowSplitLines();
+    });
+  };
+
+  const xAxisPositionSelects = document.querySelectorAll("#x-axis-position");
+  const yAxisPositionSelects = document.querySelectorAll("#y-axis-position");
+  const positionSelects = Array.from(xAxisPositionSelects).map(
+    (select, index) => ({
+      xAxisSelect: select,
+      yAxisSelect: yAxisPositionSelects[index],
+    }),
+  );
+
+  positionSelects.forEach(({ xAxisSelect, yAxisSelect }) => {
+    xAxisSelect.addEventListener("syn-change", () => {
+      setConfig(xAxisSelect, yAxisSelect);
+    });
+    yAxisSelect.addEventListener("syn-change", () => {
+      setConfig(xAxisSelect, yAxisSelect);
+    });
+
+    setConfig(xAxisSelect, yAxisSelect);
+  });
+</script>
+```
+
+---
+
+## Min Max Values
+
+The default min and max values of the axes are calculated automatically based on the data. The min and max values can be set manually by using the min and max options for the axes.
+
+```html
+<div
+  style="
+    display: flex;
+    gap: var(--syn-spacing-large);
+    margin-bottom: var(--syn-spacing-large);
+  "
+>
+  <syn-input
+    type="number"
+    id="x-axis-min-value"
+    label="X-Axis min value"
+  ></syn-input>
+  <syn-input
+    type="number"
+    id="x-axis-max-value"
+    label="X-Axis max value"
+  ></syn-input>
+  <syn-input
+    type="number"
+    id="y-axis-min-value"
+    label="Y-Axis min value"
+  ></syn-input>
+  <syn-input
+    type="number"
+    id="y-axis-max-value"
+    label="Y-Axis max value"
+  ></syn-input>
+</div>
+<syn-chart id="chart-min-max"></syn-chart>
+<script type="module">
+  const xAxisMinInput = document.querySelector("#x-axis-min-value");
+  const xAxisMaxInput = document.querySelector("#x-axis-max-value");
+  const yAxisMinInput = document.querySelector("#y-axis-min-value");
+  const yAxisMaxInput = document.querySelector("#y-axis-max-value");
+
+  xAxisMinInput.addEventListener("syn-change", () => {
+    setConfig();
+  });
+  xAxisMaxInput.addEventListener("syn-change", () => {
+    setConfig();
+  });
+  yAxisMinInput.addEventListener("syn-change", () => {
+    setConfig();
+  });
+  yAxisMaxInput.addEventListener("syn-change", () => {
+    setConfig();
+  });
+
+  const setConfig = () => {
+    const baseConfig = {
+      series: [
+        {
+          data: [
+            [-100, -150],
+            [-50, 230],
+            [0, 224],
+            [50, -218],
+            [100, 135],
+            [150, 147],
+            [200, 260],
+          ],
+          type: "line",
+        },
+      ],
+      xAxis: {
+        data: [-100, -50, 0, 50, 100, 150, 200],
+        name: "Days",
+        type: "value",
+        min: xAxisMinInput.value ? parseFloat(xAxisMinInput.value) : undefined,
+        max: xAxisMaxInput.value ? parseFloat(xAxisMaxInput.value) : undefined,
+      },
+      yAxis: {
+        name: "Values",
+        type: "value",
+        min: yAxisMinInput.value ? parseFloat(yAxisMinInput.value) : undefined,
+        max: yAxisMaxInput.value ? parseFloat(yAxisMaxInput.value) : undefined,
+      },
+    };
+
+    const charts = document.querySelectorAll("#chart-min-max");
+    charts.forEach((chart) => {
+      chart.config = (handle) =>
+        handle.baseConfig(baseConfig).axesShowSplitLines();
+    });
+  };
+
+  setConfig();
+</script>
+```
+
+---
+
+## Multiple Y Axes
+
+To add multiple y-axes to the chart, define an array of y-axis configurations under the yAxis option. Shared y-axes are positioned on the left side by default, and you can specify the position for each axis individually.
+
+```html
+<syn-chart id="chart-multiple-y-axes"></syn-chart>
+<script type="module">
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: [
+      {
+        name: "Values",
+        type: "value",
+      },
+      {
+        name: "Values 2",
+        type: "value",
+      },
+      {
+        name: "Values 3",
+        type: "value",
+        position: "right",
+      },
+    ],
+  };
+
+  const charts = document.querySelectorAll("#chart-multiple-y-axes");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesLine([
+          {
+            data: [1820, 1932, 1901, 1934, 5290, 3330, 4320],
+            name: "Series 1",
+            yAxisIndex: 0,
+          },
+          {
+            data: [620, 732, 701, 734, 1090, 1130, 1120],
+            yAxisIndex: 1,
+            name: "Series 2",
+          },
+          {
+            data: [90, 50, 99, 143, 15, 32, 45],
+            yAxisIndex: 2,
+            name: "Series 3",
+          },
+        ])
+        .axesShowSplitLines();
+  });
+</script>
+```
+
+---
+
+## Multiple Series Per Y Axis
+
+This chart compares two metrics (temperature, precipitation) for two countries (Germany, France) using a single shared axis approach, encoded through visual channels that do not depend on color perception at all: 1. Line style and marker shape = country Germany is drawn with solid lines and filled square/circle markers; France is drawn with dotted lines. This distinction is fully readable in grayscale or black-and-white print, since it relies on stroke pattern and shape rather than hue. 2. Legend labels = explicit redundant encodingRather than expecting the reader to decode line style or marker shape from a key, each legend entry spells out both dimensions in text: "Temperature Germany", "Preciptation France". This turns the legend itself into a self-sufficient lookup table, so no single visual channel has to carry the full weight of disambiguation.Color is still used in this chart (blue/green) to make the two metrics faster to tell apart on screen, but it is treated as a supporting cue only and never as the sole means of distinguishing a series. Every distinction the chart makes is also carried by line style, marker shape, or the legend text, so the chart remains fully legible if color is removed entirely (e.g. printed in black and white, or viewed by a colorblind user).
+
+```html
+<syn-chart id="chart-multiple-series-per-y-axis"></syn-chart>
+<script type="module">
+  const baseConfig = {
+    xAxis: {
+      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      name: "Days",
+      type: "category",
+    },
+    yAxis: [
+      {
+        name: "Temperature (°C)",
+        type: "value",
+      },
+      {
+        name: "Precipitation (mm)",
+        type: "value",
+        position: "right",
+      },
+    ],
+  };
+
+  const charts = document.querySelectorAll("#chart-multiple-series-per-y-axis");
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig(baseConfig)
+        .seriesLine([
+          {
+            data: [18, 21, 23, 25, 22, 19, 17],
+            name: "Temperature Deutschland",
+            yAxisIndex: 0,
+            symbol: "rect",
+            itemStyle: {
+              color: "#005aff",
+            },
+          },
+          {
+            data: [22, 24, 27, 29, 26, 23, 20],
+            yAxisIndex: 0,
+            name: "Temperature Frankreich",
+            symbol: "rect",
+            itemStyle: {
+              color: "#005aff",
+            },
+            lineStyle: {
+              type: "dashed",
+            },
+          },
+          {
+            data: [5, 0, 2, 12, 18, 8, 3],
+            yAxisIndex: 1,
+            name: "Precipitation Deutschland",
+            symbol: "dotted",
+            itemStyle: {
+              color: "#2d9c60",
+            },
+          },
+          {
+            data: [2, 0, 0, 8, 14, 6, 1],
+            yAxisIndex: 1,
+            name: "Precipitation Frankreich",
+            symbol: "circle",
+            itemStyle: {
+              color: "#2d9c60",
+            },
+            lineStyle: {
+              type: "dotted",
+            },
+          },
+        ])
+        .axesShowSplitLines()
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Axes Label Formatting
+
+The axes labels can be formatted via the axisLabel.formatter option. You can customize the formatting to display the labels in a way that best suits your data and visualization needs. We provide predefined formatting functions like unitFormatter, numberFormatter and numberShorthandFormatter.
+
+```html
+<div style="display: flex; margin-bottom: var(--syn-spacing-large)">
+  <syn-select
+    style="width: 300px"
+    value="celsius"
+    label="Label formatter"
+    id="y-axis-formatter"
+  >
+    <syn-option value="celsius">Unit °C formatter</syn-option>
+    <syn-option value="local">Local formatter</syn-option>
+    <syn-option value="shorthand">Shorthand labels formatter</syn-option>
+    <syn-option value="shorthand-min"
+      >Shorthand labels with min fraction formatter</syn-option
+    >
+    <syn-option value="number-min-max"
+      >Number with min / max fraction formatter</syn-option
+    >
+    <syn-option value="chain">Chain multiple formatter</syn-option>
+    <syn-option value="none">No formatter</syn-option>
+  </syn-select>
+</div>
+<syn-chart id="chart-axis-label-formatter"></syn-chart>
+<script type="module">
+  // import { formatter } from '../../../components/src/components/chart/index.js';
+
+  const setConfig = (formatterSelect) => {
+    let labelFormatter;
+    switch (formatterSelect.value) {
+      case "celsius":
+        labelFormatter = formatter.unitFormatter("°C");
+        break;
+      case "shorthand":
+        labelFormatter = formatter.numberShorthandFormatter();
+        break;
+      case "shorthand-min":
+        labelFormatter = formatter.numberShorthandFormatter(undefined, {
+          minimumFractionDigits: 2,
+        });
+        break;
+      case "number-min-max":
+        labelFormatter = formatter.numberFormatter(undefined, {
+          style: "currency",
+          currency: "EUR",
+          minimumFractionDigits: 2,
+        });
+        break;
+      case "chain":
+        labelFormatter = (value) =>
+          formatter.unitFormatter("°C")(
+            formatter.numberShorthandFormatter("en-GB")(value),
+          );
+        break;
+      default:
+        labelFormatter = undefined;
+        break;
+    }
+
+    const baseConfig = {
+      series: [
+        { data: [1500, 2300, 2242, 2184, 1352, 1479, 2605], type: "line" },
+      ],
+      xAxis: {
+        data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        name: "Days",
+        type: "category",
+      },
+      yAxis: {
+        name: "Values",
+        type: "value",
+        axisLabel: {
+          formatter: labelFormatter,
+        },
+      },
+    };
+
+    const charts = document.querySelectorAll("#chart-axis-label-formatter");
+    charts.forEach((chart) => {
+      chart.config = (handle) =>
+        handle.baseConfig(baseConfig).axesShowSplitLines();
+    });
+  };
+
+  const selectFormatters = document.querySelectorAll("#y-axis-formatter");
+
+  selectFormatters.forEach((select) => {
+    select.addEventListener("syn-change", () => {
+      setConfig(select);
+    });
+    setConfig(select);
+  });
+</script>
+```
+
+---
+
+## Category Axes Label Greedily
+
+The default behavior of ECharts for justifiying axes labels is to avoid overlapping.This default behavior can hide more labels than necessary even when some space is still available. If you want labels to be placed more greedily, use axisLabel.interval = 0 together with hideOverlap: true. This distributes the available space greedily from left to right on horizontal axes and from top to bottom on vertical axes. If a label does not fit into its slot, the space is released for the next tick, and labels are rendered either completely or not at all. This does only work for axis of type category.
+
+```html
+<div style="display: flex; margin-bottom: var(--syn-spacing-large)">
+  <syn-select
+    style="width: 300px"
+    value="greedily"
+    label="Axes label justification"
+    id="x-axis-greedily"
+  >
+    <syn-option value="greedily">Space greedily</syn-option>
+    <syn-option value="default">Default</syn-option>
+  </syn-select>
+</div>
+<syn-chart style="max-width: 450px" id="chart-axis-greedily"></syn-chart>
+<script type="module">
+  const setConfig = (select) => {
+    const charts = document.querySelectorAll("#chart-axis-greedily");
+    charts.forEach((chart) => {
+      let axisLabel;
+
+      if (select.value === "greedily") {
+        axisLabel = {
+          interval: 0,
+          hideOverlap: true,
+        };
+      }
+
+      const baseConfig = {
+        series: [
+          { data: [1500, 2300, 2541, 2184, 1352, 1479, 2605], type: "line" },
+        ],
+        xAxis: {
+          data: [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+          ],
+          name: "Days",
+          type: "category",
+          axisLabel: {
+            ...axisLabel,
+          },
+        },
+        yAxis: {
+          name: "Values",
+          type: "value",
+        },
+      };
+
+      chart.config = (handle) =>
+        handle.baseConfig(baseConfig).axesShowSplitLines();
+    });
+  };
+
+  const selects = document.querySelectorAll("#x-axis-greedily");
+
+  selects.forEach((select) => {
+    select.addEventListener("syn-change", () => {
+      setConfig(select);
+    });
+    setConfig(select);
+  });
+</script>
+```
+
+---
+
+## Category Axes Label Evenly
+
+When all axis labels should remain visible and be distributed evenly along the axis, configure the labels to use a fixed amount of space per tick. If the available space becomes insufficient, labels are automatically truncated. This behavior can be achieved with axisLabel.interval = 0, axisLabel.width (calculated based on the available space per tick), and axisLabel.overflow = 'truncate'. To keep the layout responsive, recalculate the label width on window resize and update the chart configuration accordingly. This does only work for axis of type category.
+
+```html
+<syn-chart style="max-width: 450px" id="chart-axis-evenly"></syn-chart>
+<script type="module">
+  // Calculate the available width for each axis label based on the chart width and the number of labels
+  const getAxisLabelWidth = (chart) => {
+    const width = chart.getWidth() - 100; // Subtract some padding for the y-axis width
+    const labelCount = 7;
+    const labelWidth = width / labelCount;
+    return labelWidth;
+  };
+
+  const updateChart = (chart) => {
+    const chartInstance = chart.getInstance();
+
+    const baseConfig = {
+      series: [
+        { data: [1500, 2300, 2541, 2184, 1352, 1479, 2605], type: "line" },
+      ],
+      xAxis: {
+        data: ["January", "February", "March", "April", "May", "June", "July"],
+        name: "Days",
+        type: "category",
+        axisLabel: {
+          interval: 0,
+          width: getAxisLabelWidth(chartInstance),
+          overflow: "truncate",
+        },
+      },
+      yAxis: {
+        name: "Values",
+        type: "value",
+      },
+    };
+
+    chart.config = (handle) =>
+      handle.baseConfig(baseConfig).axesShowSplitLines();
+  };
+
+  const charts = document.querySelectorAll("#chart-axis-evenly");
+  charts.forEach((chart) => {
+    const chartInstance = chart.getInstance();
+    updateChart(chart);
+
+    // Update the chart when the window is resized to recalculate the available width for each axis label
+    window.addEventListener("resize", () => {
+      updateChart(chart);
+    });
+  });
+</script>
 ```
 
 ---

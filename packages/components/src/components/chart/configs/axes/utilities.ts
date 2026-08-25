@@ -1,3 +1,4 @@
+import type { YAXisOption } from 'echarts/types/dist/shared';
 import {
   type ThemeMode, normalizeArray, setDefaultValueIfNotAvailable, getRealStyleValue as style,
   getRealValueWithoutUnit as styleWithoutUnit,
@@ -334,12 +335,76 @@ const getDefaultXAxisStyle = (mode: ThemeMode = 'auto') => ({
   nameLocation: 'center',
 });
 
-const getDefaultYAxisStyle = (mode: ThemeMode = 'auto') => ({
-  'axisLabel.margin': styleWithoutUnit('SynSpacingMedium', mode),
-  nameGap: styleWithoutUnit('SynSpacingMedium', mode),
-  'nameTextStyle.align': 'right',
-  'nameTextStyle.padding': [0, styleWithoutUnit('SynSpacingMedium', mode), 0, 0],
-});
+/**
+ * Calculates the horizontal offset for a y-axis when multiple y-axes are rendered on the same side.
+ *
+ * The first axis uses a dedicated base offset. All following axes use an increment-based offset
+ * so axis lines and labels do not overlap.
+ *
+ * @param index - Zero-based index of the axis on its side (left or right).
+ * @returns Offset in pixels.
+ */
+const calculateYAxisOffset = (index: number) => {
+  if (index === 0) return AXIS.Y_AXIS_OFFSET_FIRST_ELEMENT;
+  return index * AXIS.Y_AXIS_OFFSET_INCREMENT;
+};
+
+/**
+ * Returns default style values for one y-axis entry.
+ *
+ * For multi-axis layouts, this enables axis ticks and applies an index-based offset.
+ * For a single axis, it applies additional name padding to keep spacing consistent.
+ *
+ * @param numberOfAxes - Total number of y-axes on the current side.
+ * @param currentPosition - Side where the axis is rendered (`left` or `right`).
+ * @param axisIndex - Zero-based index of the axis on its side.
+ * @param mode - Theme mode used to resolve design token values.
+ */
+const getDefaultYAxisStyle = (numberOfAxes: number, currentPosition: 'left' | 'right', axisIndex: number, mode: ThemeMode = 'auto') => {
+  const moreThanOneAxis = numberOfAxes > 1;
+
+  return {
+    'axisLabel.margin': styleWithoutUnit('SynSpacingMedium', mode),
+    nameGap: styleWithoutUnit('SynSpacingMedium', mode),
+    'nameTextStyle.align':  currentPosition === 'left' ? 'right' : 'left',
+    ...(moreThanOneAxis ? {
+      // If there are more than one axes on a side, show the ticks
+      'axisTick.show': true,
+      // Add offset for y axis to avoid overlapping with the previous y axis
+      offset: calculateYAxisOffset(axisIndex),
+
+    } : {
+      'nameTextStyle.padding': [0, styleWithoutUnit('SynSpacingMedium', mode), 0, 0],
+    }),
+    position: 'left',
+  };
+};
+
+/**
+ * Applies Synergy default y-axis styles to all provided y-axis configs in-place.
+ *
+ * Axes are split by side so offsets are calculated independently for left and right groups.
+ * Existing user-defined values are preserved by using `setDefaultValueIfNotAvailable`.
+ *
+ * @param axes - Normalized list of y-axis option objects.
+ */
+const applyYAxisDefault = (axes: YAXisOption[]) => {
+  // Echarts automatically moves every additional y-axes to the right side of the chart. We want the default to be left
+  const leftAxes = axes.filter((axis) => axis.position !== 'right');
+  const rightAxes = axes.filter((axis) => axis.position === 'right');
+  leftAxes.forEach((axis, index) => {
+    const axisDefaults = getDefaultYAxisStyle(leftAxes.length, 'left', index);
+    Object.entries(axisDefaults).forEach(([keyPath, value]) => {
+      setDefaultValueIfNotAvailable(axis as Record<string, unknown>, keyPath, value);
+    });
+  });
+  rightAxes.forEach((axis, index) => {
+    const axisDefaults = getDefaultYAxisStyle(rightAxes.length, 'right', index);
+    Object.entries(axisDefaults).forEach(([keyPath, value]) => {
+      setDefaultValueIfNotAvailable(axis as Record<string, unknown>, keyPath, value);
+    });
+  });
+};
 
 /**
  * Mutation helper to apply default styles to all entries of the specified axis key in the config.
@@ -350,8 +415,13 @@ const getDefaultYAxisStyle = (mode: ThemeMode = 'auto') => ({
 const applyAxisDefaults = <T extends AxisKey>(axisKey: T, axisOption: ECConfig[T]) => {
   if (!axisOption) return;
   const axes = normalizeArray<ECConfig[T]>(axisOption);
-  const axisDefaults = axisKey === 'xAxis' ? getDefaultXAxisStyle() : getDefaultYAxisStyle();
+  if (axisKey === 'yAxis') {
+    applyYAxisDefault(axes as YAXisOption[]);
+    return;
+  }
+
   axes.forEach((axis) => {
+    const axisDefaults = getDefaultXAxisStyle();
     Object.entries(axisDefaults).forEach(([keyPath, value]) => {
       setDefaultValueIfNotAvailable(axis as Record<string, unknown>, keyPath, value);
     });
@@ -394,6 +464,13 @@ export const getDefaultAxisStyles = (mode: ThemeMode = 'auto') => ({
       width: styleWithoutUnit('SynBorderWidthMedium', mode),
     },
     show: false,
+  },
+  axisTick: {
+    length: 8,
+    lineStyle: {
+      color: style('SynChartGridLinesColor', mode),
+      width: styleWithoutUnit('SynBorderWidthMedium', mode),
+    },
   },
   minorSplitLine: {
     lineStyle: {

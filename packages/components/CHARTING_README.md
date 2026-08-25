@@ -499,6 +499,74 @@ Array merge strategy:
 
 ---
 
+## Formatter Utility Functions
+
+The chart package provides reusable formatter helpers for e.g. axis labels and tooltip values.
+
+Import options:
+
+```ts
+import { formatter } from "@synergy-design-system/components/components/chart/index.js";
+
+const { unitFormatter, numberFormatter, numberShorthandFormatter } = formatter;
+```
+
+or direct import:
+
+```ts
+import {
+  unitFormatter,
+  numberFormatter,
+  numberShorthandFormatter,
+} from "@synergy-design-system/components/components/chart/configs/formatter.js";
+```
+
+### Available formatter helpers
+
+| Function                   | Signature                                                                                      | Description                                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `unitFormatter`            | `(unit: string) => (value: string \| number) => string`                                        | Appends a unit with a space (for example `42` -> `42 kg`).                                                     |
+| `numberFormatter`          | `(locale?: string, options?: Intl.NumberFormatOptions) => (value: string \| number) => string` | Localizes numeric values via `Intl.NumberFormat`. Non-numeric values are returned unchanged.                   |
+| `numberShorthandFormatter` | `(locale?: string, options?: Intl.NumberFormatOptions) => (value: string \| number) => string` | Formats values with SI prefixes for large/small magnitudes (for example `1500000` -> `1.5M`, `0.002` -> `2m`). |
+
+### Usage with axis labels
+
+```ts
+import { formatter } from "@synergy-design-system/components/components/chart/index.js";
+
+const config: ECConfig = {
+  xAxis: {
+    type: "category",
+    data: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+  },
+  yAxis: {
+    type: "value",
+    axisLabel: {
+      formatter: formatter.unitFormatter("kWh"),
+    },
+  },
+  series: [{ type: "line", data: [150, 230, 224, 218, 135] }],
+};
+```
+
+### Number localization and shorthand examples
+
+```ts
+const localized = formatter.numberFormatter("de-DE", {
+  maximumFractionDigits: 2,
+});
+
+const shorthand = formatter.numberShorthandFormatter("en-US", {
+  maximumFractionDigits: 1,
+});
+
+localized(1234567.89); // '1.234.567,89'
+shorthand(1500000); // '1.5M'
+shorthand(0.002); // '2m'
+```
+
+---
+
 ## Bundle Size
 
 `syn-chart` uses [ECharts tree-shaking](https://echarts.apache.org/en/tutorial.html#Use%20ECharts%20with%20bundler%20and%20NPM) internally. Only the modules that are actually needed (currently `LineChart`, `GaugeChart`, `CanvasRenderer`, `GridComponent`, `LegendComponent`, `TitleComponent`, `TooltipComponent`, `DataZoomComponent`) are imported and registered via ECharts' `use([...])`.)

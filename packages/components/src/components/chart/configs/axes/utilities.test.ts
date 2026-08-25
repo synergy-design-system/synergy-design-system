@@ -234,5 +234,73 @@ describe('chart axis utilities', () => {
       expect((config.yAxis as YAXisOption).nameTextStyle?.align).to.equal('right');
       expect((config.yAxis as YAXisOption).nameTextStyle?.padding).to.deep.equal([0, 16, 0, 0]);
     });
+
+    it('applies per-side offsets and tick visibility when multiple y-axes are configured', () => {
+      const config: ECConfig = {
+        yAxis: [
+          { type: 'value' },
+          { position: 'right', type: 'value' },
+          { position: 'left', type: 'value' },
+          { position: 'right', type: 'value' },
+        ],
+      };
+
+      applyAxisDefaultsPreprocessor(config);
+
+      const [leftFirst, rightFirst, leftSecond, rightSecond] = config.yAxis as YAXisOption[];
+
+      expect(leftFirst.axisTick?.show).to.equal(true);
+      expect(leftFirst.offset).to.equal(12);
+      expect(leftFirst.nameTextStyle?.align).to.equal('right');
+
+      expect(leftSecond.axisTick?.show).to.equal(true);
+      expect(leftSecond.offset).to.equal(80);
+      expect(leftSecond.nameTextStyle?.align).to.equal('right');
+
+      expect(rightFirst.axisTick?.show).to.equal(true);
+      expect(rightFirst.offset).to.equal(12);
+      expect(rightFirst.nameTextStyle?.align).to.equal('left');
+      expect(rightFirst.position).to.equal('right');
+
+      expect(rightSecond.axisTick?.show).to.equal(true);
+      expect(rightSecond.offset).to.equal(80);
+      expect(rightSecond.nameTextStyle?.align).to.equal('left');
+      expect(rightSecond.position).to.equal('right');
+    });
+
+    it('uses single-axis spacing defaults for a right y-axis without forcing ticks or offsets', () => {
+      const config: ECConfig = {
+        yAxis: [{ position: 'right', type: 'value' }],
+      };
+
+      applyAxisDefaultsPreprocessor(config);
+
+      const [axis] = config.yAxis as YAXisOption[];
+      expect(axis.nameTextStyle?.align).to.equal('left');
+      expect(axis.nameTextStyle?.padding).to.deep.equal([0, 16, 0, 0]);
+      expect(axis.axisTick?.show).to.equal(undefined);
+      expect(axis.offset).to.equal(undefined);
+      expect(axis.position).to.equal('right');
+    });
+
+    it('defaults multiple y-axes without position to the left side', () => {
+      const config: ECConfig = {
+        yAxis: [
+          { type: 'value' },
+          { type: 'value' },
+          { type: 'value' },
+        ],
+      };
+
+      applyAxisDefaultsPreprocessor(config);
+
+      const yAxes = config.yAxis as YAXisOption[];
+      expect(yAxes[0].position).to.equal('left');
+      expect(yAxes[1].position).to.equal('left');
+      expect(yAxes[2].position).to.equal('left');
+      expect(yAxes[0].offset).to.equal(12);
+      expect(yAxes[1].offset).to.equal(80);
+      expect(yAxes[2].offset).to.equal(160);
+    });
   });
 });

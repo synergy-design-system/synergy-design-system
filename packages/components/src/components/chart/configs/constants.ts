@@ -31,6 +31,10 @@ export const AXIS = {
   LABEL_ICON_PADDING: 4,
   /** Default gap between the x-axis name and the axis line. */
   X_NAME_GAP: 32,
+  /** Default offset for the first y-axis element to the chart. */
+  Y_AXIS_OFFSET_FIRST_ELEMENT: 12,
+  /** Factor for calculating the offset of subsequent y-axis elements. */
+  Y_AXIS_OFFSET_INCREMENT: 80,
 } as const;
 
 /** DataZoom constants */

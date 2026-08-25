@@ -10,17 +10,20 @@ const allBrowsers = [
   // @see https://github.com/modernweb-dev/web/issues/2374
   playwrightLauncher({
     concurrency: process.env.CI ? 1 : undefined,
+    createBrowserContext: async ({browser}) => browser.newContext({ locale: 'de-DE'}),
     product: 'chromium',
   }),
 
   // 2 processes seems to work fine locally.
   playwrightLauncher({
     concurrency: process.env.CI ? 1 : 2,
+    createBrowserContext: async ({browser}) => browser.newContext({ locale: 'de-DE'}),
     product: 'firefox',
   }),
 
   playwrightLauncher({
     concurrency: process.env.CI ? 1 : undefined,
+    createBrowserContext: async ({browser}) => browser.newContext({ locale: 'de-DE'}),
     product: 'webkit',
   }),
 ];

@@ -68,8 +68,7 @@ export const componentInfoTool = (server: McpServer) => {
           finalContent = [metadata.data];
       }
 
-      const rules = [aiRules, frameworkRules].filter(Boolean);
-      const withRules = [...rules, ...finalContent];
+      const withRules = [aiRules, frameworkRules, ...finalContent];
       return finalContent.length > 0
         ? withRules
         : [`No metadata content found for component ${component} in layer ${resolvedLayer}`];

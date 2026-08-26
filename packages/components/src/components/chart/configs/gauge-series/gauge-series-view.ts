@@ -43,7 +43,6 @@ const getDefaultGaugeConfig = (): ResolvedGaugeSeriesConfig => ({
     iconUp: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMS4yNSAxOS41VjcuMzczbC01LjY5NiA1LjY5Nkw0LjUgMTIgMTIgNC41bDcuNSA3LjUtMS4wNTQgMS4wNy01LjY5Ni01LjY5N1YxOS41eiIvPjwvc3ZnPg==',
     value: '',
   },
-  unit: '',
 });
 
 /** Clamps `value` so it falls within the inclusive range `[minimum, maximum]`. */
@@ -327,7 +326,7 @@ const createTrendElement = ({
 
 /**
  * Assembles the complete gauge visualization as an ECharts `Group`. This includes the
- * background arc, progress arc, optional section ring, value/unit labels, min/max labels,
+ * background arc, progress arc, optional section ring, value labels, min/max labels,
  * optional icon, and optional trend indicator.
  *
  * @param rawValue   - The raw data value to display.
@@ -437,7 +436,6 @@ const buildGaugeGroup = (
   }
 
   const valueFontSize = factor * styleWithoutUnit('SynFontSize3xLarge');
-  const unitFontSize = styleWithoutUnit('SynFontSizeMedium') * factor;
   const minMaxFontSize = styleWithoutUnit('SynFontSizeSmall') * factor;
 
   // Trend indicator
@@ -465,32 +463,18 @@ const buildGaugeGroup = (
   }));
 
   const contentGap = (styleWithoutUnit('SynSpacingSmall') * factor);
-  // Between the value and the unit/icon we add a gap, scaled by the factor.
-  let nextContentY = centerY + (valueFontSize / 2) + contentGap;
-
-  // Unit label
-  if (config.unit) {
-    root.add(createText({
-      fontSize: unitFontSize,
-      fontWeight: 600,
-      text: config.unit,
-      x: centerX,
-      y: nextContentY,
-    }));
-
-    nextContentY += unitFontSize + contentGap;
-  }
 
   // Icon image
   if (config.icon) {
     const iconSize = 24 * factor;
-
+    // Between the value and the icon we add a gap, scaled by the factor.
+    const iconY = centerY + (valueFontSize / 2) + contentGap;
     root.add(createImage({
       height: iconSize,
       image: config.icon,
       width: iconSize,
       x: centerX - (iconSize / 2),
-      y: nextContentY - (iconSize / 2),
+      y: iconY,
     }));
   }
 

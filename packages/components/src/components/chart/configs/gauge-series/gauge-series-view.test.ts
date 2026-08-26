@@ -314,13 +314,10 @@ describe('SynergyGaugeView', () => {
     expect(trendImage!.style.image).to.equal(coloredIcon);
   });
 
-  it('renders unit and center icon when provided', () => {
+  it('renders icon when provided', () => {
     const view = renderGauge({
       icon: svgDataUrl,
-      unit: 'kWh',
     });
-
-    expect(getTextValues(view)).to.include('kWh');
 
     const centerIcon = collectByType(view, 'image').find((element) => element.z === 10);
     expect(centerIcon).to.not.equal(undefined);

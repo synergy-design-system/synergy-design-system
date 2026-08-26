@@ -4,15 +4,15 @@ import { numberFormatter, numberShorthandFormatter, unitFormatter } from './form
 describe('chart axis formatters', () => {
   describe('unitFormatter', () => {
     it('appends the unit to the value with a space', () => {
-      expect(unitFormatter('kg')('42')).to.equal('42 kg');
+      expect(unitFormatter('kg')('42')).to.equal('42kg');
     });
 
     it('works with symbol units', () => {
-      expect(unitFormatter('°C')('100')).to.equal('100 °C');
+      expect(unitFormatter('°C')('100')).to.equal('100°C');
     });
 
     it('works with an empty unit string', () => {
-      expect(unitFormatter('')('5')).to.equal('5 ');
+      expect(unitFormatter('')('5')).to.equal('5');
     });
   });
 

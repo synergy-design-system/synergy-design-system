@@ -1,4 +1,5 @@
 import type { ECConfig, GaugeSeriesPresetOptions, LineSeriesOption } from '@synergy-design-system/components/components/chart/types.js';
+import { formatter } from '@synergy-design-system/components/components/chart/index.js';
 
 export const lineChartSeriesData: LineSeriesOption[] = [
   { data: [150, 230, 224, 218, 135, 147, 260], name: 'Visits', type: 'line' },
@@ -16,6 +17,11 @@ export const lineChartConfigObject: ECConfig = {
 };
 
 export const gaugeChartConfigObject: GaugeSeriesPresetOptions = {
+  formatter: {
+    max: formatter.unitFormatter('°C'),
+    min: formatter.unitFormatter('°C'),
+    value: formatter.unitFormatter('°C'),
+  },
   max: 120,
   min: 10,
   sections: {
@@ -27,6 +33,5 @@ export const gaugeChartConfigObject: GaugeSeriesPresetOptions = {
     direction: 'down',
     value: '6.5%',
   },
-  unit: '%',
   value: 82,
 };

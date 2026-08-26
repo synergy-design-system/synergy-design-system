@@ -421,9 +421,9 @@ chart.config = handle =>
 
 ### Gauge series presets
 
-| Preset function | Options                    | Description                                                                                                                                                        |
-| --------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `seriesGauge`   | `GaugeSeriesPresetOptions` | Adds a custom `synergyGauge` series. Renders the gauge progress arc and optional outer sections ring, plus value/unit/min/max labels and optional trend indicator. |
+| Preset function | Options                    | Description                                                                                                                                                   |
+| --------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `seriesGauge`   | `GaugeSeriesPresetOptions` | Adds a custom `synergyGauge` series. Renders the gauge progress arc and optional outer sections ring, plus value/min/max labels and optional trend indicator. |
 
 `GaugeSeriesPresetOptions` supports the following fields:
 
@@ -432,8 +432,7 @@ chart.config = handle =>
 | `value`               | `number` _(required)_       | Current value of the gauge.                                                                          |
 | `min`                 | `number`                    | Minimum value of the gauge scale. Defaults to `0`.                                                   |
 | `max`                 | `number`                    | Maximum value of the gauge scale. Defaults to `100`.                                                 |
-| `unit`                | `string`                    | Unit label rendered below the numeric value (for example `"%"` or `"kWh"`).                          |
-| `icon`                | `string`                    | SVG data URL rendered as an image below the unit label, or below the value when no unit is set.      |
+| `icon`                | `string`                    | SVG data URL rendered as an image below the value.                                                   |
 | `color`               | `string`                    | Custom color of the progress arc. Overrides automatic section-based coloring when set.               |
 | `backgroundColor`     | `string`                    | Custom background color of the progress arc track.                                                   |
 | `formatter`           | `GaugeFormatterOptions`     | Formatter functions for the displayed gauge labels.                                                  |
@@ -459,7 +458,6 @@ chart.config = handle =>
     min: 10,
     max: 120,
     value: 72,
-    unit: "%",
     showSections: true,
     sections: {
       boundaries: [10, 40, 70, 120],
@@ -476,6 +474,8 @@ chart.config = handle =>
 Example with custom colors and formatters:
 
 ```ts
+import { formatter } from "@synergy-design-system/components/components/chart/index.js";
+
 chart.config = handle =>
   handle.seriesGauge({
     min: 0,
@@ -485,9 +485,9 @@ chart.config = handle =>
     color: "#2f9e44",
     backgroundColor: "#e8f5e9",
     formatter: {
-      value: v => v.toFixed(1),
-      min: v => `${v} kWh`,
-      max: v => `${v} kWh`,
+      value: formatter.unitFormatter("kWh"),
+      min: formatter.unitFormatter("kWh"),
+      max: formatter.unitFormatter("kWh"),
     },
   });
 ```
@@ -525,7 +525,7 @@ import {
 
 | Function                   | Signature                                                                                      | Description                                                                                                    |
 | -------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `unitFormatter`            | `(unit: string) => (value: string \| number) => string`                                        | Appends a unit with a space (for example `42` -> `42 kg`).                                                     |
+| `unitFormatter`            | `(unit: string) => (value: string \| number) => string`                                        | Appends a unit (for example `42` -> `42kg`).                                                                   |
 | `numberFormatter`          | `(locale?: string, options?: Intl.NumberFormatOptions) => (value: string \| number) => string` | Localizes numeric values via `Intl.NumberFormat`. Non-numeric values are returned unchanged.                   |
 | `numberShorthandFormatter` | `(locale?: string, options?: Intl.NumberFormatOptions) => (value: string \| number) => string` | Formats values with SI prefixes for large/small magnitudes (for example `1500000` -> `1.5M`, `0.002` -> `2m`). |
 

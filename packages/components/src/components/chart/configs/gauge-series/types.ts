@@ -46,9 +46,7 @@ export type GaugeSeriesConfig = {
   showSections?: boolean;
   /** Enables rendering of the trend indicator above to the value. */
   showTrend?: boolean;
-  /** Unit label rendered beneath the numeric value (for example "%" or "kWh"). */
-  unit?: string,
-  /** SVG data URL rendered as an image below the unit label, or below the value when no unit is set. */
+  /** SVG data URL rendered as an image below the value. */
   icon?: string;
   /** Minimum value of the gauge scale. Defaults to `0`. */
   min?: number;
@@ -74,7 +72,7 @@ type Override<T, R> = Omit<T, keyof R> & R;
 export type ResolvedGaugeSeriesConfig = Override<
   WithRequired<
     GaugeSeriesConfig,
-    'max' | 'min' | 'showSections' | 'showTrend' | 'unit' | 'icon' | 'backgroundColor'
+    'max' | 'min' | 'showSections' | 'showTrend' | 'icon' | 'backgroundColor'
   >,
   {
     formatter: WithRequired<GaugeFormatterOptions, 'max' | 'min' | 'value'>;

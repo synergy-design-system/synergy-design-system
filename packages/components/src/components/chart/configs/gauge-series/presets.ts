@@ -13,8 +13,7 @@ import type { GaugeSeriesPresetOptions, SynergyGaugeSeriesOption } from './types
  * @param {number} [options.value] Current value of the gauge.
  * @param {number} [options.min] Minimum value for the gauge scale.
  * @param {number} [options.max] Maximum value for the gauge scale.
- * @param {string} [options.icon] SVG data URL rendered as an image below the unit label, or below the value when no unit is set.
- * @param {string} [options.unit] Unit displayed below the gauge value.
+ * @param {string} [options.icon] SVG data URL rendered as an image below the value.
  * @param {GaugeFormatterOptions} [options.formatter] Formatter functions for the displayed gauge labels.
  * @param {(value: number) => string} [options.formatter.value] Formatter applied to the displayed gauge value.
  * @param {(value: number) => string} [options.formatter.min] Formatter applied to the displayed minimum label.

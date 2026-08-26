@@ -7,6 +7,7 @@ import type { SynergyGaugeSeriesModel } from './gauge-series-model.js';
 import { SynergyGaugeView } from './gauge-series-view.js';
 import type { SynergyGaugeSeriesOption } from './types.js';
 import { getRealStyleValue } from '../../themes/utilities.js';
+import { colorSvgDataUrl } from '../utilities.js';
 
 const RADIAN = Math.PI / 180;
 const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
@@ -283,7 +284,7 @@ describe('SynergyGaugeView', () => {
     expect(trendBackgroundRects).to.have.lengthOf(0);
   });
 
-  it('uses trend down icon when direction is down', () => {
+  it('uses custom trend down icon when direction is down', () => {
     const view = renderGauge({
       showTrend: true,
       trend: {
@@ -294,7 +295,23 @@ describe('SynergyGaugeView', () => {
 
     const trendImage = collectByType(view, 'image').find((element) => element.z === 21);
     expect(trendImage).to.not.equal(undefined);
-    expect(trendImage!.style.image).to.equal(svgDataUrl);
+    const coloredIcon = colorSvgDataUrl(svgDataUrl, getRealStyleValue('SynTypographyColorText'));
+    expect(trendImage!.style.image).to.equal(coloredIcon);
+  });
+
+  it('uses custom trend up icon when direction is up', () => {
+    const view = renderGauge({
+      showTrend: true,
+      trend: {
+        direction: 'up',
+        iconUp: svgDataUrl,
+      },
+    });
+
+    const trendImage = collectByType(view, 'image').find((element) => element.z === 21);
+    expect(trendImage).to.not.equal(undefined);
+    const coloredIcon = colorSvgDataUrl(svgDataUrl, getRealStyleValue('SynTypographyColorText'));
+    expect(trendImage!.style.image).to.equal(coloredIcon);
   });
 
   it('renders unit and center icon when provided', () => {

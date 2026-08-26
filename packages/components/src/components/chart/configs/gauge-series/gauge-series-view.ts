@@ -466,12 +466,13 @@ const buildGaugeGroup = (
 
   // Icon image
   if (config.icon) {
-    const iconSize = 24 * factor;
+    const iconSize = styleWithoutUnit('SynFontSize2xLarge') * factor;
     // Between the value and the icon we add a gap, scaled by the factor.
     const iconY = centerY + (valueFontSize / 2) + contentGap;
+    const coloredIcon = colorSvgDataUrl(config.icon, style('SynTypographyColorText'));
     root.add(createImage({
       height: iconSize,
-      image: config.icon,
+      image: coloredIcon,
       width: iconSize,
       x: centerX - (iconSize / 2),
       y: iconY,

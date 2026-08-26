@@ -321,7 +321,8 @@ describe('SynergyGaugeView', () => {
 
     const centerIcon = collectByType(view, 'image').find((element) => element.z === 10);
     expect(centerIcon).to.not.equal(undefined);
-    expect(centerIcon!.style.image).to.equal(svgDataUrl);
+    const coloredIcon = colorSvgDataUrl(svgDataUrl, getRealStyleValue('SynTypographyColorText'));
+    expect(centerIcon!.style.image).to.equal(coloredIcon);
   });
 
   it('normalizes reversed min and max correctly', () => {

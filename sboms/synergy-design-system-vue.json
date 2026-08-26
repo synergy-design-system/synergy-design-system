@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/vue",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.23.0-a711509f-3f0d-4ef7-8adb-714ad6a04a46",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.23.0-5ebdb1c0-0277-44c2-8b81-ed621d5763f3",
   "creationInfo": {
-    "created": "2026-08-25T09:11:26.538Z",
+    "created": "2026-08-26T10:44:57.350Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -199,7 +199,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-zrender-6.1.0-7",
+      "SPDXID": "SPDXRef-Package--floating-ui-utils-0.2.12-7",
+      "name": "@floating-ui/utils",
+      "versionInfo": "0.2.12",
+      "downloadLocation": "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.12.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40floating-ui/utils@0.2.12"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Utilities for Floating UI",
+      "homepage": "https://floating-ui.com",
+      "supplier": "Person: atomiks",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "1e90a8f2d996ccb55a779b36775f44840cf9ceaaeb43ab3af6a77a9a83cc42f90eb92c034f562045f59256e7387a79eaae0bf7387a6988e18c43ba02d77c88c3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-zrender-6.1.0-8",
       "name": "zrender",
       "versionInfo": "6.1.0",
       "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
@@ -224,7 +250,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-tslib-2.3.0-8",
+      "SPDXID": "SPDXRef-Package-tslib-2.3.0-9",
       "name": "tslib",
       "versionInfo": "2.3.0",
       "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
@@ -246,32 +272,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--floating-ui-utils-0.2.12-9",
-      "name": "@floating-ui/utils",
-      "versionInfo": "0.2.12",
-      "downloadLocation": "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.12.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40floating-ui/utils@0.2.12"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Utilities for Floating UI",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "1e90a8f2d996ccb55a779b36775f44840cf9ceaaeb43ab3af6a77a9a83cc42f90eb92c034f562045f59256e7387a79eaae0bf7387a6988e18c43ba02d77c88c3"
         }
       ]
     },
@@ -302,33 +302,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-11",
-      "name": "lit-element",
-      "versionInfo": "4.2.2",
-      "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit-element@4.2.2"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A simple base class for creating fast, lightweight web components",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-12",
+      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-11",
       "name": "lit-html",
       "versionInfo": "3.3.3",
       "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
@@ -350,6 +324,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "7a5f0cea32b6a37457067ad21d7dd92abb0df33115eb7a521314ced70609cfb427746619f37e777b66b93cf5fea877b66866b27e7721426900a2369601110e20"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-12",
+      "name": "lit-element",
+      "versionInfo": "4.2.2",
+      "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lit-element@4.2.2"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "A simple base class for creating fast, lightweight web components",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
         }
       ]
     },
@@ -448,17 +448,17 @@
     },
     {
       "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-9",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-8",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
-      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-7",
+      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -468,12 +468,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
-      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-11",
+      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-12",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
-      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-12",
+      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -482,7 +482,7 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-12",
+      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-11",
       "relatedSpdxElement": "SPDXRef-Package--types-trusted-types-2.0.7-14",
       "relationshipType": "DEPENDS_ON"
     }

@@ -1,5 +1,41 @@
 # @synergy-design-system/react
 
+## 3.23.0
+
+### Patch Changes
+
+- Updated dependencies [[`2cc1f57`](https://github.com/synergy-design-system/synergy-design-system/commit/2cc1f57be40706d7a02eda06c1042037b6eb6f3d)]:
+  - @synergy-design-system/components@3.23.0
+  - @synergy-design-system/tokens@3.23.0
+
+## 3.22.2
+
+### Patch Changes
+
+- Updated dependencies [[`d7e8c2a`](https://github.com/synergy-design-system/synergy-design-system/commit/d7e8c2a77e6511733330c02f307abc8f7d4ca0b5)]:
+  - @synergy-design-system/components@3.22.2
+  - @synergy-design-system/tokens@3.22.2
+
+## 3.22.1
+
+### Patch Changes
+
+- [#1349](https://github.com/synergy-design-system/synergy-design-system/pull/1349) [`d918fd6`](https://github.com/synergy-design-system/synergy-design-system/commit/d918fd67909e19ee12f80ef71406aff31a2b4ad1) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-04
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+- Updated dependencies [[`d918fd6`](https://github.com/synergy-design-system/synergy-design-system/commit/d918fd67909e19ee12f80ef71406aff31a2b4ad1)]:
+  - @synergy-design-system/components@3.22.1
+  - @synergy-design-system/tokens@3.22.1
+
+## 3.22.0
+
+### Patch Changes
+
+- Updated dependencies [[`37121ac`](https://github.com/synergy-design-system/synergy-design-system/commit/37121ac3153c4e990e9841d18d83735d840391eb), [`37121ac`](https://github.com/synergy-design-system/synergy-design-system/commit/37121ac3153c4e990e9841d18d83735d840391eb)]:
+  - @synergy-design-system/tokens@3.22.0
+  - @synergy-design-system/components@3.22.0
+
 ## 3.21.0
 
 ### Patch Changes

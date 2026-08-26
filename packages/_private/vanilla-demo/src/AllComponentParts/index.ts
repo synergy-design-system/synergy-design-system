@@ -18,6 +18,7 @@ export * from './File.js';
 export * from './Icon.js';
 export * from './IconButton.js';
 export * from './Input.js';
+export * from './LineChart.js';
 export * from './Menu.js';
 export * from './NavItem.js';
 export * from './OptGroup.js';

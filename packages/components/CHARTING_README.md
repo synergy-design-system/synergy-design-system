@@ -210,9 +210,11 @@ This callback receives a typed handle with preset helper functions. The handle i
 - Calls are applied in the order they are called.
 - Later handle calls override conflicting values from earlier calls.
 - Nested objects are merged deeply.
-- Arrays are merged by index.
-- Non-overlapping array entries are preserved from both sides.
-- If an array is merged with an object, the object is merged into index `0` of that array.
+- Arrays are merged by index by default.
+- Non-overlapping array entries are preserved from both sides (default strategy).
+- If an array is merged with an object, the object is merged into index `0` of that array (default strategy).
+- Presets can override the default array behavior by passing an explicit `arrayStrategy`.
+- Example: `seriesLine(...)` uses `arrayStrategy: 'append'`, so new series entries are appended instead of index-merged.
 - If you call `baseConfig()` multiple times, the latest call becomes the new base.
 
 Example of the merge mechanism:
@@ -244,6 +246,30 @@ const patch = {
   series: [
     { type: "line", name: "A", data: [10, 20, 30] },
     { type: "line", name: "B", data: [3, 2, 1] },
+  ],
+}
+```
+
+Example of an overridden array strategy (`append`):
+
+```js
+const base = {
+  series: [
+    { type: "line", name: "Revenue", data: [100, 120, 140] },
+    { type: "line", name: "Cost", data: [80, 90, 95] },
+  ],
+};
+
+const patch = {
+  series: [{ type: "line", name: "Forecast", data: [130, 150, 170] }],
+};
+
+// Result of mergeConfigs(base, patch, { arrayStrategy: 'append' }) (simplified)
+{
+  series: [
+    { type: "line", name: "Revenue", data: [100, 120, 140] },
+    { type: "line", name: "Cost", data: [80, 90, 95] },
+    { type: "line", name: "Forecast", data: [130, 150, 170] },
   ],
 }
 ```
@@ -326,6 +352,139 @@ chart.config = handle =>
       top: "center",
     },
   });
+```
+
+### Tooltip presets
+
+| Preset function | Options                            | Description                                |
+| --------------- | ---------------------------------- | ------------------------------------------ |
+| `tooltipShow`   | `ECConfig['tooltip']` _(optional)_ | Enables tooltip and merges passed options. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle.baseConfig(baseConfig).tooltipShow({
+    valueFormatter: value => `${value} kWh`,
+  });
+```
+
+### Line series presets
+
+| Preset function | Options              | Description                                                         |
+| --------------- | -------------------- | ------------------------------------------------------------------- |
+| `seriesLine`    | `LineSeriesOption[]` | Sets `series` entries as line series and merges each passed option. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+      yAxis: { type: "value" },
+    })
+    .seriesLine([
+      { name: "Revenue", data: [120, 200, 150] },
+      { name: "Cost", data: [80, 140, 130] },
+    ]);
+```
+
+Array merge strategy:
+
+- `seriesLine([...])` uses `arrayStrategy: 'append'` for the `series` array.
+- Passed entries are appended after existing `baseConfig.series` entries.
+- Existing series entries are not merged by index with the new ones.
+
+Example (what append means):
+
+```ts
+const baseConfig = {
+  series: [
+    { type: "line", name: "Revenue", smooth: true, data: [100, 120, 140] },
+    { type: "line", name: "Cost", areaStyle: {}, data: [80, 90, 95] },
+  ],
+};
+
+chart.config = handle =>
+  handle
+    .baseConfig(baseConfig)
+    .seriesLine([{ name: "Forecast", data: [130, 150, 170] }]);
+
+// Resulting series:
+// [
+//   { type: 'line', name: 'Revenue', smooth: true, data: [100, 120, 140] },
+//   { type: 'line', name: 'Cost', areaStyle: {}, data: [80, 90, 95] },
+//   { type: 'line', name: 'Forecast', data: [130, 150, 170] }
+// ]
+```
+
+---
+
+## Formatter Utility Functions
+
+The chart package provides reusable formatter helpers for e.g. axis labels and tooltip values.
+
+Import options:
+
+```ts
+import { formatter } from "@synergy-design-system/components/components/chart/index.js";
+
+const { unitFormatter, numberFormatter, numberShorthandFormatter } = formatter;
+```
+
+or direct import:
+
+```ts
+import {
+  unitFormatter,
+  numberFormatter,
+  numberShorthandFormatter,
+} from "@synergy-design-system/components/components/chart/configs/formatter.js";
+```
+
+### Available formatter helpers
+
+| Function                   | Signature                                                                                      | Description                                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `unitFormatter`            | `(unit: string) => (value: string \| number) => string`                                        | Appends a unit with a space (for example `42` -> `42 kg`).                                                     |
+| `numberFormatter`          | `(locale?: string, options?: Intl.NumberFormatOptions) => (value: string \| number) => string` | Localizes numeric values via `Intl.NumberFormat`. Non-numeric values are returned unchanged.                   |
+| `numberShorthandFormatter` | `(locale?: string, options?: Intl.NumberFormatOptions) => (value: string \| number) => string` | Formats values with SI prefixes for large/small magnitudes (for example `1500000` -> `1.5M`, `0.002` -> `2m`). |
+
+### Usage with axis labels
+
+```ts
+import { formatter } from "@synergy-design-system/components/components/chart/index.js";
+
+const config: ECConfig = {
+  xAxis: {
+    type: "category",
+    data: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+  },
+  yAxis: {
+    type: "value",
+    axisLabel: {
+      formatter: formatter.unitFormatter("kWh"),
+    },
+  },
+  series: [{ type: "line", data: [150, 230, 224, 218, 135] }],
+};
+```
+
+### Number localization and shorthand examples
+
+```ts
+const localized = formatter.numberFormatter("de-DE", {
+  maximumFractionDigits: 2,
+});
+
+const shorthand = formatter.numberShorthandFormatter("en-US", {
+  maximumFractionDigits: 1,
+});
+
+localized(1234567.89); // '1.234.567,89'
+shorthand(1500000); // '1.5M'
+shorthand(0.002); // '2m'
 ```
 
 ---

@@ -5,20 +5,20 @@
   },
   "description": "Design tokens for Synergy, the SICK Design System",
   "devDependencies": {
-    "@dotenvx/dotenvx": "^2.6.0",
-    "@figma-export/cli": "^6.4.0",
-    "@figma-export/types": "^6.4.0",
+    "@dotenvx/dotenvx": "^2.19.1",
+    "@figma-export/cli": "^6.4.1",
+    "@figma-export/types": "^6.4.1",
     "@figma/rest-api-spec": "^0.41.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
     "@synergy-design-system/stylelint-config-syn": "workspace:*",
     "@tamtamchik/json-deep-sort": "^1.5.0",
     "@tokens-studio/sd-transforms": "^2.0.3",
-    "@types/node": "^24.13.2",
+    "@types/node": "^24.13.3",
     "change-case": "^5.4.4",
-    "eslint": "^9.39.4",
+    "eslint": "^9.39.5",
     "eslint-import-resolver-typescript": "^4.4.5",
     "style-dictionary": "^5.5.0",
-    "stylelint": "^17.14.0",
+    "stylelint": "^17.14.1",
     "typescript": "^6.0.3"
   },
   "exports": {
@@ -30,6 +30,11 @@
     "./package.json": {
       "default": "./package.json"
     },
+    "./resolved": {
+      "types": "./dist/js/resolved.d.ts",
+      "import": "./dist/js/resolved.js",
+      "default": "./dist/js/resolved.js"
+    },
     "./themes/*": "./dist/themes/*",
     "./scss/*": "./dist/scss/*",
     "./charts/themes/*": "./dist/charts/themes/*",
@@ -38,6 +43,11 @@
       "types": "./dist/charts/js/index.d.ts",
       "import": "./dist/charts/js/index.js",
       "default": "./dist/charts/js/index.js"
+    },
+    "./charts/resolved": {
+      "types": "./dist/charts/js/resolved.d.ts",
+      "import": "./dist/charts/js/resolved.js",
+      "default": "./dist/charts/js/resolved.js"
     }
   },
   "files": [
@@ -84,5 +94,5 @@
   },
   "type": "module",
   "types": "./dist/js/index.d.ts",
-  "version": "3.21.0"
+  "version": "3.23.0"
 }

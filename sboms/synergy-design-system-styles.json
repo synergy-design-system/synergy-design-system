@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/styles",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-styles-2.2.0-a8a4b96b-d0bf-48a7-aa6a-74696c7c666c",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-styles-2.2.1-1cf08235-8972-443c-bca5-b54da911b75d",
   "creationInfo": {
-    "created": "2026-07-24T10:10:27.862Z",
+    "created": "2026-08-26T10:44:57.327Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/styles",
-      "versionInfo": "2.2.0",
+      "versionInfo": "2.2.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/styles@2.2.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/styles@2.2.1"
         }
       ],
       "licenseConcluded": "MIT",
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.21.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-0",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.21.0",
+      "versionInfo": "3.23.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.21.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.23.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -60,7 +60,7 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.21.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-0",
       "relationshipType": "DEPENDS_ON"
     }
   ]

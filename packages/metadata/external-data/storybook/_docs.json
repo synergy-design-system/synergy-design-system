@@ -583,7 +583,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The chart’s axes define the visual structure of the data and can be customized to match different visualization needs. Both the horizontal and vertical axes support flexible configuration options, allowing you to control how reference lines and labels are displayed.\n\nYou can choose to show only horizontal grid lines, only vertical grid lines, or both, depending on the level of visual guidance you want to provide. ",
+          "value": "The chart's axes define the visual structure of the data and can be customized to match different visualization needs. \n\n Configuration options include split lines, label visibility and formatting, axis positioning, data range constraints, and support for multiple axes.\n\nFor a full reference of all available options see the ECharts documentation for [xAxis](https://echarts.apache.org/en/option.html#xAxis) and [yAxis](https://echarts.apache.org/en/option.html#yAxis).",
           "type": "text"
         }
       },
@@ -654,6 +654,76 @@
         },
         "description": {
           "value": "To add icons to axis labels, use the handle methods `axesAddXLabelIcons()` and `axesAddYLabelIcons()`.",
+          "type": "text"
+        }
+      },
+      "axes-positioning": {
+        "title": {
+          "value": "Axes Positioning",
+          "type": "text"
+        },
+        "description": {
+          "value": "The default position of the y-axis is left and for the x-axis is bottom. The axes can be positioned at the top, bottom, left or right of the chart by using the `position` option.",
+          "type": "text"
+        }
+      },
+      "axes-min-max-values": {
+        "title": {
+          "value": "Axes Min/Max Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "The default min and max values of the axes are calculated automatically based on the data. The min and max values can be set manually by using the `min` and `max` options for the axes.",
+          "type": "text"
+        }
+      },
+      "axes-multiple-y-axes": {
+        "title": {
+          "value": "Multiple Y-Axes",
+          "type": "text"
+        },
+        "description": {
+          "value": "To add multiple y-axes to the chart, define an array of y-axis configurations under the `yAxis` option. Shared y-axes are positioned on the left side by default, and you can specify the position for each axis individually.",
+          "type": "text"
+        }
+      },
+      "axes-multiple-series-per-y-axis": {
+        "title": {
+          "value": "Multiple Series per Y-Axis",
+          "type": "text"
+        },
+        "description": {
+          "value": "This chart compares two metrics (temperature, precipitation) for two countries (Germany, France) using a single shared axis approach, encoded through visual channels that do not depend on color perception at all:\n\n **1. Line style and marker shape = country** \nGermany is drawn with solid lines and filled square/circle markers; France is drawn with dotted lines. This distinction is fully readable in grayscale or black-and-white print, since it relies on stroke pattern and shape rather than hue. \n\n**2. Legend labels = explicit redundant encoding**\nRather than expecting the reader to decode line style or marker shape from a key, each legend entry spells out both dimensions in text: \"Temperature Germany\", \"Preciptation France\". This turns the legend itself into a self-sufficient lookup table, so no single visual channel has to carry the full weight of disambiguation.\n\nColor is still used in this chart (blue/green) to make the two metrics faster to tell apart on screen, but it is treated as a supporting cue only and never as the sole means of distinguishing a series. Every distinction the chart makes is also carried by line style, marker shape, or the legend text, so the chart remains fully legible if color is removed entirely (e.g. printed in black and white, or viewed by a colorblind user).",
+          "type": "text"
+        }
+      },
+      "axes-label-formatting": {
+        "title": {
+          "value": "Axes Label Formatting",
+          "type": "text"
+        },
+        "description": {
+          "value": "The axes labels can be formatted via the `axisLabel.formatter` option. You can customize the formatting to display the labels in a way that best suits your data and visualization needs. We provide predefined formatting functions like `unitFormatter`, `numberFormatter` and `numberShorthandFormatter`.",
+          "type": "text"
+        }
+      },
+      "axes-label-greedily": {
+        "title": {
+          "value": "Axes Label Greedily",
+          "type": "text"
+        },
+        "description": {
+          "value": "The default behavior of ECharts for justifiying axes labels is to avoid overlapping.This default behavior can hide more labels than necessary even when some space is still available. If you want labels to be placed more greedily, use `axisLabel.interval = 0` together with `hideOverlap: true`. This distributes the available space greedily from left to right on horizontal axes and from top to bottom on vertical axes. If a label does not fit into its slot, the space is released for the next tick, and labels are rendered either completely or not at all. This does only work for axis of type `category`.",
+          "type": "text"
+        }
+      },
+      "axes-label-evenly": {
+        "title": {
+          "value": "Axes Label Evenly",
+          "type": "text"
+        },
+        "description": {
+          "value": "When all axis labels should remain visible and be distributed evenly along the axis, configure the labels to use a fixed amount of space per tick. If the available space becomes insufficient, labels are automatically truncated. This behavior can be achieved with `axisLabel.interval = 0`, `axisLabel.width` (calculated based on the available space per tick), and `axisLabel.overflow = 'truncate'`. To keep the layout responsive, recalculate the label width on window resize and update the chart configuration accordingly. This does only work for axis of type `category`.",
           "type": "text"
         }
       },
@@ -764,6 +834,136 @@
         },
         "description": {
           "value": "You can use multiple charts in one `<syn-chart>` instance, each with its own configuration. The palette colors or the default colors can be overridden per series item using the `color` property directly on the series object — allowing fine-grained control over individual chart series colors.\n\n**Important:** The `color` property does **not** support CSS variables (e.g. `var(--syn-sequential-05-80)`). This is a limitation of ECharts itself: ECharts renders via the Canvas API, which does not resolve CSS custom properties. To use Synergy design tokens as colors, read the computed hex value first using `getComputedStyle(document.documentElement).getPropertyValue('--your-token').trim()` and pass the resolved value instead.",
+          "type": "text"
+        }
+      },
+      "line-chart-default": {
+        "title": {
+          "value": "Line Chart",
+          "type": "text"
+        },
+        "description": {
+          "value": "Line charts offer a clear way to visualize trends, changes and directional movements over time or across categories. By connecting individual data points, they highlight patterns such as growth, decline or stability at a glance, making them ideal for dashboards, KPI overviews and lightweight data summaries. \n\nThe component provides flexible styling options that adapt to different visual needs, from straight linear segments to smooth curved lines. Combined with optional symbols, line charts can be tailored to emphasize exactly the level of detail or simplicity required in your layout.",
+          "type": "text"
+        }
+      },
+      "line-chart-preset": {
+        "title": {
+          "value": "Line Chart Preset",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line chart can be configured with the `seriesLine` preset function.",
+          "type": "text"
+        }
+      },
+      "line-series-hidden-lines": {
+        "title": {
+          "value": "Hidden Line Series",
+          "type": "text"
+        },
+        "description": {
+          "value": "The lines of line series can be hidden. When hidden, only the symbols remain, which is useful for minimal or simplified data displays.",
+          "type": "text"
+        }
+      },
+      "line-series-styles": {
+        "title": {
+          "value": "Line Series Styles",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line series supports a variety of styles, including line width and line type (solid, dashed, dotted). When combining multiple line charts, ensure there’s sufficient visual differentiation, for example, by using distinct line styles.",
+          "type": "text"
+        }
+      },
+      "line-series-symbols": {
+        "title": {
+          "value": "Line Series Symbols",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line series supports a variety of symbols.",
+          "type": "text"
+        }
+      },
+      "line-series-curved": {
+        "title": {
+          "value": "Curved Line Series",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line series supports curved lines. Use the `smooth` property to enable smooth curves for the line series.",
+          "type": "text"
+        }
+      },
+      "line-series-widths-symbol-sizes": {
+        "title": {
+          "value": "Line Series Widths",
+          "type": "text"
+        },
+        "description": {
+          "value": "The line widths and symbol sizes can be adjusted to the needs.",
+          "type": "text"
+        }
+      },
+      "line-series-custom-colors": {
+        "title": {
+          "value": "Line Series Custom Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "The colors of the lines and symbols can be customized.",
+          "type": "text"
+        }
+      },
+      "line-series-tooltip": {
+        "title": {
+          "value": "Line Series Tooltip",
+          "type": "text"
+        },
+        "description": {
+          "value": "The tooltip provides contextual information when users hover or focus on data points within a chart. It displays values, labels without obstructing the view of the visualization. Use the `tooltipShow` preset to enable the tooltip.",
+          "type": "text"
+        }
+      },
+      "line-chart-positive-and-negative-values": {
+        "title": {
+          "value": "Line Chart with Positive and Negative Values",
+          "type": "text"
+        },
+        "description": {
+          "value": "Line charts can display both positive and negative values.",
+          "type": "text"
+        }
+      },
+      "zooming-default": {
+        "title": {
+          "value": "Zooming and Panning",
+          "type": "text"
+        },
+        "description": {
+          "value": "Zooming and panning allow users to focus on specific areas of a chart, especially when dealing with large datasets or dense series. The `dataZoom` option provides two types of zooming: integrated zooming and slider zooming. Integrated zooming enables direct interaction within the plotting area, while slider zooming allows users to define a specific data zoom level using handles and a selection bar.",
+          "type": "text"
+        }
+      },
+      "integrated-zooming": {
+        "title": {
+          "value": "Integrated Zooming",
+          "type": "text"
+        },
+        "description": {
+          "value": "When having large data sets or dense series where users need to inspect local trends without leaving the chart context, the `dataZoom` option with `type: 'inside'` can be used. It enables direct interaction inside the plotting area: \n\n- mouse drag to pan\n\n- mouse wheel to zoom\n\n There are possibilities to customize the zooming behavior, for example, to restrict zooming to a specific axis, to set minimum and maximum zoom levels or to add an additional key for zooming. For more information have a look at the [ECharts documentation](https://echarts.apache.org/en/option.html#dataZoom-inside)",
+          "type": "text"
+        }
+      },
+      "slider-zooming": {
+        "title": {
+          "value": "Slider Zooming",
+          "type": "text"
+        },
+        "description": {
+          "value": "The data zoom slider (the `dataZoom` option with `type: 'inside'`) allows users to define a specific data zoom level within a chart by dragging the left and right handles or moving the entire selection bar. It's commonly used in dashboards and analytics tools to filter, zoom, or focus on a subset of data without losing context of the full dataset. The component consists of three interactive elements: \n\n- Left handle: Defines the start of the selected zoom\n\n- Right handle: Defines the end of the selected zoom\n\n- Selection bar (center): Moves the entire zoom without changing its width\n\nThe slider can be customized in terms of position, size and appearance. For more information have a look at the [ECharts documentation](https://echarts.apache.org/en/option.html#dataZoom-slider)",
           "type": "text"
         }
       }

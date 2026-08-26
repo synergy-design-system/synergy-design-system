@@ -1,5 +1,45 @@
 # Changelog
 
+## 3.23.0
+
+### Minor Changes
+
+- [#1353](https://github.com/synergy-design-system/synergy-design-system/pull/1353) [`2cc1f57`](https://github.com/synergy-design-system/synergy-design-system/commit/2cc1f57be40706d7a02eda06c1042037b6eb6f3d) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-25
+
+  feat: ✨ full featured chart axes ([#1238](https://github.com/synergy-design-system/synergy-design-system/issues/1238))
+
+  Added full featured axes theming and usage examples.
+  Also added formatter utility functions for specific use cases (e.g. `numberShorthandFormatter` for abbreviation of numbers).
+
+## 3.22.2
+
+## 3.22.1
+
+### Patch Changes
+
+- [#1349](https://github.com/synergy-design-system/synergy-design-system/pull/1349) [`d918fd6`](https://github.com/synergy-design-system/synergy-design-system/commit/d918fd67909e19ee12f80ef71406aff31a2b4ad1) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-04
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+## 3.22.0
+
+### Minor Changes
+
+- [#1343](https://github.com/synergy-design-system/synergy-design-system/pull/1343) [`37121ac`](https://github.com/synergy-design-system/synergy-design-system/commit/37121ac3153c4e990e9841d18d83735d840391eb) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-07-31
+
+  feat: ✨ Add new chart tokens and resolved token exports ([#1218](https://github.com/synergy-design-system/synergy-design-system/issues/1218))
+  This release introduces additional chart-specific design tokens and a new export format for consuming resolved token values directly in JavaScript.
+
+  #### New chart tokens
+  - `--syn-chart-background-color`
+  - `--syn-chart-range-selection-color`
+  - `--syn-chart-plot-line-color`
+  - `--syn-chart-tooltip-color`
+
+  #### New resolved token export
+
+  Added new JavaScript exports that provide resolved token values, enabling direct consumption of actual token values without requiring CSS variable resolution at runtime.
+
 ## 3.21.0
 
 ### Minor Changes

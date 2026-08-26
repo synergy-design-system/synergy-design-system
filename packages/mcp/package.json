@@ -7,7 +7,7 @@
     "syn-mcp": "./dist/bin/start.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
     "@synergy-design-system/assets": "workspace:*",
     "@synergy-design-system/metadata": "workspace:*",
     "zod": "^4.4.3"
@@ -16,13 +16,13 @@
   "devDependencies": {
     "@synergy-design-system/eslint-config-syn": "workspace:^",
     "@toon-format/toon": "^2.1.0",
-    "@types/node": "^24.13.2",
-    "eslint": "^9.39.4",
+    "@types/node": "^24.13.3",
+    "eslint": "^9.39.5",
     "tiktoken": "^1.0.22",
     "typescript": "^6.0.3"
   },
   "optionalDependencies": {
-    "@toon-format/toon": "^2.3.0",
+    "@toon-format/toon": "^2.3.1",
     "tiktoken": "^1.0.22"
   },
   "exports": {
@@ -60,6 +60,9 @@
     "debug": "npx @modelcontextprotocol/inspector",
     "build": "pnpm run clean && tsc",
     "clean": "node src/bin/clean.js",
+    "docker:build": "pnpm run docker:pack && docker build --progress=plain -t synergy-design-system/mcp:local .",
+    "docker:pack": "rm -rf artifacts && mkdir -p artifacts && pnpm --filter @synergy-design-system/assets pack --pack-destination \"$PWD/artifacts\" && pnpm --filter @synergy-design-system/metadata pack --pack-destination \"$PWD/artifacts\" && pnpm --filter @synergy-design-system/mcp pack --pack-destination \"$PWD/artifacts\"",
+    "docker:smoke": "node docker/smoke-test.mjs",
     "lint:js": "eslint src",
     "lint:watermark": "node --experimental-strip-types test/watermarks/run.ts --fail-on-regression",
     "lint": "pnpm run /^lint:.*/",
@@ -69,5 +72,5 @@
     "test:watch": "node --experimental-strip-types --test --watch test/e2e/*.test.ts"
   },
   "type": "module",
-  "version": "4.1.0"
+  "version": "4.5.0"
 }

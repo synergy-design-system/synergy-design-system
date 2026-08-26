@@ -6,8 +6,13 @@ interface StorybookEntry {
   importPath?: string;
 }
 
+const allowedChartPrefixes = [
+  'charts-features-',
+  'charts-series-types-',
+];
+
 const resolveComponentName = (prefix: string, baseId: string): string => {
-  if (prefix === 'charts' && baseId.startsWith('charts-features-')) {
+  if (prefix === 'charts' && allowedChartPrefixes.some((p) => baseId.startsWith(p))) {
     return 'syn-chart';
   }
 
@@ -44,7 +49,7 @@ const getStoriesFromStorybook = (prefix: string): Record<string, string[]> => {
         priority = 4;
       }
 
-      if(!byComponent.get(componentName)) {
+      if (!byComponent.get(componentName)) {
         byComponent.set(componentName, []);
       }
       byComponent.get(componentName)?.push({ priority, storyId: docsId });

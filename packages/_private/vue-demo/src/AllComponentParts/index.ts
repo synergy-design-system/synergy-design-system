@@ -18,6 +18,7 @@ import DemoFile from "./DemoFile.vue";
 import DemoIcon from "./DemoIcon.vue";
 import DemoIconButton from "./DemoIconButton.vue";
 import DemoInput from "./DemoInput.vue";
+import DemoLineChart from "./DemoLineChart.vue";
 import DemoMenu from "./DemoMenu.vue";
 import DemoNavItem from "./DemoNavItem.vue";
 import DemoOptGroup from "./DemoOptGroup.vue";
@@ -48,6 +49,7 @@ export {
   DemoButtonGroup,
   DemoCard,
   DemoChart,
+  DemoLineChart,
   DemoCheckbox,
   DemoCheckboxGroup,
   DemoCombobox,

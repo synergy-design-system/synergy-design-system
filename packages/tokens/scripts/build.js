@@ -1,12 +1,16 @@
 import { styleText } from 'node:util';
 import * as builders from './builders/index.js';
 
-const build = async () => {
-  const calls = Object.values(builders).map(b => b().catch(error => {
-    console.error(styleText('red', `Error running builder ${b.name}: ${error}`));
+/** @param {() => Promise<void>} builder */
+const build = async (builder) => {
+  try {
+    await builder();
+  } catch (error) {
+    console.error(styleText('red', `Error running builder ${builder.name}: ${error}`));
     process.exit(1);
-  }));
-  await Promise.all(calls);
+  }
 };
 
-build();
+await build(builders.buildComponents);
+// Wait for components to finish building before building charts, as charts depend on components being built first (for the resolved.js file)
+await build(builders.buildCharts);

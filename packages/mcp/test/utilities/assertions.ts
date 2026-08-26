@@ -38,6 +38,22 @@ export const expectNoRulesPreface = (response: ToolResponse): void => {
 };
 
 /**
+ * Asserts that no content entry is a serialized placeholder for an omitted value.
+ * Optional entries (e.g. AI rules) must be dropped before serialization, otherwise
+ * they surface as a literal "null" text entry.
+ * @param response The ToolResponse to check.
+ */
+export const expectNoPlaceholderEntries = (response: ToolResponse): void => {
+  response.content.forEach((entry, index) => {
+    assert.notEqual(
+      entry.text.trim(),
+      'null',
+      `Expected no placeholder entry, but content[${index}] was "null"`,
+    );
+  });
+};
+
+/**
  * Parses the JSON content from a ToolResponse at the specified index.
  * @param response The ToolResponse to parse.
  * @param index The index of the content to parse.

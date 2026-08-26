@@ -9,6 +9,7 @@ import {
   withPromptLoggingMiddleware,
   withResourceCompressionMiddleware,
   withResourceLoggingMiddleware,
+  withResultCleanupMiddleware,
   withToolLoggingMiddleware,
 } from '../middleware/index.js';
 import { getRuntimeConfig } from './config.js';
@@ -45,15 +46,19 @@ const baseMiddlewareStack: ToolMiddleware<Record<string, unknown>>[] = [
   withErrorHandlingMiddleware,
 ];
 
+// Middlewares run outermost first, so the cleanup middleware is listed last to
+// guarantee it normalizes the handler result before anything else sees it.
 const toolMiddlewareStack: ToolMiddleware<Record<string, unknown>>[] = [
   ...baseMiddlewareStack,
   withToolLoggingMiddleware,
   withCompressionMiddleware,
+  withResultCleanupMiddleware,
 ];
 
 const promptMiddlewareStack: ToolMiddleware<Record<string, unknown>>[] = [
   ...baseMiddlewareStack,
   withPromptLoggingMiddleware,
+  withResultCleanupMiddleware,
 ];
 
 // Resources do not use withErrorHandlingMiddleware: errors should propagate

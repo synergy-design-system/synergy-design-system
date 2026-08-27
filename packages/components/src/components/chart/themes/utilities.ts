@@ -111,3 +111,29 @@ export const getHexWithOpacity = (hexColor: string, opacity: number) => {
 
   return `${hexColor}${alpha}`;
 };
+
+let measureCanvas: HTMLCanvasElement | undefined;
+
+/**
+ * Measures the rendered width of a text string for a given CSS font shorthand,
+ * using an offscreen canvas 2D context.
+ *
+ * @param text Text to measure.
+ * @param font CSS font shorthand, e.g. `600 14px sans-serif`.
+ * @returns The measured width in pixels, or `0` when no canvas context is available.
+ */
+export const measureTextWidth = (text: string, font: string): number => {
+  if (typeof document === 'undefined') {
+    return 0;
+  }
+
+  measureCanvas ??= document.createElement('canvas');
+  const context = measureCanvas.getContext('2d');
+
+  if (!context) {
+    return 0;
+  }
+
+  context.font = font;
+  return context.measureText(text).width;
+};

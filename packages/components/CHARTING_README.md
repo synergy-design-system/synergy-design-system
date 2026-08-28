@@ -419,6 +419,58 @@ chart.config = handle =>
 // ]
 ```
 
+### Donut series presets
+
+| Preset function | Options                    | Description                                                                                                                                                   |
+| --------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `seriesDonut`   | `DonutSeriesPresetOptions` | Adds a custom `synDonut` series. Renders a donut chart with a static inner track ring and a segmented outer ring, plus optional per-segment labels and icons. |
+
+`DonutSeriesPresetOptions` supports the following fields:
+
+| Option            | Type               | Description                                                                                                                                                                                                                       | Default                    |
+| ----------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| `data`            | `DonutDataValue[]` | Segment values for the donut. Each item may be a plain number or an object with `value`, `name`, `icon`, and `color`. Label text is taken from `data[i].name`, icons from `data[i].icon`, and custom colors from `data[i].color`. | required                   |
+| `data[i].name`    | `string`           | Optional name for the series.                                                                                                                                                                                                     |                            |
+| `data[i].icon`    | `string`           | Optional icon as SVG data URL for the series.                                                                                                                                                                                     |                            |
+| `data[i].color`   | `string`           | Default color applied to all segments when an item does not provide a custom color.                                                                                                                                               | uses chart palette color   |
+| `backgroundColor` | `string`           | Color of the static inner track ring.                                                                                                                                                                                             | --syn-progress-track-color |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle.seriesDonut({
+    data: [10, 20, 30, 15, 25],
+  });
+```
+
+Example with custom colors and labels:
+
+```ts
+chart.config = handle =>
+  handle.seriesDonut({
+    backgroundColor: "#e8edf8",
+    data: [
+      { value: 15, name: "Angular", color: "#0d3f9b" },
+      { value: 10, name: "React", color: "#0845c5" },
+      { value: 20, name: "Vue", color: "#005aff" },
+      { value: 12, name: "Svelte", color: "#066fff" },
+      {
+        value: 18,
+        name: "Lit",
+        color: "#3183fe",
+        icon: "data:image/svg+xml;base64,...",
+      },
+      { value: 8, name: "Other", color: "#5e97fc" },
+    ],
+  });
+```
+
+Array merge strategy:
+
+- `seriesDonut({...})` uses `arrayStrategy: 'append'`.
+- The generated `synDonut` series entry is appended to `series`.
+
 ---
 
 ## Formatter Utility Functions
@@ -499,7 +551,7 @@ shorthand(0.002); // '2m'
 
 ## Supported Chart Types
 
-> ⚠️ **Currently, only line charts are supported** (`series[].type: 'line'`).
+> ⚠️ **Currently, line and donut charts are supported** (`series[].type: 'line'` and `series[].type: 'synDonut'`).
 >
 > Support for additional chart types (bar, pie, gauge, etc.) is planned for future releases.
 

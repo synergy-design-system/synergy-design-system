@@ -19,15 +19,24 @@ import { colorSvgDataUrl } from '../utilities.js';
 const FULL_CIRCLE = Math.PI * 2;
 const RADIAN = Math.PI / 180;
 
+/**
+ * Returns the default theme configuration for the donut chart track.
+ */
 const getDefaultDonutConfig = (): ResolvedDonutSeriesConfig => ({
   backgroundColor: style('SynProgressTrackColor'),
 });
 
+/**
+ * Converts a polar coordinate into Cartesian space for placement calculations.
+ */
 const polarPoint = (centerX: number, centerY: number, radius: number, angle: number): Point => ({
   x: centerX + (Math.cos(angle) * radius),
   y: centerY + (Math.sin(angle) * radius),
 });
 
+/**
+ * Creates a single ring sector for the donut chart.
+ */
 const createSector = ({
   centerX, centerY, innerRadius, outerRadius, startAngle, endAngle, color, z,
 }: Sector): graphic.Sector => new graphic.Sector({
@@ -47,6 +56,9 @@ const createSector = ({
   z,
 });
 
+/**
+ * Creates an image element for an icon placed within the donut graphic layer.
+ */
 const createImage = ({
   image, x, y, width, height, z,
 }: {
@@ -63,6 +75,9 @@ const createImage = ({
   z,
 });
 
+/**
+ * Creates a text element used for donut segment labels.
+ */
 const createText = ({
   text, x, y, fontSize, align, z,
 }: {
@@ -85,7 +100,7 @@ const createText = ({
 
 /**
  * Distributes the data values evenly around a full circle, sized proportionally to their value.
- * Returns `null` ranges for zero/negative totals, so no segments or labels are rendered.
+ * Returns `null` ranges for zero or negative totals so no segments or labels are rendered.
  */
 const computeSegmentRanges = (values: number[]): Array<SegmentRange | null> => {
   const total = values.reduce((sum, value) => sum + Math.max(value, 0), 0);
@@ -106,6 +121,9 @@ const computeSegmentRanges = (values: number[]): Array<SegmentRange | null> => {
   });
 };
 
+/**
+ * Creates the visible sector shapes for each donut segment while keeping a small gap between slices.
+ */
 const createSegmentSectors = ({
   ranges, centerX, centerY, innerRadius, outerRadius, colors,
 }: {
@@ -143,9 +161,7 @@ const createSegmentSectors = ({
 };
 
 /**
- * Computes the attachment point and pixel dimensions of a segment label.
- * The label is placed radially outside `radius` by a scaled gap, so the gap is
- * always perpendicular to the ring surface regardless of angle.
+ * Computes the layout bounds and attachment point for a segment label based on its angle and radius.
  */
 const computeLabelDimensions = (
   item: DonutDataItem,
@@ -175,10 +191,7 @@ const computeLabelDimensions = (
 };
 
 /**
- * Renders a label centered on a segment, outside the outer ring, with an
- * optional icon prefix. Labels on the left half of the circle are right-aligned
- * so their text ends near the ring; labels on the right half are left-aligned
- * so their text starts near the ring. The icon always precedes the text.
+ * Renders a label centered on a segment, outside the outer ring, with an optional icon prefix.
  */
 const createSegmentLabel = ({
   item, factor, centerX, centerY, radius, midAngle,
@@ -222,7 +235,9 @@ const createSegmentLabel = ({
   return group;
 };
 
-/** Returns the largest value in `[lo, hi]` for which `fits(value)` is true. */
+/**
+ * Returns the largest value in the range that satisfies the provided fit check.
+ */
 const binarySearchMax = (lo: number, hi: number, fits: (v: number) => boolean, iterations = 5): number => {
   let best = lo;
   let low = lo;
@@ -240,10 +255,7 @@ const binarySearchMax = (lo: number, hi: number, fits: (v: number) => boolean, i
 };
 
 /**
- * Finds the largest adaptive scale factor at which every segment label fits
- * within the chart bounds. The ring radius and all token-based dimensions scale
- * proportionally, so a single value drives the entire layout.
- * Also returns the resulting outer ring radius.
+ * Finds the largest adaptive scale factor that keeps every visible donut label within the chart bounds.
  */
 const computeAdaptiveLayout = ({
   centerX,
@@ -295,6 +307,9 @@ const computeAdaptiveLayout = ({
   };
 };
 
+/**
+ * Builds the complete donut graphic group, including track, slices, and optional labels.
+ */
 const buildDonutGroup = (
   dataItems: DonutDataItem[],
   inputConfig: SynergyDonutSeriesOption,
@@ -380,11 +395,15 @@ const buildDonutGroup = (
 
   return root;
 };
+
 export class SynergyDonutView extends ChartView {
   static type = DONUT_SERIES.TYPE_NAME;
 
   type = SynergyDonutView.type;
 
+  /**
+   * Renders the donut chart into the ECharts group using the current model data and option config.
+   */
   // @ts-expect-error - I don't know where this typescript error comes from. Even in echarts itself it is available..
   render(seriesModel: SynergyDonutSeriesModel, ecModel: GlobalModel, api: ExtensionAPI): void {
     const { group } = this;

@@ -153,13 +153,13 @@ describe('SynergyGaugeView', () => {
     expect(getTextValues(view)).to.deep.equal(['100', '0', '100']);
   });
 
-  it('renders provided sections when showSections is true', () => {
+  it('renders provided sections when sections.show is true', () => {
     const view = renderGauge({
       sections: {
         boundaries: [0, 50, 100],
         colors: ['#ff0000', '#00ff00'],
+        show: true,
       },
-      showSections: true,
     });
 
     const sectionSectors = getSectionSectors(view);
@@ -169,13 +169,11 @@ describe('SynergyGaugeView', () => {
 
   it('sorts unsorted section boundaries before rendering sections', () => {
     const sorted = renderGauge({
-      sections: { boundaries: [0, 30, 70, 100], colors: ['#11', '#22', '#33'] },
-      showSections: true,
+      sections: { boundaries: [0, 30, 70, 100], colors: ['#11', '#22', '#33'], show: true },
     });
 
     const unsorted = renderGauge({
-      sections: { boundaries: [100, 0, 70, 30], colors: ['#11', '#22', '#33'] },
-      showSections: true,
+      sections: { boundaries: [100, 0, 70, 30], colors: ['#11', '#22', '#33'], show: true },
     });
 
     const toShapeSnapshot = (view: SynergyGaugeView) => getSectionSectors(view).map((sector) => ({
@@ -192,8 +190,8 @@ describe('SynergyGaugeView', () => {
       sections: {
         boundaries: [0, 25, 50, 75, 100],
         colors: ['#ff0000', '#00ff00'],
+        show: true,
       },
-      showSections: true,
     });
 
     const sectionSectors = getSectionSectors(view);
@@ -202,44 +200,43 @@ describe('SynergyGaugeView', () => {
     ]);
   });
 
-  it('auto-derives progress color from sections when showSections is true and no explicit color is given', () => {
+  it('auto-derives progress color from sections when sections.show is true and no explicit color is given', () => {
     const sections = {
       boundaries: [0, 20, 80, 100],
       colors: ['green', 'orange', 'red'],
+      show: true,
     };
 
-    const startView = renderGauge({ data: [10], sections, showSections: true });
-    const midView = renderGauge({ data: [40], sections, showSections: true });
-    const endView = renderGauge({ data: [90], sections, showSections: true });
+    const startView = renderGauge({ data: [10], sections });
+    const midView = renderGauge({ data: [40], sections });
+    const endView = renderGauge({ data: [90], sections });
 
     expect(getProgressColor(startView)).to.equal('green');
     expect(getProgressColor(midView)).to.equal('orange');
     expect(getProgressColor(endView)).to.equal('red');
   });
 
-  it('uses explicit progress color even when showSections is true', () => {
+  it('uses explicit progress color even when sections.show is true', () => {
     const sections = {
       boundaries: [0, 20, 80, 100],
       colors: ['green', 'orange', 'red'],
+      show: true,
     };
 
     const startView = renderGauge({
       color: 'blue',
       data: [10],
       sections,
-      showSections: true,
     });
     const midView = renderGauge({
       color: 'blue',
       data: [40],
       sections,
-      showSections: true,
     });
     const endView = renderGauge({
       color: 'blue',
       data: [90],
       sections,
-      showSections: true,
     });
 
     expect(getProgressColor(startView)).to.equal('blue');
@@ -247,23 +244,23 @@ describe('SynergyGaugeView', () => {
     expect(getProgressColor(endView)).to.equal('blue');
   });
 
-  it('does not auto-derive progress color when showSections is false', () => {
+  it('does not auto-derive progress color when sections.show is false', () => {
     const view = renderGauge({
       data: [40],
       sections: {
         boundaries: [0, 20, 80, 100],
         colors: ['green', 'orange', 'red'],
+        show: false,
       },
-      showSections: false,
     });
 
     expect(getProgressColor(view)).to.equal('#123456');
   });
 
-  it('renders trend indicator group when showTrend is true', () => {
+  it('renders trend indicator group when trend.show is true', () => {
     const view = renderGauge({
-      showTrend: true,
       trend: {
+        show: true,
         value: '5,2%',
       },
     });
@@ -277,8 +274,8 @@ describe('SynergyGaugeView', () => {
     expect(texts).to.include('5,2%');
   });
 
-  it('does not render trend indicator when showTrend is false', () => {
-    const view = renderGauge({ showTrend: false });
+  it('does not render trend indicator when trend.show is false', () => {
+    const view = renderGauge({ trend: { show: false } });
 
     const trendBackgroundRects = collectByType(view, 'rect').filter((element) => element.z === 20);
     expect(trendBackgroundRects).to.have.lengthOf(0);
@@ -286,10 +283,10 @@ describe('SynergyGaugeView', () => {
 
   it('uses custom trend down icon when direction is down', () => {
     const view = renderGauge({
-      showTrend: true,
       trend: {
         direction: 'down',
         iconDown: svgDataUrl,
+        show: true,
       },
     });
 
@@ -301,10 +298,10 @@ describe('SynergyGaugeView', () => {
 
   it('uses custom trend up icon when direction is up', () => {
     const view = renderGauge({
-      showTrend: true,
       trend: {
         direction: 'up',
         iconUp: svgDataUrl,
+        show: true,
       },
     });
 

@@ -993,7 +993,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The gauge series supports showing an outer sections ring. Use `showSections: true` together with `sections.boundaries` or `sections.colors` to render a color-coded outer ring around the gauge, where each adjacent pair of boundary values defines a segment. When no `progressColor` is set, the progress arc automatically adopts the color of the segment containing the current value.",
+          "value": "The gauge series supports showing an outer sections ring. Use `sections.show: true` together with `sections.boundaries` or `sections.colors` to render a color-coded outer ring around the gauge, where each adjacent pair of boundary values defines a segment. When no `progressColor` is set, the progress arc automatically adopts the color of the segment containing the current value.",
           "type": "text"
         }
       },
@@ -1003,7 +1003,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use `showTrend: true` together with `trend.value` to render a small pill trend indicator above the gauge value; set `trend.direction` to `'up'` (default) or `'down'` to control the directional icon, and optionally provide `trend.iconUp` or `trend.iconDown` with a custom data URL to replace the default icons.",
+          "value": "Use `trend.show: true` together with `trend.value` to render a small pill trend indicator above the gauge value; set `trend.direction` to `'up'` (default) or `'down'` to control the directional icon, and optionally provide `trend.iconUp` or `trend.iconDown` with a custom data URL to replace the default icons.",
           "type": "text"
         }
       },

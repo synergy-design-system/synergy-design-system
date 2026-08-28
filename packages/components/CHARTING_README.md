@@ -427,28 +427,28 @@ chart.config = handle =>
 
 `GaugeSeriesPresetOptions` supports the following fields:
 
-| Option                | Type                        | Description                                                                                          | Default    |
-| --------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------- | ---------- |
-| `value`               | `number` _(required)_       | Current value of the gauge.                                                                          |            |
-| `min`                 | `number`                    | Minimum value of the gauge scale.                                                                    | 0          |
-| `max`                 | `number`                    | Maximum value of the gauge scale.                                                                    | 100        |
-| `icon`                | `string`                    | SVG data URL rendered as an image below the value.                                                   ||
-| `color`               | `string`                    | Custom color of the progress arc. Overrides automatic section-based coloring when set.               ||
-| `backgroundColor`     | `string`                    | Custom background color of the progress arc track.                                                   |     --syn-chart-track-color     |
-| `formatter`           | `GaugeFormatterOptions`     | Formatter functions for the displayed gauge labels.                                                  ||
-| `formatter.value`     | `(value: number) => string` | Formatter applied to the displayed gauge value.                                                      | String(value) |
-| `formatter.min`       | `(value: number) => string` | Formatter applied to the displayed minimum label.                                                    | String(value)   |
-| `formatter.max`       | `(value: number) => string` | Formatter applied to the displayed maximum label.                                                    | String(value)   |
-| `showSections`        | `boolean`                   | Enables rendering of the outer section ring.                                                         | false |
-| `sections`            | `GaugeSectionsOptions`      | Outer section boundaries and colors.                                                                 | 
-| `sections.boundaries` | `number[]`                  | Boundary values for outer sections (for example `[0, 20, 60, 100]`). Adjacent pairs define ranges.   | [0, 20, 60, 100] |
-| `sections.colors`     | `string[]`                  | Colors for each outer section range. Repeated cyclically when fewer colors than ranges are provided. | [--syn-namur-success-color, --syn-namur-warning-color, --syn-namur-error-color ]
-| `showTrend`           | `boolean`                   | Enables rendering of the trend indicator above the value.                                            | false |
-| `trend`               | `GaugeTrendOptions`         | Trend indicator text and icon options.                                                               | |
-| `trend.direction`     | `'up' \| 'down'`            | Direction of the trend indicator.                                                | 'up' |
-| `trend.value`         | `string`                    | Trend label text shown in the indicator pill.                                                        | |
-| `trend.iconUp`        | `string`                    | SVG data URL used as the icon when `trend.direction` is `'up'`.                                      | 'arrow-up' |
-| `trend.iconDown`      | `string`                    | SVG data URL used as the icon when `trend.direction` is `'down'`.                                    | 'arrow-down' |
+| Option                | Type                        | Description                                                                                          | Default                                                                          |
+| --------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `value`               | `number` _(required)_       | Current value of the gauge.                                                                          |                                                                                  |
+| `min`                 | `number`                    | Minimum value of the gauge scale.                                                                    | 0                                                                                |
+| `max`                 | `number`                    | Maximum value of the gauge scale.                                                                    | 100                                                                              |
+| `icon`                | `string`                    | SVG data URL rendered as an image below the value.                                                   |                                                                                  |
+| `color`               | `string`                    | Custom color of the progress arc. Overrides automatic section-based coloring when set.               |                                                                                  |
+| `backgroundColor`     | `string`                    | Custom background color of the progress arc track.                                                   | --syn-chart-track-color                                                          |
+| `formatter`           | `GaugeFormatterOptions`     | Formatter functions for the displayed gauge labels.                                                  |                                                                                  |
+| `formatter.value`     | `(value: number) => string` | Formatter applied to the displayed gauge value.                                                      | String(value)                                                                    |
+| `formatter.min`       | `(value: number) => string` | Formatter applied to the displayed minimum label.                                                    | String(value)                                                                    |
+| `formatter.max`       | `(value: number) => string` | Formatter applied to the displayed maximum label.                                                    | String(value)                                                                    |
+| `sections`            | `GaugeSectionsOptions`      | Outer section boundaries and colors.                                                                 |
+| `sections.show`       | `boolean`                   | Shows the outer section ring when enabled.                                                           | false                                                                            |
+| `sections.boundaries` | `number[]`                  | Boundary values for outer sections (for example `[0, 20, 60, 100]`). Adjacent pairs define ranges.   | [0, 20, 60, 100]                                                                 |
+| `sections.colors`     | `string[]`                  | Colors for each outer section range. Repeated cyclically when fewer colors than ranges are provided. | [--syn-namur-success-color, --syn-namur-warning-color, --syn-namur-error-color ] |
+| `trend`               | `GaugeTrendOptions`         | Trend indicator text and icon options.                                                               |                                                                                  |
+| `trend.show`          | `boolean`                   | Shows the trend indicator when enabled.                                                              | false                                                                            |
+| `trend.direction`     | `'up' \| 'down'`            | Direction of the trend indicator.                                                                    | 'up'                                                                             |
+| `trend.value`         | `string`                    | Trend label text shown in the indicator pill.                                                        |                                                                                  |
+| `trend.iconUp`        | `string`                    | SVG data URL used as the icon when `trend.direction` is `'up'`.                                      | 'arrow-up'                                                                       |
+| `trend.iconDown`      | `string`                    | SVG data URL used as the icon when `trend.direction` is `'down'`.                                    | 'arrow-down'                                                                     |
 
 Example:
 
@@ -458,14 +458,14 @@ chart.config = handle =>
     min: 10,
     max: 120,
     value: 72,
-    showSections: true,
     sections: {
       boundaries: [10, 40, 70, 120],
       colors: ["#d92f2f", "#f5a623", "#2f9e44"],
+      show: true,
     },
-    showTrend: true,
     trend: {
       direction: "down",
+      show: true,
       value: "6.5%",
     },
   });

@@ -17,6 +17,8 @@ export type GaugeFormatterOptions = {
  * Boundary and color definitions for outer gauge sections.
  */
 export type GaugeSectionsOptions = {
+  /** Shows the outer section ring when enabled. */
+  show?: boolean;
   /** Boundary values for outer gauge sections (for example `[0, 20, 60, 100]`). */
   boundaries?: number[];
   /** Colors for section ranges. Colors are repeated cyclically when fewer colors than ranges are provided. */
@@ -26,6 +28,8 @@ export type GaugeSectionsOptions = {
  * Visual and textual settings for the optional trend indicator.
  */
 export type GaugeTrendOptions = {
+  /** Shows the trend indicator when enabled. */
+  show?: boolean;
   /** Trend direction that controls indicator styling and semantics. */
   direction?: 'up' | 'down';
   /** Data URL used as icon source when the trend direction is `up`. */
@@ -43,10 +47,6 @@ export type GaugeSeriesConfig = {
   backgroundColor?: string;
   /** Outer gauge section boundaries and colors. */
   sections?: GaugeSectionsOptions;
-  /** Enables rendering of the outer section ring. */
-  showSections?: boolean;
-  /** Enables rendering of the trend indicator above to the value. */
-  showTrend?: boolean;
   /** SVG data URL rendered as an image below the value. */
   icon?: string;
   /** Minimum value of the gauge scale. Defaults to `0`. */
@@ -65,14 +65,14 @@ export type GaugeSeriesConfig = {
 export type ResolvedGaugeSeriesConfig = Override<
   WithRequired<
     GaugeSeriesConfig,
-    'max' | 'min' | 'showSections' | 'showTrend' | 'icon' | 'backgroundColor'
+    'max' | 'min' | 'icon' | 'backgroundColor'
   >,
   {
     formatter: WithRequired<GaugeFormatterOptions, 'max' | 'min' | 'value'>;
-    sections: WithRequired<GaugeSectionsOptions, 'boundaries' | 'colors'>;
+    sections: WithRequired<GaugeSectionsOptions, 'boundaries' | 'colors' | 'show'>;
     trend: WithRequired<
       GaugeTrendOptions,
-      'direction' | 'iconUp' | 'iconDown' | 'value'
+      'direction' | 'iconUp' | 'iconDown' | 'value' | 'show'
     >;
   }
 >;

@@ -32,13 +32,13 @@ const getDefaultGaugeConfig = (): ResolvedGaugeSeriesConfig => ({
   sections: {
     boundaries: [0, 20, 60, 100],
     colors: [style('SynNamurSuccessColor'), style('SynNamurWarningColor'), style('SynNamurErrorColor')],
+    show: false,
   },
-  showSections: false,
-  showTrend: false,
   trend: {
     direction: 'up',
     iconDown: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMS4yNSA0LjV2MTIuMTI3bC01LjY5Ni01LjY5Nkw0LjUgMTJsNy41IDcuNSA3LjUtNy41LTEuMDU0LTEuMDctNS42OTYgNS42OTdWNC41eiIvPjwvc3ZnPg==',
     iconUp: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMS4yNSAxOS41VjcuMzczbC01LjY5NiA1LjY5Nkw0LjUgMTIgMTIgNC41bDcuNSA3LjUtMS4wNTQgMS4wNy01LjY5Ni01LjY5N1YxOS41eiIvPjwvc3ZnPg==',
+    show: false,
     value: '',
   },
 });
@@ -149,7 +149,7 @@ const getAutoProgressColor = (
   config: ResolvedGaugeSeriesConfig,
   value: number,
 ): ZRColor | undefined => {
-  if (!config.showSections || config.color !== undefined) {
+  if (!config.sections.show || config.color !== undefined) {
     return config.color;
   }
 
@@ -358,7 +358,7 @@ const buildGaugeGroup = (
   const sectionThickness = factor * styleWithoutUnit('SynSpacingXSmall');
   const sectionSpacing = factor * styleWithoutUnit('SynSpacingXSmall');
   // We need to reserve the space for the outer sections ring, which is drawn outside of the main gauge radius.
-  const reservedOuterSpace = mergedConfig.showSections ? sectionThickness + sectionSpacing : 0;
+  const reservedOuterSpace = mergedConfig.sections.show ? sectionThickness + sectionSpacing : 0;
   const gaugeRadius = (shortestSide * 0.5) - reservedOuterSpace;
   const sectionOuterRadius = shortestSide * 0.5;
 
@@ -375,7 +375,7 @@ const buildGaugeGroup = (
   const root = new graphic.Group();
 
   // Outer sections
-  if (mergedConfig.showSections) {
+  if (mergedConfig.sections.show) {
     const sections = createSections({
       centerX,
       centerY,
@@ -419,7 +419,7 @@ const buildGaugeGroup = (
   const minMaxFontSize = styleWithoutUnit('SynFontSizeSmall') * factor;
 
   // Trend indicator
-  if (config.showTrend) {
+  if (mergedConfig.trend.show) {
     root.add(createTrendElement({
       centerX,
       centerY,

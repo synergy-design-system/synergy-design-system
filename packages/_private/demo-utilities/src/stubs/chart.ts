@@ -26,11 +26,11 @@ export const gaugeChartConfigObject: GaugeSeriesPresetOptions = {
   min: 10,
   sections: {
     boundaries: [10, 40, 70, 120],
+    show: true,
   },
-  showSections: true,
-  showTrend: true,
   trend: {
     direction: 'down',
+    show: true,
     value: '6.5%',
   },
   value: 82,

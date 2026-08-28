@@ -83,7 +83,9 @@ describe('resolveConfigInput', () => {
   it('supports gauge series presets via handle methods', () => {
     const result = resolveConfigInput((handle) => {
       handle.seriesGauge({
-        showSections: true,
+        sections: {
+          show: true,
+        },
         unit: '%',
         value: 55,
       });

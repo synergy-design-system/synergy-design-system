@@ -1375,6 +1375,94 @@ The data zoom slider (the dataZoom option with type: 'inside') allows users to d
 
 ## Default
 
+The donut chart can either be configured via config with type: 'synDonut' or with the seriesDonut preset function.
+
+```html
+<syn-chart id="donut-series-preset"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-series-preset");
+
+  charts.forEach((chart) => {
+    chart.config = {
+      series: [
+        {
+          type: "synDonut",
+          data: [10, 20, 30, 15, 25],
+        },
+      ],
+    };
+  });
+</script>
+```
+
+---
+
+## Custom Colors
+
+By default, each outer ring segment is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead; colors are repeated cyclically when fewer colors than data points are provided.
+
+```html
+<syn-chart id="donut-colors"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-colors");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        data: [
+          { value: 15, color: "#0d3f9b" },
+          { value: 10, color: "#0845c5" },
+          { value: 20, color: "#005aff" },
+          { value: 12, color: "#066fff" },
+          { value: 18, color: "#3183fe" },
+          { value: 8, color: "#5e97fc" },
+          { value: 17, color: "#91bbff" },
+        ],
+      });
+  });
+</script>
+```
+
+---
+
+## Labels
+
+Use the labels option to render a label for each segment, aligned by index with data. Each label is centered on its segment and placed outside the outer ring; provide an icon data URL alongside the text to render an icon before the label.
+
+```html
+<syn-chart id="donut-labels"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-labels");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        data: [
+          {
+            value: 50,
+            name: "Angular",
+            icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMTIgMkwyIDZsMS42IDEyLjlMMTIgMjJsOC40LTMuMUwyMiA2IDEyIDJ6bTAgMi4yIDcuNiAyLjctMS4yIDEwLjZMMTIgMTkuOGwtNi40LTIuM0w0LjQgNi45IDEyIDQuMnpNMTIgOWwtNCA5aDEuNmwuOC0yaDMuMmwuOCAySDE2bC00LTl6bTAgMi45IDEuMSAyLjdoLTIuMkwxMiAxMS45eiIvPjwvc3ZnPg==",
+          },
+          {
+            value: 30,
+            name: "React",
+            icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMS40Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIyIiBmaWxsPSJjdXJyZW50Q29sb3IiIHN0cm9rZT0ibm9uZSIvPjxlbGxpcHNlIGN4PSIxMiIgY3k9IjEyIiByeD0iMTAiIHJ5PSI0LjIiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSg2MCAxMiAxMikiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjAgMTIgMTIpIi8+PC9zdmc+",
+          },
+          {
+            value: 20,
+            name: "Vue",
+            icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMiAzaDQuMkwxMiAxM2w1LjgtMTBIMjJMMTIgMjEgMiAzeiIvPjxwYXRoIGQ9Ik04LjQgM2gzLjJMMTIgNS4xIDEzLjQgM2gzLjJMMTIgMTIuOSA4LjQgM3oiLz48L3N2Zz4=",
+          },
+        ],
+      });
+  });
+</script>
+```
+
+---
+
+## Default
+
 The line chart can be configured with the seriesLine preset function.
 
 ```html

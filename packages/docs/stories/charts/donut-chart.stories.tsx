@@ -60,7 +60,7 @@ export const Default: Story = {
         chart.config = {
           series: [
             {
-              type: 'synergyDonut',
+              type: 'synDonut',
               data: [10, 20, 30, 15, 25],
             }
           ]
@@ -86,10 +86,14 @@ export const CustomColors: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
         .seriesDonut({
-          data: [15, 10, 20, 12, 18, 8, 17],
-          colors: [
-            '#1F6FEB', '#2E9E5B', '#8B6D5C', '#B25FE3',
-            '#1B3A8A', '#14827E', '#C22D6E',
+          data: [
+            { value: 15, color: '#0d3f9b' },
+            { value: 10, color: '#0845c5' },
+            { value: 20, color: '#005aff' },
+            { value: 12, color: '#066fff' },
+            { value: 18, color: '#3183fe' },
+            { value: 8, color: '#5e97fc' },
+            { value: 17, color: '#91bbff' },
           ],
         });
       });
@@ -113,49 +117,24 @@ export const Labels: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
         .seriesDonut({
-          data: [50, 30, 20],
-          labels: [
+          data: [
             {
-              text: 'Angular',
+              value: 50,
+              name: 'Angular',
               icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMTIgMkwyIDZsMS42IDEyLjlMMTIgMjJsOC40LTMuMUwyMiA2IDEyIDJ6bTAgMi4yIDcuNiAyLjctMS4yIDEwLjZMMTIgMTkuOGwtNi40LTIuM0w0LjQgNi45IDEyIDQuMnpNMTIgOWwtNCA5aDEuNmwuOC0yaDMuMmwuOCAySDE2bC00LTl6bTAgMi45IDEuMSAyLjdoLTIuMkwxMiAxMS45eiIvPjwvc3ZnPg==",
             },
             {
-              text: 'React',
+              value: 30,
+              name: 'React',
               icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMS40Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIyIiBmaWxsPSJjdXJyZW50Q29sb3IiIHN0cm9rZT0ibm9uZSIvPjxlbGxpcHNlIGN4PSIxMiIgY3k9IjEyIiByeD0iMTAiIHJ5PSI0LjIiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSg2MCAxMiAxMikiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjAgMTIgMTIpIi8+PC9zdmc+",
             },
             {
-              text: 'Vue',
+              value: 20,
+              name: 'Vue',
               icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMiAzaDQuMkwxMiAxM2w1LjgtMTBIMjJMMTIgMjEgMiAzeiIvPjxwYXRoIGQ9Ik04LjQgM2gzLjJMMTIgNS4xIDEzLjQgM2gzLjJMMTIgMTIuOSA4LjQgM3oiLz48L3N2Zz4=",
             },
           ],
         });
-      });
-    </script>
-  `,
-};
-
-export const SynergyDonutComponent: Story = {
-  parameters: {
-    docs: {
-      description: {
-        story: 'Donut chart rendered via dedicated ECharts series type "synergyDonut".',
-      },
-    },
-  },
-  render: () => html`
-    <syn-chart id="donut-synergy-component"></syn-chart>
-    <script type="module">
-      const charts = document.querySelectorAll('#donut-synergy-component');
-
-      charts.forEach(chart => {
-        chart.config = {
-          series: [
-            {
-              type: 'synergyDonut',
-              data: [8, 14, 6, 20, 11, 9],
-            }
-          ]
-        };
       });
     </script>
   `,
@@ -166,6 +145,5 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   CustomColors,
   Labels,
-  SynergyDonutComponent,
 }, 700);
 /* eslint-enable sort-keys */

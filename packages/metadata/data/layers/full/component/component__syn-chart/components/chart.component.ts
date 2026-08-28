@@ -20,6 +20,7 @@ import type { ChartConfigType, ECConfig } from './types.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
 import { getRealStyleValue, setGlobalThemeStore } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
+import { donutInstall } from './configs/donut-series/install.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -30,6 +31,8 @@ use([
   LegendComponent,
   GridComponent,
   DataZoomComponent,
+  // @ts-expect-error - I don't know where this typescript error comes from
+  donutInstall,
 ]);
 
 /**

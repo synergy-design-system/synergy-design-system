@@ -1,12 +1,13 @@
 import { List, SeriesModel, helper } from 'echarts/core';
 import type { DonutModelOption } from './types.js';
+import { DONUT_SERIES } from '../constants.js';
 
 export class SynergyDonutSeriesModel extends SeriesModel {
-  static type = 'series.synergyDonut';
+  static type = `series.${DONUT_SERIES.TYPE_NAME}`;
 
   static defaultOption: DonutModelOption = {
     data: [],
-    type: 'synergyDonut',
+    type: DONUT_SERIES.TYPE_NAME,
   };
 
   type = SynergyDonutSeriesModel.type;

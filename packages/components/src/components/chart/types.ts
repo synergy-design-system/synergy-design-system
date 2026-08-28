@@ -58,15 +58,6 @@ export type {
 } from './configs/line-series/types.js';
 
 export type {
-  GaugeSeriesConfig,
-  GaugeSeriesPresetOptions,
-  SynergyGaugeSeriesOption,
-  GaugeFormatterOptions,
-  GaugeSectionsOptions,
-  GaugeTrendOptions,
-} from './configs/gauge-series/types.js';
-
-export type {
   DonutSeriesConfig,
   DonutSeriesPresetOptions,
   SynergyDonutSeriesOption,

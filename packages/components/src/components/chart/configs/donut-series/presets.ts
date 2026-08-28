@@ -3,7 +3,7 @@ import { DONUT_SERIES } from '../constants.js';
 import type { DonutSeriesPresetOptions, SynergyDonutSeriesOption } from './types.js';
 
 /**
- * Adds a custom `synergyDonut` series.
+ * Adds a custom `synDonut` series.
  *
  * Renders a donut chart made of two concentric rings: a static inner track
  * ring and a segmented outer ring. The data values are distributed evenly
@@ -11,14 +11,10 @@ import type { DonutSeriesPresetOptions, SynergyDonutSeriesOption } from './types
  * (normalized to 360 degrees).
  *
  * @param {DonutSeriesPresetOptions} [options] Preset options.
- * @param {number[]} options.data Data values used to size the outer ring segments.
+ * @param {(number|{value:number,name?:string,icon?:string,color?:string})[]} options.data Data values/items used to size and label the outer ring segments.
+ * Labels are taken from `data[i].name`, optional icons from `data[i].icon`, and optional segment colors from `data[i].color` when object items are used.
  * @param {string} [options.backgroundColor] Color of the static inner track ring.
- * @param {string[]} [options.colors] Colors for the outer data segments.
- * When fewer colors than data points are provided, colors are repeated cyclically.
- * When omitted, colors are taken from the chart's categorical color palette.
- * @param {DonutSegmentLabelOptions[]} [options.labels] Segment labels, aligned by index with `data`.
- * Each label is centered on its segment, outside the outer ring, and may include an `icon`
- * data URL rendered before the label text.
+ * When `data[i].color` is omitted, colors are taken from the chart's categorical color palette.
  *
  * @see https://echarts.apache.org/en/option.html#series
  */

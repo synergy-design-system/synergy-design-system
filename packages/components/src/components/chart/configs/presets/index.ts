@@ -1,6 +1,5 @@
 import * as axes from '../axes/presets.js';
 import * as donutSeries from '../donut-series/presets.js';
-import * as gaugeSeries from '../gauge-series/presets.js';
 import * as legend from '../legend/presets.js';
 import * as lineSeries from '../line-series/presets.js';
 import * as tooltip from '../tooltip/presets.js';
@@ -15,8 +14,7 @@ import * as tooltip from '../tooltip/presets.js';
 export const ChartPresets = {
   ...axes,
   ...donutSeries,
-  ...gaugeSeries,
   ...legend,
   ...lineSeries,
   ...tooltip,
-} as typeof axes & typeof donutSeries & typeof gaugeSeries & typeof legend & typeof lineSeries & typeof tooltip;
+} as typeof axes & typeof donutSeries & typeof legend & typeof lineSeries & typeof tooltip;

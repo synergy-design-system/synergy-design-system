@@ -11,15 +11,11 @@ export type DonutSegmentLabelOptions = {
 };
 
 /**
- * Configuration options for the `synergyDonut` series.
+ * Configuration options for the `synDonut` series.
  */
 export type DonutSeriesConfig = {
   /** Color of the static inner track ring. */
   backgroundColor?: string;
-  /** Colors used for the outer data segments, cycled when fewer colors than data points are provided. */
-  colors?: string[];
-  /** Segment labels, aligned by index with `data`. When omitted, no labels are rendered. */
-  labels?: DonutSegmentLabelOptions[];
 };
 
 /**
@@ -48,11 +44,20 @@ export type SegmentRange = {
   endAngle: number;
 };
 
+export type DonutDataItem = {
+  value: number;
+  name?: string;
+  icon?: string;
+  color?: string;
+};
+
+export type DonutDataValue = number | DonutDataItem;
+
 export type SynergyDonutSeriesOption = {
-  type: 'synergyDonut';
+  type: 'synDonut';
   name?: string;
   color?: string;
-  data?: number[];
+  data?: DonutDataValue[];
 } & DonutSeriesConfig;
 
 /**
@@ -61,15 +66,15 @@ export type SynergyDonutSeriesOption = {
 export type DonutSeriesPresetOptions = Omit<SynergyDonutSeriesOption, 'type'>;
 
 export type DonutModelOption = {
-  type: 'synergyDonut';
-  data?: number[];
+  type: 'synDonut';
+  data?: DonutDataValue[];
 };
 
 /**
- * Add the `synergyDonut` series type to the ECharts module.
+ * Add the `synDonut` series type to the ECharts module.
  */
 declare module 'echarts/types/dist/shared.js' {
   interface RegisteredSeriesOption {
-    synergyDonut: SynergyDonutSeriesOption;
+    synDonut: SynergyDonutSeriesOption;
   }
 }

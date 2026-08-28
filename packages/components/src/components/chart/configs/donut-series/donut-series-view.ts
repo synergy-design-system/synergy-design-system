@@ -4,8 +4,8 @@ import type ExtensionAPI from 'echarts/types/src/core/ExtensionAPI.js';
 import type { ZRColor } from 'echarts/types/dist/shared.js';
 import type { SynergyDonutSeriesModel } from './donut-series-model.js';
 import type {
-  DonutSegmentLabelOptions,
-  DonutSeriesConfig,
+  DonutDataItem,
+  DonutDataValue,
   Point,
   ResolvedDonutSeriesConfig,
   Sector,
@@ -14,14 +14,13 @@ import type {
 } from './types.js';
 import { DONUT_SERIES } from '../constants.js';
 import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
+import { colorSvgDataUrl } from '../utilities.js';
 
 const FULL_CIRCLE = Math.PI * 2;
 const RADIAN = Math.PI / 180;
 
 const getDefaultDonutConfig = (): ResolvedDonutSeriesConfig => ({
-  backgroundColor: style('SynChartTrackColor'),
-  colors: [],
-  labels: [],
+  backgroundColor: style('SynProgressTrackColor'),
 });
 
 const polarPoint = (centerX: number, centerY: number, radius: number, angle: number): Point => ({
@@ -144,59 +143,161 @@ const createSegmentSectors = ({
 };
 
 /**
+ * Computes the attachment point and pixel dimensions of a segment label.
+ * The label is placed radially outside `radius` by a scaled gap, so the gap is
+ * always perpendicular to the ring surface regardless of angle.
+ */
+const computeLabelDimensions = (
+  item: DonutDataItem,
+  factor: number,
+  centerX: number,
+  centerY: number,
+  radius: number,
+  midAngle: number,
+) => {
+  const labelGap = factor * styleWithoutUnit('SynSpacingSmall');
+  const point = polarPoint(centerX, centerY, radius + labelGap, midAngle);
+  const onRightHalf = Math.cos(midAngle) >= 0;
+  const fontSize = factor * styleWithoutUnit('SynFontSizeSmall');
+  const iconSize = factor * styleWithoutUnit('SynFontSizeLarge');
+  const iconTextGap = factor * styleWithoutUnit('SynSpacing2xSmall');
+  const textWidth = item.name ? measureTextWidth(item.name, `${fontSize}px ${style('SynFontSans')}`) : 0;
+  const iconWidth = item.icon ? iconSize + iconTextGap : 0;
+  const totalWidth = iconWidth + textWidth;
+  // Labels on the right half grow rightward from point.x; left half grow leftward.
+  const labelLeft = onRightHalf ? point.x : point.x - totalWidth;
+  const labelRight = labelLeft + totalWidth;
+  const iconX = labelLeft;
+  const textX = labelLeft + iconWidth;
+  return {
+    fontSize, iconSize, iconX, labelLeft, labelRight, point, textX,
+  };
+};
+
+/**
  * Renders a label centered on a segment, outside the outer ring, with an
  * optional icon prefix. Labels on the left half of the circle are right-aligned
  * so their text ends near the ring; labels on the right half are left-aligned
  * so their text starts near the ring. The icon always precedes the text.
  */
 const createSegmentLabel = ({
-  label, point, onRightHalf, factor,
+  item, factor, centerX, centerY, radius, midAngle,
 }: {
-  label: DonutSegmentLabelOptions;
-  point: Point;
-  onRightHalf: boolean;
+  item: DonutDataItem;
   factor: number;
+  centerX: number;
+  centerY: number;
+  radius: number;
+  midAngle: number;
 }): graphic.Group => {
   const group = new graphic.Group({ silent: true });
 
-  const fontSize = factor * styleWithoutUnit('SynFontSizeSmall');
-  const iconSize = factor * styleWithoutUnit('SynFontSizeLarge');
-  const iconTextGap = factor * styleWithoutUnit('SynSpacing2xSmall');
-  const font = `${styleWithoutUnit('SynFontWeightNormal')} ${fontSize}px ${style('SynFontSans')}`;
+  const {
+    fontSize, iconSize, iconX, point, textX,
+  } = computeLabelDimensions(item, factor, centerX, centerY, radius, midAngle);
 
-  const textWidth = measureTextWidth(label.text, font);
-  const iconWidth = label.icon ? iconSize + iconTextGap : 0;
-  const totalWidth = iconWidth + textWidth;
-
-  // On the right half the block starts at the anchor point, on the left half it ends there.
-  const blockStartX = onRightHalf ? point.x : point.x - totalWidth;
-
-  if (label.icon) {
+  if (item.icon) {
+    const coloredIcon = colorSvgDataUrl(item.icon, style('SynTypographyColorText'));
     group.add(createImage({
       height: iconSize,
-      image: label.icon,
+      image: coloredIcon,
       width: iconSize,
-      x: blockStartX,
+      x: iconX,
       y: point.y - (iconSize / 2),
       z: 15,
     }));
   }
 
-  group.add(createText({
-    align: 'left',
-    fontSize,
-    text: label.text,
-    x: blockStartX + iconWidth,
-    y: point.y,
-    z: 15,
-  }));
+  if (item.name) {
+    group.add(createText({
+      align: 'left',
+      fontSize,
+      text: item.name,
+      x: textX,
+      y: point.y,
+      z: 15,
+    }));
+  }
 
   return group;
 };
 
+/** Returns the largest value in `[lo, hi]` for which `fits(value)` is true. */
+const binarySearchMax = (lo: number, hi: number, fits: (v: number) => boolean, iterations = 5): number => {
+  let best = lo;
+  let low = lo;
+  let high = hi;
+  for (let i = 0; i < iterations; i += 1) {
+    const mid = (low + high) / 2;
+    if (fits(mid)) {
+      best = mid;
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+  return best;
+};
+
+/**
+ * Finds the largest adaptive scale factor at which every segment label fits
+ * within the chart bounds. The ring radius and all token-based dimensions scale
+ * proportionally, so a single value drives the entire layout.
+ * Also returns the resulting outer ring radius.
+ */
+const computeAdaptiveLayout = ({
+  centerX,
+  centerY,
+  dataItems,
+  height,
+  segmentRanges,
+  width,
+}: {
+  centerX: number;
+  centerY: number;
+  dataItems: DonutDataItem[];
+  height: number;
+  segmentRanges: Array<SegmentRange | null>;
+  width: number;
+}): { adaptiveFactor: number; outerRingOuterRadius: number } => {
+  const factor = height / DONUT_SERIES.REFERENCE_HEIGHT;
+  const initialOuterRingOuterRadius = Math.min(width, height) * 0.5;
+
+  const visibleLabels = segmentRanges.flatMap((range, index) => {
+    const item = dataItems[index];
+    if (!range || !item || (!item.name && !item.icon)) return [];
+    return [{ item, midAngle: (range.startAngle + range.endAngle) / 2 }];
+  });
+
+  /** Returns true when every visible label fits for the given adaptive factor. */
+  const labelsAllFit = (af: number): boolean => {
+    const r = initialOuterRingOuterRadius * (af / factor);
+    return visibleLabels.every(({ midAngle, item }) => {
+      const {
+        iconSize, labelLeft, labelRight, point,
+      } = computeLabelDimensions(item, af, centerX, centerY, r, midAngle);
+      return (
+        labelLeft >= 0
+        && labelRight <= width
+        && point.y - iconSize / 2 >= 0
+        && point.y + iconSize / 2 <= height
+      );
+    });
+  };
+
+  const adaptiveFactor = (visibleLabels.length > 0 && !labelsAllFit(factor))
+    ? binarySearchMax(factor * 0.1, factor, labelsAllFit)
+    : factor;
+
+  return {
+    adaptiveFactor,
+    outerRingOuterRadius: initialOuterRingOuterRadius * (adaptiveFactor / factor),
+  };
+};
+
 const buildDonutGroup = (
-  rawValues: number[],
-  inputConfig: DonutSeriesConfig,
+  dataItems: DonutDataItem[],
+  inputConfig: SynergyDonutSeriesOption,
   width: number,
   height: number,
   getSegmentColor: (index: number) => ZRColor,
@@ -207,20 +308,24 @@ const buildDonutGroup = (
     ...inputConfig,
   };
 
-  const shortestSide = Math.min(width, height);
   const centerX = width / 2;
   const centerY = height / 2;
 
-  // At a height of 280px the ring thicknesses are of factor 1 and then scale linearly.
-  const factor = height / DONUT_SERIES.REFERENCE_HEIGHT;
+  const segmentRanges = computeSegmentRanges(dataItems.map((item) => Number(item.value)));
 
-  const innerRingThickness = factor * styleWithoutUnit('SynSpacingMedium');
-  // The dynamic outer segment ring is only half as thick as the static inner track ring.
-  const segmentThickness = innerRingThickness / 2;
-  const ringSpacing = factor * styleWithoutUnit('SynSpacingXSmall');
-  const labelOffset = factor * styleWithoutUnit('SynSpacingSmall');
+  const { adaptiveFactor, outerRingOuterRadius } = computeAdaptiveLayout({
+    centerX,
+    centerY,
+    dataItems,
+    height,
+    segmentRanges,
+    width,
+  });
 
-  const outerRingOuterRadius = shortestSide * 0.5;
+  // All dimensions derive from the single adaptive factor.
+  const segmentThickness = adaptiveFactor * styleWithoutUnit('SynSpacingXSmall');
+  const ringSpacing = adaptiveFactor * styleWithoutUnit('SynSpacingXSmall');
+  const innerRingThickness = adaptiveFactor * styleWithoutUnit('SynSpacingMedium');
   const outerRingInnerRadius = outerRingOuterRadius - segmentThickness;
   const innerRingOuterRadius = outerRingInnerRadius - ringSpacing;
   const innerRingInnerRadius = innerRingOuterRadius - innerRingThickness;
@@ -239,47 +344,42 @@ const buildDonutGroup = (
     z: 1,
   }));
 
-  const segmentRanges = computeSegmentRanges(rawValues);
+  const segmentColors: ZRColor[] = dataItems.map((item, index) => item.color ?? getSegmentColor(index));
 
-  // Dynamic outer data ring.
-  const segmentColors: ZRColor[] = rawValues.map((_value, index) => (
-    mergedConfig.colors.length > 0
-      ? mergedConfig.colors[index % mergedConfig.colors.length]
-      : getSegmentColor(index)
-  ));
-
-  createSegmentSectors({
+  // Outer data segments
+  const segmentSectors = createSegmentSectors({
     centerX,
     centerY,
     colors: segmentColors,
     innerRadius: outerRingInnerRadius,
     outerRadius: outerRingOuterRadius,
     ranges: segmentRanges,
-  }).forEach((sector) => root.add(sector));
+  });
+  segmentSectors.forEach((sector) => root.add(sector));
 
   // Segment labels, centered on each segment and placed outside the outer ring.
   segmentRanges.forEach((range, index) => {
-    const label = mergedConfig.labels[index];
+    const dataItem = dataItems[index];
 
-    if (!range || !label) {
+    if (!range || (!dataItem?.name && !dataItem?.icon)) {
       return;
     }
 
     const midAngle = (range.startAngle + range.endAngle) / 2;
-    const point = polarPoint(centerX, centerY, outerRingOuterRadius + labelOffset, midAngle);
-    const onRightHalf = Math.cos(midAngle) >= 0;
 
-    root.add(createSegmentLabel({
-      factor,
-      label,
-      onRightHalf,
-      point,
-    }));
+    const segmentLabels = createSegmentLabel({
+      centerX,
+      centerY,
+      factor: adaptiveFactor,
+      item: dataItem,
+      midAngle,
+      radius: outerRingOuterRadius,
+    });
+    root.add(segmentLabels);
   });
 
   return root;
 };
-
 export class SynergyDonutView extends ChartView {
   static type = DONUT_SERIES.TYPE_NAME;
 
@@ -291,18 +391,27 @@ export class SynergyDonutView extends ChartView {
     group.removeAll();
 
     const data = seriesModel.getData();
-    const rawValues: number[] = [];
-    for (let index = 0; index < data.count(); index += 1) {
-      rawValues.push(Number(data.get('value', index)));
-    }
-
     const option = seriesModel.option as SynergyDonutSeriesOption;
+    const dataItems: DonutDataItem[] = [];
+
+    for (let index = 0; index < data.count(); index += 1) {
+      const value = Number(data.get('value', index));
+      const rawDataItem = data.getRawDataItem(index) as DonutDataValue;
+      const objectDataItem = typeof rawDataItem === 'object' && rawDataItem !== null ? rawDataItem : undefined;
+
+      dataItems.push({
+        color: objectDataItem?.color,
+        icon: objectDataItem?.icon,
+        name: objectDataItem?.name,
+        value,
+      });
+    }
 
     // Cycle through the categorical palette, one color per data segment.
     const paletteScope = {};
     const getSegmentColor = (index: number): ZRColor => seriesModel.getColorFromPalette(`synergy-donut-segment-${index}`, paletteScope);
 
-    const donutGroup = buildDonutGroup(rawValues, option, api.getWidth(), api.getHeight(), getSegmentColor);
+    const donutGroup = buildDonutGroup(dataItems, option, api.getWidth(), api.getHeight(), getSegmentColor);
     group.add(donutGroup);
   }
 }

@@ -5,8 +5,9 @@ import type { graphic } from 'echarts';
 import { DONUT_SERIES } from '../constants.js';
 import type { SynergyDonutSeriesModel } from './donut-series-model.js';
 import { SynergyDonutView } from './donut-series-view.js';
-import type { SynergyDonutSeriesOption } from './types.js';
+import type { DonutDataItem, DonutDataValue, SynergyDonutSeriesOption } from './types.js';
 import { getRealStyleValue } from '../../themes/utilities.js';
+import { colorSvgDataUrl } from '../utilities.js';
 
 const RADIAN = Math.PI / 180;
 const FULL_CIRCLE = Math.PI * 2;
@@ -16,6 +17,7 @@ const createSeriesModelStub = (
   paletteColors: string[] = ['#111111', '#222222', '#333333'],
 ): SynergyDonutSeriesModel => {
   const data = option.data ?? [];
+  const getValue = (item: DonutDataValue): number => (typeof item === 'number' ? item : item.value);
 
   return {
     getColorFromPalette: (name: string) => {
@@ -25,11 +27,14 @@ const createSeriesModelStub = (
     },
     getData: () => ({
       count: () => data.length,
-      get: (key: string, index: number) => (key === 'value' ? data[index] : undefined),
+      get: (key: string, index: number) => (key === 'value' ? getValue(data[index]) : undefined),
+      getRawDataItem: (index: number) => data[index],
     }),
     option,
   } as unknown as SynergyDonutSeriesModel;
 };
+
+const toDonutData = (values: number[]): DonutDataItem[] => values.map((value) => ({ value }));
 
 const createApiStub = (width = 280, height = 280): ExtensionAPI => ({
   getHeight: () => height,
@@ -44,8 +49,8 @@ const renderDonut = (
 ): SynergyDonutView => {
   const view = new SynergyDonutView();
   const option: SynergyDonutSeriesOption = {
-    data: [10, 20, 30],
-    type: 'synergyDonut',
+    data: toDonutData([10, 20, 30]),
+    type: 'synDonut',
     ...partialOption,
   };
 
@@ -106,7 +111,7 @@ describe('SynergyDonutView', () => {
 
     const track = getTrackSector(view);
     expect(track).to.not.equal(undefined);
-    expect(track!.style.fill).to.equal(getRealStyleValue('SynChartTrackColor'));
+    expect(track!.style.fill).to.equal(getRealStyleValue('SynProgressTrackColor'));
     expect(track!.shape.startAngle).to.equal(0);
     expect(track!.shape.endAngle).to.be.closeTo(FULL_CIRCLE, 0.0001);
 
@@ -115,7 +120,7 @@ describe('SynergyDonutView', () => {
   });
 
   it('sizes segments proportionally to their value, normalized to 360 degrees', () => {
-    const view = renderDonut({ data: [25, 25, 50] });
+    const view = renderDonut({ data: toDonutData([25, 25, 50]) });
     const segments = getSegmentSectors(view);
 
     const sweep = (sector: graphic.Sector) => sector.shape.endAngle - sector.shape.startAngle;
@@ -126,7 +131,7 @@ describe('SynergyDonutView', () => {
   });
 
   it('starts the first segment at the configured start angle', () => {
-    const view = renderDonut({ data: [10, 20, 30] });
+    const view = renderDonut({ data: toDonutData([10, 20, 30]) });
     const [firstSegment] = getSegmentSectors(view);
 
     expect(firstSegment.shape.startAngle).to.be.greaterThan(startAngle);
@@ -134,23 +139,44 @@ describe('SynergyDonutView', () => {
   });
 
   it('assigns a palette color per segment when no explicit colors are provided', () => {
-    const view = renderDonut({ data: [10, 20, 30] }, ['#aaaaaa', '#bbbbbb', '#cccccc']);
+    const view = renderDonut({ data: toDonutData([10, 20, 30]) }, ['#aaaaaa', '#bbbbbb', '#cccccc']);
     const segments = getSegmentSectors(view);
 
     expect(segments.map((segment) => segment.style.fill)).to.deep.equal(['#aaaaaa', '#bbbbbb', '#cccccc']);
   });
 
-  it('uses explicit colors and cycles them when fewer colors than data points are provided', () => {
-    const view = renderDonut({ colors: ['#ff0000', '#00ff00'], data: [10, 20, 30, 40] });
+  it('uses per-segment custom colors when provided in data items', () => {
+    const view = renderDonut({
+      data: [
+        { color: '#ff0000', value: 10 },
+        { color: '#00ff00', value: 20 },
+        { color: '#0000ff', value: 30 },
+      ],
+    });
     const segments = getSegmentSectors(view);
 
     expect(segments.map((segment) => segment.style.fill)).to.deep.equal([
-      '#ff0000', '#00ff00', '#ff0000', '#00ff00',
+      '#ff0000', '#00ff00', '#0000ff',
+    ]);
+  });
+
+  it('falls back to palette color for segments without custom data color', () => {
+    const view = renderDonut({
+      data: [
+        { color: '#ff0000', value: 10 },
+        { value: 20 },
+        { color: '#0000ff', value: 30 },
+      ],
+    }, ['#aaaaaa', '#bbbbbb', '#cccccc']);
+    const segments = getSegmentSectors(view);
+
+    expect(segments.map((segment) => segment.style.fill)).to.deep.equal([
+      '#ff0000', '#bbbbbb', '#0000ff',
     ]);
   });
 
   it('renders no segments when all values are zero', () => {
-    const view = renderDonut({ data: [0, 0, 0] });
+    const view = renderDonut({ data: toDonutData([0, 0, 0]) });
 
     expect(getSegmentSectors(view)).to.have.lengthOf(0);
     expect(getTrackSector(view)).to.not.equal(undefined);
@@ -174,38 +200,40 @@ describe('SynergyDonutView', () => {
     expect(segmentThickness).to.be.closeTo(trackThickness / 2, 0.01);
   });
 
-  it('does not render labels when no labels are configured', () => {
-    const view = renderDonut({ data: [10, 20, 30] });
+  it('does not render labels when data items have no name', () => {
+    const view = renderDonut({ data: toDonutData([10, 20, 30]) });
 
     expect(getLabelTexts(view)).to.have.lengthOf(0);
     expect(getLabelIcons(view)).to.have.lengthOf(0);
   });
 
-  it('renders a text label centered on each segment', () => {
+  it('renders a text label centered on each segment when names are provided in data', () => {
     const view = renderDonut({
-      data: [10, 20, 30],
-      labels: [{ text: 'First' }, { text: 'Second' }, { text: 'Third' }],
+      data: [
+        { name: 'First', value: 10 },
+        { name: 'Second', value: 20 },
+        { name: 'Third', value: 30 },
+      ],
     });
 
     expect(getLabelTexts(view)).to.deep.equal(['First', 'Second', 'Third']);
   });
 
-  it('renders an icon before the label text when an icon is provided', () => {
+  it('renders an icon before the label text when icon is provided in data', () => {
     const view = renderDonut({
-      data: [10, 20, 30],
-      labels: [{ icon: svgDataUrl, text: 'First' }],
+      data: [{ icon: svgDataUrl, name: 'First', value: 10 }, { value: 20 }, { value: 30 }],
     });
 
     const icons = getLabelIcons(view);
+    const coloredIcon = colorSvgDataUrl(svgDataUrl, getRealStyleValue('SynTypographyColorText'));
     expect(icons).to.have.lengthOf(1);
-    expect(icons[0].style.image).to.equal(svgDataUrl);
+    expect(icons[0].style.image).to.equal(coloredIcon);
     expect(getLabelTexts(view)).to.include('First');
   });
 
-  it('skips labels for segments without a matching label entry', () => {
+  it('skips labels for segments without a name property', () => {
     const view = renderDonut({
-      data: [10, 20, 30],
-      labels: [{ text: 'Only First' }],
+      data: [{ name: 'Only First', value: 10 }, { value: 20 }, { value: 30 }],
     });
 
     expect(getLabelTexts(view)).to.deep.equal(['Only First']);
@@ -213,8 +241,7 @@ describe('SynergyDonutView', () => {
 
   it('does not render labels for zero-value data', () => {
     const view = renderDonut({
-      data: [0, 0, 0],
-      labels: [{ text: 'First' }, { text: 'Second' }, { text: 'Third' }],
+      data: [{ name: 'First', value: 0 }, { name: 'Second', value: 0 }, { name: 'Third', value: 0 }],
     });
 
     expect(getLabelTexts(view)).to.have.lengthOf(0);
@@ -224,13 +251,13 @@ describe('SynergyDonutView', () => {
     const view = new SynergyDonutView();
 
     view.render(
-      createSeriesModelStub({ data: [10, 20], type: 'synergyDonut' }),
+      createSeriesModelStub({ data: toDonutData([10, 20]), type: 'synDonut' }),
       {} as GlobalModel,
       createApiStub(),
     );
 
     view.render(
-      createSeriesModelStub({ data: [30], type: 'synergyDonut' }),
+      createSeriesModelStub({ data: toDonutData([30]), type: 'synDonut' }),
       {} as GlobalModel,
       createApiStub(),
     );

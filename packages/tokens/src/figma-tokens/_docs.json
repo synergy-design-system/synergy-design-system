@@ -967,66 +967,6 @@
           "type": "text"
         }
       },
-      "gauge-series-default": {
-        "title": {
-          "value": "Gauge Series",
-          "type": "text"
-        },
-        "description": {
-          "value": "The gauge chart component communicates a single value within a defined range using a semi-circular dial. The colored arc highlights status trends (e.g., safe / warning / critical), while the neutral track indicates the remaining capacity.",
-          "type": "text"
-        }
-      },
-      "gauge-series-preset": {
-        "title": {
-          "value": "Gauge Series Preset",
-          "type": "text"
-        },
-        "description": {
-          "value": "The gauge chart can either be configured via config with `type: 'synergyGauge'` or with the `seriesGauge` preset function.",
-          "type": "text"
-        }
-      },
-      "gauge-series-sections": {
-        "title": {
-          "value": "Gauge Series Sections",
-          "type": "text"
-        },
-        "description": {
-          "value": "The gauge series supports showing an outer sections ring. Use `showSections: true` together with `sections.boundaries` or `sections.colors` to render a color-coded outer ring around the gauge, where each adjacent pair of boundary values defines a segment. When no `progressColor` is set, the progress arc automatically adopts the color of the segment containing the current value.",
-          "type": "text"
-        }
-      },
-      "gauge-series-trend": {
-        "title": {
-          "value": "Gauge Trend",
-          "type": "text"
-        },
-        "description": {
-          "value": "Use `showTrend: true` together with `trend.value` to render a small pill trend indicator above the gauge value; set `trend.direction` to `'up'` (default) or `'down'` to control the directional icon, and optionally provide `trend.iconUp` or `trend.iconDown` with a custom data URL to replace the default icons.",
-          "type": "text"
-        }
-      },
-      "gauge-series-icon": {
-        "title": {
-          "value": "Gauge Icon",
-          "type": "text"
-        },
-        "description": {
-          "value": "Use the `icon` option to render an SVG image below the unit label, or below the value when no unit is set.",
-          "type": "text"
-        }
-      },
-      "gauge-series-formatter": {
-        "title": {
-          "value": "Gauge Series Value Formatting",
-          "type": "text"
-        },
-        "description": {
-          "value": "The gauge series supports custom value formatting using `formatter.value`, `formatter.min`, and `formatter.max` options.",
-          "type": "text"
-        }
-      },
       "donut-series-default": {
         "title": {
           "value": "Donut Series",
@@ -1043,7 +983,7 @@
           "type": "text"
         },
         "description": {
-          "value": "The donut chart can either be configured via config with `type: 'synergyDonut'` or with the `seriesDonut` preset function.",
+          "value": "The donut chart can either be configured via config with `type: 'synDonut'` or with the `seriesDonut` preset function.",
           "type": "text"
         }
       },

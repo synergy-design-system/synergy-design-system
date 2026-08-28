@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.5.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.5.0
+
 ## 4.4.0
 
 ### Minor Changes

@@ -29,6 +29,7 @@ import '../../../components/src/components/textarea/textarea.js';
 import '../../../components/src/components/tooltip/tooltip.js';
 import '../../../components/src/components/validate/validate.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
+import { getFormControls } from '../../../components/src/utilities/form.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 type DialogFeatureFlags = {
@@ -127,20 +128,15 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
     render(view(), container);
   };
 
-  const notifyChange = (
-    message: string,
-    variant: 'success' | 'warning' = 'success',
-  ) => {
-    const icon = variant === 'warning' ? 'status-warning' : 'status-success';
+  const notifyChange = (message: string) => {
     const alert = Object.assign(document.createElement('syn-alert'), {
       closable: true,
       duration: 3000,
       innerHTML: `
-        <syn-icon slot="icon" name="${icon}" library="system"></syn-icon>
+        <syn-icon slot="icon" name="status-success" library="system"></syn-icon>
         ${message}
-        ${variant === 'warning' ? '<div>Click <strong>Undo</strong> to revert this change.</div>' : ''}
       `,
-      variant,
+      variant: 'success',
     });
 
     document.body.append(alert);
@@ -212,7 +208,7 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
 
     const nextData = state.data.filter(item => item.id !== state.currentItemId);
     setState({ data: nextData.length > 0 ? nextData : [...initialData] });
-    notifyChange('Item successfully deleted', 'success').catch(() => undefined);
+    notifyChange('Item successfully deleted').catch(() => undefined);
     closeDialog();
   };
 
@@ -286,7 +282,7 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
       return;
     }
 
-    const isValid = form.checkValidity();
+    const isValid = getFormControls(form).every(element => (element as HTMLInputElement).validity.valid);
 
     if (isValid) {
       submitButton.removeAttribute('disabled');
@@ -405,13 +401,11 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
           <form
             method="post"
             id="edit-item-form"
-            @change=${onEditFormValidityChange}
             @input=${onEditFormValidityChange}
-            @syn-change=${onEditFormValidityChange}
             @syn-input=${onEditFormValidityChange}
           >
             <syn-fieldset legend="Item Details">
-              <syn-validate variant="tooltip">
+              <syn-validate variant="tooltip" on="live">
                 <syn-input
                   autofocus
                   name="name"
@@ -422,26 +416,24 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
                 ></syn-input>
               </syn-validate>
 
-              <syn-validate variant="tooltip">
-                <syn-select
-                  name="status"
-                  label="Status"
-                  required
-                  .value=${editingItem?.status}
-                >
-                  <div class="status-help-text" slot="help-text">
-                    Defines the status of the item:
-                    <ul>
-                      <li><strong>Active:</strong> Item can be used</li>
-                      <li><strong>Inactive:</strong> Item cannot be used</li>
-                      <li><strong>Pending:</strong> Item awaits approval from external source</li>
-                    </ul>
-                  </div>
-                  <syn-option value="active">Active</syn-option>
-                  <syn-option value="inactive">Inactive</syn-option>
-                  <syn-option value="pending">Pending</syn-option>
-                </syn-select>
-              </syn-validate>
+              <syn-select
+                name="status"
+                label="Status"
+                required
+                .value=${editingItem?.status}
+              >
+                <div class="status-help-text" slot="help-text">
+                  Defines the status of the item:
+                  <ul>
+                    <li><strong>Active:</strong> Item can be used</li>
+                    <li><strong>Inactive:</strong> Item cannot be used</li>
+                    <li><strong>Pending:</strong> Item awaits approval from external source</li>
+                  </ul>
+                </div>
+                <syn-option value="active">Active</syn-option>
+                <syn-option value="inactive">Inactive</syn-option>
+                <syn-option value="pending">Pending</syn-option>
+              </syn-select>
 
               <syn-textarea
                 name="description"
@@ -799,11 +791,6 @@ export const ResponsiveDialog: Story = {
           class="cookie-banner-dialog"
           open
           label="Settings for cookies"
-          @syn-request-close=${(e: SynRequestCloseEvent) => {
-            if (e.detail.source === 'overlay' || e.detail.source === 'keyboard') {
-              e.preventDefault();
-            }
-          }}
         >
           <form method="post">
             <syn-fieldset description="Please choose which cookies you would like to enable. You can change the settings at any time.">
@@ -953,11 +940,44 @@ export const ResponsiveDialog: Story = {
             >
               Privacy Policy
             </a>
-            <syn-button variant="text">Save settings</syn-button>
+            <syn-button variant="text">
+              <span class="save-settings-label-full">Save settings</span>
+              <span class="save-settings-label-short">Save</span>
+            </syn-button>
             <syn-button variant="filled">Allow and continue</syn-button>
           </nav>
         </syn-dialog>
       </main>
+
+      <script type="module">
+      const cookieBannerDialog = document.querySelector('.cookie-banner-dialog');
+      const cookieBannerSave = cookieBannerDialog?.querySelectorAll('.cookie-footer syn-button');
+
+      cookieBannerDialog?.addEventListener('syn-request-close', (e) => {
+        if (e.detail.source === 'overlay' || e.detail.source === 'keyboard') {
+          e.preventDefault();
+        }
+      });
+
+      cookieBannerSave
+        .forEach(button => button.addEventListener('click', () => {
+          cookieBannerDialog.requestClose();
+
+          const alert = Object.assign(document.createElement('syn-alert'), {
+            closable: true,
+            duration: 3000,
+            innerHTML: \`
+              <syn-icon slot="icon" name="status-success" library="system"></syn-icon>
+              <div>Cookie settings saved.</div>
+            \`,
+            variant: 'success',
+          });
+
+          document.body.append(alert);
+          alert.toast();
+        }));
+      </script>
+
       <style>
       .cookie-banner-template {
         background: var(--syn-page-background-color);
@@ -1050,31 +1070,14 @@ export const ResponsiveDialog: Story = {
           & > :first-child {
             margin-right: auto;
           }
+
+          .save-settings-label-short {
+            display: none;
+          }
         }
       }
 
       /* Mobile views */
-      @container cookie-banner-template (max-width: 500px) {
-        .cookie-banner-dialog {
-          &::part(panel) {
-            max-height: 95dvh;
-          }
-
-          .cookie-footer {
-            align-items: center;
-            column-gap: var(--syn-spacing-small);
-            flex-wrap: wrap;
-            row-gap: var(--syn-spacing-small);
-
-            & > :first-child {
-              flex-basis: 100%;
-              margin: 0 var(--syn-spacing-medium);
-              text-align: left;
-            }
-          }
-        }
-      }
-
       @container cookie-banner-template (max-width: 1024px) {
         .cookie-banner-dialog {
           --width: 100%;
@@ -1162,6 +1165,54 @@ export const ResponsiveDialog: Story = {
               &.cookie-row > .cookie-switch-cell {
                 grid-area: switch;
               }
+            }
+          }
+        }
+      }
+
+      @container cookie-banner-template (max-width: 500px) {
+        .cookie-banner-dialog {
+          &::part(panel) {
+            height: 100dvh;
+            max-height: 100dvh;
+          }
+
+          .cookie-table {
+            .cookie-details {
+              .cookie-details-table {
+                border-bottom: 0 !important;
+                margin-bottom: var(--syn-spacing-small);
+
+                tbody tr {
+                  border-bottom: 0;
+                }
+              }
+            }
+
+            > tbody > tr {
+              border-bottom: 0;
+            }
+          }
+
+          .cookie-footer {
+            align-items: center;
+            column-gap: var(--syn-spacing-small);
+            flex-wrap: wrap;
+            row-gap: var(--syn-spacing-small);
+
+            & > :first-child {
+              flex-basis: 100%;
+              margin: 0 var(--syn-spacing-medium);
+              text-align: left;
+            }
+
+            /* Swap to the short label so "Save" fits next to "Allow and continue" on one row */
+            .save-settings-label-full {
+              display: none;
+            }
+
+            .save-settings-label-short {
+              display: inline;
             }
           }
         }

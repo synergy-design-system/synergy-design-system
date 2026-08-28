@@ -211,7 +211,7 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
   <syn-dialog class="edit-dialog" open="">
     <form method="post" id="edit-item-form">
       <syn-fieldset legend="Item Details">
-        <syn-validate variant="tooltip">
+        <syn-validate variant="tooltip" on="live">
           <syn-input
             autofocus=""
             name="name"
@@ -221,24 +221,22 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
           ></syn-input>
         </syn-validate>
 
-        <syn-validate variant="tooltip">
-          <syn-select name="status" label="Status" required="">
-            <div class="status-help-text" slot="help-text">
-              Defines the status of the item:
-              <ul>
-                <li><strong>Active:</strong> Item can be used</li>
-                <li><strong>Inactive:</strong> Item cannot be used</li>
-                <li>
-                  <strong>Pending:</strong> Item awaits approval from external
-                  source
-                </li>
-              </ul>
-            </div>
-            <syn-option value="active">Active</syn-option>
-            <syn-option value="inactive">Inactive</syn-option>
-            <syn-option value="pending">Pending</syn-option>
-          </syn-select>
-        </syn-validate>
+        <syn-select name="status" label="Status" required="">
+          <div class="status-help-text" slot="help-text">
+            Defines the status of the item:
+            <ul>
+              <li><strong>Active:</strong> Item can be used</li>
+              <li><strong>Inactive:</strong> Item cannot be used</li>
+              <li>
+                <strong>Pending:</strong> Item awaits approval from external
+                source
+              </li>
+            </ul>
+          </div>
+          <syn-option value="active">Active</syn-option>
+          <syn-option value="inactive">Inactive</syn-option>
+          <syn-option value="pending">Pending</syn-option>
+        </syn-select>
 
         <syn-textarea
           name="description"
@@ -1159,11 +1157,47 @@ Example demonstrating responsive dialog behavior. The dialog is designed to adap
       >
         Privacy Policy
       </a>
-      <syn-button variant="text">Save settings</syn-button>
+      <syn-button variant="text">
+        <span class="save-settings-label-full">Save settings</span>
+        <span class="save-settings-label-short">Save</span>
+      </syn-button>
       <syn-button variant="filled">Allow and continue</syn-button>
     </nav>
   </syn-dialog>
 </main>
+
+<script type="module">
+  const cookieBannerDialog = document.querySelector(".cookie-banner-dialog");
+  const cookieBannerSave = cookieBannerDialog?.querySelectorAll(
+    ".cookie-footer syn-button",
+  );
+
+  cookieBannerDialog?.addEventListener("syn-request-close", (e) => {
+    if (e.detail.source === "overlay" || e.detail.source === "keyboard") {
+      e.preventDefault();
+    }
+  });
+
+  cookieBannerSave.forEach((button) =>
+    button.addEventListener("click", () => {
+      cookieBannerDialog.requestClose();
+
+      const alert = Object.assign(document.createElement("syn-alert"), {
+        closable: true,
+        duration: 3000,
+        innerHTML: `
+          <syn-icon slot="icon" name="status-success" library="system"></syn-icon>
+          <div>Cookie settings saved.</div>
+        `,
+        variant: "success",
+      });
+
+      document.body.append(alert);
+      alert.toast();
+    }),
+  );
+</script>
+
 <style>
   .cookie-banner-template {
     background: var(--syn-page-background-color);
@@ -1257,31 +1291,14 @@ Example demonstrating responsive dialog behavior. The dialog is designed to adap
       & > :first-child {
         margin-right: auto;
       }
+
+      .save-settings-label-short {
+        display: none;
+      }
     }
   }
 
   /* Mobile views */
-  @container cookie-banner-template (max-width: 500px) {
-    .cookie-banner-dialog {
-      &::part(panel) {
-        max-height: 95dvh;
-      }
-
-      .cookie-footer {
-        align-items: center;
-        column-gap: var(--syn-spacing-small);
-        flex-wrap: wrap;
-        row-gap: var(--syn-spacing-small);
-
-        & > :first-child {
-          flex-basis: 100%;
-          margin: 0 var(--syn-spacing-medium);
-          text-align: left;
-        }
-      }
-    }
-  }
-
   @container cookie-banner-template (max-width: 1024px) {
     .cookie-banner-dialog {
       --width: 100%;
@@ -1372,6 +1389,54 @@ Example demonstrating responsive dialog behavior. The dialog is designed to adap
           &.cookie-row > .cookie-switch-cell {
             grid-area: switch;
           }
+        }
+      }
+    }
+  }
+
+  @container cookie-banner-template (max-width: 500px) {
+    .cookie-banner-dialog {
+      &::part(panel) {
+        height: 100dvh;
+        max-height: 100dvh;
+      }
+
+      .cookie-table {
+        .cookie-details {
+          .cookie-details-table {
+            border-bottom: 0 !important;
+            margin-bottom: var(--syn-spacing-small);
+
+            tbody tr {
+              border-bottom: 0;
+            }
+          }
+        }
+
+        > tbody > tr {
+          border-bottom: 0;
+        }
+      }
+
+      .cookie-footer {
+        align-items: center;
+        column-gap: var(--syn-spacing-small);
+        flex-wrap: wrap;
+        row-gap: var(--syn-spacing-small);
+
+        & > :first-child {
+          flex-basis: 100%;
+          margin: 0 var(--syn-spacing-medium);
+          text-align: left;
+        }
+
+        /* Swap to the short label so "Save" fits next to "Allow and continue" on one row */
+        .save-settings-label-full {
+          display: none;
+        }
+
+        .save-settings-label-short {
+          display: inline;
         }
       }
     }

@@ -1375,7 +1375,7 @@ The data zoom slider (the dataZoom option with type: 'inside') allows users to d
 
 ## Default
 
-The gauge chart can either be configured via config with type: 'synergyGauge' or with the seriesGauge preset function.
+The gauge chart can either be configured via config with type: 'synGauge' or with the seriesGauge preset function.
 
 ```html
 <syn-chart id="gauge-series-preset"></syn-chart>
@@ -1386,7 +1386,7 @@ The gauge chart can either be configured via config with type: 'synergyGauge' or
     chart.config = {
       series: [
         {
-          type: "synergyGauge",
+          type: "synGauge",
           data: [45],
         },
       ],

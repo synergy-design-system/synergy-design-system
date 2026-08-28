@@ -92,7 +92,7 @@ describe('resolveConfigInput', () => {
     const series = result.series as Array<{ data?: number[]; type?: string }>;
 
     expect(series).to.be.an('array').with.lengthOf(1);
-    expect(series[0].type).to.equal('synergyGauge');
+    expect(series[0].type).to.equal('synGauge');
     expect(series[0].data?.[0]).to.equal(55);
   });
 });

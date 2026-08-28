@@ -421,34 +421,34 @@ chart.config = handle =>
 
 ### Gauge series presets
 
-| Preset function | Options                    | Description                                                                                                                                                   |
-| --------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `seriesGauge`   | `GaugeSeriesPresetOptions` | Adds a custom `synergyGauge` series. Renders the gauge progress arc and optional outer sections ring, plus value/min/max labels and optional trend indicator. |
+| Preset function | Options                    | Description                                                                                                                                               |
+| --------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `seriesGauge`   | `GaugeSeriesPresetOptions` | Adds a custom `synGauge` series. Renders the gauge progress arc and optional outer sections ring, plus value/min/max labels and optional trend indicator. |
 
 `GaugeSeriesPresetOptions` supports the following fields:
 
-| Option                | Type                        | Description                                                                                          |
-| --------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `value`               | `number` _(required)_       | Current value of the gauge.                                                                          |
-| `min`                 | `number`                    | Minimum value of the gauge scale. Defaults to `0`.                                                   |
-| `max`                 | `number`                    | Maximum value of the gauge scale. Defaults to `100`.                                                 |
-| `icon`                | `string`                    | SVG data URL rendered as an image below the value.                                                   |
-| `color`               | `string`                    | Custom color of the progress arc. Overrides automatic section-based coloring when set.               |
-| `backgroundColor`     | `string`                    | Custom background color of the progress arc track.                                                   |
-| `formatter`           | `GaugeFormatterOptions`     | Formatter functions for the displayed gauge labels.                                                  |
-| `formatter.value`     | `(value: number) => string` | Formatter applied to the displayed gauge value.                                                      |
-| `formatter.min`       | `(value: number) => string` | Formatter applied to the displayed minimum label.                                                    |
-| `formatter.max`       | `(value: number) => string` | Formatter applied to the displayed maximum label.                                                    |
-| `showSections`        | `boolean`                   | Enables rendering of the outer section ring.                                                         |
-| `sections`            | `GaugeSectionsOptions`      | Outer section boundaries and colors.                                                                 |
-| `sections.boundaries` | `number[]`                  | Boundary values for outer sections (for example `[0, 20, 60, 100]`). Adjacent pairs define ranges.   |
-| `sections.colors`     | `string[]`                  | Colors for each outer section range. Repeated cyclically when fewer colors than ranges are provided. |
-| `showTrend`           | `boolean`                   | Enables rendering of the trend indicator above the value.                                            |
-| `trend`               | `GaugeTrendOptions`         | Trend indicator text and icon options.                                                               |
-| `trend.direction`     | `'up' \| 'down'`            | Direction of the trend indicator. Defaults to `'up'`.                                                |
-| `trend.value`         | `string`                    | Trend label text shown in the indicator pill.                                                        |
-| `trend.iconUp`        | `string`                    | SVG data URL used as the icon when `trend.direction` is `'up'`.                                      |
-| `trend.iconDown`      | `string`                    | SVG data URL used as the icon when `trend.direction` is `'down'`.                                    |
+| Option                | Type                        | Description                                                                                          | Default    |
+| --------------------- | --------------------------- | ---------------------------------------------------------------------------------------------------- | ---------- |
+| `value`               | `number` _(required)_       | Current value of the gauge.                                                                          |            |
+| `min`                 | `number`                    | Minimum value of the gauge scale.                                                                    | 0          |
+| `max`                 | `number`                    | Maximum value of the gauge scale.                                                                    | 100        |
+| `icon`                | `string`                    | SVG data URL rendered as an image below the value.                                                   ||
+| `color`               | `string`                    | Custom color of the progress arc. Overrides automatic section-based coloring when set.               ||
+| `backgroundColor`     | `string`                    | Custom background color of the progress arc track.                                                   |     --syn-chart-track-color     |
+| `formatter`           | `GaugeFormatterOptions`     | Formatter functions for the displayed gauge labels.                                                  ||
+| `formatter.value`     | `(value: number) => string` | Formatter applied to the displayed gauge value.                                                      | String(value) |
+| `formatter.min`       | `(value: number) => string` | Formatter applied to the displayed minimum label.                                                    | String(value)   |
+| `formatter.max`       | `(value: number) => string` | Formatter applied to the displayed maximum label.                                                    | String(value)   |
+| `showSections`        | `boolean`                   | Enables rendering of the outer section ring.                                                         | false |
+| `sections`            | `GaugeSectionsOptions`      | Outer section boundaries and colors.                                                                 | 
+| `sections.boundaries` | `number[]`                  | Boundary values for outer sections (for example `[0, 20, 60, 100]`). Adjacent pairs define ranges.   | [0, 20, 60, 100] |
+| `sections.colors`     | `string[]`                  | Colors for each outer section range. Repeated cyclically when fewer colors than ranges are provided. | [--syn-namur-success-color, --syn-namur-warning-color, --syn-namur-error-color ]
+| `showTrend`           | `boolean`                   | Enables rendering of the trend indicator above the value.                                            | false |
+| `trend`               | `GaugeTrendOptions`         | Trend indicator text and icon options.                                                               | |
+| `trend.direction`     | `'up' \| 'down'`            | Direction of the trend indicator.                                                | 'up' |
+| `trend.value`         | `string`                    | Trend label text shown in the indicator pill.                                                        | |
+| `trend.iconUp`        | `string`                    | SVG data URL used as the icon when `trend.direction` is `'up'`.                                      | 'arrow-up' |
+| `trend.iconDown`      | `string`                    | SVG data URL used as the icon when `trend.direction` is `'down'`.                                    | 'arrow-down' |
 
 Example:
 
@@ -495,7 +495,7 @@ chart.config = handle =>
 Array merge strategy:
 
 - `seriesGauge({...})` uses `arrayStrategy: 'append'`.
-- The generated `synergyGauge` series entry is appended to `series`.
+- The generated `synGauge` series entry is appended to `series`.
 
 ---
 
@@ -579,10 +579,10 @@ shorthand(0.002); // '2m'
 
 The following chart types are natively supported with Synergy styling:
 
-| Type        | How to use                                          |
-| ----------- | --------------------------------------------------- |
-| Line chart  | `series[].type: 'line'` (standard ECharts)          |
-| Gauge chart | `handle.seriesGauge({...})` (custom `synergyGauge`) |
+| Type        | How to use                                      |
+| ----------- | ----------------------------------------------- |
+| Line chart  | `series[].type: 'line'` (standard ECharts)      |
+| Gauge chart | `handle.seriesGauge({...})` (custom `synGauge`) |
 
 If you want to use ECharts features beyond what is listed above, you can register the required plugins yourself.
 But keep in mind that they are not Synergy-approved and do not have Synergy styling. The registration needs to be done **before** the component is initialized.

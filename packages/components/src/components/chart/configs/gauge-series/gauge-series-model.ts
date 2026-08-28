@@ -2,11 +2,11 @@ import { List, SeriesModel, helper } from 'echarts/core';
 import type { GaugeModelOption } from './types.js';
 
 export class SynergyGaugeSeriesModel extends SeriesModel {
-  static type = 'series.synergyGauge';
+  static type = 'series.synGauge';
 
   static defaultOption: GaugeModelOption = {
     data: [0],
-    type: 'synergyGauge',
+    type: 'synGauge',
   };
 
   type = SynergyGaugeSeriesModel.type;

@@ -1,4 +1,5 @@
 import type { ZRColor } from 'echarts/types/dist/shared.js';
+import type { Override, WithRequired } from '../types.js';
 
 /**
  * Formatter functions for gauge value labels.
@@ -59,14 +60,6 @@ export type GaugeSeriesConfig = {
 };
 
 /**
- * Makes selected keys required while preserving the remaining type shape.
- */
-type WithRequired<T, K extends keyof T> = Omit<T, K> & Required<Pick<T, K>>;
-/**
- * Overrides properties of a type with another type, while preserving the remaining type shape.
- */
-type Override<T, R> = Omit<T, keyof R> & R;
-/**
  * Fully normalized gauge preset options after defaults are resolved.
  */
 export type ResolvedGaugeSeriesConfig = Override<
@@ -84,11 +77,6 @@ export type ResolvedGaugeSeriesConfig = Override<
   }
 >;
 
-export type Point = {
-  x: number;
-  y: number;
-};
-
 export type Sector = {
   centerX: number;
   centerY: number;
@@ -104,6 +92,7 @@ export type TextInput = {
   text: string;
   x: number;
   y: number;
+  fontFamily?: string;
   fontSize: number;
   fontWeight?: number | string;
   align?: 'left' | 'center' | 'right';
@@ -121,7 +110,7 @@ export type ImageInput = {
 };
 
 export type SynergyGaugeSeriesOption = {
-  type: 'synergyGauge';
+  type: 'synGauge';
   name?: string;
   color?: string;
   data?: number[];
@@ -139,15 +128,15 @@ export type GaugeSeriesPresetOptions = Omit<SynergyGaugeSeriesOption, 'data' | '
 };
 
 export type GaugeModelOption = {
-  type: 'synergyGauge';
+  type: 'synGauge';
   data?: number[];
 };
 
 /**
- * Add the `synergyGauge` series type to the ECharts module.
+ * Add the `synGauge` series type to the ECharts module.
  */
 declare module 'echarts/types/dist/shared.js' {
   interface RegisteredSeriesOption {
-    synergyGauge: SynergyGaugeSeriesOption;
+    synGauge: SynergyGaugeSeriesOption;
   }
 }

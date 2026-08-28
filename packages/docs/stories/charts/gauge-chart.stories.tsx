@@ -69,7 +69,7 @@ export const Default: Story = {
         chart.config = {
           series: [
             {
-              type: 'synergyGauge',
+              type: 'synGauge',
               data: [45],
             }
           ]

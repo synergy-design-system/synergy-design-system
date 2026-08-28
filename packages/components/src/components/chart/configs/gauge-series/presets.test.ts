@@ -13,16 +13,16 @@ const createGaugeResult = (
 ) => seriesGauge(options)(config) as GaugeSeriesResult;
 
 describe('seriesGauge', () => {
-  it('creates a default synergyGauge series config', () => {
+  it('creates a default synGauge series config', () => {
     const { series } = createGaugeResult({ value: 50 });
 
     expect(series).to.be.an('array').with.lengthOf(1);
-    expect(series[0].type).to.equal('synergyGauge');
+    expect(series[0].type).to.equal('synGauge');
     expect(series[0].data).to.deep.equal([50]);
   });
 
   describe('config merging', () => {
-    it('appends synergyGauge series to existing series', () => {
+    it('appends synGauge series to existing series', () => {
       const existingConfig: ECConfig = {
         series: [
           { data: [1, 2, 3], name: 'Existing Line', type: 'line' },
@@ -35,7 +35,7 @@ describe('seriesGauge', () => {
 
       expect(result.series).to.be.an('array').with.lengthOf(2);
       expect(result.series[0]).to.include({ name: 'Existing Line', type: 'line' });
-      expect(result.series[1].type).to.equal('synergyGauge');
+      expect(result.series[1].type).to.equal('synGauge');
     });
 
     it('uses the configured type name constant', () => {
@@ -54,7 +54,7 @@ describe('seriesGauge', () => {
       expect(originalSeries).to.have.lengthOf(1);
       expect(result.series).to.have.lengthOf(originalSeries.length + 1);
       expect(result.series[0]).to.include({ name: 'Existing', type: 'line' });
-      expect(result.series[1].type).to.equal('synergyGauge');
+      expect(result.series[1].type).to.equal('synGauge');
     });
   });
 });

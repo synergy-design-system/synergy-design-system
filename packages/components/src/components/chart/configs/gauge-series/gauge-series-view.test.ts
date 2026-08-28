@@ -41,7 +41,7 @@ const renderGauge = (
   const view = new SynergyGaugeView();
   const option: SynergyGaugeSeriesOption = {
     data: [50],
-    type: 'synergyGauge',
+    type: 'synGauge',
     ...partialOption,
   };
 
@@ -339,12 +339,12 @@ describe('SynergyGaugeView', () => {
     const view = new SynergyGaugeView();
 
     view.render(
-      createSeriesModelStub({ data: [20], type: 'synergyGauge' }),
+      createSeriesModelStub({ data: [20], type: 'synGauge' }),
       {} as GlobalModel,
       createApiStub(),
     );
     view.render(
-      createSeriesModelStub({ data: [80], type: 'synergyGauge' }),
+      createSeriesModelStub({ data: [80], type: 'synGauge' }),
       {} as GlobalModel,
       createApiStub(),
     );

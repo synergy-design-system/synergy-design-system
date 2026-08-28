@@ -6,4 +6,4 @@
 
 feat: ✨ Adds gauge series support to `<syn-chart>` (#1352)
 
-This release introduces the new chart series type 'synergyGauge' and extends the chart configuration API with new presets `seriesGauge`
+This release introduces the new chart series type 'synGauge' and extends the chart configuration API with new presets `seriesGauge`

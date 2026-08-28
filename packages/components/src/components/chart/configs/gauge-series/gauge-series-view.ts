@@ -6,7 +6,6 @@ import type { SynergyGaugeSeriesModel } from './gauge-series-model.js';
 import type {
   GaugeSeriesConfig,
   ImageInput,
-  Point,
   ResolvedGaugeSeriesConfig,
   Sector,
   SynergyGaugeSeriesOption,
@@ -14,10 +13,9 @@ import type {
 } from './types.js';
 import { GAUGE_SERIES } from '../constants.js';
 import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
-import { colorSvgDataUrl } from '../utilities.js';
-
-const FULL_CIRCLE = Math.PI * 2;
-const RADIAN = Math.PI / 180;
+import {
+  clamp, colorSvgDataUrl, convertDegreeToRadian, normalizeAngle, polarPoint,
+} from '../utilities.js';
 
 /** Returns the default resolved configuration for a Synergy gauge series. */
 const getDefaultGaugeConfig = (): ResolvedGaugeSeriesConfig => ({
@@ -45,23 +43,8 @@ const getDefaultGaugeConfig = (): ResolvedGaugeSeriesConfig => ({
   },
 });
 
-/** Clamps `value` so it falls within the inclusive range `[minimum, maximum]`. */
-const clamp = (value: number, minimum: number, maximum: number): number => Math.min(Math.max(value, minimum), maximum);
-
-/** Normalizes an angle in radians to the range `[0, 2π)`. */
-const normalizeAngle = (angle: number): number => {
-  const normalized = angle % FULL_CIRCLE;
-  return normalized < 0 ? normalized + FULL_CIRCLE : normalized;
-};
-
 /** Linearly interpolates between `start` and `end` by the normalized `progress` factor (0–1). */
 const interpolate = (start: number, end: number, progress: number): number => start + ((end - start) * progress);
-
-/** Converts polar coordinates (center + radius + angle in radians) to a Cartesian `Point`. */
-const polarPoint = (centerX: number, centerY: number, radius: number, angle: number): Point => ({
-  x: centerX + (Math.cos(angle) * radius),
-  y: centerY + (Math.sin(angle) * radius),
-});
 
 /** Creates an ECharts `Sector` graphic element from the given sector descriptor. */
 const createSector = ({
@@ -89,6 +72,7 @@ const createText = ({
   x,
   y,
   fontSize,
+  fontFamily = style('SynFontSans'),
   fontWeight = styleWithoutUnit('SynFontWeightNormal'),
   align = 'center',
   verticalAlign = 'middle',
@@ -99,7 +83,7 @@ const createText = ({
     style: {
       align,
       fill: style('SynTypographyColorText'),
-      fontFamily: style('SynFontSans'),
+      fontFamily,
       fontSize,
       fontWeight: fontWeight as number,
       text,
@@ -209,10 +193,7 @@ const createSections = ({
   const { colors } = config.sections;
 
   const valueRange = config.max - config.min;
-  const elements: graphic.Sector[] = [];
-
-  for (let index = 0; index < boundaries.length - 1; index += 1) {
-    const sectionStart = boundaries[index];
+  return boundaries.slice(0, -1).map<graphic.Sector>((sectionStart, index) => {
     const sectionEnd = boundaries[index + 1];
 
     const sectionStartRatio = valueRange === 0 ? 0 : (sectionStart - config.min) / valueRange;
@@ -227,22 +208,18 @@ const createSections = ({
     const sectionStartAngle = rawStartAngle + (isFirst ? 0 : sectionGap);
     const sectionEndAngle = rawEndAngle - (isLast ? 0 : sectionGap);
 
-    elements.push(
-      createSector({
-        centerX,
-        centerY,
-        // If there are fewer colors than segments, repeat the colors from the start
-        color: colors[index % colors.length],
-        endAngle: sectionEndAngle,
-        innerRadius: outerRadius - sectionThickness,
-        outerRadius,
-        startAngle: sectionStartAngle,
-        z: 1,
-      }),
-    );
-  }
-
-  return elements;
+    return createSector({
+      centerX,
+      centerY,
+      // If there are fewer colors than segments, repeat the colors from the start
+      color: colors[index % colors.length],
+      endAngle: sectionEndAngle,
+      innerRadius: outerRadius - sectionThickness,
+      outerRadius,
+      startAngle: sectionStartAngle,
+      z: 1,
+    });
+  });
 };
 
 /**
@@ -313,8 +290,10 @@ const createTrendElement = ({
 
   group.add(createText({
     align: iconSource ? 'left' : 'center',
+    // This is a work around as our SICK Intl font is visually  not aligned with the icon, as it's font baseline is not centered.
+    fontFamily: 'sans-serif',
     fontSize,
-    fontWeight: styleWithoutUnit('SynFontWeightBold'),
+    fontWeight: styleWithoutUnit('SynFontWeightSemibold'),
     text: trendValue,
     x: iconSource ? contentStartX + iconSize + verticalPadding : centerX,
     y: pillY + (pillHeight / 2),
@@ -389,15 +368,15 @@ const buildGaugeGroup = (
   const valueRange = mergedConfig.max - mergedConfig.min;
   const progress = valueRange === 0 ? 0 : (normalizedValue - mergedConfig.min) / valueRange;
 
-  const startAngle = GAUGE_SERIES.START_ANGLE * RADIAN;
-  const endAngle = GAUGE_SERIES.END_ANGLE * RADIAN;
+  const startAngle = convertDegreeToRadian(GAUGE_SERIES.START_ANGLE);
+  const endAngle = convertDegreeToRadian(GAUGE_SERIES.END_ANGLE);
   const progressEndAngle = interpolate(startAngle, endAngle, progress);
 
   const root = new graphic.Group();
 
   // Outer sections
   if (mergedConfig.showSections) {
-    createSections({
+    const sections = createSections({
       centerX,
       centerY,
       config: mergedConfig,
@@ -405,7 +384,8 @@ const buildGaugeGroup = (
       outerRadius: sectionOuterRadius,
       sectionThickness,
       startAngle,
-    }).forEach((section) => root.add(section));
+    });
+    sections.forEach((section) => root.add(section));
   }
 
   // Background arc
@@ -462,13 +442,12 @@ const buildGaugeGroup = (
     y: centerY,
   }));
 
-  const contentGap = (styleWithoutUnit('SynSpacingSmall') * factor);
-
   // Icon image
   if (config.icon) {
     const iconSize = styleWithoutUnit('SynFontSize2xLarge') * factor;
     // Between the value and the icon we add a gap, scaled by the factor.
-    const iconY = centerY + (valueFontSize / 2) + contentGap;
+    const iconGap = styleWithoutUnit('SynSpacingXSmall') * factor;
+    const iconY = centerY + (valueFontSize / 2) + iconGap;
     const coloredIcon = colorSvgDataUrl(config.icon, style('SynTypographyColorText'));
     root.add(createImage({
       height: iconSize,
@@ -484,6 +463,7 @@ const buildGaugeGroup = (
 
   const maxTextWidth = measureTextWidth(formattedMaximum, `${styleWithoutUnit('SynFontWeightBold')} ${minMaxFontSize}px ${style('SynFontSans')}`);
   const minTextWidth = measureTextWidth(formattedMinimum, `${styleWithoutUnit('SynFontWeightBold')} ${minMaxFontSize}px ${style('SynFontSans')}`);
+  const contentGap = (styleWithoutUnit('SynSpacingSmall') * factor);
 
   // Minimum label
   root.add(createText({

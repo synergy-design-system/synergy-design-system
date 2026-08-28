@@ -3,7 +3,7 @@ import { GAUGE_SERIES } from '../constants.js';
 import type { GaugeSeriesPresetOptions, SynergyGaugeSeriesOption } from './types.js';
 
 /**
- * Adds a `synergyGauge` series.
+ * Adds a `synGauge` series.
  *
  * The preset forwards all supported gauge config fields to the synergy gauge.
  * For convenience, it accepts a `value` option that is converted into the first

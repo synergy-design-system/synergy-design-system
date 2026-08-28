@@ -88,7 +88,7 @@ export const ContactForm = {
 
       /* Special responsive handling for the topics checkbox group, which is displayed in a grid on larger screens */
       #topics {
-        container-type: inline-size
+        container-type: inline-size;
       }
 
       #topics::part(form-control-input) {

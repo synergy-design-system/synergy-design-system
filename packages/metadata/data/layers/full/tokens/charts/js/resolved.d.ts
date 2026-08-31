@@ -150,4 +150,5 @@ export declare const ResolvedTokens: {
   SynChartSequentialStatusWarning90: ResolvedTokenModes;
   SynChartSequentialStatusWarning100: ResolvedTokenModes;
   SynChartTooltipColor: ResolvedTokenModes;
+  SynChartTrackColor: ResolvedTokenModes;
 };

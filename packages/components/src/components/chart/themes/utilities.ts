@@ -111,3 +111,18 @@ export const getHexWithOpacity = (hexColor: string, opacity: number) => {
 
   return `${hexColor}${alpha}`;
 };
+
+/**
+ * Measures the rendered pixel width of the given string using a canvas.
+ * Returns `0` if the canvas API is unavailable (e.g. SSR or test environments).
+ *
+ * @param text - The string to measure.
+ * @param font - A CSS font string (e.g. `'12px sans-serif'`) matching the target rendering context.
+ */
+export const measureTextWidth = (text: string, font: string): number => {
+  const canvas = document.createElement('canvas');
+  const context = canvas.getContext('2d');
+  if (!context) return 0;
+  context.font = font;
+  return Math.ceil(context.measureText(text).width);
+};

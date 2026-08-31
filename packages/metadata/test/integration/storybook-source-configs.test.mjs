@@ -54,6 +54,7 @@ describe('storybook source configs', () => {
       'charts-features-axes--docs',
       'charts-features-legend--docs',
       'charts-features-zooming-panning--docs',
+      'charts-series-types-gauge-chart--docs',
       'charts-series-types-line-chart--docs',
     ]);
     expect(componentScrapingConfig.generateStoryIds('syn-spinner')).to.deep.equal(['components-syn-spinner--docs']);

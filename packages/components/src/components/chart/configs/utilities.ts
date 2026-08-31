@@ -1,4 +1,6 @@
 import type { ECConfig } from '../types.js';
+import { DEGREE_TO_RADIAN, FULL_CIRCLE_RADIAN } from './constants.js';
+import type { Point } from './types.js';
 
 // ---------------------------------------------------------------------------
 // Low-level deep-merge primitives
@@ -255,7 +257,7 @@ export function colorSvgImageUri(imageUri: string, color: string): string {
 
     const svg = hasCurrentColor
       ? decodedSvg.replace(/currentColor/gi, color)
-      : decodedSvg.replace(/fill="[^"]*"/gi, `fill="${color}"`);
+      : decodedSvg.replace(/fill=(?:"[^"]*"|'[^']*')/gi, `fill="${color}"`);
 
     return `image://data:image/svg+xml,${encodeURIComponent(svg)}`;
   } catch {
@@ -278,9 +280,31 @@ export function colorSvgDataUrl(dataUrl: string, color: string): string {
     const decodedSvg = atob(base64);
     const hasCurrentColor = decodedSvg.includes('currentColor');
 
-    const svg = hasCurrentColor ? decodedSvg.replace(/currentColor/gi, color) : decodedSvg.replace(/fill="[^"]*"/gi, `fill="${color}"`);
+    const svg = hasCurrentColor ? decodedSvg.replace(/currentColor/gi, color) : decodedSvg.replace(/fill=(?:"[^"]*"|'[^']*')/gi, `fill="${color}"`);
     return `data:image/svg+xml;base64,${btoa(svg)}`;
   } catch {
     return dataUrl;
   }
 }
+
+/** Clamps `value` so it falls within the inclusive range `[minimum, maximum]`. */
+export const clamp = (value: number, minimum: number, maximum: number): number => Math.min(Math.max(value, minimum), maximum);
+
+/** Normalizes an angle in radians to the range `[0, 2π)`. */
+export const normalizeAngle = (angle: number): number => {
+  const normalized = angle % FULL_CIRCLE_RADIAN;
+  return normalized < 0 ? normalized + FULL_CIRCLE_RADIAN : normalized;
+};
+
+/** Converts polar coordinates (center + radius + angle in radians) to a Cartesian `Point`. */
+export const polarPoint = (centerX: number, centerY: number, radius: number, angle: number): Point => ({
+  x: centerX + (Math.cos(angle) * radius),
+  y: centerY + (Math.sin(angle) * radius),
+});
+
+/**
+ * Converts an angle in degrees to radian.
+ * @param degree the angle in degrees
+ * @returns the angle in radians
+ */
+export const convertDegreeToRadian = (degree: number): number => degree * DEGREE_TO_RADIAN;

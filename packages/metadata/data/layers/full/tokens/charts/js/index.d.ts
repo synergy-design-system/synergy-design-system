@@ -697,3 +697,8 @@ export const SynChartSequentialStatusWarning100: string;
  * Maps to the css variable `--syn-chart-tooltip-color`
  */
 export const SynChartTooltipColor: string;
+
+/**
+ * Maps to the css variable `--syn-chart-track-color`
+ */
+export const SynChartTrackColor: string;

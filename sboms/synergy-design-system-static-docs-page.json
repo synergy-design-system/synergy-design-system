@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/static-docs-page",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-static-docs-page-0.0.1-9aadd1da-6883-4cb7-b725-f5cd89e28948",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-static-docs-page-0.0.1-21059406-d33e-49a5-9bfe-cedc29d70956",
   "creationInfo": {
-    "created": "2026-08-26T10:44:57.316Z",
+    "created": "2026-08-31T09:30:36.517Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.24.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -70,16 +70,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-react-3.23.0-2",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-react-3.24.0-2",
       "name": "@synergy-design-system/react",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.24.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -108,16 +108,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-4",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.24.0-4",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.24.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -179,32 +179,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-react-19.2.8-7",
-      "name": "react",
-      "versionInfo": "19.2.8",
-      "downloadLocation": "https://registry.npmjs.org/react/-/react-19.2.8.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/react@19.2.8"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "React is a JavaScript library for building user interfaces.",
-      "homepage": "https://react.dev/",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "3d66980352ffabdbb6bbbc58422f98dcbdd87e789eed7c8b79a248095d4c183e8ba6bb01c5c02a1a3632af4798de9f9076c03ec7f22b92de1089ff03eb7f926f"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-astro-expressive-code-0.44.1-8",
+      "SPDXID": "SPDXRef-Package-astro-expressive-code-0.44.1-7",
       "name": "astro-expressive-code",
       "versionInfo": "0.44.1",
       "downloadLocation": "https://registry.npmjs.org/astro-expressive-code/-/astro-expressive-code-0.44.1.tgz",
@@ -226,6 +201,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "0d3d4b9c2a9b1dab012a5bf32779ba2d1e1523de30c31dd6f4457f61b3f5b5ee2baa3387b2fb1ecc762ea9be4c78b58b7ed5e6b3fd4503d4016f00a8e370e725"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-react-19.2.8-8",
+      "name": "react",
+      "versionInfo": "19.2.8",
+      "downloadLocation": "https://registry.npmjs.org/react/-/react-19.2.8.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/react@19.2.8"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "React is a JavaScript library for building user interfaces.",
+      "homepage": "https://react.dev/",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "3d66980352ffabdbb6bbbc58422f98dcbdd87e789eed7c8b79a248095d4c183e8ba6bb01c5c02a1a3632af4798de9f9076c03ec7f22b92de1089ff03eb7f926f"
         }
       ]
     },
@@ -332,33 +332,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--lit-react-1.0.8-13",
-      "name": "@lit/react",
-      "versionInfo": "1.0.8",
-      "downloadLocation": "https://registry.npmjs.org/@lit/react/-/react-1.0.8.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lit/react@1.0.8"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A React component wrapper for web components.",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a76f98705f8913aed2457de63252754ca0924ec832395740c1dfe7c69dcdb95d7e09be8c5802db37a9d3ecb778b69998a1f704e6471a498d58041f5ead8fba7f"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lit-3.3.3-14",
+      "SPDXID": "SPDXRef-Package-lit-3.3.3-13",
       "name": "lit",
       "versionInfo": "3.3.3",
       "downloadLocation": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz",
@@ -380,6 +354,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "7f272ebd983f864a68ccbd34966d691091f99cdfe5afd65777a9892361d2378f81cdcf8b0cd74402927a1c56cf91d14d1cbbcea65208b89bf1912e17531aa2af"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--lit-react-1.0.8-14",
+      "name": "@lit/react",
+      "versionInfo": "1.0.8",
+      "downloadLocation": "https://registry.npmjs.org/@lit/react/-/react-1.0.8.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40lit/react@1.0.8"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "A React component wrapper for web components.",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a76f98705f8913aed2457de63252754ca0924ec832395740c1dfe7c69dcdb95d7e09be8c5802db37a9d3ecb778b69998a1f704e6471a498d58041f5ead8fba7f"
         }
       ]
     },
@@ -486,32 +486,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-ultrahtml-1.7.0-19",
-      "name": "ultrahtml",
-      "versionInfo": "1.7.0",
-      "downloadLocation": "https://registry.npmjs.org/ultrahtml/-/ultrahtml-1.7.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/ultrahtml@1.7.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "homepage": "https://github.com/natemoo-re/ultrahtml#README",
-      "supplier": "Person: Nate Moore",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "db145dd151e801013833ebc5fc3bc5141ee9515d19c535b54cb8bb9474169c5fd26f94cf784515fe5fa1c5c36718ed346571a7474be808c99844a41ffabbc9da"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-devalue-5.9.0-20",
+      "SPDXID": "SPDXRef-Package-devalue-5.9.0-19",
       "name": "devalue",
       "versionInfo": "5.9.0",
       "downloadLocation": "https://registry.npmjs.org/devalue/-/devalue-5.9.0.tgz",
@@ -532,6 +507,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "456aea740ae3bcf6ec01312138f528e969dd73f8969e458a96122b765177ccc318a3f737095b686950322ed5b1cf987c9d29641f3c67cd5dae2f274f5e6b45f8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-ultrahtml-1.7.0-20",
+      "name": "ultrahtml",
+      "versionInfo": "1.7.0",
+      "downloadLocation": "https://registry.npmjs.org/ultrahtml/-/ultrahtml-1.7.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ultrahtml@1.7.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "homepage": "https://github.com/natemoo-re/ultrahtml#README",
+      "supplier": "Person: Nate Moore",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "db145dd151e801013833ebc5fc3bc5141ee9515d19c535b54cb8bb9474169c5fd26f94cf784515fe5fa1c5c36718ed346571a7474be808c99844a41ffabbc9da"
         }
       ]
     },
@@ -663,7 +663,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--clack-prompts-1.7.0-26",
+      "SPDXID": "SPDXRef-Package--oslojs-encoding-1.1.0-26",
+      "name": "@oslojs/encoding",
+      "versionInfo": "1.1.0",
+      "downloadLocation": "https://registry.npmjs.org/@oslojs/encoding/-/encoding-1.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40oslojs/encoding@1.1.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Runtime-agnostic library for encoding and decoding data",
+      "homepage": "https://github.com/oslo-project/encoding#readme",
+      "supplier": "Person: pilcrowOnPaper",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "ef4c108606269dd8381823f13cfc4f19ebd12aa4c8276361e0e92231698301562c4d0f936bb4aafab3debd7c9719dcebdf4fea6419f239a942b33a0cc65ca575"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--clack-prompts-1.7.0-27",
       "name": "@clack/prompts",
       "versionInfo": "1.7.0",
       "downloadLocation": "https://registry.npmjs.org/@clack/prompts/-/prompts-1.7.0.tgz",
@@ -688,7 +714,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--rollup-pluginutils-5.4.0-27",
+      "SPDXID": "SPDXRef-Package--rollup-pluginutils-5.4.0-28",
       "name": "@rollup/pluginutils",
       "versionInfo": "5.4.0",
       "downloadLocation": "https://registry.npmjs.org/@rollup/pluginutils/-/pluginutils-5.4.0.tgz",
@@ -710,32 +736,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "31f3e9d3a0a344b7d7437c18d11f2f243601cbf32f55c73d3ae9447d1d01f08bfd928f8608d69167e129258165dbb2e12ac64ad28e36d2c6024470a37c281e52"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--oslojs-encoding-1.1.0-28",
-      "name": "@oslojs/encoding",
-      "versionInfo": "1.1.0",
-      "downloadLocation": "https://registry.npmjs.org/@oslojs/encoding/-/encoding-1.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40oslojs/encoding@1.1.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Runtime-agnostic library for encoding and decoding data",
-      "homepage": "https://github.com/oslo-project/encoding#readme",
-      "supplier": "Person: pilcrowOnPaper",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "ef4c108606269dd8381823f13cfc4f19ebd12aa4c8276361e0e92231698301562c4d0f936bb4aafab3debd7c9719dcebdf4fea6419f239a942b33a0cc65ca575"
         }
       ]
     },
@@ -792,33 +792,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-ci-info-4.4.0-31",
-      "name": "ci-info",
-      "versionInfo": "4.4.0",
-      "downloadLocation": "https://registry.npmjs.org/ci-info/-/ci-info-4.4.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/ci-info@4.4.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Get details about the current Continuous Integration environment",
-      "homepage": "https://github.com/watson/ci-info",
-      "supplier": "Person: Thomas Watson Steen",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "efb3d2c1eadc09953615ce2c5fde1e17c93c3f1b5ee890302f8fc80992c58c92ea7a0b3b902b80b2aaa3ffbd0d405e93bc3a6016392e6d0076156d9965d76f42"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-axobject-query-4.1.0-32",
+      "SPDXID": "SPDXRef-Package-axobject-query-4.1.0-31",
       "name": "axobject-query",
       "versionInfo": "4.1.0",
       "downloadLocation": "https://registry.npmjs.org/axobject-query/-/axobject-query-4.1.0.tgz",
@@ -840,6 +814,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "a888f41bdc196cc18d2e32e68353d3eafda613d007db3967003243ff6b42e84d348609a150e7c407a82b7873c07cb452b9f1ea44e2144e4c3a13e337947d0f4d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-ci-info-4.4.0-32",
+      "name": "ci-info",
+      "versionInfo": "4.4.0",
+      "downloadLocation": "https://registry.npmjs.org/ci-info/-/ci-info-4.4.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/ci-info@4.4.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Get details about the current Continuous Integration environment",
+      "homepage": "https://github.com/watson/ci-info",
+      "supplier": "Person: Thomas Watson Steen",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "efb3d2c1eadc09953615ce2c5fde1e17c93c3f1b5ee890302f8fc80992c58c92ea7a0b3b902b80b2aaa3ffbd0d405e93bc3a6016392e6d0076156d9965d76f42"
         }
       ]
     },
@@ -2388,28 +2388,27 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-postcss-8.5.25-93",
-      "name": "postcss",
-      "versionInfo": "8.5.25",
-      "downloadLocation": "https://registry.npmjs.org/postcss/-/postcss-8.5.25.tgz",
+      "SPDXID": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "name": "lightningcss",
+      "versionInfo": "1.33.0",
+      "downloadLocation": "https://registry.npmjs.org/lightningcss/-/lightningcss-1.33.0.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/postcss@8.5.25"
+          "referenceLocator": "pkg:npm/lightningcss@1.33.0"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
+      "licenseConcluded": "MPL-2.0",
+      "licenseDeclared": "MPL-2.0",
       "copyrightText": "NOASSERTION",
-      "description": "Tool for transforming styles with JS plugins",
-      "homepage": "https://postcss.org/",
-      "supplier": "Person: Andrey Sitnik",
+      "description": "A CSS parser, transformer, and minifier written in Rust",
+      "homepage": "https://github.com/parcel-bundler/lightningcss#readme",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "0d33f1dd15924a75b2ccbc509e51f4ac93fe116e5e925d7a654e3fa6c6c8840d1ee779097dd81a379bca33ec4fef226d5d5bbe9df75516696014310a01ee0fcb"
+          "checksumValue": "5a4503ae88ee26cd3192019fdae756c5adf21814713edc54901efd8ba68264b46073b3ccf1f65ef53a2c7cf0dcbc4a5065bb850129c762644b04b51b98b38820"
         }
       ]
     },
@@ -2437,27 +2436,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "name": "lightningcss",
-      "versionInfo": "1.33.0",
-      "downloadLocation": "https://registry.npmjs.org/lightningcss/-/lightningcss-1.33.0.tgz",
+      "SPDXID": "SPDXRef-Package-postcss-8.5.25-95",
+      "name": "postcss",
+      "versionInfo": "8.5.25",
+      "downloadLocation": "https://registry.npmjs.org/postcss/-/postcss-8.5.25.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss@1.33.0"
+          "referenceLocator": "pkg:npm/postcss@8.5.25"
         }
       ],
-      "licenseConcluded": "MPL-2.0",
-      "licenseDeclared": "MPL-2.0",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "A CSS parser, transformer, and minifier written in Rust",
-      "homepage": "https://github.com/parcel-bundler/lightningcss#readme",
+      "description": "Tool for transforming styles with JS plugins",
+      "homepage": "https://postcss.org/",
+      "supplier": "Person: Andrey Sitnik",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "5a4503ae88ee26cd3192019fdae756c5adf21814713edc54901efd8ba68264b46073b3ccf1f65ef53a2c7cf0dcbc4a5065bb850129c762644b04b51b98b38820"
+          "checksumValue": "0d33f1dd15924a75b2ccbc509e51f4ac93fe116e5e925d7a654e3fa6c6c8840d1ee779097dd81a379bca33ec4fef226d5d5bbe9df75516696014310a01ee0fcb"
         }
       ]
     },
@@ -2744,7 +2744,32 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-is-docker-4.0.0-107",
+      "SPDXID": "SPDXRef-Package-fontkitten-1.0.3-107",
+      "name": "fontkitten",
+      "versionInfo": "1.0.3",
+      "downloadLocation": "https://registry.npmjs.org/fontkitten/-/fontkitten-1.0.3.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/fontkitten@1.0.3"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "A lightweight font data library — fontkit’s little sibling",
+      "homepage": "https://github.com/delucis/fontkitten#readme",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "5a9d735d63d550f0667e86b70aa73d72d68abb328057ab8bb2d46a951e7a9128e995fe6e01c7bea9ec98ca6ec5f8f1db19393eb4211d9025ba443ec35ff80167"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-is-docker-4.0.0-108",
       "name": "is-docker",
       "versionInfo": "4.0.0",
       "downloadLocation": "https://registry.npmjs.org/is-docker/-/is-docker-4.0.0.tgz",
@@ -2766,31 +2791,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "2c713ec113b21bf63fd199db92d442a138b1d9cd5186059a66b68c67ca3543bcc2874552ac808940ee68a882084ab71206dad7bf4a36df7c35218c2c5828d3cc"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-fontkitten-1.0.3-108",
-      "name": "fontkitten",
-      "versionInfo": "1.0.3",
-      "downloadLocation": "https://registry.npmjs.org/fontkitten/-/fontkitten-1.0.3.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/fontkitten@1.0.3"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "A lightweight font data library — fontkit’s little sibling",
-      "homepage": "https://github.com/delucis/fontkitten#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "5a9d735d63d550f0667e86b70aa73d72d68abb328057ab8bb2d46a951e7a9128e995fe6e01c7bea9ec98ca6ec5f8f1db19393eb4211d9025ba443ec35ff80167"
         }
       ]
     },
@@ -3651,33 +3651,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--babel-parser-7.29.8-145",
-      "name": "@babel/parser",
-      "versionInfo": "7.29.8",
-      "downloadLocation": "https://registry.npmjs.org/@babel/parser/-/parser-7.29.8.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40babel/parser@7.29.8"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "A JavaScript parser",
-      "homepage": "https://babel.dev/docs/en/next/babel-parser",
-      "supplier": "Person: The Babel Team",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "13c953018341d4a5be147f95189b993358a8031d84ea8565bd0151adfe4ff19666b222576000fdbd3155ef2c84511373821d5d16a319b8eead53070045ba8508"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--jridgewell-sourcemap-codec-1.5.5-146",
+      "SPDXID": "SPDXRef-Package--jridgewell-sourcemap-codec-1.5.5-145",
       "name": "@jridgewell/sourcemap-codec",
       "versionInfo": "1.5.5",
       "downloadLocation": "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.5.5.tgz",
@@ -3703,33 +3677,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-source-map-js-1.2.1-147",
-      "name": "source-map-js",
-      "versionInfo": "1.2.1",
-      "downloadLocation": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz",
+      "SPDXID": "SPDXRef-Package--babel-parser-7.29.8-146",
+      "name": "@babel/parser",
+      "versionInfo": "7.29.8",
+      "downloadLocation": "https://registry.npmjs.org/@babel/parser/-/parser-7.29.8.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/source-map-js@1.2.1"
+          "referenceLocator": "pkg:npm/%40babel/parser@7.29.8"
         }
       ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Generates and consumes source maps",
-      "homepage": "https://github.com/7rulnik/source-map-js",
-      "supplier": "Person: Valentin 7rulnik Semirulnik",
+      "description": "A JavaScript parser",
+      "homepage": "https://babel.dev/docs/en/next/babel-parser",
+      "supplier": "Person: The Babel Team",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "51758c2a12cec1529bef6f0852d40f5f17d853ebac7726ed52b2bff2e184f0240cbeb84ea70bf30c1c23d108522fb31073bbc8b084811bc550f3e203431a5f40"
+          "checksumValue": "13c953018341d4a5be147f95189b993358a8031d84ea8565bd0151adfe4ff19666b222576000fdbd3155ef2c84511373821d5d16a319b8eead53070045ba8508"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--babel-types-7.29.8-148",
+      "SPDXID": "SPDXRef-Package--babel-types-7.29.8-147",
       "name": "@babel/types",
       "versionInfo": "7.29.8",
       "downloadLocation": "https://registry.npmjs.org/@babel/types/-/types-7.29.8.tgz",
@@ -3751,6 +3725,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "563d6317770f7f183b3807e823b42754a2e820b966d8917da67547ad7f2ac7b0073226164fe343000ee30a194d8114b85932dcfdf0f59572e63e2c65ba3fb71a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-source-map-js-1.2.1-148",
+      "name": "source-map-js",
+      "versionInfo": "1.2.1",
+      "downloadLocation": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/source-map-js@1.2.1"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "Generates and consumes source maps",
+      "homepage": "https://github.com/7rulnik/source-map-js",
+      "supplier": "Person: Valentin 7rulnik Semirulnik",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "51758c2a12cec1529bef6f0852d40f5f17d853ebac7726ed52b2bff2e184f0240cbeb84ea70bf30c1c23d108522fb31073bbc8b084811bc550f3e203431a5f40"
         }
       ]
     },
@@ -4350,7 +4350,32 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lru-cache-11.5.2-172",
+      "SPDXID": "SPDXRef-Package-h3-1.15.11-172",
+      "name": "h3",
+      "versionInfo": "1.15.11",
+      "downloadLocation": "https://registry.npmjs.org/h3/-/h3-1.15.11.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/h3@1.15.11"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Minimal H(TTP) framework built for high performance and portability.",
+      "homepage": "https://github.com/h3js/h3#readme",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "2f74c749ed8c3de070808655487e732dd04153dd133b16abbe12bd774e080d8d809954bc8f6273d8b216b70b06394de5bb62398c237b14dbd57d8dbe5f217e9a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lru-cache-11.5.2-173",
       "name": "lru-cache",
       "versionInfo": "11.5.2",
       "downloadLocation": "https://registry.npmjs.org/lru-cache/-/lru-cache-11.5.2.tgz",
@@ -4372,31 +4397,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "e297ccd457f4c79d28d2d4306f9b9cc3f4733720f4fd824c13a215712b5a959b8c5b176ddec47786e4ad4edc73e0f526bd97d182ebc37a36acbd0da489f475d6"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-h3-1.15.11-173",
-      "name": "h3",
-      "versionInfo": "1.15.11",
-      "downloadLocation": "https://registry.npmjs.org/h3/-/h3-1.15.11.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/h3@1.15.11"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Minimal H(TTP) framework built for high performance and portability.",
-      "homepage": "https://github.com/h3js/h3#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "2f74c749ed8c3de070808655487e732dd04153dd133b16abbe12bd774e080d8d809954bc8f6273d8b216b70b06394de5bb62398c237b14dbd57d8dbe5f217e9a"
         }
       ]
     },
@@ -5210,33 +5210,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-unist-util-visit-5.1.0-208",
-      "name": "unist-util-visit",
-      "versionInfo": "5.1.0",
-      "downloadLocation": "https://registry.npmjs.org/unist-util-visit/-/unist-util-visit-5.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/unist-util-visit@5.1.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "unist utility to visit nodes",
-      "homepage": "https://github.com/syntax-tree/unist-util-visit#readme",
-      "supplier": "Person: Titus Wormer",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "9bebc87727823a976bfd07900aed84cf15ffa21812f0a6e73c38059e2e1d42c7d20ada73f14a83c98e468d1aeef0f0cab989fb16ad7d8f5090fa7252b0628ece"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-nlcst-to-string-4.0.0-209",
+      "SPDXID": "SPDXRef-Package-nlcst-to-string-4.0.0-208",
       "name": "nlcst-to-string",
       "versionInfo": "4.0.0",
       "downloadLocation": "https://registry.npmjs.org/nlcst-to-string/-/nlcst-to-string-4.0.0.tgz",
@@ -5258,6 +5232,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "60a2c109c51828083414d94e053e9a23dd6a1664a214a8a5ba4eb9e56ccf17e0c3300d36a88cb2f2e891a88f105ed705a44be5975d8ba4be4c5ea126019f9d70"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-unist-util-visit-5.1.0-209",
+      "name": "unist-util-visit",
+      "versionInfo": "5.1.0",
+      "downloadLocation": "https://registry.npmjs.org/unist-util-visit/-/unist-util-visit-5.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/unist-util-visit@5.1.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "unist utility to visit nodes",
+      "homepage": "https://github.com/syntax-tree/unist-util-visit#readme",
+      "supplier": "Person: Titus Wormer",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "9bebc87727823a976bfd07900aed84cf15ffa21812f0a6e73c38059e2e1d42c7d20ada73f14a83c98e468d1aeef0f0cab989fb16ad7d8f5090fa7252b0628ece"
         }
       ]
     },
@@ -5782,7 +5782,168 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--types-babel--generator-7.27.0-230",
+      "SPDXID": "SPDXRef-Package-lightningcss-android-arm64-1.33.0-230",
+      "name": "lightningcss-android-arm64",
+      "versionInfo": "1.33.0",
+      "downloadLocation": "https://registry.npmjs.org/lightningcss-android-arm64/-/lightningcss-android-arm64-1.33.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lightningcss-android-arm64@1.33.0"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "804a514da94a768b29e016fca96b5cda23a013949e2079694b5ba9f5b16adb003262197551d4ce6d88877bdf3310cf5242f4a8a906752100f424da60dcc979a6"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lightningcss-darwin-arm64-1.33.0-231",
+      "name": "lightningcss-darwin-arm64",
+      "versionInfo": "1.33.0",
+      "downloadLocation": "https://registry.npmjs.org/lightningcss-darwin-arm64/-/lightningcss-darwin-arm64-1.33.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lightningcss-darwin-arm64@1.33.0"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "49c89acfc79e9cd4ca9fd6f7b7bfb1af48a94e9f58c4a418e27a704379ab46e2f404054704bc99c687e168a04056dce6b5167fcd3ca8d3fb68e01d6e586fc38e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lightningcss-darwin-x64-1.33.0-232",
+      "name": "lightningcss-darwin-x64",
+      "versionInfo": "1.33.0",
+      "downloadLocation": "https://registry.npmjs.org/lightningcss-darwin-x64/-/lightningcss-darwin-x64-1.33.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lightningcss-darwin-x64@1.33.0"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "67950f031ceb8e558d3721b2ea2eb9709cf3be02790f74fac0cbecfa05a963d77ba9184036bc6a029e8b871220661584c35f117c94c6711c63b8b201afe9bc5d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lightningcss-freebsd-x64-1.33.0-233",
+      "name": "lightningcss-freebsd-x64",
+      "versionInfo": "1.33.0",
+      "downloadLocation": "https://registry.npmjs.org/lightningcss-freebsd-x64/-/lightningcss-freebsd-x64-1.33.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lightningcss-freebsd-x64@1.33.0"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "41033f4e2fe141a8c9c0263e4625ae099f6c76d23f5d093b9c32b9bc2f2491dc22c5ecce94382f0f1efe453f908cae857054f8329b2ea019c7228fcedd2b5146"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lightningcss-linux-arm-gnueabihf-1.33.0-234",
+      "name": "lightningcss-linux-arm-gnueabihf",
+      "versionInfo": "1.33.0",
+      "downloadLocation": "https://registry.npmjs.org/lightningcss-linux-arm-gnueabihf/-/lightningcss-linux-arm-gnueabihf-1.33.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lightningcss-linux-arm-gnueabihf@1.33.0"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "37b15505eea24b6e0c94ce91ff84414f11a14217991aceed890f54df652d17be4dccfe50ef158f46a2c108ac65450464deb6358c220f2f3c7b5b33a1b942112d"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lightningcss-linux-arm64-gnu-1.33.0-235",
+      "name": "lightningcss-linux-arm64-gnu",
+      "versionInfo": "1.33.0",
+      "downloadLocation": "https://registry.npmjs.org/lightningcss-linux-arm64-gnu/-/lightningcss-linux-arm64-gnu-1.33.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lightningcss-linux-arm64-gnu@1.33.0"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "8f6bff8ad9b2e0794dc6573abe829762006a362d0d8362d2860e33ec6b9fa4482cd393fedacb815728bd23a607ab9ba8545c7d1138a7dde08484b5725c64272a"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lightningcss-linux-arm64-musl-1.33.0-236",
+      "name": "lightningcss-linux-arm64-musl",
+      "versionInfo": "1.33.0",
+      "downloadLocation": "https://registry.npmjs.org/lightningcss-linux-arm64-musl/-/lightningcss-linux-arm64-musl-1.33.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lightningcss-linux-arm64-musl@1.33.0"
+        }
+      ],
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "ca23b944e32e6108176c2eb4ca3654e4261215918a5cbd071404d7b7d987267d7ecd6e79a02b4c23d35f7158582cc1432fb815ee804fa27fc498c3068363afb5"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--types-babel--generator-7.27.0-237",
       "name": "@types/babel__generator",
       "versionInfo": "7.27.0",
       "downloadLocation": "https://registry.npmjs.org/@types/babel__generator/-/babel__generator-7.27.0.tgz",
@@ -5807,193 +5968,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lightningcss-android-arm64-1.33.0-231",
-      "name": "lightningcss-android-arm64",
-      "versionInfo": "1.33.0",
-      "downloadLocation": "https://registry.npmjs.org/lightningcss-android-arm64/-/lightningcss-android-arm64-1.33.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss-android-arm64@1.33.0"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "804a514da94a768b29e016fca96b5cda23a013949e2079694b5ba9f5b16adb003262197551d4ce6d88877bdf3310cf5242f4a8a906752100f424da60dcc979a6"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lightningcss-darwin-arm64-1.33.0-232",
-      "name": "lightningcss-darwin-arm64",
-      "versionInfo": "1.33.0",
-      "downloadLocation": "https://registry.npmjs.org/lightningcss-darwin-arm64/-/lightningcss-darwin-arm64-1.33.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss-darwin-arm64@1.33.0"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "49c89acfc79e9cd4ca9fd6f7b7bfb1af48a94e9f58c4a418e27a704379ab46e2f404054704bc99c687e168a04056dce6b5167fcd3ca8d3fb68e01d6e586fc38e"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lightningcss-darwin-x64-1.33.0-233",
-      "name": "lightningcss-darwin-x64",
-      "versionInfo": "1.33.0",
-      "downloadLocation": "https://registry.npmjs.org/lightningcss-darwin-x64/-/lightningcss-darwin-x64-1.33.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss-darwin-x64@1.33.0"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "67950f031ceb8e558d3721b2ea2eb9709cf3be02790f74fac0cbecfa05a963d77ba9184036bc6a029e8b871220661584c35f117c94c6711c63b8b201afe9bc5d"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lightningcss-freebsd-x64-1.33.0-234",
-      "name": "lightningcss-freebsd-x64",
-      "versionInfo": "1.33.0",
-      "downloadLocation": "https://registry.npmjs.org/lightningcss-freebsd-x64/-/lightningcss-freebsd-x64-1.33.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss-freebsd-x64@1.33.0"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "41033f4e2fe141a8c9c0263e4625ae099f6c76d23f5d093b9c32b9bc2f2491dc22c5ecce94382f0f1efe453f908cae857054f8329b2ea019c7228fcedd2b5146"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lightningcss-linux-arm-gnueabihf-1.33.0-235",
-      "name": "lightningcss-linux-arm-gnueabihf",
-      "versionInfo": "1.33.0",
-      "downloadLocation": "https://registry.npmjs.org/lightningcss-linux-arm-gnueabihf/-/lightningcss-linux-arm-gnueabihf-1.33.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss-linux-arm-gnueabihf@1.33.0"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "37b15505eea24b6e0c94ce91ff84414f11a14217991aceed890f54df652d17be4dccfe50ef158f46a2c108ac65450464deb6358c220f2f3c7b5b33a1b942112d"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lightningcss-linux-arm64-gnu-1.33.0-236",
-      "name": "lightningcss-linux-arm64-gnu",
-      "versionInfo": "1.33.0",
-      "downloadLocation": "https://registry.npmjs.org/lightningcss-linux-arm64-gnu/-/lightningcss-linux-arm64-gnu-1.33.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss-linux-arm64-gnu@1.33.0"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "8f6bff8ad9b2e0794dc6573abe829762006a362d0d8362d2860e33ec6b9fa4482cd393fedacb815728bd23a607ab9ba8545c7d1138a7dde08484b5725c64272a"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lightningcss-linux-arm64-musl-1.33.0-237",
-      "name": "lightningcss-linux-arm64-musl",
-      "versionInfo": "1.33.0",
-      "downloadLocation": "https://registry.npmjs.org/lightningcss-linux-arm64-musl/-/lightningcss-linux-arm64-musl-1.33.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss-linux-arm64-musl@1.33.0"
-        }
-      ],
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "ca23b944e32e6108176c2eb4ca3654e4261215918a5cbd071404d7b7d987267d7ecd6e79a02b4c23d35f7158582cc1432fb815ee804fa27fc498c3068363afb5"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--types-babel--template-7.4.4-238",
-      "name": "@types/babel__template",
-      "versionInfo": "7.4.4",
-      "downloadLocation": "https://registry.npmjs.org/@types/babel__template/-/babel__template-7.4.4.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/babel__template@7.4.4"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "TypeScript definitions for @babel/template",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/babel__template",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "87f354692c86e44cb1048a7c611c68e1131edbfa9082fca8c11c1533385884108e35b5bc3d4b20e2590532b86066151ee73dcbdcc88b0eebf227f09a3dad80f0"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lightningcss-linux-x64-musl-1.33.0-239",
+      "SPDXID": "SPDXRef-Package-lightningcss-linux-x64-musl-1.33.0-238",
       "name": "lightningcss-linux-x64-musl",
       "versionInfo": "1.33.0",
       "downloadLocation": "https://registry.npmjs.org/lightningcss-linux-x64-musl/-/lightningcss-linux-x64-musl-1.33.0.tgz",
@@ -6016,7 +5991,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lightningcss-win32-arm64-msvc-1.33.0-240",
+      "SPDXID": "SPDXRef-Package-lightningcss-win32-arm64-msvc-1.33.0-239",
       "name": "lightningcss-win32-arm64-msvc",
       "versionInfo": "1.33.0",
       "downloadLocation": "https://registry.npmjs.org/lightningcss-win32-arm64-msvc/-/lightningcss-win32-arm64-msvc-1.33.0.tgz",
@@ -6039,7 +6014,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lightningcss-win32-x64-msvc-1.33.0-241",
+      "SPDXID": "SPDXRef-Package-lightningcss-win32-x64-msvc-1.33.0-240",
       "name": "lightningcss-win32-x64-msvc",
       "versionInfo": "1.33.0",
       "downloadLocation": "https://registry.npmjs.org/lightningcss-win32-x64-msvc/-/lightningcss-win32-x64-msvc-1.33.0.tgz",
@@ -6058,6 +6033,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "3a5108083c7f5e5d05a92a786ebcbccc59c2bc6a628371a5e200aabaf6301eea892840b5fa7f4d8039e216fa871a632fd5992a0c9ac3a8a292ca44c35fe7a1b8"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--types-babel--template-7.4.4-241",
+      "name": "@types/babel__template",
+      "versionInfo": "7.4.4",
+      "downloadLocation": "https://registry.npmjs.org/@types/babel__template/-/babel__template-7.4.4.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40types/babel__template@7.4.4"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "TypeScript definitions for @babel/template",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/babel__template",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "87f354692c86e44cb1048a7c611c68e1131edbfa9082fca8c11c1533385884108e35b5bc3d4b20e2590532b86066151ee73dcbdcc88b0eebf227f09a3dad80f0"
         }
       ]
     },
@@ -6087,28 +6087,27 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-nanoid-3.3.16-243",
-      "name": "nanoid",
-      "versionInfo": "3.3.16",
-      "downloadLocation": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.16.tgz",
+      "SPDXID": "SPDXRef-Package-lightningcss-linux-x64-gnu-1.33.0-243",
+      "name": "lightningcss-linux-x64-gnu",
+      "versionInfo": "1.33.0",
+      "downloadLocation": "https://registry.npmjs.org/lightningcss-linux-x64-gnu/-/lightningcss-linux-x64-gnu-1.33.0.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/nanoid@3.3.16"
+          "referenceLocator": "pkg:npm/lightningcss-linux-x64-gnu@1.33.0"
         }
       ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
+      "licenseConcluded": "MPL-2.0",
+      "licenseDeclared": "MPL-2.0",
       "copyrightText": "NOASSERTION",
-      "description": "A tiny (116 bytes), secure URL-friendly unique string ID generator",
-      "homepage": "https://github.com/ai/nanoid#readme",
-      "supplier": "Person: Andrey Sitnik",
+      "description": "A CSS parser, transformer, and minifier written in Rust",
+      "homepage": "https://github.com/parcel-bundler/lightningcss#readme",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "6f394a4f2349efe2dd188230cbc8a316922a11022f69f6a157b798ca427c0af878d8474978e0e827a814257a5026f7a3d4175d1fc3aa4d764d13f29f6d602ef1"
+          "checksumValue": "6abf89bbb2e670dd09a381692f88691726f0346f7fdc0fc1af9296da7da3c8e0e0dcc1195da0d800375e9a8352f810cd7cc80abf29492e3e12e6dc9101cb6e02"
         }
       ]
     },
@@ -6320,27 +6319,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lightningcss-linux-x64-gnu-1.33.0-253",
-      "name": "lightningcss-linux-x64-gnu",
-      "versionInfo": "1.33.0",
-      "downloadLocation": "https://registry.npmjs.org/lightningcss-linux-x64-gnu/-/lightningcss-linux-x64-gnu-1.33.0.tgz",
+      "SPDXID": "SPDXRef-Package-nanoid-3.3.16-253",
+      "name": "nanoid",
+      "versionInfo": "3.3.16",
+      "downloadLocation": "https://registry.npmjs.org/nanoid/-/nanoid-3.3.16.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lightningcss-linux-x64-gnu@1.33.0"
+          "referenceLocator": "pkg:npm/nanoid@3.3.16"
         }
       ],
-      "licenseConcluded": "MPL-2.0",
-      "licenseDeclared": "MPL-2.0",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "A CSS parser, transformer, and minifier written in Rust",
-      "homepage": "https://github.com/parcel-bundler/lightningcss#readme",
+      "description": "A tiny (116 bytes), secure URL-friendly unique string ID generator",
+      "homepage": "https://github.com/ai/nanoid#readme",
+      "supplier": "Person: Andrey Sitnik",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "6abf89bbb2e670dd09a381692f88691726f0346f7fdc0fc1af9296da7da3c8e0e0dcc1195da0d800375e9a8352f810cd7cc80abf29492e3e12e6dc9101cb6e02"
+          "checksumValue": "6f394a4f2349efe2dd188230cbc8a316922a11022f69f6a157b798ca427c0af878d8474978e0e827a814257a5026f7a3d4175d1fc3aa4d764d13f29f6d602ef1"
         }
       ]
     },
@@ -6538,7 +6538,32 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-copy-anything-3.0.5-262",
+      "SPDXID": "SPDXRef-Package-undici-types-8.3.0-262",
+      "name": "undici-types",
+      "versionInfo": "8.3.0",
+      "downloadLocation": "https://registry.npmjs.org/undici-types/-/undici-types-8.3.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/undici-types@8.3.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "A stand-alone types package for Undici",
+      "homepage": "https://undici.nodejs.org",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "8f7ef949c57ad1da26f9890f1487d32dc3a23f190dfdbb87cf91a86e32e18b116e00d68db370bd9781a6ad6a9e8e05d627b05b25c158a53114912d467bc6e965"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-copy-anything-3.0.5-263",
       "name": "copy-anything",
       "versionInfo": "3.0.5",
       "downloadLocation": "https://registry.npmjs.org/copy-anything/-/copy-anything-3.0.5.tgz",
@@ -6560,31 +6585,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "c8211a7e9b53b5be1b93b18b110a0cf0a549a7101f741258697cb3404810410818ad9883a7c4899862a56336ba0988c40cdb2d01d35d280dd4ba850b9446d2eb"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-undici-types-8.3.0-263",
-      "name": "undici-types",
-      "versionInfo": "8.3.0",
-      "downloadLocation": "https://registry.npmjs.org/undici-types/-/undici-types-8.3.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/undici-types@8.3.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "A stand-alone types package for Undici",
-      "homepage": "https://undici.nodejs.org",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "8f7ef949c57ad1da26f9890f1487d32dc3a23f190dfdbb87cf91a86e32e18b116e00d68db370bd9781a6ad6a9e8e05d627b05b25c158a53114912d467bc6e965"
         }
       ]
     },
@@ -9790,28 +9790,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-vfile-location-5.0.3-394",
-      "name": "vfile-location",
-      "versionInfo": "5.0.3",
-      "downloadLocation": "https://registry.npmjs.org/vfile-location/-/vfile-location-5.0.3.tgz",
+      "SPDXID": "SPDXRef-Package-property-information-7.2.0-394",
+      "name": "property-information",
+      "versionInfo": "7.2.0",
+      "downloadLocation": "https://registry.npmjs.org/property-information/-/property-information-7.2.0.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/vfile-location@5.0.3"
+          "referenceLocator": "pkg:npm/property-information@7.2.0"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "vfile utility to convert between positional (line and column-based) and offset (range-based) locations",
-      "homepage": "https://github.com/vfile/vfile-location#readme",
+      "description": "Info on the properties and attributes of the web platform",
+      "homepage": "https://github.com/wooorm/property-information#readme",
       "supplier": "Person: Titus Wormer",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "e725ef583120a9e8988817b595bc5817b50c0089bf21ca29c4c1eb3100eade7bca7233ca22166495428bf8013b27bb80a48e24c1edac9ec2be788e944e3f441e"
+          "checksumValue": "200b73201eac52259a258ad7f6c9a9dd5e3aa4119b05e2c5446761db9920d77df855c0650fc1f384f78d216407f738469a8da2b487b6e441edf5d40fec6e619a"
         }
       ]
     },
@@ -9862,28 +9862,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-property-information-7.2.0-397",
-      "name": "property-information",
-      "versionInfo": "7.2.0",
-      "downloadLocation": "https://registry.npmjs.org/property-information/-/property-information-7.2.0.tgz",
+      "SPDXID": "SPDXRef-Package-vfile-location-5.0.3-397",
+      "name": "vfile-location",
+      "versionInfo": "5.0.3",
+      "downloadLocation": "https://registry.npmjs.org/vfile-location/-/vfile-location-5.0.3.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/property-information@7.2.0"
+          "referenceLocator": "pkg:npm/vfile-location@5.0.3"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Info on the properties and attributes of the web platform",
-      "homepage": "https://github.com/wooorm/property-information#readme",
+      "description": "vfile utility to convert between positional (line and column-based) and offset (range-based) locations",
+      "homepage": "https://github.com/vfile/vfile-location#readme",
       "supplier": "Person: Titus Wormer",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "200b73201eac52259a258ad7f6c9a9dd5e3aa4119b05e2c5446761db9920d77df855c0650fc1f384f78d216407f738469a8da2b487b6e441edf5d40fec6e619a"
+          "checksumValue": "e725ef583120a9e8988817b595bc5817b50c0089bf21ca29c4c1eb3100eade7bca7233ca22166495428bf8013b27bb80a48e24c1edac9ec2be788e944e3f441e"
         }
       ]
     },
@@ -10018,33 +10018,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-html-void-elements-3.0.0-403",
-      "name": "html-void-elements",
-      "versionInfo": "3.0.0",
-      "downloadLocation": "https://registry.npmjs.org/html-void-elements/-/html-void-elements-3.0.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/html-void-elements@3.0.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "List of HTML void tag names",
-      "homepage": "https://github.com/wooorm/html-void-elements#readme",
-      "supplier": "Person: Titus Wormer",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "6c4aa8eba3115ec506c561d5e483f43d48805b0a048db6b8542ce0d0b8c5241a5c84f6937f27c22931ba6dce45f2e70a79cdeae72eaa39d1b261348112f842ae"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-hast-util-whitespace-3.0.0-404",
+      "SPDXID": "SPDXRef-Package-hast-util-whitespace-3.0.0-403",
       "name": "hast-util-whitespace",
       "versionInfo": "3.0.0",
       "downloadLocation": "https://registry.npmjs.org/hast-util-whitespace/-/hast-util-whitespace-3.0.0.tgz",
@@ -10070,33 +10044,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-mdast-util-to-hast-13.2.1-405",
-      "name": "mdast-util-to-hast",
-      "versionInfo": "13.2.1",
-      "downloadLocation": "https://registry.npmjs.org/mdast-util-to-hast/-/mdast-util-to-hast-13.2.1.tgz",
+      "SPDXID": "SPDXRef-Package-html-void-elements-3.0.0-404",
+      "name": "html-void-elements",
+      "versionInfo": "3.0.0",
+      "downloadLocation": "https://registry.npmjs.org/html-void-elements/-/html-void-elements-3.0.0.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/mdast-util-to-hast@13.2.1"
+          "referenceLocator": "pkg:npm/html-void-elements@3.0.0"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "mdast utility to transform to hast",
-      "homepage": "https://github.com/syntax-tree/mdast-util-to-hast#readme",
+      "description": "List of HTML void tag names",
+      "homepage": "https://github.com/wooorm/html-void-elements#readme",
       "supplier": "Person: Titus Wormer",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "71cb6cab6c29e6f4ec2c871aca66e552b8a24dc65dd02c16b426cbbeb3b36020d9a16c8c355f2c67b92b8f4f454a7b22262dd656c1cb33893a0eaff268fc825c"
+          "checksumValue": "6c4aa8eba3115ec506c561d5e483f43d48805b0a048db6b8542ce0d0b8c5241a5c84f6937f27c22931ba6dce45f2e70a79cdeae72eaa39d1b261348112f842ae"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-space-separated-tokens-2.0.2-406",
+      "SPDXID": "SPDXRef-Package-space-separated-tokens-2.0.2-405",
       "name": "space-separated-tokens",
       "versionInfo": "2.0.2",
       "downloadLocation": "https://registry.npmjs.org/space-separated-tokens/-/space-separated-tokens-2.0.2.tgz",
@@ -10118,6 +10092,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "3c41a5030ac6f325c65d18d6df67c66e0eba24094e0306ce6eea95a09a6ffe6460a160d07e01f5c033efb735b25123405c119293c87be796036db704cb7487d9"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-mdast-util-to-hast-13.2.1-406",
+      "name": "mdast-util-to-hast",
+      "versionInfo": "13.2.1",
+      "downloadLocation": "https://registry.npmjs.org/mdast-util-to-hast/-/mdast-util-to-hast-13.2.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/mdast-util-to-hast@13.2.1"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "mdast utility to transform to hast",
+      "homepage": "https://github.com/syntax-tree/mdast-util-to-hast#readme",
+      "supplier": "Person: Titus Wormer",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "71cb6cab6c29e6f4ec2c871aca66e552b8a24dc65dd02c16b426cbbeb3b36020d9a16c8c355f2c67b92b8f4f454a7b22262dd656c1cb33893a0eaff268fc825c"
         }
       ]
     },
@@ -10635,33 +10635,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-yallist-3.1.1-427",
-      "name": "yallist",
-      "versionInfo": "3.1.1",
-      "downloadLocation": "https://registry.npmjs.org/yallist/-/yallist-3.1.1.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/yallist@3.1.1"
-        }
-      ],
-      "licenseConcluded": "ISC",
-      "licenseDeclared": "ISC",
-      "copyrightText": "NOASSERTION",
-      "description": "Yet Another Linked List",
-      "homepage": "https://github.com/isaacs/yallist#readme",
-      "supplier": "Person: Isaac Z. Schlueter",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "6b850641a58f1f9f663975189c01b67b09dc412e22e05e374efdc9a0033eb365430264bd36c2bc1a90cc2eb0873e4b054fb8772ba4cea14367da96fb4685f1e2"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--emnapi-wasi-threads-2.0.1-428",
+      "SPDXID": "SPDXRef-Package--emnapi-wasi-threads-2.0.1-427",
       "name": "@emnapi/wasi-threads",
       "versionInfo": "2.0.1",
       "downloadLocation": "https://registry.npmjs.org/@emnapi/wasi-threads/-/wasi-threads-2.0.1.tgz",
@@ -10683,6 +10657,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "f43b1293ea393415f4082253f2cd0444e1921b18d1fed2aee9a053695caaf928c01101f85dc75c4713c1473b012e2cd34c9e3d3098c5fa382edea9cef462d071"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-yallist-3.1.1-428",
+      "name": "yallist",
+      "versionInfo": "3.1.1",
+      "downloadLocation": "https://registry.npmjs.org/yallist/-/yallist-3.1.1.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/yallist@3.1.1"
+        }
+      ],
+      "licenseConcluded": "ISC",
+      "licenseDeclared": "ISC",
+      "copyrightText": "NOASSERTION",
+      "description": "Yet Another Linked List",
+      "homepage": "https://github.com/isaacs/yallist#readme",
+      "supplier": "Person: Isaac Z. Schlueter",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "6b850641a58f1f9f663975189c01b67b09dc412e22e05e374efdc9a0033eb365430264bd36c2bc1a90cc2eb0873e4b054fb8772ba4cea14367da96fb4685f1e2"
         }
       ]
     },
@@ -10739,33 +10739,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-debug-3.2.7-431",
-      "name": "debug",
-      "versionInfo": "3.2.7",
-      "downloadLocation": "https://registry.npmjs.org/debug/-/debug-3.2.7.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/debug@3.2.7"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "small debugging utility",
-      "homepage": "https://github.com/visionmedia/debug#readme",
-      "supplier": "Person: TJ Holowaychuk",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "0858f3618022e1385f890be2ceb1507af4d35c7b670aa59f7bbc75021804b1c4f3e996cb6dfa0b44b3ee81343206d87a7fc644455512c961c50ffed6bb8b755d"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-iconv-lite-0.4.24-432",
+      "SPDXID": "SPDXRef-Package-iconv-lite-0.4.24-431",
       "name": "iconv-lite",
       "versionInfo": "0.4.24",
       "downloadLocation": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.24.tgz",
@@ -10787,6 +10761,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "bf73179d901cbe7cb091350466898801cb657bb4575de79d391df5c3097b565ca85cee108bd6abbd27a73505a77b54dc4708422f51f02c8db56c4a9da63f3fac"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-debug-3.2.7-432",
+      "name": "debug",
+      "versionInfo": "3.2.7",
+      "downloadLocation": "https://registry.npmjs.org/debug/-/debug-3.2.7.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/debug@3.2.7"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "small debugging utility",
+      "homepage": "https://github.com/visionmedia/debug#readme",
+      "supplier": "Person: TJ Holowaychuk",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "0858f3618022e1385f890be2ceb1507af4d35c7b670aa59f7bbc75021804b1c4f3e996cb6dfa0b44b3ee81343206d87a7fc644455512c961c50ffed6bb8b755d"
         }
       ]
     },
@@ -10866,33 +10866,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-hast-util-parse-selector-4.0.0-436",
-      "name": "hast-util-parse-selector",
-      "versionInfo": "4.0.0",
-      "downloadLocation": "https://registry.npmjs.org/hast-util-parse-selector/-/hast-util-parse-selector-4.0.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/hast-util-parse-selector@4.0.0"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "hast utility to create an element from a simple CSS selector",
-      "homepage": "https://github.com/syntax-tree/hast-util-parse-selector#readme",
-      "supplier": "Person: Titus Wormer",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "c2440291262838609128444559cc4c54c39c604d8ad4068d2d4f035d2f5aaf19cb3941166ce5ca5e2254373129a99dc938aa6785ade3905aee9848d59620deec"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--ungap-structured-clone-1.3.3-437",
+      "SPDXID": "SPDXRef-Package--ungap-structured-clone-1.3.3-436",
       "name": "@ungap/structured-clone",
       "versionInfo": "1.3.3",
       "downloadLocation": "https://registry.npmjs.org/@ungap/structured-clone/-/structured-clone-1.3.3.tgz",
@@ -10914,6 +10888,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "eb461169e9c241c56360428e706f36e3e0d1186210dd5284adc0680040c9673e5b288b36646f97fc7f4d93e43a115930264e50340a716eb73942d052c2dad702"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-hast-util-parse-selector-4.0.0-437",
+      "name": "hast-util-parse-selector",
+      "versionInfo": "4.0.0",
+      "downloadLocation": "https://registry.npmjs.org/hast-util-parse-selector/-/hast-util-parse-selector-4.0.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/hast-util-parse-selector@4.0.0"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "hast utility to create an element from a simple CSS selector",
+      "homepage": "https://github.com/syntax-tree/hast-util-parse-selector#readme",
+      "supplier": "Person: Titus Wormer",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "c2440291262838609128444559cc4c54c39c604d8ad4068d2d4f035d2f5aaf19cb3941166ce5ca5e2254373129a99dc938aa6785ade3905aee9848d59620deec"
         }
       ]
     },
@@ -11282,32 +11282,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-postcss-selector-parser-6.1.4-452",
-      "name": "postcss-selector-parser",
-      "versionInfo": "6.1.4",
-      "downloadLocation": "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.4.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/postcss-selector-parser@6.1.4"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Selector parser with built in methods for working with selector strings.",
-      "homepage": "https://github.com/postcss/postcss-selector-parser",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "6c8a092ce9a308ed52f57758fc3727479849c6fac38abd4f6c60a1af35c6defc34fc53a58b2fdf037766761438e3591a87880abfe4f07241b37b1eb0352e5c9d"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-escalade-3.2.0-453",
+      "SPDXID": "SPDXRef-Package-escalade-3.2.0-452",
       "name": "escalade",
       "versionInfo": "3.2.0",
       "downloadLocation": "https://registry.npmjs.org/escalade/-/escalade-3.2.0.tgz",
@@ -11329,6 +11304,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "5948f6aa5c5a42d3b883a3eae5cdbd193716183c9df22b4bf334e58a98040b3dc97ac02288e2a8b5df0953aa2d0773c00a01bac64254c9585ba0c4be6e37bf8c"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-postcss-selector-parser-6.1.4-453",
+      "name": "postcss-selector-parser",
+      "versionInfo": "6.1.4",
+      "downloadLocation": "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.4.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/postcss-selector-parser@6.1.4"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Selector parser with built in methods for working with selector strings.",
+      "homepage": "https://github.com/postcss/postcss-selector-parser",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "6c8a092ce9a308ed52f57758fc3727479849c6fac38abd4f6c60a1af35c6defc34fc53a58b2fdf037766761438e3591a87880abfe4f07241b37b1eb0352e5c9d"
         }
       ]
     },
@@ -11522,7 +11522,7 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11532,7 +11532,7 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-react-3.23.0-2",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-react-3.24.0-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11542,22 +11542,22 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-4",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.24.0-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.23.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.24.0-2",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.23.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-4",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.24.0-2",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.24.0-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--synergy-design-system-styles-2.2.1-3",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-4",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.24.0-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11572,12 +11572,12 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-astro-expressive-code-0.44.1-8",
+      "relatedSpdxElement": "SPDXRef-Package-astro-expressive-code-0.44.1-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-react-19.2.8-7",
+      "relatedSpdxElement": "SPDXRef-Package-react-19.2.8-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11586,28 +11586,28 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-10",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-12",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-14",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
+      "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-13",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.23.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--lit-react-1.0.8-13",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-react-3.24.0-2",
+      "relatedSpdxElement": "SPDXRef-Package--lit-react-1.0.8-14",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11632,12 +11632,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package--astrojs-react-6.0.2-5",
-      "relatedSpdxElement": "SPDXRef-Package-devalue-5.9.0-20",
+      "relatedSpdxElement": "SPDXRef-Package-devalue-5.9.0-19",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--astrojs-react-6.0.2-5",
-      "relatedSpdxElement": "SPDXRef-Package-ultrahtml-1.7.0-19",
+      "relatedSpdxElement": "SPDXRef-Package-ultrahtml-1.7.0-20",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11667,17 +11667,17 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.1.6-6",
-      "relatedSpdxElement": "SPDXRef-Package--clack-prompts-1.7.0-26",
+      "relatedSpdxElement": "SPDXRef-Package--clack-prompts-1.7.0-27",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.1.6-6",
-      "relatedSpdxElement": "SPDXRef-Package--oslojs-encoding-1.1.0-28",
+      "relatedSpdxElement": "SPDXRef-Package--oslojs-encoding-1.1.0-26",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.1.6-6",
-      "relatedSpdxElement": "SPDXRef-Package--rollup-pluginutils-5.4.0-27",
+      "relatedSpdxElement": "SPDXRef-Package--rollup-pluginutils-5.4.0-28",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11692,12 +11692,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.1.6-6",
-      "relatedSpdxElement": "SPDXRef-Package-axobject-query-4.1.0-32",
+      "relatedSpdxElement": "SPDXRef-Package-axobject-query-4.1.0-31",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-astro-7.1.6-6",
-      "relatedSpdxElement": "SPDXRef-Package-ci-info-4.4.0-31",
+      "relatedSpdxElement": "SPDXRef-Package-ci-info-4.4.0-32",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -11896,12 +11896,12 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-astro-expressive-code-0.44.1-8",
+      "spdxElementId": "SPDXRef-Package-astro-expressive-code-0.44.1-7",
       "relatedSpdxElement": "SPDXRef-Package-rehype-expressive-code-0.44.1-72",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-astro-expressive-code-0.44.1-8",
+      "spdxElementId": "SPDXRef-Package-astro-expressive-code-0.44.1-7",
       "relatedSpdxElement": "SPDXRef-Package-url-extras-0.1.0-73",
       "relationshipType": "DEPENDS_ON"
     },
@@ -11931,17 +11931,17 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-14",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-13",
       "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-79",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-14",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-13",
       "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-80",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-14",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-13",
       "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-81",
       "relationshipType": "DEPENDS_ON"
     },
@@ -12002,12 +12002,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-vite-8.2.0-21",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-1.33.0-95",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-1.33.0-93",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-vite-8.2.0-21",
-      "relatedSpdxElement": "SPDXRef-Package-postcss-8.5.25-93",
+      "relatedSpdxElement": "SPDXRef-Package-postcss-8.5.25-95",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12072,46 +12072,46 @@
     },
     {
       "spdxElementId": "SPDXRef-Package--astrojs-telemetry-3.3.3-24",
-      "relatedSpdxElement": "SPDXRef-Package-is-docker-4.0.0-107",
+      "relatedSpdxElement": "SPDXRef-Package-is-docker-4.0.0-108",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--capsizecss-unpack-4.0.1-25",
-      "relatedSpdxElement": "SPDXRef-Package-fontkitten-1.0.3-108",
+      "relatedSpdxElement": "SPDXRef-Package-fontkitten-1.0.3-107",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--clack-prompts-1.7.0-26",
+      "spdxElementId": "SPDXRef-Package--clack-prompts-1.7.0-27",
       "relatedSpdxElement": "SPDXRef-Package--clack-core-1.4.3-109",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--clack-prompts-1.7.0-26",
+      "spdxElementId": "SPDXRef-Package--clack-prompts-1.7.0-27",
       "relatedSpdxElement": "SPDXRef-Package-fast-string-width-3.0.2-110",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--clack-prompts-1.7.0-26",
+      "spdxElementId": "SPDXRef-Package--clack-prompts-1.7.0-27",
       "relatedSpdxElement": "SPDXRef-Package-fast-wrap-ansi-0.2.2-111",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--clack-prompts-1.7.0-26",
+      "spdxElementId": "SPDXRef-Package--clack-prompts-1.7.0-27",
       "relatedSpdxElement": "SPDXRef-Package-sisteransi-1.0.5-112",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--rollup-pluginutils-5.4.0-27",
+      "spdxElementId": "SPDXRef-Package--rollup-pluginutils-5.4.0-28",
       "relatedSpdxElement": "SPDXRef-Package--types-estree-1.0.9-113",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--rollup-pluginutils-5.4.0-27",
+      "spdxElementId": "SPDXRef-Package--rollup-pluginutils-5.4.0-28",
       "relatedSpdxElement": "SPDXRef-Package-estree-walker-2.0.2-130",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--rollup-pluginutils-5.4.0-27",
+      "spdxElementId": "SPDXRef-Package--rollup-pluginutils-5.4.0-28",
       "relatedSpdxElement": "SPDXRef-Package-rollup-4.62.4-140",
       "relationshipType": "DEPENDS_ON"
     },
@@ -12262,22 +12262,22 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-magic-string-1.0.0-48",
-      "relatedSpdxElement": "SPDXRef-Package--jridgewell-sourcemap-codec-1.5.5-146",
+      "relatedSpdxElement": "SPDXRef-Package--jridgewell-sourcemap-codec-1.5.5-145",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-magicast-0.5.4-49",
-      "relatedSpdxElement": "SPDXRef-Package--babel-parser-7.29.8-145",
+      "relatedSpdxElement": "SPDXRef-Package--babel-parser-7.29.8-146",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-magicast-0.5.4-49",
-      "relatedSpdxElement": "SPDXRef-Package--babel-types-7.29.8-148",
+      "relatedSpdxElement": "SPDXRef-Package--babel-types-7.29.8-147",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-magicast-0.5.4-49",
-      "relatedSpdxElement": "SPDXRef-Package-source-map-js-1.2.1-147",
+      "relatedSpdxElement": "SPDXRef-Package-source-map-js-1.2.1-148",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12397,12 +12397,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-unstorage-1.17.5-66",
-      "relatedSpdxElement": "SPDXRef-Package-h3-1.15.11-173",
+      "relatedSpdxElement": "SPDXRef-Package-h3-1.15.11-172",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-unstorage-1.17.5-66",
-      "relatedSpdxElement": "SPDXRef-Package-lru-cache-11.5.2-172",
+      "relatedSpdxElement": "SPDXRef-Package-lru-cache-11.5.2-173",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12577,12 +12577,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-retext-smartypants-6.2.0-84",
-      "relatedSpdxElement": "SPDXRef-Package-nlcst-to-string-4.0.0-209",
+      "relatedSpdxElement": "SPDXRef-Package-nlcst-to-string-4.0.0-208",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-retext-smartypants-6.2.0-84",
-      "relatedSpdxElement": "SPDXRef-Package-unist-util-visit-5.1.0-208",
+      "relatedSpdxElement": "SPDXRef-Package-unist-util-visit-5.1.0-209",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12687,12 +12687,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package--types-babel--core-7.20.5-91",
-      "relatedSpdxElement": "SPDXRef-Package--types-babel--generator-7.27.0-230",
+      "relatedSpdxElement": "SPDXRef-Package--types-babel--generator-7.27.0-237",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--types-babel--core-7.20.5-91",
-      "relatedSpdxElement": "SPDXRef-Package--types-babel--template-7.4.4-238",
+      "relatedSpdxElement": "SPDXRef-Package--types-babel--template-7.4.4-241",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12701,63 +12701,63 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-postcss-8.5.25-93",
-      "relatedSpdxElement": "SPDXRef-Package-nanoid-3.3.16-243",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-android-arm64-1.33.0-230",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-android-arm64-1.33.0-231",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-darwin-arm64-1.33.0-231",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-darwin-arm64-1.33.0-232",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-darwin-x64-1.33.0-232",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-darwin-x64-1.33.0-233",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-freebsd-x64-1.33.0-233",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-freebsd-x64-1.33.0-234",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-linux-arm-gnueabihf-1.33.0-234",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-linux-arm-gnueabihf-1.33.0-235",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-linux-arm64-gnu-1.33.0-235",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-linux-arm64-gnu-1.33.0-236",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-linux-arm64-musl-1.33.0-236",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-linux-arm64-musl-1.33.0-237",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-linux-x64-gnu-1.33.0-243",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-linux-x64-gnu-1.33.0-253",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-linux-x64-musl-1.33.0-238",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-linux-x64-musl-1.33.0-239",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-win32-arm64-msvc-1.33.0-239",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-win32-arm64-msvc-1.33.0-240",
+      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-93",
+      "relatedSpdxElement": "SPDXRef-Package-lightningcss-win32-x64-msvc-1.33.0-240",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lightningcss-1.33.0-95",
-      "relatedSpdxElement": "SPDXRef-Package-lightningcss-win32-x64-msvc-1.33.0-241",
+      "spdxElementId": "SPDXRef-Package-postcss-8.5.25-95",
+      "relatedSpdxElement": "SPDXRef-Package-nanoid-3.3.16-253",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -12847,12 +12847,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package--types-node-26.0.0-97",
-      "relatedSpdxElement": "SPDXRef-Package-undici-types-8.3.0-263",
+      "relatedSpdxElement": "SPDXRef-Package-undici-types-8.3.0-262",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-less-4.8.1-99",
-      "relatedSpdxElement": "SPDXRef-Package-copy-anything-3.0.5-262",
+      "relatedSpdxElement": "SPDXRef-Package-copy-anything-3.0.5-263",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13041,7 +13041,7 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-fontkitten-1.0.3-108",
+      "spdxElementId": "SPDXRef-Package-fontkitten-1.0.3-107",
       "relatedSpdxElement": "SPDXRef-Package-tiny-inflate-1.0.3-318",
       "relationshipType": "DEPENDS_ON"
     },
@@ -13181,12 +13181,12 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--babel-types-7.29.8-148",
+      "spdxElementId": "SPDXRef-Package--babel-types-7.29.8-147",
       "relatedSpdxElement": "SPDXRef-Package--babel-helper-string-parser-7.29.7-329",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--babel-types-7.29.8-148",
+      "spdxElementId": "SPDXRef-Package--babel-types-7.29.8-147",
       "relatedSpdxElement": "SPDXRef-Package--babel-helper-validator-identifier-7.29.7-330",
       "relationshipType": "DEPENDS_ON"
     },
@@ -13251,37 +13251,37 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-h3-1.15.11-173",
+      "spdxElementId": "SPDXRef-Package-h3-1.15.11-172",
       "relatedSpdxElement": "SPDXRef-Package-cookie-es-1.2.3-343",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-h3-1.15.11-173",
+      "spdxElementId": "SPDXRef-Package-h3-1.15.11-172",
       "relatedSpdxElement": "SPDXRef-Package-crossws-0.3.5-344",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-h3-1.15.11-173",
+      "spdxElementId": "SPDXRef-Package-h3-1.15.11-172",
       "relatedSpdxElement": "SPDXRef-Package-defu-6.1.7-345",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-h3-1.15.11-173",
+      "spdxElementId": "SPDXRef-Package-h3-1.15.11-172",
       "relatedSpdxElement": "SPDXRef-Package-iron-webcrypto-1.2.1-346",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-h3-1.15.11-173",
+      "spdxElementId": "SPDXRef-Package-h3-1.15.11-172",
       "relatedSpdxElement": "SPDXRef-Package-node-mock-http-1.0.5-348",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-h3-1.15.11-173",
+      "spdxElementId": "SPDXRef-Package-h3-1.15.11-172",
       "relatedSpdxElement": "SPDXRef-Package-radix3-1.1.2-349",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-h3-1.15.11-173",
+      "spdxElementId": "SPDXRef-Package-h3-1.15.11-172",
       "relatedSpdxElement": "SPDXRef-Package-uncrypto-0.1.3-350",
       "relationshipType": "DEPENDS_ON"
     },
@@ -13311,12 +13311,12 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unist-util-visit-5.1.0-208",
+      "spdxElementId": "SPDXRef-Package-unist-util-visit-5.1.0-209",
       "relatedSpdxElement": "SPDXRef-Package-unist-util-is-6.0.1-355",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-unist-util-visit-5.1.0-208",
+      "spdxElementId": "SPDXRef-Package-unist-util-visit-5.1.0-209",
       "relatedSpdxElement": "SPDXRef-Package-unist-util-visit-parents-6.0.2-356",
       "relationshipType": "DEPENDS_ON"
     },
@@ -13396,7 +13396,7 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-copy-anything-3.0.5-262",
+      "spdxElementId": "SPDXRef-Package-copy-anything-3.0.5-263",
       "relatedSpdxElement": "SPDXRef-Package-is-what-4.1.16-372",
       "relationshipType": "DEPENDS_ON"
     },
@@ -13507,12 +13507,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-hast-util-from-parse5-8.0.3-288",
-      "relatedSpdxElement": "SPDXRef-Package-property-information-7.2.0-397",
+      "relatedSpdxElement": "SPDXRef-Package-property-information-7.2.0-394",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-hast-util-from-parse5-8.0.3-288",
-      "relatedSpdxElement": "SPDXRef-Package-vfile-location-5.0.3-394",
+      "relatedSpdxElement": "SPDXRef-Package-vfile-location-5.0.3-397",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13557,22 +13557,22 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-hast-util-to-html-9.0.5-332",
-      "relatedSpdxElement": "SPDXRef-Package-hast-util-whitespace-3.0.0-404",
+      "relatedSpdxElement": "SPDXRef-Package-hast-util-whitespace-3.0.0-403",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-hast-util-to-html-9.0.5-332",
-      "relatedSpdxElement": "SPDXRef-Package-html-void-elements-3.0.0-403",
+      "relatedSpdxElement": "SPDXRef-Package-html-void-elements-3.0.0-404",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-hast-util-to-html-9.0.5-332",
-      "relatedSpdxElement": "SPDXRef-Package-mdast-util-to-hast-13.2.1-405",
+      "relatedSpdxElement": "SPDXRef-Package-mdast-util-to-hast-13.2.1-406",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-hast-util-to-html-9.0.5-332",
-      "relatedSpdxElement": "SPDXRef-Package-space-separated-tokens-2.0.2-406",
+      "relatedSpdxElement": "SPDXRef-Package-space-separated-tokens-2.0.2-405",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13672,12 +13672,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-lru-cache-5.1.1-365",
-      "relatedSpdxElement": "SPDXRef-Package-yallist-3.1.1-427",
+      "relatedSpdxElement": "SPDXRef-Package-yallist-3.1.1-428",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package--emnapi-core-2.0.0-alpha.3-369",
-      "relatedSpdxElement": "SPDXRef-Package--emnapi-wasi-threads-2.0.1-428",
+      "relatedSpdxElement": "SPDXRef-Package--emnapi-wasi-threads-2.0.1-427",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13697,12 +13697,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-needle-2.9.1-376",
-      "relatedSpdxElement": "SPDXRef-Package-debug-3.2.7-431",
+      "relatedSpdxElement": "SPDXRef-Package-debug-3.2.7-432",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-needle-2.9.1-376",
-      "relatedSpdxElement": "SPDXRef-Package-iconv-lite-0.4.24-432",
+      "relatedSpdxElement": "SPDXRef-Package-iconv-lite-0.4.24-431",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13717,7 +13717,7 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-hastscript-9.0.1-393",
-      "relatedSpdxElement": "SPDXRef-Package-hast-util-parse-selector-4.0.0-436",
+      "relatedSpdxElement": "SPDXRef-Package-hast-util-parse-selector-4.0.0-437",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13726,22 +13726,22 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-mdast-util-to-hast-13.2.1-405",
-      "relatedSpdxElement": "SPDXRef-Package--ungap-structured-clone-1.3.3-437",
+      "spdxElementId": "SPDXRef-Package-mdast-util-to-hast-13.2.1-406",
+      "relatedSpdxElement": "SPDXRef-Package--ungap-structured-clone-1.3.3-436",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-mdast-util-to-hast-13.2.1-405",
+      "spdxElementId": "SPDXRef-Package-mdast-util-to-hast-13.2.1-406",
       "relatedSpdxElement": "SPDXRef-Package-micromark-util-sanitize-uri-2.0.1-438",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-mdast-util-to-hast-13.2.1-405",
+      "spdxElementId": "SPDXRef-Package-mdast-util-to-hast-13.2.1-406",
       "relatedSpdxElement": "SPDXRef-Package-trim-lines-3.0.1-439",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-mdast-util-to-hast-13.2.1-405",
+      "spdxElementId": "SPDXRef-Package-mdast-util-to-hast-13.2.1-406",
       "relatedSpdxElement": "SPDXRef-Package-unist-util-position-5.0.0-440",
       "relationshipType": "DEPENDS_ON"
     },
@@ -13802,12 +13802,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-postcss-nested-6.2.0-419",
-      "relatedSpdxElement": "SPDXRef-Package-postcss-selector-parser-6.1.4-452",
+      "relatedSpdxElement": "SPDXRef-Package-postcss-selector-parser-6.1.4-453",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-update-browserslist-db-1.2.3-425",
-      "relatedSpdxElement": "SPDXRef-Package-escalade-3.2.0-453",
+      "relatedSpdxElement": "SPDXRef-Package-escalade-3.2.0-452",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -13831,12 +13831,12 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-postcss-selector-parser-6.1.4-452",
+      "spdxElementId": "SPDXRef-Package-postcss-selector-parser-6.1.4-453",
       "relatedSpdxElement": "SPDXRef-Package-cssesc-3.0.0-458",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-postcss-selector-parser-6.1.4-452",
+      "spdxElementId": "SPDXRef-Package-postcss-selector-parser-6.1.4-453",
       "relatedSpdxElement": "SPDXRef-Package-util-deprecate-1.0.2-459",
       "relationshipType": "DEPENDS_ON"
     },

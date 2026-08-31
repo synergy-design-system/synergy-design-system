@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.24.0
+
+### Minor Changes
+
+- [#1359](https://github.com/synergy-design-system/synergy-design-system/pull/1359) [`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-31
+
+  feat: ✨ Add new chart token `--syn-chart-track-color` ([#1352](https://github.com/synergy-design-system/synergy-design-system/issues/1352))
+
 ## 3.23.0
 
 ### Minor Changes

@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/vue",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.23.0-5ebdb1c0-0277-44c2-8b81-ed621d5763f3",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.24.0-7e101f9e-5870-4fcc-8d8d-a621fc84053c",
   "creationInfo": {
-    "created": "2026-08-26T10:44:57.350Z",
+    "created": "2026-08-31T09:30:36.551Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/vue",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/vue@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/vue@3.24.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.24.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -51,16 +51,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.24.0-1",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.24.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -225,32 +225,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-zrender-6.1.0-8",
-      "name": "zrender",
-      "versionInfo": "6.1.0",
-      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/zrender@6.1.0"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
-      "homepage": "https://github.com/ecomfe/zrender#readme",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-tslib-2.3.0-9",
+      "SPDXID": "SPDXRef-Package-tslib-2.3.0-8",
       "name": "tslib",
       "versionInfo": "2.3.0",
       "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
@@ -272,6 +247,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-zrender-6.1.0-9",
+      "name": "zrender",
+      "versionInfo": "6.1.0",
+      "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/zrender@6.1.0"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "A lightweight graphic library providing 2d draw for Apache ECharts",
+      "homepage": "https://github.com/ecomfe/zrender#readme",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
         }
       ]
     },
@@ -302,33 +302,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-11",
-      "name": "lit-html",
-      "versionInfo": "3.3.3",
-      "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit-html@3.3.3"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "HTML templates literals in JavaScript",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "7a5f0cea32b6a37457067ad21d7dd92abb0df33115eb7a521314ced70609cfb427746619f37e777b66b93cf5fea877b66866b27e7721426900a2369601110e20"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-12",
+      "SPDXID": "SPDXRef-Package-lit-element-4.2.2-11",
       "name": "lit-element",
       "versionInfo": "4.2.2",
       "downloadLocation": "https://registry.npmjs.org/lit-element/-/lit-element-4.2.2.tgz",
@@ -350,6 +324,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "6852a1353a16c68ca190d0e6599c04bdad9295089afa37c6d1f8c8595fff61e4da5ab5673b10fcf5d3ca7e280252ca571668f3384510a4e91e8c7e4bcbab06d3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-12",
+      "name": "lit-html",
+      "versionInfo": "3.3.3",
+      "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lit-html@3.3.3"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "HTML templates literals in JavaScript",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "7a5f0cea32b6a37457067ad21d7dd92abb0df33115eb7a521314ced70609cfb427746619f37e777b66b93cf5fea877b66866b27e7721426900a2369601110e20"
         }
       ]
     },
@@ -413,31 +413,31 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.24.0-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-5",
       "relationshipType": "DEPENDS_ON"
     },
@@ -453,12 +453,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-9",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
-      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-8",
+      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -468,12 +468,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
-      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-12",
+      "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
-      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-11",
+      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-12",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -482,7 +482,7 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-11",
+      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-12",
       "relatedSpdxElement": "SPDXRef-Package--types-trusted-types-2.0.7-14",
       "relationshipType": "DEPENDS_ON"
     }

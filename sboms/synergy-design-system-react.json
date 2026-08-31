@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/react",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.23.0-837a701f-e251-4fdb-bee8-5d41637d700e",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.24.0-2aacc4c2-0760-48f0-8b57-3f0b697febfb",
   "creationInfo": {
-    "created": "2026-08-26T10:44:57.096Z",
+    "created": "2026-08-31T09:30:36.293Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/react",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.24.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.24.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -51,16 +51,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.24.0-1",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.24.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -70,33 +70,7 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--lit-react-1.0.8-2",
-      "name": "@lit/react",
-      "versionInfo": "1.0.8",
-      "downloadLocation": "https://registry.npmjs.org/@lit/react/-/react-1.0.8.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lit/react@1.0.8"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A React component wrapper for web components.",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a76f98705f8913aed2457de63252754ca0924ec832395740c1dfe7c69dcdb95d7e09be8c5802db37a9d3ecb778b69998a1f704e6471a498d58041f5ead8fba7f"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
+      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
       "name": "@floating-ui/dom",
       "versionInfo": "1.8.0",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.8.0.tgz",
@@ -122,32 +96,33 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-echarts-6.1.0-4",
-      "name": "echarts",
-      "versionInfo": "6.1.0",
-      "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
+      "SPDXID": "SPDXRef-Package--lit-react-1.0.8-3",
+      "name": "@lit/react",
+      "versionInfo": "1.0.8",
+      "downloadLocation": "https://registry.npmjs.org/@lit/react/-/react-1.0.8.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/echarts@6.1.0"
+          "referenceLocator": "pkg:npm/%40lit/react@1.0.8"
         }
       ],
-      "licenseConcluded": "Apache-2.0",
-      "licenseDeclared": "Apache-2.0",
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
       "copyrightText": "NOASSERTION",
-      "description": "Apache ECharts is a powerful, interactive charting and data visualization library for browser",
-      "homepage": "https://echarts.apache.org",
+      "description": "A React component wrapper for web components.",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "ab4c9a14f8200bd15476c587e1b95abd15859b176b22875b92828d02326e74023a080f6034fc47b55d917193447a9655964e32bc16243a46e4e87215a48c8764"
+          "checksumValue": "a76f98705f8913aed2457de63252754ca0924ec832395740c1dfe7c69dcdb95d7e09be8c5802db37a9d3ecb778b69998a1f704e6471a498d58041f5ead8fba7f"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-5",
+      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-4",
       "name": "composed-offset-position",
       "versionInfo": "0.0.6",
       "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
@@ -169,6 +144,31 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-echarts-6.1.0-5",
+      "name": "echarts",
+      "versionInfo": "6.1.0",
+      "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/echarts@6.1.0"
+        }
+      ],
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "description": "Apache ECharts is a powerful, interactive charting and data visualization library for browser",
+      "homepage": "https://echarts.apache.org",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "ab4c9a14f8200bd15476c587e1b95abd15859b176b22875b92828d02326e74023a080f6034fc47b55d917193447a9655964e32bc16243a46e4e87215a48c8764"
         }
       ]
     },
@@ -199,27 +199,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--types-react-19.2.18-7",
-      "name": "@types/react",
-      "versionInfo": "19.2.18",
-      "downloadLocation": "https://registry.npmjs.org/@types/react/-/react-19.2.18.tgz",
+      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-7",
+      "name": "@floating-ui/core",
+      "versionInfo": "1.8.0",
+      "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.8.0.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/react@19.2.18"
+          "referenceLocator": "pkg:npm/%40floating-ui/core@1.8.0"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "TypeScript definitions for react",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react",
+      "description": "Positioning library for floating elements: tooltips, popovers, dropdowns, and more",
+      "homepage": "https://floating-ui.com",
+      "supplier": "Person: atomiks",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "027cdb04446cacb2ad9365d27d36d844b8d03ddcb5d7a4adcb8abe4fe069dc80b897a8cd06fade54f0079a9abdaa15d033b09764f8cb56618cc3db32fa1c50df"
+          "checksumValue": "d02219e62b69b3ff31ec11bc744221b39dc1bc2507d8f0a8a20b5a930453badf80ae6e7cb09a2827402e6612f0d87258211e5c30b34f0524bbdbcb0f868da485"
         }
       ]
     },
@@ -250,28 +251,27 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-9",
-      "name": "@floating-ui/core",
-      "versionInfo": "1.8.0",
-      "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.8.0.tgz",
+      "SPDXID": "SPDXRef-Package--types-react-19.2.18-9",
+      "name": "@types/react",
+      "versionInfo": "19.2.18",
+      "downloadLocation": "https://registry.npmjs.org/@types/react/-/react-19.2.18.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40floating-ui/core@1.8.0"
+          "referenceLocator": "pkg:npm/%40types/react@19.2.18"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Positioning library for floating elements: tooltips, popovers, dropdowns, and more",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
+      "description": "TypeScript definitions for react",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "d02219e62b69b3ff31ec11bc744221b39dc1bc2507d8f0a8a20b5a930453badf80ae6e7cb09a2827402e6612f0d87258211e5c30b34f0524bbdbcb0f868da485"
+          "checksumValue": "027cdb04446cacb2ad9365d27d36d844b8d03ddcb5d7a4adcb8abe4fe069dc80b897a8cd06fade54f0079a9abdaa15d033b09764f8cb56618cc3db32fa1c50df"
         }
       ]
     },
@@ -490,61 +490,61 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.24.0-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--lit-react-1.0.8-2",
+      "relatedSpdxElement": "SPDXRef-Package--lit-react-1.0.8-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-5",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
+      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-4",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
+      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-5",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
       "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--lit-react-1.0.8-2",
-      "relatedSpdxElement": "SPDXRef-Package--types-react-19.2.18-7",
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-9",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
+      "spdxElementId": "SPDXRef-Package--lit-react-1.0.8-3",
+      "relatedSpdxElement": "SPDXRef-Package--types-react-19.2.18-9",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-5",
       "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-10",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-5",
       "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-11",
       "relationshipType": "DEPENDS_ON"
     },
@@ -564,7 +564,7 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--types-react-19.2.18-7",
+      "spdxElementId": "SPDXRef-Package--types-react-19.2.18-9",
       "relatedSpdxElement": "SPDXRef-Package-csstype-3.2.3-15",
       "relationshipType": "DEPENDS_ON"
     },

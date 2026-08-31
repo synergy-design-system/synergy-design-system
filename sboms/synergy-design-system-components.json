@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/components",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.23.0-0ce0b411-3d84-44b0-bbe4-8eaf0934774a",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-components-3.24.0-0c02b14f-cfde-4bc0-a43f-ab7e81965243",
   "creationInfo": {
-    "created": "2026-08-26T10:44:56.966Z",
+    "created": "2026-08-31T09:30:36.172Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.24.0"
         }
       ],
       "licenseConcluded": "MIT",
@@ -58,7 +58,32 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-1",
+      "SPDXID": "SPDXRef-Package-echarts-6.1.0-1",
+      "name": "echarts",
+      "versionInfo": "6.1.0",
+      "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/echarts@6.1.0"
+        }
+      ],
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "description": "Apache ECharts is a powerful, interactive charting and data visualization library for browser",
+      "homepage": "https://echarts.apache.org",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "ab4c9a14f8200bd15476c587e1b95abd15859b176b22875b92828d02326e74023a080f6034fc47b55d917193447a9655964e32bc16243a46e4e87215a48c8764"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-2",
       "name": "composed-offset-position",
       "versionInfo": "0.0.6",
       "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
@@ -80,31 +105,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-echarts-6.1.0-2",
-      "name": "echarts",
-      "versionInfo": "6.1.0",
-      "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/echarts@6.1.0"
-        }
-      ],
-      "licenseConcluded": "Apache-2.0",
-      "licenseDeclared": "Apache-2.0",
-      "copyrightText": "NOASSERTION",
-      "description": "Apache ECharts is a powerful, interactive charting and data visualization library for browser",
-      "homepage": "https://echarts.apache.org",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "ab4c9a14f8200bd15476c587e1b95abd15859b176b22875b92828d02326e74023a080f6034fc47b55d917193447a9655964e32bc16243a46e4e87215a48c8764"
         }
       ]
     },
@@ -380,12 +380,12 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-1",
+      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-2",
+      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -404,12 +404,12 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-2",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-1",
       "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-2",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-1",
       "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-7",
       "relationshipType": "DEPENDS_ON"
     },

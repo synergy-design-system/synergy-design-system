@@ -72,7 +72,6 @@ const createText = ({
   x,
   y,
   fontSize,
-  fontFamily = style('SynFontSans'),
   fontWeight = styleWithoutUnit('SynFontWeightNormal'),
   align = 'center',
   verticalAlign = 'middle',
@@ -83,7 +82,7 @@ const createText = ({
     style: {
       align,
       fill: style('SynTypographyColorText'),
-      fontFamily,
+      fontFamily: style('SynFontSans'),
       fontSize,
       fontWeight: fontWeight as number,
       text,
@@ -290,8 +289,6 @@ const createTrendElement = ({
 
   group.add(createText({
     align: iconSource ? 'left' : 'center',
-    // This is a work around as our SICK Intl font is visually  not aligned with the icon, as it's font baseline is not centered.
-    fontFamily: 'sans-serif',
     fontSize,
     fontWeight: styleWithoutUnit('SynFontWeightSemibold'),
     text: trendValue,

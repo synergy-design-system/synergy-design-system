@@ -28,8 +28,8 @@ import type { GaugeSeriesPresetOptions, SynergyGaugeSeriesOption } from './types
  * @param {boolean} [options.trend.show] Shows the trend indicator when enabled.
  * @param {'up' | 'down'} [options.trend.direction] Direction of the trend indicator.
  * Defaults to `up`.
- * @param {string} [options.trend.iconUp] Icon data URL used for upward trends.
- * @param {string} [options.trend.iconDown] Icon data URL used for downward trends.
+ * @param {string} [options.trend.iconUp] Icon data URL used for upward trends. Falls back to the Synergy default up icon when not set.
+ * @param {string} [options.trend.iconDown] Icon data URL used for downward trends. Falls back to the Synergy default down icon when not set.
  * @param {string} [options.trend.value] Trend label text shown in the indicator pill.
  */
 export const seriesGauge = (options: GaugeSeriesPresetOptions): ConfigModifier => (config) => {

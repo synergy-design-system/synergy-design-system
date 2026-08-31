@@ -32,9 +32,9 @@ export type GaugeTrendOptions = {
   show?: boolean;
   /** Trend direction that controls indicator styling and semantics. */
   direction?: 'up' | 'down';
-  /** Data URL used as icon source when the trend direction is `up`. */
+  /** Data URL used as icon source when the trend direction is `up`. Falls back to the Synergy default up icon when not set. */
   iconUp?: string;
-  /** Data URL used as icon source when the trend direction is `down`. */
+  /** Data URL used as icon source when the trend direction is `down`. Falls back to the Synergy default down icon when not set. */
   iconDown?: string;
   /** Text displayed next to the trend indicator icon. */
   value?: string;
@@ -92,7 +92,6 @@ export type TextInput = {
   text: string;
   x: number;
   y: number;
-  fontFamily?: string;
   fontSize: number;
   fontWeight?: number | string;
   align?: 'left' | 'center' | 'right';

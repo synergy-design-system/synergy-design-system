@@ -6,15 +6,19 @@ import type { SynergyDonutSeriesModel } from './donut-series-model.js';
 import type {
   DonutDataItem,
   DonutDataValue,
-  Point,
   ResolvedDonutSeriesConfig,
-  Sector,
   SegmentRange,
   SynergyDonutSeriesOption,
 } from './types.js';
 import { DONUT_SERIES } from '../constants.js';
 import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
-import { colorSvgDataUrl } from '../utilities.js';
+import {
+  colorSvgDataUrl,
+  createImageGraphic,
+  createSectorGraphic,
+  createTextGraphic,
+  polarPoint,
+} from '../utilities.js';
 
 const FULL_CIRCLE = Math.PI * 2;
 const RADIAN = Math.PI / 180;
@@ -24,78 +28,6 @@ const RADIAN = Math.PI / 180;
  */
 const getDefaultDonutConfig = (): ResolvedDonutSeriesConfig => ({
   backgroundColor: style('SynProgressTrackColor'),
-});
-
-/**
- * Converts a polar coordinate into Cartesian space for placement calculations.
- */
-const polarPoint = (centerX: number, centerY: number, radius: number, angle: number): Point => ({
-  x: centerX + (Math.cos(angle) * radius),
-  y: centerY + (Math.sin(angle) * radius),
-});
-
-/**
- * Creates a single ring sector for the donut chart.
- */
-const createSector = ({
-  centerX, centerY, innerRadius, outerRadius, startAngle, endAngle, color, z,
-}: Sector): graphic.Sector => new graphic.Sector({
-  shape: {
-    clockwise: true,
-    cx: centerX,
-    cy: centerY,
-    endAngle,
-    r: outerRadius,
-    r0: innerRadius,
-    startAngle,
-  },
-  silent: true,
-  style: {
-    fill: color,
-  },
-  z,
-});
-
-/**
- * Creates an image element for an icon placed within the donut graphic layer.
- */
-const createImage = ({
-  image, x, y, width, height, z,
-}: {
-  image: string; x: number; y: number; width: number; height: number; z: number;
-}): graphic.Image => new graphic.Image({
-  silent: true,
-  style: {
-    height,
-    image,
-    width,
-    x,
-    y,
-  },
-  z,
-});
-
-/**
- * Creates a text element used for donut segment labels.
- */
-const createText = ({
-  text, x, y, fontSize, align, z,
-}: {
-  text: string; x: number; y: number; fontSize: number; align: 'left' | 'right'; z: number;
-}): graphic.Text => new graphic.Text({
-  silent: true,
-  style: {
-    align,
-    fill: style('SynTypographyColorText'),
-    fontFamily: style('SynFontSans'),
-    fontSize,
-    fontWeight: styleWithoutUnit('SynFontWeightNormal'),
-    text,
-    verticalAlign: 'middle',
-    x,
-    y,
-  },
-  z,
 });
 
 /**
@@ -145,7 +77,7 @@ const createSegmentSectors = ({
     // Keep gaps from collapsing very small slices into a negative sweep.
     const halfGap = Math.min(gap / 2, sweep / 2);
 
-    sectors.push(createSector({
+    sectors.push(createSectorGraphic({
       centerX,
       centerY,
       color: colors[index],
@@ -211,7 +143,7 @@ const createSegmentLabel = ({
 
   if (item.icon) {
     const coloredIcon = colorSvgDataUrl(item.icon, style('SynTypographyColorText'));
-    group.add(createImage({
+    group.add(createImageGraphic({
       height: iconSize,
       image: coloredIcon,
       width: iconSize,
@@ -222,7 +154,7 @@ const createSegmentLabel = ({
   }
 
   if (item.name) {
-    group.add(createText({
+    group.add(createTextGraphic({
       align: 'left',
       fontSize,
       text: item.name,
@@ -348,7 +280,7 @@ const buildDonutGroup = (
   const root = new graphic.Group();
 
   // Static inner track ring.
-  root.add(createSector({
+  root.add(createSectorGraphic({
     centerX,
     centerY,
     color: mergedConfig.backgroundColor,

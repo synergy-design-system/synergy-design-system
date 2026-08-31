@@ -419,6 +419,62 @@ chart.config = handle =>
 // ]
 ```
 
+### Gauge series presets
+
+| Preset function | Options                    | Description                                                                                                                                               |
+| --------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `seriesGauge`   | `GaugeSeriesPresetOptions` | Adds a custom `synGauge` series. Renders the gauge progress arc and optional outer sections ring, plus value/min/max labels and optional trend indicator. |
+
+`GaugeSeriesPresetOptions` supports the following fields:
+
+| Option                | Type                        | Description                                                                                                                 | Default                                                                          |
+| --------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `value`               | `number` _(required)_       | Current value of the gauge.                                                                                                 |                                                                                  |
+| `min`                 | `number`                    | Minimum value of the gauge scale.                                                                                           | 0                                                                                |
+| `max`                 | `number`                    | Maximum value of the gauge scale.                                                                                           | 100                                                                              |
+| `icon`                | `string`                    | SVG data URL rendered as an image below the value.                                                                          |                                                                                  |
+| `color`               | `string`                    | Custom color of the progress arc. Overrides automatic section-based coloring when set.                                      |                                                                                  |
+| `backgroundColor`     | `string`                    | Custom background color of the progress arc track.                                                                          | --syn-chart-track-color                                                          |
+| `formatter`           | `GaugeFormatterOptions`     | Formatter functions for the displayed gauge labels.                                                                         |                                                                                  |
+| `formatter.value`     | `(value: number) => string` | Formatter applied to the displayed gauge value.                                                                             | String(value)                                                                    |
+| `formatter.min`       | `(value: number) => string` | Formatter applied to the displayed minimum label.                                                                           | String(value)                                                                    |
+| `formatter.max`       | `(value: number) => string` | Formatter applied to the displayed maximum label.                                                                           | String(value)                                                                    |
+| `sections`            | `GaugeSectionsOptions`      | Outer section boundaries and colors.                                                                                        |
+| `sections.show`       | `boolean`                   | Shows the outer section ring when enabled.                                                                                  | false                                                                            |
+| `sections.boundaries` | `number[]`                  | Boundary values for outer sections (for example `[0, 20, 60, 100]`). Adjacent pairs define ranges.                          | [0, 20, 60, 100]                                                                 |
+| `sections.colors`     | `string[]`                  | Colors for each outer section range. Repeated cyclically when fewer colors than ranges are provided.                        | [--syn-namur-success-color, --syn-namur-warning-color, --syn-namur-error-color ] |
+| `trend`               | `GaugeTrendOptions`         | Trend indicator text and icon options.                                                                                      |                                                                                  |
+| `trend.show`          | `boolean`                   | Shows the trend indicator when enabled.                                                                                     | false                                                                            |
+| `trend.direction`     | `'up' \| 'down'`            | Direction of the trend indicator.                                                                                           | 'up'                                                                             |
+| `trend.value`         | `string`                    | Trend label text shown in the indicator pill.                                                                               |                                                                                  |
+| `trend.iconUp`        | `string`                    | SVG data URL used as the icon when `trend.direction` is `'up'`. Falls back to the Synergy default up icon when not set.     | Default arrow up icon                                                            |
+| `trend.iconDown`      | `string`                    | SVG data URL used as the icon when `trend.direction` is `'down'`. Falls back to the Synergy default down icon when not set. | Default arrow down icon                                                          |
+
+Example with custom colors and formatters:
+
+```ts
+import { formatter } from "@synergy-design-system/components/components/chart/index.js";
+
+chart.config = handle =>
+  handle.seriesGauge({
+    min: 0,
+    max: 1000,
+    value: 450,
+    unit: "kWh",
+    color: "#2f9e44",
+    backgroundColor: "#e8f5e9",
+    formatter: {
+      value: formatter.unitFormatter("kWh"),
+      min: formatter.unitFormatter("kWh"),
+      max: formatter.unitFormatter("kWh"),
+    },
+  });
+```
+
+Array merge strategy:
+- `seriesGauge({...})` uses `arrayStrategy: 'append'`.
+- The generated `synGauge` series entry is appended to `series`.
+
 ### Donut series presets
 
 | Preset function | Options                    | Description                                                                                                                                                   |
@@ -463,6 +519,20 @@ chart.config = handle =>
       },
       { value: 8, name: "Other", color: "#5e97fc" },
     ],
+  handle.seriesGauge({
+    min: 10,
+    max: 120,
+    value: 72,
+    sections: {
+      boundaries: [10, 40, 70, 120],
+      colors: ["#d92f2f", "#f5a623", "#2f9e44"],
+      show: true,
+    },
+    trend: {
+      direction: "down",
+      show: true,
+      value: "6.5%",
+    },
   });
 ```
 
@@ -499,7 +569,7 @@ import {
 
 | Function                   | Signature                                                                                      | Description                                                                                                    |
 | -------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `unitFormatter`            | `(unit: string) => (value: string \| number) => string`                                        | Appends a unit with a space (for example `42` -> `42 kg`).                                                     |
+| `unitFormatter`            | `(unit: string) => (value: string \| number) => string`                                        | Appends a unit (for example `42` -> `42kg`).                                                                   |
 | `numberFormatter`          | `(locale?: string, options?: Intl.NumberFormatOptions) => (value: string \| number) => string` | Localizes numeric values via `Intl.NumberFormat`. Non-numeric values are returned unchanged.                   |
 | `numberShorthandFormatter` | `(locale?: string, options?: Intl.NumberFormatOptions) => (value: string \| number) => string` | Formats values with SI prefixes for large/small magnitudes (for example `1500000` -> `1.5M`, `0.002` -> `2m`). |
 
@@ -543,7 +613,7 @@ shorthand(0.002); // '2m'
 
 ## Bundle Size
 
-`syn-chart` uses [ECharts tree-shaking](https://echarts.apache.org/en/tutorial.html#Use%20ECharts%20with%20bundler%20and%20NPM) internally. Only the modules that are actually needed (currently `LineChart`, `CanvasRenderer`, `GridComponent`, `LegendComponent`, `TitleComponent`, `TooltipComponent`) are imported and registered via ECharts' `use([...])`.
+`syn-chart` uses [ECharts tree-shaking](https://echarts.apache.org/en/tutorial.html#Use%20ECharts%20with%20bundler%20and%20NPM) internally. Only the modules that are actually needed (currently `LineChart`, `GaugeChart`, `CanvasRenderer`, `GridComponent`, `LegendComponent`, `TitleComponent`, `TooltipComponent`, `DataZoomComponent`) are imported and registered via ECharts' `use([...])`.)
 
 > ⚠️ You do **not** need to register anything yourself.
 
@@ -551,12 +621,16 @@ shorthand(0.002); // '2m'
 
 ## Supported Chart Types
 
-> ⚠️ **Currently, line and donut charts are supported** (`series[].type: 'line'` and `series[].type: 'synDonut'`).
->
-> Support for additional chart types (bar, pie, gauge, etc.) is planned for future releases.
+The following chart types are natively supported with Synergy styling:
 
-If you can't wait for the future releases or want to use echarts features, which we won't support, you can do this by registering the needed echarts plugins by yourself.
-But keep in mind, that they are not synergy approved and do not have synergy styling! Also the registration needs to be done **before** the component is initialized.
+| Type        | How to use                                      |
+| ----------- | ----------------------------------------------- |
+| Line chart  | `series[].type: 'line'` (standard ECharts)      |
+| Gauge chart | `series[].type: 'synGauge'` (custom Synergy) |
+| Donut chart | `series[].type: 'synDonut'` (custom Synergy) |
+
+If you want to use ECharts features beyond what is listed above, you can register the required plugins yourself.
+But keep in mind that they are not Synergy-approved and do not have Synergy styling. The registration needs to be done **before** the component is initialized.
 
 To register echarts functionalities do following or have a closer look at the [echarts documentation](https://echarts.apache.org/en/api.html#echarts.use) :
 

@@ -837,7 +837,7 @@ The axes labels can be formatted via the axisLabel.formatter option. You can cus
 </div>
 <syn-chart id="chart-axis-label-formatter"></syn-chart>
 <script type="module">
-  // import { formatter } from '../../../components/src/components/chart/index.js';
+  // import { formatter } from '@synergy-design-system/components/components/chart/index.js';
 
   const setConfig = (formatterSelect) => {
     let labelFormatter;
@@ -1454,6 +1454,143 @@ Use the labels option to render a label for each segment, aligned by index with 
             icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMiAzaDQuMkwxMiAxM2w1LjgtMTBIMjJMMTIgMjEgMiAzeiIvPjxwYXRoIGQ9Ik04LjQgM2gzLjJMMTIgNS4xIDEzLjQgM2gzLjJMMTIgMTIuOSA4LjQgM3oiLz48L3N2Zz4=",
           },
         ],
+      });
+  });
+</script>
+```
+
+---
+
+## Default
+
+The gauge chart can either be configured via config with type: 'synGauge' or with the seriesGauge preset function.
+
+```html
+<syn-chart id="gauge-series-preset"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-series-preset");
+
+  charts.forEach((chart) => {
+    chart.config = {
+      series: [
+        {
+          type: "synGauge",
+          data: [45],
+        },
+      ],
+    };
+  });
+</script>
+```
+
+---
+
+## Sections
+
+The gauge series supports showing an outer sections ring. Use sections.show: true together with sections.boundaries or sections.colors to render a color-coded outer ring around the gauge, where each adjacent pair of boundary values defines a segment. When no progressColor is set, the progress arc automatically adopts the color of the segment containing the current value.
+
+```html
+<syn-chart id="gauge-sections"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-sections");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesGauge({
+        sections: {
+          boundaries: [0, 20, 70, 100],
+          show: true,
+        },
+        value: 80,
+      });
+  });
+</script>
+```
+
+---
+
+## Trend Indicator
+
+Use trend.show: true together with trend.value to render a small pill trend indicator above the gauge value; set trend.direction to 'up' (default) or 'down' to control the directional icon, and optionally provide trend.iconUp or trend.iconDown with a custom data URL to replace the default icons.
+
+```html
+<syn-chart id="gauge-trend"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-trend");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesGauge({
+        trend: {
+          show: true,
+          value: "5",
+        },
+        value: 80,
+      });
+  });
+</script>
+```
+
+---
+
+## Icon
+
+Use the icon option to render an SVG image below the unit label, or below the value when no unit is set.
+
+```html
+<syn-chart id="gauge-icon"></syn-chart>
+<script type="module">
+  //import { formatter } from '@synergy-design-system/components/components/chart/index.js';
+
+  const charts = document.querySelectorAll("#gauge-icon");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesGauge({
+        icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMiAyMS41cS0xLjg3MyAwLTMuMTg3LTEuMzE0UTcuNSAxOC44NzQgNy41IDE3cTAtMS4xNDMuNTMtMi4xMTdhNC41NiA0LjU2IDAgMCAxIDEuNDctMS42MTRWNXEwLTEuMDQ4LjcyNi0xLjc3NEEyLjQgMi40IDAgMCAxIDEyIDIuNXExLjA0OCAwIDEuNzc0LjcyNlQxNC41IDV2OC4yN2E0LjU2IDQuNTYgMCAwIDEgMS40NyAxLjYxM3EuNTMuOTc0LjUzIDIuMTE3IDAgMS44NzMtMS4zMTMgMy4xODZRMTMuODczIDIxLjUgMTIgMjEuNW0tMS0xMC4zMDhoMnYtMS4yNWgtMXYtLjg4NGgxVjYuOTQyaC0xdi0uODg0aDFWNWEuOTcuOTcgMCAwIDAtLjI4Ny0uNzEzQS45Ny45NyAwIDAgMCAxMiA0YS45Ny45NyAwIDAgMC0uNzEzLjI4N0EuOTcuOTcgMCAwIDAgMTEgNXoiLz48L3N2Zz4=",
+        sections: {
+          show: true,
+        },
+        value: 80,
+        formatter: {
+          max: formatter.unitFormatter("°C"),
+          min: formatter.unitFormatter("°C"),
+          value: formatter.unitFormatter("°C"),
+        },
+      });
+  });
+</script>
+```
+
+---
+
+## Value Formatting
+
+The gauge series supports custom value formatting using formatter.value, formatter.min, and formatter.max options.
+
+```html
+<syn-chart id="gauge-formatter"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#gauge-formatter");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesGauge({
+        value: 80,
+        formatter: {
+          max: (value) =>
+            Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(
+              value,
+            ),
+          min: (value) =>
+            Intl.NumberFormat(undefined, { minimumFractionDigits: 3 }).format(
+              value,
+            ),
+          value: (value) =>
+            Intl.NumberFormat(undefined, { minimumFractionDigits: 2 }).format(
+              value,
+            ),
+        },
       });
   });
 </script>

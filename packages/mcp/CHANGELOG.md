@@ -1,5 +1,20 @@
 # Changelog
 
+## 4.6.0
+
+### Minor Changes
+
+- [#1359](https://github.com/synergy-design-system/synergy-design-system/pull/1359) [`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-31
+
+  feat: ✨ Adds gauge series support to `<syn-chart>` ([#1352](https://github.com/synergy-design-system/synergy-design-system/issues/1352))
+
+  This release introduces the new chart series type 'synGauge' and extends the chart configuration API with new presets `seriesGauge`
+
+### Patch Changes
+
+- Updated dependencies [[`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0)]:
+  - @synergy-design-system/metadata@4.6.0
+
 ## 4.5.0
 
 ### Patch Changes

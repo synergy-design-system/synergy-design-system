@@ -55,3 +55,32 @@ export const DONUT_SERIES = {
   START_ANGLE: 90,
   TYPE_NAME: 'synDonut',
 } as const;
+
+/** Synergy gauge series constants */
+export const GAUGE_SERIES = {
+  /** End angle of the semicircular gauge arc, in degrees. */
+  END_ANGLE: 405,
+  /** Baseline height used for the default graphic layout and responsive scaling. */
+  REFERENCE_HEIGHT: 280,
+  /** Default section boundaries used for the optional outer threshold ring. */
+  SECTIONS_BOUNDARIES: [0, 20, 60, 100] as Array<number>,
+  /** Section gap for transparent separators between section slices. */
+  SECTIONS_GAP: 0.01,
+  /** Start angle of the semicircular gauge arc, in degrees. */
+  START_ANGLE: 135,
+  /** Default SVG data URL used when the trend indicator points downward. */
+  TREND_ICON_DOWN: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMS4yNSA0LjV2MTIuMTI3bC01LjY5Ni01LjY5Nkw0LjUgMTJsNy41IDcuNSA3LjUtNy41LTEuMDU0LTEuMDctNS42OTYgNS42OTdWNC41eiIvPjwvc3ZnPg==',
+  /** Default SVG data URL used when the trend indicator points upward. */
+  TREND_ICON_UP: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSdjdXJyZW50Q29sb3InPjxwYXRoIGQ9Ik0xMS4yNSAxOS41VjcuMzczbC01LjY5NiA1LjY5Nkw0LjUgMTIgMTIgNC41bDcuNSA3LjUtMS4wNTQgMS4wNy01LjY5Ni01LjY5N1YxOS41eiIvPjwvc3ZnPg==',
+  TYPE_NAME: 'synGauge',
+} as const;
+
+/**
+ * The full circle in radians (360°).
+ */
+export const FULL_CIRCLE_RADIAN = 2 * Math.PI;
+
+/**
+ * Conversion factor from degrees to radians.
+ */
+export const DEGREE_TO_RADIAN = Math.PI / 180;

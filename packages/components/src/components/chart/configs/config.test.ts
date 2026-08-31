@@ -79,4 +79,22 @@ describe('resolveConfigInput', () => {
     expect(xAxis.axisLabel?.show).to.equal(false);
     expect(xAxis.splitLine?.show).to.equal(true);
   });
+
+  it('supports gauge series presets via handle methods', () => {
+    const result = resolveConfigInput((handle) => {
+      handle.seriesGauge({
+        sections: {
+          show: true,
+        },
+        unit: '%',
+        value: 55,
+      });
+    });
+
+    const series = result.series as Array<{ data?: number[]; type?: string }>;
+
+    expect(series).to.be.an('array').with.lengthOf(1);
+    expect(series[0].type).to.equal('synGauge');
+    expect(series[0].data?.[0]).to.equal(55);
+  });
 });

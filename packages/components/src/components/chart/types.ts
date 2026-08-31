@@ -62,3 +62,12 @@ export type {
   DonutSeriesPresetOptions,
   SynergyDonutSeriesOption,
 } from './configs/donut-series/types.js';
+
+export type {
+  GaugeSeriesConfig,
+  GaugeSeriesPresetOptions,
+  SynergyGaugeSeriesOption,
+  GaugeFormatterOptions,
+  GaugeSectionsOptions,
+  GaugeTrendOptions,
+} from './configs/gauge-series/types.js';

@@ -61,7 +61,7 @@ export const Default: Story = {
           series: [
             {
               type: 'synDonut',
-              data: [10, 20, 30, 15, 25],
+              data: [10, 20, 30, 40],
             }
           ]
         };
@@ -85,16 +85,9 @@ export const CustomColors: Story = {
 
       charts.forEach(chart => {
         chart.config = handle => handle
+        .baseConfig({ color: ['#0d3f9b', '#0845c5', '#005aff', '#066fff', '#3183fe', '#5e97fc', '#91bbff'] })
         .seriesDonut({
-          data: [
-            { value: 15, color: '#0d3f9b' },
-            { value: 10, color: '#0845c5' },
-            { value: 20, color: '#005aff' },
-            { value: 12, color: '#066fff' },
-            { value: 18, color: '#3183fe' },
-            { value: 8, color: '#5e97fc' },
-            { value: 17, color: '#91bbff' },
-          ],
+          data: [ 15, 10, 20, 12, 18, 8, 17 ],
         });
       });
     </script>
@@ -140,10 +133,49 @@ export const Labels: Story = {
   `,
 };
 
+export const WithLegend: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'donut-series-legend'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="donut-legend"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#donut-legend');
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+        .seriesDonut({
+          top: 60,
+          data: [
+            {
+              value: 50,
+              name: 'Angular',
+            },
+            {
+              value: 30,
+              name: 'React',
+            },
+            {
+              value: 20,
+              name: 'Vue',
+            },
+          ],
+        })
+        .legendShow();
+      });
+    </script>
+  `,
+};
+
 /* eslint-disable sort-keys */
 export const Screenshot: Story = generateScreenshotStory({
   Default,
   CustomColors,
   Labels,
+  WithLegend,
 }, 700);
 /* eslint-enable sort-keys */

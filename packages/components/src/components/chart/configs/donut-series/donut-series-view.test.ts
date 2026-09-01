@@ -200,6 +200,52 @@ describe('SynergyDonutView', () => {
     expect(segmentThickness).to.be.closeTo(trackThickness / 2, 0.01);
   });
 
+  it('supports custom center coordinates for donut geometry', () => {
+    const view = renderDonut({ center: [80, 120] });
+    const [segment] = getSegmentSectors(view);
+
+    expect(segment.shape.cx).to.equal(80);
+    expect(segment.shape.cy).to.equal(120);
+  });
+
+  it('supports top/left offsets by resolving center in the reduced layout area', () => {
+    const view = renderDonut({ left: 40, top: 20 }, undefined, 280, 280);
+    const [segment] = getSegmentSectors(view);
+
+    // Reduced layout: left=40, top=20, right=280, bottom=280 => center=(160,150)
+    expect(segment.shape.cx).to.equal(160);
+    expect(segment.shape.cy).to.equal(150);
+  });
+
+  it('supports explicit outer radius values', () => {
+    const view = renderDonut({ radius: 60 });
+    const [segment] = getSegmentSectors(view);
+
+    expect(segment.shape.r).to.be.closeTo(60, 0.001);
+  });
+
+  it('does not adapt the donut when a fixed pixel radius is set', () => {
+    const view = renderDonut({
+      data: [
+        { name: 'This is a very long segment name', value: 10 },
+        { name: 'Another extremely long segment name', value: 20 },
+        { name: 'Final segment label left edge', value: 30 },
+      ],
+      radius: 60,
+    });
+    const [segment] = getSegmentSectors(view);
+
+    expect(segment.shape.r).to.equal(60);
+  });
+
+  it('supports percentage-based radius values', () => {
+    const view = renderDonut({ radius: '25%' }, undefined, 280, 280);
+    const [segment] = getSegmentSectors(view);
+
+    // Pie semantics: percentage radius is resolved against size / 2.
+    expect(segment.shape.r).to.be.closeTo(35, 0.001);
+  });
+
   it('does not render labels when data items have no name', () => {
     const view = renderDonut({ data: toDonutData([10, 20, 30]) });
 

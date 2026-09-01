@@ -6,12 +6,22 @@ import type { ZRColor } from 'echarts/types/dist/shared.js';
 export type DonutSeriesConfig = {
   /** Color of the static inner track ring. */
   backgroundColor?: string;
+  /** Center position inside the donut layout area, supports pixel or percentage values. */
+  center?: [DonutLayoutValue, DonutLayoutValue];
+  /** Outer radius of the donut, supports pixel or percentage values. */
+  radius?: DonutLayoutValue;
+  /** Top inset that reduces the donut layout area before center/radius are resolved. */
+  top?: DonutLayoutValue;
+  /** Right inset that reduces the donut layout area before center/radius are resolved. */
+  right?: DonutLayoutValue;
+  /** Bottom inset that reduces the donut layout area before center/radius are resolved. */
+  bottom?: DonutLayoutValue;
+  /** Left inset that reduces the donut layout area before center/radius are resolved. */
+  left?: DonutLayoutValue;
 };
 
-/**
- * Fully normalized donut series options after defaults are resolved.
- */
-export type ResolvedDonutSeriesConfig = Required<DonutSeriesConfig>;
+/** Numeric pixel value or percentage string (e.g. '50%'). */
+export type DonutLayoutValue = number | string;
 
 /**
  * 2D point coordinates used when positioning labels and ring geometry.
@@ -50,7 +60,6 @@ export type DonutDataItem = {
   value: number;
   name?: string;
   icon?: string;
-  color?: string;
 };
 
 /**
@@ -59,26 +68,24 @@ export type DonutDataItem = {
 export type DonutDataValue = number | DonutDataItem;
 
 /**
- * Public series option shape for the custom synDonut chart type.
+ * ECharts series option shape for the custom synDonut chart type.
  */
-export type SynergyDonutSeriesOption = {
-  type: 'synDonut';
+export type DonutSeriesOption = DonutSeriesConfig & {
+  type?: 'synDonut';
   data?: DonutDataValue[];
   name?: string;
-} & DonutSeriesConfig;
+  colorBy?: 'data';
+};
+
+/**
+ * Public series option shape for the custom synDonut chart type.
+ */
+export type SynergyDonutSeriesOption = Omit<DonutSeriesOption, 'type'> & { type: 'synDonut' };
 
 /**
  * Input options for the donut chart preset before the type discriminator is added.
  */
-export type DonutSeriesPresetOptions = Omit<SynergyDonutSeriesOption, 'type'>;
-
-/**
- * ECharts model option structure for the donut series.
- */
-export type DonutModelOption = {
-  type: 'synDonut';
-  data?: DonutDataValue[];
-};
+export type DonutSeriesPresetOptions = Omit<SynergyDonutSeriesOption, 'type' | 'colorBy'>;
 
 /**
  * Extends ECharts' registered series options with the custom donut series.

@@ -47,7 +47,6 @@ const getDefaultLegendTextStyle = (mode: ThemeMode = 'auto') => ({
  * @param {ThemeMode} mode Theme mode
  */
 export const getDefaultLegendStyles = (mode: ThemeMode = 'auto') => ({
-  formatter: (name: string) => `${name}  {showIcon|}`,
   inactiveColor: style('SynChartDisabledColor', mode),
   itemGap: styleWithoutUnit('SynSpacingSmall', mode),
   itemHeight: styleWithoutUnit('SynSpacingSmall', mode),
@@ -134,7 +133,7 @@ export const getGridForLegendPosition = (
   legendStyle: LegendComponentOption,
   config: ECConfig,
   mode: ThemeMode = 'auto',
-// eslint-disable-next-line complexity
+  // eslint-disable-next-line complexity
 ): NonNullable<ECConfig['grid']> => {
   const series = config?.series;
   if (!series) {
@@ -191,3 +190,26 @@ export const normalizeLegendPosition = (
     ? LEGEND.DEFAULT_POSITION
     : position;
 };
+
+export const legendVisibilityIconProcessor = {
+  overallReset: (ecModel) => {
+    const legendModels = ecModel.findComponents({
+      mainType: 'legend',
+    });
+    if (!legendModels || !legendModels.length) {
+      return;
+    }
+    legendModels.forEach((legendModel) => {
+      const customFormatter = legendModel.option.formatter;
+      if (customFormatter) {
+        return;
+      }
+      const legendFormatter = (name: string) => {
+        const isVisible = legendModel.isSelected(name);
+        const icon = isVisible ? 'showIcon' : 'hideIcon';
+        return `${name}  {${icon}|}`;
+      };
+      legendModel.option.formatter = legendFormatter;
+    });
+  }
+}

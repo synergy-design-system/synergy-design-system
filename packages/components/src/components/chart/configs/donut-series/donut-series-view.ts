@@ -1,14 +1,13 @@
 import { ChartView, graphic } from 'echarts/core.js';
 import type GlobalModel from 'echarts/types/src/model/Global.js';
 import type ExtensionAPI from 'echarts/types/src/core/ExtensionAPI.js';
-import type { ZRColor } from 'echarts/types/dist/shared.js';
+import type { SeriesData } from 'echarts/types/dist/shared.js';
 import type { SynergyDonutSeriesModel } from './donut-series-model.js';
 import type {
   DonutDataItem,
   DonutDataValue,
-  ResolvedDonutSeriesConfig,
+  DonutSeriesOption,
   SegmentRange,
-  SynergyDonutSeriesOption,
 } from './types.js';
 import { DONUT_SERIES } from '../constants.js';
 import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
@@ -23,12 +22,126 @@ import {
 const FULL_CIRCLE = Math.PI * 2;
 const RADIAN = Math.PI / 180;
 
-/**
- * Returns the default theme configuration for the donut chart track.
- */
-const getDefaultDonutConfig = (): ResolvedDonutSeriesConfig => ({
-  backgroundColor: style('SynProgressTrackColor'),
-});
+type LayoutBounds = {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+};
+
+type LayoutScalar = number | string;
+type LayoutCenterInput = [LayoutScalar, LayoutScalar] | undefined;
+type LayoutRadiusInput = LayoutScalar | undefined;
+
+type ResolvedLayout = {
+  centerX: number;
+  centerY: number;
+  layoutWidth: number;
+  layoutHeight: number;
+  outerRadius: number;
+  bounds: LayoutBounds;
+};
+
+/** Converts a pixel/percent input to pixels relative to the given base size. */
+const toPixels = (value: LayoutScalar | undefined, baseSize: number, fallback = 0): number => {
+  if (typeof value === 'number' && Number.isFinite(value)) {
+    return value;
+  }
+
+  if (typeof value === 'string') {
+    const trimmed = value.trim();
+
+    if (trimmed.endsWith('%')) {
+      const percent = Number.parseFloat(trimmed.slice(0, -1));
+      return Number.isFinite(percent) ? (baseSize * percent) / 100 : fallback;
+    }
+
+    const numeric = Number.parseFloat(trimmed);
+    return Number.isFinite(numeric) ? numeric : fallback;
+  }
+
+  return fallback;
+};
+
+const resolveLayoutBounds = (
+  edges: Pick<DonutSeriesOption, 'top' | 'right' | 'bottom' | 'left'>,
+  width: number,
+  height: number,
+): LayoutBounds => {
+  const top = Math.max(0, toPixels(edges.top, height));
+  const right = Math.max(0, toPixels(edges.right, width));
+  const bottom = Math.max(0, toPixels(edges.bottom, height));
+  const left = Math.max(0, toPixels(edges.left, width));
+
+  return {
+    bottom: Math.max(top, height - bottom),
+    left: Math.min(width, left),
+    right: Math.max(left, width - right),
+    top: Math.min(height, top),
+  };
+};
+
+const resolveLayoutCenter = (
+  center: LayoutCenterInput,
+  bounds: LayoutBounds,
+): { centerX: number; centerY: number; layoutWidth: number; layoutHeight: number } => {
+  const layoutWidth = Math.max(0, bounds.right - bounds.left);
+  const layoutHeight = Math.max(0, bounds.bottom - bounds.top);
+
+  return {
+    centerX: bounds.left + toPixels(center?.[0], layoutWidth, layoutWidth / 2),
+    centerY: bounds.top + toPixels(center?.[1], layoutHeight, layoutHeight / 2),
+    layoutHeight,
+    layoutWidth,
+  };
+};
+
+const resolveOuterRadius = (
+  radius: LayoutRadiusInput,
+  layoutWidth: number,
+  layoutHeight: number,
+): number => {
+  const size = Math.min(layoutWidth, layoutHeight);
+  const radiusBase = Math.max(0, size / 2);
+  return Math.max(0, toPixels(radius, radiusBase, radiusBase));
+};
+
+const isFixedRadius = (radius: LayoutRadiusInput): boolean => {
+  if (typeof radius === 'number') {
+    return Number.isFinite(radius);
+  }
+
+  if (typeof radius === 'string') {
+    const trimmed = radius.trim();
+    return trimmed !== '' && !trimmed.endsWith('%');
+  }
+
+  return false;
+};
+
+/** Resolves layout bounds/center/radius for the donut rendering area. */
+const resolveDonutLayout = (
+  inputConfig: DonutSeriesOption,
+  width: number,
+  height: number,
+): ResolvedLayout => {
+  const bounds = resolveLayoutBounds(inputConfig, width, height);
+  const {
+    centerX,
+    centerY,
+    layoutHeight,
+    layoutWidth,
+  } = resolveLayoutCenter(inputConfig.center, bounds);
+  const outerRadius = resolveOuterRadius(inputConfig.radius, layoutWidth, layoutHeight);
+  return {
+    bounds,
+    centerX,
+    centerY,
+    layoutHeight,
+    layoutWidth,
+    outerRadius,
+  };
+};
 
 /**
  * Distributes the data values evenly around a full circle, sized proportionally to their value.
@@ -57,14 +170,14 @@ const computeSegmentRanges = (values: number[]): Array<SegmentRange | null> => {
  * Creates the visible sector shapes for each donut segment while keeping a small gap between slices.
  */
 const createSegmentSectors = ({
-  ranges, centerX, centerY, innerRadius, outerRadius, colors,
+  ranges, centerX, centerY, innerRadius, outerRadius, data
 }: {
   ranges: Array<SegmentRange | null>;
   centerX: number;
   centerY: number;
   innerRadius: number;
   outerRadius: number;
-  colors: ZRColor[];
+  data: SeriesData,
 }): graphic.Sector[] => {
   const gap = DONUT_SERIES.SEGMENT_GAP;
 
@@ -80,7 +193,7 @@ const createSegmentSectors = ({
     sectors.push(createSectorGraphic({
       centerX,
       centerY,
-      color: colors[index],
+      color: data.getItemVisual(index, 'style').fill,
       endAngle: range.endAngle - halfGap,
       innerRadius,
       outerRadius,
@@ -190,41 +303,50 @@ const binarySearchMax = (lo: number, hi: number, fits: (v: number) => boolean, i
  * Finds the largest adaptive scale factor that keeps every visible donut label within the chart bounds.
  */
 const computeAdaptiveLayout = ({
+  baseOuterRingOuterRadius,
+  bounds,
   centerX,
   centerY,
   dataItems,
-  height,
+  factor,
   segmentRanges,
-  width,
 }: {
+  baseOuterRingOuterRadius: number;
+  bounds: LayoutBounds;
   centerX: number;
   centerY: number;
   dataItems: DonutDataItem[];
-  height: number;
+  factor: number;
   segmentRanges: Array<SegmentRange | null>;
-  width: number;
 }): { adaptiveFactor: number; outerRingOuterRadius: number } => {
-  const factor = height / DONUT_SERIES.REFERENCE_HEIGHT;
-  const initialOuterRingOuterRadius = Math.min(width, height) * 0.5;
-
   const visibleLabels = segmentRanges.flatMap((range, index) => {
     const item = dataItems[index];
-    if (!range || !item || (!item.name && !item.icon)) return [];
+
+    if (!range || !item || (!item.name && !item.icon)) {
+      return [];
+    }
+
     return [{ item, midAngle: (range.startAngle + range.endAngle) / 2 }];
   });
 
   /** Returns true when every visible label fits for the given adaptive factor. */
   const labelsAllFit = (af: number): boolean => {
-    const r = initialOuterRingOuterRadius * (af / factor);
+    const normalizedFactor = factor > 0 ? (af / factor) : 1;
+    const radius = baseOuterRingOuterRadius * normalizedFactor;
+
     return visibleLabels.every(({ midAngle, item }) => {
       const {
-        iconSize, labelLeft, labelRight, point,
-      } = computeLabelDimensions(item, af, centerX, centerY, r, midAngle);
+        iconSize,
+        labelLeft,
+        labelRight,
+        point,
+      } = computeLabelDimensions(item, af, centerX, centerY, radius, midAngle);
+
       return (
-        labelLeft >= 0
-        && labelRight <= width
-        && point.y - iconSize / 2 >= 0
-        && point.y + iconSize / 2 <= height
+        labelLeft >= bounds.left
+        && labelRight <= bounds.right
+        && point.y - iconSize / 2 >= bounds.top
+        && point.y + iconSize / 2 <= bounds.bottom
       );
     });
   };
@@ -233,9 +355,11 @@ const computeAdaptiveLayout = ({
     ? binarySearchMax(factor * 0.1, factor, labelsAllFit)
     : factor;
 
+  const normalizedAdaptiveFactor = factor > 0 ? (adaptiveFactor / factor) : 1;
+
   return {
     adaptiveFactor,
-    outerRingOuterRadius: initialOuterRingOuterRadius * (adaptiveFactor / factor),
+    outerRingOuterRadius: baseOuterRingOuterRadius * normalizedAdaptiveFactor,
   };
 };
 
@@ -244,30 +368,35 @@ const computeAdaptiveLayout = ({
  */
 const buildDonutGroup = (
   dataItems: DonutDataItem[],
-  inputConfig: SynergyDonutSeriesOption,
+  inputConfig: DonutSeriesOption,
   width: number,
   height: number,
-  getSegmentColor: (index: number) => ZRColor,
-): graphic.Group => {
-  const defaultConfig = getDefaultDonutConfig();
-  const mergedConfig: ResolvedDonutSeriesConfig = {
-    ...defaultConfig,
-    ...inputConfig,
-  };
-
-  const centerX = width / 2;
-  const centerY = height / 2;
+  data: SeriesData,
+) => {
+  const {
+    bounds,
+    centerX,
+    centerY,
+    layoutHeight,
+    outerRadius,
+  } = resolveDonutLayout(inputConfig, width, height);
+  const factor = layoutHeight / DONUT_SERIES.REFERENCE_HEIGHT;
 
   const segmentRanges = computeSegmentRanges(dataItems.map((item) => Number(item.value)));
 
-  const { adaptiveFactor, outerRingOuterRadius } = computeAdaptiveLayout({
-    centerX,
-    centerY,
-    dataItems,
-    height,
-    segmentRanges,
-    width,
-  });
+  const fixedRadiusFactor = (outerRadius > 0) ? (outerRadius / (DONUT_SERIES.REFERENCE_HEIGHT / 2)) : factor;
+
+  const { adaptiveFactor, outerRingOuterRadius } = isFixedRadius(inputConfig.radius)
+    ? { adaptiveFactor: fixedRadiusFactor, outerRingOuterRadius: outerRadius }
+    : computeAdaptiveLayout({
+      baseOuterRingOuterRadius: outerRadius,
+      bounds,
+      centerX,
+      centerY,
+      dataItems,
+      factor,
+      segmentRanges,
+    });
 
   // All dimensions derive from the single adaptive factor.
   const segmentThickness = adaptiveFactor * styleWithoutUnit('SynSpacingXSmall');
@@ -277,13 +406,14 @@ const buildDonutGroup = (
   const innerRingOuterRadius = outerRingInnerRadius - ringSpacing;
   const innerRingInnerRadius = innerRingOuterRadius - innerRingThickness;
 
-  const root = new graphic.Group();
+  const donutGroup = new graphic.Group();
+  const backgroundColor = inputConfig.backgroundColor ?? style('SynProgressTrackColor');
 
   // Static inner track ring.
-  root.add(createSectorGraphic({
+  donutGroup.add(createSectorGraphic({
     centerX,
     centerY,
-    color: mergedConfig.backgroundColor,
+    color: backgroundColor,
     endAngle: FULL_CIRCLE,
     innerRadius: innerRingInnerRadius,
     outerRadius: innerRingOuterRadius,
@@ -291,18 +421,16 @@ const buildDonutGroup = (
     z: 1,
   }));
 
-  const segmentColors: ZRColor[] = dataItems.map((item, index) => item.color ?? getSegmentColor(index));
-
   // Outer data segments
   const segmentSectors = createSegmentSectors({
     centerX,
     centerY,
-    colors: segmentColors,
+    data,
     innerRadius: outerRingInnerRadius,
     outerRadius: outerRingOuterRadius,
     ranges: segmentRanges,
   });
-  segmentSectors.forEach((sector) => root.add(sector));
+  segmentSectors.forEach((sector) => donutGroup.add(sector));
 
   // Segment labels, centered on each segment and placed outside the outer ring.
   segmentRanges.forEach((range, index) => {
@@ -322,10 +450,29 @@ const buildDonutGroup = (
       midAngle,
       radius: outerRingOuterRadius,
     });
-    root.add(segmentLabels);
+    donutGroup.add(segmentLabels);
   });
 
-  return root;
+  return donutGroup;
+};
+
+const toDonutDataItems = (seriesModel: SynergyDonutSeriesModel): DonutDataItem[] => {
+  const data = seriesModel.getData();
+  const dataItems: DonutDataItem[] = [];
+
+  for (let index = 0; index < data.count(); index += 1) {
+    const value = Number(data.get('value', index));
+    const rawDataItem = data.getRawDataItem(index) as DonutDataValue;
+    const objectDataItem = typeof rawDataItem === 'object' && rawDataItem !== null ? rawDataItem : undefined;
+
+    dataItems.push({
+      icon: objectDataItem?.icon,
+      name: objectDataItem?.name,
+      value,
+    });
+  }
+
+  return dataItems;
 };
 
 export class SynergyDonutView extends ChartView {
@@ -340,29 +487,11 @@ export class SynergyDonutView extends ChartView {
   render(seriesModel: SynergyDonutSeriesModel, ecModel: GlobalModel, api: ExtensionAPI): void {
     const { group } = this;
     group.removeAll();
-
     const data = seriesModel.getData();
-    const option = seriesModel.option as SynergyDonutSeriesOption;
-    const dataItems: DonutDataItem[] = [];
+    const { option } = seriesModel;
+    const dataItems = toDonutDataItems(seriesModel);
 
-    for (let index = 0; index < data.count(); index += 1) {
-      const value = Number(data.get('value', index));
-      const rawDataItem = data.getRawDataItem(index) as DonutDataValue;
-      const objectDataItem = typeof rawDataItem === 'object' && rawDataItem !== null ? rawDataItem : undefined;
-
-      dataItems.push({
-        color: objectDataItem?.color,
-        icon: objectDataItem?.icon,
-        name: objectDataItem?.name,
-        value,
-      });
-    }
-
-    // Cycle through the categorical palette, one color per data segment.
-    const paletteScope = {};
-    const getSegmentColor = (index: number): ZRColor => seriesModel.getColorFromPalette(`synergy-donut-segment-${index}`, paletteScope);
-
-    const donutGroup = buildDonutGroup(dataItems, option, api.getWidth(), api.getHeight(), getSegmentColor);
+    const donutGroup = buildDonutGroup(dataItems, option, api.getWidth(), api.getHeight(), data);
     group.add(donutGroup);
   }
 }

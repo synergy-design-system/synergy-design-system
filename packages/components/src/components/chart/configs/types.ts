@@ -1,3 +1,5 @@
+import type { ChartView, use } from 'echarts/types/dist/shared.js';
+
 /**
  * Makes selected keys required while preserving the remaining type shape.
  */
@@ -15,3 +17,11 @@ export type Point = {
   x: number;
   y: number;
 };
+
+/** Numeric pixel value or percentage string (e.g. '50%'). */
+export type LayoutValue = number | string;
+
+export type GlobalModel = Parameters<ChartView['render']>[1];
+export type ExtensionAPI = Parameters<ChartView['render']>[2];
+export type EChartsExtensionInstaller = Exclude<Parameters<typeof use>[0], readonly unknown[] | { install: unknown }>;
+export type EChartsExtensionInstallRegisters = Parameters<EChartsExtensionInstaller>[0];

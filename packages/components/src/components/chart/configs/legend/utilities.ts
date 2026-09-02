@@ -1,4 +1,5 @@
-import type { LegendComponentOption } from 'echarts/types/dist/shared.js';
+import type { LegendComponentOption, SeriesModel } from 'echarts/types/dist/shared.js';
+import { graphic } from 'echarts';
 import type { ECConfig } from '../../types.js';
 import { measureMaxTextWidth } from '../axes/utilities.js';
 import { LEGEND } from '../constants.js';
@@ -6,6 +7,7 @@ import { type ThemeMode, getRealStyleValue as style, getRealValueWithoutUnit as 
 import type { LegendOption, LegendPosition } from './types.js';
 import { colorSvgDataUrl } from '../utilities.js';
 import { icons } from '../../../icon/sick2025-system-icons.js';
+import type { GlobalModel } from '../types.js';
 
 const getVisibilityIconDataUrl = (isVisible: boolean, mode: ThemeMode = 'auto'): string => {
   const svg = isVisible ? icons.eye : icons['eye-slash'];
@@ -192,7 +194,7 @@ export const normalizeLegendPosition = (
 };
 
 export const legendVisibilityIconProcessor = {
-  overallReset: (ecModel) => {
+  overallReset: (ecModel: GlobalModel) => {
     const legendModels = ecModel.findComponents({
       mainType: 'legend',
     });
@@ -200,16 +202,36 @@ export const legendVisibilityIconProcessor = {
       return;
     }
     legendModels.forEach((legendModel) => {
-      const customFormatter = legendModel.option.formatter;
+      const legendOption = legendModel.option as LegendComponentOption;
+      const customFormatter = legendOption.formatter;
       if (customFormatter) {
         return;
       }
       const legendFormatter = (name: string) => {
-        const isVisible = legendModel.isSelected(name);
+        const isVisible = legendOption.selected?.[name] ?? true;
         const icon = isVisible ? 'showIcon' : 'hideIcon';
         return `${name}  {${icon}|}`;
       };
-      legendModel.option.formatter = legendFormatter;
+      legendOption.formatter = legendFormatter;
     });
-  }
-}
+  },
+};
+
+export const legendIconVisual = {
+  createOnAllSeries: true,
+  reset: (seriesModel: SeriesModel) => {
+    if (seriesModel.subType === 'line') {
+      return;
+    }
+    // eslint-disable-next-line no-param-reassign
+    seriesModel.getLegendIcon = (opt) => {
+      const group = new graphic.Group();
+      const rect = new graphic.Rect({
+        shape: { height: opt.itemHeight, width: opt.itemHeight, x: 16 },
+        style: { fill: opt.itemStyle.fill },
+      });
+      group.add(rect);
+      return group;
+    };
+  },
+};

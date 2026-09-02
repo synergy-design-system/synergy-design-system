@@ -1,6 +1,4 @@
 import { expect } from '@open-wc/testing';
-import type GlobalModel from 'echarts/types/src/model/Global.js';
-import type ExtensionAPI from 'echarts/types/src/core/ExtensionAPI.js';
 import type { graphic } from 'echarts';
 import { DONUT_SERIES } from '../constants.js';
 import type { SynergyDonutSeriesModel } from './donut-series-model.js';
@@ -8,9 +6,17 @@ import { SynergyDonutView } from './donut-series-view.js';
 import type { DonutDataItem, DonutDataValue, SynergyDonutSeriesOption } from './types.js';
 import { getRealStyleValue } from '../../themes/utilities.js';
 import { colorSvgDataUrl } from '../utilities.js';
+import type { ExtensionAPI, GlobalModel } from '../types.js';
 
 const RADIAN = Math.PI / 180;
 const FULL_CIRCLE = Math.PI * 2;
+
+type StyledDonutDataItem = DonutDataItem & {
+  itemStyle?: {
+    color?: string;
+    fill?: string;
+  };
+};
 
 const createSeriesModelStub = (
   option: SynergyDonutSeriesOption,
@@ -28,6 +34,19 @@ const createSeriesModelStub = (
     getData: () => ({
       count: () => data.length,
       get: (key: string, index: number) => (key === 'value' ? getValue(data[index]) : undefined),
+      getItemVisual: (index: number, key: string) => {
+        if (key !== 'style') {
+          return undefined;
+        }
+
+        const rawItem = data[index];
+        const itemStyle = typeof rawItem === 'object' && rawItem !== null
+          ? (rawItem as StyledDonutDataItem).itemStyle
+          : undefined;
+        const fill = itemStyle?.fill ?? itemStyle?.color ?? paletteColors[index % paletteColors.length];
+
+        return { fill };
+      },
       getRawDataItem: (index: number) => data[index],
     }),
     option,
@@ -35,6 +54,8 @@ const createSeriesModelStub = (
 };
 
 const toDonutData = (values: number[]): DonutDataItem[] => values.map((value) => ({ value }));
+
+const toStyledDonutData = (items: StyledDonutDataItem[]): DonutDataItem[] => items;
 
 const createApiStub = (width = 280, height = 280): ExtensionAPI => ({
   getHeight: () => height,
@@ -147,11 +168,11 @@ describe('SynergyDonutView', () => {
 
   it('uses per-segment custom colors when provided in data items', () => {
     const view = renderDonut({
-      data: [
-        { color: '#ff0000', value: 10 },
-        { color: '#00ff00', value: 20 },
-        { color: '#0000ff', value: 30 },
-      ],
+      data: toStyledDonutData([
+        { itemStyle: { fill: '#ff0000' }, value: 10 },
+        { itemStyle: { fill: '#00ff00' }, value: 20 },
+        { itemStyle: { fill: '#0000ff' }, value: 30 },
+      ]),
     });
     const segments = getSegmentSectors(view);
 
@@ -162,11 +183,11 @@ describe('SynergyDonutView', () => {
 
   it('falls back to palette color for segments without custom data color', () => {
     const view = renderDonut({
-      data: [
-        { color: '#ff0000', value: 10 },
+      data: toStyledDonutData([
+        { itemStyle: { fill: '#ff0000' }, value: 10 },
         { value: 20 },
-        { color: '#0000ff', value: 30 },
-      ],
+        { itemStyle: { fill: '#0000ff' }, value: 30 },
+      ]),
     }, ['#aaaaaa', '#bbbbbb', '#cccccc']);
     const segments = getSegmentSectors(view);
 

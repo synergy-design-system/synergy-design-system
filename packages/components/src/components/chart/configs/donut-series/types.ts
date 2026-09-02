@@ -1,5 +1,24 @@
 import type { ZRColor } from 'echarts/types/dist/shared.js';
+import type { LayoutValue } from '../types.js';
 
+export type LayoutBounds = {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+};
+
+export type LayoutCenterInput = [LayoutValue, LayoutValue] | undefined;
+export type LayoutRadiusInput = LayoutValue | undefined;
+
+export type ResolvedLayout = {
+  centerX: number;
+  centerY: number;
+  layoutWidth: number;
+  layoutHeight: number;
+  outerRadius: number;
+  bounds: LayoutBounds;
+};
 /**
  * Series-level configuration for the donut chart.
  */
@@ -7,28 +26,17 @@ export type DonutSeriesConfig = {
   /** Color of the static inner track ring. */
   backgroundColor?: string;
   /** Center position inside the donut layout area, supports pixel or percentage values. */
-  center?: [DonutLayoutValue, DonutLayoutValue];
+  center?: [LayoutValue, LayoutValue];
   /** Outer radius of the donut, supports pixel or percentage values. */
-  radius?: DonutLayoutValue;
+  radius?: LayoutValue;
   /** Top inset that reduces the donut layout area before center/radius are resolved. */
-  top?: DonutLayoutValue;
+  top?: LayoutValue;
   /** Right inset that reduces the donut layout area before center/radius are resolved. */
-  right?: DonutLayoutValue;
+  right?: LayoutValue;
   /** Bottom inset that reduces the donut layout area before center/radius are resolved. */
-  bottom?: DonutLayoutValue;
+  bottom?: LayoutValue;
   /** Left inset that reduces the donut layout area before center/radius are resolved. */
-  left?: DonutLayoutValue;
-};
-
-/** Numeric pixel value or percentage string (e.g. '50%'). */
-export type DonutLayoutValue = number | string;
-
-/**
- * 2D point coordinates used when positioning labels and ring geometry.
- */
-export type Point = {
-  x: number;
-  y: number;
+  left?: LayoutValue;
 };
 
 /**

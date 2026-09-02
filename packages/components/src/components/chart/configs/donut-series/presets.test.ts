@@ -7,7 +7,17 @@ type DonutSeriesResult = {
   series: SynergyDonutSeriesOption[];
 };
 
+type StyledDonutDataItem = {
+  itemStyle?: {
+    color?: string;
+    fill?: string;
+  };
+  value: number;
+};
+
 const toDonutData = (values: number[]) => values.map((value) => ({ value }));
+
+const toStyledDonutData = (items: StyledDonutDataItem[]) => items as DonutSeriesPresetOptions['data'];
 
 const createDonutResult = (
   options: DonutSeriesPresetOptions,
@@ -47,11 +57,14 @@ describe('seriesDonut', () => {
 
     it('forwards per-segment colors in data items to the series config', () => {
       const { series } = createDonutResult({
-        data: [{ color: '#ff0000', value: 10 }, { color: '#00ff00', value: 20 }],
+        data: toStyledDonutData([
+          { itemStyle: { fill: '#ff0000' }, value: 10 },
+          { itemStyle: { fill: '#00ff00' }, value: 20 },
+        ]),
       });
       expect(series[0].data).to.deep.equal([
-        { color: '#ff0000', value: 10 },
-        { color: '#00ff00', value: 20 },
+        { itemStyle: { fill: '#ff0000' }, value: 10 },
+        { itemStyle: { fill: '#00ff00' }, value: 20 },
       ]);
     });
 

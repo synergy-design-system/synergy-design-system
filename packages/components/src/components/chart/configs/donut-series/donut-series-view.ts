@@ -1,15 +1,17 @@
 import { ChartView, graphic } from 'echarts/core.js';
-import type GlobalModel from 'echarts/types/src/model/Global.js';
-import type ExtensionAPI from 'echarts/types/src/core/ExtensionAPI.js';
 import type { SeriesData } from 'echarts/types/dist/shared.js';
 import type { SynergyDonutSeriesModel } from './donut-series-model.js';
 import type {
   DonutDataItem,
   DonutDataValue,
   DonutSeriesOption,
+  LayoutBounds,
+  LayoutCenterInput,
+  LayoutRadiusInput,
+  ResolvedLayout,
   SegmentRange,
 } from './types.js';
-import { DONUT_SERIES } from '../constants.js';
+import { DEGREE_TO_RADIAN, DONUT_SERIES, FULL_CIRCLE_RADIAN } from '../constants.js';
 import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
 import {
   colorSvgDataUrl,
@@ -18,32 +20,10 @@ import {
   createTextGraphic,
   polarPoint,
 } from '../utilities.js';
-
-const FULL_CIRCLE = Math.PI * 2;
-const RADIAN = Math.PI / 180;
-
-type LayoutBounds = {
-  top: number;
-  right: number;
-  bottom: number;
-  left: number;
-};
-
-type LayoutScalar = number | string;
-type LayoutCenterInput = [LayoutScalar, LayoutScalar] | undefined;
-type LayoutRadiusInput = LayoutScalar | undefined;
-
-type ResolvedLayout = {
-  centerX: number;
-  centerY: number;
-  layoutWidth: number;
-  layoutHeight: number;
-  outerRadius: number;
-  bounds: LayoutBounds;
-};
+import type { ExtensionAPI, GlobalModel, LayoutValue } from '../types.js';
 
 /** Converts a pixel/percent input to pixels relative to the given base size. */
-const toPixels = (value: LayoutScalar | undefined, baseSize: number, fallback = 0): number => {
+const toPixels = (value: LayoutValue | undefined, baseSize: number, fallback = 0): number => {
   if (typeof value === 'number' && Number.isFinite(value)) {
     return value;
   }
@@ -154,10 +134,10 @@ const computeSegmentRanges = (values: number[]): Array<SegmentRange | null> => {
     return values.map(() => null);
   }
 
-  let currentAngle = DONUT_SERIES.START_ANGLE * RADIAN;
+  let currentAngle = DONUT_SERIES.START_ANGLE * DEGREE_TO_RADIAN;
 
   return values.map((value) => {
-    const sweep = (Math.max(value, 0) / total) * FULL_CIRCLE;
+    const sweep = (Math.max(value, 0) / total) * FULL_CIRCLE_RADIAN;
     const startAngle = currentAngle;
     const endAngle = currentAngle + sweep;
     currentAngle = endAngle;
@@ -170,7 +150,7 @@ const computeSegmentRanges = (values: number[]): Array<SegmentRange | null> => {
  * Creates the visible sector shapes for each donut segment while keeping a small gap between slices.
  */
 const createSegmentSectors = ({
-  ranges, centerX, centerY, innerRadius, outerRadius, data
+  ranges, centerX, centerY, innerRadius, outerRadius, data,
 }: {
   ranges: Array<SegmentRange | null>;
   centerX: number;
@@ -193,7 +173,7 @@ const createSegmentSectors = ({
     sectors.push(createSectorGraphic({
       centerX,
       centerY,
-      color: data.getItemVisual(index, 'style').fill,
+      color: data.getItemVisual(index, 'style').fill ?? 'transparent',
       endAngle: range.endAngle - halfGap,
       innerRadius,
       outerRadius,
@@ -414,7 +394,7 @@ const buildDonutGroup = (
     centerX,
     centerY,
     color: backgroundColor,
-    endAngle: FULL_CIRCLE,
+    endAngle: FULL_CIRCLE_RADIAN,
     innerRadius: innerRingInnerRadius,
     outerRadius: innerRingOuterRadius,
     startAngle: 0,
@@ -483,8 +463,7 @@ export class SynergyDonutView extends ChartView {
   /**
    * Renders the donut chart into the ECharts group using the current model data and option config.
    */
-  // @ts-expect-error - I don't know where this typescript error comes from. Even in echarts itself it is available..
-  render(seriesModel: SynergyDonutSeriesModel, ecModel: GlobalModel, api: ExtensionAPI): void {
+  render(seriesModel: SynergyDonutSeriesModel, _ecModel: GlobalModel, api: ExtensionAPI): void {
     const { group } = this;
     group.removeAll();
     const data = seriesModel.getData();

@@ -24,8 +24,7 @@ import { getRealStyleValue, setGlobalThemeStore } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
 import { donutInstall } from './configs/donut-series/install.js';
 import { gaugeInstall } from './configs/gauge-series/install.js';
-import { legendIconVisual } from './configs/utilities.js';
-import { legendVisibilityIconProcessor } from './configs/legend/utilities.js';
+import { legendIconVisual, legendVisibilityIconProcessor } from './configs/legend/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -38,9 +37,7 @@ use([
   LegendComponent,
   GridComponent,
   DataZoomComponent,
-  // @ts-expect-error - I don't know where this typescript error comes from
   donutInstall,
-  // @ts-expect-error - I don't know where this typescript error comes from
   gaugeInstall,
 ]);
 /**

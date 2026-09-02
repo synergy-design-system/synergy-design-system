@@ -397,21 +397,3 @@ export const polarPoint = (centerX: number, centerY: number, radius: number, ang
  * @returns the angle in radians
  */
 export const convertDegreeToRadian = (degree: number): number => degree * DEGREE_TO_RADIAN;
-
-export const legendIconVisual = {
-  createOnAllSeries: true,
-  reset: (seriesModel) => {
-    if (seriesModel.subType === 'line') {
-      return;
-    }
-    seriesModel.getLegendIcon = (opt) => {
-      const group = new graphic.Group();
-      const rect = new graphic.Rect({
-        shape: { height: opt.itemHeight, width: opt.itemHeight, x: 16 },
-        style: { fill: opt.itemStyle.fill },
-      });
-      group.add(rect);
-      return group;
-    };
-  },
-};

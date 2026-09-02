@@ -1,6 +1,4 @@
 import { ChartView, graphic } from 'echarts/core.js';
-import type GlobalModel from 'echarts/types/src/model/Global.js';
-import type ExtensionAPI from 'echarts/types/src/core/ExtensionAPI.js';
 import type { ZRColor } from 'echarts/types/dist/shared.js';
 import type { SynergyGaugeSeriesModel } from './gauge-series-model.js';
 import type {
@@ -20,6 +18,7 @@ import {
   normalizeAngle,
   polarPoint,
 } from '../utilities.js';
+import type { ExtensionAPI, GlobalModel } from '../types.js';
 
 /** Returns the default resolved configuration for a Synergy gauge series. */
 const getDefaultGaugeConfig = (): ResolvedGaugeSeriesConfig => ({
@@ -431,8 +430,7 @@ export class SynergyGaugeView extends ChartView {
    * ECharts render lifecycle hook. Clears the previous frame and redraws the gauge
    * based on the current series model data and options.
    */
-  // @ts-expect-error - I don't know where this typescript error comes from. Even in echarts itself it is available..
-  render(seriesModel: SynergyGaugeSeriesModel, ecModel: GlobalModel, api: ExtensionAPI): void {
+  render(seriesModel: SynergyGaugeSeriesModel, _ecModel: GlobalModel, api: ExtensionAPI): void {
     const { group } = this;
     group.removeAll();
 

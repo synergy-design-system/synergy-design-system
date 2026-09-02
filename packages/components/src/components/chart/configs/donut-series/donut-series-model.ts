@@ -1,10 +1,10 @@
 import {
-  List, SeriesModel, helper,
+  List, type Model, SeriesModel, helper,
 } from 'echarts/core';
-// @ts-expect-error - ECharts package does not ship this module declaration path.
 import LegendVisualProvider from 'echarts/lib/visual/LegendVisualProvider.js';
 import { DONUT_SERIES } from '../constants.js';
 import type { DonutSeriesOption } from './types.js';
+import type { GlobalModel } from '../types.js';
 
 export class SynergyDonutSeriesModel extends SeriesModel<DonutSeriesOption> {
   static type = `series.${DONUT_SERIES.TYPE_NAME}`;
@@ -22,11 +22,10 @@ export class SynergyDonutSeriesModel extends SeriesModel<DonutSeriesOption> {
 
   type = SynergyDonutSeriesModel.type;
 
-  init(...args): void {
-    super.init(...args);
+  init(option: DonutSeriesOption, parentModel: Model, ecModel: GlobalModel): void {
+    super.init(option, parentModel, ecModel);
 
     // Enable legend selection and rendering per named data item.
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     this.legendVisualProvider = new LegendVisualProvider(
       () => this.getData(),
       () => this.getRawData(),

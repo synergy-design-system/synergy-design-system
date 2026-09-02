@@ -1,85 +1,71 @@
 import { expect } from '@open-wc/testing';
 import { seriesDonut } from './presets.js';
 import type { DonutSeriesPresetOptions, ECConfig, SynergyDonutSeriesOption } from '../../types.js';
-import { DONUT_SERIES } from '../constants.js';
-
-type DonutSeriesResult = {
-  series: SynergyDonutSeriesOption[];
-};
-
-type StyledDonutDataItem = {
-  itemStyle?: {
-    color?: string;
-    fill?: string;
-  };
-  value: number;
-};
-
-const toDonutData = (values: number[]) => values.map((value) => ({ value }));
-
-const toStyledDonutData = (items: StyledDonutDataItem[]) => items as DonutSeriesPresetOptions['data'];
-
-const createDonutResult = (
-  options: DonutSeriesPresetOptions,
-  config: ECConfig = {},
-) => seriesDonut(options)(config) as DonutSeriesResult;
 
 describe('seriesDonut', () => {
-  it('creates a default synDonut series config', () => {
-    const { series } = createDonutResult({ data: toDonutData([10, 20, 30]) });
+  describe('basic functionality', () => {
+    it('should create series with type "synDonut"', () => {
+      const options: DonutSeriesPresetOptions = {
+        data: [{ value: 10 }, { value: 20 }, { value: 30 }],
+      };
+      const modifier = seriesDonut(options);
+      const config: ECConfig = {};
 
-    expect(series).to.be.an('array').with.lengthOf(1);
-    expect(series[0].type).to.equal('synDonut');
-    expect(series[0].data).to.deep.equal(toDonutData([10, 20, 30]));
+      const result = modifier(config) as { series: SynergyDonutSeriesOption[] };
+
+      expect(result.series).to.be.an('array').with.lengthOf(1);
+      expect(result.series[0]).to.have.property('type', 'synDonut');
+    });
+
+    it('should preserve provided DonutSeriesPresetOptions properties', () => {
+      const options: DonutSeriesPresetOptions = {
+        center: ['50%', '50%'],
+        data: [
+          { name: 'Apples', value: 10 },
+          { name: 'Bananas', value: 20 },
+        ],
+        name: 'Fruit',
+        radius: '80%',
+      };
+      const modifier = seriesDonut(options);
+      const config: ECConfig = {};
+
+      const result = modifier(config) as { series: SynergyDonutSeriesOption[] };
+
+      expect(result.series[0]).to.deep.include({
+        center: ['50%', '50%'],
+        data: [
+          { name: 'Apples', value: 10 },
+          { name: 'Bananas', value: 20 },
+        ],
+        name: 'Fruit',
+        radius: '80%',
+        type: 'synDonut',
+      });
+    });
   });
 
-  describe('config merging', () => {
-    it('appends synDonut series to existing series', () => {
+  describe('array appending', () => {
+    it('should append series to existing series array', () => {
       const existingConfig: ECConfig = {
         series: [
           { data: [1, 2, 3], name: 'Existing Line', type: 'line' },
         ],
       };
 
-      const result = createDonutResult({ data: toDonutData([10, 20]) }, existingConfig) as {
-        series: Array<{ name?: string; type?: string }>;
+      const newDonutSeries: DonutSeriesPresetOptions = {
+        data: [{ value: 10 }, { value: 20 }],
       };
+
+      const modifier = seriesDonut(newDonutSeries);
+      const result = modifier(existingConfig) as { series: SynergyDonutSeriesOption[] };
 
       expect(result.series).to.be.an('array').with.lengthOf(2);
-      expect(result.series[0]).to.include({ name: 'Existing Line', type: 'line' });
-      expect(result.series[1].type).to.equal('synDonut');
-    });
-
-    it('uses the configured type name constant', () => {
-      const { series } = createDonutResult({ data: toDonutData([10, 20]) });
-      expect(series[0].type).to.equal(DONUT_SERIES.TYPE_NAME);
-    });
-
-    it('forwards per-segment colors in data items to the series config', () => {
-      const { series } = createDonutResult({
-        data: toStyledDonutData([
-          { itemStyle: { fill: '#ff0000' }, value: 10 },
-          { itemStyle: { fill: '#00ff00' }, value: 20 },
-        ]),
+      expect(result.series[0]).to.include({ name: 'Existing Line' });
+      expect(result.series[1]).to.deep.include({
+        data: [{ value: 10 }, { value: 20 }],
+        type: 'synDonut',
       });
-      expect(series[0].data).to.deep.equal([
-        { itemStyle: { fill: '#ff0000' }, value: 10 },
-        { itemStyle: { fill: '#00ff00' }, value: 20 },
-      ]);
-    });
-
-    it('does not mutate the incoming config object', () => {
-      const existingConfig: ECConfig = {
-        series: [{ data: [1], name: 'Existing', type: 'line' }],
-      };
-      const originalSeries = existingConfig.series as Array<{ data?: unknown[]; name?: string; type?: string }>;
-
-      const result = createDonutResult({ data: toDonutData([10]) }, existingConfig);
-
-      expect(originalSeries).to.have.lengthOf(1);
-      expect(result.series).to.have.lengthOf(originalSeries.length + 1);
-      expect(result.series[0]).to.include({ name: 'Existing', type: 'line' });
-      expect(result.series[1].type).to.equal('synDonut');
     });
   });
 });

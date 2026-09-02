@@ -23,8 +23,6 @@ export type ResolvedLayout = {
  * Series-level configuration for the donut chart.
  */
 export type DonutSeriesConfig = {
-  /** Color of the static inner track ring. */
-  backgroundColor?: string;
   /** Center position inside the donut layout area, supports pixel or percentage values. */
   center?: [LayoutValue, LayoutValue];
   /** Outer radius of the donut, supports pixel or percentage values. */
@@ -51,8 +49,11 @@ export type SegmentRange = {
  * A single data item shown as a donut segment with optional label metadata.
  */
 export type DonutDataItem = {
+  /** Numeric value of the segment; determines the slice angle relative to the other values. */
   value: number;
+  /** Label shown for the segment. */
   name?: string;
+  /** Optional icon as SVG data url used to render a segment icon alongside the label. */
   icon?: string;
 };
 
@@ -77,7 +78,7 @@ export type DonutSeriesOption = DonutSeriesConfig & {
 export type SynergyDonutSeriesOption = Omit<DonutSeriesOption, 'type'> & { type: 'synDonut' };
 
 /**
- * Input options for the donut chart preset before the type discriminator is added.
+ * Input options for the donut chart preset.
  */
 export type DonutSeriesPresetOptions = Omit<SynergyDonutSeriesOption, 'type' | 'colorBy'>;
 

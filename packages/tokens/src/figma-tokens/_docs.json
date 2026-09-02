@@ -1003,7 +1003,47 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the `labels` option to render a label for each segment, aligned by index with `data`. Each label is centered on its segment and placed outside the outer ring; provide an `icon` data URL alongside the `text` to render an icon before the label.",
+          "value": "Use the `name` option to render a label for each segment, aligned by index with `data`. Each label is centered on its segment and placed outside the outer ring; provide an `icon` data URL alongside the `name` to render an icon before the label.",
+          "type": "text"
+        }
+      },
+      "donut-series-legend": {
+        "title": {
+          "value": "Donut Series with Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `legendShow()` to render legend entries for the donut segments. Segment names are used as legend labels and can be toggled interactively.",
+          "type": "text"
+        }
+      },
+      "donut-series-center": {
+        "title": {
+          "value": "Donut Series Center",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `center` option to position the donut inside the available layout area. Values can be pixels or percentages.",
+          "type": "text"
+        }
+      },
+      "donut-series-radius": {
+        "title": {
+          "value": "Donut Series Radius",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `radius` option to define the donut's outer radius. The value can be specified either as a number (for a fixed pixel value, e.g. 20) or as a percentage string (e.g. '50%'). Percentage-based values automatically scale with the available space, while pixel values remain fixed.",
+          "type": "text"
+        }
+      },
+      "donut-series-insets": {
+        "title": {
+          "value": "Donut Series Insets",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `top`, `right`, `bottom`, and `left` to reduce the donut layout area from each side before `center` and `radius` are resolved. Insets can be set in pixels (number) or percentages (string).",
           "type": "text"
         }
       },

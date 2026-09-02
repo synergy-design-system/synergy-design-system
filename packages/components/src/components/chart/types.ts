@@ -59,6 +59,8 @@ export type {
 
 export type {
   DonutSeriesConfig,
+  DonutDataValue,
+  DonutDataItem,
   DonutSeriesPresetOptions,
   SynergyDonutSeriesOption,
 } from './configs/donut-series/types.js';

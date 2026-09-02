@@ -11,16 +11,16 @@ import type { DonutSeriesPresetOptions, SynergyDonutSeriesOption } from './types
  * (normalized to 360 degrees).
  *
  * @param {DonutSeriesPresetOptions} [options] Preset options.
- * @param {(number|{value:number,name?:string,icon?:string,color?:string})[]} options.data Data values/items used to size and label the outer ring segments.
- * Labels are taken from `data[i].name`, optional icons from `data[i].icon`, and optional segment colors from `data[i].color` when object items are used.
- * @param {string} [options.backgroundColor] Color of the static inner track ring.
+ * @param {DonutDataItem[]} [options.data] Data values/items used to size and label the outer ring segments.
+ * @param {number} [options.data[].value] Numeric value of the segment; determines the slice angle relative to the other values.
+ * @param {string} [options.data[].name] Label shown for the segment.
+ * @param {string} [options.data[].icon] Optional icon as SVG data url used to render a segment icon alongside the label.
  * @param {[number|string, number|string]} [options.center] Center position within the donut layout area. Each value accepts pixels or percentages.
  * @param {number|string} [options.radius] Outer donut radius in pixels/percentage.
  * @param {number|string} [options.top] Top inset that shrinks the donut layout area before center/radius are resolved.
  * @param {number|string} [options.right] Right inset that shrinks the donut layout area before center/radius are resolved.
  * @param {number|string} [options.bottom] Bottom inset that shrinks the donut layout area before center/radius are resolved.
  * @param {number|string} [options.left] Left inset that shrinks the donut layout area before center/radius are resolved.
- * When `data[i].color` is omitted, colors are taken from the chart's categorical color palette.
  *
  * @see https://echarts.apache.org/en/option.html#series
  */

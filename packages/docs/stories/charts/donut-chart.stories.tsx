@@ -133,6 +133,82 @@ export const Labels: Story = {
   `,
 };
 
+export const Radius: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'donut-series-radius'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="donut-radius"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#donut-radius');
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+        .seriesDonut({
+          radius: '90%',
+          data: [10, 20, 30, 40],
+        });
+      });
+    </script>
+  `,
+};
+
+export const Center: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'donut-series-center'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="donut-center"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#donut-center');
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+        .seriesDonut({
+          center: ['35%', '65%'],
+          radius: '70',
+          data: [10, 20, 30, 40],
+        });
+      });
+    </script>
+  `,
+};
+
+export const Insets: Story = {
+  parameters: {
+    docs: {
+      description: {
+        story: generateStoryDescription('chart', 'donut-series-insets'),
+      },
+    },
+  },
+  render: () => html`
+    <syn-chart id="donut-insets"></syn-chart>
+    <script type="module">
+      const charts = document.querySelectorAll('#donut-insets');
+
+      charts.forEach(chart => {
+        chart.config = handle => handle
+        .seriesDonut({
+          top: 20,
+          right: 120,
+          bottom: '50%',
+          left: 260,
+          data: [10, 20, 30, 40],
+        });
+      });
+    </script>
+  `,
+};
+
 export const WithLegend: Story = {
   parameters: {
     docs: {
@@ -149,20 +225,10 @@ export const WithLegend: Story = {
       charts.forEach(chart => {
         chart.config = handle => handle
         .seriesDonut({
-          top: 60,
           data: [
-            {
-              value: 50,
-              name: 'Angular',
-            },
-            {
-              value: 30,
-              name: 'React',
-            },
-            {
-              value: 20,
-              name: 'Vue',
-            },
+                  { name: 'invalid', value: Number.NaN },
+        { name: 'negative', value: -5 },
+        { name: 'positive', value: 10 },
           ],
         })
         .legendShow();
@@ -176,6 +242,9 @@ export const Screenshot: Story = generateScreenshotStory({
   Default,
   CustomColors,
   Labels,
+  Radius,
+  Center,
+  Insets,
   WithLegend,
 }, 700);
 /* eslint-enable sort-keys */

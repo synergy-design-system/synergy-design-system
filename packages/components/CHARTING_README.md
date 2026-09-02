@@ -472,6 +472,7 @@ chart.config = handle =>
 ```
 
 Array merge strategy:
+
 - `seriesGauge({...})` uses `arrayStrategy: 'append'`.
 - The generated `synGauge` series entry is appended to `series`.
 
@@ -483,13 +484,12 @@ Array merge strategy:
 
 `DonutSeriesPresetOptions` supports the following fields:
 
-| Option            | Type               | Description                                                                                                                                                                                                                       | Default                    |
-| ----------------- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| `data`            | `DonutDataValue[]` | Segment values for the donut. Each item may be a plain number or an object with `value`, `name`, `icon`, and `color`. Label text is taken from `data[i].name`, icons from `data[i].icon`, and custom colors from `data[i].color`. | required                   |
-| `data[i].name`    | `string`           | Optional name for the series.                                                                                                                                                                                                     |                            |
-| `data[i].icon`    | `string`           | Optional icon as SVG data URL for the series.                                                                                                                                                                                     |                            |
-| `data[i].color`   | `string`           | Default color applied to all segments when an item does not provide a custom color.                                                                                                                                               | uses chart palette color   |
-| `backgroundColor` | `string`           | Color of the static inner track ring.                                                                                                                                                                                             | --syn-progress-track-color |
+| Option          | Type                          | Description                                                                                                                                                                        | Default                  |
+| --------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| `data`          | `DonutDataValue[]` (required) | Segment values for the donut. Each item may be a plain number or an object with `value`, `name` and `icon`. Label text is taken from `data[i].name` and icons from `data[i].icon`. |                          |
+| `data[i].name`  | `string`                      | Optional name for the series.                                                                                                                                                      |                          |
+| `data[i].icon`  | `string`                      | Optional icon as SVG data URL for the series.                                                                                                                                      |                          |
+| `data[i].value` | number (required)             | Value for the segment.                                                                                                                                                             | uses chart palette color |
 
 Example:
 
@@ -505,7 +505,6 @@ Example with custom colors and labels:
 ```ts
 chart.config = handle =>
   handle.seriesDonut({
-    backgroundColor: "#e8edf8",
     data: [
       { value: 15, name: "Angular", color: "#0d3f9b" },
       { value: 10, name: "React", color: "#0845c5" },
@@ -623,9 +622,9 @@ shorthand(0.002); // '2m'
 
 The following chart types are natively supported with Synergy styling:
 
-| Type        | How to use                                      |
-| ----------- | ----------------------------------------------- |
-| Line chart  | `series[].type: 'line'` (standard ECharts)      |
+| Type        | How to use                                   |
+| ----------- | -------------------------------------------- |
+| Line chart  | `series[].type: 'line'` (standard ECharts)   |
 | Gauge chart | `series[].type: 'synGauge'` (custom Synergy) |
 | Donut chart | `series[].type: 'synDonut'` (custom Synergy) |
 

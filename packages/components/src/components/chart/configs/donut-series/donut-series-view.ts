@@ -104,7 +104,12 @@ const resolveOuterRadius = (
 ): number => {
   const size = Math.min(layoutWidth, layoutHeight);
   const radiusBase = Math.max(0, size / 2);
-  return Math.max(0, toPixels(radius, radiusBase, radiusBase));
+
+  if (radius === undefined) {
+    return radiusBase;
+  }
+
+  return Math.max(0, toPixels(radius, radiusBase, radiusBase / 2));
 };
 
 /**
@@ -163,7 +168,13 @@ const computeSegmentRanges = (values: number[]): Array<SegmentRange | null> => {
   let currentAngle = startAngle;
 
   const ranges = values.map((value) => {
-    const sweep = (Math.max(value, 0) / total) * FULL_CIRCLE_RADIAN;
+    const positiveValue = Math.max(value, 0);
+
+    if (positiveValue <= 0) {
+      return null;
+    }
+
+    const sweep = (positiveValue / total) * FULL_CIRCLE_RADIAN;
     const segmentStartAngle = currentAngle;
     const endAngle = currentAngle + sweep;
     currentAngle += sweep;
@@ -181,10 +192,14 @@ const computeSegmentRanges = (values: number[]): Array<SegmentRange | null> => {
   }
 
   if (lastPositiveIndex >= 0) {
-    ranges[lastPositiveIndex] = {
-      ...ranges[lastPositiveIndex],
-      endAngle: startAngle + FULL_CIRCLE_RADIAN,
-    };
+    const lastRange = ranges[lastPositiveIndex];
+
+    if (lastRange) {
+      ranges[lastPositiveIndex] = {
+        ...lastRange,
+        endAngle: startAngle + FULL_CIRCLE_RADIAN,
+      };
+    }
   }
 
   return ranges;
@@ -359,7 +374,7 @@ const computeAdaptiveLayout = ({
   const visibleLabels = segmentRanges.flatMap((range, index) => {
     const item = dataItems[index];
 
-    if (!range || !item || (!item.name && !item.icon)) {
+    if (!range || (range.endAngle - range.startAngle) <= 0 || !item || (!item.name && !item.icon)) {
       return [];
     }
 
@@ -445,13 +460,12 @@ const buildDonutGroup = (
   const innerRingInnerRadius = innerRingOuterRadius - innerRingThickness;
 
   const donutGroup = new graphic.Group();
-  const backgroundColor = inputConfig.backgroundColor ?? style('SynProgressTrackColor');
 
   // Static inner track ring.
   donutGroup.add(createSectorGraphic({
     centerX,
     centerY,
-    color: backgroundColor,
+    color: style('SynProgressTrackColor'),
     endAngle: FULL_CIRCLE_RADIAN,
     innerRadius: innerRingInnerRadius,
     outerRadius: innerRingOuterRadius,
@@ -474,7 +488,7 @@ const buildDonutGroup = (
   segmentRanges.forEach((range, index) => {
     const dataItem = dataItems[index];
 
-    if (!range || (!dataItem?.name && !dataItem?.icon)) {
+    if (!range || (range.endAngle - range.startAngle) <= 0 || (!dataItem?.name && !dataItem?.icon)) {
       return;
     }
 

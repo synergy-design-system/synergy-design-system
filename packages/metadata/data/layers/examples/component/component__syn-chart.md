@@ -1387,7 +1387,7 @@ The donut chart can either be configured via config with type: 'synDonut' or wit
       series: [
         {
           type: "synDonut",
-          data: [10, 20, 30, 15, 25],
+          data: [10, 20, 30, 40],
         },
       ],
     };
@@ -1408,17 +1408,21 @@ By default, each outer ring segment is assigned a color from the chart's categor
 
   charts.forEach((chart) => {
     chart.config = (handle) =>
-      handle.seriesDonut({
-        data: [
-          { value: 15, color: "#0d3f9b" },
-          { value: 10, color: "#0845c5" },
-          { value: 20, color: "#005aff" },
-          { value: 12, color: "#066fff" },
-          { value: 18, color: "#3183fe" },
-          { value: 8, color: "#5e97fc" },
-          { value: 17, color: "#91bbff" },
-        ],
-      });
+      handle
+        .baseConfig({
+          color: [
+            "#0d3f9b",
+            "#0845c5",
+            "#005aff",
+            "#066fff",
+            "#3183fe",
+            "#5e97fc",
+            "#91bbff",
+          ],
+        })
+        .seriesDonut({
+          data: [15, 10, 20, 12, 18, 8, 17],
+        });
   });
 </script>
 ```
@@ -1427,7 +1431,7 @@ By default, each outer ring segment is assigned a color from the chart's categor
 
 ## Labels
 
-Use the labels option to render a label for each segment, aligned by index with data. Each label is centered on its segment and placed outside the outer ring; provide an icon data URL alongside the text to render an icon before the label.
+Use the name option to render a label for each segment, aligned by index with data. Each label is centered on its segment and placed outside the outer ring; provide an icon data URL alongside the name to render an icon before the label.
 
 ```html
 <syn-chart id="donut-labels"></syn-chart>
@@ -1455,6 +1459,99 @@ Use the labels option to render a label for each segment, aligned by index with 
           },
         ],
       });
+  });
+</script>
+```
+
+---
+
+## Radius
+
+Use the radius option to define the donut's outer radius. The value can be specified either as a number (for a fixed pixel value, e.g. 20) or as a percentage string (e.g. '50%'). Percentage-based values automatically scale with the available space, while pixel values remain fixed.
+
+```html
+<syn-chart id="donut-radius"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-radius");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        radius: "90%",
+        data: [10, 20, 30, 40],
+      });
+  });
+</script>
+```
+
+---
+
+## Center
+
+Use the center option to position the donut inside the available layout area. Values can be pixels or percentages.
+
+```html
+<syn-chart id="donut-center"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-center");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        center: ["35%", "65%"],
+        radius: "70",
+        data: [10, 20, 30, 40],
+      });
+  });
+</script>
+```
+
+---
+
+## Insets
+
+Use top, right, bottom, and left to reduce the donut layout area from each side before center and radius are resolved. Insets can be set in pixels (number) or percentages (string).
+
+```html
+<syn-chart id="donut-insets"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-insets");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        top: 20,
+        right: 120,
+        bottom: "50%",
+        left: 260,
+        data: [10, 20, 30, 40],
+      });
+  });
+</script>
+```
+
+---
+
+## With Legend
+
+Use legendShow() to render legend entries for the donut segments. Segment names are used as legend labels and can be toggled interactively.
+
+```html
+<syn-chart id="donut-legend"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-legend");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .seriesDonut({
+          data: [
+            { name: "invalid", value: Number.NaN },
+            { name: "negative", value: -5 },
+            { name: "positive", value: 10 },
+          ],
+        })
+        .legendShow();
   });
 </script>
 ```

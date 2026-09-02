@@ -397,3 +397,12 @@ export const polarPoint = (centerX: number, centerY: number, radius: number, ang
  * @returns the angle in radians
  */
 export const convertDegreeToRadian = (degree: number): number => degree * DEGREE_TO_RADIAN;
+
+/**
+ * Clamps invalid numeric input to a safe finite fallback without throwing.
+ *
+ * @param value Number to validate.
+ * @param fallback Replacement value used when the input is not a finite number.
+ * @returns The original value when finite, otherwise the provided fallback.
+ */
+export const sanitizeFiniteNumber = (value: number, fallback = 0): number => (Number.isFinite(value) ? value : fallback);

@@ -19,8 +19,12 @@ import {
   createSectorGraphic,
   createTextGraphic,
   polarPoint,
+  sanitizeFiniteNumber,
 } from '../utilities.js';
 import type { ExtensionAPI, GlobalModel, LayoutValue } from '../types.js';
+
+const PIXEL_VALUE_PATTERN = /^[+-]?\d+(?:\.\d+)?$/;
+const PERCENT_VALUE_PATTERN = /^[+-]?\d+(?:\.\d+)?%$/;
 
 /** Converts a pixel/percent input to pixels relative to the given base size. */
 const toPixels = (value: LayoutValue | undefined, baseSize: number, fallback = 0): number => {
@@ -31,9 +35,13 @@ const toPixels = (value: LayoutValue | undefined, baseSize: number, fallback = 0
   if (typeof value === 'string') {
     const trimmed = value.trim();
 
-    if (trimmed.endsWith('%')) {
+    if (PERCENT_VALUE_PATTERN.test(trimmed)) {
       const percent = Number.parseFloat(trimmed.slice(0, -1));
       return Number.isFinite(percent) ? (baseSize * percent) / 100 : fallback;
+    }
+
+    if (!PIXEL_VALUE_PATTERN.test(trimmed)) {
+      return fallback;
     }
 
     const numeric = Number.parseFloat(trimmed);
@@ -43,6 +51,11 @@ const toPixels = (value: LayoutValue | undefined, baseSize: number, fallback = 0
   return fallback;
 };
 
+/**
+ * Resolves chart-relative inset values (`top`, `right`, `bottom`, `left`) into absolute pixel bounds.
+ *
+ * Inputs support numeric pixels and percentage strings; invalid inputs fall back to `0`.
+ */
 const resolveLayoutBounds = (
   edges: Pick<DonutSeriesOption, 'top' | 'right' | 'bottom' | 'left'>,
   width: number,
@@ -61,6 +74,11 @@ const resolveLayoutBounds = (
   };
 };
 
+/**
+ * Resolves the donut center point within the previously computed layout bounds.
+ *
+ * The center may be provided as pixel or percentage offsets relative to the local layout area.
+ */
 const resolveLayoutCenter = (
   center: LayoutCenterInput,
   bounds: LayoutBounds,
@@ -76,6 +94,9 @@ const resolveLayoutCenter = (
   };
 };
 
+/**
+ * Resolves the outer radius from a pixel/percent config value based on the smaller layout dimension.
+ */
 const resolveOuterRadius = (
   radius: LayoutRadiusInput,
   layoutWidth: number,
@@ -86,6 +107,10 @@ const resolveOuterRadius = (
   return Math.max(0, toPixels(radius, radiusBase, radiusBase));
 };
 
+/**
+ * Returns `true` when the radius is an absolute value (number or non-percent string),
+ * meaning adaptive scaling should not change it.
+ */
 const isFixedRadius = (radius: LayoutRadiusInput): boolean => {
   if (typeof radius === 'number') {
     return Number.isFinite(radius);
@@ -134,16 +159,35 @@ const computeSegmentRanges = (values: number[]): Array<SegmentRange | null> => {
     return values.map(() => null);
   }
 
-  let currentAngle = DONUT_SERIES.START_ANGLE * DEGREE_TO_RADIAN;
+  const startAngle = DONUT_SERIES.START_ANGLE * DEGREE_TO_RADIAN;
+  let currentAngle = startAngle;
 
-  return values.map((value) => {
+  const ranges = values.map((value) => {
     const sweep = (Math.max(value, 0) / total) * FULL_CIRCLE_RADIAN;
-    const startAngle = currentAngle;
+    const segmentStartAngle = currentAngle;
     const endAngle = currentAngle + sweep;
-    currentAngle = endAngle;
+    currentAngle += sweep;
 
-    return { endAngle, startAngle };
+    return { endAngle, startAngle: segmentStartAngle };
   });
+
+  let lastPositiveIndex = -1;
+
+  for (let index = values.length - 1; index >= 0; index -= 1) {
+    if (values[index] > 0) {
+      lastPositiveIndex = index;
+      break;
+    }
+  }
+
+  if (lastPositiveIndex >= 0) {
+    ranges[lastPositiveIndex] = {
+      ...ranges[lastPositiveIndex],
+      endAngle: startAngle + FULL_CIRCLE_RADIAN,
+    };
+  }
+
+  return ranges;
 };
 
 /**
@@ -159,21 +203,25 @@ const createSegmentSectors = ({
   outerRadius: number;
   data: SeriesData,
 }): graphic.Sector[] => {
-  const gap = DONUT_SERIES.SEGMENT_GAP;
-
+  const isSingleSegment = ranges.length === 1;
   return ranges.reduce<graphic.Sector[]>((sectors, range, index) => {
     if (!range) {
       return sectors;
     }
-
     const sweep = range.endAngle - range.startAngle;
+
+    if (sweep <= 0) {
+      return sectors;
+    }
+
     // Keep gaps from collapsing very small slices into a negative sweep.
-    const halfGap = Math.min(gap / 2, sweep / 2);
+    // If there is only one segment, we don't need a gap at all.
+    const halfGap = isSingleSegment ? 0 : Math.min(DONUT_SERIES.SEGMENT_GAP / 2, sweep / 2);
 
     sectors.push(createSectorGraphic({
       centerX,
       centerY,
-      color: data.getItemVisual(index, 'style').fill ?? 'transparent',
+      color: data.getItemVisual(index, 'style').fill ?? style('SynChartCategorical01'),
       endAngle: range.endAngle - halfGap,
       innerRadius,
       outerRadius,
@@ -205,13 +253,17 @@ const computeLabelDimensions = (
   const textWidth = item.name ? measureTextWidth(item.name, `${fontSize}px ${style('SynFontSans')}`) : 0;
   const iconWidth = item.icon ? iconSize + iconTextGap : 0;
   const totalWidth = iconWidth + textWidth;
+  const textHeight = item.name ? fontSize : 0;
+  const contentHeight = Math.max(iconSize, textHeight);
   // Labels on the right half grow rightward from point.x; left half grow leftward.
   const labelLeft = onRightHalf ? point.x : point.x - totalWidth;
   const labelRight = labelLeft + totalWidth;
+  const labelTop = point.y - (contentHeight / 2);
+  const labelBottom = point.y + (contentHeight / 2);
   const iconX = labelLeft;
   const textX = labelLeft + iconWidth;
   return {
-    fontSize, iconSize, iconX, labelLeft, labelRight, point, textX,
+    fontSize, iconSize, iconX, labelBottom, labelLeft, labelRight, labelTop, point, textX,
   };
 };
 
@@ -262,8 +314,13 @@ const createSegmentLabel = ({
 
 /**
  * Returns the largest value in the range that satisfies the provided fit check.
+ * The search interval shrinks by a factor of two on each iteration.
  */
 const binarySearchMax = (lo: number, hi: number, fits: (v: number) => boolean, iterations = 5): number => {
+  if (!Number.isFinite(lo) || !Number.isFinite(hi) || iterations <= 0 || lo >= hi) {
+    return lo;
+  }
+
   let best = lo;
   let low = lo;
   let high = hi;
@@ -316,17 +373,17 @@ const computeAdaptiveLayout = ({
 
     return visibleLabels.every(({ midAngle, item }) => {
       const {
-        iconSize,
+        labelBottom,
         labelLeft,
         labelRight,
-        point,
+        labelTop,
       } = computeLabelDimensions(item, af, centerX, centerY, radius, midAngle);
 
       return (
         labelLeft >= bounds.left
         && labelRight <= bounds.right
-        && point.y - iconSize / 2 >= bounds.top
-        && point.y + iconSize / 2 <= bounds.bottom
+        && labelTop >= bounds.top
+        && labelBottom <= bounds.bottom
       );
     });
   };
@@ -358,9 +415,10 @@ const buildDonutGroup = (
     centerX,
     centerY,
     layoutHeight,
+    layoutWidth,
     outerRadius,
   } = resolveDonutLayout(inputConfig, width, height);
-  const factor = layoutHeight / DONUT_SERIES.REFERENCE_HEIGHT;
+  const factor = Math.min(layoutHeight, layoutWidth) / DONUT_SERIES.REFERENCE_HEIGHT;
 
   const segmentRanges = computeSegmentRanges(dataItems.map((item) => Number(item.value)));
 
@@ -436,12 +494,17 @@ const buildDonutGroup = (
   return donutGroup;
 };
 
+/**
+ * Converts the model data for the custom donut series into the normalized item structure used by the view.
+ *
+ * Values are sanitized to guard against invalid or non-finite numbers before layout and rendering.
+ */
 const toDonutDataItems = (seriesModel: SynergyDonutSeriesModel): DonutDataItem[] => {
   const data = seriesModel.getData();
   const dataItems: DonutDataItem[] = [];
 
   for (let index = 0; index < data.count(); index += 1) {
-    const value = Number(data.get('value', index));
+    const value = sanitizeFiniteNumber(Number(data.get('value', index)));
     const rawDataItem = data.getRawDataItem(index) as DonutDataValue;
     const objectDataItem = typeof rawDataItem === 'object' && rawDataItem !== null ? rawDataItem : undefined;
 
@@ -455,6 +518,9 @@ const toDonutDataItems = (seriesModel: SynergyDonutSeriesModel): DonutDataItem[]
   return dataItems;
 };
 
+/**
+ * ECharts view for rendering the custom donut chart series as an SVG-like graphic group.
+ */
 export class SynergyDonutView extends ChartView {
   static type = DONUT_SERIES.TYPE_NAME;
 

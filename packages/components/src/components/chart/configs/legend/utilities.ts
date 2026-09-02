@@ -1,5 +1,5 @@
 import type { LegendComponentOption, SeriesModel } from 'echarts/types/dist/shared.js';
-import { graphic } from 'echarts';
+import { graphic } from 'echarts/core.js';
 import type { ECConfig } from '../../types.js';
 import { measureMaxTextWidth } from '../axes/utilities.js';
 import { LEGEND } from '../constants.js';
@@ -193,6 +193,12 @@ export const normalizeLegendPosition = (
     : position;
 };
 
+/**
+ * Adds the built-in visibility icon formatter to legend entries when a custom formatter is not supplied.
+ *
+ * The processor updates each legend component so hidden series render a hide icon and visible series render
+ * a show icon, while preserving the label text and selection state.
+ */
 export const legendVisibilityIconProcessor = {
   overallReset: (ecModel: GlobalModel) => {
     const legendModels = ecModel.findComponents({
@@ -217,6 +223,12 @@ export const legendVisibilityIconProcessor = {
   },
 };
 
+/**
+ * Renders a compact square legend marker for non-line series.
+ *
+ * The visual uses the series fill color as the marker body and replaces the default ECharts legend icon for
+ * custom chart types that do not provide their own visual representation.
+ */
 export const legendIconVisual = {
   createOnAllSeries: true,
   reset: (seriesModel: SeriesModel) => {

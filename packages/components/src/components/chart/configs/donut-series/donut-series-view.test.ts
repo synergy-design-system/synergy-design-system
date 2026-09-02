@@ -267,6 +267,37 @@ describe('SynergyDonutView', () => {
     expect(segment.shape.r).to.be.closeTo(35, 0.001);
   });
 
+  it('falls back to default radius resolution for invalid radius strings', () => {
+    const view = renderDonut({ radius: '25abc' }, undefined, 280, 280);
+    const [segment] = getSegmentSectors(view);
+
+    // Invalid values fall back to 100% of the radius base (size / 2).
+    expect(segment.shape.r).to.be.closeTo(70, 0.001);
+  });
+
+  it('falls back to centered layout for invalid center values', () => {
+    const view = renderDonut({ center: ['50abc', '50%'] });
+    const [segment] = getSegmentSectors(view);
+
+    expect(segment.shape.cx).to.equal(140);
+    expect(segment.shape.cy).to.equal(140);
+  });
+
+  it('renders segments only for positive finite values', () => {
+    const view = renderDonut({
+      data: [
+        { name: 'invalid', value: Number.NaN },
+        { name: 'negative', value: -5 },
+        { name: 'positive', value: 10 },
+      ],
+    });
+
+    const segments = getSegmentSectors(view);
+
+    expect(segments).to.have.lengthOf(1);
+    expect(getLabelTexts(view)).to.deep.equal(['positive']);
+  });
+
   it('does not render labels when data items have no name', () => {
     const view = renderDonut({ data: toDonutData([10, 20, 30]) });
 

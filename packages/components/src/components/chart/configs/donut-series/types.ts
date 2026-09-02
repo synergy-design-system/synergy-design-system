@@ -1,4 +1,3 @@
-import type { ZRColor } from 'echarts/types/dist/shared.js';
 import type { LayoutValue } from '../types.js';
 
 export type LayoutBounds = {
@@ -19,6 +18,7 @@ export type ResolvedLayout = {
   outerRadius: number;
   bounds: LayoutBounds;
 };
+
 /**
  * Series-level configuration for the donut chart.
  */
@@ -37,20 +37,6 @@ export type DonutSeriesConfig = {
   bottom?: LayoutValue;
   /** Left inset that reduces the donut layout area before center/radius are resolved. */
   left?: LayoutValue;
-};
-
-/**
- * Geometry and styling information for a rendered donut ring segment.
- */
-export type Sector = {
-  centerX: number;
-  centerY: number;
-  innerRadius: number;
-  outerRadius: number;
-  startAngle: number;
-  endAngle: number;
-  color: ZRColor;
-  z: number;
 };
 
 /**
@@ -97,6 +83,7 @@ export type DonutSeriesPresetOptions = Omit<SynergyDonutSeriesOption, 'type' | '
 
 /**
  * Extends ECharts' registered series options with the custom donut series.
+ * This keeps the custom series type discoverable by the chart runtime and by TypeScript consumers.
  */
 declare module 'echarts/types/dist/shared.js' {
   interface RegisteredSeriesOption {

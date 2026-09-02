@@ -2,7 +2,6 @@
 "@synergy-design-system/components": minor
 "@synergy-design-system/metadata": minor
 "@synergy-design-system/tokens": minor
-"@synergy-design-system/mcp": minor
 ---
 
 feat: ✨ Add donut series support to `<syn-chart>` (#1356)

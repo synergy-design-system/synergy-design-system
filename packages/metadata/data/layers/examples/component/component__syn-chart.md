@@ -1545,10 +1545,20 @@ Use legendShow() to render legend entries for the donut segments. Segment names 
     chart.config = (handle) =>
       handle
         .seriesDonut({
+          top: 60,
           data: [
-            { name: "invalid", value: Number.NaN },
-            { name: "negative", value: -5 },
-            { name: "positive", value: 10 },
+            {
+              value: 50,
+              name: "Angular",
+            },
+            {
+              value: 30,
+              name: "React",
+            },
+            {
+              value: 20,
+              name: "Vue",
+            },
           ],
         })
         .legendShow();

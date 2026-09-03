@@ -1375,6 +1375,201 @@ The data zoom slider (the dataZoom option with type: 'inside') allows users to d
 
 ## Default
 
+The donut chart can either be configured via config with type: 'synDonut' or with the seriesDonut preset function.
+
+```html
+<syn-chart id="donut-series-preset"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-series-preset");
+
+  charts.forEach((chart) => {
+    chart.config = {
+      series: [
+        {
+          type: "synDonut",
+          data: [10, 20, 30, 40],
+        },
+      ],
+    };
+  });
+</script>
+```
+
+---
+
+## Custom Colors
+
+By default, each outer ring segment is assigned a color from the chart's categorical color palette. Use the colors option to provide explicit colors instead; colors are repeated cyclically when fewer colors than data points are provided.
+
+```html
+<syn-chart id="donut-colors"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-colors");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .baseConfig({
+          color: [
+            "#0d3f9b",
+            "#0845c5",
+            "#005aff",
+            "#066fff",
+            "#3183fe",
+            "#5e97fc",
+            "#91bbff",
+          ],
+        })
+        .seriesDonut({
+          data: [15, 10, 20, 12, 18, 8, 17],
+        });
+  });
+</script>
+```
+
+---
+
+## Labels
+
+Use the name option to render a label for each segment, aligned by index with data. Each label is centered on its segment and placed outside the outer ring; provide an icon data URL alongside the name to render an icon before the label.
+
+```html
+<syn-chart id="donut-labels"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-labels");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        data: [
+          {
+            value: 50,
+            name: "Angular",
+            icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMTIgMkwyIDZsMS42IDEyLjlMMTIgMjJsOC40LTMuMUwyMiA2IDEyIDJ6bTAgMi4yIDcuNiAyLjctMS4yIDEwLjZMMTIgMTkuOGwtNi40LTIuM0w0LjQgNi45IDEyIDQuMnpNMTIgOWwtNCA5aDEuNmwuOC0yaDMuMmwuOCAySDE2bC00LTl6bTAgMi45IDEuMSAyLjdoLTIuMkwxMiAxMS45eiIvPjwvc3ZnPg==",
+          },
+          {
+            value: 30,
+            name: "React",
+            icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJjdXJyZW50Q29sb3IiIHN0cm9rZS13aWR0aD0iMS40Ij48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIyIiBmaWxsPSJjdXJyZW50Q29sb3IiIHN0cm9rZT0ibm9uZSIvPjxlbGxpcHNlIGN4PSIxMiIgY3k9IjEyIiByeD0iMTAiIHJ5PSI0LjIiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSg2MCAxMiAxMikiLz48ZWxsaXBzZSBjeD0iMTIiIGN5PSIxMiIgcng9IjEwIiByeT0iNC4yIiB0cmFuc2Zvcm09InJvdGF0ZSgxMjAgMTIgMTIpIi8+PC9zdmc+",
+          },
+          {
+            value: 20,
+            name: "Vue",
+            icon: "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iY3VycmVudENvbG9yIj48cGF0aCBkPSJNMiAzaDQuMkwxMiAxM2w1LjgtMTBIMjJMMTIgMjEgMiAzeiIvPjxwYXRoIGQ9Ik04LjQgM2gzLjJMMTIgNS4xIDEzLjQgM2gzLjJMMTIgMTIuOSA4LjQgM3oiLz48L3N2Zz4=",
+          },
+        ],
+      });
+  });
+</script>
+```
+
+---
+
+## Radius
+
+Use the radius option to define the donut's outer radius. The value can be specified either as a number (for a fixed pixel value, e.g. 20) or as a percentage string (e.g. '50%'). Percentage-based values automatically scale with the available space, while pixel values remain fixed.
+
+```html
+<syn-chart id="donut-radius"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-radius");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        radius: "90%",
+        data: [10, 20, 30, 40],
+      });
+  });
+</script>
+```
+
+---
+
+## Center
+
+Use the center option to position the donut inside the available layout area. Values can be pixels or percentages.
+
+```html
+<syn-chart id="donut-center"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-center");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        center: ["35%", "65%"],
+        radius: "70",
+        data: [10, 20, 30, 40],
+      });
+  });
+</script>
+```
+
+---
+
+## Insets
+
+Use top, right, bottom, and left to reduce the donut layout area from each side before center and radius are resolved. Insets can be set in pixels (number) or percentages (string).
+
+```html
+<syn-chart id="donut-insets"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-insets");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle.seriesDonut({
+        top: 20,
+        right: 120,
+        bottom: "50%",
+        left: 260,
+        data: [10, 20, 30, 40],
+      });
+  });
+</script>
+```
+
+---
+
+## With Legend
+
+Use legendShow() to render legend entries for the donut segments. Segment names are used as legend labels and can be toggled interactively.
+
+```html
+<syn-chart id="donut-legend"></syn-chart>
+<script type="module">
+  const charts = document.querySelectorAll("#donut-legend");
+
+  charts.forEach((chart) => {
+    chart.config = (handle) =>
+      handle
+        .seriesDonut({
+          top: 60,
+          data: [
+            {
+              value: 50,
+              name: "Angular",
+            },
+            {
+              value: 30,
+              name: "React",
+            },
+            {
+              value: 20,
+              name: "Vue",
+            },
+          ],
+        })
+        .legendShow();
+  });
+</script>
+```
+
+---
+
+## Default
+
 The gauge chart can either be configured via config with type: 'synGauge' or with the seriesGauge preset function.
 
 ```html

@@ -1,21 +1,24 @@
 import { ChartView, graphic } from 'echarts/core.js';
-import type GlobalModel from 'echarts/types/src/model/Global.js';
-import type ExtensionAPI from 'echarts/types/src/core/ExtensionAPI.js';
 import type { ZRColor } from 'echarts/types/dist/shared.js';
 import type { SynergyGaugeSeriesModel } from './gauge-series-model.js';
 import type {
   GaugeSeriesConfig,
-  ImageInput,
   ResolvedGaugeSeriesConfig,
-  Sector,
   SynergyGaugeSeriesOption,
-  TextInput,
 } from './types.js';
 import { GAUGE_SERIES } from '../constants.js';
 import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
 import {
-  clamp, colorSvgDataUrl, convertDegreeToRadian, normalizeAngle, polarPoint,
+  clamp,
+  colorSvgDataUrl,
+  convertDegreeToRadian,
+  createImageGraphic,
+  createSectorGraphic,
+  createTextGraphic,
+  normalizeAngle,
+  polarPoint,
 } from '../utilities.js';
+import type { ExtensionAPI, GlobalModel } from '../types.js';
 
 /** Returns the default resolved configuration for a Synergy gauge series. */
 const getDefaultGaugeConfig = (): ResolvedGaugeSeriesConfig => ({
@@ -45,71 +48,6 @@ const getDefaultGaugeConfig = (): ResolvedGaugeSeriesConfig => ({
 
 /** Linearly interpolates between `start` and `end` by the normalized `progress` factor (0–1). */
 const interpolate = (start: number, end: number, progress: number): number => start + ((end - start) * progress);
-
-/** Creates an ECharts `Sector` graphic element from the given sector descriptor. */
-const createSector = ({
-  centerX, centerY, innerRadius, outerRadius, startAngle, endAngle, color, z,
-}: Sector): graphic.Sector => new graphic.Sector({
-  shape: {
-    clockwise: true,
-    cx: centerX,
-    cy: centerY,
-    endAngle,
-    r: outerRadius,
-    r0: innerRadius,
-    startAngle,
-  },
-  silent: true,
-  style: {
-    fill: color,
-  },
-  z,
-});
-
-/** Creates an ECharts `Text` graphic element styled with the current design-token values. */
-const createText = ({
-  text,
-  x,
-  y,
-  fontSize,
-  fontWeight = styleWithoutUnit('SynFontWeightNormal'),
-  align = 'center',
-  verticalAlign = 'middle',
-  z = 10,
-}: TextInput): graphic.Text => (
-  new graphic.Text({
-    silent: true,
-    style: {
-      align,
-      fill: style('SynTypographyColorText'),
-      fontFamily: style('SynFontSans'),
-      fontSize,
-      fontWeight: fontWeight as number,
-      text,
-      verticalAlign,
-      x,
-      y,
-    },
-    z,
-  })
-);
-
-/** Creates an ECharts `Image` graphic element positioned at the given coordinates. */
-const createImage = ({
-  image, x, y, width, height, z = 10,
-}: ImageInput): graphic.Image => (
-  new graphic.Image({
-    silent: true,
-    style: {
-      height,
-      image,
-      width,
-      x,
-      y,
-    },
-    z,
-  })
-);
 
 /**
  * Normalizes and validates a raw boundaries array, clamping every entry to `[minimum, maximum]`
@@ -207,7 +145,7 @@ const createSections = ({
     const sectionStartAngle = rawStartAngle + (isFirst ? 0 : sectionGap);
     const sectionEndAngle = rawEndAngle - (isLast ? 0 : sectionGap);
 
-    return createSector({
+    return createSectorGraphic({
       centerX,
       centerY,
       // If there are fewer colors than segments, repeat the colors from the start
@@ -277,7 +215,7 @@ const createTrendElement = ({
 
   if (iconSource) {
     const coloredIcon = colorSvgDataUrl(iconSource, style('SynTypographyColorText'));
-    group.add(createImage({
+    group.add(createImageGraphic({
       height: iconSize,
       image: coloredIcon,
       width: iconSize,
@@ -287,7 +225,7 @@ const createTrendElement = ({
     }));
   }
 
-  group.add(createText({
+  group.add(createTextGraphic({
     align: iconSource ? 'left' : 'center',
     fontSize,
     fontWeight: styleWithoutUnit('SynFontWeightSemibold'),
@@ -386,7 +324,7 @@ const buildGaugeGroup = (
   }
 
   // Background arc
-  root.add(createSector({
+  root.add(createSectorGraphic({
     centerX,
     centerY,
     color: mergedConfig.backgroundColor,
@@ -399,7 +337,7 @@ const buildGaugeGroup = (
 
   // Progress arc
   if (progress > 0) {
-    root.add(createSector({
+    root.add(createSectorGraphic({
       centerX,
       centerY,
       // Use palette color if no color is provided in the config.
@@ -431,7 +369,7 @@ const buildGaugeGroup = (
   const formattedMaximum = config.formatter?.max?.(mergedConfig.max) ?? String(mergedConfig.max);
 
   // Value label
-  root.add(createText({
+  root.add(createTextGraphic({
     fontSize: valueFontSize,
     fontWeight: 400,
     text: formattedValue,
@@ -446,7 +384,7 @@ const buildGaugeGroup = (
     const iconGap = styleWithoutUnit('SynSpacingXSmall') * factor;
     const iconY = centerY + (valueFontSize / 2) + iconGap;
     const coloredIcon = colorSvgDataUrl(config.icon, style('SynTypographyColorText'));
-    root.add(createImage({
+    root.add(createImageGraphic({
       height: iconSize,
       image: coloredIcon,
       width: iconSize,
@@ -463,7 +401,7 @@ const buildGaugeGroup = (
   const contentGap = (styleWithoutUnit('SynSpacingSmall') * factor);
 
   // Minimum label
-  root.add(createText({
+  root.add(createTextGraphic({
     align: 'center',
     fontSize: minMaxFontSize,
     text: formattedMinimum,
@@ -472,7 +410,7 @@ const buildGaugeGroup = (
   }));
 
   // Maximum label
-  root.add(createText({
+  root.add(createTextGraphic({
     align: 'center',
     fontSize: minMaxFontSize,
     text: formattedMaximum,
@@ -492,8 +430,7 @@ export class SynergyGaugeView extends ChartView {
    * ECharts render lifecycle hook. Clears the previous frame and redraws the gauge
    * based on the current series model data and options.
    */
-  // @ts-expect-error - I don't know where this typescript error comes from. Even in echarts itself it is available..
-  render(seriesModel: SynergyGaugeSeriesModel, ecModel: GlobalModel, api: ExtensionAPI): void {
+  render(seriesModel: SynergyGaugeSeriesModel, _ecModel: GlobalModel, api: ExtensionAPI): void {
     const { group } = this;
     group.removeAll();
 

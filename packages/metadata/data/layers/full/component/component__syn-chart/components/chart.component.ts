@@ -1,5 +1,5 @@
 import {
-  type EChartsType, init, registerPreprocessor, registerTheme, use,
+  type EChartsType, init, registerPreprocessor, registerProcessor, registerTheme, registerVisual, use,
 } from 'echarts/core.js';
 import { CanvasRenderer, SVGRenderer } from 'echarts/renderers.js';
 import { html } from 'lit';
@@ -22,7 +22,9 @@ import type { ChartConfigType, ECConfig } from './types.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
 import { getRealStyleValue, setGlobalThemeStore } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
+import { donutInstall } from './configs/donut-series/install.js';
 import { gaugeInstall } from './configs/gauge-series/install.js';
+import { legendIconVisual, legendVisibilityIconProcessor } from './configs/legend/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
 use([
@@ -35,9 +37,17 @@ use([
   LegendComponent,
   GridComponent,
   DataZoomComponent,
-  // @ts-expect-error - I don't know where this typescript error comes from
+  donutInstall,
   gaugeInstall,
 ]);
+/**
+ * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.
+ * This is needed because ECharts does not provide a way to set specific styles for x and y axis, only for axis types.
+ */
+registerPreprocessor(applyAxisDefaultsPreprocessor);
+registerProcessor(legendVisibilityIconProcessor);
+// Registrations should only be done once
+registerVisual(legendIconVisual);
 
 /**
  * @summary The `<syn-chart>` component is a container for displaying charts. It provides a structured layout and styling for chart elements, allowing for consistent presentation across different types of charts. The chart component is based on [Apache ECharts](https://echarts.apache.org)
@@ -171,6 +181,7 @@ export default class SynChart extends SynergyElement {
     if (hasLineOrBarSeries) {
       return;
     }
+
     // for other series we use svg renderer, as the font rendering is better for svg
     this.chartInstance.dispose();
     this.chartInstance = init(this.chartContainer, 'default', { renderer: 'svg' });
@@ -221,35 +232,12 @@ export default class SynChart extends SynergyElement {
       }
     });
     this.themeObserver.observe(document.body, { attributeFilter: ['class'], attributeOldValue: true });
-
-    /**
-     * Depending if x-axis or y-axis, the axis name has different positions and alignments. This preprocessor ensures that the correct styles are applied to the axis names based on the axis type.
-     * This is needed because ECharts does not provide a way to set specific styles for x and y axis, only for axis types.
-     */
-    registerPreprocessor(applyAxisDefaultsPreprocessor);
-  }
-
-  private registerLegendListener() {
-    this.chartInstance?.on('legendselectchanged', (params: { selected: Record<string, boolean> }) => {
-      const legendFormatter = (name: string) => {
-        const isVisible = params.selected[name];
-        const icon = isVisible ? 'showIcon' : 'hideIcon';
-        return `${name}  {${icon}|}`;
-      };
-
-      this.chartInstance?.setOption({
-        legend: {
-          formatter: legendFormatter,
-        },
-      });
-    });
   }
 
   // Initialize echarts instance and resize observer
   protected firstUpdated(_changedProperties: PropertyValues): void {
     if (this.chartContainer !== null && this.chartContainer !== undefined) {
       this.chartInstance = init(this.chartContainer, 'default');
-      this.registerLegendListener();
 
       // Resize observer
       this.resizeObserver = new ResizeObserver(() => {

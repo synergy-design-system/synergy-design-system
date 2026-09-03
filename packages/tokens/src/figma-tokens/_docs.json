@@ -967,6 +967,86 @@
           "type": "text"
         }
       },
+      "donut-series-default": {
+        "title": {
+          "value": "Donut Series",
+          "type": "text"
+        },
+        "description": {
+          "value": "The donut chart component communicates the proportion of values within a one-dimensional data set using a ring made of evenly distributed, segmented arcs. Each segment size is normalized to 360 degrees based on its share of the total. A static, neutral inner ring frames the dynamic outer data ring.",
+          "type": "text"
+        }
+      },
+      "donut-series-preset": {
+        "title": {
+          "value": "Donut Series Preset",
+          "type": "text"
+        },
+        "description": {
+          "value": "The donut chart can either be configured via config with `type: 'synDonut'` or with the `seriesDonut` preset function.",
+          "type": "text"
+        }
+      },
+      "donut-series-colors": {
+        "title": {
+          "value": "Donut Series Colors",
+          "type": "text"
+        },
+        "description": {
+          "value": "By default, each outer ring segment is assigned a color from the chart's categorical color palette. Use the `colors` option to provide explicit colors instead; colors are repeated cyclically when fewer colors than data points are provided.",
+          "type": "text"
+        }
+      },
+      "donut-series-labels": {
+        "title": {
+          "value": "Donut Series Labels",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `name` option to render a label for each segment, aligned by index with `data`. Each label is centered on its segment and placed outside the outer ring; provide an `icon` data URL alongside the `name` to render an icon before the label.",
+          "type": "text"
+        }
+      },
+      "donut-series-legend": {
+        "title": {
+          "value": "Donut Series with Legend",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `legendShow()` to render legend entries for the donut segments. Segment names are used as legend labels and can be toggled interactively.",
+          "type": "text"
+        }
+      },
+      "donut-series-center": {
+        "title": {
+          "value": "Donut Series Center",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `center` option to position the donut inside the available layout area. Values can be pixels or percentages.",
+          "type": "text"
+        }
+      },
+      "donut-series-radius": {
+        "title": {
+          "value": "Donut Series Radius",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use the `radius` option to define the donut's outer radius. The value can be specified either as a number (for a fixed pixel value, e.g. 20) or as a percentage string (e.g. '50%'). Percentage-based values automatically scale with the available space, while pixel values remain fixed.",
+          "type": "text"
+        }
+      },
+      "donut-series-insets": {
+        "title": {
+          "value": "Donut Series Insets",
+          "type": "text"
+        },
+        "description": {
+          "value": "Use `top`, `right`, `bottom`, and `left` to reduce the donut layout area from each side before `center` and `radius` are resolved. Insets can be set in pixels (number) or percentages (string).",
+          "type": "text"
+        }
+      },
       "gauge-series-default": {
         "title": {
           "value": "Gauge Series",

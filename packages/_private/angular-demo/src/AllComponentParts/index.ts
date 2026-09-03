@@ -12,6 +12,7 @@ export * from './Combobox.js';
 export * from './Details.js';
 export * from './Dialog.js';
 export * from './Divider.js';
+export * from './DonutChart.js';
 export * from './Dropdown.js';
 export * from './Fieldset.js';
 export * from './File.js';

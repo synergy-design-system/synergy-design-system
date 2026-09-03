@@ -1,4 +1,5 @@
-import type { LegendComponentOption } from 'echarts/types/dist/shared.js';
+import type { LegendComponentOption, SeriesModel } from 'echarts/types/dist/shared.js';
+import { graphic } from 'echarts/core.js';
 import type { ECConfig } from '../../types.js';
 import { measureMaxTextWidth } from '../axes/utilities.js';
 import { LEGEND } from '../constants.js';
@@ -6,6 +7,7 @@ import { type ThemeMode, getRealStyleValue as style, getRealValueWithoutUnit as 
 import type { LegendOption, LegendPosition } from './types.js';
 import { colorSvgDataUrl } from '../utilities.js';
 import { icons } from '../../../icon/sick2025-system-icons.js';
+import type { GlobalModel } from '../types.js';
 
 const getVisibilityIconDataUrl = (isVisible: boolean, mode: ThemeMode = 'auto'): string => {
   const svg = isVisible ? icons.eye : icons['eye-slash'];
@@ -47,9 +49,8 @@ const getDefaultLegendTextStyle = (mode: ThemeMode = 'auto') => ({
  * @param {ThemeMode} mode Theme mode
  */
 export const getDefaultLegendStyles = (mode: ThemeMode = 'auto') => ({
-  formatter: (name: string) => `${name}  {showIcon|}`,
   inactiveColor: style('SynChartDisabledColor', mode),
-  itemGap: styleWithoutUnit('SynSpacingSmall', mode),
+  itemGap: styleWithoutUnit('SynSpacingMediumLarge', mode),
   itemHeight: styleWithoutUnit('SynSpacingSmall', mode),
   itemWidth: styleWithoutUnit('SynSpacingXLarge', mode),
   // The default legend position is top left
@@ -134,7 +135,7 @@ export const getGridForLegendPosition = (
   legendStyle: LegendComponentOption,
   config: ECConfig,
   mode: ThemeMode = 'auto',
-// eslint-disable-next-line complexity
+  // eslint-disable-next-line complexity
 ): NonNullable<ECConfig['grid']> => {
   const series = config?.series;
   if (!series) {
@@ -190,4 +191,59 @@ export const normalizeLegendPosition = (
   return (position === undefined || !['top', 'left', 'right', 'bottom'].includes(position))
     ? LEGEND.DEFAULT_POSITION
     : position;
+};
+
+/**
+ * Adds the built-in visibility icon formatter to legend entries when a custom formatter is not supplied.
+ *
+ * The processor updates each legend component so hidden series render a hide icon and visible series render
+ * a show icon, while preserving the label text and selection state.
+ */
+export const legendVisibilityIconProcessor = {
+  overallReset: (ecModel: GlobalModel) => {
+    const legendModels = ecModel.findComponents({
+      mainType: 'legend',
+    });
+    if (!legendModels || !legendModels.length) {
+      return;
+    }
+    legendModels.forEach((legendModel) => {
+      const legendOption = legendModel.option as LegendComponentOption;
+      const customFormatter = legendOption.formatter;
+      if (customFormatter) {
+        return;
+      }
+      const legendFormatter = (name: string) => {
+        const isVisible = legendOption.selected?.[name] ?? true;
+        const icon = isVisible ? 'showIcon' : 'hideIcon';
+        return `${name}  {${icon}|}`;
+      };
+      legendOption.formatter = legendFormatter;
+    });
+  },
+};
+
+/**
+ * Renders a compact square legend marker for non-line series.
+ *
+ * The visual uses the series fill color as the marker body and replaces the default ECharts legend icon for
+ * custom chart types that do not provide their own visual representation.
+ */
+export const legendIconVisual = {
+  createOnAllSeries: true,
+  reset: (seriesModel: SeriesModel) => {
+    if (seriesModel.subType === 'line') {
+      return;
+    }
+    // eslint-disable-next-line no-param-reassign
+    seriesModel.getLegendIcon = (opt) => {
+      const group = new graphic.Group();
+      const rect = new graphic.Rect({
+        shape: { height: opt.itemHeight, width: opt.itemHeight, x: 16 },
+        style: { fill: opt.itemStyle.fill },
+      });
+      group.add(rect);
+      return group;
+    };
+  },
 };

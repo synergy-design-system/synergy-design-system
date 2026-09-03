@@ -1,3 +1,6 @@
+import { graphic } from 'echarts/core.js';
+import type { ZRColor } from 'echarts/types/dist/shared.js';
+import { getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../themes/utilities.js';
 import type { ECConfig } from '../types.js';
 import { DEGREE_TO_RADIAN, FULL_CIRCLE_RADIAN } from './constants.js';
 import type { Point } from './types.js';
@@ -287,6 +290,92 @@ export function colorSvgDataUrl(dataUrl: string, color: string): string {
   }
 }
 
+/** Creates an ECharts sector graphic element from the given sector descriptor. */
+export const createSectorGraphic = ({
+  centerX, centerY, innerRadius, outerRadius, startAngle, endAngle, color, z = 1,
+}: {
+  centerX: number;
+  centerY: number;
+  innerRadius: number;
+  outerRadius: number;
+  startAngle: number;
+  endAngle: number;
+  color: ZRColor;
+  z?: number;
+}): graphic.Sector => new graphic.Sector({
+  shape: {
+    clockwise: true,
+    cx: centerX,
+    cy: centerY,
+    endAngle,
+    r: outerRadius,
+    r0: innerRadius,
+    startAngle,
+  },
+  silent: true,
+  style: {
+    fill: color,
+  },
+  z,
+});
+
+/** Creates an ECharts text graphic element styled with the current design-token values. */
+export const createTextGraphic = ({
+  text,
+  x,
+  y,
+  fontSize,
+  fontWeight = styleWithoutUnit('SynFontWeightNormal'),
+  align = 'center',
+  verticalAlign = 'middle',
+  z = 10,
+}: {
+  text: string;
+  x: number;
+  y: number;
+  fontSize: number;
+  fontWeight?: number | string;
+  align?: 'left' | 'center' | 'right';
+  verticalAlign?: 'top' | 'middle' | 'bottom';
+  z?: number;
+}): graphic.Text => new graphic.Text({
+  silent: true,
+  style: {
+    align,
+    fill: style('SynTypographyColorText'),
+    fontFamily: style('SynFontSans'),
+    fontSize,
+    fontWeight: fontWeight as number,
+    text,
+    verticalAlign,
+    x,
+    y,
+  },
+  z,
+});
+
+/** Creates an ECharts image graphic element positioned at the given coordinates. */
+export const createImageGraphic = ({
+  image, x, y, width, height, z = 10,
+}: {
+  image: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  z?: number;
+}): graphic.Image => new graphic.Image({
+  silent: true,
+  style: {
+    height,
+    image,
+    width,
+    x,
+    y,
+  },
+  z,
+});
+
 /** Clamps `value` so it falls within the inclusive range `[minimum, maximum]`. */
 export const clamp = (value: number, minimum: number, maximum: number): number => Math.min(Math.max(value, minimum), maximum);
 
@@ -308,3 +397,12 @@ export const polarPoint = (centerX: number, centerY: number, radius: number, ang
  * @returns the angle in radians
  */
 export const convertDegreeToRadian = (degree: number): number => degree * DEGREE_TO_RADIAN;
+
+/**
+ * Clamps invalid numeric input to a safe finite fallback without throwing.
+ *
+ * @param value Number to validate.
+ * @param fallback Replacement value used when the input is not a finite number.
+ * @returns The original value when finite, otherwise the provided fallback.
+ */
+export const sanitizeFiniteNumber = (value: number, fallback = 0): number => (Number.isFinite(value) ? value : fallback);

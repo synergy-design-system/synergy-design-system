@@ -450,27 +450,6 @@ chart.config = handle =>
 | `trend.iconUp`        | `string`                    | SVG data URL used as the icon when `trend.direction` is `'up'`. Falls back to the Synergy default up icon when not set.     | Default arrow up icon                                                            |
 | `trend.iconDown`      | `string`                    | SVG data URL used as the icon when `trend.direction` is `'down'`. Falls back to the Synergy default down icon when not set. | Default arrow down icon                                                          |
 
-Example:
-
-```ts
-chart.config = handle =>
-  handle.seriesGauge({
-    min: 10,
-    max: 120,
-    value: 72,
-    sections: {
-      boundaries: [10, 40, 70, 120],
-      colors: ["#d92f2f", "#f5a623", "#2f9e44"],
-      show: true,
-    },
-    trend: {
-      direction: "down",
-      show: true,
-      value: "6.5%",
-    },
-  });
-```
-
 Example with custom colors and formatters:
 
 ```ts
@@ -496,6 +475,70 @@ Array merge strategy:
 
 - `seriesGauge({...})` uses `arrayStrategy: 'append'`.
 - The generated `synGauge` series entry is appended to `series`.
+
+### Donut series presets
+
+| Preset function | Options                    | Description                                                                                                                                                   |
+| --------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `seriesDonut`   | `DonutSeriesPresetOptions` | Adds a custom `synDonut` series. Renders a donut chart with a static inner track ring and a segmented outer ring, plus optional per-segment labels and icons. |
+
+`DonutSeriesPresetOptions` supports the following fields:
+
+| Option          | Type                          | Description                                                                                                                                                                        | Default                  |
+| --------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| `data`          | `DonutDataValue[]` (required) | Segment values for the donut. Each item may be a plain number or an object with `value`, `name` and `icon`. Label text is taken from `data[i].name` and icons from `data[i].icon`. |                          |
+| `data[i].name`  | `string`                      | Optional name for the series.                                                                                                                                                      |                          |
+| `data[i].icon`  | `string`                      | Optional icon as SVG data URL for the series.                                                                                                                                      |                          |
+| `data[i].value` | number (required)             | Value for the segment.                                                                                                                                                             | uses chart palette color |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle.seriesDonut({
+    data: [10, 20, 30, 15, 25],
+  });
+```
+
+Example with custom colors and labels:
+
+```ts
+chart.config = handle =>
+  handle.seriesDonut({
+    data: [
+      { value: 15, name: "Angular", color: "#0d3f9b" },
+      { value: 10, name: "React", color: "#0845c5" },
+      { value: 20, name: "Vue", color: "#005aff" },
+      { value: 12, name: "Svelte", color: "#066fff" },
+      {
+        value: 18,
+        name: "Lit",
+        color: "#3183fe",
+        icon: "data:image/svg+xml;base64,...",
+      },
+      { value: 8, name: "Other", color: "#5e97fc" },
+    ],
+  handle.seriesGauge({
+    min: 10,
+    max: 120,
+    value: 72,
+    sections: {
+      boundaries: [10, 40, 70, 120],
+      colors: ["#d92f2f", "#f5a623", "#2f9e44"],
+      show: true,
+    },
+    trend: {
+      direction: "down",
+      show: true,
+      value: "6.5%",
+    },
+  });
+```
+
+Array merge strategy:
+
+- `seriesDonut({...})` uses `arrayStrategy: 'append'`.
+- The generated `synDonut` series entry is appended to `series`.
 
 ---
 
@@ -579,10 +622,11 @@ shorthand(0.002); // '2m'
 
 The following chart types are natively supported with Synergy styling:
 
-| Type        | How to use                                      |
-| ----------- | ----------------------------------------------- |
-| Line chart  | `series[].type: 'line'` (standard ECharts)      |
-| Gauge chart | `handle.seriesGauge({...})` (custom `synGauge`) |
+| Type        | How to use                                   |
+| ----------- | -------------------------------------------- |
+| Line chart  | `series[].type: 'line'` (standard ECharts)   |
+| Gauge chart | `series[].type: 'synGauge'` (custom Synergy) |
+| Donut chart | `series[].type: 'synDonut'` (custom Synergy) |
 
 If you want to use ECharts features beyond what is listed above, you can register the required plugins yourself.
 But keep in mind that they are not Synergy-approved and do not have Synergy styling. The registration needs to be done **before** the component is initialized.

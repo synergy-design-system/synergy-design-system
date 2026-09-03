@@ -1,0 +1,394 @@
+import { expect } from '@open-wc/testing';
+import type { graphic } from 'echarts';
+import { DEGREE_TO_RADIAN, DONUT_SERIES, FULL_CIRCLE_RADIAN } from '../constants.js';
+import type { SynergyDonutSeriesModel } from './donut-series-model.js';
+import { SynergyDonutView } from './donut-series-view.js';
+import type { DonutDataItem, DonutDataValue, SynergyDonutSeriesOption } from './types.js';
+import { getRealStyleValue } from '../../themes/utilities.js';
+import { colorSvgDataUrl } from '../utilities.js';
+import type { ExtensionAPI, GlobalModel } from '../types.js';
+
+type StyledDonutDataItem = DonutDataItem & {
+  itemStyle?: {
+    fill?: string;
+  };
+};
+
+const getSweepAngle = (sector: graphic.Sector) => sector.shape.endAngle - sector.shape.startAngle;
+
+const createSeriesModelStub = (
+  option: SynergyDonutSeriesOption,
+  paletteColors: string[] = ['#111111', '#222222', '#333333'],
+): SynergyDonutSeriesModel => {
+  const data = option.data ?? [];
+  const getValue = (item: DonutDataValue): number => (typeof item === 'number' ? item : item.value);
+
+  return {
+    getData: () => ({
+      count: () => data.length,
+      get: (key: string, index: number) => (key === 'value' ? getValue(data[index]) : undefined),
+      getItemVisual: (index: number, key: string) => {
+        if (key !== 'style') {
+          return undefined;
+        }
+
+        const rawItem = data[index];
+        const itemStyle = typeof rawItem === 'object' && rawItem !== null
+          ? (rawItem as StyledDonutDataItem).itemStyle
+          : undefined;
+        const fill = itemStyle?.fill ?? paletteColors[index % paletteColors.length];
+
+        return { fill };
+      },
+      getRawDataItem: (index: number) => data[index],
+    }),
+    option,
+  } as SynergyDonutSeriesModel;
+};
+
+const toDonutData = (values: number[]): DonutDataItem[] => values.map((value) => ({ value }));
+
+const toStyledDonutData = (items: StyledDonutDataItem[]): DonutDataItem[] => items;
+
+const createApiStub = (width = 280, height = 280) => ({
+  getHeight: () => height,
+  getWidth: () => width,
+}) as ExtensionAPI;
+
+const renderDonut = (
+  partialOption: Partial<SynergyDonutSeriesOption> = {},
+  paletteColors?: string[],
+  width = 280,
+  height = 280,
+): SynergyDonutView => {
+  const view = new SynergyDonutView();
+  const option: SynergyDonutSeriesOption = {
+    data: toDonutData([10, 20, 30]),
+    type: 'synDonut',
+    ...partialOption,
+  };
+
+  const seriesModel = createSeriesModelStub(option, paletteColors);
+  view.render(seriesModel, {} as GlobalModel, createApiStub(width, height));
+
+  return view;
+};
+
+type DonutGraphicElementMap = {
+  sector: graphic.Sector;
+  text: graphic.Text;
+  image: graphic.Image;
+};
+
+const isGraphicElementOfType = <TType extends keyof DonutGraphicElementMap>(
+  element: unknown,
+  type: TType,
+): element is DonutGraphicElementMap[TType] & { type: TType } => (
+  typeof element === 'object'
+  && element !== null
+  && 'type' in element
+  && (element as { type?: unknown }).type === type
+);
+
+const collectByType = <TType extends keyof DonutGraphicElementMap>(
+  view: SynergyDonutView,
+  type: TType,
+): DonutGraphicElementMap[TType][] => {
+  const collected: DonutGraphicElementMap[TType][] = [];
+
+  view.group.traverse((element: unknown) => {
+    if (isGraphicElementOfType(element, type)) {
+      collected.push(element);
+    }
+  });
+
+  return collected;
+};
+
+const getSectors = (view: SynergyDonutView) => collectByType(view, 'sector');
+
+const getTrackSector = (view: SynergyDonutView) => getSectors(view).find((sector) => sector.z === 1);
+const getSegmentSectors = (view: SynergyDonutView) => getSectors(view).filter((sector) => sector.z === 2);
+const getLabelTexts = (view: SynergyDonutView) => collectByType(view, 'text')
+  .map((element) => element.style.text)
+  .filter((text): text is string => text !== undefined);
+const getLabelIcons = (view: SynergyDonutView) => collectByType(view, 'image');
+
+const startAngle = DONUT_SERIES.START_ANGLE * DEGREE_TO_RADIAN;
+const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
+
+describe('SynergyDonutView', () => {
+  it('renders a static inner track ring and one segment per data point', () => {
+    const view = renderDonut();
+
+    expect(view.group.childCount()).to.equal(1);
+
+    const track = getTrackSector(view);
+    expect(track).to.not.equal(undefined);
+    expect(track!.style.fill).to.equal(getRealStyleValue('SynProgressTrackColor'));
+    expect(track!.shape.startAngle).to.equal(0);
+    expect(track!.shape.endAngle).to.be.closeTo(FULL_CIRCLE_RADIAN, 0.0001);
+
+    const segments = getSegmentSectors(view);
+    expect(segments).to.have.lengthOf(3);
+  });
+
+  it('sizes segments proportionally to their value, normalized to 360 degrees', () => {
+    const view = renderDonut({ data: toDonutData([25, 25, 50]) });
+    const segments = getSegmentSectors(view);
+    // Segment sweeps should roughly follow the 1:1:2 value ratio (small gaps reduce the exact sweep slightly).
+    const sweep1 = getSweepAngle(segments[0]);
+    const sweep2 = getSweepAngle(segments[1]);
+    const sweep3 = getSweepAngle(segments[2]);
+    // We need to add the gaps between the segments to the total sweep to ensure that the segments + gaps sum to 360 degrees.
+    const totalSweep = sweep1 + sweep2 + sweep3 + (DONUT_SERIES.SEGMENT_GAP * 3);
+
+    expect(sweep1).to.be.closeTo(sweep2, 0.0001);
+    expect(sweep3).to.be.closeTo(sweep2 + sweep1, 0.02);
+    expect(totalSweep).to.be.closeTo(FULL_CIRCLE_RADIAN, 0.0001);
+  });
+
+  it('starts the first segment at the configured start angle', () => {
+    const view = renderDonut({ data: toDonutData([10, 20, 30]) });
+    const [firstSegment] = getSegmentSectors(view);
+
+    expect(firstSegment.shape.startAngle).to.be.closeTo(startAngle, 0.1);
+  });
+
+  it('assigns a palette color per segment when no explicit colors are provided', () => {
+    const view = renderDonut({ data: toDonutData([10, 20, 30]) }, ['#aaaaaa', '#bbbbbb', '#cccccc']);
+    const segments = getSegmentSectors(view);
+
+    expect(segments.map((segment) => segment.style.fill)).to.deep.equal(['#aaaaaa', '#bbbbbb', '#cccccc']);
+  });
+
+  it('uses per-segment custom colors when provided', () => {
+    const view = renderDonut({
+      data: toStyledDonutData([
+        { itemStyle: { fill: '#ff0000' }, value: 10 },
+        { itemStyle: { fill: '#00ff00' }, value: 20 },
+        { itemStyle: { fill: '#0000ff' }, value: 30 },
+      ]),
+    });
+    const segments = getSegmentSectors(view);
+
+    expect(segments.map((segment) => segment.style.fill)).to.deep.equal([
+      '#ff0000', '#00ff00', '#0000ff',
+    ]);
+  });
+
+  it('falls back to palette color for segments without custom color', () => {
+    const view = renderDonut({
+      data: toStyledDonutData([
+        { itemStyle: { fill: '#ff0000' }, value: 10 },
+        { value: 20 },
+        { itemStyle: { fill: '#0000ff' }, value: 30 },
+      ]),
+    }, ['#aaaaaa', '#bbbbbb', '#cccccc']);
+    const segments = getSegmentSectors(view);
+
+    expect(segments.map((segment) => segment.style.fill)).to.deep.equal([
+      '#ff0000', '#bbbbbb', '#0000ff',
+    ]);
+  });
+
+  it('renders no segments when all values are zero', () => {
+    const view = renderDonut({ data: toDonutData([0, 0, 0]) });
+
+    expect(getSegmentSectors(view)).to.have.lengthOf(0);
+    expect(getTrackSector(view)).to.not.equal(undefined);
+  });
+
+  it('renders no segments for empty data', () => {
+    const view = renderDonut({ data: [] });
+
+    expect(getSegmentSectors(view)).to.have.lengthOf(0);
+  });
+
+  it('makes the outer segment ring only half as thick as the inner track ring', () => {
+    const view = renderDonut();
+
+    const track = getTrackSector(view)!;
+    const [segment] = getSegmentSectors(view);
+
+    const trackThickness = track.shape.r - track.shape.r0;
+    const segmentThickness = segment.shape.r - segment.shape.r0;
+
+    expect(segmentThickness).to.be.closeTo(trackThickness / 2, 0.01);
+  });
+
+  it('supports custom center coordinates for donut geometry', () => {
+    const view = renderDonut({ center: [80, 120] });
+    const [segment] = getSegmentSectors(view);
+
+    expect(segment.shape.cx).to.equal(80);
+    expect(segment.shape.cy).to.equal(120);
+  });
+
+  it('supports top/left offsets by resolving center in the reduced layout area', () => {
+    const view = renderDonut({ left: 40, top: 20 }, undefined, 280, 280);
+    const [segment] = getSegmentSectors(view);
+
+    // Reduced layout: left=40, top=20, right=280, bottom=280 => center=(160,150)
+    expect(segment.shape.cx).to.equal(160);
+    expect(segment.shape.cy).to.equal(150);
+  });
+
+  it('supports explicit outer radius values', () => {
+    const view = renderDonut({ radius: 60 });
+    const [segment] = getSegmentSectors(view);
+
+    expect(segment.shape.r).to.be.closeTo(60, 0.001);
+  });
+
+  it('does not adapt the donut size when a fixed pixel radius is set', () => {
+    const shortNames = renderDonut({
+      data: [
+        { name: 'Short name', value: 10 },
+        { name: 'Another name', value: 20 },
+        { name: 'Final name', value: 30 },
+      ],
+      radius: 60,
+    });
+    const longNames = renderDonut({
+      data: [
+        { name: 'This is a very long segment name', value: 10 },
+        { name: 'Another extremely long segment name', value: 20 },
+        { name: 'Final segment label left edge', value: 30 },
+      ],
+      radius: 60,
+    });
+    const [segment] = getSegmentSectors(shortNames);
+    const [segmentLong] = getSegmentSectors(longNames);
+
+    expect(segment.shape.r).to.equal(segmentLong.shape.r);
+    expect(segment.shape.r).to.equal(60);
+  });
+
+  it('adapts the donut size when a percentage radius is set', () => {
+    const shortNames = renderDonut({
+      data: [
+        { name: 'Short name', value: 10 },
+        { name: 'Another name', value: 20 },
+        { name: 'Final name', value: 30 },
+      ],
+      radius: '60%',
+    });
+    const longNames = renderDonut({
+      data: [
+        { name: 'This is a very long segment name', value: 10 },
+        { name: 'Another extremely long segment name', value: 20 },
+        { name: 'Final segment label left edge', value: 30 },
+      ],
+      radius: '60%',
+    });
+    const [segment] = getSegmentSectors(shortNames);
+    const [segmentLong] = getSegmentSectors(longNames);
+
+    expect(segment.shape.r).to.be.greaterThan(segmentLong.shape.r);
+  });
+
+  it('supports percentage-based radius values', () => {
+    const view = renderDonut({ radius: '25%' }, undefined, 280, 280);
+    const [segment] = getSegmentSectors(view);
+
+    expect(segment.shape.r).to.be.closeTo(35, 0.001);
+  });
+
+  it('falls back to default radius resolution for invalid radius strings', () => {
+    const view = renderDonut({ radius: '25abc' }, undefined, 280, 280);
+    const [segment] = getSegmentSectors(view);
+
+    // Invalid values fall back to 100% of the radius base (size / 2).
+    expect(segment.shape.r).to.be.closeTo(70, 0.001);
+  });
+
+  it('falls back to centered layout for invalid center values', () => {
+    const view = renderDonut({ center: ['25abc', '50%'] });
+    const [segment] = getSegmentSectors(view);
+
+    expect(segment.shape.cx).to.equal(140);
+    expect(segment.shape.cy).to.equal(140);
+  });
+
+  it('renders segments only for positive finite values', () => {
+    const view = renderDonut({
+      data: [
+        { name: 'invalid', value: Number.NaN },
+        { name: 'negative', value: -5 },
+        { name: 'positive', value: 10 },
+      ],
+    });
+
+    const segments = getSegmentSectors(view);
+
+    expect(segments).to.have.lengthOf(1);
+    expect(getLabelTexts(view)).to.deep.equal(['positive']);
+  });
+
+  it('does not render labels when data items have no name', () => {
+    const view = renderDonut({ data: toDonutData([10, 20, 30]) });
+
+    expect(getLabelTexts(view)).to.have.lengthOf(0);
+    expect(getLabelIcons(view)).to.have.lengthOf(0);
+  });
+
+  it('renders a text label centered on each segment when names are provided in data', () => {
+    const view = renderDonut({
+      data: [
+        { name: 'First', value: 10 },
+        { name: 'Second', value: 20 },
+        { name: 'Third', value: 30 },
+      ],
+    });
+
+    expect(getLabelTexts(view)).to.deep.equal(['First', 'Second', 'Third']);
+  });
+
+  it('renders an icon before the label text when icon is provided in data', () => {
+    const view = renderDonut({
+      data: [{ icon: svgDataUrl, name: 'First', value: 10 }, { value: 20 }, { value: 30 }],
+    });
+
+    const icons = getLabelIcons(view);
+    const coloredIcon = colorSvgDataUrl(svgDataUrl, getRealStyleValue('SynTypographyColorText'));
+    expect(icons).to.have.lengthOf(1);
+    expect(icons[0].style.image).to.equal(coloredIcon);
+    expect(getLabelTexts(view)).to.include('First');
+  });
+
+  it('skips labels for segments without a name property', () => {
+    const view = renderDonut({
+      data: [{ name: 'Only First', value: 10 }, { value: 20 }, { value: 30 }],
+    });
+
+    expect(getLabelTexts(view)).to.deep.equal(['Only First']);
+  });
+
+  it('does not render labels for zero-value data', () => {
+    const view = renderDonut({
+      data: [{ name: 'First', value: 0 }, { name: 'Second', value: 0 }, { name: 'Third', value: 0 }],
+    });
+
+    expect(getLabelTexts(view)).to.have.lengthOf(0);
+  });
+
+  it('replaces previous content on repeated render calls', () => {
+    const view = new SynergyDonutView();
+
+    view.render(
+      createSeriesModelStub({ data: toDonutData([10, 20]), type: 'synDonut' }),
+      {} as GlobalModel,
+      createApiStub(),
+    );
+
+    view.render(
+      createSeriesModelStub({ data: toDonutData([30]), type: 'synDonut' }),
+      {} as GlobalModel,
+      createApiStub(),
+    );
+
+    expect(view.group.childCount()).to.equal(1);
+    expect(getSegmentSectors(view)).to.have.lengthOf(1);
+  });
+});

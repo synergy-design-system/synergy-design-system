@@ -50,7 +50,7 @@ const getDefaultLegendTextStyle = (mode: ThemeMode = 'auto') => ({
  */
 export const getDefaultLegendStyles = (mode: ThemeMode = 'auto') => ({
   inactiveColor: style('SynChartDisabledColor', mode),
-  itemGap: styleWithoutUnit('SynSpacingSmall', mode),
+  itemGap: styleWithoutUnit('SynSpacingMediumLarge', mode),
   itemHeight: styleWithoutUnit('SynSpacingSmall', mode),
   itemWidth: styleWithoutUnit('SynSpacingXLarge', mode),
   // The default legend position is top left

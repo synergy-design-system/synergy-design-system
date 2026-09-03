@@ -31,6 +31,7 @@ const meta: Meta = {
   component: 'syn-chart',
   parameters: {
     chromatic: {
+      delay: 300,
       modes: Chromatic_Modes_Sick_2025,
     },
     docs: {

@@ -45,6 +45,17 @@ export const DATA_ZOOM = {
   MOVE_HANDLE_ICON: 'image://data:image/svg+xml,%3Csvg%20width%3D%2210%22%20height%3D%228%22%20viewBox%3D%220%200%2010%208%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Crect%20x%3D%220%22%20y%3D%221%22%20width%3D%222%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22white%22/%3E%3Crect%20x%3D%224%22%20y%3D%221%22%20width%3D%222%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22white%22/%3E%3Crect%20x%3D%228%22%20y%3D%221%22%20width%3D%222%22%20height%3D%226%22%20rx%3D%221%22%20fill%3D%22white%22/%3E%3C/svg%3E',
 } as const;
 
+/** Synergy donut series constants */
+export const DONUT_SERIES = {
+  /** Baseline height used for the default graphic layout and responsive scaling. */
+  REFERENCE_HEIGHT: 280,
+  /** Angular gap rendered between adjacent donut segments, in radians. */
+  SEGMENT_GAP: 0.02,
+  /** Start angle of the donut ring, in degrees. 90 places the first segment at the top of the circle. */
+  START_ANGLE: 90,
+  TYPE_NAME: 'synDonut',
+} as const;
+
 /** Synergy gauge series constants */
 export const GAUGE_SERIES = {
   /** End angle of the semicircular gauge arc, in degrees. */

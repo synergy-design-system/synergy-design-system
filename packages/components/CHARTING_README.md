@@ -450,27 +450,6 @@ chart.config = handle =>
 | `trend.iconUp`        | `string`                    | SVG data URL used as the icon when `trend.direction` is `'up'`. Falls back to the Synergy default up icon when not set.     | Default arrow up icon                                                            |
 | `trend.iconDown`      | `string`                    | SVG data URL used as the icon when `trend.direction` is `'down'`. Falls back to the Synergy default down icon when not set. | Default arrow down icon                                                          |
 
-Example:
-
-```ts
-chart.config = handle =>
-  handle.seriesGauge({
-    min: 10,
-    max: 120,
-    value: 72,
-    sections: {
-      boundaries: [10, 40, 70, 120],
-      colors: ["#d92f2f", "#f5a623", "#2f9e44"],
-      show: true,
-    },
-    trend: {
-      direction: "down",
-      show: true,
-      value: "6.5%",
-    },
-  });
-```
-
 Example with custom colors and formatters:
 
 ```ts
@@ -496,6 +475,64 @@ Array merge strategy:
 
 - `seriesGauge({...})` uses `arrayStrategy: 'append'`.
 - The generated `synGauge` series entry is appended to `series`.
+
+### Donut series presets
+
+| Preset function | Options                    | Description                                                                                                                                                   |
+| --------------- | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `seriesDonut`   | `DonutSeriesPresetOptions` | Adds a custom `synDonut` series. Renders a donut chart with a static inner track ring and a segmented outer ring, plus optional per-segment labels and icons. |
+
+`DonutSeriesPresetOptions` supports the following fields:
+
+| Option               | Type                            | Description                                                                                                            | Default          |
+| -------------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| `data`               | `DonutDataValue[]` _(required)_ | Segment values/items for the donut. Each item may be a raw number or an object with `value`, `name`, and `prefixIcon`. | `[]`             |
+| `data[i].value`      | `number` _(required)_           | Numeric value of the segment. The values are normalized to the full donut and determine each slice angle.              |                  |
+| `data[i].name`       | `string`                        | Optional label shown for the segment.                                                                                  |                  |
+| `data[i].prefixIcon` | `string`                        | Optional SVG data URL rendered before the segment label.                                                               |                  |
+| `center`             | `[LayoutValue, LayoutValue]`    | Center position inside the donut layout area. Accepts pixels or percentages.                                           | `['50%', '50%']` |
+| `radius`             | `LayoutValue`                   | Outer radius of the donut. Accepts pixels as numeric or percentages.                                                   | `'100%'`         |
+| `top`                | `LayoutValue`                   | Top inset used to reduce the donut layout area before the center and radius are resolved.                              | `0`              |
+| `right`              | `LayoutValue`                   | Right inset used to reduce the donut layout area before the center and radius are resolved.                            | `0`              |
+| `bottom`             | `LayoutValue`                   | Bottom inset used to reduce the donut layout area before the center and radius are resolved.                           | `0`              |
+| `left`               | `LayoutValue`                   | Left inset used to reduce the donut layout area before the center and radius are resolved.                             | `0`              |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle.seriesDonut({
+    data: [10, 20, 30, 15, 25],
+    radius: 100,
+  });
+```
+
+Example with labels and icons:
+
+```ts
+chart.config = handle =>
+  handle.seriesDonut({
+    center: ["20%", "30%"],
+    radius: "70%",
+    data: [
+      {
+        value: 15,
+        name: "Angular",
+        prefixIcon: "data:image/svg+xml;base64,...",
+      },
+      { value: 10, name: "React" },
+      { value: 20, name: "Vue" },
+      { value: 12, name: "Svelte" },
+      { value: 18, name: "Lit" },
+      { value: 8, name: "Other" },
+    ],
+  });
+```
+
+Array merge strategy:
+
+- `seriesDonut({...})` uses `arrayStrategy: 'append'`.
+- The generated `synDonut` series entry is appended to `series`.
 
 ---
 
@@ -579,10 +616,11 @@ shorthand(0.002); // '2m'
 
 The following chart types are natively supported with Synergy styling:
 
-| Type        | How to use                                      |
-| ----------- | ----------------------------------------------- |
-| Line chart  | `series[].type: 'line'` (standard ECharts)      |
-| Gauge chart | `handle.seriesGauge({...})` (custom `synGauge`) |
+| Type        | How to use                                   |
+| ----------- | -------------------------------------------- |
+| Line chart  | `series[].type: 'line'` (standard ECharts)   |
+| Gauge chart | `series[].type: 'synGauge'` (custom Synergy) |
+| Donut chart | `series[].type: 'synDonut'` (custom Synergy) |
 
 If you want to use ECharts features beyond what is listed above, you can register the required plugins yourself.
 But keep in mind that they are not Synergy-approved and do not have Synergy styling. The registration needs to be done **before** the component is initialized.

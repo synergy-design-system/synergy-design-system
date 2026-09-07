@@ -476,7 +476,7 @@ describe('<syn-chart>', () => {
       expect(formatter('Series B')).to.equal('custom-Series B');
     });
 
-    it.only('Should use custom formatter instead of visibility icons formatter via config', async () => {
+    it('Should use custom formatter instead of visibility icons formatter via config', async () => {
       const customFormatter = (name: string): string => `custom-${name}`;
       const enhancedConfig: ECConfig = {
         ...baseConfig,

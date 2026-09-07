@@ -53,8 +53,8 @@ export type DonutDataItem = {
   value: number;
   /** Label shown for the segment. */
   name?: string;
-  /** Optional icon as SVG data url used to render a segment icon alongside the label. */
-  icon?: string;
+  /** Optional prefix icon as SVG data url used to render a segment icon alongside the label. */
+  prefixIcon?: string;
 };
 
 /**

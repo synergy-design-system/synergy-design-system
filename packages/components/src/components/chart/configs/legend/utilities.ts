@@ -33,6 +33,13 @@ const getDefaultLegendTextStyle = (mode: ThemeMode = 'auto') => ({
       height: styleWithoutUnit('SynSpacingMedium', mode),
       width: styleWithoutUnit('SynSpacingMedium', mode),
     },
+    name: {
+      color: style('SynTypographyColorTextQuiet', mode),
+      fontFamily: style('SynFontSans', mode),
+      fontSize: style('SynFontSizeSmall', mode),
+      fontWeight: style('SynFontWeightNormal', mode),
+      padding: [0, styleWithoutUnit('SynSpacing2xSmall', mode), 0, 0],
+    },
     showIcon: {
       backgroundColor: {
         image: getVisibilityIconDataUrl(true, mode),
@@ -210,13 +217,14 @@ export const legendVisibilityIconProcessor = {
     legendModels.forEach((legendModel) => {
       const legendOption = legendModel.option as LegendComponentOption;
       const customFormatter = legendOption.formatter;
-      if (customFormatter) {
+      const { selectedMode } = legendOption;
+      if (customFormatter || selectedMode === false) {
         return;
       }
       const legendFormatter = (name: string) => {
         const isVisible = legendOption.selected?.[name] ?? true;
         const icon = isVisible ? 'showIcon' : 'hideIcon';
-        return `${name}  {${icon}|}`;
+        return `{name|${name}}{${icon}|}`;
       };
       legendOption.formatter = legendFormatter;
     });
@@ -239,7 +247,8 @@ export const legendIconVisual = {
     seriesModel.getLegendIcon = (opt) => {
       const group = new graphic.Group();
       const rect = new graphic.Rect({
-        shape: { height: opt.itemHeight, width: opt.itemHeight, x: 16 },
+        // an x value of 24 would be no spacing between the icon and the text. Having a x value of 20 does a gap of 4px
+        shape: { height: opt.itemHeight, width: opt.itemHeight, x: 20 },
         style: { fill: opt.itemStyle.fill },
       });
       group.add(rect);

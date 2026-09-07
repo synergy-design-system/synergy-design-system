@@ -266,7 +266,7 @@ const computeLabelDimensions = (
   const iconSize = factor * styleWithoutUnit('SynFontSizeLarge');
   const iconTextGap = factor * styleWithoutUnit('SynSpacing2xSmall');
   const textWidth = item.name ? measureTextWidth(item.name, `${fontSize}px ${style('SynFontSans')}`) : 0;
-  const iconWidth = item.icon ? iconSize + iconTextGap : 0;
+  const iconWidth = item.prefixIcon ? iconSize + iconTextGap : 0;
   const totalWidth = iconWidth + textWidth;
   const textHeight = item.name ? fontSize : 0;
   const contentHeight = Math.max(iconSize, textHeight);
@@ -301,8 +301,8 @@ const createSegmentLabel = ({
     fontSize, iconSize, iconX, point, textX,
   } = computeLabelDimensions(item, factor, centerX, centerY, radius, midAngle);
 
-  if (item.icon) {
-    const coloredIcon = colorSvgDataUrl(item.icon, style('SynTypographyColorText'));
+  if (item.prefixIcon) {
+    const coloredIcon = colorSvgDataUrl(item.prefixIcon, style('SynTypographyColorText'));
     group.add(createImageGraphic({
       height: iconSize,
       image: coloredIcon,
@@ -374,7 +374,7 @@ const computeAdaptiveLayout = ({
   const visibleLabels = segmentRanges.flatMap((range, index) => {
     const item = dataItems[index];
 
-    if (!range || (range.endAngle - range.startAngle) <= 0 || !item || (!item.name && !item.icon)) {
+    if (!range || (range.endAngle - range.startAngle) <= 0 || !item || (!item.name && !item.prefixIcon)) {
       return [];
     }
 
@@ -488,7 +488,7 @@ const buildDonutGroup = (
   segmentRanges.forEach((range, index) => {
     const dataItem = dataItems[index];
 
-    if (!range || (range.endAngle - range.startAngle) <= 0 || (!dataItem?.name && !dataItem?.icon)) {
+    if (!range || (range.endAngle - range.startAngle) <= 0 || (!dataItem?.name && !dataItem?.prefixIcon)) {
       return;
     }
 
@@ -523,8 +523,8 @@ const toDonutDataItems = (seriesModel: SynergyDonutSeriesModel): DonutDataItem[]
     const objectDataItem = typeof rawDataItem === 'object' && rawDataItem !== null ? rawDataItem : undefined;
 
     dataItems.push({
-      icon: objectDataItem?.icon,
       name: objectDataItem?.name,
+      prefixIcon: objectDataItem?.prefixIcon,
       value,
     });
   }

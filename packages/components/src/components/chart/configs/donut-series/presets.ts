@@ -12,15 +12,15 @@ import type { DonutSeriesPresetOptions, SynergyDonutSeriesOption } from './types
  *
  * @param {DonutSeriesPresetOptions} [options] Preset options.
  * @param {DonutDataItem[]} [options.data] Data values/items used to size and label the outer ring segments.
- * @param {number} [options.data[].value] Numeric value of the segment; determines the slice angle relative to the other values.
+ * @param {number} [options.data[].value] Numeric value of the segment; determines the slice angle relative to the other values. Required for each item.
  * @param {string} [options.data[].name] Label shown for the segment.
- * @param {string} [options.data[].icon] Optional icon as SVG data url used to render a segment icon alongside the label.
- * @param {[number|string, number|string]} [options.center] Center position within the donut layout area. Each value accepts pixels or percentages.
- * @param {number|string} [options.radius] Outer donut radius in pixels/percentage.
- * @param {number|string} [options.top] Top inset that shrinks the donut layout area before center/radius are resolved.
- * @param {number|string} [options.right] Right inset that shrinks the donut layout area before center/radius are resolved.
- * @param {number|string} [options.bottom] Bottom inset that shrinks the donut layout area before center/radius are resolved.
- * @param {number|string} [options.left] Left inset that shrinks the donut layout area before center/radius are resolved.
+ * @param {string} [options.data[].prefixIcon] Optional prefix icon as SVG data url used to render a segment icon alongside the label.
+ * @param {[number|string, number|string]} [options.center] Center position within the donut layout area. Each value accepts pixels or percentages. Default: `['50%', '50%']`.
+ * @param {number|string} [options.radius] Outer donut radius in pixels/percentage. Default: `'100%'`.
+ * @param {number|string} [options.top] Top inset that shrinks the donut layout area before center/radius are resolved. Default: `0`.
+ * @param {number|string} [options.right] Right inset that shrinks the donut layout area before center/radius are resolved. Default: `0`.
+ * @param {number|string} [options.bottom] Bottom inset that shrinks the donut layout area before center/radius are resolved. Default: `0`.
+ * @param {number|string} [options.left] Left inset that shrinks the donut layout area before center/radius are resolved. Default: `0`.
  *
  * @see https://echarts.apache.org/en/option.html#series
  */

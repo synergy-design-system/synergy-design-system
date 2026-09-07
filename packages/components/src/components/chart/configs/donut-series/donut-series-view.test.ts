@@ -345,9 +345,9 @@ describe('SynergyDonutView', () => {
     expect(getLabelTexts(view)).to.deep.equal(['First', 'Second', 'Third']);
   });
 
-  it('renders an icon before the label text when icon is provided in data', () => {
+  it('renders an icon before the label text when prefixIcon is provided in data', () => {
     const view = renderDonut({
-      data: [{ icon: svgDataUrl, name: 'First', value: 10 }, { value: 20 }, { value: 30 }],
+      data: [{ name: 'First', prefixIcon: svgDataUrl, value: 10 }, { value: 20 }, { value: 30 }],
     });
 
     const icons = getLabelIcons(view);

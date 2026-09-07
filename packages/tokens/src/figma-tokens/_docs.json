@@ -1003,7 +1003,7 @@
           "type": "text"
         },
         "description": {
-          "value": "Use the `name` option to render a label for each segment, aligned by index with `data`. Each label is centered on its segment and placed outside the outer ring; provide an `icon` data URL alongside the `name` to render an icon before the label.",
+          "value": "Use the `name` option to render a label for each segment, aligned by index with `data`. Each label is centered on its segment and placed outside the outer ring; provide a `prefixIcon` data URL alongside the `name` to render an icon before the label.",
           "type": "text"
         }
       },

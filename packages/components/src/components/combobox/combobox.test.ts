@@ -2402,28 +2402,59 @@ describe('<syn-combobox>', () => {
       const el = await fixture<SynCombobox>(html`<syn-combobox restricted></syn-combobox>`);
       const data = ['Apple', 'Apricot', 'Banana'];
 
-      el.addEventListener('syn-input', (event) => {
-        const term = (event.target as SynCombobox).value?.toString().trim();
-        const matches = data.filter(item => item.toLowerCase().startsWith(term.toLowerCase()));
-        [...el.querySelectorAll('syn-option')].forEach(option => option.remove());
+      const fetchPromise = new Promise<void>((resolve) => {
+        el.addEventListener('syn-input', (event) => {
+          const term = (event.target as SynCombobox).value?.toString().trim();
+          aTimeout(200).then(() => {
+            const matches = data.filter(item => item.toLowerCase().startsWith(term.toLowerCase()));
+            [...el.querySelectorAll('syn-option')].forEach(option => option.remove());
 
-        matches.forEach(item => {
-          const option = document.createElement('syn-option');
-          option.value = item;
-          option.textContent = item;
-          el.appendChild(option);
+            matches.forEach(item => {
+              const option = document.createElement('syn-option');
+              option.value = item;
+              option.textContent = item;
+              el.appendChild(option);
+            });
+            resolve();
+          });
         });
       });
 
       el.focus();
       await sendKeys({ type: 'ap' });
       await el.updateComplete;
-      await aTimeout(200);
+      // Wait for promise
+      await fetchPromise;
+      // wait for combobox to render the new options
       await el.updateComplete;
 
       expect(el.displayInput.value).to.equal('ap');
       expect(el.value).to.equal('ap');
       expect(el.querySelectorAll('syn-option')).to.have.lengthOf(2);
+    });
+
+    it('should not auto-select an exactly matching option when the user only typed without selecting it and another option was added dynamically', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="Apple">Apple</syn-option>
+          <syn-option value="Apricot">Apricot</syn-option>
+        </syn-combobox>
+      `);
+
+      el.focus();
+      await sendKeys({ type: 'Apple' });
+      await el.updateComplete;
+
+      const dynamicOption = document.createElement('syn-option');
+      dynamicOption.value = 'Banana';
+      dynamicOption.textContent = 'Banana';
+      el.appendChild(dynamicOption);
+      await el.updateComplete;
+
+      const options = el.querySelectorAll('syn-option');
+      expect(options[0].selected).to.be.false;
+      expect(options[1].selected).to.be.false;
+      expect(options[2].selected).to.be.false;
     });
   });
 

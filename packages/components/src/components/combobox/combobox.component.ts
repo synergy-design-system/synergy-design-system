@@ -980,13 +980,6 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
         // This is only for non multiple
         optionValue = getValueFromOption(this.selectedOptions[0]);
       } else if (this.restricted && !this.isValidValue(this.displayLabel) && this.displayLabel !== '' && !this.isUserInput) {
-        // #1358 should not reset input if the user typed something and the slotted options are getting updated via async options (e.g. because of fetching new options while user typing)
-        const currentValue = Array.isArray(this.value) ? this.value.join(this.delimiter) : String(this.value ?? '');
-        if (this.open && currentValue === this.displayLabel) {
-          this.valueHasChanged = cachedValueHasChanged;
-          return;
-        }
-
         // if an invalid value was set via property binding for `restricted`comboboxes,
         // reset to last valid value
         this.resetToLastValidValue();
@@ -1431,8 +1424,8 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
   }
   /* eslint-enable no-param-reassign */
 
-  private updateSelectedOptionFromValue(): void {
-    if (!this.isUserInput) {
+  private updateSelectedOptionFromValue(skipSelection = false): void {
+    if (!this.isUserInput && !skipSelection) {
       // check if the value has corresponding options via value or text content
       // for empty values use the text content, as then the values of the options are not set
       const options = this.getOptionsFromValue();
@@ -1480,8 +1473,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
 
     this.handleDelimiterChange();
     this.cacheSlottedOptionsAndOptgroups();
-
-    this.updateSelectedOptionFromValue();
+    // #1358 Prevent selection changes while the user is typing and async option updates modify the slotted options.
+    const skipSelection = this.open && this.hasFocus && this.displayLabel !== '';
+    this.updateSelectedOptionFromValue(skipSelection);
 
     // Auto-open listbox for better UX when new options are added during interaction
     let hasValue: boolean;

@@ -2397,5 +2397,35 @@ describe('<syn-combobox>', () => {
     });
   }); // #805
 
+  describe('#1358', () => {
+    it('should keep the current typed user value while async restricted options are added dynamically', async () => {
+      const el = await fixture<SynCombobox>(html`<syn-combobox restricted></syn-combobox>`);
+      const data = ['Apple', 'Apricot', 'Banana'];
+
+      el.addEventListener('syn-input', (event) => {
+        const term = (event.target as SynCombobox).value?.toString().trim();
+        const matches = data.filter(item => item.toLowerCase().startsWith(term.toLowerCase()));
+        [...el.querySelectorAll('syn-option')].forEach(option => option.remove());
+
+        matches.forEach(item => {
+          const option = document.createElement('syn-option');
+          option.value = item;
+          option.textContent = item;
+          el.appendChild(option);
+        });
+      });
+
+      el.focus();
+      await sendKeys({ type: 'ap' });
+      await el.updateComplete;
+      await aTimeout(200);
+      await el.updateComplete;
+
+      expect(el.displayInput.value).to.equal('ap');
+      expect(el.value).to.equal('ap');
+      expect(el.querySelectorAll('syn-option')).to.have.lengthOf(2);
+    });
+  });
+
   runFormControlBaseTests('syn-combobox');
 });

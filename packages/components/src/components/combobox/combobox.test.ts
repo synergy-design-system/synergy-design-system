@@ -2398,33 +2398,55 @@ describe('<syn-combobox>', () => {
   }); // #805
 
   describe('#1358', () => {
+    const fetchMatches = (term: string) => new Promise<string[]>((resolve) => {
+      const data = ['Apple', 'Apricot', 'Banana'];
+      setTimeout(() => {
+        resolve(data.filter(item => item.toLowerCase().startsWith(term.toLowerCase())));
+      }, 200);
+    });
+
+    // Dynamically remove and add options based on the user input
+    const syncOptionsWithFetches = (term: string, element: SynCombobox) => fetchMatches(term).then(results => {
+      const resultSet = new Set(results);
+      const existingOptions = [...element.querySelectorAll<SynOption>('syn-option')];
+
+      // Remove options that are no longer present
+      existingOptions.forEach(option => {
+        const value = option.value.toString() || option.textContent || '';
+        if (!resultSet.has(value)) {
+          option.remove();
+        }
+      });
+
+      // Only add missing options
+      const existingValues = new Set(
+        [...element.querySelectorAll<SynOption>('syn-option')].map(option => option.value || option.textContent),
+      );
+
+      results.forEach(result => {
+        if (!existingValues.has(result)) {
+          const option = document.createElement('syn-option');
+          option.value = result;
+          option.textContent = result;
+          element.appendChild(option);
+        }
+      });
+    });
+
     it('should keep the current typed user value while async restricted options are added dynamically', async () => {
       const el = await fixture<SynCombobox>(html`<syn-combobox restricted></syn-combobox>`);
-      const data = ['Apple', 'Apricot', 'Banana'];
+      let pendingUpdate: Promise<void> = Promise.resolve();
 
-      const fetchPromise = new Promise<void>((resolve) => {
-        el.addEventListener('syn-input', (event) => {
-          const term = (event.target as SynCombobox).value?.toString().trim();
-          aTimeout(200).then(() => {
-            const matches = data.filter(item => item.toLowerCase().startsWith(term.toLowerCase()));
-            [...el.querySelectorAll('syn-option')].forEach(option => option.remove());
-
-            matches.forEach(item => {
-              const option = document.createElement('syn-option');
-              option.value = item;
-              option.textContent = item;
-              el.appendChild(option);
-            });
-            resolve();
-          });
-        });
+      el.addEventListener('syn-input', (event) => {
+        const term = (event.target as SynCombobox).value?.toString().trim();
+        pendingUpdate = syncOptionsWithFetches(term || '', el);
       });
 
       el.focus();
       await sendKeys({ type: 'ap' });
       await el.updateComplete;
       // Wait for promise
-      await fetchPromise;
+      await pendingUpdate;
       // wait for combobox to render the new options
       await el.updateComplete;
 
@@ -2455,6 +2477,32 @@ describe('<syn-combobox>', () => {
       expect(options[0].selected).to.be.false;
       expect(options[1].selected).to.be.false;
       expect(options[2].selected).to.be.false;
+    });
+
+    it('should not reopen the listbox if the value is already selected and options are created on user input', async () => {
+      const el = await fixture<SynCombobox>(html`<syn-combobox restricted></syn-combobox>`);
+
+      let pendingUpdate: Promise<void> = Promise.resolve();
+
+      el.addEventListener('syn-input', (event) => {
+        const term = (event.target as SynCombobox).value?.toString().trim();
+        pendingUpdate = syncOptionsWithFetches(term || '', el);
+      });
+
+      el.focus();
+      await sendKeys({ type: 'a' });
+      await pendingUpdate;
+      await el.updateComplete;
+
+      const appleOption = el.querySelector<SynOption>('syn-option[value="Apple"]');
+
+      await clickOnElement(appleOption!);
+      await pendingUpdate;
+      await el.updateComplete;
+
+      expect(el.value).to.equal('Apple');
+      expect(el.displayInput.value).to.equal('Apple');
+      expect(el.open).to.be.false;
     });
   });
 

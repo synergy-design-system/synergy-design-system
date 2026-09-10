@@ -296,7 +296,9 @@ export default class SynCombobox extends SynergyElement implements SynergyFormCo
       return true;
     }
 
-    return option?.value?.toString() === queryStr;
+    // #1362 do not do an equal test, as other filtered options should also be shown if they partially match
+    const value = option?.value?.toString() || '';
+    return value.includes(queryStr);
   };
 
   /**

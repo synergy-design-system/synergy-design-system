@@ -1272,6 +1272,7 @@ describe('<syn-combobox>', () => {
     expect(thirdOption).to.be.displayed;
 
     secondOption.textContent = 'updated';
+    secondOption.value = 'updated';
     await nextFrame();
 
     expect(firstOption).to.be.displayed;
@@ -2503,6 +2504,60 @@ describe('<syn-combobox>', () => {
       expect(el.value).to.equal('Apple');
       expect(el.displayInput.value).to.equal('Apple');
       expect(el.open).to.be.false;
+    });
+  });
+
+  describe('#1362', () => {
+    it('should show all possible matches when the value was set programmatically and the combobox is opened (textContent)', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="Option 1">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-11">Option 11</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.updateComplete;
+      // Waiting for the updateComplete is not enough for the option rendering cycle to be finished
+      await aTimeout(0);
+
+      expect(el.value).to.equal('option-1');
+      expect(el.displayInput.value).to.equal('Option 1');
+
+      el.open = true;
+      await el.updateComplete;
+
+      const options = el.querySelectorAll<SynOption>('syn-option');
+
+      expect(options[0].hidden).to.be.false;
+      expect(options[1].hidden).to.be.true;
+      expect(options[2].hidden).to.be.false;
+    });
+
+    it('should show all possible matches when the value was set programmatically and the combobox is opened (value)', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-1">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-11">Option 11</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.updateComplete;
+      // Waiting for the updateComplete is not enough for the option rendering cycle to be finished
+      await aTimeout(0);
+
+      expect(el.value).to.equal('option-1');
+      expect(el.displayInput.value).to.equal('Option 1');
+
+      el.open = true;
+      await el.updateComplete;
+
+      const options = el.querySelectorAll<SynOption>('syn-option');
+
+      expect(options[0].hidden).to.be.false;
+      expect(options[1].hidden).to.be.true;
+      expect(options[2].hidden).to.be.false;
     });
   });
 

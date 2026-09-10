@@ -1272,6 +1272,7 @@ describe('<syn-combobox>', () => {
     expect(thirdOption).to.be.displayed;
 
     secondOption.textContent = 'updated';
+    secondOption.value = 'updated';
     await nextFrame();
 
     expect(firstOption).to.be.displayed;
@@ -2396,6 +2397,169 @@ describe('<syn-combobox>', () => {
       });
     });
   }); // #805
+
+  describe('#1358', () => {
+    const fetchMatches = (term: string) => new Promise<string[]>((resolve) => {
+      const data = ['Apple', 'Apricot', 'Banana'];
+      setTimeout(() => {
+        resolve(data.filter(item => item.toLowerCase().startsWith(term.toLowerCase())));
+      }, 200);
+    });
+
+    // Dynamically remove and add options based on the user input
+    const syncOptionsWithFetches = (term: string, element: SynCombobox) => fetchMatches(term).then(results => {
+      const resultSet = new Set(results);
+      const existingOptions = [...element.querySelectorAll<SynOption>('syn-option')];
+
+      // Remove options that are no longer present
+      existingOptions.forEach(option => {
+        const value = option.value.toString() || option.textContent || '';
+        if (!resultSet.has(value)) {
+          option.remove();
+        }
+      });
+
+      // Only add missing options
+      const existingValues = new Set(
+        [...element.querySelectorAll<SynOption>('syn-option')].map(option => option.value || option.textContent),
+      );
+
+      results.forEach(result => {
+        if (!existingValues.has(result)) {
+          const option = document.createElement('syn-option');
+          option.value = result;
+          option.textContent = result;
+          element.appendChild(option);
+        }
+      });
+    });
+
+    it('should keep the current typed user value while async restricted options are added dynamically', async () => {
+      const el = await fixture<SynCombobox>(html`<syn-combobox restricted></syn-combobox>`);
+      let pendingUpdate: Promise<void> = Promise.resolve();
+
+      el.addEventListener('syn-input', (event) => {
+        const term = (event.target as SynCombobox).value?.toString().trim();
+        pendingUpdate = syncOptionsWithFetches(term || '', el);
+      });
+
+      el.focus();
+      await sendKeys({ type: 'ap' });
+      await el.updateComplete;
+      // Wait for promise
+      await pendingUpdate;
+      // wait for combobox to render the new options
+      await el.updateComplete;
+
+      expect(el.displayInput.value).to.equal('ap');
+      expect(el.value).to.equal('ap');
+      expect(el.querySelectorAll('syn-option')).to.have.lengthOf(2);
+    });
+
+    it('should not auto-select an exactly matching option when the user only typed without selecting it and another option was added dynamically', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox>
+          <syn-option value="Apple">Apple</syn-option>
+          <syn-option value="Apricot">Apricot</syn-option>
+        </syn-combobox>
+      `);
+
+      el.focus();
+      await sendKeys({ type: 'Apple' });
+      await el.updateComplete;
+
+      const dynamicOption = document.createElement('syn-option');
+      dynamicOption.value = 'Banana';
+      dynamicOption.textContent = 'Banana';
+      el.appendChild(dynamicOption);
+      await el.updateComplete;
+
+      const options = el.querySelectorAll('syn-option');
+      expect(options[0].selected).to.be.false;
+      expect(options[1].selected).to.be.false;
+      expect(options[2].selected).to.be.false;
+    });
+
+    it('should not reopen the listbox if the value is already selected and options are created on user input', async () => {
+      const el = await fixture<SynCombobox>(html`<syn-combobox restricted></syn-combobox>`);
+
+      let pendingUpdate: Promise<void> = Promise.resolve();
+
+      el.addEventListener('syn-input', (event) => {
+        const term = (event.target as SynCombobox).value?.toString().trim();
+        pendingUpdate = syncOptionsWithFetches(term || '', el);
+      });
+
+      el.focus();
+      await sendKeys({ type: 'a' });
+      await pendingUpdate;
+      await el.updateComplete;
+
+      const appleOption = el.querySelector<SynOption>('syn-option[value="Apple"]');
+
+      await clickOnElement(appleOption!);
+      await pendingUpdate;
+      await el.updateComplete;
+
+      expect(el.value).to.equal('Apple');
+      expect(el.displayInput.value).to.equal('Apple');
+      expect(el.open).to.be.false;
+    });
+  });
+
+  describe('#1362', () => {
+    it('should show all possible matches when the value was set programmatically and the combobox is opened (textContent)', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="Option 1">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-11">Option 11</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.updateComplete;
+      // Waiting for the updateComplete is not enough for the option rendering cycle to be finished
+      await aTimeout(0);
+
+      expect(el.value).to.equal('option-1');
+      expect(el.displayInput.value).to.equal('Option 1');
+
+      el.open = true;
+      await el.updateComplete;
+
+      const options = el.querySelectorAll<SynOption>('syn-option');
+
+      expect(options[0].hidden).to.be.false;
+      expect(options[1].hidden).to.be.true;
+      expect(options[2].hidden).to.be.false;
+    });
+
+    it('should show all possible matches when the value was set programmatically and the combobox is opened (value)', async () => {
+      const el = await fixture<SynCombobox>(html`
+        <syn-combobox value="option-1">
+          <syn-option value="option-1">Option 1</syn-option>
+          <syn-option value="option-2">Option 2</syn-option>
+          <syn-option value="option-11">Option 11</syn-option>
+        </syn-combobox>
+      `);
+
+      await el.updateComplete;
+      // Waiting for the updateComplete is not enough for the option rendering cycle to be finished
+      await aTimeout(0);
+
+      expect(el.value).to.equal('option-1');
+      expect(el.displayInput.value).to.equal('Option 1');
+
+      el.open = true;
+      await el.updateComplete;
+
+      const options = el.querySelectorAll<SynOption>('syn-option');
+
+      expect(options[0].hidden).to.be.false;
+      expect(options[1].hidden).to.be.true;
+      expect(options[2].hidden).to.be.false;
+    });
+  });
 
   runFormControlBaseTests('syn-combobox');
 });

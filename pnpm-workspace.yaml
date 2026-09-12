@@ -21,3 +21,6 @@ allowBuilds:
   sharp: true
   style-dictionary: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  # Renovate security update: @angular/common@22.1.1
+  - "@angular/common@22.1.1"

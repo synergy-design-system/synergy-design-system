@@ -3,7 +3,7 @@
 Use this pattern to confirm a user action. Confirmation dialogs are used to ensure that users do not accidentally perform an action that may have significant consequences, such as deleting important data or making irreversible changes. The confirmation dialog typically presents the user with a clear message about the action they are about to take, along with options to either proceed or cancel. This helps prevent mistakes and provides an opportunity for users to reconsider their decision before committing to it.
 
 ```html
-<div>
+<div data-dialog-instance="confirmation-dialogs">
   <syn-header>
     <span slot="label">Dialog Template</span>
   </syn-header>
@@ -25,10 +25,21 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
           <td>Description for Item 1</td>
           <td>active</td>
           <td class="table-action">
-            <syn-button variant="text" size="small" data-id="1" disabled="">
+            <syn-button
+              data-action="edit"
+              variant="text"
+              size="small"
+              data-id="1"
+              disabled=""
+            >
               <syn-icon name="edit" label="Edit"></syn-icon>
             </syn-button>
-            <syn-button variant="text" size="small" data-id="1">
+            <syn-button
+              data-action="delete"
+              variant="text"
+              size="small"
+              data-id="1"
+            >
               <syn-icon name="delete" label="Delete"></syn-icon>
             </syn-button>
           </td>
@@ -40,10 +51,21 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
           <td>Description for Item 2</td>
           <td>active</td>
           <td class="table-action">
-            <syn-button variant="text" size="small" data-id="2" disabled="">
+            <syn-button
+              data-action="edit"
+              variant="text"
+              size="small"
+              data-id="2"
+              disabled=""
+            >
               <syn-icon name="edit" label="Edit"></syn-icon>
             </syn-button>
-            <syn-button variant="text" size="small" data-id="2">
+            <syn-button
+              data-action="delete"
+              variant="text"
+              size="small"
+              data-id="2"
+            >
               <syn-icon name="delete" label="Delete"></syn-icon>
             </syn-button>
           </td>
@@ -55,10 +77,21 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
           <td>Description for Item 3</td>
           <td>active</td>
           <td class="table-action">
-            <syn-button variant="text" size="small" data-id="3" disabled="">
+            <syn-button
+              data-action="edit"
+              variant="text"
+              size="small"
+              data-id="3"
+              disabled=""
+            >
               <syn-icon name="edit" label="Edit"></syn-icon>
             </syn-button>
-            <syn-button variant="text" size="small" data-id="3">
+            <syn-button
+              data-action="delete"
+              variant="text"
+              size="small"
+              data-id="3"
+            >
               <syn-icon name="delete" label="Delete"></syn-icon>
             </syn-button>
           </td>
@@ -67,7 +100,12 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
       <tfoot>
         <tr>
           <th colspan="5">
-            <syn-button variant="filled" size="small" disabled="">
+            <syn-button
+              data-action="add"
+              variant="filled"
+              size="small"
+              disabled=""
+            >
               Add Item
             </syn-button>
           </th>
@@ -77,14 +115,16 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
   </main>
 
   <!-- Confirmation Dialog Example -->
-  <syn-dialog class="confirmation-dialog" open="">
+  <syn-dialog class="confirmation-dialog">
     <div>
       Are you sure you want to delete this item? This action cannot be undone.
     </div>
 
     <nav slot="footer">
-      <syn-button variant="text">Cancel</syn-button>
-      <syn-button variant="filled">Delete</syn-button>
+      <syn-button data-action="cancel" variant="text">Cancel</syn-button>
+      <syn-button data-action="confirm-delete" variant="filled"
+        >Delete</syn-button
+      >
     </nav>
   </syn-dialog>
 
@@ -126,6 +166,299 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
       }
     }
   </style>
+  <script type="module">
+    const root = document.querySelector(
+      '[data-dialog-instance="confirmation-dialogs"]',
+    );
+    const features = { allowAdd: false, allowDelete: true, allowEdit: false };
+    const initialView = "delete";
+    const initialData = [
+      {
+        description: "Description for Item 1",
+        id: 1,
+        name: "Item 1",
+        status: "active",
+      },
+      {
+        description: "Description for Item 2",
+        id: 2,
+        name: "Item 2",
+        status: "active",
+      },
+      {
+        description: "Description for Item 3",
+        id: 3,
+        name: "Item 3",
+        status: "active",
+      },
+    ];
+
+    let data = initialData.map((item) => ({ ...item }));
+    let currentDeleteId = null;
+    let editingIsExisting = false;
+
+    const table = root.querySelector(".item-table");
+    const tbody = table.querySelector("tbody");
+    const editDialog = root.querySelector(".edit-dialog");
+    const confirmationDialog = root.querySelector(".confirmation-dialog");
+    const editForm = root.querySelector("#edit-item-form");
+    const nameInput = editForm?.querySelector('syn-input[name="name"]');
+    const statusSelect = editForm?.querySelector('syn-select[name="status"]');
+    const descriptionTextarea = editForm?.querySelector(
+      'syn-textarea[name="description"]',
+    );
+    const idInput = editForm?.querySelector('input[name="id"]');
+    const submitButton = root.querySelector("#edit-submit-button");
+    const submitTooltip = root.querySelector("#edit-submit-tooltip");
+
+    const nextItemId = () =>
+      data.length > 0 ? Math.max(...data.map((item) => item.id)) + 1 : 1;
+
+    const renderRow = (item) =>
+      [
+        "<tr>",
+        '<td class="table-id">' + item.id + "</td>",
+        "<td>" + item.name + "</td>",
+        "<td>" + item.description + "</td>",
+        "<td>" + item.status + "</td>",
+        '<td class="table-action">',
+        '<syn-button data-action="edit" data-id="' +
+          item.id +
+          '" variant="text" size="small"' +
+          (features.allowEdit ? "" : " disabled") +
+          ">",
+        '<syn-icon name="edit" label="Edit"></syn-icon>',
+        "</syn-button>",
+        '<syn-button data-action="delete" data-id="' +
+          item.id +
+          '" variant="text" size="small"' +
+          (features.allowDelete ? "" : " disabled") +
+          ">",
+        '<syn-icon name="delete" label="Delete"></syn-icon>',
+        "</syn-button>",
+        "</td>",
+        "</tr>",
+      ].join("");
+
+    const renderTable = () => {
+      tbody.innerHTML = data.map(renderRow).join("");
+    };
+
+    const showToast = (message) => {
+      const alert = Object.assign(document.createElement("syn-alert"), {
+        closable: true,
+        duration: 3000,
+        innerHTML:
+          '<syn-icon slot="icon" name="status-success" library="system"></syn-icon>' +
+          message,
+        variant: "success",
+      });
+
+      document.body.append(alert);
+      alert.toast();
+    };
+
+    const updateEditDialogLabel = () => {
+      if (!editDialog) {
+        return;
+      }
+
+      const name = nameInput ? nameInput.value.trim() : "";
+      editDialog.label =
+        !editingIsExisting && !name
+          ? "Add Item"
+          : (editingIsExisting ? "Edit " : "Add ") + name;
+    };
+
+    const updateSubmitState = () => {
+      const isValid =
+        Boolean(nameInput?.checkValidity()) &&
+        Boolean(statusSelect?.checkValidity());
+
+      if (submitButton) {
+        submitButton.disabled = !isValid;
+      }
+
+      if (submitTooltip) {
+        submitTooltip.disabled = isValid;
+      }
+
+      updateEditDialogLabel();
+    };
+
+    const fillForm = (item) => {
+      if (nameInput) {
+        nameInput.value = item.name;
+      }
+
+      if (statusSelect) {
+        statusSelect.value = item.status;
+      }
+
+      if (descriptionTextarea) {
+        descriptionTextarea.value = item.description;
+      }
+
+      if (idInput) {
+        idInput.value = String(item.id);
+      }
+
+      updateSubmitState();
+    };
+
+    const openAddDialog = () => {
+      if (!features.allowAdd || !editDialog) {
+        return;
+      }
+
+      editingIsExisting = false;
+      fillForm({
+        description: "",
+        id: nextItemId(),
+        name: "",
+        status: "pending",
+      });
+      submitButton.textContent = "Add Item";
+      editDialog.show();
+    };
+
+    const openEditDialog = (itemId) => {
+      const item = data.find((entry) => entry.id === itemId);
+      if (!features.allowEdit || !editDialog || !item) {
+        return;
+      }
+
+      editingIsExisting = true;
+      fillForm(item);
+      submitButton.textContent = "Save changes";
+      editDialog.show();
+    };
+
+    const openDeleteDialog = (itemId) => {
+      if (!features.allowDelete || !confirmationDialog) {
+        return;
+      }
+
+      currentDeleteId = itemId;
+      confirmationDialog.label = "Delete Item " + itemId + "?";
+      confirmationDialog.show();
+    };
+
+    const closeDialogs = () => {
+      editDialog?.hide();
+      confirmationDialog?.hide();
+      currentDeleteId = null;
+    };
+
+    const confirmDeleteItem = () => {
+      if (currentDeleteId === null || !features.allowDelete) {
+        return;
+      }
+
+      const nextData = data.filter((item) => item.id !== currentDeleteId);
+      data =
+        nextData.length > 0
+          ? nextData
+          : initialData.map((item) => ({ ...item }));
+      renderTable();
+      showToast("Item successfully deleted");
+      closeDialogs();
+    };
+
+    const submitEditItem = (formData) => {
+      const itemId = Number(formData.get("id"));
+      const existingItem = data.find((item) => item.id === itemId);
+
+      if (!existingItem && !features.allowAdd) {
+        return;
+      }
+
+      if (existingItem && !features.allowEdit) {
+        return;
+      }
+
+      const updatedItem = {
+        description: String(formData.get("description") || ""),
+        id: itemId,
+        name: String(formData.get("name") || ""),
+        status: String(formData.get("status") || "pending"),
+      };
+
+      data = existingItem
+        ? data.map((item) => (item.id === itemId ? updatedItem : item))
+        : [...data, updatedItem];
+
+      renderTable();
+      showToast(
+        existingItem ? "Item successfully updated" : "Item successfully added",
+      );
+      closeDialogs();
+    };
+
+    table.addEventListener("click", (event) => {
+      const target = event.target.closest("syn-button[data-action]");
+      if (!target) {
+        return;
+      }
+
+      const { action, id } = target.dataset;
+      if (action === "add") {
+        openAddDialog();
+      } else if (action === "edit") {
+        openEditDialog(Number(id));
+      } else if (action === "delete") {
+        openDeleteDialog(Number(id));
+      }
+    });
+
+    [editDialog, confirmationDialog].forEach((dialog) => {
+      if (!dialog) {
+        return;
+      }
+
+      dialog.addEventListener("syn-request-close", (event) => {
+        if (event.detail.source === "overlay") {
+          event.preventDefault();
+          return;
+        }
+
+        closeDialogs();
+      });
+
+      dialog.addEventListener("click", (event) => {
+        const target = event.target.closest("syn-button[data-action]");
+        if (!target) {
+          return;
+        }
+
+        if (target.dataset.action === "cancel") {
+          closeDialogs();
+        } else if (target.dataset.action === "confirm-delete") {
+          confirmDeleteItem();
+        }
+      });
+    });
+
+    editForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (!editForm.checkValidity()) {
+        return;
+      }
+
+      submitEditItem(new FormData(editForm));
+    });
+
+    editForm?.addEventListener("input", updateSubmitState);
+    editForm?.addEventListener("syn-input", updateSubmitState);
+
+    if (initialView === "delete" && data[0]) {
+      openDeleteDialog(data[0].id);
+    } else if (initialView === "add") {
+      openAddDialog();
+    }
+  </script>
 </div>
 ```
 
@@ -136,7 +469,7 @@ Use this pattern to confirm a user action. Confirmation dialogs are used to ensu
 Form-focused dialog pattern for create and edit flows. Structure the dialog around required inputs and gate the primary submit action by form validity so incomplete data cannot be submitted. Keep a clear secondary Cancel action so users can always exit without saving. In this example, Add and Edit are enabled, while destructive delete is intentionally separated and disabled.
 
 ```html
-<div>
+<div data-dialog-instance="form-dialogs">
   <syn-header>
     <span slot="label">Dialog Template</span>
   </syn-header>
@@ -158,10 +491,21 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
           <td>Description for Item 1</td>
           <td>active</td>
           <td class="table-action">
-            <syn-button variant="text" size="small" data-id="1">
+            <syn-button
+              data-action="edit"
+              variant="text"
+              size="small"
+              data-id="1"
+            >
               <syn-icon name="edit" label="Edit"></syn-icon>
             </syn-button>
-            <syn-button variant="text" size="small" data-id="1" disabled="">
+            <syn-button
+              data-action="delete"
+              variant="text"
+              size="small"
+              data-id="1"
+              disabled=""
+            >
               <syn-icon name="delete" label="Delete"></syn-icon>
             </syn-button>
           </td>
@@ -173,10 +517,21 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
           <td>Description for Item 2</td>
           <td>active</td>
           <td class="table-action">
-            <syn-button variant="text" size="small" data-id="2">
+            <syn-button
+              data-action="edit"
+              variant="text"
+              size="small"
+              data-id="2"
+            >
               <syn-icon name="edit" label="Edit"></syn-icon>
             </syn-button>
-            <syn-button variant="text" size="small" data-id="2" disabled="">
+            <syn-button
+              data-action="delete"
+              variant="text"
+              size="small"
+              data-id="2"
+              disabled=""
+            >
               <syn-icon name="delete" label="Delete"></syn-icon>
             </syn-button>
           </td>
@@ -188,10 +543,21 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
           <td>Description for Item 3</td>
           <td>active</td>
           <td class="table-action">
-            <syn-button variant="text" size="small" data-id="3">
+            <syn-button
+              data-action="edit"
+              variant="text"
+              size="small"
+              data-id="3"
+            >
               <syn-icon name="edit" label="Edit"></syn-icon>
             </syn-button>
-            <syn-button variant="text" size="small" data-id="3" disabled="">
+            <syn-button
+              data-action="delete"
+              variant="text"
+              size="small"
+              data-id="3"
+              disabled=""
+            >
               <syn-icon name="delete" label="Delete"></syn-icon>
             </syn-button>
           </td>
@@ -200,7 +566,9 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
       <tfoot>
         <tr>
           <th colspan="5">
-            <syn-button variant="filled" size="small"> Add Item </syn-button>
+            <syn-button data-action="add" variant="filled" size="small">
+              Add Item
+            </syn-button>
           </th>
         </tr>
       </tfoot>
@@ -208,7 +576,7 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
   </main>
 
   <!-- Edit and Add Dialog Form Example -->
-  <syn-dialog class="edit-dialog" open="">
+  <syn-dialog class="edit-dialog">
     <form method="post" id="edit-item-form">
       <syn-fieldset legend="Item Details">
         <syn-validate variant="tooltip" on="live">
@@ -244,11 +612,11 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
           placeholder="A brief description of the item"
         ></syn-textarea>
       </syn-fieldset>
-      <input type="hidden" name="id" value="4" />
+      <input type="hidden" name="id" />
     </form>
 
     <nav slot="footer">
-      <syn-button variant="text">Cancel</syn-button>
+      <syn-button data-action="cancel" variant="text">Cancel</syn-button>
       <syn-tooltip
         id="edit-submit-tooltip"
         content="Please fill out the name and status fields before submitting"
@@ -306,6 +674,299 @@ Form-focused dialog pattern for create and edit flows. Structure the dialog arou
       }
     }
   </style>
+  <script type="module">
+    const root = document.querySelector(
+      '[data-dialog-instance="form-dialogs"]',
+    );
+    const features = { allowAdd: true, allowDelete: false, allowEdit: true };
+    const initialView = "add";
+    const initialData = [
+      {
+        description: "Description for Item 1",
+        id: 1,
+        name: "Item 1",
+        status: "active",
+      },
+      {
+        description: "Description for Item 2",
+        id: 2,
+        name: "Item 2",
+        status: "active",
+      },
+      {
+        description: "Description for Item 3",
+        id: 3,
+        name: "Item 3",
+        status: "active",
+      },
+    ];
+
+    let data = initialData.map((item) => ({ ...item }));
+    let currentDeleteId = null;
+    let editingIsExisting = false;
+
+    const table = root.querySelector(".item-table");
+    const tbody = table.querySelector("tbody");
+    const editDialog = root.querySelector(".edit-dialog");
+    const confirmationDialog = root.querySelector(".confirmation-dialog");
+    const editForm = root.querySelector("#edit-item-form");
+    const nameInput = editForm?.querySelector('syn-input[name="name"]');
+    const statusSelect = editForm?.querySelector('syn-select[name="status"]');
+    const descriptionTextarea = editForm?.querySelector(
+      'syn-textarea[name="description"]',
+    );
+    const idInput = editForm?.querySelector('input[name="id"]');
+    const submitButton = root.querySelector("#edit-submit-button");
+    const submitTooltip = root.querySelector("#edit-submit-tooltip");
+
+    const nextItemId = () =>
+      data.length > 0 ? Math.max(...data.map((item) => item.id)) + 1 : 1;
+
+    const renderRow = (item) =>
+      [
+        "<tr>",
+        '<td class="table-id">' + item.id + "</td>",
+        "<td>" + item.name + "</td>",
+        "<td>" + item.description + "</td>",
+        "<td>" + item.status + "</td>",
+        '<td class="table-action">',
+        '<syn-button data-action="edit" data-id="' +
+          item.id +
+          '" variant="text" size="small"' +
+          (features.allowEdit ? "" : " disabled") +
+          ">",
+        '<syn-icon name="edit" label="Edit"></syn-icon>',
+        "</syn-button>",
+        '<syn-button data-action="delete" data-id="' +
+          item.id +
+          '" variant="text" size="small"' +
+          (features.allowDelete ? "" : " disabled") +
+          ">",
+        '<syn-icon name="delete" label="Delete"></syn-icon>',
+        "</syn-button>",
+        "</td>",
+        "</tr>",
+      ].join("");
+
+    const renderTable = () => {
+      tbody.innerHTML = data.map(renderRow).join("");
+    };
+
+    const showToast = (message) => {
+      const alert = Object.assign(document.createElement("syn-alert"), {
+        closable: true,
+        duration: 3000,
+        innerHTML:
+          '<syn-icon slot="icon" name="status-success" library="system"></syn-icon>' +
+          message,
+        variant: "success",
+      });
+
+      document.body.append(alert);
+      alert.toast();
+    };
+
+    const updateEditDialogLabel = () => {
+      if (!editDialog) {
+        return;
+      }
+
+      const name = nameInput ? nameInput.value.trim() : "";
+      editDialog.label =
+        !editingIsExisting && !name
+          ? "Add Item"
+          : (editingIsExisting ? "Edit " : "Add ") + name;
+    };
+
+    const updateSubmitState = () => {
+      const isValid =
+        Boolean(nameInput?.checkValidity()) &&
+        Boolean(statusSelect?.checkValidity());
+
+      if (submitButton) {
+        submitButton.disabled = !isValid;
+      }
+
+      if (submitTooltip) {
+        submitTooltip.disabled = isValid;
+      }
+
+      updateEditDialogLabel();
+    };
+
+    const fillForm = (item) => {
+      if (nameInput) {
+        nameInput.value = item.name;
+      }
+
+      if (statusSelect) {
+        statusSelect.value = item.status;
+      }
+
+      if (descriptionTextarea) {
+        descriptionTextarea.value = item.description;
+      }
+
+      if (idInput) {
+        idInput.value = String(item.id);
+      }
+
+      updateSubmitState();
+    };
+
+    const openAddDialog = () => {
+      if (!features.allowAdd || !editDialog) {
+        return;
+      }
+
+      editingIsExisting = false;
+      fillForm({
+        description: "",
+        id: nextItemId(),
+        name: "",
+        status: "pending",
+      });
+      submitButton.textContent = "Add Item";
+      editDialog.show();
+    };
+
+    const openEditDialog = (itemId) => {
+      const item = data.find((entry) => entry.id === itemId);
+      if (!features.allowEdit || !editDialog || !item) {
+        return;
+      }
+
+      editingIsExisting = true;
+      fillForm(item);
+      submitButton.textContent = "Save changes";
+      editDialog.show();
+    };
+
+    const openDeleteDialog = (itemId) => {
+      if (!features.allowDelete || !confirmationDialog) {
+        return;
+      }
+
+      currentDeleteId = itemId;
+      confirmationDialog.label = "Delete Item " + itemId + "?";
+      confirmationDialog.show();
+    };
+
+    const closeDialogs = () => {
+      editDialog?.hide();
+      confirmationDialog?.hide();
+      currentDeleteId = null;
+    };
+
+    const confirmDeleteItem = () => {
+      if (currentDeleteId === null || !features.allowDelete) {
+        return;
+      }
+
+      const nextData = data.filter((item) => item.id !== currentDeleteId);
+      data =
+        nextData.length > 0
+          ? nextData
+          : initialData.map((item) => ({ ...item }));
+      renderTable();
+      showToast("Item successfully deleted");
+      closeDialogs();
+    };
+
+    const submitEditItem = (formData) => {
+      const itemId = Number(formData.get("id"));
+      const existingItem = data.find((item) => item.id === itemId);
+
+      if (!existingItem && !features.allowAdd) {
+        return;
+      }
+
+      if (existingItem && !features.allowEdit) {
+        return;
+      }
+
+      const updatedItem = {
+        description: String(formData.get("description") || ""),
+        id: itemId,
+        name: String(formData.get("name") || ""),
+        status: String(formData.get("status") || "pending"),
+      };
+
+      data = existingItem
+        ? data.map((item) => (item.id === itemId ? updatedItem : item))
+        : [...data, updatedItem];
+
+      renderTable();
+      showToast(
+        existingItem ? "Item successfully updated" : "Item successfully added",
+      );
+      closeDialogs();
+    };
+
+    table.addEventListener("click", (event) => {
+      const target = event.target.closest("syn-button[data-action]");
+      if (!target) {
+        return;
+      }
+
+      const { action, id } = target.dataset;
+      if (action === "add") {
+        openAddDialog();
+      } else if (action === "edit") {
+        openEditDialog(Number(id));
+      } else if (action === "delete") {
+        openDeleteDialog(Number(id));
+      }
+    });
+
+    [editDialog, confirmationDialog].forEach((dialog) => {
+      if (!dialog) {
+        return;
+      }
+
+      dialog.addEventListener("syn-request-close", (event) => {
+        if (event.detail.source === "overlay") {
+          event.preventDefault();
+          return;
+        }
+
+        closeDialogs();
+      });
+
+      dialog.addEventListener("click", (event) => {
+        const target = event.target.closest("syn-button[data-action]");
+        if (!target) {
+          return;
+        }
+
+        if (target.dataset.action === "cancel") {
+          closeDialogs();
+        } else if (target.dataset.action === "confirm-delete") {
+          confirmDeleteItem();
+        }
+      });
+    });
+
+    editForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (!editForm.checkValidity()) {
+        return;
+      }
+
+      submitEditItem(new FormData(editForm));
+    });
+
+    editForm?.addEventListener("input", updateSubmitState);
+    editForm?.addEventListener("syn-input", updateSubmitState);
+
+    if (initialView === "delete" && data[0]) {
+      openDeleteDialog(data[0].id);
+    } else if (initialView === "add") {
+      openAddDialog();
+    }
+  </script>
 </div>
 ```
 

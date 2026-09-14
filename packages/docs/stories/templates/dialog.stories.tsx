@@ -1,7 +1,6 @@
 import React from 'react';
 import type {
   SynDialog,
-  SynRequestCloseEvent,
   SynSwitch,
 } from '@synergy-design-system/components';
 import type { Meta, StoryObj as Story } from '@storybook/web-components-vite';
@@ -29,7 +28,6 @@ import '../../../components/src/components/textarea/textarea.js';
 import '../../../components/src/components/tooltip/tooltip.js';
 import '../../../components/src/components/validate/validate.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
-import { getFormControls } from '../../../components/src/utilities/form.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 type DialogFeatureFlags = {
@@ -42,6 +40,7 @@ type DialogInitialView = 'add' | 'delete' | 'none';
 
 type DialogTemplateConfig = {
   features: DialogFeatureFlags;
+  id: string;
   initialView?: DialogInitialView;
 };
 
@@ -76,7 +75,7 @@ const meta: Meta = {
 };
 export default meta;
 
-const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplateConfig) => () => {
+const createDialogTemplate = ({ features, id, initialView = 'none' }: DialogTemplateConfig) => () => {
   const initialData = Array.from({ length: 3 }, (_, index) => ({
     description: `Description for Item ${index + 1}`,
     id: index + 1,
@@ -85,438 +84,431 @@ const createDialogTemplate = ({ features, initialView = 'none' }: DialogTemplate
   }));
 
   const container = document.createElement('div');
+  // document.currentScript is always null for module scripts, so use a stable marker instead
+  // to scope the script below to this story's own container.
+  container.dataset.dialogInstance = id;
 
-  let state = {
-    currentItemId: null as null | number,
-    data: [...initialData],
-    deleteDialogOpen: false,
-    editDialogOpen: false,
-    editingDraft: null as null | {
-      description: string;
-      id: number;
-      name: string;
-      status: string;
-    },
-  };
+  // Renders a static, non-reactive shell. All interactivity is owned by the script below,
+  // so each story stays fully self-contained (no shared window state across stories).
+  render(html`
+    <syn-header>
+      <span slot="label">Dialog Template</span>
+    </syn-header>
+    <main>
+      <table class="item-table syn-table--default">
+        <thead>
+          <th class="table-id">Id</th>
+          <th>Item</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th class="table-action"></th>
+        </thead>
+        <tbody>
+          ${initialData.map(item => html`
+            <tr>
+              <td class="table-id">${item.id}</td>
+              <td>${item.name}</td>
+              <td>${item.description}</td>
+              <td>${item.status}</td>
+              <td class="table-action">
+                <syn-button
+                  data-action="edit"
+                  data-id=${item.id}
+                  variant="text"
+                  size="small"
+                  ?disabled=${!features.allowEdit}
+                >
+                  <syn-icon name="edit" label="Edit"></syn-icon>
+                </syn-button>
+                <syn-button
+                  data-action="delete"
+                  data-id=${item.id}
+                  variant="text"
+                  size="small"
+                  ?disabled=${!features.allowDelete}
+                >
+                  <syn-icon name="delete" label="Delete"></syn-icon>
+                </syn-button>
+              </td>
+            </tr>
+          `)}
+        </tbody>
+        <tfoot>
+          <tr>
+            <th colspan="5">
+              <syn-button
+                data-action="add"
+                variant="filled"
+                size="small"
+                ?disabled=${!features.allowAdd}
+              >
+                Add Item
+              </syn-button>
+            </th>
+          </tr>
+        </tfoot>
+      </table>
+    </main>
 
-  if (initialView === 'delete' && features.allowDelete && initialData[0]) {
-    state = {
-      ...state,
-      currentItemId: initialData[0].id,
-      deleteDialogOpen: true,
+    ${features.allowEdit ? html`
+      <!-- Edit and Add Dialog Form Example -->
+      <syn-dialog class="edit-dialog">
+        <form method="post" id="edit-item-form">
+          <syn-fieldset legend="Item Details">
+            <syn-validate variant="tooltip" on="live">
+              <syn-input
+                autofocus
+                name="name"
+                label="Name"
+                placeholder="The items name, e.g. Sensor ABC"
+                required
+              ></syn-input>
+            </syn-validate>
+
+            <syn-select name="status" label="Status" required>
+              <div class="status-help-text" slot="help-text">
+                Defines the status of the item:
+                <ul>
+                  <li><strong>Active:</strong> Item can be used</li>
+                  <li><strong>Inactive:</strong> Item cannot be used</li>
+                  <li><strong>Pending:</strong> Item awaits approval from external source</li>
+                </ul>
+              </div>
+              <syn-option value="active">Active</syn-option>
+              <syn-option value="inactive">Inactive</syn-option>
+              <syn-option value="pending">Pending</syn-option>
+            </syn-select>
+
+            <syn-textarea
+              name="description"
+              label="Description"
+              placeholder="A brief description of the item"
+            ></syn-textarea>
+          </syn-fieldset>
+          <input type="hidden" name="id" />
+        </form>
+
+        <nav slot="footer">
+          <syn-button data-action="cancel" variant="text">Cancel</syn-button>
+          <syn-tooltip id="edit-submit-tooltip" content="Please fill out the name and status fields before submitting">
+            <span class="edit-submit-tooltip-trigger">
+              <syn-button id="edit-submit-button" variant="filled" form="edit-item-form" type="submit" disabled>
+                Add Item
+              </syn-button>
+            </span>
+          </syn-tooltip>
+        </nav>
+      </syn-dialog>
+    ` : ''}
+
+    ${features.allowDelete ? html`
+      <!-- Confirmation Dialog Example -->
+      <syn-dialog class="confirmation-dialog">
+        <div>Are you sure you want to delete this item? This action cannot be undone.</div>
+
+        <nav slot="footer">
+          <syn-button data-action="cancel" variant="text">Cancel</syn-button>
+          <syn-button data-action="confirm-delete" variant="filled">Delete</syn-button>
+        </nav>
+      </syn-dialog>
+    ` : ''}
+
+    <style>
+    main {
+      background: var(--syn-page-background-color);
+      padding: var(--syn-spacing-large);
+    }
+
+    .item-table {
+      width: 100%;
+
+      td {
+        vertical-align: middle;
+      }
+
+      .table-id {
+        text-align: right;
+      }
+
+      .table-action {
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      tfoot th {
+        text-align: right;
+      }
+
+      .edit-submit-tooltip-trigger {
+        display: inline-flex;
+      }
+    }
+
+    .status-help-text {
+      ul {
+        margin-bottom: 0;
+        padding-inline-start: 2rem;
+      }
+    }
+    </style>
+  `, container);
+
+  // lit-html renders <script> tags inertly, so create and append it manually to make it execute
+  // and to keep it visible in the rendered markup shown by the docs code preview.
+  // `document.currentScript` scopes every lookup to this story's own container, so state is
+  // never shared across stories (e.g. when a docs page renders several stories at once).
+  const interactionScript = document.createElement('script');
+  interactionScript.type = 'module';
+  interactionScript.textContent = `
+    const root = document.querySelector('[data-dialog-instance="${id}"]');
+    const features = ${JSON.stringify(features)};
+    const initialView = ${JSON.stringify(initialView)};
+    const initialData = ${JSON.stringify(initialData)};
+
+    let data = initialData.map((item) => ({ ...item }));
+    let currentDeleteId = null;
+    let editingIsExisting = false;
+
+    const table = root.querySelector('.item-table');
+    const tbody = table.querySelector('tbody');
+    const editDialog = root.querySelector('.edit-dialog');
+    const confirmationDialog = root.querySelector('.confirmation-dialog');
+    const editForm = root.querySelector('#edit-item-form');
+    const nameInput = editForm?.querySelector('syn-input[name="name"]');
+    const statusSelect = editForm?.querySelector('syn-select[name="status"]');
+    const descriptionTextarea = editForm?.querySelector('syn-textarea[name="description"]');
+    const idInput = editForm?.querySelector('input[name="id"]');
+    const submitButton = root.querySelector('#edit-submit-button');
+    const submitTooltip = root.querySelector('#edit-submit-tooltip');
+
+    const nextItemId = () => (data.length > 0 ? Math.max(...data.map((item) => item.id)) + 1 : 1);
+
+    const renderRow = (item) => [
+      '<tr>',
+      '<td class="table-id">' + item.id + '</td>',
+      '<td>' + item.name + '</td>',
+      '<td>' + item.description + '</td>',
+      '<td>' + item.status + '</td>',
+      '<td class="table-action">',
+      '<syn-button data-action="edit" data-id="' + item.id + '" variant="text" size="small"' + (features.allowEdit ? '' : ' disabled') + '>',
+      '<syn-icon name="edit" label="Edit"></syn-icon>',
+      '</syn-button>',
+      '<syn-button data-action="delete" data-id="' + item.id + '" variant="text" size="small"' + (features.allowDelete ? '' : ' disabled') + '>',
+      '<syn-icon name="delete" label="Delete"></syn-icon>',
+      '</syn-button>',
+      '</td>',
+      '</tr>',
+    ].join('');
+
+    const renderTable = () => {
+      tbody.innerHTML = data.map(renderRow).join('');
     };
-  }
 
-  if (initialView === 'add' && features.allowAdd) {
-    state = {
-      ...state,
-      currentItemId: state.data.length + 1,
-      editDialogOpen: true,
-      editingDraft: {
+    const showToast = (message) => {
+      const alert = Object.assign(document.createElement('syn-alert'), {
+        closable: true,
+        duration: 3000,
+        innerHTML: '<syn-icon slot="icon" name="status-success" library="system"></syn-icon>' + message,
+        variant: 'success',
+      });
+
+      document.body.append(alert);
+      alert.toast();
+    };
+
+    const updateEditDialogLabel = () => {
+      if (!editDialog) {
+        return;
+      }
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      editDialog.label = !editingIsExisting && !name ? 'Add Item' : (editingIsExisting ? 'Edit ' : 'Add ') + name;
+    };
+
+    const updateSubmitState = () => {
+      const isValid = Boolean(nameInput?.checkValidity()) && Boolean(statusSelect?.checkValidity());
+
+      if (submitButton) {
+        submitButton.disabled = !isValid;
+      }
+
+      if (submitTooltip) {
+        submitTooltip.disabled = isValid;
+      }
+
+      updateEditDialogLabel();
+    };
+
+    const fillForm = (item) => {
+      if (nameInput) {
+        nameInput.value = item.name;
+      }
+
+      if (statusSelect) {
+        statusSelect.value = item.status;
+      }
+
+      if (descriptionTextarea) {
+        descriptionTextarea.value = item.description;
+      }
+
+      if (idInput) {
+        idInput.value = String(item.id);
+      }
+
+      updateSubmitState();
+    };
+
+    const openAddDialog = () => {
+      if (!features.allowAdd || !editDialog) {
+        return;
+      }
+
+      editingIsExisting = false;
+      fillForm({
         description: '',
-        id: state.data.length + 1,
+        id: nextItemId(),
         name: '',
         status: 'pending',
-      },
-    };
-  }
-
-  let view = () => html``;
-
-  const setState = (patch: Partial<typeof state>) => {
-    state = { ...state, ...patch };
-    render(view(), container);
-  };
-
-  const notifyChange = (message: string) => {
-    const alert = Object.assign(document.createElement('syn-alert'), {
-      closable: true,
-      duration: 3000,
-      innerHTML: `
-        <syn-icon slot="icon" name="status-success" library="system"></syn-icon>
-        ${message}
-      `,
-      variant: 'success',
-    });
-
-    document.body.append(alert);
-    return alert.toast();
-  };
-
-  const closeDialog = () => {
-    setState({
-      currentItemId: null,
-      deleteDialogOpen: false,
-      editDialogOpen: false,
-      editingDraft: null,
-    });
-  };
-
-  const openDelete = (itemId: number) => {
-    if (!features.allowDelete) {
-      return;
-    }
-
-    setState({
-      currentItemId: itemId,
-      deleteDialogOpen: true,
-      editDialogOpen: false,
-      editingDraft: null,
-    });
-  };
-
-  const openEdit = (itemId?: number) => {
-    if (typeof itemId === 'number' && !features.allowEdit) {
-      return;
-    }
-
-    if (typeof itemId !== 'number' && !features.allowAdd) {
-      return;
-    }
-
-    const item = typeof itemId === 'number'
-      ? state.data.find(currentItem => currentItem.id === itemId)
-      : null;
-
-    const nextItemId = state.data.length > 0
-      ? Math.max(...state.data.map(currentItem => currentItem.id)) + 1
-      : 1;
-
-    const editingDraft = item ?? {
-      description: '',
-      id: nextItemId,
-      name: '',
-      status: 'pending',
+      });
+      submitButton.textContent = 'Add Item';
+      editDialog.show();
     };
 
-    if (typeof itemId === 'number' && !item) {
-      return;
-    }
+    const openEditDialog = (itemId) => {
+      const item = data.find((entry) => entry.id === itemId);
+      if (!features.allowEdit || !editDialog || !item) {
+        return;
+      }
 
-    setState({
-      currentItemId: editingDraft.id,
-      deleteDialogOpen: false,
-      editDialogOpen: true,
-      editingDraft,
-    });
-  };
-
-  const confirmDelete = () => {
-    if (!state.currentItemId || !features.allowDelete) {
-      return;
-    }
-
-    const nextData = state.data.filter(item => item.id !== state.currentItemId);
-    setState({ data: nextData.length > 0 ? nextData : [...initialData] });
-    notifyChange('Item successfully deleted').catch(() => undefined);
-    closeDialog();
-  };
-
-  const submitEdit = (formData: FormData) => {
-    const itemId = Number(formData.get('id'));
-    const nameEntry = formData.get('name');
-    const descriptionEntry = formData.get('description');
-    const statusEntry = formData.get('status');
-
-    const itemName = typeof nameEntry === 'string' ? nameEntry : '';
-    const itemDescription = typeof descriptionEntry === 'string' ? descriptionEntry : '';
-    const itemStatus = typeof statusEntry === 'string' ? statusEntry : 'pending';
-
-    const existingItem = state.data.find(item => item.id === itemId);
-    const updatedItem = {
-      description: itemDescription,
-      id: itemId,
-      name: itemName,
-      status: itemStatus,
+      editingIsExisting = true;
+      fillForm(item);
+      submitButton.textContent = 'Save changes';
+      editDialog.show();
     };
 
-    if (!existingItem && !features.allowAdd) {
-      return;
-    }
+    const openDeleteDialog = (itemId) => {
+      if (!features.allowDelete || !confirmationDialog) {
+        return;
+      }
 
-    if (existingItem && !features.allowEdit) {
-      return;
-    }
+      currentDeleteId = itemId;
+      confirmationDialog.label = 'Delete Item ' + itemId + '?';
+      confirmationDialog.show();
+    };
 
-    setState({
-      data: existingItem
-        ? state.data.map(item => (item.id === itemId ? updatedItem : item))
-        : [...state.data, updatedItem],
+    const closeDialogs = () => {
+      editDialog?.hide();
+      confirmationDialog?.hide();
+      currentDeleteId = null;
+    };
+
+    const confirmDeleteItem = () => {
+      if (currentDeleteId === null || !features.allowDelete) {
+        return;
+      }
+
+      const nextData = data.filter((item) => item.id !== currentDeleteId);
+      data = nextData.length > 0 ? nextData : initialData.map((item) => ({ ...item }));
+      renderTable();
+      showToast('Item successfully deleted');
+      closeDialogs();
+    };
+
+    const submitEditItem = (formData) => {
+      const itemId = Number(formData.get('id'));
+      const existingItem = data.find((item) => item.id === itemId);
+
+      if (!existingItem && !features.allowAdd) {
+        return;
+      }
+
+      if (existingItem && !features.allowEdit) {
+        return;
+      }
+
+      const updatedItem = {
+        description: String(formData.get('description') || ''),
+        id: itemId,
+        name: String(formData.get('name') || ''),
+        status: String(formData.get('status') || 'pending'),
+      };
+
+      data = existingItem
+        ? data.map((item) => (item.id === itemId ? updatedItem : item))
+        : [...data, updatedItem];
+
+      renderTable();
+      showToast(existingItem ? 'Item successfully updated' : 'Item successfully added');
+      closeDialogs();
+    };
+
+    table.addEventListener('click', (event) => {
+      const target = event.target.closest('syn-button[data-action]');
+      if (!target) {
+        return;
+      }
+
+      const { action, id } = target.dataset;
+      if (action === 'add') {
+        openAddDialog();
+      } else if (action === 'edit') {
+        openEditDialog(Number(id));
+      } else if (action === 'delete') {
+        openDeleteDialog(Number(id));
+      }
     });
 
-    if (existingItem) {
-      notifyChange('Item successfully updated').catch(() => undefined);
-    } else {
-      notifyChange('Item successfully added').catch(() => undefined);
-    }
-
-    closeDialog();
-  };
-
-  const onRequestClose = (e: SynRequestCloseEvent) => {
-    if (e.detail.source === 'overlay') {
-      e.preventDefault();
-      return;
-    }
-
-    closeDialog();
-  };
-
-  const onSubmit = (e: Event) => {
-    const submitEvent = e as SubmitEvent;
-    submitEvent.preventDefault();
-    submitEvent.stopPropagation();
-
-    const form = submitEvent.target as HTMLFormElement;
-    if (!form.checkValidity()) {
-      return;
-    }
-
-    submitEdit(new FormData(form));
-  };
-
-  const updateEditSubmitState = (form: HTMLFormElement) => {
-    const submitButton = container.querySelector('#edit-submit-button');
-    const submitTooltip = container.querySelector('#edit-submit-tooltip');
-    if (!submitButton || !submitTooltip) {
-      return;
-    }
-
-    const isValid = getFormControls(form).every(element => (element as HTMLInputElement).validity.valid);
-
-    if (isValid) {
-      submitButton.removeAttribute('disabled');
-      submitTooltip.setAttribute('disabled', '');
-      return;
-    }
-
-    submitButton.setAttribute('disabled', '');
-    submitTooltip.removeAttribute('disabled');
-  };
-
-  const onEditFormValidityChange = (e: Event) => {
-    const form = e.currentTarget as HTMLFormElement;
-    updateEditSubmitState(form);
-  };
-
-  const getEditDialogLabel = (
-    editingItem: typeof state.editingDraft,
-    isEditExistingItem: boolean,
-  ) => {
-    if (!editingItem) {
-      return 'Edit Item';
-    }
-
-    if (!isEditExistingItem && !editingItem.name.trim()) {
-      return 'Add Item';
-    }
-
-    return isEditExistingItem
-      ? `Edit ${editingItem.name}`
-      : `Add ${editingItem.name}`;
-  };
-
-  // eslint-disable-next-line complexity
-  view = () => {
-    const editingItem = state.editingDraft;
-    const isEditExistingItem = editingItem
-      ? state.data.some(item => item.id === editingItem.id)
-      : false;
-    const editDialogLabel = getEditDialogLabel(editingItem, isEditExistingItem);
-    const editConfirmLabel = isEditExistingItem ? 'Save changes' : 'Add Item';
-    const isEditFormValid = Boolean(editingItem?.name?.trim()) && Boolean(editingItem?.status?.trim());
-    const deleteDialogLabel = state.currentItemId
-      ? `Delete Item ${state.currentItemId}?`
-      : 'Delete Item';
-
-    return html`
-      <syn-header>
-        <span slot="label">Dialog Template</span>
-      </syn-header>
-      <main>
-        <table class="item-table syn-table--default">
-          <thead>
-            <th class="table-id">Id</th>
-            <th>Item</th>
-            <th>Description</th>
-            <th>Status</th>
-            <th class="table-action"></th>
-          </thead>
-          <tbody>
-            ${state.data.map(item => html`
-              <tr>
-                <td class="table-id">${item.id}</td>
-                <td>${item.name}</td>
-                <td>${item.description}</td>
-                <td>${item.status}</td>
-                <td class="table-action">
-                  <syn-button
-                    data-id=${item.id}
-                    variant="text"
-                    size="small"
-                    ?disabled=${!features.allowEdit}
-                    @click=${() => openEdit(item.id)}
-                  >
-                    <syn-icon name="edit" label="Edit"></syn-icon>
-                  </syn-button>
-                  <syn-button
-                    data-id=${item.id}
-                    variant="text"
-                    size="small"
-                    ?disabled=${!features.allowDelete}
-                    @click=${() => openDelete(item.id)}
-                  >
-                    <syn-icon name="delete" label="Delete"></syn-icon>
-                  </syn-button>
-                </td>
-              </tr>
-            `)}
-          </tbody>
-          <tfoot>
-            <tr>
-              <th colspan="5">
-                <syn-button
-                  variant="filled"
-                  size="small"
-                  ?disabled=${!features.allowAdd}
-                  @click=${() => openEdit()}
-                >
-                  Add Item
-                </syn-button>
-              </th>
-            </tr>
-          </tfoot>
-        </table>
-      </main>
-
-      ${features.allowEdit ? html`
-        <!-- Edit and Add Dialog Form Example -->
-        <syn-dialog
-          class="edit-dialog"
-          .label=${editDialogLabel}
-          ?open=${state.editDialogOpen}
-          @syn-request-close=${onRequestClose}
-          @submit=${onSubmit}
-        >
-          <form
-            method="post"
-            id="edit-item-form"
-            @input=${onEditFormValidityChange}
-            @syn-input=${onEditFormValidityChange}
-          >
-            <syn-fieldset legend="Item Details">
-              <syn-validate variant="tooltip" on="live">
-                <syn-input
-                  autofocus
-                  name="name"
-                  label="Name"
-                  placeholder="The items name, e.g. Sensor ABC"
-                  .value=${editingItem?.name}
-                  required
-                ></syn-input>
-              </syn-validate>
-
-              <syn-select
-                name="status"
-                label="Status"
-                required
-                .value=${editingItem?.status}
-              >
-                <div class="status-help-text" slot="help-text">
-                  Defines the status of the item:
-                  <ul>
-                    <li><strong>Active:</strong> Item can be used</li>
-                    <li><strong>Inactive:</strong> Item cannot be used</li>
-                    <li><strong>Pending:</strong> Item awaits approval from external source</li>
-                  </ul>
-                </div>
-                <syn-option value="active">Active</syn-option>
-                <syn-option value="inactive">Inactive</syn-option>
-                <syn-option value="pending">Pending</syn-option>
-              </syn-select>
-
-              <syn-textarea
-                name="description"
-                label="Description"
-                placeholder="A brief description of the item"
-                .value=${editingItem?.description}
-              ></syn-textarea>
-            </syn-fieldset>
-            <input type="hidden" name="id" .value=${String(editingItem?.id ?? '')} />
-          </form>
-
-          <nav slot="footer">
-            <syn-button variant="text" @click=${closeDialog}>Cancel</syn-button>
-            <syn-tooltip id="edit-submit-tooltip" content="Please fill out the name and status fields before submitting" ?disabled=${isEditFormValid}>
-              <span class="edit-submit-tooltip-trigger">
-                <syn-button id="edit-submit-button" variant="filled" form="edit-item-form" type="submit" ?disabled=${!isEditFormValid}>
-                  ${editConfirmLabel}
-                </syn-button>
-              </span>
-            </syn-tooltip>
-          </nav>
-        </syn-dialog>
-      ` : ''}
-
-      ${features.allowDelete ? html`
-        <!-- Confirmation Dialog Example -->
-        <syn-dialog
-          class="confirmation-dialog"
-          .label=${deleteDialogLabel}
-          ?open=${state.deleteDialogOpen}
-          @syn-request-close=${onRequestClose}
-        >
-          <div>Are you sure you want to delete this item? This action cannot be undone.</div>
-
-          <nav slot="footer">
-            <syn-button variant="text" @click=${closeDialog}>Cancel</syn-button>
-            <syn-button variant="filled" @click=${confirmDelete}>Delete</syn-button>
-          </nav>
-        </syn-dialog>
-      ` : ''}
-
-      <style>
-      main {
-        background: var(--syn-page-background-color);
-        padding: var(--syn-spacing-large);
+    [editDialog, confirmationDialog].forEach((dialog) => {
+      if (!dialog) {
+        return;
       }
 
-      .item-table {
-        width: 100%;
-
-        td {
-          vertical-align: middle;
+      dialog.addEventListener('syn-request-close', (event) => {
+        if (event.detail.source === 'overlay') {
+          event.preventDefault();
+          return;
         }
 
-        .table-id {
-          text-align: right;
+        closeDialogs();
+      });
+
+      dialog.addEventListener('click', (event) => {
+        const target = event.target.closest('syn-button[data-action]');
+        if (!target) {
+          return;
         }
 
-        .table-action {
-          text-align: right;
-          white-space: nowrap;
+        if (target.dataset.action === 'cancel') {
+          closeDialogs();
+        } else if (target.dataset.action === 'confirm-delete') {
+          confirmDeleteItem();
         }
+      });
+    });
 
-        tfoot th {
-          text-align: right;
-        }
+    editForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
 
-        .edit-submit-tooltip-trigger {
-          display: inline-flex;
-        }
+      if (!editForm.checkValidity()) {
+        return;
       }
 
-      .status-help-text {
-        ul {
-          margin-bottom: 0;
-          padding-inline-start: 2rem;
-        }
-      }
-      </style>
-    `;
-  };
+      submitEditItem(new FormData(editForm));
+    });
 
-  render(view(), container);
+    editForm?.addEventListener('input', updateSubmitState);
+    editForm?.addEventListener('syn-input', updateSubmitState);
+
+    if (initialView === 'delete' && data[0]) {
+      openDeleteDialog(data[0].id);
+    } else if (initialView === 'add') {
+      openAddDialog();
+    }
+  `;
+  container.append(interactionScript);
+
   return container;
 };
 
@@ -534,6 +526,7 @@ export const ConfirmationDialogs: Story = {
       allowDelete: true,
       allowEdit: false,
     },
+    id: 'confirmation-dialogs',
     initialView: 'delete',
   }),
 };
@@ -552,6 +545,7 @@ export const FormDialogs: Story = {
       allowDelete: false,
       allowEdit: true,
     },
+    id: 'form-dialogs',
     initialView: 'add',
   }),
 };

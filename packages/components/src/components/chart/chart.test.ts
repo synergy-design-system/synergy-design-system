@@ -197,43 +197,45 @@ describe('<syn-chart>', () => {
   });
 
   describe('Theme mode change', () => {
-    it('should change palette colors from light to dark when the theme class changes', async () => {
-      const previousBodyClass = document.body.className;
+    let previousBodyClass: string;
 
-      try {
-        document.body.classList.remove('syn-sick2025-light', 'syn-sick2025-dark');
-        document.body.classList.add('syn-sick2025-light');
+    beforeEach(() => {
+      previousBodyClass = document.body.className;
+    });
+
+    afterEach(() => {
+      document.body.className = previousBodyClass;
+    });
+
+    const themeClasses = [['syn-theme-light', 'syn-theme-dark'], ['syn-sick2025-light', 'syn-sick2025-dark']];
+
+    themeClasses.forEach(([lightTheme, darkTheme]) => {
+      it(`should apply initially the dark theme ${darkTheme} from the body class`, async () => {
+        document.body.className = darkTheme;
+        const el = await createChart(html`<syn-chart palette="categorical"></syn-chart>`);
+        await el.updateComplete;
+
+        const expectedColors = PALETTE_TOKENS.categorical.map(token => getRealStyleValue(token, 'dark'));
+        expect(el.getInstance()!.getOption().color).to.deep.equal(expectedColors);
+      });
+
+      it(`should change palette colors from ${lightTheme} to ${darkTheme}`, async () => {
+        document.body.className = lightTheme;
 
         const el = await createChart(html`<syn-chart palette="categorical"></syn-chart>`);
         await el.updateComplete;
-        const instance = el.getInstance()!;
+        const colorsBeforeThemeSwitch = el.getInstance()!.getOption().color as string[];
 
-        const lightColors = PALETTE_TOKENS.categorical.map(token => getRealStyleValue(token, 'light'));
-        const colorsBeforeThemeSwitch = instance.getOption().color as string[];
-        expect(colorsBeforeThemeSwitch).to.deep.equal(lightColors);
-
-        document.body.classList.replace('syn-sick2025-light', 'syn-sick2025-dark');
+        document.body.className = darkTheme;
         await el.updateComplete;
 
-        const darkColors = PALETTE_TOKENS.categorical.map(token => getRealStyleValue(token, 'dark'));
-        const colorsAfterThemeSwitch = instance.getOption().color as string[];
+        const expectedColors = PALETTE_TOKENS.categorical.map(token => getRealStyleValue(token, 'dark'));
+        expect(el.getInstance()!.getOption().color).to.not.deep.equal(colorsBeforeThemeSwitch);
+        expect(el.getInstance()!.getOption().color).to.deep.equal(expectedColors);
+      });
 
-        expect(colorsAfterThemeSwitch).to.not.deep.equal(colorsBeforeThemeSwitch);
-        expect(colorsAfterThemeSwitch).to.deep.equal(darkColors);
-
-        el.remove();
-      } finally {
-        document.body.className = previousBodyClass;
-      }
-    });
-
-    it('should change general theme colors from light to dark when the theme class changes', async () => {
-      const previousBodyClass = document.body.className;
-
-      try {
-        document.body.classList.remove('syn-sick2025-light', 'syn-sick2025-dark');
-        document.body.classList.add('syn-sick2025-light');
-
+      it(`should change general theme colors from ${lightTheme} to ${darkTheme}`, async () => {
+        document.body.className = lightTheme;
         const config: ECConfig = {
           series: [{ data: [11, 22, 33], type: 'line' }],
           xAxis: {
@@ -261,7 +263,7 @@ describe('<syn-chart>', () => {
         expect(lightColors.xAxisSplitLineColor).to.equal(expectedLightColors.gridColor);
         expect(lightColors.yAxisSplitLineColor).to.equal(expectedLightColors.gridColor);
 
-        document.body.classList.replace('syn-sick2025-light', 'syn-sick2025-dark');
+        document.body.className = darkTheme;
         await el.updateComplete;
 
         const darkColors = getAxisThemeColors(el);
@@ -273,11 +275,7 @@ describe('<syn-chart>', () => {
         expect(darkColors.yAxisNameColor).to.equal(expectedDarkColors.nameColor);
         expect(darkColors.xAxisSplitLineColor).to.equal(expectedDarkColors.gridColor);
         expect(darkColors.yAxisSplitLineColor).to.equal(expectedDarkColors.gridColor);
-
-        el.remove();
-      } finally {
-        document.body.className = previousBodyClass;
-      }
+      });
     });
   });
 
@@ -444,7 +442,7 @@ describe('<syn-chart>', () => {
     it('Should not use the visibility icons for selectedMode: false via config', async () => {
       const enhancedConfig: ECConfig = {
         ...baseConfig,
-        legend: { selectedMode: false , show: true},
+        legend: { selectedMode: false, show: true },
       };
       const configWithLegend: ChartConfigCallback = (handle) => handle.baseConfig(enhancedConfig);
       const el = await createChart(html`<syn-chart .config=${configWithLegend}></syn-chart>`);
@@ -480,7 +478,7 @@ describe('<syn-chart>', () => {
       const customFormatter = (name: string): string => `custom-${name}`;
       const enhancedConfig: ECConfig = {
         ...baseConfig,
-        legend: { formatter: customFormatter, show: true},
+        legend: { formatter: customFormatter, show: true },
       };
       const configWithLegend: ChartConfigCallback = (handle) => handle.baseConfig(enhancedConfig);
       const el = await createChart(html`<syn-chart .config=${configWithLegend}></syn-chart>`);

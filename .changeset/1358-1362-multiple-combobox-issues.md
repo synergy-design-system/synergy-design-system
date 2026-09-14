@@ -1,5 +1,6 @@
 ---
 "@synergy-design-system/components": patch
+"@synergy-design-system/metadata": patch
 ---
 
 fix: 🐛 `<syn-combobox>` multiple issues (#1358, #1362)

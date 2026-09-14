@@ -1,10 +1,6 @@
-<script setup lang="ts">
-import { SynVueSwitch } from '@synergy-design-system/vue';
-</script>
-
 <template>
-  <SynVueSwitch>
+  <syn-switch>
     Option
     <span slot="help-text">Help Text</span>
-  </SynVueSwitch>
+  </syn-switch>
 </template>

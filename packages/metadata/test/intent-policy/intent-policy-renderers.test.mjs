@@ -50,6 +50,12 @@ describe('intent policy renderers', () => {
     })).to.equal('<SynVueButton type="button" variant="filled">CONTENT</SynVueButton>');
 
     expect(renderIntentFromRegistry({
+      framework: 'vue-web-components',
+      intent: 'action.primary',
+      target: buttonTarget,
+    })).to.equal('<syn-button type="button" variant="filled">CONTENT</syn-button>');
+
+    expect(renderIntentFromRegistry({
       framework: 'vanilla',
       intent: 'action.primary',
       target: buttonTarget,
@@ -98,8 +104,14 @@ describe('intent policy renderers', () => {
       intent: 'input.selection.single',
     });
 
+    const groupedActionVueWebComponents = renderIntentFromRegistry({
+      framework: 'vue-web-components',
+      intent: 'action.grouped',
+    });
+
     expect(iconAction).to.equal('<syn-icon-button>CONTENT</syn-icon-button>');
     expect(groupedAction).to.equal('<syn-button-group>CONTENT</syn-button-group>');
     expect(singleSelection).to.equal('<syn-radio-group>CONTENT</syn-radio-group>');
+    expect(groupedActionVueWebComponents).to.equal('<syn-button-group>CONTENT</syn-button-group>');
   });
 });

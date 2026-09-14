@@ -1,16 +1,12 @@
-<script setup lang="ts">
-import { SynVueBadge } from '@synergy-design-system/vue';
-</script>
-
 <template>
   <div
     style="display: flex; gap: var(--syn-spacing-large);"
   >
-    <SynVueBadge variant="primary">primary</SynVueBadge>
-    <SynVueBadge variant="success">success</SynVueBadge>
-    <SynVueBadge variant="neutral">neutral</SynVueBadge>
-    <SynVueBadge variant="warning">warning</SynVueBadge>
-    <SynVueBadge variant="critical">critical</SynVueBadge>
-    <SynVueBadge variant="error">error</SynVueBadge>
+    <syn-badge variant="primary">primary</syn-badge>
+    <syn-badge variant="success">success</syn-badge>
+    <syn-badge variant="neutral">neutral</syn-badge>
+    <syn-badge variant="warning">warning</syn-badge>
+    <syn-badge variant="critical">critical</syn-badge>
+    <syn-badge variant="error">error</syn-badge>
   </div>
 </template>

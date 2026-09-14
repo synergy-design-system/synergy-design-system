@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/tokens",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-tokens-3.24.0-a6429ad1-a888-4b00-b12c-637bbc667bfb",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-tokens-3.24.1-6ec272b7-88c5-4880-8783-b9e1401491ae",
   "creationInfo": {
-    "created": "2026-08-31T09:30:36.536Z",
+    "created": "2026-09-14T08:15:10.766Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.24.0",
+      "versionInfo": "3.24.1",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.24.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.24.1"
         }
       ],
       "licenseConcluded": "MIT",

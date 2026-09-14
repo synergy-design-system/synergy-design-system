@@ -151,7 +151,7 @@ export default class SynInput extends SynergyElement implements SynergyFormContr
   @property({ attribute: 'password-visible', type: Boolean }) passwordVisible = false;
 
   /** Hides the increment/decrement spin buttons for number inputs. */
-  @property({ attribute: 'no-spin-buttons', type: Boolean }) noSpinButtons = false;
+  @property({ attribute: 'no-spin-buttons', type: Boolean, reflect: true }) noSpinButtons = false;
 
   /**
    * By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you

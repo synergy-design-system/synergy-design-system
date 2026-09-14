@@ -1,6 +1,15 @@
 import { expect } from '@open-wc/testing';
 import {
-  colorSvgDataUrl, colorSvgImageUri, compose, getAsArray, mergeConfigs, mergeDeep,
+  clamp,
+  colorSvgDataUrl,
+  colorSvgImageUri,
+  compose,
+  convertDegreeToRadian,
+  getAsArray,
+  mergeConfigs,
+  mergeDeep,
+  normalizeAngle,
+  polarPoint,
 } from './utilities.js';
 
 const svgWithCurrentColor = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
@@ -305,6 +314,27 @@ describe('mergeConfigs', () => {
     ]);
   });
 
+  it('ignores nullish layers and honors arrayStrategy from the trailing options object', () => {
+    const merged = mergeConfigs(
+      null,
+      {
+        series: [{ id: 'base-0', type: 'line' }],
+      },
+      undefined,
+      {
+        series: [{ id: 'latest-0', type: 'bar' }],
+      },
+      { arrayStrategy: 'append' },
+    );
+
+    expect(merged).to.deep.equal({
+      series: [
+        { id: 'base-0', type: 'line' },
+        { id: 'latest-0', type: 'bar' },
+      ],
+    });
+  });
+
   it('merges object and array conflicts into the first array index', () => {
     const objectIntoArray = mergeConfigs(
       {
@@ -344,6 +374,43 @@ describe('mergeConfigs', () => {
         type: 'value',
       },
     ]);
+  });
+});
+
+describe('clamp', () => {
+  it('clamps values to the inclusive range bounds', () => {
+    expect(clamp(-10, 0, 10)).to.equal(0);
+    expect(clamp(5, 0, 10)).to.equal(5);
+    expect(clamp(25, 0, 10)).to.equal(10);
+  });
+});
+
+describe('normalizeAngle', () => {
+  it('wraps angles into the [0, 2π) range', () => {
+    expect(normalizeAngle(0)).to.equal(0);
+    expect(normalizeAngle(Math.PI * 2)).to.equal(0);
+    expect(normalizeAngle(-Math.PI / 2)).to.equal((3 * Math.PI) / 2);
+    expect(normalizeAngle((3 * Math.PI) / 2)).to.equal((3 * Math.PI) / 2);
+  });
+});
+
+describe('polarPoint', () => {
+  it('converts polar coordinates to cartesian coordinates', () => {
+    expect(polarPoint(10, 20, 5, 0)).to.deep.equal({ x: 15, y: 20 });
+    expect(polarPoint(10, 20, 5, Math.PI / 2)).to.deep.equal({ x: 10, y: 25 });
+    const polarPointResult = polarPoint(0, 0, 10, Math.PI);
+    expect(polarPointResult.x).to.equal(-10);
+    // Javascript floating point math produces error, so we use a tolerance for the y-coordinate check
+    expect(polarPointResult.y).to.be.closeTo(0, 1e-10);
+  });
+});
+
+describe('convertDegreeToRadian', () => {
+  it('converts degrees to radians', () => {
+    expect(convertDegreeToRadian(0)).to.equal(0);
+    expect(convertDegreeToRadian(90)).to.equal(Math.PI / 2);
+    expect(convertDegreeToRadian(180)).to.equal(Math.PI);
+    expect(convertDegreeToRadian(270)).to.equal((3 * Math.PI) / 2);
   });
 });
 

@@ -1,0 +1,22 @@
+name: Release MCP Docker Image
+
+on:
+  workflow_run:
+    workflows: ["Release new version"]
+    types:
+      - completed
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    # Only real releases from main; dispatched (possibly dry) runs are excluded
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
+    # head_sha still points at the pre-bump commit, so build from main HEAD
+    uses: ./.github/workflows/docker-mcp.yml
+    with:
+      push_image: true
+      ref: main
+    secrets: inherit

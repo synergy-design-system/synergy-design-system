@@ -171,7 +171,11 @@ export default class SynDetails extends SynergyElement {
 
       const { keyframes, options } = getAnimation(this, 'details.hide', { dir: this.localize.dir() });
       await animateTo(this.body, shimKeyframesHeightAuto(keyframes, this.body.scrollHeight), options);
-      this.body.style.height = 'auto';
+      // #1373: Chrome can keep the body at the previous expanded height after the hide animation completes,
+      // leaving the content area stale and preventing the scrollable region from being recalculated correctly.
+      // Resetting the height to 0 forces the element to collapse cleanly and avoids the bug where the details
+      // content is clipped or the scrollable area is not sized correctly.
+      this.body.style.height = '0';
 
       this.details.open = false;
       this.emit('syn-after-hide');

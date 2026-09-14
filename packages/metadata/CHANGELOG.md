@@ -1,5 +1,45 @@
 # Changelog
 
+## 4.8.0
+
+### Patch Changes
+
+- [#1374](https://github.com/synergy-design-system/synergy-design-system/pull/1374) [`bab6db5`](https://github.com/synergy-design-system/synergy-design-system/commit/bab6db5ad18e5e17aeb69c74ee3795762102a6f0) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-09-14
+
+  fix: 🐛 `<syn-combobox>` multiple issues ([#1358](https://github.com/synergy-design-system/synergy-design-system/issues/1358), [#1362](https://github.com/synergy-design-system/synergy-design-system/issues/1362))
+
+  This release fixes multiple issues when using `<syn-combobox>`:
+  - Keeps the current typed value when restricted options are loaded asynchronously while the user is typing.
+  - Prevents automatic selection changes when options are added or updated asynchronously during user input.
+  - Prevents the listbox from reopening after selecting an option from dynamically created on-demand options.
+  - Shows all partial matches again when opening the combobox after the value was set programmatically.
+
+## 4.7.0
+
+### Minor Changes
+
+- Released on: 2026-09-14
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+## 4.6.0
+
+### Minor Changes
+
+- [#1359](https://github.com/synergy-design-system/synergy-design-system/pull/1359) [`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-31
+
+  feat: ✨ Adds gauge series support to `<syn-chart>` ([#1352](https://github.com/synergy-design-system/synergy-design-system/issues/1352))
+
+  This release introduces the new chart series type 'synGauge' and extends the chart configuration API with new presets `seriesGauge`
+
+## 4.5.0
+
+### Minor Changes
+
+- Released on: 2026-08-26
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
 ## 4.4.0
 
 ### Minor Changes

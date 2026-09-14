@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/vue",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.23.0-a711509f-3f0d-4ef7-8adb-714ad6a04a46",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.24.2-4ca0dfa2-79b9-42b9-bab3-86ea98a0ac95",
   "creationInfo": {
-    "created": "2026-08-25T09:11:26.538Z",
+    "created": "2026-09-14T09:47:49.937Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/vue",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/vue@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/vue@3.24.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.24.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -51,16 +51,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.24.2-1",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.24.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -70,7 +70,32 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
+      "SPDXID": "SPDXRef-Package-echarts-6.1.0-2",
+      "name": "echarts",
+      "versionInfo": "6.1.0",
+      "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/echarts@6.1.0"
+        }
+      ],
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "copyrightText": "NOASSERTION",
+      "description": "Apache ECharts is a powerful, interactive charting and data visualization library for browser",
+      "homepage": "https://echarts.apache.org",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "ab4c9a14f8200bd15476c587e1b95abd15859b176b22875b92828d02326e74023a080f6034fc47b55d917193447a9655964e32bc16243a46e4e87215a48c8764"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
       "name": "@floating-ui/dom",
       "versionInfo": "1.8.0",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.8.0.tgz",
@@ -96,58 +121,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-3",
-      "name": "composed-offset-position",
-      "versionInfo": "0.0.6",
-      "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/composed-offset-position@0.0.6"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "This provides a set of ponyfills to achieve the same behavior of `offsetParent`, `offsetLeft` and `offsetTop` before the `offsetParent` spec was changed.",
-      "homepage": "https://github.com/jcfranco/composed-offset-position#readme",
-      "supplier": "Person: jcfranco",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-echarts-6.1.0-4",
-      "name": "echarts",
-      "versionInfo": "6.1.0",
-      "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/echarts@6.1.0"
-        }
-      ],
-      "licenseConcluded": "Apache-2.0",
-      "licenseDeclared": "Apache-2.0",
-      "copyrightText": "NOASSERTION",
-      "description": "Apache ECharts is a powerful, interactive charting and data visualization library for browser",
-      "homepage": "https://echarts.apache.org",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "ab4c9a14f8200bd15476c587e1b95abd15859b176b22875b92828d02326e74023a080f6034fc47b55d917193447a9655964e32bc16243a46e4e87215a48c8764"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-lit-3.3.3-5",
+      "SPDXID": "SPDXRef-Package-lit-3.3.3-4",
       "name": "lit",
       "versionInfo": "3.3.3",
       "downloadLocation": "https://registry.npmjs.org/lit/-/lit-3.3.3.tgz",
@@ -173,28 +147,54 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-6",
-      "name": "@floating-ui/core",
-      "versionInfo": "1.8.0",
-      "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.8.0.tgz",
+      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-5",
+      "name": "composed-offset-position",
+      "versionInfo": "0.0.6",
+      "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40floating-ui/core@1.8.0"
+          "referenceLocator": "pkg:npm/composed-offset-position@0.0.6"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Positioning library for floating elements: tooltips, popovers, dropdowns, and more",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
+      "description": "This provides a set of ponyfills to achieve the same behavior of `offsetParent`, `offsetLeft` and `offsetTop` before the `offsetParent` spec was changed.",
+      "homepage": "https://github.com/jcfranco/composed-offset-position#readme",
+      "supplier": "Person: jcfranco",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "d02219e62b69b3ff31ec11bc744221b39dc1bc2507d8f0a8a20b5a930453badf80ae6e7cb09a2827402e6612f0d87258211e5c30b34f0524bbdbcb0f868da485"
+          "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tslib-2.3.0-6",
+      "name": "tslib",
+      "versionInfo": "2.3.0",
+      "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/tslib@2.3.0"
+        }
+      ],
+      "licenseConcluded": "0BSD",
+      "licenseDeclared": "0BSD",
+      "copyrightText": "NOASSERTION",
+      "description": "Runtime library for TypeScript helper functions",
+      "homepage": "https://www.typescriptlang.org/",
+      "supplier": "Person: Microsoft Corp.",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
         }
       ]
     },
@@ -224,28 +224,28 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-tslib-2.3.0-8",
-      "name": "tslib",
-      "versionInfo": "2.3.0",
-      "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
+      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-8",
+      "name": "@floating-ui/core",
+      "versionInfo": "1.8.0",
+      "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.8.0.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/tslib@2.3.0"
+          "referenceLocator": "pkg:npm/%40floating-ui/core@1.8.0"
         }
       ],
-      "licenseConcluded": "0BSD",
-      "licenseDeclared": "0BSD",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Runtime library for TypeScript helper functions",
-      "homepage": "https://www.typescriptlang.org/",
-      "supplier": "Person: Microsoft Corp.",
+      "description": "Positioning library for floating elements: tooltips, popovers, dropdowns, and more",
+      "homepage": "https://floating-ui.com",
+      "supplier": "Person: atomiks",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
+          "checksumValue": "d02219e62b69b3ff31ec11bc744221b39dc1bc2507d8f0a8a20b5a930453badf80ae6e7cb09a2827402e6612f0d87258211e5c30b34f0524bbdbcb0f868da485"
         }
       ]
     },
@@ -413,66 +413,66 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.24.2-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-3",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
+      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-5",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-4",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
+      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-5",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
+      "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-6",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-2",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-9",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-8",
-      "relationshipType": "DEPENDS_ON"
-    },
-    {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-2",
       "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-8",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-9",
+      "relationshipType": "DEPENDS_ON"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-4",
       "relatedSpdxElement": "SPDXRef-Package--lit-reactive-element-2.1.2-10",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-4",
       "relatedSpdxElement": "SPDXRef-Package-lit-element-4.2.2-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-3.3.3-5",
+      "spdxElementId": "SPDXRef-Package-lit-3.3.3-4",
       "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-12",
       "relationshipType": "DEPENDS_ON"
     },

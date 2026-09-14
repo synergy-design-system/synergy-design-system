@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/react",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.23.0-7de41678-7ad1-49cf-b3e4-6cd6eb7d9bd8",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-react-3.24.2-7d9e76b5-7574-4d8c-9bad-07cb30a5f518",
   "creationInfo": {
-    "created": "2026-08-25T09:11:26.281Z",
+    "created": "2026-09-14T09:47:49.744Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/react",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/react@3.24.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy-design-system.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.24.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -51,16 +51,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.24.2-1",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.23.0",
+      "versionInfo": "3.24.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.23.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.24.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -70,7 +70,33 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
+      "SPDXID": "SPDXRef-Package--lit-react-1.0.8-2",
+      "name": "@lit/react",
+      "versionInfo": "1.0.8",
+      "downloadLocation": "https://registry.npmjs.org/@lit/react/-/react-1.0.8.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40lit/react@1.0.8"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "A React component wrapper for web components.",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "a76f98705f8913aed2457de63252754ca0924ec832395740c1dfe7c69dcdb95d7e09be8c5802db37a9d3ecb778b69998a1f704e6471a498d58041f5ead8fba7f"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
       "name": "@floating-ui/dom",
       "versionInfo": "1.8.0",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/dom/-/dom-1.8.0.tgz",
@@ -96,7 +122,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-echarts-6.1.0-3",
+      "SPDXID": "SPDXRef-Package-echarts-6.1.0-4",
       "name": "echarts",
       "versionInfo": "6.1.0",
       "downloadLocation": "https://registry.npmjs.org/echarts/-/echarts-6.1.0.tgz",
@@ -121,7 +147,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-4",
+      "SPDXID": "SPDXRef-Package-composed-offset-position-0.0.6-5",
       "name": "composed-offset-position",
       "versionInfo": "0.0.6",
       "downloadLocation": "https://registry.npmjs.org/composed-offset-position/-/composed-offset-position-0.0.6.tgz",
@@ -143,32 +169,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "43b74ba26a48ea553077b2d6c8870febaaf859c4bdbbb00bda1f0769e8a98917c244f2cc5aa471f1f62c8dbe0e1e2e9440589f3bb5ed342d88944275a33205c7"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--lit-react-1.0.8-5",
-      "name": "@lit/react",
-      "versionInfo": "1.0.8",
-      "downloadLocation": "https://registry.npmjs.org/@lit/react/-/react-1.0.8.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40lit/react@1.0.8"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "A React component wrapper for web components.",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "a76f98705f8913aed2457de63252754ca0924ec832395740c1dfe7c69dcdb95d7e09be8c5802db37a9d3ecb778b69998a1f704e6471a498d58041f5ead8fba7f"
         }
       ]
     },
@@ -199,59 +199,32 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-utils-0.2.12-7",
-      "name": "@floating-ui/utils",
-      "versionInfo": "0.2.12",
-      "downloadLocation": "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.12.tgz",
+      "SPDXID": "SPDXRef-Package--types-react-19.2.18-7",
+      "name": "@types/react",
+      "versionInfo": "19.2.18",
+      "downloadLocation": "https://registry.npmjs.org/@types/react/-/react-19.2.18.tgz",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40floating-ui/utils@0.2.12"
+          "referenceLocator": "pkg:npm/%40types/react@19.2.18"
         }
       ],
       "licenseConcluded": "MIT",
       "licenseDeclared": "MIT",
       "copyrightText": "NOASSERTION",
-      "description": "Utilities for Floating UI",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
+      "description": "TypeScript definitions for react",
+      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react",
       "checksums": [
         {
           "algorithm": "SHA512",
-          "checksumValue": "1e90a8f2d996ccb55a779b36775f44840cf9ceaaeb43ab3af6a77a9a83cc42f90eb92c034f562045f59256e7387a79eaae0bf7387a6988e18c43ba02d77c88c3"
+          "checksumValue": "027cdb04446cacb2ad9365d27d36d844b8d03ddcb5d7a4adcb8abe4fe069dc80b897a8cd06fade54f0079a9abdaa15d033b09764f8cb56618cc3db32fa1c50df"
         }
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-tslib-2.3.0-8",
-      "name": "tslib",
-      "versionInfo": "2.3.0",
-      "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/tslib@2.3.0"
-        }
-      ],
-      "licenseConcluded": "0BSD",
-      "licenseDeclared": "0BSD",
-      "copyrightText": "NOASSERTION",
-      "description": "Runtime library for TypeScript helper functions",
-      "homepage": "https://www.typescriptlang.org/",
-      "supplier": "Person: Microsoft Corp.",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-9",
+      "SPDXID": "SPDXRef-Package--floating-ui-core-1.8.0-8",
       "name": "@floating-ui/core",
       "versionInfo": "1.8.0",
       "downloadLocation": "https://registry.npmjs.org/@floating-ui/core/-/core-1.8.0.tgz",
@@ -277,7 +250,59 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-zrender-6.1.0-10",
+      "SPDXID": "SPDXRef-Package--floating-ui-utils-0.2.12-9",
+      "name": "@floating-ui/utils",
+      "versionInfo": "0.2.12",
+      "downloadLocation": "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.12.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40floating-ui/utils@0.2.12"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Utilities for Floating UI",
+      "homepage": "https://floating-ui.com",
+      "supplier": "Person: atomiks",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "1e90a8f2d996ccb55a779b36775f44840cf9ceaaeb43ab3af6a77a9a83cc42f90eb92c034f562045f59256e7387a79eaae0bf7387a6988e18c43ba02d77c88c3"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-tslib-2.3.0-10",
+      "name": "tslib",
+      "versionInfo": "2.3.0",
+      "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/tslib@2.3.0"
+        }
+      ],
+      "licenseConcluded": "0BSD",
+      "licenseDeclared": "0BSD",
+      "copyrightText": "NOASSERTION",
+      "description": "Runtime library for TypeScript helper functions",
+      "homepage": "https://www.typescriptlang.org/",
+      "supplier": "Person: Microsoft Corp.",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-zrender-6.1.0-11",
       "name": "zrender",
       "versionInfo": "6.1.0",
       "downloadLocation": "https://registry.npmjs.org/zrender/-/zrender-6.1.0.tgz",
@@ -298,31 +323,6 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "a0418c0c1ea938fd92e8ec114783dd56feb5d33ae39c0dc187e267486d767d826504a8ed340a046f97d252808e3883651fde88d9f537f3f03652944ab3aef161"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package--types-react-19.2.18-11",
-      "name": "@types/react",
-      "versionInfo": "19.2.18",
-      "downloadLocation": "https://registry.npmjs.org/@types/react/-/react-19.2.18.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40types/react@19.2.18"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "TypeScript definitions for react",
-      "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/react",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "027cdb04446cacb2ad9365d27d36d844b8d03ddcb5d7a4adcb8abe4fe069dc80b897a8cd06fade54f0079a9abdaa15d033b09764f8cb56618cc3db32fa1c50df"
         }
       ]
     },
@@ -379,33 +379,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-14",
-      "name": "lit-html",
-      "versionInfo": "3.3.3",
-      "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/lit-html@3.3.3"
-        }
-      ],
-      "licenseConcluded": "BSD-3-Clause",
-      "licenseDeclared": "BSD-3-Clause",
-      "copyrightText": "NOASSERTION",
-      "description": "HTML templates literals in JavaScript",
-      "homepage": "https://lit.dev/",
-      "supplier": "Person: Google LLC",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "7a5f0cea32b6a37457067ad21d7dd92abb0df33115eb7a521314ced70609cfb427746619f37e777b66b93cf5fea877b66866b27e7721426900a2369601110e20"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-csstype-3.2.3-15",
+      "SPDXID": "SPDXRef-Package-csstype-3.2.3-14",
       "name": "csstype",
       "versionInfo": "3.2.3",
       "downloadLocation": "https://registry.npmjs.org/csstype/-/csstype-3.2.3.tgz",
@@ -427,6 +401,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "cf51c629c632db103c00641fc2b9f43c0cbe3c1ed7fc64a3dd45495bda8aca7e37c566be825e675e6538aaa2cc4735952c50bc2aeb145fc4ffd240a2398a4021"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package-lit-html-3.3.3-15",
+      "name": "lit-html",
+      "versionInfo": "3.3.3",
+      "downloadLocation": "https://registry.npmjs.org/lit-html/-/lit-html-3.3.3.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/lit-html@3.3.3"
+        }
+      ],
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "copyrightText": "NOASSERTION",
+      "description": "HTML templates literals in JavaScript",
+      "homepage": "https://lit.dev/",
+      "supplier": "Person: Google LLC",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "7a5f0cea32b6a37457067ad21d7dd92abb0df33115eb7a521314ced70609cfb427746619f37e777b66b93cf5fea877b66866b27e7721426900a2369601110e20"
         }
       ]
     },
@@ -490,62 +490,62 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.23.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.24.2-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--lit-react-1.0.8-5",
+      "relatedSpdxElement": "SPDXRef-Package--lit-react-1.0.8-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-4",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
+      "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-5",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
-      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-3",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
+      "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.23.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-6",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-9",
+      "spdxElementId": "SPDXRef-Package--lit-react-1.0.8-2",
+      "relatedSpdxElement": "SPDXRef-Package--types-react-19.2.18-7",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-7",
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-core-1.8.0-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-3",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-8",
+      "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-3",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-9",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-3",
-      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-10",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-10",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--lit-react-1.0.8-5",
-      "relatedSpdxElement": "SPDXRef-Package--types-react-19.2.18-11",
+      "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
+      "relatedSpdxElement": "SPDXRef-Package-zrender-6.1.0-11",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -560,12 +560,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package-lit-3.3.3-6",
-      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-14",
+      "relatedSpdxElement": "SPDXRef-Package-lit-html-3.3.3-15",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--types-react-19.2.18-11",
-      "relatedSpdxElement": "SPDXRef-Package-csstype-3.2.3-15",
+      "spdxElementId": "SPDXRef-Package--types-react-19.2.18-7",
+      "relatedSpdxElement": "SPDXRef-Package-csstype-3.2.3-14",
       "relationshipType": "DEPENDS_ON"
     },
     {
@@ -574,7 +574,7 @@
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-14",
+      "spdxElementId": "SPDXRef-Package-lit-html-3.3.3-15",
       "relatedSpdxElement": "SPDXRef-Package--types-trusted-types-2.0.7-17",
       "relationshipType": "DEPENDS_ON"
     }

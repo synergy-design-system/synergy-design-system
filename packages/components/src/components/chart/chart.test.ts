@@ -292,6 +292,41 @@ describe('<syn-chart>', () => {
     });
   });
 
+  describe('setRenderer()', () => {
+    it('keeps the initial chart instance for line series', async () => {
+      const el = await createChart();
+      await el.updateComplete;
+
+      const initialInstance = el.getInstance();
+      const lineConfig: ECConfig = {
+        series: [{ data: [1, 2, 3], type: 'line' }],
+        xAxis: { data: ['Mon', 'Tue', 'Wed'], type: 'category' },
+        yAxis: { type: 'value' },
+      };
+
+      el.config = lineConfig;
+      await el.updateComplete;
+
+      expect(el.getInstance()).to.equal(initialInstance);
+    });
+
+    it('re-initializes the chart instance for non-line-or-bar series (e.g. gauge)', async () => {
+      const el = await createChart();
+      await el.updateComplete;
+
+      const initialInstance = el.getInstance();
+      const gaugeConfig: ECConfig = {
+        series: [{ data: [{ name: 'Score', value: 70 }], type: 'gauge' }],
+      };
+
+      el.config = gaugeConfig;
+      await el.updateComplete;
+
+      const updatedInstance = el.getInstance();
+      expect(updatedInstance).to.not.equal(initialInstance);
+    });
+  });
+
   describe('applyAxisDefaultsPreprocessor', () => {
     it('should apply default y and y axis styles', async () => {
       const el = await createChart();

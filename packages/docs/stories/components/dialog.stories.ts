@@ -11,7 +11,6 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-dialog');
@@ -88,7 +87,6 @@ const meta: Meta = {
       disableSnapshot: false,
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('42207-348565'),
     docs: {
       description: {
         component: generateStoryDescription('dialog', 'default'),

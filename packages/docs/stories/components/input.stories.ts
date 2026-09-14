@@ -10,7 +10,6 @@ import { FormSubmitDecorator } from '../../src/decorators/index.js';
 import {
   generateScreenshotStory, generateStoryDescription, storybookDefaults, storybookTemplate,
 } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { paddingDecorator } from '../../src/decorators/PaddingDecorator.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
@@ -24,7 +23,6 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('41337-165221'),
     docs: {
       description: {
         component: generateStoryDescription('input', 'default'),

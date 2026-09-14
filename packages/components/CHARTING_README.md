@@ -210,9 +210,11 @@ This callback receives a typed handle with preset helper functions. The handle i
 - Calls are applied in the order they are called.
 - Later handle calls override conflicting values from earlier calls.
 - Nested objects are merged deeply.
-- Arrays are merged by index.
-- Non-overlapping array entries are preserved from both sides.
-- If an array is merged with an object, the object is merged into index `0` of that array.
+- Arrays are merged by index by default.
+- Non-overlapping array entries are preserved from both sides (default strategy).
+- If an array is merged with an object, the object is merged into index `0` of that array (default strategy).
+- Presets can override the default array behavior by passing an explicit `arrayStrategy`.
+- Example: `seriesLine(...)` uses `arrayStrategy: 'append'`, so new series entries are appended instead of index-merged.
 - If you call `baseConfig()` multiple times, the latest call becomes the new base.
 
 Example of the merge mechanism:
@@ -244,6 +246,30 @@ const patch = {
   series: [
     { type: "line", name: "A", data: [10, 20, 30] },
     { type: "line", name: "B", data: [3, 2, 1] },
+  ],
+}
+```
+
+Example of an overridden array strategy (`append`):
+
+```js
+const base = {
+  series: [
+    { type: "line", name: "Revenue", data: [100, 120, 140] },
+    { type: "line", name: "Cost", data: [80, 90, 95] },
+  ],
+};
+
+const patch = {
+  series: [{ type: "line", name: "Forecast", data: [130, 150, 170] }],
+};
+
+// Result of mergeConfigs(base, patch, { arrayStrategy: 'append' }) (simplified)
+{
+  series: [
+    { type: "line", name: "Revenue", data: [100, 120, 140] },
+    { type: "line", name: "Cost", data: [80, 90, 95] },
+    { type: "line", name: "Forecast", data: [130, 150, 170] },
   ],
 }
 ```
@@ -328,11 +354,222 @@ chart.config = handle =>
   });
 ```
 
+### Tooltip presets
+
+| Preset function | Options                            | Description                                |
+| --------------- | ---------------------------------- | ------------------------------------------ |
+| `tooltipShow`   | `ECConfig['tooltip']` _(optional)_ | Enables tooltip and merges passed options. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle.baseConfig(baseConfig).tooltipShow({
+    valueFormatter: value => `${value} kWh`,
+  });
+```
+
+### Line series presets
+
+| Preset function | Options              | Description                                                         |
+| --------------- | -------------------- | ------------------------------------------------------------------- |
+| `seriesLine`    | `LineSeriesOption[]` | Sets `series` entries as line series and merges each passed option. |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle
+    .baseConfig({
+      xAxis: { type: "category", data: ["Mon", "Tue", "Wed"] },
+      yAxis: { type: "value" },
+    })
+    .seriesLine([
+      { name: "Revenue", data: [120, 200, 150] },
+      { name: "Cost", data: [80, 140, 130] },
+    ]);
+```
+
+Array merge strategy:
+
+- `seriesLine([...])` uses `arrayStrategy: 'append'` for the `series` array.
+- Passed entries are appended after existing `baseConfig.series` entries.
+- Existing series entries are not merged by index with the new ones.
+
+Example (what append means):
+
+```ts
+const baseConfig = {
+  series: [
+    { type: "line", name: "Revenue", smooth: true, data: [100, 120, 140] },
+    { type: "line", name: "Cost", areaStyle: {}, data: [80, 90, 95] },
+  ],
+};
+
+chart.config = handle =>
+  handle
+    .baseConfig(baseConfig)
+    .seriesLine([{ name: "Forecast", data: [130, 150, 170] }]);
+
+// Resulting series:
+// [
+//   { type: 'line', name: 'Revenue', smooth: true, data: [100, 120, 140] },
+//   { type: 'line', name: 'Cost', areaStyle: {}, data: [80, 90, 95] },
+//   { type: 'line', name: 'Forecast', data: [130, 150, 170] }
+// ]
+```
+
+### Gauge series presets
+
+| Preset function | Options                    | Description                                                                                                                                               |
+| --------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `seriesGauge`   | `GaugeSeriesPresetOptions` | Adds a custom `synGauge` series. Renders the gauge progress arc and optional outer sections ring, plus value/min/max labels and optional trend indicator. |
+
+`GaugeSeriesPresetOptions` supports the following fields:
+
+| Option                | Type                        | Description                                                                                                                 | Default                                                                          |
+| --------------------- | --------------------------- | --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `value`               | `number` _(required)_       | Current value of the gauge.                                                                                                 |                                                                                  |
+| `min`                 | `number`                    | Minimum value of the gauge scale.                                                                                           | 0                                                                                |
+| `max`                 | `number`                    | Maximum value of the gauge scale.                                                                                           | 100                                                                              |
+| `icon`                | `string`                    | SVG data URL rendered as an image below the value.                                                                          |                                                                                  |
+| `color`               | `string`                    | Custom color of the progress arc. Overrides automatic section-based coloring when set.                                      |                                                                                  |
+| `backgroundColor`     | `string`                    | Custom background color of the progress arc track.                                                                          | --syn-chart-track-color                                                          |
+| `formatter`           | `GaugeFormatterOptions`     | Formatter functions for the displayed gauge labels.                                                                         |                                                                                  |
+| `formatter.value`     | `(value: number) => string` | Formatter applied to the displayed gauge value.                                                                             | String(value)                                                                    |
+| `formatter.min`       | `(value: number) => string` | Formatter applied to the displayed minimum label.                                                                           | String(value)                                                                    |
+| `formatter.max`       | `(value: number) => string` | Formatter applied to the displayed maximum label.                                                                           | String(value)                                                                    |
+| `sections`            | `GaugeSectionsOptions`      | Outer section boundaries and colors.                                                                                        |
+| `sections.show`       | `boolean`                   | Shows the outer section ring when enabled.                                                                                  | false                                                                            |
+| `sections.boundaries` | `number[]`                  | Boundary values for outer sections (for example `[0, 20, 60, 100]`). Adjacent pairs define ranges.                          | [0, 20, 60, 100]                                                                 |
+| `sections.colors`     | `string[]`                  | Colors for each outer section range. Repeated cyclically when fewer colors than ranges are provided.                        | [--syn-namur-success-color, --syn-namur-warning-color, --syn-namur-error-color ] |
+| `trend`               | `GaugeTrendOptions`         | Trend indicator text and icon options.                                                                                      |                                                                                  |
+| `trend.show`          | `boolean`                   | Shows the trend indicator when enabled.                                                                                     | false                                                                            |
+| `trend.direction`     | `'up' \| 'down'`            | Direction of the trend indicator.                                                                                           | 'up'                                                                             |
+| `trend.value`         | `string`                    | Trend label text shown in the indicator pill.                                                                               |                                                                                  |
+| `trend.iconUp`        | `string`                    | SVG data URL used as the icon when `trend.direction` is `'up'`. Falls back to the Synergy default up icon when not set.     | Default arrow up icon                                                            |
+| `trend.iconDown`      | `string`                    | SVG data URL used as the icon when `trend.direction` is `'down'`. Falls back to the Synergy default down icon when not set. | Default arrow down icon                                                          |
+
+Example:
+
+```ts
+chart.config = handle =>
+  handle.seriesGauge({
+    min: 10,
+    max: 120,
+    value: 72,
+    sections: {
+      boundaries: [10, 40, 70, 120],
+      colors: ["#d92f2f", "#f5a623", "#2f9e44"],
+      show: true,
+    },
+    trend: {
+      direction: "down",
+      show: true,
+      value: "6.5%",
+    },
+  });
+```
+
+Example with custom colors and formatters:
+
+```ts
+import { formatter } from "@synergy-design-system/components/components/chart/index.js";
+
+chart.config = handle =>
+  handle.seriesGauge({
+    min: 0,
+    max: 1000,
+    value: 450,
+    unit: "kWh",
+    color: "#2f9e44",
+    backgroundColor: "#e8f5e9",
+    formatter: {
+      value: formatter.unitFormatter("kWh"),
+      min: formatter.unitFormatter("kWh"),
+      max: formatter.unitFormatter("kWh"),
+    },
+  });
+```
+
+Array merge strategy:
+
+- `seriesGauge({...})` uses `arrayStrategy: 'append'`.
+- The generated `synGauge` series entry is appended to `series`.
+
+---
+
+## Formatter Utility Functions
+
+The chart package provides reusable formatter helpers for e.g. axis labels and tooltip values.
+
+Import options:
+
+```ts
+import { formatter } from "@synergy-design-system/components/components/chart/index.js";
+
+const { unitFormatter, numberFormatter, numberShorthandFormatter } = formatter;
+```
+
+or direct import:
+
+```ts
+import {
+  unitFormatter,
+  numberFormatter,
+  numberShorthandFormatter,
+} from "@synergy-design-system/components/components/chart/configs/formatter.js";
+```
+
+### Available formatter helpers
+
+| Function                   | Signature                                                                                      | Description                                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `unitFormatter`            | `(unit: string) => (value: string \| number) => string`                                        | Appends a unit (for example `42` -> `42kg`).                                                                   |
+| `numberFormatter`          | `(locale?: string, options?: Intl.NumberFormatOptions) => (value: string \| number) => string` | Localizes numeric values via `Intl.NumberFormat`. Non-numeric values are returned unchanged.                   |
+| `numberShorthandFormatter` | `(locale?: string, options?: Intl.NumberFormatOptions) => (value: string \| number) => string` | Formats values with SI prefixes for large/small magnitudes (for example `1500000` -> `1.5M`, `0.002` -> `2m`). |
+
+### Usage with axis labels
+
+```ts
+import { formatter } from "@synergy-design-system/components/components/chart/index.js";
+
+const config: ECConfig = {
+  xAxis: {
+    type: "category",
+    data: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+  },
+  yAxis: {
+    type: "value",
+    axisLabel: {
+      formatter: formatter.unitFormatter("kWh"),
+    },
+  },
+  series: [{ type: "line", data: [150, 230, 224, 218, 135] }],
+};
+```
+
+### Number localization and shorthand examples
+
+```ts
+const localized = formatter.numberFormatter("de-DE", {
+  maximumFractionDigits: 2,
+});
+
+const shorthand = formatter.numberShorthandFormatter("en-US", {
+  maximumFractionDigits: 1,
+});
+
+localized(1234567.89); // '1.234.567,89'
+shorthand(1500000); // '1.5M'
+shorthand(0.002); // '2m'
+```
+
 ---
 
 ## Bundle Size
 
-`syn-chart` uses [ECharts tree-shaking](https://echarts.apache.org/en/tutorial.html#Use%20ECharts%20with%20bundler%20and%20NPM) internally. Only the modules that are actually needed (currently `LineChart`, `CanvasRenderer`, `GridComponent`, `LegendComponent`, `TitleComponent`, `TooltipComponent`) are imported and registered via ECharts' `use([...])`.
+`syn-chart` uses [ECharts tree-shaking](https://echarts.apache.org/en/tutorial.html#Use%20ECharts%20with%20bundler%20and%20NPM) internally. Only the modules that are actually needed (currently `LineChart`, `GaugeChart`, `CanvasRenderer`, `GridComponent`, `LegendComponent`, `TitleComponent`, `TooltipComponent`, `DataZoomComponent`) are imported and registered via ECharts' `use([...])`.)
 
 > ⚠️ You do **not** need to register anything yourself.
 
@@ -340,12 +577,15 @@ chart.config = handle =>
 
 ## Supported Chart Types
 
-> ⚠️ **Currently, only line charts are supported** (`series[].type: 'line'`).
->
-> Support for additional chart types (bar, pie, gauge, etc.) is planned for future releases.
+The following chart types are natively supported with Synergy styling:
 
-If you can't wait for the future releases or want to use echarts features, which we won't support, you can do this by registering the needed echarts plugins by yourself.
-But keep in mind, that they are not synergy approved and do not have synergy styling! Also the registration needs to be done **before** the component is initialized.
+| Type        | How to use                                      |
+| ----------- | ----------------------------------------------- |
+| Line chart  | `series[].type: 'line'` (standard ECharts)      |
+| Gauge chart | `handle.seriesGauge({...})` (custom `synGauge`) |
+
+If you want to use ECharts features beyond what is listed above, you can register the required plugins yourself.
+But keep in mind that they are not Synergy-approved and do not have Synergy styling. The registration needs to be done **before** the component is initialized.
 
 To register echarts functionalities do following or have a closer look at the [echarts documentation](https://echarts.apache.org/en/api.html#echarts.use) :
 

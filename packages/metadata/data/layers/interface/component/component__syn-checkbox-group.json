@@ -63,7 +63,7 @@
   "documentation": "https://synergy-design-system.github.io/?path=/docs/components-syn-checkbox-group--docs",
   "events": [],
   "figmaComponentId": "50279-41408",
-  "figmaDocsId": "50279-43830",
+  "figmaDocsId": "50279-39073",
   "methods": [
     {
       "description": "Sets focus on the checkbox-group.\nWill automatically set focus on the first checkbox in the group that is not disabled.",

@@ -6,7 +6,6 @@ import {
 } from '../../src/helpers/component.js';
 import { registerIconLibrary } from '../../../components/src/utilities/icon-library.js';
 import { defaultIcons } from '../../../assets/src/index.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 
 // We use this type of include to have a valid markdown file
 // that can be used by the MCP.
@@ -28,7 +27,6 @@ const meta: Meta = {
   argTypes,
   component: 'syn-icon',
   parameters: {
-    design: generateFigmaPluginObject('1616-1512'),
     docs: {
       description: {
         // The documentation has to be added like this as template string

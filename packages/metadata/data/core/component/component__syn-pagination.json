@@ -43,6 +43,72 @@
         "sourcePath": "packages/vue/src/components/SynVuePagination.vue"
       }
     },
+    "override": {
+      "figmaComponentId": "49794-33275",
+      "figmaDocsId": "49794-50102",
+      "stories": [
+        {
+          "description": {
+            "type": "text",
+            "value": "The default pagination offers the most comprehensive controls and is optimized for tables, lists, and complex data views. It is intended for use cases where users need to adjust both the number of displayed rows and the active page. The navigation controls allow switching between pages as well as jumping directly to the first or last page."
+          },
+          "name": "default",
+          "title": {
+            "type": "text",
+            "value": "Pagination"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "An optional divider can be shown to provide visual separation depending on the layout needs."
+          },
+          "name": "with-divider",
+          "title": {
+            "type": "text",
+            "value": "With Divider"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the disabled attribute to disable all interactive elements like syn-select, syn-input, and the previous and next syn-icon-buttons. This can be useful if you want to prevent the user from entering something again immediately after an entry before the first entry has been processed."
+          },
+          "name": "disabled",
+          "title": {
+            "type": "text",
+            "value": "Disabled"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "The compact variant focuses on essential pagination controls and fits tight layouts or mobile environments. Use this variant when space is limited or page size stays fixed."
+          },
+          "name": "compact",
+          "title": {
+            "type": "text",
+            "value": "Compact Pagination"
+          }
+        },
+        {
+          "description": {
+            "type": "text",
+            "value": "Use the size attribute to change the pagination size."
+          },
+          "name": "sizes",
+          "title": {
+            "type": "text",
+            "value": "Sizes"
+          }
+        }
+      ],
+      "storySourcePath": "components.pagination",
+      "storyTags": [
+        "Navigation",
+        "Filter"
+      ]
+    },
     "rules": {
       "accessibility": [
         "Provide clear labels for pagination controls and page size selectors.",

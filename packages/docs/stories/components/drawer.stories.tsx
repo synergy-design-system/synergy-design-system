@@ -12,7 +12,6 @@ import {
   storybookTemplate,
 } from '../../src/helpers/component.js';
 import { DisableFocusTrap } from '../../src/shared-components/DisableFocusTrap.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { args: defaultArgs, argTypes } = storybookDefaults('syn-drawer');
@@ -27,7 +26,6 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('41163-282330'),
     docs: {
       container: DisableFocusTrap,
       description: {

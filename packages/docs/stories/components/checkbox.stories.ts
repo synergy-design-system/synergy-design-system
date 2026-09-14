@@ -12,7 +12,6 @@ import {
   storybookHelpers,
   storybookTemplate,
 } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 
 const { argTypes } = storybookDefaults('syn-checkbox');
@@ -29,7 +28,6 @@ const meta: Meta = {
     chromatic: {
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('41310-257927'),
     docs: {
       description: {
         component: generateStoryDescription('checkbox', 'default'),

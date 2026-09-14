@@ -10,7 +10,6 @@ import { html, render } from 'lit';
 import type { SynHideEvent, SynSelectEvent, SynShowEvent } from '@synergy-design-system/components';
 import storyBookPreviewConfig from '../../.storybook/preview.js';
 import { generateStoryDescription } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_All } from '../../.storybook/modes.js';
 import '../../../components/src/components/button/button.js';
 import '../../../components/src/components/details/details.js';
@@ -31,7 +30,6 @@ const meta: Meta = {
       disableSnapshot: false,
       modes: Chromatic_Modes_All,
     },
-    design: generateFigmaPluginObject('16648-52486'),
     docs: {
       description: {
         component: generateStoryDescription('tag-group', 'default', 'templates'),

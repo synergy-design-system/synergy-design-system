@@ -440,7 +440,7 @@ describe('<syn-side-nav>', () => {
     });
   });
 
-  it('should show an indentation for nested nav-items (#708)', async () => {
+  it('should show an indentation for nested nav-items (#708, #1348)', async () => {
     const sideNav = await fixture<SynSideNav>(html`
       <syn-side-nav>
         <syn-nav-item id="first">

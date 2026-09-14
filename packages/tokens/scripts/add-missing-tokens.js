@@ -9,24 +9,7 @@ import {
 } from 'node:fs';
 import path from 'node:path';
 import { styleText } from 'node:util';
-
-/**
- * Extract variables from the given data
- * @param {string} data The original data entry
- * @returns {{property: string, value: string}[]}
- */
-const extractVariables = (data) => {
-  const variablePattern = /(--syn-[^:]+):\s*([^;]+);/g;
-  const variables = [];
-  let match;
-
-  // eslint-disable-next-line no-cond-assign
-  while ((match = variablePattern.exec(data)) !== null) {
-    variables.push({ property: match[1], value: match[2] });
-  }
-
-  return variables;
-};
+import { parseCssVariableEntries } from './css-variable-utils.js';
 
 /**
  * Append missing variables to the target file
@@ -37,7 +20,7 @@ const extractVariables = (data) => {
 const appendVariables = (targetFilePath, variables) => {
   try {
     const targetFile = readFileSync(targetFilePath, 'utf-8');
-    const targetVariables = extractVariables(targetFile);
+    const targetVariables = parseCssVariableEntries(targetFile);
     const targetVariableProperties = targetVariables.map(v => v.property);
     const missingData = variables
       .filter(({ name }) => {

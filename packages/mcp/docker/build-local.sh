@@ -51,11 +51,7 @@ pnpm --filter @synergy-design-system/assets build
 pnpm --filter @synergy-design-system/metadata build
 pnpm --filter @synergy-design-system/mcp build
 
-mkdir -p "$PACKAGE_ROOT/artifacts"
-rm -f "$PACKAGE_ROOT"/artifacts/*.tgz
-pnpm --filter @synergy-design-system/assets pack --pack-destination "$PACKAGE_ROOT/artifacts"
-pnpm --filter @synergy-design-system/metadata pack --pack-destination "$PACKAGE_ROOT/artifacts"
-pnpm --filter @synergy-design-system/mcp pack --pack-destination "$PACKAGE_ROOT/artifacts"
+pnpm -C "$PACKAGE_ROOT" run docker:pack
 
 echo "Building Docker image '$IMAGE_TAG'..."
 cd "$PACKAGE_ROOT"

@@ -34,7 +34,6 @@ import {
   SICK_2025_LIGHT,
   SICK_2025_LIGHT_CLASS,
 } from './modes.js';
-import { generateFigmaPluginObject } from '../src/helpers/figma.js';
 import docsCodepenEnhancer from '../src/docs-codepen-enhancer/index.js';
 import { themeSwitchIcons } from '../src/decorators/ThemeSwitchIcons.js';
 import docsPreviewIframeThemer from '../src/docs-preview-iframe-themer/index.js';
@@ -124,7 +123,6 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    design: generateFigmaPluginObject('104-238'),
     docs: {
       source: {
         format: 'html',

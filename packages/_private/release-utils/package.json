@@ -6,8 +6,8 @@
   "devDependencies": {
     "@changesets/types": "^6.1.0",
     "@synergy-design-system/eslint-config-syn": "workspace:*",
-    "@types/node": "^24.13.2",
-    "eslint": "^9.39.4",
+    "@types/node": "^24.13.3",
+    "eslint": "^9.39.5",
     "typescript": "^6.0.3"
   },
   "dependencies": {

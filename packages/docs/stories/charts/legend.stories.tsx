@@ -12,17 +12,15 @@ import {
   generateScreenshotStory,
   generateStoryDescription,
 } from '../../src/helpers/component.js';
-import { generateFigmaPluginObject } from '../../src/helpers/figma.js';
 import { Chromatic_Modes_Sick_2025 } from '../../.storybook/modes.js';
+import { waitForFinishedChartPlayFunction } from '../../src/playFunction/waitForFinishedCharts.js';
 
 const meta: Meta = {
   component: 'syn-chart',
   parameters: {
     chromatic: {
       modes: Chromatic_Modes_Sick_2025,
-      pauseAnimationAtEnd: false,
     },
-    design: generateFigmaPluginObject('41094-279501'),
     docs: {
       description: {
         component: generateStoryDescription('chart', 'legend-default'),
@@ -37,6 +35,7 @@ const meta: Meta = {
       ),
     },
   },
+  play: waitForFinishedChartPlayFunction,
   tags: ['Charting', 'Data Visualization'],
   title: 'Charts/Features/Legend',
 };

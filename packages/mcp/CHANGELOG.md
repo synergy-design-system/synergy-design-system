@@ -1,5 +1,138 @@
 # Changelog
 
+## 4.9.0
+
+### Patch Changes
+
+- [#1368](https://github.com/synergy-design-system/synergy-design-system/pull/1368) [`259d2cd`](https://github.com/synergy-design-system/synergy-design-system/commit/259d2cdb206417498665685b601fd306cf354238) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-14
+
+  fix: 🐛 mcp false positive ([#1367](https://github.com/synergy-design-system/synergy-design-system/issues/1367))
+
+  This release fixes an issue that newer Agents reported our llm rules as prompt injection.
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.9.0
+
+## 4.8.0
+
+### Minor Changes
+
+- Released on: 2026-09-14
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`bab6db5`](https://github.com/synergy-design-system/synergy-design-system/commit/bab6db5ad18e5e17aeb69c74ee3795762102a6f0)]:
+  - @synergy-design-system/metadata@4.8.0
+
+## 4.7.0
+
+### Minor Changes
+
+- Released on: 2026-09-14
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.7.0
+
+## 4.6.0
+
+### Minor Changes
+
+- [#1359](https://github.com/synergy-design-system/synergy-design-system/pull/1359) [`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-31
+
+  feat: ✨ Adds gauge series support to `<syn-chart>` ([#1352](https://github.com/synergy-design-system/synergy-design-system/issues/1352))
+
+  This release introduces the new chart series type 'synGauge' and extends the chart configuration API with new presets `seriesGauge`
+
+### Patch Changes
+
+- Updated dependencies [[`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0)]:
+  - @synergy-design-system/metadata@4.6.0
+
+## 4.5.0
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.5.0
+
+## 4.4.0
+
+### Minor Changes
+
+- [#1353](https://github.com/synergy-design-system/synergy-design-system/pull/1353) [`2cc1f57`](https://github.com/synergy-design-system/synergy-design-system/commit/2cc1f57be40706d7a02eda06c1042037b6eb6f3d) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-25
+
+  feat: ✨ full featured chart axes ([#1238](https://github.com/synergy-design-system/synergy-design-system/issues/1238))
+
+  Added full featured axes theming and usage examples.
+  Also added formatter utility functions for specific use cases (e.g. `numberShorthandFormatter` for abbreviation of numbers).
+
+### Patch Changes
+
+- Updated dependencies [[`2cc1f57`](https://github.com/synergy-design-system/synergy-design-system/commit/2cc1f57be40706d7a02eda06c1042037b6eb6f3d)]:
+  - @synergy-design-system/metadata@4.4.0
+
+## 4.3.0
+
+### Minor Changes
+
+- Released on: 2026-08-05
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`d7e8c2a`](https://github.com/synergy-design-system/synergy-design-system/commit/d7e8c2a77e6511733330c02f307abc8f7d4ca0b5)]:
+  - @synergy-design-system/metadata@4.3.0
+
+## 4.2.1
+
+### Patch Changes
+
+- [#1349](https://github.com/synergy-design-system/synergy-design-system/pull/1349) [`d918fd6`](https://github.com/synergy-design-system/synergy-design-system/commit/d918fd67909e19ee12f80ef71406aff31a2b4ad1) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-04
+
+  fix: 🐛 dependency updates ([#258](https://github.com/synergy-design-system/synergy-design-system/issues/258))
+
+- Updated dependencies [[`d918fd6`](https://github.com/synergy-design-system/synergy-design-system/commit/d918fd67909e19ee12f80ef71406aff31a2b4ad1)]:
+  - @synergy-design-system/assets@2.3.1
+  - @synergy-design-system/metadata@4.2.1
+
+## 4.2.0
+
+### Minor Changes
+
+- [#1343](https://github.com/synergy-design-system/synergy-design-system/pull/1343) [`37121ac`](https://github.com/synergy-design-system/synergy-design-system/commit/37121ac3153c4e990e9841d18d83735d840391eb) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-07-31
+
+  feat: ✨ Adds line series support to `<syn-chart>` ([#1218](https://github.com/synergy-design-system/synergy-design-system/issues/1218))
+
+  This release introduces support for line charts and extends the chart configuration API with new presets and improved merge capabilities.
+
+  #### New theming support
+  - line charts
+  - data zoom control
+  - tooltips
+
+  #### Preset API enhancements
+  - `seriesLine(...)` for creating line series
+  - `tooltipShow(...)` for enabling tooltips
+
+  #### Improved configuration merging
+
+  Enhanced the configuration merge behavior with an optional array merge strategy.
+
+  - Arrays continue to be merged by index by default.
+  - `seriesLine(...)` now uses `arrayStrategy: 'append'`, ensuring that new series are appended to the existing series array rather than merged by index.
+
+### Patch Changes
+
+- Updated dependencies [[`37121ac`](https://github.com/synergy-design-system/synergy-design-system/commit/37121ac3153c4e990e9841d18d83735d840391eb)]:
+  - @synergy-design-system/metadata@4.2.0
+
 ## 4.1.0
 
 ### Minor Changes

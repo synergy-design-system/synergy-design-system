@@ -1,13 +1,11 @@
-/* eslint-disable */
 import { css } from 'lit';
 
 export default css`
-	/* stylelint-disable */
   :host {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
     box-sizing: content-box !important;
+    display: inline-block;
+    height: 1em;
+    width: 1em;
   }
 
   svg {

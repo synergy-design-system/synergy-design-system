@@ -16,7 +16,6 @@ import SynIcon from '../icon/icon.component.js';
 import SynDivider from '../divider/divider.component.js';
 import { longPress } from '../../internal/longpress.js';
 import styles from './input.styles.js';
-import customStyles from './input.custom.styles.js';
 import type { CSSResultGroup } from 'lit';
 import type { SynergyFormControl } from '../../internal/synergy-element.js';
 import {
@@ -78,7 +77,7 @@ import { enableDefaultSettings } from '../../utilities/defaultSettings/decorator
  */
 @enableDefaultSettings('SynInput')
 export default class SynInput extends SynergyElement implements SynergyFormControl {
-  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, formControlStyles, styles];
   static dependencies = {
 		'syn-icon': SynIcon,
 		'syn-divider': SynDivider

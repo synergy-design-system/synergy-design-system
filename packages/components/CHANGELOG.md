@@ -1,5 +1,35 @@
 # Changelog
 
+## 3.24.2
+
+### Patch Changes
+
+- [#1374](https://github.com/synergy-design-system/synergy-design-system/pull/1374) [`bab6db5`](https://github.com/synergy-design-system/synergy-design-system/commit/bab6db5ad18e5e17aeb69c74ee3795762102a6f0) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-09-14
+
+  fix: 🐛 `<syn-combobox>` multiple issues ([#1358](https://github.com/synergy-design-system/synergy-design-system/issues/1358), [#1362](https://github.com/synergy-design-system/synergy-design-system/issues/1362))
+
+  This release fixes multiple issues when using `<syn-combobox>`:
+  - Keeps the current typed value when restricted options are loaded asynchronously while the user is typing.
+  - Prevents automatic selection changes when options are added or updated asynchronously during user input.
+  - Prevents the listbox from reopening after selecting an option from dynamically created on-demand options.
+  - Shows all partial matches again when opening the combobox after the value was set programmatically.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.24.2
+
+## 3.24.1
+
+### Patch Changes
+
+- [#1376](https://github.com/synergy-design-system/synergy-design-system/pull/1376) [`e9d269d`](https://github.com/synergy-design-system/synergy-design-system/commit/e9d269d9c1cf988d6a6c8d2474c96897af5a354f) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-09-14
+
+  fix: 🐛 dialog with details scroll issue in Chrome ([#1373](https://github.com/synergy-design-system/synergy-design-system/issues/1373))
+
+  - Fixes a Chrome-specific regression where collapsing a details section inside a dialog could leave the content area at its previous expanded height.
+
+- Updated dependencies []:
+  - @synergy-design-system/tokens@3.24.1
+
 ## 3.24.0
 
 ### Minor Changes

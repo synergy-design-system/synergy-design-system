@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/vue",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.24.0-7e101f9e-5870-4fcc-8d8d-a621fc84053c",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-vue-3.24.2-eec69925-c579-4442-920e-30d23623cfc7",
   "creationInfo": {
-    "created": "2026-08-31T09:30:36.551Z",
+    "created": "2026-09-14T11:24:36.306Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/vue",
-      "versionInfo": "3.24.0",
+      "versionInfo": "3.24.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/vue@3.24.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/vue@3.24.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -33,16 +33,16 @@
       "homepage": "https://github.com/synergy-design-system/synergy.git"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "name": "@synergy-design-system/components",
-      "versionInfo": "3.24.0",
+      "versionInfo": "3.24.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.24.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/components@3.24.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -51,16 +51,16 @@
       "supplier": "Person: SICK Global UX Foundation"
     },
     {
-      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.24.0-1",
+      "SPDXID": "SPDXRef-Package--synergy-design-system-tokens-3.24.2-1",
       "name": "@synergy-design-system/tokens",
-      "versionInfo": "3.24.0",
+      "versionInfo": "3.24.2",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.24.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/tokens@3.24.2"
         }
       ],
       "licenseConcluded": "MIT",
@@ -199,33 +199,7 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-Package--floating-ui-utils-0.2.12-7",
-      "name": "@floating-ui/utils",
-      "versionInfo": "0.2.12",
-      "downloadLocation": "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.12.tgz",
-      "filesAnalyzed": false,
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40floating-ui/utils@0.2.12"
-        }
-      ],
-      "licenseConcluded": "MIT",
-      "licenseDeclared": "MIT",
-      "copyrightText": "NOASSERTION",
-      "description": "Utilities for Floating UI",
-      "homepage": "https://floating-ui.com",
-      "supplier": "Person: atomiks",
-      "checksums": [
-        {
-          "algorithm": "SHA512",
-          "checksumValue": "1e90a8f2d996ccb55a779b36775f44840cf9ceaaeb43ab3af6a77a9a83cc42f90eb92c034f562045f59256e7387a79eaae0bf7387a6988e18c43ba02d77c88c3"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-Package-tslib-2.3.0-8",
+      "SPDXID": "SPDXRef-Package-tslib-2.3.0-7",
       "name": "tslib",
       "versionInfo": "2.3.0",
       "downloadLocation": "https://registry.npmjs.org/tslib/-/tslib-2.3.0.tgz",
@@ -247,6 +221,32 @@
         {
           "algorithm": "SHA512",
           "checksumValue": "37cda8a32c55366ea1d6b88b0a8c92f5eddfb89dc0306db3219b3619dd404dc4858d2036dd0d1fce38d97a1d236c9bd65436747094fcc9a34d69a5c7cee78d8e"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-Package--floating-ui-utils-0.2.12-8",
+      "name": "@floating-ui/utils",
+      "versionInfo": "0.2.12",
+      "downloadLocation": "https://registry.npmjs.org/@floating-ui/utils/-/utils-0.2.12.tgz",
+      "filesAnalyzed": false,
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:npm/%40floating-ui/utils@0.2.12"
+        }
+      ],
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "copyrightText": "NOASSERTION",
+      "description": "Utilities for Floating UI",
+      "homepage": "https://floating-ui.com",
+      "supplier": "Person: atomiks",
+      "checksums": [
+        {
+          "algorithm": "SHA512",
+          "checksumValue": "1e90a8f2d996ccb55a779b36775f44840cf9ceaaeb43ab3af6a77a9a83cc42f90eb92c034f562045f59256e7387a79eaae0bf7387a6988e18c43ba02d77c88c3"
         }
       ]
     },
@@ -413,31 +413,31 @@
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-RootPackage",
-      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.24.0-1",
+      "relatedSpdxElement": "SPDXRef-Package--synergy-design-system-tokens-3.24.2-1",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "relatedSpdxElement": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "relatedSpdxElement": "SPDXRef-Package-composed-offset-position-0.0.6-3",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "relatedSpdxElement": "SPDXRef-Package-echarts-6.1.0-4",
       "relationshipType": "DEPENDS_ON"
     },
     {
-      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.0-0",
+      "spdxElementId": "SPDXRef-Package--synergy-design-system-components-3.24.2-0",
       "relatedSpdxElement": "SPDXRef-Package-lit-3.3.3-5",
       "relationshipType": "DEPENDS_ON"
     },
@@ -448,12 +448,12 @@
     },
     {
       "spdxElementId": "SPDXRef-Package--floating-ui-dom-1.8.0-2",
-      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-7",
+      "relatedSpdxElement": "SPDXRef-Package--floating-ui-utils-0.2.12-8",
       "relationshipType": "DEPENDS_ON"
     },
     {
       "spdxElementId": "SPDXRef-Package-echarts-6.1.0-4",
-      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-8",
+      "relatedSpdxElement": "SPDXRef-Package-tslib-2.3.0-7",
       "relationshipType": "DEPENDS_ON"
     },
     {

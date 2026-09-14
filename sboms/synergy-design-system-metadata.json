@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "@synergy-design-system/metadata",
-  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-metadata-4.6.0-9d9ca88c-263f-4c08-8c08-bbb45101752b",
+  "documentNamespace": "https://spdx.org/spdxdocs/-synergy-design-system-metadata-4.9.0-03730ab2-4529-4fc6-a9d3-8eeba55f3f02",
   "creationInfo": {
-    "created": "2026-08-31T09:30:36.274Z",
+    "created": "2026-09-14T11:24:36.033Z",
     "creators": [
       "Tool: pnpm"
     ]
@@ -14,7 +14,7 @@
     {
       "SPDXID": "SPDXRef-RootPackage",
       "name": "@synergy-design-system/metadata",
-      "versionInfo": "4.6.0",
+      "versionInfo": "4.9.0",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
       "primaryPackagePurpose": "LIBRARY",
@@ -22,7 +22,7 @@
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:npm/%40synergy-design-system/metadata@4.6.0"
+          "referenceLocator": "pkg:npm/%40synergy-design-system/metadata@4.9.0"
         }
       ],
       "licenseConcluded": "MIT",

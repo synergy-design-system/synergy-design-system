@@ -1,5 +1,59 @@
 # Changelog
 
+## 4.9.0
+
+### Patch Changes
+
+- [#1368](https://github.com/synergy-design-system/synergy-design-system/pull/1368) [`259d2cd`](https://github.com/synergy-design-system/synergy-design-system/commit/259d2cdb206417498665685b601fd306cf354238) Thanks [@schilchSICKAG](https://github.com/schilchSICKAG)! - Released on: 2026-09-14
+
+  fix: 🐛 mcp false positive ([#1367](https://github.com/synergy-design-system/synergy-design-system/issues/1367))
+
+  This release fixes an issue that newer Agents reported our llm rules as prompt injection.
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.9.0
+
+## 4.8.0
+
+### Minor Changes
+
+- Released on: 2026-09-14
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies [[`bab6db5`](https://github.com/synergy-design-system/synergy-design-system/commit/bab6db5ad18e5e17aeb69c74ee3795762102a6f0)]:
+  - @synergy-design-system/metadata@4.8.0
+
+## 4.7.0
+
+### Minor Changes
+
+- Released on: 2026-09-14
+
+  chore: ✨ Update Metadata and MCP with latest metadata
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @synergy-design-system/metadata@4.7.0
+
+## 4.6.0
+
+### Minor Changes
+
+- [#1359](https://github.com/synergy-design-system/synergy-design-system/pull/1359) [`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0) Thanks [@kirchsuSICKAG](https://github.com/kirchsuSICKAG)! - Released on: 2026-08-31
+
+  feat: ✨ Adds gauge series support to `<syn-chart>` ([#1352](https://github.com/synergy-design-system/synergy-design-system/issues/1352))
+
+  This release introduces the new chart series type 'synGauge' and extends the chart configuration API with new presets `seriesGauge`
+
+### Patch Changes
+
+- Updated dependencies [[`23b16cb`](https://github.com/synergy-design-system/synergy-design-system/commit/23b16cb5ba645b48b34b2dbbfe44b4ad9200edd0)]:
+  - @synergy-design-system/metadata@4.6.0
+
 ## 4.5.0
 
 ### Patch Changes

@@ -661,7 +661,7 @@ export const AxesLabelFormatting: Story = {
     </div>
     <syn-chart id="chart-axis-label-formatter"></syn-chart>
     <script type="module">
-      // import { formatter } from '../../../components/src/components/chart/index.js';
+      // import { formatter } from '@synergy-design-system/components/components/chart/index.js';
 
       const setConfig = (formatterSelect) => {
         let labelFormatter;

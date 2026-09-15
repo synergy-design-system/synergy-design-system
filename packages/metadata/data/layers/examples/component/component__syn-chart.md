@@ -1404,6 +1404,10 @@ By default, each outer ring segment is assigned a color from the chart's categor
 ```html
 <syn-chart id="donut-colors"></syn-chart>
 <script type="module">
+  // To use Synergy chart colors, import the resolved chart tokens. The chart
+  // configuration currently requires hex values, which can be retrieved
+  // directly from the chart tokens object:
+  //
   // import { ResolvedTokens as ChartTokens } from '@synergy-design-system/tokens/charts/resolved';
 
   const charts = document.querySelectorAll("#donut-colors");

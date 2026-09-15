@@ -1,12 +1,12 @@
 import { expect } from '@open-wc/testing';
 import type { graphic } from 'echarts';
-import { DEGREE_TO_RADIAN, DONUT_SERIES, FULL_CIRCLE_RADIAN } from '../constants.js';
-import type { SynergyDonutSeriesModel } from './donut-series-model.js';
-import { SynergyDonutView } from './donut-series-view.js';
+import { DEGREE_TO_RADIAN, DONUT_SERIES, FULL_CIRCLE_RADIAN } from '../../constants.js';
+import type { SynergyDonutSeriesModel } from './donut-model.js';
+import { SynergyDonutView } from './donut-view.js';
 import type { DonutDataItem, DonutDataValue, SynergyDonutSeriesOption } from './types.js';
-import { getRealStyleValue } from '../../themes/utilities.js';
-import { colorSvgDataUrl } from '../utilities.js';
-import type { ExtensionAPI, GlobalModel } from '../types.js';
+import { getRealStyleValue } from '../../../themes/utilities.js';
+import { colorSvgDataUrl } from '../../utilities.js';
+import type { ExtensionAPI, GlobalModel } from '../../types.js';
 
 type StyledDonutDataItem = DonutDataItem & {
   itemStyle?: {

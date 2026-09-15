@@ -1,13 +1,13 @@
 import { ChartView, graphic } from 'echarts/core.js';
 import type { ZRColor } from 'echarts/types/dist/shared.js';
-import type { SynergyGaugeSeriesModel } from './gauge-series-model.js';
+import type { SynergyGaugeSeriesModel } from './gauge-model.js';
 import type {
   GaugeSeriesConfig,
   ResolvedGaugeSeriesConfig,
   SynergyGaugeSeriesOption,
 } from './types.js';
-import { GAUGE_SERIES } from '../constants.js';
-import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
+import { GAUGE_SERIES } from '../../constants.js';
+import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
 import {
   clamp,
   colorSvgDataUrl,
@@ -17,8 +17,8 @@ import {
   createTextGraphic,
   normalizeAngle,
   polarPoint,
-} from '../utilities.js';
-import type { ExtensionAPI, GlobalModel } from '../types.js';
+} from '../../utilities.js';
+import type { ExtensionAPI, GlobalModel } from '../../types.js';
 
 /** Returns the default resolved configuration for a Synergy gauge series. */
 const getDefaultGaugeConfig = (): ResolvedGaugeSeriesConfig => ({

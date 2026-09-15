@@ -1,6 +1,6 @@
 import { expect } from '@open-wc/testing';
 import { seriesDonut } from './presets.js';
-import type { DonutSeriesPresetOptions, ECConfig, SynergyDonutSeriesOption } from '../../types.js';
+import type { DonutSeriesPresetOptions, ECConfig, SynergyDonutSeriesOption } from '../../../types.js';
 
 describe('seriesDonut', () => {
   describe('basic functionality', () => {

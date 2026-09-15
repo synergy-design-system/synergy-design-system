@@ -20,10 +20,10 @@ import { type ChartPalette, PALETTE_TOKENS } from './chart.palettes.js';
 import { resolveConfigInput } from './configs/config.js';
 import type { ChartConfigType, ECConfig } from './types.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
-import { getRealStyleValue, setGlobalThemeStore } from './themes/utilities.js';
+import { getCurrentThemeFromBodyClass, getRealStyleValue, setThemeFromBodyClass } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
-import { donutInstall } from './configs/donut-series/install.js';
-import { gaugeInstall } from './configs/gauge-series/install.js';
+import { donutInstall } from './configs/series/donut/install.js';
+import { gaugeInstall } from './configs/series/gauge/install.js';
 import { legendIconVisual, legendVisibilityIconProcessor } from './configs/legend/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?
@@ -206,32 +206,36 @@ export default class SynChart extends SynergyElement {
     super.connectedCallback();
     registerTheme('default', getSynergyTheme('light'));
     registerTheme('dark', getSynergyTheme('dark'));
+    const synergyThemes = ['syn-theme-', 'syn-sick2025-'];
+    const darkThemes = ['syn-theme-dark', 'syn-sick2025-dark'];
 
     // Add mutation observer to detect changes of light dark mode and get the current mode to apply the correct theme
     // TODO: this is currently only a first prototype for theme switch. We need to add a more robust solution, which might also check if any other parent element has a synergy theme class.
     // Therefore the global theme story might not be the best solution, but maybe a chart instance theme store?
     this.themeObserver = new MutationObserver((entries) => {
       const themeChanged = entries.some((entry) => {
-        const oldTheme = entry.oldValue?.split(' ').find((cls) => cls.includes('syn-sick2025-'));
-        const newTheme = (entry.target as HTMLElement).classList.value.split(' ').find((cls) => cls.includes('syn-sick2025-'));
+        const oldTheme = entry.oldValue?.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme)));
+        const newTheme = (entry.target as HTMLElement).classList.value.split(' ').find((cls) => synergyThemes.some((theme) => cls.includes(theme)));
         return oldTheme !== newTheme;
       });
       if (themeChanged) {
         if (this.chartInstance) {
-          const newTheme = document.body.classList.value.split(' ').find((cls) => cls.includes('syn-sick2025-'));
-          setGlobalThemeStore(newTheme === 'syn-sick2025-dark' ? 'dark' : 'light');
+          setThemeFromBodyClass();
           // We need to re-resolve the config as otherwise the theme change will not be applied to the config if they contain synergy tokens
           this.resolvedConfig = resolveConfigInput(this.config);
           // We need to reapply the config as otherwise the theme change will not be applied.
           // See caveat section of https://echarts.apache.org/en/api.html#echartsInstance.setTheme
           this.chartInstance.setOption(this.resolvedConfig, { notMerge: true });
-          this.chartInstance.setTheme(newTheme === 'syn-sick2025-dark' ? 'dark' : 'default');
+          const currentTheme = getCurrentThemeFromBodyClass();
+          this.chartInstance.setTheme(darkThemes.includes(currentTheme) ? 'dark' : 'default');
 
           this.applyPalette();
         }
       }
     });
     this.themeObserver.observe(document.body, { attributeFilter: ['class'], attributeOldValue: true });
+    // Set initial theme
+    setThemeFromBodyClass();
   }
 
   // Initialize echarts instance and resize observer

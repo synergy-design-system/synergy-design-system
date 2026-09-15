@@ -1,12 +1,12 @@
 import { expect } from '@open-wc/testing';
 import type { graphic } from 'echarts';
-import { GAUGE_SERIES } from '../constants.js';
-import type { SynergyGaugeSeriesModel } from './gauge-series-model.js';
-import { SynergyGaugeView } from './gauge-series-view.js';
+import { GAUGE_SERIES } from '../../constants.js';
+import type { SynergyGaugeSeriesModel } from './gauge-model.js';
+import { SynergyGaugeView } from './gauge-view.js';
 import type { SynergyGaugeSeriesOption } from './types.js';
-import { getRealStyleValue } from '../../themes/utilities.js';
-import { colorSvgDataUrl } from '../utilities.js';
-import type { ExtensionAPI, GlobalModel } from '../types.js';
+import { getRealStyleValue } from '../../../themes/utilities.js';
+import { colorSvgDataUrl } from '../../utilities.js';
+import type { ExtensionAPI, GlobalModel } from '../../types.js';
 
 const RADIAN = Math.PI / 180;
 const svgDataUrl = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';

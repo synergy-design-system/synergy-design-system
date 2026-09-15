@@ -1,4 +1,4 @@
-import type { LayoutValue } from '../types.js';
+import type { LayoutValue } from '../../types.js';
 
 /** Insets that define the usable bounds of the donut layout area. */
 export type LayoutBounds = {

@@ -1,4 +1,4 @@
-import type { Override, WithRequired } from '../types.js';
+import type { Override, WithRequired } from '../../types.js';
 
 /**
  * Formatter functions for gauge value labels.

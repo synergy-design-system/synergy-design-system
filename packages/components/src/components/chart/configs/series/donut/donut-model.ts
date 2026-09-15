@@ -2,9 +2,9 @@ import {
   List, type Model, SeriesModel, helper,
 } from 'echarts/core';
 import LegendVisualProvider from 'echarts/lib/visual/LegendVisualProvider.js';
-import { DONUT_SERIES } from '../constants.js';
+import { DONUT_SERIES } from '../../constants.js';
 import type { DonutSeriesOption } from './types.js';
-import type { GlobalModel } from '../types.js';
+import type { GlobalModel } from '../../types.js';
 
 export class SynergyDonutSeriesModel extends SeriesModel<DonutSeriesOption> {
   static type = `series.${DONUT_SERIES.TYPE_NAME}`;

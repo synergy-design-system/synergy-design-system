@@ -1,5 +1,5 @@
-import { type ConfigModifier, mergeConfigs } from '../utilities.js';
-import { DONUT_SERIES } from '../constants.js';
+import { type ConfigModifier, mergeConfigs } from '../../utilities.js';
+import { DONUT_SERIES } from '../../constants.js';
 import type { DonutSeriesPresetOptions, SynergyDonutSeriesOption } from './types.js';
 
 /**

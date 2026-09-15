@@ -22,8 +22,8 @@ import type { ChartConfigType, ECConfig } from './types.js';
 import { applyAxisDefaultsPreprocessor } from './configs/axes/utilities.js';
 import { getCurrentThemeFromBodyClass, getRealStyleValue, setThemeFromBodyClass } from './themes/utilities.js';
 import { getSynergyTheme } from './themes/theme.js';
-import { donutInstall } from './configs/donut-series/install.js';
-import { gaugeInstall } from './configs/gauge-series/install.js';
+import { donutInstall } from './configs/series/donut/install.js';
+import { gaugeInstall } from './configs/series/gauge/install.js';
 import { legendIconVisual, legendVisibilityIconProcessor } from './configs/legend/utilities.js';
 
 // TODO: Check, should we let the user define the *use* so the bundle size is optimized for their specific use case?

@@ -1,6 +1,6 @@
 import { ChartView, graphic } from 'echarts/core.js';
 import type { SeriesData } from 'echarts/types/dist/shared.js';
-import type { SynergyDonutSeriesModel } from './donut-series-model.js';
+import type { SynergyDonutSeriesModel } from './donut-model.js';
 import type {
   DonutDataItem,
   DonutDataValue,
@@ -11,8 +11,8 @@ import type {
   ResolvedLayout,
   SegmentRange,
 } from './types.js';
-import { DEGREE_TO_RADIAN, DONUT_SERIES, FULL_CIRCLE_RADIAN } from '../constants.js';
-import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../themes/utilities.js';
+import { DEGREE_TO_RADIAN, DONUT_SERIES, FULL_CIRCLE_RADIAN } from '../../constants.js';
+import { measureTextWidth, getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../../../themes/utilities.js';
 import {
   colorSvgDataUrl,
   createImageGraphic,
@@ -22,8 +22,8 @@ import {
   polarPoint,
   sanitizeFiniteNumber,
   toPixels,
-} from '../utilities.js';
-import type { ExtensionAPI, GlobalModel } from '../types.js';
+} from '../../utilities.js';
+import type { ExtensionAPI, GlobalModel } from '../../types.js';
 
 /**
  * Resolves chart-relative inset values (`top`, `right`, `bottom`, `left`) into absolute pixel bounds.

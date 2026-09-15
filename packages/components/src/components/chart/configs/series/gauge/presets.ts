@@ -1,5 +1,5 @@
-import { type ConfigModifier, mergeConfigs } from '../utilities.js';
-import { GAUGE_SERIES } from '../constants.js';
+import { type ConfigModifier, mergeConfigs } from '../../utilities.js';
+import { GAUGE_SERIES } from '../../constants.js';
 import type { GaugeSeriesPresetOptions, SynergyGaugeSeriesOption } from './types.js';
 
 /**

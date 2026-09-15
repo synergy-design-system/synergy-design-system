@@ -93,8 +93,11 @@ export default function docsCodepenEnhancer(code: string, storyContext: StoryCon
 
         // Docs: https://blog.codepen.io/documentation/prefill/
         const data = {
-          css: `/* Import theme */
+          css: `/* Import component theme */
 @import url("https://esm.sh/@synergy-design-system/tokens@${packageVersions['@synergy-design-system/tokens']}/dist/themes/light.css");
+
+/* Import chart theme */
+@import url("https://esm.sh/@synergy-design-system/tokens@${packageVersions['@synergy-design-system/tokens']}/dist/charts/themes/light.css");
 
 /* Import utilities */
 @import url("https://esm.sh/@synergy-design-system/components@${packageVersions['@synergy-design-system/components']}/dist/styles/index.css");
@@ -111,6 +114,9 @@ body {
           head: '<meta name="viewport" content="width=device-width">',
           html: code,
           js: `import * as components from "https://esm.sh/@synergy-design-system/components@${packageVersions['@synergy-design-system/components']}/dist/synergy.js";
+
+// Import chart component
+import 'https://esm.sh/@synergy-design-system/components@${packageVersions['@synergy-design-system/components']}/dist/components/chart/chart.js'
 
 // Override to make icons work with CDN
 const { registerIconLibrary } = components;

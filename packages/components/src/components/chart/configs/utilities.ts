@@ -3,7 +3,7 @@ import type { ZRColor } from 'echarts/types/dist/shared.js';
 import { getRealStyleValue as style, getRealValueWithoutUnit as styleWithoutUnit } from '../themes/utilities.js';
 import type { ECConfig } from '../types.js';
 import { DEGREE_TO_RADIAN, FULL_CIRCLE_RADIAN } from './constants.js';
-import type { Point } from './types.js';
+import type { LayoutValue, ParsedLayoutValue, Point } from './types.js';
 
 // ---------------------------------------------------------------------------
 // Low-level deep-merge primitives
@@ -406,3 +406,51 @@ export const convertDegreeToRadian = (degree: number): number => degree * DEGREE
  * @returns The original value when finite, otherwise the provided fallback.
  */
 export const sanitizeFiniteNumber = (value: number, fallback = 0): number => (Number.isFinite(value) ? value : fallback);
+
+const PIXEL_VALUE_PATTERN = /^[+-]?\d+(?:\.\d+)?$/;
+const PERCENT_VALUE_PATTERN = /^[+-]?\d+(?:\.\d+)?%$/;
+
+/**
+ * Parses a layout value into a numeric pixel or percentage value.
+ *
+ * Numeric inputs are interpreted as pixels. Numeric strings without a unit
+ * are also interpreted as pixels, while strings ending in `%` are interpreted
+ * as percentages. Whitespace around string values is ignored.
+ *
+ * @param value The pixel or percentage layout value to parse.
+ * @returns The parsed value and unit kind, or `invalid` for unsupported input.
+ */
+export const parseLayoutValue = (value: LayoutValue | undefined): ParsedLayoutValue => {
+  if (typeof value === 'number') {
+    return Number.isFinite(value) ? { kind: 'pixel', value } : { kind: 'invalid' };
+  }
+
+  if (typeof value !== 'string') {
+    return { kind: 'invalid' };
+  }
+
+  const trimmed = value.trim();
+
+  if (PERCENT_VALUE_PATTERN.test(trimmed)) {
+    const percent = Number.parseFloat(trimmed.slice(0, -1));
+    return Number.isFinite(percent) ? { kind: 'percent', value: percent } : { kind: 'invalid' };
+  }
+
+  if (PIXEL_VALUE_PATTERN.test(trimmed)) {
+    const numeric = Number.parseFloat(trimmed);
+    return Number.isFinite(numeric) ? { kind: 'pixel', value: numeric } : { kind: 'invalid' };
+  }
+
+  return { kind: 'invalid' };
+};
+
+/** Converts a pixel/percent input to pixels relative to the given base size. */
+export const toPixels = (value: LayoutValue | undefined, baseSize: number, fallback = 0): number => {
+  const parsed = parseLayoutValue(value);
+
+  if (parsed.kind === 'pixel') {
+    return parsed.value;
+  }
+
+  return parsed.kind === 'percent' ? (baseSize * parsed.value) / 100 : fallback;
+};

@@ -21,6 +21,12 @@ export type Point = {
 /** Numeric pixel value or percentage string (e.g. '50%'). */
 export type LayoutValue = number | string;
 
+/** Parsed representation of a layout value, or an invalid input. */
+export type ParsedLayoutValue =
+  | { kind: 'pixel'; value: number }
+  | { kind: 'percent'; value: number }
+  | { kind: 'invalid' };
+
 /** ECharts model instance available during chart rendering and lifecycle hooks. */
 export type GlobalModel = Parameters<ChartView['render']>[1];
 

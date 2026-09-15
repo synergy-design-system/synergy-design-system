@@ -18,38 +18,12 @@ import {
   createImageGraphic,
   createSectorGraphic,
   createTextGraphic,
+  parseLayoutValue,
   polarPoint,
   sanitizeFiniteNumber,
+  toPixels,
 } from '../utilities.js';
-import type { ExtensionAPI, GlobalModel, LayoutValue } from '../types.js';
-
-const PIXEL_VALUE_PATTERN = /^[+-]?\d+(?:\.\d+)?$/;
-const PERCENT_VALUE_PATTERN = /^[+-]?\d+(?:\.\d+)?%$/;
-
-/** Converts a pixel/percent input to pixels relative to the given base size. */
-const toPixels = (value: LayoutValue | undefined, baseSize: number, fallback = 0): number => {
-  if (typeof value === 'number' && Number.isFinite(value)) {
-    return value;
-  }
-
-  if (typeof value === 'string') {
-    const trimmed = value.trim();
-
-    if (PERCENT_VALUE_PATTERN.test(trimmed)) {
-      const percent = Number.parseFloat(trimmed.slice(0, -1));
-      return Number.isFinite(percent) ? (baseSize * percent) / 100 : fallback;
-    }
-
-    if (!PIXEL_VALUE_PATTERN.test(trimmed)) {
-      return fallback;
-    }
-
-    const numeric = Number.parseFloat(trimmed);
-    return Number.isFinite(numeric) ? numeric : fallback;
-  }
-
-  return fallback;
-};
+import type { ExtensionAPI, GlobalModel } from '../types.js';
 
 /**
  * Resolves chart-relative inset values (`top`, `right`, `bottom`, `left`) into absolute pixel bounds.
@@ -116,18 +90,7 @@ const resolveOuterRadius = (
  * Returns `true` when the radius is an absolute value (number or non-percent string),
  * meaning adaptive scaling should not change it.
  */
-const isFixedRadius = (radius: LayoutRadiusInput): boolean => {
-  if (typeof radius === 'number') {
-    return Number.isFinite(radius);
-  }
-
-  if (typeof radius === 'string') {
-    const trimmed = radius.trim();
-    return trimmed !== '' && !trimmed.endsWith('%');
-  }
-
-  return false;
-};
+const isFixedRadius = (radius: LayoutRadiusInput): boolean => parseLayoutValue(radius).kind === 'pixel';
 
 /** Resolves layout bounds/center/radius for the donut rendering area. */
 const resolveDonutLayout = (

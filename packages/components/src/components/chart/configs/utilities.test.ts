@@ -9,7 +9,9 @@ import {
   mergeConfigs,
   mergeDeep,
   normalizeAngle,
+  parseLayoutValue,
   polarPoint,
+  toPixels,
 } from './utilities.js';
 
 const svgWithCurrentColor = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxwYXRoIGZpbGw9ImN1cnJlbnRDb2xvciIvPjwvc3ZnPg==';
@@ -27,6 +29,40 @@ function decodeImageSvgUri(imageUri: string): string {
   const [, encodedSvg = ''] = urlData.split(',');
   return decodeURIComponent(encodedSvg);
 }
+
+describe('parseLayoutValue', () => {
+  it('parses numbers and unitless numeric strings as pixels', () => {
+    expect(parseLayoutValue(24)).to.deep.equal({ kind: 'pixel', value: 24 });
+    expect(parseLayoutValue('  -12.5 ')).to.deep.equal({ kind: 'pixel', value: -12.5 });
+  });
+
+  it('parses percentage strings', () => {
+    expect(parseLayoutValue(' 37.5% ')).to.deep.equal({ kind: 'percent', value: 37.5 });
+  });
+
+  it('returns invalid for unsupported or non-finite values', () => {
+    expect(parseLayoutValue(undefined)).to.deep.equal({ kind: 'invalid' });
+    expect(parseLayoutValue('12px')).to.deep.equal({ kind: 'invalid' });
+    expect(parseLayoutValue('')).to.deep.equal({ kind: 'invalid' });
+    expect(parseLayoutValue(Number.NaN)).to.deep.equal({ kind: 'invalid' });
+    expect(parseLayoutValue(Number.POSITIVE_INFINITY)).to.deep.equal({ kind: 'invalid' });
+  });
+});
+
+describe('toPixels', () => {
+  it('returns pixel values unchanged and resolves percentages against the base size', () => {
+    expect(toPixels(24, 200)).to.equal(24);
+    expect(toPixels('25%', 200)).to.equal(50);
+  });
+
+  it('uses the default fallback for invalid values', () => {
+    expect(toPixels('invalid', 200)).to.equal(0);
+  });
+
+  it('uses a custom fallback for invalid values', () => {
+    expect(toPixels(undefined, 200, 80)).to.equal(80);
+  });
+});
 
 describe('mergeDeep', () => {
   it('deep-merges nested objects into a new object', () => {

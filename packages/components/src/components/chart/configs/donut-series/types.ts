@@ -1,5 +1,6 @@
 import type { LayoutValue } from '../types.js';
 
+/** Insets that define the usable bounds of the donut layout area. */
 export type LayoutBounds = {
   top: number;
   right: number;
@@ -7,9 +8,13 @@ export type LayoutBounds = {
   left: number;
 };
 
+/** Optional horizontal and vertical center values for the donut layout. */
 export type LayoutCenterInput = [LayoutValue, LayoutValue] | undefined;
+
+/** Optional outer radius value for the donut layout. */
 export type LayoutRadiusInput = LayoutValue | undefined;
 
+/** Fully resolved pixel-based layout values used to render the donut. */
 export type ResolvedLayout = {
   centerX: number;
   centerY: number;

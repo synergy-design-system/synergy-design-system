@@ -43,6 +43,7 @@ jobs:
 
       - name: Install Chrome Beta
         run: pnpm exec playwright install chrome-beta
+        working-directory: packages/components
 
       - name: Run tests (components)
         run: BROWSERS=${{ matrix.browser }} pnpm test
@@ -82,6 +83,7 @@ jobs:
 
       - name: Install Chrome Beta
         run: pnpm exec playwright install chrome-beta
+        working-directory: packages/_private/e2e-demo-test
 
       - name: Run tests
         run: pnpm test.${{ matrix.framework }} --project=${{ matrix.browser }}
@@ -130,6 +132,7 @@ jobs:
 
       - name: Install Chrome Beta
         run: pnpm exec playwright install chrome-beta
+        working-directory: packages/_private/e2e-demo-test
 
       - name: Run tests
         run: pnpm test.platform --project=${{ matrix.browser }}

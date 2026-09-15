@@ -15,6 +15,8 @@ It ensures that core UI components and forms work as expected across supported f
   Layout and sizing consistency.
 - **Framework Integration:**  
   Angular, React, Vanilla JS, and Vue demos are built and tested.
+- **Platform Contracts:**
+  Browser behavior assumptions are tested against minimal fixtures in `platform-contract-demo`.
 
 Test files are located in `src/` and organized by component and feature.
 
@@ -25,6 +27,7 @@ E2E tests are run using [Playwright](https://playwright.dev/) in the following b
 - **Chromium**
 - **Firefox**
 - **WebKit** (Safari)
+- **Chrome Beta** (Only nightly, via manual action trigger or when providing `PLAYWRIGHT_FUTURE_BROWSERS=true` in local tests)
 
 Browser support is configured in `playwright.config.ts` and can be selected via CLI flags.
 
@@ -34,6 +37,12 @@ Browser support is configured in `playwright.config.ts` and can be selected via 
 
 ```bash
 pnpm install
+
+# Install or update all required browsers
+pnpm exec playwright install
+
+# For beta testing, may need sudo privileges!
+pnpm exec playwright install chrome-beta
 ```
 
 ### Run All Tests
@@ -52,6 +61,7 @@ pnpm test.react    # Run React tests
 pnpm test.angular  # Run Angular tests
 pnpm test.vue      # Run Vue tests
 pnpm test.vanilla  # Run Vanilla tests
+pnpm test.platform # Run platform contract tests
 
 # Run framework tests for a specific browser
 pnpm test.react --project=chromium   # Run React tests in Chromium
@@ -60,6 +70,21 @@ pnpm test.vue --project=webkit      # Run Vue tests in WebKit
 ```
 
 - Builds and runs tests for the specified framework and browser.
+
+### Run Future-browser Tests
+
+Chrome Beta is available when future-browser projects are enabled:
+
+```bash
+PLAYWRIGHT_FUTURE_BROWSERS=true pnpm test.vanilla --project=chrome-beta
+PLAYWRIGHT_FUTURE_BROWSERS=true pnpm test.platform --project=chrome-beta
+```
+
+Install Chrome Beta before running these tests locally or in CI:
+
+```bash
+pnpm exec playwright install chrome-beta
+```
 
 ### Run Tests with UI
 
@@ -90,6 +115,7 @@ pnpm run lint:js
 | `pnpm test`         | Build and test all frameworks across all browsers |
 | `pnpm test.react`   | Build and test React demo                         |
 | `pnpm test.angular` | Build and test Angular demo                       |
+| `pnpm test.platform` | Build and test platform contract fixtures        |
 | `pnpm test.vue`     | Build and test Vue demo                           |
 | `pnpm test.vanilla` | Build and test Vanilla JS demo                    |
 | `pnpm test.ui`      | Run tests in Playwright UI                        |
@@ -99,6 +125,7 @@ pnpm run lint:js
 ## Directory Structure
 
 - `src/` — Test specs and page objects
+- `src/PlatformContracts/` — Browser/platform contract specs
 - `playwright.config.ts` — Playwright configuration
 - `frameworks.config.ts` — Framework-specific test config
 - `test-results/` — Test output and reports
@@ -120,3 +147,9 @@ Tests are run using a framework and browser matrix:
 - **Matrix:** This creates 12 parallel test runs (4 frameworks × 3 browsers).
 
 This setup ensures comprehensive testing across all supported frameworks and browsers for every pull request.
+
+Future-browser E2E tests are executed by the nightly workflow on `main` and can also be triggered manually for any branch.
+This workflow runs the same framework matrix against Chrome Beta to catch upcoming Chrome regressions before they reach the stable browser channel.
+
+> There is no playwright version to test Firefox/Webkit betas!
+> Playwright uses a patched Firefox build, and its WebKit build already tracks upstream WebKit changes.

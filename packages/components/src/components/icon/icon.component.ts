@@ -7,7 +7,6 @@ import { watch } from '../../internal/watch.js';
 import componentStyles from '../../styles/component.styles.js';
 import SynergyElement from '../../internal/synergy-element.js';
 import styles from './icon.styles.js';
-import customStyles from './icon.custom.styles.js';
 import type { CSSResultGroup, HTMLTemplateResult } from 'lit';
 
 const CACHEABLE_ERROR = Symbol();
@@ -35,7 +34,7 @@ interface IconSource {
  * @csspart use - The <use> element generated when using `spriteSheet: true`
  */
 export default class SynIcon extends SynergyElement {
-  static styles: CSSResultGroup = [componentStyles, styles, customStyles];
+  static styles: CSSResultGroup = [componentStyles, styles];
 
   private initialRender = false;
 

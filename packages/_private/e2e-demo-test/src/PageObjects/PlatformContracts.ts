@@ -24,6 +24,10 @@ export class PlatformContractsPage extends PageObject {
     return this.getLocator('platformOverlayContractsDropdown');
   }
 
+  get drawerInsideTarget() {
+    return this.getLocator('platformOverlayContractsInsideTarget');
+  }
+
   get focusButton() {
     return this.getLocator('platformFocusContractButton');
   }
@@ -67,6 +71,7 @@ export class PlatformContractsPage extends PageObject {
     return {
       drawer: this.drawer,
       drawerContent: this.drawerContent,
+      drawerInsideTarget: this.drawerInsideTarget,
       dropdown: this.dropdown,
       select: this.select,
     };

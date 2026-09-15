@@ -80,12 +80,12 @@ test.describe('Platform contracts: overlay lifecycle', () => {
    * Why: Inside/outside detection must preserve the host overlay while dismissing the currently open nested overlay.
    */
   test('should close only the nested overlay when clicking inside its parent overlay', async ({ page }) => {
-    const { drawer, select } = await openOverlayContractsFixture(page);
+    const { drawer, drawerInsideTarget, select } = await openOverlayContractsFixture(page);
 
     await select.click();
     await expect(select).toHaveAttribute('open');
 
-    await page.getByTestId('overlay-contract-drawer-content').click();
+    await drawerInsideTarget.click();
 
     await expect(select).not.toHaveAttribute('open');
     await expect(drawer).toHaveAttribute('open');

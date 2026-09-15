@@ -22,6 +22,8 @@
             <syn-menu-item value="second">Second</syn-menu-item>
           </syn-menu>
         </syn-dropdown>
+
+        <syn-button data-testid="overlay-contract-inside-target">Inside Drawer Target</syn-button>
       </div>
     </syn-drawer>
   </div>

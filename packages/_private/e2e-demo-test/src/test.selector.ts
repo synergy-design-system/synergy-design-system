@@ -169,6 +169,7 @@ const PlatformContractsSelectors = {
   platformOverlayContractsDrawer: 'syn-drawer[data-testid="overlay-contract-drawer"]',
   platformOverlayContractsDrawerContent: '[data-testid="overlay-contract-drawer-content"]',
   platformOverlayContractsDropdown: 'syn-dropdown[data-testid="overlay-contract-dropdown"]',
+  platformOverlayContractsInsideTarget: 'syn-button[data-testid="overlay-contract-inside-target"]',
   platformOverlayContractsOpenButton: 'syn-button[data-testid="open-overlay-contract"]',
   platformOverlayContractsSelect: 'syn-select[data-testid="overlay-contract-select"]',
   platformPointerContractButton: 'syn-button[data-testid="pointer-contract-button"]',

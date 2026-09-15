@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { defineConfig, devices } from '@playwright/test';
-import { frameworks } from './frameworks.config';
+import { frameworks, productFrameworks } from './frameworks.config';
 
 const minutesToMs = (minutes: number) => minutes * 60 * 1000;
 
@@ -22,7 +22,7 @@ const createFrameworkConfig = () => {
   const framework = process.env.TEST_FRAMEWORK;
 
   if (!framework) {
-    return frameworks;
+    return productFrameworks;
   }
 
   const foundFramework = frameworks.find(f => f.name === framework);

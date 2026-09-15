@@ -15,6 +15,8 @@ It ensures that core UI components and forms work as expected across supported f
   Layout and sizing consistency.
 - **Framework Integration:**  
   Angular, React, Vanilla JS, and Vue demos are built and tested.
+- **Platform Contracts:**
+  Browser behavior assumptions are tested against minimal fixtures in `platform-contract-demo`.
 
 Test files are located in `src/` and organized by component and feature.
 
@@ -59,6 +61,7 @@ pnpm test.react    # Run React tests
 pnpm test.angular  # Run Angular tests
 pnpm test.vue      # Run Vue tests
 pnpm test.vanilla  # Run Vanilla tests
+pnpm test.platform # Run platform contract tests
 
 # Run framework tests for a specific browser
 pnpm test.react --project=chromium   # Run React tests in Chromium
@@ -74,6 +77,7 @@ Chrome Beta is available when future-browser projects are enabled:
 
 ```bash
 PLAYWRIGHT_FUTURE_BROWSERS=true pnpm test.vanilla --project=chrome-beta
+PLAYWRIGHT_FUTURE_BROWSERS=true pnpm test.platform --project=chrome-beta
 ```
 
 Install Chrome Beta before running these tests locally or in CI:
@@ -111,6 +115,7 @@ pnpm run lint:js
 | `pnpm test`         | Build and test all frameworks across all browsers |
 | `pnpm test.react`   | Build and test React demo                         |
 | `pnpm test.angular` | Build and test Angular demo                       |
+| `pnpm test.platform` | Build and test platform contract fixtures        |
 | `pnpm test.vue`     | Build and test Vue demo                           |
 | `pnpm test.vanilla` | Build and test Vanilla JS demo                    |
 | `pnpm test.ui`      | Run tests in Playwright UI                        |
@@ -120,6 +125,7 @@ pnpm run lint:js
 ## Directory Structure
 
 - `src/` — Test specs and page objects
+- `src/PlatformContracts/` — Browser/platform contract specs
 - `playwright.config.ts` — Playwright configuration
 - `frameworks.config.ts` — Framework-specific test config
 - `test-results/` — Test output and reports

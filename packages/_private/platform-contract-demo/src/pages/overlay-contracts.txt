@@ -1,0 +1,60 @@
+<!-- overlay-contracts -->
+<section class="platform-contract-fixture" data-testid="overlay-contracts">
+  <h1 class="syn-heading--3x-large">Overlay Contracts</h1>
+
+  <div
+    class="positioned-overlay-host"
+    data-testid="positioned-overlay-host"
+  >
+    <syn-button data-testid="open-overlay-contract">Open Drawer</syn-button>
+    <syn-drawer data-testid="overlay-contract-drawer" label="Overlay Contract Drawer">
+      <div class="overlay-contract-drawer-content" data-testid="overlay-contract-drawer-content">
+        <syn-select data-testid="overlay-contract-select" label="Contract Select">
+          <syn-option value="one">One</syn-option>
+          <syn-option value="two">Two</syn-option>
+          <syn-option value="three">Three</syn-option>
+        </syn-select>
+
+        <syn-dropdown data-testid="overlay-contract-dropdown">
+          <syn-button slot="trigger" caret>Open Dropdown</syn-button>
+          <syn-menu>
+            <syn-menu-item value="first">First</syn-menu-item>
+            <syn-menu-item value="second">Second</syn-menu-item>
+          </syn-menu>
+        </syn-dropdown>
+      </div>
+    </syn-drawer>
+  </div>
+
+  <div class="platform-contract-control-grid">
+    <button data-testid="focus-contract-start" type="button">Focus Start</button>
+    <syn-button data-testid="focus-contract-button">Focusable Button</syn-button>
+    <syn-input data-testid="focus-contract-input" label="Focusable Input"></syn-input>
+    <syn-select data-testid="focus-contract-select" label="Focusable Select">
+      <syn-option value="one">One</syn-option>
+      <syn-option value="two">Two</syn-option>
+    </syn-select>
+  </div>
+
+  <div class="platform-contract-control-grid">
+    <syn-button data-testid="pointer-contract-button">Pointer State Button</syn-button>
+    <syn-button data-testid="disabled-contract-button" disabled>Disabled Button</syn-button>
+    <syn-select data-testid="disabled-contract-select" disabled label="Disabled Select">
+      <syn-option value="one">One</syn-option>
+      <syn-option value="two">Two</syn-option>
+    </syn-select>
+  </div>
+
+  <div class="scroll-contract-container" data-testid="scroll-contract-container">
+    <div class="scroll-contract-spacer">Scroll Container Start</div>
+    <syn-select data-testid="scroll-contract-select" label="Scroll Container Select">
+      <syn-option value="one">One</syn-option>
+      <syn-option value="two">Two</syn-option>
+      <syn-option value="three">Three</syn-option>
+    </syn-select>
+    <div class="scroll-contract-spacer">Scroll Container End</div>
+  </div>
+
+  <syn-input data-testid="text-edit-contract-input" label="Text Edit Input"></syn-input>
+</section>
+<!-- /overlay-contracts -->

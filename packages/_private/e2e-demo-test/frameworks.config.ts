@@ -1,4 +1,4 @@
-export type AvailableFrameworks = 'angular' | 'react' | 'vanilla' | 'vue';
+export type AvailableFrameworks = 'angular' | 'platform' | 'react' | 'vanilla' | 'vue';
 
 export type Framework = {
   customCommand?: string;
@@ -7,7 +7,7 @@ export type Framework = {
   port: number,
 };
 
-export const frameworks: Framework[] = [
+export const productFrameworks: Framework[] = [
   {
     distDir: '../angular-demo/dist/angular-demo/browser',
     name: 'angular',
@@ -24,13 +24,26 @@ export const frameworks: Framework[] = [
   {
     distDir: '../vanilla-demo/dist',
     name: 'vanilla',
-    port: 5173
+    port: 5173,
   },
   {
     name: 'vue',
     distDir: '../vue-demo/dist',
     port: 5174,
   },
+];
+
+export const platformFrameworks: Framework[] = [
+  {
+    distDir: '../platform-contract-demo/dist',
+    name: 'platform',
+    port: 5177,
+  },
+];
+
+export const frameworks: Framework[] = [
+  ...productFrameworks,
+  ...platformFrameworks,
 ];
 
 /**
@@ -41,7 +54,7 @@ export const getEnabledFrameworks = () => {
   const framework = process.env.TEST_FRAMEWORK;
 
   if (!framework) {
-    return frameworks;
+    return productFrameworks;
   }
 
   const foundFramework = frameworks.find(f => f.name === framework);

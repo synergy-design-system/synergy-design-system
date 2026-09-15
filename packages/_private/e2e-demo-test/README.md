@@ -25,6 +25,7 @@ E2E tests are run using [Playwright](https://playwright.dev/) in the following b
 - **Chromium**
 - **Firefox**
 - **WebKit** (Safari)
+- **Chrome Beta** (Only nightly, via manual action trigger or when providing `PLAYWRIGHT_FUTURE_BROWSERS=true` in local tests)
 
 Browser support is configured in `playwright.config.ts` and can be selected via CLI flags.
 
@@ -34,6 +35,12 @@ Browser support is configured in `playwright.config.ts` and can be selected via 
 
 ```bash
 pnpm install
+
+# Install or update all required browsers
+pnpm exec playwright install
+
+# For beta testing, may need sudo privileges!
+pnpm exec playwright install chrome-beta
 ```
 
 ### Run All Tests
@@ -60,6 +67,20 @@ pnpm test.vue --project=webkit      # Run Vue tests in WebKit
 ```
 
 - Builds and runs tests for the specified framework and browser.
+
+### Run Future-browser Tests
+
+Chrome Beta is available when future-browser projects are enabled:
+
+```bash
+PLAYWRIGHT_FUTURE_BROWSERS=true pnpm test.vanilla --project=chrome-beta
+```
+
+Install Chrome Beta before running these tests locally or in CI:
+
+```bash
+pnpm exec playwright install chrome-beta
+```
 
 ### Run Tests with UI
 
@@ -120,3 +141,9 @@ Tests are run using a framework and browser matrix:
 - **Matrix:** This creates 12 parallel test runs (4 frameworks × 3 browsers).
 
 This setup ensures comprehensive testing across all supported frameworks and browsers for every pull request.
+
+Future-browser E2E tests are executed by the nightly workflow on `main` and can also be triggered manually for any branch.
+This workflow runs the same framework matrix against Chrome Beta to catch upcoming Chrome regressions before they reach the stable browser channel.
+
+> There is no playwright version to test Firefox/Webkit betas!
+> Playwright uses a patched Firefox build, and its WebKit build already tracks upstream WebKit changes.

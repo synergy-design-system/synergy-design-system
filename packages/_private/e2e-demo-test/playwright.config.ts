@@ -4,6 +4,19 @@ import { frameworks } from './frameworks.config';
 
 const minutesToMs = (minutes: number) => minutes * 60 * 1000;
 
+// #1300: Add support for beta testing
+const futureBrowserProjects = process.env.PLAYWRIGHT_FUTURE_BROWSERS === 'true'
+  ? [
+    {
+      name: 'chrome-beta',
+      use: {
+        ...devices['Desktop Chrome'],
+        channel: 'chrome-beta',
+      },
+    },
+  ]
+  : [];
+
 // Helper to get current framework from env
 const createFrameworkConfig = () => {
   const framework = process.env.TEST_FRAMEWORK;
@@ -52,6 +65,7 @@ export default defineConfig({
         ...devices['Desktop Safari'],
       },
     },
+    ...futureBrowserProjects,
   ],
   webServer: createFrameworkConfig().map(({ customCommand, distDir, port }) => ({
     command: customCommand || `pnpm exec serve -s -p ${port} ${distDir}`,
